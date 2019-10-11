@@ -14,8 +14,10 @@ import (
 )
 
 type DeleteAwsByIdentifier struct {
+	// Delete the AWS account that matches this account_id.
 	AccountId *string `json:"account_id,omitempty"`
 
+	// Delete the AWS account that matches this role_name.
 	RoleName *string `json:"role_name,omitempty"`
 }
 

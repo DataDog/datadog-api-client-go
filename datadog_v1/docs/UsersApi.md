@@ -17,7 +17,19 @@ Method | HTTP request | Description
 > UserCreateResponse CreateUser(ctx, userCreatePayload)
 Create user
 
-### Overview Create a user for your organization. ### ARGUMENTS * **`handle`** [*required*]: The user handle, must be a valid email. * **`name`** [*optional*, *default*=**None**]: The name of the user. * **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:   *  **st** (standard user),   *  **adm** (admin user),   *  **ro** (read-only user). *Note: users can be created with admin access role      only with application keys belonging to administrators.*
+### Overview
+Create a user for your organization.
+### Arguments
+* **`handle`** [*required*]: The user handle, must be a valid email.
+* **`name`** [*optional*, *default*=**None**]: The name of the user.
+* **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
+
+  *  **st** (standard user),
+
+  *  **adm** (admin user),
+
+  *  **ro** (read-only user). *Note: users can be created with admin access role
+     only with application keys belonging to administrators.*
 
 ### Required Parameters
 
@@ -50,7 +62,12 @@ Name | Type | Description  | Notes
 > UserDisableResponse DisableUser(ctx, userHandle)
 Disable user
 
-### Overview Delete a user from an organization. **Note**: This endpoint can only be used with application keys belonging to administrators. ### Arguments * **`id`** [*required*]: The handle of the user.
+### Overview
+Delete a user from an organization.
+
+**Note**: This endpoint can only be used with application keys belonging to administrators.
+### Arguments
+* **`id`** [*required*]: The handle of the user.
 
 ### Required Parameters
 
@@ -83,7 +100,10 @@ Name | Type | Description  | Notes
 > UserGetAllResponse GetAllUsers(ctx, )
 Get all users
 
-### Overview Get all users for your organization. ### Arguments This endpoint takes no JSON argument.
+### Overview
+Get all users for your organization.
+### Arguments
+This endpoint takes no JSON argument.
 
 ### Required Parameters
 
@@ -112,7 +132,10 @@ This endpoint does not need any parameter.
 > UserGetResponse GetUser(ctx, userHandle)
 Get user
 
-### Overview Get a user details. ### Arguments * **`user_handle`** [*required*]: The handle of the user.
+### Overview
+Get a user details.
+### Arguments
+* **`user_handle`** [*required*]: The handle of the user.
 
 ### Required Parameters
 
@@ -145,7 +168,22 @@ Name | Type | Description  | Notes
 > UserUpdateResponse UpdateUser(ctx, userHandle, userUpdatePayload)
 Update user
 
-### Overview Update a user informations **Note**: It can only be used with application keys belonging to administrators. ### Arguments * **`id`** [*required*]: The handle of the user. * **`name`** [*optional*, *default*=**None**]: The new name of the user. * **`email`** [*optional*, *default*=**None**]: The new email of the user. * **`disabled`** [*optional*, *default*=**None**]: The new disabled status of the user. * **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:   *  **st** (standard user),   *  **adm** (admin user),   *  **ro** (read-only user).
+### Overview
+Update a user informations.
+
+**Note**: It can only be used with application keys belonging to administrators.
+### Arguments
+* **`id`** [*required*]: The handle of the user.
+* **`name`** [*optional*, *default*=**None**]: The new name of the user.
+* **`email`** [*optional*, *default*=**None**]: The new email of the user.
+* **`disabled`** [*optional*, *default*=**None**]: The new disabled status of the user.
+* **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
+
+  *  **st** (standard user)
+
+  *  **adm** (admin user)
+
+  *  **ro** (read-only user)
 
 ### Required Parameters
 

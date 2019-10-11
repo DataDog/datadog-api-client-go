@@ -12,11 +12,11 @@ type MonitorOverallStates string
 
 // List of MonitorOverallStates
 const (
-	OK      MonitorOverallStates = "OK"
-	WARN    MonitorOverallStates = "Warn"
 	ALERT   MonitorOverallStates = "Alert"
-	NO_DATA MonitorOverallStates = "No Data"
 	IGNORED MonitorOverallStates = "Ignored"
+	NO_DATA MonitorOverallStates = "No Data"
+	OK      MonitorOverallStates = "OK"
 	SKIPPED MonitorOverallStates = "Skipped"
 	UNKNOWN MonitorOverallStates = "Unknown"
+	WARN    MonitorOverallStates = "Warn"
 )

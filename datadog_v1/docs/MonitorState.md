@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Groups** | Pointer to [**[]MonitorStateGroup**](MonitorStateGroup.md) |  | [optional] 
-**MonitorId** | Pointer to **int32** |  | [optional] 
+**Groups** | Pointer to [**map[string]MonitorStateGroup**](MonitorStateGroup.md) |  | [optional] 
+**MonitorId** | Pointer to **int64** |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 
 ## Methods
 
 ### GetGroups
 
-`func (o *MonitorState) GetGroups() []MonitorStateGroup`
+`func (o *MonitorState) GetGroups() map[string]MonitorStateGroup`
 
 GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### GetGroupsOk
 
-`func (o *MonitorState) GetGroupsOk() ([]MonitorStateGroup, bool)`
+`func (o *MonitorState) GetGroupsOk() (map[string]MonitorStateGroup, bool)`
 
 GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -31,19 +31,19 @@ HasGroups returns a boolean if a field has been set.
 
 ### SetGroups
 
-`func (o *MonitorState) SetGroups(v []MonitorStateGroup)`
+`func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup)`
 
-SetGroups gets a reference to the given []MonitorStateGroup and assigns it to the Groups field.
+SetGroups gets a reference to the given map[string]MonitorStateGroup and assigns it to the Groups field.
 
 ### GetMonitorId
 
-`func (o *MonitorState) GetMonitorId() int32`
+`func (o *MonitorState) GetMonitorId() int64`
 
 GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
 
 ### GetMonitorIdOk
 
-`func (o *MonitorState) GetMonitorIdOk() (int32, bool)`
+`func (o *MonitorState) GetMonitorIdOk() (int64, bool)`
 
 GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -56,9 +56,9 @@ HasMonitorId returns a boolean if a field has been set.
 
 ### SetMonitorId
 
-`func (o *MonitorState) SetMonitorId(v int32)`
+`func (o *MonitorState) SetMonitorId(v int64)`
 
-SetMonitorId gets a reference to the given int32 and assigns it to the MonitorId field.
+SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
 
 ### GetOverallState
 

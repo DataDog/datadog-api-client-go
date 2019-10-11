@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **End** | Pointer to **int64** |  | [optional] 
 **Id** | Pointer to **int64** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
-**MonitorId** | Pointer to **int32** |  | [optional] 
+**MonitorId** | Pointer to **int64** |  | [optional] 
 **MonitorTags** | Pointer to **[]string** |  | [optional] 
 **ParentId** | Pointer to **int32** |  | [optional] 
 **Recurrence** | Pointer to [**DowntimeRecurrence**](DowntimeRecurrence.md) |  | [optional] 
@@ -239,13 +239,13 @@ SetMessage gets a reference to the given string and assigns it to the Message fi
 
 ### GetMonitorId
 
-`func (o *Downtime) GetMonitorId() int32`
+`func (o *Downtime) GetMonitorId() int64`
 
 GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
 
 ### GetMonitorIdOk
 
-`func (o *Downtime) GetMonitorIdOk() (int32, bool)`
+`func (o *Downtime) GetMonitorIdOk() (int64, bool)`
 
 GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -258,9 +258,9 @@ HasMonitorId returns a boolean if a field has been set.
 
 ### SetMonitorId
 
-`func (o *Downtime) SetMonitorId(v int32)`
+`func (o *Downtime) SetMonitorId(v int64)`
 
-SetMonitorId gets a reference to the given int32 and assigns it to the MonitorId field.
+SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
 
 ### SetMonitorIdExplicitNull
 

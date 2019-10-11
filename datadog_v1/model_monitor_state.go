@@ -13,17 +13,17 @@ import (
 )
 
 type MonitorState struct {
-	Groups *[]MonitorStateGroup `json:"groups,omitempty"`
+	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
 
-	MonitorId *int32 `json:"monitor_id,omitempty"`
+	MonitorId *int64 `json:"monitor_id,omitempty"`
 
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 }
 
 // GetGroups returns the Groups field if non-nil, zero value otherwise.
-func (o *MonitorState) GetGroups() []MonitorStateGroup {
+func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 	if o == nil || o.Groups == nil {
-		var ret []MonitorStateGroup
+		var ret map[string]MonitorStateGroup
 		return ret
 	}
 	return *o.Groups
@@ -31,9 +31,9 @@ func (o *MonitorState) GetGroups() []MonitorStateGroup {
 
 // GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorState) GetGroupsOk() ([]MonitorStateGroup, bool) {
+func (o *MonitorState) GetGroupsOk() (map[string]MonitorStateGroup, bool) {
 	if o == nil || o.Groups == nil {
-		var ret []MonitorStateGroup
+		var ret map[string]MonitorStateGroup
 		return ret, false
 	}
 	return *o.Groups, true
@@ -48,15 +48,15 @@ func (o *MonitorState) HasGroups() bool {
 	return false
 }
 
-// SetGroups gets a reference to the given []MonitorStateGroup and assigns it to the Groups field.
-func (o *MonitorState) SetGroups(v []MonitorStateGroup) {
+// SetGroups gets a reference to the given map[string]MonitorStateGroup and assigns it to the Groups field.
+func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup) {
 	o.Groups = &v
 }
 
 // GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
-func (o *MonitorState) GetMonitorId() int32 {
+func (o *MonitorState) GetMonitorId() int64 {
 	if o == nil || o.MonitorId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MonitorId
@@ -64,9 +64,9 @@ func (o *MonitorState) GetMonitorId() int32 {
 
 // GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorState) GetMonitorIdOk() (int32, bool) {
+func (o *MonitorState) GetMonitorIdOk() (int64, bool) {
 	if o == nil || o.MonitorId == nil {
-		var ret int32
+		var ret int64
 		return ret, false
 	}
 	return *o.MonitorId, true
@@ -81,8 +81,8 @@ func (o *MonitorState) HasMonitorId() bool {
 	return false
 }
 
-// SetMonitorId gets a reference to the given int32 and assigns it to the MonitorId field.
-func (o *MonitorState) SetMonitorId(v int32) {
+// SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
+func (o *MonitorState) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 

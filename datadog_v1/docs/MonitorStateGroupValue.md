@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FromTs** | Pointer to **float32** |  | [optional] 
+**FromTs** | Pointer to **int64** |  | [optional] 
 **Left** | Pointer to **float32** |  | [optional] 
 **Right** | Pointer to **float32** |  | [optional] 
 **ToTs** | Pointer to **int64** |  | [optional] 
@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 
 ### GetFromTs
 
-`func (o *MonitorStateGroupValue) GetFromTs() float32`
+`func (o *MonitorStateGroupValue) GetFromTs() int64`
 
 GetFromTs returns the FromTs field if non-nil, zero value otherwise.
 
 ### GetFromTsOk
 
-`func (o *MonitorStateGroupValue) GetFromTsOk() (float32, bool)`
+`func (o *MonitorStateGroupValue) GetFromTsOk() (int64, bool)`
 
 GetFromTsOk returns a tuple with the FromTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -33,9 +33,9 @@ HasFromTs returns a boolean if a field has been set.
 
 ### SetFromTs
 
-`func (o *MonitorStateGroupValue) SetFromTs(v float32)`
+`func (o *MonitorStateGroupValue) SetFromTs(v int64)`
 
-SetFromTs gets a reference to the given float32 and assigns it to the FromTs field.
+SetFromTs gets a reference to the given int64 and assigns it to the FromTs field.
 
 ### GetLeft
 

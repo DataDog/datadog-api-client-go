@@ -47,6 +47,8 @@ type MonitorOptions struct {
 
 	SyntheticsCheckId *int64 `json:"synthetics_check_id,omitempty"`
 
+	ThresholdWindows *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
+
 	Thresholds *MonitorThresholds `json:"thresholds,omitempty"`
 
 	TimeoutH *int32 `json:"timeout_h,omitempty"`
@@ -613,6 +615,39 @@ func (o *MonitorOptions) SetSyntheticsCheckId(v int64) {
 	o.SyntheticsCheckId = &v
 }
 
+// GetThresholdWindows returns the ThresholdWindows field if non-nil, zero value otherwise.
+func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions {
+	if o == nil || o.ThresholdWindows == nil {
+		var ret MonitorThresholdWindowOptions
+		return ret
+	}
+	return *o.ThresholdWindows
+}
+
+// GetThresholdWindowsOk returns a tuple with the ThresholdWindows field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetThresholdWindowsOk() (MonitorThresholdWindowOptions, bool) {
+	if o == nil || o.ThresholdWindows == nil {
+		var ret MonitorThresholdWindowOptions
+		return ret, false
+	}
+	return *o.ThresholdWindows, true
+}
+
+// HasThresholdWindows returns a boolean if a field has been set.
+func (o *MonitorOptions) HasThresholdWindows() bool {
+	if o != nil && o.ThresholdWindows != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetThresholdWindows gets a reference to the given MonitorThresholdWindowOptions and assigns it to the ThresholdWindows field.
+func (o *MonitorOptions) SetThresholdWindows(v MonitorThresholdWindowOptions) {
+	o.ThresholdWindows = &v
+}
+
 // GetThresholds returns the Thresholds field if non-nil, zero value otherwise.
 func (o *MonitorOptions) GetThresholds() MonitorThresholds {
 	if o == nil || o.Thresholds == nil {
@@ -731,6 +766,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.SyntheticsCheckId != nil {
 		toSerialize["synthetics_check_id"] = o.SyntheticsCheckId
+	}
+	if o.ThresholdWindows != nil {
+		toSerialize["threshold_windows"] = o.ThresholdWindows
 	}
 	if o.Thresholds != nil {
 		toSerialize["thresholds"] = o.Thresholds

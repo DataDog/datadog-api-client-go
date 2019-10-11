@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to **string** |  | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Deleted** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Id** | Pointer to **int64** | ID of this monitor | [optional] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
-**Modified** | Pointer to **string** |  | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Multi** | Pointer to **bool** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 **Query** | Pointer to **string** |  | 
-**State** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
+**State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | Pointer to **string** | The type of the monitor | 
 
@@ -23,13 +23,13 @@ Name | Type | Description | Notes
 
 ### GetCreated
 
-`func (o *Monitor) GetCreated() string`
+`func (o *Monitor) GetCreated() time.Time`
 
 GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *Monitor) GetCreatedOk() (string, bool)`
+`func (o *Monitor) GetCreatedOk() (time.Time, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -42,9 +42,9 @@ HasCreated returns a boolean if a field has been set.
 
 ### SetCreated
 
-`func (o *Monitor) SetCreated(v string)`
+`func (o *Monitor) SetCreated(v time.Time)`
 
-SetCreated gets a reference to the given string and assigns it to the Created field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetCreator
 
@@ -148,13 +148,13 @@ SetMessage gets a reference to the given string and assigns it to the Message fi
 
 ### GetModified
 
-`func (o *Monitor) GetModified() string`
+`func (o *Monitor) GetModified() time.Time`
 
 GetModified returns the Modified field if non-nil, zero value otherwise.
 
 ### GetModifiedOk
 
-`func (o *Monitor) GetModifiedOk() (string, bool)`
+`func (o *Monitor) GetModifiedOk() (time.Time, bool)`
 
 GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -167,9 +167,9 @@ HasModified returns a boolean if a field has been set.
 
 ### SetModified
 
-`func (o *Monitor) SetModified(v string)`
+`func (o *Monitor) SetModified(v time.Time)`
 
-SetModified gets a reference to the given string and assigns it to the Modified field.
+SetModified gets a reference to the given time.Time and assigns it to the Modified field.
 
 ### GetMulti
 
@@ -298,13 +298,13 @@ SetQuery gets a reference to the given string and assigns it to the Query field.
 
 ### GetState
 
-`func (o *Monitor) GetState() MonitorOptions`
+`func (o *Monitor) GetState() MonitorState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *Monitor) GetStateOk() (MonitorOptions, bool)`
+`func (o *Monitor) GetStateOk() (MonitorState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -317,9 +317,9 @@ HasState returns a boolean if a field has been set.
 
 ### SetState
 
-`func (o *Monitor) SetState(v MonitorOptions)`
+`func (o *Monitor) SetState(v MonitorState)`
 
-SetState gets a reference to the given MonitorOptions and assigns it to the State field.
+SetState gets a reference to the given MonitorState and assigns it to the State field.
 
 ### GetTags
 

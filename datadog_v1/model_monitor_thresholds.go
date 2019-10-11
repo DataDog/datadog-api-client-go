@@ -13,21 +13,21 @@ import (
 )
 
 type MonitorThresholds struct {
-	Critical *int32 `json:"critical,omitempty"`
+	Critical *float32 `json:"critical,omitempty"`
 
-	CriticalRecovery *int32 `json:"critical_recovery,omitempty"`
+	CriticalRecovery *float32 `json:"critical_recovery,omitempty"`
 
-	Ok *int32 `json:"ok,omitempty"`
+	Ok *float32 `json:"ok,omitempty"`
 
-	Warning *int32 `json:"warning,omitempty"`
+	Warning *float32 `json:"warning,omitempty"`
 
-	WarningRecovery *int32 `json:"warning_recovery,omitempty"`
+	WarningRecovery *float32 `json:"warning_recovery,omitempty"`
 }
 
 // GetCritical returns the Critical field if non-nil, zero value otherwise.
-func (o *MonitorThresholds) GetCritical() int32 {
+func (o *MonitorThresholds) GetCritical() float32 {
 	if o == nil || o.Critical == nil {
-		var ret int32
+		var ret float32
 		return ret
 	}
 	return *o.Critical
@@ -35,9 +35,9 @@ func (o *MonitorThresholds) GetCritical() int32 {
 
 // GetCriticalOk returns a tuple with the Critical field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetCriticalOk() (int32, bool) {
+func (o *MonitorThresholds) GetCriticalOk() (float32, bool) {
 	if o == nil || o.Critical == nil {
-		var ret int32
+		var ret float32
 		return ret, false
 	}
 	return *o.Critical, true
@@ -52,15 +52,15 @@ func (o *MonitorThresholds) HasCritical() bool {
 	return false
 }
 
-// SetCritical gets a reference to the given int32 and assigns it to the Critical field.
-func (o *MonitorThresholds) SetCritical(v int32) {
+// SetCritical gets a reference to the given float32 and assigns it to the Critical field.
+func (o *MonitorThresholds) SetCritical(v float32) {
 	o.Critical = &v
 }
 
 // GetCriticalRecovery returns the CriticalRecovery field if non-nil, zero value otherwise.
-func (o *MonitorThresholds) GetCriticalRecovery() int32 {
+func (o *MonitorThresholds) GetCriticalRecovery() float32 {
 	if o == nil || o.CriticalRecovery == nil {
-		var ret int32
+		var ret float32
 		return ret
 	}
 	return *o.CriticalRecovery
@@ -68,9 +68,9 @@ func (o *MonitorThresholds) GetCriticalRecovery() int32 {
 
 // GetCriticalRecoveryOk returns a tuple with the CriticalRecovery field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetCriticalRecoveryOk() (int32, bool) {
+func (o *MonitorThresholds) GetCriticalRecoveryOk() (float32, bool) {
 	if o == nil || o.CriticalRecovery == nil {
-		var ret int32
+		var ret float32
 		return ret, false
 	}
 	return *o.CriticalRecovery, true
@@ -85,15 +85,15 @@ func (o *MonitorThresholds) HasCriticalRecovery() bool {
 	return false
 }
 
-// SetCriticalRecovery gets a reference to the given int32 and assigns it to the CriticalRecovery field.
-func (o *MonitorThresholds) SetCriticalRecovery(v int32) {
+// SetCriticalRecovery gets a reference to the given float32 and assigns it to the CriticalRecovery field.
+func (o *MonitorThresholds) SetCriticalRecovery(v float32) {
 	o.CriticalRecovery = &v
 }
 
 // GetOk returns the Ok field if non-nil, zero value otherwise.
-func (o *MonitorThresholds) GetOk() int32 {
+func (o *MonitorThresholds) GetOk() float32 {
 	if o == nil || o.Ok == nil {
-		var ret int32
+		var ret float32
 		return ret
 	}
 	return *o.Ok
@@ -101,9 +101,9 @@ func (o *MonitorThresholds) GetOk() int32 {
 
 // GetOkOk returns a tuple with the Ok field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetOkOk() (int32, bool) {
+func (o *MonitorThresholds) GetOkOk() (float32, bool) {
 	if o == nil || o.Ok == nil {
-		var ret int32
+		var ret float32
 		return ret, false
 	}
 	return *o.Ok, true
@@ -118,15 +118,15 @@ func (o *MonitorThresholds) HasOk() bool {
 	return false
 }
 
-// SetOk gets a reference to the given int32 and assigns it to the Ok field.
-func (o *MonitorThresholds) SetOk(v int32) {
+// SetOk gets a reference to the given float32 and assigns it to the Ok field.
+func (o *MonitorThresholds) SetOk(v float32) {
 	o.Ok = &v
 }
 
 // GetWarning returns the Warning field if non-nil, zero value otherwise.
-func (o *MonitorThresholds) GetWarning() int32 {
+func (o *MonitorThresholds) GetWarning() float32 {
 	if o == nil || o.Warning == nil {
-		var ret int32
+		var ret float32
 		return ret
 	}
 	return *o.Warning
@@ -134,9 +134,9 @@ func (o *MonitorThresholds) GetWarning() int32 {
 
 // GetWarningOk returns a tuple with the Warning field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetWarningOk() (int32, bool) {
+func (o *MonitorThresholds) GetWarningOk() (float32, bool) {
 	if o == nil || o.Warning == nil {
-		var ret int32
+		var ret float32
 		return ret, false
 	}
 	return *o.Warning, true
@@ -151,15 +151,15 @@ func (o *MonitorThresholds) HasWarning() bool {
 	return false
 }
 
-// SetWarning gets a reference to the given int32 and assigns it to the Warning field.
-func (o *MonitorThresholds) SetWarning(v int32) {
+// SetWarning gets a reference to the given float32 and assigns it to the Warning field.
+func (o *MonitorThresholds) SetWarning(v float32) {
 	o.Warning = &v
 }
 
 // GetWarningRecovery returns the WarningRecovery field if non-nil, zero value otherwise.
-func (o *MonitorThresholds) GetWarningRecovery() int32 {
+func (o *MonitorThresholds) GetWarningRecovery() float32 {
 	if o == nil || o.WarningRecovery == nil {
-		var ret int32
+		var ret float32
 		return ret
 	}
 	return *o.WarningRecovery
@@ -167,9 +167,9 @@ func (o *MonitorThresholds) GetWarningRecovery() int32 {
 
 // GetWarningRecoveryOk returns a tuple with the WarningRecovery field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetWarningRecoveryOk() (int32, bool) {
+func (o *MonitorThresholds) GetWarningRecoveryOk() (float32, bool) {
 	if o == nil || o.WarningRecovery == nil {
-		var ret int32
+		var ret float32
 		return ret, false
 	}
 	return *o.WarningRecovery, true
@@ -184,8 +184,8 @@ func (o *MonitorThresholds) HasWarningRecovery() bool {
 	return false
 }
 
-// SetWarningRecovery gets a reference to the given int32 and assigns it to the WarningRecovery field.
-func (o *MonitorThresholds) SetWarningRecovery(v int32) {
+// SetWarningRecovery gets a reference to the given float32 and assigns it to the WarningRecovery field.
+func (o *MonitorThresholds) SetWarningRecovery(v float32) {
 	o.WarningRecovery = &v
 }
 

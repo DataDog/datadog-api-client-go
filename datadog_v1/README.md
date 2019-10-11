@@ -80,6 +80,7 @@ Class | Method | HTTP request | Description
  - [MonitorState](docs/MonitorState.md)
  - [MonitorStateGroup](docs/MonitorStateGroup.md)
  - [MonitorStateGroupValue](docs/MonitorStateGroupValue.md)
+ - [MonitorThresholdWindowOptions](docs/MonitorThresholdWindowOptions.md)
  - [MonitorThresholds](docs/MonitorThresholds.md)
  - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
  - [ServiceLevelObjectiveDeleted](docs/ServiceLevelObjectiveDeleted.md)
@@ -104,15 +105,30 @@ Class | Method | HTTP request | Description
 
 
 
-## API Keys
-#- **Type** API key
+## apiKeyAuth
+
+- **Type**: API key
 
 Example
 
 ```golang
 auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
     Key: "APIKEY",
-    AppKey: "APPKEY",
+    Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
+
+
+## appKeyAuth
+
+- **Type**: API key
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+    Key: "APIKEY",
     Prefix: "Bearer", // Omit if not necessary.
 })
 r, err := client.Service.Operation(auth, args)

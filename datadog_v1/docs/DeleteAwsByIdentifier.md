@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | Pointer to **string** |  | 
-**RoleName** | Pointer to **string** |  | 
+**AccountId** | Pointer to **string** | Delete the AWS account that matches this account_id. | 
+**RoleName** | Pointer to **string** | Delete the AWS account that matches this role_name. | 
 
 ## Methods
 
