@@ -18,7 +18,9 @@ Method | HTTP request | Description
 > ServiceLevelObjectivesBulkDeleted BulkPartialDeleteSlo(ctx, requestBody)
 Delete (or partially delete) multiple service level objective objects.
 
-### Overview Delete (or partially delete) multiple service level objective objects. This endpoint facilitates deletion of one or more thresholds for one or more service level objective objects. If all thresholds are deleted, the service level objective object is deleted as well.
+### Overview
+Delete (or partially delete) multiple service level objective objects.
+This endpoint facilitates deletion of one or more thresholds for one or more service level objective objects. If all thresholds are deleted, the service level objective object is deleted as well.
 
 ### Required Parameters
 
@@ -51,7 +53,8 @@ Name | Type | Description  | Notes
 > ServiceLevelObjectiveResponse CreateSlo(ctx, serviceLevelObjective)
 Create a service level objective object.
 
-### Overview Create a service level objective object.
+### Overview
+Create a service level objective object.
 
 ### Required Parameters
 
@@ -84,7 +87,10 @@ Name | Type | Description  | Notes
 > ServiceLevelObjectiveDeleted DeleteSlo(ctx, sloId)
 Delete the specified service level objective object.
 
-### Overview Delete the specified service level objective object. ### Arguments * **`slo_id`** [*required*]: The ID of the service level objective object
+### Overview
+Delete the specified service level objective object.
+### Arguments
+* **`slo_id`** [*required*]: The ID of the service level objective object
 
 ### Required Parameters
 
@@ -117,7 +123,10 @@ Name | Type | Description  | Notes
 > ServiceLevelObjectiveResponse EditSlo(ctx, sloId, serviceLevelObjective)
 Edit the specified service level objective
 
-### Overview Edit the specified service level objective object. ### Arguments * **`slo_id`** [*required*]: The ID of the service level objective object
+### Overview
+Edit the specified service level objective object.
+### Arguments
+* **`slo_id`** [*required*]: The ID of the service level objective object
 
 ### Required Parameters
 
@@ -151,7 +160,10 @@ Name | Type | Description  | Notes
 > ServiceLevelObjectiveResponse GetSlo(ctx, sloId)
 Get a service level objective object
 
-### Overview Get a service level objective object. ### Arguments * **`slo_id`** [*required*]: The ID of the service level objective object
+### Overview
+Get a service level objective object.
+### Arguments
+* **`slo_id`** [*required*]: The ID of the service level objective object
 
 ### Required Parameters
 
@@ -184,7 +196,11 @@ Name | Type | Description  | Notes
 > ServiceLevelObjectiveResponse GetSlos(ctx, ids)
 Get multiple service level objective objects by their IDs.
 
-### Overview Get multiple service level objective objects by their IDs. ### Arguments * **`ids`** [*required*]: A comma separated list of the IDs of the service level   objectives objects (e.g. \"id1,id2,id3\").
+### Overview
+Get multiple service level objective objects by their IDs.
+### Arguments
+* **`ids`** [*required*]: A comma separated list of the IDs of the service level
+  objectives objects (e.g. "id1,id2,id3").
 
 ### Required Parameters
 

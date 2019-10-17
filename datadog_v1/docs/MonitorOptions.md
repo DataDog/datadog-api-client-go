@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **RequireFullWindow** | Pointer to **bool** |  | [optional] 
 **Silenced** | Pointer to **map[string]int64** |  | [optional] 
 **SyntheticsCheckId** | Pointer to **int64** |  | [optional] 
+**ThresholdWindows** | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |  | [optional] 
 **Thresholds** | Pointer to [**MonitorThresholds**](MonitorThresholds.md) |  | [optional] 
 **TimeoutH** | Pointer to **int32** |  | [optional] 
 
@@ -450,6 +451,31 @@ HasSyntheticsCheckId returns a boolean if a field has been set.
 `func (o *MonitorOptions) SetSyntheticsCheckId(v int64)`
 
 SetSyntheticsCheckId gets a reference to the given int64 and assigns it to the SyntheticsCheckId field.
+
+### GetThresholdWindows
+
+`func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions`
+
+GetThresholdWindows returns the ThresholdWindows field if non-nil, zero value otherwise.
+
+### GetThresholdWindowsOk
+
+`func (o *MonitorOptions) GetThresholdWindowsOk() (MonitorThresholdWindowOptions, bool)`
+
+GetThresholdWindowsOk returns a tuple with the ThresholdWindows field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasThresholdWindows
+
+`func (o *MonitorOptions) HasThresholdWindows() bool`
+
+HasThresholdWindows returns a boolean if a field has been set.
+
+### SetThresholdWindows
+
+`func (o *MonitorOptions) SetThresholdWindows(v MonitorThresholdWindowOptions)`
+
+SetThresholdWindows gets a reference to the given MonitorThresholdWindowOptions and assigns it to the ThresholdWindows field.
 
 ### GetThresholds
 

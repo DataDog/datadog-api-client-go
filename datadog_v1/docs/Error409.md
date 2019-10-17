@@ -1,4 +1,4 @@
-# Error400
+# Error409
 
 ## Properties
 
@@ -10,26 +10,26 @@ Name | Type | Description | Notes
 
 ### GetErrors
 
-`func (o *Error400) GetErrors() []string`
+`func (o *Error409) GetErrors() []string`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *Error400) GetErrorsOk() ([]string, bool)`
+`func (o *Error409) GetErrorsOk() ([]string, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasErrors
 
-`func (o *Error400) HasErrors() bool`
+`func (o *Error409) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
 
 ### SetErrors
 
-`func (o *Error400) SetErrors(v []string)`
+`func (o *Error409) SetErrors(v []string)`
 
 SetErrors gets a reference to the given []string and assigns it to the Errors field.
 

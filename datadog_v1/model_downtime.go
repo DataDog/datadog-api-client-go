@@ -29,7 +29,7 @@ type Downtime struct {
 
 	Message *string `json:"message,omitempty"`
 
-	MonitorId               *int32    `json:"monitor_id,omitempty"`
+	MonitorId               *int64    `json:"monitor_id,omitempty"`
 	isExplicitNullMonitorId bool      `json:"-"`
 	MonitorTags             *[]string `json:"monitor_tags,omitempty"`
 
@@ -327,9 +327,9 @@ func (o *Downtime) SetMessage(v string) {
 }
 
 // GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
-func (o *Downtime) GetMonitorId() int32 {
+func (o *Downtime) GetMonitorId() int64 {
 	if o == nil || o.MonitorId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MonitorId
@@ -337,9 +337,9 @@ func (o *Downtime) GetMonitorId() int32 {
 
 // GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Downtime) GetMonitorIdOk() (int32, bool) {
+func (o *Downtime) GetMonitorIdOk() (int64, bool) {
 	if o == nil || o.MonitorId == nil {
-		var ret int32
+		var ret int64
 		return ret, false
 	}
 	return *o.MonitorId, true
@@ -354,8 +354,8 @@ func (o *Downtime) HasMonitorId() bool {
 	return false
 }
 
-// SetMonitorId gets a reference to the given int32 and assigns it to the MonitorId field.
-func (o *Downtime) SetMonitorId(v int32) {
+// SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
+func (o *Downtime) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 

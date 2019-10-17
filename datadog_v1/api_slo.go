@@ -9,17 +9,17 @@
 package datadog_v1
 
 import (
-	"context"
+	_context "context"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"net/url"
+	_ioutil "io/ioutil"
+	_nethttp "net/http"
+	_neturl "net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ context.Context
+	_ _context.Context
 )
 
 type SloApiService service
@@ -27,13 +27,13 @@ type SloApiService service
 /*
 SloApiService Delete (or partially delete) multiple service level objective objects.
 ### Overview Delete (or partially delete) multiple service level objective objects. This endpoint facilitates deletion of one or more thresholds for one or more service level objective objects. If all thresholds are deleted, the service level objective object is deleted as well.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param requestBody Thresholds by service level objective object ID
 @return ServiceLevelObjectivesBulkDeleted
 */
-func (a *SloApiService) BulkPartialDeleteSlo(ctx context.Context, requestBody map[string][]SloTimeframe) (ServiceLevelObjectivesBulkDeleted, *http.Response, error) {
+func (a *SloApiService) BulkPartialDeleteSlo(ctx _context.Context, requestBody map[string][]SloTimeframe) (ServiceLevelObjectivesBulkDeleted, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPost
+		localVarHttpMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -45,8 +45,8 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx context.Context, requestBody ma
 	localVarPath := a.client.cfg.BasePath + "/api/v1/slo/bulk_delete"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -67,21 +67,28 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx context.Context, requestBody ma
 	}
 	// body params
 	localVarPostBody = &requestBody
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -94,7 +101,7 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx context.Context, requestBody ma
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -163,13 +170,13 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx context.Context, requestBody ma
 /*
 SloApiService Create a service level objective object.
 ### Overview Create a service level objective object.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param serviceLevelObjective Service level objective request object
 @return ServiceLevelObjectiveResponse
 */
-func (a *SloApiService) CreateSlo(ctx context.Context, serviceLevelObjective ServiceLevelObjective) (ServiceLevelObjectiveResponse, *http.Response, error) {
+func (a *SloApiService) CreateSlo(ctx _context.Context, serviceLevelObjective ServiceLevelObjective) (ServiceLevelObjectiveResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPost
+		localVarHttpMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -181,8 +188,8 @@ func (a *SloApiService) CreateSlo(ctx context.Context, serviceLevelObjective Ser
 	localVarPath := a.client.cfg.BasePath + "/api/v1/slo"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -203,21 +210,28 @@ func (a *SloApiService) CreateSlo(ctx context.Context, serviceLevelObjective Ser
 	}
 	// body params
 	localVarPostBody = &serviceLevelObjective
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -230,7 +244,7 @@ func (a *SloApiService) CreateSlo(ctx context.Context, serviceLevelObjective Ser
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -299,13 +313,13 @@ func (a *SloApiService) CreateSlo(ctx context.Context, serviceLevelObjective Ser
 /*
 SloApiService Delete the specified service level objective object.
 ### Overview Delete the specified service level objective object. ### Arguments * **&#x60;slo_id&#x60;** [*required*]: The ID of the service level objective object
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloId The id of the service level objective
 @return ServiceLevelObjectiveDeleted
 */
-func (a *SloApiService) DeleteSlo(ctx context.Context, sloId int64) (ServiceLevelObjectiveDeleted, *http.Response, error) {
+func (a *SloApiService) DeleteSlo(ctx _context.Context, sloId int64) (ServiceLevelObjectiveDeleted, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodDelete
+		localVarHttpMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -315,11 +329,11 @@ func (a *SloApiService) DeleteSlo(ctx context.Context, sloId int64) (ServiceLeve
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", fmt.Sprintf("%v", sloId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", sloId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -338,21 +352,28 @@ func (a *SloApiService) DeleteSlo(ctx context.Context, sloId int64) (ServiceLeve
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -365,7 +386,7 @@ func (a *SloApiService) DeleteSlo(ctx context.Context, sloId int64) (ServiceLeve
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -444,14 +465,14 @@ func (a *SloApiService) DeleteSlo(ctx context.Context, sloId int64) (ServiceLeve
 /*
 SloApiService Edit the specified service level objective
 ### Overview Edit the specified service level objective object. ### Arguments * **&#x60;slo_id&#x60;** [*required*]: The ID of the service level objective object
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloId The ID of the service level objective object
  * @param serviceLevelObjective The edited service level objective request object.
 @return ServiceLevelObjectiveResponse
 */
-func (a *SloApiService) EditSlo(ctx context.Context, sloId int64, serviceLevelObjective ServiceLevelObjective) (ServiceLevelObjectiveResponse, *http.Response, error) {
+func (a *SloApiService) EditSlo(ctx _context.Context, sloId int64, serviceLevelObjective ServiceLevelObjective) (ServiceLevelObjectiveResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPut
+		localVarHttpMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -461,11 +482,11 @@ func (a *SloApiService) EditSlo(ctx context.Context, sloId int64, serviceLevelOb
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", fmt.Sprintf("%v", sloId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", sloId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -486,21 +507,28 @@ func (a *SloApiService) EditSlo(ctx context.Context, sloId int64, serviceLevelOb
 	}
 	// body params
 	localVarPostBody = &serviceLevelObjective
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -513,7 +541,7 @@ func (a *SloApiService) EditSlo(ctx context.Context, sloId int64, serviceLevelOb
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -592,13 +620,13 @@ func (a *SloApiService) EditSlo(ctx context.Context, sloId int64, serviceLevelOb
 /*
 SloApiService Get a service level objective object
 ### Overview Get a service level objective object. ### Arguments * **&#x60;slo_id&#x60;** [*required*]: The ID of the service level objective object
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloId The ID of the service level objective object
 @return ServiceLevelObjectiveResponse
 */
-func (a *SloApiService) GetSlo(ctx context.Context, sloId string) (ServiceLevelObjectiveResponse, *http.Response, error) {
+func (a *SloApiService) GetSlo(ctx _context.Context, sloId string) (ServiceLevelObjectiveResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodGet
+		localVarHttpMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -608,11 +636,11 @@ func (a *SloApiService) GetSlo(ctx context.Context, sloId string) (ServiceLevelO
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", fmt.Sprintf("%v", sloId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", sloId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -631,21 +659,28 @@ func (a *SloApiService) GetSlo(ctx context.Context, sloId string) (ServiceLevelO
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -658,7 +693,7 @@ func (a *SloApiService) GetSlo(ctx context.Context, sloId string) (ServiceLevelO
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -737,13 +772,13 @@ func (a *SloApiService) GetSlo(ctx context.Context, sloId string) (ServiceLevelO
 /*
 SloApiService Get multiple service level objective objects by their IDs.
 ### Overview Get multiple service level objective objects by their IDs. ### Arguments * **&#x60;ids&#x60;** [*required*]: A comma separated list of the IDs of the service level   objectives objects (e.g. \&quot;id1,id2,id3\&quot;).
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param ids A comma separated list of the IDs of the service level objectives objects (e.g. \"id1,id2,id3\").
 @return ServiceLevelObjectiveResponse
 */
-func (a *SloApiService) GetSlos(ctx context.Context, ids string) (ServiceLevelObjectiveResponse, *http.Response, error) {
+func (a *SloApiService) GetSlos(ctx _context.Context, ids string) (ServiceLevelObjectiveResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodGet
+		localVarHttpMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -755,8 +790,8 @@ func (a *SloApiService) GetSlos(ctx context.Context, ids string) (ServiceLevelOb
 	localVarPath := a.client.cfg.BasePath + "/api/v1/slo"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	localVarQueryParams.Add("ids", parameterToString(ids, ""))
 	// to determine the Content-Type header
@@ -776,21 +811,28 @@ func (a *SloApiService) GetSlos(ctx context.Context, ids string) (ServiceLevelOb
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -803,7 +845,7 @@ func (a *SloApiService) GetSlos(ctx context.Context, ids string) (ServiceLevelOb
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err

@@ -18,7 +18,10 @@ Method | HTTP request | Description
 > Monitor CreateMonitor(ctx, monitor)
 Create a new Monitor
 
-### Overview Create a monitor using the specified options ### Arguments * **`Monitor`** [*required*] The Monitor Object to create
+### Overview
+Create a monitor using the specified options
+### Arguments
+* **`Monitor`** [*required*] The Monitor Object to create
 
 ### Required Parameters
 
@@ -51,7 +54,10 @@ Name | Type | Description  | Notes
 > map[string]int64 DeleteMonitor(ctx, monitorId)
 Delete the specified monitor.
 
-### Overview Delete the specified monitor ### Arguments * **`monitor_id`** [*required*]: The id of the monitor.
+### Overview
+Delete the specified monitor
+### Arguments
+* **`monitor_id`** [*required*]: The id of the monitor.
 
 ### Required Parameters
 
@@ -84,7 +90,10 @@ Name | Type | Description  | Notes
 > Monitor EditMonitor(ctx, monitorId, monitor)
 Edit the specified monitor
 
-### Overview Edit the specified monitor. ### Arguments * **`monitor_id`** [*required*]: The id of the monitor.
+### Overview
+Edit the specified monitor.
+### Arguments
+* **`monitor_id`** [*required*]: The id of the monitor.
 
 ### Required Parameters
 
@@ -118,7 +127,14 @@ Name | Type | Description  | Notes
 > []Monitor GetAllMonitors(ctx, optional)
 Get details about the specified monitor.
 
-### Overview Get details about the specified monitor from your organization. ### Arguments * **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn' * **`name`** [*optional* *default*==**None**] A string to filter monitors by name * **`tags`** [*optional* *default*==**None**] A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0 * **`monitor_tags`** [*optional* *default*==**None**] A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app) * **`with_downtimes`** [*optional* *default*==**true**] If this argument is set to true, then the returned data includes all current downtimes for each monitor.
+### Overview
+Get details about the specified monitor from your organization.
+### Arguments
+* **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
+* **`name`** [*optional* *default*==**None**] A string to filter monitors by name
+* **`tags`** [*optional* *default*==**None**] A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0
+* **`monitor_tags`** [*optional* *default*==**None**] A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app)
+* **`with_downtimes`** [*optional* *default*==**true**] If this argument is set to true, then the returned data includes all current downtimes for each monitor.
 
 ### Required Parameters
 
@@ -164,7 +180,11 @@ Name | Type | Description  | Notes
 > Monitor GetMonitor(ctx, monitorId, optional)
 Get details about the specified monitor.
 
-### Overview Get details about the specified monitor from your organization. ### Arguments * **`monitor_id`** [*required*]: The id of the monitor. * **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
+### Overview
+Get details about the specified monitor from your organization.
+### Arguments
+* **`monitor_id`** [*required*]: The id of the monitor.
+* **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
 
 ### Required Parameters
 
@@ -208,7 +228,10 @@ Name | Type | Description  | Notes
 > Monitor ValidateMonitor(ctx, monitor)
 
 
-### Overview Validate the monitor provided in the request ### Arguments * **`Monitor`** [*required*] The Monitor Object to validate summary: Validate the provided monitor
+### Overview
+Validate the monitor provided in the request
+### Arguments
+* **`Monitor`** [*required*] The Monitor Object to validate summary: Validate the provided monitor
 
 ### Required Parameters
 

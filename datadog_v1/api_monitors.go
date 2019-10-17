@@ -9,11 +9,11 @@
 package datadog_v1
 
 import (
-	"context"
+	_context "context"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"net/url"
+	_ioutil "io/ioutil"
+	_nethttp "net/http"
+	_neturl "net/url"
 	"strings"
 
 	"github.com/antihax/optional"
@@ -21,7 +21,7 @@ import (
 
 // Linger please
 var (
-	_ context.Context
+	_ _context.Context
 )
 
 type MonitorsApiService service
@@ -29,13 +29,13 @@ type MonitorsApiService service
 /*
 MonitorsApiService Create a new Monitor
 ### Overview Create a monitor using the specified options ### Arguments * **&#x60;Monitor&#x60;** [*required*] The Monitor Object to create
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitor Monitor request object
 @return Monitor
 */
-func (a *MonitorsApiService) CreateMonitor(ctx context.Context, monitor Monitor) (Monitor, *http.Response, error) {
+func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, monitor Monitor) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPost
+		localVarHttpMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -47,8 +47,8 @@ func (a *MonitorsApiService) CreateMonitor(ctx context.Context, monitor Monitor)
 	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -69,21 +69,28 @@ func (a *MonitorsApiService) CreateMonitor(ctx context.Context, monitor Monitor)
 	}
 	// body params
 	localVarPostBody = &monitor
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -96,7 +103,7 @@ func (a *MonitorsApiService) CreateMonitor(ctx context.Context, monitor Monitor)
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -145,13 +152,13 @@ func (a *MonitorsApiService) CreateMonitor(ctx context.Context, monitor Monitor)
 /*
 MonitorsApiService Delete the specified monitor.
 ### Overview Delete the specified monitor ### Arguments * **&#x60;monitor_id&#x60;** [*required*]: The id of the monitor.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitorId The id of the monitor
 @return map[string]int64
 */
-func (a *MonitorsApiService) DeleteMonitor(ctx context.Context, monitorId int64) (map[string]int64, *http.Response, error) {
+func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64) (map[string]int64, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodDelete
+		localVarHttpMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -161,11 +168,11 @@ func (a *MonitorsApiService) DeleteMonitor(ctx context.Context, monitorId int64)
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", fmt.Sprintf("%v", monitorId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -184,21 +191,28 @@ func (a *MonitorsApiService) DeleteMonitor(ctx context.Context, monitorId int64)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -211,7 +225,7 @@ func (a *MonitorsApiService) DeleteMonitor(ctx context.Context, monitorId int64)
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -280,14 +294,14 @@ func (a *MonitorsApiService) DeleteMonitor(ctx context.Context, monitorId int64)
 /*
 MonitorsApiService Edit the specified monitor
 ### Overview Edit the specified monitor. ### Arguments * **&#x60;monitor_id&#x60;** [*required*]: The id of the monitor.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitorId The id of the monitor
  * @param monitor Monitor request object
 @return Monitor
 */
-func (a *MonitorsApiService) EditMonitor(ctx context.Context, monitorId int64, monitor Monitor) (Monitor, *http.Response, error) {
+func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64, monitor Monitor) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPut
+		localVarHttpMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -297,11 +311,11 @@ func (a *MonitorsApiService) EditMonitor(ctx context.Context, monitorId int64, m
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", fmt.Sprintf("%v", monitorId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -322,21 +336,28 @@ func (a *MonitorsApiService) EditMonitor(ctx context.Context, monitorId int64, m
 	}
 	// body params
 	localVarPostBody = &monitor
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -349,7 +370,7 @@ func (a *MonitorsApiService) EditMonitor(ctx context.Context, monitorId int64, m
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -418,7 +439,7 @@ func (a *MonitorsApiService) EditMonitor(ctx context.Context, monitorId int64, m
 /*
 MonitorsApiService Get details about the specified monitor.
 ### Overview Get details about the specified monitor from your organization. ### Arguments * **&#x60;group_states&#x60;** [*optional* *default*&#x3D;**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example &#39;alert,warn&#39; * **&#x60;name&#x60;** [*optional* *default*&#x3D;&#x3D;**None**] A string to filter monitors by name * **&#x60;tags&#x60;** [*optional* *default*&#x3D;&#x3D;**None**] A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0 * **&#x60;monitor_tags&#x60;** [*optional* *default*&#x3D;&#x3D;**None**] A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app) * **&#x60;with_downtimes&#x60;** [*optional* *default*&#x3D;&#x3D;**true**] If this argument is set to true, then the returned data includes all current downtimes for each monitor.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GetAllMonitorsOpts - Optional Parameters:
  * @param "GroupStates" (optional.String) -  When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`.
  * @param "Name" (optional.String) -
@@ -436,9 +457,9 @@ type GetAllMonitorsOpts struct {
 	WithDowntimes optional.Bool
 }
 
-func (a *MonitorsApiService) GetAllMonitors(ctx context.Context, localVarOptionals *GetAllMonitorsOpts) ([]Monitor, *http.Response, error) {
+func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context, localVarOptionals *GetAllMonitorsOpts) ([]Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodGet
+		localVarHttpMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -450,8 +471,8 @@ func (a *MonitorsApiService) GetAllMonitors(ctx context.Context, localVarOptiona
 	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	if localVarOptionals != nil && localVarOptionals.GroupStates.IsSet() {
 		localVarQueryParams.Add("group_states", parameterToString(localVarOptionals.GroupStates.Value(), ""))
@@ -485,21 +506,28 @@ func (a *MonitorsApiService) GetAllMonitors(ctx context.Context, localVarOptiona
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -512,7 +540,7 @@ func (a *MonitorsApiService) GetAllMonitors(ctx context.Context, localVarOptiona
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -561,7 +589,7 @@ func (a *MonitorsApiService) GetAllMonitors(ctx context.Context, localVarOptiona
 /*
 MonitorsApiService Get details about the specified monitor.
 ### Overview Get details about the specified monitor from your organization. ### Arguments * **&#x60;monitor_id&#x60;** [*required*]: The id of the monitor. * **&#x60;group_states&#x60;** [*optional* *default*&#x3D;**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example &#39;alert,warn&#39;
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitorId The id of the monitor
  * @param optional nil or *GetMonitorOpts - Optional Parameters:
  * @param "GroupStates" (optional.String) -  When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`.
@@ -572,9 +600,9 @@ type GetMonitorOpts struct {
 	GroupStates optional.String
 }
 
-func (a *MonitorsApiService) GetMonitor(ctx context.Context, monitorId int64, localVarOptionals *GetMonitorOpts) (Monitor, *http.Response, error) {
+func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, localVarOptionals *GetMonitorOpts) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodGet
+		localVarHttpMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -584,11 +612,11 @@ func (a *MonitorsApiService) GetMonitor(ctx context.Context, monitorId int64, lo
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", fmt.Sprintf("%v", monitorId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	if localVarOptionals != nil && localVarOptionals.GroupStates.IsSet() {
 		localVarQueryParams.Add("group_states", parameterToString(localVarOptionals.GroupStates.Value(), ""))
@@ -610,21 +638,28 @@ func (a *MonitorsApiService) GetMonitor(ctx context.Context, monitorId int64, lo
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -637,7 +672,7 @@ func (a *MonitorsApiService) GetMonitor(ctx context.Context, monitorId int64, lo
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -696,13 +731,13 @@ func (a *MonitorsApiService) GetMonitor(ctx context.Context, monitorId int64, lo
 /*
 MonitorsApiService
 ### Overview Validate the monitor provided in the request ### Arguments * **&#x60;Monitor&#x60;** [*required*] The Monitor Object to validate summary: Validate the provided monitor
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitor Monitor request object
 @return Monitor
 */
-func (a *MonitorsApiService) ValidateMonitor(ctx context.Context, monitor Monitor) (Monitor, *http.Response, error) {
+func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, monitor Monitor) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPost
+		localVarHttpMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -714,8 +749,8 @@ func (a *MonitorsApiService) ValidateMonitor(ctx context.Context, monitor Monito
 	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/validate"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -736,21 +771,28 @@ func (a *MonitorsApiService) ValidateMonitor(ctx context.Context, monitor Monito
 	}
 	// body params
 	localVarPostBody = &monitor
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -763,7 +805,7 @@ func (a *MonitorsApiService) ValidateMonitor(ctx context.Context, monitor Monito
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err

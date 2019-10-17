@@ -9,31 +9,31 @@
 package datadog_v1
 
 import (
-	"context"
+	_context "context"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"net/url"
+	_ioutil "io/ioutil"
+	_nethttp "net/http"
+	_neturl "net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ context.Context
+	_ _context.Context
 )
 
 type UsersApiService service
 
 /*
 UsersApiService Create user
-### Overview Create a user for your organization. ### ARGUMENTS * **&#x60;handle&#x60;** [*required*]: The user handle, must be a valid email. * **&#x60;name&#x60;** [*optional*, *default*&#x3D;**None**]: The name of the user. * **&#x60;access_role&#x60;** [*optional*, *default*&#x3D;**st**]: The access role of the user. Choose from:   *  **st** (standard user),   *  **adm** (admin user),   *  **ro** (read-only user). *Note: users can be created with admin access role      only with application keys belonging to administrators.*
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+### Overview Create a user for your organization. ### Arguments * **&#x60;handle&#x60;** [*required*]: The user handle, must be a valid email. * **&#x60;name&#x60;** [*optional*, *default*&#x3D;**None**]: The name of the user. * **&#x60;access_role&#x60;** [*optional*, *default*&#x3D;**st**]: The access role of the user. Choose from:    *  **st** (standard user),    *  **adm** (admin user),    *  **ro** (read-only user). *Note: users can be created with admin access role      only with application keys belonging to administrators.*
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userCreatePayload User object that needs to be created
 @return UserCreateResponse
 */
-func (a *UsersApiService) CreateUser(ctx context.Context, userCreatePayload UserCreatePayload) (UserCreateResponse, *http.Response, error) {
+func (a *UsersApiService) CreateUser(ctx _context.Context, userCreatePayload UserCreatePayload) (UserCreateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPost
+		localVarHttpMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -45,8 +45,8 @@ func (a *UsersApiService) CreateUser(ctx context.Context, userCreatePayload User
 	localVarPath := a.client.cfg.BasePath + "/api/v1/user"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -67,21 +67,28 @@ func (a *UsersApiService) CreateUser(ctx context.Context, userCreatePayload User
 	}
 	// body params
 	localVarPostBody = &userCreatePayload
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -94,7 +101,7 @@ func (a *UsersApiService) CreateUser(ctx context.Context, userCreatePayload User
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -152,14 +159,14 @@ func (a *UsersApiService) CreateUser(ctx context.Context, userCreatePayload User
 
 /*
 UsersApiService Disable user
-### Overview Delete a user from an organization. **Note**: This endpoint can only be used with application keys belonging to administrators. ### Arguments * **&#x60;id&#x60;** [*required*]: The handle of the user.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+### Overview Delete a user from an organization.  **Note**: This endpoint can only be used with application keys belonging to administrators. ### Arguments * **&#x60;id&#x60;** [*required*]: The handle of the user.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The handle of the user
 @return UserDisableResponse
 */
-func (a *UsersApiService) DisableUser(ctx context.Context, userHandle string) (UserDisableResponse, *http.Response, error) {
+func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodDelete
+		localVarHttpMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -169,11 +176,11 @@ func (a *UsersApiService) DisableUser(ctx context.Context, userHandle string) (U
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", fmt.Sprintf("%v", userHandle), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -192,21 +199,28 @@ func (a *UsersApiService) DisableUser(ctx context.Context, userHandle string) (U
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -219,7 +233,7 @@ func (a *UsersApiService) DisableUser(ctx context.Context, userHandle string) (U
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -278,12 +292,12 @@ func (a *UsersApiService) DisableUser(ctx context.Context, userHandle string) (U
 /*
 UsersApiService Get all users
 ### Overview Get all users for your organization. ### Arguments This endpoint takes no JSON argument.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return UserGetAllResponse
 */
-func (a *UsersApiService) GetAllUsers(ctx context.Context) (UserGetAllResponse, *http.Response, error) {
+func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserGetAllResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodGet
+		localVarHttpMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -295,8 +309,8 @@ func (a *UsersApiService) GetAllUsers(ctx context.Context) (UserGetAllResponse, 
 	localVarPath := a.client.cfg.BasePath + "/api/v1/user"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -315,21 +329,28 @@ func (a *UsersApiService) GetAllUsers(ctx context.Context) (UserGetAllResponse, 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -342,7 +363,7 @@ func (a *UsersApiService) GetAllUsers(ctx context.Context) (UserGetAllResponse, 
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -401,13 +422,13 @@ func (a *UsersApiService) GetAllUsers(ctx context.Context) (UserGetAllResponse, 
 /*
 UsersApiService Get user
 ### Overview Get a user details. ### Arguments * **&#x60;user_handle&#x60;** [*required*]: The handle of the user.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The id of the user
 @return UserGetResponse
 */
-func (a *UsersApiService) GetUser(ctx context.Context, userHandle string) (UserGetResponse, *http.Response, error) {
+func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserGetResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodGet
+		localVarHttpMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -417,11 +438,11 @@ func (a *UsersApiService) GetUser(ctx context.Context, userHandle string) (UserG
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", fmt.Sprintf("%v", userHandle), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -440,21 +461,28 @@ func (a *UsersApiService) GetUser(ctx context.Context, userHandle string) (UserG
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -467,7 +495,7 @@ func (a *UsersApiService) GetUser(ctx context.Context, userHandle string) (UserG
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -525,15 +553,15 @@ func (a *UsersApiService) GetUser(ctx context.Context, userHandle string) (UserG
 
 /*
 UsersApiService Update user
-### Overview Update a user informations **Note**: It can only be used with application keys belonging to administrators. ### Arguments * **&#x60;id&#x60;** [*required*]: The handle of the user. * **&#x60;name&#x60;** [*optional*, *default*&#x3D;**None**]: The new name of the user. * **&#x60;email&#x60;** [*optional*, *default*&#x3D;**None**]: The new email of the user. * **&#x60;disabled&#x60;** [*optional*, *default*&#x3D;**None**]: The new disabled status of the user. * **&#x60;access_role&#x60;** [*optional*, *default*&#x3D;**st**]: The access role of the user. Choose from:   *  **st** (standard user),   *  **adm** (admin user),   *  **ro** (read-only user).
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+### Overview Update a user informations.  **Note**: It can only be used with application keys belonging to administrators. ### Arguments * **&#x60;id&#x60;** [*required*]: The handle of the user. * **&#x60;name&#x60;** [*optional*, *default*&#x3D;**None**]: The new name of the user. * **&#x60;email&#x60;** [*optional*, *default*&#x3D;**None**]: The new email of the user. * **&#x60;disabled&#x60;** [*optional*, *default*&#x3D;**None**]: The new disabled status of the user. * **&#x60;access_role&#x60;** [*optional*, *default*&#x3D;**st**]: The access role of the user. Choose from:    *  **st** (standard user)    *  **adm** (admin user)    *  **ro** (read-only user)
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The id of the user
  * @param userUpdatePayload Description of the update
 @return UserUpdateResponse
 */
-func (a *UsersApiService) UpdateUser(ctx context.Context, userHandle string, userUpdatePayload UserUpdatePayload) (UserUpdateResponse, *http.Response, error) {
+func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, userUpdatePayload UserUpdatePayload) (UserUpdateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = http.MethodPut
+		localVarHttpMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -543,11 +571,11 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userHandle string, use
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", fmt.Sprintf("%v", userHandle), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -568,21 +596,28 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userHandle string, use
 	}
 	// body params
 	localVarPostBody = &userUpdatePayload
-	// TODO: This is hardcoded to have 2 keys in the query
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
-			var appkey string
 			if auth.Prefix != "" {
 				key = auth.Prefix + " " + auth.Key
-				appkey = auth.Prefix + " " + auth.AppKey
 			} else {
 				key = auth.Key
-				appkey = auth.AppKey
 			}
 			localVarQueryParams.Add("api_key", key)
-			localVarQueryParams.Add("application_key", appkey)
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("application_key", key)
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -595,7 +630,7 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userHandle string, use
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
