@@ -13,7 +13,7 @@ import (
 )
 
 type MonitorStateGroupValue struct {
-	FromTs *float32 `json:"from_ts,omitempty"`
+	FromTs *int64 `json:"from_ts,omitempty"`
 
 	Left *float32 `json:"left,omitempty"`
 
@@ -25,9 +25,9 @@ type MonitorStateGroupValue struct {
 }
 
 // GetFromTs returns the FromTs field if non-nil, zero value otherwise.
-func (o *MonitorStateGroupValue) GetFromTs() float32 {
+func (o *MonitorStateGroupValue) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.FromTs
@@ -35,9 +35,9 @@ func (o *MonitorStateGroupValue) GetFromTs() float32 {
 
 // GetFromTsOk returns a tuple with the FromTs field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroupValue) GetFromTsOk() (float32, bool) {
+func (o *MonitorStateGroupValue) GetFromTsOk() (int64, bool) {
 	if o == nil || o.FromTs == nil {
-		var ret float32
+		var ret int64
 		return ret, false
 	}
 	return *o.FromTs, true
@@ -52,8 +52,8 @@ func (o *MonitorStateGroupValue) HasFromTs() bool {
 	return false
 }
 
-// SetFromTs gets a reference to the given float32 and assigns it to the FromTs field.
-func (o *MonitorStateGroupValue) SetFromTs(v float32) {
+// SetFromTs gets a reference to the given int64 and assigns it to the FromTs field.
+func (o *MonitorStateGroupValue) SetFromTs(v int64) {
 	o.FromTs = &v
 }
 

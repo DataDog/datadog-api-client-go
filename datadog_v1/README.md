@@ -67,19 +67,26 @@ Class | Method | HTTP request | Description
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
  - [Creator](docs/Creator.md)
- - [DeleteAwsByIdentifier](docs/DeleteAwsByIdentifier.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
  - [Error400](docs/Error400.md)
  - [Error401](docs/Error401.md)
+ - [Error402](docs/Error402.md)
  - [Error403](docs/Error403.md)
  - [Error404](docs/Error404.md)
+ - [Error405](docs/Error405.md)
+ - [Error409](docs/Error409.md)
+ - [Error415](docs/Error415.md)
+ - [Error429](docs/Error429.md)
+ - [Error500](docs/Error500.md)
+ - [Error503](docs/Error503.md)
  - [Monitor](docs/Monitor.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
  - [MonitorState](docs/MonitorState.md)
  - [MonitorStateGroup](docs/MonitorStateGroup.md)
  - [MonitorStateGroupValue](docs/MonitorStateGroupValue.md)
+ - [MonitorThresholdWindowOptions](docs/MonitorThresholdWindowOptions.md)
  - [MonitorThresholds](docs/MonitorThresholds.md)
  - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
  - [ServiceLevelObjectiveDeleted](docs/ServiceLevelObjectiveDeleted.md)
@@ -104,15 +111,30 @@ Class | Method | HTTP request | Description
 
 
 
-## API Keys
-#- **Type** API key
+## apiKeyAuth
+
+- **Type**: API key
 
 Example
 
 ```golang
 auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
     Key: "APIKEY",
-    AppKey: "APPKEY",
+    Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
+
+
+## appKeyAuth
+
+- **Type**: API key
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+    Key: "APIKEY",
     Prefix: "Bearer", // Omit if not necessary.
 })
 r, err := client.Service.Operation(auth, args)

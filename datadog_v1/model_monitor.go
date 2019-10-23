@@ -15,7 +15,7 @@ import (
 )
 
 type Monitor struct {
-	Created *string `json:"created,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
 
 	Creator *Creator `json:"creator,omitempty"`
 
@@ -27,7 +27,7 @@ type Monitor struct {
 	// A message to include with notifications for this monitor.
 	Message *string `json:"message,omitempty"`
 
-	Modified *string `json:"modified,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
 
 	Multi *bool `json:"multi,omitempty"`
 
@@ -39,7 +39,7 @@ type Monitor struct {
 
 	Query *string `json:"query,omitempty"`
 
-	State *MonitorOptions `json:"state,omitempty"`
+	State *MonitorState `json:"state,omitempty"`
 
 	Tags *[]string `json:"tags,omitempty"`
 
@@ -48,9 +48,9 @@ type Monitor struct {
 }
 
 // GetCreated returns the Created field if non-nil, zero value otherwise.
-func (o *Monitor) GetCreated() string {
+func (o *Monitor) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.Created
@@ -58,9 +58,9 @@ func (o *Monitor) GetCreated() string {
 
 // GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetCreatedOk() (string, bool) {
+func (o *Monitor) GetCreatedOk() (time.Time, bool) {
 	if o == nil || o.Created == nil {
-		var ret string
+		var ret time.Time
 		return ret, false
 	}
 	return *o.Created, true
@@ -75,8 +75,8 @@ func (o *Monitor) HasCreated() bool {
 	return false
 }
 
-// SetCreated gets a reference to the given string and assigns it to the Created field.
-func (o *Monitor) SetCreated(v string) {
+// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+func (o *Monitor) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
@@ -213,9 +213,9 @@ func (o *Monitor) SetMessage(v string) {
 }
 
 // GetModified returns the Modified field if non-nil, zero value otherwise.
-func (o *Monitor) GetModified() string {
+func (o *Monitor) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.Modified
@@ -223,9 +223,9 @@ func (o *Monitor) GetModified() string {
 
 // GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetModifiedOk() (string, bool) {
+func (o *Monitor) GetModifiedOk() (time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret string
+		var ret time.Time
 		return ret, false
 	}
 	return *o.Modified, true
@@ -240,8 +240,8 @@ func (o *Monitor) HasModified() bool {
 	return false
 }
 
-// SetModified gets a reference to the given string and assigns it to the Modified field.
-func (o *Monitor) SetModified(v string) {
+// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+func (o *Monitor) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
@@ -411,9 +411,9 @@ func (o *Monitor) SetQuery(v string) {
 }
 
 // GetState returns the State field if non-nil, zero value otherwise.
-func (o *Monitor) GetState() MonitorOptions {
+func (o *Monitor) GetState() MonitorState {
 	if o == nil || o.State == nil {
-		var ret MonitorOptions
+		var ret MonitorState
 		return ret
 	}
 	return *o.State
@@ -421,9 +421,9 @@ func (o *Monitor) GetState() MonitorOptions {
 
 // GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetStateOk() (MonitorOptions, bool) {
+func (o *Monitor) GetStateOk() (MonitorState, bool) {
 	if o == nil || o.State == nil {
-		var ret MonitorOptions
+		var ret MonitorState
 		return ret, false
 	}
 	return *o.State, true
@@ -438,8 +438,8 @@ func (o *Monitor) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given MonitorOptions and assigns it to the State field.
-func (o *Monitor) SetState(v MonitorOptions) {
+// SetState gets a reference to the given MonitorState and assigns it to the State field.
+func (o *Monitor) SetState(v MonitorState) {
 	o.State = &v
 }
 

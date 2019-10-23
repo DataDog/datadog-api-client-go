@@ -13,12 +13,12 @@ import (
 	"errors"
 )
 
-type Error400 struct {
+type Error405 struct {
 	Errors *[]string `json:"errors,omitempty"`
 }
 
 // GetErrors returns the Errors field if non-nil, zero value otherwise.
-func (o *Error400) GetErrors() []string {
+func (o *Error405) GetErrors() []string {
 	if o == nil || o.Errors == nil {
 		var ret []string
 		return ret
@@ -28,7 +28,7 @@ func (o *Error400) GetErrors() []string {
 
 // GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Error400) GetErrorsOk() ([]string, bool) {
+func (o *Error405) GetErrorsOk() ([]string, bool) {
 	if o == nil || o.Errors == nil {
 		var ret []string
 		return ret, false
@@ -37,7 +37,7 @@ func (o *Error400) GetErrorsOk() ([]string, bool) {
 }
 
 // HasErrors returns a boolean if a field has been set.
-func (o *Error400) HasErrors() bool {
+func (o *Error405) HasErrors() bool {
 	if o != nil && o.Errors != nil {
 		return true
 	}
@@ -46,14 +46,14 @@ func (o *Error400) HasErrors() bool {
 }
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
-func (o *Error400) SetErrors(v []string) {
+func (o *Error405) SetErrors(v []string) {
 	o.Errors = &v
 }
 
-func (o Error400) MarshalJSON() ([]byte, error) {
+func (o Error405) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Errors == nil {
-		return nil, errors.New("Errors is required and not nullable, but was not set on Error400")
+		return nil, errors.New("Errors is required and not nullable, but was not set on Error405")
 	}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
