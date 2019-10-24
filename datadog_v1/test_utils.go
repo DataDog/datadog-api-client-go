@@ -17,9 +17,13 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	TESTAUTH = context.WithValue(
 		context.Background(),
 		ContextAPIKey,
-		APIKey{
-			Key:    os.Getenv("DD_TEST_CLIENT_API_KEY"),
-			AppKey: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
+		map[string]APIKey{
+			"api_key": APIKey{
+				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
+			},
+			"application_key": APIKey{
+				Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
+			},
 		},
 	)
 	config := NewConfiguration()
