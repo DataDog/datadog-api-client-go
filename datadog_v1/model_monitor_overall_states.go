@@ -8,6 +8,7 @@
 
 package datadog_v1
 
+// MonitorOverallStates the model 'MonitorOverallStates'
 type MonitorOverallStates string
 
 // List of MonitorOverallStates

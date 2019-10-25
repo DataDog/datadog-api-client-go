@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// DowntimeRecurrence struct for DowntimeRecurrence
 type DowntimeRecurrence struct {
 	Period *int32 `json:"period,omitempty"`
 
@@ -205,6 +206,7 @@ func (o *DowntimeRecurrence) SetWeekDays(v []string) {
 	o.WeekDays = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Period != nil {

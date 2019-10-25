@@ -8,6 +8,7 @@
 
 package datadog_v1
 
+// SloTimeframe the model 'SloTimeframe'
 type SloTimeframe string
 
 // List of SloTimeframe

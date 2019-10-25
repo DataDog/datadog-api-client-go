@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// MonitorStateGroupValue struct for MonitorStateGroupValue
 type MonitorStateGroupValue struct {
 	FromTs *int64 `json:"from_ts,omitempty"`
 
@@ -189,6 +190,7 @@ func (o *MonitorStateGroupValue) SetValue(v float32) {
 	o.Value = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o MonitorStateGroupValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.FromTs != nil {

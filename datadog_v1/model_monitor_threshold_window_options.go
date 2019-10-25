@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// MonitorThresholdWindowOptions struct for MonitorThresholdWindowOptions
 type MonitorThresholdWindowOptions struct {
 	RecoveryWindow *string `json:"recovery_window,omitempty"`
 
@@ -84,6 +85,7 @@ func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
 	o.TriggerWindow = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RecoveryWindow != nil {

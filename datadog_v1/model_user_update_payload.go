@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// UserUpdatePayload struct for UserUpdatePayload
 type UserUpdatePayload struct {
 	AccessRole *string `json:"access_role,omitempty"`
 
@@ -154,6 +155,7 @@ func (o *UserUpdatePayload) SetName(v string) {
 	o.Name = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o UserUpdatePayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AccessRole != nil {

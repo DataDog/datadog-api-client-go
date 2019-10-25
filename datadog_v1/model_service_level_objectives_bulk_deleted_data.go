@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// ServiceLevelObjectivesBulkDeletedData struct for ServiceLevelObjectivesBulkDeletedData
 type ServiceLevelObjectivesBulkDeletedData struct {
 	// An array of service level objective object IDs that indicates which objects that were completely deleted.
 	Deleted *[]string `json:"deleted,omitempty"`
@@ -86,6 +87,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) SetUpdated(v []string) {
 	o.Updated = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o ServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Deleted != nil {

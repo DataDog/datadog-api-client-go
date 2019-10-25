@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// CanceledDowntimesIds struct for CanceledDowntimesIds
 type CanceledDowntimesIds struct {
 	CancelledIds *[]int32 `json:"cancelled_ids,omitempty"`
 }
@@ -49,6 +50,7 @@ func (o *CanceledDowntimesIds) SetCancelledIds(v []int32) {
 	o.CancelledIds = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CancelledIds != nil {

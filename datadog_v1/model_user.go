@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// User struct for User
 type User struct {
 	AccessRole *string `json:"access_role,omitempty"`
 
@@ -329,6 +330,7 @@ func (o *User) SetVerified(v bool) {
 	o.Verified = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AccessRole != nil {

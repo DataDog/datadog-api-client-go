@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// Downtime struct for Downtime
 type Downtime struct {
 	Active *bool `json:"active,omitempty"`
 
@@ -614,6 +615,7 @@ func (o *Downtime) SetUpdaterId(v int32) {
 	o.UpdaterId = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o Downtime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Active != nil {

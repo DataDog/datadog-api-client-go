@@ -13,7 +13,7 @@ import (
 	"errors"
 )
 
-// The bulk partial delete service level objective object endpoint response. This endpoint operates on multiple service level objective objects, so it may be partially successful. In such cases, the \"data\" and \"error\" fields in this response indicate which deletions succeeded and failed.
+// ServiceLevelObjectivesBulkDeleted The bulk partial delete service level objective object endpoint response. This endpoint operates on multiple service level objective objects, so it may be partially successful. In such cases, the \"data\" and \"error\" fields in this response indicate which deletions succeeded and failed.
 type ServiceLevelObjectivesBulkDeleted struct {
 	Data *ServiceLevelObjectivesBulkDeletedData `json:"data,omitempty"`
 
@@ -86,6 +86,7 @@ func (o *ServiceLevelObjectivesBulkDeleted) SetErrors(v []ServiceLevelObjectives
 	o.Errors = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o ServiceLevelObjectivesBulkDeleted) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data == nil {

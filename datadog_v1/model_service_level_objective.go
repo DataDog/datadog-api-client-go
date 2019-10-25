@@ -13,7 +13,7 @@ import (
 	"errors"
 )
 
-// A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (name, description, tags, etc.).
+// ServiceLevelObjective A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (name, description, tags, etc.).
 type ServiceLevelObjective struct {
 	// Creation timestamp (unix time in seconds) Always included in service level objective responses.
 	CreatedAt *int64 `json:"created_at,omitempty"`
@@ -526,6 +526,7 @@ func (o *ServiceLevelObjective) SetTypeId(v int32) {
 	o.TypeId = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CreatedAt != nil {

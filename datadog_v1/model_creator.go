@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// Creator struct for Creator
 type Creator struct {
 	Email *string `json:"email,omitempty"`
 
@@ -119,6 +120,7 @@ func (o *Creator) SetName(v string) {
 	o.Name = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o Creator) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Email != nil {
