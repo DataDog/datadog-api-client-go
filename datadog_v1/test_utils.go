@@ -16,7 +16,7 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	// SETUP testing
 	TESTAUTH = context.WithValue(
 		context.Background(),
-		ContextAPIKey,
+		ContextAPIKeys,
 		map[string]APIKey{
 			"api_key": APIKey{
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
