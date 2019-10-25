@@ -13,6 +13,7 @@ import (
 	"errors"
 )
 
+// Error400 struct for Error400
 type Error400 struct {
 	Errors *[]string `json:"errors,omitempty"`
 }
@@ -50,6 +51,7 @@ func (o *Error400) SetErrors(v []string) {
 	o.Errors = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o Error400) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Errors == nil {

@@ -13,6 +13,7 @@ import (
 	"errors"
 )
 
+// SloThreshold struct for SloThreshold
 type SloThreshold struct {
 	// The target value for the service level indicator within the corresponding timeframe.
 	Target *float64 `json:"target,omitempty"`
@@ -193,6 +194,7 @@ func (o *SloThreshold) SetWarningDisplay(v string) {
 	o.WarningDisplay = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o SloThreshold) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Target == nil {

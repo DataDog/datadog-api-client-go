@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// UserGetAllResponse struct for UserGetAllResponse
 type UserGetAllResponse struct {
 	Users *[]User `json:"users,omitempty"`
 }
@@ -49,6 +50,7 @@ func (o *UserGetAllResponse) SetUsers(v []User) {
 	o.Users = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o UserGetAllResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Users != nil {

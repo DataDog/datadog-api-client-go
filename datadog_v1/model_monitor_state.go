@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// MonitorState struct for MonitorState
 type MonitorState struct {
 	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
 
@@ -119,6 +120,7 @@ func (o *MonitorState) SetOverallState(v MonitorOverallStates) {
 	o.OverallState = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o MonitorState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Groups != nil {

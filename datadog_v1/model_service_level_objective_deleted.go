@@ -13,6 +13,7 @@ import (
 	"errors"
 )
 
+// ServiceLevelObjectiveDeleted struct for ServiceLevelObjectiveDeleted
 type ServiceLevelObjectiveDeleted struct {
 	// An array containing the ID of the deleted service level objective object.
 	Data *[]string `json:"data,omitempty"`
@@ -51,6 +52,7 @@ func (o *ServiceLevelObjectiveDeleted) SetData(v []string) {
 	o.Data = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o ServiceLevelObjectiveDeleted) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data == nil {

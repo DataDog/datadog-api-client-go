@@ -13,6 +13,7 @@ import (
 	"errors"
 )
 
+// ServiceLevelObjectiveResponse struct for ServiceLevelObjectiveResponse
 type ServiceLevelObjectiveResponse struct {
 	// An array of service level objective objects.
 	Data *[]ServiceLevelObjective `json:"data,omitempty"`
@@ -87,6 +88,7 @@ func (o *ServiceLevelObjectiveResponse) SetErrors(v []string) {
 	o.Errors = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o ServiceLevelObjectiveResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data == nil {

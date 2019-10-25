@@ -13,6 +13,7 @@ import (
 	"errors"
 )
 
+// ServiceLevelObjectivesBulkDeletedErrors struct for ServiceLevelObjectivesBulkDeletedErrors
 type ServiceLevelObjectivesBulkDeletedErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id *string `json:"id,omitempty"`
@@ -123,6 +124,7 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v string) {
 	o.Timeframe = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o ServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id == nil {

@@ -13,6 +13,7 @@ import (
 	"errors"
 )
 
+// CancelDowntimesByScopeRequest struct for CancelDowntimesByScopeRequest
 type CancelDowntimesByScopeRequest struct {
 	Scope *string `json:"scope,omitempty"`
 }
@@ -50,6 +51,7 @@ func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
 	o.Scope = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Scope == nil {

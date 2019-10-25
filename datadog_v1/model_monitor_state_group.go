@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// MonitorStateGroup struct for MonitorStateGroup
 type MonitorStateGroup struct {
 	LastDataTs *int64 `json:"last_data_ts,omitempty"`
 
@@ -329,6 +330,7 @@ func (o *MonitorStateGroup) SetTriggeringValue(v MonitorStateGroupValue) {
 	o.TriggeringValue = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.LastDataTs != nil {

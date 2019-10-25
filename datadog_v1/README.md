@@ -23,7 +23,7 @@ go get github.com/antihax/optional
 Put the package under your project folder and add the following in import:
 
 ```golang
-import "./datadog_v1"
+import sw "./datadog_v1"
 ```
 
 ## Documentation for API Endpoints
@@ -111,34 +111,22 @@ Class | Method | HTTP request | Description
 
 
 
-## apiKeyAuth
+### apiKeyAuth
 
 - **Type**: API key
+- **API key parameter name**: api_key
+- **Location**: URL query string
 
-Example
-
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-    Key: "APIKEY",
-    Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: api_key and passed in as the auth context for each request.
 
 
-## appKeyAuth
+### appKeyAuth
 
 - **Type**: API key
+- **API key parameter name**: application_key
+- **Location**: URL query string
 
-Example
-
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-    Key: "APIKEY",
-    Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: application_key and passed in as the auth context for each request.
 
 
 ## Documentation for Utility Methods

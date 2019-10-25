@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// UserDisableResponse struct for UserDisableResponse
 type UserDisableResponse struct {
 	Message *string `json:"message,omitempty"`
 }
@@ -49,6 +50,7 @@ func (o *UserDisableResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o UserDisableResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Message != nil {

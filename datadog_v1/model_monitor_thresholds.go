@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// MonitorThresholds struct for MonitorThresholds
 type MonitorThresholds struct {
 	Critical *float32 `json:"critical,omitempty"`
 
@@ -189,6 +190,7 @@ func (o *MonitorThresholds) SetWarningRecovery(v float32) {
 	o.WarningRecovery = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Critical != nil {

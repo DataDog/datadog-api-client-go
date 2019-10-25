@@ -13,7 +13,7 @@ import (
 	"errors"
 )
 
-// A metric SLI query. Required if type is \"metric\".
+// ServiceLevelObjectiveQuery A metric SLI query. Required if type is \"metric\".
 type ServiceLevelObjectiveQuery struct {
 	// A Datadog metric query for total (valid) events.
 	Denominator *string `json:"denominator,omitempty"`
@@ -88,6 +88,7 @@ func (o *ServiceLevelObjectiveQuery) SetNumerator(v string) {
 	o.Numerator = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Denominator == nil {

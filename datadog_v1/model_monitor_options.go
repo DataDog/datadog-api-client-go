@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// MonitorOptions struct for MonitorOptions
 type MonitorOptions struct {
 	Aggregation *string `json:"aggregation,omitempty"`
 
@@ -714,6 +715,7 @@ func (o *MonitorOptions) SetTimeoutH(v int32) {
 	o.TimeoutH = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Aggregation != nil {

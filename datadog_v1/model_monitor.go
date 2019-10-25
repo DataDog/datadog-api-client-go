@@ -14,6 +14,7 @@ import (
 	"time"
 )
 
+// Monitor struct for Monitor
 type Monitor struct {
 	Created *time.Time `json:"created,omitempty"`
 
@@ -509,6 +510,7 @@ func (o *Monitor) SetType(v string) {
 	o.Type = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o Monitor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Created != nil {

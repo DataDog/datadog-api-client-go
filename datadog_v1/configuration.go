@@ -32,8 +32,8 @@ var (
 	// ContextAccessToken takes a string oauth2 access token as authentication for the request.
 	ContextAccessToken = contextKey("accesstoken")
 
-	// ContextAPIKey takes an APIKey as authentication for the request
-	ContextAPIKey = contextKey("apikey")
+	// ContextAPIKeys takes a string apikey as authentication for the request
+	ContextAPIKeys = contextKey("apiKeys")
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
@@ -48,6 +48,7 @@ type APIKey struct {
 	Prefix string
 }
 
+// Configuration stores the configuration of the API client
 type Configuration struct {
 	BasePath      string            `json:"basePath,omitempty"`
 	Host          string            `json:"host,omitempty"`
@@ -57,6 +58,7 @@ type Configuration struct {
 	HTTPClient    *http.Client
 }
 
+// NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://api.datadoghq.com",
@@ -66,6 +68,7 @@ func NewConfiguration() *Configuration {
 	return cfg
 }
 
+// AddDefaultHeader adds a new HTTP header to the default header in the request
 func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
 }

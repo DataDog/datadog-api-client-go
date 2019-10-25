@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 )
 
+// AwsAccount struct for AwsAccount
 type AwsAccount struct {
 	AccessKeyId *string `json:"access_key_id,omitempty"`
 
@@ -224,6 +225,7 @@ func (o *AwsAccount) SetRoleName(v string) {
 	o.RoleName = &v
 }
 
+// MarshalJSON returns the JSON representation of the model.
 func (o AwsAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AccessKeyId != nil {
