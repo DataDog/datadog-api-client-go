@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Critical** | Pointer to **float32** |  | [optional] 
 **CriticalRecovery** | Pointer to **float32** |  | [optional] 
 **Ok** | Pointer to **float32** |  | [optional] 
+**Unknown** | Pointer to **float32** |  | [optional] 
 **Warning** | Pointer to **float32** |  | [optional] 
 **WarningRecovery** | Pointer to **float32** |  | [optional] 
 
@@ -86,6 +87,31 @@ HasOk returns a boolean if a field has been set.
 `func (o *MonitorThresholds) SetOk(v float32)`
 
 SetOk gets a reference to the given float32 and assigns it to the Ok field.
+
+### GetUnknown
+
+`func (o *MonitorThresholds) GetUnknown() float32`
+
+GetUnknown returns the Unknown field if non-nil, zero value otherwise.
+
+### GetUnknownOk
+
+`func (o *MonitorThresholds) GetUnknownOk() (float32, bool)`
+
+GetUnknownOk returns a tuple with the Unknown field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUnknown
+
+`func (o *MonitorThresholds) HasUnknown() bool`
+
+HasUnknown returns a boolean if a field has been set.
+
+### SetUnknown
+
+`func (o *MonitorThresholds) SetUnknown(v float32)`
+
+SetUnknown gets a reference to the given float32 and assigns it to the Unknown field.
 
 ### GetWarning
 

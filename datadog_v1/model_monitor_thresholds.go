@@ -20,6 +20,8 @@ type MonitorThresholds struct {
 
 	Ok *float32 `json:"ok,omitempty"`
 
+	Unknown *float32 `json:"unknown,omitempty"`
+
 	Warning *float32 `json:"warning,omitempty"`
 
 	WarningRecovery *float32 `json:"warning_recovery,omitempty"`
@@ -124,6 +126,39 @@ func (o *MonitorThresholds) SetOk(v float32) {
 	o.Ok = &v
 }
 
+// GetUnknown returns the Unknown field if non-nil, zero value otherwise.
+func (o *MonitorThresholds) GetUnknown() float32 {
+	if o == nil || o.Unknown == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Unknown
+}
+
+// GetUnknownOk returns a tuple with the Unknown field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorThresholds) GetUnknownOk() (float32, bool) {
+	if o == nil || o.Unknown == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.Unknown, true
+}
+
+// HasUnknown returns a boolean if a field has been set.
+func (o *MonitorThresholds) HasUnknown() bool {
+	if o != nil && o.Unknown != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUnknown gets a reference to the given float32 and assigns it to the Unknown field.
+func (o *MonitorThresholds) SetUnknown(v float32) {
+	o.Unknown = &v
+}
+
 // GetWarning returns the Warning field if non-nil, zero value otherwise.
 func (o *MonitorThresholds) GetWarning() float32 {
 	if o == nil || o.Warning == nil {
@@ -201,6 +236,9 @@ func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 	}
 	if o.Ok != nil {
 		toSerialize["ok"] = o.Ok
+	}
+	if o.Unknown != nil {
+		toSerialize["unknown"] = o.Unknown
 	}
 	if o.Warning != nil {
 		toSerialize["warning"] = o.Warning
