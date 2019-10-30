@@ -64,6 +64,8 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AwsAccount](docs/AwsAccount.md)
+ - [AwsAccountCreateResponse](docs/AwsAccountCreateResponse.md)
+ - [AwsAccountListResponse](docs/AwsAccountListResponse.md)
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
  - [Creator](docs/Creator.md)

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateAWSAccount
 
-> map[string]string CreateAWSAccount(ctx, awsAccount)
+> AwsAccountCreateResponse CreateAWSAccount(ctx, awsAccount)
 Create an AWS Account
 
 ### Overview
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]string**
+[**AwsAccountCreateResponse**](AWSAccountCreateResponse.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 ## GetAllAWSAccounts
 
-> map[string][]AwsAccount GetAllAWSAccounts(ctx, optional)
+> AwsAccountListResponse GetAllAWSAccounts(ctx, optional)
 Get Installed AWS Accounts
 
 ### Overview
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**map[string][]AwsAccount**](array.md)
+[**AwsAccountListResponse**](AWSAccountListResponse.md)
 
 ### Authorization
 
