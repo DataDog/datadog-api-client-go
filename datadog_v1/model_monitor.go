@@ -10,7 +10,6 @@ package datadog_v1
 
 import (
 	"encoding/json"
-	"errors"
 	"time"
 )
 
@@ -543,9 +542,6 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	if o.OverallState != nil {
 		toSerialize["overall_state"] = o.OverallState
 	}
-	if o.Query == nil {
-		return nil, errors.New("Query is required and not nullable, but was not set on Monitor")
-	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
@@ -554,9 +550,6 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
-	}
-	if o.Type == nil {
-		return nil, errors.New("Type is required and not nullable, but was not set on Monitor")
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

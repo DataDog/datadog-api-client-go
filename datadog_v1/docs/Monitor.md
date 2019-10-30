@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
-**Query** | Pointer to **string** |  | 
+**Query** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | Pointer to **string** | The type of the monitor | 
+**Type** | Pointer to **string** | The type of the monitor | [optional] 
 
 ## Methods
 
