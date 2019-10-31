@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> UserCreateResponse CreateUser(ctx, userCreatePayload)
+> UserResponse CreateUser(ctx, user)
 Create user
 
 ### Overview
@@ -28,8 +28,10 @@ Create a user for your organization.
 
   *  **adm** (admin user),
 
-  *  **ro** (read-only user). *Note: users can be created with admin access role
-     only with application keys belonging to administrators.*
+  *  **ro** (read-only user).
+
+  **Note**: users can be created with admin access role
+     only with application keys belonging to administrators.
 
 ### Required Parameters
 
@@ -37,11 +39,11 @@ Create a user for your organization.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userCreatePayload** | [**UserCreatePayload**](UserCreatePayload.md)| User object that needs to be created | 
+**user** | [**User**](User.md)| User object that needs to be created | 
 
 ### Return type
 
-[**UserCreateResponse**](UserCreateResponse.md)
+[**UserResponse**](UserResponse.md)
 
 ### Authorization
 
@@ -97,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## GetAllUsers
 
-> UserGetAllResponse GetAllUsers(ctx, )
+> UserListResponse GetAllUsers(ctx, )
 Get all users
 
 ### Overview
@@ -111,7 +113,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserGetAllResponse**](UserGetAllResponse.md)
+[**UserListResponse**](UserListResponse.md)
 
 ### Authorization
 
@@ -129,7 +131,7 @@ This endpoint does not need any parameter.
 
 ## GetUser
 
-> UserGetResponse GetUser(ctx, userHandle)
+> UserResponse GetUser(ctx, userHandle)
 Get user
 
 ### Overview
@@ -147,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserGetResponse**](UserGetResponse.md)
+[**UserResponse**](UserResponse.md)
 
 ### Authorization
 
@@ -165,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> UserUpdateResponse UpdateUser(ctx, userHandle, userUpdatePayload)
+> UserResponse UpdateUser(ctx, userHandle, user)
 Update user
 
 ### Overview
@@ -192,11 +194,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userHandle** | [**string**](.md)| The id of the user | 
-**userUpdatePayload** | [**UserUpdatePayload**](UserUpdatePayload.md)| Description of the update | 
+**user** | [**User**](User.md)| Description of the update | 
 
 ### Return type
 
-[**UserUpdateResponse**](UserUpdateResponse.md)
+[**UserResponse**](UserResponse.md)
 
 ### Authorization
 

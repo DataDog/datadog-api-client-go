@@ -42,6 +42,16 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**GetAllDowntimes**](docs/DowntimesApi.md#getalldowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**GetDowntime**](docs/DowntimesApi.md#getdowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
+*KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key with a given name.
+*KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key with a given name.
+*KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete a given API key.
+*KeysApi* | [**DeleteApplicationKey**](docs/KeysApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete a given application key.
+*KeysApi* | [**EditAPIKey**](docs/KeysApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key name.
+*KeysApi* | [**EditApplicationKey**](docs/KeysApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key name.
+*KeysApi* | [**GetAPIKey**](docs/KeysApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get a given API key.
+*KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys available for your account.
+*KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
+*KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a new Monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
 *MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
@@ -49,11 +59,13 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get details about the specified monitor.
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | 
 *SloApi* | [**BulkPartialDeleteSlo**](docs/SloApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Delete (or partially delete) multiple service level objective objects.
+*SloApi* | [**CheckCanDeleteSlo**](docs/SloApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted.
 *SloApi* | [**CreateSlo**](docs/SloApi.md#createslo) | **Post** /api/v1/slo | Create a service level objective object.
 *SloApi* | [**DeleteSlo**](docs/SloApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete the specified service level objective object.
 *SloApi* | [**EditSlo**](docs/SloApi.md#editslo) | **Put** /api/v1/slo/{slo_id} | Edit the specified service level objective
 *SloApi* | [**GetSlo**](docs/SloApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a service level objective object
 *SloApi* | [**GetSlos**](docs/SloApi.md#getslos) | **Get** /api/v1/slo | Get multiple service level objective objects by their IDs.
+*SloApi* | [**HistoryForSlo**](docs/SloApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get the history of the service level objective.
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable user
 *UsersApi* | [**GetAllUsers**](docs/UsersApi.md#getallusers) | **Get** /api/v1/user | Get all users
@@ -63,9 +75,19 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ApiKey](docs/ApiKey.md)
+ - [ApiKeyListResponse](docs/ApiKeyListResponse.md)
+ - [ApiKeyResponse](docs/ApiKeyResponse.md)
+ - [ApplicationKey](docs/ApplicationKey.md)
+ - [ApplicationKeyListResponse](docs/ApplicationKeyListResponse.md)
+ - [ApplicationKeyResponse](docs/ApplicationKeyResponse.md)
  - [AwsAccount](docs/AwsAccount.md)
+ - [AwsAccountCreateResponse](docs/AwsAccountCreateResponse.md)
+ - [AwsAccountListResponse](docs/AwsAccountListResponse.md)
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
+ - [CheckCanDeleteServiceLevelObjectiveResponse](docs/CheckCanDeleteServiceLevelObjectiveResponse.md)
+ - [CheckCanDeleteServiceLevelObjectiveResponseData](docs/CheckCanDeleteServiceLevelObjectiveResponseData.md)
  - [Creator](docs/Creator.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
@@ -80,6 +102,14 @@ Class | Method | HTTP request | Description
  - [Error429](docs/Error429.md)
  - [Error500](docs/Error500.md)
  - [Error503](docs/Error503.md)
+ - [HistoryServiceLevelObjectiveGroups](docs/HistoryServiceLevelObjectiveGroups.md)
+ - [HistoryServiceLevelObjectiveMetrics](docs/HistoryServiceLevelObjectiveMetrics.md)
+ - [HistoryServiceLevelObjectiveMetricsSeries](docs/HistoryServiceLevelObjectiveMetricsSeries.md)
+ - [HistoryServiceLevelObjectiveMetricsSeriesMetadata](docs/HistoryServiceLevelObjectiveMetricsSeriesMetadata.md)
+ - [HistoryServiceLevelObjectiveOverall](docs/HistoryServiceLevelObjectiveOverall.md)
+ - [HistoryServiceLevelObjectiveResponse](docs/HistoryServiceLevelObjectiveResponse.md)
+ - [HistoryServiceLevelObjectiveResponseData](docs/HistoryServiceLevelObjectiveResponseData.md)
+ - [HistoryServiceLevelObjectiveResponseError](docs/HistoryServiceLevelObjectiveResponseError.md)
  - [Monitor](docs/Monitor.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
@@ -99,12 +129,9 @@ Class | Method | HTTP request | Description
  - [SloTimeframe](docs/SloTimeframe.md)
  - [User](docs/User.md)
  - [UserCreatePayload](docs/UserCreatePayload.md)
- - [UserCreateResponse](docs/UserCreateResponse.md)
  - [UserDisableResponse](docs/UserDisableResponse.md)
- - [UserGetAllResponse](docs/UserGetAllResponse.md)
- - [UserGetResponse](docs/UserGetResponse.md)
- - [UserUpdatePayload](docs/UserUpdatePayload.md)
- - [UserUpdateResponse](docs/UserUpdateResponse.md)
+ - [UserListResponse](docs/UserListResponse.md)
+ - [UserResponse](docs/UserResponse.md)
 
 
 ## Documentation For Authorization
