@@ -27,19 +27,19 @@ type UsersApiService service
 
 /*
 CreateUser Create user
-### Overview Create a user for your organization. ### Arguments * **&#x60;handle&#x60;** [*required*]: The user handle, must be a valid email. * **&#x60;name&#x60;** [*optional*, *default*&#x3D;**None**]: The name of the user. * **&#x60;access_role&#x60;** [*optional*, *default*&#x3D;**st**]: The access role of the user. Choose from:    *  **st** (standard user),    *  **adm** (admin user),    *  **ro** (read-only user). *Note: users can be created with admin access role      only with application keys belonging to administrators.*
+### Overview Create a user for your organization. ### Arguments * **&#x60;handle&#x60;** [*required*]: The user handle, must be a valid email. * **&#x60;name&#x60;** [*optional*, *default*&#x3D;**None**]: The name of the user. * **&#x60;access_role&#x60;** [*optional*, *default*&#x3D;**st**]: The access role of the user. Choose from:    *  **st** (standard user),    *  **adm** (admin user),    *  **ro** (read-only user).    **Note**: users can be created with admin access role      only with application keys belonging to administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userCreatePayload User object that needs to be created
-@return UserCreateResponse
+ * @param user User object that needs to be created
+@return UserResponse
 */
-func (a *UsersApiService) CreateUser(ctx _context.Context, userCreatePayload UserCreatePayload) (UserCreateResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) CreateUser(ctx _context.Context, user User) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserCreateResponse
+		localVarReturnValue  UserResponse
 	)
 
 	// create path and map variables
@@ -67,7 +67,7 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, userCreatePayload Use
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &userCreatePayload
+	localVarPostBody = &user
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -118,7 +118,7 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, userCreatePayload Use
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserCreateResponse
+			var v UserResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -302,16 +302,16 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (
 GetAllUsers Get all users
 ### Overview Get all users for your organization. ### Arguments This endpoint takes no JSON argument.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return UserGetAllResponse
+@return UserListResponse
 */
-func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserGetAllResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserGetAllResponse
+		localVarReturnValue  UserListResponse
 	)
 
 	// create path and map variables
@@ -388,7 +388,7 @@ func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserGetAllResponse,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserGetAllResponse
+			var v UserListResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -437,16 +437,16 @@ GetUser Get user
 ### Overview Get a user details. ### Arguments * **&#x60;user_handle&#x60;** [*required*]: The handle of the user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The id of the user
-@return UserGetResponse
+@return UserResponse
 */
-func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserGetResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserGetResponse
+		localVarReturnValue  UserResponse
 	)
 
 	// create path and map variables
@@ -524,7 +524,7 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (User
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserGetResponse
+			var v UserResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -573,17 +573,17 @@ UpdateUser Update user
 ### Overview Update a user informations.  **Note**: It can only be used with application keys belonging to administrators. ### Arguments * **&#x60;id&#x60;** [*required*]: The handle of the user. * **&#x60;name&#x60;** [*optional*, *default*&#x3D;**None**]: The new name of the user. * **&#x60;email&#x60;** [*optional*, *default*&#x3D;**None**]: The new email of the user. * **&#x60;disabled&#x60;** [*optional*, *default*&#x3D;**None**]: The new disabled status of the user. * **&#x60;access_role&#x60;** [*optional*, *default*&#x3D;**st**]: The access role of the user. Choose from:    *  **st** (standard user)    *  **adm** (admin user)    *  **ro** (read-only user)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The id of the user
- * @param userUpdatePayload Description of the update
-@return UserUpdateResponse
+ * @param user Description of the update
+@return UserResponse
 */
-func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, userUpdatePayload UserUpdatePayload) (UserUpdateResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, user User) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserUpdateResponse
+		localVarReturnValue  UserResponse
 	)
 
 	// create path and map variables
@@ -612,7 +612,7 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, us
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &userUpdatePayload
+	localVarPostBody = &user
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -663,7 +663,7 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, us
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserUpdateResponse
+			var v UserResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
