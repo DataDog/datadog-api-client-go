@@ -1,0 +1,8 @@
+FROM golang:latest
+
+ENTRYPOINT ["go"]
+CMD ["test"]
+
+COPY . /tmp/datadog-api-client-go
+
+WORKDIR /tmp/datadog-api-client-go/datadog_v1
