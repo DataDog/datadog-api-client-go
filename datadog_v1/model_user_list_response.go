@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// UserGetAllResponse struct for UserGetAllResponse
-type UserGetAllResponse struct {
+// UserListResponse struct for UserListResponse
+type UserListResponse struct {
 	Users *[]User `json:"users,omitempty"`
 }
 
 // GetUsers returns the Users field if non-nil, zero value otherwise.
-func (o *UserGetAllResponse) GetUsers() []User {
+func (o *UserListResponse) GetUsers() []User {
 	if o == nil || o.Users == nil {
 		var ret []User
 		return ret
@@ -28,7 +28,7 @@ func (o *UserGetAllResponse) GetUsers() []User {
 
 // GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *UserGetAllResponse) GetUsersOk() ([]User, bool) {
+func (o *UserListResponse) GetUsersOk() ([]User, bool) {
 	if o == nil || o.Users == nil {
 		var ret []User
 		return ret, false
@@ -37,7 +37,7 @@ func (o *UserGetAllResponse) GetUsersOk() ([]User, bool) {
 }
 
 // HasUsers returns a boolean if a field has been set.
-func (o *UserGetAllResponse) HasUsers() bool {
+func (o *UserListResponse) HasUsers() bool {
 	if o != nil && o.Users != nil {
 		return true
 	}
@@ -46,12 +46,12 @@ func (o *UserGetAllResponse) HasUsers() bool {
 }
 
 // SetUsers gets a reference to the given []User and assigns it to the Users field.
-func (o *UserGetAllResponse) SetUsers(v []User) {
+func (o *UserListResponse) SetUsers(v []User) {
 	o.Users = &v
 }
 
 // MarshalJSON returns the JSON representation of the model.
-func (o UserGetAllResponse) MarshalJSON() ([]byte, error) {
+func (o UserListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Users != nil {
 		toSerialize["users"] = o.Users

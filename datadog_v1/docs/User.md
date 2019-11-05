@@ -9,9 +9,7 @@ Name | Type | Description | Notes
 **Email** | Pointer to **string** |  | [optional] 
 **Handle** | Pointer to **string** |  | [optional] 
 **Icon** | Pointer to **string** |  | [optional] 
-**IsAdmin** | Pointer to **bool** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Role** | Pointer to **string** |  | [optional] 
 **Verified** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -141,31 +139,6 @@ HasIcon returns a boolean if a field has been set.
 
 SetIcon gets a reference to the given string and assigns it to the Icon field.
 
-### GetIsAdmin
-
-`func (o *User) GetIsAdmin() bool`
-
-GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
-
-### GetIsAdminOk
-
-`func (o *User) GetIsAdminOk() (bool, bool)`
-
-GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasIsAdmin
-
-`func (o *User) HasIsAdmin() bool`
-
-HasIsAdmin returns a boolean if a field has been set.
-
-### SetIsAdmin
-
-`func (o *User) SetIsAdmin(v bool)`
-
-SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
-
 ### GetName
 
 `func (o *User) GetName() string`
@@ -190,31 +163,6 @@ HasName returns a boolean if a field has been set.
 `func (o *User) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetRole
-
-`func (o *User) GetRole() string`
-
-GetRole returns the Role field if non-nil, zero value otherwise.
-
-### GetRoleOk
-
-`func (o *User) GetRoleOk() (string, bool)`
-
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasRole
-
-`func (o *User) HasRole() bool`
-
-HasRole returns a boolean if a field has been set.
-
-### SetRole
-
-`func (o *User) SetRole(v string)`
-
-SetRole gets a reference to the given string and assigns it to the Role field.
 
 ### GetVerified
 

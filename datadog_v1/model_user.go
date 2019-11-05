@@ -24,11 +24,7 @@ type User struct {
 
 	Icon *string `json:"icon,omitempty"`
 
-	IsAdmin *bool `json:"is_admin,omitempty"`
-
 	Name *string `json:"name,omitempty"`
-
-	Role *string `json:"role,omitempty"`
 
 	Verified *bool `json:"verified,omitempty"`
 }
@@ -198,39 +194,6 @@ func (o *User) SetIcon(v string) {
 	o.Icon = &v
 }
 
-// GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
-func (o *User) GetIsAdmin() bool {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsAdmin
-}
-
-// GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetIsAdminOk() (bool, bool) {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret, false
-	}
-	return *o.IsAdmin, true
-}
-
-// HasIsAdmin returns a boolean if a field has been set.
-func (o *User) HasIsAdmin() bool {
-	if o != nil && o.IsAdmin != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
-func (o *User) SetIsAdmin(v bool) {
-	o.IsAdmin = &v
-}
-
 // GetName returns the Name field if non-nil, zero value otherwise.
 func (o *User) GetName() string {
 	if o == nil || o.Name == nil {
@@ -262,39 +225,6 @@ func (o *User) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *User) SetName(v string) {
 	o.Name = &v
-}
-
-// GetRole returns the Role field if non-nil, zero value otherwise.
-func (o *User) GetRole() string {
-	if o == nil || o.Role == nil {
-		var ret string
-		return ret
-	}
-	return *o.Role
-}
-
-// GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetRoleOk() (string, bool) {
-	if o == nil || o.Role == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Role, true
-}
-
-// HasRole returns a boolean if a field has been set.
-func (o *User) HasRole() bool {
-	if o != nil && o.Role != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRole gets a reference to the given string and assigns it to the Role field.
-func (o *User) SetRole(v string) {
-	o.Role = &v
 }
 
 // GetVerified returns the Verified field if non-nil, zero value otherwise.
@@ -348,14 +278,8 @@ func (o User) MarshalJSON() ([]byte, error) {
 	if o.Icon != nil {
 		toSerialize["icon"] = o.Icon
 	}
-	if o.IsAdmin != nil {
-		toSerialize["is_admin"] = o.IsAdmin
-	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
-	}
-	if o.Role != nil {
-		toSerialize["role"] = o.Role
 	}
 	if o.Verified != nil {
 		toSerialize["verified"] = o.Verified

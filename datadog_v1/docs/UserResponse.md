@@ -1,4 +1,4 @@
-# UserCreateResponse
+# UserResponse
 
 ## Properties
 
@@ -10,26 +10,26 @@ Name | Type | Description | Notes
 
 ### GetUser
 
-`func (o *UserCreateResponse) GetUser() User`
+`func (o *UserResponse) GetUser() User`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *UserCreateResponse) GetUserOk() (User, bool)`
+`func (o *UserResponse) GetUserOk() (User, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasUser
 
-`func (o *UserCreateResponse) HasUser() bool`
+`func (o *UserResponse) HasUser() bool`
 
 HasUser returns a boolean if a field has been set.
 
 ### SetUser
 
-`func (o *UserCreateResponse) SetUser(v User)`
+`func (o *UserResponse) SetUser(v User)`
 
 SetUser gets a reference to the given User and assigns it to the User field.
 
