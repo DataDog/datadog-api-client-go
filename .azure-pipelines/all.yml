@@ -1,0 +1,23 @@
+name: IntegrationTests
+trigger:
+  batch: false
+  branches:
+    include:
+    - master
+
+jobs:
+- job: IntegrationTests
+  pool:
+    vmImage: "Ubuntu-16.04"
+  steps:
+    - task: Docker@2
+      displayName: Build the Image
+      inputs:
+        command: build
+        Dockerfile: Dockerfile.test.v1
+        arguments: -t datadog-go-integration-test
+    - script: docker run --env DD_TEST_CLIENT_API_KEY --env DD_TEST_CLIENT_APP_KEY datadog-go-integration-test
+      displayName: Run integration tests
+      env:
+        DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
+        DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
