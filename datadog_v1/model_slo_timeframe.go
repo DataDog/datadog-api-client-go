@@ -8,6 +8,11 @@
 
 package datadog_v1
 
+import (
+	"bytes"
+	"encoding/json"
+)
+
 // SloTimeframe the model 'SloTimeframe'
 type SloTimeframe string
 
@@ -17,3 +22,28 @@ const (
 	_30D SloTimeframe = "30d"
 	_90D SloTimeframe = "90d"
 )
+
+type NullableSloTimeframe struct {
+	Value        SloTimeframe
+	ExplicitNull bool
+}
+
+func (v NullableSloTimeframe) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull && v.Value != "":
+		return nil, ErrInvalidNullable
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
+	}
+}
+
+func (v *NullableSloTimeframe) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
+}

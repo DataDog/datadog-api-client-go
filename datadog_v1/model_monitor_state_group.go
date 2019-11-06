@@ -9,31 +9,24 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // MonitorStateGroup struct for MonitorStateGroup
 type MonitorStateGroup struct {
-	LastDataTs *int64 `json:"last_data_ts,omitempty"`
-
-	LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
-
-	LastNotifiedTs *int64 `json:"last_notified_ts,omitempty"`
-
-	LastResolvedTs *int64 `json:"last_resolved_ts,omitempty"`
-
-	LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`
-
-	Message *string `json:"message,omitempty"`
-
-	Name *string `json:"name,omitempty"`
-
-	Status *MonitorOverallStates `json:"status,omitempty"`
-
+	LastDataTs      *int64                  `json:"last_data_ts,omitempty"`
+	LastNodataTs    *int64                  `json:"last_nodata_ts,omitempty"`
+	LastNotifiedTs  *int64                  `json:"last_notified_ts,omitempty"`
+	LastResolvedTs  *int64                  `json:"last_resolved_ts,omitempty"`
+	LastTriggeredTs *int64                  `json:"last_triggered_ts,omitempty"`
+	Message         *string                 `json:"message,omitempty"`
+	Name            *string                 `json:"name,omitempty"`
+	Status          *MonitorOverallStates   `json:"status,omitempty"`
 	TriggeringValue *MonitorStateGroupValue `json:"triggering_value,omitempty"`
 }
 
-// GetLastDataTs returns the LastDataTs field if non-nil, zero value otherwise.
+// GetLastDataTs returns the LastDataTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastDataTs() int64 {
 	if o == nil || o.LastDataTs == nil {
 		var ret int64
@@ -42,7 +35,7 @@ func (o *MonitorStateGroup) GetLastDataTs() int64 {
 	return *o.LastDataTs
 }
 
-// GetLastDataTsOk returns a tuple with the LastDataTs field if it's non-nil, zero value otherwise
+// GetLastDataTsOk returns a tuple with the LastDataTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetLastDataTsOk() (int64, bool) {
 	if o == nil || o.LastDataTs == nil {
@@ -66,7 +59,7 @@ func (o *MonitorStateGroup) SetLastDataTs(v int64) {
 	o.LastDataTs = &v
 }
 
-// GetLastNodataTs returns the LastNodataTs field if non-nil, zero value otherwise.
+// GetLastNodataTs returns the LastNodataTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastNodataTs() int64 {
 	if o == nil || o.LastNodataTs == nil {
 		var ret int64
@@ -75,7 +68,7 @@ func (o *MonitorStateGroup) GetLastNodataTs() int64 {
 	return *o.LastNodataTs
 }
 
-// GetLastNodataTsOk returns a tuple with the LastNodataTs field if it's non-nil, zero value otherwise
+// GetLastNodataTsOk returns a tuple with the LastNodataTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetLastNodataTsOk() (int64, bool) {
 	if o == nil || o.LastNodataTs == nil {
@@ -99,7 +92,7 @@ func (o *MonitorStateGroup) SetLastNodataTs(v int64) {
 	o.LastNodataTs = &v
 }
 
-// GetLastNotifiedTs returns the LastNotifiedTs field if non-nil, zero value otherwise.
+// GetLastNotifiedTs returns the LastNotifiedTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastNotifiedTs() int64 {
 	if o == nil || o.LastNotifiedTs == nil {
 		var ret int64
@@ -108,7 +101,7 @@ func (o *MonitorStateGroup) GetLastNotifiedTs() int64 {
 	return *o.LastNotifiedTs
 }
 
-// GetLastNotifiedTsOk returns a tuple with the LastNotifiedTs field if it's non-nil, zero value otherwise
+// GetLastNotifiedTsOk returns a tuple with the LastNotifiedTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetLastNotifiedTsOk() (int64, bool) {
 	if o == nil || o.LastNotifiedTs == nil {
@@ -132,7 +125,7 @@ func (o *MonitorStateGroup) SetLastNotifiedTs(v int64) {
 	o.LastNotifiedTs = &v
 }
 
-// GetLastResolvedTs returns the LastResolvedTs field if non-nil, zero value otherwise.
+// GetLastResolvedTs returns the LastResolvedTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastResolvedTs() int64 {
 	if o == nil || o.LastResolvedTs == nil {
 		var ret int64
@@ -141,7 +134,7 @@ func (o *MonitorStateGroup) GetLastResolvedTs() int64 {
 	return *o.LastResolvedTs
 }
 
-// GetLastResolvedTsOk returns a tuple with the LastResolvedTs field if it's non-nil, zero value otherwise
+// GetLastResolvedTsOk returns a tuple with the LastResolvedTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetLastResolvedTsOk() (int64, bool) {
 	if o == nil || o.LastResolvedTs == nil {
@@ -165,7 +158,7 @@ func (o *MonitorStateGroup) SetLastResolvedTs(v int64) {
 	o.LastResolvedTs = &v
 }
 
-// GetLastTriggeredTs returns the LastTriggeredTs field if non-nil, zero value otherwise.
+// GetLastTriggeredTs returns the LastTriggeredTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastTriggeredTs() int64 {
 	if o == nil || o.LastTriggeredTs == nil {
 		var ret int64
@@ -174,7 +167,7 @@ func (o *MonitorStateGroup) GetLastTriggeredTs() int64 {
 	return *o.LastTriggeredTs
 }
 
-// GetLastTriggeredTsOk returns a tuple with the LastTriggeredTs field if it's non-nil, zero value otherwise
+// GetLastTriggeredTsOk returns a tuple with the LastTriggeredTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetLastTriggeredTsOk() (int64, bool) {
 	if o == nil || o.LastTriggeredTs == nil {
@@ -198,7 +191,7 @@ func (o *MonitorStateGroup) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs = &v
 }
 
-// GetMessage returns the Message field if non-nil, zero value otherwise.
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
@@ -207,7 +200,7 @@ func (o *MonitorStateGroup) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetMessageOk() (string, bool) {
 	if o == nil || o.Message == nil {
@@ -231,7 +224,7 @@ func (o *MonitorStateGroup) SetMessage(v string) {
 	o.Message = &v
 }
 
-// GetName returns the Name field if non-nil, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
@@ -240,7 +233,7 @@ func (o *MonitorStateGroup) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetNameOk() (string, bool) {
 	if o == nil || o.Name == nil {
@@ -264,7 +257,7 @@ func (o *MonitorStateGroup) SetName(v string) {
 	o.Name = &v
 }
 
-// GetStatus returns the Status field if non-nil, zero value otherwise.
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetStatus() MonitorOverallStates {
 	if o == nil || o.Status == nil {
 		var ret MonitorOverallStates
@@ -273,7 +266,7 @@ func (o *MonitorStateGroup) GetStatus() MonitorOverallStates {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetStatusOk() (MonitorOverallStates, bool) {
 	if o == nil || o.Status == nil {
@@ -297,7 +290,7 @@ func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates) {
 	o.Status = &v
 }
 
-// GetTriggeringValue returns the TriggeringValue field if non-nil, zero value otherwise.
+// GetTriggeringValue returns the TriggeringValue field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetTriggeringValue() MonitorStateGroupValue {
 	if o == nil || o.TriggeringValue == nil {
 		var ret MonitorStateGroupValue
@@ -306,7 +299,7 @@ func (o *MonitorStateGroup) GetTriggeringValue() MonitorStateGroupValue {
 	return *o.TriggeringValue
 }
 
-// GetTriggeringValueOk returns a tuple with the TriggeringValue field if it's non-nil, zero value otherwise
+// GetTriggeringValueOk returns a tuple with the TriggeringValue field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroup) GetTriggeringValueOk() (MonitorStateGroupValue, bool) {
 	if o == nil || o.TriggeringValue == nil {
@@ -330,35 +323,25 @@ func (o *MonitorStateGroup) SetTriggeringValue(v MonitorStateGroupValue) {
 	o.TriggeringValue = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.LastDataTs != nil {
-		toSerialize["last_data_ts"] = o.LastDataTs
+type NullableMonitorStateGroup struct {
+	Value        MonitorStateGroup
+	ExplicitNull bool
+}
+
+func (v NullableMonitorStateGroup) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.LastNodataTs != nil {
-		toSerialize["last_nodata_ts"] = o.LastNodataTs
+}
+
+func (v *NullableMonitorStateGroup) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.LastNotifiedTs != nil {
-		toSerialize["last_notified_ts"] = o.LastNotifiedTs
-	}
-	if o.LastResolvedTs != nil {
-		toSerialize["last_resolved_ts"] = o.LastResolvedTs
-	}
-	if o.LastTriggeredTs != nil {
-		toSerialize["last_triggered_ts"] = o.LastTriggeredTs
-	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.TriggeringValue != nil {
-		toSerialize["triggering_value"] = o.TriggeringValue
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

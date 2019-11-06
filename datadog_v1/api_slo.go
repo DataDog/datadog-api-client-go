@@ -126,6 +126,7 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx _context.Context, requestBody m
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -135,6 +136,7 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx _context.Context, requestBody m
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -146,6 +148,7 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx _context.Context, requestBody m
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -155,7 +158,6 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx _context.Context, requestBody m
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -272,6 +274,7 @@ func (a *SloApiService) CheckCanDeleteSlo(ctx _context.Context, ids string) (Che
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -281,6 +284,7 @@ func (a *SloApiService) CheckCanDeleteSlo(ctx _context.Context, ids string) (Che
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -292,6 +296,7 @@ func (a *SloApiService) CheckCanDeleteSlo(ctx _context.Context, ids string) (Che
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -301,7 +306,6 @@ func (a *SloApiService) CheckCanDeleteSlo(ctx _context.Context, ids string) (Che
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -419,6 +423,7 @@ func (a *SloApiService) CreateSlo(ctx _context.Context, serviceLevelObjective Se
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -428,6 +433,7 @@ func (a *SloApiService) CreateSlo(ctx _context.Context, serviceLevelObjective Se
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -439,6 +445,7 @@ func (a *SloApiService) CreateSlo(ctx _context.Context, serviceLevelObjective Se
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -448,7 +455,6 @@ func (a *SloApiService) CreateSlo(ctx _context.Context, serviceLevelObjective Se
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -565,6 +571,7 @@ func (a *SloApiService) DeleteSlo(ctx _context.Context, sloId int64) (ServiceLev
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -574,6 +581,7 @@ func (a *SloApiService) DeleteSlo(ctx _context.Context, sloId int64) (ServiceLev
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -585,6 +593,7 @@ func (a *SloApiService) DeleteSlo(ctx _context.Context, sloId int64) (ServiceLev
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -595,6 +604,7 @@ func (a *SloApiService) DeleteSlo(ctx _context.Context, sloId int64) (ServiceLev
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -604,7 +614,6 @@ func (a *SloApiService) DeleteSlo(ctx _context.Context, sloId int64) (ServiceLev
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -724,6 +733,7 @@ func (a *SloApiService) EditSlo(ctx _context.Context, sloId string, serviceLevel
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -733,6 +743,7 @@ func (a *SloApiService) EditSlo(ctx _context.Context, sloId string, serviceLevel
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -744,6 +755,7 @@ func (a *SloApiService) EditSlo(ctx _context.Context, sloId string, serviceLevel
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -754,6 +766,7 @@ func (a *SloApiService) EditSlo(ctx _context.Context, sloId string, serviceLevel
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -763,7 +776,6 @@ func (a *SloApiService) EditSlo(ctx _context.Context, sloId string, serviceLevel
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -880,6 +892,7 @@ func (a *SloApiService) GetSlo(ctx _context.Context, sloId string) (ServiceLevel
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -889,6 +902,7 @@ func (a *SloApiService) GetSlo(ctx _context.Context, sloId string) (ServiceLevel
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -900,6 +914,7 @@ func (a *SloApiService) GetSlo(ctx _context.Context, sloId string) (ServiceLevel
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -910,6 +925,7 @@ func (a *SloApiService) GetSlo(ctx _context.Context, sloId string) (ServiceLevel
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -919,7 +935,6 @@ func (a *SloApiService) GetSlo(ctx _context.Context, sloId string) (ServiceLevel
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1036,6 +1051,7 @@ func (a *SloApiService) GetSlos(ctx _context.Context, ids string) (ServiceLevelO
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -1045,6 +1061,7 @@ func (a *SloApiService) GetSlos(ctx _context.Context, ids string) (ServiceLevelO
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1056,6 +1073,7 @@ func (a *SloApiService) GetSlos(ctx _context.Context, ids string) (ServiceLevelO
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -1065,7 +1083,6 @@ func (a *SloApiService) GetSlos(ctx _context.Context, ids string) (ServiceLevelO
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1186,6 +1203,7 @@ func (a *SloApiService) HistoryForSlo(ctx _context.Context, sloId string, fromTs
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -1195,6 +1213,7 @@ func (a *SloApiService) HistoryForSlo(ctx _context.Context, sloId string, fromTs
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1206,6 +1225,7 @@ func (a *SloApiService) HistoryForSlo(ctx _context.Context, sloId string, fromTs
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -1215,7 +1235,6 @@ func (a *SloApiService) HistoryForSlo(ctx _context.Context, sloId string, fromTs
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

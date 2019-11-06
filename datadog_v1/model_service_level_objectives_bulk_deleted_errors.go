@@ -9,141 +9,84 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // ServiceLevelObjectivesBulkDeletedErrors struct for ServiceLevelObjectivesBulkDeletedErrors
 type ServiceLevelObjectivesBulkDeletedErrors struct {
 	// The ID of the service level objective object associated with this error.
-	Id *string `json:"id,omitempty"`
-
+	Id string `json:"id"`
 	// The error message
-	Message *string `json:"message,omitempty"`
-
+	Message string `json:"message"`
 	// The timeframe of the threshold associated with this error or \"all\" if all thresholds are affected.
-	Timeframe *string `json:"timeframe,omitempty"`
+	Timeframe string `json:"timeframe"`
 }
 
-// GetId returns the Id field if non-nil, zero value otherwise.
+// GetId returns the Id field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetIdOk() (string, bool) {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetMessage returns the Message field if non-nil, zero value otherwise.
+// GetMessage returns the Message field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message
+
+	return o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessageOk() (string, bool) {
-	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Message, true
-}
-
-// HasMessage returns a boolean if a field has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMessage gets a reference to the given string and assigns it to the Message field.
+// SetMessage sets field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) SetMessage(v string) {
-	o.Message = &v
+	o.Message = v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
+// GetTimeframe returns the Timeframe field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() string {
-	if o == nil || o.Timeframe == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeframe
+
+	return o.Timeframe
 }
 
-// GetTimeframeOk returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframeOk() (string, bool) {
-	if o == nil || o.Timeframe == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Timeframe, true
-}
-
-// HasTimeframe returns a boolean if a field has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) HasTimeframe() bool {
-	if o != nil && o.Timeframe != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeframe gets a reference to the given string and assigns it to the Timeframe field.
+// SetTimeframe sets field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v string) {
-	o.Timeframe = &v
+	o.Timeframe = v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id == nil {
-		return nil, errors.New("Id is required and not nullable, but was not set on ServiceLevelObjectivesBulkDeletedErrors")
+type NullableServiceLevelObjectivesBulkDeletedErrors struct {
+	Value        ServiceLevelObjectivesBulkDeletedErrors
+	ExplicitNull bool
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+}
+
+func (v *NullableServiceLevelObjectivesBulkDeletedErrors) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Message == nil {
-		return nil, errors.New("Message is required and not nullable, but was not set on ServiceLevelObjectivesBulkDeletedErrors")
-	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
-	if o.Timeframe == nil {
-		return nil, errors.New("Timeframe is required and not nullable, but was not set on ServiceLevelObjectivesBulkDeletedErrors")
-	}
-	if o.Timeframe != nil {
-		toSerialize["timeframe"] = o.Timeframe
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

@@ -141,6 +141,7 @@ func (a *KeysApiService) CreateAPIKey(ctx _context.Context, localVarOptionals *C
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -150,6 +151,7 @@ func (a *KeysApiService) CreateAPIKey(ctx _context.Context, localVarOptionals *C
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -161,6 +163,7 @@ func (a *KeysApiService) CreateAPIKey(ctx _context.Context, localVarOptionals *C
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error409
@@ -170,7 +173,6 @@ func (a *KeysApiService) CreateAPIKey(ctx _context.Context, localVarOptionals *C
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -301,6 +303,7 @@ func (a *KeysApiService) CreateApplicationKey(ctx _context.Context, localVarOpti
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -310,6 +313,7 @@ func (a *KeysApiService) CreateApplicationKey(ctx _context.Context, localVarOpti
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -321,6 +325,7 @@ func (a *KeysApiService) CreateApplicationKey(ctx _context.Context, localVarOpti
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error409
@@ -330,7 +335,6 @@ func (a *KeysApiService) CreateApplicationKey(ctx _context.Context, localVarOpti
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -447,6 +451,7 @@ func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyR
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -456,6 +461,7 @@ func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyR
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -467,6 +473,7 @@ func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyR
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -476,7 +483,6 @@ func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyR
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -593,6 +599,7 @@ func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) 
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -602,6 +609,7 @@ func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) 
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -613,6 +621,7 @@ func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) 
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -622,7 +631,6 @@ func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) 
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -755,6 +763,7 @@ func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string, localVarOp
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -764,6 +773,7 @@ func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string, localVarOp
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -775,6 +785,7 @@ func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string, localVarOp
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -784,7 +795,6 @@ func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string, localVarOp
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -917,6 +927,7 @@ func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string, lo
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -926,6 +937,7 @@ func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string, lo
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -937,6 +949,7 @@ func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string, lo
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -946,7 +959,6 @@ func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string, lo
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1063,6 +1075,7 @@ func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResp
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -1072,6 +1085,7 @@ func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResp
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1083,6 +1097,7 @@ func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResp
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -1092,7 +1107,6 @@ func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResp
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1207,6 +1221,7 @@ func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) (ApiKeyListResponse
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -1217,6 +1232,7 @@ func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) (ApiKeyListResponse
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -1226,7 +1242,6 @@ func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) (ApiKeyListResponse
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1341,6 +1356,7 @@ func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) (Applicatio
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -1351,6 +1367,7 @@ func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) (Applicatio
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
@@ -1360,7 +1377,6 @@ func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) (Applicatio
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1477,6 +1493,7 @@ func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) (Ap
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -1486,6 +1503,7 @@ func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) (Ap
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1497,6 +1515,7 @@ func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) (Ap
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -1506,7 +1525,6 @@ func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) (Ap
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

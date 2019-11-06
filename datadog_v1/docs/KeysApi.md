@@ -20,6 +20,7 @@ Method | HTTP request | Description
 ## CreateAPIKey
 
 > ApiKeyResponse CreateAPIKey(ctx, optional)
+
 Create an API key with a given name.
 
 ## Overview
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
 ## CreateApplicationKey
 
 > ApplicationKeyResponse CreateApplicationKey(ctx, optional)
+
 Create an application key with a given name.
 
 ## Overview
@@ -110,6 +112,7 @@ Name | Type | Description  | Notes
 ## DeleteAPIKey
 
 > ApiKeyResponse DeleteAPIKey(ctx, key)
+
 Delete a given API key.
 
 ## Overview
@@ -146,6 +149,7 @@ Name | Type | Description  | Notes
 ## DeleteApplicationKey
 
 > ApplicationKeyResponse DeleteApplicationKey(ctx, key)
+
 Delete a given application key.
 
 ## Overview
@@ -182,6 +186,7 @@ Name | Type | Description  | Notes
 ## EditAPIKey
 
 > ApiKeyResponse EditAPIKey(ctx, key, optional)
+
 Edit an API key name.
 
 ## Overview
@@ -229,6 +234,7 @@ Name | Type | Description  | Notes
 ## EditApplicationKey
 
 > ApplicationKeyResponse EditApplicationKey(ctx, key, optional)
+
 Edit an application key name.
 
 ## Overview
@@ -276,6 +282,7 @@ Name | Type | Description  | Notes
 ## GetAPIKey
 
 > ApiKeyResponse GetAPIKey(ctx, key)
+
 Get a given API key.
 
 ## Overview
@@ -312,6 +319,7 @@ Name | Type | Description  | Notes
 ## GetAllAPIKeys
 
 > ApiKeyListResponse GetAllAPIKeys(ctx, )
+
 Get all API keys available for your account.
 
 ## Overview
@@ -344,6 +352,7 @@ This endpoint does not need any parameter.
 ## GetAllApplicationKeys
 
 > ApplicationKeyListResponse GetAllApplicationKeys(ctx, )
+
 Get all application keys available for your account.
 
 ## Overview
@@ -376,6 +385,7 @@ This endpoint does not need any parameter.
 ## GetApplicationKey
 
 > ApplicationKeyResponse GetApplicationKey(ctx, key)
+
 Get a given application key.
 
 ## Overview

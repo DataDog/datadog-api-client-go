@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -16,24 +17,19 @@ import (
 type HistoryServiceLevelObjectiveMetricsSeriesMetadata struct {
 	// Query aggregator function.
 	Aggr *string `json:"aggr,omitempty"`
-
 	// Query expression.
 	Expression *string `json:"expression,omitempty"`
-
 	// Query metric used.
 	Metric *string `json:"metric,omitempty"`
-
 	// Query index from original combined query.
 	QueryIndex *int32 `json:"query_index,omitempty"`
-
 	// Query scope.
 	Scope *string `json:"scope,omitempty"`
-
 	// Query units (if available).
 	Unit *string `json:"unit,omitempty"`
 }
 
-// GetAggr returns the Aggr field if non-nil, zero value otherwise.
+// GetAggr returns the Aggr field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggr() string {
 	if o == nil || o.Aggr == nil {
 		var ret string
@@ -42,7 +38,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggr() string {
 	return *o.Aggr
 }
 
-// GetAggrOk returns a tuple with the Aggr field if it's non-nil, zero value otherwise
+// GetAggrOk returns a tuple with the Aggr field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggrOk() (string, bool) {
 	if o == nil || o.Aggr == nil {
@@ -66,7 +62,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetAggr(v string) {
 	o.Aggr = &v
 }
 
-// GetExpression returns the Expression field if non-nil, zero value otherwise.
+// GetExpression returns the Expression field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpression() string {
 	if o == nil || o.Expression == nil {
 		var ret string
@@ -75,7 +71,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpression() stri
 	return *o.Expression
 }
 
-// GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
+// GetExpressionOk returns a tuple with the Expression field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpressionOk() (string, bool) {
 	if o == nil || o.Expression == nil {
@@ -99,7 +95,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetExpression(v stri
 	o.Expression = &v
 }
 
-// GetMetric returns the Metric field if non-nil, zero value otherwise.
+// GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetric() string {
 	if o == nil || o.Metric == nil {
 		var ret string
@@ -108,7 +104,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetric() string {
 	return *o.Metric
 }
 
-// GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
+// GetMetricOk returns a tuple with the Metric field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetricOk() (string, bool) {
 	if o == nil || o.Metric == nil {
@@ -132,7 +128,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetMetric(v string) 
 	o.Metric = &v
 }
 
-// GetQueryIndex returns the QueryIndex field if non-nil, zero value otherwise.
+// GetQueryIndex returns the QueryIndex field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndex() int32 {
 	if o == nil || o.QueryIndex == nil {
 		var ret int32
@@ -141,7 +137,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndex() int3
 	return *o.QueryIndex
 }
 
-// GetQueryIndexOk returns a tuple with the QueryIndex field if it's non-nil, zero value otherwise
+// GetQueryIndexOk returns a tuple with the QueryIndex field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndexOk() (int32, bool) {
 	if o == nil || o.QueryIndex == nil {
@@ -165,7 +161,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetQueryIndex(v int3
 	o.QueryIndex = &v
 }
 
-// GetScope returns the Scope field if non-nil, zero value otherwise.
+// GetScope returns the Scope field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScope() string {
 	if o == nil || o.Scope == nil {
 		var ret string
@@ -174,7 +170,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScope() string {
 	return *o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
+// GetScopeOk returns a tuple with the Scope field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScopeOk() (string, bool) {
 	if o == nil || o.Scope == nil {
@@ -198,7 +194,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetScope(v string) {
 	o.Scope = &v
 }
 
-// GetUnit returns the Unit field if non-nil, zero value otherwise.
+// GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnit() string {
 	if o == nil || o.Unit == nil {
 		var ret string
@@ -207,7 +203,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnit() string {
 	return *o.Unit
 }
 
-// GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
+// GetUnitOk returns a tuple with the Unit field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnitOk() (string, bool) {
 	if o == nil || o.Unit == nil {
@@ -231,26 +227,25 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetUnit(v string) {
 	o.Unit = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o HistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Aggr != nil {
-		toSerialize["aggr"] = o.Aggr
+type NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata struct {
+	Value        HistoryServiceLevelObjectiveMetricsSeriesMetadata
+	ExplicitNull bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Expression != nil {
-		toSerialize["expression"] = o.Expression
+}
+
+func (v *NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Metric != nil {
-		toSerialize["metric"] = o.Metric
-	}
-	if o.QueryIndex != nil {
-		toSerialize["query_index"] = o.QueryIndex
-	}
-	if o.Scope != nil {
-		toSerialize["scope"] = o.Scope
-	}
-	if o.Unit != nil {
-		toSerialize["unit"] = o.Unit
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

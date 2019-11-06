@@ -124,7 +124,6 @@ func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId in
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -233,6 +232,7 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, cance
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -243,6 +243,7 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, cance
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -252,7 +253,6 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, cance
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -370,6 +370,7 @@ func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, downtime Down
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -379,7 +380,6 @@ func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, downtime Down
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -504,6 +504,7 @@ func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context, localVarOpti
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -513,7 +514,6 @@ func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context, localVarOpti
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -630,6 +630,7 @@ func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -639,7 +640,6 @@ func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -759,6 +759,7 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -769,6 +770,7 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -778,7 +780,6 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -9,27 +9,24 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // HistoryServiceLevelObjectiveMetricsSeries A representation of `metric` based SLO time series for the provided queries. This is the same response type from `batch_query` endpoint.
 type HistoryServiceLevelObjectiveMetricsSeries struct {
 	// Count of submitted metrics
-	Count *int64 `json:"count,omitempty"`
-
+	Count    *int64                                             `json:"count,omitempty"`
 	Metadata *HistoryServiceLevelObjectiveMetricsSeriesMetadata `json:"metadata,omitempty"`
-
 	// Total Sum of the query
 	Sum *float64 `json:"sum,omitempty"`
-
 	// The query timestamps in epoch seconds
 	Times *[]int64 `json:"times,omitempty"`
-
 	// The query values
 	Values *[]float32 `json:"values,omitempty"`
 }
 
-// GetCount returns the Count field if non-nil, zero value otherwise.
+// GetCount returns the Count field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCount() int64 {
 	if o == nil || o.Count == nil {
 		var ret int64
@@ -38,7 +35,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCount() int64 {
 	return *o.Count
 }
 
-// GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+// GetCountOk returns a tuple with the Count field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCountOk() (int64, bool) {
 	if o == nil || o.Count == nil {
@@ -62,7 +59,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) SetCount(v int64) {
 	o.Count = &v
 }
 
-// GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetMetadata() HistoryServiceLevelObjectiveMetricsSeriesMetadata {
 	if o == nil || o.Metadata == nil {
 		var ret HistoryServiceLevelObjectiveMetricsSeriesMetadata
@@ -71,7 +68,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetMetadata() HistoryService
 	return *o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+// GetMetadataOk returns a tuple with the Metadata field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetMetadataOk() (HistoryServiceLevelObjectiveMetricsSeriesMetadata, bool) {
 	if o == nil || o.Metadata == nil {
@@ -95,7 +92,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) SetMetadata(v HistoryService
 	o.Metadata = &v
 }
 
-// GetSum returns the Sum field if non-nil, zero value otherwise.
+// GetSum returns the Sum field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetSum() float64 {
 	if o == nil || o.Sum == nil {
 		var ret float64
@@ -104,7 +101,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetSum() float64 {
 	return *o.Sum
 }
 
-// GetSumOk returns a tuple with the Sum field if it's non-nil, zero value otherwise
+// GetSumOk returns a tuple with the Sum field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetSumOk() (float64, bool) {
 	if o == nil || o.Sum == nil {
@@ -128,7 +125,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) SetSum(v float64) {
 	o.Sum = &v
 }
 
-// GetTimes returns the Times field if non-nil, zero value otherwise.
+// GetTimes returns the Times field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetTimes() []int64 {
 	if o == nil || o.Times == nil {
 		var ret []int64
@@ -137,7 +134,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetTimes() []int64 {
 	return *o.Times
 }
 
-// GetTimesOk returns a tuple with the Times field if it's non-nil, zero value otherwise
+// GetTimesOk returns a tuple with the Times field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetTimesOk() ([]int64, bool) {
 	if o == nil || o.Times == nil {
@@ -161,7 +158,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) SetTimes(v []int64) {
 	o.Times = &v
 }
 
-// GetValues returns the Values field if non-nil, zero value otherwise.
+// GetValues returns the Values field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetValues() []float32 {
 	if o == nil || o.Values == nil {
 		var ret []float32
@@ -170,7 +167,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetValues() []float32 {
 	return *o.Values
 }
 
-// GetValuesOk returns a tuple with the Values field if it's non-nil, zero value otherwise
+// GetValuesOk returns a tuple with the Values field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetValuesOk() ([]float32, bool) {
 	if o == nil || o.Values == nil {
@@ -194,23 +191,25 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) SetValues(v []float32) {
 	o.Values = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o HistoryServiceLevelObjectiveMetricsSeries) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Count != nil {
-		toSerialize["count"] = o.Count
+type NullableHistoryServiceLevelObjectiveMetricsSeries struct {
+	Value        HistoryServiceLevelObjectiveMetricsSeries
+	ExplicitNull bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeries) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
+}
+
+func (v *NullableHistoryServiceLevelObjectiveMetricsSeries) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Sum != nil {
-		toSerialize["sum"] = o.Sum
-	}
-	if o.Times != nil {
-		toSerialize["times"] = o.Times
-	}
-	if o.Values != nil {
-		toSerialize["values"] = o.Values
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -17,7 +18,7 @@ type ApplicationKeyListResponse struct {
 	ApplicationKeys *[]ApplicationKey `json:"application_keys,omitempty"`
 }
 
-// GetApplicationKeys returns the ApplicationKeys field if non-nil, zero value otherwise.
+// GetApplicationKeys returns the ApplicationKeys field value if set, zero value otherwise.
 func (o *ApplicationKeyListResponse) GetApplicationKeys() []ApplicationKey {
 	if o == nil || o.ApplicationKeys == nil {
 		var ret []ApplicationKey
@@ -26,7 +27,7 @@ func (o *ApplicationKeyListResponse) GetApplicationKeys() []ApplicationKey {
 	return *o.ApplicationKeys
 }
 
-// GetApplicationKeysOk returns a tuple with the ApplicationKeys field if it's non-nil, zero value otherwise
+// GetApplicationKeysOk returns a tuple with the ApplicationKeys field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplicationKeyListResponse) GetApplicationKeysOk() ([]ApplicationKey, bool) {
 	if o == nil || o.ApplicationKeys == nil {
@@ -50,11 +51,25 @@ func (o *ApplicationKeyListResponse) SetApplicationKeys(v []ApplicationKey) {
 	o.ApplicationKeys = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApplicationKeys != nil {
-		toSerialize["application_keys"] = o.ApplicationKeys
+type NullableApplicationKeyListResponse struct {
+	Value        ApplicationKeyListResponse
+	ExplicitNull bool
+}
+
+func (v NullableApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableApplicationKeyListResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

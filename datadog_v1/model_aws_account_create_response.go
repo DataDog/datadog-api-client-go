@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -17,7 +18,7 @@ type AwsAccountCreateResponse struct {
 	ExternalId *string `json:"external_id,omitempty"`
 }
 
-// GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *AwsAccountCreateResponse) GetExternalId() string {
 	if o == nil || o.ExternalId == nil {
 		var ret string
@@ -26,7 +27,7 @@ func (o *AwsAccountCreateResponse) GetExternalId() string {
 	return *o.ExternalId
 }
 
-// GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *AwsAccountCreateResponse) GetExternalIdOk() (string, bool) {
 	if o == nil || o.ExternalId == nil {
@@ -50,11 +51,25 @@ func (o *AwsAccountCreateResponse) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o AwsAccountCreateResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExternalId != nil {
-		toSerialize["external_id"] = o.ExternalId
+type NullableAwsAccountCreateResponse struct {
+	Value        AwsAccountCreateResponse
+	ExplicitNull bool
+}
+
+func (v NullableAwsAccountCreateResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableAwsAccountCreateResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

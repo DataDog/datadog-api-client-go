@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -17,7 +18,7 @@ type UserListResponse struct {
 	Users *[]User `json:"users,omitempty"`
 }
 
-// GetUsers returns the Users field if non-nil, zero value otherwise.
+// GetUsers returns the Users field value if set, zero value otherwise.
 func (o *UserListResponse) GetUsers() []User {
 	if o == nil || o.Users == nil {
 		var ret []User
@@ -26,7 +27,7 @@ func (o *UserListResponse) GetUsers() []User {
 	return *o.Users
 }
 
-// GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
+// GetUsersOk returns a tuple with the Users field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *UserListResponse) GetUsersOk() ([]User, bool) {
 	if o == nil || o.Users == nil {
@@ -50,11 +51,25 @@ func (o *UserListResponse) SetUsers(v []User) {
 	o.Users = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o UserListResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Users != nil {
-		toSerialize["users"] = o.Users
+type NullableUserListResponse struct {
+	Value        UserListResponse
+	ExplicitNull bool
+}
+
+func (v NullableUserListResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableUserListResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

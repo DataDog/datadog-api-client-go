@@ -126,6 +126,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -135,7 +136,6 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -253,6 +253,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -262,7 +263,6 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -397,6 +397,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -407,6 +408,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
@@ -416,7 +418,6 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -554,6 +555,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
@@ -563,7 +565,6 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
