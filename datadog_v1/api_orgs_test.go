@@ -77,7 +77,8 @@ func TestUpdateOrg(t *testing.T) {
 
 	// Get mocked request data
 	var updateOpts UpdateOrgOpts
-	updateOpts.OrgSettings = optional.NewInterface(*orgsFixture.GetOrg().Settings)
+	orgSettings := *orgsFixture.GetOrg().Settings
+	updateOpts.Org = optional.NewInterface(Org{Settings: &orgSettings})
 	orgResp, _, err := TESTAPICLIENT.OrgsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId, &updateOpts)
 	if err != nil {
 		t.Errorf("Failed to update the test org %s", err)
