@@ -7,7 +7,7 @@ import (
 	"gotest.tools/assert"
 )
 
-var TESTUSER = UserCreatePayload{
+var TESTUSER = User{
 	Name:       PtrString("test user"),
 	Email:      PtrString("test@example.com"),
 	Handle:     PtrString("test@example.com"),
@@ -16,13 +16,13 @@ var TESTUSER = UserCreatePayload{
 
 // [TODO] You can't update another user's email
 // This is based on who owns the APP key that is making the changes
-var UPDATEUSER = UserUpdatePayload{
+var UPDATEUSER = User{
 	Name:       PtrString("test update user"),
 	Disabled:   PtrBool(true),
 	AccessRole: PtrString("st"),
 }
 
-var UPDATEENABLEUSER = UserUpdatePayload{
+var UPDATEENABLEUSER = User{
 	Disabled: PtrBool(false),
 }
 
