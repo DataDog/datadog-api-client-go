@@ -1,13 +1,15 @@
-package datadog_v1
+package datadog_v1_test
 
 import (
 	"context"
 	"os"
 	"testing"
+
+	datadog "github.com/DataDog/datadog-api-client-go/datadog_v1"
 )
 
 // TESTAPICLIENT is the api client to use for tests
-var TESTAPICLIENT *APIClient
+var TESTAPICLIENT *datadog.APIClient
 
 // TESTAUTH is the authentication context to use with each test API call
 var TESTAUTH context.Context
@@ -16,18 +18,18 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	// SETUP testing
 	TESTAUTH = context.WithValue(
 		context.Background(),
-		ContextAPIKeys,
-		map[string]APIKey{
-			"api_key": APIKey{
+		datadog.ContextAPIKeys,
+		map[string]datadog.APIKey{
+			"api_key": datadog.APIKey{
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
 			},
-			"application_key": APIKey{
+			"application_key": datadog.APIKey{
 				Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
 			},
 		},
 	)
-	config := NewConfiguration()
-	TESTAPICLIENT = NewAPIClient(config)
+	config := datadog.NewConfiguration()
+	TESTAPICLIENT = datadog.NewAPIClient(config)
 	return func(t *testing.T) {
 		// TEARDOWN testing
 	}
