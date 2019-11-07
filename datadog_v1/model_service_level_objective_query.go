@@ -9,99 +9,67 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // ServiceLevelObjectiveQuery A metric SLI query. Required if type is \"metric\".
 type ServiceLevelObjectiveQuery struct {
 	// A Datadog metric query for total (valid) events.
-	Denominator *string `json:"denominator,omitempty"`
-
+	Denominator string `json:"denominator"`
 	// A Datadog metric query for good events.
-	Numerator *string `json:"numerator,omitempty"`
+	Numerator string `json:"numerator"`
 }
 
-// GetDenominator returns the Denominator field if non-nil, zero value otherwise.
+// GetDenominator returns the Denominator field value
 func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
-	if o == nil || o.Denominator == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Denominator
+
+	return o.Denominator
 }
 
-// GetDenominatorOk returns a tuple with the Denominator field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveQuery) GetDenominatorOk() (string, bool) {
-	if o == nil || o.Denominator == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Denominator, true
-}
-
-// HasDenominator returns a boolean if a field has been set.
-func (o *ServiceLevelObjectiveQuery) HasDenominator() bool {
-	if o != nil && o.Denominator != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDenominator gets a reference to the given string and assigns it to the Denominator field.
+// SetDenominator sets field value
 func (o *ServiceLevelObjectiveQuery) SetDenominator(v string) {
-	o.Denominator = &v
+	o.Denominator = v
 }
 
-// GetNumerator returns the Numerator field if non-nil, zero value otherwise.
+// GetNumerator returns the Numerator field value
 func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
-	if o == nil || o.Numerator == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Numerator
+
+	return o.Numerator
 }
 
-// GetNumeratorOk returns a tuple with the Numerator field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveQuery) GetNumeratorOk() (string, bool) {
-	if o == nil || o.Numerator == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Numerator, true
-}
-
-// HasNumerator returns a boolean if a field has been set.
-func (o *ServiceLevelObjectiveQuery) HasNumerator() bool {
-	if o != nil && o.Numerator != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNumerator gets a reference to the given string and assigns it to the Numerator field.
+// SetNumerator sets field value
 func (o *ServiceLevelObjectiveQuery) SetNumerator(v string) {
-	o.Numerator = &v
+	o.Numerator = v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Denominator == nil {
-		return nil, errors.New("Denominator is required and not nullable, but was not set on ServiceLevelObjectiveQuery")
+type NullableServiceLevelObjectiveQuery struct {
+	Value        ServiceLevelObjectiveQuery
+	ExplicitNull bool
+}
+
+func (v NullableServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Denominator != nil {
-		toSerialize["denominator"] = o.Denominator
+}
+
+func (v *NullableServiceLevelObjectiveQuery) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Numerator == nil {
-		return nil, errors.New("Numerator is required and not nullable, but was not set on ServiceLevelObjectiveQuery")
-	}
-	if o.Numerator != nil {
-		toSerialize["numerator"] = o.Numerator
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

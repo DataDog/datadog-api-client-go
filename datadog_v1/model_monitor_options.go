@@ -9,53 +9,35 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // MonitorOptions struct for MonitorOptions
 type MonitorOptions struct {
-	Aggregation *string `json:"aggregation,omitempty"`
-
-	DeviceIds *[]string `json:"device_ids,omitempty"`
-
-	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
-
-	EscalationMessage *string `json:"escalation_message,omitempty"`
-
-	EvaluationDelay *int64 `json:"evaluation_delay,omitempty"`
-
-	IncludeTags *bool `json:"include_tags,omitempty"`
-
-	Locked *bool `json:"locked,omitempty"`
-
-	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
-
-	MinLocationFailed *int64 `json:"min_location_failed,omitempty"`
-
-	NewHostDelay *int64 `json:"new_host_delay,omitempty"`
-
-	NoDataTimeframe *int64 `json:"no_data_timeframe,omitempty"`
-
-	NotifyAudit *bool `json:"notify_audit,omitempty"`
-
-	NotifyNoData *bool `json:"notify_no_data,omitempty"`
-
-	RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
-
-	RequireFullWindow *bool `json:"require_full_window,omitempty"`
-
-	Silenced *map[string]int64 `json:"silenced,omitempty"`
-
-	SyntheticsCheckId *int64 `json:"synthetics_check_id,omitempty"`
-
-	ThresholdWindows *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
-
-	Thresholds *MonitorThresholds `json:"thresholds,omitempty"`
-
-	TimeoutH *int32 `json:"timeout_h,omitempty"`
+	Aggregation        *string                        `json:"aggregation,omitempty"`
+	DeviceIds          *[]string                      `json:"device_ids,omitempty"`
+	EnableLogsSample   *bool                          `json:"enable_logs_sample,omitempty"`
+	EscalationMessage  *string                        `json:"escalation_message,omitempty"`
+	EvaluationDelay    *int64                         `json:"evaluation_delay,omitempty"`
+	IncludeTags        *bool                          `json:"include_tags,omitempty"`
+	Locked             *bool                          `json:"locked,omitempty"`
+	MinFailureDuration *int64                         `json:"min_failure_duration,omitempty"`
+	MinLocationFailed  *int64                         `json:"min_location_failed,omitempty"`
+	NewHostDelay       *int64                         `json:"new_host_delay,omitempty"`
+	NoDataTimeframe    *int64                         `json:"no_data_timeframe,omitempty"`
+	NotifyAudit        *bool                          `json:"notify_audit,omitempty"`
+	NotifyNoData       *bool                          `json:"notify_no_data,omitempty"`
+	RenotifyInterval   *int64                         `json:"renotify_interval,omitempty"`
+	RequireFullWindow  *bool                          `json:"require_full_window,omitempty"`
+	Silenced           *map[string]int64              `json:"silenced,omitempty"`
+	SyntheticsCheckId  *int64                         `json:"synthetics_check_id,omitempty"`
+	ThresholdWindows   *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
+	Thresholds         *MonitorThresholds             `json:"thresholds,omitempty"`
+	TimeoutH           *int32                         `json:"timeout_h,omitempty"`
 }
 
-// GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+// GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *MonitorOptions) GetAggregation() string {
 	if o == nil || o.Aggregation == nil {
 		var ret string
@@ -64,7 +46,7 @@ func (o *MonitorOptions) GetAggregation() string {
 	return *o.Aggregation
 }
 
-// GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+// GetAggregationOk returns a tuple with the Aggregation field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetAggregationOk() (string, bool) {
 	if o == nil || o.Aggregation == nil {
@@ -88,7 +70,7 @@ func (o *MonitorOptions) SetAggregation(v string) {
 	o.Aggregation = &v
 }
 
-// GetDeviceIds returns the DeviceIds field if non-nil, zero value otherwise.
+// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
 func (o *MonitorOptions) GetDeviceIds() []string {
 	if o == nil || o.DeviceIds == nil {
 		var ret []string
@@ -97,7 +79,7 @@ func (o *MonitorOptions) GetDeviceIds() []string {
 	return *o.DeviceIds
 }
 
-// GetDeviceIdsOk returns a tuple with the DeviceIds field if it's non-nil, zero value otherwise
+// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetDeviceIdsOk() ([]string, bool) {
 	if o == nil || o.DeviceIds == nil {
@@ -121,7 +103,7 @@ func (o *MonitorOptions) SetDeviceIds(v []string) {
 	o.DeviceIds = &v
 }
 
-// GetEnableLogsSample returns the EnableLogsSample field if non-nil, zero value otherwise.
+// GetEnableLogsSample returns the EnableLogsSample field value if set, zero value otherwise.
 func (o *MonitorOptions) GetEnableLogsSample() bool {
 	if o == nil || o.EnableLogsSample == nil {
 		var ret bool
@@ -130,7 +112,7 @@ func (o *MonitorOptions) GetEnableLogsSample() bool {
 	return *o.EnableLogsSample
 }
 
-// GetEnableLogsSampleOk returns a tuple with the EnableLogsSample field if it's non-nil, zero value otherwise
+// GetEnableLogsSampleOk returns a tuple with the EnableLogsSample field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetEnableLogsSampleOk() (bool, bool) {
 	if o == nil || o.EnableLogsSample == nil {
@@ -154,7 +136,7 @@ func (o *MonitorOptions) SetEnableLogsSample(v bool) {
 	o.EnableLogsSample = &v
 }
 
-// GetEscalationMessage returns the EscalationMessage field if non-nil, zero value otherwise.
+// GetEscalationMessage returns the EscalationMessage field value if set, zero value otherwise.
 func (o *MonitorOptions) GetEscalationMessage() string {
 	if o == nil || o.EscalationMessage == nil {
 		var ret string
@@ -163,7 +145,7 @@ func (o *MonitorOptions) GetEscalationMessage() string {
 	return *o.EscalationMessage
 }
 
-// GetEscalationMessageOk returns a tuple with the EscalationMessage field if it's non-nil, zero value otherwise
+// GetEscalationMessageOk returns a tuple with the EscalationMessage field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetEscalationMessageOk() (string, bool) {
 	if o == nil || o.EscalationMessage == nil {
@@ -187,7 +169,7 @@ func (o *MonitorOptions) SetEscalationMessage(v string) {
 	o.EscalationMessage = &v
 }
 
-// GetEvaluationDelay returns the EvaluationDelay field if non-nil, zero value otherwise.
+// GetEvaluationDelay returns the EvaluationDelay field value if set, zero value otherwise.
 func (o *MonitorOptions) GetEvaluationDelay() int64 {
 	if o == nil || o.EvaluationDelay == nil {
 		var ret int64
@@ -196,7 +178,7 @@ func (o *MonitorOptions) GetEvaluationDelay() int64 {
 	return *o.EvaluationDelay
 }
 
-// GetEvaluationDelayOk returns a tuple with the EvaluationDelay field if it's non-nil, zero value otherwise
+// GetEvaluationDelayOk returns a tuple with the EvaluationDelay field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetEvaluationDelayOk() (int64, bool) {
 	if o == nil || o.EvaluationDelay == nil {
@@ -220,7 +202,7 @@ func (o *MonitorOptions) SetEvaluationDelay(v int64) {
 	o.EvaluationDelay = &v
 }
 
-// GetIncludeTags returns the IncludeTags field if non-nil, zero value otherwise.
+// GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
 func (o *MonitorOptions) GetIncludeTags() bool {
 	if o == nil || o.IncludeTags == nil {
 		var ret bool
@@ -229,7 +211,7 @@ func (o *MonitorOptions) GetIncludeTags() bool {
 	return *o.IncludeTags
 }
 
-// GetIncludeTagsOk returns a tuple with the IncludeTags field if it's non-nil, zero value otherwise
+// GetIncludeTagsOk returns a tuple with the IncludeTags field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetIncludeTagsOk() (bool, bool) {
 	if o == nil || o.IncludeTags == nil {
@@ -253,7 +235,7 @@ func (o *MonitorOptions) SetIncludeTags(v bool) {
 	o.IncludeTags = &v
 }
 
-// GetLocked returns the Locked field if non-nil, zero value otherwise.
+// GetLocked returns the Locked field value if set, zero value otherwise.
 func (o *MonitorOptions) GetLocked() bool {
 	if o == nil || o.Locked == nil {
 		var ret bool
@@ -262,7 +244,7 @@ func (o *MonitorOptions) GetLocked() bool {
 	return *o.Locked
 }
 
-// GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
+// GetLockedOk returns a tuple with the Locked field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetLockedOk() (bool, bool) {
 	if o == nil || o.Locked == nil {
@@ -286,7 +268,7 @@ func (o *MonitorOptions) SetLocked(v bool) {
 	o.Locked = &v
 }
 
-// GetMinFailureDuration returns the MinFailureDuration field if non-nil, zero value otherwise.
+// GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.
 func (o *MonitorOptions) GetMinFailureDuration() int64 {
 	if o == nil || o.MinFailureDuration == nil {
 		var ret int64
@@ -295,7 +277,7 @@ func (o *MonitorOptions) GetMinFailureDuration() int64 {
 	return *o.MinFailureDuration
 }
 
-// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field if it's non-nil, zero value otherwise
+// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetMinFailureDurationOk() (int64, bool) {
 	if o == nil || o.MinFailureDuration == nil {
@@ -319,7 +301,7 @@ func (o *MonitorOptions) SetMinFailureDuration(v int64) {
 	o.MinFailureDuration = &v
 }
 
-// GetMinLocationFailed returns the MinLocationFailed field if non-nil, zero value otherwise.
+// GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise.
 func (o *MonitorOptions) GetMinLocationFailed() int64 {
 	if o == nil || o.MinLocationFailed == nil {
 		var ret int64
@@ -328,7 +310,7 @@ func (o *MonitorOptions) GetMinLocationFailed() int64 {
 	return *o.MinLocationFailed
 }
 
-// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field if it's non-nil, zero value otherwise
+// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetMinLocationFailedOk() (int64, bool) {
 	if o == nil || o.MinLocationFailed == nil {
@@ -352,7 +334,7 @@ func (o *MonitorOptions) SetMinLocationFailed(v int64) {
 	o.MinLocationFailed = &v
 }
 
-// GetNewHostDelay returns the NewHostDelay field if non-nil, zero value otherwise.
+// GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNewHostDelay() int64 {
 	if o == nil || o.NewHostDelay == nil {
 		var ret int64
@@ -361,7 +343,7 @@ func (o *MonitorOptions) GetNewHostDelay() int64 {
 	return *o.NewHostDelay
 }
 
-// GetNewHostDelayOk returns a tuple with the NewHostDelay field if it's non-nil, zero value otherwise
+// GetNewHostDelayOk returns a tuple with the NewHostDelay field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetNewHostDelayOk() (int64, bool) {
 	if o == nil || o.NewHostDelay == nil {
@@ -385,7 +367,7 @@ func (o *MonitorOptions) SetNewHostDelay(v int64) {
 	o.NewHostDelay = &v
 }
 
-// GetNoDataTimeframe returns the NoDataTimeframe field if non-nil, zero value otherwise.
+// GetNoDataTimeframe returns the NoDataTimeframe field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNoDataTimeframe() int64 {
 	if o == nil || o.NoDataTimeframe == nil {
 		var ret int64
@@ -394,7 +376,7 @@ func (o *MonitorOptions) GetNoDataTimeframe() int64 {
 	return *o.NoDataTimeframe
 }
 
-// GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field if it's non-nil, zero value otherwise
+// GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetNoDataTimeframeOk() (int64, bool) {
 	if o == nil || o.NoDataTimeframe == nil {
@@ -418,7 +400,7 @@ func (o *MonitorOptions) SetNoDataTimeframe(v int64) {
 	o.NoDataTimeframe = &v
 }
 
-// GetNotifyAudit returns the NotifyAudit field if non-nil, zero value otherwise.
+// GetNotifyAudit returns the NotifyAudit field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNotifyAudit() bool {
 	if o == nil || o.NotifyAudit == nil {
 		var ret bool
@@ -427,7 +409,7 @@ func (o *MonitorOptions) GetNotifyAudit() bool {
 	return *o.NotifyAudit
 }
 
-// GetNotifyAuditOk returns a tuple with the NotifyAudit field if it's non-nil, zero value otherwise
+// GetNotifyAuditOk returns a tuple with the NotifyAudit field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetNotifyAuditOk() (bool, bool) {
 	if o == nil || o.NotifyAudit == nil {
@@ -451,7 +433,7 @@ func (o *MonitorOptions) SetNotifyAudit(v bool) {
 	o.NotifyAudit = &v
 }
 
-// GetNotifyNoData returns the NotifyNoData field if non-nil, zero value otherwise.
+// GetNotifyNoData returns the NotifyNoData field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNotifyNoData() bool {
 	if o == nil || o.NotifyNoData == nil {
 		var ret bool
@@ -460,7 +442,7 @@ func (o *MonitorOptions) GetNotifyNoData() bool {
 	return *o.NotifyNoData
 }
 
-// GetNotifyNoDataOk returns a tuple with the NotifyNoData field if it's non-nil, zero value otherwise
+// GetNotifyNoDataOk returns a tuple with the NotifyNoData field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetNotifyNoDataOk() (bool, bool) {
 	if o == nil || o.NotifyNoData == nil {
@@ -484,7 +466,7 @@ func (o *MonitorOptions) SetNotifyNoData(v bool) {
 	o.NotifyNoData = &v
 }
 
-// GetRenotifyInterval returns the RenotifyInterval field if non-nil, zero value otherwise.
+// GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise.
 func (o *MonitorOptions) GetRenotifyInterval() int64 {
 	if o == nil || o.RenotifyInterval == nil {
 		var ret int64
@@ -493,7 +475,7 @@ func (o *MonitorOptions) GetRenotifyInterval() int64 {
 	return *o.RenotifyInterval
 }
 
-// GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field if it's non-nil, zero value otherwise
+// GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetRenotifyIntervalOk() (int64, bool) {
 	if o == nil || o.RenotifyInterval == nil {
@@ -517,7 +499,7 @@ func (o *MonitorOptions) SetRenotifyInterval(v int64) {
 	o.RenotifyInterval = &v
 }
 
-// GetRequireFullWindow returns the RequireFullWindow field if non-nil, zero value otherwise.
+// GetRequireFullWindow returns the RequireFullWindow field value if set, zero value otherwise.
 func (o *MonitorOptions) GetRequireFullWindow() bool {
 	if o == nil || o.RequireFullWindow == nil {
 		var ret bool
@@ -526,7 +508,7 @@ func (o *MonitorOptions) GetRequireFullWindow() bool {
 	return *o.RequireFullWindow
 }
 
-// GetRequireFullWindowOk returns a tuple with the RequireFullWindow field if it's non-nil, zero value otherwise
+// GetRequireFullWindowOk returns a tuple with the RequireFullWindow field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetRequireFullWindowOk() (bool, bool) {
 	if o == nil || o.RequireFullWindow == nil {
@@ -550,7 +532,7 @@ func (o *MonitorOptions) SetRequireFullWindow(v bool) {
 	o.RequireFullWindow = &v
 }
 
-// GetSilenced returns the Silenced field if non-nil, zero value otherwise.
+// GetSilenced returns the Silenced field value if set, zero value otherwise.
 func (o *MonitorOptions) GetSilenced() map[string]int64 {
 	if o == nil || o.Silenced == nil {
 		var ret map[string]int64
@@ -559,7 +541,7 @@ func (o *MonitorOptions) GetSilenced() map[string]int64 {
 	return *o.Silenced
 }
 
-// GetSilencedOk returns a tuple with the Silenced field if it's non-nil, zero value otherwise
+// GetSilencedOk returns a tuple with the Silenced field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetSilencedOk() (map[string]int64, bool) {
 	if o == nil || o.Silenced == nil {
@@ -583,7 +565,7 @@ func (o *MonitorOptions) SetSilenced(v map[string]int64) {
 	o.Silenced = &v
 }
 
-// GetSyntheticsCheckId returns the SyntheticsCheckId field if non-nil, zero value otherwise.
+// GetSyntheticsCheckId returns the SyntheticsCheckId field value if set, zero value otherwise.
 func (o *MonitorOptions) GetSyntheticsCheckId() int64 {
 	if o == nil || o.SyntheticsCheckId == nil {
 		var ret int64
@@ -592,7 +574,7 @@ func (o *MonitorOptions) GetSyntheticsCheckId() int64 {
 	return *o.SyntheticsCheckId
 }
 
-// GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field if it's non-nil, zero value otherwise
+// GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetSyntheticsCheckIdOk() (int64, bool) {
 	if o == nil || o.SyntheticsCheckId == nil {
@@ -616,7 +598,7 @@ func (o *MonitorOptions) SetSyntheticsCheckId(v int64) {
 	o.SyntheticsCheckId = &v
 }
 
-// GetThresholdWindows returns the ThresholdWindows field if non-nil, zero value otherwise.
+// GetThresholdWindows returns the ThresholdWindows field value if set, zero value otherwise.
 func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions {
 	if o == nil || o.ThresholdWindows == nil {
 		var ret MonitorThresholdWindowOptions
@@ -625,7 +607,7 @@ func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions {
 	return *o.ThresholdWindows
 }
 
-// GetThresholdWindowsOk returns a tuple with the ThresholdWindows field if it's non-nil, zero value otherwise
+// GetThresholdWindowsOk returns a tuple with the ThresholdWindows field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetThresholdWindowsOk() (MonitorThresholdWindowOptions, bool) {
 	if o == nil || o.ThresholdWindows == nil {
@@ -649,7 +631,7 @@ func (o *MonitorOptions) SetThresholdWindows(v MonitorThresholdWindowOptions) {
 	o.ThresholdWindows = &v
 }
 
-// GetThresholds returns the Thresholds field if non-nil, zero value otherwise.
+// GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *MonitorOptions) GetThresholds() MonitorThresholds {
 	if o == nil || o.Thresholds == nil {
 		var ret MonitorThresholds
@@ -658,7 +640,7 @@ func (o *MonitorOptions) GetThresholds() MonitorThresholds {
 	return *o.Thresholds
 }
 
-// GetThresholdsOk returns a tuple with the Thresholds field if it's non-nil, zero value otherwise
+// GetThresholdsOk returns a tuple with the Thresholds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetThresholdsOk() (MonitorThresholds, bool) {
 	if o == nil || o.Thresholds == nil {
@@ -682,7 +664,7 @@ func (o *MonitorOptions) SetThresholds(v MonitorThresholds) {
 	o.Thresholds = &v
 }
 
-// GetTimeoutH returns the TimeoutH field if non-nil, zero value otherwise.
+// GetTimeoutH returns the TimeoutH field value if set, zero value otherwise.
 func (o *MonitorOptions) GetTimeoutH() int32 {
 	if o == nil || o.TimeoutH == nil {
 		var ret int32
@@ -691,7 +673,7 @@ func (o *MonitorOptions) GetTimeoutH() int32 {
 	return *o.TimeoutH
 }
 
-// GetTimeoutHOk returns a tuple with the TimeoutH field if it's non-nil, zero value otherwise
+// GetTimeoutHOk returns a tuple with the TimeoutH field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorOptions) GetTimeoutHOk() (int32, bool) {
 	if o == nil || o.TimeoutH == nil {
@@ -715,68 +697,25 @@ func (o *MonitorOptions) SetTimeoutH(v int32) {
 	o.TimeoutH = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o MonitorOptions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Aggregation != nil {
-		toSerialize["aggregation"] = o.Aggregation
+type NullableMonitorOptions struct {
+	Value        MonitorOptions
+	ExplicitNull bool
+}
+
+func (v NullableMonitorOptions) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.DeviceIds != nil {
-		toSerialize["device_ids"] = o.DeviceIds
+}
+
+func (v *NullableMonitorOptions) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.EnableLogsSample != nil {
-		toSerialize["enable_logs_sample"] = o.EnableLogsSample
-	}
-	if o.EscalationMessage != nil {
-		toSerialize["escalation_message"] = o.EscalationMessage
-	}
-	if o.EvaluationDelay != nil {
-		toSerialize["evaluation_delay"] = o.EvaluationDelay
-	}
-	if o.IncludeTags != nil {
-		toSerialize["include_tags"] = o.IncludeTags
-	}
-	if o.Locked != nil {
-		toSerialize["locked"] = o.Locked
-	}
-	if o.MinFailureDuration != nil {
-		toSerialize["min_failure_duration"] = o.MinFailureDuration
-	}
-	if o.MinLocationFailed != nil {
-		toSerialize["min_location_failed"] = o.MinLocationFailed
-	}
-	if o.NewHostDelay != nil {
-		toSerialize["new_host_delay"] = o.NewHostDelay
-	}
-	if o.NoDataTimeframe != nil {
-		toSerialize["no_data_timeframe"] = o.NoDataTimeframe
-	}
-	if o.NotifyAudit != nil {
-		toSerialize["notify_audit"] = o.NotifyAudit
-	}
-	if o.NotifyNoData != nil {
-		toSerialize["notify_no_data"] = o.NotifyNoData
-	}
-	if o.RenotifyInterval != nil {
-		toSerialize["renotify_interval"] = o.RenotifyInterval
-	}
-	if o.RequireFullWindow != nil {
-		toSerialize["require_full_window"] = o.RequireFullWindow
-	}
-	if o.Silenced != nil {
-		toSerialize["silenced"] = o.Silenced
-	}
-	if o.SyntheticsCheckId != nil {
-		toSerialize["synthetics_check_id"] = o.SyntheticsCheckId
-	}
-	if o.ThresholdWindows != nil {
-		toSerialize["threshold_windows"] = o.ThresholdWindows
-	}
-	if o.Thresholds != nil {
-		toSerialize["thresholds"] = o.Thresholds
-	}
-	if o.TimeoutH != nil {
-		toSerialize["timeout_h"] = o.TimeoutH
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

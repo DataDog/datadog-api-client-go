@@ -155,7 +155,6 @@ func (a *SloApiService) BulkPartialDeleteSlo(ctx _context.Context, requestBody m
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -301,7 +300,6 @@ func (a *SloApiService) CheckCanDeleteSlo(ctx _context.Context, ids string) (Che
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -448,7 +446,6 @@ func (a *SloApiService) CreateSlo(ctx _context.Context, serviceLevelObjective Se
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -604,7 +601,6 @@ func (a *SloApiService) DeleteSlo(ctx _context.Context, sloId int64) (ServiceLev
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -763,7 +759,6 @@ func (a *SloApiService) EditSlo(ctx _context.Context, sloId string, serviceLevel
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -919,7 +914,6 @@ func (a *SloApiService) GetSlo(ctx _context.Context, sloId string) (ServiceLevel
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1065,7 +1059,6 @@ func (a *SloApiService) GetSlos(ctx _context.Context, ids string) (ServiceLevelO
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1215,7 +1208,6 @@ func (a *SloApiService) HistoryForSlo(ctx _context.Context, sloId string, fromTs
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -9,25 +9,21 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // MonitorThresholds struct for MonitorThresholds
 type MonitorThresholds struct {
-	Critical *float32 `json:"critical,omitempty"`
-
+	Critical         *float32 `json:"critical,omitempty"`
 	CriticalRecovery *float32 `json:"critical_recovery,omitempty"`
-
-	Ok *float32 `json:"ok,omitempty"`
-
-	Unknown *float32 `json:"unknown,omitempty"`
-
-	Warning *float32 `json:"warning,omitempty"`
-
-	WarningRecovery *float32 `json:"warning_recovery,omitempty"`
+	Ok               *float32 `json:"ok,omitempty"`
+	Unknown          *float32 `json:"unknown,omitempty"`
+	Warning          *float32 `json:"warning,omitempty"`
+	WarningRecovery  *float32 `json:"warning_recovery,omitempty"`
 }
 
-// GetCritical returns the Critical field if non-nil, zero value otherwise.
+// GetCritical returns the Critical field value if set, zero value otherwise.
 func (o *MonitorThresholds) GetCritical() float32 {
 	if o == nil || o.Critical == nil {
 		var ret float32
@@ -36,7 +32,7 @@ func (o *MonitorThresholds) GetCritical() float32 {
 	return *o.Critical
 }
 
-// GetCriticalOk returns a tuple with the Critical field if it's non-nil, zero value otherwise
+// GetCriticalOk returns a tuple with the Critical field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorThresholds) GetCriticalOk() (float32, bool) {
 	if o == nil || o.Critical == nil {
@@ -60,7 +56,7 @@ func (o *MonitorThresholds) SetCritical(v float32) {
 	o.Critical = &v
 }
 
-// GetCriticalRecovery returns the CriticalRecovery field if non-nil, zero value otherwise.
+// GetCriticalRecovery returns the CriticalRecovery field value if set, zero value otherwise.
 func (o *MonitorThresholds) GetCriticalRecovery() float32 {
 	if o == nil || o.CriticalRecovery == nil {
 		var ret float32
@@ -69,7 +65,7 @@ func (o *MonitorThresholds) GetCriticalRecovery() float32 {
 	return *o.CriticalRecovery
 }
 
-// GetCriticalRecoveryOk returns a tuple with the CriticalRecovery field if it's non-nil, zero value otherwise
+// GetCriticalRecoveryOk returns a tuple with the CriticalRecovery field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorThresholds) GetCriticalRecoveryOk() (float32, bool) {
 	if o == nil || o.CriticalRecovery == nil {
@@ -93,7 +89,7 @@ func (o *MonitorThresholds) SetCriticalRecovery(v float32) {
 	o.CriticalRecovery = &v
 }
 
-// GetOk returns the Ok field if non-nil, zero value otherwise.
+// GetOk returns the Ok field value if set, zero value otherwise.
 func (o *MonitorThresholds) GetOk() float32 {
 	if o == nil || o.Ok == nil {
 		var ret float32
@@ -102,7 +98,7 @@ func (o *MonitorThresholds) GetOk() float32 {
 	return *o.Ok
 }
 
-// GetOkOk returns a tuple with the Ok field if it's non-nil, zero value otherwise
+// GetOkOk returns a tuple with the Ok field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorThresholds) GetOkOk() (float32, bool) {
 	if o == nil || o.Ok == nil {
@@ -126,7 +122,7 @@ func (o *MonitorThresholds) SetOk(v float32) {
 	o.Ok = &v
 }
 
-// GetUnknown returns the Unknown field if non-nil, zero value otherwise.
+// GetUnknown returns the Unknown field value if set, zero value otherwise.
 func (o *MonitorThresholds) GetUnknown() float32 {
 	if o == nil || o.Unknown == nil {
 		var ret float32
@@ -135,7 +131,7 @@ func (o *MonitorThresholds) GetUnknown() float32 {
 	return *o.Unknown
 }
 
-// GetUnknownOk returns a tuple with the Unknown field if it's non-nil, zero value otherwise
+// GetUnknownOk returns a tuple with the Unknown field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorThresholds) GetUnknownOk() (float32, bool) {
 	if o == nil || o.Unknown == nil {
@@ -159,7 +155,7 @@ func (o *MonitorThresholds) SetUnknown(v float32) {
 	o.Unknown = &v
 }
 
-// GetWarning returns the Warning field if non-nil, zero value otherwise.
+// GetWarning returns the Warning field value if set, zero value otherwise.
 func (o *MonitorThresholds) GetWarning() float32 {
 	if o == nil || o.Warning == nil {
 		var ret float32
@@ -168,7 +164,7 @@ func (o *MonitorThresholds) GetWarning() float32 {
 	return *o.Warning
 }
 
-// GetWarningOk returns a tuple with the Warning field if it's non-nil, zero value otherwise
+// GetWarningOk returns a tuple with the Warning field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorThresholds) GetWarningOk() (float32, bool) {
 	if o == nil || o.Warning == nil {
@@ -192,7 +188,7 @@ func (o *MonitorThresholds) SetWarning(v float32) {
 	o.Warning = &v
 }
 
-// GetWarningRecovery returns the WarningRecovery field if non-nil, zero value otherwise.
+// GetWarningRecovery returns the WarningRecovery field value if set, zero value otherwise.
 func (o *MonitorThresholds) GetWarningRecovery() float32 {
 	if o == nil || o.WarningRecovery == nil {
 		var ret float32
@@ -201,7 +197,7 @@ func (o *MonitorThresholds) GetWarningRecovery() float32 {
 	return *o.WarningRecovery
 }
 
-// GetWarningRecoveryOk returns a tuple with the WarningRecovery field if it's non-nil, zero value otherwise
+// GetWarningRecoveryOk returns a tuple with the WarningRecovery field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorThresholds) GetWarningRecoveryOk() (float32, bool) {
 	if o == nil || o.WarningRecovery == nil {
@@ -225,26 +221,25 @@ func (o *MonitorThresholds) SetWarningRecovery(v float32) {
 	o.WarningRecovery = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Critical != nil {
-		toSerialize["critical"] = o.Critical
+type NullableMonitorThresholds struct {
+	Value        MonitorThresholds
+	ExplicitNull bool
+}
+
+func (v NullableMonitorThresholds) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.CriticalRecovery != nil {
-		toSerialize["critical_recovery"] = o.CriticalRecovery
+}
+
+func (v *NullableMonitorThresholds) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Ok != nil {
-		toSerialize["ok"] = o.Ok
-	}
-	if o.Unknown != nil {
-		toSerialize["unknown"] = o.Unknown
-	}
-	if o.Warning != nil {
-		toSerialize["warning"] = o.Warning
-	}
-	if o.WarningRecovery != nil {
-		toSerialize["warning_recovery"] = o.WarningRecovery
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

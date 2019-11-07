@@ -9,53 +9,34 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // ServiceLevelObjectiveResponse struct for ServiceLevelObjectiveResponse
 type ServiceLevelObjectiveResponse struct {
 	// An array of service level objective objects.
-	Data *[]ServiceLevelObjective `json:"data,omitempty"`
-
+	Data []ServiceLevelObjective `json:"data"`
 	// An array of error messages. Each endpoint documents how/whether this field is used.
 	Errors *[]string `json:"errors,omitempty"`
 }
 
-// GetData returns the Data field if non-nil, zero value otherwise.
+// GetData returns the Data field value
 func (o *ServiceLevelObjectiveResponse) GetData() []ServiceLevelObjective {
-	if o == nil || o.Data == nil {
+	if o == nil {
 		var ret []ServiceLevelObjective
 		return ret
 	}
-	return *o.Data
+
+	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveResponse) GetDataOk() ([]ServiceLevelObjective, bool) {
-	if o == nil || o.Data == nil {
-		var ret []ServiceLevelObjective
-		return ret, false
-	}
-	return *o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *ServiceLevelObjectiveResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []ServiceLevelObjective and assigns it to the Data field.
+// SetData sets field value
 func (o *ServiceLevelObjectiveResponse) SetData(v []ServiceLevelObjective) {
-	o.Data = &v
+	o.Data = v
 }
 
-// GetErrors returns the Errors field if non-nil, zero value otherwise.
+// GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveResponse) GetErrors() []string {
 	if o == nil || o.Errors == nil {
 		var ret []string
@@ -64,7 +45,7 @@ func (o *ServiceLevelObjectiveResponse) GetErrors() []string {
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveResponse) GetErrorsOk() ([]string, bool) {
 	if o == nil || o.Errors == nil {
@@ -88,17 +69,25 @@ func (o *ServiceLevelObjectiveResponse) SetErrors(v []string) {
 	o.Errors = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ServiceLevelObjectiveResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Data == nil {
-		return nil, errors.New("Data is required and not nullable, but was not set on ServiceLevelObjectiveResponse")
+type NullableServiceLevelObjectiveResponse struct {
+	Value        ServiceLevelObjectiveResponse
+	ExplicitNull bool
+}
+
+func (v NullableServiceLevelObjectiveResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
+}
+
+func (v *NullableServiceLevelObjectiveResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Errors != nil {
-		toSerialize["errors"] = o.Errors
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

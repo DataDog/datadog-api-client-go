@@ -9,52 +9,33 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // HistoryServiceLevelObjectiveResponse struct for HistoryServiceLevelObjectiveResponse
 type HistoryServiceLevelObjectiveResponse struct {
-	Data *HistoryServiceLevelObjectiveResponseData `json:"data,omitempty"`
-
+	Data HistoryServiceLevelObjectiveResponseData `json:"data"`
 	// A list of errors while querying the history data for the service level obective.
 	Errors *[]HistoryServiceLevelObjectiveResponseError `json:"errors,omitempty"`
 }
 
-// GetData returns the Data field if non-nil, zero value otherwise.
+// GetData returns the Data field value
 func (o *HistoryServiceLevelObjectiveResponse) GetData() HistoryServiceLevelObjectiveResponseData {
-	if o == nil || o.Data == nil {
+	if o == nil {
 		var ret HistoryServiceLevelObjectiveResponseData
 		return ret
 	}
-	return *o.Data
+
+	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponse) GetDataOk() (HistoryServiceLevelObjectiveResponseData, bool) {
-	if o == nil || o.Data == nil {
-		var ret HistoryServiceLevelObjectiveResponseData
-		return ret, false
-	}
-	return *o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given HistoryServiceLevelObjectiveResponseData and assigns it to the Data field.
+// SetData sets field value
 func (o *HistoryServiceLevelObjectiveResponse) SetData(v HistoryServiceLevelObjectiveResponseData) {
-	o.Data = &v
+	o.Data = v
 }
 
-// GetErrors returns the Errors field if non-nil, zero value otherwise.
+// GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []HistoryServiceLevelObjectiveResponseError {
 	if o == nil || o.Errors == nil {
 		var ret []HistoryServiceLevelObjectiveResponseError
@@ -63,7 +44,7 @@ func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []HistoryServiceLevel
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() ([]HistoryServiceLevelObjectiveResponseError, bool) {
 	if o == nil || o.Errors == nil {
@@ -87,17 +68,25 @@ func (o *HistoryServiceLevelObjectiveResponse) SetErrors(v []HistoryServiceLevel
 	o.Errors = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o HistoryServiceLevelObjectiveResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Data == nil {
-		return nil, errors.New("Data is required and not nullable, but was not set on HistoryServiceLevelObjectiveResponse")
+type NullableHistoryServiceLevelObjectiveResponse struct {
+	Value        HistoryServiceLevelObjectiveResponse
+	ExplicitNull bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
+}
+
+func (v *NullableHistoryServiceLevelObjectiveResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Errors != nil {
-		toSerialize["errors"] = o.Errors
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

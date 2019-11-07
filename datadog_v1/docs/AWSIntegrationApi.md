@@ -14,6 +14,7 @@ Method | HTTP request | Description
 ## CreateAWSAccount
 
 > AwsAccountCreateResponse CreateAWSAccount(ctx, awsAccount)
+
 Create an AWS Account
 
 ### Overview
@@ -73,6 +74,7 @@ Name | Type | Description  | Notes
 ## DeleteAWSAccount
 
 > map[string]interface{} DeleteAWSAccount(ctx, awsAccount)
+
 Delete an AWS Account
 
 ### Overview
@@ -113,6 +115,7 @@ Name | Type | Description  | Notes
 ## GetAllAWSAccounts
 
 > AwsAccountListResponse GetAllAWSAccounts(ctx, optional)
+
 Get Installed AWS Accounts
 
 ### Overview
@@ -167,6 +170,7 @@ Name | Type | Description  | Notes
 ## UpdateAWSAccount
 
 > map[string]interface{} UpdateAWSAccount(ctx, awsAccount, optional)
+
 Update an AWS Account
 
 ### Overview

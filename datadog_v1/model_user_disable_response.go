@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -17,7 +18,7 @@ type UserDisableResponse struct {
 	Message *string `json:"message,omitempty"`
 }
 
-// GetMessage returns the Message field if non-nil, zero value otherwise.
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *UserDisableResponse) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
@@ -26,7 +27,7 @@ func (o *UserDisableResponse) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *UserDisableResponse) GetMessageOk() (string, bool) {
 	if o == nil || o.Message == nil {
@@ -50,11 +51,25 @@ func (o *UserDisableResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o UserDisableResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
+type NullableUserDisableResponse struct {
+	Value        UserDisableResponse
+	ExplicitNull bool
+}
+
+func (v NullableUserDisableResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableUserDisableResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

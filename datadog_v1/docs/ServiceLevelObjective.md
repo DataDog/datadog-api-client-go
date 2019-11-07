@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **int64** | Creation timestamp (unix time in seconds) Always included in service level objective responses. | [optional] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Description** | Pointer to **string** | A user-defined description of the service level objective. Always included in service level objective responses (but may be null). Optional in create/update requests. | [optional] 
+**Description** | Pointer to **NullableString** | A user-defined description of the service level objective. Always included in service level objective responses (but may be null). Optional in create/update requests. | [optional] 
 **Groups** | Pointer to **[]string** | A list of (up to 20) monitor groups (e.g. [\&quot;env:prod,role:mysql\&quot;]) that narrows the scope of a monitor service level objective. Included in service level objective responses if it is nonempty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the \&quot;monitor_ids\&quot; field is one. | [optional] 
 **Id** | Pointer to **string** | A unique identifier for the service level objective object. Always included in service level objective responses. Required for update requests. | [optional] 
 **ModifiedAt** | Pointer to **int64** | Modification timestamp (unix time in seconds) Always included in service level objective responses. | [optional] 
@@ -73,13 +73,13 @@ SetCreator gets a reference to the given Creator and assigns it to the Creator f
 
 ### GetDescription
 
-`func (o *ServiceLevelObjective) GetDescription() string`
+`func (o *ServiceLevelObjective) GetDescription() NullableString`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *ServiceLevelObjective) GetDescriptionOk() (string, bool)`
+`func (o *ServiceLevelObjective) GetDescriptionOk() (NullableString, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -92,9 +92,9 @@ HasDescription returns a boolean if a field has been set.
 
 ### SetDescription
 
-`func (o *ServiceLevelObjective) SetDescription(v string)`
+`func (o *ServiceLevelObjective) SetDescription(v NullableString)`
 
-SetDescription gets a reference to the given string and assigns it to the Description field.
+SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 
 ### SetDescriptionExplicitNull
 

@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -16,12 +17,11 @@ import (
 type ServiceLevelObjectivesBulkDeletedData struct {
 	// An array of service level objective object IDs that indicates which objects that were completely deleted.
 	Deleted *[]string `json:"deleted,omitempty"`
-
 	// An array of service level objective object IDs that indicates which objects that were modified (objects for which at least one threshold was deleted, but that were not completely deleted).
 	Updated *[]string `json:"updated,omitempty"`
 }
 
-// GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+// GetDeleted returns the Deleted field value if set, zero value otherwise.
 func (o *ServiceLevelObjectivesBulkDeletedData) GetDeleted() []string {
 	if o == nil || o.Deleted == nil {
 		var ret []string
@@ -30,7 +30,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetDeleted() []string {
 	return *o.Deleted
 }
 
-// GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+// GetDeletedOk returns a tuple with the Deleted field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectivesBulkDeletedData) GetDeletedOk() ([]string, bool) {
 	if o == nil || o.Deleted == nil {
@@ -54,7 +54,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) SetDeleted(v []string) {
 	o.Deleted = &v
 }
 
-// GetUpdated returns the Updated field if non-nil, zero value otherwise.
+// GetUpdated returns the Updated field value if set, zero value otherwise.
 func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdated() []string {
 	if o == nil || o.Updated == nil {
 		var ret []string
@@ -63,7 +63,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdated() []string {
 	return *o.Updated
 }
 
-// GetUpdatedOk returns a tuple with the Updated field if it's non-nil, zero value otherwise
+// GetUpdatedOk returns a tuple with the Updated field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdatedOk() ([]string, bool) {
 	if o == nil || o.Updated == nil {
@@ -87,14 +87,25 @@ func (o *ServiceLevelObjectivesBulkDeletedData) SetUpdated(v []string) {
 	o.Updated = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Deleted != nil {
-		toSerialize["deleted"] = o.Deleted
+type NullableServiceLevelObjectivesBulkDeletedData struct {
+	Value        ServiceLevelObjectivesBulkDeletedData
+	ExplicitNull bool
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Updated != nil {
-		toSerialize["updated"] = o.Updated
+}
+
+func (v *NullableServiceLevelObjectivesBulkDeletedData) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

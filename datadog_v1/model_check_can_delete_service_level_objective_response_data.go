@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -18,7 +19,7 @@ type CheckCanDeleteServiceLevelObjectiveResponseData struct {
 	Ok *[]string `json:"ok,omitempty"`
 }
 
-// GetOk returns the Ok field if non-nil, zero value otherwise.
+// GetOk returns the Ok field value if set, zero value otherwise.
 func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOk() []string {
 	if o == nil || o.Ok == nil {
 		var ret []string
@@ -27,7 +28,7 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOk() []string {
 	return *o.Ok
 }
 
-// GetOkOk returns a tuple with the Ok field if it's non-nil, zero value otherwise
+// GetOkOk returns a tuple with the Ok field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOkOk() ([]string, bool) {
 	if o == nil || o.Ok == nil {
@@ -51,11 +52,25 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponseData) SetOk(v []string) {
 	o.Ok = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o CheckCanDeleteServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Ok != nil {
-		toSerialize["ok"] = o.Ok
+type NullableCheckCanDeleteServiceLevelObjectiveResponseData struct {
+	Value        CheckCanDeleteServiceLevelObjectiveResponseData
+	ExplicitNull bool
+}
+
+func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableCheckCanDeleteServiceLevelObjectiveResponseData) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

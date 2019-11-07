@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -16,38 +17,25 @@ import (
 // Monitor struct for Monitor
 type Monitor struct {
 	Created *time.Time `json:"created,omitempty"`
-
-	Creator *Creator `json:"creator,omitempty"`
-
+	Creator *Creator   `json:"creator,omitempty"`
 	Deleted *time.Time `json:"deleted,omitempty"`
-
 	// ID of this monitor
 	Id *int64 `json:"id,omitempty"`
-
 	// A message to include with notifications for this monitor.
-	Message *string `json:"message,omitempty"`
-
-	Modified *time.Time `json:"modified,omitempty"`
-
-	Multi *bool `json:"multi,omitempty"`
-
-	Name *string `json:"name,omitempty"`
-
-	Options *MonitorOptions `json:"options,omitempty"`
-
+	Message      *string               `json:"message,omitempty"`
+	Modified     *time.Time            `json:"modified,omitempty"`
+	Multi        *bool                 `json:"multi,omitempty"`
+	Name         *string               `json:"name,omitempty"`
+	Options      *MonitorOptions       `json:"options,omitempty"`
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
-
-	Query *string `json:"query,omitempty"`
-
-	State *MonitorState `json:"state,omitempty"`
-
-	Tags *[]string `json:"tags,omitempty"`
-
+	Query        *string               `json:"query,omitempty"`
+	State        *MonitorState         `json:"state,omitempty"`
+	Tags         *[]string             `json:"tags,omitempty"`
 	// The type of the monitor
 	Type *string `json:"type,omitempty"`
 }
 
-// GetCreated returns the Created field if non-nil, zero value otherwise.
+// GetCreated returns the Created field value if set, zero value otherwise.
 func (o *Monitor) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
 		var ret time.Time
@@ -56,7 +44,7 @@ func (o *Monitor) GetCreated() time.Time {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetCreatedOk() (time.Time, bool) {
 	if o == nil || o.Created == nil {
@@ -80,7 +68,7 @@ func (o *Monitor) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
-// GetCreator returns the Creator field if non-nil, zero value otherwise.
+// GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *Monitor) GetCreator() Creator {
 	if o == nil || o.Creator == nil {
 		var ret Creator
@@ -89,7 +77,7 @@ func (o *Monitor) GetCreator() Creator {
 	return *o.Creator
 }
 
-// GetCreatorOk returns a tuple with the Creator field if it's non-nil, zero value otherwise
+// GetCreatorOk returns a tuple with the Creator field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetCreatorOk() (Creator, bool) {
 	if o == nil || o.Creator == nil {
@@ -113,7 +101,7 @@ func (o *Monitor) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
-// GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+// GetDeleted returns the Deleted field value if set, zero value otherwise.
 func (o *Monitor) GetDeleted() time.Time {
 	if o == nil || o.Deleted == nil {
 		var ret time.Time
@@ -122,7 +110,7 @@ func (o *Monitor) GetDeleted() time.Time {
 	return *o.Deleted
 }
 
-// GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+// GetDeletedOk returns a tuple with the Deleted field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetDeletedOk() (time.Time, bool) {
 	if o == nil || o.Deleted == nil {
@@ -146,7 +134,7 @@ func (o *Monitor) SetDeleted(v time.Time) {
 	o.Deleted = &v
 }
 
-// GetId returns the Id field if non-nil, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Monitor) GetId() int64 {
 	if o == nil || o.Id == nil {
 		var ret int64
@@ -155,7 +143,7 @@ func (o *Monitor) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetIdOk() (int64, bool) {
 	if o == nil || o.Id == nil {
@@ -179,7 +167,7 @@ func (o *Monitor) SetId(v int64) {
 	o.Id = &v
 }
 
-// GetMessage returns the Message field if non-nil, zero value otherwise.
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Monitor) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
@@ -188,7 +176,7 @@ func (o *Monitor) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetMessageOk() (string, bool) {
 	if o == nil || o.Message == nil {
@@ -212,7 +200,7 @@ func (o *Monitor) SetMessage(v string) {
 	o.Message = &v
 }
 
-// GetModified returns the Modified field if non-nil, zero value otherwise.
+// GetModified returns the Modified field value if set, zero value otherwise.
 func (o *Monitor) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
 		var ret time.Time
@@ -221,7 +209,7 @@ func (o *Monitor) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetModifiedOk() (time.Time, bool) {
 	if o == nil || o.Modified == nil {
@@ -245,7 +233,7 @@ func (o *Monitor) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
-// GetMulti returns the Multi field if non-nil, zero value otherwise.
+// GetMulti returns the Multi field value if set, zero value otherwise.
 func (o *Monitor) GetMulti() bool {
 	if o == nil || o.Multi == nil {
 		var ret bool
@@ -254,7 +242,7 @@ func (o *Monitor) GetMulti() bool {
 	return *o.Multi
 }
 
-// GetMultiOk returns a tuple with the Multi field if it's non-nil, zero value otherwise
+// GetMultiOk returns a tuple with the Multi field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetMultiOk() (bool, bool) {
 	if o == nil || o.Multi == nil {
@@ -278,7 +266,7 @@ func (o *Monitor) SetMulti(v bool) {
 	o.Multi = &v
 }
 
-// GetName returns the Name field if non-nil, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Monitor) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
@@ -287,7 +275,7 @@ func (o *Monitor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetNameOk() (string, bool) {
 	if o == nil || o.Name == nil {
@@ -311,7 +299,7 @@ func (o *Monitor) SetName(v string) {
 	o.Name = &v
 }
 
-// GetOptions returns the Options field if non-nil, zero value otherwise.
+// GetOptions returns the Options field value if set, zero value otherwise.
 func (o *Monitor) GetOptions() MonitorOptions {
 	if o == nil || o.Options == nil {
 		var ret MonitorOptions
@@ -320,7 +308,7 @@ func (o *Monitor) GetOptions() MonitorOptions {
 	return *o.Options
 }
 
-// GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+// GetOptionsOk returns a tuple with the Options field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetOptionsOk() (MonitorOptions, bool) {
 	if o == nil || o.Options == nil {
@@ -344,7 +332,7 @@ func (o *Monitor) SetOptions(v MonitorOptions) {
 	o.Options = &v
 }
 
-// GetOverallState returns the OverallState field if non-nil, zero value otherwise.
+// GetOverallState returns the OverallState field value if set, zero value otherwise.
 func (o *Monitor) GetOverallState() MonitorOverallStates {
 	if o == nil || o.OverallState == nil {
 		var ret MonitorOverallStates
@@ -353,7 +341,7 @@ func (o *Monitor) GetOverallState() MonitorOverallStates {
 	return *o.OverallState
 }
 
-// GetOverallStateOk returns a tuple with the OverallState field if it's non-nil, zero value otherwise
+// GetOverallStateOk returns a tuple with the OverallState field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetOverallStateOk() (MonitorOverallStates, bool) {
 	if o == nil || o.OverallState == nil {
@@ -377,7 +365,7 @@ func (o *Monitor) SetOverallState(v MonitorOverallStates) {
 	o.OverallState = &v
 }
 
-// GetQuery returns the Query field if non-nil, zero value otherwise.
+// GetQuery returns the Query field value if set, zero value otherwise.
 func (o *Monitor) GetQuery() string {
 	if o == nil || o.Query == nil {
 		var ret string
@@ -386,7 +374,7 @@ func (o *Monitor) GetQuery() string {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetQueryOk() (string, bool) {
 	if o == nil || o.Query == nil {
@@ -410,7 +398,7 @@ func (o *Monitor) SetQuery(v string) {
 	o.Query = &v
 }
 
-// GetState returns the State field if non-nil, zero value otherwise.
+// GetState returns the State field value if set, zero value otherwise.
 func (o *Monitor) GetState() MonitorState {
 	if o == nil || o.State == nil {
 		var ret MonitorState
@@ -419,7 +407,7 @@ func (o *Monitor) GetState() MonitorState {
 	return *o.State
 }
 
-// GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+// GetStateOk returns a tuple with the State field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetStateOk() (MonitorState, bool) {
 	if o == nil || o.State == nil {
@@ -443,7 +431,7 @@ func (o *Monitor) SetState(v MonitorState) {
 	o.State = &v
 }
 
-// GetTags returns the Tags field if non-nil, zero value otherwise.
+// GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Monitor) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
@@ -452,7 +440,7 @@ func (o *Monitor) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetTagsOk() ([]string, bool) {
 	if o == nil || o.Tags == nil {
@@ -476,7 +464,7 @@ func (o *Monitor) SetTags(v []string) {
 	o.Tags = &v
 }
 
-// GetType returns the Type field if non-nil, zero value otherwise.
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Monitor) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
@@ -485,7 +473,7 @@ func (o *Monitor) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetTypeOk() (string, bool) {
 	if o == nil || o.Type == nil {
@@ -509,50 +497,25 @@ func (o *Monitor) SetType(v string) {
 	o.Type = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o Monitor) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
+type NullableMonitor struct {
+	Value        Monitor
+	ExplicitNull bool
+}
+
+func (v NullableMonitor) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Creator != nil {
-		toSerialize["creator"] = o.Creator
+}
+
+func (v *NullableMonitor) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Deleted != nil {
-		toSerialize["deleted"] = o.Deleted
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
-	if o.Modified != nil {
-		toSerialize["modified"] = o.Modified
-	}
-	if o.Multi != nil {
-		toSerialize["multi"] = o.Multi
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Options != nil {
-		toSerialize["options"] = o.Options
-	}
-	if o.OverallState != nil {
-		toSerialize["overall_state"] = o.OverallState
-	}
-	if o.Query != nil {
-		toSerialize["query"] = o.Query
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

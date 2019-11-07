@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -17,7 +18,7 @@ type ApiKeyListResponse struct {
 	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
 }
 
-// GetApiKeys returns the ApiKeys field if non-nil, zero value otherwise.
+// GetApiKeys returns the ApiKeys field value if set, zero value otherwise.
 func (o *ApiKeyListResponse) GetApiKeys() []ApiKey {
 	if o == nil || o.ApiKeys == nil {
 		var ret []ApiKey
@@ -26,7 +27,7 @@ func (o *ApiKeyListResponse) GetApiKeys() []ApiKey {
 	return *o.ApiKeys
 }
 
-// GetApiKeysOk returns a tuple with the ApiKeys field if it's non-nil, zero value otherwise
+// GetApiKeysOk returns a tuple with the ApiKeys field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyListResponse) GetApiKeysOk() ([]ApiKey, bool) {
 	if o == nil || o.ApiKeys == nil {
@@ -50,11 +51,25 @@ func (o *ApiKeyListResponse) SetApiKeys(v []ApiKey) {
 	o.ApiKeys = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKeys != nil {
-		toSerialize["api_keys"] = o.ApiKeys
+type NullableApiKeyListResponse struct {
+	Value        ApiKeyListResponse
+	ExplicitNull bool
+}
+
+func (v NullableApiKeyListResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableApiKeyListResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

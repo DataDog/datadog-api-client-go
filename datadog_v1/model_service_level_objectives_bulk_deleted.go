@@ -9,97 +9,65 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // ServiceLevelObjectivesBulkDeleted The bulk partial delete service level objective object endpoint response. This endpoint operates on multiple service level objective objects, so it may be partially successful. In such cases, the \"data\" and \"error\" fields in this response indicate which deletions succeeded and failed.
 type ServiceLevelObjectivesBulkDeleted struct {
-	Data *ServiceLevelObjectivesBulkDeletedData `json:"data,omitempty"`
-
-	Errors *[]ServiceLevelObjectivesBulkDeletedErrors `json:"errors,omitempty"`
+	Data   ServiceLevelObjectivesBulkDeletedData     `json:"data"`
+	Errors []ServiceLevelObjectivesBulkDeletedErrors `json:"errors"`
 }
 
-// GetData returns the Data field if non-nil, zero value otherwise.
+// GetData returns the Data field value
 func (o *ServiceLevelObjectivesBulkDeleted) GetData() ServiceLevelObjectivesBulkDeletedData {
-	if o == nil || o.Data == nil {
+	if o == nil {
 		var ret ServiceLevelObjectivesBulkDeletedData
 		return ret
 	}
-	return *o.Data
+
+	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeleted) GetDataOk() (ServiceLevelObjectivesBulkDeletedData, bool) {
-	if o == nil || o.Data == nil {
-		var ret ServiceLevelObjectivesBulkDeletedData
-		return ret, false
-	}
-	return *o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *ServiceLevelObjectivesBulkDeleted) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given ServiceLevelObjectivesBulkDeletedData and assigns it to the Data field.
+// SetData sets field value
 func (o *ServiceLevelObjectivesBulkDeleted) SetData(v ServiceLevelObjectivesBulkDeletedData) {
-	o.Data = &v
+	o.Data = v
 }
 
-// GetErrors returns the Errors field if non-nil, zero value otherwise.
+// GetErrors returns the Errors field value
 func (o *ServiceLevelObjectivesBulkDeleted) GetErrors() []ServiceLevelObjectivesBulkDeletedErrors {
-	if o == nil || o.Errors == nil {
+	if o == nil {
 		var ret []ServiceLevelObjectivesBulkDeletedErrors
 		return ret
 	}
-	return *o.Errors
+
+	return o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeleted) GetErrorsOk() ([]ServiceLevelObjectivesBulkDeletedErrors, bool) {
-	if o == nil || o.Errors == nil {
-		var ret []ServiceLevelObjectivesBulkDeletedErrors
-		return ret, false
-	}
-	return *o.Errors, true
-}
-
-// HasErrors returns a boolean if a field has been set.
-func (o *ServiceLevelObjectivesBulkDeleted) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetErrors gets a reference to the given []ServiceLevelObjectivesBulkDeletedErrors and assigns it to the Errors field.
+// SetErrors sets field value
 func (o *ServiceLevelObjectivesBulkDeleted) SetErrors(v []ServiceLevelObjectivesBulkDeletedErrors) {
-	o.Errors = &v
+	o.Errors = v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ServiceLevelObjectivesBulkDeleted) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Data == nil {
-		return nil, errors.New("Data is required and not nullable, but was not set on ServiceLevelObjectivesBulkDeleted")
+type NullableServiceLevelObjectivesBulkDeleted struct {
+	Value        ServiceLevelObjectivesBulkDeleted
+	ExplicitNull bool
+}
+
+func (v NullableServiceLevelObjectivesBulkDeleted) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
+}
+
+func (v *NullableServiceLevelObjectivesBulkDeleted) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Errors == nil {
-		return nil, errors.New("Errors is required and not nullable, but was not set on ServiceLevelObjectivesBulkDeleted")
-	}
-	if o.Errors != nil {
-		toSerialize["errors"] = o.Errors
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }
