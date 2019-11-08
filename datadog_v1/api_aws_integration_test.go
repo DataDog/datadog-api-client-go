@@ -1,25 +1,26 @@
-package datadog_v1
+package datadog_v1_test
 
 import (
 	"log"
 	"reflect"
 	"testing"
 
+	datadog "github.com/DataDog/datadog-api-client-go/datadog_v1"
 	"github.com/antihax/optional"
 	"gotest.tools/assert"
 )
 
-var TESTAWSACC = AwsAccount{
-	AccountId:                     PtrString("1234567_gotest"),
-	RoleName:                      PtrString("DatadogAWSIntegrationRole"),
+var TESTAWSACC = datadog.AwsAccount{
+	AccountId:                     datadog.PtrString("1234567_gotest"),
+	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 	FilterTags:                    &[]string{"testTag", "test:Tag2"},
 	HostTags:                      &[]string{"filter:one", "filtertwo"},
 }
 
-var TESTUPDATEAWSACC = AwsAccount{
-	AccountId:                     PtrString("1234567_gotest"),
-	RoleName:                      PtrString("DatadogAWSIntegrationRole"),
+var TESTUPDATEAWSACC = datadog.AwsAccount{
+	AccountId:                     datadog.PtrString("1234567_gotest"),
+	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
 	HostTags:                      &[]string{"filter:foo", "bar"},
@@ -34,7 +35,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACC)
 
-	awsAcctOpts := GetAllAWSAccountsOpts{
+	awsAcctOpts := datadog.GetAllAWSAccountsOpts{
 		AccountId: optional.NewString(TESTAWSACC.GetAccountId()),
 		RoleName:  optional.NewString(TESTAWSACC.GetRoleName()),
 	}
@@ -60,7 +61,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACC)
 
-	awsAcctOpts := UpdateAWSAccountOpts{
+	awsAcctOpts := datadog.UpdateAWSAccountOpts{
 		AccountId: optional.NewString(TESTAWSACC.GetAccountId()),
 		RoleName:  optional.NewString(TESTAWSACC.GetRoleName()),
 	}
@@ -70,7 +71,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 	}
 
 	// Assert AWS Account Get with proper fields
-	awsGetAcctOpts := GetAllAWSAccountsOpts{
+	awsGetAcctOpts := datadog.GetAllAWSAccountsOpts{
 		AccountId: optional.NewString(TESTAWSACC.GetAccountId()),
 		RoleName:  optional.NewString(TESTAWSACC.GetRoleName()),
 	}
@@ -100,7 +101,7 @@ func TestDisableAWSAcct(t *testing.T) {
 	}
 }
 
-func uninstallAWSIntegration(account AwsAccount) {
+func uninstallAWSIntegration(account datadog.AwsAccount) {
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH, account)
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Error uninstalling AWS Account: %v, Another test may have already removed this account.", account)
