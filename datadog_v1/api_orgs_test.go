@@ -1,11 +1,13 @@
-package datadog_v1
+package datadog_v1_test
 
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 	"reflect"
 	"testing"
 
+	datadog "github.com/DataDog/datadog-api-client-go/datadog_v1"
 	"github.com/antihax/optional"
 	gock "gopkg.in/h2non/gock.v1"
 	"gotest.tools/assert"
@@ -18,7 +20,7 @@ func TestGetOrg(t *testing.T) {
 	defer gock.Off()
 
 	// Setup fixture data
-	var orgsFixture OrgListResponse
+	var orgsFixture datadog.OrgListResponse
 	json.Unmarshal(setupGock(t, "orgs/org_get.json", "get", "/org"), &orgsFixture)
 	orgFixture := orgsFixture.GetOrgs()[0]
 
@@ -41,14 +43,14 @@ func TestCreateOrg(t *testing.T) {
 	defer gock.Off()
 
 	// Setup fixture data
-	var orgsFixture OrgCreateResponse
+	var orgsFixture datadog.OrgCreateResponse
 	json.Unmarshal(setupGock(t, "orgs/org_create.json", "post", "/org"), &orgsFixture)
 	orgCreateBody := orgsFixture.GetOrg()
 	orgUserFixture := orgsFixture.GetUser()
 
 	// Get mocked request data
-	createBody := OrgCreateBody{
-		Name: PtrString((&orgCreateBody).GetName()),
+	createBody := datadog.OrgCreateBody{
+		Name: datadog.PtrString((&orgCreateBody).GetName()),
 	}
 	createBody.SetSubscription(orgCreateBody.GetSubscription())
 	createBody.SetBilling(map[string]string{})
@@ -72,13 +74,13 @@ func TestUpdateOrg(t *testing.T) {
 	defer gock.Off()
 
 	// Setup fixture data
-	var orgsFixture OrgResponse
+	var orgsFixture datadog.OrgResponse
 	json.Unmarshal(setupGock(t, "orgs/org_update.json", "put", "/org"), &orgsFixture)
 
 	// Get mocked request data
-	var updateOpts UpdateOrgOpts
+	var updateOpts datadog.UpdateOrgOpts
 	orgSettings := *orgsFixture.GetOrg().Settings
-	updateOpts.Org = optional.NewInterface(Org{Settings: &orgSettings})
+	updateOpts.Org = optional.NewInterface(datadog.Org{Settings: &orgSettings})
 	orgResp, _, err := TESTAPICLIENT.OrgsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId, &updateOpts)
 	if err != nil {
 		t.Errorf("Failed to update the test org %s", err)
@@ -96,13 +98,13 @@ func TestUploadOrgIdpMeta(t *testing.T) {
 
 	// Setup fixture data
 	orgPubID := "12345"
-	var iDPResponseFixture IdpResponse
+	var iDPResponseFixture datadog.IdpResponse
 	json.Unmarshal(setupGock(t, "orgs/org_idp_upload.json", "post", fmt.Sprintf("/org/%s/idp_metadata", orgPubID)), &iDPResponseFixture)
 
-	// Get mocked request data
-	var updateOpts UploadIdPForOrgOpts
-	updateOpts.Body = optional.NewString("metadata_string")
-	idpResp, _, err := TESTAPICLIENT.OrgsApi.UploadIdPForOrg(TESTAUTH, orgPubID, &updateOpts)
+	// Get empty file object. This fixture doesn't exist since we don't need it to.
+	file, _ := os.Open("test_go/idp_data.xml")
+
+	idpResp, _, err := TESTAPICLIENT.OrgsApi.UploadIdPForOrg(TESTAUTH, orgPubID, file)
 	if err != nil {
 		t.Errorf("Failed to update the test org's IDP meta %s", err)
 	}

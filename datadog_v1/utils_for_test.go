@@ -44,18 +44,18 @@ func setupUnitTest(t *testing.T) func(t *testing.T) {
 	// SETUP testing
 	TESTAUTH = context.WithValue(
 		context.Background(),
-		ContextAPIKeys,
-		map[string]APIKey{
-			"api_key": APIKey{
+		datadog.ContextAPIKeys,
+		map[string]datadog.APIKey{
+			"api_key": datadog.APIKey{
 				Key: "FAKE_KEY",
 			},
-			"application_key": APIKey{
+			"application_key": datadog.APIKey{
 				Key: "FAKE_KEY",
 			},
 		},
 	)
-	config := NewConfiguration()
-	TESTAPICLIENT = NewAPIClient(config)
+	config := datadog.NewConfiguration()
+	TESTAPICLIENT = datadog.NewAPIClient(config)
 	return func(t *testing.T) {
 		// TEARDOWN testing
 	}
