@@ -1,0 +1,16 @@
+{
+    "api_keys": [
+        {
+            "created_by": "roch.devost@datadoghq.com",
+            "name": "roch",
+            "key": "b65bee9d3578485794a5b6069d73dfb7",
+            "created": "2019-08-02 15:31:06"
+        },
+        {
+            "created_by": "conor@datadoghq.com",
+            "name": "Bubs",
+            "key": "11b8e6597ae9f5b619694fb1a512213b",
+            "created": "2016-07-10 19:03:29"
+        }
+    ]
+}
