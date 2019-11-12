@@ -1,29 +1,30 @@
-package datadog_v1
+package datadog_v1_test
 
 import (
 	"log"
 	"testing"
 
+	datadog "github.com/DataDog/datadog-api-client-go/datadog_v1"
 	"gotest.tools/assert"
 )
 
-var TESTUSER = UserCreatePayload{
-	Name:       PtrString("test user"),
-	Email:      PtrString("test@example.com"),
-	Handle:     PtrString("test@example.com"),
-	AccessRole: PtrString("ro"),
+var TESTUSER = datadog.User{
+	Name:       datadog.PtrString("test user"),
+	Email:      datadog.PtrString("test@example.com"),
+	Handle:     datadog.PtrString("test@example.com"),
+	AccessRole: datadog.PtrString("ro"),
 }
 
 // [TODO] You can't update another user's email
 // This is based on who owns the APP key that is making the changes
-var UPDATEUSER = UserUpdatePayload{
-	Name:       PtrString("test update user"),
-	Disabled:   PtrBool(true),
-	AccessRole: PtrString("st"),
+var UPDATEUSER = datadog.User{
+	Name:       datadog.PtrString("test update user"),
+	Disabled:   datadog.PtrBool(true),
+	AccessRole: datadog.PtrString("st"),
 }
 
-var UPDATEENABLEUSER = UserUpdatePayload{
-	Disabled: PtrBool(false),
+var UPDATEENABLEUSER = datadog.User{
+	Disabled: datadog.PtrBool(false),
 }
 
 func TestCreateUser(t *testing.T) {
