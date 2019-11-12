@@ -22,16 +22,12 @@ func TestGetApiKeys(t *testing.T) {
 	// Setup fixture data
 	var apiKeyListFixture datadog.ApiKeyListResponse
 	json.Unmarshal(setupGock(t, "keys/api_keys_get.json", "get", "/api_key"), &apiKeyListFixture)
-	apiKeyListFixture := apiKeyListFixture.GetAllAPIKeys()[0]
+	apiKeyListFixture := apiKeyListFixture.GetApiKeys()[0]
 
 	// Get mocked request data
-	apiKeys, _, err := TESTAPICLIENT.KeysApi.GetAllAPIKeys(TESTAUTH)
+	apiKeys, _, err := TESTAPICLIENT.KeysApi.GetApiKeys(TESTAUTH)
 	if err != nil {
 		t.Errorf("Failed to Get the test org %s", err)
 	}
-	// org := orgs.GetOrgs()[0]
-	// assert.Equal(t, orgFixture.GetName(), org.GetName())
-	// assert.Equal(t, orgFixture.GetPublicId(), org.GetPublicId())
-	// assert.Equal(t, reflect.DeepEqual(orgFixture.GetSubscription(), org.GetSubscription()), true)
-	// assert.Equal(t, reflect.DeepEqual(orgFixture.GetBilling(), org.GetBilling()), true)
+
 }
