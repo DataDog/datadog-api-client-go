@@ -36,6 +36,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	createApiKeyCreatedBy := createApiKeyReturned.GetCreatedBy()
 	createApiKeyValue := createApiKeyReturned.GetKey()
 
+	// none of these values should be nil
 	assert.Assert(t, createApiKeyName != "")
 	assert.Assert(t, createApiKeyCreated != "")
 	assert.Assert(t, createApiKeyCreatedBy != "")
@@ -54,6 +55,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	getApiKeyCreatedBy := getApiKeyReturned.GetCreatedBy()
 	getApiKeyValue := getApiKeyReturned.GetKey()
 
+	// should be the same as the create
 	assert.Equal(t, createApiKeyName, getApiKeyName)
 	assert.Equal(t, createApiKeyCreated, getApiKeyCreated)
 	assert.Equal(t, createApiKeyCreatedBy, getApiKeyCreatedBy)
@@ -65,6 +67,8 @@ func TestApiKeyFunctions(t *testing.T) {
 		t.Errorf("Error getting all api keys: Status: %v: %v", respCode.StatusCode, err)
 	}
 	getAllApiKeyReturned := respListData.GetApiKeys()
+
+	// should have more than 1 at least
 	assert.Assert(t, len(getAllApiKeyReturned) > 1)
 
 	// Edit API Key
@@ -82,7 +86,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	editApiKeyCreatedBy := editApiKeyReturned.GetCreatedBy()
 	editApiKeyValue := editApiKeyReturned.GetKey()
 
-	assert.Assert(t, editApiKeyName == newApiKeyName)
+	// everything should be the same except the name
 	assert.Assert(t, editApiKeyName != getApiKeyName)
 	assert.Equal(t, editApiKeyCreated, getApiKeyCreated)
 	assert.Equal(t, editApiKeyCreatedBy, getApiKeyCreatedBy)
@@ -100,10 +104,11 @@ func TestApiKeyFunctions(t *testing.T) {
 	deleteApiKeyCreatedBy := deleteApiKeyReturned.GetCreatedBy()
 	deleteApiKeyValue := deleteApiKeyReturned.GetKey()
 
+	// should return the key thats been deleted
 	assert.Equal(t, deleteApiKeyName, editApiKeyName)
-	assert.Equal(t, deleteApiKeyCreated, getApiKeyCreated)
-	assert.Equal(t, deleteApiKeyCreatedBy, getApiKeyCreatedBy)
-	assert.Equal(t, deleteApiKeyValue, getApiKeyValue)
+	assert.Equal(t, deleteApiKeyCreated, editApiKeyCreated)
+	assert.Equal(t, deleteApiKeyCreatedBy, editApiKeyCreatedBy)
+	assert.Equal(t, deleteApiKeyValue, editApiKeyValue)
 }
 
 func TestApplicationKeyFunctions(t *testing.T) {
@@ -126,6 +131,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	createAppKeyHash := createAppKeyReturned.GetHash()
 	createAppKeyName := createAppKeyReturned.GetName()
 
+	// all values should not be nil
 	assert.Assert(t, createAppKeyOwner != "")
 	assert.Assert(t, createAppKeyHash != "")
 	assert.Assert(t, createAppKeyName != "")
@@ -142,6 +148,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	getAppKeyHash := getAppKeyReturned.GetHash()
 	getAppKeyName := getAppKeyReturned.GetName()
 
+	// should be the same as the create
 	assert.Equal(t, createAppKeyOwner, getAppKeyOwner)
 	assert.Equal(t, createAppKeyHash, getAppKeyHash)
 	assert.Equal(t, createAppKeyName, getAppKeyName)
@@ -152,6 +159,8 @@ func TestApplicationKeyFunctions(t *testing.T) {
 		t.Errorf("Error getting all app keys: Status: %v: %v", respCode.StatusCode, err)
 	}
 	getAllAppKeyReturned := respListData.GetApplicationKeys()
+
+	// should have more than one at least
 	assert.Assert(t, len(getAllAppKeyReturned) > 1)
 
 	// Edit Application Key
@@ -168,9 +177,10 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	editAppKeyHash := editAppKeyReturned.GetHash()
 	editAppKeyName := editAppKeyReturned.GetName()
 
+	// everything should be the same except the name
+	assert.Assert(t, editAppKeyName != getAppKeyName)
 	assert.Equal(t, editAppKeyOwner, getAppKeyOwner)
 	assert.Equal(t, editAppKeyHash, getAppKeyHash)
-	assert.Assert(t, editAppKeyName != getAppKeyName)
 
 	// Delete Application Key
 	respData, respCode, err = TESTAPICLIENT.KeysApi.DeleteApplicationKey(TESTAUTH, createAppKeyHash)
@@ -183,6 +193,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	deleteAppKeyHash := deleteAppKeyReturned.GetHash()
 	deleteAppKeyName := deleteAppKeyReturned.GetName()
 
+	// should return the deleted app key
 	assert.Equal(t, deleteAppKeyOwner, editAppKeyOwner)
 	assert.Equal(t, deleteAppKeyHash, editAppKeyHash)
 	assert.Equal(t, deleteAppKeyName, editAppKeyName)
