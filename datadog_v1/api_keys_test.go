@@ -11,7 +11,7 @@ import (
 
 func TestApiKeyFunctions(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	teardownTest := setupTest(t)
 	defer teardownTest(t)
 	defer gock.Off()
 
@@ -107,7 +107,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 func TestApplicationKeyFunctions(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	teardownTest := setupTest(t)
 	defer teardownTest(t)
 	defer gock.Off()
 
