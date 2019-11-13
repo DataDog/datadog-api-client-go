@@ -9,12 +9,6 @@ import (
 	"gotest.tools/assert"
 )
 
-var testApplicationKey = datadog.ApplicationKey{
-	Hash:  datadog.PtrString("xxxxxxxxxxxx123123123123xxxxxxx"),
-	Name:  datadog.PtrString("test_user"),
-	Owner: datadog.PtrString("test_user2"),
-}
-
 func TestApiKeyFunctions(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupUnitTest(t)
