@@ -5,7 +5,6 @@ import (
 
 	datadog "github.com/DataDog/datadog-api-client-go/datadog_v1"
 	"github.com/antihax/optional"
-	gock "gopkg.in/h2non/gock.v1"
 	"gotest.tools/assert"
 )
 
@@ -13,9 +12,9 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	defer gock.Off()
 
 	// Create API Key
+	// ----------------------------------
 	var createOpts datadog.CreateAPIKeyOpts
 	testApiKeyName := "api key name"
 	createOpts.ApiKey = optional.NewInterface(datadog.ApiKey{Name: &testApiKeyName})
@@ -38,6 +37,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	assert.Equal(t, createApiKeyName, testApiKeyName)
 
 	// Get API Key
+	// ----------------------------------
 	respData, respCode, err = TESTAPICLIENT.KeysApi.GetAPIKey(TESTAUTH, createApiKeyValue)
 	if err != nil || respCode.StatusCode != 200 {
 		t.Errorf("Error getting api key %v: Status: %v: %v", createApiKeyValue, respCode.StatusCode, err)
@@ -56,6 +56,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	assert.Equal(t, createApiKeyValue, getApiKeyValue)
 
 	// Get All API Keys
+	// ----------------------------------
 	respListData, respCode, err := TESTAPICLIENT.KeysApi.GetAllAPIKeys(TESTAUTH)
 	if err != nil || respCode.StatusCode != 200 {
 		t.Errorf("Error getting all api keys: Status: %v: %v", respCode.StatusCode, err)
@@ -66,6 +67,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	assert.Assert(t, len(getAllApiKeyReturned) > 1)
 
 	// Edit API Key
+	// ----------------------------------
 	var editOpts datadog.EditAPIKeyOpts
 	newApiKeyName := "new api key name"
 	editOpts.ApiKey = optional.NewInterface(datadog.ApiKey{Name: &newApiKeyName})
@@ -87,6 +89,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	assert.Equal(t, editApiKeyValue, getApiKeyValue)
 
 	// Delete API Key
+	// ----------------------------------
 	respData, respCode, err = TESTAPICLIENT.KeysApi.DeleteAPIKey(TESTAUTH, createApiKeyValue)
 	if err != nil || respCode.StatusCode != 200 {
 		t.Errorf("Error deleting api key %v: Status: %v: %v", createApiKeyValue, respCode.StatusCode, err)
@@ -109,9 +112,9 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	defer gock.Off()
 
 	// Create Application Key
+	// ----------------------------------
 	var createOpts datadog.CreateApplicationKeyOpts
 	testAppKeyName := "app key name"
 	createOpts.ApplicationKey = optional.NewInterface(datadog.ApplicationKey{Name: &testAppKeyName})
@@ -132,6 +135,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	assert.Equal(t, createAppKeyName, testAppKeyName)
 
 	// Get Application Key
+	// ----------------------------------
 	respData, respCode, err = TESTAPICLIENT.KeysApi.GetApplicationKey(TESTAUTH, createAppKeyHash)
 	if err != nil || respCode.StatusCode != 200 {
 		t.Errorf("Error getting app key %v: Status: %v: %v", createAppKeyHash, respCode.StatusCode, err)
@@ -148,6 +152,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	assert.Equal(t, createAppKeyName, getAppKeyName)
 
 	// Get All Application Keys
+	// ----------------------------------
 	respListData, respCode, err := TESTAPICLIENT.KeysApi.GetAllApplicationKeys(TESTAUTH)
 	if err != nil || respCode.StatusCode != 200 {
 		t.Errorf("Error getting all app keys: Status: %v: %v", respCode.StatusCode, err)
@@ -158,6 +163,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	assert.Assert(t, len(getAllAppKeyReturned) > 1)
 
 	// Edit Application Key
+	// ----------------------------------
 	var editOpts datadog.EditApplicationKeyOpts
 	newAppKeyName := "new app key name"
 	editOpts.ApplicationKey = optional.NewInterface(datadog.ApplicationKey{Name: &newAppKeyName})
@@ -177,6 +183,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	assert.Equal(t, editAppKeyHash, getAppKeyHash)
 
 	// Delete Application Key
+	// ----------------------------------
 	respData, respCode, err = TESTAPICLIENT.KeysApi.DeleteApplicationKey(TESTAUTH, createAppKeyHash)
 	if err != nil || respCode.StatusCode != 200 {
 		t.Errorf("Error deleting app key %v: Status: %v: %v", createAppKeyHash, respCode.StatusCode, err)
