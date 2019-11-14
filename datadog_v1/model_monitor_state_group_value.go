@@ -9,23 +9,20 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // MonitorStateGroupValue struct for MonitorStateGroupValue
 type MonitorStateGroupValue struct {
-	FromTs *int64 `json:"from_ts,omitempty"`
-
-	Left *float32 `json:"left,omitempty"`
-
-	Right *float32 `json:"right,omitempty"`
-
-	ToTs *int64 `json:"to_ts,omitempty"`
-
-	Value *float32 `json:"value,omitempty"`
+	FromTs *int64   `json:"from_ts,omitempty"`
+	Left   *float32 `json:"left,omitempty"`
+	Right  *float32 `json:"right,omitempty"`
+	ToTs   *int64   `json:"to_ts,omitempty"`
+	Value  *float32 `json:"value,omitempty"`
 }
 
-// GetFromTs returns the FromTs field if non-nil, zero value otherwise.
+// GetFromTs returns the FromTs field value if set, zero value otherwise.
 func (o *MonitorStateGroupValue) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {
 		var ret int64
@@ -34,7 +31,7 @@ func (o *MonitorStateGroupValue) GetFromTs() int64 {
 	return *o.FromTs
 }
 
-// GetFromTsOk returns a tuple with the FromTs field if it's non-nil, zero value otherwise
+// GetFromTsOk returns a tuple with the FromTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroupValue) GetFromTsOk() (int64, bool) {
 	if o == nil || o.FromTs == nil {
@@ -58,7 +55,7 @@ func (o *MonitorStateGroupValue) SetFromTs(v int64) {
 	o.FromTs = &v
 }
 
-// GetLeft returns the Left field if non-nil, zero value otherwise.
+// GetLeft returns the Left field value if set, zero value otherwise.
 func (o *MonitorStateGroupValue) GetLeft() float32 {
 	if o == nil || o.Left == nil {
 		var ret float32
@@ -67,7 +64,7 @@ func (o *MonitorStateGroupValue) GetLeft() float32 {
 	return *o.Left
 }
 
-// GetLeftOk returns a tuple with the Left field if it's non-nil, zero value otherwise
+// GetLeftOk returns a tuple with the Left field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroupValue) GetLeftOk() (float32, bool) {
 	if o == nil || o.Left == nil {
@@ -91,7 +88,7 @@ func (o *MonitorStateGroupValue) SetLeft(v float32) {
 	o.Left = &v
 }
 
-// GetRight returns the Right field if non-nil, zero value otherwise.
+// GetRight returns the Right field value if set, zero value otherwise.
 func (o *MonitorStateGroupValue) GetRight() float32 {
 	if o == nil || o.Right == nil {
 		var ret float32
@@ -100,7 +97,7 @@ func (o *MonitorStateGroupValue) GetRight() float32 {
 	return *o.Right
 }
 
-// GetRightOk returns a tuple with the Right field if it's non-nil, zero value otherwise
+// GetRightOk returns a tuple with the Right field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroupValue) GetRightOk() (float32, bool) {
 	if o == nil || o.Right == nil {
@@ -124,7 +121,7 @@ func (o *MonitorStateGroupValue) SetRight(v float32) {
 	o.Right = &v
 }
 
-// GetToTs returns the ToTs field if non-nil, zero value otherwise.
+// GetToTs returns the ToTs field value if set, zero value otherwise.
 func (o *MonitorStateGroupValue) GetToTs() int64 {
 	if o == nil || o.ToTs == nil {
 		var ret int64
@@ -133,7 +130,7 @@ func (o *MonitorStateGroupValue) GetToTs() int64 {
 	return *o.ToTs
 }
 
-// GetToTsOk returns a tuple with the ToTs field if it's non-nil, zero value otherwise
+// GetToTsOk returns a tuple with the ToTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroupValue) GetToTsOk() (int64, bool) {
 	if o == nil || o.ToTs == nil {
@@ -157,7 +154,7 @@ func (o *MonitorStateGroupValue) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
-// GetValue returns the Value field if non-nil, zero value otherwise.
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *MonitorStateGroupValue) GetValue() float32 {
 	if o == nil || o.Value == nil {
 		var ret float32
@@ -166,7 +163,7 @@ func (o *MonitorStateGroupValue) GetValue() float32 {
 	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
+// GetValueOk returns a tuple with the Value field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorStateGroupValue) GetValueOk() (float32, bool) {
 	if o == nil || o.Value == nil {
@@ -190,23 +187,25 @@ func (o *MonitorStateGroupValue) SetValue(v float32) {
 	o.Value = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o MonitorStateGroupValue) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FromTs != nil {
-		toSerialize["from_ts"] = o.FromTs
+type NullableMonitorStateGroupValue struct {
+	Value        MonitorStateGroupValue
+	ExplicitNull bool
+}
+
+func (v NullableMonitorStateGroupValue) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Left != nil {
-		toSerialize["left"] = o.Left
+}
+
+func (v *NullableMonitorStateGroupValue) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Right != nil {
-		toSerialize["right"] = o.Right
-	}
-	if o.ToTs != nil {
-		toSerialize["to_ts"] = o.ToTs
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

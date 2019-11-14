@@ -145,7 +145,6 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, user User) (UserRespo
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -281,7 +280,6 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -415,7 +413,6 @@ func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserListResponse, *
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -551,7 +548,6 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (User
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -690,7 +686,6 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, us
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

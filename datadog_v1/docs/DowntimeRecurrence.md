@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Period** | Pointer to **int32** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**UntilDate** | Pointer to **int64** |  | [optional] 
-**UntilOccurrences** | Pointer to **int32** |  | [optional] 
+**UntilDate** | Pointer to **NullableInt64** |  | [optional] 
+**UntilOccurrences** | Pointer to **NullableInt32** |  | [optional] 
 **WeekDays** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -64,13 +64,13 @@ SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetUntilDate
 
-`func (o *DowntimeRecurrence) GetUntilDate() int64`
+`func (o *DowntimeRecurrence) GetUntilDate() NullableInt64`
 
 GetUntilDate returns the UntilDate field if non-nil, zero value otherwise.
 
 ### GetUntilDateOk
 
-`func (o *DowntimeRecurrence) GetUntilDateOk() (int64, bool)`
+`func (o *DowntimeRecurrence) GetUntilDateOk() (NullableInt64, bool)`
 
 GetUntilDateOk returns a tuple with the UntilDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -83,9 +83,9 @@ HasUntilDate returns a boolean if a field has been set.
 
 ### SetUntilDate
 
-`func (o *DowntimeRecurrence) SetUntilDate(v int64)`
+`func (o *DowntimeRecurrence) SetUntilDate(v NullableInt64)`
 
-SetUntilDate gets a reference to the given int64 and assigns it to the UntilDate field.
+SetUntilDate gets a reference to the given NullableInt64 and assigns it to the UntilDate field.
 
 ### SetUntilDateExplicitNull
 
@@ -96,13 +96,13 @@ when serializing to JSON (pass true as argument to set this, false to unset)
 The UntilDate value is set to nil even if false is passed
 ### GetUntilOccurrences
 
-`func (o *DowntimeRecurrence) GetUntilOccurrences() int32`
+`func (o *DowntimeRecurrence) GetUntilOccurrences() NullableInt32`
 
 GetUntilOccurrences returns the UntilOccurrences field if non-nil, zero value otherwise.
 
 ### GetUntilOccurrencesOk
 
-`func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (int32, bool)`
+`func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (NullableInt32, bool)`
 
 GetUntilOccurrencesOk returns a tuple with the UntilOccurrences field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -115,9 +115,9 @@ HasUntilOccurrences returns a boolean if a field has been set.
 
 ### SetUntilOccurrences
 
-`func (o *DowntimeRecurrence) SetUntilOccurrences(v int32)`
+`func (o *DowntimeRecurrence) SetUntilOccurrences(v NullableInt32)`
 
-SetUntilOccurrences gets a reference to the given int32 and assigns it to the UntilOccurrences field.
+SetUntilOccurrences gets a reference to the given NullableInt32 and assigns it to the UntilOccurrences field.
 
 ### SetUntilOccurrencesExplicitNull
 
