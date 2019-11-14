@@ -18,6 +18,7 @@ Method | HTTP request | Description
 ## BulkPartialDeleteSlo
 
 > ServiceLevelObjectivesBulkDeleted BulkPartialDeleteSlo(ctx, requestBody)
+
 Delete (or partially delete) multiple service level objective objects.
 
 ### Overview
@@ -53,6 +54,7 @@ Name | Type | Description  | Notes
 ## CheckCanDeleteSlo
 
 > CheckCanDeleteServiceLevelObjectiveResponse CheckCanDeleteSlo(ctx, ids)
+
 Check if SLOs can be safely deleted.
 
 ### Overview
@@ -89,6 +91,7 @@ Name | Type | Description  | Notes
 ## CreateSlo
 
 > ServiceLevelObjectiveResponse CreateSlo(ctx, serviceLevelObjective)
+
 Create a service level objective object.
 
 ### Overview
@@ -123,6 +126,7 @@ Name | Type | Description  | Notes
 ## DeleteSlo
 
 > ServiceLevelObjectiveDeleted DeleteSlo(ctx, sloId)
+
 Delete the specified service level objective object.
 
 ### Overview
@@ -159,6 +163,7 @@ Name | Type | Description  | Notes
 ## EditSlo
 
 > ServiceLevelObjectiveResponse EditSlo(ctx, sloId, serviceLevelObjective)
+
 Edit the specified service level objective
 
 ### Overview
@@ -196,6 +201,7 @@ Name | Type | Description  | Notes
 ## GetSlo
 
 > ServiceLevelObjectiveResponse GetSlo(ctx, sloId)
+
 Get a service level objective object
 
 ### Overview
@@ -232,6 +238,7 @@ Name | Type | Description  | Notes
 ## GetSlos
 
 > ServiceLevelObjectiveResponse GetSlos(ctx, ids)
+
 Get multiple service level objective objects by their IDs.
 
 ### Overview
@@ -269,6 +276,7 @@ Name | Type | Description  | Notes
 ## HistoryForSlo
 
 > HistoryServiceLevelObjectiveResponse HistoryForSlo(ctx, sloId, fromTs, toTs)
+
 Get the history of the service level objective.
 
 ### Overview

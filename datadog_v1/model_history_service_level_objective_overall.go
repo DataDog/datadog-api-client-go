@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -16,24 +17,19 @@ import (
 type HistoryServiceLevelObjectiveOverall struct {
 	// For `monitor` based SLOs, this includes the aggregated history uptime time series.
 	History *[][]float32 `json:"history,omitempty"`
-
 	// For `monitor` based SLOs this represents the overall group.
 	Name *string `json:"name,omitempty"`
-
 	// A mapping of threshold `timeframe` to number of accurate decimals, regardless of the from && to timestamp.
 	Precision *map[string]float32 `json:"precision,omitempty"`
-
 	// For `monitor` based SLOs when `true` this indicates that a replay is in progress to give an accurate uptime calculation.
 	Preview *bool `json:"preview,omitempty"`
-
 	// The amount of decimal places the uptime value is accurate to for the given from and to timestamp.
 	SpanPrecision *float32 `json:"span_precision,omitempty"`
-
 	// The uptime value of the SLO history window.
 	Uptime *float32 `json:"uptime,omitempty"`
 }
 
-// GetHistory returns the History field if non-nil, zero value otherwise.
+// GetHistory returns the History field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveOverall) GetHistory() [][]float32 {
 	if o == nil || o.History == nil {
 		var ret [][]float32
@@ -42,7 +38,7 @@ func (o *HistoryServiceLevelObjectiveOverall) GetHistory() [][]float32 {
 	return *o.History
 }
 
-// GetHistoryOk returns a tuple with the History field if it's non-nil, zero value otherwise
+// GetHistoryOk returns a tuple with the History field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveOverall) GetHistoryOk() ([][]float32, bool) {
 	if o == nil || o.History == nil {
@@ -66,7 +62,7 @@ func (o *HistoryServiceLevelObjectiveOverall) SetHistory(v [][]float32) {
 	o.History = &v
 }
 
-// GetName returns the Name field if non-nil, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveOverall) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
@@ -75,7 +71,7 @@ func (o *HistoryServiceLevelObjectiveOverall) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveOverall) GetNameOk() (string, bool) {
 	if o == nil || o.Name == nil {
@@ -99,7 +95,7 @@ func (o *HistoryServiceLevelObjectiveOverall) SetName(v string) {
 	o.Name = &v
 }
 
-// GetPrecision returns the Precision field if non-nil, zero value otherwise.
+// GetPrecision returns the Precision field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveOverall) GetPrecision() map[string]float32 {
 	if o == nil || o.Precision == nil {
 		var ret map[string]float32
@@ -108,7 +104,7 @@ func (o *HistoryServiceLevelObjectiveOverall) GetPrecision() map[string]float32 
 	return *o.Precision
 }
 
-// GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
+// GetPrecisionOk returns a tuple with the Precision field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveOverall) GetPrecisionOk() (map[string]float32, bool) {
 	if o == nil || o.Precision == nil {
@@ -132,7 +128,7 @@ func (o *HistoryServiceLevelObjectiveOverall) SetPrecision(v map[string]float32)
 	o.Precision = &v
 }
 
-// GetPreview returns the Preview field if non-nil, zero value otherwise.
+// GetPreview returns the Preview field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveOverall) GetPreview() bool {
 	if o == nil || o.Preview == nil {
 		var ret bool
@@ -141,7 +137,7 @@ func (o *HistoryServiceLevelObjectiveOverall) GetPreview() bool {
 	return *o.Preview
 }
 
-// GetPreviewOk returns a tuple with the Preview field if it's non-nil, zero value otherwise
+// GetPreviewOk returns a tuple with the Preview field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveOverall) GetPreviewOk() (bool, bool) {
 	if o == nil || o.Preview == nil {
@@ -165,7 +161,7 @@ func (o *HistoryServiceLevelObjectiveOverall) SetPreview(v bool) {
 	o.Preview = &v
 }
 
-// GetSpanPrecision returns the SpanPrecision field if non-nil, zero value otherwise.
+// GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveOverall) GetSpanPrecision() float32 {
 	if o == nil || o.SpanPrecision == nil {
 		var ret float32
@@ -174,7 +170,7 @@ func (o *HistoryServiceLevelObjectiveOverall) GetSpanPrecision() float32 {
 	return *o.SpanPrecision
 }
 
-// GetSpanPrecisionOk returns a tuple with the SpanPrecision field if it's non-nil, zero value otherwise
+// GetSpanPrecisionOk returns a tuple with the SpanPrecision field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveOverall) GetSpanPrecisionOk() (float32, bool) {
 	if o == nil || o.SpanPrecision == nil {
@@ -198,7 +194,7 @@ func (o *HistoryServiceLevelObjectiveOverall) SetSpanPrecision(v float32) {
 	o.SpanPrecision = &v
 }
 
-// GetUptime returns the Uptime field if non-nil, zero value otherwise.
+// GetUptime returns the Uptime field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveOverall) GetUptime() float32 {
 	if o == nil || o.Uptime == nil {
 		var ret float32
@@ -207,7 +203,7 @@ func (o *HistoryServiceLevelObjectiveOverall) GetUptime() float32 {
 	return *o.Uptime
 }
 
-// GetUptimeOk returns a tuple with the Uptime field if it's non-nil, zero value otherwise
+// GetUptimeOk returns a tuple with the Uptime field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveOverall) GetUptimeOk() (float32, bool) {
 	if o == nil || o.Uptime == nil {
@@ -231,26 +227,25 @@ func (o *HistoryServiceLevelObjectiveOverall) SetUptime(v float32) {
 	o.Uptime = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o HistoryServiceLevelObjectiveOverall) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.History != nil {
-		toSerialize["history"] = o.History
+type NullableHistoryServiceLevelObjectiveOverall struct {
+	Value        HistoryServiceLevelObjectiveOverall
+	ExplicitNull bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveOverall) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+}
+
+func (v *NullableHistoryServiceLevelObjectiveOverall) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Precision != nil {
-		toSerialize["precision"] = o.Precision
-	}
-	if o.Preview != nil {
-		toSerialize["preview"] = o.Preview
-	}
-	if o.SpanPrecision != nil {
-		toSerialize["span_precision"] = o.SpanPrecision
-	}
-	if o.Uptime != nil {
-		toSerialize["uptime"] = o.Uptime
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

@@ -9,60 +9,38 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // SloThreshold struct for SloThreshold
 type SloThreshold struct {
 	// The target value for the service level indicator within the corresponding timeframe.
-	Target *float64 `json:"target,omitempty"`
-
+	Target float64 `json:"target"`
 	// A string representation of the target that indicates its precision (e.g. \"99.9\"). It uses trailing zeros to show significant decimal places (e.g. \"98.00\"). Always included in service level objective responses. Ignored in create/update requests.
-	TargetDisplay *string `json:"target_display,omitempty"`
-
-	Timeframe *SloTimeframe `json:"timeframe,omitempty"`
-
-	Warning *float64 `json:"warning,omitempty"`
-
+	TargetDisplay *string      `json:"target_display,omitempty"`
+	Timeframe     SloTimeframe `json:"timeframe"`
+	Warning       *float64     `json:"warning,omitempty"`
 	// A string representation of the warning target (see the description of the \"target_display\" field for details). Included in service level objective responses if a warning target exists. Ignored in create/update requests.
 	WarningDisplay *string `json:"warning_display,omitempty"`
 }
 
-// GetTarget returns the Target field if non-nil, zero value otherwise.
+// GetTarget returns the Target field value
 func (o *SloThreshold) GetTarget() float64 {
-	if o == nil || o.Target == nil {
+	if o == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Target
+
+	return o.Target
 }
 
-// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *SloThreshold) GetTargetOk() (float64, bool) {
-	if o == nil || o.Target == nil {
-		var ret float64
-		return ret, false
-	}
-	return *o.Target, true
-}
-
-// HasTarget returns a boolean if a field has been set.
-func (o *SloThreshold) HasTarget() bool {
-	if o != nil && o.Target != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTarget gets a reference to the given float64 and assigns it to the Target field.
+// SetTarget sets field value
 func (o *SloThreshold) SetTarget(v float64) {
-	o.Target = &v
+	o.Target = v
 }
 
-// GetTargetDisplay returns the TargetDisplay field if non-nil, zero value otherwise.
+// GetTargetDisplay returns the TargetDisplay field value if set, zero value otherwise.
 func (o *SloThreshold) GetTargetDisplay() string {
 	if o == nil || o.TargetDisplay == nil {
 		var ret string
@@ -71,7 +49,7 @@ func (o *SloThreshold) GetTargetDisplay() string {
 	return *o.TargetDisplay
 }
 
-// GetTargetDisplayOk returns a tuple with the TargetDisplay field if it's non-nil, zero value otherwise
+// GetTargetDisplayOk returns a tuple with the TargetDisplay field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *SloThreshold) GetTargetDisplayOk() (string, bool) {
 	if o == nil || o.TargetDisplay == nil {
@@ -95,40 +73,22 @@ func (o *SloThreshold) SetTargetDisplay(v string) {
 	o.TargetDisplay = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
+// GetTimeframe returns the Timeframe field value
 func (o *SloThreshold) GetTimeframe() SloTimeframe {
-	if o == nil || o.Timeframe == nil {
+	if o == nil {
 		var ret SloTimeframe
 		return ret
 	}
-	return *o.Timeframe
+
+	return o.Timeframe
 }
 
-// GetTimeframeOk returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *SloThreshold) GetTimeframeOk() (SloTimeframe, bool) {
-	if o == nil || o.Timeframe == nil {
-		var ret SloTimeframe
-		return ret, false
-	}
-	return *o.Timeframe, true
-}
-
-// HasTimeframe returns a boolean if a field has been set.
-func (o *SloThreshold) HasTimeframe() bool {
-	if o != nil && o.Timeframe != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeframe gets a reference to the given SloTimeframe and assigns it to the Timeframe field.
+// SetTimeframe sets field value
 func (o *SloThreshold) SetTimeframe(v SloTimeframe) {
-	o.Timeframe = &v
+	o.Timeframe = v
 }
 
-// GetWarning returns the Warning field if non-nil, zero value otherwise.
+// GetWarning returns the Warning field value if set, zero value otherwise.
 func (o *SloThreshold) GetWarning() float64 {
 	if o == nil || o.Warning == nil {
 		var ret float64
@@ -137,7 +97,7 @@ func (o *SloThreshold) GetWarning() float64 {
 	return *o.Warning
 }
 
-// GetWarningOk returns a tuple with the Warning field if it's non-nil, zero value otherwise
+// GetWarningOk returns a tuple with the Warning field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *SloThreshold) GetWarningOk() (float64, bool) {
 	if o == nil || o.Warning == nil {
@@ -161,7 +121,7 @@ func (o *SloThreshold) SetWarning(v float64) {
 	o.Warning = &v
 }
 
-// GetWarningDisplay returns the WarningDisplay field if non-nil, zero value otherwise.
+// GetWarningDisplay returns the WarningDisplay field value if set, zero value otherwise.
 func (o *SloThreshold) GetWarningDisplay() string {
 	if o == nil || o.WarningDisplay == nil {
 		var ret string
@@ -170,7 +130,7 @@ func (o *SloThreshold) GetWarningDisplay() string {
 	return *o.WarningDisplay
 }
 
-// GetWarningDisplayOk returns a tuple with the WarningDisplay field if it's non-nil, zero value otherwise
+// GetWarningDisplayOk returns a tuple with the WarningDisplay field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *SloThreshold) GetWarningDisplayOk() (string, bool) {
 	if o == nil || o.WarningDisplay == nil {
@@ -194,29 +154,25 @@ func (o *SloThreshold) SetWarningDisplay(v string) {
 	o.WarningDisplay = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o SloThreshold) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Target == nil {
-		return nil, errors.New("Target is required and not nullable, but was not set on SloThreshold")
+type NullableSloThreshold struct {
+	Value        SloThreshold
+	ExplicitNull bool
+}
+
+func (v NullableSloThreshold) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Target != nil {
-		toSerialize["target"] = o.Target
+}
+
+func (v *NullableSloThreshold) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.TargetDisplay != nil {
-		toSerialize["target_display"] = o.TargetDisplay
-	}
-	if o.Timeframe == nil {
-		return nil, errors.New("Timeframe is required and not nullable, but was not set on SloThreshold")
-	}
-	if o.Timeframe != nil {
-		toSerialize["timeframe"] = o.Timeframe
-	}
-	if o.Warning != nil {
-		toSerialize["warning"] = o.Warning
-	}
-	if o.WarningDisplay != nil {
-		toSerialize["warning_display"] = o.WarningDisplay
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

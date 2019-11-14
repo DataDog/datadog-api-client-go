@@ -1,0 +1,195 @@
+# Org
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Billing** | Pointer to **map[string]string** |  | [optional] 
+**Created** | Pointer to **string** |  | [optional] [readonly] 
+**Description** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**PublicId** | Pointer to **string** |  | [optional] 
+**Settings** | Pointer to [**OrgSettings**](Org_settings.md) |  | [optional] 
+**Subscription** | Pointer to **map[string]string** |  | [optional] 
+
+## Methods
+
+### GetBilling
+
+`func (o *Org) GetBilling() map[string]string`
+
+GetBilling returns the Billing field if non-nil, zero value otherwise.
+
+### GetBillingOk
+
+`func (o *Org) GetBillingOk() (map[string]string, bool)`
+
+GetBillingOk returns a tuple with the Billing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBilling
+
+`func (o *Org) HasBilling() bool`
+
+HasBilling returns a boolean if a field has been set.
+
+### SetBilling
+
+`func (o *Org) SetBilling(v map[string]string)`
+
+SetBilling gets a reference to the given map[string]string and assigns it to the Billing field.
+
+### GetCreated
+
+`func (o *Org) GetCreated() string`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *Org) GetCreatedOk() (string, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreated
+
+`func (o *Org) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### SetCreated
+
+`func (o *Org) SetCreated(v string)`
+
+SetCreated gets a reference to the given string and assigns it to the Created field.
+
+### GetDescription
+
+`func (o *Org) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *Org) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *Org) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *Org) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetName
+
+`func (o *Org) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Org) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *Org) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *Org) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetPublicId
+
+`func (o *Org) GetPublicId() string`
+
+GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+
+### GetPublicIdOk
+
+`func (o *Org) GetPublicIdOk() (string, bool)`
+
+GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPublicId
+
+`func (o *Org) HasPublicId() bool`
+
+HasPublicId returns a boolean if a field has been set.
+
+### SetPublicId
+
+`func (o *Org) SetPublicId(v string)`
+
+SetPublicId gets a reference to the given string and assigns it to the PublicId field.
+
+### GetSettings
+
+`func (o *Org) GetSettings() OrgSettings`
+
+GetSettings returns the Settings field if non-nil, zero value otherwise.
+
+### GetSettingsOk
+
+`func (o *Org) GetSettingsOk() (OrgSettings, bool)`
+
+GetSettingsOk returns a tuple with the Settings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSettings
+
+`func (o *Org) HasSettings() bool`
+
+HasSettings returns a boolean if a field has been set.
+
+### SetSettings
+
+`func (o *Org) SetSettings(v OrgSettings)`
+
+SetSettings gets a reference to the given OrgSettings and assigns it to the Settings field.
+
+### GetSubscription
+
+`func (o *Org) GetSubscription() map[string]string`
+
+GetSubscription returns the Subscription field if non-nil, zero value otherwise.
+
+### GetSubscriptionOk
+
+`func (o *Org) GetSubscriptionOk() (map[string]string, bool)`
+
+GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSubscription
+
+`func (o *Org) HasSubscription() bool`
+
+HasSubscription returns a boolean if a field has been set.
+
+### SetSubscription
+
+`func (o *Org) SetSubscription(v map[string]string)`
+
+SetSubscription gets a reference to the given map[string]string and assigns it to the Subscription field.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

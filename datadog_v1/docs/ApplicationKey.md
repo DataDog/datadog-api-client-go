@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | Pointer to **string** |  | [optional] 
+**Hash** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
-**Owner** | Pointer to **string** |  | [optional] 
+**Owner** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods
 

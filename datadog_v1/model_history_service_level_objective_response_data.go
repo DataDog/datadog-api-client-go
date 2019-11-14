@@ -9,28 +9,24 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // HistoryServiceLevelObjectiveResponseData struct for HistoryServiceLevelObjectiveResponseData
 type HistoryServiceLevelObjectiveResponseData struct {
 	// the `from` timestamp in epoch seconds
-	FromTs *int64 `json:"from_ts,omitempty"`
-
-	Groups *HistoryServiceLevelObjectiveGroups `json:"groups,omitempty"`
-
+	FromTs  *int64                               `json:"from_ts,omitempty"`
+	Groups  *HistoryServiceLevelObjectiveGroups  `json:"groups,omitempty"`
 	Overall *HistoryServiceLevelObjectiveOverall `json:"overall,omitempty"`
-
-	Series *HistoryServiceLevelObjectiveMetrics `json:"series,omitempty"`
-
+	Series  *HistoryServiceLevelObjectiveMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SloThreshold `json:"thresholds,omitempty"`
-
 	// the `to` timestamp in epoch seconds
 	ToTs *int64 `json:"to_ts,omitempty"`
 }
 
-// GetFromTs returns the FromTs field if non-nil, zero value otherwise.
+// GetFromTs returns the FromTs field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseData) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {
 		var ret int64
@@ -39,7 +35,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetFromTs() int64 {
 	return *o.FromTs
 }
 
-// GetFromTsOk returns a tuple with the FromTs field if it's non-nil, zero value otherwise
+// GetFromTsOk returns a tuple with the FromTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponseData) GetFromTsOk() (int64, bool) {
 	if o == nil || o.FromTs == nil {
@@ -63,7 +59,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetFromTs(v int64) {
 	o.FromTs = &v
 }
 
-// GetGroups returns the Groups field if non-nil, zero value otherwise.
+// GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLevelObjectiveGroups {
 	if o == nil || o.Groups == nil {
 		var ret HistoryServiceLevelObjectiveGroups
@@ -72,7 +68,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLev
 	return *o.Groups
 }
 
-// GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
+// GetGroupsOk returns a tuple with the Groups field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (HistoryServiceLevelObjectiveGroups, bool) {
 	if o == nil || o.Groups == nil {
@@ -96,7 +92,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v HistoryServiceLev
 	o.Groups = &v
 }
 
-// GetOverall returns the Overall field if non-nil, zero value otherwise.
+// GetOverall returns the Overall field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLevelObjectiveOverall {
 	if o == nil || o.Overall == nil {
 		var ret HistoryServiceLevelObjectiveOverall
@@ -105,7 +101,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLe
 	return *o.Overall
 }
 
-// GetOverallOk returns a tuple with the Overall field if it's non-nil, zero value otherwise
+// GetOverallOk returns a tuple with the Overall field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (HistoryServiceLevelObjectiveOverall, bool) {
 	if o == nil || o.Overall == nil {
@@ -129,7 +125,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v HistoryServiceLe
 	o.Overall = &v
 }
 
-// GetSeries returns the Series field if non-nil, zero value otherwise.
+// GetSeries returns the Series field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() HistoryServiceLevelObjectiveMetrics {
 	if o == nil || o.Series == nil {
 		var ret HistoryServiceLevelObjectiveMetrics
@@ -138,7 +134,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() HistoryServiceLev
 	return *o.Series
 }
 
-// GetSeriesOk returns a tuple with the Series field if it's non-nil, zero value otherwise
+// GetSeriesOk returns a tuple with the Series field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (HistoryServiceLevelObjectiveMetrics, bool) {
 	if o == nil || o.Series == nil {
@@ -162,7 +158,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v HistoryServiceLev
 	o.Series = &v
 }
 
-// GetThresholds returns the Thresholds field if non-nil, zero value otherwise.
+// GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SloThreshold {
 	if o == nil || o.Thresholds == nil {
 		var ret map[string]SloThreshold
@@ -171,7 +167,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]Sl
 	return *o.Thresholds
 }
 
-// GetThresholdsOk returns a tuple with the Thresholds field if it's non-nil, zero value otherwise
+// GetThresholdsOk returns a tuple with the Thresholds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SloThreshold, bool) {
 	if o == nil || o.Thresholds == nil {
@@ -195,7 +191,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]Sl
 	o.Thresholds = &v
 }
 
-// GetToTs returns the ToTs field if non-nil, zero value otherwise.
+// GetToTs returns the ToTs field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseData) GetToTs() int64 {
 	if o == nil || o.ToTs == nil {
 		var ret int64
@@ -204,7 +200,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetToTs() int64 {
 	return *o.ToTs
 }
 
-// GetToTsOk returns a tuple with the ToTs field if it's non-nil, zero value otherwise
+// GetToTsOk returns a tuple with the ToTs field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponseData) GetToTsOk() (int64, bool) {
 	if o == nil || o.ToTs == nil {
@@ -228,26 +224,25 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o HistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FromTs != nil {
-		toSerialize["from_ts"] = o.FromTs
+type NullableHistoryServiceLevelObjectiveResponseData struct {
+	Value        HistoryServiceLevelObjectiveResponseData
+	ExplicitNull bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Groups != nil {
-		toSerialize["groups"] = o.Groups
+}
+
+func (v *NullableHistoryServiceLevelObjectiveResponseData) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Overall != nil {
-		toSerialize["overall"] = o.Overall
-	}
-	if o.Series != nil {
-		toSerialize["series"] = o.Series
-	}
-	if o.Thresholds != nil {
-		toSerialize["thresholds"] = o.Thresholds
-	}
-	if o.ToTs != nil {
-		toSerialize["to_ts"] = o.ToTs
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

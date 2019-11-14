@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to **string** |  | [optional] 
-**CreatedBy** | Pointer to **string** |  | [optional] 
-**Key** | Pointer to **string** |  | [optional] 
+**Created** | Pointer to **string** |  | [optional] [readonly] 
+**CreatedBy** | Pointer to **string** |  | [optional] [readonly] 
+**Key** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 
 ## Methods

@@ -9,21 +9,19 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // ApiKey struct for ApiKey
 type ApiKey struct {
-	Created *string `json:"created,omitempty"`
-
+	Created   *string `json:"created,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
-
-	Key *string `json:"key,omitempty"`
-
-	Name *string `json:"name,omitempty"`
+	Key       *string `json:"key,omitempty"`
+	Name      *string `json:"name,omitempty"`
 }
 
-// GetCreated returns the Created field if non-nil, zero value otherwise.
+// GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiKey) GetCreated() string {
 	if o == nil || o.Created == nil {
 		var ret string
@@ -32,7 +30,7 @@ func (o *ApiKey) GetCreated() string {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetCreatedOk() (string, bool) {
 	if o == nil || o.Created == nil {
@@ -56,7 +54,7 @@ func (o *ApiKey) SetCreated(v string) {
 	o.Created = &v
 }
 
-// GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *ApiKey) GetCreatedBy() string {
 	if o == nil || o.CreatedBy == nil {
 		var ret string
@@ -65,7 +63,7 @@ func (o *ApiKey) GetCreatedBy() string {
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetCreatedByOk() (string, bool) {
 	if o == nil || o.CreatedBy == nil {
@@ -89,7 +87,7 @@ func (o *ApiKey) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
-// GetKey returns the Key field if non-nil, zero value otherwise.
+// GetKey returns the Key field value if set, zero value otherwise.
 func (o *ApiKey) GetKey() string {
 	if o == nil || o.Key == nil {
 		var ret string
@@ -98,7 +96,7 @@ func (o *ApiKey) GetKey() string {
 	return *o.Key
 }
 
-// GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
+// GetKeyOk returns a tuple with the Key field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetKeyOk() (string, bool) {
 	if o == nil || o.Key == nil {
@@ -122,7 +120,7 @@ func (o *ApiKey) SetKey(v string) {
 	o.Key = &v
 }
 
-// GetName returns the Name field if non-nil, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ApiKey) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
@@ -131,7 +129,7 @@ func (o *ApiKey) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetNameOk() (string, bool) {
 	if o == nil || o.Name == nil {
@@ -155,20 +153,25 @@ func (o *ApiKey) SetName(v string) {
 	o.Name = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ApiKey) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
+type NullableApiKey struct {
+	Value        ApiKey
+	ExplicitNull bool
+}
+
+func (v NullableApiKey) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.CreatedBy != nil {
-		toSerialize["created_by"] = o.CreatedBy
+}
+
+func (v *NullableApiKey) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Key != nil {
-		toSerialize["key"] = o.Key
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

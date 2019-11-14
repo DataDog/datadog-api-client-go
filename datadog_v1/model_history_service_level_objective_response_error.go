@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -18,7 +19,7 @@ type HistoryServiceLevelObjectiveResponseError struct {
 	Error *string `json:"error,omitempty"`
 }
 
-// GetError returns the Error field if non-nil, zero value otherwise.
+// GetError returns the Error field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseError) GetError() string {
 	if o == nil || o.Error == nil {
 		var ret string
@@ -27,7 +28,7 @@ func (o *HistoryServiceLevelObjectiveResponseError) GetError() string {
 	return *o.Error
 }
 
-// GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+// GetErrorOk returns a tuple with the Error field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *HistoryServiceLevelObjectiveResponseError) GetErrorOk() (string, bool) {
 	if o == nil || o.Error == nil {
@@ -51,11 +52,25 @@ func (o *HistoryServiceLevelObjectiveResponseError) SetError(v string) {
 	o.Error = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o HistoryServiceLevelObjectiveResponseError) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Error != nil {
-		toSerialize["error"] = o.Error
+type NullableHistoryServiceLevelObjectiveResponseError struct {
+	Value        HistoryServiceLevelObjectiveResponseError
+	ExplicitNull bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableHistoryServiceLevelObjectiveResponseError) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

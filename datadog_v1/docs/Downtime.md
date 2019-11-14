@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | Pointer to **bool** |  | [optional] 
-**Canceled** | Pointer to **int64** |  | [optional] 
-**CreatorId** | Pointer to **int32** |  | [optional] 
+**Active** | Pointer to **bool** |  | [optional] [readonly] 
+**Canceled** | Pointer to **NullableInt64** |  | [optional] [readonly] 
+**CreatorId** | Pointer to **int32** |  | [optional] [readonly] 
 **Disabled** | Pointer to **bool** |  | [optional] 
-**DowntimeType** | Pointer to **int32** |  | [optional] 
-**End** | Pointer to **int64** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
+**DowntimeType** | Pointer to **int32** |  | [optional] [readonly] 
+**End** | Pointer to **NullableInt64** |  | [optional] 
+**Id** | Pointer to **int64** |  | [optional] [readonly] 
 **Message** | Pointer to **string** |  | [optional] 
-**MonitorId** | Pointer to **int64** |  | [optional] 
+**MonitorId** | Pointer to **NullableInt64** |  | [optional] 
 **MonitorTags** | Pointer to **[]string** |  | [optional] 
-**ParentId** | Pointer to **int32** |  | [optional] 
-**Recurrence** | Pointer to [**DowntimeRecurrence**](DowntimeRecurrence.md) |  | [optional] 
+**ParentId** | Pointer to **NullableInt32** |  | [optional] 
+**Recurrence** | Pointer to [**NullableDowntimeRecurrence**](DowntimeRecurrence.md) |  | [optional] 
 **Scope** | Pointer to **[]string** |  | [optional] 
 **Start** | Pointer to **int64** |  | [optional] 
 **Timezone** | Pointer to **string** |  | [optional] 
-**UpdaterId** | Pointer to **int32** |  | [optional] 
+**UpdaterId** | Pointer to **int32** |  | [optional] [readonly] 
 
 ## Methods
 
@@ -50,13 +50,13 @@ SetActive gets a reference to the given bool and assigns it to the Active field.
 
 ### GetCanceled
 
-`func (o *Downtime) GetCanceled() int64`
+`func (o *Downtime) GetCanceled() NullableInt64`
 
 GetCanceled returns the Canceled field if non-nil, zero value otherwise.
 
 ### GetCanceledOk
 
-`func (o *Downtime) GetCanceledOk() (int64, bool)`
+`func (o *Downtime) GetCanceledOk() (NullableInt64, bool)`
 
 GetCanceledOk returns a tuple with the Canceled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -69,9 +69,9 @@ HasCanceled returns a boolean if a field has been set.
 
 ### SetCanceled
 
-`func (o *Downtime) SetCanceled(v int64)`
+`func (o *Downtime) SetCanceled(v NullableInt64)`
 
-SetCanceled gets a reference to the given int64 and assigns it to the Canceled field.
+SetCanceled gets a reference to the given NullableInt64 and assigns it to the Canceled field.
 
 ### SetCanceledExplicitNull
 
@@ -157,13 +157,13 @@ SetDowntimeType gets a reference to the given int32 and assigns it to the Downti
 
 ### GetEnd
 
-`func (o *Downtime) GetEnd() int64`
+`func (o *Downtime) GetEnd() NullableInt64`
 
 GetEnd returns the End field if non-nil, zero value otherwise.
 
 ### GetEndOk
 
-`func (o *Downtime) GetEndOk() (int64, bool)`
+`func (o *Downtime) GetEndOk() (NullableInt64, bool)`
 
 GetEndOk returns a tuple with the End field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -176,9 +176,9 @@ HasEnd returns a boolean if a field has been set.
 
 ### SetEnd
 
-`func (o *Downtime) SetEnd(v int64)`
+`func (o *Downtime) SetEnd(v NullableInt64)`
 
-SetEnd gets a reference to the given int64 and assigns it to the End field.
+SetEnd gets a reference to the given NullableInt64 and assigns it to the End field.
 
 ### SetEndExplicitNull
 
@@ -239,13 +239,13 @@ SetMessage gets a reference to the given string and assigns it to the Message fi
 
 ### GetMonitorId
 
-`func (o *Downtime) GetMonitorId() int64`
+`func (o *Downtime) GetMonitorId() NullableInt64`
 
 GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
 
 ### GetMonitorIdOk
 
-`func (o *Downtime) GetMonitorIdOk() (int64, bool)`
+`func (o *Downtime) GetMonitorIdOk() (NullableInt64, bool)`
 
 GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -258,9 +258,9 @@ HasMonitorId returns a boolean if a field has been set.
 
 ### SetMonitorId
 
-`func (o *Downtime) SetMonitorId(v int64)`
+`func (o *Downtime) SetMonitorId(v NullableInt64)`
 
-SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
+SetMonitorId gets a reference to the given NullableInt64 and assigns it to the MonitorId field.
 
 ### SetMonitorIdExplicitNull
 
@@ -296,13 +296,13 @@ SetMonitorTags gets a reference to the given []string and assigns it to the Moni
 
 ### GetParentId
 
-`func (o *Downtime) GetParentId() int32`
+`func (o *Downtime) GetParentId() NullableInt32`
 
 GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 ### GetParentIdOk
 
-`func (o *Downtime) GetParentIdOk() (int32, bool)`
+`func (o *Downtime) GetParentIdOk() (NullableInt32, bool)`
 
 GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -315,9 +315,9 @@ HasParentId returns a boolean if a field has been set.
 
 ### SetParentId
 
-`func (o *Downtime) SetParentId(v int32)`
+`func (o *Downtime) SetParentId(v NullableInt32)`
 
-SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
+SetParentId gets a reference to the given NullableInt32 and assigns it to the ParentId field.
 
 ### SetParentIdExplicitNull
 
@@ -328,13 +328,13 @@ when serializing to JSON (pass true as argument to set this, false to unset)
 The ParentId value is set to nil even if false is passed
 ### GetRecurrence
 
-`func (o *Downtime) GetRecurrence() DowntimeRecurrence`
+`func (o *Downtime) GetRecurrence() NullableDowntimeRecurrence`
 
 GetRecurrence returns the Recurrence field if non-nil, zero value otherwise.
 
 ### GetRecurrenceOk
 
-`func (o *Downtime) GetRecurrenceOk() (DowntimeRecurrence, bool)`
+`func (o *Downtime) GetRecurrenceOk() (NullableDowntimeRecurrence, bool)`
 
 GetRecurrenceOk returns a tuple with the Recurrence field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -347,9 +347,9 @@ HasRecurrence returns a boolean if a field has been set.
 
 ### SetRecurrence
 
-`func (o *Downtime) SetRecurrence(v DowntimeRecurrence)`
+`func (o *Downtime) SetRecurrence(v NullableDowntimeRecurrence)`
 
-SetRecurrence gets a reference to the given DowntimeRecurrence and assigns it to the Recurrence field.
+SetRecurrence gets a reference to the given NullableDowntimeRecurrence and assigns it to the Recurrence field.
 
 ### SetRecurrenceExplicitNull
 

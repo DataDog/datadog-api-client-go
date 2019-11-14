@@ -9,19 +9,18 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // ApplicationKey struct for ApplicationKey
 type ApplicationKey struct {
-	Hash *string `json:"hash,omitempty"`
-
-	Name *string `json:"name,omitempty"`
-
+	Hash  *string `json:"hash,omitempty"`
+	Name  *string `json:"name,omitempty"`
 	Owner *string `json:"owner,omitempty"`
 }
 
-// GetHash returns the Hash field if non-nil, zero value otherwise.
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *ApplicationKey) GetHash() string {
 	if o == nil || o.Hash == nil {
 		var ret string
@@ -30,7 +29,7 @@ func (o *ApplicationKey) GetHash() string {
 	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field if it's non-nil, zero value otherwise
+// GetHashOk returns a tuple with the Hash field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplicationKey) GetHashOk() (string, bool) {
 	if o == nil || o.Hash == nil {
@@ -54,7 +53,7 @@ func (o *ApplicationKey) SetHash(v string) {
 	o.Hash = &v
 }
 
-// GetName returns the Name field if non-nil, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ApplicationKey) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
@@ -63,7 +62,7 @@ func (o *ApplicationKey) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplicationKey) GetNameOk() (string, bool) {
 	if o == nil || o.Name == nil {
@@ -87,7 +86,7 @@ func (o *ApplicationKey) SetName(v string) {
 	o.Name = &v
 }
 
-// GetOwner returns the Owner field if non-nil, zero value otherwise.
+// GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *ApplicationKey) GetOwner() string {
 	if o == nil || o.Owner == nil {
 		var ret string
@@ -96,7 +95,7 @@ func (o *ApplicationKey) GetOwner() string {
 	return *o.Owner
 }
 
-// GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+// GetOwnerOk returns a tuple with the Owner field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplicationKey) GetOwnerOk() (string, bool) {
 	if o == nil || o.Owner == nil {
@@ -120,17 +119,25 @@ func (o *ApplicationKey) SetOwner(v string) {
 	o.Owner = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o ApplicationKey) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Hash != nil {
-		toSerialize["hash"] = o.Hash
+type NullableApplicationKey struct {
+	Value        ApplicationKey
+	ExplicitNull bool
+}
+
+func (v NullableApplicationKey) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+}
+
+func (v *NullableApplicationKey) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.Owner != nil {
-		toSerialize["owner"] = o.Owner
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

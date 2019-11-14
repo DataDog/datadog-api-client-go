@@ -58,6 +58,10 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get details about the specified monitor.
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get details about the specified monitor.
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | 
+*OrgsApi* | [**CreateChildOrg**](docs/OrgsApi.md#createchildorg) | **Post** /api/v1/org | Create child-organization.
+*OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get the organization
+*OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
+*OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *SloApi* | [**BulkPartialDeleteSlo**](docs/SloApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Delete (or partially delete) multiple service level objective objects.
 *SloApi* | [**CheckCanDeleteSlo**](docs/SloApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted.
 *SloApi* | [**CreateSlo**](docs/SloApi.md#createslo) | **Post** /api/v1/slo | Create a service level objective object.
@@ -110,6 +114,8 @@ Class | Method | HTTP request | Description
  - [HistoryServiceLevelObjectiveResponse](docs/HistoryServiceLevelObjectiveResponse.md)
  - [HistoryServiceLevelObjectiveResponseData](docs/HistoryServiceLevelObjectiveResponseData.md)
  - [HistoryServiceLevelObjectiveResponseError](docs/HistoryServiceLevelObjectiveResponseError.md)
+ - [IdpFormData](docs/IdpFormData.md)
+ - [IdpResponse](docs/IdpResponse.md)
  - [Monitor](docs/Monitor.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
@@ -118,6 +124,14 @@ Class | Method | HTTP request | Description
  - [MonitorStateGroupValue](docs/MonitorStateGroupValue.md)
  - [MonitorThresholdWindowOptions](docs/MonitorThresholdWindowOptions.md)
  - [MonitorThresholds](docs/MonitorThresholds.md)
+ - [Org](docs/Org.md)
+ - [OrgCreateBody](docs/OrgCreateBody.md)
+ - [OrgCreateResponse](docs/OrgCreateResponse.md)
+ - [OrgListResponse](docs/OrgListResponse.md)
+ - [OrgResponse](docs/OrgResponse.md)
+ - [OrgSettings](docs/OrgSettings.md)
+ - [OrgSettingsSaml](docs/OrgSettingsSaml.md)
+ - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
  - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
  - [ServiceLevelObjectiveDeleted](docs/ServiceLevelObjectiveDeleted.md)
  - [ServiceLevelObjectiveQuery](docs/ServiceLevelObjectiveQuery.md)

@@ -52,6 +52,8 @@ type APIClient struct {
 
 	MonitorsApi *MonitorsApiService
 
+	OrgsApi *OrgsApiService
+
 	SloApi *SloApiService
 
 	UsersApi *UsersApiService
@@ -77,6 +79,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DowntimesApi = (*DowntimesApiService)(&c.common)
 	c.KeysApi = (*KeysApiService)(&c.common)
 	c.MonitorsApi = (*MonitorsApiService)(&c.common)
+	c.OrgsApi = (*OrgsApiService)(&c.common)
 	c.SloApi = (*SloApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
@@ -176,6 +179,12 @@ func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 // ChangeBasePath changes base path to allow switching to mocks
 func (c *APIClient) ChangeBasePath(path string) {
 	c.cfg.BasePath = path
+}
+
+// Allow modification of underlying config for alternate implementations and testing
+// Caution: modifying the configuration while live can cause data races and potentially unwanted behavior
+func (c *APIClient) GetConfig() *Configuration {
+	return c.cfg
 }
 
 // prepareRequest build the request
