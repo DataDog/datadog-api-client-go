@@ -69,6 +69,39 @@ func TestDowntimeLifecycle(t *testing.T) {
 	assert.Assert(t, fetchedDowntime.GetDisabled())
 }
 
+func TestMonitorDowntime(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Create monitor
+	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH, testMonitor)
+	if err != nil || httpresp.StatusCode != 200 {
+		t.Errorf("Error creating Monitor %v: Status: %v: %v", testMonitor, httpresp.StatusCode, err)
+	}
+	monitorId := monitor.GetId()
+	defer deleteMonitor(monitorId)
+
+	start := time.Now()
+	testDowntime := datadog.Downtime{
+		Message:  datadog.PtrString("Testing downtime with monitor from Go client"),
+		Start:    datadog.PtrInt64(start.Unix()),
+		Timezone: datadog.PtrString("Etc/UTC"),
+		Scope:    &[]string{"*"},
+		MonitorId: &datadog.NullableInt64{
+			Value: monitorId,
+		},
+	}
+
+	// Create downtime
+	downtime, httpresp, err := TESTAPICLIENT.DowntimesApi.CreateDowntime(TESTAUTH, testDowntime)
+	if err != nil || httpresp.StatusCode != 200 {
+		t.Errorf("Error creating Downtime %v: Status: %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer cancelDowntime(downtime.GetId())
+
+	assert.Equal(t, downtime.GetMonitorId().Value, monitorId)
+}
+
 func cancelDowntime(downtimeId int64) {
 	httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntime(TESTAUTH, downtimeId)
 	if err != nil {
