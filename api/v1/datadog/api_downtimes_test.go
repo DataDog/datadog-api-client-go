@@ -102,6 +102,57 @@ func TestMonitorDowntime(t *testing.T) {
 	assert.Equal(t, downtime.GetMonitorId().Value, monitorId)
 }
 
+func TestScopedDowntime(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	start := time.Now()
+	testDowntimes := []datadog.Downtime{{
+		Message:  datadog.PtrString("Testing scope downtime: client, go"),
+		Start:    datadog.PtrInt64(start.Unix()),
+		Timezone: datadog.PtrString("Etc/UTC"),
+		Scope:    &[]string{"test:client", "test:go"},
+	}, {
+		Message:  datadog.PtrString("Testing scope downtime: go"),
+		Start:    datadog.PtrInt64(start.Unix()),
+		Timezone: datadog.PtrString("Etc/UTC"),
+		Scope:    &[]string{"test:go"},
+	}, {
+		Message:  datadog.PtrString("Testing scope downtime: client"),
+		Start:    datadog.PtrInt64(start.Unix()),
+		Timezone: datadog.PtrString("Etc/UTC"),
+		Scope:    &[]string{"test:client"},
+	},
+	}
+
+	// Create downtimes
+	downtimes := make([]datadog.Downtime, len(testDowntimes))
+	for i, testDowntime := range testDowntimes {
+		downtime, httpresp, err := TESTAPICLIENT.DowntimesApi.CreateDowntime(TESTAUTH, testDowntime)
+		if err != nil || httpresp.StatusCode != 200 {
+			t.Errorf("Error creating Downtime %v: Status: %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
+		}
+		defer cancelDowntime(downtime.GetId())
+
+		assert.Assert(t, !downtime.GetDisabled())
+		downtimes[i] = downtime
+	}
+
+	// Cancel downtimes with a scope "test:go"
+	scope := "test:go"
+	cancelDowntimesByScopeRequest := datadog.CancelDowntimesByScopeRequest{
+		Scope: scope,
+	}
+	canceledDowntimesIds, httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntimesByScope(TESTAUTH, cancelDowntimesByScopeRequest)
+	if httpresp.StatusCode != 200 || err != nil {
+		t.Errorf("Error canceling downtimes by scope %s: %v", scope, err)
+	}
+
+	canceledIds := canceledDowntimesIds.GetCancelledIds()
+	expectedCanceledIds := []int64{downtimes[1].GetId()}
+	assert.DeepEqual(t, canceledIds, expectedCanceledIds)
+}
+
 func cancelDowntime(downtimeId int64) {
 	httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntime(TESTAUTH, downtimeId)
 	if err != nil {
