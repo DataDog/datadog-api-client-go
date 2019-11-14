@@ -1,4 +1,4 @@
-module /DataDog/datadog-api-client-go/datadog_v1
+module github.com/DataDog/datadog-api-client-go/datadog_v1
 
 go 1.13
 
