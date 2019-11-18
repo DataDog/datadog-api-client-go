@@ -67,28 +67,18 @@ func setupGock(t *testing.T, fixtureFile string, method string, uriPath string) 
 	if err != nil {
 		t.Errorf("Failed to open fixture file: %s", err)
 	}
+	x := gock.New("https://api.datadoghq.com/api/v1")
 	switch strings.ToLower(method) {
 	case "get":
-		gock.New("https://api.datadoghq.com/api/v1").
-			Get(uriPath).
-			Reply(200).
-			JSON(dat)
+		x.Get(uriPath)
 	case "post":
-		gock.New("https://api.datadoghq.com/api/v1").
-			Post(uriPath).
-			Reply(200).
-			JSON(dat)
+		x.Post(uriPath)
 	case "put":
-		gock.New("https://api.datadoghq.com/api/v1").
-			Put(uriPath).
-			Reply(200).
-			JSON(dat)
+		x.Put(uriPath)
 	case "delete":
-		gock.New("https://api.datadoghq.com/api/v1").
-			Put(uriPath).
-			Reply(200).
-			JSON(dat)
+		x.Put(uriPath)
 	}
 
+	x.Reply(200).JSON(dat)
 	return dat
 }
