@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **Disabled** | Pointer to **bool** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Handle** | Pointer to **string** |  | [optional] 
-**Icon** | Pointer to **string** |  | [optional] 
+**Icon** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
-**Verified** | Pointer to **bool** |  | [optional] 
+**Verified** | Pointer to **bool** |  | [optional] [readonly] 
 
 ## Methods
 

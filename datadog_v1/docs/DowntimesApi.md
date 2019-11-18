@@ -16,6 +16,7 @@ Method | HTTP request | Description
 ## CancelDowntime
 
 > CancelDowntime(ctx, downtimeId)
+
 Cancel a downtime
 
 Cancel a Downtime
@@ -49,6 +50,7 @@ Name | Type | Description  | Notes
 ## CancelDowntimesByScope
 
 > CanceledDowntimesIds CancelDowntimesByScope(ctx, cancelDowntimesByScopeRequest)
+
 Cancel downtimes by scope
 
 ### Overview
@@ -86,6 +88,7 @@ Name | Type | Description  | Notes
 ## CreateDowntime
 
 > Downtime CreateDowntime(ctx, downtime)
+
 Schedule a downtime
 
 * **`scope`** [*required*]: The scope(s) to which the downtime applies, e.g. `host:app2`.
@@ -159,6 +162,7 @@ Name | Type | Description  | Notes
 ## GetAllDowntimes
 
 > []Downtime GetAllDowntimes(ctx, optional)
+
 Get all downtimes
 
 ### Overview
@@ -205,6 +209,7 @@ Name | Type | Description  | Notes
 ## GetDowntime
 
 > Downtime GetDowntime(ctx, downtimeId)
+
 Get a downtime
 
 ### Overview
@@ -241,6 +246,7 @@ Name | Type | Description  | Notes
 ## UpdateDowntime
 
 > Downtime UpdateDowntime(ctx, downtimeId, downtime)
+
 Update a downtime
 
 ### Overview

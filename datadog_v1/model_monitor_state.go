@@ -9,19 +9,18 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // MonitorState struct for MonitorState
 type MonitorState struct {
-	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
-
-	MonitorId *int64 `json:"monitor_id,omitempty"`
-
-	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
+	Groups       *map[string]MonitorStateGroup `json:"groups,omitempty"`
+	MonitorId    *int64                        `json:"monitor_id,omitempty"`
+	OverallState *MonitorOverallStates         `json:"overall_state,omitempty"`
 }
 
-// GetGroups returns the Groups field if non-nil, zero value otherwise.
+// GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 	if o == nil || o.Groups == nil {
 		var ret map[string]MonitorStateGroup
@@ -30,7 +29,7 @@ func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 	return *o.Groups
 }
 
-// GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
+// GetGroupsOk returns a tuple with the Groups field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorState) GetGroupsOk() (map[string]MonitorStateGroup, bool) {
 	if o == nil || o.Groups == nil {
@@ -54,7 +53,7 @@ func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup) {
 	o.Groups = &v
 }
 
-// GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
+// GetMonitorId returns the MonitorId field value if set, zero value otherwise.
 func (o *MonitorState) GetMonitorId() int64 {
 	if o == nil || o.MonitorId == nil {
 		var ret int64
@@ -63,7 +62,7 @@ func (o *MonitorState) GetMonitorId() int64 {
 	return *o.MonitorId
 }
 
-// GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
+// GetMonitorIdOk returns a tuple with the MonitorId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorState) GetMonitorIdOk() (int64, bool) {
 	if o == nil || o.MonitorId == nil {
@@ -87,7 +86,7 @@ func (o *MonitorState) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
-// GetOverallState returns the OverallState field if non-nil, zero value otherwise.
+// GetOverallState returns the OverallState field value if set, zero value otherwise.
 func (o *MonitorState) GetOverallState() MonitorOverallStates {
 	if o == nil || o.OverallState == nil {
 		var ret MonitorOverallStates
@@ -96,7 +95,7 @@ func (o *MonitorState) GetOverallState() MonitorOverallStates {
 	return *o.OverallState
 }
 
-// GetOverallStateOk returns a tuple with the OverallState field if it's non-nil, zero value otherwise
+// GetOverallStateOk returns a tuple with the OverallState field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *MonitorState) GetOverallStateOk() (MonitorOverallStates, bool) {
 	if o == nil || o.OverallState == nil {
@@ -120,17 +119,25 @@ func (o *MonitorState) SetOverallState(v MonitorOverallStates) {
 	o.OverallState = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o MonitorState) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Groups != nil {
-		toSerialize["groups"] = o.Groups
+type NullableMonitorState struct {
+	Value        MonitorState
+	ExplicitNull bool
+}
+
+func (v NullableMonitorState) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.MonitorId != nil {
-		toSerialize["monitor_id"] = o.MonitorId
+}
+
+func (v *NullableMonitorState) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.OverallState != nil {
-		toSerialize["overall_state"] = o.OverallState
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

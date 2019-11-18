@@ -9,25 +9,21 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // AwsAccount struct for AwsAccount
 type AwsAccount struct {
-	AccessKeyId *string `json:"access_key_id,omitempty"`
-
-	AccountId *string `json:"account_id,omitempty"`
-
+	AccessKeyId                   *string          `json:"access_key_id,omitempty"`
+	AccountId                     *string          `json:"account_id,omitempty"`
 	AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
-
-	FilterTags *[]string `json:"filter_tags,omitempty"`
-
-	HostTags *[]string `json:"host_tags,omitempty"`
-
-	RoleName *string `json:"role_name,omitempty"`
+	FilterTags                    *[]string        `json:"filter_tags,omitempty"`
+	HostTags                      *[]string        `json:"host_tags,omitempty"`
+	RoleName                      *string          `json:"role_name,omitempty"`
 }
 
-// GetAccessKeyId returns the AccessKeyId field if non-nil, zero value otherwise.
+// GetAccessKeyId returns the AccessKeyId field value if set, zero value otherwise.
 func (o *AwsAccount) GetAccessKeyId() string {
 	if o == nil || o.AccessKeyId == nil {
 		var ret string
@@ -36,7 +32,7 @@ func (o *AwsAccount) GetAccessKeyId() string {
 	return *o.AccessKeyId
 }
 
-// GetAccessKeyIdOk returns a tuple with the AccessKeyId field if it's non-nil, zero value otherwise
+// GetAccessKeyIdOk returns a tuple with the AccessKeyId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *AwsAccount) GetAccessKeyIdOk() (string, bool) {
 	if o == nil || o.AccessKeyId == nil {
@@ -60,7 +56,7 @@ func (o *AwsAccount) SetAccessKeyId(v string) {
 	o.AccessKeyId = &v
 }
 
-// GetAccountId returns the AccountId field if non-nil, zero value otherwise.
+// GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AwsAccount) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
 		var ret string
@@ -69,7 +65,7 @@ func (o *AwsAccount) GetAccountId() string {
 	return *o.AccountId
 }
 
-// GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
+// GetAccountIdOk returns a tuple with the AccountId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *AwsAccount) GetAccountIdOk() (string, bool) {
 	if o == nil || o.AccountId == nil {
@@ -93,7 +89,7 @@ func (o *AwsAccount) SetAccountId(v string) {
 	o.AccountId = &v
 }
 
-// GetAccountSpecificNamespaceRules returns the AccountSpecificNamespaceRules field if non-nil, zero value otherwise.
+// GetAccountSpecificNamespaceRules returns the AccountSpecificNamespaceRules field value if set, zero value otherwise.
 func (o *AwsAccount) GetAccountSpecificNamespaceRules() map[string]bool {
 	if o == nil || o.AccountSpecificNamespaceRules == nil {
 		var ret map[string]bool
@@ -102,7 +98,7 @@ func (o *AwsAccount) GetAccountSpecificNamespaceRules() map[string]bool {
 	return *o.AccountSpecificNamespaceRules
 }
 
-// GetAccountSpecificNamespaceRulesOk returns a tuple with the AccountSpecificNamespaceRules field if it's non-nil, zero value otherwise
+// GetAccountSpecificNamespaceRulesOk returns a tuple with the AccountSpecificNamespaceRules field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *AwsAccount) GetAccountSpecificNamespaceRulesOk() (map[string]bool, bool) {
 	if o == nil || o.AccountSpecificNamespaceRules == nil {
@@ -126,7 +122,7 @@ func (o *AwsAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
 	o.AccountSpecificNamespaceRules = &v
 }
 
-// GetFilterTags returns the FilterTags field if non-nil, zero value otherwise.
+// GetFilterTags returns the FilterTags field value if set, zero value otherwise.
 func (o *AwsAccount) GetFilterTags() []string {
 	if o == nil || o.FilterTags == nil {
 		var ret []string
@@ -135,7 +131,7 @@ func (o *AwsAccount) GetFilterTags() []string {
 	return *o.FilterTags
 }
 
-// GetFilterTagsOk returns a tuple with the FilterTags field if it's non-nil, zero value otherwise
+// GetFilterTagsOk returns a tuple with the FilterTags field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *AwsAccount) GetFilterTagsOk() ([]string, bool) {
 	if o == nil || o.FilterTags == nil {
@@ -159,7 +155,7 @@ func (o *AwsAccount) SetFilterTags(v []string) {
 	o.FilterTags = &v
 }
 
-// GetHostTags returns the HostTags field if non-nil, zero value otherwise.
+// GetHostTags returns the HostTags field value if set, zero value otherwise.
 func (o *AwsAccount) GetHostTags() []string {
 	if o == nil || o.HostTags == nil {
 		var ret []string
@@ -168,7 +164,7 @@ func (o *AwsAccount) GetHostTags() []string {
 	return *o.HostTags
 }
 
-// GetHostTagsOk returns a tuple with the HostTags field if it's non-nil, zero value otherwise
+// GetHostTagsOk returns a tuple with the HostTags field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *AwsAccount) GetHostTagsOk() ([]string, bool) {
 	if o == nil || o.HostTags == nil {
@@ -192,7 +188,7 @@ func (o *AwsAccount) SetHostTags(v []string) {
 	o.HostTags = &v
 }
 
-// GetRoleName returns the RoleName field if non-nil, zero value otherwise.
+// GetRoleName returns the RoleName field value if set, zero value otherwise.
 func (o *AwsAccount) GetRoleName() string {
 	if o == nil || o.RoleName == nil {
 		var ret string
@@ -201,7 +197,7 @@ func (o *AwsAccount) GetRoleName() string {
 	return *o.RoleName
 }
 
-// GetRoleNameOk returns a tuple with the RoleName field if it's non-nil, zero value otherwise
+// GetRoleNameOk returns a tuple with the RoleName field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *AwsAccount) GetRoleNameOk() (string, bool) {
 	if o == nil || o.RoleName == nil {
@@ -225,26 +221,25 @@ func (o *AwsAccount) SetRoleName(v string) {
 	o.RoleName = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o AwsAccount) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AccessKeyId != nil {
-		toSerialize["access_key_id"] = o.AccessKeyId
+type NullableAwsAccount struct {
+	Value        AwsAccount
+	ExplicitNull bool
+}
+
+func (v NullableAwsAccount) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.AccountId != nil {
-		toSerialize["account_id"] = o.AccountId
+}
+
+func (v *NullableAwsAccount) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	if o.AccountSpecificNamespaceRules != nil {
-		toSerialize["account_specific_namespace_rules"] = o.AccountSpecificNamespaceRules
-	}
-	if o.FilterTags != nil {
-		toSerialize["filter_tags"] = o.FilterTags
-	}
-	if o.HostTags != nil {
-		toSerialize["host_tags"] = o.HostTags
-	}
-	if o.RoleName != nil {
-		toSerialize["role_name"] = o.RoleName
-	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }
