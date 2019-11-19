@@ -9,56 +9,49 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // CancelDowntimesByScopeRequest struct for CancelDowntimesByScopeRequest
 type CancelDowntimesByScopeRequest struct {
-	Scope *string `json:"scope,omitempty"`
+	Scope string `json:"scope"`
 }
 
-// GetScope returns the Scope field if non-nil, zero value otherwise.
+// GetScope returns the Scope field value
 func (o *CancelDowntimesByScopeRequest) GetScope() string {
-	if o == nil || o.Scope == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Scope
+
+	return o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelDowntimesByScopeRequest) GetScopeOk() (string, bool) {
-	if o == nil || o.Scope == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Scope, true
-}
-
-// HasScope returns a boolean if a field has been set.
-func (o *CancelDowntimesByScopeRequest) HasScope() bool {
-	if o != nil && o.Scope != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetScope gets a reference to the given string and assigns it to the Scope field.
+// SetScope sets field value
 func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
-	o.Scope = &v
+	o.Scope = v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Scope == nil {
-		return nil, errors.New("Scope is required and not nullable, but was not set on CancelDowntimesByScopeRequest")
+type NullableCancelDowntimesByScopeRequest struct {
+	Value        CancelDowntimesByScopeRequest
+	ExplicitNull bool
+}
+
+func (v NullableCancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Scope != nil {
-		toSerialize["scope"] = o.Scope
+}
+
+func (v *NullableCancelDowntimesByScopeRequest) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

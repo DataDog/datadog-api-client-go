@@ -16,6 +16,7 @@ Method | HTTP request | Description
 ## CreateMonitor
 
 > Monitor CreateMonitor(ctx, monitor)
+
 Create a new Monitor
 
 ### Overview
@@ -52,6 +53,7 @@ Name | Type | Description  | Notes
 ## DeleteMonitor
 
 > map[string]int64 DeleteMonitor(ctx, monitorId)
+
 Delete the specified monitor.
 
 ### Overview
@@ -88,6 +90,7 @@ Name | Type | Description  | Notes
 ## EditMonitor
 
 > Monitor EditMonitor(ctx, monitorId, monitor)
+
 Edit the specified monitor
 
 ### Overview
@@ -125,6 +128,7 @@ Name | Type | Description  | Notes
 ## GetAllMonitors
 
 > []Monitor GetAllMonitors(ctx, optional)
+
 Get details about the specified monitor.
 
 ### Overview
@@ -178,6 +182,7 @@ Name | Type | Description  | Notes
 ## GetMonitor
 
 > Monitor GetMonitor(ctx, monitorId, optional)
+
 Get details about the specified monitor.
 
 ### Overview
@@ -226,6 +231,7 @@ Name | Type | Description  | Notes
 ## ValidateMonitor
 
 > Monitor ValidateMonitor(ctx, monitor)
+
 
 
 ### Overview

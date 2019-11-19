@@ -15,6 +15,7 @@ Method | HTTP request | Description
 ## CreateUser
 
 > UserResponse CreateUser(ctx, user)
+
 Create user
 
 ### Overview
@@ -62,6 +63,7 @@ Name | Type | Description  | Notes
 ## DisableUser
 
 > UserDisableResponse DisableUser(ctx, userHandle)
+
 Disable user
 
 ### Overview
@@ -100,6 +102,7 @@ Name | Type | Description  | Notes
 ## GetAllUsers
 
 > UserListResponse GetAllUsers(ctx, )
+
 Get all users
 
 ### Overview
@@ -132,6 +135,7 @@ This endpoint does not need any parameter.
 ## GetUser
 
 > UserResponse GetUser(ctx, userHandle)
+
 Get user
 
 ### Overview
@@ -168,6 +172,7 @@ Name | Type | Description  | Notes
 ## UpdateUser
 
 > UserResponse UpdateUser(ctx, userHandle, user)
+
 Update user
 
 ### Overview

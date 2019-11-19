@@ -11,7 +11,7 @@ import (
 )
 
 var TESTAWSACC = datadog.AwsAccount{
-	AccountId:                     datadog.PtrString("1234567_gotest"),
+	AccountId:                     datadog.PtrString("123456789012"),
 	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 	FilterTags:                    &[]string{"testTag", "test:Tag2"},
@@ -19,7 +19,7 @@ var TESTAWSACC = datadog.AwsAccount{
 }
 
 var TESTUPDATEAWSACC = datadog.AwsAccount{
-	AccountId:                     datadog.PtrString("1234567_gotest"),
+	AccountId:                     datadog.PtrString("123456789012"),
 	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},

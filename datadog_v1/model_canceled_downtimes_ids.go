@@ -9,28 +9,29 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
 // CanceledDowntimesIds struct for CanceledDowntimesIds
 type CanceledDowntimesIds struct {
-	CancelledIds *[]int32 `json:"cancelled_ids,omitempty"`
+	CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
 }
 
-// GetCancelledIds returns the CancelledIds field if non-nil, zero value otherwise.
-func (o *CanceledDowntimesIds) GetCancelledIds() []int32 {
+// GetCancelledIds returns the CancelledIds field value if set, zero value otherwise.
+func (o *CanceledDowntimesIds) GetCancelledIds() []int64 {
 	if o == nil || o.CancelledIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CancelledIds
 }
 
-// GetCancelledIdsOk returns a tuple with the CancelledIds field if it's non-nil, zero value otherwise
+// GetCancelledIdsOk returns a tuple with the CancelledIds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *CanceledDowntimesIds) GetCancelledIdsOk() ([]int32, bool) {
+func (o *CanceledDowntimesIds) GetCancelledIdsOk() ([]int64, bool) {
 	if o == nil || o.CancelledIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret, false
 	}
 	return *o.CancelledIds, true
@@ -45,16 +46,30 @@ func (o *CanceledDowntimesIds) HasCancelledIds() bool {
 	return false
 }
 
-// SetCancelledIds gets a reference to the given []int32 and assigns it to the CancelledIds field.
-func (o *CanceledDowntimesIds) SetCancelledIds(v []int32) {
+// SetCancelledIds gets a reference to the given []int64 and assigns it to the CancelledIds field.
+func (o *CanceledDowntimesIds) SetCancelledIds(v []int64) {
 	o.CancelledIds = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CancelledIds != nil {
-		toSerialize["cancelled_ids"] = o.CancelledIds
+type NullableCanceledDowntimesIds struct {
+	Value        CanceledDowntimesIds
+	ExplicitNull bool
+}
+
+func (v NullableCanceledDowntimesIds) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableCanceledDowntimesIds) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }

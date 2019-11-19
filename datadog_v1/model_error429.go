@@ -9,56 +9,49 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
-	"errors"
 )
 
 // Error429 struct for Error429
 type Error429 struct {
-	Errors *[]string `json:"errors,omitempty"`
+	Errors []string `json:"errors"`
 }
 
-// GetErrors returns the Errors field if non-nil, zero value otherwise.
+// GetErrors returns the Errors field value
 func (o *Error429) GetErrors() []string {
-	if o == nil || o.Errors == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Errors
+
+	return o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *Error429) GetErrorsOk() ([]string, bool) {
-	if o == nil || o.Errors == nil {
-		var ret []string
-		return ret, false
-	}
-	return *o.Errors, true
-}
-
-// HasErrors returns a boolean if a field has been set.
-func (o *Error429) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetErrors gets a reference to the given []string and assigns it to the Errors field.
+// SetErrors sets field value
 func (o *Error429) SetErrors(v []string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o Error429) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Errors == nil {
-		return nil, errors.New("Errors is required and not nullable, but was not set on Error429")
+type NullableError429 struct {
+	Value        Error429
+	ExplicitNull bool
+}
+
+func (v NullableError429) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	if o.Errors != nil {
-		toSerialize["errors"] = o.Errors
+}
+
+func (v *NullableError429) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
 	}
-	return json.Marshal(toSerialize)
+
+	return json.Unmarshal(src, &v.Value)
 }

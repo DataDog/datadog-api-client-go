@@ -9,6 +9,7 @@
 package datadog_v1
 
 import (
+	"bytes"
 	"encoding/json"
 )
 
@@ -17,7 +18,7 @@ type UserResponse struct {
 	User *User `json:"user,omitempty"`
 }
 
-// GetUser returns the User field if non-nil, zero value otherwise.
+// GetUser returns the User field value if set, zero value otherwise.
 func (o *UserResponse) GetUser() User {
 	if o == nil || o.User == nil {
 		var ret User
@@ -26,7 +27,7 @@ func (o *UserResponse) GetUser() User {
 	return *o.User
 }
 
-// GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
+// GetUserOk returns a tuple with the User field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *UserResponse) GetUserOk() (User, bool) {
 	if o == nil || o.User == nil {
@@ -50,11 +51,25 @@ func (o *UserResponse) SetUser(v User) {
 	o.User = &v
 }
 
-// MarshalJSON returns the JSON representation of the model.
-func (o UserResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.User != nil {
-		toSerialize["user"] = o.User
+type NullableUserResponse struct {
+	Value        UserResponse
+	ExplicitNull bool
+}
+
+func (v NullableUserResponse) MarshalJSON() ([]byte, error) {
+	switch {
+	case v.ExplicitNull:
+		return []byte("null"), nil
+	default:
+		return json.Marshal(v.Value)
 	}
-	return json.Marshal(toSerialize)
+}
+
+func (v *NullableUserResponse) UnmarshalJSON(src []byte) error {
+	if bytes.Equal(src, []byte("null")) {
+		v.ExplicitNull = true
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.Value)
 }
