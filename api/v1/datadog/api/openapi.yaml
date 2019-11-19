@@ -1,0 +1,1859 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  description: Collection of all Datadog Public endpoints.
+  title: Datadog API Collection
+  version: "1.0"
+servers:
+- url: https://api.datadoghq.com
+security:
+- apiKeyAuth: []
+  appKeyAuth: []
+tags:
+- description: AWS Integration API
+  externalDocs:
+    url: https://docs.datadoghq.com/api/?lang=bash#integration-aws
+  name: AWSIntegration
+- description: '[Downtiming](https://docs.datadoghq.com/monitors/downtimes) gives
+    you greater control over monitor notifications by allowing you to globally exclude
+    scopes from alerting. Downtime settings, which can be scheduled with start and
+    end times, prevent all alerting related to specified Datadog tags.'
+  name: Downtimes
+- description: |-
+    Create, edit, and disable users. [Read more about your team management][1]
+    [1]: https://docs.datadoghq.com/account_management/team
+  name: Users
+paths:
+  /api/v1/downtime:
+    get:
+      description: |-
+        ### Overview
+        Get All Scheduled Downtimes
+        ### Arguments
+        * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes
+          that are active when the request is made.'
+      operationId: GetAllDowntimes
+      parameters:
+      - explode: true
+        in: query
+        name: current_only
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Downtime'
+                type: array
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Get all downtimes
+      tags:
+      - Downtimes
+    post:
+      description: |-
+        * **`scope`** [*required*]: The scope(s) to which the downtime applies, e.g. `host:app2`.
+          Provide multiple scopes as a comma-separated list, e.g. `env:dev,env:prod`. The
+          resulting downtime applies to sources that matches ALL provided scopes (i.e.
+          `env:dev` **AND** `env:prod`), NOT any of them.
+
+        * **`monitor_tags`** [*optional*, *default*=**no monitor tag filter**]: A comma-separated
+          list of monitor tags, i.e. tags that are applied directly to monitors, *not* tags
+          that are used in monitor queries (which are filtered by the `scope` parameter), to
+          which the downtime applies. The resulting downtime applies to monitors that match
+          ALL provided monitor tags (i.e. `service:postgres` **AND** `team:frontend`), NOT any of them.
+
+        * **`monitor_id`** [*optional*, *default*=**None**]: A single monitor to which the downtime
+          applies. If not provided, the downtime applies to all monitors.
+
+        * **`start`** [*optional*, *default*=**None**]: POSIX timestamp to start the downtime.
+          If not provided, the downtime starts the moment it is created.
+
+        * **`end`** [*optional*, *default*=**None**]: POSIX timestamp to end the downtime.
+          If not provided, the downtime is in effect indefinitely (i.e. until you cancel it).
+
+        * **`message`** [*optional*, *default*=**None**]: A message to include with notifications
+          for this downtime. Email notifications can be sent to specific users by using
+           the same '@username' notation as events
+
+        * **`timezone`** [*optional*, *default* = **UTC**]: The timezone for the downtime.
+        * **`recurrence`** [*optional*, *default*=**None**]: An object defining the recurrence of the
+          downtime with a variety of parameters:
+
+          * **`type`** the type of recurrence. Choose from: `days`, `weeks`, `months`, `years`.
+
+          * **`period`** how often to repeat as an integer. For example to repeat every 3 days,
+            select a type of `days` and a period of `3`.
+
+          * **`week_days`** (optional) a list of week days to repeat on. Choose from: `Mon`,
+            `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. Only applicable when `type` is `weeks`.
+            **First letter must be capitalized.**
+          * **`until_occurrences`** (optional) how many times the downtime is rescheduled.
+            **`until_occurrences` and `until_date`** are mutually exclusive
+
+          * **`until_date`** (optional) the date at which the recurrence should end
+            as a POSIX timestmap. **`until_occurrences` and `until_date`** are mutually exclusive
+      operationId: CreateDowntime
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Downtime'
+        description: Downtime request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Downtime'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Schedule a downtime
+      tags:
+      - Downtimes
+  /api/v1/downtime/cancel/by_scope:
+    post:
+      description: |-
+        ### Overview
+        DELETE all Downtimes that match the scope of X
+        ### Arguments
+        * **`scope`** [*required*]: Cancel all downtimes with the given scope(s),
+          e.g.: `env:prod`, `role:db,role:db-slave`
+      operationId: CancelDowntimesByScope
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelDowntimesByScopeRequest'
+        description: Scope to cancel downtimes for
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CanceledDowntimesIds'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: No downtimes found error
+      summary: Cancel downtimes by scope
+      tags:
+      - Downtimes
+  /api/v1/downtime/{downtime_id}:
+    delete:
+      description: Cancel a Downtime
+      operationId: CancelDowntime
+      parameters:
+      - description: ID of the downtime to cancel
+        explode: false
+        in: path
+        name: downtime_id
+        required: true
+        schema:
+          example: 123456
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        204:
+          description: OK
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Downtime not found error
+      summary: Cancel a downtime
+      tags:
+      - Downtimes
+    get:
+      description: |-
+        ### Overview
+        Get Downtime Detail by downtime_id
+        ### Arguments
+        This endpoint takes no JSON arguments."
+      operationId: GetDowntime
+      parameters:
+      - description: ID of the downtime to fetch
+        explode: false
+        in: path
+        name: downtime_id
+        required: true
+        schema:
+          example: 123456
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Downtime'
+          description: OK
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Downtime not found error
+      summary: Get a downtime
+      tags:
+      - Downtimes
+    put:
+      description: |-
+        ### Overview
+        Update a single Downtime by downtime_id.
+        ### Arguments
+        * **`id`** [*required*]: The integer id of the downtime to be updated
+        * **`scope`** [*required*]: The scope to which the downtime applies, e.g. 'host:app2'.
+          Provide multiple scopes as a comma-separated list, e.g. 'env:dev,env:prod'.
+          The resulting downtime applies to sources that matches ALL provided scopes
+          (i.e. env:dev AND env:prod), NOT any of them.
+
+        * **`monitor_tags`** [*optional*, *default*=**no monitor tag filter**]: A comma-separated
+          list of monitor tags, i.e. tags that are applied directly to monitors, *not* tags that
+          are used in monitor queries (which are filtered by the `scope` parameter), to which
+          the downtime applies. The resulting downtime applies to monitors that match ALL provided
+          monitor tags (i.e. `service:postgres` **AND** `team:frontend`), NOT any of them.
+
+        * **`monitor_id`** [*optional*, *default*=**None**]: A single monitor to which the downtime
+          applies. If not provided, the downtime applies to all monitors.
+
+        * **`start`** [*optional*, *default* = **original start**]: POSIX timestamp to start
+          the downtime.
+
+        * **`end`** [*optional*, *default* = **original end**]: POSIX timestamp to end the downtime.
+          If not provided, the downtime is in effect indefinitely (i.e. until you cancel it).
+
+        * **`message`** [*required*, *default* = **original message**]: A message to include with
+          notifications for this downtime. Email notifications can be sent to specific users by
+          using the same '@username' notation as events
+
+        * **`timezone`** [*optional*, default = **original timezone** ]: The timezone for the downtime.
+        * **`recurrence`** [*optional*, *default* = **original recurrence**]: An object defining the
+          recurrence of the downtime with a variety of parameters:
+
+            * **`type`** the type of recurrence. Choose from: `days`, `weeks`, `months`, `years`.
+
+            * **`period`** how often to repeat as an integer. For example to repeat every 3 days,
+              select a type of `days` and a period of `3`.
+
+            * **`week_days`** (optional) a list of week days to repeat on. Choose from: `Mon`, `Tue`,
+              `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. Only applicable when `type` is `weeks`.
+              **First letter must be capitalized.**
+
+            * **`until_occurrences`** (optional) how many times the downtime is rescheduled.
+              **`until_occurrences` and `until_date`** are mutually exclusive
+
+            * **`until_date`** (optional) the date at which the recurrence should end as a POSIX
+              timestmap. **`until_occurrences` and `until_date`** are mutually exclusive
+      operationId: UpdateDowntime
+      parameters:
+      - description: ID of the downtime to update
+        explode: false
+        in: path
+        name: downtime_id
+        required: true
+        schema:
+          example: 123456
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Downtime'
+        description: Downtime request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Downtime'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Downtime not found error
+      summary: Update a downtime
+      tags:
+      - Downtimes
+  /api/v1/integration/aws:
+    delete:
+      description: |-
+        ### Overview
+        Delete the AWS Account matching the specified account_id and role_name parameters
+        ### Arguments
+        * **`account_id`** [*required*, *default* = **None**]: Delete the AWS account that
+          matches this account_id.
+
+        * **`role_name`** [*required*, *default* = **None**]: Delete the AWS account that
+          matches this role_name.
+      operationId: DeleteAWSAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSAccount'
+        description: AWS request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Item Not Found
+      summary: Delete an AWS Account
+      tags:
+      - AWSIntegration
+    get:
+      description: |-
+        ### Overview
+        Get All Installed AWS Accounts
+        ### Arguments
+        * **`account_id`** [*optional*, *default* = **None**]: Only return AWS accounts that
+          matches this account_id.
+
+        * **`role_name`** [*optional*, *default* = **None**]: Only return AWS accounts that
+          matches this role_name.
+
+        * **`access_key_id`** [*optional*, *default* = **None**]: Only return AWS accounts that
+          matches this access_key_id.
+      operationId: GetAllAWSAccounts
+      parameters:
+      - description: Only return AWS accounts that matches this account_id.
+        explode: true
+        in: query
+        name: account_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only return AWS accounts that matches this role_name.
+        explode: true
+        in: query
+        name: role_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only return AWS accounts that matches this access_key_id.
+        explode: true
+        in: query
+        name: access_key_id
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AWSAccountListResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Item Not Found
+      summary: Get Installed AWS Accounts
+      tags:
+      - AWSIntegration
+    post:
+      description: |-
+        ### Overview
+        Create the AWS Account with the provided values
+        ### Arguments
+        * **`account_id`** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS
+          integration to learn more about your AWS account ID.
+
+        * **`role_name`** [*required*]: Your Datadog role delegation name. For more information about you
+          AWS account Role name, see the Datadog AWS integration configuration info.
+
+        * **`access_key_id`** [*optional*, *default* = **None**]: If your AWS account is a GovCloud or
+          China account, enter the corresponding Access Key ID.
+
+        * **`filter_tags`** [*optional*, *default* = **None**]: The array of EC2 tags (in the form key:value)
+          defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?
+          (for single characters) and * (for multiple characters) can also be used. Only hosts that match one
+          of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given
+          tag can also be excluded by adding ! before the tag.
+          e.x. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,
+          see the AWS tagging documentation
+
+        * **`host_tags`** [*optional*, *default* = **None**]: Array of tags (in the form key:value) to add
+          to all hosts and metrics reporting through this integration.
+
+        * **`account_specific_namespace_rules`** [*optional*, *default* = **None**]: An object (in the form
+          {"namespace1":true/false, "namespace2":true/false}) that enables or disables metric collection for
+          specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
+          /v1/integration/aws/available_namespace_rules endpoint.
+      operationId: CreateAWSAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSAccount'
+        description: AWS request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AWSAccountCreateResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Create an AWS Account
+      tags:
+      - AWSIntegration
+    put:
+      description: |-
+        ### Overview
+        Update the AWS Account based on the provided values
+        ### Arguments
+        * **`account_id`** [*required if role_name is specified*, *default* = **None**]: Only return AWS accounts that
+          matches this account_id.
+
+        * **`role_name`** [*required if account_id is specified*, *default* = **None**]: Only return AWS accounts that
+          matches this role_name.
+
+        * **`access_key_id`** [*required if none of the other two options are specified*, *default* = **None**]: Only return AWS accounts that
+          matches this access_key_id.
+
+        ### Payload
+        * **`account_id`** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS
+          integration to learn more about your AWS account ID.
+
+        * **`role_name`** [*required*]: Your Datadog role delegation name. For more information about you
+          AWS account Role name, see the Datadog AWS integration configuration info.
+
+        * **`access_key_id`** [*optional*, *default* = **None**]: If your AWS account is a GovCloud or
+          China account, enter the corresponding Access Key ID.
+
+        * **`filter_tags`** [*optional*, *default* = **None**]: The array of EC2 tags (in the form key:value)
+          defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?
+          (for single characters) and * (for multiple characters) can also be used. Only hosts that match one
+          of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given
+          tag can also be excluded by adding ! before the tag.
+          e.g. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,
+          see the AWS tagging documentation.
+
+        * **`host_tags`** [*optional*, *default* = **None**]: Array of tags (in the form key:value) to add
+          to all hosts and metrics reporting through this integration.
+
+        * **`account_specific_namespace_rules`** [*optional*, *default* = **None**]: An object (in the form
+          {"namespace1":true/false, "namespace2":true/false}) that enables or disables metric collection for
+          specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
+          /v1/integration/aws/available_namespace_rules endpoint.
+      operationId: UpdateAWSAccount
+      parameters:
+      - explode: true
+        in: query
+        name: account_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: role_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: access_key_id
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSAccount'
+        description: AWS request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              example: {}
+              schema:
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Update an AWS Account
+      tags:
+      - AWSIntegration
+  /api/v1/monitor:
+    get:
+      description: |-
+        ### Overview
+        Get details about the specified monitor from your organization.
+        ### Arguments
+        * **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
+        * **`name`** [*optional* *default*==**None**] A string to filter monitors by name
+        * **`tags`** [*optional* *default*==**None**] A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0
+        * **`monitor_tags`** [*optional* *default*==**None**] A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app)
+        * **`with_downtimes`** [*optional* *default*==**true**] If this argument is set to true, then the returned data includes all current downtimes for each monitor.
+      operationId: GetAllMonitors
+      parameters:
+      - description: When specified, shows additional information about the group
+          states. Choose one or more from `all`, `alert`, `warn`, and `no data`.
+        explode: true
+        in: query
+        name: group_states
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: monitor_tags
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: with_downtimes
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Monitor'
+                type: array
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Get details about the specified monitor.
+      tags:
+      - Monitors
+    post:
+      description: |-
+        ### Overview
+        Create a monitor using the specified options
+        ### Arguments
+        * **`Monitor`** [*required*] The Monitor Object to create
+      operationId: CreateMonitor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Monitor'
+        description: Monitor request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Create a new Monitor
+      tags:
+      - Monitors
+  /api/v1/monitor/validate:
+    post:
+      description: |-
+        ### Overview
+        Validate the monitor provided in the request
+        ### Arguments
+        * **`Monitor`** [*required*] The Monitor Object to validate summary: Validate the provided monitor
+      operationId: ValidateMonitor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Monitor'
+        description: Monitor request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Invalid JSON
+      tags:
+      - Monitors
+  /api/v1/monitor/{monitor_id}:
+    delete:
+      description: |-
+        ### Overview
+        Delete the specified monitor
+        ### Arguments
+        * **`monitor_id`** [*required*]: The id of the monitor.
+      operationId: DeleteMonitor
+      parameters:
+      - description: The id of the monitor
+        explode: false
+        in: path
+        name: monitor_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  format: int64
+                  type: integer
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        401:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+          description: Authentication error
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Item not found error
+      summary: Delete the specified monitor.
+      tags:
+      - Monitors
+    get:
+      description: |-
+        ### Overview
+        Get details about the specified monitor from your organization.
+        ### Arguments
+        * **`monitor_id`** [*required*]: The id of the monitor.
+        * **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
+      operationId: GetMonitor
+      parameters:
+      - description: The id of the monitor
+        explode: false
+        in: path
+        name: monitor_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: When specified, shows additional information about the group
+          states. Choose one or more from `all`, `alert`, `warn`, and `no data`.
+        explode: true
+        in: query
+        name: group_states
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Get details about the specified monitor.
+      tags:
+      - Monitors
+    put:
+      description: |-
+        ### Overview
+        Edit the specified monitor.
+        ### Arguments
+        * **`monitor_id`** [*required*]: The id of the monitor.
+      operationId: EditMonitor
+      parameters:
+      - description: The id of the monitor
+        explode: false
+        in: path
+        name: monitor_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Monitor'
+        description: Monitor request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        401:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+          description: Authentication error
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Monitor Not Found error
+      summary: Edit the specified monitor
+      tags:
+      - Monitors
+  /api/v1/user:
+    get:
+      description: |-
+        ### Overview
+        Get all users for your organization.
+        ### Arguments
+        This endpoint takes no JSON argument.
+      operationId: GetAllUsers
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Get all users
+      tags:
+      - Users
+    post:
+      description: |-
+        ### Overview
+        Create a user for your organization.
+        ### Arguments
+        * **`handle`** [*required*]: The user handle, must be a valid email.
+        * **`name`** [*optional*, *default*=**None**]: The name of the user.
+        * **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
+
+          *  **st** (standard user),
+
+          *  **adm** (admin user),
+
+          *  **ro** (read-only user).
+
+          **Note**: users can be created with admin access role
+             only with application keys belonging to administrators.
+      operationId: CreateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: User object that needs to be created
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: User created
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Create user
+      tags:
+      - Users
+  /api/v1/user/{user_handle}:
+    delete:
+      description: |-
+        ### Overview
+        Delete a user from an organization.
+
+        **Note**: This endpoint can only be used with application keys belonging to administrators.
+        ### Arguments
+        * **`id`** [*required*]: The handle of the user.
+      operationId: DisableUser
+      parameters:
+      - description: The handle of the user
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          example: test@datadoghq.com
+          format: email
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            applcation/json:
+              schema:
+                $ref: '#/components/schemas/UserDisableResponse'
+          description: User disabled
+        400:
+          content:
+            applcation/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            applcation/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Disable user
+      tags:
+      - Users
+    get:
+      description: |-
+        ### Overview
+        Get a user details.
+        ### Arguments
+        * **`user_handle`** [*required*]: The handle of the user.
+      operationId: GetUser
+      parameters:
+      - description: The id of the user
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          example: test@datadoghq.com
+          format: email
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: OK for get user
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Get user
+      tags:
+      - Users
+    put:
+      description: |-
+        ### Overview
+        Update a user informations.
+
+        **Note**: It can only be used with application keys belonging to administrators.
+        ### Arguments
+        * **`id`** [*required*]: The handle of the user.
+        * **`name`** [*optional*, *default*=**None**]: The new name of the user.
+        * **`email`** [*optional*, *default*=**None**]: The new email of the user.
+        * **`disabled`** [*optional*, *default*=**None**]: The new disabled status of the user.
+        * **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
+
+          *  **st** (standard user)
+
+          *  **adm** (admin user)
+
+          *  **ro** (read-only user)
+      operationId: UpdateUser
+      parameters:
+      - description: The id of the user
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          example: test@datadoghq.com
+          format: email
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Description of the update
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: User updated
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Update user
+      tags:
+      - Users
+components:
+  callbacks: {}
+  examples: {}
+  headers: {}
+  links: {}
+  parameters: {}
+  requestBodies: {}
+  responses: {}
+  schemas:
+    AWSAccount:
+      example:
+        access_key_id: access_key_id
+        role_name: DatadogAWSIntegrationRole
+        account_id: "1234567"
+        filter_tags:
+        - <KEY>:<VALUE>
+        account_specific_namespace_rules:
+          auto_scaling: false
+        host_tags:
+        - <KEY>:<VALUE>
+      properties:
+        access_key_id:
+          type: string
+        account_id:
+          example: "1234567"
+          type: string
+        account_specific_namespace_rules:
+          additionalProperties:
+            type: boolean
+          example:
+            auto_scaling: false
+          type: object
+        filter_tags:
+          example:
+          - <KEY>:<VALUE>
+          items:
+            type: string
+          type: array
+        host_tags:
+          example:
+          - <KEY>:<VALUE>
+          items:
+            type: string
+          type: array
+        role_name:
+          example: DatadogAWSIntegrationRole
+          type: string
+      type: object
+    AWSAccountCreateResponse:
+      example:
+        external_id: external_id
+      properties:
+        external_id:
+          type: string
+      type: object
+    AWSAccountListResponse:
+      example:
+        accounts:
+        - access_key_id: access_key_id
+          role_name: DatadogAWSIntegrationRole
+          account_id: "1234567"
+          filter_tags:
+          - <KEY>:<VALUE>
+          account_specific_namespace_rules:
+            auto_scaling: false
+          host_tags:
+          - <KEY>:<VALUE>
+        - access_key_id: access_key_id
+          role_name: DatadogAWSIntegrationRole
+          account_id: "1234567"
+          filter_tags:
+          - <KEY>:<VALUE>
+          account_specific_namespace_rules:
+            auto_scaling: false
+          host_tags:
+          - <KEY>:<VALUE>
+      properties:
+        accounts:
+          items:
+            $ref: '#/components/schemas/AWSAccount'
+          type: array
+      type: object
+    CancelDowntimesByScopeRequest:
+      example:
+        scope: host:myserver
+      properties:
+        scope:
+          example: host:myserver
+          type: string
+      required:
+      - scope
+      type: object
+    CanceledDowntimesIds:
+      example:
+        cancelled_ids:
+        - 123456789
+        - 123456790
+      properties:
+        cancelled_ids:
+          example:
+          - 123456789
+          - 123456790
+          items:
+            format: int64
+            type: integer
+          type: array
+      type: object
+    Creator:
+      example:
+        name: name
+        handle: handle
+        email: email
+      properties:
+        email:
+          type: string
+        handle:
+          type: string
+        name:
+          type: string
+      type: object
+    Downtime:
+      example:
+        monitor_id: 123456
+        timezone: America/New_York
+        downtime_type: 2
+        start: 1412792983
+        active: true
+        message: Message on the downtime
+        recurrence:
+          period: 1
+          until_occurrences: 2
+          week_days:
+          - Mon
+          - Tue
+          until_date: 1447786293
+          type: weeks
+        canceled: 1412799983
+        parent_id: 123
+        scope:
+        - env:staging
+        creator_id: 123456
+        updater_id: 123456
+        disabled: false
+        end: 1412793983
+        id: 1625
+        monitor_tags:
+        - '*'
+      properties:
+        active:
+          example: true
+          readOnly: true
+          type: boolean
+        canceled:
+          example: 1412799983
+          format: int64
+          nullable: true
+          readOnly: true
+          type: integer
+        creator_id:
+          example: 123456
+          format: int32
+          readOnly: true
+          type: integer
+        disabled:
+          example: false
+          type: boolean
+        downtime_type:
+          example: 2
+          format: int32
+          readOnly: true
+          type: integer
+        end:
+          example: 1412793983
+          format: int64
+          nullable: true
+          type: integer
+        id:
+          example: 1625
+          format: int64
+          readOnly: true
+          type: integer
+        message:
+          example: Message on the downtime
+          type: string
+        monitor_id:
+          example: 123456
+          format: int64
+          nullable: true
+          type: integer
+        monitor_tags:
+          example:
+          - '*'
+          items:
+            type: string
+          type: array
+        parent_id:
+          example: 123
+          format: int64
+          nullable: true
+          type: integer
+        recurrence:
+          $ref: '#/components/schemas/DowntimeRecurrence'
+        scope:
+          example:
+          - env:staging
+          items:
+            type: string
+          type: array
+        start:
+          example: 1412792983
+          format: int64
+          type: integer
+        timezone:
+          example: America/New_York
+          type: string
+        updater_id:
+          example: 123456
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    DowntimeRecurrence:
+      example:
+        period: 1
+        until_occurrences: 2
+        week_days:
+        - Mon
+        - Tue
+        until_date: 1447786293
+        type: weeks
+      nullable: true
+      properties:
+        period:
+          example: 1
+          format: int32
+          type: integer
+        type:
+          example: weeks
+          type: string
+        until_date:
+          example: 1447786293
+          format: int64
+          nullable: true
+          type: integer
+        until_occurrences:
+          example: 2
+          format: int32
+          nullable: true
+          type: integer
+        week_days:
+          example:
+          - Mon
+          - Tue
+          items:
+            type: string
+          type: array
+      type: object
+    Error400:
+      properties:
+        errors:
+          items:
+            example: Bad Request
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error401:
+      properties:
+        errors:
+          items:
+            example: Unauthorized
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error402:
+      properties:
+        errors:
+          items:
+            example: Payment Required
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error403:
+      properties:
+        errors:
+          items:
+            example: Forbidden
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error404:
+      properties:
+        errors:
+          items:
+            example: Not Found
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error405:
+      properties:
+        errors:
+          items:
+            example: Method Not Allowed
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error409:
+      properties:
+        errors:
+          items:
+            example: Conflict
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error415:
+      properties:
+        errors:
+          items:
+            example: Unsupported Media Type
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error429:
+      properties:
+        errors:
+          items:
+            example: Too Many Requests
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error500:
+      properties:
+        errors:
+          items:
+            example: Internal Server Error
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error503:
+      properties:
+        errors:
+          items:
+            example: Service Unavailable
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Monitor:
+      example:
+        creator:
+          name: name
+          handle: handle
+          email: email
+        created: 2000-01-23T04:56:07.000+00:00
+        query: query
+        message: message
+        type: composite
+        multi: true
+        tags:
+        - tags
+        - tags
+        deleted: 2000-01-23T04:56:07.000+00:00
+        name: name
+        options:
+          no_data_timeframe: 2
+          silenced:
+            key: 9
+          synthetics_check_id: 3
+          notify_no_data: true
+          enable_logs_sample: true
+          aggregation: aggregation
+          evaluation_delay: 6
+          notify_audit: true
+          min_location_failed: 5
+          new_host_delay: 5
+          renotify_interval: 7
+          thresholds:
+            critical: 2.027123
+            warning: 1.0246457
+            warning_recovery: 1.4894159
+            ok: 7.386282
+            critical_recovery: 4.145608
+            unknown: 1.2315135
+          min_failure_duration: 1055
+          threshold_windows:
+            trigger_window: trigger_window
+            recovery_window: recovery_window
+          include_tags: true
+          require_full_window: true
+          device_ids:
+          - laptop_large
+          - laptop_large
+          escalation_message: escalation_message
+          timeout_h: 6
+          locked: true
+        modified: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        state:
+          monitor_id: 3
+          groups:
+            key:
+              last_triggered_ts: 9
+              last_data_ts: 7
+              last_notified_ts: 4
+              name: name
+              last_resolved_ts: 5
+              message: message
+              last_nodata_ts: 1
+              triggering_value:
+                left: 6.6835623
+                to_ts: 9
+                from_ts: 9
+                right: 8.762042
+                value: 6.4384236
+      properties:
+        created:
+          format: date-time
+          type: string
+        creator:
+          $ref: '#/components/schemas/Creator'
+        deleted:
+          format: date-time
+          type: string
+        id:
+          description: ID of this monitor
+          format: int64
+          type: integer
+        message:
+          description: A message to include with notifications for this monitor.
+          type: string
+        modified:
+          format: date-time
+          type: string
+        multi:
+          type: boolean
+        name:
+          type: string
+        options:
+          $ref: '#/components/schemas/MonitorOptions'
+        overall_state:
+          $ref: '#/components/schemas/MonitorOverallStates'
+        query:
+          type: string
+        state:
+          $ref: '#/components/schemas/MonitorState'
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: The type of the monitor
+          enum:
+          - composite
+          - event alert
+          - log alert
+          - metric alert
+          - process alert
+          - query alert
+          - service check
+          - synthetics alert
+          - trace-analytics alert
+          type: string
+      type: object
+    MonitorOptions:
+      example:
+        no_data_timeframe: 2
+        silenced:
+          key: 9
+        synthetics_check_id: 3
+        notify_no_data: true
+        enable_logs_sample: true
+        aggregation: aggregation
+        evaluation_delay: 6
+        notify_audit: true
+        min_location_failed: 5
+        new_host_delay: 5
+        renotify_interval: 7
+        thresholds:
+          critical: 2.027123
+          warning: 1.0246457
+          warning_recovery: 1.4894159
+          ok: 7.386282
+          critical_recovery: 4.145608
+          unknown: 1.2315135
+        min_failure_duration: 1055
+        threshold_windows:
+          trigger_window: trigger_window
+          recovery_window: recovery_window
+        include_tags: true
+        require_full_window: true
+        device_ids:
+        - laptop_large
+        - laptop_large
+        escalation_message: escalation_message
+        timeout_h: 6
+        locked: true
+      properties:
+        aggregation:
+          type: string
+        device_ids:
+          items:
+            enum:
+            - laptop_large
+            - tablet
+            - mobile_small
+            type: string
+          type: array
+        enable_logs_sample:
+          type: boolean
+        escalation_message:
+          type: string
+        evaluation_delay:
+          format: int64
+          type: integer
+        include_tags:
+          type: boolean
+        locked:
+          type: boolean
+        min_failure_duration:
+          format: int64
+          maximum: 7200
+          minimum: 0
+          type: integer
+        min_location_failed:
+          format: int64
+          type: integer
+        new_host_delay:
+          format: int64
+          type: integer
+        no_data_timeframe:
+          format: int64
+          type: integer
+        notify_audit:
+          type: boolean
+        notify_no_data:
+          type: boolean
+        renotify_interval:
+          format: int64
+          type: integer
+        require_full_window:
+          type: boolean
+        silenced:
+          additionalProperties:
+            format: int64
+            nullable: true
+            type: integer
+          type: object
+        synthetics_check_id:
+          format: int64
+          type: integer
+        threshold_windows:
+          $ref: '#/components/schemas/MonitorThresholdWindowOptions'
+        thresholds:
+          $ref: '#/components/schemas/MonitorThresholds'
+        timeout_h:
+          type: integer
+      type: object
+    MonitorOverallStates:
+      enum:
+      - Alert
+      - Ignored
+      - No Data
+      - OK
+      - Skipped
+      - Unknown
+      - Warn
+      type: string
+    MonitorState:
+      example:
+        monitor_id: 3
+        groups:
+          key:
+            last_triggered_ts: 9
+            last_data_ts: 7
+            last_notified_ts: 4
+            name: name
+            last_resolved_ts: 5
+            message: message
+            last_nodata_ts: 1
+            triggering_value:
+              left: 6.6835623
+              to_ts: 9
+              from_ts: 9
+              right: 8.762042
+              value: 6.4384236
+      properties:
+        groups:
+          additionalProperties:
+            $ref: '#/components/schemas/MonitorStateGroup'
+          type: object
+        monitor_id:
+          format: int64
+          type: integer
+        overall_state:
+          $ref: '#/components/schemas/MonitorOverallStates'
+      type: object
+    MonitorStateGroup:
+      example:
+        last_triggered_ts: 9
+        last_data_ts: 7
+        last_notified_ts: 4
+        name: name
+        last_resolved_ts: 5
+        message: message
+        last_nodata_ts: 1
+        triggering_value:
+          left: 6.6835623
+          to_ts: 9
+          from_ts: 9
+          right: 8.762042
+          value: 6.4384236
+      properties:
+        last_data_ts:
+          format: int64
+          type: integer
+        last_nodata_ts:
+          format: int64
+          type: integer
+        last_notified_ts:
+          format: int64
+          type: integer
+        last_resolved_ts:
+          format: int64
+          type: integer
+        last_triggered_ts:
+          format: int64
+          type: integer
+        message:
+          type: string
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/MonitorOverallStates'
+        triggering_value:
+          $ref: '#/components/schemas/MonitorStateGroupValue'
+      type: object
+    MonitorStateGroupValue:
+      example:
+        left: 6.6835623
+        to_ts: 9
+        from_ts: 9
+        right: 8.762042
+        value: 6.4384236
+      properties:
+        from_ts:
+          format: int64
+          type: integer
+        left:
+          format: float
+          type: number
+        right:
+          format: float
+          type: number
+        to_ts:
+          format: int64
+          type: integer
+        value:
+          format: float
+          type: number
+      type: object
+    MonitorThresholdWindowOptions:
+      example:
+        trigger_window: trigger_window
+        recovery_window: recovery_window
+      properties:
+        recovery_window:
+          type: string
+        trigger_window:
+          type: string
+      type: object
+    MonitorThresholds:
+      example:
+        critical: 2.027123
+        warning: 1.0246457
+        warning_recovery: 1.4894159
+        ok: 7.386282
+        critical_recovery: 4.145608
+        unknown: 1.2315135
+      properties:
+        critical:
+          format: float
+          type: number
+        critical_recovery:
+          format: float
+          type: number
+        ok:
+          format: float
+          type: number
+        unknown:
+          format: float
+          type: number
+        warning:
+          format: float
+          type: number
+        warning_recovery:
+          format: float
+          type: number
+      type: object
+    User:
+      example:
+        access_role: st
+        icon: /path/to/matching/gravatar/icon
+        name: test user
+        verified: true
+        disabled: false
+        handle: test@datadoghq.com
+        email: test@datadoghq.com
+      properties:
+        access_role:
+          enum:
+          - st
+          - adm
+          - ro
+          type: string
+        disabled:
+          example: false
+          type: boolean
+        email:
+          example: test@datadoghq.com
+          format: email
+          type: string
+        handle:
+          example: test@datadoghq.com
+          format: email
+          type: string
+        icon:
+          example: /path/to/matching/gravatar/icon
+          readOnly: true
+          type: string
+        name:
+          example: test user
+          type: string
+        verified:
+          example: true
+          readOnly: true
+          type: boolean
+      type: object
+    UserDisableResponse:
+      properties:
+        message:
+          type: string
+      type: object
+    UserListResponse:
+      example:
+        users:
+        - access_role: st
+          icon: /path/to/matching/gravatar/icon
+          name: test user
+          verified: true
+          disabled: false
+          handle: test@datadoghq.com
+          email: test@datadoghq.com
+        - access_role: st
+          icon: /path/to/matching/gravatar/icon
+          name: test user
+          verified: true
+          disabled: false
+          handle: test@datadoghq.com
+          email: test@datadoghq.com
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      type: object
+    UserResponse:
+      example:
+        user:
+          access_role: st
+          icon: /path/to/matching/gravatar/icon
+          name: test user
+          verified: true
+          disabled: false
+          handle: test@datadoghq.com
+          email: test@datadoghq.com
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API Key
+      in: query
+      name: api_key
+      type: apiKey
+    appKeyAuth:
+      description: APP Key
+      in: query
+      name: application_key
+      type: apiKey

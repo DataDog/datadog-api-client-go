@@ -13,13 +13,13 @@ to be able to use API clients for different major versions of the API side-by-si
 
 ## The Datadog API v1 Client
 
-The client library for Datadog API v1 is located in the `datadog_v1` directory. Import it with
+The client library for Datadog API v1 is located in the `api/v1/datadog` directory. Import it with
 
 ```go
-import "github.com/datadog/datadog-api-client-go/datadog_v1"
+import "github.com/datadog/datadog-api-client-go/api/v1/datadog"
 ```
 
-All the documentation for this package is available through `datadog_v1/README.md`.
+All the documentation for this package is available through `api/v1/datadog/README.md`.
 
 ## Contributing
 
