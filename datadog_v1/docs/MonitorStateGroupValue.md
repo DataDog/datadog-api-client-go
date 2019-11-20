@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromTs** | Pointer to **int64** |  | [optional] 
-**Left** | Pointer to **float32** |  | [optional] 
-**Right** | Pointer to **float32** |  | [optional] 
+**Left** | Pointer to **float64** |  | [optional] 
+**Right** | Pointer to **float64** |  | [optional] 
 **ToTs** | Pointer to **int64** |  | [optional] 
-**Value** | Pointer to **float32** |  | [optional] 
+**Value** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -39,13 +39,13 @@ SetFromTs gets a reference to the given int64 and assigns it to the FromTs field
 
 ### GetLeft
 
-`func (o *MonitorStateGroupValue) GetLeft() float32`
+`func (o *MonitorStateGroupValue) GetLeft() float64`
 
 GetLeft returns the Left field if non-nil, zero value otherwise.
 
 ### GetLeftOk
 
-`func (o *MonitorStateGroupValue) GetLeftOk() (float32, bool)`
+`func (o *MonitorStateGroupValue) GetLeftOk() (float64, bool)`
 
 GetLeftOk returns a tuple with the Left field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -58,19 +58,19 @@ HasLeft returns a boolean if a field has been set.
 
 ### SetLeft
 
-`func (o *MonitorStateGroupValue) SetLeft(v float32)`
+`func (o *MonitorStateGroupValue) SetLeft(v float64)`
 
-SetLeft gets a reference to the given float32 and assigns it to the Left field.
+SetLeft gets a reference to the given float64 and assigns it to the Left field.
 
 ### GetRight
 
-`func (o *MonitorStateGroupValue) GetRight() float32`
+`func (o *MonitorStateGroupValue) GetRight() float64`
 
 GetRight returns the Right field if non-nil, zero value otherwise.
 
 ### GetRightOk
 
-`func (o *MonitorStateGroupValue) GetRightOk() (float32, bool)`
+`func (o *MonitorStateGroupValue) GetRightOk() (float64, bool)`
 
 GetRightOk returns a tuple with the Right field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -83,9 +83,9 @@ HasRight returns a boolean if a field has been set.
 
 ### SetRight
 
-`func (o *MonitorStateGroupValue) SetRight(v float32)`
+`func (o *MonitorStateGroupValue) SetRight(v float64)`
 
-SetRight gets a reference to the given float32 and assigns it to the Right field.
+SetRight gets a reference to the given float64 and assigns it to the Right field.
 
 ### GetToTs
 
@@ -114,13 +114,13 @@ SetToTs gets a reference to the given int64 and assigns it to the ToTs field.
 
 ### GetValue
 
-`func (o *MonitorStateGroupValue) GetValue() float32`
+`func (o *MonitorStateGroupValue) GetValue() float64`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *MonitorStateGroupValue) GetValueOk() (float32, bool)`
+`func (o *MonitorStateGroupValue) GetValueOk() (float64, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -133,9 +133,9 @@ HasValue returns a boolean if a field has been set.
 
 ### SetValue
 
-`func (o *MonitorStateGroupValue) SetValue(v float32)`
+`func (o *MonitorStateGroupValue) SetValue(v float64)`
 
-SetValue gets a reference to the given float32 and assigns it to the Value field.
+SetValue gets a reference to the given float64 and assigns it to the Value field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

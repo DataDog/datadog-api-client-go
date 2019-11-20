@@ -32,8 +32,8 @@ var testMonitor = datadog.Monitor{
 		EvaluationDelay:   datadog.PtrInt64(700),
 		EscalationMessage: datadog.PtrString("the situation has escalated"),
 		Thresholds: &datadog.MonitorThresholds{
-			Critical: datadog.PtrFloat32(2),
-			Warning:  datadog.PtrFloat32(1),
+			Critical: datadog.PtrFloat64(2),
+			Warning:  datadog.PtrFloat64(1),
 		},
 	},
 }
