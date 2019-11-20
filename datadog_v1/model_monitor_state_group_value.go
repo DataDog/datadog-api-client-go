@@ -16,10 +16,10 @@ import (
 // MonitorStateGroupValue struct for MonitorStateGroupValue
 type MonitorStateGroupValue struct {
 	FromTs *int64   `json:"from_ts,omitempty"`
-	Left   *float32 `json:"left,omitempty"`
-	Right  *float32 `json:"right,omitempty"`
+	Left   *float64 `json:"left,omitempty"`
+	Right  *float64 `json:"right,omitempty"`
 	ToTs   *int64   `json:"to_ts,omitempty"`
-	Value  *float32 `json:"value,omitempty"`
+	Value  *float64 `json:"value,omitempty"`
 }
 
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
@@ -56,9 +56,9 @@ func (o *MonitorStateGroupValue) SetFromTs(v int64) {
 }
 
 // GetLeft returns the Left field value if set, zero value otherwise.
-func (o *MonitorStateGroupValue) GetLeft() float32 {
+func (o *MonitorStateGroupValue) GetLeft() float64 {
 	if o == nil || o.Left == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Left
@@ -66,9 +66,9 @@ func (o *MonitorStateGroupValue) GetLeft() float32 {
 
 // GetLeftOk returns a tuple with the Left field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroupValue) GetLeftOk() (float32, bool) {
+func (o *MonitorStateGroupValue) GetLeftOk() (float64, bool) {
 	if o == nil || o.Left == nil {
-		var ret float32
+		var ret float64
 		return ret, false
 	}
 	return *o.Left, true
@@ -83,15 +83,15 @@ func (o *MonitorStateGroupValue) HasLeft() bool {
 	return false
 }
 
-// SetLeft gets a reference to the given float32 and assigns it to the Left field.
-func (o *MonitorStateGroupValue) SetLeft(v float32) {
+// SetLeft gets a reference to the given float64 and assigns it to the Left field.
+func (o *MonitorStateGroupValue) SetLeft(v float64) {
 	o.Left = &v
 }
 
 // GetRight returns the Right field value if set, zero value otherwise.
-func (o *MonitorStateGroupValue) GetRight() float32 {
+func (o *MonitorStateGroupValue) GetRight() float64 {
 	if o == nil || o.Right == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Right
@@ -99,9 +99,9 @@ func (o *MonitorStateGroupValue) GetRight() float32 {
 
 // GetRightOk returns a tuple with the Right field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroupValue) GetRightOk() (float32, bool) {
+func (o *MonitorStateGroupValue) GetRightOk() (float64, bool) {
 	if o == nil || o.Right == nil {
-		var ret float32
+		var ret float64
 		return ret, false
 	}
 	return *o.Right, true
@@ -116,8 +116,8 @@ func (o *MonitorStateGroupValue) HasRight() bool {
 	return false
 }
 
-// SetRight gets a reference to the given float32 and assigns it to the Right field.
-func (o *MonitorStateGroupValue) SetRight(v float32) {
+// SetRight gets a reference to the given float64 and assigns it to the Right field.
+func (o *MonitorStateGroupValue) SetRight(v float64) {
 	o.Right = &v
 }
 
@@ -155,9 +155,9 @@ func (o *MonitorStateGroupValue) SetToTs(v int64) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *MonitorStateGroupValue) GetValue() float32 {
+func (o *MonitorStateGroupValue) GetValue() float64 {
 	if o == nil || o.Value == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Value
@@ -165,9 +165,9 @@ func (o *MonitorStateGroupValue) GetValue() float32 {
 
 // GetValueOk returns a tuple with the Value field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroupValue) GetValueOk() (float32, bool) {
+func (o *MonitorStateGroupValue) GetValueOk() (float64, bool) {
 	if o == nil || o.Value == nil {
-		var ret float32
+		var ret float64
 		return ret, false
 	}
 	return *o.Value, true
@@ -182,8 +182,8 @@ func (o *MonitorStateGroupValue) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given float32 and assigns it to the Value field.
-func (o *MonitorStateGroupValue) SetValue(v float32) {
+// SetValue gets a reference to the given float64 and assigns it to the Value field.
+func (o *MonitorStateGroupValue) SetValue(v float64) {
 	o.Value = &v
 }
 
