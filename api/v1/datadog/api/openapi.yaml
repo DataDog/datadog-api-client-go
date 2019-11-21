@@ -19,11 +19,432 @@ tags:
     scopes from alerting. Downtime settings, which can be scheduled with start and
     end times, prevent all alerting related to specified Datadog tags.'
   name: Downtimes
+- description: Manage your Datadog API and application keys.
+  externalDocs:
+    description: Find out more at
+    url: https://docs.datadoghq.com/account_management/api-app-keys/
+  name: Keys
 - description: |-
     Create, edit, and disable users. [Read more about your team management][1]
     [1]: https://docs.datadoghq.com/account_management/team
   name: Users
 paths:
+  /api/v1/api_key:
+    get:
+      description: |-
+        ## Overview
+        Get all API keys available for your account.
+        ### ARGUMENTS
+        This endpoint takes no JSON arguments.
+      operationId: GetAllAPIKeys
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyListResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+      summary: Get all API keys available for your account.
+      tags:
+      - Keys
+    post:
+      description: |-
+        ## Overview
+        Creates an API key
+        ### ARGUMENTS
+        * **`name`** [*required*]: Name of your API key.
+      operationId: CreateAPIKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKey'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        409:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error409'
+          description: Conflict
+      summary: Create an API key with a given name.
+      tags:
+      - Keys
+  /api/v1/api_key/{key}:
+    delete:
+      description: |-
+        ## Overview
+        Delete a given API key.
+        ### ARGUMENTS
+        This endpoint takes no JSON arguments.
+      operationId: DeleteAPIKey
+      parameters:
+      - description: The specific API key you are working with
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Delete a given API key.
+      tags:
+      - Keys
+    get:
+      description: |-
+        ## Overview
+        Get a given API key.
+        ### ARGUMENTS
+        This endpoint takes no JSON arguments.
+      operationId: GetAPIKey
+      parameters:
+      - description: The specific API key you are working with
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Get a given API key.
+      tags:
+      - Keys
+    put:
+      description: |-
+        ## Overview
+        Edit an API key name.
+        ### ARGUMENTS
+        * **`name`** [*required*]: Name of your API key.
+      operationId: EditAPIKey
+      parameters:
+      - description: The specific API key you are working with
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKey'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Edit an API key name.
+      tags:
+      - Keys
+  /api/v1/application_key:
+    get:
+      description: |-
+        ## Overview
+        Get all application keys available for your account.
+        ### ARGUMENTS
+        This endpoint takes no JSON arguments.
+      operationId: GetAllApplicationKeys
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKeyListResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+      summary: Get all application keys available for your account.
+      tags:
+      - Keys
+    post:
+      description: |-
+        ## Overview
+        Create an application key with a given name.
+        ### ARGUMENTS
+        * **`name`** [*required*]: Name of your application key.
+      operationId: CreateApplicationKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationKey'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        409:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error409'
+          description: Conflict
+      summary: Create an application key with a given name.
+      tags:
+      - Keys
+  /api/v1/application_key/{key}:
+    delete:
+      description: |-
+        ## Overview
+        Delete a given application key.
+        ### ARGUMENTS
+        This endpoint takes no JSON arguments.
+      operationId: DeleteApplicationKey
+      parameters:
+      - description: The specific APP key you are working with
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Delete a given application key.
+      tags:
+      - Keys
+    get:
+      description: |-
+        ## Overview
+        Get a given application key.
+        ### ARGUMENTS
+        This endpoint takes no JSON arguments.
+      operationId: GetApplicationKey
+      parameters:
+      - description: The specific APP key you are working with
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Get a given application key.
+      tags:
+      - Keys
+    put:
+      description: |-
+        ## Overview
+        Edit an application key name.
+        ### ARGUMENTS
+        * **`name`** [*required*]: Name of your application key.
+      operationId: EditApplicationKey
+      parameters:
+      - description: The specific APP key you are working with
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationKey'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKeyResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Edit an application key name.
+      tags:
+      - Keys
   /api/v1/downtime:
     get:
       description: |-
@@ -1128,6 +1549,95 @@ components:
           items:
             $ref: '#/components/schemas/AWSAccount'
           type: array
+      type: object
+    ApiKey:
+      example:
+        created: 2019-08-02 15:31:07
+        name: example user
+        created_by: example.com
+        key: 1234512345123456abcabc912349abcd
+      properties:
+        created:
+          example: 2019-08-02 15:31:07
+          readOnly: true
+          type: string
+        created_by:
+          example: example.com
+          readOnly: true
+          type: string
+        key:
+          example: 1234512345123456abcabc912349abcd
+          maxLength: 32
+          minLength: 32
+          readOnly: true
+          type: string
+        name:
+          example: example user
+          type: string
+      type: object
+    ApiKeyListResponse:
+      example:
+        api_keys:
+        - created_by: test_user
+          key: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          name: app_key
+      properties:
+        api_keys:
+          items:
+            $ref: '#/components/schemas/ApiKey'
+          type: array
+      type: object
+    ApiKeyResponse:
+      example:
+        api_key:
+          created_by: test_user
+          key: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          name: app_key
+      properties:
+        api_key:
+          $ref: '#/components/schemas/ApiKey'
+      type: object
+    ApplicationKey:
+      example:
+        owner: example.com
+        name: example user
+        hash: 1234512345123459cda4eb9ced49a3d84fd0138c
+      properties:
+        hash:
+          example: 1234512345123459cda4eb9ced49a3d84fd0138c
+          maxLength: 40
+          minLength: 40
+          readOnly: true
+          type: string
+        name:
+          example: example user
+          type: string
+        owner:
+          example: example.com
+          readOnly: true
+          type: string
+      type: object
+    ApplicationKeyListResponse:
+      example:
+        application_keys:
+        - hash: "1234"
+          name: app_key
+          owner: test_user
+      properties:
+        application_keys:
+          items:
+            $ref: '#/components/schemas/ApplicationKey'
+          type: array
+      type: object
+    ApplicationKeyResponse:
+      example:
+        application_key:
+          hash: "1234"
+          name: app_key
+          owner: test_user
+      properties:
+        application_key:
+          $ref: '#/components/schemas/ApplicationKey'
       type: object
     CancelDowntimesByScopeRequest:
       example:

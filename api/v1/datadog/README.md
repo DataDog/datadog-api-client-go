@@ -42,6 +42,16 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**GetAllDowntimes**](docs/DowntimesApi.md#getalldowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**GetDowntime**](docs/DowntimesApi.md#getdowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
+*KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key with a given name.
+*KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key with a given name.
+*KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete a given API key.
+*KeysApi* | [**DeleteApplicationKey**](docs/KeysApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete a given application key.
+*KeysApi* | [**EditAPIKey**](docs/KeysApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key name.
+*KeysApi* | [**EditApplicationKey**](docs/KeysApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key name.
+*KeysApi* | [**GetAPIKey**](docs/KeysApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get a given API key.
+*KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys available for your account.
+*KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
+*KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a new Monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
 *MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
@@ -57,6 +67,12 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ApiKey](docs/ApiKey.md)
+ - [ApiKeyListResponse](docs/ApiKeyListResponse.md)
+ - [ApiKeyResponse](docs/ApiKeyResponse.md)
+ - [ApplicationKey](docs/ApplicationKey.md)
+ - [ApplicationKeyListResponse](docs/ApplicationKeyListResponse.md)
+ - [ApplicationKeyResponse](docs/ApplicationKeyResponse.md)
  - [AwsAccount](docs/AwsAccount.md)
  - [AwsAccountCreateResponse](docs/AwsAccountCreateResponse.md)
  - [AwsAccountListResponse](docs/AwsAccountListResponse.md)
