@@ -1364,11 +1364,31 @@ components:
       required:
       - errors
       type: object
+    Error408:
+      properties:
+        errors:
+          items:
+            example: Request timeout
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
     Error409:
       properties:
         errors:
           items:
             example: Conflict
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Error413:
+      properties:
+        errors:
+          items:
+            example: Payload too large
             type: string
           type: array
       required:
@@ -1444,12 +1464,12 @@ components:
           new_host_delay: 5
           renotify_interval: 7
           thresholds:
-            critical: 2.027123
-            warning: 1.0246457
-            warning_recovery: 1.4894159
-            ok: 7.386282
-            critical_recovery: 4.145608
-            unknown: 1.2315135
+            critical: 2.027123023002322
+            warning: 1.0246457001441578
+            warning_recovery: 1.4894159098541704
+            ok: 7.386281948385884
+            critical_recovery: 4.145608029883936
+            unknown: 1.2315135367772556
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -1476,11 +1496,11 @@ components:
               message: message
               last_nodata_ts: 1
               triggering_value:
-                left: 6.6835623
+                left: 6.683562403749608
                 to_ts: 9
                 from_ts: 9
-                right: 8.762042
-                value: 6.4384236
+                right: 8.762042012749001
+                value: 6.438423552598547
       properties:
         created:
           format: date-time
@@ -1545,12 +1565,12 @@ components:
         new_host_delay: 5
         renotify_interval: 7
         thresholds:
-          critical: 2.027123
-          warning: 1.0246457
-          warning_recovery: 1.4894159
-          ok: 7.386282
-          critical_recovery: 4.145608
-          unknown: 1.2315135
+          critical: 2.027123023002322
+          warning: 1.0246457001441578
+          warning_recovery: 1.4894159098541704
+          ok: 7.386281948385884
+          critical_recovery: 4.145608029883936
+          unknown: 1.2315135367772556
         min_failure_duration: 1055
         threshold_windows:
           trigger_window: trigger_window
@@ -1647,11 +1667,11 @@ components:
             message: message
             last_nodata_ts: 1
             triggering_value:
-              left: 6.6835623
+              left: 6.683562403749608
               to_ts: 9
               from_ts: 9
-              right: 8.762042
-              value: 6.4384236
+              right: 8.762042012749001
+              value: 6.438423552598547
       properties:
         groups:
           additionalProperties:
@@ -1673,11 +1693,11 @@ components:
         message: message
         last_nodata_ts: 1
         triggering_value:
-          left: 6.6835623
+          left: 6.683562403749608
           to_ts: 9
           from_ts: 9
-          right: 8.762042
-          value: 6.4384236
+          right: 8.762042012749001
+          value: 6.438423552598547
       properties:
         last_data_ts:
           format: int64
@@ -1705,26 +1725,26 @@ components:
       type: object
     MonitorStateGroupValue:
       example:
-        left: 6.6835623
+        left: 6.683562403749608
         to_ts: 9
         from_ts: 9
-        right: 8.762042
-        value: 6.4384236
+        right: 8.762042012749001
+        value: 6.438423552598547
       properties:
         from_ts:
           format: int64
           type: integer
         left:
-          format: float
+          format: double
           type: number
         right:
-          format: float
+          format: double
           type: number
         to_ts:
           format: int64
           type: integer
         value:
-          format: float
+          format: double
           type: number
       type: object
     MonitorThresholdWindowOptions:
@@ -1739,30 +1759,30 @@ components:
       type: object
     MonitorThresholds:
       example:
-        critical: 2.027123
-        warning: 1.0246457
-        warning_recovery: 1.4894159
-        ok: 7.386282
-        critical_recovery: 4.145608
-        unknown: 1.2315135
+        critical: 2.027123023002322
+        warning: 1.0246457001441578
+        warning_recovery: 1.4894159098541704
+        ok: 7.386281948385884
+        critical_recovery: 4.145608029883936
+        unknown: 1.2315135367772556
       properties:
         critical:
-          format: float
+          format: double
           type: number
         critical_recovery:
-          format: float
+          format: double
           type: number
         ok:
-          format: float
+          format: double
           type: number
         unknown:
-          format: float
+          format: double
           type: number
         warning:
-          format: float
+          format: double
           type: number
         warning_recovery:
-          format: float
+          format: double
           type: number
       type: object
     User:
