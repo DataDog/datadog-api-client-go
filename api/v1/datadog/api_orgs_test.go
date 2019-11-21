@@ -34,8 +34,8 @@ func TestGetOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetSettings(), org.GetSettings())
 	assert.Equal(t, org.GetCreated(), "")
 	assert.Equal(t, (org.GetDescription()), "")
-	assert.Equal(t, orgFixture.GetBilling()["type"], org.GetBilling()["type"])
-	assert.Equal(t, orgFixture.GetSubscription()["type"], org.GetSubscription()["type"])
+	assert.Equal(t, orgFixture.GetBilling().Type, org.GetBilling().Type)
+	assert.Equal(t, orgFixture.GetSubscription().Type, org.GetSubscription().Type)
 }
 
 func TestCreateOrg(t *testing.T) {
@@ -54,7 +54,7 @@ func TestCreateOrg(t *testing.T) {
 		Name: orgCreateBody.GetName(),
 	}
 	createBody.SetSubscription(orgCreateBody.GetSubscription())
-	createBody.SetBilling(map[string]string{})
+	createBody.SetBilling(orgCreateBody.GetBilling())
 	getOrgResp, _, err := TESTAPICLIENT.OrgsApi.CreateChildOrg(TESTAUTH, createBody)
 	if err != nil {
 		t.Errorf("Failed to create the test org %s", err)
@@ -87,8 +87,8 @@ func TestCreateOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetSettings(), orgResp.GetSettings())
 	assert.Equal(t, orgResp.GetCreated(), "")
 	assert.Equal(t, (orgResp.GetDescription()), "")
-	assert.Equal(t, orgFixture.GetBilling()["type"], orgResp.GetBilling()["type"])
-	assert.Equal(t, orgFixture.GetSubscription()["type"], orgResp.GetSubscription()["type"])
+	assert.Equal(t, orgFixture.GetBilling().Type, orgResp.GetBilling().Type)
+	assert.Equal(t, orgFixture.GetSubscription().Type, orgResp.GetSubscription().Type)
 }
 
 func TestUpdateOrg(t *testing.T) {
@@ -117,8 +117,8 @@ func TestUpdateOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetPublicId(), updateResp.GetPublicId())
 	assert.Equal(t, updateResp.GetCreated(), updateResp.GetCreated())
 	assert.Equal(t, (updateResp.GetDescription()), "")
-	assert.Equal(t, orgFixture.GetBilling()["type"], updateResp.GetBilling()["type"])
-	assert.Equal(t, orgFixture.GetSubscription()["type"], updateResp.GetSubscription()["type"])
+	assert.Equal(t, orgFixture.GetBilling().Type, updateResp.GetBilling().Type)
+	assert.Equal(t, orgFixture.GetSubscription().Type, updateResp.GetSubscription().Type)
 
 	// Assert Org Settings
 	settingFixture := orgFixture.GetSettings()
