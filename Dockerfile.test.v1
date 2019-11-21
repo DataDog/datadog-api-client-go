@@ -9,4 +9,4 @@ RUN ./get-test-deps.sh
 
 COPY . /datadog-api-client-go
 
-WORKDIR /datadog-api-client-go/datadog_v1
+WORKDIR /datadog-api-client-go/api/v1/datadog
