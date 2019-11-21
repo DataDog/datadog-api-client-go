@@ -29,7 +29,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	createApiKeyCreatedBy := createApiKeyReturned.GetCreatedBy()
 	createApiKeyValue := createApiKeyReturned.GetKey()
 
-	// none of these values should be nil
+	// none of these values should be empty
 	assert.Assert(t, createApiKeyName != "")
 	assert.Assert(t, createApiKeyCreated != "")
 	assert.Assert(t, createApiKeyCreatedBy != "")
