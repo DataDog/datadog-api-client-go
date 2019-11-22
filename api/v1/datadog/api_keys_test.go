@@ -71,7 +71,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Edit API Key
 	// ----------------------------------
 	var editOpts datadog.EditAPIKeyOpts
-	newApiKeyName := "new api key name"
+	newApiKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
 	editOpts.ApiKey = optional.NewInterface(datadog.ApiKey{Name: &newApiKeyName})
 	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditAPIKey(TESTAUTH, createApiKeyValue, &editOpts)
 	if err != nil || httpresp.StatusCode != 200 {
