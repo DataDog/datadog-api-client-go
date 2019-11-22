@@ -34,8 +34,14 @@ func TestGetOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetSettings(), org.GetSettings())
 	assert.Equal(t, org.GetCreated(), "")
 	assert.Equal(t, (org.GetDescription()), "")
-	assert.Equal(t, orgFixture.GetBilling().Type, org.GetBilling().Type)
-	assert.Equal(t, orgFixture.GetSubscription().Type, org.GetSubscription().Type)
+
+	orgBillingFixture := orgFixture.GetBilling()
+	orgBillingResp := org.GetBilling()
+	assert.Equal(t, orgBillingFixture.GetType(), orgBillingResp.GetType())
+
+	orgSubFixture := orgFixture.GetBilling()
+	orgSubResp := org.GetBilling()
+	assert.Equal(t, orgSubFixture.GetType(), orgSubResp.GetType())
 }
 
 func TestCreateOrg(t *testing.T) {
@@ -87,8 +93,13 @@ func TestCreateOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetSettings(), orgResp.GetSettings())
 	assert.Equal(t, orgResp.GetCreated(), "")
 	assert.Equal(t, (orgResp.GetDescription()), "")
-	assert.Equal(t, orgFixture.GetBilling().Type, orgResp.GetBilling().Type)
-	assert.Equal(t, orgFixture.GetSubscription().Type, orgResp.GetSubscription().Type)
+	orgBillingFixture := orgFixture.GetBilling()
+	orgBillingResp := orgResp.GetBilling()
+	assert.Equal(t, orgBillingFixture.GetType(), orgBillingResp.GetType())
+
+	orgSubFixture := orgFixture.GetBilling()
+	orgSubResp := orgResp.GetBilling()
+	assert.Equal(t, orgSubFixture.GetType(), orgSubResp.GetType())
 }
 
 func TestUpdateOrg(t *testing.T) {
@@ -117,8 +128,14 @@ func TestUpdateOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetPublicId(), updateResp.GetPublicId())
 	assert.Equal(t, updateResp.GetCreated(), updateResp.GetCreated())
 	assert.Equal(t, (updateResp.GetDescription()), "")
-	assert.Equal(t, orgFixture.GetBilling().Type, updateResp.GetBilling().Type)
-	assert.Equal(t, orgFixture.GetSubscription().Type, updateResp.GetSubscription().Type)
+
+	orgBillingFixture := orgFixture.GetBilling()
+	orgBillingResp := updateResp.GetBilling()
+	assert.Equal(t, orgBillingFixture.GetType(), orgBillingResp.GetType())
+
+	orgSubnFixture := orgFixture.GetSubscription()
+	orgSubResp := updateResp.GetSubscription()
+	assert.Equal(t, orgSubnFixture.GetType(), orgSubResp.GetType())
 
 	// Assert Org Settings
 	settingFixture := orgFixture.GetSettings()
