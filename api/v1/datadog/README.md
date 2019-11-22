@@ -58,6 +58,10 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get details about the specified monitor.
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get details about the specified monitor.
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | 
+*OrgsApi* | [**CreateChildOrg**](docs/OrgsApi.md#createchildorg) | **Post** /api/v1/org | Create child-organization.
+*OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get the organization
+*OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
+*OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable user
 *UsersApi* | [**GetAllUsers**](docs/UsersApi.md#getallusers) | **Get** /api/v1/user | Get all users
@@ -94,6 +98,8 @@ Class | Method | HTTP request | Description
  - [Error429](docs/Error429.md)
  - [Error500](docs/Error500.md)
  - [Error503](docs/Error503.md)
+ - [IdpFormData](docs/IdpFormData.md)
+ - [IdpResponse](docs/IdpResponse.md)
  - [Monitor](docs/Monitor.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
@@ -102,6 +108,16 @@ Class | Method | HTTP request | Description
  - [MonitorStateGroupValue](docs/MonitorStateGroupValue.md)
  - [MonitorThresholdWindowOptions](docs/MonitorThresholdWindowOptions.md)
  - [MonitorThresholds](docs/MonitorThresholds.md)
+ - [Org](docs/Org.md)
+ - [OrgBilling](docs/OrgBilling.md)
+ - [OrgCreateBody](docs/OrgCreateBody.md)
+ - [OrgCreateResponse](docs/OrgCreateResponse.md)
+ - [OrgListResponse](docs/OrgListResponse.md)
+ - [OrgResponse](docs/OrgResponse.md)
+ - [OrgSettings](docs/OrgSettings.md)
+ - [OrgSettingsSaml](docs/OrgSettingsSaml.md)
+ - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
+ - [OrgSubscription](docs/OrgSubscription.md)
  - [User](docs/User.md)
  - [UserDisableResponse](docs/UserDisableResponse.md)
  - [UserListResponse](docs/UserListResponse.md)

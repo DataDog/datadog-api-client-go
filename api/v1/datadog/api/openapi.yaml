@@ -24,6 +24,11 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/account_management/api-app-keys/
   name: Keys
+- description: Create, edit, and manage organizations.
+  externalDocs:
+    description: Find out more at
+    url: https://docs.datadoghq.com/account_management/multi_organization
+  name: Orgs
 - description: |-
     Create, edit, and disable users. [Read more about your team management][1]
     [1]: https://docs.datadoghq.com/account_management/team
@@ -1249,6 +1254,190 @@ paths:
       summary: Edit the specified monitor
       tags:
       - Monitors
+  /api/v1/org:
+    get:
+      description: |-
+        ## Overview
+        Gets information about your organization
+      operationId: GetOrg
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgListResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+      summary: Get the organization
+      tags:
+      - Orgs
+    post:
+      description: |-
+        ## Overview
+        This endpoint requires the [multi-org account](https://docs.datadoghq.com/account_management/multi_organization/) feature and must be enabled by [contacting support](https://docs.datadoghq.com/help/).
+        ### ARGUMENTS
+        * **`name`** [*required*]: The name of the new child-organization, limited to 32 characters.
+        * **`subscription`** [*required*]: A JSON array of subscription type. Types available are **trial**, **free**, and **pro**.
+        * **`billing`** [*required*]: A JSON array of billing type. Note that only **parent_billing** is supported.
+
+        Once a new child-organization is created, you can interact with it by using the **org.public_id**, **api_key.key**, and **application_key.hash** provided in the response.
+      operationId: CreateChildOrg
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrgCreateBody'
+        description: Org object that needs to be created
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgCreateResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+      summary: Create child-organization.
+      tags:
+      - Orgs
+  /api/v1/org/{public_id}:
+    put:
+      description: |-
+        ## Overview
+        Updates the organization
+        ### ARGUMENTS
+        * **`name`** [*optional*]: The organization name.
+
+        * **`settings`** [*optional*]: A JSON array of settings. Settings include:
+
+          * **`saml`**: Set the boolean property **enabled** to enable or disable single sign on with SAML. See the [SAML documentation](https://docs.datadoghq.com/account_management/saml) for more information about all SAML settings.
+
+          * **`saml_idp_initiated_login`**: has one property **enabled** (boolean).
+
+          * **`saml_strict_mode`**: has one property **enabled** (boolean).
+
+          * **`saml_autocreate_users_domains`**: has two properties: **enabled** (boolean) and **domains** which is a list of domains without the @ symbol.
+      operationId: UpdateOrg
+      parameters:
+      - description: The public_id of the org you are operating with
+        explode: false
+        in: path
+        name: public_id
+        required: true
+        schema:
+          example: abc123
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Org'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+      summary: Update the organization
+      tags:
+      - Orgs
+  /api/v1/org/{public_id}/idp_metadata:
+    post:
+      description: |-
+        ## Overview
+        There are a couple of options for updating the Identity Provider (IdP) metadata from your SAML IdP.
+        * **Multipart Form-Data**: Post the IdP metadata file using a form post.
+        ### Multipart Form-Data
+        #### Headers
+        * **`Content-Type: multipart/form-data`**
+        #### Arguments
+        * **`public_id`** [*required*]: The public id of the org you want to update metadata for.
+        ### MultiPart Form Data Body
+        * The encoded data for the IDP settings to upload
+        #### Headers
+        * **`Content-Type: multipart/form-data`**
+        #### Arguments
+        * The body must contain the contents of your IdP metadata XML file.
+      operationId: UploadIdPForOrg
+      parameters:
+      - description: The public_id of the org you are operating with
+        explode: false
+        in: path
+        name: public_id
+        required: true
+        schema:
+          example: abc123
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IdpFormData'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdpResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        415:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error415'
+          description: Unsupported Media Type
+      summary: Upload IdP metadata
+      tags:
+      - Orgs
   /api/v1/user:
     get:
       description: |-
@@ -1944,6 +2133,25 @@ components:
       required:
       - errors
       type: object
+    IdpFormData:
+      properties:
+        idp_file:
+          description: The path to the XML metadata file you wish to upload.
+          format: binary
+          type: string
+      required:
+      - idp_file
+      type: object
+    IdpResponse:
+      example:
+        message: IdP metadata successfully uploaded for example org
+      properties:
+        message:
+          example: IdP metadata successfully uploaded for example org
+          type: string
+      required:
+      - message
+      type: object
     Monitor:
       example:
         creator:
@@ -2295,6 +2503,213 @@ components:
           format: double
           type: number
       type: object
+    Org:
+      example:
+        settings:
+          saml_idp_initiated_login:
+            enabled: false
+          saml_idp_endpoint: https://my.saml.endpoint
+          saml_can_be_enabled: false
+          private_widget_share: false
+          saml_login_url: https://my.saml.login.url
+          saml:
+            enabled: false
+          saml_autocreate_users_domains:
+            domains:
+            - example.com
+            - example.com
+            enabled: false
+          saml_idp_metadata_uploaded: false
+          saml_strict_mode:
+            enabled: false
+          saml_autocreate_access_role: st
+        created: 2019-09-26 17:28:28
+        name: New child org
+        description: some description
+        subscription: '{"type":"pro"}'
+        billing: '{"type":"parent_billing"}'
+        public_id: abcdef12345
+      properties:
+        billing:
+          $ref: '#/components/schemas/Org_billing'
+        created:
+          example: 2019-09-26 17:28:28
+          readOnly: true
+          type: string
+        description:
+          example: some description
+          type: string
+        name:
+          example: New child org
+          type: string
+        public_id:
+          example: abcdef12345
+          type: string
+        settings:
+          $ref: '#/components/schemas/Org_settings'
+        subscription:
+          $ref: '#/components/schemas/Org_subscription'
+      type: object
+    OrgCreateBody:
+      example:
+        name: New child org
+        subscription: '{"type":"pro"}'
+        billing: '{"type":"parent_billing"}'
+      properties:
+        billing:
+          $ref: '#/components/schemas/Org_billing'
+        name:
+          example: New child org
+          type: string
+        subscription:
+          $ref: '#/components/schemas/Org_subscription'
+      required:
+      - billing
+      - name
+      - subscription
+      type: object
+    OrgCreateResponse:
+      example:
+        api_key:
+          created: 2019-08-02 15:31:07
+          name: example user
+          created_by: example.com
+          key: 1234512345123456abcabc912349abcd
+        org:
+          settings:
+            saml_idp_initiated_login:
+              enabled: false
+            saml_idp_endpoint: https://my.saml.endpoint
+            saml_can_be_enabled: false
+            private_widget_share: false
+            saml_login_url: https://my.saml.login.url
+            saml:
+              enabled: false
+            saml_autocreate_users_domains:
+              domains:
+              - example.com
+              - example.com
+              enabled: false
+            saml_idp_metadata_uploaded: false
+            saml_strict_mode:
+              enabled: false
+            saml_autocreate_access_role: st
+          created: 2019-09-26 17:28:28
+          name: New child org
+          description: some description
+          subscription: '{"type":"pro"}'
+          billing: '{"type":"parent_billing"}'
+          public_id: abcdef12345
+        application_key:
+          owner: example.com
+          name: example user
+          hash: 1234512345123459cda4eb9ced49a3d84fd0138c
+        user:
+          access_role: st
+          icon: /path/to/matching/gravatar/icon
+          name: test user
+          verified: true
+          disabled: false
+          handle: test@datadoghq.com
+          email: test@datadoghq.com
+      properties:
+        api_key:
+          $ref: '#/components/schemas/ApiKey'
+        application_key:
+          $ref: '#/components/schemas/ApplicationKey'
+        org:
+          $ref: '#/components/schemas/Org'
+        user:
+          $ref: '#/components/schemas/User'
+      type: object
+    OrgListResponse:
+      example:
+        orgs:
+        - settings:
+            saml_idp_initiated_login:
+              enabled: false
+            saml_idp_endpoint: https://my.saml.endpoint
+            saml_can_be_enabled: false
+            private_widget_share: false
+            saml_login_url: https://my.saml.login.url
+            saml:
+              enabled: false
+            saml_autocreate_users_domains:
+              domains:
+              - example.com
+              - example.com
+              enabled: false
+            saml_idp_metadata_uploaded: false
+            saml_strict_mode:
+              enabled: false
+            saml_autocreate_access_role: st
+          created: 2019-09-26 17:28:28
+          name: New child org
+          description: some description
+          subscription: '{"type":"pro"}'
+          billing: '{"type":"parent_billing"}'
+          public_id: abcdef12345
+        - settings:
+            saml_idp_initiated_login:
+              enabled: false
+            saml_idp_endpoint: https://my.saml.endpoint
+            saml_can_be_enabled: false
+            private_widget_share: false
+            saml_login_url: https://my.saml.login.url
+            saml:
+              enabled: false
+            saml_autocreate_users_domains:
+              domains:
+              - example.com
+              - example.com
+              enabled: false
+            saml_idp_metadata_uploaded: false
+            saml_strict_mode:
+              enabled: false
+            saml_autocreate_access_role: st
+          created: 2019-09-26 17:28:28
+          name: New child org
+          description: some description
+          subscription: '{"type":"pro"}'
+          billing: '{"type":"parent_billing"}'
+          public_id: abcdef12345
+      properties:
+        orgs:
+          items:
+            $ref: '#/components/schemas/Org'
+          type: array
+      type: object
+    OrgResponse:
+      example:
+        org:
+          settings:
+            saml_idp_initiated_login:
+              enabled: false
+            saml_idp_endpoint: https://my.saml.endpoint
+            saml_can_be_enabled: false
+            private_widget_share: false
+            saml_login_url: https://my.saml.login.url
+            saml:
+              enabled: false
+            saml_autocreate_users_domains:
+              domains:
+              - example.com
+              - example.com
+              enabled: false
+            saml_idp_metadata_uploaded: false
+            saml_strict_mode:
+              enabled: false
+            saml_autocreate_access_role: st
+          created: 2019-09-26 17:28:28
+          name: New child org
+          description: some description
+          subscription: '{"type":"pro"}'
+          billing: '{"type":"parent_billing"}'
+          public_id: abcdef12345
+      properties:
+        org:
+          $ref: '#/components/schemas/Org'
+      type: object
     User:
       example:
         access_role: st
@@ -2376,6 +2791,88 @@ components:
         user:
           $ref: '#/components/schemas/User'
       type: object
+    Org_billing:
+      example: '{"type":"parent_billing"}'
+      properties:
+        type:
+          type: string
+    Org_settings_saml:
+      example:
+        enabled: false
+      properties:
+        enabled:
+          example: false
+          type: boolean
+    Org_settings_saml_autocreate_users_domains:
+      example:
+        domains:
+        - example.com
+        - example.com
+        enabled: false
+      properties:
+        domains:
+          items:
+            example: example.com
+            type: string
+          type: array
+        enabled:
+          example: false
+          type: boolean
+    Org_settings:
+      example:
+        saml_idp_initiated_login:
+          enabled: false
+        saml_idp_endpoint: https://my.saml.endpoint
+        saml_can_be_enabled: false
+        private_widget_share: false
+        saml_login_url: https://my.saml.login.url
+        saml:
+          enabled: false
+        saml_autocreate_users_domains:
+          domains:
+          - example.com
+          - example.com
+          enabled: false
+        saml_idp_metadata_uploaded: false
+        saml_strict_mode:
+          enabled: false
+        saml_autocreate_access_role: st
+      properties:
+        private_widget_share:
+          example: false
+          type: boolean
+        saml:
+          $ref: '#/components/schemas/Org_settings_saml'
+        saml_autocreate_access_role:
+          enum:
+          - st
+          - adm
+          - ro
+          example: st
+          type: string
+        saml_autocreate_users_domains:
+          $ref: '#/components/schemas/Org_settings_saml_autocreate_users_domains'
+        saml_can_be_enabled:
+          example: false
+          type: boolean
+        saml_idp_endpoint:
+          example: https://my.saml.endpoint
+          type: string
+        saml_idp_initiated_login:
+          $ref: '#/components/schemas/Org_settings_saml'
+        saml_idp_metadata_uploaded:
+          example: false
+          type: boolean
+        saml_login_url:
+          example: https://my.saml.login.url
+          type: string
+        saml_strict_mode:
+          $ref: '#/components/schemas/Org_settings_saml'
+    Org_subscription:
+      example: '{"type":"pro"}'
+      properties:
+        type:
+          type: string
   securitySchemes:
     apiKeyAuth:
       description: API Key
