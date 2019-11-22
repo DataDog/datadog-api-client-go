@@ -118,7 +118,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Create Application Key
 	// ----------------------------------
 	var createOpts datadog.CreateApplicationKeyOpts
-	testAppKeyName := "app key name"
+	testAppKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
 	createOpts.ApplicationKey = optional.NewInterface(datadog.ApplicationKey{Name: &testAppKeyName})
 	respData, respCode, err := TESTAPICLIENT.KeysApi.CreateApplicationKey(TESTAUTH, &createOpts)
 	if err != nil || respCode.StatusCode != 200 {
