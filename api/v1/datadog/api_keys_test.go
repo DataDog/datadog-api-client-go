@@ -18,7 +18,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Create API Key
 	// ----------------------------------
 	var createOpts datadog.CreateAPIKeyOpts
-	testApiKeyName := fmt.Sprintf("test datadog api client go %d", time.Now().Unix())
+	testApiKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
 	createOpts.ApiKey = optional.NewInterface(datadog.ApiKey{Name: &testApiKeyName})
 	respData, respCode, err := TESTAPICLIENT.KeysApi.CreateAPIKey(TESTAUTH, &createOpts)
 	if err != nil || respCode.StatusCode != 200 {
