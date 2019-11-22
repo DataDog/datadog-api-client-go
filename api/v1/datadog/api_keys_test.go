@@ -167,7 +167,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Edit Application Key
 	// ----------------------------------
 	var editOpts datadog.EditApplicationKeyOpts
-	newAppKeyName := "new app key name"
+	newAppKeyName := fmt.Sprintf("New %s:%d", t.Name(), time.Now().UnixNano())
 	editOpts.ApplicationKey = optional.NewInterface(datadog.ApplicationKey{Name: &newAppKeyName})
 	respData, respCode, err = TESTAPICLIENT.KeysApi.EditApplicationKey(TESTAUTH, getAppKeyHash, &editOpts)
 	if err != nil || respCode.StatusCode != 200 {
