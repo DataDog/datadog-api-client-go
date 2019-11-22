@@ -48,7 +48,11 @@ type APIClient struct {
 
 	DowntimesApi *DowntimesApiService
 
+	KeysApi *KeysApiService
+
 	MonitorsApi *MonitorsApiService
+
+	OrgsApi *OrgsApiService
 
 	UsersApi *UsersApiService
 }
@@ -71,7 +75,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.AWSIntegrationApi = (*AWSIntegrationApiService)(&c.common)
 	c.DowntimesApi = (*DowntimesApiService)(&c.common)
+	c.KeysApi = (*KeysApiService)(&c.common)
 	c.MonitorsApi = (*MonitorsApiService)(&c.common)
+	c.OrgsApi = (*OrgsApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c
