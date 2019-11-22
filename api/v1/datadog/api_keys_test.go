@@ -1,9 +1,11 @@
 package datadog_test
 
 import (
+	"fmt"
 	"testing"
+	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/antihax/optional"
 	"gotest.tools/assert"
 )
@@ -16,7 +18,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Create API Key
 	// ----------------------------------
 	var createOpts datadog.CreateAPIKeyOpts
-	testApiKeyName := "api key name"
+	testApiKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
 	createOpts.ApiKey = optional.NewInterface(datadog.ApiKey{Name: &testApiKeyName})
 	respData, respCode, err := TESTAPICLIENT.KeysApi.CreateAPIKey(TESTAUTH, &createOpts)
 	if err != nil || respCode.StatusCode != 200 {
@@ -116,7 +118,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Create Application Key
 	// ----------------------------------
 	var createOpts datadog.CreateApplicationKeyOpts
-	testAppKeyName := "app key name"
+	testAppKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
 	createOpts.ApplicationKey = optional.NewInterface(datadog.ApplicationKey{Name: &testAppKeyName})
 	respData, respCode, err := TESTAPICLIENT.KeysApi.CreateApplicationKey(TESTAUTH, &createOpts)
 	if err != nil || respCode.StatusCode != 200 {
@@ -165,7 +167,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Edit Application Key
 	// ----------------------------------
 	var editOpts datadog.EditApplicationKeyOpts
-	newAppKeyName := "new app key name"
+	newAppKeyName := fmt.Sprintf("New %s:%d", t.Name(), time.Now().UnixNano())
 	editOpts.ApplicationKey = optional.NewInterface(datadog.ApplicationKey{Name: &newAppKeyName})
 	respData, respCode, err = TESTAPICLIENT.KeysApi.EditApplicationKey(TESTAUTH, getAppKeyHash, &editOpts)
 	if err != nil || respCode.StatusCode != 200 {
