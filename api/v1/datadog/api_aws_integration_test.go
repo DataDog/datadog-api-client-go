@@ -1,17 +1,23 @@
 package datadog_test
 
 import (
+	"fmt"
 	"log"
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/antihax/optional"
 	"gotest.tools/assert"
 )
 
+var randSuffix = fmt.Sprintf("%d", time.Now().Unix())[0:7]
+
+var UNIQUEAWSACCOUNTID = fmt.Sprintf("dd-go%s", randSuffix)
+
 var TESTAWSACC = datadog.AwsAccount{
-	AccountId:                     datadog.PtrString("123456789012"),
+	AccountId:                     datadog.PtrString(UNIQUEAWSACCOUNTID),
 	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 	FilterTags:                    &[]string{"testTag", "test:Tag2"},
@@ -19,7 +25,7 @@ var TESTAWSACC = datadog.AwsAccount{
 }
 
 var TESTUPDATEAWSACC = datadog.AwsAccount{
-	AccountId:                     datadog.PtrString("123456789012"),
+	AccountId:                     datadog.PtrString(UNIQUEAWSACCOUNTID),
 	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
