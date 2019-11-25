@@ -87,7 +87,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 		}
 	}
 	// Test that variable is true as expected
-	assert.Assert(t, x == true)
+	assert.Equal(t, x, true)
 
 	// Delete newly added Lambda
 	delete_output, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH, TESTADDLAMBDAARN)

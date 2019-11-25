@@ -60,8 +60,8 @@ func TestGcpListandDelete(t *testing.T) {
 			x = Account
 		}
 	}
-	assert.Assert(t, x.GetClientEmail() == "api-test@fake-sandbox.iam.gserviceaccount.com")
-	assert.Assert(t, x.GetHostFilters() == "fake:tag,example:test")
+	assert.Equal(t, x.GetClientEmail(), "api-test@fake-sandbox.iam.gserviceaccount.com")
+	assert.Equal(t, x.GetHostFilters(), "fake:tag,example:test")
 
 	// Assert returned list is greater than or equal to 1
 	assert.Assert(t, len(gcpListOutput) >= 1)
@@ -98,8 +98,8 @@ func TestUpdateGcpAccount(t *testing.T) {
 			x = Account
 		}
 	}
-	assert.Assert(t, x.GetAutomute() == true)
-	assert.Assert(t, x.GetHostFilters() == "fake:update,example:update")
+	assert.Equal(t, x.GetAutomute(), true)
+	assert.Equal(t, x.GetHostFilters(), "fake:update,example:update")
 }
 
 func uninstallGcpIntegration(account datadog.GcpAccount) {

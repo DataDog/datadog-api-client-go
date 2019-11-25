@@ -59,8 +59,8 @@ func TestAzureListandDelete(t *testing.T) {
 			x = Account
 		}
 	}
-	assert.Assert(t, x.GetClientId() == "testc7f6-1234-5678-9101-3fcbf4update")
-	assert.Assert(t, x.GetTenantName() == "testc44-1234-5678-9101-cc0073update")
+	assert.Equal(t, x.GetClientId(), "testc7f6-1234-5678-9101-3fcbf4update")
+	assert.Equal(t, x.GetTenantName(), "testc44-1234-5678-9101-cc0073update")
 
 	// Assert returned list is greater than or equal to 1
 	assert.Assert(t, len(azure_list_output) >= 1)
