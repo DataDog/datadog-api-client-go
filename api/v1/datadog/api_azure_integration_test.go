@@ -97,9 +97,9 @@ func TestUpdateAzureAccount(t *testing.T) {
 			x = Account
 		}
 	}
-	assert.Assert(t, x.GetClientId() == "testc7f6-1234-5678-9101-3fcbf4update")
-	assert.Assert(t, x.GetTenantName() == "testc44-1234-5678-9101-cc0073update")
-	assert.Assert(t, x.GetHostFilters() == "filter:foo,test:bar")
+	assert.Equal(t, x.GetClientId(), "testc7f6-1234-5678-9101-3fcbf4update")
+	assert.Equal(t, x.GetTenantName(), "testc44-1234-5678-9101-cc0073update")
+	assert.Equal(t, x.GetHostFilters(), "filter:foo,test:bar")
 
 	// Test update host filters endpoint
 	azureUpdateHFOutput, _, err := TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH, TESTUPDATEAZUREHOSTFILTERS)
@@ -114,7 +114,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 			y = Account
 		}
 	}
-	assert.Assert(t, y.GetHostFilters() == "test:foo,test:bar")
+	assert.Equal(t, y.GetHostFilters(), "test:foo,test:bar")
 }
 
 func uninstallAzureIntegration(account datadog.AzureAccount) {

@@ -49,7 +49,7 @@ func TestListAWSLogsServices(t *testing.T) {
 	list_services_output, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsServicesList(TESTAUTH)
 
 	// Assert returned list has the expected length of 6
-	assert.Equal(t, len(list_services_output), 6)
+	assert.Equal(t, len(list_services_output), len(TESTSAVESERVICES.Services))
 }
 
 func TestListAndDeleteAWSLogs(t *testing.T) {
