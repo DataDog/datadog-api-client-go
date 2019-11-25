@@ -2,6 +2,7 @@ package datadog_test
 
 import (
 	"fmt"
+	"log"
 	"testing"
 	"time"
 
@@ -30,6 +31,8 @@ func TestApiKeyFunctions(t *testing.T) {
 	createApiKeyCreated := createApiKeyReturned.GetCreated()
 	createApiKeyCreatedBy := createApiKeyReturned.GetCreatedBy()
 	createApiKeyValue := createApiKeyReturned.GetKey()
+
+	defer deleteApiKey(createApiKeyValue)
 
 	// none of these values should be empty
 	assert.Assert(t, createApiKeyName != "")
@@ -130,6 +133,8 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	createAppKeyHash := createAppKeyReturned.GetHash()
 	createAppKeyName := createAppKeyReturned.GetName()
 
+	defer deleteAppKey(createAppKeyHash)
+
 	// all values should not be nil
 	assert.Assert(t, createAppKeyOwner != "")
 	assert.Assert(t, createAppKeyHash != "")
@@ -200,4 +205,18 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	assert.Equal(t, deleteAppKeyOwner, editAppKeyOwner)
 	assert.Equal(t, deleteAppKeyHash, editAppKeyHash)
 	assert.Equal(t, deleteAppKeyName, editAppKeyName)
+}
+
+func deleteApiKey(apiKeyValue string) {
+	_, httpresp, err := TESTAPICLIENT.KeysApi.DeleteAPIKey(TESTAUTH, apiKeyValue)
+	if httpresp.StatusCode != 200 || err != nil {
+		log.Printf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue, httpresp.StatusCode)
+	}
+}
+
+func deleteAppKey(appKeyHash string) {
+	_, httpresp, err := TESTAPICLIENT.KeysApi.DeleteApplicationKey(TESTAUTH, appKeyHash)
+	if httpresp.StatusCode != 200 || err != nil {
+		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash, httpresp.StatusCode)
+	}
 }
