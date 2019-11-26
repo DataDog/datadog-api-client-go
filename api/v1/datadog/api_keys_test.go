@@ -25,14 +25,13 @@ func TestApiKeyFunctions(t *testing.T) {
 	if err != nil || httpresp.StatusCode != 200 {
 		t.Errorf("Error creating api key %v: Status: %v: %v", testApiKeyName, httpresp.StatusCode, err)
 	}
+	defer deleteApiKey(apiKeyData.ApiKey.GetKey())
 
 	createApiKeyReturned := apiKeyData.GetApiKey()
 	createApiKeyName := createApiKeyReturned.GetName()
 	createApiKeyCreated := createApiKeyReturned.GetCreated()
 	createApiKeyCreatedBy := createApiKeyReturned.GetCreatedBy()
 	createApiKeyValue := createApiKeyReturned.GetKey()
-
-	defer deleteApiKey(createApiKeyValue)
 
 	// none of these values should be empty
 	assert.Assert(t, createApiKeyName != "")
@@ -127,13 +126,12 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	if err != nil || httpresp.StatusCode != 200 {
 		t.Errorf("Error creating api key %v: Status: %v: %v", testAppKeyName, httpresp.StatusCode, err)
 	}
+	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
 
 	createAppKeyReturned := appKeyData.GetApplicationKey()
 	createAppKeyOwner := createAppKeyReturned.GetOwner()
 	createAppKeyHash := createAppKeyReturned.GetHash()
 	createAppKeyName := createAppKeyReturned.GetName()
-
-	defer deleteAppKey(createAppKeyHash)
 
 	// all values should not be nil
 	assert.Assert(t, createAppKeyOwner != "")
