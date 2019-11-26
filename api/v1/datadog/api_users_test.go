@@ -38,6 +38,8 @@ func TestCreateUser(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error Creating User: %v", err)
 	}
+	// FIXME assert.Equal(t, httpresp.StatusCode, 200)
+
 	user := userCreateResponse.GetUser()
 	assert.Equal(t, user.GetName(), TESTUSER.GetName())
 	assert.Equal(t, user.GetHandle(), TESTUSER.GetHandle())
@@ -46,9 +48,11 @@ func TestCreateUser(t *testing.T) {
 
 	// Assert User Get with proper fields
 	userGetResponse, httpresp, err := TESTAPICLIENT.UsersApi.GetUser(TESTAUTH, TESTUSER.GetEmail())
-	if httpresp.StatusCode != 200 || err != nil {
+	if err != nil {
 		t.Errorf("Error Getting User: %v: %v", httpresp, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
 	user = userGetResponse.GetUser()
 	assert.Equal(t, user.GetName(), TESTUSER.GetName())
 	assert.Equal(t, user.GetHandle(), TESTUSER.GetHandle())
@@ -67,13 +71,16 @@ func TestUpdateUser(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error Creating User: %v", err)
 	}
+	// FIXME assert.Equal(t, httpresp.StatusCode, 200)
 	userCreateResponse.GetUser()
 
 	// Assert User Get with proper fields
 	userUpdateResponse, httpresp, err := TESTAPICLIENT.UsersApi.UpdateUser(TESTAUTH, TESTUSER.GetHandle(), UPDATEUSER)
-	if httpresp.StatusCode != 200 || err != nil {
+	if err != nil {
 		t.Errorf("Error Getting User: %v: %v", httpresp, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
 	user := userUpdateResponse.GetUser()
 	// Test fields were updated
 	assert.Equal(t, user.GetName(), UPDATEUSER.GetName())
@@ -90,9 +97,10 @@ func TestDisableUser(t *testing.T) {
 	TESTAPICLIENT.UsersApi.UpdateUser(TESTAUTH, TESTUSER.GetHandle(), UPDATEENABLEUSER)
 
 	_, httpresp, err := TESTAPICLIENT.UsersApi.DisableUser(TESTAUTH, TESTUSER.GetHandle())
-	if httpresp.StatusCode != 200 || err != nil {
+	if err != nil {
 		t.Errorf("Error disabling User: %v: %v", httpresp, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func disableUser(userID string) {

@@ -65,46 +65,49 @@ func TestMonitorLifecycle(t *testing.T) {
 
 	// Create monitor
 	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH, testMonitor)
-	if err != nil || httpresp.StatusCode != 200 {
+	if err != nil {
 		t.Errorf("Error creating Monitor %v: Status: %v: %v", testMonitor, httpresp.StatusCode, err)
 	}
 	defer deleteMonitor(monitor.GetId())
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	assert.Equal(t, monitor.GetName(), testMonitor.GetName())
 
 	// Edit a monitor
 	editedMonitor := datadog.Monitor{Name: datadog.PtrString("updated name")}
 	updatedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.EditMonitor(TESTAUTH, monitor.GetId(), editedMonitor)
-	if err != nil || httpresp.StatusCode != 200 {
+	if err != nil {
 		t.Errorf("Error updating Monitor %v: Status: %v: %v", monitor.GetId(), httpresp.StatusCode, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, editedMonitor.GetName(), updatedMonitor.GetName())
 
 	// Check monitor existence
 	fetchedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId(), nil)
-	if err != nil || httpresp.StatusCode != 200 {
+	if err != nil {
 		t.Errorf("Error fetching Monitor %v: Status: %v: %v", monitor.GetId(), httpresp.StatusCode, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, updatedMonitor.GetName(), fetchedMonitor.GetName())
 
 	// Find our monitor in the full list
 	monitors, httpresp, err := TESTAPICLIENT.MonitorsApi.GetAllMonitors(TESTAUTH, nil)
-	if err != nil || httpresp.StatusCode != 200 {
+	if err != nil {
 		t.Errorf("Error fetching monitors; Status: %v: %v", httpresp.StatusCode, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Assert(t, is.Contains(monitors, fetchedMonitor))
 
 	// Delete
 	_, httpresp, err = TESTAPICLIENT.MonitorsApi.DeleteMonitor(TESTAUTH, monitor.GetId())
-	if err != nil || httpresp.StatusCode != 200 {
+	if err != nil {
 		t.Errorf("Error deleting Monitor %v: Status: %v: %v", monitor.GetId(), httpresp.StatusCode, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// Check monitor non existence
-	fetchedMonitor, httpresp, err = TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId(), nil)
-	if httpresp.StatusCode != 404 {
-		t.Errorf("Monitor %v should be deleted: Status: %v: %v", fetchedMonitor.GetId(), httpresp.StatusCode, err)
-	}
+	_, httpresp, err = TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId(), nil)
+	assert.Equal(t, httpresp.StatusCode, 404, "Monitor should be deleted: %v", err)
 }
 
 func deleteMonitor(monitorId int64) {

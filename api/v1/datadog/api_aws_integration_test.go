@@ -96,9 +96,10 @@ func TestDisableAWSAcct(t *testing.T) {
 	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACC)
 
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH, TESTAWSACC)
-	if httpresp.StatusCode != 200 || err != nil {
+	if err != nil {
 		t.Errorf("Error disabling AWS Account: %v: %v", httpresp, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200, "Error disabling AWS Account: %v", httpresp)
 }
 
 func uninstallAWSIntegration(account datadog.AwsAccount) {
