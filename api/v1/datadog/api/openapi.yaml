@@ -8,11 +8,11 @@ servers:
 - url: https://{subdomain}.{site}
   variables:
     region:
-      default: com
-      description: The region of the customer.
+      default: datadoghq.com
+      description: The regional site for our customers.
       enum:
-      - com
-      - eu
+      - datadoghq.com
+      - datadoghq.eu
     subdomain:
       default: api
       description: The subdomain where the API is deployed.

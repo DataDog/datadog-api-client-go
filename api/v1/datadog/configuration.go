@@ -86,11 +86,11 @@ func NewConfiguration() *Configuration {
 			Description: "No description provided",
 			Variables: map[string]ServerVariable{
 				"region": ServerVariable{
-					Description:  "The region of the customer.",
-					DefaultValue: "com",
+					Description:  "The regional site for our customers.",
+					DefaultValue: "datadoghq.com",
 					EnumValues: []string{
-						"com",
-						"eu",
+						"datadoghq.com",
+						"datadoghq.eu",
 					},
 				},
 				"subdomain": ServerVariable{
