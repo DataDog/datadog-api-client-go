@@ -5,7 +5,17 @@ info:
   title: Datadog API Collection
   version: "1.0"
 servers:
-- url: https://api.datadoghq.com
+- url: https://{subdomain}.datadoghq.{region}
+  variables:
+    region:
+      default: com
+      description: The region of the customer.
+      enum:
+      - com
+      - eu
+    subdomain:
+      default: api
+      description: The subdomain where the API is deployed.
 security:
 - apiKeyAuth: []
   appKeyAuth: []

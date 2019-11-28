@@ -9,7 +9,9 @@
 package datadog
 
 import (
+	"fmt"
 	"net/http"
+	"strings"
 )
 
 // contextKeys are used to identify the type of value in the context.
@@ -48,6 +50,20 @@ type APIKey struct {
 	Prefix string
 }
 
+// ServerVariable stores the information about a server variable
+type ServerVariable struct {
+	Description  string
+	DefaultValue string
+	EnumValues   []string
+}
+
+// ServerConfiguration stores the information about a server
+type ServerConfiguration struct {
+	Url         string
+	Description string
+	Variables   map[string]ServerVariable
+}
+
 // Configuration stores the configuration of the API client
 type Configuration struct {
 	BasePath      string            `json:"basePath,omitempty"`
@@ -55,6 +71,7 @@ type Configuration struct {
 	Scheme        string            `json:"scheme,omitempty"`
 	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent     string            `json:"userAgent,omitempty"`
+	Servers       []ServerConfiguration
 	HTTPClient    *http.Client
 }
 
@@ -64,6 +81,25 @@ func NewConfiguration() *Configuration {
 		BasePath:      "https://api.datadoghq.com",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "DataDog/0.1.0/go-experimental",
+		Servers: []ServerConfiguration{{
+			Url:         "https://{subdomain}.datadoghq.{region}",
+			Description: "No description provided",
+			Variables: map[string]ServerVariable{
+				"region": ServerVariable{
+					Description:  "The region of the customer.",
+					DefaultValue: "com",
+					EnumValues: []string{
+						"com",
+						"eu",
+					},
+				},
+				"subdomain": ServerVariable{
+					Description:  "The subdomain where the API is deployed.",
+					DefaultValue: "api",
+				},
+			},
+		},
+		},
 	}
 	return cfg
 }
@@ -71,4 +107,29 @@ func NewConfiguration() *Configuration {
 // AddDefaultHeader adds a new HTTP header to the default header in the request
 func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
+}
+
+// ServerUrl returns URL based on server settings
+func (c *Configuration) ServerUrl(index int, variables map[string]string) (string, error) {
+	server := c.Servers[index]
+	url := server.Url
+
+	// go through variables and replace placeholders
+	for name, variable := range server.Variables {
+		if value, ok := variables[name]; ok {
+			found := bool(len(variable.EnumValues) == 0)
+			for _, enumValue := range variable.EnumValues {
+				if value == enumValue {
+					found = true
+				}
+			}
+			if !found {
+				return "", fmt.Errorf("The variable %s in the server URL has invalid value %v. Must be %v", name, value, variable.EnumValues)
+			}
+			url = strings.ReplaceAll(url, "{"+name+"}", value)
+		} else {
+			url = strings.ReplaceAll(url, "{"+name+"}", variable.DefaultValue)
+		}
+	}
+	return url, nil
 }
