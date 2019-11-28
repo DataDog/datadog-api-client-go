@@ -18,12 +18,12 @@ func TestConfigurationServers(t *testing.T) {
 		Variables: nil,
 	}, {
 		Url:       "https://api.datadoghq.eu",
-		Variables: map[string]string{"region": "eu"},
+		Variables: map[string]string{"site": "datadoghq.eu"},
 	}, {
 		Url: "https://http-intake.logs.datadoghq.eu",
 		Variables: map[string]string{
 			"subdomain": "http-intake.logs",
-			"region":    "eu",
+			"site":      "datadoghq.eu",
 		},
 	},
 	}

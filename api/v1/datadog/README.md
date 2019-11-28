@@ -28,7 +28,7 @@ import sw "./datadog"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.datadoghq.com*
+All URIs are relative to *https://api.*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -62,6 +62,7 @@ Class | Method | HTTP request | Description
 *OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get the organization
 *OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
 *OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
+*SnapshotsApi* | [**CreateGraphSnapshot**](docs/SnapshotsApi.md#creategraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable user
 *UsersApi* | [**GetAllUsers**](docs/UsersApi.md#getallusers) | **Get** /api/v1/user | Get all users
@@ -98,6 +99,7 @@ Class | Method | HTTP request | Description
  - [Error429](docs/Error429.md)
  - [Error500](docs/Error500.md)
  - [Error503](docs/Error503.md)
+ - [GraphSnapshot](docs/GraphSnapshot.md)
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)
  - [Monitor](docs/Monitor.md)
