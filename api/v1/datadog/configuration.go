@@ -78,14 +78,14 @@ type Configuration struct {
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		BasePath:      "https://api.",
+		BasePath:      "https://api.datadoghq.com",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "DataDog/0.1.0/go-experimental",
 		Servers: []ServerConfiguration{{
 			Url:         "https://{subdomain}.{site}",
 			Description: "No description provided",
 			Variables: map[string]ServerVariable{
-				"region": ServerVariable{
+				"site": ServerVariable{
 					Description:  "The regional site for our customers.",
 					DefaultValue: "datadoghq.com",
 					EnumValues: []string{

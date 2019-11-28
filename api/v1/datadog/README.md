@@ -28,7 +28,7 @@ import sw "./datadog"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.*
+All URIs are relative to *https://api.datadoghq.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

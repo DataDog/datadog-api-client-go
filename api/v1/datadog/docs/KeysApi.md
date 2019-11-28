@@ -1,6 +1,6 @@
 # \KeysApi
 
-All URIs are relative to *https://api.*
+All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

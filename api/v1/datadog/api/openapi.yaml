@@ -7,7 +7,7 @@ info:
 servers:
 - url: https://{subdomain}.{site}
   variables:
-    region:
+    site:
       default: datadoghq.com
       description: The regional site for our customers.
       enum:
