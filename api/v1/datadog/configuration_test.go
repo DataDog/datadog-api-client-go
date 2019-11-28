@@ -1,6 +1,7 @@
 package datadog_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -35,6 +36,28 @@ func TestConfigurationServers(t *testing.T) {
 				t.Errorf("Could not format URL: %v", err)
 			}
 			assert.Equal(t, url, tc.Url)
+		})
+	}
+}
+
+func TestConfigurationServersAccess(t *testing.T) {
+	configuration := datadog.NewConfiguration()
+	testCases := []struct {
+		Index int
+		Err   string
+	}{{
+		Index: -1,
+		Err:   "Index -1 out of range 0",
+	}, {
+		Index: len(configuration.Servers),
+		Err:   "Index 1 out of range 0",
+	},
+	}
+
+	for _, tc := range testCases {
+		t.Run(fmt.Sprintf("Index %v", tc.Index), func(t *testing.T) {
+			_, err := configuration.ServerUrl(tc.Index, nil)
+			assert.Error(t, err, tc.Err)
 		})
 	}
 }
