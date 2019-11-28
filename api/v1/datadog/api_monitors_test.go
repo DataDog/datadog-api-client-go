@@ -66,7 +66,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	// Create monitor
 	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH, testMonitor)
 	if err != nil {
-		t.Errorf("Error creating Monitor %v: Status: %v: %v", testMonitor, httpresp.StatusCode, err)
+		t.Errorf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteMonitor(monitor.GetId())
 	assert.Equal(t, httpresp.StatusCode, 200)
@@ -77,7 +77,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	editedMonitor := datadog.Monitor{Name: datadog.PtrString("updated name")}
 	updatedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.EditMonitor(TESTAUTH, monitor.GetId(), editedMonitor)
 	if err != nil {
-		t.Errorf("Error updating Monitor %v: Status: %v: %v", monitor.GetId(), httpresp.StatusCode, err)
+		t.Errorf("Error updating Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, editedMonitor.GetName(), updatedMonitor.GetName())
@@ -85,7 +85,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	// Check monitor existence
 	fetchedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId(), nil)
 	if err != nil {
-		t.Errorf("Error fetching Monitor %v: Status: %v: %v", monitor.GetId(), httpresp.StatusCode, err)
+		t.Errorf("Error fetching Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, updatedMonitor.GetName(), fetchedMonitor.GetName())
@@ -93,7 +93,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	// Find our monitor in the full list
 	monitors, httpresp, err := TESTAPICLIENT.MonitorsApi.GetAllMonitors(TESTAUTH, nil)
 	if err != nil {
-		t.Errorf("Error fetching monitors; Status: %v: %v", httpresp.StatusCode, err)
+		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Assert(t, is.Contains(monitors, fetchedMonitor))
@@ -101,7 +101,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	// Delete
 	_, httpresp, err = TESTAPICLIENT.MonitorsApi.DeleteMonitor(TESTAUTH, monitor.GetId())
 	if err != nil {
-		t.Errorf("Error deleting Monitor %v: Status: %v: %v", monitor.GetId(), httpresp.StatusCode, err)
+		t.Errorf("Error deleting Monitor %v: Response %s: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
