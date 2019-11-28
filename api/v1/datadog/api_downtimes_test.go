@@ -32,10 +32,11 @@ func TestDowntimeLifecycle(t *testing.T) {
 
 	// Create downtime
 	downtime, httpresp, err := TESTAPICLIENT.DowntimesApi.CreateDowntime(TESTAUTH, testDowntime)
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error creating Downtime %v: Status: %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
+	if err != nil {
+		t.Errorf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer cancelDowntime(downtime.GetId())
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	assert.Equal(t, downtime.GetMessage(), testDowntime.GetMessage())
 	assert.Assert(t, downtime.GetActive())
@@ -43,35 +44,39 @@ func TestDowntimeLifecycle(t *testing.T) {
 	// Edit a downtime
 	editedDowntime := datadog.Downtime{Message: datadog.PtrString("updated message")}
 	updatedDowntime, httpresp, err := TESTAPICLIENT.DowntimesApi.UpdateDowntime(TESTAUTH, downtime.GetId(), editedDowntime)
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error updating Downtime %v: Status: %v: %v", downtime.GetId(), httpresp.StatusCode, err)
+	if err != nil {
+		t.Errorf("Error updating Downtime %v: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, editedDowntime.GetMessage(), updatedDowntime.GetMessage())
 
 	// Check downtime existence
 	fetchedDowntime, httpresp, err := TESTAPICLIENT.DowntimesApi.GetDowntime(TESTAUTH, downtime.GetId())
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error fetching Downtime %v: Status: %v: %v", downtime.GetId(), httpresp.StatusCode, err)
+	if err != nil {
+		t.Errorf("Error fetching Downtime %v: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, updatedDowntime.GetMessage(), fetchedDowntime.GetMessage())
 
 	// Find our downtime in the full list
 	downtimes, httpresp, err := TESTAPICLIENT.DowntimesApi.GetAllDowntimes(TESTAUTH, nil)
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error fetching downtimes; Status: %v: %v", httpresp.StatusCode, err)
+	if err != nil {
+		t.Errorf("Error fetching downtimes: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Assert(t, is.Contains(downtimes, fetchedDowntime))
 
 	// Cancel downtime
 	httpresp, err = TESTAPICLIENT.DowntimesApi.CancelDowntime(TESTAUTH, downtime.GetId())
 	if err != nil {
-		t.Errorf("Error canceling Downtime %v: Status: %v: %v", downtime.GetId(), httpresp.StatusCode, err)
+		t.Errorf("Error canceling Downtime %v: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 204)
 
 	// Check downtime status
 	fetchedDowntime, httpresp, err = TESTAPICLIENT.DowntimesApi.GetDowntime(TESTAUTH, downtime.GetId())
 	if httpresp.StatusCode != 200 {
-		t.Errorf("Downtime %v should still exist: Status: %v: %v", fetchedDowntime.GetId(), httpresp.StatusCode, err)
+		t.Errorf("Downtime %v should still exist: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Assert(t, !fetchedDowntime.GetActive())
 	assert.Assert(t, fetchedDowntime.GetDisabled())
@@ -84,7 +89,7 @@ func TestMonitorDowntime(t *testing.T) {
 	// Create monitor
 	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH, testMonitor)
 	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error creating Monitor %v: Status: %v: %v", testMonitor, httpresp.StatusCode, err)
+		t.Errorf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	monitorId := monitor.GetId()
 	defer deleteMonitor(monitorId)
@@ -102,10 +107,11 @@ func TestMonitorDowntime(t *testing.T) {
 
 	// Create downtime
 	downtime, httpresp, err := TESTAPICLIENT.DowntimesApi.CreateDowntime(TESTAUTH, testDowntime)
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error creating Downtime %v: Status: %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
+	if err != nil {
+		t.Errorf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer cancelDowntime(downtime.GetId())
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	assert.Equal(t, downtime.GetMonitorId().Value, monitorId)
 }
@@ -137,10 +143,11 @@ func TestScopedDowntime(t *testing.T) {
 	downtimes := make([]datadog.Downtime, len(testDowntimes))
 	for i, testDowntime := range testDowntimes {
 		downtime, httpresp, err := TESTAPICLIENT.DowntimesApi.CreateDowntime(TESTAUTH, testDowntime)
-		if err != nil || httpresp.StatusCode != 200 {
-			t.Errorf("Error creating Downtime %v: Status: %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
+		if err != nil {
+			t.Errorf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 		}
 		defer cancelDowntime(downtime.GetId())
+		assert.Equal(t, httpresp.StatusCode, 200)
 
 		assert.Assert(t, !downtime.GetDisabled())
 		downtimes[i] = downtime
@@ -152,9 +159,10 @@ func TestScopedDowntime(t *testing.T) {
 		Scope: scope,
 	}
 	canceledDowntimesIds, httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntimesByScope(TESTAUTH, cancelDowntimesByScopeRequest)
-	if httpresp.StatusCode != 200 || err != nil {
+	if err != nil {
 		t.Errorf("Error canceling downtimes by scope %s: %v", scope, err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	canceledIds := canceledDowntimesIds.GetCancelledIds()
 	expectedCanceledIds := []int64{downtimes[1].GetId()}
