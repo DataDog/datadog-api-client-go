@@ -34,6 +34,8 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/account_management/api-app-keys/
   name: Keys
+- description: Send your logs to your Datadog platform over HTTP.
+  name: LogsHTTPIntake
 - description: Create, edit, and manage organizations.
   externalDocs:
     description: Find out more at
@@ -1746,6 +1748,55 @@ paths:
       summary: Update user
       tags:
       - Users
+  /v1/input/{api_key}:
+    post:
+      description: Send logs
+      operationId: SendLog
+      parameters:
+      - description: valid API key for an organisation
+        explode: false
+        in: path
+        name: api_key
+        required: true
+        schema:
+          example: 01234567899abcdef0123456789abcd
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPLog'
+        description: Log to send (JSON format)
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: response from server (always 200 empty JSON)
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      servers:
+      - url: https://{subdomain}.{site}
+        variables:
+          site:
+            default: datadoghq.com
+            description: The regional site for our customers.
+            enum:
+            - datadoghq.com
+            - datadoghq.eu
+          subdomain:
+            default: http-intake.logs
+            description: The subdomain where the API is deployed.
+      tags:
+      - LogsHTTPIntake
 components:
   callbacks: {}
   examples: {}
@@ -2092,6 +2143,17 @@ components:
             type: string
           type: array
       type: object
+    Error:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      required:
+      - code
+      - message
+      type: object
     Error400:
       properties:
         errors:
@@ -2234,6 +2296,25 @@ components:
           type: string
         snapshot_url:
           type: string
+      type: object
+    HTTPLog:
+      properties:
+        ddsource:
+          example: python
+          type: string
+        ddtags:
+          example: env:staging,service:payment
+          type: string
+        hostname:
+          example: i-012345678
+          type: string
+        message:
+          example: 2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World
+          type: string
+      required:
+      - name
+      type: object
+    HTTPLogResponse:
       type: object
     IdpFormData:
       properties:

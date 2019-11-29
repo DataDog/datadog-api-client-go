@@ -52,6 +52,7 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys available for your account.
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
+*LogsHTTPIntakeApi* | [**SendLog**](docs/LogsHTTPIntakeApi.md#sendlog) | **Post** /v1/input/{api_key} | 
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a new Monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
 *MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
@@ -86,6 +87,7 @@ Class | Method | HTTP request | Description
  - [Creator](docs/Creator.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
+ - [Error](docs/Error.md)
  - [Error400](docs/Error400.md)
  - [Error401](docs/Error401.md)
  - [Error402](docs/Error402.md)
@@ -100,6 +102,7 @@ Class | Method | HTTP request | Description
  - [Error500](docs/Error500.md)
  - [Error503](docs/Error503.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
+ - [HttpLog](docs/HttpLog.md)
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)
  - [Monitor](docs/Monitor.md)
