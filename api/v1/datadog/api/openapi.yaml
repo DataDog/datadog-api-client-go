@@ -5,7 +5,17 @@ info:
   title: Datadog API Collection
   version: "1.0"
 servers:
-- url: https://api.datadoghq.com
+- url: https://{subdomain}.{site}
+  variables:
+    site:
+      default: datadoghq.com
+      description: The regional site for our customers.
+      enum:
+      - datadoghq.com
+      - datadoghq.eu
+    subdomain:
+      default: api
+      description: The subdomain where the API is deployed.
 security:
 - apiKeyAuth: []
   appKeyAuth: []
@@ -740,6 +750,85 @@ paths:
       summary: Update a downtime
       tags:
       - Downtimes
+  /api/v1/graph/snapshot:
+    get:
+      description: |-
+        ### Overview
+        Take graph snapshots
+        ### Arguments
+        * **`metric_query`** [*required*]: The metric query.
+        * **`start`** [*required*]: The POSIX timestamp of the start of the query.
+        * **`end`** [*required*]: The POSIX timestamp of the end of the query.
+        * **`event_query`** [*optional*, *default* = **None**]: A query that adds event bands to the graph.
+        * **`graph_def`** [*optional*, *default* = **None**]: A JSON document defining the graph.
+          graph_def can be used instead of metric_query. The JSON document uses the
+          [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+          and should be formatted to a single line then URLEncoded.
+
+        * **`title`** [*optional*, *default* = **None**]: A title for the graph.
+          If no title is specified, the graph doesn’t have a title.
+      operationId: CreateGraphSnapshot
+      parameters:
+      - explode: true
+        in: query
+        name: metric_query
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: event_query
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: graph_def
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: title
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphSnapshot'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Take graph snapshots
+      tags:
+      - Snapshots
   /api/v1/integration/aws:
     delete:
       description: |-
@@ -2132,6 +2221,19 @@ components:
           type: array
       required:
       - errors
+      type: object
+    GraphSnapshot:
+      example:
+        graph_def: graph_def
+        metric_query: metric_query
+        snapshot_url: snapshot_url
+      properties:
+        graph_def:
+          type: string
+        metric_query:
+          type: string
+        snapshot_url:
+          type: string
       type: object
     IdpFormData:
       properties:
