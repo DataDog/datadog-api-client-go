@@ -767,7 +767,7 @@ paths:
 
         * **`title`** [*optional*, *default* = **None**]: A title for the graph.
           If no title is specified, the graph doesn’t have a title.
-      operationId: CreateGraphSnapshot
+      operationId: GetGraphSnapshot
       parameters:
       - explode: true
         in: query
