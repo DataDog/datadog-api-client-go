@@ -4,13 +4,13 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateGraphSnapshot**](SnapshotsApi.md#CreateGraphSnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
+[**GetGraphSnapshot**](SnapshotsApi.md#GetGraphSnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 
 
 
-## CreateGraphSnapshot
+## GetGraphSnapshot
 
-> GraphSnapshot CreateGraphSnapshot(ctx, metricQuery, start, end, optional)
+> GraphSnapshot GetGraphSnapshot(ctx, metricQuery, start, end, optional)
 
 Take graph snapshots
 
@@ -38,11 +38,11 @@ Name | Type | Description  | Notes
 **metricQuery** | **string**|  | 
 **start** | **int64**|  | 
 **end** | **int64**|  | 
- **optional** | ***CreateGraphSnapshotOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetGraphSnapshotOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
 
-Optional parameters are passed through a pointer to a CreateGraphSnapshotOpts struct
+Optional parameters are passed through a pointer to a GetGraphSnapshotOpts struct
 
 
 Name | Type | Description  | Notes
