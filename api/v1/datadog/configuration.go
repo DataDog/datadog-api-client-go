@@ -66,13 +66,14 @@ type ServerConfiguration struct {
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	BasePath      string            `json:"basePath,omitempty"`
-	Host          string            `json:"host,omitempty"`
-	Scheme        string            `json:"scheme,omitempty"`
-	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent     string            `json:"userAgent,omitempty"`
-	Servers       []ServerConfiguration
-	HTTPClient    *http.Client
+	BasePath       string            `json:"basePath,omitempty"`
+	Host           string            `json:"host,omitempty"`
+	Scheme         string            `json:"scheme,omitempty"`
+	DefaultHeader  map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent      string            `json:"userAgent,omitempty"`
+	Servers        []ServerConfiguration
+	ServiceServers map[interface{}][]ServerConfiguration
+	HTTPClient     *http.Client
 }
 
 // NewConfiguration returns a new Configuration object
@@ -100,6 +101,27 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		},
+		ServiceServers: map[interface{}][]ServerConfiguration{
+			LogsHTTPIntakeApiService{}: []ServerConfiguration{{
+				Url:         "https://{subdomain}.{site}",
+				Description: "No description provided",
+				Variables: map[string]ServerVariable{
+					"site": ServerVariable{
+						Description:  "The regional site for our customers.",
+						DefaultValue: "datadoghq.com",
+						EnumValues: []string{
+							"datadoghq.com",
+							"datadoghq.eu",
+						},
+					},
+					"subdomain": ServerVariable{
+						Description:  "The subdomain where the API is deployed.",
+						DefaultValue: "http-intake.logs",
+					},
+				},
+			},
+			},
+		},
 	}
 	return cfg
 }
@@ -109,12 +131,8 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
 }
 
-// ServerUrl returns URL based on server settings
-func (c *Configuration) ServerUrl(index int, variables map[string]string) (string, error) {
-	if index < 0 || len(c.Servers) <= index {
-		return "", fmt.Errorf("Index %v out of range %v", index, len(c.Servers)-1)
-	}
-	server := c.Servers[index]
+// ServerUrl returns URL based on variables
+func (server *ServerConfiguration) ServerUrl(variables map[string]string) (string, error) {
 	url := server.Url
 
 	// go through variables and replace placeholders
@@ -135,4 +153,12 @@ func (c *Configuration) ServerUrl(index int, variables map[string]string) (strin
 		}
 	}
 	return url, nil
+}
+
+// ServerUrl returns URL based on server settings
+func (c *Configuration) ServerUrl(index int, variables map[string]string) (string, error) {
+	if index < 0 || len(c.Servers) <= index {
+		return "", fmt.Errorf("Index %v out of range %v", index, len(c.Servers)-1)
+	}
+	return c.Servers[index].ServerUrl(variables)
 }

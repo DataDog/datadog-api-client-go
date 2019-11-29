@@ -25,6 +25,27 @@ var (
 // LogsHTTPIntakeApiService LogsHTTPIntakeApi service
 type LogsHTTPIntakeApiService service
 
+// LogsHTTPIntakeServers servers
+var LogsHTTPIntakeServers = []ServerConfiguration{{
+	Url:         "https://{subdomain}.{site}",
+	Description: "No description provided",
+	Variables: map[string]ServerVariable{
+		"site": ServerVariable{
+			Description:  "The regional site for our customers.",
+			DefaultValue: "datadoghq.com",
+			EnumValues: []string{
+				"datadoghq.com",
+				"datadoghq.eu",
+			},
+		},
+		"subdomain": ServerVariable{
+			Description:  "The subdomain where the API is deployed.",
+			DefaultValue: "http-intake.logs",
+		},
+	},
+},
+}
+
 /*
 SendLog Method for SendLog
 Send logs
@@ -43,8 +64,17 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, 
 		localVarReturnValue  map[string]interface{}
 	)
 
+	basePath := a.client.cfg.BasePath
+	if servers, ok := a.client.cfg.ServiceServers[LogsHTTPIntakeApiService{}]; ok {
+		server := servers[0]
+		if serverUrl, err := server.ServerUrl(nil); err == nil {
+			basePath = serverUrl
+		}
+	}
+
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/v1/input/{api_key}"
+	localVarPath := basePath + "/v1/input/{api_key}"
+	fmt.Println(localVarPath)
 	localVarPath = strings.Replace(localVarPath, "{"+"api_key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", apiKey)), -1)
 
 	localVarHeaderParams := make(map[string]string)
