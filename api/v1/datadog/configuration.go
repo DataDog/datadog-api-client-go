@@ -66,14 +66,13 @@ type ServerConfiguration struct {
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	BasePath       string            `json:"basePath,omitempty"`
-	Host           string            `json:"host,omitempty"`
-	Scheme         string            `json:"scheme,omitempty"`
-	DefaultHeader  map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent      string            `json:"userAgent,omitempty"`
-	Servers        []ServerConfiguration
-	ServiceServers map[interface{}][]ServerConfiguration
-	HTTPClient     *http.Client
+	BasePath      string            `json:"basePath,omitempty"`
+	Host          string            `json:"host,omitempty"`
+	Scheme        string            `json:"scheme,omitempty"`
+	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent     string            `json:"userAgent,omitempty"`
+	Servers       []ServerConfiguration
+	HTTPClient    *http.Client
 }
 
 // NewConfiguration returns a new Configuration object
@@ -100,27 +99,6 @@ func NewConfiguration() *Configuration {
 				},
 			},
 		},
-		},
-		ServiceServers: map[interface{}][]ServerConfiguration{
-			LogsHTTPIntakeApiService{}: []ServerConfiguration{{
-				Url:         "https://{subdomain}.{site}",
-				Description: "No description provided",
-				Variables: map[string]ServerVariable{
-					"site": ServerVariable{
-						Description:  "The regional site for our customers.",
-						DefaultValue: "datadoghq.com",
-						EnumValues: []string{
-							"datadoghq.com",
-							"datadoghq.eu",
-						},
-					},
-					"subdomain": ServerVariable{
-						Description:  "The subdomain where the API is deployed.",
-						DefaultValue: "http-intake.logs",
-					},
-				},
-			},
-			},
 		},
 	}
 	return cfg
