@@ -14,18 +14,16 @@ func TestCreateGraphSnapshot(t *testing.T) {
 
 	start := time.Now().Unix()
 	end := start + 24*60*60
-	testGraphSnapshot := datadog.GraphSnapshot{
-		GraphDef:    datadog.PtrString(`{"requests": [{"q": "system.load.1{*}"}]}`),
-		MetricQuery: datadog.PtrString("system.load.1{*}"),
-	}
+	graphDef := `{"requests": [{"q": "system.load.1{*}"}]}`
+	metricQuery := "system.load.1{*}"
 
-	snapshot, httpresp, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH, *testGraphSnapshot.MetricQuery, start, end, nil)
+	snapshot, httpresp, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH, metricQuery, start, end, nil)
 	if err != nil {
-		t.Errorf("Error creating Snapshot %v: Status: %s: %v", testGraphSnapshot, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error creating Snapshot: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	assert.Equal(t, snapshot.GetGraphDef(), testGraphSnapshot.GetGraphDef())
-	assert.Equal(t, snapshot.GetMetricQuery(), testGraphSnapshot.GetMetricQuery())
+	assert.Equal(t, snapshot.GetGraphDef(), graphDef)
+	assert.Equal(t, snapshot.GetMetricQuery(), metricQuery)
 	assert.Assert(t, snapshot.GetSnapshotUrl() != "")
 }
