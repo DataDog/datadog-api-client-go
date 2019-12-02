@@ -45,26 +45,6 @@ var LogsHTTPIntakeApiServers = []ServerConfiguration{{
 },
 }
 
-// LogsHTTPIntakeServers servers
-var LogsHTTPIntakeServers = []ServerConfiguration{{
-	Url:         "https://{subdomain}.{site}",
-	Description: "No description provided",
-	Variables: map[string]ServerVariable{
-		"site": ServerVariable{
-			Description:  "The regional site for our customers.",
-			DefaultValue: "datadoghq.com",
-			EnumValues: []string{
-				"datadoghq.com",
-				"datadoghq.eu",
-			},
-		},
-		"subdomain": ServerVariable{
-			Description:  "The subdomain where the API is deployed.",
-			DefaultValue: "http-intake.logs",
-		},
-	},
-},
-}
 
 /*
 SendLog Method for SendLog
