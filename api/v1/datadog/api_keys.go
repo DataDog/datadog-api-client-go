@@ -51,7 +51,14 @@ func (a *KeysApiService) CreateAPIKey(ctx _context.Context, localVarOptionals *C
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/api_key"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/api_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -210,7 +217,14 @@ func (a *KeysApiService) CreateApplicationKey(ctx _context.Context, localVarOpti
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/application_key"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/application_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -363,7 +377,14 @@ func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyR
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/api_key/{key}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/api_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -508,7 +529,14 @@ func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/application_key/{key}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/application_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -660,7 +688,14 @@ func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string, localVarOp
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/api_key/{key}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/api_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -821,7 +856,14 @@ func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string, lo
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/application_key/{key}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/application_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -975,7 +1017,14 @@ func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResp
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/api_key/{key}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/api_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1119,7 +1168,14 @@ func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) (ApiKeyListResponse
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/api_key"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/api_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1252,7 +1308,14 @@ func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) (Applicatio
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/application_key"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/application_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1386,7 +1449,14 @@ func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) (Ap
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/application_key/{key}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/application_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)

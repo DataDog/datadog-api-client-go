@@ -43,7 +43,14 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, user User) (UserRespo
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/user"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -179,7 +186,14 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/user/{user_handle}"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -313,7 +327,14 @@ func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserListResponse, *
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/user"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -447,7 +468,14 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (User
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/user/{user_handle}"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -583,7 +611,14 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, us
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/user/{user_handle}"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
 
 	localVarHeaderParams := make(map[string]string)

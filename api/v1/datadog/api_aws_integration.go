@@ -43,7 +43,14 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -169,7 +176,14 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -305,7 +319,14 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -459,7 +480,14 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

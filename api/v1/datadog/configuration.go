@@ -64,6 +64,9 @@ type ServerConfiguration struct {
 	Variables   map[string]ServerVariable
 }
 
+// Servers stores multiple ServerConfiguration items
+type Servers []ServerConfiguration
+
 // Configuration stores the configuration of the API client
 type Configuration struct {
 	BasePath      string            `json:"basePath,omitempty"`
@@ -71,7 +74,7 @@ type Configuration struct {
 	Scheme        string            `json:"scheme,omitempty"`
 	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent     string            `json:"userAgent,omitempty"`
-	Servers       []ServerConfiguration
+	Servers       Servers
 	HTTPClient    *http.Client
 }
 
@@ -81,7 +84,7 @@ func NewConfiguration() *Configuration {
 		BasePath:      "https://api.datadoghq.com",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "DataDog/0.1.0/go-experimental",
-		Servers: []ServerConfiguration{{
+		Servers: Servers{{
 			Url:         "https://{subdomain}.{site}",
 			Description: "No description provided",
 			Variables: map[string]ServerVariable{
@@ -110,7 +113,11 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 }
 
 // ServerUrl returns URL based on variables
-func (server *ServerConfiguration) ServerUrl(variables map[string]string) (string, error) {
+func (servers Servers) Url(index int, variables map[string]string) (string, error) {
+	if index < 0 || len(servers) <= index {
+		return "", fmt.Errorf("Index %v out of range %v", index, len(servers)-1)
+	}
+	server := servers[index]
 	url := server.Url
 
 	// go through variables and replace placeholders
@@ -135,8 +142,5 @@ func (server *ServerConfiguration) ServerUrl(variables map[string]string) (strin
 
 // ServerUrl returns URL based on server settings
 func (c *Configuration) ServerUrl(index int, variables map[string]string) (string, error) {
-	if index < 0 || len(c.Servers) <= index {
-		return "", fmt.Errorf("Index %v out of range %v", index, len(c.Servers)-1)
-	}
-	return c.Servers[index].ServerUrl(variables)
+	return c.Servers.Url(index, variables)
 }

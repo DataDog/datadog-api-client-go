@@ -25,27 +25,6 @@ var (
 // LogsHTTPIntakeApiService LogsHTTPIntakeApi service
 type LogsHTTPIntakeApiService service
 
-var LogsHTTPIntakeApiServers = []ServerConfiguration{{
-	Url:         "https://{subdomain}.{site}",
-	Description: "No description provided",
-	Variables: map[string]ServerVariable{
-		"site": ServerVariable{
-			Description:  "The regional site for our customers.",
-			DefaultValue: "datadoghq.com",
-			EnumValues: []string{
-				"datadoghq.com",
-				"datadoghq.eu",
-			},
-		},
-		"subdomain": ServerVariable{
-			Description:  "The subdomain where the API is deployed.",
-			DefaultValue: "http-intake.logs",
-		},
-	},
-},
-}
-
-
 /*
 SendLog Method for SendLog
 Send logs
@@ -64,14 +43,33 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, 
 		localVarReturnValue  map[string]interface{}
 	)
 
-	server := LogsHTTPIntakeApiServers[0]
-	localBasePath, err := server.ServerUrl(nil)
+	// create path and map variables
+	var servers = Servers{{
+		Url:         "https://{subdomain}.{site}",
+		Description: "No description provided",
+		Variables: map[string]ServerVariable{
+			"site": ServerVariable{
+				Description:  "The regional site for our customers.",
+				DefaultValue: "datadoghq.com",
+				EnumValues: []string{
+					"datadoghq.com",
+					"datadoghq.eu",
+				},
+			},
+			"subdomain": ServerVariable{
+				Description:  "The subdomain where the API is deployed.",
+				DefaultValue: "http-intake.logs",
+			},
+		},
+	},
+	}
+
+	basePath, err := servers.Url(0, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	// create path and map variables
-	localVarPath := localBasePath + "/v1/input/{api_key}"
+	localVarPath := basePath + "/v1/input/{api_key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"api_key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", apiKey)), -1)
 
 	localVarHeaderParams := make(map[string]string)

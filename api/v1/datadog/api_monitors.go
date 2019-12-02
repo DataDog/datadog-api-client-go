@@ -45,7 +45,14 @@ func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, monitor Monitor
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -171,7 +178,14 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/monitor/{monitor_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -317,7 +331,14 @@ func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64, 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/monitor/{monitor_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -478,7 +499,14 @@ func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context, localVarOption
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -624,7 +652,14 @@ func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, l
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/monitor/{monitor_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -762,7 +797,14 @@ func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, monitor Monit
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/validate"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/monitor/validate"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

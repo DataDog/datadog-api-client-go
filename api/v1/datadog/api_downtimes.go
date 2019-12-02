@@ -43,7 +43,14 @@ func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId in
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/{downtime_id}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/downtime/{downtime_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", downtimeId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -149,7 +156,14 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, cance
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/cancel/by_scope"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/downtime/cancel/by_scope"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -285,7 +299,14 @@ func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, downtime Down
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/downtime"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -417,7 +438,14 @@ func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context, localVarOpti
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/downtime"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -544,7 +572,14 @@ func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/{downtime_id}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/downtime/{downtime_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", downtimeId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -670,7 +705,14 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/{downtime_id}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/downtime/{downtime_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", downtimeId)), -1)
 
 	localVarHeaderParams := make(map[string]string)

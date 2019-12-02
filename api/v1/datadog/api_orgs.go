@@ -46,7 +46,14 @@ func (a *OrgsApiService) CreateChildOrg(ctx _context.Context, orgCreateBody OrgC
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/org"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -181,7 +188,14 @@ func (a *OrgsApiService) GetOrg(ctx _context.Context) (OrgListResponse, *_nethtt
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/org"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -322,7 +336,14 @@ func (a *OrgsApiService) UpdateOrg(ctx _context.Context, publicId string, localV
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org/{public_id}"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/org/{public_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", publicId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -467,7 +488,14 @@ func (a *OrgsApiService) UploadIdPForOrg(ctx _context.Context, publicId string, 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org/{public_id}/idp_metadata"
+	servers := a.client.cfg.Servers
+
+	basePath, err := servers.Url(0, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarPath := basePath + "/api/v1/org/{public_id}/idp_metadata"
 	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", publicId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
