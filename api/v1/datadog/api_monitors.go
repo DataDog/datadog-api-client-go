@@ -37,6 +37,7 @@ CreateMonitor Create a new Monitor
 func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, monitor Monitor) (Monitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -45,14 +46,42 @@ func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, monitor Monitor
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "MonitorsApiService.CreateMonitor"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/monitor"
+	localVarPath := localBasePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -170,6 +199,7 @@ DeleteMonitor Delete the specified monitor.
 func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64) (map[string]int64, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -178,14 +208,42 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "MonitorsApiService.DeleteMonitor"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/monitor/{monitor_id}"
+	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -323,6 +381,7 @@ EditMonitor Edit the specified monitor
 func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64, monitor Monitor) (Monitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -331,14 +390,42 @@ func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64, 
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "MonitorsApiService.EditMonitor"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/monitor/{monitor_id}"
+	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -491,6 +578,7 @@ GetAllMonitors Get details about the specified monitor.
 func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context, localVarOptionals *GetAllMonitorsOpts) ([]Monitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -499,14 +587,42 @@ func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context, localVarOption
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "MonitorsApiService.GetAllMonitors"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/monitor"
+	localVarPath := localBasePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -644,6 +760,7 @@ GetMonitor Get details about the specified monitor.
 func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, localVarOptionals *GetMonitorOpts) (Monitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -652,14 +769,42 @@ func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, l
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "MonitorsApiService.GetMonitor"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/monitor/{monitor_id}"
+	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -789,6 +934,7 @@ ValidateMonitor Method for ValidateMonitor
 func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, monitor Monitor) (Monitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -797,14 +943,42 @@ func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, monitor Monit
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "MonitorsApiService.ValidateMonitor"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/monitor/validate"
+	localVarPath := localBasePath + "/api/v1/monitor/validate"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

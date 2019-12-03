@@ -48,6 +48,7 @@ GetGraphSnapshot Take graph snapshots
 func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery string, start int64, end int64, localVarOptionals *GetGraphSnapshotOpts) (GraphSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -56,14 +57,42 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "SnapshotsApiService.GetGraphSnapshot"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/graph/snapshot"
+	localVarPath := localBasePath + "/api/v1/graph/snapshot"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

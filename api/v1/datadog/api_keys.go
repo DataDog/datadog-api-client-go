@@ -43,6 +43,7 @@ CreateAPIKey Create an API key with a given name.
 func (a *KeysApiService) CreateAPIKey(ctx _context.Context, localVarOptionals *CreateAPIKeyOpts) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -51,14 +52,42 @@ func (a *KeysApiService) CreateAPIKey(ctx _context.Context, localVarOptionals *C
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.CreateAPIKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/api_key"
+	localVarPath := localBasePath + "/api/v1/api_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -209,6 +238,7 @@ CreateApplicationKey Create an application key with a given name.
 func (a *KeysApiService) CreateApplicationKey(ctx _context.Context, localVarOptionals *CreateApplicationKeyOpts) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -217,14 +247,42 @@ func (a *KeysApiService) CreateApplicationKey(ctx _context.Context, localVarOpti
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.CreateApplicationKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/application_key"
+	localVarPath := localBasePath + "/api/v1/application_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -369,6 +427,7 @@ DeleteAPIKey Delete a given API key.
 func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -377,14 +436,42 @@ func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyR
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.DeleteAPIKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/api_key/{key}"
+	localVarPath := localBasePath + "/api/v1/api_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -521,6 +608,7 @@ DeleteApplicationKey Delete a given application key.
 func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -529,14 +617,42 @@ func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) 
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.DeleteApplicationKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/application_key/{key}"
+	localVarPath := localBasePath + "/api/v1/application_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -680,6 +796,7 @@ EditAPIKey Edit an API key name.
 func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string, localVarOptionals *EditAPIKeyOpts) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -688,14 +805,42 @@ func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string, localVarOp
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.EditAPIKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/api_key/{key}"
+	localVarPath := localBasePath + "/api/v1/api_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -848,6 +993,7 @@ EditApplicationKey Edit an application key name.
 func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string, localVarOptionals *EditApplicationKeyOpts) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -856,14 +1002,42 @@ func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string, lo
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.EditApplicationKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/application_key/{key}"
+	localVarPath := localBasePath + "/api/v1/application_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1009,6 +1183,7 @@ GetAPIKey Get a given API key.
 func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -1017,14 +1192,42 @@ func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResp
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.GetAPIKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/api_key/{key}"
+	localVarPath := localBasePath + "/api/v1/api_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1160,6 +1363,7 @@ GetAllAPIKeys Get all API keys available for your account.
 func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) (ApiKeyListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -1168,14 +1372,42 @@ func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) (ApiKeyListResponse
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.GetAllAPIKeys"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/api_key"
+	localVarPath := localBasePath + "/api/v1/api_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1300,6 +1532,7 @@ GetAllApplicationKeys Get all application keys available for your account.
 func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) (ApplicationKeyListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -1308,14 +1541,42 @@ func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) (Applicatio
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.GetAllApplicationKeys"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/application_key"
+	localVarPath := localBasePath + "/api/v1/application_key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1441,6 +1702,7 @@ GetApplicationKey Get a given application key.
 func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -1449,14 +1711,42 @@ func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) (Ap
 	)
 
 	// create path and map variables
-	servers := a.client.cfg.Servers
+	if ctx != nil {
+		k := "KeysApiService.GetApplicationKey"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	localVarPath := basePath + "/api/v1/application_key/{key}"
+	localVarPath := localBasePath + "/api/v1/application_key/{key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", key)), -1)
 
 	localVarHeaderParams := make(map[string]string)

@@ -33,6 +33,11 @@ func setupTest(t *testing.T) func(t *testing.T) {
 			},
 		},
 	)
+	TESTAUTH = context.WithValue(
+		TESTAUTH,
+		datadog.ContextServerIndex,
+		0,
+	)
 	config := datadog.NewConfiguration()
 	TESTAPICLIENT = datadog.NewAPIClient(config)
 	return func(t *testing.T) {

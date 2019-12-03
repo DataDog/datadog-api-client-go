@@ -36,6 +36,7 @@ Send logs
 func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, httpLog HttpLog) (map[string]interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
+		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -44,32 +45,42 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, 
 	)
 
 	// create path and map variables
-	var servers = Servers{{
-		Url:         "https://{subdomain}.{site}",
-		Description: "No description provided",
-		Variables: map[string]ServerVariable{
-			"site": ServerVariable{
-				Description:  "The regional site for our customers.",
-				DefaultValue: "datadoghq.com",
-				EnumValues: []string{
-					"datadoghq.com",
-					"datadoghq.eu",
-				},
-			},
-			"subdomain": ServerVariable{
-				Description:  "The subdomain where the API is deployed.",
-				DefaultValue: "http-intake.logs",
-			},
-		},
-	},
+	if ctx != nil {
+		k := "LogsHTTPIntakeApiService.SendLog"
+		servers, ok := a.client.cfg.OperationServers[k]
+		if !ok {
+			servers = a.client.cfg.Servers
+		}
+
+		var (
+			index     int
+			variables map[string]string
+		)
+
+		// Server index
+		si := ctx.Value(ContextServerIndex)
+		if si != nil {
+			if index, ok = si.(int); !ok {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
+			}
+
+			// Server variables
+			sv := ctx.Value(ContextServerVariables)
+			if sv != nil {
+				if variables, ok = sv.(map[string]string); !ok {
+					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
+				}
+			}
+
+			url, err := servers.Url(index, variables)
+			if err != nil {
+				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+			}
+			localBasePath = url
+		}
 	}
 
-	basePath, err := servers.Url(0, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarPath := basePath + "/v1/input/{api_key}"
+	localVarPath := localBasePath + "/v1/input/{api_key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"api_key"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", apiKey)), -1)
 
 	localVarHeaderParams := make(map[string]string)

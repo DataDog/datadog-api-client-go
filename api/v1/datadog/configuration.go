@@ -36,6 +36,12 @@ var (
 
 	// ContextAPIKeys takes a string apikey as authentication for the request
 	ContextAPIKeys = contextKey("apiKeys")
+
+	// ContextServerIndex uses a server configuration from the index.
+	ContextServerIndex = contextKey("serverIndex")
+
+	// ContextServerVariables overrides a server configuration variables.
+	ContextServerVariables = contextKey("serverVariables")
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
@@ -69,13 +75,14 @@ type Servers []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	BasePath      string            `json:"basePath,omitempty"`
-	Host          string            `json:"host,omitempty"`
-	Scheme        string            `json:"scheme,omitempty"`
-	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent     string            `json:"userAgent,omitempty"`
-	Servers       Servers
-	HTTPClient    *http.Client
+	BasePath         string            `json:"basePath,omitempty"`
+	Host             string            `json:"host,omitempty"`
+	Scheme           string            `json:"scheme,omitempty"`
+	DefaultHeader    map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent        string            `json:"userAgent,omitempty"`
+	Servers          Servers
+	OperationServers map[string]Servers
+	HTTPClient       *http.Client
 }
 
 // NewConfiguration returns a new Configuration object
@@ -84,24 +91,47 @@ func NewConfiguration() *Configuration {
 		BasePath:      "https://api.datadoghq.com",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "DataDog/0.1.0/go-experimental",
-		Servers: Servers{{
-			Url:         "https://{subdomain}.{site}",
-			Description: "No description provided",
-			Variables: map[string]ServerVariable{
-				"site": ServerVariable{
-					Description:  "The regional site for our customers.",
-					DefaultValue: "datadoghq.com",
-					EnumValues: []string{
-						"datadoghq.com",
-						"datadoghq.eu",
+		Servers: Servers{
+			{
+				Url:         "https://{subdomain}.{site}",
+				Description: "No description provided",
+				Variables: map[string]ServerVariable{
+					"site": ServerVariable{
+						Description:  "The regional site for our customers.",
+						DefaultValue: "datadoghq.com",
+						EnumValues: []string{
+							"datadoghq.com",
+							"datadoghq.eu",
+						},
 					},
-				},
-				"subdomain": ServerVariable{
-					Description:  "The subdomain where the API is deployed.",
-					DefaultValue: "api",
+					"subdomain": ServerVariable{
+						Description:  "The subdomain where the API is deployed.",
+						DefaultValue: "api",
+					},
 				},
 			},
 		},
+		OperationServers: map[string]Servers{
+			"LogsHTTPIntakeApiService.SendLog": {
+				{
+					Url:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": ServerVariable{
+							Description:  "The regional site for our customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"datadoghq.eu",
+							},
+						},
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "http-intake.logs",
+						},
+					},
+				},
+			},
 		},
 	}
 	return cfg
