@@ -35,7 +35,6 @@ CreateUser Create user
 func (a *UsersApiService) CreateUser(ctx _context.Context, user User) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -43,40 +42,9 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, user User) (UserRespo
 		localVarReturnValue  UserResponse
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "UsersApiService.CreateUser"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "UsersApiService.CreateUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/user"
@@ -207,7 +175,6 @@ DisableUser Disable user
 func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -215,40 +182,9 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (
 		localVarReturnValue  UserDisableResponse
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "UsersApiService.DisableUser"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "UsersApiService.DisableUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
@@ -377,7 +313,6 @@ GetAllUsers Get all users
 func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -385,40 +320,9 @@ func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserListResponse, *
 		localVarReturnValue  UserListResponse
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "UsersApiService.GetAllUsers"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "UsersApiService.GetAllUsers")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/user"
@@ -547,7 +451,6 @@ GetUser Get user
 func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -555,40 +458,9 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (User
 		localVarReturnValue  UserResponse
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "UsersApiService.GetUser"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "UsersApiService.GetUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
@@ -719,7 +591,6 @@ UpdateUser Update user
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, user User) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -727,40 +598,9 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, us
 		localVarReturnValue  UserResponse
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "UsersApiService.UpdateUser"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "UsersApiService.UpdateUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/user/{user_handle}"

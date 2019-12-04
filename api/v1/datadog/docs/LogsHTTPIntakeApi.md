@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SendLog
 
-> map[string]interface{} SendLog(ctx, apiKey, httpLog)
+> interface{} SendLog(ctx, apiKey, httpLog)
 
 
 
@@ -27,7 +27,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**map[string]interface{}**](map[string]interface{}.md)
+[**interface{}**](interface{}.md)
 
 ### Authorization
 

@@ -35,7 +35,6 @@ CreateAWSAccount Create an AWS Account
 func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAccount AwsAccount) (AwsAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -43,40 +42,9 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		localVarReturnValue  AwsAccountCreateResponse
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "AWSIntegrationApiService.CreateAWSAccount"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "AWSIntegrationApiService.CreateAWSAccount")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -192,53 +160,21 @@ DeleteAWSAccount Delete an AWS Account
 ### Overview Delete the AWS Account matching the specified account_id and role_name parameters ### Arguments * **&#x60;account_id&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this account_id.  * **&#x60;role_name&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this role_name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param awsAccount AWS request object
-@return map[string]interface{}
+@return interface{}
 */
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAccount AwsAccount) (map[string]interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAccount AwsAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "AWSIntegrationApiService.DeleteAWSAccount"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "AWSIntegrationApiService.DeleteAWSAccount")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -316,7 +252,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -369,7 +305,6 @@ GetAllAWSAccounts Get Installed AWS Accounts
 func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, localVarOptionals *GetAllAWSAccountsOpts) (AwsAccountListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -377,40 +312,9 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		localVarReturnValue  AwsAccountListResponse
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "AWSIntegrationApiService.GetAllAWSAccounts"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "AWSIntegrationApiService.GetAllAWSAccounts")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -551,56 +455,24 @@ UpdateAWSAccount Update an AWS Account
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param awsAccount AWS request object
  * @param optional nil or *UpdateAWSAccountOpts - Optional Parameters:
- * @param "AccountId" (optional.String) -
- * @param "RoleName" (optional.String) -
- * @param "AccessKeyId" (optional.String) -
-@return map[string]interface{}
+ * @param "AccountId" (optional.String) -  Only return AWS accounts that matches this account_id.
+ * @param "RoleName" (optional.String) -  Only return AWS accounts that matches this role_name. *It is required if account_id is specified.*
+ * @param "AccessKeyId" (optional.String) -  Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.*
+@return interface{}
 */
-func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAccount AwsAccount, localVarOptionals *UpdateAWSAccountOpts) (map[string]interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAccount AwsAccount, localVarOptionals *UpdateAWSAccountOpts) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "AWSIntegrationApiService.UpdateAWSAccount"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "AWSIntegrationApiService.UpdateAWSAccount")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -687,7 +559,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

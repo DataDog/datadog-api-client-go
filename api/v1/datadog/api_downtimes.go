@@ -36,47 +36,15 @@ Cancel a Downtime
 func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "DowntimesApiService.CancelDowntime"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "DowntimesApiService.CancelDowntime")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
@@ -177,7 +145,6 @@ CancelDowntimesByScope Cancel downtimes by scope
 func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, cancelDowntimesByScopeRequest CancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -185,40 +152,9 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, cance
 		localVarReturnValue  CanceledDowntimesIds
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "DowntimesApiService.CancelDowntimesByScope"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "DowntimesApiService.CancelDowntimesByScope")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime/cancel/by_scope"
@@ -349,7 +285,6 @@ CreateDowntime Schedule a downtime
 func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, downtime Downtime) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -357,40 +292,9 @@ func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, downtime Down
 		localVarReturnValue  Downtime
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "DowntimesApiService.CreateDowntime"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "DowntimesApiService.CreateDowntime")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime"
@@ -508,16 +412,15 @@ type GetAllDowntimesOpts struct {
 
 /*
 GetAllDowntimes Get all downtimes
-### Overview Get All Scheduled Downtimes ### Arguments * **&#x60;current_only&#x60;** [*optional*, *default* &#x3D; **False**]: Only return downtimes   that are active when the request is made.&#39;
+### Overview Get All Scheduled Downtimes ### Arguments * **&#x60;current_only&#x60;** [*optional*, *default* &#x3D; **False**]: Only return downtimes that are active when the request is made.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GetAllDowntimesOpts - Optional Parameters:
- * @param "CurrentOnly" (optional.Bool) -
+ * @param "CurrentOnly" (optional.Bool) -  Only return downtimes that are active when the request is made.
 @return []Downtime
 */
 func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context, localVarOptionals *GetAllDowntimesOpts) ([]Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -525,40 +428,9 @@ func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context, localVarOpti
 		localVarReturnValue  []Downtime
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "DowntimesApiService.GetAllDowntimes"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "DowntimesApiService.GetAllDowntimes")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime"
@@ -680,7 +552,6 @@ GetDowntime Get a downtime
 func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -688,40 +559,9 @@ func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64
 		localVarReturnValue  Downtime
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "DowntimesApiService.GetDowntime"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "DowntimesApiService.GetDowntime")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
@@ -842,7 +682,6 @@ UpdateDowntime Update a downtime
 func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64, downtime Downtime) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -850,40 +689,9 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 		localVarReturnValue  Downtime
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "DowntimesApiService.UpdateDowntime"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "DowntimesApiService.UpdateDowntime")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"

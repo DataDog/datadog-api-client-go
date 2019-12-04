@@ -156,10 +156,10 @@ Optional parameters are passed through a pointer to a GetAllMonitorsOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupStates** | **optional.String**| When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
- **name** | **optional.String**|  | 
- **tags** | **optional.String**|  | 
- **monitorTags** | **optional.String**|  | 
- **withDowntimes** | **optional.Bool**|  | 
+ **name** | **optional.String**| A string to filter monitors by name. | 
+ **tags** | **optional.String**| A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0. | 
+ **monitorTags** | **optional.String**| A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app). | 
+ **withDowntimes** | **optional.Bool**| If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
 
 ### Return type
 

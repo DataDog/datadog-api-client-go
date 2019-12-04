@@ -31,53 +31,21 @@ Send logs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param apiKey valid API key for an organisation
  * @param httpLog Log to send (JSON format)
-@return map[string]interface{}
+@return interface{}
 */
-func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, httpLog HttpLog) (map[string]interface{}, *_nethttp.Response, error) {
+func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, httpLog HttpLog) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localBasePath        = a.client.cfg.BasePath
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	if ctx != nil {
-		k := "LogsHTTPIntakeApiService.SendLog"
-		servers, ok := a.client.cfg.OperationServers[k]
-		if !ok {
-			servers = a.client.cfg.Servers
-		}
-
-		var (
-			index     int
-			variables map[string]string
-		)
-
-		// Server index
-		si := ctx.Value(ContextServerIndex)
-		if si != nil {
-			if index, ok = si.(int); !ok {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server index"}
-			}
-
-			// Server variables
-			sv := ctx.Value(ContextServerVariables)
-			if sv != nil {
-				if variables, ok = sv.(map[string]string); !ok {
-					return localVarReturnValue, nil, GenericOpenAPIError{error: "Invalid server variables"}
-				}
-			}
-
-			url, err := servers.Url(index, variables)
-			if err != nil {
-				return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-			}
-			localBasePath = url
-		}
+	localBasePath, err := a.client.cfg.ServerUrlWithContext(ctx, "LogsHTTPIntakeApiService.SendLog")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/input/{api_key}"
@@ -156,7 +124,7 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
