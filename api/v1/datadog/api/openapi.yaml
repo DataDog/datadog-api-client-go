@@ -1190,6 +1190,54 @@ paths:
       summary: Create a new Monitor
       tags:
       - Monitors
+  /api/v1/monitor/can_delete:
+    get:
+      description: |-
+        ### Overview
+        Check if the given monitors can be deleted.
+        ### Arguments
+        * **`monitor_ids`** [*required*]: The ids of the monitors to check if can be deleted.
+      operationId: CanDeleteMonitor
+      parameters:
+      - description: The ids of the monitor to check
+        explode: true
+        in: query
+        name: monitor_ids
+        required: true
+        schema:
+          items:
+            format: int64
+            type: integer
+          type: array
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CanDeleteMonitorResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        401:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+          description: Authentication error
+        409:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CanDeleteMonitorResponse'
+          description: Deletion conflict error
+      summary: Check if the given monitors can be deleted.
+      tags:
+      - Monitors
   /api/v1/monitor/validate:
     post:
       description: |-
@@ -1993,6 +2041,25 @@ components:
         application_key:
           $ref: '#/components/schemas/ApplicationKey'
       type: object
+    CanDeleteMonitorResponse:
+      example:
+        data:
+          ok:
+          - 0
+          - 0
+        errors:
+          key: errors
+      properties:
+        data:
+          $ref: '#/components/schemas/CanDeleteMonitorResponse_data'
+        errors:
+          additionalProperties:
+            type: string
+          description: A mapping of Monitor ID to strings denoting where it's used.
+          type: object
+      required:
+      - data
+      type: object
     CancelDowntimesByScopeRequest:
       example:
         scope: host:myserver
@@ -2359,6 +2426,12 @@ components:
           type: string
       required:
       - message
+      type: object
+    IntakePayloadAccepted:
+      properties:
+        status:
+          example: ok
+          type: string
       type: object
     Monitor:
       example:
@@ -2999,6 +3072,18 @@ components:
         user:
           $ref: '#/components/schemas/User'
       type: object
+    CanDeleteMonitorResponse_data:
+      example:
+        ok:
+        - 0
+        - 0
+      properties:
+        ok:
+          description: An array of of Monitor IDs that can be safely deleted.
+          items:
+            format: int64
+            type: integer
+          type: array
     Org_billing:
       example: '{"type":"parent_billing"}'
       properties:
@@ -3092,3 +3177,4 @@ components:
       in: query
       name: application_key
       type: apiKey
+x-group-parameters: true

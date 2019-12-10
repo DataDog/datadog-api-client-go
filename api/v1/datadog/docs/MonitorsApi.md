@@ -4,6 +4,7 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CanDeleteMonitor**](MonitorsApi.md#CanDeleteMonitor) | **Get** /api/v1/monitor/can_delete | Check if the given monitors can be deleted.
 [**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a new Monitor
 [**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
 [**EditMonitor**](MonitorsApi.md#EditMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
@@ -11,6 +12,43 @@ Method | HTTP request | Description
 [**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get details about the specified monitor.
 [**ValidateMonitor**](MonitorsApi.md#ValidateMonitor) | **Post** /api/v1/monitor/validate | 
 
+
+
+## CanDeleteMonitor
+
+> CanDeleteMonitorResponse CanDeleteMonitor(ctx, monitorIds)
+
+Check if the given monitors can be deleted.
+
+### Overview
+Check if the given monitors can be deleted.
+### Arguments
+* **`monitor_ids`** [*required*]: The ids of the monitors to check if can be deleted.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**monitorIds** | [**[]int64**](int64.md)| The ids of the monitor to check | 
+
+### Return type
+
+[**CanDeleteMonitorResponse**](CanDeleteMonitorResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateMonitor

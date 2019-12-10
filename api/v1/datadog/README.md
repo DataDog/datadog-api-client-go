@@ -54,6 +54,7 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
 *LogsHTTPIntakeApi* | [**SendLog**](docs/LogsHTTPIntakeApi.md#sendlog) | **Post** /v1/input/{api_key} | 
+*MonitorsApi* | [**CanDeleteMonitor**](docs/MonitorsApi.md#candeletemonitor) | **Get** /api/v1/monitor/can_delete | Check if the given monitors can be deleted.
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a new Monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
 *MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
@@ -83,6 +84,8 @@ Class | Method | HTTP request | Description
  - [AwsAccount](docs/AwsAccount.md)
  - [AwsAccountCreateResponse](docs/AwsAccountCreateResponse.md)
  - [AwsAccountListResponse](docs/AwsAccountListResponse.md)
+ - [CanDeleteMonitorResponse](docs/CanDeleteMonitorResponse.md)
+ - [CanDeleteMonitorResponseData](docs/CanDeleteMonitorResponseData.md)
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
  - [Creator](docs/Creator.md)
@@ -106,6 +109,7 @@ Class | Method | HTTP request | Description
  - [HttpLog](docs/HttpLog.md)
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)
+ - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
  - [Monitor](docs/Monitor.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)

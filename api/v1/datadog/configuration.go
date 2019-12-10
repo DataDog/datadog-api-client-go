@@ -77,8 +77,8 @@ type ServerConfiguration struct {
 	Variables   map[string]ServerVariable
 }
 
-// Servers stores multiple ServerConfiguration items
-type Servers []ServerConfiguration
+// ServerConfigurations stores multiple ServerConfiguration items
+type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
@@ -88,8 +88,8 @@ type Configuration struct {
 	DefaultHeader    map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent        string            `json:"userAgent,omitempty"`
 	Debug            bool              `json:"debug,omitempty"`
-	Servers          Servers
-	OperationServers map[string]Servers
+	Servers          ServerConfigurations
+	OperationServers map[string]ServerConfigurations
 	HTTPClient       *http.Client
 }
 
@@ -100,7 +100,7 @@ func NewConfiguration() *Configuration {
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "DataDog/0.1.0/go-experimental",
 		Debug:         false,
-		Servers: Servers{
+		Servers: ServerConfigurations{
 			{
 				Url:         "https://{subdomain}.{site}",
 				Description: "No description provided",
@@ -120,7 +120,7 @@ func NewConfiguration() *Configuration {
 				},
 			},
 		},
-		OperationServers: map[string]Servers{
+		OperationServers: map[string]ServerConfigurations{
 			"LogsHTTPIntakeApiService.SendLog": {
 				{
 					Url:         "https://{subdomain}.{site}",
@@ -152,11 +152,11 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 }
 
 // ServerUrl returns URL based on variables
-func (servers Servers) Url(index int, variables map[string]string) (string, error) {
-	if index < 0 || len(servers) <= index {
-		return "", fmt.Errorf("Index %v out of range %v", index, len(servers)-1)
+func (sc ServerConfigurations) Url(index int, variables map[string]string) (string, error) {
+	if index < 0 || len(sc) <= index {
+		return "", fmt.Errorf("Index %v out of range %v", index, len(sc)-1)
 	}
-	server := servers[index]
+	server := sc[index]
 	url := server.Url
 
 	// go through variables and replace placeholders
@@ -242,9 +242,9 @@ func (c *Configuration) ServerUrlWithContext(ctx context.Context, endpoint strin
 		return c.BasePath, nil
 	}
 
-	servers, ok := c.OperationServers[endpoint]
+	sc, ok := c.OperationServers[endpoint]
 	if !ok {
-		servers = c.Servers
+		sc = c.Servers
 	}
 
 	index, err := getServerOperationIndex(ctx, endpoint)
@@ -257,7 +257,7 @@ func (c *Configuration) ServerUrlWithContext(ctx context.Context, endpoint strin
 		return "", err
 	}
 
-	url, err := servers.Url(index, variables)
+	url, err := sc.Url(index, variables)
 	if err != nil {
 		return "", err
 	}
