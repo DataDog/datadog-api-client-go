@@ -17,7 +17,7 @@ func TestCreateGraphSnapshot(t *testing.T) {
 	graphDef := `{"requests": [{"q": "system.load.1{*}"}]}`
 	metricQuery := "system.load.1{*}"
 
-	snapshot, httpresp, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH, metricQuery, start, end, nil)
+	snapshot, httpresp, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(&metricQuery).Start(&start).End(&end).Execute()
 	if err != nil {
 		t.Errorf("Error creating Snapshot: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

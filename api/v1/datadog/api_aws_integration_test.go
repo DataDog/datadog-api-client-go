@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/antihax/optional"
 	"gotest.tools/assert"
 )
 
@@ -33,13 +32,13 @@ func TestCreateAWSAccount(t *testing.T) {
 	defer uninstallAWSIntegration(TESTAWSACC)
 
 	// Assert AWS Integration Created with proper fields
-	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACC)
+	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC).Execute()
 
-	awsAcctOpts := datadog.GetAllAWSAccountsOpts{
-		AccountId: optional.NewString(TESTAWSACC.GetAccountId()),
-		RoleName:  optional.NewString(TESTAWSACC.GetRoleName()),
-	}
-	awsAccts, _, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH, &awsAcctOpts)
+	awsAccts, _, err := TESTAPICLIENT.AWSIntegrationApi.
+		GetAllAWSAccounts(TESTAUTH).
+		AccountId(datadog.PtrString(TESTAWSACC.GetAccountId())).
+		RoleName(datadog.PtrString(TESTAWSACC.GetRoleName())).
+		Execute()
 	if err != nil {
 		t.Errorf("Error Getting AWS Account: %v", err)
 	}
@@ -59,23 +58,22 @@ func TestUpdateAWSAccount(t *testing.T) {
 	defer uninstallAWSIntegration(TESTAWSACC)
 
 	// Assert AWS Integration Created with proper fields
-	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACC)
+	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC)
 
-	awsAcctOpts := datadog.UpdateAWSAccountOpts{
-		AccountId: optional.NewString(TESTAWSACC.GetAccountId()),
-		RoleName:  optional.NewString(TESTAWSACC.GetRoleName()),
-	}
-	_, _, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH, TESTUPDATEAWSACC, &awsAcctOpts)
+	_, _, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
+		AwsAccount(&TESTAWSACC).
+		AccountId(datadog.PtrString(TESTAWSACC.GetAccountId())).
+		RoleName(datadog.PtrString(TESTAWSACC.GetRoleName())).
+		Execute()
 	if err != nil {
 		t.Errorf("Error Updating AWS Account: %v", err)
 	}
 
 	// Assert AWS Account Get with proper fields
-	awsGetAcctOpts := datadog.GetAllAWSAccountsOpts{
-		AccountId: optional.NewString(TESTAWSACC.GetAccountId()),
-		RoleName:  optional.NewString(TESTAWSACC.GetRoleName()),
-	}
-	awsAccts, _, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH, &awsGetAcctOpts)
+	awsAccts, _, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH).
+		AccountId(datadog.PtrString(TESTAWSACC.GetAccountId())).
+		RoleName(datadog.PtrString(TESTAWSACC.GetRoleName())).
+		Execute()
 	if err != nil {
 		t.Errorf("Error Getting AWS Account: %v", err)
 	}
@@ -93,9 +91,9 @@ func TestDisableAWSAcct(t *testing.T) {
 	// We already test this in the disableAWSAccount cleanup function, but good to have an explicit test
 
 	// Lets first create the account of us to delete
-	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACC)
+	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC).Execute()
 
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH, TESTAWSACC)
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC).Execute()
 	if err != nil {
 		t.Errorf("Error disabling AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -103,7 +101,7 @@ func TestDisableAWSAcct(t *testing.T) {
 }
 
 func uninstallAWSIntegration(account datadog.AwsAccount) {
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH, account)
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(&account).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Error uninstalling AWS Account: %v, Another test may have already removed this account.", account)
 	}
