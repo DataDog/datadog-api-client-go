@@ -13,8 +13,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -25,27 +23,88 @@ var (
 // SnapshotsApiService SnapshotsApi service
 type SnapshotsApiService service
 
-// GetGraphSnapshotOpts Optional parameters for the method 'GetGraphSnapshot'
-type GetGraphSnapshotOpts struct {
-	EventQuery optional.String
-	GraphDef   optional.String
-	Title      optional.String
+type apiGetGraphSnapshotRequest struct {
+	ctx         _context.Context
+	apiService  *SnapshotsApiService
+	metricQuery *string
+	start       *int64
+	end         *int64
+	eventQuery  *string
+	graphDef    *string
+	title       *string
+}
+
+type apiGetGraphSnapshotRequestBuilder interface {
+	MetricQuery(*string) apiGetGraphSnapshotRequestBuilder
+	Start(*int64) apiGetGraphSnapshotRequestBuilder
+	End(*int64) apiGetGraphSnapshotRequestBuilder
+	EventQuery(*string) apiGetGraphSnapshotRequestBuilder
+	GraphDef(*string) apiGetGraphSnapshotRequestBuilder
+	Title(*string) apiGetGraphSnapshotRequestBuilder
+	Execute() (GraphSnapshot, *_nethttp.Response, error)
+}
+
+func (r apiGetGraphSnapshotRequest) MetricQuery(metricQuery *string) apiGetGraphSnapshotRequestBuilder {
+	r.metricQuery = metricQuery
+	return r
+}
+
+func (r apiGetGraphSnapshotRequest) Start(start *int64) apiGetGraphSnapshotRequestBuilder {
+	r.start = start
+	return r
+}
+
+func (r apiGetGraphSnapshotRequest) End(end *int64) apiGetGraphSnapshotRequestBuilder {
+	r.end = end
+	return r
+}
+
+func (r apiGetGraphSnapshotRequest) EventQuery(eventQuery *string) apiGetGraphSnapshotRequestBuilder {
+	r.eventQuery = eventQuery
+	return r
+}
+
+func (r apiGetGraphSnapshotRequest) GraphDef(graphDef *string) apiGetGraphSnapshotRequestBuilder {
+	r.graphDef = graphDef
+	return r
+}
+
+func (r apiGetGraphSnapshotRequest) Title(title *string) apiGetGraphSnapshotRequestBuilder {
+	r.title = title
+	return r
 }
 
 /*
 GetGraphSnapshot Take graph snapshots
-### Overview Take graph snapshots ### Arguments * **&#x60;metric_query&#x60;** [*required*]: The metric query. * **&#x60;start&#x60;** [*required*]: The POSIX timestamp of the start of the query. * **&#x60;end&#x60;** [*required*]: The POSIX timestamp of the end of the query. * **&#x60;event_query&#x60;** [*optional*, *default* &#x3D; **None**]: A query that adds event bands to the graph. * **&#x60;graph_def&#x60;** [*optional*, *default* &#x3D; **None**]: A JSON document defining the graph.   graph_def can be used instead of metric_query. The JSON document uses the   [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)   and should be formatted to a single line then URLEncoded.  * **&#x60;title&#x60;** [*optional*, *default* &#x3D; **None**]: A title for the graph.   If no title is specified, the graph doesn’t have a title.
+### Overview
+Take graph snapshots
+### Arguments
+* **`metric_query`** [*required*]: The metric query.
+* **`start`** [*required*]: The POSIX timestamp of the start of the query.
+* **`end`** [*required*]: The POSIX timestamp of the end of the query.
+* **`event_query`** [*optional*, *default* = **None**]: A query that adds event bands to the graph.
+* **`graph_def`** [*optional*, *default* = **None**]: A JSON document defining the graph.
+  graph_def can be used instead of metric_query. The JSON document uses the
+  [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+  and should be formatted to a single line then URLEncoded.
+
+* **`title`** [*optional*, *default* = **None**]: A title for the graph.
+  If no title is specified, the graph doesn’t have a title.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricQuery
- * @param start
- * @param end
- * @param optional nil or *GetGraphSnapshotOpts - Optional Parameters:
- * @param "EventQuery" (optional.String) -
- * @param "GraphDef" (optional.String) -
- * @param "Title" (optional.String) -
-@return GraphSnapshot
+@return apiGetGraphSnapshotRequestBuilder
 */
-func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery string, start int64, end int64, localVarOptionals *GetGraphSnapshotOpts) (GraphSnapshot, *_nethttp.Response, error) {
+func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context) apiGetGraphSnapshotRequestBuilder {
+	return apiGetGraphSnapshotRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return GraphSnapshot
+*/
+func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -56,23 +115,35 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/graph/snapshot"
+	localVarPath := r.apiService.client.cfg.BasePath + "/api/v1/graph/snapshot"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	localVarQueryParams.Add("metric_query", parameterToString(metricQuery, ""))
-	localVarQueryParams.Add("start", parameterToString(start, ""))
-	localVarQueryParams.Add("end", parameterToString(end, ""))
-	if localVarOptionals != nil && localVarOptionals.EventQuery.IsSet() {
-		localVarQueryParams.Add("event_query", parameterToString(localVarOptionals.EventQuery.Value(), ""))
+	if r.metricQuery == nil {
+		return localVarReturnValue, nil, reportError("metricQuery is required and must be specified")
 	}
-	if localVarOptionals != nil && localVarOptionals.GraphDef.IsSet() {
-		localVarQueryParams.Add("graph_def", parameterToString(localVarOptionals.GraphDef.Value(), ""))
+
+	if r.start == nil {
+		return localVarReturnValue, nil, reportError("start is required and must be specified")
 	}
-	if localVarOptionals != nil && localVarOptionals.Title.IsSet() {
-		localVarQueryParams.Add("title", parameterToString(localVarOptionals.Title.Value(), ""))
+
+	if r.end == nil {
+		return localVarReturnValue, nil, reportError("end is required and must be specified")
+	}
+
+	localVarQueryParams.Add("metric_query", parameterToString(r.metricQuery, ""))
+	localVarQueryParams.Add("start", parameterToString(r.start, ""))
+	localVarQueryParams.Add("end", parameterToString(r.end, ""))
+	if r.eventQuery != nil {
+		localVarQueryParams.Add("event_query", parameterToString(*r.eventQuery, ""))
+	}
+	if r.graphDef != nil {
+		localVarQueryParams.Add("graph_def", parameterToString(*r.graphDef, ""))
+	}
+	if r.title != nil {
+		localVarQueryParams.Add("title", parameterToString(*r.title, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -91,9 +162,9 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -105,9 +176,9 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -119,12 +190,12 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -142,7 +213,7 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v GraphSnapshot
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -152,7 +223,7 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -162,7 +233,7 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,

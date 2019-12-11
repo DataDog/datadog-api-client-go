@@ -34,8 +34,6 @@ type NullableMonitorOverallStates struct {
 
 func (v NullableMonitorOverallStates) MarshalJSON() ([]byte, error) {
 	switch {
-	case v.ExplicitNull && v.Value != "":
-		return nil, ErrInvalidNullable
 	case v.ExplicitNull:
 		return []byte("null"), nil
 	default:

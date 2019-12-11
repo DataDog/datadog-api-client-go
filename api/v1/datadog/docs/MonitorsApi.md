@@ -4,6 +4,7 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CanDeleteMonitor**](MonitorsApi.md#CanDeleteMonitor) | **Get** /api/v1/monitor/can_delete | Check if the given monitors can be deleted.
 [**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a new Monitor
 [**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
 [**EditMonitor**](MonitorsApi.md#EditMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
@@ -13,24 +14,65 @@ Method | HTTP request | Description
 
 
 
-## CreateMonitor
+## CanDeleteMonitor
 
-> Monitor CreateMonitor(ctx, monitor)
+> CanDeleteMonitorResponse CanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
 
-Create a new Monitor
+Check if the given monitors can be deleted.
 
-### Overview
-Create a monitor using the specified options
-### Arguments
-* **`Monitor`** [*required*] The Monitor Object to create
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCanDeleteMonitorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitor** | [**Monitor**](Monitor.md)| Monitor request object | 
+ **monitorIds** | [**[]int64**](int64.md) | The ids of the monitor to check | 
+
+### Return type
+
+[**CanDeleteMonitorResponse**](CanDeleteMonitorResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateMonitor
+
+> Monitor CreateMonitor(ctx).Monitor(monitor).Execute()
+
+Create a new Monitor
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateMonitorRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **monitor** | [**Monitor**](Monitor.md) | Monitor request object | 
 
 ### Return type
 
@@ -52,22 +94,28 @@ Name | Type | Description  | Notes
 
 ## DeleteMonitor
 
-> map[string]int64 DeleteMonitor(ctx, monitorId)
+> map[string]int64 DeleteMonitor(ctx, monitorId).Execute()
 
 Delete the specified monitor.
 
-### Overview
-Delete the specified monitor
-### Arguments
-* **`monitor_id`** [*required*]: The id of the monitor.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64**| The id of the monitor | 
+**monitorId** | **int64** | The id of the monitor | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteMonitorRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -89,23 +137,29 @@ Name | Type | Description  | Notes
 
 ## EditMonitor
 
-> Monitor EditMonitor(ctx, monitorId, monitor)
+> Monitor EditMonitor(ctx, monitorId).Monitor(monitor).Execute()
 
 Edit the specified monitor
 
-### Overview
-Edit the specified monitor.
-### Arguments
-* **`monitor_id`** [*required*]: The id of the monitor.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64**| The id of the monitor | 
-**monitor** | [**Monitor**](Monitor.md)| Monitor request object | 
+**monitorId** | **int64** | The id of the monitor | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEditMonitorRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **monitor** | [**Monitor**](Monitor.md) | Monitor request object | 
 
 ### Return type
 
@@ -127,39 +181,28 @@ Name | Type | Description  | Notes
 
 ## GetAllMonitors
 
-> []Monitor GetAllMonitors(ctx, optional)
+> []Monitor GetAllMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).Execute()
 
 Get details about the specified monitor.
 
-### Overview
-Get details about the specified monitor from your organization.
-### Arguments
-* **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
-* **`name`** [*optional* *default*==**None**] A string to filter monitors by name
-* **`tags`** [*optional* *default*==**None**] A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0
-* **`monitor_tags`** [*optional* *default*==**None**] A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app)
-* **`with_downtimes`** [*optional* *default*==**true**] If this argument is set to true, then the returned data includes all current downtimes for each monitor.
-
-### Required Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetAllMonitorsOpts** | optional parameters | nil if no parameters
+### Path Parameters
 
-### Optional Parameters
 
-Optional parameters are passed through a pointer to a GetAllMonitorsOpts struct
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllMonitorsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupStates** | **optional.String**| When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
- **name** | **optional.String**|  | 
- **tags** | **optional.String**|  | 
- **monitorTags** | **optional.String**|  | 
- **withDowntimes** | **optional.Bool**|  | 
+ **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
+ **name** | **string** | A string to filter monitors by name. | 
+ **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0. | 
+ **monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app). | 
+ **withDowntimes** | **bool** | If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
 
 ### Return type
 
@@ -181,34 +224,29 @@ Name | Type | Description  | Notes
 
 ## GetMonitor
 
-> Monitor GetMonitor(ctx, monitorId, optional)
+> Monitor GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
 
 Get details about the specified monitor.
 
-### Overview
-Get details about the specified monitor from your organization.
-### Arguments
-* **`monitor_id`** [*required*]: The id of the monitor.
-* **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64**| The id of the monitor | 
- **optional** | ***GetMonitorOpts** | optional parameters | nil if no parameters
+**monitorId** | **int64** | The id of the monitor | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a GetMonitorOpts struct
+Other parameters are passed through a pointer to a apiGetMonitorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **groupStates** | **optional.String**| When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
+ **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
 
 ### Return type
 
@@ -230,22 +268,24 @@ Name | Type | Description  | Notes
 
 ## ValidateMonitor
 
-> Monitor ValidateMonitor(ctx, monitor)
+> Monitor ValidateMonitor(ctx).Monitor(monitor).Execute()
 
 
 
-### Overview
-Validate the monitor provided in the request
-### Arguments
-* **`Monitor`** [*required*] The Monitor Object to validate summary: Validate the provided monitor
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMonitorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitor** | [**Monitor**](Monitor.md)| Monitor request object | 
+ **monitor** | [**Monitor**](Monitor.md) | Monitor request object | 
 
 ### Return type
 

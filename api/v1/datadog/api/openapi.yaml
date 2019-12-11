@@ -1,6 +1,9 @@
 openapi: 3.0.0
 info:
-  contact: {}
+  contact:
+    email: support@datadoghq.com
+    name: Datadog Support
+    url: https://www.datadoghq.com/support/
   description: Collection of all Datadog Public endpoints.
   title: Datadog API Collection
   version: "1.0"
@@ -466,11 +469,11 @@ paths:
         ### Overview
         Get All Scheduled Downtimes
         ### Arguments
-        * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes
-          that are active when the request is made.'
+        * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes that are active when the request is made.
       operationId: GetAllDowntimes
       parameters:
-      - explode: true
+      - description: Only return downtimes that are active when the request is made.
+        explode: true
         in: query
         name: current_only
         required: false
@@ -769,14 +772,16 @@ paths:
           If no title is specified, the graph doesn’t have a title.
       operationId: GetGraphSnapshot
       parameters:
-      - explode: true
+      - description: The metric query.
+        explode: true
         in: query
         name: metric_query
         required: true
         schema:
           type: string
         style: form
-      - explode: true
+      - description: The POSIX timestamp of the start of the query.
+        explode: true
         in: query
         name: start
         required: true
@@ -784,7 +789,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - explode: true
+      - description: The POSIX timestamp of the end of the query.
+        explode: true
         in: query
         name: end
         required: true
@@ -792,21 +798,27 @@ paths:
           format: int64
           type: integer
         style: form
-      - explode: true
+      - description: A query that adds event bands to the graph.
+        explode: true
         in: query
         name: event_query
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A JSON document defining the graph. graph_def can be used instead
+          of metric_query. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+          and should be formatted to a single line then URLEncoded.
+        explode: true
         in: query
         name: graph_def
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A title for the graph. If no title is specified, the graph doesn’t
+          have a title.
+        explode: true
         in: query
         name: title
         required: false
@@ -1020,21 +1032,26 @@ paths:
           /v1/integration/aws/available_namespace_rules endpoint.
       operationId: UpdateAWSAccount
       parameters:
-      - explode: true
+      - description: Only return AWS accounts that matches this account_id.
+        explode: true
         in: query
         name: account_id
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Only return AWS accounts that matches this role_name. *It is
+          required if account_id is specified.*
+        explode: true
         in: query
         name: role_name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Only return AWS accounts that matches this access_key_id. *It
+          required if none of the other two options are specified.*
+        explode: true
         in: query
         name: access_key_id
         required: false
@@ -1087,28 +1104,36 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A string to filter monitors by name.
+        explode: true
         in: query
         name: name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A comma separated list indicating what tags, if any, should be
+          used to filter the list of monitorsby scope, e.g. host:host0.
+        explode: true
         in: query
         name: tags
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A comma separated list indicating what service and/or custom
+          tags, if any, should be used to filter the list of monitors. Tags created
+          in the Datadog UI automatically have the service key prepended (e.g. service:my-app).
+        explode: true
         in: query
         name: monitor_tags
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: If this argument is set to true, then the returned data includes
+          all current downtimes for each monitor.
+        explode: true
         in: query
         name: with_downtimes
         required: false
@@ -1161,6 +1186,54 @@ paths:
                 $ref: '#/components/schemas/Error400'
           description: Bad Request
       summary: Create a new Monitor
+      tags:
+      - Monitors
+  /api/v1/monitor/can_delete:
+    get:
+      description: |-
+        ### Overview
+        Check if the given monitors can be deleted.
+        ### Arguments
+        * **`monitor_ids`** [*required*]: The ids of the monitors to check if can be deleted.
+      operationId: CanDeleteMonitor
+      parameters:
+      - description: The ids of the monitor to check
+        explode: true
+        in: query
+        name: monitor_ids
+        required: true
+        schema:
+          items:
+            format: int64
+            type: integer
+          type: array
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CanDeleteMonitorResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        401:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+          description: Authentication error
+        409:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CanDeleteMonitorResponse'
+          description: Deletion conflict error
+      summary: Check if the given monitors can be deleted.
       tags:
       - Monitors
   /api/v1/monitor/validate:
@@ -1917,6 +1990,25 @@ components:
         application_key:
           $ref: '#/components/schemas/ApplicationKey'
       type: object
+    CanDeleteMonitorResponse:
+      example:
+        data:
+          ok:
+          - 0
+          - 0
+        errors:
+          key: errors
+      properties:
+        data:
+          $ref: '#/components/schemas/CanDeleteMonitorResponse_data'
+        errors:
+          additionalProperties:
+            type: string
+          description: A mapping of Monitor ID to strings denoting where it's used.
+          type: object
+      required:
+      - data
+      type: object
     CancelDowntimesByScopeRequest:
       example:
         scope: host:myserver
@@ -2253,6 +2345,12 @@ components:
           type: string
       required:
       - message
+      type: object
+    IntakePayloadAccepted:
+      properties:
+        status:
+          example: ok
+          type: string
       type: object
     Monitor:
       example:
@@ -2893,6 +2991,18 @@ components:
         user:
           $ref: '#/components/schemas/User'
       type: object
+    CanDeleteMonitorResponse_data:
+      example:
+        ok:
+        - 0
+        - 0
+      properties:
+        ok:
+          description: An array of of Monitor IDs that can be safely deleted.
+          items:
+            format: int64
+            type: integer
+          type: array
     Org_billing:
       example: '{"type":"parent_billing"}'
       properties:
@@ -2986,3 +3096,4 @@ components:
       in: query
       name: application_key
       type: apiKey
+x-group-parameters: true
