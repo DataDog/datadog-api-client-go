@@ -31,12 +31,7 @@ type apiCreateUserRequest struct {
 	user       *User
 }
 
-type apiCreateUserRequestBuilder interface {
-	User(User) apiCreateUserRequestBuilder
-	Execute() (UserResponse, *_nethttp.Response, error)
-}
-
-func (r apiCreateUserRequest) User(user User) apiCreateUserRequestBuilder {
+func (r apiCreateUserRequest) User(user User) apiCreateUserRequest {
 	r.user = &user
 	return r
 }
@@ -59,9 +54,9 @@ Create a user for your organization.
   **Note**: users can be created with admin access role
      only with application keys belonging to administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateUserRequestBuilder
+@return apiCreateUserRequest
 */
-func (a *UsersApiService) CreateUser(ctx _context.Context) apiCreateUserRequestBuilder {
+func (a *UsersApiService) CreateUser(ctx _context.Context) apiCreateUserRequest {
 	return apiCreateUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -211,10 +206,6 @@ type apiDisableUserRequest struct {
 	userHandle string
 }
 
-type apiDisableUserRequestBuilder interface {
-	Execute() (UserDisableResponse, *_nethttp.Response, error)
-}
-
 /*
 DisableUser Disable user
 ### Overview
@@ -225,9 +216,9 @@ Delete a user from an organization.
 * **`id`** [*required*]: The handle of the user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The handle of the user
-@return apiDisableUserRequestBuilder
+@return apiDisableUserRequest
 */
-func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) apiDisableUserRequestBuilder {
+func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) apiDisableUserRequest {
 	return apiDisableUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -372,10 +363,6 @@ type apiGetAllUsersRequest struct {
 	apiService *UsersApiService
 }
 
-type apiGetAllUsersRequestBuilder interface {
-	Execute() (UserListResponse, *_nethttp.Response, error)
-}
-
 /*
 GetAllUsers Get all users
 ### Overview
@@ -383,9 +370,9 @@ Get all users for your organization.
 ### Arguments
 This endpoint takes no JSON argument.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetAllUsersRequestBuilder
+@return apiGetAllUsersRequest
 */
-func (a *UsersApiService) GetAllUsers(ctx _context.Context) apiGetAllUsersRequestBuilder {
+func (a *UsersApiService) GetAllUsers(ctx _context.Context) apiGetAllUsersRequest {
 	return apiGetAllUsersRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -529,10 +516,6 @@ type apiGetUserRequest struct {
 	userHandle string
 }
 
-type apiGetUserRequestBuilder interface {
-	Execute() (UserResponse, *_nethttp.Response, error)
-}
-
 /*
 GetUser Get user
 ### Overview
@@ -541,9 +524,9 @@ Get a user details.
 * **`user_handle`** [*required*]: The handle of the user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The id of the user
-@return apiGetUserRequestBuilder
+@return apiGetUserRequest
 */
-func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) apiGetUserRequestBuilder {
+func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) apiGetUserRequest {
 	return apiGetUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -690,12 +673,7 @@ type apiUpdateUserRequest struct {
 	user       *User
 }
 
-type apiUpdateUserRequestBuilder interface {
-	User(User) apiUpdateUserRequestBuilder
-	Execute() (UserResponse, *_nethttp.Response, error)
-}
-
-func (r apiUpdateUserRequest) User(user User) apiUpdateUserRequestBuilder {
+func (r apiUpdateUserRequest) User(user User) apiUpdateUserRequest {
 	r.user = &user
 	return r
 }
@@ -720,9 +698,9 @@ Update a user informations.
   *  **ro** (read-only user)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The id of the user
-@return apiUpdateUserRequestBuilder
+@return apiUpdateUserRequest
 */
-func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string) apiUpdateUserRequestBuilder {
+func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string) apiUpdateUserRequest {
 	return apiUpdateUserRequest{
 		apiService: a,
 		ctx:        ctx,

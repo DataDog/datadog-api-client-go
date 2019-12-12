@@ -32,12 +32,7 @@ type apiCreateChildOrgRequest struct {
 	orgCreateBody *OrgCreateBody
 }
 
-type apiCreateChildOrgRequestBuilder interface {
-	OrgCreateBody(OrgCreateBody) apiCreateChildOrgRequestBuilder
-	Execute() (OrgCreateResponse, *_nethttp.Response, error)
-}
-
-func (r apiCreateChildOrgRequest) OrgCreateBody(orgCreateBody OrgCreateBody) apiCreateChildOrgRequestBuilder {
+func (r apiCreateChildOrgRequest) OrgCreateBody(orgCreateBody OrgCreateBody) apiCreateChildOrgRequest {
 	r.orgCreateBody = &orgCreateBody
 	return r
 }
@@ -53,9 +48,9 @@ This endpoint requires the [multi-org account](https://docs.datadoghq.com/accoun
 
 Once a new child-organization is created, you can interact with it by using the **org.public_id**, **api_key.key**, and **application_key.hash** provided in the response.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateChildOrgRequestBuilder
+@return apiCreateChildOrgRequest
 */
-func (a *OrgsApiService) CreateChildOrg(ctx _context.Context) apiCreateChildOrgRequestBuilder {
+func (a *OrgsApiService) CreateChildOrg(ctx _context.Context) apiCreateChildOrgRequest {
 	return apiCreateChildOrgRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -204,18 +199,14 @@ type apiGetOrgRequest struct {
 	apiService *OrgsApiService
 }
 
-type apiGetOrgRequestBuilder interface {
-	Execute() (OrgListResponse, *_nethttp.Response, error)
-}
-
 /*
 GetOrg Get the organization
 ## Overview
 Gets information about your organization
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetOrgRequestBuilder
+@return apiGetOrgRequest
 */
-func (a *OrgsApiService) GetOrg(ctx _context.Context) apiGetOrgRequestBuilder {
+func (a *OrgsApiService) GetOrg(ctx _context.Context) apiGetOrgRequest {
 	return apiGetOrgRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -360,12 +351,7 @@ type apiUpdateOrgRequest struct {
 	org        *Org
 }
 
-type apiUpdateOrgRequestBuilder interface {
-	Org(Org) apiUpdateOrgRequestBuilder
-	Execute() (OrgResponse, *_nethttp.Response, error)
-}
-
-func (r apiUpdateOrgRequest) Org(org Org) apiUpdateOrgRequestBuilder {
+func (r apiUpdateOrgRequest) Org(org Org) apiUpdateOrgRequest {
 	r.org = &org
 	return r
 }
@@ -388,9 +374,9 @@ Updates the organization
   * **`saml_autocreate_users_domains`**: has two properties: **enabled** (boolean) and **domains** which is a list of domains without the @ symbol.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public_id of the org you are operating with
-@return apiUpdateOrgRequestBuilder
+@return apiUpdateOrgRequest
 */
-func (a *OrgsApiService) UpdateOrg(ctx _context.Context, publicId string) apiUpdateOrgRequestBuilder {
+func (a *OrgsApiService) UpdateOrg(ctx _context.Context, publicId string) apiUpdateOrgRequest {
 	return apiUpdateOrgRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -539,12 +525,7 @@ type apiUploadIdPForOrgRequest struct {
 	idpFile    **os.File
 }
 
-type apiUploadIdPForOrgRequestBuilder interface {
-	IdpFile(*os.File) apiUploadIdPForOrgRequestBuilder
-	Execute() (IdpResponse, *_nethttp.Response, error)
-}
-
-func (r apiUploadIdPForOrgRequest) IdpFile(idpFile *os.File) apiUploadIdPForOrgRequestBuilder {
+func (r apiUploadIdPForOrgRequest) IdpFile(idpFile *os.File) apiUploadIdPForOrgRequest {
 	r.idpFile = &idpFile
 	return r
 }
@@ -567,9 +548,9 @@ There are a couple of options for updating the Identity Provider (IdP) metadata 
 * The body must contain the contents of your IdP metadata XML file.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public_id of the org you are operating with
-@return apiUploadIdPForOrgRequestBuilder
+@return apiUploadIdPForOrgRequest
 */
-func (a *OrgsApiService) UploadIdPForOrg(ctx _context.Context, publicId string) apiUploadIdPForOrgRequestBuilder {
+func (a *OrgsApiService) UploadIdPForOrg(ctx _context.Context, publicId string) apiUploadIdPForOrgRequest {
 	return apiUploadIdPForOrgRequest{
 		apiService: a,
 		ctx:        ctx,

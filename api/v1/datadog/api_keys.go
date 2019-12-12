@@ -31,12 +31,7 @@ type apiCreateAPIKeyRequest struct {
 	apiKey     *ApiKey
 }
 
-type apiCreateAPIKeyRequestBuilder interface {
-	ApiKey(ApiKey) apiCreateAPIKeyRequestBuilder
-	Execute() (ApiKeyResponse, *_nethttp.Response, error)
-}
-
-func (r apiCreateAPIKeyRequest) ApiKey(apiKey ApiKey) apiCreateAPIKeyRequestBuilder {
+func (r apiCreateAPIKeyRequest) ApiKey(apiKey ApiKey) apiCreateAPIKeyRequest {
 	r.apiKey = &apiKey
 	return r
 }
@@ -48,9 +43,9 @@ Creates an API key
 ### ARGUMENTS
 * **`name`** [*required*]: Name of your API key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateAPIKeyRequestBuilder
+@return apiCreateAPIKeyRequest
 */
-func (a *KeysApiService) CreateAPIKey(ctx _context.Context) apiCreateAPIKeyRequestBuilder {
+func (a *KeysApiService) CreateAPIKey(ctx _context.Context) apiCreateAPIKeyRequest {
 	return apiCreateAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -206,12 +201,7 @@ type apiCreateApplicationKeyRequest struct {
 	applicationKey *ApplicationKey
 }
 
-type apiCreateApplicationKeyRequestBuilder interface {
-	ApplicationKey(ApplicationKey) apiCreateApplicationKeyRequestBuilder
-	Execute() (ApplicationKeyResponse, *_nethttp.Response, error)
-}
-
-func (r apiCreateApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiCreateApplicationKeyRequestBuilder {
+func (r apiCreateApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiCreateApplicationKeyRequest {
 	r.applicationKey = &applicationKey
 	return r
 }
@@ -223,9 +213,9 @@ Create an application key with a given name.
 ### ARGUMENTS
 * **`name`** [*required*]: Name of your application key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateApplicationKeyRequestBuilder
+@return apiCreateApplicationKeyRequest
 */
-func (a *KeysApiService) CreateApplicationKey(ctx _context.Context) apiCreateApplicationKeyRequestBuilder {
+func (a *KeysApiService) CreateApplicationKey(ctx _context.Context) apiCreateApplicationKeyRequest {
 	return apiCreateApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -381,10 +371,6 @@ type apiDeleteAPIKeyRequest struct {
 	key        string
 }
 
-type apiDeleteAPIKeyRequestBuilder interface {
-	Execute() (ApiKeyResponse, *_nethttp.Response, error)
-}
-
 /*
 DeleteAPIKey Delete a given API key.
 ## Overview
@@ -393,9 +379,9 @@ Delete a given API key.
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific API key you are working with
-@return apiDeleteAPIKeyRequestBuilder
+@return apiDeleteAPIKeyRequest
 */
-func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) apiDeleteAPIKeyRequestBuilder {
+func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) apiDeleteAPIKeyRequest {
 	return apiDeleteAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -551,10 +537,6 @@ type apiDeleteApplicationKeyRequest struct {
 	key        string
 }
 
-type apiDeleteApplicationKeyRequestBuilder interface {
-	Execute() (ApplicationKeyResponse, *_nethttp.Response, error)
-}
-
 /*
 DeleteApplicationKey Delete a given application key.
 ## Overview
@@ -563,9 +545,9 @@ Delete a given application key.
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific APP key you are working with
-@return apiDeleteApplicationKeyRequestBuilder
+@return apiDeleteApplicationKeyRequest
 */
-func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) apiDeleteApplicationKeyRequestBuilder {
+func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) apiDeleteApplicationKeyRequest {
 	return apiDeleteApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -722,12 +704,7 @@ type apiEditAPIKeyRequest struct {
 	apiKey     *ApiKey
 }
 
-type apiEditAPIKeyRequestBuilder interface {
-	ApiKey(ApiKey) apiEditAPIKeyRequestBuilder
-	Execute() (ApiKeyResponse, *_nethttp.Response, error)
-}
-
-func (r apiEditAPIKeyRequest) ApiKey(apiKey ApiKey) apiEditAPIKeyRequestBuilder {
+func (r apiEditAPIKeyRequest) ApiKey(apiKey ApiKey) apiEditAPIKeyRequest {
 	r.apiKey = &apiKey
 	return r
 }
@@ -740,9 +717,9 @@ Edit an API key name.
 * **`name`** [*required*]: Name of your API key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific API key you are working with
-@return apiEditAPIKeyRequestBuilder
+@return apiEditAPIKeyRequest
 */
-func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string) apiEditAPIKeyRequestBuilder {
+func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string) apiEditAPIKeyRequest {
 	return apiEditAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -901,12 +878,7 @@ type apiEditApplicationKeyRequest struct {
 	applicationKey *ApplicationKey
 }
 
-type apiEditApplicationKeyRequestBuilder interface {
-	ApplicationKey(ApplicationKey) apiEditApplicationKeyRequestBuilder
-	Execute() (ApplicationKeyResponse, *_nethttp.Response, error)
-}
-
-func (r apiEditApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiEditApplicationKeyRequestBuilder {
+func (r apiEditApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiEditApplicationKeyRequest {
 	r.applicationKey = &applicationKey
 	return r
 }
@@ -919,9 +891,9 @@ Edit an application key name.
 * **`name`** [*required*]: Name of your application key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific APP key you are working with
-@return apiEditApplicationKeyRequestBuilder
+@return apiEditApplicationKeyRequest
 */
-func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string) apiEditApplicationKeyRequestBuilder {
+func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string) apiEditApplicationKeyRequest {
 	return apiEditApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1079,10 +1051,6 @@ type apiGetAPIKeyRequest struct {
 	key        string
 }
 
-type apiGetAPIKeyRequestBuilder interface {
-	Execute() (ApiKeyResponse, *_nethttp.Response, error)
-}
-
 /*
 GetAPIKey Get a given API key.
 ## Overview
@@ -1091,9 +1059,9 @@ Get a given API key.
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific API key you are working with
-@return apiGetAPIKeyRequestBuilder
+@return apiGetAPIKeyRequest
 */
-func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) apiGetAPIKeyRequestBuilder {
+func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) apiGetAPIKeyRequest {
 	return apiGetAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1248,10 +1216,6 @@ type apiGetAllAPIKeysRequest struct {
 	apiService *KeysApiService
 }
 
-type apiGetAllAPIKeysRequestBuilder interface {
-	Execute() (ApiKeyListResponse, *_nethttp.Response, error)
-}
-
 /*
 GetAllAPIKeys Get all API keys available for your account.
 ## Overview
@@ -1259,9 +1223,9 @@ Get all API keys available for your account.
 ### ARGUMENTS
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetAllAPIKeysRequestBuilder
+@return apiGetAllAPIKeysRequest
 */
-func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) apiGetAllAPIKeysRequestBuilder {
+func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) apiGetAllAPIKeysRequest {
 	return apiGetAllAPIKeysRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1404,10 +1368,6 @@ type apiGetAllApplicationKeysRequest struct {
 	apiService *KeysApiService
 }
 
-type apiGetAllApplicationKeysRequestBuilder interface {
-	Execute() (ApplicationKeyListResponse, *_nethttp.Response, error)
-}
-
 /*
 GetAllApplicationKeys Get all application keys available for your account.
 ## Overview
@@ -1415,9 +1375,9 @@ Get all application keys available for your account.
 ### ARGUMENTS
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetAllApplicationKeysRequestBuilder
+@return apiGetAllApplicationKeysRequest
 */
-func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) apiGetAllApplicationKeysRequestBuilder {
+func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) apiGetAllApplicationKeysRequest {
 	return apiGetAllApplicationKeysRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1561,10 +1521,6 @@ type apiGetApplicationKeyRequest struct {
 	key        string
 }
 
-type apiGetApplicationKeyRequestBuilder interface {
-	Execute() (ApplicationKeyResponse, *_nethttp.Response, error)
-}
-
 /*
 GetApplicationKey Get a given application key.
 ## Overview
@@ -1573,9 +1529,9 @@ Get a given application key.
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific APP key you are working with
-@return apiGetApplicationKeyRequestBuilder
+@return apiGetApplicationKeyRequest
 */
-func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) apiGetApplicationKeyRequestBuilder {
+func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) apiGetApplicationKeyRequest {
 	return apiGetApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,

@@ -29,12 +29,7 @@ type apiCreateAWSAccountRequest struct {
 	awsAccount *AwsAccount
 }
 
-type apiCreateAWSAccountRequestBuilder interface {
-	AwsAccount(AwsAccount) apiCreateAWSAccountRequestBuilder
-	Execute() (AwsAccountCreateResponse, *_nethttp.Response, error)
-}
-
-func (r apiCreateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiCreateAWSAccountRequestBuilder {
+func (r apiCreateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiCreateAWSAccountRequest {
 	r.awsAccount = &awsAccount
 	return r
 }
@@ -69,9 +64,9 @@ Create the AWS Account with the provided values
   specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
   /v1/integration/aws/available_namespace_rules endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateAWSAccountRequestBuilder
+@return apiCreateAWSAccountRequest
 */
-func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context) apiCreateAWSAccountRequestBuilder {
+func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context) apiCreateAWSAccountRequest {
 	return apiCreateAWSAccountRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -211,12 +206,7 @@ type apiDeleteAWSAccountRequest struct {
 	awsAccount *AwsAccount
 }
 
-type apiDeleteAWSAccountRequestBuilder interface {
-	AwsAccount(AwsAccount) apiDeleteAWSAccountRequestBuilder
-	Execute() (interface{}, *_nethttp.Response, error)
-}
-
-func (r apiDeleteAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiDeleteAWSAccountRequestBuilder {
+func (r apiDeleteAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiDeleteAWSAccountRequest {
 	r.awsAccount = &awsAccount
 	return r
 }
@@ -232,9 +222,9 @@ Delete the AWS Account matching the specified account_id and role_name parameter
 * **`role_name`** [*required*, *default* = **None**]: Delete the AWS account that
   matches this role_name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiDeleteAWSAccountRequestBuilder
+@return apiDeleteAWSAccountRequest
 */
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context) apiDeleteAWSAccountRequestBuilder {
+func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context) apiDeleteAWSAccountRequest {
 	return apiDeleteAWSAccountRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -376,24 +366,17 @@ type apiGetAllAWSAccountsRequest struct {
 	accessKeyId *string
 }
 
-type apiGetAllAWSAccountsRequestBuilder interface {
-	AccountId(string) apiGetAllAWSAccountsRequestBuilder
-	RoleName(string) apiGetAllAWSAccountsRequestBuilder
-	AccessKeyId(string) apiGetAllAWSAccountsRequestBuilder
-	Execute() (AwsAccountListResponse, *_nethttp.Response, error)
-}
-
-func (r apiGetAllAWSAccountsRequest) AccountId(accountId string) apiGetAllAWSAccountsRequestBuilder {
+func (r apiGetAllAWSAccountsRequest) AccountId(accountId string) apiGetAllAWSAccountsRequest {
 	r.accountId = &accountId
 	return r
 }
 
-func (r apiGetAllAWSAccountsRequest) RoleName(roleName string) apiGetAllAWSAccountsRequestBuilder {
+func (r apiGetAllAWSAccountsRequest) RoleName(roleName string) apiGetAllAWSAccountsRequest {
 	r.roleName = &roleName
 	return r
 }
 
-func (r apiGetAllAWSAccountsRequest) AccessKeyId(accessKeyId string) apiGetAllAWSAccountsRequestBuilder {
+func (r apiGetAllAWSAccountsRequest) AccessKeyId(accessKeyId string) apiGetAllAWSAccountsRequest {
 	r.accessKeyId = &accessKeyId
 	return r
 }
@@ -412,9 +395,9 @@ Get All Installed AWS Accounts
 * **`access_key_id`** [*optional*, *default* = **None**]: Only return AWS accounts that
   matches this access_key_id.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetAllAWSAccountsRequestBuilder
+@return apiGetAllAWSAccountsRequest
 */
-func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context) apiGetAllAWSAccountsRequestBuilder {
+func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context) apiGetAllAWSAccountsRequest {
 	return apiGetAllAWSAccountsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -570,30 +553,22 @@ type apiUpdateAWSAccountRequest struct {
 	accessKeyId *string
 }
 
-type apiUpdateAWSAccountRequestBuilder interface {
-	AwsAccount(AwsAccount) apiUpdateAWSAccountRequestBuilder
-	AccountId(string) apiUpdateAWSAccountRequestBuilder
-	RoleName(string) apiUpdateAWSAccountRequestBuilder
-	AccessKeyId(string) apiUpdateAWSAccountRequestBuilder
-	Execute() (interface{}, *_nethttp.Response, error)
-}
-
-func (r apiUpdateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiUpdateAWSAccountRequestBuilder {
+func (r apiUpdateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiUpdateAWSAccountRequest {
 	r.awsAccount = &awsAccount
 	return r
 }
 
-func (r apiUpdateAWSAccountRequest) AccountId(accountId string) apiUpdateAWSAccountRequestBuilder {
+func (r apiUpdateAWSAccountRequest) AccountId(accountId string) apiUpdateAWSAccountRequest {
 	r.accountId = &accountId
 	return r
 }
 
-func (r apiUpdateAWSAccountRequest) RoleName(roleName string) apiUpdateAWSAccountRequestBuilder {
+func (r apiUpdateAWSAccountRequest) RoleName(roleName string) apiUpdateAWSAccountRequest {
 	r.roleName = &roleName
 	return r
 }
 
-func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWSAccountRequestBuilder {
+func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWSAccountRequest {
 	r.accessKeyId = &accessKeyId
 	return r
 }
@@ -638,9 +613,9 @@ Update the AWS Account based on the provided values
   specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
   /v1/integration/aws/available_namespace_rules endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiUpdateAWSAccountRequestBuilder
+@return apiUpdateAWSAccountRequest
 */
-func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context) apiUpdateAWSAccountRequestBuilder {
+func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context) apiUpdateAWSAccountRequest {
 	return apiUpdateAWSAccountRequest{
 		apiService: a,
 		ctx:        ctx,

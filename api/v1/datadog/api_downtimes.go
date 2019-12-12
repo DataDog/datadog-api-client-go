@@ -31,18 +31,14 @@ type apiCancelDowntimeRequest struct {
 	downtimeId int64
 }
 
-type apiCancelDowntimeRequestBuilder interface {
-	Execute() (*_nethttp.Response, error)
-}
-
 /*
 CancelDowntime Cancel a downtime
 Cancel a Downtime
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param downtimeId ID of the downtime to cancel
-@return apiCancelDowntimeRequestBuilder
+@return apiCancelDowntimeRequest
 */
-func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) apiCancelDowntimeRequestBuilder {
+func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) apiCancelDowntimeRequest {
 	return apiCancelDowntimeRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -158,12 +154,7 @@ type apiCancelDowntimesByScopeRequest struct {
 	cancelDowntimesByScopeRequest *CancelDowntimesByScopeRequest
 }
 
-type apiCancelDowntimesByScopeRequestBuilder interface {
-	CancelDowntimesByScopeRequest(CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequestBuilder
-	Execute() (CanceledDowntimesIds, *_nethttp.Response, error)
-}
-
-func (r apiCancelDowntimesByScopeRequest) CancelDowntimesByScopeRequest(cancelDowntimesByScopeRequest CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequestBuilder {
+func (r apiCancelDowntimesByScopeRequest) CancelDowntimesByScopeRequest(cancelDowntimesByScopeRequest CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequest {
 	r.cancelDowntimesByScopeRequest = &cancelDowntimesByScopeRequest
 	return r
 }
@@ -176,9 +167,9 @@ DELETE all Downtimes that match the scope of X
 * **`scope`** [*required*]: Cancel all downtimes with the given scope(s),
   e.g.: `env:prod`, `role:db,role:db-slave`
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCancelDowntimesByScopeRequestBuilder
+@return apiCancelDowntimesByScopeRequest
 */
-func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context) apiCancelDowntimesByScopeRequestBuilder {
+func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context) apiCancelDowntimesByScopeRequest {
 	return apiCancelDowntimesByScopeRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -328,12 +319,7 @@ type apiCreateDowntimeRequest struct {
 	downtime   *Downtime
 }
 
-type apiCreateDowntimeRequestBuilder interface {
-	Downtime(Downtime) apiCreateDowntimeRequestBuilder
-	Execute() (Downtime, *_nethttp.Response, error)
-}
-
-func (r apiCreateDowntimeRequest) Downtime(downtime Downtime) apiCreateDowntimeRequestBuilder {
+func (r apiCreateDowntimeRequest) Downtime(downtime Downtime) apiCreateDowntimeRequest {
 	r.downtime = &downtime
 	return r
 }
@@ -382,9 +368,9 @@ CreateDowntime Schedule a downtime
   * **`until_date`** (optional) the date at which the recurrence should end
     as a POSIX timestmap. **`until_occurrences` and `until_date`** are mutually exclusive
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateDowntimeRequestBuilder
+@return apiCreateDowntimeRequest
 */
-func (a *DowntimesApiService) CreateDowntime(ctx _context.Context) apiCreateDowntimeRequestBuilder {
+func (a *DowntimesApiService) CreateDowntime(ctx _context.Context) apiCreateDowntimeRequest {
 	return apiCreateDowntimeRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -524,12 +510,7 @@ type apiGetAllDowntimesRequest struct {
 	currentOnly *bool
 }
 
-type apiGetAllDowntimesRequestBuilder interface {
-	CurrentOnly(bool) apiGetAllDowntimesRequestBuilder
-	Execute() ([]Downtime, *_nethttp.Response, error)
-}
-
-func (r apiGetAllDowntimesRequest) CurrentOnly(currentOnly bool) apiGetAllDowntimesRequestBuilder {
+func (r apiGetAllDowntimesRequest) CurrentOnly(currentOnly bool) apiGetAllDowntimesRequest {
 	r.currentOnly = &currentOnly
 	return r
 }
@@ -541,9 +522,9 @@ Get All Scheduled Downtimes
 ### Arguments
 * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes that are active when the request is made.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetAllDowntimesRequestBuilder
+@return apiGetAllDowntimesRequest
 */
-func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context) apiGetAllDowntimesRequestBuilder {
+func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context) apiGetAllDowntimesRequest {
 	return apiGetAllDowntimesRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -680,10 +661,6 @@ type apiGetDowntimeRequest struct {
 	downtimeId int64
 }
 
-type apiGetDowntimeRequestBuilder interface {
-	Execute() (Downtime, *_nethttp.Response, error)
-}
-
 /*
 GetDowntime Get a downtime
 ### Overview
@@ -692,9 +669,9 @@ Get Downtime Detail by downtime_id
 This endpoint takes no JSON arguments."
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param downtimeId ID of the downtime to fetch
-@return apiGetDowntimeRequestBuilder
+@return apiGetDowntimeRequest
 */
-func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) apiGetDowntimeRequestBuilder {
+func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) apiGetDowntimeRequest {
 	return apiGetDowntimeRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -831,12 +808,7 @@ type apiUpdateDowntimeRequest struct {
 	downtime   *Downtime
 }
 
-type apiUpdateDowntimeRequestBuilder interface {
-	Downtime(Downtime) apiUpdateDowntimeRequestBuilder
-	Execute() (Downtime, *_nethttp.Response, error)
-}
-
-func (r apiUpdateDowntimeRequest) Downtime(downtime Downtime) apiUpdateDowntimeRequestBuilder {
+func (r apiUpdateDowntimeRequest) Downtime(downtime Downtime) apiUpdateDowntimeRequest {
 	r.downtime = &downtime
 	return r
 }
@@ -891,9 +863,9 @@ Update a single Downtime by downtime_id.
       timestmap. **`until_occurrences` and `until_date`** are mutually exclusive
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param downtimeId ID of the downtime to update
-@return apiUpdateDowntimeRequestBuilder
+@return apiUpdateDowntimeRequest
 */
-func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64) apiUpdateDowntimeRequestBuilder {
+func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64) apiUpdateDowntimeRequest {
 	return apiUpdateDowntimeRequest{
 		apiService: a,
 		ctx:        ctx,

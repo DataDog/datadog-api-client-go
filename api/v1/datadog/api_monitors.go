@@ -32,12 +32,7 @@ type apiCanDeleteMonitorRequest struct {
 	monitorIds *[]int64
 }
 
-type apiCanDeleteMonitorRequestBuilder interface {
-	MonitorIds([]int64) apiCanDeleteMonitorRequestBuilder
-	Execute() (CanDeleteMonitorResponse, *_nethttp.Response, error)
-}
-
-func (r apiCanDeleteMonitorRequest) MonitorIds(monitorIds []int64) apiCanDeleteMonitorRequestBuilder {
+func (r apiCanDeleteMonitorRequest) MonitorIds(monitorIds []int64) apiCanDeleteMonitorRequest {
 	r.monitorIds = &monitorIds
 	return r
 }
@@ -49,9 +44,9 @@ Check if the given monitors can be deleted.
 ### Arguments
 * **`monitor_ids`** [*required*]: The ids of the monitors to check if can be deleted.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCanDeleteMonitorRequestBuilder
+@return apiCanDeleteMonitorRequest
 */
-func (a *MonitorsApiService) CanDeleteMonitor(ctx _context.Context) apiCanDeleteMonitorRequestBuilder {
+func (a *MonitorsApiService) CanDeleteMonitor(ctx _context.Context) apiCanDeleteMonitorRequest {
 	return apiCanDeleteMonitorRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -218,12 +213,7 @@ type apiCreateMonitorRequest struct {
 	monitor    *Monitor
 }
 
-type apiCreateMonitorRequestBuilder interface {
-	Monitor(Monitor) apiCreateMonitorRequestBuilder
-	Execute() (Monitor, *_nethttp.Response, error)
-}
-
-func (r apiCreateMonitorRequest) Monitor(monitor Monitor) apiCreateMonitorRequestBuilder {
+func (r apiCreateMonitorRequest) Monitor(monitor Monitor) apiCreateMonitorRequest {
 	r.monitor = &monitor
 	return r
 }
@@ -235,9 +225,9 @@ Create a monitor using the specified options
 ### Arguments
 * **`Monitor`** [*required*] The Monitor Object to create
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateMonitorRequestBuilder
+@return apiCreateMonitorRequest
 */
-func (a *MonitorsApiService) CreateMonitor(ctx _context.Context) apiCreateMonitorRequestBuilder {
+func (a *MonitorsApiService) CreateMonitor(ctx _context.Context) apiCreateMonitorRequest {
 	return apiCreateMonitorRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -377,10 +367,6 @@ type apiDeleteMonitorRequest struct {
 	monitorId  int64
 }
 
-type apiDeleteMonitorRequestBuilder interface {
-	Execute() (map[string]int64, *_nethttp.Response, error)
-}
-
 /*
 DeleteMonitor Delete the specified monitor.
 ### Overview
@@ -389,9 +375,9 @@ Delete the specified monitor
 * **`monitor_id`** [*required*]: The id of the monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitorId The id of the monitor
-@return apiDeleteMonitorRequestBuilder
+@return apiDeleteMonitorRequest
 */
-func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64) apiDeleteMonitorRequestBuilder {
+func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64) apiDeleteMonitorRequest {
 	return apiDeleteMonitorRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -548,12 +534,7 @@ type apiEditMonitorRequest struct {
 	monitor    *Monitor
 }
 
-type apiEditMonitorRequestBuilder interface {
-	Monitor(Monitor) apiEditMonitorRequestBuilder
-	Execute() (Monitor, *_nethttp.Response, error)
-}
-
-func (r apiEditMonitorRequest) Monitor(monitor Monitor) apiEditMonitorRequestBuilder {
+func (r apiEditMonitorRequest) Monitor(monitor Monitor) apiEditMonitorRequest {
 	r.monitor = &monitor
 	return r
 }
@@ -566,9 +547,9 @@ Edit the specified monitor.
 * **`monitor_id`** [*required*]: The id of the monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitorId The id of the monitor
-@return apiEditMonitorRequestBuilder
+@return apiEditMonitorRequest
 */
-func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64) apiEditMonitorRequestBuilder {
+func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64) apiEditMonitorRequest {
 	return apiEditMonitorRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -734,36 +715,27 @@ type apiGetAllMonitorsRequest struct {
 	withDowntimes *bool
 }
 
-type apiGetAllMonitorsRequestBuilder interface {
-	GroupStates(string) apiGetAllMonitorsRequestBuilder
-	Name(string) apiGetAllMonitorsRequestBuilder
-	Tags(string) apiGetAllMonitorsRequestBuilder
-	MonitorTags(string) apiGetAllMonitorsRequestBuilder
-	WithDowntimes(bool) apiGetAllMonitorsRequestBuilder
-	Execute() ([]Monitor, *_nethttp.Response, error)
-}
-
-func (r apiGetAllMonitorsRequest) GroupStates(groupStates string) apiGetAllMonitorsRequestBuilder {
+func (r apiGetAllMonitorsRequest) GroupStates(groupStates string) apiGetAllMonitorsRequest {
 	r.groupStates = &groupStates
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) Name(name string) apiGetAllMonitorsRequestBuilder {
+func (r apiGetAllMonitorsRequest) Name(name string) apiGetAllMonitorsRequest {
 	r.name = &name
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) Tags(tags string) apiGetAllMonitorsRequestBuilder {
+func (r apiGetAllMonitorsRequest) Tags(tags string) apiGetAllMonitorsRequest {
 	r.tags = &tags
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) MonitorTags(monitorTags string) apiGetAllMonitorsRequestBuilder {
+func (r apiGetAllMonitorsRequest) MonitorTags(monitorTags string) apiGetAllMonitorsRequest {
 	r.monitorTags = &monitorTags
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) WithDowntimes(withDowntimes bool) apiGetAllMonitorsRequestBuilder {
+func (r apiGetAllMonitorsRequest) WithDowntimes(withDowntimes bool) apiGetAllMonitorsRequest {
 	r.withDowntimes = &withDowntimes
 	return r
 }
@@ -779,9 +751,9 @@ Get details about the specified monitor from your organization.
 * **`monitor_tags`** [*optional* *default*==**None**] A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app)
 * **`with_downtimes`** [*optional* *default*==**true**] If this argument is set to true, then the returned data includes all current downtimes for each monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetAllMonitorsRequestBuilder
+@return apiGetAllMonitorsRequest
 */
-func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context) apiGetAllMonitorsRequestBuilder {
+func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context) apiGetAllMonitorsRequest {
 	return apiGetAllMonitorsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -931,12 +903,7 @@ type apiGetMonitorRequest struct {
 	groupStates *string
 }
 
-type apiGetMonitorRequestBuilder interface {
-	GroupStates(string) apiGetMonitorRequestBuilder
-	Execute() (Monitor, *_nethttp.Response, error)
-}
-
-func (r apiGetMonitorRequest) GroupStates(groupStates string) apiGetMonitorRequestBuilder {
+func (r apiGetMonitorRequest) GroupStates(groupStates string) apiGetMonitorRequest {
 	r.groupStates = &groupStates
 	return r
 }
@@ -950,9 +917,9 @@ Get details about the specified monitor from your organization.
 * **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitorId The id of the monitor
-@return apiGetMonitorRequestBuilder
+@return apiGetMonitorRequest
 */
-func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64) apiGetMonitorRequestBuilder {
+func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64) apiGetMonitorRequest {
 	return apiGetMonitorRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1101,12 +1068,7 @@ type apiValidateMonitorRequest struct {
 	monitor    *Monitor
 }
 
-type apiValidateMonitorRequestBuilder interface {
-	Monitor(Monitor) apiValidateMonitorRequestBuilder
-	Execute() (Monitor, *_nethttp.Response, error)
-}
-
-func (r apiValidateMonitorRequest) Monitor(monitor Monitor) apiValidateMonitorRequestBuilder {
+func (r apiValidateMonitorRequest) Monitor(monitor Monitor) apiValidateMonitorRequest {
 	r.monitor = &monitor
 	return r
 }
@@ -1118,9 +1080,9 @@ Validate the monitor provided in the request
 ### Arguments
 * **`Monitor`** [*required*] The Monitor Object to validate summary: Validate the provided monitor
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiValidateMonitorRequestBuilder
+@return apiValidateMonitorRequest
 */
-func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context) apiValidateMonitorRequestBuilder {
+func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context) apiValidateMonitorRequest {
 	return apiValidateMonitorRequest{
 		apiService: a,
 		ctx:        ctx,

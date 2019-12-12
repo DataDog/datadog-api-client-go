@@ -34,42 +34,32 @@ type apiGetGraphSnapshotRequest struct {
 	title       *string
 }
 
-type apiGetGraphSnapshotRequestBuilder interface {
-	MetricQuery(string) apiGetGraphSnapshotRequestBuilder
-	Start(int64) apiGetGraphSnapshotRequestBuilder
-	End(int64) apiGetGraphSnapshotRequestBuilder
-	EventQuery(string) apiGetGraphSnapshotRequestBuilder
-	GraphDef(string) apiGetGraphSnapshotRequestBuilder
-	Title(string) apiGetGraphSnapshotRequestBuilder
-	Execute() (GraphSnapshot, *_nethttp.Response, error)
-}
-
-func (r apiGetGraphSnapshotRequest) MetricQuery(metricQuery string) apiGetGraphSnapshotRequestBuilder {
+func (r apiGetGraphSnapshotRequest) MetricQuery(metricQuery string) apiGetGraphSnapshotRequest {
 	r.metricQuery = &metricQuery
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) Start(start int64) apiGetGraphSnapshotRequestBuilder {
+func (r apiGetGraphSnapshotRequest) Start(start int64) apiGetGraphSnapshotRequest {
 	r.start = &start
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) End(end int64) apiGetGraphSnapshotRequestBuilder {
+func (r apiGetGraphSnapshotRequest) End(end int64) apiGetGraphSnapshotRequest {
 	r.end = &end
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) EventQuery(eventQuery string) apiGetGraphSnapshotRequestBuilder {
+func (r apiGetGraphSnapshotRequest) EventQuery(eventQuery string) apiGetGraphSnapshotRequest {
 	r.eventQuery = &eventQuery
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) GraphDef(graphDef string) apiGetGraphSnapshotRequestBuilder {
+func (r apiGetGraphSnapshotRequest) GraphDef(graphDef string) apiGetGraphSnapshotRequest {
 	r.graphDef = &graphDef
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) Title(title string) apiGetGraphSnapshotRequestBuilder {
+func (r apiGetGraphSnapshotRequest) Title(title string) apiGetGraphSnapshotRequest {
 	r.title = &title
 	return r
 }
@@ -91,9 +81,9 @@ Take graph snapshots
 * **`title`** [*optional*, *default* = **None**]: A title for the graph.
   If no title is specified, the graph doesn’t have a title.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetGraphSnapshotRequestBuilder
+@return apiGetGraphSnapshotRequest
 */
-func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context) apiGetGraphSnapshotRequestBuilder {
+func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context) apiGetGraphSnapshotRequest {
 	return apiGetGraphSnapshotRequest{
 		apiService: a,
 		ctx:        ctx,
