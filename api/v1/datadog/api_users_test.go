@@ -13,7 +13,7 @@ import (
 
 func generateUniqueUser(t *testing.T) datadog.User {
 	prefix := fmt.Sprintf("%s-%d", t.Name(), time.Now().UnixNano())
-	email := strings.ToLower(prefix) + "@example.com"
+	email := strings.ToLower(prefix) + "@integration-tests-accnt-for-sdk-ci.com"
 	return datadog.User{
 		Name:       datadog.PtrString(prefix),
 		Email:      datadog.PtrString(email),
