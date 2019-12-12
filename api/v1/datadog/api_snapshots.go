@@ -133,9 +133,9 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 		return localVarReturnValue, nil, reportError("end is required and must be specified")
 	}
 
-	localVarQueryParams.Add("metric_query", parameterToString(r.metricQuery, ""))
-	localVarQueryParams.Add("start", parameterToString(r.start, ""))
-	localVarQueryParams.Add("end", parameterToString(r.end, ""))
+	localVarQueryParams.Add("metric_query", parameterToString(*r.metricQuery, ""))
+	localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+	localVarQueryParams.Add("end", parameterToString(*r.end, ""))
 	if r.eventQuery != nil {
 		localVarQueryParams.Add("event_query", parameterToString(*r.eventQuery, ""))
 	}
