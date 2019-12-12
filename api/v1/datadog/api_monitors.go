@@ -33,12 +33,12 @@ type apiCanDeleteMonitorRequest struct {
 }
 
 type apiCanDeleteMonitorRequestBuilder interface {
-	MonitorIds(*[]int64) apiCanDeleteMonitorRequestBuilder
+	MonitorIds([]int64) apiCanDeleteMonitorRequestBuilder
 	Execute() (CanDeleteMonitorResponse, *_nethttp.Response, error)
 }
 
-func (r apiCanDeleteMonitorRequest) MonitorIds(monitorIds *[]int64) apiCanDeleteMonitorRequestBuilder {
-	r.monitorIds = monitorIds
+func (r apiCanDeleteMonitorRequest) MonitorIds(monitorIds []int64) apiCanDeleteMonitorRequestBuilder {
+	r.monitorIds = &monitorIds
 	return r
 }
 
@@ -219,12 +219,12 @@ type apiCreateMonitorRequest struct {
 }
 
 type apiCreateMonitorRequestBuilder interface {
-	Monitor(*Monitor) apiCreateMonitorRequestBuilder
+	Monitor(Monitor) apiCreateMonitorRequestBuilder
 	Execute() (Monitor, *_nethttp.Response, error)
 }
 
-func (r apiCreateMonitorRequest) Monitor(monitor *Monitor) apiCreateMonitorRequestBuilder {
-	r.monitor = monitor
+func (r apiCreateMonitorRequest) Monitor(monitor Monitor) apiCreateMonitorRequestBuilder {
+	r.monitor = &monitor
 	return r
 }
 
@@ -549,12 +549,12 @@ type apiEditMonitorRequest struct {
 }
 
 type apiEditMonitorRequestBuilder interface {
-	Monitor(*Monitor) apiEditMonitorRequestBuilder
+	Monitor(Monitor) apiEditMonitorRequestBuilder
 	Execute() (Monitor, *_nethttp.Response, error)
 }
 
-func (r apiEditMonitorRequest) Monitor(monitor *Monitor) apiEditMonitorRequestBuilder {
-	r.monitor = monitor
+func (r apiEditMonitorRequest) Monitor(monitor Monitor) apiEditMonitorRequestBuilder {
+	r.monitor = &monitor
 	return r
 }
 
@@ -735,36 +735,36 @@ type apiGetAllMonitorsRequest struct {
 }
 
 type apiGetAllMonitorsRequestBuilder interface {
-	GroupStates(*string) apiGetAllMonitorsRequestBuilder
-	Name(*string) apiGetAllMonitorsRequestBuilder
-	Tags(*string) apiGetAllMonitorsRequestBuilder
-	MonitorTags(*string) apiGetAllMonitorsRequestBuilder
-	WithDowntimes(*bool) apiGetAllMonitorsRequestBuilder
+	GroupStates(string) apiGetAllMonitorsRequestBuilder
+	Name(string) apiGetAllMonitorsRequestBuilder
+	Tags(string) apiGetAllMonitorsRequestBuilder
+	MonitorTags(string) apiGetAllMonitorsRequestBuilder
+	WithDowntimes(bool) apiGetAllMonitorsRequestBuilder
 	Execute() ([]Monitor, *_nethttp.Response, error)
 }
 
-func (r apiGetAllMonitorsRequest) GroupStates(groupStates *string) apiGetAllMonitorsRequestBuilder {
-	r.groupStates = groupStates
+func (r apiGetAllMonitorsRequest) GroupStates(groupStates string) apiGetAllMonitorsRequestBuilder {
+	r.groupStates = &groupStates
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) Name(name *string) apiGetAllMonitorsRequestBuilder {
-	r.name = name
+func (r apiGetAllMonitorsRequest) Name(name string) apiGetAllMonitorsRequestBuilder {
+	r.name = &name
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) Tags(tags *string) apiGetAllMonitorsRequestBuilder {
-	r.tags = tags
+func (r apiGetAllMonitorsRequest) Tags(tags string) apiGetAllMonitorsRequestBuilder {
+	r.tags = &tags
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) MonitorTags(monitorTags *string) apiGetAllMonitorsRequestBuilder {
-	r.monitorTags = monitorTags
+func (r apiGetAllMonitorsRequest) MonitorTags(monitorTags string) apiGetAllMonitorsRequestBuilder {
+	r.monitorTags = &monitorTags
 	return r
 }
 
-func (r apiGetAllMonitorsRequest) WithDowntimes(withDowntimes *bool) apiGetAllMonitorsRequestBuilder {
-	r.withDowntimes = withDowntimes
+func (r apiGetAllMonitorsRequest) WithDowntimes(withDowntimes bool) apiGetAllMonitorsRequestBuilder {
+	r.withDowntimes = &withDowntimes
 	return r
 }
 
@@ -932,12 +932,12 @@ type apiGetMonitorRequest struct {
 }
 
 type apiGetMonitorRequestBuilder interface {
-	GroupStates(*string) apiGetMonitorRequestBuilder
+	GroupStates(string) apiGetMonitorRequestBuilder
 	Execute() (Monitor, *_nethttp.Response, error)
 }
 
-func (r apiGetMonitorRequest) GroupStates(groupStates *string) apiGetMonitorRequestBuilder {
-	r.groupStates = groupStates
+func (r apiGetMonitorRequest) GroupStates(groupStates string) apiGetMonitorRequestBuilder {
+	r.groupStates = &groupStates
 	return r
 }
 
@@ -1102,12 +1102,12 @@ type apiValidateMonitorRequest struct {
 }
 
 type apiValidateMonitorRequestBuilder interface {
-	Monitor(*Monitor) apiValidateMonitorRequestBuilder
+	Monitor(Monitor) apiValidateMonitorRequestBuilder
 	Execute() (Monitor, *_nethttp.Response, error)
 }
 
-func (r apiValidateMonitorRequest) Monitor(monitor *Monitor) apiValidateMonitorRequestBuilder {
-	r.monitor = monitor
+func (r apiValidateMonitorRequest) Monitor(monitor Monitor) apiValidateMonitorRequestBuilder {
+	r.monitor = &monitor
 	return r
 }
 

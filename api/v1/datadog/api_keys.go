@@ -32,12 +32,12 @@ type apiCreateAPIKeyRequest struct {
 }
 
 type apiCreateAPIKeyRequestBuilder interface {
-	ApiKey(*ApiKey) apiCreateAPIKeyRequestBuilder
+	ApiKey(ApiKey) apiCreateAPIKeyRequestBuilder
 	Execute() (ApiKeyResponse, *_nethttp.Response, error)
 }
 
-func (r apiCreateAPIKeyRequest) ApiKey(apiKey *ApiKey) apiCreateAPIKeyRequestBuilder {
-	r.apiKey = apiKey
+func (r apiCreateAPIKeyRequest) ApiKey(apiKey ApiKey) apiCreateAPIKeyRequestBuilder {
+	r.apiKey = &apiKey
 	return r
 }
 
@@ -207,12 +207,12 @@ type apiCreateApplicationKeyRequest struct {
 }
 
 type apiCreateApplicationKeyRequestBuilder interface {
-	ApplicationKey(*ApplicationKey) apiCreateApplicationKeyRequestBuilder
+	ApplicationKey(ApplicationKey) apiCreateApplicationKeyRequestBuilder
 	Execute() (ApplicationKeyResponse, *_nethttp.Response, error)
 }
 
-func (r apiCreateApplicationKeyRequest) ApplicationKey(applicationKey *ApplicationKey) apiCreateApplicationKeyRequestBuilder {
-	r.applicationKey = applicationKey
+func (r apiCreateApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiCreateApplicationKeyRequestBuilder {
+	r.applicationKey = &applicationKey
 	return r
 }
 
@@ -723,12 +723,12 @@ type apiEditAPIKeyRequest struct {
 }
 
 type apiEditAPIKeyRequestBuilder interface {
-	ApiKey(*ApiKey) apiEditAPIKeyRequestBuilder
+	ApiKey(ApiKey) apiEditAPIKeyRequestBuilder
 	Execute() (ApiKeyResponse, *_nethttp.Response, error)
 }
 
-func (r apiEditAPIKeyRequest) ApiKey(apiKey *ApiKey) apiEditAPIKeyRequestBuilder {
-	r.apiKey = apiKey
+func (r apiEditAPIKeyRequest) ApiKey(apiKey ApiKey) apiEditAPIKeyRequestBuilder {
+	r.apiKey = &apiKey
 	return r
 }
 
@@ -902,12 +902,12 @@ type apiEditApplicationKeyRequest struct {
 }
 
 type apiEditApplicationKeyRequestBuilder interface {
-	ApplicationKey(*ApplicationKey) apiEditApplicationKeyRequestBuilder
+	ApplicationKey(ApplicationKey) apiEditApplicationKeyRequestBuilder
 	Execute() (ApplicationKeyResponse, *_nethttp.Response, error)
 }
 
-func (r apiEditApplicationKeyRequest) ApplicationKey(applicationKey *ApplicationKey) apiEditApplicationKeyRequestBuilder {
-	r.applicationKey = applicationKey
+func (r apiEditApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiEditApplicationKeyRequestBuilder {
+	r.applicationKey = &applicationKey
 	return r
 }
 

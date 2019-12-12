@@ -32,12 +32,12 @@ type apiCreateUserRequest struct {
 }
 
 type apiCreateUserRequestBuilder interface {
-	User(*User) apiCreateUserRequestBuilder
+	User(User) apiCreateUserRequestBuilder
 	Execute() (UserResponse, *_nethttp.Response, error)
 }
 
-func (r apiCreateUserRequest) User(user *User) apiCreateUserRequestBuilder {
-	r.user = user
+func (r apiCreateUserRequest) User(user User) apiCreateUserRequestBuilder {
+	r.user = &user
 	return r
 }
 
@@ -691,12 +691,12 @@ type apiUpdateUserRequest struct {
 }
 
 type apiUpdateUserRequestBuilder interface {
-	User(*User) apiUpdateUserRequestBuilder
+	User(User) apiUpdateUserRequestBuilder
 	Execute() (UserResponse, *_nethttp.Response, error)
 }
 
-func (r apiUpdateUserRequest) User(user *User) apiUpdateUserRequestBuilder {
-	r.user = user
+func (r apiUpdateUserRequest) User(user User) apiUpdateUserRequestBuilder {
+	r.user = &user
 	return r
 }
 

@@ -159,12 +159,12 @@ type apiCancelDowntimesByScopeRequest struct {
 }
 
 type apiCancelDowntimesByScopeRequestBuilder interface {
-	CancelDowntimesByScopeRequest(*CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequestBuilder
+	CancelDowntimesByScopeRequest(CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequestBuilder
 	Execute() (CanceledDowntimesIds, *_nethttp.Response, error)
 }
 
-func (r apiCancelDowntimesByScopeRequest) CancelDowntimesByScopeRequest(cancelDowntimesByScopeRequest *CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequestBuilder {
-	r.cancelDowntimesByScopeRequest = cancelDowntimesByScopeRequest
+func (r apiCancelDowntimesByScopeRequest) CancelDowntimesByScopeRequest(cancelDowntimesByScopeRequest CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequestBuilder {
+	r.cancelDowntimesByScopeRequest = &cancelDowntimesByScopeRequest
 	return r
 }
 
@@ -329,12 +329,12 @@ type apiCreateDowntimeRequest struct {
 }
 
 type apiCreateDowntimeRequestBuilder interface {
-	Downtime(*Downtime) apiCreateDowntimeRequestBuilder
+	Downtime(Downtime) apiCreateDowntimeRequestBuilder
 	Execute() (Downtime, *_nethttp.Response, error)
 }
 
-func (r apiCreateDowntimeRequest) Downtime(downtime *Downtime) apiCreateDowntimeRequestBuilder {
-	r.downtime = downtime
+func (r apiCreateDowntimeRequest) Downtime(downtime Downtime) apiCreateDowntimeRequestBuilder {
+	r.downtime = &downtime
 	return r
 }
 
@@ -525,12 +525,12 @@ type apiGetAllDowntimesRequest struct {
 }
 
 type apiGetAllDowntimesRequestBuilder interface {
-	CurrentOnly(*bool) apiGetAllDowntimesRequestBuilder
+	CurrentOnly(bool) apiGetAllDowntimesRequestBuilder
 	Execute() ([]Downtime, *_nethttp.Response, error)
 }
 
-func (r apiGetAllDowntimesRequest) CurrentOnly(currentOnly *bool) apiGetAllDowntimesRequestBuilder {
-	r.currentOnly = currentOnly
+func (r apiGetAllDowntimesRequest) CurrentOnly(currentOnly bool) apiGetAllDowntimesRequestBuilder {
+	r.currentOnly = &currentOnly
 	return r
 }
 
@@ -832,12 +832,12 @@ type apiUpdateDowntimeRequest struct {
 }
 
 type apiUpdateDowntimeRequestBuilder interface {
-	Downtime(*Downtime) apiUpdateDowntimeRequestBuilder
+	Downtime(Downtime) apiUpdateDowntimeRequestBuilder
 	Execute() (Downtime, *_nethttp.Response, error)
 }
 
-func (r apiUpdateDowntimeRequest) Downtime(downtime *Downtime) apiUpdateDowntimeRequestBuilder {
-	r.downtime = downtime
+func (r apiUpdateDowntimeRequest) Downtime(downtime Downtime) apiUpdateDowntimeRequestBuilder {
+	r.downtime = &downtime
 	return r
 }
 

@@ -35,42 +35,42 @@ type apiGetGraphSnapshotRequest struct {
 }
 
 type apiGetGraphSnapshotRequestBuilder interface {
-	MetricQuery(*string) apiGetGraphSnapshotRequestBuilder
-	Start(*int64) apiGetGraphSnapshotRequestBuilder
-	End(*int64) apiGetGraphSnapshotRequestBuilder
-	EventQuery(*string) apiGetGraphSnapshotRequestBuilder
-	GraphDef(*string) apiGetGraphSnapshotRequestBuilder
-	Title(*string) apiGetGraphSnapshotRequestBuilder
+	MetricQuery(string) apiGetGraphSnapshotRequestBuilder
+	Start(int64) apiGetGraphSnapshotRequestBuilder
+	End(int64) apiGetGraphSnapshotRequestBuilder
+	EventQuery(string) apiGetGraphSnapshotRequestBuilder
+	GraphDef(string) apiGetGraphSnapshotRequestBuilder
+	Title(string) apiGetGraphSnapshotRequestBuilder
 	Execute() (GraphSnapshot, *_nethttp.Response, error)
 }
 
-func (r apiGetGraphSnapshotRequest) MetricQuery(metricQuery *string) apiGetGraphSnapshotRequestBuilder {
-	r.metricQuery = metricQuery
+func (r apiGetGraphSnapshotRequest) MetricQuery(metricQuery string) apiGetGraphSnapshotRequestBuilder {
+	r.metricQuery = &metricQuery
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) Start(start *int64) apiGetGraphSnapshotRequestBuilder {
-	r.start = start
+func (r apiGetGraphSnapshotRequest) Start(start int64) apiGetGraphSnapshotRequestBuilder {
+	r.start = &start
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) End(end *int64) apiGetGraphSnapshotRequestBuilder {
-	r.end = end
+func (r apiGetGraphSnapshotRequest) End(end int64) apiGetGraphSnapshotRequestBuilder {
+	r.end = &end
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) EventQuery(eventQuery *string) apiGetGraphSnapshotRequestBuilder {
-	r.eventQuery = eventQuery
+func (r apiGetGraphSnapshotRequest) EventQuery(eventQuery string) apiGetGraphSnapshotRequestBuilder {
+	r.eventQuery = &eventQuery
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) GraphDef(graphDef *string) apiGetGraphSnapshotRequestBuilder {
-	r.graphDef = graphDef
+func (r apiGetGraphSnapshotRequest) GraphDef(graphDef string) apiGetGraphSnapshotRequestBuilder {
+	r.graphDef = &graphDef
 	return r
 }
 
-func (r apiGetGraphSnapshotRequest) Title(title *string) apiGetGraphSnapshotRequestBuilder {
-	r.title = title
+func (r apiGetGraphSnapshotRequest) Title(title string) apiGetGraphSnapshotRequestBuilder {
+	r.title = &title
 	return r
 }
 

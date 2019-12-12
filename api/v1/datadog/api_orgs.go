@@ -33,12 +33,12 @@ type apiCreateChildOrgRequest struct {
 }
 
 type apiCreateChildOrgRequestBuilder interface {
-	OrgCreateBody(*OrgCreateBody) apiCreateChildOrgRequestBuilder
+	OrgCreateBody(OrgCreateBody) apiCreateChildOrgRequestBuilder
 	Execute() (OrgCreateResponse, *_nethttp.Response, error)
 }
 
-func (r apiCreateChildOrgRequest) OrgCreateBody(orgCreateBody *OrgCreateBody) apiCreateChildOrgRequestBuilder {
-	r.orgCreateBody = orgCreateBody
+func (r apiCreateChildOrgRequest) OrgCreateBody(orgCreateBody OrgCreateBody) apiCreateChildOrgRequestBuilder {
+	r.orgCreateBody = &orgCreateBody
 	return r
 }
 
@@ -361,12 +361,12 @@ type apiUpdateOrgRequest struct {
 }
 
 type apiUpdateOrgRequestBuilder interface {
-	Org(*Org) apiUpdateOrgRequestBuilder
+	Org(Org) apiUpdateOrgRequestBuilder
 	Execute() (OrgResponse, *_nethttp.Response, error)
 }
 
-func (r apiUpdateOrgRequest) Org(org *Org) apiUpdateOrgRequestBuilder {
-	r.org = org
+func (r apiUpdateOrgRequest) Org(org Org) apiUpdateOrgRequestBuilder {
+	r.org = &org
 	return r
 }
 
@@ -540,12 +540,12 @@ type apiUploadIdPForOrgRequest struct {
 }
 
 type apiUploadIdPForOrgRequestBuilder interface {
-	IdpFile(**os.File) apiUploadIdPForOrgRequestBuilder
+	IdpFile(*os.File) apiUploadIdPForOrgRequestBuilder
 	Execute() (IdpResponse, *_nethttp.Response, error)
 }
 
-func (r apiUploadIdPForOrgRequest) IdpFile(idpFile **os.File) apiUploadIdPForOrgRequestBuilder {
-	r.idpFile = idpFile
+func (r apiUploadIdPForOrgRequest) IdpFile(idpFile *os.File) apiUploadIdPForOrgRequestBuilder {
+	r.idpFile = &idpFile
 	return r
 }
 

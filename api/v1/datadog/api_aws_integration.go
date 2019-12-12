@@ -30,12 +30,12 @@ type apiCreateAWSAccountRequest struct {
 }
 
 type apiCreateAWSAccountRequestBuilder interface {
-	AwsAccount(*AwsAccount) apiCreateAWSAccountRequestBuilder
+	AwsAccount(AwsAccount) apiCreateAWSAccountRequestBuilder
 	Execute() (AwsAccountCreateResponse, *_nethttp.Response, error)
 }
 
-func (r apiCreateAWSAccountRequest) AwsAccount(awsAccount *AwsAccount) apiCreateAWSAccountRequestBuilder {
-	r.awsAccount = awsAccount
+func (r apiCreateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiCreateAWSAccountRequestBuilder {
+	r.awsAccount = &awsAccount
 	return r
 }
 
@@ -212,12 +212,12 @@ type apiDeleteAWSAccountRequest struct {
 }
 
 type apiDeleteAWSAccountRequestBuilder interface {
-	AwsAccount(*AwsAccount) apiDeleteAWSAccountRequestBuilder
+	AwsAccount(AwsAccount) apiDeleteAWSAccountRequestBuilder
 	Execute() (interface{}, *_nethttp.Response, error)
 }
 
-func (r apiDeleteAWSAccountRequest) AwsAccount(awsAccount *AwsAccount) apiDeleteAWSAccountRequestBuilder {
-	r.awsAccount = awsAccount
+func (r apiDeleteAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiDeleteAWSAccountRequestBuilder {
+	r.awsAccount = &awsAccount
 	return r
 }
 
@@ -377,24 +377,24 @@ type apiGetAllAWSAccountsRequest struct {
 }
 
 type apiGetAllAWSAccountsRequestBuilder interface {
-	AccountId(*string) apiGetAllAWSAccountsRequestBuilder
-	RoleName(*string) apiGetAllAWSAccountsRequestBuilder
-	AccessKeyId(*string) apiGetAllAWSAccountsRequestBuilder
+	AccountId(string) apiGetAllAWSAccountsRequestBuilder
+	RoleName(string) apiGetAllAWSAccountsRequestBuilder
+	AccessKeyId(string) apiGetAllAWSAccountsRequestBuilder
 	Execute() (AwsAccountListResponse, *_nethttp.Response, error)
 }
 
-func (r apiGetAllAWSAccountsRequest) AccountId(accountId *string) apiGetAllAWSAccountsRequestBuilder {
-	r.accountId = accountId
+func (r apiGetAllAWSAccountsRequest) AccountId(accountId string) apiGetAllAWSAccountsRequestBuilder {
+	r.accountId = &accountId
 	return r
 }
 
-func (r apiGetAllAWSAccountsRequest) RoleName(roleName *string) apiGetAllAWSAccountsRequestBuilder {
-	r.roleName = roleName
+func (r apiGetAllAWSAccountsRequest) RoleName(roleName string) apiGetAllAWSAccountsRequestBuilder {
+	r.roleName = &roleName
 	return r
 }
 
-func (r apiGetAllAWSAccountsRequest) AccessKeyId(accessKeyId *string) apiGetAllAWSAccountsRequestBuilder {
-	r.accessKeyId = accessKeyId
+func (r apiGetAllAWSAccountsRequest) AccessKeyId(accessKeyId string) apiGetAllAWSAccountsRequestBuilder {
+	r.accessKeyId = &accessKeyId
 	return r
 }
 
@@ -571,30 +571,30 @@ type apiUpdateAWSAccountRequest struct {
 }
 
 type apiUpdateAWSAccountRequestBuilder interface {
-	AwsAccount(*AwsAccount) apiUpdateAWSAccountRequestBuilder
-	AccountId(*string) apiUpdateAWSAccountRequestBuilder
-	RoleName(*string) apiUpdateAWSAccountRequestBuilder
-	AccessKeyId(*string) apiUpdateAWSAccountRequestBuilder
+	AwsAccount(AwsAccount) apiUpdateAWSAccountRequestBuilder
+	AccountId(string) apiUpdateAWSAccountRequestBuilder
+	RoleName(string) apiUpdateAWSAccountRequestBuilder
+	AccessKeyId(string) apiUpdateAWSAccountRequestBuilder
 	Execute() (interface{}, *_nethttp.Response, error)
 }
 
-func (r apiUpdateAWSAccountRequest) AwsAccount(awsAccount *AwsAccount) apiUpdateAWSAccountRequestBuilder {
-	r.awsAccount = awsAccount
+func (r apiUpdateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiUpdateAWSAccountRequestBuilder {
+	r.awsAccount = &awsAccount
 	return r
 }
 
-func (r apiUpdateAWSAccountRequest) AccountId(accountId *string) apiUpdateAWSAccountRequestBuilder {
-	r.accountId = accountId
+func (r apiUpdateAWSAccountRequest) AccountId(accountId string) apiUpdateAWSAccountRequestBuilder {
+	r.accountId = &accountId
 	return r
 }
 
-func (r apiUpdateAWSAccountRequest) RoleName(roleName *string) apiUpdateAWSAccountRequestBuilder {
-	r.roleName = roleName
+func (r apiUpdateAWSAccountRequest) RoleName(roleName string) apiUpdateAWSAccountRequestBuilder {
+	r.roleName = &roleName
 	return r
 }
 
-func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId *string) apiUpdateAWSAccountRequestBuilder {
-	r.accessKeyId = accessKeyId
+func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWSAccountRequestBuilder {
+	r.accessKeyId = &accessKeyId
 	return r
 }
 
