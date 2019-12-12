@@ -32,16 +32,17 @@ func TestCreateAWSAccount(t *testing.T) {
 	defer uninstallAWSIntegration(TESTAWSACC)
 
 	// Assert AWS Integration Created with proper fields
-	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC).Execute()
+	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(TESTAWSACC).Execute()
 
-	awsAccts, _, err := TESTAPICLIENT.AWSIntegrationApi.
+	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.
 		GetAllAWSAccounts(TESTAUTH).
-		AccountId(datadog.PtrString(TESTAWSACC.GetAccountId())).
-		RoleName(datadog.PtrString(TESTAWSACC.GetRoleName())).
+		AccountId(TESTAWSACC.GetAccountId()).
+		RoleName(TESTAWSACC.GetRoleName()).
 		Execute()
 	if err != nil {
-		t.Errorf("Error Getting AWS Account: %v", err)
+		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200, "Error disabling AWS Account: %v", httpresp)
 	awsAcct := awsAccts.GetAccounts()[0]
 	assert.Equal(t, awsAcct.GetAccountId(), TESTAWSACC.GetAccountId())
 	assert.Equal(t, awsAcct.GetRoleName(), TESTAWSACC.GetRoleName())
@@ -58,25 +59,28 @@ func TestUpdateAWSAccount(t *testing.T) {
 	defer uninstallAWSIntegration(TESTAWSACC)
 
 	// Assert AWS Integration Created with proper fields
-	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC)
+	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(TESTAWSACC).Execute()
 
-	_, _, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
-		AwsAccount(&TESTAWSACC).
-		AccountId(datadog.PtrString(TESTAWSACC.GetAccountId())).
-		RoleName(datadog.PtrString(TESTAWSACC.GetRoleName())).
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
+		AwsAccount(TESTUPDATEAWSACC).
+		AccountId(TESTAWSACC.GetAccountId()).
+		RoleName(TESTAWSACC.GetRoleName()).
 		Execute()
 	if err != nil {
-		t.Errorf("Error Updating AWS Account: %v", err)
+		t.Fatalf("Error updating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200, "Error disabling AWS Account: %v", httpresp)
 
 	// Assert AWS Account Get with proper fields
-	awsAccts, _, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH).
-		AccountId(datadog.PtrString(TESTAWSACC.GetAccountId())).
-		RoleName(datadog.PtrString(TESTAWSACC.GetRoleName())).
+	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH).
+		AccountId(TESTAWSACC.GetAccountId()).
+		RoleName(TESTAWSACC.GetRoleName()).
 		Execute()
 	if err != nil {
-		t.Errorf("Error Getting AWS Account: %v", err)
+		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200, "Error disabling AWS Account: %v", httpresp)
+
 	awsAcct := awsAccts.GetAccounts()[0]
 	// Test fields were updated
 	assert.Equal(t, awsAcct.GetAccountId(), TESTUPDATEAWSACC.GetAccountId())
@@ -91,17 +95,17 @@ func TestDisableAWSAcct(t *testing.T) {
 	// We already test this in the disableAWSAccount cleanup function, but good to have an explicit test
 
 	// Lets first create the account of us to delete
-	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC).Execute()
+	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(TESTAWSACC).Execute()
 
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(&TESTAWSACC).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(TESTAWSACC).Execute()
 	if err != nil {
-		t.Errorf("Error disabling AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error disabling AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200, "Error disabling AWS Account: %v", httpresp)
 }
 
 func uninstallAWSIntegration(account datadog.AwsAccount) {
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(&account).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(account).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Error uninstalling AWS Account: %v, Another test may have already removed this account.", account)
 	}

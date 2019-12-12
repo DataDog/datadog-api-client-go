@@ -18,7 +18,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Create API Key
 	// ----------------------------------
 	testAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	apiKeyData, httpresp, err := TESTAPICLIENT.KeysApi.CreateAPIKey(TESTAUTH).ApiKey(&datadog.ApiKey{Name: &testAPIKeyName}).Execute()
+	apiKeyData, httpresp, err := TESTAPICLIENT.KeysApi.CreateAPIKey(TESTAUTH).ApiKey(datadog.ApiKey{Name: &testAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -74,7 +74,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Edit API Key
 	// ----------------------------------
 	newAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditAPIKey(TESTAUTH, createAPIKeyValue).ApiKey(&datadog.ApiKey{Name: &newAPIKeyName}).Execute()
+	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditAPIKey(TESTAUTH, createAPIKeyValue).ApiKey(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -121,7 +121,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Create Application Key
 	// ----------------------------------
 	testAppKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	appKeyData, httpresp, err := TESTAPICLIENT.KeysApi.CreateApplicationKey(TESTAUTH).ApplicationKey(&datadog.ApplicationKey{Name: &testAppKeyName}).Execute()
+	appKeyData, httpresp, err := TESTAPICLIENT.KeysApi.CreateApplicationKey(TESTAUTH).ApplicationKey(datadog.ApplicationKey{Name: &testAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAppKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -173,7 +173,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Edit Application Key
 	// ----------------------------------
 	newAppKeyName := fmt.Sprintf("New %s:%d", t.Name(), time.Now().UnixNano())
-	appKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditApplicationKey(TESTAUTH, getAppKeyHash).ApplicationKey(&datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
+	appKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditApplicationKey(TESTAUTH, getAppKeyHash).ApplicationKey(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
