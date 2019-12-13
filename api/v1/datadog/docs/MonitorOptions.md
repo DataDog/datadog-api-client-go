@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aggregation** | Pointer to **string** |  | [optional] 
+**Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptions_aggregation.md) |  | [optional] 
 **DeviceIds** | Pointer to **[]string** |  | [optional] 
 **EnableLogsSample** | Pointer to **bool** |  | [optional] 
 **EscalationMessage** | Pointer to **string** |  | [optional] 
@@ -29,13 +29,13 @@ Name | Type | Description | Notes
 
 ### GetAggregation
 
-`func (o *MonitorOptions) GetAggregation() string`
+`func (o *MonitorOptions) GetAggregation() MonitorOptionsAggregation`
 
 GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
 
 ### GetAggregationOk
 
-`func (o *MonitorOptions) GetAggregationOk() (string, bool)`
+`func (o *MonitorOptions) GetAggregationOk() (MonitorOptionsAggregation, bool)`
 
 GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -48,9 +48,9 @@ HasAggregation returns a boolean if a field has been set.
 
 ### SetAggregation
 
-`func (o *MonitorOptions) SetAggregation(v string)`
+`func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation)`
 
-SetAggregation gets a reference to the given string and assigns it to the Aggregation field.
+SetAggregation gets a reference to the given MonitorOptionsAggregation and assigns it to the Aggregation field.
 
 ### GetDeviceIds
 

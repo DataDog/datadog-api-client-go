@@ -1,6 +1,9 @@
 openapi: 3.0.0
 info:
-  contact: {}
+  contact:
+    email: support@datadoghq.com
+    name: Datadog Support
+    url: https://www.datadoghq.com/support/
   description: Collection of all Datadog Public endpoints.
   title: Datadog API Collection
   version: "1.0"
@@ -466,11 +469,11 @@ paths:
         ### Overview
         Get All Scheduled Downtimes
         ### Arguments
-        * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes
-          that are active when the request is made.'
+        * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes that are active when the request is made.
       operationId: GetAllDowntimes
       parameters:
-      - explode: true
+      - description: Only return downtimes that are active when the request is made.
+        explode: true
         in: query
         name: current_only
         required: false
@@ -769,14 +772,16 @@ paths:
           If no title is specified, the graph doesn’t have a title.
       operationId: GetGraphSnapshot
       parameters:
-      - explode: true
+      - description: The metric query.
+        explode: true
         in: query
         name: metric_query
         required: true
         schema:
           type: string
         style: form
-      - explode: true
+      - description: The POSIX timestamp of the start of the query.
+        explode: true
         in: query
         name: start
         required: true
@@ -784,7 +789,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - explode: true
+      - description: The POSIX timestamp of the end of the query.
+        explode: true
         in: query
         name: end
         required: true
@@ -792,21 +798,27 @@ paths:
           format: int64
           type: integer
         style: form
-      - explode: true
+      - description: A query that adds event bands to the graph.
+        explode: true
         in: query
         name: event_query
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A JSON document defining the graph. graph_def can be used instead
+          of metric_query. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+          and should be formatted to a single line then URLEncoded.
+        explode: true
         in: query
         name: graph_def
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A title for the graph. If no title is specified, the graph doesn’t
+          have a title.
+        explode: true
         in: query
         name: title
         required: false
@@ -1020,21 +1032,26 @@ paths:
           /v1/integration/aws/available_namespace_rules endpoint.
       operationId: UpdateAWSAccount
       parameters:
-      - explode: true
+      - description: Only return AWS accounts that matches this account_id.
+        explode: true
         in: query
         name: account_id
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Only return AWS accounts that matches this role_name. *It is
+          required if account_id is specified.*
+        explode: true
         in: query
         name: role_name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Only return AWS accounts that matches this access_key_id. *It
+          required if none of the other two options are specified.*
+        explode: true
         in: query
         name: access_key_id
         required: false
@@ -1087,28 +1104,36 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A string to filter monitors by name.
+        explode: true
         in: query
         name: name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A comma separated list indicating what tags, if any, should be
+          used to filter the list of monitorsby scope, e.g. host:host0.
+        explode: true
         in: query
         name: tags
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A comma separated list indicating what service and/or custom
+          tags, if any, should be used to filter the list of monitors. Tags created
+          in the Datadog UI automatically have the service key prepended (e.g. service:my-app).
+        explode: true
         in: query
         name: monitor_tags
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: If this argument is set to true, then the returned data includes
+          all current downtimes for each monitor.
+        explode: true
         in: query
         name: with_downtimes
         required: false
@@ -2254,6 +2279,12 @@ components:
       required:
       - message
       type: object
+    IntakePayloadAccepted:
+      properties:
+        status:
+          example: ok
+          type: string
+      type: object
     Monitor:
       example:
         creator:
@@ -2277,7 +2308,10 @@ components:
           synthetics_check_id: 3
           notify_no_data: true
           enable_logs_sample: true
-          aggregation: aggregation
+          aggregation:
+            metric: count
+            group_by: host
+            type: count
           evaluation_delay: 6
           notify_audit: true
           min_location_failed: 5
@@ -2378,7 +2412,10 @@ components:
         synthetics_check_id: 3
         notify_no_data: true
         enable_logs_sample: true
-        aggregation: aggregation
+        aggregation:
+          metric: count
+          group_by: host
+          type: count
         evaluation_delay: 6
         notify_audit: true
         min_location_failed: 5
@@ -2405,7 +2442,7 @@ components:
         locked: true
       properties:
         aggregation:
-          type: string
+          $ref: '#/components/schemas/MonitorOptions_aggregation'
         device_ids:
           items:
             enum:
@@ -2893,6 +2930,21 @@ components:
         user:
           $ref: '#/components/schemas/User'
       type: object
+    MonitorOptions_aggregation:
+      example:
+        metric: count
+        group_by: host
+        type: count
+      properties:
+        group_by:
+          example: host
+          type: string
+        metric:
+          example: count
+          type: string
+        type:
+          example: count
+          type: string
     Org_billing:
       example: '{"type":"parent_billing"}'
       properties:
@@ -2986,3 +3038,4 @@ components:
       in: query
       name: application_key
       type: apiKey
+x-group-parameters: true

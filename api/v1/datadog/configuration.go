@@ -71,6 +71,7 @@ type Configuration struct {
 	Scheme        string            `json:"scheme,omitempty"`
 	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent     string            `json:"userAgent,omitempty"`
+	Debug         bool              `json:"debug,omitempty"`
 	Servers       []ServerConfiguration
 	HTTPClient    *http.Client
 }
@@ -81,6 +82,7 @@ func NewConfiguration() *Configuration {
 		BasePath:      "https://api.datadoghq.com",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "DataDog/0.1.0/go-experimental",
+		Debug:         false,
 		Servers: []ServerConfiguration{{
 			Url:         "https://{subdomain}.{site}",
 			Description: "No description provided",

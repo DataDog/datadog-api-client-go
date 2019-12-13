@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSAccount
 
-> map[string]interface{} DeleteAWSAccount(ctx, awsAccount)
+> interface{} DeleteAWSAccount(ctx, awsAccount)
 
 Delete an AWS Account
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**map[string]interface{}**](map[string]interface{}.md)
+[**interface{}**](interface{}.md)
 
 ### Authorization
 
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAWSAccount
 
-> map[string]interface{} UpdateAWSAccount(ctx, awsAccount, optional)
+> interface{} UpdateAWSAccount(ctx, awsAccount, optional)
 
 Update an AWS Account
 
@@ -228,13 +228,13 @@ Optional parameters are passed through a pointer to a UpdateAWSAccountOpts struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **accountId** | **optional.String**|  | 
- **roleName** | **optional.String**|  | 
- **accessKeyId** | **optional.String**|  | 
+ **accountId** | **optional.String**| Only return AWS accounts that matches this account_id. | 
+ **roleName** | **optional.String**| Only return AWS accounts that matches this role_name. *It is required if account_id is specified.* | 
+ **accessKeyId** | **optional.String**| Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.* | 
 
 ### Return type
 
-[**map[string]interface{}**](map[string]interface{}.md)
+[**interface{}**](interface{}.md)
 
 ### Authorization
 

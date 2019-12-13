@@ -461,10 +461,10 @@ GetAllMonitors Get details about the specified monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GetAllMonitorsOpts - Optional Parameters:
  * @param "GroupStates" (optional.String) -  When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`.
- * @param "Name" (optional.String) -
- * @param "Tags" (optional.String) -
- * @param "MonitorTags" (optional.String) -
- * @param "WithDowntimes" (optional.Bool) -
+ * @param "Name" (optional.String) -  A string to filter monitors by name.
+ * @param "Tags" (optional.String) -  A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0.
+ * @param "MonitorTags" (optional.String) -  A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app).
+ * @param "WithDowntimes" (optional.Bool) -  If this argument is set to true, then the returned data includes all current downtimes for each monitor.
 @return []Monitor
 */
 func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context, localVarOptionals *GetAllMonitorsOpts) ([]Monitor, *_nethttp.Response, error) {

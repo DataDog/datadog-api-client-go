@@ -168,8 +168,7 @@ Get all downtimes
 ### Overview
 Get All Scheduled Downtimes
 ### Arguments
-* **`current_only`** [*optional*, *default* = **False**]: Only return downtimes
-  that are active when the request is made.'
+* **`current_only`** [*optional*, *default* = **False**]: Only return downtimes that are active when the request is made.
 
 ### Required Parameters
 
@@ -186,7 +185,7 @@ Optional parameters are passed through a pointer to a GetAllDowntimesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currentOnly** | **optional.Bool**|  | 
+ **currentOnly** | **optional.Bool**| Only return downtimes that are active when the request is made. | 
 
 ### Return type
 
