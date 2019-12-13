@@ -35,14 +35,32 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AWSIntegrationApi* | [**CreateAWSAccount**](docs/AWSIntegrationApi.md#createawsaccount) | **Post** /api/v1/integration/aws | Create an AWS Account
 *AWSIntegrationApi* | [**DeleteAWSAccount**](docs/AWSIntegrationApi.md#deleteawsaccount) | **Delete** /api/v1/integration/aws | Delete an AWS Account
+*AWSIntegrationApi* | [**GenerateNewAWSExternalID**](docs/AWSIntegrationApi.md#generatenewawsexternalid) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
 *AWSIntegrationApi* | [**GetAllAWSAccounts**](docs/AWSIntegrationApi.md#getallawsaccounts) | **Get** /api/v1/integration/aws | Get Installed AWS Accounts
+*AWSIntegrationApi* | [**ListAvailableAWSNamespaces**](docs/AWSIntegrationApi.md#listavailableawsnamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List available namespaces.
 *AWSIntegrationApi* | [**UpdateAWSAccount**](docs/AWSIntegrationApi.md#updateawsaccount) | **Put** /api/v1/integration/aws | Update an AWS Account
+*AWSLogsIntegrationApi* | [**AWSLogsCheckLambdaAsync**](docs/AWSLogsIntegrationApi.md#awslogschecklambdaasync) | **Post** /api/v1/integration/aws/logs/check_async | Check function to see if a lambda_arn exists within an account.
+*AWSLogsIntegrationApi* | [**AWSLogsCheckServicesAsync**](docs/AWSLogsIntegrationApi.md#awslogscheckservicesasync) | **Post** /api/v1/integration/aws/logs/services_async | Asynchronous check for permissions for AWS log lambda config.
+*AWSLogsIntegrationApi* | [**AWSLogsList**](docs/AWSLogsIntegrationApi.md#awslogslist) | **Get** /api/v1/integration/aws/logs | List configured AWS log integrations.
+*AWSLogsIntegrationApi* | [**AWSLogsServicesList**](docs/AWSLogsIntegrationApi.md#awslogsserviceslist) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services.
+*AWSLogsIntegrationApi* | [**AddAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#addawslambdaarn) | **Post** /api/v1/integration/aws/logs | Add a AWS Lambda ARN to your Datadog account.
+*AWSLogsIntegrationApi* | [**DeleteAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#deleteawslambdaarn) | **Delete** /api/v1/integration/aws/logs | Delete a AWS Lambda ARN from your Datadog account.
+*AWSLogsIntegrationApi* | [**EnableAWSLogServices**](docs/AWSLogsIntegrationApi.md#enableawslogservices) | **Post** /api/v1/integration/aws/logs/services | Enable Automatic Log collection for your AWS services.
+*AzureIntegrationApi* | [**AzureUpdateHostFilters**](docs/AzureIntegrationApi.md#azureupdatehostfilters) | **Post** /api/v1/integration/azure/host_filters | Update the defined list of host filters for a given Datadog-Azure integration.
+*AzureIntegrationApi* | [**CreateAzureIntegration**](docs/AzureIntegrationApi.md#createazureintegration) | **Post** /api/v1/integration/azure | Add a Azure integration to your Datadog account.
+*AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure Integration from your Datadog account.
+*AzureIntegrationApi* | [**ListAzureIntegration**](docs/AzureIntegrationApi.md#listazureintegration) | **Get** /api/v1/integration/azure | List configured Azure integrations.
+*AzureIntegrationApi* | [**UpdateAzureIntegration**](docs/AzureIntegrationApi.md#updateazureintegration) | **Put** /api/v1/integration/azure | Update an Azure integration to your Datadog account.
 *DowntimesApi* | [**CancelDowntime**](docs/DowntimesApi.md#canceldowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
 *DowntimesApi* | [**CancelDowntimesByScope**](docs/DowntimesApi.md#canceldowntimesbyscope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
 *DowntimesApi* | [**CreateDowntime**](docs/DowntimesApi.md#createdowntime) | **Post** /api/v1/downtime | Schedule a downtime
 *DowntimesApi* | [**GetAllDowntimes**](docs/DowntimesApi.md#getalldowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**GetDowntime**](docs/DowntimesApi.md#getdowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
+*GCPIntegrationApi* | [**CreateGCPIntegration**](docs/GCPIntegrationApi.md#creategcpintegration) | **Post** /api/v1/integration/gcp | Add a GCP integration to your Datadog account.
+*GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP Integration from your Datadog account.
+*GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List configured GCP integrations.
+*GCPIntegrationApi* | [**UpdateGCPIntegration**](docs/GCPIntegrationApi.md#updategcpintegration) | **Put** /api/v1/integration/gcp | Update a GCP integration in your Datadog account.
 *KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key with a given name.
 *KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key with a given name.
 *KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete a given API key.
@@ -80,8 +98,15 @@ Class | Method | HTTP request | Description
  - [ApplicationKeyListResponse](docs/ApplicationKeyListResponse.md)
  - [ApplicationKeyResponse](docs/ApplicationKeyResponse.md)
  - [AwsAccount](docs/AwsAccount.md)
+ - [AwsAccountAndLambdaInput](docs/AwsAccountAndLambdaInput.md)
  - [AwsAccountCreateResponse](docs/AwsAccountCreateResponse.md)
  - [AwsAccountListResponse](docs/AwsAccountListResponse.md)
+ - [AwsLogsAsyncResponse](docs/AwsLogsAsyncResponse.md)
+ - [AwsLogsListOutput](docs/AwsLogsListOutput.md)
+ - [AwsLogsListOutputLambdas](docs/AwsLogsListOutputLambdas.md)
+ - [AwsLogsListServicesOutput](docs/AwsLogsListServicesOutput.md)
+ - [AwsLogsServicesInput](docs/AwsLogsServicesInput.md)
+ - [AzureAccount](docs/AzureAccount.md)
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
  - [Creator](docs/Creator.md)
@@ -100,6 +125,7 @@ Class | Method | HTTP request | Description
  - [Error429](docs/Error429.md)
  - [Error500](docs/Error500.md)
  - [Error503](docs/Error503.md)
+ - [GcpAccount](docs/GcpAccount.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)

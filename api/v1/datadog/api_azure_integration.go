@@ -13,8 +13,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -22,155 +20,19 @@ var (
 	_ _context.Context
 )
 
-// AWSIntegrationApiService AWSIntegrationApi service
-type AWSIntegrationApiService service
+// AzureIntegrationApiService AzureIntegrationApi service
+type AzureIntegrationApiService service
 
 /*
-CreateAWSAccount Create an AWS Account
-### Overview Create the AWS Account with the provided values ### Arguments * **&#x60;account_id&#x60;** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS   integration to learn more about your AWS account ID.  * **&#x60;role_name&#x60;** [*required*]: Your Datadog role delegation name. For more information about you   AWS account Role name, see the Datadog AWS integration configuration info.  * **&#x60;access_key_id&#x60;** [*optional*, *default* &#x3D; **None**]: If your AWS account is a GovCloud or   China account, enter the corresponding Access Key ID.  * **&#x60;filter_tags&#x60;** [*optional*, *default* &#x3D; **None**]: The array of EC2 tags (in the form key:value)   defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?   (for single characters) and * (for multiple characters) can also be used. Only hosts that match one   of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given   tag can also be excluded by adding ! before the tag.   e.x. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,   see the AWS tagging documentation  * **&#x60;host_tags&#x60;** [*optional*, *default* &#x3D; **None**]: Array of tags (in the form key:value) to add   to all hosts and metrics reporting through this integration.  * **&#x60;account_specific_namespace_rules&#x60;** [*optional*, *default* &#x3D; **None**]: An object (in the form   {\&quot;namespace1\&quot;:true/false, \&quot;namespace2\&quot;:true/false}) that enables or disables metric collection for   specific AWS namespaces for this AWS account only. A list of namespaces can be found at the   /v1/integration/aws/available_namespace_rules endpoint.
+AzureUpdateHostFilters Update the defined list of host filters for a given Datadog-Azure integration.
+### Overview Update the defined list of host filters for a given Datadog-Azure integration. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application ID. * **&#x60;host_filters&#x60;** [*required*, *default* &#x3D; **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccount AWS request object
-@return AwsAccountCreateResponse
-*/
-func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAccount AwsAccount) (AwsAccountCreateResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AwsAccountCreateResponse
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = &awsAccount
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("api_key", key)
-			}
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("application_key", key)
-			}
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v AwsAccountCreateResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-/*
-DeleteAWSAccount Delete an AWS Account
-### Overview Delete the AWS Account matching the specified account_id and role_name parameters ### Arguments * **&#x60;account_id&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this account_id.  * **&#x60;role_name&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this role_name.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccount AWS request object
+ * @param azureAccount Update a Datadog-Azure integrations host filters.
 @return interface{}
 */
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAccount AwsAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -179,7 +41,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure/host_filters"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -203,7 +65,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &awsAccount
+	localVarPostBody = &azureAccount
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -263,8 +125,8 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error400
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -273,8 +135,8 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error403
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -298,24 +160,24 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 }
 
 /*
-GenerateNewAWSExternalID Generate New External ID
-###Overview Generate new AWS external ID for a specific integrated account ### Arguments * **&#x60;account_id&#x60;** [*required*]: Generate new external ID for the AWS account that   matches this account_id.  * **&#x60;role_name&#x60;** [*required*]: Generate new external ID for the AWS account that   matches this role_name.
+CreateAzureIntegration Add a Azure integration to your Datadog account.
+### Overview Create a Datadog-Azure integration. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application ID. * **&#x60;client_secret&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application secret key. * **&#x60;host_filters&#x60;** [*optional*, *default* &#x3D; **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccountCreateResponse Generate New AWS External ID request object
-@return Error400
+ * @param azureAccount Create a Datadog-Azure integration.
+@return interface{}
 */
-func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context, awsAccountCreateResponse AwsAccountCreateResponse) (Error400, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Error400
+		localVarReturnValue  interface{}
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/generate_new_external_id"
+	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -339,7 +201,7 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &awsAccountCreateResponse
+	localVarPostBody = &azureAccount
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -390,7 +252,7 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v Error400
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -433,321 +295,283 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetAllAWSAccountsOpts Optional parameters for the method 'GetAllAWSAccounts'
-type GetAllAWSAccountsOpts struct {
-	AccountId   optional.String
-	RoleName    optional.String
-	AccessKeyId optional.String
-}
-
 /*
-GetAllAWSAccounts Get Installed AWS Accounts
-### Overview Get All Installed AWS Accounts ### Arguments * **&#x60;account_id&#x60;** [*optional*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this account_id.  * **&#x60;role_name&#x60;** [*optional*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this role_name.  * **&#x60;access_key_id&#x60;** [*optional*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this access_key_id.
+DeleteAzureIntegration Delete an Azure Integration from your Datadog account.
+### Overview Delete a given Datadog-Azure integration. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetAllAWSAccountsOpts - Optional Parameters:
- * @param "AccountId" (optional.String) -  Only return AWS accounts that matches this account_id.
- * @param "RoleName" (optional.String) -  Only return AWS accounts that matches this role_name.
- * @param "AccessKeyId" (optional.String) -  Only return AWS accounts that matches this access_key_id.
-@return AwsAccountListResponse
-*/
-func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, localVarOptionals *GetAllAWSAccountsOpts) (AwsAccountListResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AwsAccountListResponse
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if localVarOptionals != nil && localVarOptionals.AccountId.IsSet() {
-		localVarQueryParams.Add("account_id", parameterToString(localVarOptionals.AccountId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RoleName.IsSet() {
-		localVarQueryParams.Add("role_name", parameterToString(localVarOptionals.RoleName.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.AccessKeyId.IsSet() {
-		localVarQueryParams.Add("access_key_id", parameterToString(localVarOptionals.AccessKeyId.Value(), ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("api_key", key)
-			}
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("application_key", key)
-			}
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v AwsAccountListResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-/*
-ListAvailableAWSNamespaces List available namespaces.
-### Overview List all namespace rules for a given Datadog-AWS integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []string
-*/
-func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []string
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/available_namespace_rules"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("api_key", key)
-			}
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("application_key", key)
-			}
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v []string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// UpdateAWSAccountOpts Optional parameters for the method 'UpdateAWSAccount'
-type UpdateAWSAccountOpts struct {
-	AccountId   optional.String
-	RoleName    optional.String
-	AccessKeyId optional.String
-}
-
-/*
-UpdateAWSAccount Update an AWS Account
-### Overview Update the AWS Account based on the provided values ### Arguments * **&#x60;account_id&#x60;** [*required if role_name is specified*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this account_id.  * **&#x60;role_name&#x60;** [*required if account_id is specified*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this role_name.  * **&#x60;access_key_id&#x60;** [*required if none of the other two options are specified*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this access_key_id.  ### Payload * **&#x60;account_id&#x60;** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS   integration to learn more about your AWS account ID.  * **&#x60;role_name&#x60;** [*required*]: Your Datadog role delegation name. For more information about you   AWS account Role name, see the Datadog AWS integration configuration info.  * **&#x60;access_key_id&#x60;** [*optional*, *default* &#x3D; **None**]: If your AWS account is a GovCloud or   China account, enter the corresponding Access Key ID.  * **&#x60;filter_tags&#x60;** [*optional*, *default* &#x3D; **None**]: The array of EC2 tags (in the form key:value)   defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?   (for single characters) and * (for multiple characters) can also be used. Only hosts that match one   of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given   tag can also be excluded by adding ! before the tag.   e.g. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,   see the AWS tagging documentation.  * **&#x60;host_tags&#x60;** [*optional*, *default* &#x3D; **None**]: Array of tags (in the form key:value) to add   to all hosts and metrics reporting through this integration.  * **&#x60;account_specific_namespace_rules&#x60;** [*optional*, *default* &#x3D; **None**]: An object (in the form   {\&quot;namespace1\&quot;:true/false, \&quot;namespace2\&quot;:true/false}) that enables or disables metric collection for   specific AWS namespaces for this AWS account only. A list of namespaces can be found at the   /v1/integration/aws/available_namespace_rules endpoint.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccount AWS request object
- * @param optional nil or *UpdateAWSAccountOpts - Optional Parameters:
- * @param "AccountId" (optional.String) -  Only return AWS accounts that matches this account_id.
- * @param "RoleName" (optional.String) -  Only return AWS accounts that matches this role_name. *It is required if account_id is specified.*
- * @param "AccessKeyId" (optional.String) -  Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.*
+ * @param azureAccount Delete a given Datadog-Azure integration.
 @return interface{}
 */
-func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAccount AwsAccount, localVarOptionals *UpdateAWSAccountOpts) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  interface{}
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = &azureAccount
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["api_key"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["application_key"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarQueryParams.Add("application_key", key)
+			}
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error400
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error403
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+/*
+ListAzureIntegration List configured Azure integrations.
+### Overview List all Datadog-Azure integrations configured in your Datadog account.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return []AzureAccount
+*/
+func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []AzureAccount
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["api_key"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["application_key"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarQueryParams.Add("application_key", key)
+			}
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v []AzureAccount
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error400
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error403
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+/*
+UpdateAzureIntegration Update an Azure integration to your Datadog account.
+### Overview Update an Datadog-Azure integration. Requires an existing tenant_name and client_id. Any other fields supplied will overwrite existing values. To overwrite tenant_name or client_id, use new_tenant_name and new_client_id. To leave a field unchanged, do not supply that field in the payload. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your existing Azure Active Directory ID. * **&#x60;new_tenant_name&#x60;** [*optional*, *default* &#x3D; **None**]: Your new Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your existing Azure web application ID. * **&#x60;new_client_id&#x60;** [*optional*, *default* &#x3D; **None**]: Your new Azure web application ID. * **&#x60;client_secret&#x60;** [*optional*, *default* &#x3D; **None**]: Your Azure web application secret key. * **&#x60;host_filters&#x60;** [*optional*, *default* &#x3D; **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param azureAccount Update a Datadog-Azure integration.
+@return interface{}
+*/
+func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -758,21 +582,12 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.AccountId.IsSet() {
-		localVarQueryParams.Add("account_id", parameterToString(localVarOptionals.AccountId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RoleName.IsSet() {
-		localVarQueryParams.Add("role_name", parameterToString(localVarOptionals.RoleName.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.AccessKeyId.IsSet() {
-		localVarQueryParams.Add("access_key_id", parameterToString(localVarOptionals.AccessKeyId.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -791,7 +606,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &awsAccount
+	localVarPostBody = &azureAccount
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
