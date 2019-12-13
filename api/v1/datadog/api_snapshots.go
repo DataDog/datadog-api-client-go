@@ -36,13 +36,13 @@ type GetGraphSnapshotOpts struct {
 GetGraphSnapshot Take graph snapshots
 ### Overview Take graph snapshots ### Arguments * **&#x60;metric_query&#x60;** [*required*]: The metric query. * **&#x60;start&#x60;** [*required*]: The POSIX timestamp of the start of the query. * **&#x60;end&#x60;** [*required*]: The POSIX timestamp of the end of the query. * **&#x60;event_query&#x60;** [*optional*, *default* &#x3D; **None**]: A query that adds event bands to the graph. * **&#x60;graph_def&#x60;** [*optional*, *default* &#x3D; **None**]: A JSON document defining the graph.   graph_def can be used instead of metric_query. The JSON document uses the   [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)   and should be formatted to a single line then URLEncoded.  * **&#x60;title&#x60;** [*optional*, *default* &#x3D; **None**]: A title for the graph.   If no title is specified, the graph doesn’t have a title.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricQuery
- * @param start
- * @param end
+ * @param metricQuery The metric query.
+ * @param start The POSIX timestamp of the start of the query.
+ * @param end The POSIX timestamp of the end of the query.
  * @param optional nil or *GetGraphSnapshotOpts - Optional Parameters:
- * @param "EventQuery" (optional.String) -
- * @param "GraphDef" (optional.String) -
- * @param "Title" (optional.String) -
+ * @param "EventQuery" (optional.String) -  A query that adds event bands to the graph.
+ * @param "GraphDef" (optional.String) -  A JSON document defining the graph. graph_def can be used instead of metric_query. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URLEncoded.
+ * @param "Title" (optional.String) -  A title for the graph. If no title is specified, the graph doesn’t have a title.
 @return GraphSnapshot
 */
 func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery string, start int64, end int64, localVarOptionals *GetGraphSnapshotOpts) (GraphSnapshot, *_nethttp.Response, error) {

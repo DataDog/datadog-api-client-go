@@ -18,13 +18,13 @@ type MonitorOverallStates string
 
 // List of MonitorOverallStates
 const (
-	ALERT   MonitorOverallStates = "Alert"
-	IGNORED MonitorOverallStates = "Ignored"
-	NO_DATA MonitorOverallStates = "No Data"
-	OK      MonitorOverallStates = "OK"
-	SKIPPED MonitorOverallStates = "Skipped"
-	UNKNOWN MonitorOverallStates = "Unknown"
-	WARN    MonitorOverallStates = "Warn"
+	MONITOROVERALLSTATES_ALERT   MonitorOverallStates = "Alert"
+	MONITOROVERALLSTATES_IGNORED MonitorOverallStates = "Ignored"
+	MONITOROVERALLSTATES_NO_DATA MonitorOverallStates = "No Data"
+	MONITOROVERALLSTATES_OK      MonitorOverallStates = "OK"
+	MONITOROVERALLSTATES_SKIPPED MonitorOverallStates = "Skipped"
+	MONITOROVERALLSTATES_UNKNOWN MonitorOverallStates = "Unknown"
+	MONITOROVERALLSTATES_WARN    MonitorOverallStates = "Warn"
 )
 
 type NullableMonitorOverallStates struct {
@@ -34,8 +34,6 @@ type NullableMonitorOverallStates struct {
 
 func (v NullableMonitorOverallStates) MarshalJSON() ([]byte, error) {
 	switch {
-	case v.ExplicitNull && v.Value != "":
-		return nil, ErrInvalidNullable
 	case v.ExplicitNull:
 		return []byte("null"), nil
 	default:

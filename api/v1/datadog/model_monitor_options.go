@@ -15,7 +15,7 @@ import (
 
 // MonitorOptions struct for MonitorOptions
 type MonitorOptions struct {
-	Aggregation        *string                        `json:"aggregation,omitempty"`
+	Aggregation        *MonitorOptionsAggregation     `json:"aggregation,omitempty"`
 	DeviceIds          *[]string                      `json:"device_ids,omitempty"`
 	EnableLogsSample   *bool                          `json:"enable_logs_sample,omitempty"`
 	EscalationMessage  *string                        `json:"escalation_message,omitempty"`
@@ -38,9 +38,9 @@ type MonitorOptions struct {
 }
 
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
-func (o *MonitorOptions) GetAggregation() string {
+func (o *MonitorOptions) GetAggregation() MonitorOptionsAggregation {
 	if o == nil || o.Aggregation == nil {
-		var ret string
+		var ret MonitorOptionsAggregation
 		return ret
 	}
 	return *o.Aggregation
@@ -48,9 +48,9 @@ func (o *MonitorOptions) GetAggregation() string {
 
 // GetAggregationOk returns a tuple with the Aggregation field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetAggregationOk() (string, bool) {
+func (o *MonitorOptions) GetAggregationOk() (MonitorOptionsAggregation, bool) {
 	if o == nil || o.Aggregation == nil {
-		var ret string
+		var ret MonitorOptionsAggregation
 		return ret, false
 	}
 	return *o.Aggregation, true
@@ -65,8 +65,8 @@ func (o *MonitorOptions) HasAggregation() bool {
 	return false
 }
 
-// SetAggregation gets a reference to the given string and assigns it to the Aggregation field.
-func (o *MonitorOptions) SetAggregation(v string) {
+// SetAggregation gets a reference to the given MonitorOptionsAggregation and assigns it to the Aggregation field.
+func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation) {
 	o.Aggregation = &v
 }
 

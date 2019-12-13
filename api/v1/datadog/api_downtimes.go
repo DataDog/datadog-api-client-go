@@ -400,10 +400,10 @@ type GetAllDowntimesOpts struct {
 
 /*
 GetAllDowntimes Get all downtimes
-### Overview Get All Scheduled Downtimes ### Arguments * **&#x60;current_only&#x60;** [*optional*, *default* &#x3D; **False**]: Only return downtimes   that are active when the request is made.&#39;
+### Overview Get All Scheduled Downtimes ### Arguments * **&#x60;current_only&#x60;** [*optional*, *default* &#x3D; **False**]: Only return downtimes that are active when the request is made.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GetAllDowntimesOpts - Optional Parameters:
- * @param "CurrentOnly" (optional.Bool) -
+ * @param "CurrentOnly" (optional.Bool) -  Only return downtimes that are active when the request is made.
 @return []Downtime
 */
 func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context, localVarOptionals *GetAllDowntimesOpts) ([]Downtime, *_nethttp.Response, error) {

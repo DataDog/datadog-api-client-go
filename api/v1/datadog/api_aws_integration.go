@@ -156,16 +156,16 @@ DeleteAWSAccount Delete an AWS Account
 ### Overview Delete the AWS Account matching the specified account_id and role_name parameters ### Arguments * **&#x60;account_id&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this account_id.  * **&#x60;role_name&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this role_name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param awsAccount AWS request object
-@return map[string]interface{}
+@return interface{}
 */
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAccount AwsAccount) (map[string]interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAccount AwsAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	// create path and map variables
@@ -244,7 +244,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -443,19 +443,19 @@ UpdateAWSAccount Update an AWS Account
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param awsAccount AWS request object
  * @param optional nil or *UpdateAWSAccountOpts - Optional Parameters:
- * @param "AccountId" (optional.String) -
- * @param "RoleName" (optional.String) -
- * @param "AccessKeyId" (optional.String) -
-@return map[string]interface{}
+ * @param "AccountId" (optional.String) -  Only return AWS accounts that matches this account_id.
+ * @param "RoleName" (optional.String) -  Only return AWS accounts that matches this role_name. *It is required if account_id is specified.*
+ * @param "AccessKeyId" (optional.String) -  Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.*
+@return interface{}
 */
-func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAccount AwsAccount, localVarOptionals *UpdateAWSAccountOpts) (map[string]interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAccount AwsAccount, localVarOptionals *UpdateAWSAccountOpts) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	// create path and map variables
@@ -543,7 +543,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
