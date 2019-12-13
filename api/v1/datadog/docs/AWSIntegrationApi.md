@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS Account
 [**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS Account
+[**GenerateNewAWSExternalID**](AWSIntegrationApi.md#GenerateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
 [**GetAllAWSAccounts**](AWSIntegrationApi.md#GetAllAWSAccounts) | **Get** /api/v1/integration/aws | Get Installed AWS Accounts
+[**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List available namespaces.
 [**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS Account
 
 
@@ -112,6 +114,47 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GenerateNewAWSExternalID
+
+> Error400 GenerateNewAWSExternalID(ctx, awsAccountCreateResponse)
+
+Generate New External ID
+
+###Overview
+Generate new AWS external ID for a specific integrated account
+### Arguments
+* **`account_id`** [*required*]: Generate new external ID for the AWS account that
+  matches this account_id.
+
+* **`role_name`** [*required*]: Generate new external ID for the AWS account that
+  matches this role_name.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**awsAccountCreateResponse** | [**AwsAccountCreateResponse**](AwsAccountCreateResponse.md)| Generate New AWS External ID request object | 
+
+### Return type
+
+[**Error400**](Error400.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetAllAWSAccounts
 
 > AwsAccountListResponse GetAllAWSAccounts(ctx, optional)
@@ -152,6 +195,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AwsAccountListResponse**](AWSAccountListResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListAvailableAWSNamespaces
+
+> []string ListAvailableAWSNamespaces(ctx, )
+
+List available namespaces.
+
+### Overview
+List all namespace rules for a given Datadog-AWS integration.
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**[]string**
 
 ### Authorization
 
