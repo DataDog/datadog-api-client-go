@@ -35,11 +35,11 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 
 	// Assert AWS Integration Created with proper fields
 	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACCLOGS)
-	add_output, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH, TESTADDLAMBDAARN)
-	assert.Equal(t, len(add_output), 0)
+	_, httpResp, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH, TESTADDLAMBDAARN)
+	assert.Equal(t, httpResp.StatusCode, 200)
 
-	save_services_output, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH, TESTSAVESERVICES)
-	assert.Equal(t, len(save_services_output), 0)
+	_, httpResp, _ = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH, TESTSAVESERVICES)
+	assert.Equal(t, httpResp.StatusCode, 200)
 }
 
 func TestListAWSLogsServices(t *testing.T) {
@@ -90,11 +90,11 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	assert.Equal(t, x, true)
 
 	// Delete newly added Lambda
-	delete_output, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH, TESTADDLAMBDAARN)
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error Deleting Lambda %v: Status: %v: %v", add_output, httpresp.StatusCode, err)
+	delete_output, httpResp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH, TESTADDLAMBDAARN)
+	if err != nil || httpResp.StatusCode != 200 {
+		t.Errorf("Error Deleting Lambda %v: Status: %v: %v", delete_output, httpResp.StatusCode, err)
 	}
-	assert.Equal(t, len(delete_output), 0)
+	assert.Equal(t, httpResp.StatusCode, 200)
 
 	// List AWS logs integrations after deleting
 	list_output_2, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH)

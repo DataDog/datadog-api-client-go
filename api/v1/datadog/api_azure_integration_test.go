@@ -39,8 +39,8 @@ func TestAzureCreate(t *testing.T) {
 	defer teardownTest(t)
 	defer uninstallAzureIntegration(TESTAZUREACCT)
 
-	createOutput, _, _ := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, TESTAZUREACCT)
-	assert.Equal(t, len(createOutput), 0)
+	_, httpResp, _ := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, TESTAZUREACCT)
+	assert.Equal(t, httpResp.StatusCode, 200)
 }
 
 func TestAzureListandDelete(t *testing.T) {
@@ -66,11 +66,11 @@ func TestAzureListandDelete(t *testing.T) {
 	assert.Assert(t, len(azure_list_output) >= 1)
 
 	// Test account deletion as well
-	delete_output, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.DeleteAzureIntegration(TESTAUTH, TESTAZUREACCT)
-	if httpresp.StatusCode != 200 || err != nil {
+	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.DeleteAzureIntegration(TESTAUTH, TESTAZUREACCT)
+	if httpResp.StatusCode != 200 || err != nil {
 		t.Errorf("Error uninstalling Azure Account: %v, Another test may have already removed this account.", TESTAZUREACCT)
 	}
-	assert.Equal(t, len(delete_output), 0)
+	assert.Equal(t, httpResp.StatusCode, 200)
 }
 
 func TestUpdateAzureAccount(t *testing.T) {
@@ -82,12 +82,12 @@ func TestUpdateAzureAccount(t *testing.T) {
 	// Setup Azure Account to Update
 	TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, TESTAZUREACCT)
 
-	azureUpdateOutput, _, err := TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH, TESTUPDATEAZUREACC)
+	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH, TESTUPDATEAZUREACC)
 	if err != nil {
 		t.Errorf("Error Updating Azure Account: %v", err)
 	}
 
-	assert.Equal(t, len(azureUpdateOutput), 0)
+	assert.Equal(t, httpResp.StatusCode, 200)
 
 	// List account to ensure update worked.
 	azure_list_output, _, _ := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
@@ -102,11 +102,11 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(t, x.GetHostFilters(), "filter:foo,test:bar")
 
 	// Test update host filters endpoint
-	azureUpdateHFOutput, _, err := TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH, TESTUPDATEAZUREHOSTFILTERS)
+	_, httpResp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH, TESTUPDATEAZUREHOSTFILTERS)
 	if err != nil {
 		t.Errorf("Error Updating Azure Host Filters: %v", err)
 	}
-	assert.Equal(t, len(azureUpdateHFOutput), 0)
+	assert.Equal(t, httpResp.StatusCode, 200)
 	hf_list_output, _, _ := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
 	var y datadog.AzureAccount
 	for _, Account := range hf_list_output {
