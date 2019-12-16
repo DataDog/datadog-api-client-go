@@ -16,8 +16,10 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"mime/multipart"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -46,13 +48,21 @@ type APIClient struct {
 
 	AWSIntegrationApi *AWSIntegrationApiService
 
+	AWSLogsIntegrationApi *AWSLogsIntegrationApiService
+
+	AzureIntegrationApi *AzureIntegrationApiService
+
 	DowntimesApi *DowntimesApiService
+
+	GCPIntegrationApi *GCPIntegrationApiService
 
 	KeysApi *KeysApiService
 
 	MonitorsApi *MonitorsApiService
 
 	OrgsApi *OrgsApiService
+
+	SnapshotsApi *SnapshotsApiService
 
 	UsersApi *UsersApiService
 }
@@ -74,10 +84,14 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AWSIntegrationApi = (*AWSIntegrationApiService)(&c.common)
+	c.AWSLogsIntegrationApi = (*AWSLogsIntegrationApiService)(&c.common)
+	c.AzureIntegrationApi = (*AzureIntegrationApiService)(&c.common)
 	c.DowntimesApi = (*DowntimesApiService)(&c.common)
+	c.GCPIntegrationApi = (*GCPIntegrationApiService)(&c.common)
 	c.KeysApi = (*KeysApiService)(&c.common)
 	c.MonitorsApi = (*MonitorsApiService)(&c.common)
 	c.OrgsApi = (*OrgsApiService)(&c.common)
+	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c
@@ -170,7 +184,27 @@ func parameterToJson(obj interface{}) (string, error) {
 
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
-	return c.cfg.HTTPClient.Do(request)
+	if c.cfg.Debug {
+		dump, err := httputil.DumpRequestOut(request, true)
+		if err != nil {
+			return nil, err
+		}
+		log.Printf("\n%s\n", string(dump))
+	}
+
+	resp, err := c.cfg.HTTPClient.Do(request)
+	if err != nil {
+		return resp, err
+	}
+
+	if c.cfg.Debug {
+		dump, err := httputil.DumpResponse(resp, true)
+		if err != nil {
+			return resp, err
+		}
+		log.Printf("\n%s\n", string(dump))
+	}
+	return resp, err
 }
 
 // ChangeBasePath changes base path to allow switching to mocks
@@ -348,6 +382,9 @@ func (c *APIClient) prepareRequest(
 }
 
 func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
+	if len(b) == 0 {
+		return nil
+	}
 	if s, ok := v.(*string); ok {
 		*s = string(b)
 		return nil

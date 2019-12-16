@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS Account
 [**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS Account
+[**GenerateNewAWSExternalID**](AWSIntegrationApi.md#GenerateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
 [**GetAllAWSAccounts**](AWSIntegrationApi.md#GetAllAWSAccounts) | **Get** /api/v1/integration/aws | Get Installed AWS Accounts
+[**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List available namespaces.
 [**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS Account
 
 
@@ -73,7 +75,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSAccount
 
-> map[string]interface{} DeleteAWSAccount(ctx, awsAccount)
+> interface{} DeleteAWSAccount(ctx, awsAccount)
 
 Delete an AWS Account
 
@@ -96,7 +98,48 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**map[string]interface{}**](map[string]interface{}.md)
+[**interface{}**](interface{}.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GenerateNewAWSExternalID
+
+> Error400 GenerateNewAWSExternalID(ctx, awsAccountCreateResponse)
+
+Generate New External ID
+
+###Overview
+Generate new AWS external ID for a specific integrated account
+### Arguments
+* **`account_id`** [*required*]: Generate new external ID for the AWS account that
+  matches this account_id.
+
+* **`role_name`** [*required*]: Generate new external ID for the AWS account that
+  matches this role_name.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**awsAccountCreateResponse** | [**AwsAccountCreateResponse**](AwsAccountCreateResponse.md)| Generate New AWS External ID request object | 
+
+### Return type
+
+[**Error400**](Error400.md)
 
 ### Authorization
 
@@ -167,9 +210,40 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListAvailableAWSNamespaces
+
+> []string ListAvailableAWSNamespaces(ctx, )
+
+List available namespaces.
+
+### Overview
+List all namespace rules for a given Datadog-AWS integration.
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateAWSAccount
 
-> map[string]interface{} UpdateAWSAccount(ctx, awsAccount, optional)
+> interface{} UpdateAWSAccount(ctx, awsAccount, optional)
 
 Update an AWS Account
 
@@ -228,13 +302,13 @@ Optional parameters are passed through a pointer to a UpdateAWSAccountOpts struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **accountId** | **optional.String**|  | 
- **roleName** | **optional.String**|  | 
- **accessKeyId** | **optional.String**|  | 
+ **accountId** | **optional.String**| Only return AWS accounts that matches this account_id. | 
+ **roleName** | **optional.String**| Only return AWS accounts that matches this role_name. *It is required if account_id is specified.* | 
+ **accessKeyId** | **optional.String**| Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.* | 
 
 ### Return type
 
-[**map[string]interface{}**](map[string]interface{}.md)
+[**interface{}**](interface{}.md)
 
 ### Authorization
 

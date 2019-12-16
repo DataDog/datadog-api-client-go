@@ -1,11 +1,24 @@
 openapi: 3.0.0
 info:
-  contact: {}
+  contact:
+    email: support@datadoghq.com
+    name: Datadog Support
+    url: https://www.datadoghq.com/support/
   description: Collection of all Datadog Public endpoints.
   title: Datadog API Collection
   version: "1.0"
 servers:
-- url: https://api.datadoghq.com
+- url: https://{subdomain}.{site}
+  variables:
+    site:
+      default: datadoghq.com
+      description: The regional site for our customers.
+      enum:
+      - datadoghq.com
+      - datadoghq.eu
+    subdomain:
+      default: api
+      description: The subdomain where the API is deployed.
 security:
 - apiKeyAuth: []
   appKeyAuth: []
@@ -14,11 +27,23 @@ tags:
   externalDocs:
     url: https://docs.datadoghq.com/api/?lang=bash#integration-aws
   name: AWSIntegration
+- description: AWS Logs Integration API
+  externalDocs:
+    url: https://docs.datadoghq.com/api/?lang=bash#integration-aws-logs
+  name: AWSLogsIntegration
+- description: Azure Integration API
+  externalDocs:
+    url: https://docs.datadoghq.com/api/?lang=bash#integration-azure
+  name: AzureIntegration
 - description: '[Downtiming](https://docs.datadoghq.com/monitors/downtimes) gives
     you greater control over monitor notifications by allowing you to globally exclude
     scopes from alerting. Downtime settings, which can be scheduled with start and
     end times, prevent all alerting related to specified Datadog tags.'
   name: Downtimes
+- description: GCP Integration API
+  externalDocs:
+    url: https://docs.datadoghq.com/api/?lang=bash#integration-gcp
+  name: GCPIntegration
 - description: Manage your Datadog API and application keys.
   externalDocs:
     description: Find out more at
@@ -456,11 +481,11 @@ paths:
         ### Overview
         Get All Scheduled Downtimes
         ### Arguments
-        * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes
-          that are active when the request is made.'
+        * **`current_only`** [*optional*, *default* = **False**]: Only return downtimes that are active when the request is made.
       operationId: GetAllDowntimes
       parameters:
-      - explode: true
+      - description: Only return downtimes that are active when the request is made.
+        explode: true
         in: query
         name: current_only
         required: false
@@ -740,6 +765,94 @@ paths:
       summary: Update a downtime
       tags:
       - Downtimes
+  /api/v1/graph/snapshot:
+    get:
+      description: |-
+        ### Overview
+        Take graph snapshots
+        ### Arguments
+        * **`metric_query`** [*required*]: The metric query.
+        * **`start`** [*required*]: The POSIX timestamp of the start of the query.
+        * **`end`** [*required*]: The POSIX timestamp of the end of the query.
+        * **`event_query`** [*optional*, *default* = **None**]: A query that adds event bands to the graph.
+        * **`graph_def`** [*optional*, *default* = **None**]: A JSON document defining the graph.
+          graph_def can be used instead of metric_query. The JSON document uses the
+          [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+          and should be formatted to a single line then URLEncoded.
+
+        * **`title`** [*optional*, *default* = **None**]: A title for the graph.
+          If no title is specified, the graph doesn’t have a title.
+      operationId: GetGraphSnapshot
+      parameters:
+      - description: The metric query.
+        explode: true
+        in: query
+        name: metric_query
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The POSIX timestamp of the start of the query.
+        explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The POSIX timestamp of the end of the query.
+        explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A query that adds event bands to the graph.
+        explode: true
+        in: query
+        name: event_query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A JSON document defining the graph. graph_def can be used instead
+          of metric_query. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+          and should be formatted to a single line then URLEncoded.
+        explode: true
+        in: query
+        name: graph_def
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A title for the graph. If no title is specified, the graph doesn’t
+          have a title.
+        explode: true
+        in: query
+        name: title
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphSnapshot'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+      summary: Take graph snapshots
+      tags:
+      - Snapshots
   /api/v1/integration/aws:
     delete:
       description: |-
@@ -767,6 +880,12 @@ paths:
                 example: {}
                 type: object
           description: OK
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
         404:
           content:
             application/json:
@@ -828,6 +947,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error400'
           description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
         404:
           content:
             application/json:
@@ -887,6 +1012,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error400'
           description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
       summary: Create an AWS Account
       tags:
       - AWSIntegration
@@ -931,21 +1062,26 @@ paths:
           /v1/integration/aws/available_namespace_rules endpoint.
       operationId: UpdateAWSAccount
       parameters:
-      - explode: true
+      - description: Only return AWS accounts that matches this account_id.
+        explode: true
         in: query
         name: account_id
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Only return AWS accounts that matches this role_name. *It is
+          required if account_id is specified.*
+        explode: true
         in: query
         name: role_name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Only return AWS accounts that matches this access_key_id. *It
+          required if none of the other two options are specified.*
+        explode: true
         in: query
         name: access_key_id
         required: false
@@ -973,9 +1109,713 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error400'
           description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
       summary: Update an AWS Account
       tags:
       - AWSIntegration
+  /api/v1/integration/aws/available_namespace_rules:
+    get:
+      description: |-
+        ### Overview
+        List all namespace rules for a given Datadog-AWS integration.
+      operationId: ListAvailableAWSNamespaces
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example:
+                - namespace1
+                - namespace2
+                - namespace3
+                items:
+                  type: string
+                type: array
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: List available namespaces.
+      tags:
+      - AWSIntegration
+  /api/v1/integration/aws/generate_new_external_id:
+    put:
+      description: |-
+        ###Overview
+        Generate new AWS external ID for a specific integrated account
+        ### Arguments
+        * **`account_id`** [*required*]: Generate new external ID for the AWS account that
+          matches this account_id.
+
+        * **`role_name`** [*required*]: Generate new external ID for the AWS account that
+          matches this role_name.
+      operationId: GenerateNewAWSExternalID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSAccountCreateResponse'
+        description: Generate New AWS External ID request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Generate New External ID
+      tags:
+      - AWSIntegration
+  /api/v1/integration/aws/logs:
+    delete:
+      description: |-
+        ### Overview
+        Delete a Lambda ARN of a Lambda created for the Datadog-AWS log collection in your Datadog account.
+        ### Arguments
+        * **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
+        * **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Lambda to be deleted.
+      operationId: DeleteAWSLambdaARN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSAccountAndLambdaInput'
+        description: Check AWS Log Lambda Async request body.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Delete a AWS Lambda ARN from your Datadog account.
+      tags:
+      - AWSLogsIntegration
+    get:
+      description: |-
+        ### Overview
+        List all Datadog-AWS Logs integrations configured in your Datadog account.
+      operationId: AWSLogsList
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example:
+                - account_id: "123456789101"
+                  lambdas: []
+                  services:
+                  - s3
+                  - elb
+                  - elbv2
+                  - cloudfront
+                  - redshift
+                  - lambda
+                items:
+                  $ref: '#/components/schemas/AWSLogsListOutput'
+                type: array
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: List configured AWS log integrations.
+      tags:
+      - AWSLogsIntegration
+    post:
+      description: |-
+        ### Overview
+        Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
+        ### Arguments
+        * **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
+        * **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
+      operationId: AddAWSLambdaARN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSAccountAndLambdaInput'
+        description: Check AWS Log Lambda Async request body.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Add a AWS Lambda ARN to your Datadog account.
+      tags:
+      - AWSLogsIntegration
+  /api/v1/integration/aws/logs/check_async:
+    post:
+      description: |-
+        ### Overview
+        Check function to see if a lambda_arn exists within an account. This sends a job on our side if it does not exist, then immediately returns the status of that job. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
+        - Returns a status of 'created' when it's checking if the Lambda exists in the account.
+        - Returns a status of 'waiting' while checking.
+        - Returns a status of 'checked and ok' if the Lambda exists.
+        - Returns a status of 'error' if the Lambda does not exist.
+        ### Arguments
+        * **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
+        * **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Lambda to be checked.
+      operationId: AWSLogsCheckLambdaAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSAccountAndLambdaInput'
+        description: Check AWS Log Lambda Async request body.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AWSLogsAsyncResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Check function to see if a lambda_arn exists within an account.
+      tags:
+      - AWSLogsIntegration
+  /api/v1/integration/aws/logs/services:
+    get:
+      description: |-
+        ### Overview
+        Get the list of current AWS services that Datadog offers automatic log collection.  Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
+      operationId: AWSLogsServicesList
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example:
+                - id: s3
+                  label: S3 Access Logs
+                - id: elb
+                  label: Classic ELB Access Logs
+                - id: elbv2
+                  label: Application ELB Access Logs
+                - id: cloudfront
+                  label: CloudFront Access Logs
+                - id: redshift
+                  label: Redshift Logs
+                - id: lambda
+                  label: Lambda Cloudwatch Logs
+                items:
+                  $ref: '#/components/schemas/AWSLogsListServicesOutput'
+                type: array
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Get list of AWS log ready services.
+      tags:
+      - AWSLogsIntegration
+    post:
+      description: |-
+        ### Overview
+        Enable automatic log collection for a list of services. This should be run after running 'AddAWSLambdaARN' to save the config.
+        ### Arguments
+        * **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
+        * **`services`** [*required*, *default* = **None**]: Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
+      operationId: EnableAWSLogServices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSLogsServicesInput'
+        description: Enable AWS Log Services request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Enable Automatic Log collection for your AWS services.
+      tags:
+      - AWSLogsIntegration
+  /api/v1/integration/aws/logs/services_async:
+    post:
+      description: |-
+        ### Overview
+        Test if permissions are present to add log-forwarding triggers for the given services + AWS account. Input is the same as for EnableAWSLogServices. Done async, so can be repeatedly polled in a non-blocking fashion until the async request completes
+        - Returns a status of 'created' when it's checking if the permissions exists in the AWS account.
+        - Returns a status of 'waiting' while checking.
+        - Returns a status of 'checked and ok' if the Lambda exists.
+        - Returns a status of 'error' if the Lambda does not exist.
+        ### Arguments
+        * **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
+        * **`services`** [*required*, *default* = **None**]: Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
+      operationId: AWSLogsCheckServicesAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AWSLogsServicesInput'
+        description: AWS Logs Async Services check request body
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AWSLogsAsyncResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Asynchronous check for permissions for AWS log lambda config.
+      tags:
+      - AWSLogsIntegration
+  /api/v1/integration/azure:
+    delete:
+      description: |-
+        ### Overview
+        Delete a given Datadog-Azure integration.
+        ### Arguments
+        * **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
+        * **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
+      operationId: DeleteAzureIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AzureAccount'
+        description: Delete a given Datadog-Azure integration.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Delete an Azure Integration from your Datadog account.
+      tags:
+      - AzureIntegration
+    get:
+      description: |-
+        ### Overview
+        List all Datadog-Azure integrations configured in your Datadog account.
+      operationId: ListAzureIntegration
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AzureAccountListResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: List configured Azure integrations.
+      tags:
+      - AzureIntegration
+    post:
+      description: |-
+        ### Overview
+        Create a Datadog-Azure integration.
+        ### Arguments
+        * **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
+        * **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
+        * **`client_secret`** [*required*, *default* = **None**]: Your Azure web application secret key.
+        * **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+      operationId: CreateAzureIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AzureAccount'
+        description: Create a Datadog-Azure integration.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Add a Azure integration to your Datadog account.
+      tags:
+      - AzureIntegration
+    put:
+      description: |-
+        ### Overview
+        Update an Datadog-Azure integration. Requires an existing tenant_name and client_id. Any other fields supplied will overwrite existing values. To overwrite tenant_name or client_id, use new_tenant_name and new_client_id. To leave a field unchanged, do not supply that field in the payload.
+        ### Arguments
+        * **`tenant_name`** [*required*, *default* = **None**]: Your existing Azure Active Directory ID.
+        * **`new_tenant_name`** [*optional*, *default* = **None**]: Your new Azure Active Directory ID.
+        * **`client_id`** [*required*, *default* = **None**]: Your existing Azure web application ID.
+        * **`new_client_id`** [*optional*, *default* = **None**]: Your new Azure web application ID.
+        * **`client_secret`** [*optional*, *default* = **None**]: Your Azure web application secret key.
+        * **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+      operationId: UpdateAzureIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AzureAccount'
+        description: Update a Datadog-Azure integration.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Update an Azure integration to your Datadog account.
+      tags:
+      - AzureIntegration
+  /api/v1/integration/azure/host_filters:
+    post:
+      description: |-
+        ### Overview
+        Update the defined list of host filters for a given Datadog-Azure integration.
+        ### Arguments
+        * **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
+        * **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
+        * **`host_filters`** [*required*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+      operationId: AzureUpdateHostFilters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AzureAccount'
+        description: Update a Datadog-Azure integrations host filters.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Update the defined list of host filters for a given Datadog-Azure integration.
+      tags:
+      - AzureIntegration
+  /api/v1/integration/gcp:
+    delete:
+      description: |-
+        ### Overview
+        Delete a given Datadog-GCP integration.
+        ### Arguments
+        * **`project_id`** [*required*, *default* = **None**]: Your Google Cloud project ID to be deleted.
+        * **`client_email`** [*required*, *default* = **None**]: Your client email associated with the integration to be deleted.
+      operationId: DeleteGCPIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GCPAccount'
+        description: Delete a given Datadog-GCP integration.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Delete a GCP Integration from your Datadog account.
+      tags:
+      - GCPIntegration
+    get:
+      description: |-
+        ### Overview
+        List all Datadog-GCP integrations configured in your Datadog account.
+      operationId: ListGCPIntegration
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GCPAccountListResponse'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: List configured GCP integrations.
+      tags:
+      - GCPIntegration
+    post:
+      description: |-
+        ### Overview
+        Create a Datadog-GCP integration.
+        ### Arguments
+        * **`type`** [*required*, *default* = **None**]: The value for service_account found in your JSON service account key.
+        * **`project_id`** [*required*, *default* = **None**]: Your Google Cloud project ID found in your JSON service account key.
+        * **`private_key_id`** [*required*, *default* = **None**]: Your private key ID found in your JSON service account key.
+        * **`private_key`** [*required*, *default* = **None**]: Your private key name found in your JSON service account key.
+        * **`client_email`** [*required*, *default* = **None**]: Your email found in your JSON service account key.
+        * **`client_id`** [*required*, *default* = **None**]: Your ID found in your JSON service account key.
+        * **`auth_uri`** [*required*, *default* = **None**]: Should be https://accounts.google.com/o/oauth2/auth.
+        * **`token_uri`** [*required*, *default* = **None**]: Should be https://accounts.google.com/o/oauth2/token.
+        * **`auth_provider_x509_cert_url`** [*required*, *default* = **None**]: Should be https://www.googleapis.com/oauth2/v1/certs.
+        * **`client_x509_cert_url`** [*required*, *default* = **None**]: Should be https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL> where <CLIENT_EMAIL> is the email found in your JSON service account key.
+        * **`host_filters`** [*optional*, *default* = **None**]: Limit the GCE instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+        * **`automute`** [*optional*, *default* = false]: Silence monitors for expected GCE instance shutdowns.
+      operationId: CreateGCPIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GCPAccount'
+        description: Create a Datadog-Azure integration.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Add a GCP integration to your Datadog account.
+      tags:
+      - GCPIntegration
+    put:
+      description: |-
+        ### Overview
+        Update a Datadog-GCP integrations host_filters and/or automute. Requires a project_id and client_email, however these fields cannot be updated. If you need to update these fields please delete and use the create (POST) endpoint. The unspecified fields will keep their original values.
+        ### Arguments
+        * **`project_id`** [*required*, *default* = **None**]: Your Google Cloud project ID associated with the integration to be updated.
+        * **`client_email`** [*required*, *default* = **None**]: Your client email associated with the integration to be updated.
+        * **`host_filters`** [*optional*, *default* = **None**]: Limit the GCE instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+        * **`automute`** [*optional*, *default* = false]: Silence monitors for expected GCE instance shutdowns.
+      operationId: UpdateGCPIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GCPAccount'
+        description: Update a Datadog-GCP integration.
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: {}
+                type: object
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Authentication error
+      summary: Update a GCP integration in your Datadog account.
+      tags:
+      - GCPIntegration
   /api/v1/monitor:
     get:
       description: |-
@@ -998,28 +1838,36 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A string to filter monitors by name.
+        explode: true
         in: query
         name: name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A comma separated list indicating what tags, if any, should be
+          used to filter the list of monitorsby scope, e.g. host:host0.
+        explode: true
         in: query
         name: tags
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A comma separated list indicating what service and/or custom
+          tags, if any, should be used to filter the list of monitors. Tags created
+          in the Datadog UI automatically have the service key prepended (e.g. service:my-app).
+        explode: true
         in: query
         name: monitor_tags
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: If this argument is set to true, then the returned data includes
+          all current downtimes for each monitor.
+        explode: true
         in: query
         name: with_downtimes
         required: false
@@ -1705,6 +2553,21 @@ components:
           example: DatadogAWSIntegrationRole
           type: string
       type: object
+    AWSAccountAndLambdaInput:
+      properties:
+        account_id:
+          description: Your AWS Account ID without dashes.
+          example: "1234567"
+          type: string
+        lambda_arn:
+          description: ARN of the Datadog Lambda created during the Datadog-Amazon
+            Web services Log collection setup.
+          example: arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest
+          type: string
+      required:
+      - account_id
+      - lambda_arn
+      type: object
     AWSAccountCreateResponse:
       example:
         external_id: external_id
@@ -1738,6 +2601,75 @@ components:
           items:
             $ref: '#/components/schemas/AWSAccount'
           type: array
+      type: object
+    AWSLogsAsyncResponse:
+      example:
+        status: created
+      properties:
+        status:
+          example: created
+          type: string
+      type: object
+    AWSLogsListOutput:
+      properties:
+        account_id:
+          description: Your AWS Account ID without dashes.
+          example: "1234567"
+          type: string
+        lambdas:
+          description: List of ARNs configured in your Datadog account.
+          example:
+          - arn: arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest
+          items:
+            $ref: '#/components/schemas/AWSLogsListOutput_lambdas'
+          type: array
+        services:
+          description: Array of services IDs.
+          example:
+          - s3
+          - elb
+          - elbv2
+          - cloudfront
+          - redshift
+          - lambda
+          items:
+            type: string
+          type: array
+      type: object
+    AWSLogsListServicesOutput:
+      properties:
+        id:
+          description: Key value in returned object.
+          example: s3
+          type: string
+        label:
+          description: Name of service available for configuration with Datadog logs.
+          example: S3 Access Logs
+          type: string
+      type: object
+    AWSLogsServicesInput:
+      properties:
+        account_id:
+          description: Your AWS Account ID without dashes.
+          example: "1234567"
+          type: string
+        services:
+          description: Array of services IDs set to enable automatic log collection.
+            Discover the list of available services with the Get list of AWS log ready
+            services API endpoint
+          example:
+          - s3
+          - elb
+          - elbv2
+          - cloudfront
+          - redshift
+          - lambda
+          items:
+            type: string
+          type: array
+      required:
+      - account_id
+      - services
       type: object
     ApiKey:
       example:
@@ -1828,6 +2760,55 @@ components:
         application_key:
           $ref: '#/components/schemas/ApplicationKey'
       type: object
+    AzureAccount:
+      example:
+        host_filters: key:value,filter:example
+        tenant_name: testc44-1234-5678-9101-cc00736ftest
+        new_client_id: new1c7f6-1234-5678-9101-3fcbf464test
+        client_secret: testingx./Sw*g/Y33t..R1cH+hScMDt
+        client_id: testc7f6-1234-5678-9101-3fcbf464test
+        errors:
+        - '*'
+        new_tenant_name: new1c44-1234-5678-9101-cc00736ftest
+      properties:
+        client_id:
+          description: Your Azure web application ID.
+          example: testc7f6-1234-5678-9101-3fcbf464test
+          type: string
+        client_secret:
+          description: Your Azure web application secret key.
+          example: testingx./Sw*g/Y33t..R1cH+hScMDt
+          type: string
+        errors:
+          example:
+          - '*'
+          items:
+            readOnly: true
+            type: string
+          type: array
+        host_filters:
+          description: Limit the Azure instances that are pulled into Datadog by using
+            tags. Only hosts that match one of the defined tags are imported into
+            Datadog.
+          example: key:value,filter:example
+          type: string
+        new_client_id:
+          description: Your New Azure web application ID.
+          example: new1c7f6-1234-5678-9101-3fcbf464test
+          type: string
+        new_tenant_name:
+          description: Your New Azure Active Directory ID.
+          example: new1c44-1234-5678-9101-cc00736ftest
+          type: string
+        tenant_name:
+          description: Your Azure Active Directory ID.
+          example: testc44-1234-5678-9101-cc00736ftest
+          type: string
+      type: object
+    AzureAccountListResponse:
+      items:
+        $ref: '#/components/schemas/AzureAccount'
+      type: array
     CancelDowntimesByScopeRequest:
       example:
         scope: host:myserver
@@ -2004,6 +2985,10 @@ components:
           type: array
       type: object
     Error400:
+      example:
+        errors:
+        - Bad Request
+        - Bad Request
       properties:
         errors:
           items:
@@ -2133,6 +3118,100 @@ components:
       required:
       - errors
       type: object
+    GCPAccount:
+      example:
+        automute: true
+        client_email: api-dev@datadog-sandbox.iam.gserviceaccount.com
+        private_key: private_key
+        type: service_account
+        client_id: "123456712345671234567"
+        host_filters: key:value,filter:example
+        token_uri: https://accounts.google.com/o/oauth2/token
+        client_x509_cert_url: https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
+        private_key_id: 123456789abcdefghi123456789abcdefghijklm
+        project_id: datadog-apitest
+        auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
+        auth_uri: https://accounts.google.com/o/oauth2/auth
+        errors:
+        - '*'
+      properties:
+        auth_provider_x509_cert_url:
+          description: Should be https://www.googleapis.com/oauth2/v1/certs.
+          example: https://www.googleapis.com/oauth2/v1/certs
+          type: string
+        auth_uri:
+          description: Should be https://accounts.google.com/o/oauth2/auth.
+          example: https://accounts.google.com/o/oauth2/auth
+          type: string
+        automute:
+          description: Silence monitors for expected GCE instance shutdowns.
+          type: boolean
+        client_email:
+          description: Your email found in your JSON service account key.
+          example: api-dev@datadog-sandbox.iam.gserviceaccount.com
+          type: string
+        client_id:
+          description: Your ID found in your JSON service account key.
+          example: "123456712345671234567"
+          type: string
+        client_x509_cert_url:
+          description: Should be https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
+            where <CLIENT_EMAIL> is the email found in your JSON service account key.
+          example: https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
+          type: string
+        errors:
+          example:
+          - '*'
+          items:
+            readOnly: true
+            type: string
+          type: array
+        host_filters:
+          description: Limit the GCE instances that are pulled into Datadog by using
+            tags. Only hosts that match one of the defined tags are imported into
+            Datadog.
+          example: key:value,filter:example
+          type: string
+        private_key:
+          description: Your private key name found in your JSON service account key.
+          example: private_key
+          type: string
+        private_key_id:
+          description: Your private key ID found in your JSON service account key.
+          example: 123456789abcdefghi123456789abcdefghijklm
+          type: string
+        project_id:
+          description: Your Google Cloud project ID found in your JSON service account
+            key.
+          example: datadog-apitest
+          type: string
+        token_uri:
+          description: Should be https://accounts.google.com/o/oauth2/token.
+          example: https://accounts.google.com/o/oauth2/token
+          type: string
+        type:
+          description: The value for service_account found in your JSON service account
+            key.
+          example: service_account
+          type: string
+      type: object
+    GCPAccountListResponse:
+      items:
+        $ref: '#/components/schemas/GCPAccount'
+      type: array
+    GraphSnapshot:
+      example:
+        graph_def: graph_def
+        metric_query: metric_query
+        snapshot_url: snapshot_url
+      properties:
+        graph_def:
+          type: string
+        metric_query:
+          type: string
+        snapshot_url:
+          type: string
+      type: object
     IdpFormData:
       properties:
         idp_file:
@@ -2151,6 +3230,12 @@ components:
           type: string
       required:
       - message
+      type: object
+    IntakePayloadAccepted:
+      properties:
+        status:
+          example: ok
+          type: string
       type: object
     Monitor:
       example:
@@ -2175,7 +3260,10 @@ components:
           synthetics_check_id: 3
           notify_no_data: true
           enable_logs_sample: true
-          aggregation: aggregation
+          aggregation:
+            metric: count
+            group_by: host
+            type: count
           evaluation_delay: 6
           notify_audit: true
           min_location_failed: 5
@@ -2276,7 +3364,10 @@ components:
         synthetics_check_id: 3
         notify_no_data: true
         enable_logs_sample: true
-        aggregation: aggregation
+        aggregation:
+          metric: count
+          group_by: host
+          type: count
         evaluation_delay: 6
         notify_audit: true
         min_location_failed: 5
@@ -2303,7 +3394,7 @@ components:
         locked: true
       properties:
         aggregation:
-          type: string
+          $ref: '#/components/schemas/MonitorOptions_aggregation'
         device_ids:
           items:
             enum:
@@ -2791,6 +3882,25 @@ components:
         user:
           $ref: '#/components/schemas/User'
       type: object
+    AWSLogsListOutput_lambdas:
+      properties:
+        arn:
+          type: string
+    MonitorOptions_aggregation:
+      example:
+        metric: count
+        group_by: host
+        type: count
+      properties:
+        group_by:
+          example: host
+          type: string
+        metric:
+          example: count
+          type: string
+        type:
+          example: count
+          type: string
     Org_billing:
       example: '{"type":"parent_billing"}'
       properties:
@@ -2884,3 +3994,4 @@ components:
       in: query
       name: application_key
       type: apiKey
+x-group-parameters: true
