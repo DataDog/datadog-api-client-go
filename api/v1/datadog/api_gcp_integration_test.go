@@ -35,12 +35,14 @@ var TESTUPDATEGCPACCT = datadog.GcpAccount{
 }
 
 func TestGcpCreate(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 	defer uninstallGcpIntegration(TESTGCPACCT)
 
-	_, httpResp, _ := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH, TESTGCPACCT)
+	_, httpResp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH, TESTGCPACCT)
+	if err != nil {
+		t.Errorf("Error creating GCP intg: %v", err)
+	}
 	assert.Equal(t, httpResp.StatusCode, 200)
 }
 
@@ -53,15 +55,18 @@ func TestGcpListandDelete(t *testing.T) {
 	// Setup Gcp Account to List
 	TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH, TESTGCPACCT)
 
-	gcpListOutput, _, _ := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH)
+	gcpListOutput, _, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH)
+	if err != nil {
+		t.Errorf("Error listing GCP intg: %v", err)
+	}
 	var x datadog.GcpAccount
 	for _, Account := range gcpListOutput {
 		if Account.GetProjectId() == UNIQUEPROJECTID {
 			x = Account
 		}
 	}
-	assert.Equal(t, x.GetClientEmail(), "api-test@fake-sandbox.iam.gserviceaccount.com")
-	assert.Equal(t, x.GetHostFilters(), "fake:tag,example:test")
+	assert.Equal(t, x.GetClientEmail(), *TESTGCPACCT.ClientEmail)
+	assert.Equal(t, x.GetHostFilters(), *TESTGCPACCT.HostFilters)
 
 	// Assert returned list is greater than or equal to 1
 	assert.Assert(t, len(gcpListOutput) >= 1)
@@ -91,15 +96,18 @@ func TestUpdateGcpAccount(t *testing.T) {
 	assert.Equal(t, httpResp.StatusCode, 200)
 
 	// List account to ensure update worked.
-	gcpListOutput, _, _ := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH)
+	gcpListOutput, _, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH)
+	if err != nil {
+		t.Errorf("Error listing GCP intg: %v", err)
+	}
 	var x datadog.GcpAccount
 	for _, Account := range gcpListOutput {
-		if Account.GetClientEmail() == "api-test@fake-sandbox.iam.gserviceaccount.com" {
+		if Account.GetClientEmail() == *TESTGCPACCT.ClientEmail {
 			x = Account
 		}
 	}
 	assert.Equal(t, x.GetAutomute(), true)
-	assert.Equal(t, x.GetHostFilters(), "fake:update,example:update")
+	assert.Equal(t, x.GetHostFilters(), *TESTUPDATEGCPACCT.HostFilters)
 }
 
 func uninstallGcpIntegration(account datadog.GcpAccount) {

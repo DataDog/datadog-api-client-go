@@ -39,7 +39,10 @@ func TestAzureCreate(t *testing.T) {
 	defer teardownTest(t)
 	defer uninstallAzureIntegration(TESTAZUREACCT)
 
-	_, httpResp, _ := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, TESTAZUREACCT)
+	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, TESTAZUREACCT)
+	if err != nil {
+		t.Errorf("Error Creating Azure intg: %v", err)
+	}
 	assert.Equal(t, httpResp.StatusCode, 200)
 }
 
@@ -48,19 +51,23 @@ func TestAzureListandDelete(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 	defer uninstallAzureIntegration(TESTAZUREACCT)
+	defer uninstallAzureIntegration(TESTUPDATEAZUREHOSTFILTERS)
 
 	// Setup Azure Account to List
 	TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, TESTAZUREACCT)
 
-	azure_list_output, _, _ := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
+	azure_list_output, _, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
+	if err != nil {
+		t.Errorf("Error listing azure intgs: %v", err)
+	}
 	var x datadog.AzureAccount
 	for _, Account := range azure_list_output {
-		if Account.GetClientId() == "testc7f6-1234-5678-9101-3fcbf4update" {
+		if Account.GetClientId() == *TESTAZUREACCT.ClientId {
 			x = Account
 		}
 	}
-	assert.Equal(t, x.GetClientId(), "testc7f6-1234-5678-9101-3fcbf4update")
-	assert.Equal(t, x.GetTenantName(), "testc44-1234-5678-9101-cc0073update")
+	assert.Equal(t, x.GetClientId(), *TESTAZUREACCT.ClientId)
+	assert.Equal(t, x.GetTenantName(), *TESTAZUREACCT.TenantName)
 
 	// Assert returned list is greater than or equal to 1
 	assert.Assert(t, len(azure_list_output) >= 1)
@@ -90,16 +97,19 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(t, httpResp.StatusCode, 200)
 
 	// List account to ensure update worked.
-	azure_list_output, _, _ := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
+	azure_list_output, _, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
+	if err != nil {
+		t.Errorf("Error listing Azure intgs: %v", err)
+	}
 	var x datadog.AzureAccount
 	for _, Account := range azure_list_output {
-		if Account.GetClientId() == "testc7f6-1234-5678-9101-3fcbf4update" {
+		if Account.GetClientId() == *TESTUPDATEAZUREACC.NewClientId {
 			x = Account
 		}
 	}
-	assert.Equal(t, x.GetClientId(), "testc7f6-1234-5678-9101-3fcbf4update")
-	assert.Equal(t, x.GetTenantName(), "testc44-1234-5678-9101-cc0073update")
-	assert.Equal(t, x.GetHostFilters(), "filter:foo,test:bar")
+	assert.Equal(t, x.GetClientId(), *TESTUPDATEAZUREACC.NewClientId)
+	assert.Equal(t, x.GetTenantName(), *TESTUPDATEAZUREACC.NewTenantName)
+	assert.Equal(t, x.GetHostFilters(), *TESTUPDATEAZUREACC.HostFilters)
 
 	// Test update host filters endpoint
 	_, httpResp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH, TESTUPDATEAZUREHOSTFILTERS)
@@ -107,14 +117,17 @@ func TestUpdateAzureAccount(t *testing.T) {
 		t.Errorf("Error Updating Azure Host Filters: %v", err)
 	}
 	assert.Equal(t, httpResp.StatusCode, 200)
-	hf_list_output, _, _ := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
+	hf_list_output, _, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
+	if err != nil {
+		t.Errorf("Error listing Azure intgs: %v", err)
+	}
 	var y datadog.AzureAccount
 	for _, Account := range hf_list_output {
-		if Account.GetClientId() == "testc7f6-1234-5678-9101-3fcbf4update" {
+		if Account.GetClientId() == *TESTUPDATEAZUREHOSTFILTERS.ClientId {
 			y = Account
 		}
 	}
-	assert.Equal(t, y.GetHostFilters(), "test:foo,test:bar")
+	assert.Equal(t, y.GetHostFilters(), *TESTUPDATEAZUREHOSTFILTERS.HostFilters)
 }
 
 func uninstallAzureIntegration(account datadog.AzureAccount) {

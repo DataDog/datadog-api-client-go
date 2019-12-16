@@ -35,10 +35,16 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 
 	// Assert AWS Integration Created with proper fields
 	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, TESTAWSACCLOGS)
-	_, httpResp, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH, TESTADDLAMBDAARN)
+	_, httpResp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH, TESTADDLAMBDAARN)
+	if err != nil {
+		t.Errorf("Error Creating AWS account: %v: %v", TESTAWSACCLOGS.AccountId, err)
+	}
 	assert.Equal(t, httpResp.StatusCode, 200)
 
-	_, httpResp, _ = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH, TESTSAVESERVICES)
+	_, httpResp, err = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH, TESTSAVESERVICES)
+	if err != nil {
+		t.Errorf("Error enabling log services: %v", err)
+	}
 	assert.Equal(t, httpResp.StatusCode, 200)
 }
 
@@ -46,7 +52,10 @@ func TestListAWSLogsServices(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	list_services_output, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsServicesList(TESTAUTH)
+	list_services_output, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsServicesList(TESTAUTH)
+	if err != nil {
+		t.Errorf("Error list log services: %v", err)
+	}
 
 	// Assert returned list has the expected length of 6
 	assert.Equal(t, len(list_services_output), len(TESTSAVESERVICES.Services))
@@ -70,20 +79,17 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH, TESTSAVESERVICES)
 
 	// List AWS Logs integrations before deleting
-	list_output_1, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH)
-	// Iterate over output and list Lambdas
-	var list_of_arns []string
-	for _, Account := range list_output_1 {
-		for _, lambda := range Account.GetLambdas() {
-			list_of_arns = append(list_of_arns, *lambda.Arn)
-		}
+	list_output_1, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH)
+	if err != nil {
+		t.Errorf("Error list logs: %v", err)
 	}
-	// Set a variable to check if ARN exists
+	// Iterate over output and list Lambdas
 	var x = false
-	// Check if ARN exists, if so, set true.
-	for _, arn := range list_of_arns {
-		if arn == "arn:aws:lambda:us-east-1:123456789101:function:GoClientTest" {
-			x = true
+	for _, Account := range list_output_1 {
+		if Account.GetAccountId() == UNIQUEACCOUNTID {
+			if Account.GetLambdas()[0].GetArn() == TESTADDLAMBDAARN.LambdaArn {
+				x = true
+			}
 		}
 	}
 	// Test that variable is true as expected
@@ -107,7 +113,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 		}
 	}
 	for _, lambda := range list_of_arns_2 {
-		if lambda.GetArn() == "arn:aws:lambda:us-east-1:123456789101:function:GoClientTest" {
+		if lambda.GetArn() == TESTADDLAMBDAARN.LambdaArn {
 			x = true
 		}
 	}
