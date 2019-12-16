@@ -53,7 +53,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 		t.Errorf("Error fetching dashboard lists: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Assert(t, is.Contains(dashboardLists, fetchedDashboardList))
+	assert.Assert(t, is.Contains(dashboardLists.GetDashboardLists(), fetchedDashboardList))
 
 	// Cancel downtime
 	deletedDashboardListResponse, httpresp, err := TESTAPICLIENT.DashboardListsApi.DeleteDashboardList(TESTAUTH, dashboardList.GetId())
