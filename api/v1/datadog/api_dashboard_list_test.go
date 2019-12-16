@@ -60,12 +60,12 @@ func TestDashboardListLifecycle(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error deleting dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 204)
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, deletedDashboardListResponse.GetDeletedDashboardListId(), dashboardList.GetId())
 }
 
 func deleteDashboardList(dashboardListID int64) {
-	httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntime(TESTAUTH, dashboardListID)
+	_, httpresp, err := TESTAPICLIENT.DashboardListsApi.DeleteDashboardList(TESTAUTH, dashboardListID)
 	if err != nil {
 		log.Printf("Deleting dashboard list: %v failed with %v, Another test may have already deleted this dashboard list: %v", dashboardListID, httpresp.StatusCode, err)
 	}
