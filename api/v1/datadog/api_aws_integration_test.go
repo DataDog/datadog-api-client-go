@@ -12,9 +12,9 @@ import (
 )
 
 func generateUniqueAwsAccount() datadog.AwsAccount {
-	accountId := fmt.Sprintf("go_%09d", time.Now().UnixNano()%1000000000)
+	accountID := fmt.Sprintf("go_%09d", time.Now().UnixNano()%1000000000)
 	return datadog.AwsAccount{
-		AccountId:                     &accountId,
+		AccountId:                     &accountID,
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
@@ -46,8 +46,8 @@ func TestCreateAWSAccount(t *testing.T) {
 
 	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.
 		GetAllAWSAccounts(TESTAUTH).
-		AccountId(TESTAWSACC.GetAccountId()).
-		RoleName(TESTAWSACC.GetRoleName()).
+		AccountId(testAwsAccount.GetAccountId()).
+		RoleName(testAwsAccount.GetRoleName()).
 		Execute()
 	if err != nil {
 		t.Errorf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -74,17 +74,17 @@ func TestUpdateAWSAccount(t *testing.T) {
 	testAwsAccount := generateUniqueAwsAccount()
 
 	// Assert AWS Integration Created with proper fields
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(TESTAWSACC).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAwsAccount).Execute()
 	if err != nil {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	defer uninstallAWSIntegration(testAwsAccount)
 
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
+	_, httpresp, err = TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
 		AwsAccount(TESTUPDATEAWSACC).
-		AccountId(TESTAWSACC.GetAccountId()).
-		RoleName(TESTAWSACC.GetRoleName()).
+		AccountId(testAwsAccount.GetAccountId()).
+		RoleName(testAwsAccount.GetRoleName()).
 		Execute()
 	if err != nil {
 		t.Errorf("Error updating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -98,8 +98,8 @@ func TestUpdateAWSAccount(t *testing.T) {
 
 	// Assert AWS Account Get with proper fields
 	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH).
-		AccountId(TESTAWSACC.GetAccountId()).
-		RoleName(TESTAWSACC.GetRoleName()).
+		AccountId(UPDATEDAWSACCT.GetAccountId()).
+		RoleName(UPDATEDAWSACCT.GetRoleName()).
 		Execute()
 	if err != nil {
 		t.Errorf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -123,14 +123,14 @@ func TestDisableAWSAcct(t *testing.T) {
 	testAwsAccount := generateUniqueAwsAccount()
 
 	// Lets first create the account of us to delete
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(TESTAWSACC).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAwsAccount).Execute()
 	if err != nil {
 		t.Errorf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	defer uninstallAWSIntegration(testAwsAccount)
 
-	_, httpresp, err = TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(TESTAWSACC).Execute()
+	_, httpresp, err = TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).AwsAccount(testAwsAccount).Execute()
 	if err != nil {
 		t.Fatalf("Error disabling AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
