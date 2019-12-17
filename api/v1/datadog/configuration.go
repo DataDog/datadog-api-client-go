@@ -118,7 +118,28 @@ func NewConfiguration() *Configuration {
 				},
 			},
 		},
-		OperationServers: map[string]ServerConfigurations{},
+		OperationServers: map[string]ServerConfigurations{
+			"LogsHTTPIntakeApiService.SendLog": {
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": ServerVariable{
+							Description:  "The regional site for our customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"datadoghq.eu",
+							},
+						},
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "http-intake.logs",
+						},
+					},
+				},
+			},
+		},
 	}
 	return cfg
 }
