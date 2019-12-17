@@ -91,7 +91,11 @@ func TestUpdateAWSAccount(t *testing.T) {
 		t.Errorf("Error Updating AWS Account: %v", err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
-	defer uninstallAWSIntegration(TESTUPDATEAWSACC)
+	UPDATEDAWSACCT := datadog.AwsAccount{
+		AccountId: testAwsAccount.AccountId,
+		RoleName:  TESTUPDATEAWSACC.RoleName,
+	}
+	defer uninstallAWSIntegration(UPDATEDAWSACCT)
 
 	// Assert AWS Account Get with proper fields
 	awsGetAcctOpts := datadog.GetAllAWSAccountsOpts{
