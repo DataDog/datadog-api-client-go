@@ -10,7 +10,6 @@ package datadog
 
 import (
 	_context "context"
-	"fmt"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -45,8 +44,12 @@ func (a *OrgsApiService) CreateChildOrg(ctx _context.Context, orgCreateBody OrgC
 		localVarReturnValue  OrgCreateResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "OrgsApiService.CreateChildOrg")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/org"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -180,8 +183,12 @@ func (a *OrgsApiService) GetOrg(ctx _context.Context) (OrgListResponse, *_nethtt
 		localVarReturnValue  OrgListResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "OrgsApiService.GetOrg")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/org"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -321,9 +328,13 @@ func (a *OrgsApiService) UpdateOrg(ctx _context.Context, publicId string, localV
 		localVarReturnValue  OrgResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", publicId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "OrgsApiService.UpdateOrg")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/org/{public_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.QueryEscape(parameterToString(publicId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -466,9 +477,13 @@ func (a *OrgsApiService) UploadIdPForOrg(ctx _context.Context, publicId string, 
 		localVarReturnValue  IdpResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/org/{public_id}/idp_metadata"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", publicId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "OrgsApiService.UploadIdPForOrg")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/org/{public_id}/idp_metadata"
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.QueryEscape(parameterToString(publicId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -10,7 +10,6 @@ package datadog
 
 import (
 	_context "context"
-	"fmt"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -42,9 +41,13 @@ func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId in
 		localVarFileBytes    []byte
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/{downtime_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", downtimeId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "DowntimesApiService.CancelDowntime")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(parameterToString(downtimeId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -148,8 +151,12 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, cance
 		localVarReturnValue  CanceledDowntimesIds
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/cancel/by_scope"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "DowntimesApiService.CancelDowntimesByScope")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/downtime/cancel/by_scope"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -284,8 +291,12 @@ func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, downtime Down
 		localVarReturnValue  Downtime
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "DowntimesApiService.CreateDowntime")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/downtime"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -416,8 +427,12 @@ func (a *DowntimesApiService) GetAllDowntimes(ctx _context.Context, localVarOpti
 		localVarReturnValue  []Downtime
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "DowntimesApiService.GetAllDowntimes")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/downtime"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -543,9 +558,13 @@ func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64
 		localVarReturnValue  Downtime
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/{downtime_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", downtimeId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "DowntimesApiService.GetDowntime")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(parameterToString(downtimeId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -669,9 +688,13 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 		localVarReturnValue  Downtime
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/downtime/{downtime_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", downtimeId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "DowntimesApiService.UpdateDowntime")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.QueryEscape(parameterToString(downtimeId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -40,8 +40,12 @@ func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, gc
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/gcp"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "GCPIntegrationApiService.CreateGCPIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/gcp"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -176,8 +180,12 @@ func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, gc
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/gcp"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "GCPIntegrationApiService.DeleteGCPIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/gcp"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -311,8 +319,12 @@ func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]G
 		localVarReturnValue  []GcpAccount
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/gcp"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "GCPIntegrationApiService.ListGCPIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/gcp"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -445,8 +457,12 @@ func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, gc
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/gcp"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "GCPIntegrationApiService.UpdateGCPIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/gcp"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
