@@ -124,7 +124,7 @@ func TestDisableAWSAcct(t *testing.T) {
 	// We already test this in the disableAWSAccount cleanup function, but good to have an explicit test
 	testAwsAccount := generateUniqueAwsAccount()
 
-	// Lets first create the account of us to delete
+	// Lets first create the account for us to delete
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, testAwsAccount)
 	if err != nil {
 		t.Errorf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -137,6 +137,44 @@ func TestDisableAWSAcct(t *testing.T) {
 		t.Errorf("Error disabling AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200, "Error disabling AWS Account: %v", httpresp)
+}
+
+func TestGenerateNewExternalId(t *testing.T) {
+	testAwsAccount := generateUniqueAwsAccount()
+	fmt.Printf("HEY THERE WE'RE TESTING")
+	// Lets first create the account for us to generate a new id against
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, testAwsAccount)
+	fmt.Printf("HEY THERE WE'RE TESTING")
+	if err != nil || httpresp.StatusCode != 200 {
+		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	fmt.Printf("HEY THERE WE'RE STILL TESTING")
+	apiResp, httpResp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH, testAwsAccount)
+	if err != nil {
+		t.Fatalf("Error generating new AWS External ID %v", err)
+	}
+	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Assert(t, apiResp.GetExternalId() != "")
+}
+
+func TestListNamespaces(t *testing.T) {
+	namespaces, httpResp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(TESTAUTH)
+	if err != nil {
+		t.Fatalf("Error listing AWS Namespaces %v", err)
+	}
+	assert.Equal(t, httpResp.StatusCode, 200)
+	namespacesCheck := make(map[string]bool)
+	for _, namespace := range namespaces {
+		namespacesCheck[namespace] = true
+	}
+
+	// Check that a few examples are in the response
+	// Full list - https://docs.datadoghq.com/api/?lang=bash#list-namespace-rules
+	assert.Assert(t, namespacesCheck["api_gateway"], true)
+	assert.Assert(t, namespacesCheck["cloudsearch"], true)
+	assert.Assert(t, namespacesCheck["directconnect"], true)
+	assert.Assert(t, namespacesCheck["xray"], true)
+
 }
 
 func uninstallAWSIntegration(account datadog.AwsAccount) {

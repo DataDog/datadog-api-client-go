@@ -93,16 +93,16 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 		t.Errorf("Error list logs: %v", err)
 	}
 	// Iterate over output and list Lambdas
-	var x = false
+	var accountExists = false
 	for _, Account := range list_output_1 {
 		if Account.GetAccountId() == *testAWSAcc.AccountId {
 			if Account.GetLambdas()[0].GetArn() == testLambdaAcc.LambdaArn {
-				x = true
+				accountExists = true
 			}
 		}
 	}
 	// Test that variable is true as expected
-	assert.Equal(t, x, true)
+	assert.Equal(t, accountExists, true)
 
 	// Delete newly added Lambda
 	delete_output, httpResp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH, testLambdaAcc)
@@ -115,7 +115,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	list_output_2, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH)
 
 	var list_of_arns_2 []datadog.AwsLogsListOutputLambdas
-	x = false
+	var accountExistsAfterDelete = false
 	for _, Account := range list_output_2 {
 		if Account.GetAccountId() == *testAWSAcc.AccountId {
 			list_of_arns_2 = Account.GetLambdas()
@@ -123,9 +123,9 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	}
 	for _, lambda := range list_of_arns_2 {
 		if lambda.GetArn() == testLambdaAcc.LambdaArn {
-			x = true
+			accountExistsAfterDelete = true
 		}
 	}
 	// Check that ARN no longer exists after delete
-	assert.Assert(t, x != true)
+	assert.Assert(t, accountExistsAfterDelete != true)
 }
