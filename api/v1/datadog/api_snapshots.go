@@ -55,8 +55,12 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, metricQuery
 		localVarReturnValue  GraphSnapshot
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/graph/snapshot"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "SnapshotsApiService.GetGraphSnapshot")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/graph/snapshot"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

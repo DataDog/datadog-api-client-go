@@ -31,7 +31,7 @@ func TestConfigurationServers(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Url, func(t *testing.T) {
-			url, err := configuration.ServerUrl(0, tc.Variables)
+			url, err := configuration.ServerURL(0, tc.Variables)
 			if err != nil {
 				t.Errorf("Could not format URL: %v", err)
 			}
@@ -56,7 +56,7 @@ func TestConfigurationServersAccess(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("Index %v", tc.Index), func(t *testing.T) {
-			_, err := configuration.ServerUrl(tc.Index, nil)
+			_, err := configuration.ServerURL(tc.Index, nil)
 			assert.Error(t, err, tc.Err)
 		})
 	}

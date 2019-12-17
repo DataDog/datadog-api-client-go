@@ -10,7 +10,6 @@ package datadog
 
 import (
 	_context "context"
-	"fmt"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -42,8 +41,12 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, user User) (UserRespo
 		localVarReturnValue  UserResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "UsersApiService.CreateUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/user"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -178,9 +181,13 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (
 		localVarReturnValue  UserDisableResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "UsersApiService.DisableUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(parameterToString(userHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -312,8 +319,12 @@ func (a *UsersApiService) GetAllUsers(ctx _context.Context) (UserListResponse, *
 		localVarReturnValue  UserListResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "UsersApiService.GetAllUsers")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/user"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -446,9 +457,13 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (User
 		localVarReturnValue  UserResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "UsersApiService.GetUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(parameterToString(userHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -582,9 +597,13 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, us
 		localVarReturnValue  UserResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", userHandle)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "UsersApiService.UpdateUser")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.QueryEscape(parameterToString(userHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -40,8 +40,12 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure/host_filters"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.AzureUpdateHostFilters")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/azure/host_filters"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -176,8 +180,12 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.CreateAzureIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/azure"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -312,8 +320,12 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.DeleteAzureIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/azure"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -447,8 +459,12 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 		localVarReturnValue  []AzureAccount
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.ListAzureIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/azure"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -581,8 +597,12 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/azure"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.UpdateAzureIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/azure"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -40,8 +40,12 @@ func (a *AWSLogsIntegrationApiService) AWSLogsCheckLambdaAsync(ctx _context.Cont
 		localVarReturnValue  AwsLogsAsyncResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/logs/check_async"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.AWSLogsCheckLambdaAsync")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/logs/check_async"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -176,8 +180,12 @@ func (a *AWSLogsIntegrationApiService) AWSLogsCheckServicesAsync(ctx _context.Co
 		localVarReturnValue  AwsLogsAsyncResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/logs/services_async"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.AWSLogsCheckServicesAsync")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/logs/services_async"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -311,8 +319,12 @@ func (a *AWSLogsIntegrationApiService) AWSLogsList(ctx _context.Context) ([]AwsL
 		localVarReturnValue  []AwsLogsListOutput
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/logs"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.AWSLogsList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/logs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -444,8 +456,12 @@ func (a *AWSLogsIntegrationApiService) AWSLogsServicesList(ctx _context.Context)
 		localVarReturnValue  []AwsLogsListServicesOutput
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/logs/services"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.AWSLogsServicesList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/logs/services"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -578,8 +594,12 @@ func (a *AWSLogsIntegrationApiService) AddAWSLambdaARN(ctx _context.Context, aws
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/logs"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.AddAWSLambdaARN")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/logs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -714,8 +734,12 @@ func (a *AWSLogsIntegrationApiService) DeleteAWSLambdaARN(ctx _context.Context, 
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/logs"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.DeleteAWSLambdaARN")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/logs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -850,8 +874,12 @@ func (a *AWSLogsIntegrationApiService) EnableAWSLogServices(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/logs/services"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.EnableAWSLogServices")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/logs/services"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
