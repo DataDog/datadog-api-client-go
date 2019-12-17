@@ -42,8 +42,12 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		localVarReturnValue  AwsAccountCreateResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.CreateAWSAccount")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -178,8 +182,12 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.DeleteAWSAccount")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -314,8 +322,12 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		localVarReturnValue  Error400
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/generate_new_external_id"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.GenerateNewAWSExternalID")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/generate_new_external_id"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -460,8 +472,12 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		localVarReturnValue  AwsAccountListResponse
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.GetAllAWSAccounts")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -612,8 +628,12 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 		localVarReturnValue  []string
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws/available_namespace_rules"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.ListAvailableAWSNamespaces")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws/available_namespace_rules"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -757,8 +777,12 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		localVarReturnValue  interface{}
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/integration/aws"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.UpdateAWSAccount")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/integration/aws"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

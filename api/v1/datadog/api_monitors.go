@@ -10,7 +10,6 @@ package datadog
 
 import (
 	_context "context"
-	"fmt"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -44,8 +43,12 @@ func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, monitor Monitor
 		localVarReturnValue  Monitor
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "MonitorsApiService.CreateMonitor")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -170,9 +173,13 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
 		localVarReturnValue  map[string]int64
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "MonitorsApiService.DeleteMonitor")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(parameterToString(monitorId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -316,9 +323,13 @@ func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64, 
 		localVarReturnValue  Monitor
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "MonitorsApiService.EditMonitor")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(parameterToString(monitorId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -477,8 +488,12 @@ func (a *MonitorsApiService) GetAllMonitors(ctx _context.Context, localVarOption
 		localVarReturnValue  []Monitor
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "MonitorsApiService.GetAllMonitors")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -623,9 +638,13 @@ func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, l
 		localVarReturnValue  Monitor
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", monitorId)), -1)
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "MonitorsApiService.GetMonitor")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.QueryEscape(parameterToString(monitorId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -761,8 +780,12 @@ func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, monitor Monit
 		localVarReturnValue  Monitor
 	)
 
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/api/v1/monitor/validate"
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "MonitorsApiService.ValidateMonitor")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor/validate"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
