@@ -52,11 +52,15 @@ type APIClient struct {
 
 	AzureIntegrationApi *AzureIntegrationApiService
 
+	DashboardListsApi *DashboardListsApiService
+
 	DowntimesApi *DowntimesApiService
 
 	GCPIntegrationApi *GCPIntegrationApiService
 
 	KeysApi *KeysApiService
+
+	LogsHTTPIntakeApi *LogsHTTPIntakeApiService
 
 	MonitorsApi *MonitorsApiService
 
@@ -86,9 +90,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AWSIntegrationApi = (*AWSIntegrationApiService)(&c.common)
 	c.AWSLogsIntegrationApi = (*AWSLogsIntegrationApiService)(&c.common)
 	c.AzureIntegrationApi = (*AzureIntegrationApiService)(&c.common)
+	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
 	c.DowntimesApi = (*DowntimesApiService)(&c.common)
 	c.GCPIntegrationApi = (*GCPIntegrationApiService)(&c.common)
 	c.KeysApi = (*KeysApiService)(&c.common)
+	c.LogsHTTPIntakeApi = (*LogsHTTPIntakeApiService)(&c.common)
 	c.MonitorsApi = (*MonitorsApiService)(&c.common)
 	c.OrgsApi = (*OrgsApiService)(&c.common)
 	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)

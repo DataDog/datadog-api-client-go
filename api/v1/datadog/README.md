@@ -92,6 +92,11 @@ Class | Method | HTTP request | Description
 *AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure Integration from your Datadog account.
 *AzureIntegrationApi* | [**ListAzureIntegration**](docs/AzureIntegrationApi.md#listazureintegration) | **Get** /api/v1/integration/azure | List configured Azure integrations.
 *AzureIntegrationApi* | [**UpdateAzureIntegration**](docs/AzureIntegrationApi.md#updateazureintegration) | **Put** /api/v1/integration/azure | Update an Azure integration to your Datadog account.
+*DashboardListsApi* | [**CreateDashboardList**](docs/DashboardListsApi.md#createdashboardlist) | **Post** /api/v1/dashboard/lists/manual | Create a dashboard list
+*DashboardListsApi* | [**DeleteDashboardList**](docs/DashboardListsApi.md#deletedashboardlist) | **Delete** /api/v1/dashboard/lists/manual/{list_id} | Delete a dashboard list
+*DashboardListsApi* | [**GetAllDashboardLists**](docs/DashboardListsApi.md#getalldashboardlists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
+*DashboardListsApi* | [**GetDashboardList**](docs/DashboardListsApi.md#getdashboardlist) | **Get** /api/v1/dashboard/lists/manual/{list_id} | Get a dashboard list
+*DashboardListsApi* | [**UpdateDashboardList**](docs/DashboardListsApi.md#updatedashboardlist) | **Put** /api/v1/dashboard/lists/manual/{list_id} | Update a dashboard list
 *DowntimesApi* | [**CancelDowntime**](docs/DowntimesApi.md#canceldowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
 *DowntimesApi* | [**CancelDowntimesByScope**](docs/DowntimesApi.md#canceldowntimesbyscope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
 *DowntimesApi* | [**CreateDowntime**](docs/DowntimesApi.md#createdowntime) | **Post** /api/v1/downtime | Schedule a downtime
@@ -112,6 +117,7 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys available for your account.
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
+*LogsHTTPIntakeApi* | [**SendLog**](docs/LogsHTTPIntakeApi.md#sendlog) | **Post** /v1/input/{api_key} | 
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a new Monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
 *MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
@@ -151,6 +157,9 @@ Class | Method | HTTP request | Description
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
  - [Creator](docs/Creator.md)
+ - [DashboardList](docs/DashboardList.md)
+ - [DashboardListDeleteResponse](docs/DashboardListDeleteResponse.md)
+ - [DashboardListListResponse](docs/DashboardListListResponse.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
  - [Error400](docs/Error400.md)
@@ -168,6 +177,8 @@ Class | Method | HTTP request | Description
  - [Error503](docs/Error503.md)
  - [GcpAccount](docs/GcpAccount.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
+ - [HttpLog](docs/HttpLog.md)
+ - [HttpLogError](docs/HttpLogError.md)
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)
  - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
