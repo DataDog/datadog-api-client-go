@@ -90,6 +90,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, TESTAZUREACCT)
 
 	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH, TESTUPDATEAZUREACC)
+	defer uninstallAzureIntegration(TESTUPDATEAZUREACC)
 	if err != nil {
 		t.Errorf("Error Updating Azure Account: %v", err)
 	}
