@@ -90,6 +90,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error Updating AWS Account: %v", err)
 	}
+	defer uninstallAWSIntegration(TESTUPDATEAWSACC)
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// Assert AWS Account Get with proper fields
@@ -124,6 +125,7 @@ func TestDisableAWSAcct(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	defer uninstallAWSIntegration(testAwsAccount)
 	assert.Equal(t, httpresp.StatusCode, 200)
 	// we are testing the "defer uninstallAWSIntegration(testAwsAccount)" bellow
 
