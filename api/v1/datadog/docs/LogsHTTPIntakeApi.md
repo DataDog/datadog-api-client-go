@@ -4,13 +4,13 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SendLog**](LogsHTTPIntakeApi.md#SendLog) | **Post** /v1/input/{api_key} | 
+[**SendLog**](LogsHTTPIntakeApi.md#SendLog) | **Post** /v1/input | 
 
 
 
 ## SendLog
 
-> interface{} SendLog(ctx, apiKey, httpLog)
+> interface{} SendLog(ctx, httpLog)
 
 
 
@@ -22,7 +22,6 @@ Send logs
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**apiKey** | **string**| valid API key for an organisation | 
 **httpLog** | [**HttpLog**](HttpLog.md)| Log to send (JSON format) | 
 
 ### Return type
@@ -31,7 +30,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader)
 
 ### HTTP request headers
 

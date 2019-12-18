@@ -2708,20 +2708,10 @@ paths:
       summary: Update user
       tags:
       - Users
-  /v1/input/{api_key}:
+  /v1/input:
     post:
       description: Send logs
       operationId: SendLog
-      parameters:
-      - description: valid API key for an organisation
-        explode: false
-        in: path
-        name: api_key
-        required: true
-        schema:
-          example: 01234567899abcdef0123456789abcd
-          type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -2743,6 +2733,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPLogError'
           description: unexpected error
+      security:
+      - apiKeyAuthHeader: []
       servers:
       - url: https://{subdomain}.{site}
         variables:
@@ -4361,6 +4353,11 @@ components:
       description: API Key
       in: query
       name: api_key
+      type: apiKey
+    apiKeyAuthHeader:
+      description: API Key
+      in: header
+      name: DD-API-KEY
       type: apiKey
     appKeyAuth:
       description: APP Key
