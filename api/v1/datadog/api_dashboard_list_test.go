@@ -21,7 +21,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	}
 
 	// Create downtime
-	dashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.CreateDashboardList(TESTAUTH, testDashboardList)
+	dashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.CreateDashboardList(TESTAUTH).DashboardList(testDashboardList).Execute()
 	if err != nil {
 		t.Fatalf("Error creating dashboard list %v: Response %s: %v", testDashboardList, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -32,7 +32,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 
 	// Edit a downtime
 	editedDashboardList := datadog.DashboardList{Name: fmt.Sprintf("updated%s", start)}
-	updatedDashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.UpdateDashboardList(TESTAUTH, dashboardList.GetId(), editedDashboardList)
+	updatedDashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.UpdateDashboardList(TESTAUTH, dashboardList.GetId()).DashboardList(editedDashboardList).Execute()
 	if err != nil {
 		t.Errorf("Error updating dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -40,7 +40,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Equal(t, editedDashboardList.GetName(), updatedDashboardList.GetName())
 
 	// Check downtime existence
-	fetchedDashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.GetDashboardList(TESTAUTH, dashboardList.GetId())
+	fetchedDashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.GetDashboardList(TESTAUTH, dashboardList.GetId()).Execute()
 	if err != nil {
 		t.Errorf("Error fetching dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -48,7 +48,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Equal(t, editedDashboardList.GetName(), fetchedDashboardList.GetName())
 
 	// Find our downtime in the full list
-	dashboardLists, httpresp, err := TESTAPICLIENT.DashboardListsApi.GetAllDashboardLists(TESTAUTH)
+	dashboardLists, httpresp, err := TESTAPICLIENT.DashboardListsApi.GetAllDashboardLists(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error fetching dashboard lists: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -56,7 +56,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Assert(t, is.Contains(dashboardLists.GetDashboardLists(), fetchedDashboardList))
 
 	// Cancel downtime
-	deletedDashboardListResponse, httpresp, err := TESTAPICLIENT.DashboardListsApi.DeleteDashboardList(TESTAUTH, dashboardList.GetId())
+	deletedDashboardListResponse, httpresp, err := TESTAPICLIENT.DashboardListsApi.DeleteDashboardList(TESTAUTH, dashboardList.GetId()).Execute()
 	if err != nil {
 		t.Errorf("Error deleting dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -65,7 +65,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 }
 
 func deleteDashboardList(dashboardListID int64) {
-	_, httpresp, err := TESTAPICLIENT.DashboardListsApi.DeleteDashboardList(TESTAUTH, dashboardListID)
+	_, httpresp, err := TESTAPICLIENT.DashboardListsApi.DeleteDashboardList(TESTAUTH, dashboardListID).Execute()
 	if err != nil {
 		log.Printf("Deleting dashboard list: %v failed with %v, Another test may have already deleted this dashboard list: %v", dashboardListID, httpresp.StatusCode, err)
 	}
