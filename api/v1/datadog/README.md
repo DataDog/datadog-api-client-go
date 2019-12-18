@@ -92,6 +92,11 @@ Class | Method | HTTP request | Description
 *AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure Integration from your Datadog account.
 *AzureIntegrationApi* | [**ListAzureIntegration**](docs/AzureIntegrationApi.md#listazureintegration) | **Get** /api/v1/integration/azure | List configured Azure integrations.
 *AzureIntegrationApi* | [**UpdateAzureIntegration**](docs/AzureIntegrationApi.md#updateazureintegration) | **Put** /api/v1/integration/azure | Update an Azure integration to your Datadog account.
+*DashboardListsApi* | [**CreateDashboardList**](docs/DashboardListsApi.md#createdashboardlist) | **Post** /api/v1/dashboard/lists/manual | Create a dashboard list
+*DashboardListsApi* | [**DeleteDashboardList**](docs/DashboardListsApi.md#deletedashboardlist) | **Delete** /api/v1/dashboard/lists/manual/{list_id} | Delete a dashboard list
+*DashboardListsApi* | [**GetAllDashboardLists**](docs/DashboardListsApi.md#getalldashboardlists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
+*DashboardListsApi* | [**GetDashboardList**](docs/DashboardListsApi.md#getdashboardlist) | **Get** /api/v1/dashboard/lists/manual/{list_id} | Get a dashboard list
+*DashboardListsApi* | [**UpdateDashboardList**](docs/DashboardListsApi.md#updatedashboardlist) | **Put** /api/v1/dashboard/lists/manual/{list_id} | Update a dashboard list
 *DowntimesApi* | [**CancelDowntime**](docs/DowntimesApi.md#canceldowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
 *DowntimesApi* | [**CancelDowntimesByScope**](docs/DowntimesApi.md#canceldowntimesbyscope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
 *DowntimesApi* | [**CreateDowntime**](docs/DowntimesApi.md#createdowntime) | **Post** /api/v1/downtime | Schedule a downtime
@@ -152,6 +157,9 @@ Class | Method | HTTP request | Description
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
  - [Creator](docs/Creator.md)
+ - [DashboardList](docs/DashboardList.md)
+ - [DashboardListDeleteResponse](docs/DashboardListDeleteResponse.md)
+ - [DashboardListListResponse](docs/DashboardListListResponse.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
  - [Error400](docs/Error400.md)

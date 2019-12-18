@@ -35,6 +35,10 @@ tags:
   externalDocs:
     url: https://docs.datadoghq.com/api/?lang=bash#integration-azure
   name: AzureIntegration
+- description: '[Interact with your dashboard lists](https://docs.datadoghq.com/monitors/downtimes)
+    through the API to make it easier to organize, find, and share all of your dashboards
+    with your team and organization.'
+  name: Dashboard Lists
 - description: '[Downtiming](https://docs.datadoghq.com/monitors/downtimes) gives
     you greater control over monitor notifications by allowing you to globally exclude
     scopes from alerting. Downtime settings, which can be scheduled with start and
@@ -477,6 +481,203 @@ paths:
       summary: Edit an application key name.
       tags:
       - Keys
+  /api/v1/dashboard/lists/manual:
+    get:
+      description: |-
+        ### Overview
+        Fetch all of your existing dashboard list definitions.
+        ### Arguments
+        This endpoint takes no JSON arguments.
+      operationId: GetAllDashboardLists
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardListListResponse'
+          description: OK
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Get all dashboard lists
+      tags:
+      - Dashboard Lists
+    post:
+      description: |-
+        ### Overview
+        Create an empty dashboard list.
+        ### Arguments
+        * **name** [*required*]: The name of the dashboard list.
+      operationId: CreateDashboardList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DashboardList'
+        description: DashboardList request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardList'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+      summary: Create a dashboard list
+      tags:
+      - Dashboard Lists
+  /api/v1/dashboard/lists/manual/{list_id}:
+    delete:
+      description: |-
+        ### Overview
+        Delete a dashboard list.
+        ### Arguments
+        This endpoint takes no JSON arguments.
+      operationId: DeleteDashboardList
+      parameters:
+      - description: ID of the dashboard list to delete
+        explode: false
+        in: path
+        name: list_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardListDeleteResponse'
+          description: OK
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Delete a dashboard list
+      tags:
+      - Dashboard Lists
+    get:
+      description: |-
+        ### Overview
+        Fetch an existing dashboard list's definition.
+        ### Arguments
+        This endpoint takes no JSON arguments.
+      operationId: GetDashboardList
+      parameters:
+      - description: ID of the dashboard list to fetch
+        explode: false
+        in: path
+        name: list_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardList'
+          description: OK
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Get a dashboard list
+      tags:
+      - Dashboard Lists
+    put:
+      description: |-
+        ### Overview
+        Update the name of a dashboard list.
+        ### Arguments
+        * **name** [*required*]: The name of the dashboard list.
+      operationId: UpdateDashboardList
+      parameters:
+      - description: ID of the dashboard list to update
+        explode: false
+        in: path
+        name: list_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DashboardList'
+        description: DashboardList request object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardList'
+          description: OK
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+          description: Bad Request
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403'
+          description: Forbidden
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+          description: Not Found
+      summary: Update a dashboard list
+      tags:
+      - Dashboard Lists
   /api/v1/downtime:
     get:
       description: |-
@@ -2897,6 +3098,97 @@ components:
           type: string
         name:
           type: string
+      type: object
+    DashboardList:
+      example:
+        is_favorite: true
+        dashboard_count: 0
+        author:
+          name: name
+          handle: handle
+          email: email
+        created: 2000-01-23T04:56:07.000+00:00
+        name: name
+        modified: 2000-01-23T04:56:07.000+00:00
+        id: 6
+        type: manual_dashboard_list
+      properties:
+        author:
+          $ref: '#/components/schemas/Creator'
+        created:
+          description: Date of creation of the dashboard list
+          format: date-time
+          readOnly: true
+          type: string
+        dashboard_count:
+          description: The number of dashboards in the list
+          readOnly: true
+          type: integer
+        id:
+          description: The ID of the dashboard list
+          format: int64
+          readOnly: true
+          type: integer
+        is_favorite:
+          description: Whether or not the list is in the favorites
+          readOnly: true
+          type: boolean
+        modified:
+          description: Date of last edition of the dashboard list
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The name of the dashboard list
+          type: string
+        type:
+          description: The type of dashboard list
+          example: manual_dashboard_list
+          readOnly: true
+          type: string
+      required:
+      - name
+      type: object
+    DashboardListDeleteResponse:
+      example:
+        deleted_dashboard_list_id: 0
+      properties:
+        deleted_dashboard_list_id:
+          description: ID of the deleted dashboard list
+          format: int64
+          type: integer
+      type: object
+    DashboardListListResponse:
+      example:
+        dashboard_lists:
+        - is_favorite: true
+          dashboard_count: 0
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          name: name
+          modified: 2000-01-23T04:56:07.000+00:00
+          id: 6
+          type: manual_dashboard_list
+        - is_favorite: true
+          dashboard_count: 0
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          name: name
+          modified: 2000-01-23T04:56:07.000+00:00
+          id: 6
+          type: manual_dashboard_list
+      properties:
+        dashboard_lists:
+          description: List of all your dashboard lists
+          items:
+            $ref: '#/components/schemas/DashboardList'
+          type: array
       type: object
     Downtime:
       example:
