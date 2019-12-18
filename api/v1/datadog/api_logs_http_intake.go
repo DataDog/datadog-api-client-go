@@ -13,7 +13,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -28,11 +27,10 @@ type LogsHTTPIntakeApiService service
 SendLog Method for SendLog
 Send logs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param apiKey valid API key for an organisation
  * @param httpLog Log to send (JSON format)
 @return interface{}
 */
-func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, httpLog HttpLog) (interface{}, *_nethttp.Response, error) {
+func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -47,8 +45,7 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/input/{api_key}"
-	localVarPath = strings.Replace(localVarPath, "{"+"api_key"+"}", _neturl.QueryEscape(parameterToString(apiKey, "")), -1)
+	localVarPath := localBasePath + "/v1/input"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -76,28 +73,14 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, apiKey string, 
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["DD-API-KEY"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
-			}
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}

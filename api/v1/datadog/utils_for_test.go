@@ -28,6 +28,9 @@ func setupTest(t *testing.T) func(t *testing.T) {
 			"api_key": datadog.APIKey{
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
 			},
+			"DD-API-KEY": datadog.APIKey{
+				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
+			},
 			"application_key": datadog.APIKey{
 				Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
 			},
