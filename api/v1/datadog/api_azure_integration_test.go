@@ -43,11 +43,11 @@ func TestAzureCreate(t *testing.T) {
 	testAzureAcct, _, _ := generateUniqueAzureAccount()
 	defer uninstallAzureIntegration(testAzureAcct)
 
-	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, testAzureAcct)
+	_, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, testAzureAcct)
 	if err != nil {
 		t.Errorf("Error Creating Azure intg: %v", err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func TestAzureListandDelete(t *testing.T) {
@@ -78,11 +78,11 @@ func TestAzureListandDelete(t *testing.T) {
 	assert.Assert(t, len(azure_list_output) >= 1)
 
 	// Test account deletion as well
-	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.DeleteAzureIntegration(TESTAUTH, testAzureAcct)
-	if httpResp.StatusCode != 200 || err != nil {
+	_, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.DeleteAzureIntegration(TESTAUTH, testAzureAcct)
+	if httpresp.StatusCode != 200 || err != nil {
 		t.Errorf("Error uninstalling Azure Account: %v, Another test may have already removed this account.", testAzureAcct)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func TestUpdateAzureAccount(t *testing.T) {
@@ -95,13 +95,13 @@ func TestUpdateAzureAccount(t *testing.T) {
 	// Setup Azure Account to Update
 	TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH, testAzureAcct)
 
-	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH, testUpdateAzureAcct)
+	_, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH, testUpdateAzureAcct)
 	defer uninstallAzureIntegration(testUpdateAzureAcct)
 	if err != nil {
 		t.Errorf("Error Updating Azure Account: %v", err)
 	}
 
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List account to ensure update worked.
 	azure_list_output, _, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
@@ -119,11 +119,11 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(t, x.GetHostFilters(), *testUpdateAzureAcct.HostFilters)
 
 	// Test update host filters endpoint
-	_, httpResp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH, testAzureUpdateHostFilters)
+	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH, testAzureUpdateHostFilters)
 	if err != nil {
 		t.Errorf("Error Updating Azure Host Filters: %v", err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 	hf_list_output, _, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH)
 	if err != nil {
 		t.Errorf("Error listing Azure intgs: %v", err)

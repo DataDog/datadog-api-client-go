@@ -146,20 +146,20 @@ func TestGenerateNewExternalId(t *testing.T) {
 	if err != nil || httpresp.StatusCode != 200 {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	apiResp, httpResp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH, testAwsAccount)
+	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH, testAwsAccount)
 	if err != nil {
 		t.Fatalf("Error generating new AWS External ID %v", err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Assert(t, apiResp.GetExternalId() != "")
 }
 
 func TestListNamespaces(t *testing.T) {
-	namespaces, httpResp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(TESTAUTH)
+	namespaces, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(TESTAUTH)
 	if err != nil {
 		t.Fatalf("Error listing AWS Namespaces %v", err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 	namespacesCheck := make(map[string]bool)
 	for _, namespace := range namespaces {
 		namespacesCheck[namespace] = true
@@ -171,7 +171,6 @@ func TestListNamespaces(t *testing.T) {
 	assert.Assert(t, namespacesCheck["cloudsearch"], true)
 	assert.Assert(t, namespacesCheck["directconnect"], true)
 	assert.Assert(t, namespacesCheck["xray"], true)
-
 }
 
 func uninstallAWSIntegration(account datadog.AwsAccount) {

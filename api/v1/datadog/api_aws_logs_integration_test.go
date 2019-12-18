@@ -9,7 +9,7 @@ import (
 	"gotest.tools/assert"
 )
 
-func generateUniqueAwsLambdaAccounts() (datadog.AwsAccount, datadog.AwsAccountAndLambdaInput, datadog.AwsLogsServicesInput) {
+func generateUniqueAwsLambdaAccounts() (datadog.AwsAccount, datadog.AwsAccountAndLambdaRequest, datadog.AwsLogsServicesRequest) {
 	accountId := fmt.Sprintf("go_%09d", time.Now().UnixNano()%1000000000)
 	var uniqueAwsAccount = datadog.AwsAccount{
 		AccountId:                     &accountId,
@@ -19,12 +19,12 @@ func generateUniqueAwsLambdaAccounts() (datadog.AwsAccount, datadog.AwsAccountAn
 		HostTags:                      &[]string{"filter:one", "filtertwo"},
 	}
 
-	var testLambdaArn = datadog.AwsAccountAndLambdaInput{
+	var testLambdaArn = datadog.AwsAccountAndLambdaRequest{
 		AccountId: *uniqueAwsAccount.AccountId,
 		LambdaArn: "arn:aws:lambda:us-east-1:123456789101:function:GoClientTest",
 	}
 
-	var savedServices = datadog.AwsLogsServicesInput{
+	var savedServices = datadog.AwsLogsServicesRequest{
 		AccountId: *uniqueAwsAccount.AccountId,
 		Services:  []string{"s3", "elb", "elbv2", "cloudfront", "redshift", "lambda"},
 	}
@@ -42,17 +42,17 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 
 	// Assert AWS Integration Created with proper fields
 	TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, testawsacc)
-	_, httpResp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH, testLambdaAcc)
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH, testLambdaAcc)
 	if err != nil {
 		t.Errorf("Error Creating AWS account: %v: %v", testawsacc.AccountId, err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 
-	_, httpResp, err = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH, testServices)
+	_, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH, testServices)
 	if err != nil {
 		t.Errorf("Error enabling log services: %v", err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func TestListAWSLogsServices(t *testing.T) {
@@ -105,16 +105,16 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	assert.Equal(t, accountExists, true)
 
 	// Delete newly added Lambda
-	delete_output, httpResp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH, testLambdaAcc)
-	if err != nil || httpResp.StatusCode != 200 {
-		t.Errorf("Error Deleting Lambda %v: Status: %v: %v", delete_output, httpResp.StatusCode, err)
+	delete_output, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH, testLambdaAcc)
+	if err != nil || httpresp.StatusCode != 200 {
+		t.Errorf("Error Deleting Lambda %v: Status: %v: %v", delete_output, httpresp.StatusCode, err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List AWS logs integrations after deleting
 	list_output_2, _, _ := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH)
 
-	var list_of_arns_2 []datadog.AwsLogsListOutputLambdas
+	var list_of_arns_2 []datadog.AwsLogsListResponseLambdas
 	var accountExistsAfterDelete = false
 	for _, Account := range list_output_2 {
 		if Account.GetAccountId() == *testAWSAcc.AccountId {
@@ -144,8 +144,8 @@ func TestCheckLambdaAsync(t *testing.T) {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 
-	status, httpResp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH, testLambdaAcc)
-	if err != nil || httpResp.StatusCode != 200 {
+	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH, testLambdaAcc)
+	if err != nil || httpresp.StatusCode != 200 {
 		t.Fatalf("Error checking the AWS Lambda: %v", err)
 	}
 
@@ -155,8 +155,8 @@ func TestCheckLambdaAsync(t *testing.T) {
 	// Give the async call time to finish
 	time.Sleep(10 * time.Second)
 
-	status, httpResp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH, testLambdaAcc)
-	if err != nil || httpResp.StatusCode != 200 {
+	status, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH, testLambdaAcc)
+	if err != nil || httpresp.StatusCode != 200 {
 		t.Fatalf("Error checking the AWS Lambda: %v", err)
 	}
 
@@ -178,8 +178,8 @@ func TestCheckServicesAsync(t *testing.T) {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 
-	status, httpResp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckServicesAsync(TESTAUTH, testServices)
-	if err != nil || httpResp.StatusCode != 200 {
+	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckServicesAsync(TESTAUTH, testServices)
+	if err != nil || httpresp.StatusCode != 200 {
 		t.Fatalf("Error checking the AWS Logs Services: %v", err)
 	}
 	assert.Assert(t, status.GetErrors()[0].GetCode() != "")

@@ -43,11 +43,11 @@ func TestGcpCreate(t *testing.T) {
 	testGCPAcct, _ := generateUniqueGcpAccount()
 	defer uninstallGcpIntegration(testGCPAcct)
 
-	_, httpResp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH, testGCPAcct)
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH, testGCPAcct)
 	if err != nil {
 		t.Errorf("Error creating GCP intg: %v", err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func TestGcpListandDelete(t *testing.T) {
@@ -77,11 +77,11 @@ func TestGcpListandDelete(t *testing.T) {
 	assert.Assert(t, len(gcpListOutput) >= 1)
 
 	// Test account deletion as well
-	_, httpResp, err := TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(TESTAUTH, testGCPAcct)
-	if httpResp.StatusCode != 200 || err != nil {
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(TESTAUTH, testGCPAcct)
+	if httpresp.StatusCode != 200 || err != nil {
 		t.Errorf("Error uninstalling GCP Account: %v, Another test may have already removed this account.", testGCPAcct)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func TestUpdateGcpAccount(t *testing.T) {
@@ -94,12 +94,12 @@ func TestUpdateGcpAccount(t *testing.T) {
 	// Setup Gcp Account to Update
 	TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH, testGCPAcct)
 
-	_, httpResp, err := TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH, testGCPUpdateAcct)
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH, testGCPUpdateAcct)
 	if err != nil {
 		t.Errorf("Error Updating GCP Account: %v", err)
 	}
 
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List account to ensure update worked.
 	gcpListOutput, _, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH)
