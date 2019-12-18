@@ -1,6 +1,5 @@
 FROM golang:latest
-ENTRYPOINT ["go"]
-CMD ["test"]
+ENTRYPOINT ["/datadog-api-client-go/run-tests.sh"]
 
 COPY get-test-deps.sh /datadog-api-client-go/
 
