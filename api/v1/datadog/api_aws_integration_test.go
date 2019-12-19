@@ -140,11 +140,11 @@ func TestDisableAWSAcct(t *testing.T) {
 func TestGenerateNewExternalId(t *testing.T) {
 	testAwsAccount := generateUniqueAwsAccount()
 	// Lets first create the account for us to generate a new id against
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH, testAwsAccount)
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAwsAccount).Execute()
 	if err != nil || httpresp.StatusCode != 200 {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH, testAwsAccount)
+	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH).AwsAccount(testAwsAccount).Execute()
 	if err != nil {
 		t.Fatalf("Error generating new AWS External ID %v", err)
 	}
@@ -153,7 +153,7 @@ func TestGenerateNewExternalId(t *testing.T) {
 }
 
 func TestListNamespaces(t *testing.T) {
-	namespaces, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(TESTAUTH)
+	namespaces, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing AWS Namespaces %v", err)
 	}

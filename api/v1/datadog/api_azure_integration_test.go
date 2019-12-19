@@ -83,7 +83,7 @@ func TestAzureListandDelete(t *testing.T) {
 	assert.Assert(t, len(azureListOutput) >= 1)
 
 	// Test account deletion as well
-	_, httpResp, err = TESTAPICLIENT.AzureIntegrationApi.DeleteAzureIntegration(TESTAUTH).AzureAccount(testAzureAcct).Execute()
+	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.DeleteAzureIntegration(TESTAUTH).AzureAccount(testAzureAcct).Execute()
 	if err != nil {
 		t.Errorf("Error deleting Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -104,13 +104,13 @@ func TestUpdateAzureAccount(t *testing.T) {
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	_, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH).AzureAccount(testUpdateAzureAcct).Execute()
+	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH).AzureAccount(testUpdateAzureAcct).Execute()
 	defer uninstallAzureIntegration(testUpdateAzureAcct)
 	if err != nil {
 		t.Errorf("Error updating Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List account to ensure update worked.
 	azureListOutput, _, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH).Execute()
@@ -129,12 +129,12 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(t, x.GetHostFilters(), *testUpdateAzureAcct.HostFilters)
 
 	// Test update host filters endpoint
-	_, httpResp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH).AzureAccount(testAzureUpdateHostFilters).Execute()
+	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH).AzureAccount(testAzureUpdateHostFilters).Execute()
 	if err != nil {
 		t.Errorf("Error updating Azure Host Filters: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
-	HFListOutput, httpResp, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH).Execute()
+	HFListOutput, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error listing Azure Accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
