@@ -23,14 +23,35 @@ var (
 // LogsHTTPIntakeApiService LogsHTTPIntakeApi service
 type LogsHTTPIntakeApiService service
 
+type apiSendLogRequest struct {
+	ctx        _context.Context
+	apiService *LogsHTTPIntakeApiService
+	httpLog    *HttpLog
+}
+
+func (r apiSendLogRequest) HttpLog(httpLog HttpLog) apiSendLogRequest {
+	r.httpLog = &httpLog
+	return r
+}
+
 /*
 SendLog Method for SendLog
 Send logs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param httpLog Log to send (JSON format)
-@return interface{}
+@return apiSendLogRequest
 */
-func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog) (interface{}, *_nethttp.Response, error) {
+func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context) apiSendLogRequest {
+	return apiSendLogRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return interface{}
+*/
+func (r apiSendLogRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -40,7 +61,7 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "LogsHTTPIntakeApiService.SendLog")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsHTTPIntakeApiService.SendLog")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -50,6 +71,10 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+
+	if r.httpLog == nil {
+		return localVarReturnValue, nil, reportError("httpLog is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -69,10 +94,10 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &httpLog
-	if ctx != nil {
+	localVarPostBody = r.httpLog
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["DD-API-KEY"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -84,12 +109,12 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -107,7 +132,7 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -116,7 +141,7 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		var v HttpLogError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
@@ -125,7 +150,7 @@ func (a *LogsHTTPIntakeApiService) SendLog(ctx _context.Context, httpLog HttpLog
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,

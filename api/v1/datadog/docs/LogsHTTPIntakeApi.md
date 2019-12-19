@@ -10,19 +10,24 @@ Method | HTTP request | Description
 
 ## SendLog
 
-> interface{} SendLog(ctx, httpLog)
+> interface{} SendLog(ctx).HttpLog(httpLog).Execute()
 
 
 
-Send logs
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSendLogRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**httpLog** | [**HttpLog**](HttpLog.md)| Log to send (JSON format) | 
+ **httpLog** | [**HttpLog**](HttpLog.md) | Log to send (JSON format) | 
 
 ### Return type
 

@@ -13,8 +13,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -25,14 +23,61 @@ var (
 // AWSIntegrationApiService AWSIntegrationApi service
 type AWSIntegrationApiService service
 
+type apiCreateAWSAccountRequest struct {
+	ctx        _context.Context
+	apiService *AWSIntegrationApiService
+	awsAccount *AwsAccount
+}
+
+func (r apiCreateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiCreateAWSAccountRequest {
+	r.awsAccount = &awsAccount
+	return r
+}
+
 /*
 CreateAWSAccount Create an AWS Account
-### Overview Create the AWS Account with the provided values ### Arguments * **&#x60;account_id&#x60;** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS   integration to learn more about your AWS account ID.  * **&#x60;role_name&#x60;** [*required*]: Your Datadog role delegation name. For more information about you   AWS account Role name, see the Datadog AWS integration configuration info.  * **&#x60;access_key_id&#x60;** [*optional*, *default* &#x3D; **None**]: If your AWS account is a GovCloud or   China account, enter the corresponding Access Key ID.  * **&#x60;filter_tags&#x60;** [*optional*, *default* &#x3D; **None**]: The array of EC2 tags (in the form key:value)   defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?   (for single characters) and * (for multiple characters) can also be used. Only hosts that match one   of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given   tag can also be excluded by adding ! before the tag.   e.x. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,   see the AWS tagging documentation  * **&#x60;host_tags&#x60;** [*optional*, *default* &#x3D; **None**]: Array of tags (in the form key:value) to add   to all hosts and metrics reporting through this integration.  * **&#x60;account_specific_namespace_rules&#x60;** [*optional*, *default* &#x3D; **None**]: An object (in the form   {\&quot;namespace1\&quot;:true/false, \&quot;namespace2\&quot;:true/false}) that enables or disables metric collection for   specific AWS namespaces for this AWS account only. A list of namespaces can be found at the   /v1/integration/aws/available_namespace_rules endpoint.
+### Overview
+Create the AWS Account with the provided values
+### Arguments
+* **`account_id`** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS
+  integration to learn more about your AWS account ID.
+
+* **`role_name`** [*required*]: Your Datadog role delegation name. For more information about you
+  AWS account Role name, see the Datadog AWS integration configuration info.
+
+* **`access_key_id`** [*optional*, *default* = **None**]: If your AWS account is a GovCloud or
+  China account, enter the corresponding Access Key ID.
+
+* **`filter_tags`** [*optional*, *default* = **None**]: The array of EC2 tags (in the form key:value)
+  defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?
+  (for single characters) and * (for multiple characters) can also be used. Only hosts that match one
+  of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given
+  tag can also be excluded by adding ! before the tag.
+  e.x. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,
+  see the AWS tagging documentation
+
+* **`host_tags`** [*optional*, *default* = **None**]: Array of tags (in the form key:value) to add
+  to all hosts and metrics reporting through this integration.
+
+* **`account_specific_namespace_rules`** [*optional*, *default* = **None**]: An object (in the form
+  {"namespace1":true/false, "namespace2":true/false}) that enables or disables metric collection for
+  specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
+  /v1/integration/aws/available_namespace_rules endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccount AWS request object
-@return AwsAccountCreateResponse
+@return apiCreateAWSAccountRequest
 */
-func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAccount AwsAccount) (AwsAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context) apiCreateAWSAccountRequest {
+	return apiCreateAWSAccountRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return AwsAccountCreateResponse
+*/
+func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -42,7 +87,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		localVarReturnValue  AwsAccountCreateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.CreateAWSAccount")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -52,6 +97,10 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+
+	if r.awsAccount == nil {
+		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -71,10 +120,10 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &awsAccount
-	if ctx != nil {
+	localVarPostBody = r.awsAccount
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -86,9 +135,9 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -100,12 +149,12 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -123,7 +172,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v AwsAccountCreateResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -133,7 +182,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -143,7 +192,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -153,7 +202,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -165,14 +214,42 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, awsAcc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiDeleteAWSAccountRequest struct {
+	ctx        _context.Context
+	apiService *AWSIntegrationApiService
+	awsAccount *AwsAccount
+}
+
+func (r apiDeleteAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiDeleteAWSAccountRequest {
+	r.awsAccount = &awsAccount
+	return r
+}
+
 /*
 DeleteAWSAccount Delete an AWS Account
-### Overview Delete the AWS Account matching the specified account_id and role_name parameters ### Arguments * **&#x60;account_id&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this account_id.  * **&#x60;role_name&#x60;** [*required*, *default* &#x3D; **None**]: Delete the AWS account that   matches this role_name.
+### Overview
+Delete the AWS Account matching the specified account_id and role_name parameters
+### Arguments
+* **`account_id`** [*required*, *default* = **None**]: Delete the AWS account that
+  matches this account_id.
+
+* **`role_name`** [*required*, *default* = **None**]: Delete the AWS account that
+  matches this role_name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccount AWS request object
-@return interface{}
+@return apiDeleteAWSAccountRequest
 */
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAccount AwsAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context) apiDeleteAWSAccountRequest {
+	return apiDeleteAWSAccountRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return interface{}
+*/
+func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -182,7 +259,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.DeleteAWSAccount")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.DeleteAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -192,6 +269,10 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+
+	if r.awsAccount == nil {
+		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -211,10 +292,10 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &awsAccount
-	if ctx != nil {
+	localVarPostBody = r.awsAccount
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -226,9 +307,9 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -240,12 +321,12 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -263,7 +344,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -273,7 +354,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -283,7 +364,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -293,7 +374,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -305,14 +386,42 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, awsAcc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiGenerateNewAWSExternalIDRequest struct {
+	ctx                      _context.Context
+	apiService               *AWSIntegrationApiService
+	awsAccountCreateResponse *AwsAccountCreateResponse
+}
+
+func (r apiGenerateNewAWSExternalIDRequest) AwsAccountCreateResponse(awsAccountCreateResponse AwsAccountCreateResponse) apiGenerateNewAWSExternalIDRequest {
+	r.awsAccountCreateResponse = &awsAccountCreateResponse
+	return r
+}
+
 /*
 GenerateNewAWSExternalID Generate New External ID
-###Overview Generate new AWS external ID for a specific integrated account ### Arguments * **&#x60;account_id&#x60;** [*required*]: Generate new external ID for the AWS account that   matches this account_id.  * **&#x60;role_name&#x60;** [*required*]: Generate new external ID for the AWS account that   matches this role_name.
+###Overview
+Generate new AWS external ID for a specific integrated account
+### Arguments
+* **`account_id`** [*required*]: Generate new external ID for the AWS account that
+  matches this account_id.
+
+* **`role_name`** [*required*]: Generate new external ID for the AWS account that
+  matches this role_name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccountCreateResponse Generate New AWS External ID request object
-@return Error400
+@return apiGenerateNewAWSExternalIDRequest
 */
-func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context, awsAccountCreateResponse AwsAccountCreateResponse) (Error400, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context) apiGenerateNewAWSExternalIDRequest {
+	return apiGenerateNewAWSExternalIDRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return Error400
+*/
+func (r apiGenerateNewAWSExternalIDRequest) Execute() (Error400, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -322,7 +431,7 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		localVarReturnValue  Error400
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.GenerateNewAWSExternalID")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.GenerateNewAWSExternalID")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -332,6 +441,10 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+
+	if r.awsAccountCreateResponse == nil {
+		return localVarReturnValue, nil, reportError("awsAccountCreateResponse is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -351,10 +464,10 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &awsAccountCreateResponse
-	if ctx != nil {
+	localVarPostBody = r.awsAccountCreateResponse
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -366,9 +479,9 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -380,12 +493,12 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -403,7 +516,7 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -413,7 +526,7 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -423,7 +536,7 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -433,7 +546,7 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -445,24 +558,57 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetAllAWSAccountsOpts Optional parameters for the method 'GetAllAWSAccounts'
-type GetAllAWSAccountsOpts struct {
-	AccountId   optional.String
-	RoleName    optional.String
-	AccessKeyId optional.String
+type apiGetAllAWSAccountsRequest struct {
+	ctx         _context.Context
+	apiService  *AWSIntegrationApiService
+	accountId   *string
+	roleName    *string
+	accessKeyId *string
+}
+
+func (r apiGetAllAWSAccountsRequest) AccountId(accountId string) apiGetAllAWSAccountsRequest {
+	r.accountId = &accountId
+	return r
+}
+
+func (r apiGetAllAWSAccountsRequest) RoleName(roleName string) apiGetAllAWSAccountsRequest {
+	r.roleName = &roleName
+	return r
+}
+
+func (r apiGetAllAWSAccountsRequest) AccessKeyId(accessKeyId string) apiGetAllAWSAccountsRequest {
+	r.accessKeyId = &accessKeyId
+	return r
 }
 
 /*
 GetAllAWSAccounts Get Installed AWS Accounts
-### Overview Get All Installed AWS Accounts ### Arguments * **&#x60;account_id&#x60;** [*optional*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this account_id.  * **&#x60;role_name&#x60;** [*optional*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this role_name.  * **&#x60;access_key_id&#x60;** [*optional*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this access_key_id.
+### Overview
+Get All Installed AWS Accounts
+### Arguments
+* **`account_id`** [*optional*, *default* = **None**]: Only return AWS accounts that
+  matches this account_id.
+
+* **`role_name`** [*optional*, *default* = **None**]: Only return AWS accounts that
+  matches this role_name.
+
+* **`access_key_id`** [*optional*, *default* = **None**]: Only return AWS accounts that
+  matches this access_key_id.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetAllAWSAccountsOpts - Optional Parameters:
- * @param "AccountId" (optional.String) -  Only return AWS accounts that matches this account_id.
- * @param "RoleName" (optional.String) -  Only return AWS accounts that matches this role_name.
- * @param "AccessKeyId" (optional.String) -  Only return AWS accounts that matches this access_key_id.
-@return AwsAccountListResponse
+@return apiGetAllAWSAccountsRequest
 */
-func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, localVarOptionals *GetAllAWSAccountsOpts) (AwsAccountListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context) apiGetAllAWSAccountsRequest {
+	return apiGetAllAWSAccountsRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return AwsAccountListResponse
+*/
+func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -472,7 +618,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		localVarReturnValue  AwsAccountListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.GetAllAWSAccounts")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.GetAllAWSAccounts")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -483,14 +629,14 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.AccountId.IsSet() {
-		localVarQueryParams.Add("account_id", parameterToString(localVarOptionals.AccountId.Value(), ""))
+	if r.accountId != nil {
+		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.RoleName.IsSet() {
-		localVarQueryParams.Add("role_name", parameterToString(localVarOptionals.RoleName.Value(), ""))
+	if r.roleName != nil {
+		localVarQueryParams.Add("role_name", parameterToString(*r.roleName, ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.AccessKeyId.IsSet() {
-		localVarQueryParams.Add("access_key_id", parameterToString(localVarOptionals.AccessKeyId.Value(), ""))
+	if r.accessKeyId != nil {
+		localVarQueryParams.Add("access_key_id", parameterToString(*r.accessKeyId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -509,9 +655,9 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -523,9 +669,9 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -537,12 +683,12 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -560,7 +706,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v AwsAccountListResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -570,7 +716,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -580,7 +726,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -590,7 +736,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error404
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -600,7 +746,7 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -612,13 +758,30 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context, local
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiListAvailableAWSNamespacesRequest struct {
+	ctx        _context.Context
+	apiService *AWSIntegrationApiService
+}
+
 /*
 ListAvailableAWSNamespaces List available namespaces.
-### Overview List all namespace rules for a given Datadog-AWS integration.
+### Overview
+List all namespace rules for a given Datadog-AWS integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []string
+@return apiListAvailableAWSNamespacesRequest
 */
-func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Context) apiListAvailableAWSNamespacesRequest {
+	return apiListAvailableAWSNamespacesRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return []string
+*/
+func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -628,7 +791,7 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 		localVarReturnValue  []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.ListAvailableAWSNamespaces")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAvailableAWSNamespaces")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -656,9 +819,9 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -670,9 +833,9 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -684,12 +847,12 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -707,7 +870,7 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v []string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -717,7 +880,7 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -727,7 +890,7 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -737,7 +900,7 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -749,25 +912,89 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateAWSAccountOpts Optional parameters for the method 'UpdateAWSAccount'
-type UpdateAWSAccountOpts struct {
-	AccountId   optional.String
-	RoleName    optional.String
-	AccessKeyId optional.String
+type apiUpdateAWSAccountRequest struct {
+	ctx         _context.Context
+	apiService  *AWSIntegrationApiService
+	awsAccount  *AwsAccount
+	accountId   *string
+	roleName    *string
+	accessKeyId *string
+}
+
+func (r apiUpdateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiUpdateAWSAccountRequest {
+	r.awsAccount = &awsAccount
+	return r
+}
+
+func (r apiUpdateAWSAccountRequest) AccountId(accountId string) apiUpdateAWSAccountRequest {
+	r.accountId = &accountId
+	return r
+}
+
+func (r apiUpdateAWSAccountRequest) RoleName(roleName string) apiUpdateAWSAccountRequest {
+	r.roleName = &roleName
+	return r
+}
+
+func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWSAccountRequest {
+	r.accessKeyId = &accessKeyId
+	return r
 }
 
 /*
 UpdateAWSAccount Update an AWS Account
-### Overview Update the AWS Account based on the provided values ### Arguments * **&#x60;account_id&#x60;** [*required if role_name is specified*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this account_id.  * **&#x60;role_name&#x60;** [*required if account_id is specified*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this role_name.  * **&#x60;access_key_id&#x60;** [*required if none of the other two options are specified*, *default* &#x3D; **None**]: Only return AWS accounts that   matches this access_key_id.  ### Payload * **&#x60;account_id&#x60;** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS   integration to learn more about your AWS account ID.  * **&#x60;role_name&#x60;** [*required*]: Your Datadog role delegation name. For more information about you   AWS account Role name, see the Datadog AWS integration configuration info.  * **&#x60;access_key_id&#x60;** [*optional*, *default* &#x3D; **None**]: If your AWS account is a GovCloud or   China account, enter the corresponding Access Key ID.  * **&#x60;filter_tags&#x60;** [*optional*, *default* &#x3D; **None**]: The array of EC2 tags (in the form key:value)   defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?   (for single characters) and * (for multiple characters) can also be used. Only hosts that match one   of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given   tag can also be excluded by adding ! before the tag.   e.g. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,   see the AWS tagging documentation.  * **&#x60;host_tags&#x60;** [*optional*, *default* &#x3D; **None**]: Array of tags (in the form key:value) to add   to all hosts and metrics reporting through this integration.  * **&#x60;account_specific_namespace_rules&#x60;** [*optional*, *default* &#x3D; **None**]: An object (in the form   {\&quot;namespace1\&quot;:true/false, \&quot;namespace2\&quot;:true/false}) that enables or disables metric collection for   specific AWS namespaces for this AWS account only. A list of namespaces can be found at the   /v1/integration/aws/available_namespace_rules endpoint.
+### Overview
+Update the AWS Account based on the provided values
+### Arguments
+* **`account_id`** [*required if role_name is specified*, *default* = **None**]: Only return AWS accounts that
+  matches this account_id.
+
+* **`role_name`** [*required if account_id is specified*, *default* = **None**]: Only return AWS accounts that
+  matches this role_name.
+
+* **`access_key_id`** [*required if none of the other two options are specified*, *default* = **None**]: Only return AWS accounts that
+  matches this access_key_id.
+
+### Payload
+* **`account_id`** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS
+  integration to learn more about your AWS account ID.
+
+* **`role_name`** [*required*]: Your Datadog role delegation name. For more information about you
+  AWS account Role name, see the Datadog AWS integration configuration info.
+
+* **`access_key_id`** [*optional*, *default* = **None**]: If your AWS account is a GovCloud or
+  China account, enter the corresponding Access Key ID.
+
+* **`filter_tags`** [*optional*, *default* = **None**]: The array of EC2 tags (in the form key:value)
+  defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?
+  (for single characters) and * (for multiple characters) can also be used. Only hosts that match one
+  of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given
+  tag can also be excluded by adding ! before the tag.
+  e.g. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,
+  see the AWS tagging documentation.
+
+* **`host_tags`** [*optional*, *default* = **None**]: Array of tags (in the form key:value) to add
+  to all hosts and metrics reporting through this integration.
+
+* **`account_specific_namespace_rules`** [*optional*, *default* = **None**]: An object (in the form
+  {"namespace1":true/false, "namespace2":true/false}) that enables or disables metric collection for
+  specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
+  /v1/integration/aws/available_namespace_rules endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param awsAccount AWS request object
- * @param optional nil or *UpdateAWSAccountOpts - Optional Parameters:
- * @param "AccountId" (optional.String) -  Only return AWS accounts that matches this account_id.
- * @param "RoleName" (optional.String) -  Only return AWS accounts that matches this role_name. *It is required if account_id is specified.*
- * @param "AccessKeyId" (optional.String) -  Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.*
-@return interface{}
+@return apiUpdateAWSAccountRequest
 */
-func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAccount AwsAccount, localVarOptionals *UpdateAWSAccountOpts) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context) apiUpdateAWSAccountRequest {
+	return apiUpdateAWSAccountRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return interface{}
+*/
+func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -777,7 +1004,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AWSIntegrationApiService.UpdateAWSAccount")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.UpdateAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -788,14 +1015,18 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.AccountId.IsSet() {
-		localVarQueryParams.Add("account_id", parameterToString(localVarOptionals.AccountId.Value(), ""))
+	if r.awsAccount == nil {
+		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
 	}
-	if localVarOptionals != nil && localVarOptionals.RoleName.IsSet() {
-		localVarQueryParams.Add("role_name", parameterToString(localVarOptionals.RoleName.Value(), ""))
+
+	if r.accountId != nil {
+		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.AccessKeyId.IsSet() {
-		localVarQueryParams.Add("access_key_id", parameterToString(localVarOptionals.AccessKeyId.Value(), ""))
+	if r.roleName != nil {
+		localVarQueryParams.Add("role_name", parameterToString(*r.roleName, ""))
+	}
+	if r.accessKeyId != nil {
+		localVarQueryParams.Add("access_key_id", parameterToString(*r.accessKeyId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -815,10 +1046,10 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &awsAccount
-	if ctx != nil {
+	localVarPostBody = r.awsAccount
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -830,9 +1061,9 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -844,12 +1075,12 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -867,7 +1098,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -877,7 +1108,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -887,7 +1118,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -897,7 +1128,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, awsAcc
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,

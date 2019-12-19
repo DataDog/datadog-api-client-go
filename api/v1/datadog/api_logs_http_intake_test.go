@@ -19,7 +19,7 @@ func TestLogHTTPIntake(t *testing.T) {
 	}
 
 	// Create log entry
-	_, httpresp, err := TESTAPICLIENT.LogsHTTPIntakeApi.SendLog(TESTAUTH, httpLog)
+	_, httpresp, err := TESTAPICLIENT.LogsHTTPIntakeApi.SendLog(TESTAUTH).HttpLog(httpLog).Execute()
 	if err != nil {
 		t.Errorf("Error creating log: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

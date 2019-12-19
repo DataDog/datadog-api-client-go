@@ -19,31 +19,24 @@ Method | HTTP request | Description
 
 ## CreateAPIKey
 
-> ApiKeyResponse CreateAPIKey(ctx, optional)
+> ApiKeyResponse CreateAPIKey(ctx).ApiKey(apiKey).Execute()
 
 Create an API key with a given name.
 
-## Overview
-Creates an API key
-### ARGUMENTS
-* **`name`** [*required*]: Name of your API key.
-
-### Required Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CreateAPIKeyOpts** | optional parameters | nil if no parameters
+### Path Parameters
 
-### Optional Parameters
 
-Optional parameters are passed through a pointer to a CreateAPIKeyOpts struct
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAPIKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiKey** | [**optional.Interface of ApiKey**](ApiKey.md)|  | 
+ **apiKey** | [**ApiKey**](ApiKey.md) |  | 
 
 ### Return type
 
@@ -65,31 +58,24 @@ Name | Type | Description  | Notes
 
 ## CreateApplicationKey
 
-> ApplicationKeyResponse CreateApplicationKey(ctx, optional)
+> ApplicationKeyResponse CreateApplicationKey(ctx).ApplicationKey(applicationKey).Execute()
 
 Create an application key with a given name.
 
-## Overview
-Create an application key with a given name.
-### ARGUMENTS
-* **`name`** [*required*]: Name of your application key.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateApplicationKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CreateApplicationKeyOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CreateApplicationKeyOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationKey** | [**optional.Interface of ApplicationKey**](ApplicationKey.md)|  | 
+ **applicationKey** | [**ApplicationKey**](ApplicationKey.md) |  | 
 
 ### Return type
 
@@ -111,22 +97,28 @@ Name | Type | Description  | Notes
 
 ## DeleteAPIKey
 
-> ApiKeyResponse DeleteAPIKey(ctx, key)
+> ApiKeyResponse DeleteAPIKey(ctx, key).Execute()
 
 Delete a given API key.
 
-## Overview
-Delete a given API key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string**| The specific API key you are working with | 
+**key** | **string** | The specific API key you are working with | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAPIKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -148,22 +140,28 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationKey
 
-> ApplicationKeyResponse DeleteApplicationKey(ctx, key)
+> ApplicationKeyResponse DeleteApplicationKey(ctx, key).Execute()
 
 Delete a given application key.
 
-## Overview
-Delete a given application key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string**| The specific APP key you are working with | 
+**key** | **string** | The specific APP key you are working with | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteApplicationKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -185,33 +183,29 @@ Name | Type | Description  | Notes
 
 ## EditAPIKey
 
-> ApiKeyResponse EditAPIKey(ctx, key, optional)
+> ApiKeyResponse EditAPIKey(ctx, key).ApiKey(apiKey).Execute()
 
 Edit an API key name.
 
-## Overview
-Edit an API key name.
-### ARGUMENTS
-* **`name`** [*required*]: Name of your API key.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string**| The specific API key you are working with | 
- **optional** | ***EditAPIKeyOpts** | optional parameters | nil if no parameters
+**key** | **string** | The specific API key you are working with | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a EditAPIKeyOpts struct
+Other parameters are passed through a pointer to a apiEditAPIKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiKey** | [**optional.Interface of ApiKey**](ApiKey.md)|  | 
+ **apiKey** | [**ApiKey**](ApiKey.md) |  | 
 
 ### Return type
 
@@ -233,33 +227,29 @@ Name | Type | Description  | Notes
 
 ## EditApplicationKey
 
-> ApplicationKeyResponse EditApplicationKey(ctx, key, optional)
+> ApplicationKeyResponse EditApplicationKey(ctx, key).ApplicationKey(applicationKey).Execute()
 
 Edit an application key name.
 
-## Overview
-Edit an application key name.
-### ARGUMENTS
-* **`name`** [*required*]: Name of your application key.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string**| The specific APP key you are working with | 
- **optional** | ***EditApplicationKeyOpts** | optional parameters | nil if no parameters
+**key** | **string** | The specific APP key you are working with | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a EditApplicationKeyOpts struct
+Other parameters are passed through a pointer to a apiEditApplicationKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **applicationKey** | [**optional.Interface of ApplicationKey**](ApplicationKey.md)|  | 
+ **applicationKey** | [**ApplicationKey**](ApplicationKey.md) |  | 
 
 ### Return type
 
@@ -281,22 +271,28 @@ Name | Type | Description  | Notes
 
 ## GetAPIKey
 
-> ApiKeyResponse GetAPIKey(ctx, key)
+> ApiKeyResponse GetAPIKey(ctx, key).Execute()
 
 Get a given API key.
 
-## Overview
-Get a given API key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string**| The specific API key you are working with | 
+**key** | **string** | The specific API key you are working with | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAPIKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -318,18 +314,20 @@ Name | Type | Description  | Notes
 
 ## GetAllAPIKeys
 
-> ApiKeyListResponse GetAllAPIKeys(ctx, )
+> ApiKeyListResponse GetAllAPIKeys(ctx).Execute()
 
 Get all API keys available for your account.
 
-## Overview
-Get all API keys available for your account.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllAPIKeysRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -351,18 +349,20 @@ This endpoint does not need any parameter.
 
 ## GetAllApplicationKeys
 
-> ApplicationKeyListResponse GetAllApplicationKeys(ctx, )
+> ApplicationKeyListResponse GetAllApplicationKeys(ctx).Execute()
 
 Get all application keys available for your account.
 
-## Overview
-Get all application keys available for your account.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllApplicationKeysRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -384,22 +384,28 @@ This endpoint does not need any parameter.
 
 ## GetApplicationKey
 
-> ApplicationKeyResponse GetApplicationKey(ctx, key)
+> ApplicationKeyResponse GetApplicationKey(ctx, key).Execute()
 
 Get a given application key.
 
-## Overview
-Get a given application key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string**| The specific APP key you are working with | 
+**key** | **string** | The specific APP key you are working with | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetApplicationKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 

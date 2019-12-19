@@ -14,22 +14,24 @@ Method | HTTP request | Description
 
 ## CreateDashboardList
 
-> DashboardList CreateDashboardList(ctx, dashboardList)
+> DashboardList CreateDashboardList(ctx).DashboardList(dashboardList).Execute()
 
 Create a dashboard list
 
-### Overview
-Create an empty dashboard list.
-### Arguments
-* **name** [*required*]: The name of the dashboard list.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDashboardListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardList** | [**DashboardList**](DashboardList.md)| DashboardList request object | 
+ **dashboardList** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
 
 ### Return type
 
@@ -51,22 +53,28 @@ Name | Type | Description  | Notes
 
 ## DeleteDashboardList
 
-> DashboardListDeleteResponse DeleteDashboardList(ctx, listId)
+> DashboardListDeleteResponse DeleteDashboardList(ctx, listId).Execute()
 
 Delete a dashboard list
 
-### Overview
-Delete a dashboard list.
-### Arguments
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64**| ID of the dashboard list to delete | 
+**listId** | **int64** | ID of the dashboard list to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteDashboardListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -88,18 +96,20 @@ Name | Type | Description  | Notes
 
 ## GetAllDashboardLists
 
-> DashboardListListResponse GetAllDashboardLists(ctx, )
+> DashboardListListResponse GetAllDashboardLists(ctx).Execute()
 
 Get all dashboard lists
 
-### Overview
-Fetch all of your existing dashboard list definitions.
-### Arguments
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllDashboardListsRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -121,22 +131,28 @@ This endpoint does not need any parameter.
 
 ## GetDashboardList
 
-> DashboardList GetDashboardList(ctx, listId)
+> DashboardList GetDashboardList(ctx, listId).Execute()
 
 Get a dashboard list
 
-### Overview
-Fetch an existing dashboard list's definition.
-### Arguments
-This endpoint takes no JSON arguments.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64**| ID of the dashboard list to fetch | 
+**listId** | **int64** | ID of the dashboard list to fetch | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDashboardListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -158,23 +174,29 @@ Name | Type | Description  | Notes
 
 ## UpdateDashboardList
 
-> DashboardList UpdateDashboardList(ctx, listId, dashboardList)
+> DashboardList UpdateDashboardList(ctx, listId).DashboardList(dashboardList).Execute()
 
 Update a dashboard list
 
-### Overview
-Update the name of a dashboard list.
-### Arguments
-* **name** [*required*]: The name of the dashboard list.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64**| ID of the dashboard list to update | 
-**dashboardList** | [**DashboardList**](DashboardList.md)| DashboardList request object | 
+**listId** | **int64** | ID of the dashboard list to update | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateDashboardListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dashboardList** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
 
 ### Return type
 
