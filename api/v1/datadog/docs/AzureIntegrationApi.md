@@ -14,24 +14,24 @@ Method | HTTP request | Description
 
 ## AzureUpdateHostFilters
 
-> interface{} AzureUpdateHostFilters(ctx, azureAccount)
+> interface{} AzureUpdateHostFilters(ctx).AzureAccount(azureAccount).Execute()
 
 Update the defined list of host filters for a given Datadog-Azure integration.
 
-### Overview
-Update the defined list of host filters for a given Datadog-Azure integration.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
-* **`host_filters`** [*required*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAzureUpdateHostFiltersRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**azureAccount** | [**AzureAccount**](AzureAccount.md)| Update a Datadog-Azure integrations host filters. | 
+ **azureAccount** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integrations host filters. | 
 
 ### Return type
 
@@ -53,25 +53,24 @@ Name | Type | Description  | Notes
 
 ## CreateAzureIntegration
 
-> interface{} CreateAzureIntegration(ctx, azureAccount)
+> interface{} CreateAzureIntegration(ctx).AzureAccount(azureAccount).Execute()
 
 Add a Azure integration to your Datadog account.
 
-### Overview
-Create a Datadog-Azure integration.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
-* **`client_secret`** [*required*, *default* = **None**]: Your Azure web application secret key.
-* **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAzureIntegrationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**azureAccount** | [**AzureAccount**](AzureAccount.md)| Create a Datadog-Azure integration. | 
+ **azureAccount** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration. | 
 
 ### Return type
 
@@ -93,23 +92,24 @@ Name | Type | Description  | Notes
 
 ## DeleteAzureIntegration
 
-> interface{} DeleteAzureIntegration(ctx, azureAccount)
+> interface{} DeleteAzureIntegration(ctx).AzureAccount(azureAccount).Execute()
 
 Delete an Azure Integration from your Datadog account.
 
-### Overview
-Delete a given Datadog-Azure integration.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAzureIntegrationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**azureAccount** | [**AzureAccount**](AzureAccount.md)| Delete a given Datadog-Azure integration. | 
+ **azureAccount** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration. | 
 
 ### Return type
 
@@ -131,16 +131,20 @@ Name | Type | Description  | Notes
 
 ## ListAzureIntegration
 
-> []AzureAccount ListAzureIntegration(ctx, )
+> []AzureAccount ListAzureIntegration(ctx).Execute()
 
 List configured Azure integrations.
 
-### Overview
-List all Datadog-Azure integrations configured in your Datadog account.
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAzureIntegrationRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -162,27 +166,24 @@ This endpoint does not need any parameter.
 
 ## UpdateAzureIntegration
 
-> interface{} UpdateAzureIntegration(ctx, azureAccount)
+> interface{} UpdateAzureIntegration(ctx).AzureAccount(azureAccount).Execute()
 
 Update an Azure integration to your Datadog account.
 
-### Overview
-Update an Datadog-Azure integration. Requires an existing tenant_name and client_id. Any other fields supplied will overwrite existing values. To overwrite tenant_name or client_id, use new_tenant_name and new_client_id. To leave a field unchanged, do not supply that field in the payload.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your existing Azure Active Directory ID.
-* **`new_tenant_name`** [*optional*, *default* = **None**]: Your new Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your existing Azure web application ID.
-* **`new_client_id`** [*optional*, *default* = **None**]: Your new Azure web application ID.
-* **`client_secret`** [*optional*, *default* = **None**]: Your Azure web application secret key.
-* **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAzureIntegrationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**azureAccount** | [**AzureAccount**](AzureAccount.md)| Update a Datadog-Azure integration. | 
+ **azureAccount** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration. | 
 
 ### Return type
 

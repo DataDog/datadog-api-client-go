@@ -13,26 +13,24 @@ Method | HTTP request | Description
 
 ## CreateChildOrg
 
-> OrgCreateResponse CreateChildOrg(ctx, orgCreateBody)
+> OrgCreateResponse CreateChildOrg(ctx).OrgCreateBody(orgCreateBody).Execute()
 
 Create child-organization.
 
-## Overview
-This endpoint requires the [multi-org account](https://docs.datadoghq.com/account_management/multi_organization/) feature and must be enabled by [contacting support](https://docs.datadoghq.com/help/).
-### ARGUMENTS
-* **`name`** [*required*]: The name of the new child-organization, limited to 32 characters.
-* **`subscription`** [*required*]: A JSON array of subscription type. Types available are **trial**, **free**, and **pro**.
-* **`billing`** [*required*]: A JSON array of billing type. Note that only **parent_billing** is supported.
 
-Once a new child-organization is created, you can interact with it by using the **org.public_id**, **api_key.key**, and **application_key.hash** provided in the response.
 
-### Required Parameters
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateChildOrgRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgCreateBody** | [**OrgCreateBody**](OrgCreateBody.md)| Org object that needs to be created | 
+ **orgCreateBody** | [**OrgCreateBody**](OrgCreateBody.md) | Org object that needs to be created | 
 
 ### Return type
 
@@ -54,16 +52,20 @@ Name | Type | Description  | Notes
 
 ## GetOrg
 
-> OrgListResponse GetOrg(ctx, )
+> OrgListResponse GetOrg(ctx).Execute()
 
 Get the organization
 
-## Overview
-Gets information about your organization
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrgRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -85,43 +87,29 @@ This endpoint does not need any parameter.
 
 ## UpdateOrg
 
-> OrgResponse UpdateOrg(ctx, publicId, optional)
+> OrgResponse UpdateOrg(ctx, publicId).Org(org).Execute()
 
 Update the organization
 
-## Overview
-Updates the organization
-### ARGUMENTS
-* **`name`** [*optional*]: The organization name.
 
-* **`settings`** [*optional*]: A JSON array of settings. Settings include:
 
-  * **`saml`**: Set the boolean property **enabled** to enable or disable single sign on with SAML. See the [SAML documentation](https://docs.datadoghq.com/account_management/saml) for more information about all SAML settings.
-
-  * **`saml_idp_initiated_login`**: has one property **enabled** (boolean).
-
-  * **`saml_strict_mode`**: has one property **enabled** (boolean).
-
-  * **`saml_autocreate_users_domains`**: has two properties: **enabled** (boolean) and **domains** which is a list of domains without the @ symbol.
-
-### Required Parameters
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string**| The public_id of the org you are operating with | 
- **optional** | ***UpdateOrgOpts** | optional parameters | nil if no parameters
+**publicId** | **string** | The public_id of the org you are operating with | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateOrgOpts struct
+Other parameters are passed through a pointer to a apiUpdateOrgRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **org** | [**optional.Interface of Org**](Org.md)|  | 
+ **org** | [**Org**](Org.md) |  | 
 
 ### Return type
 
@@ -143,33 +131,29 @@ Name | Type | Description  | Notes
 
 ## UploadIdPForOrg
 
-> IdpResponse UploadIdPForOrg(ctx, publicId, idpFile)
+> IdpResponse UploadIdPForOrg(ctx, publicId).IdpFile(idpFile).Execute()
 
 Upload IdP metadata
 
-## Overview
-There are a couple of options for updating the Identity Provider (IdP) metadata from your SAML IdP.
-* **Multipart Form-Data**: Post the IdP metadata file using a form post.
-### Multipart Form-Data
-#### Headers
-* **`Content-Type: multipart/form-data`**
-#### Arguments
-* **`public_id`** [*required*]: The public id of the org you want to update metadata for.
-### MultiPart Form Data Body
-* The encoded data for the IDP settings to upload
-#### Headers
-* **`Content-Type: multipart/form-data`**
-#### Arguments
-* The body must contain the contents of your IdP metadata XML file.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string**| The public_id of the org you are operating with | 
-**idpFile** | ***os.File*****os.File**| The path to the XML metadata file you wish to upload. | 
+**publicId** | **string** | The public_id of the org you are operating with | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUploadIdPForOrgRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **idpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
 
 ### Return type
 

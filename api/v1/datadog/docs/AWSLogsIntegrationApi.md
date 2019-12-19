@@ -16,27 +16,24 @@ Method | HTTP request | Description
 
 ## AWSLogsCheckLambdaAsync
 
-> AwsLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx, awsAccountAndLambdaInput)
+> AwsLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx).AwsAccountAndLambdaInput(awsAccountAndLambdaInput).Execute()
 
 Check function to see if a lambda_arn exists within an account.
 
-### Overview
-Check function to see if a lambda_arn exists within an account. This sends a job on our side if it does not exist, then immediately returns the status of that job. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
-- Returns a status of 'created' when it's checking if the Lambda exists in the account.
-- Returns a status of 'waiting' while checking.
-- Returns a status of 'checked and ok' if the Lambda exists.
-- Returns a status of 'error' if the Lambda does not exist.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Lambda to be checked.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAWSLogsCheckLambdaAsyncRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**awsAccountAndLambdaInput** | [**AwsAccountAndLambdaInput**](AwsAccountAndLambdaInput.md)| Check AWS Log Lambda Async request body. | 
+ **awsAccountAndLambdaInput** | [**AwsAccountAndLambdaInput**](AwsAccountAndLambdaInput.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -58,27 +55,24 @@ Name | Type | Description  | Notes
 
 ## AWSLogsCheckServicesAsync
 
-> AwsLogsAsyncResponse AWSLogsCheckServicesAsync(ctx, awsLogsServicesInput)
+> AwsLogsAsyncResponse AWSLogsCheckServicesAsync(ctx).AwsLogsServicesInput(awsLogsServicesInput).Execute()
 
 Asynchronous check for permissions for AWS log lambda config.
 
-### Overview
-Test if permissions are present to add log-forwarding triggers for the given services + AWS account. Input is the same as for EnableAWSLogServices. Done async, so can be repeatedly polled in a non-blocking fashion until the async request completes
-- Returns a status of 'created' when it's checking if the permissions exists in the AWS account.
-- Returns a status of 'waiting' while checking.
-- Returns a status of 'checked and ok' if the Lambda exists.
-- Returns a status of 'error' if the Lambda does not exist.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`services`** [*required*, *default* = **None**]: Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAWSLogsCheckServicesAsyncRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**awsLogsServicesInput** | [**AwsLogsServicesInput**](AwsLogsServicesInput.md)| AWS Logs Async Services check request body | 
+ **awsLogsServicesInput** | [**AwsLogsServicesInput**](AwsLogsServicesInput.md) | AWS Logs Async Services check request body | 
 
 ### Return type
 
@@ -100,16 +94,20 @@ Name | Type | Description  | Notes
 
 ## AWSLogsList
 
-> []AwsLogsListOutput AWSLogsList(ctx, )
+> []AwsLogsListOutput AWSLogsList(ctx).Execute()
 
 List configured AWS log integrations.
 
-### Overview
-List all Datadog-AWS Logs integrations configured in your Datadog account.
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAWSLogsListRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -131,16 +129,20 @@ This endpoint does not need any parameter.
 
 ## AWSLogsServicesList
 
-> []AwsLogsListServicesOutput AWSLogsServicesList(ctx, )
+> []AwsLogsListServicesOutput AWSLogsServicesList(ctx).Execute()
 
 Get list of AWS log ready services.
 
-### Overview
-Get the list of current AWS services that Datadog offers automatic log collection.  Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAWSLogsServicesListRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -162,23 +164,24 @@ This endpoint does not need any parameter.
 
 ## AddAWSLambdaARN
 
-> interface{} AddAWSLambdaARN(ctx, awsAccountAndLambdaInput)
+> interface{} AddAWSLambdaARN(ctx).AwsAccountAndLambdaInput(awsAccountAndLambdaInput).Execute()
 
 Add a AWS Lambda ARN to your Datadog account.
 
-### Overview
-Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddAWSLambdaARNRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**awsAccountAndLambdaInput** | [**AwsAccountAndLambdaInput**](AwsAccountAndLambdaInput.md)| Check AWS Log Lambda Async request body. | 
+ **awsAccountAndLambdaInput** | [**AwsAccountAndLambdaInput**](AwsAccountAndLambdaInput.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -200,23 +203,24 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSLambdaARN
 
-> interface{} DeleteAWSLambdaARN(ctx, awsAccountAndLambdaInput)
+> interface{} DeleteAWSLambdaARN(ctx).AwsAccountAndLambdaInput(awsAccountAndLambdaInput).Execute()
 
 Delete a AWS Lambda ARN from your Datadog account.
 
-### Overview
-Delete a Lambda ARN of a Lambda created for the Datadog-AWS log collection in your Datadog account.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Lambda to be deleted.
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAWSLambdaARNRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**awsAccountAndLambdaInput** | [**AwsAccountAndLambdaInput**](AwsAccountAndLambdaInput.md)| Check AWS Log Lambda Async request body. | 
+ **awsAccountAndLambdaInput** | [**AwsAccountAndLambdaInput**](AwsAccountAndLambdaInput.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -238,23 +242,24 @@ Name | Type | Description  | Notes
 
 ## EnableAWSLogServices
 
-> interface{} EnableAWSLogServices(ctx, awsLogsServicesInput)
+> interface{} EnableAWSLogServices(ctx).AwsLogsServicesInput(awsLogsServicesInput).Execute()
 
 Enable Automatic Log collection for your AWS services.
 
-### Overview
-Enable automatic log collection for a list of services. This should be run after running 'AddAWSLambdaARN' to save the config.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`services`** [*required*, *default* = **None**]: Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
 
-### Required Parameters
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnableAWSLogServicesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**awsLogsServicesInput** | [**AwsLogsServicesInput**](AwsLogsServicesInput.md)| Enable AWS Log Services request object | 
+ **awsLogsServicesInput** | [**AwsLogsServicesInput**](AwsLogsServicesInput.md) | Enable AWS Log Services request object | 
 
 ### Return type
 
