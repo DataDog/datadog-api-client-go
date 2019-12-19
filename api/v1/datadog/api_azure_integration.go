@@ -23,14 +23,40 @@ var (
 // AzureIntegrationApiService AzureIntegrationApi service
 type AzureIntegrationApiService service
 
+type apiAzureUpdateHostFiltersRequest struct {
+	ctx          _context.Context
+	apiService   *AzureIntegrationApiService
+	azureAccount *AzureAccount
+}
+
+func (r apiAzureUpdateHostFiltersRequest) AzureAccount(azureAccount AzureAccount) apiAzureUpdateHostFiltersRequest {
+	r.azureAccount = &azureAccount
+	return r
+}
+
 /*
 AzureUpdateHostFilters Update the defined list of host filters for a given Datadog-Azure integration.
-### Overview Update the defined list of host filters for a given Datadog-Azure integration. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application ID. * **&#x60;host_filters&#x60;** [*required*, *default* &#x3D; **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+### Overview
+Update the defined list of host filters for a given Datadog-Azure integration.
+### Arguments
+* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
+* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
+* **`host_filters`** [*required*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param azureAccount Update a Datadog-Azure integrations host filters.
-@return interface{}
+@return apiAzureUpdateHostFiltersRequest
 */
-func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context) apiAzureUpdateHostFiltersRequest {
+	return apiAzureUpdateHostFiltersRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return interface{}
+*/
+func (r apiAzureUpdateHostFiltersRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -40,7 +66,7 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.AzureUpdateHostFilters")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.AzureUpdateHostFilters")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -51,6 +77,10 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.azureAccount == nil {
+		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -69,10 +99,10 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &azureAccount
-	if ctx != nil {
+	localVarPostBody = r.azureAccount
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -84,9 +114,9 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -98,12 +128,12 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -121,7 +151,7 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -131,7 +161,7 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -141,7 +171,7 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -151,7 +181,7 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -163,14 +193,41 @@ func (a *AzureIntegrationApiService) AzureUpdateHostFilters(ctx _context.Context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiCreateAzureIntegrationRequest struct {
+	ctx          _context.Context
+	apiService   *AzureIntegrationApiService
+	azureAccount *AzureAccount
+}
+
+func (r apiCreateAzureIntegrationRequest) AzureAccount(azureAccount AzureAccount) apiCreateAzureIntegrationRequest {
+	r.azureAccount = &azureAccount
+	return r
+}
+
 /*
 CreateAzureIntegration Add a Azure integration to your Datadog account.
-### Overview Create a Datadog-Azure integration. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application ID. * **&#x60;client_secret&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application secret key. * **&#x60;host_filters&#x60;** [*optional*, *default* &#x3D; **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+### Overview
+Create a Datadog-Azure integration.
+### Arguments
+* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
+* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
+* **`client_secret`** [*required*, *default* = **None**]: Your Azure web application secret key.
+* **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param azureAccount Create a Datadog-Azure integration.
-@return interface{}
+@return apiCreateAzureIntegrationRequest
 */
-func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context) apiCreateAzureIntegrationRequest {
+	return apiCreateAzureIntegrationRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return interface{}
+*/
+func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -180,7 +237,7 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.CreateAzureIntegration")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.CreateAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -190,6 +247,10 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+
+	if r.azureAccount == nil {
+		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -209,10 +270,10 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &azureAccount
-	if ctx != nil {
+	localVarPostBody = r.azureAccount
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -224,9 +285,9 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -238,12 +299,12 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -261,7 +322,7 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -271,7 +332,7 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -281,7 +342,7 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -291,7 +352,7 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -303,14 +364,39 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiDeleteAzureIntegrationRequest struct {
+	ctx          _context.Context
+	apiService   *AzureIntegrationApiService
+	azureAccount *AzureAccount
+}
+
+func (r apiDeleteAzureIntegrationRequest) AzureAccount(azureAccount AzureAccount) apiDeleteAzureIntegrationRequest {
+	r.azureAccount = &azureAccount
+	return r
+}
+
 /*
 DeleteAzureIntegration Delete an Azure Integration from your Datadog account.
-### Overview Delete a given Datadog-Azure integration. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your Azure web application ID.
+### Overview
+Delete a given Datadog-Azure integration.
+### Arguments
+* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
+* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param azureAccount Delete a given Datadog-Azure integration.
-@return interface{}
+@return apiDeleteAzureIntegrationRequest
 */
-func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context) apiDeleteAzureIntegrationRequest {
+	return apiDeleteAzureIntegrationRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return interface{}
+*/
+func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -320,7 +406,7 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.DeleteAzureIntegration")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.DeleteAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -330,6 +416,10 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+
+	if r.azureAccount == nil {
+		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -349,10 +439,10 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &azureAccount
-	if ctx != nil {
+	localVarPostBody = r.azureAccount
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -364,9 +454,9 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -378,12 +468,12 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -401,7 +491,7 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -411,7 +501,7 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -421,7 +511,7 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -431,7 +521,7 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -443,13 +533,30 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiListAzureIntegrationRequest struct {
+	ctx        _context.Context
+	apiService *AzureIntegrationApiService
+}
+
 /*
 ListAzureIntegration List configured Azure integrations.
-### Overview List all Datadog-Azure integrations configured in your Datadog account.
+### Overview
+List all Datadog-Azure integrations configured in your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []AzureAccount
+@return apiListAzureIntegrationRequest
 */
-func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) apiListAzureIntegrationRequest {
+	return apiListAzureIntegrationRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return []AzureAccount
+*/
+func (r apiListAzureIntegrationRequest) Execute() ([]AzureAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -459,7 +566,7 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 		localVarReturnValue  []AzureAccount
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.ListAzureIntegration")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.ListAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -487,9 +594,9 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -501,9 +608,9 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -515,12 +622,12 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -538,7 +645,7 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v []AzureAccount
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -548,7 +655,7 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -558,7 +665,7 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -568,7 +675,7 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
@@ -580,14 +687,43 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiUpdateAzureIntegrationRequest struct {
+	ctx          _context.Context
+	apiService   *AzureIntegrationApiService
+	azureAccount *AzureAccount
+}
+
+func (r apiUpdateAzureIntegrationRequest) AzureAccount(azureAccount AzureAccount) apiUpdateAzureIntegrationRequest {
+	r.azureAccount = &azureAccount
+	return r
+}
+
 /*
 UpdateAzureIntegration Update an Azure integration to your Datadog account.
-### Overview Update an Datadog-Azure integration. Requires an existing tenant_name and client_id. Any other fields supplied will overwrite existing values. To overwrite tenant_name or client_id, use new_tenant_name and new_client_id. To leave a field unchanged, do not supply that field in the payload. ### Arguments * **&#x60;tenant_name&#x60;** [*required*, *default* &#x3D; **None**]: Your existing Azure Active Directory ID. * **&#x60;new_tenant_name&#x60;** [*optional*, *default* &#x3D; **None**]: Your new Azure Active Directory ID. * **&#x60;client_id&#x60;** [*required*, *default* &#x3D; **None**]: Your existing Azure web application ID. * **&#x60;new_client_id&#x60;** [*optional*, *default* &#x3D; **None**]: Your new Azure web application ID. * **&#x60;client_secret&#x60;** [*optional*, *default* &#x3D; **None**]: Your Azure web application secret key. * **&#x60;host_filters&#x60;** [*optional*, *default* &#x3D; **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+### Overview
+Update an Datadog-Azure integration. Requires an existing tenant_name and client_id. Any other fields supplied will overwrite existing values. To overwrite tenant_name or client_id, use new_tenant_name and new_client_id. To leave a field unchanged, do not supply that field in the payload.
+### Arguments
+* **`tenant_name`** [*required*, *default* = **None**]: Your existing Azure Active Directory ID.
+* **`new_tenant_name`** [*optional*, *default* = **None**]: Your new Azure Active Directory ID.
+* **`client_id`** [*required*, *default* = **None**]: Your existing Azure web application ID.
+* **`new_client_id`** [*optional*, *default* = **None**]: Your new Azure web application ID.
+* **`client_secret`** [*optional*, *default* = **None**]: Your Azure web application secret key.
+* **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param azureAccount Update a Datadog-Azure integration.
-@return interface{}
+@return apiUpdateAzureIntegrationRequest
 */
-func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context, azureAccount AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context) apiUpdateAzureIntegrationRequest {
+	return apiUpdateAzureIntegrationRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return interface{}
+*/
+func (r apiUpdateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -597,7 +733,7 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "AzureIntegrationApiService.UpdateAzureIntegration")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -607,6 +743,10 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+
+	if r.azureAccount == nil {
+		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -626,10 +766,10 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &azureAccount
-	if ctx != nil {
+	localVarPostBody = r.azureAccount
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["api_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -641,9 +781,9 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 			}
 		}
 	}
-	if ctx != nil {
+	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
 			if auth, ok := auth["application_key"]; ok {
 				var key string
 				if auth.Prefix != "" {
@@ -655,12 +795,12 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 			}
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(r)
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -678,7 +818,7 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -688,7 +828,7 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error400
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -698,7 +838,7 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error403
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -708,7 +848,7 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,

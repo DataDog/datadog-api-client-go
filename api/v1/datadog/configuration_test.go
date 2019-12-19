@@ -12,16 +12,16 @@ func TestConfigurationServers(t *testing.T) {
 	configuration := datadog.NewConfiguration()
 
 	testCases := []struct {
-		Url       string
+		URL       string
 		Variables map[string]string
 	}{{
-		Url:       "https://api.datadoghq.com",
+		URL:       "https://api.datadoghq.com",
 		Variables: nil,
 	}, {
-		Url:       "https://api.datadoghq.eu",
+		URL:       "https://api.datadoghq.eu",
 		Variables: map[string]string{"site": "datadoghq.eu"},
 	}, {
-		Url: "https://http-intake.logs.datadoghq.eu",
+		URL: "https://http-intake.logs.datadoghq.eu",
 		Variables: map[string]string{
 			"subdomain": "http-intake.logs",
 			"site":      "datadoghq.eu",
@@ -30,12 +30,12 @@ func TestConfigurationServers(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		t.Run(tc.Url, func(t *testing.T) {
+		t.Run(tc.URL, func(t *testing.T) {
 			url, err := configuration.ServerURL(0, tc.Variables)
 			if err != nil {
 				t.Errorf("Could not format URL: %v", err)
 			}
-			assert.Equal(t, url, tc.Url)
+			assert.Equal(t, url, tc.URL)
 		})
 	}
 }

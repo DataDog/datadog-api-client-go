@@ -14,33 +14,24 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> UserResponse CreateUser(ctx, user)
+> UserResponse CreateUser(ctx).User(user).Execute()
 
 Create user
 
-### Overview
-Create a user for your organization.
-### Arguments
-* **`handle`** [*required*]: The user handle, must be a valid email.
-* **`name`** [*optional*, *default*=**None**]: The name of the user.
-* **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
 
-  *  **st** (standard user),
 
-  *  **adm** (admin user),
+### Path Parameters
 
-  *  **ro** (read-only user).
 
-  **Note**: users can be created with admin access role
-     only with application keys belonging to administrators.
 
-### Required Parameters
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateUserRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**user** | [**User**](User.md)| User object that needs to be created | 
+ **user** | [**User**](User.md) | User object that needs to be created | 
 
 ### Return type
 
@@ -62,24 +53,28 @@ Name | Type | Description  | Notes
 
 ## DisableUser
 
-> UserDisableResponse DisableUser(ctx, userHandle)
+> UserDisableResponse DisableUser(ctx, userHandle).Execute()
 
 Disable user
 
-### Overview
-Delete a user from an organization.
 
-**Note**: This endpoint can only be used with application keys belonging to administrators.
-### Arguments
-* **`id`** [*required*]: The handle of the user.
 
-### Required Parameters
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | [**string**](.md)| The handle of the user | 
+**userHandle** | [**string**](.md) | The handle of the user | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDisableUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -101,18 +96,20 @@ Name | Type | Description  | Notes
 
 ## GetAllUsers
 
-> UserListResponse GetAllUsers(ctx, )
+> UserListResponse GetAllUsers(ctx).Execute()
 
 Get all users
 
-### Overview
-Get all users for your organization.
-### Arguments
-This endpoint takes no JSON argument.
 
-### Required Parameters
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllUsersRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -134,22 +131,28 @@ This endpoint does not need any parameter.
 
 ## GetUser
 
-> UserResponse GetUser(ctx, userHandle)
+> UserResponse GetUser(ctx, userHandle).Execute()
 
 Get user
 
-### Overview
-Get a user details.
-### Arguments
-* **`user_handle`** [*required*]: The handle of the user.
 
-### Required Parameters
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | [**string**](.md)| The id of the user | 
+**userHandle** | [**string**](.md) | The id of the user | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -171,35 +174,29 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> UserResponse UpdateUser(ctx, userHandle, user)
+> UserResponse UpdateUser(ctx, userHandle).User(user).Execute()
 
 Update user
 
-### Overview
-Update a user informations.
 
-**Note**: It can only be used with application keys belonging to administrators.
-### Arguments
-* **`id`** [*required*]: The handle of the user.
-* **`name`** [*optional*, *default*=**None**]: The new name of the user.
-* **`email`** [*optional*, *default*=**None**]: The new email of the user.
-* **`disabled`** [*optional*, *default*=**None**]: The new disabled status of the user.
-* **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
 
-  *  **st** (standard user)
-
-  *  **adm** (admin user)
-
-  *  **ro** (read-only user)
-
-### Required Parameters
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | [**string**](.md)| The id of the user | 
-**user** | [**User**](User.md)| Description of the update | 
+**userHandle** | [**string**](.md) | The id of the user | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **user** | [**User**](User.md) | Description of the update | 
 
 ### Return type
 

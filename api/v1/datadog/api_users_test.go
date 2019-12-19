@@ -39,9 +39,9 @@ func TestCreateUser(t *testing.T) {
 	defer disableUser(testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH, testUser)
+	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).User(testUser).Execute()
 	if err != nil {
-		t.Errorf("Error Creating User: %v", err)
+		t.Fatalf("Error creating User %s: Response %s: %v", testUser.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -52,9 +52,9 @@ func TestCreateUser(t *testing.T) {
 	assert.Equal(t, user.GetEmail(), testUser.GetEmail())
 
 	// Assert User Get with proper fields
-	userGetResponse, httpresp, err := TESTAPICLIENT.UsersApi.GetUser(TESTAUTH, testUser.GetEmail())
+	userGetResponse, httpresp, err := TESTAPICLIENT.UsersApi.GetUser(TESTAUTH, testUser.GetEmail()).Execute()
 	if err != nil {
-		t.Errorf("Error Getting User %s: Response %s: %v", testUser.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error Getting User %s: Response %s: %v", testUser.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -74,17 +74,17 @@ func TestUpdateUser(t *testing.T) {
 	defer disableUser(testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH, testUser)
+	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).User(testUser).Execute()
 	if err != nil {
-		t.Errorf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	userCreateResponse.GetUser()
 
 	// Assert User Get with proper fields
-	userUpdateResponse, httpresp, err := TESTAPICLIENT.UsersApi.UpdateUser(TESTAUTH, testUser.GetHandle(), UPDATEUSER)
+	userUpdateResponse, httpresp, err := TESTAPICLIENT.UsersApi.UpdateUser(TESTAUTH, testUser.GetHandle()).User(UPDATEUSER).Execute()
 	if err != nil {
-		t.Errorf("Error getting User %s: Response %s: %v", testUser.GetHandle(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error getting User %s: Response %s: %v", testUser.GetHandle(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -103,21 +103,21 @@ func TestDisableUser(t *testing.T) {
 	defer disableUser(testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	_, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH, testUser)
+	_, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).User(testUser).Execute()
 	if err != nil {
-		t.Errorf("Error Creating User: %v", err)
+		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	_, httpresp, err = TESTAPICLIENT.UsersApi.DisableUser(TESTAUTH, testUser.GetHandle())
+	_, httpresp, err = TESTAPICLIENT.UsersApi.DisableUser(TESTAUTH, testUser.GetHandle()).Execute()
 	if err != nil {
-		t.Errorf("Error disabling User %s: Response %s: %v", testUser.GetHandle(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error disabling User %s: Response %s: %v", testUser.GetHandle(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func disableUser(userID string) {
-	_, httpresp, err := TESTAPICLIENT.UsersApi.DisableUser(TESTAUTH, userID)
+	_, httpresp, err := TESTAPICLIENT.UsersApi.DisableUser(TESTAUTH, userID).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Error disabling User: %v, Another test may have already disabled this user.", userID)
 	}
