@@ -107,14 +107,14 @@ func TestUpdateGcpAccount(t *testing.T) {
 
 	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
 	if err != nil {
-		t.Errorf("Error updating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error updating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List account to ensure update worked.
 	gcpListOutput, _, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH).Execute()
 	if err != nil {
-		t.Errorf("Error listing GCP accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing GCP accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	var x datadog.GcpAccount

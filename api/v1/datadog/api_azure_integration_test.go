@@ -45,7 +45,7 @@ func TestAzureCreate(t *testing.T) {
 
 	_, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH).AzureAccount(testAzureAcct).Execute()
 	if err != nil {
-		t.Errorf("Error creating Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 }
@@ -85,7 +85,7 @@ func TestAzureListandDelete(t *testing.T) {
 	// Test account deletion as well
 	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.DeleteAzureIntegration(TESTAUTH).AzureAccount(testAzureAcct).Execute()
 	if err != nil {
-		t.Errorf("Error deleting Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error deleting Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 }
@@ -107,7 +107,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.UpdateAzureIntegration(TESTAUTH).AzureAccount(testUpdateAzureAcct).Execute()
 	defer uninstallAzureIntegration(testUpdateAzureAcct)
 	if err != nil {
-		t.Errorf("Error updating Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error updating Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 
 	assert.Equal(t, httpresp.StatusCode, 200)
@@ -115,7 +115,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	// List account to ensure update worked.
 	azureListOutput, _, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH).Execute()
 	if err != nil {
-		t.Errorf("Error listing Azure Accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing Azure Accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	var x datadog.AzureAccount
@@ -131,12 +131,12 @@ func TestUpdateAzureAccount(t *testing.T) {
 	// Test update host filters endpoint
 	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH).AzureAccount(testAzureUpdateHostFilters).Execute()
 	if err != nil {
-		t.Errorf("Error updating Azure Host Filters: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error updating Azure Host Filters: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	HFListOutput, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.ListAzureIntegration(TESTAUTH).Execute()
 	if err != nil {
-		t.Errorf("Error listing Azure Accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing Azure Accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	var y datadog.AzureAccount

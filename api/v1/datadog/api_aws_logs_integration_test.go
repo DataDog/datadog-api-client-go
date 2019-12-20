@@ -49,13 +49,13 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 
 	_, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).AwsAccountAndLambdaRequest(testLambdaAcc).Execute()
 	if err != nil {
-		t.Errorf("Error adding lamda ARN: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error adding lamda ARN: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	_, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH).AwsLogsServicesRequest(testServices).Execute()
 	if err != nil {
-		t.Errorf("Error enabling log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error enabling log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 }
@@ -66,7 +66,7 @@ func TestListAWSLogsServices(t *testing.T) {
 	defer teardownTest(t)
 	listServicesOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsServicesList(TESTAUTH).Execute()
 	if err != nil {
-		t.Errorf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -91,8 +91,8 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 
 	// Add Lambda to Account
 	addOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).AwsAccountAndLambdaRequest(testLambdaAcc).Execute()
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error Adding Lambda %v: Response %s: %v", addOutput, err.(datadog.GenericOpenAPIError).Body(), err)
+	if err != nil {
+		t.Fatalf("Error Adding Lambda %v: Response %s: %v", addOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -106,7 +106,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	// List AWS Logs integrations before deleting
 	listOutput1, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH).Execute()
 	if err != nil {
-		t.Errorf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	// Iterate over output and list Lambdas
@@ -123,15 +123,15 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 
 	// Delete newly added Lambda
 	deleteOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH).AwsAccountAndLambdaRequest(testLambdaAcc).Execute()
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error deleting Lambda %v: Response %s: %v", deleteOutput, err.(datadog.GenericOpenAPIError).Body(), err)
+	if err != nil {
+		t.Fatalf("Error deleting Lambda %v: Response %s: %v", deleteOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List AWS logs integrations after deleting
 	listOutput2, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH).Execute()
 	if err != nil {
-		t.Errorf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -161,14 +161,16 @@ func TestCheckLambdaAsync(t *testing.T) {
 
 	// Assert AWS Integration Created with proper fields
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAWSAcc).Execute()
-	if err != nil || httpresp.StatusCode != 200 {
+	if err != nil {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).AwsAccountAndLambdaRequest(testLambdaAcc).Execute()
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Fatalf("Error checking the AWS Lambda: %v", err)
+	if err != nil {
+		t.Fatalf("Error checking the AWS Lambda Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(),  err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	assert.Equal(t, len(status.GetErrors()), 0)
 	assert.Equal(t, status.GetStatus(), "created")
@@ -177,9 +179,10 @@ func TestCheckLambdaAsync(t *testing.T) {
 	time.Sleep(10 * time.Second)
 
 	status, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).AwsAccountAndLambdaRequest(testLambdaAcc).Execute()
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Fatalf("Error checking the AWS Lambda: %v", err)
+	if err != nil {
+		t.Fatalf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	assert.Assert(t, status.GetErrors()[0].GetCode() != "")
 	assert.Assert(t, status.GetErrors()[0].GetMessage() != "")
@@ -195,14 +198,17 @@ func TestCheckServicesAsync(t *testing.T) {
 
 	// Assert AWS Integration Created with proper fields
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAWSAcc).Execute()
-	if err != nil || httpresp.StatusCode != 200 {
+	if err != nil {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckServicesAsync(TESTAUTH).AwsLogsServicesRequest(testServices).Execute()
-	if err != nil || httpresp.StatusCode != 200 {
-		t.Fatalf("Error checking the AWS Logs Services: %v", err)
+	if err != nil{
+		t.Fatalf("Error checking the AWS Logs Services Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
 	assert.Assert(t, status.GetErrors()[0].GetCode() != "")
 	assert.Assert(t, status.GetErrors()[0].GetMessage() != "")
 }
