@@ -93,9 +93,13 @@ func TestUpdateGcpAccount(t *testing.T) {
 	defer uninstallGcpIntegration(testGCPAcct)
 
 	// Setup Gcp Account to Update
-	TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	if err != nil {
+		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
-	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
+	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

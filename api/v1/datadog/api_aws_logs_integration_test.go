@@ -124,7 +124,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	// Delete newly added Lambda
 	deleteOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH).AwsAccountAndLambdaRequest(testLambdaAcc).Execute()
 	if err != nil || httpresp.StatusCode != 200 {
-		t.Errorf("Error Deleting Lambda %v: Status: %v: %v", deleteOutput, httpresp.StatusCode, err)
+		t.Errorf("Error deleting Lambda %v: Response %s: %v", deleteOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
