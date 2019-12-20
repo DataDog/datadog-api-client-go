@@ -47,12 +47,11 @@ func TestConfigurationServersAccess(t *testing.T) {
 		Err   string
 	}{{
 		Index: -1,
-		Err:   "Index -1 out of range 0",
+		Err:   "Index -1 out of range 1",
 	}, {
 		Index: len(configuration.Servers),
-		Err:   "Index 1 out of range 0",
-	},
-	}
+		Err:   "Index 2 out of range 1",
+	}}
 
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("Index %v", tc.Index), func(t *testing.T) {
