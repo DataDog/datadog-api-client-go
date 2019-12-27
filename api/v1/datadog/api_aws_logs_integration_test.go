@@ -168,7 +168,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 
 	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).AwsAccountAndLambdaRequest(testLambdaAcc).Execute()
 	if err != nil {
-		t.Fatalf("Error checking the AWS Lambda Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(),  err)
+		t.Fatalf("Error checking the AWS Lambda Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -204,7 +204,7 @@ func TestCheckServicesAsync(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckServicesAsync(TESTAUTH).AwsLogsServicesRequest(testServices).Execute()
-	if err != nil{
+	if err != nil {
 		t.Fatalf("Error checking the AWS Logs Services Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)

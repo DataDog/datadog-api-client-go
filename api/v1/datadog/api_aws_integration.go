@@ -387,13 +387,13 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 }
 
 type apiGenerateNewAWSExternalIDRequest struct {
-	ctx                      _context.Context
-	apiService               *AWSIntegrationApiService
-	awsAccountCreateResponse *AwsAccountCreateResponse
+	ctx        _context.Context
+	apiService *AWSIntegrationApiService
+	awsAccount *AwsAccount
 }
 
-func (r apiGenerateNewAWSExternalIDRequest) AwsAccountCreateResponse(awsAccountCreateResponse AwsAccountCreateResponse) apiGenerateNewAWSExternalIDRequest {
-	r.awsAccountCreateResponse = &awsAccountCreateResponse
+func (r apiGenerateNewAWSExternalIDRequest) AwsAccount(awsAccount AwsAccount) apiGenerateNewAWSExternalIDRequest {
+	r.awsAccount = &awsAccount
 	return r
 }
 
@@ -419,16 +419,16 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 
 /*
 Execute executes the request
- @return Error400
+ @return AwsAccountCreateResponse
 */
-func (r apiGenerateNewAWSExternalIDRequest) Execute() (Error400, *_nethttp.Response, error) {
+func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Error400
+		localVarReturnValue  AwsAccountCreateResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.GenerateNewAWSExternalID")
@@ -442,8 +442,8 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (Error400, *_nethttp.Respo
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccountCreateResponse == nil {
-		return localVarReturnValue, nil, reportError("awsAccountCreateResponse is required and must be specified")
+	if r.awsAccount == nil {
+		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -464,7 +464,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (Error400, *_nethttp.Respo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccountCreateResponse
+	localVarPostBody = r.awsAccount
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -515,7 +515,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (Error400, *_nethttp.Respo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v Error400
+			var v AwsAccountCreateResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
