@@ -17,7 +17,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 
 	start := time.Now()
 	testDashboardList := datadog.DashboardList{
-		Name: fmt.Sprintf("%s", start),
+		Name: fmt.Sprintf("go dashboard list %s", start),
 	}
 
 	// Create downtime
@@ -31,7 +31,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Equal(t, dashboardList.GetName(), testDashboardList.GetName())
 
 	// Edit a downtime
-	editedDashboardList := datadog.DashboardList{Name: fmt.Sprintf("updated%s", start)}
+	editedDashboardList := datadog.DashboardList{Name: fmt.Sprintf("go dashboard list updated %s", start)}
 	updatedDashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.UpdateDashboardList(TESTAUTH, dashboardList.GetId()).DashboardList(editedDashboardList).Execute()
 	if err != nil {
 		t.Errorf("Error updating dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
