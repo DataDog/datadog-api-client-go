@@ -24,13 +24,13 @@ var (
 type AWSLogsIntegrationApiService service
 
 type apiAWSLogsCheckLambdaAsyncRequest struct {
-	ctx                      _context.Context
-	apiService               *AWSLogsIntegrationApiService
-	awsAccountAndLambdaInput *AwsAccountAndLambdaInput
+	ctx                        _context.Context
+	apiService                 *AWSLogsIntegrationApiService
+	awsAccountAndLambdaRequest *AwsAccountAndLambdaRequest
 }
 
-func (r apiAWSLogsCheckLambdaAsyncRequest) AwsAccountAndLambdaInput(awsAccountAndLambdaInput AwsAccountAndLambdaInput) apiAWSLogsCheckLambdaAsyncRequest {
-	r.awsAccountAndLambdaInput = &awsAccountAndLambdaInput
+func (r apiAWSLogsCheckLambdaAsyncRequest) AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest AwsAccountAndLambdaRequest) apiAWSLogsCheckLambdaAsyncRequest {
+	r.awsAccountAndLambdaRequest = &awsAccountAndLambdaRequest
 	return r
 }
 
@@ -80,8 +80,8 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccountAndLambdaInput == nil {
-		return localVarReturnValue, nil, reportError("awsAccountAndLambdaInput is required and must be specified")
+	if r.awsAccountAndLambdaRequest == nil {
+		return localVarReturnValue, nil, reportError("awsAccountAndLambdaRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -102,7 +102,7 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccountAndLambdaInput
+	localVarPostBody = r.awsAccountAndLambdaRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -197,13 +197,13 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 }
 
 type apiAWSLogsCheckServicesAsyncRequest struct {
-	ctx                  _context.Context
-	apiService           *AWSLogsIntegrationApiService
-	awsLogsServicesInput *AwsLogsServicesInput
+	ctx                    _context.Context
+	apiService             *AWSLogsIntegrationApiService
+	awsLogsServicesRequest *AwsLogsServicesRequest
 }
 
-func (r apiAWSLogsCheckServicesAsyncRequest) AwsLogsServicesInput(awsLogsServicesInput AwsLogsServicesInput) apiAWSLogsCheckServicesAsyncRequest {
-	r.awsLogsServicesInput = &awsLogsServicesInput
+func (r apiAWSLogsCheckServicesAsyncRequest) AwsLogsServicesRequest(awsLogsServicesRequest AwsLogsServicesRequest) apiAWSLogsCheckServicesAsyncRequest {
+	r.awsLogsServicesRequest = &awsLogsServicesRequest
 	return r
 }
 
@@ -253,8 +253,8 @@ func (r apiAWSLogsCheckServicesAsyncRequest) Execute() (AwsLogsAsyncResponse, *_
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsLogsServicesInput == nil {
-		return localVarReturnValue, nil, reportError("awsLogsServicesInput is required and must be specified")
+	if r.awsLogsServicesRequest == nil {
+		return localVarReturnValue, nil, reportError("awsLogsServicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -275,7 +275,7 @@ func (r apiAWSLogsCheckServicesAsyncRequest) Execute() (AwsLogsAsyncResponse, *_
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsLogsServicesInput
+	localVarPostBody = r.awsLogsServicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -390,16 +390,16 @@ func (a *AWSLogsIntegrationApiService) AWSLogsList(ctx _context.Context) apiAWSL
 
 /*
 Execute executes the request
- @return []AwsLogsListOutput
+ @return []AwsLogsListResponse
 */
-func (r apiAWSLogsListRequest) Execute() ([]AwsLogsListOutput, *_nethttp.Response, error) {
+func (r apiAWSLogsListRequest) Execute() ([]AwsLogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []AwsLogsListOutput
+		localVarReturnValue  []AwsLogsListResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.AWSLogsList")
@@ -480,7 +480,7 @@ func (r apiAWSLogsListRequest) Execute() ([]AwsLogsListOutput, *_nethttp.Respons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v []AwsLogsListOutput
+			var v []AwsLogsListResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -531,7 +531,7 @@ type apiAWSLogsServicesListRequest struct {
 /*
 AWSLogsServicesList Get list of AWS log ready services.
 ### Overview
-Get the list of current AWS services that Datadog offers automatic log collection.  Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
+Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiAWSLogsServicesListRequest
 */
@@ -544,16 +544,16 @@ func (a *AWSLogsIntegrationApiService) AWSLogsServicesList(ctx _context.Context)
 
 /*
 Execute executes the request
- @return []AwsLogsListServicesOutput
+ @return []AwsLogsListServicesResponse
 */
-func (r apiAWSLogsServicesListRequest) Execute() ([]AwsLogsListServicesOutput, *_nethttp.Response, error) {
+func (r apiAWSLogsServicesListRequest) Execute() ([]AwsLogsListServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []AwsLogsListServicesOutput
+		localVarReturnValue  []AwsLogsListServicesResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.AWSLogsServicesList")
@@ -634,7 +634,7 @@ func (r apiAWSLogsServicesListRequest) Execute() ([]AwsLogsListServicesOutput, *
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v []AwsLogsListServicesOutput
+			var v []AwsLogsListServicesResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -678,13 +678,13 @@ func (r apiAWSLogsServicesListRequest) Execute() ([]AwsLogsListServicesOutput, *
 }
 
 type apiAddAWSLambdaARNRequest struct {
-	ctx                      _context.Context
-	apiService               *AWSLogsIntegrationApiService
-	awsAccountAndLambdaInput *AwsAccountAndLambdaInput
+	ctx                        _context.Context
+	apiService                 *AWSLogsIntegrationApiService
+	awsAccountAndLambdaRequest *AwsAccountAndLambdaRequest
 }
 
-func (r apiAddAWSLambdaARNRequest) AwsAccountAndLambdaInput(awsAccountAndLambdaInput AwsAccountAndLambdaInput) apiAddAWSLambdaARNRequest {
-	r.awsAccountAndLambdaInput = &awsAccountAndLambdaInput
+func (r apiAddAWSLambdaARNRequest) AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest AwsAccountAndLambdaRequest) apiAddAWSLambdaARNRequest {
+	r.awsAccountAndLambdaRequest = &awsAccountAndLambdaRequest
 	return r
 }
 
@@ -730,8 +730,8 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccountAndLambdaInput == nil {
-		return localVarReturnValue, nil, reportError("awsAccountAndLambdaInput is required and must be specified")
+	if r.awsAccountAndLambdaRequest == nil {
+		return localVarReturnValue, nil, reportError("awsAccountAndLambdaRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -752,7 +752,7 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccountAndLambdaInput
+	localVarPostBody = r.awsAccountAndLambdaRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -847,13 +847,13 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 }
 
 type apiDeleteAWSLambdaARNRequest struct {
-	ctx                      _context.Context
-	apiService               *AWSLogsIntegrationApiService
-	awsAccountAndLambdaInput *AwsAccountAndLambdaInput
+	ctx                        _context.Context
+	apiService                 *AWSLogsIntegrationApiService
+	awsAccountAndLambdaRequest *AwsAccountAndLambdaRequest
 }
 
-func (r apiDeleteAWSLambdaARNRequest) AwsAccountAndLambdaInput(awsAccountAndLambdaInput AwsAccountAndLambdaInput) apiDeleteAWSLambdaARNRequest {
-	r.awsAccountAndLambdaInput = &awsAccountAndLambdaInput
+func (r apiDeleteAWSLambdaARNRequest) AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest AwsAccountAndLambdaRequest) apiDeleteAWSLambdaARNRequest {
+	r.awsAccountAndLambdaRequest = &awsAccountAndLambdaRequest
 	return r
 }
 
@@ -899,8 +899,8 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccountAndLambdaInput == nil {
-		return localVarReturnValue, nil, reportError("awsAccountAndLambdaInput is required and must be specified")
+	if r.awsAccountAndLambdaRequest == nil {
+		return localVarReturnValue, nil, reportError("awsAccountAndLambdaRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -921,7 +921,7 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccountAndLambdaInput
+	localVarPostBody = r.awsAccountAndLambdaRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1016,13 +1016,13 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 }
 
 type apiEnableAWSLogServicesRequest struct {
-	ctx                  _context.Context
-	apiService           *AWSLogsIntegrationApiService
-	awsLogsServicesInput *AwsLogsServicesInput
+	ctx                    _context.Context
+	apiService             *AWSLogsIntegrationApiService
+	awsLogsServicesRequest *AwsLogsServicesRequest
 }
 
-func (r apiEnableAWSLogServicesRequest) AwsLogsServicesInput(awsLogsServicesInput AwsLogsServicesInput) apiEnableAWSLogServicesRequest {
-	r.awsLogsServicesInput = &awsLogsServicesInput
+func (r apiEnableAWSLogServicesRequest) AwsLogsServicesRequest(awsLogsServicesRequest AwsLogsServicesRequest) apiEnableAWSLogServicesRequest {
+	r.awsLogsServicesRequest = &awsLogsServicesRequest
 	return r
 }
 
@@ -1068,8 +1068,8 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsLogsServicesInput == nil {
-		return localVarReturnValue, nil, reportError("awsLogsServicesInput is required and must be specified")
+	if r.awsLogsServicesRequest == nil {
+		return localVarReturnValue, nil, reportError("awsLogsServicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1090,7 +1090,7 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsLogsServicesInput
+	localVarPostBody = r.awsLogsServicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -39,7 +39,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAwsAccount).Execute()
 	if err != nil {
-		t.Errorf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	defer uninstallAWSIntegration(testAwsAccount)
@@ -50,7 +50,7 @@ func TestCreateAWSAccount(t *testing.T) {
 		RoleName(testAwsAccount.GetRoleName()).
 		Execute()
 	if err != nil {
-		t.Errorf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -87,7 +87,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 		RoleName(testAwsAccount.GetRoleName()).
 		Execute()
 	if err != nil {
-		t.Errorf("Error updating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error updating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	UPDATEDAWSACCT := datadog.AwsAccount{
@@ -102,7 +102,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 		RoleName(UPDATEDAWSACCT.GetRoleName()).
 		Execute()
 	if err != nil {
-		t.Errorf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -125,7 +125,7 @@ func TestDisableAWSAcct(t *testing.T) {
 	// Lets first create the account of us to delete
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAwsAccount).Execute()
 	if err != nil {
-		t.Errorf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	defer uninstallAWSIntegration(testAwsAccount)
@@ -135,6 +135,42 @@ func TestDisableAWSAcct(t *testing.T) {
 		t.Fatalf("Error disabling AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200, "Error disabling AWS Account: %v", httpresp)
+}
+
+func TestGenerateNewExternalId(t *testing.T) {
+	testAwsAccount := generateUniqueAwsAccount()
+	// Lets first create the account for us to generate a new id against
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).AwsAccount(testAwsAccount).Execute()
+	if err != nil {
+		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH).AwsAccount(testAwsAccount).Execute()
+	if err != nil {
+		t.Fatalf("Error generating new AWS External ID: Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Assert(t, apiResp.GetExternalId() != "")
+}
+
+func TestListNamespaces(t *testing.T) {
+	namespaces, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(TESTAUTH).Execute()
+	if err != nil {
+		t.Fatalf("Error listing AWS Namespaces: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+	namespacesCheck := make(map[string]bool)
+	for _, namespace := range namespaces {
+		namespacesCheck[namespace] = true
+	}
+
+	// Check that a few examples are in the response
+	// Full list - https://docs.datadoghq.com/api/?lang=bash#list-namespace-rules
+	assert.Assert(t, namespacesCheck["api_gateway"], true)
+	assert.Assert(t, namespacesCheck["cloudsearch"], true)
+	assert.Assert(t, namespacesCheck["directconnect"], true)
+	assert.Assert(t, namespacesCheck["xray"], true)
 }
 
 func uninstallAWSIntegration(account datadog.AwsAccount) {

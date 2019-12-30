@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## GenerateNewAWSExternalID
 
-> Error400 GenerateNewAWSExternalID(ctx).AwsAccountCreateResponse(awsAccountCreateResponse).Execute()
+> AwsAccountCreateResponse GenerateNewAWSExternalID(ctx).AwsAccount(awsAccount).Execute()
 
 Generate New External ID
 
@@ -110,11 +110,11 @@ Other parameters are passed through a pointer to a apiGenerateNewAWSExternalIDRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccountCreateResponse** | [**AwsAccountCreateResponse**](AwsAccountCreateResponse.md) | Generate New AWS External ID request object | 
+ **awsAccount** | [**AwsAccount**](AwsAccount.md) | Generate New AWS External ID request object | 
 
 ### Return type
 
-[**Error400**](Error400.md)
+[**AwsAccountCreateResponse**](AWSAccountCreateResponse.md)
 
 ### Authorization
 

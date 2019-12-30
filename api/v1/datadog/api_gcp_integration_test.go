@@ -43,11 +43,11 @@ func TestGcpCreate(t *testing.T) {
 	testGCPAcct, _ := generateUniqueGcpAccount()
 	defer uninstallGcpIntegration(testGCPAcct)
 
-	_, httpResp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
 func TestGcpListandDelete(t *testing.T) {
@@ -93,24 +93,30 @@ func TestUpdateGcpAccount(t *testing.T) {
 	defer uninstallGcpIntegration(testGCPAcct)
 
 	// Setup Gcp Account to Update
-	_, httpResp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 
-	_, httpResp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
+	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
 	if err != nil {
-		t.Errorf("Error updating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
+	if err != nil {
+		t.Fatalf("Error updating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List account to ensure update worked.
 	gcpListOutput, _, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH).Execute()
 	if err != nil {
-		t.Errorf("Error listing GCP accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing GCP accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpResp.StatusCode, 200)
+	assert.Equal(t, httpresp.StatusCode, 200)
 	var x datadog.GcpAccount
 	for _, Account := range gcpListOutput {
 		if Account.GetClientEmail() == *testGCPAcct.ClientEmail {

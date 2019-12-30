@@ -15,7 +15,41 @@ import (
 
 // AwsLogsAsyncResponse struct for AwsLogsAsyncResponse
 type AwsLogsAsyncResponse struct {
-	Status *string `json:"status,omitempty"`
+	Errors *[]AwsLogsAsyncResponseErrors `json:"errors,omitempty"`
+	Status *string                       `json:"status,omitempty"`
+}
+
+// GetErrors returns the Errors field value if set, zero value otherwise.
+func (o *AwsLogsAsyncResponse) GetErrors() []AwsLogsAsyncResponseErrors {
+	if o == nil || o.Errors == nil {
+		var ret []AwsLogsAsyncResponseErrors
+		return ret
+	}
+	return *o.Errors
+}
+
+// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AwsLogsAsyncResponse) GetErrorsOk() ([]AwsLogsAsyncResponseErrors, bool) {
+	if o == nil || o.Errors == nil {
+		var ret []AwsLogsAsyncResponseErrors
+		return ret, false
+	}
+	return *o.Errors, true
+}
+
+// HasErrors returns a boolean if a field has been set.
+func (o *AwsLogsAsyncResponse) HasErrors() bool {
+	if o != nil && o.Errors != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetErrors gets a reference to the given []AwsLogsAsyncResponseErrors and assigns it to the Errors field.
+func (o *AwsLogsAsyncResponse) SetErrors(v []AwsLogsAsyncResponseErrors) {
+	o.Errors = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
