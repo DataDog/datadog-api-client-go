@@ -117,6 +117,20 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
+			{
+				URL:         "{protocol}://{name}",
+				Description: "No description provided",
+				Variables: map[string]ServerVariable{
+					"name": ServerVariable{
+						Description:  "Full site DNS name.",
+						DefaultValue: "api.datadoghq.com",
+					},
+					"protocol": ServerVariable{
+						Description:  "The protocol for accessing the API.",
+						DefaultValue: "https",
+					},
+				},
+			},
 		},
 		OperationServers: map[string]ServerConfigurations{
 			"LogsHTTPIntakeApiService.SendLog": {
