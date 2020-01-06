@@ -1,4 +1,4 @@
-package datadog_v1_test
+package datadog_test
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	datadog "github.com/DataDog/datadog-api-client-go/datadog_v1"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
 )
 
