@@ -16,15 +16,15 @@ import (
 
 func getStartEndHr() (time.Time, time.Time) {
 	year, month, _ := time.Now().Date()
-	start := time.Date(year, month - 1, 12, 0, 0, 0, 0, time.UTC)
-	end := time.Date(year, month - 1, 13, 0, 0, 0, 0, time.UTC)
+	start := time.Date(year, month-1, 12, 0, 0, 0, 0, time.UTC)
+	end := time.Date(year, month-1, 13, 0, 0, 0, 0, time.UTC)
 	return start, end
 }
 
 func getStartEndMonth() (time.Time, time.Time) {
 	year, month, _ := time.Now().Date()
-	start := time.Date(year, month - 2, 1, 0, 0, 0, 0, time.UTC)
-	end := time.Date(year, month - 1, 1, 0, 0, 0, 0, time.UTC)
+	start := time.Date(year, month-2, 1, 0, 0, 0, 0, time.UTC)
+	end := time.Date(year, month-1, 1, 0, 0, 0, 0, time.UTC)
 	return start, end
 }
 
