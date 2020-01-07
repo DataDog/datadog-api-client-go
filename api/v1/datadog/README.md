@@ -129,6 +129,14 @@ Class | Method | HTTP request | Description
 *OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
 *OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
+*UsageApi* | [**GetUsageFargate**](docs/UsageApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for fargate.
+*UsageApi* | [**GetUsageHosts**](docs/UsageApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers.
+*UsageApi* | [**GetUsageLogs**](docs/UsageApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for logs.
+*UsageApi* | [**GetUsageSummary**](docs/UsageApi.md#getusagesummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account.
+*UsageApi* | [**GetUsageSynthetics**](docs/UsageApi.md#getusagesynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for synthetics.
+*UsageApi* | [**GetUsageTimeseries**](docs/UsageApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics.
+*UsageApi* | [**GetUsageTopAvgMetrics**](docs/UsageApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top custom metrics by hourly average.
+*UsageApi* | [**GetUsageTrace**](docs/UsageApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for trace search.
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable user
 *UsersApi* | [**GetAllUsers**](docs/UsersApi.md#getallusers) | **Get** /api/v1/user | Get all users
@@ -202,6 +210,23 @@ Class | Method | HTTP request | Description
  - [OrgSettingsSaml](docs/OrgSettingsSaml.md)
  - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
  - [OrgSubscription](docs/OrgSubscription.md)
+ - [UsageFargateHour](docs/UsageFargateHour.md)
+ - [UsageFargateResponse](docs/UsageFargateResponse.md)
+ - [UsageHostHour](docs/UsageHostHour.md)
+ - [UsageHostsResponse](docs/UsageHostsResponse.md)
+ - [UsageLogsHour](docs/UsageLogsHour.md)
+ - [UsageLogsResponse](docs/UsageLogsResponse.md)
+ - [UsageSummaryDate](docs/UsageSummaryDate.md)
+ - [UsageSummaryDateOrg](docs/UsageSummaryDateOrg.md)
+ - [UsageSummaryResponse](docs/UsageSummaryResponse.md)
+ - [UsageSyntheticsHour](docs/UsageSyntheticsHour.md)
+ - [UsageSyntheticsResponse](docs/UsageSyntheticsResponse.md)
+ - [UsageTimeseriesHour](docs/UsageTimeseriesHour.md)
+ - [UsageTimeseriesResponse](docs/UsageTimeseriesResponse.md)
+ - [UsageTopAvgMetricsHour](docs/UsageTopAvgMetricsHour.md)
+ - [UsageTopAvgMetricsResponse](docs/UsageTopAvgMetricsResponse.md)
+ - [UsageTraceHour](docs/UsageTraceHour.md)
+ - [UsageTraceResponse](docs/UsageTraceResponse.md)
  - [User](docs/User.md)
  - [UserDisableResponse](docs/UserDisableResponse.md)
  - [UserListResponse](docs/UserListResponse.md)
