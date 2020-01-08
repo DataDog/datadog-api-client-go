@@ -133,5 +133,43 @@ func TestMetricSubmissionIntegration(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 202)
 	assert.Equal(t, "ok", r.GetStatus())
 
-	// TODO: query metrics and verify it was correctly submitted, as the API doesn't return errors if the payload is malformed, only if the JSON is invalid
+	err = retry(func() bool {
+		metrics, httpresp, err := api.GetAllActiveMetrics(TESTAUTH).From(now).Execute()
+		if err != nil {
+			t.Logf("Error getting list of active metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			return false
+		}
+		assert.Equal(t, 200, httpresp.StatusCode)
+
+		found := false
+		for _, metric := range metrics.GetMetrics() {
+			if metric == testMetric {
+				found = true
+				break
+			}
+		}
+		return found
+	}, 10, 10)
+
+	if err != nil {
+		t.Errorf("%v", err)
+	}
+}
+
+func TestMetricListActive(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+	data := setupGock(t, "metrics/active_metrics.json", "GET", "metrics")
+	var expected datadog.MetricsListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := TESTAPICLIENT.MetricsApi
+
+	_, _, err := api.GetAllActiveMetrics(TESTAUTH).Execute()
+	assert.NotNil(t, err) // Parameter `from` required
+
+	metrics, _, err := api.GetAllActiveMetrics(TESTAUTH).From(1).Host("host").Execute()
+	assert.Nil(t, err)
+	assert.Equal(t, expected.GetMetrics(), metrics.GetMetrics())
+	assert.Equal(t, expected.GetFrom(), metrics.GetFrom())
 }

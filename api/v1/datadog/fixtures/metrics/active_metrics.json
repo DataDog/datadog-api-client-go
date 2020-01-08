@@ -1,0 +1,4 @@
+{
+    "metrics": ["metric1", "metric2"],
+    "from": "0"
+}
