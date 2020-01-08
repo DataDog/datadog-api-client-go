@@ -18,7 +18,6 @@ func TestMetricSubmissionMock(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer teardownTest(t)
 	defer gock.Off()
-	gock.Observe(gock.DumpRequest) // ToDo: Remove
 
 	// Test that a normal submission works
 	t.Run("normalSubmission", func(t *testing.T) {
