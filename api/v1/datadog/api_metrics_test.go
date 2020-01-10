@@ -183,6 +183,53 @@ func TestMetrics(t *testing.T) {
 	assert.Equal(t, series.GetPointlist()[1][0], float64(series.GetEnd()))
 	assert.Equal(t, 10.5, series.GetPointlist()[0][1])
 	assert.Equal(t, 11., series.GetPointlist()[1][1])
+
+	// Test search
+	searchQuery := fmt.Sprintf("metrics:%s", testMetric)
+	searchResult, httpresp, err := api.SearchMetrics(TESTAUTH).Q(searchQuery).Execute()
+	if err != nil {
+		t.Errorf("Error searching metrics %s: Response %s: %v", searchQuery, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	metrics := searchResult.Results.GetMetrics()
+	assert.Equal(t, 1, len(metrics))
+	assert.Equal(t, testMetric, metrics[0])
+
+	// Test metric metadata
+	metadata, httpresp, err := api.GetMetricMetadata(TESTAUTH, testMetric).Execute()
+	if err != nil {
+		t.Errorf("Error getting metric metadata for %s: Response %s: %v", testMetric, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Nil(t, metadata.Description)
+	assert.Nil(t, metadata.Integration)
+	assert.Nil(t, metadata.PerUnit)
+	assert.Nil(t, metadata.Unit)
+	assert.Nil(t, metadata.ShortName)
+	assert.Nil(t, metadata.StatsdInterval)
+	assert.Equal(t, datadog.MetricType(""), metadata.Type)
+
+	newMetadata := datadog.MetricMetadata{
+		Description:    datadog.PtrString("description"),
+		PerUnit:        datadog.PtrString("second"),
+		Unit:           datadog.PtrString("byte"),
+		ShortName:      datadog.PtrString("short_name"),
+		StatsdInterval: datadog.PtrInt64(20),
+		Type:           datadog.METRICTYPE_COUNT,
+	}
+
+	metadata, httpresp, err = api.EditMetricMetadata(TESTAUTH, testMetric).MetricMetadata(newMetadata).Execute()
+	if err != nil {
+		t.Errorf("Error editing metric metadata for %s: Response %s: %v", testMetric, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(t, "description", metadata.GetDescription())
+	assert.Nil(t, metadata.Integration)
+	assert.Equal(t, "second", metadata.GetPerUnit())
+	assert.Equal(t, "byte", metadata.GetUnit())
+	assert.Equal(t, "short_name", metadata.GetShortName())
+	assert.Equal(t, int64(20), metadata.GetStatsdInterval())
+	assert.Equal(t, datadog.METRICTYPE_COUNT, metadata.GetType())
 }
 
 func TestMetricListActive(t *testing.T) {

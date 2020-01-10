@@ -67,6 +67,7 @@ func setupUnitTest(t *testing.T) func(t *testing.T) {
 		},
 	)
 	config := datadog.NewConfiguration()
+	config.Debug = true
 	TESTAPICLIENT = datadog.NewAPIClient(config)
 	return func(t *testing.T) {
 		// TEARDOWN testing
