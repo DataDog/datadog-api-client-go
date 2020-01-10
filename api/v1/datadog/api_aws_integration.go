@@ -124,7 +124,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -138,7 +138,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -296,7 +296,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -310,7 +310,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -468,7 +468,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -482,7 +482,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -658,7 +658,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -672,7 +672,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -822,7 +822,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -836,7 +836,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1050,7 +1050,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1064,7 +1064,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key

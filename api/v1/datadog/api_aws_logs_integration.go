@@ -106,7 +106,7 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -120,7 +120,7 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -279,7 +279,7 @@ func (r apiAWSLogsCheckServicesAsyncRequest) Execute() (AwsLogsAsyncResponse, *_
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -293,7 +293,7 @@ func (r apiAWSLogsCheckServicesAsyncRequest) Execute() (AwsLogsAsyncResponse, *_
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -433,7 +433,7 @@ func (r apiAWSLogsListRequest) Execute() ([]AwsLogsListResponse, *_nethttp.Respo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -447,7 +447,7 @@ func (r apiAWSLogsListRequest) Execute() ([]AwsLogsListResponse, *_nethttp.Respo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -587,7 +587,7 @@ func (r apiAWSLogsServicesListRequest) Execute() ([]AwsLogsListServicesResponse,
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -601,7 +601,7 @@ func (r apiAWSLogsServicesListRequest) Execute() ([]AwsLogsListServicesResponse,
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -756,7 +756,7 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -770,7 +770,7 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -925,7 +925,7 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -939,7 +939,7 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1094,7 +1094,7 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1108,7 +1108,7 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key

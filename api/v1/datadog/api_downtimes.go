@@ -90,7 +90,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -104,7 +104,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -230,7 +230,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -244,7 +244,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -435,7 +435,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -449,7 +449,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -590,7 +590,7 @@ func (r apiGetAllDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, er
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -604,7 +604,7 @@ func (r apiGetAllDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, er
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -740,7 +740,7 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -754,7 +754,7 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -944,7 +944,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -958,7 +958,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key

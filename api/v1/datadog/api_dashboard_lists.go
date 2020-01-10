@@ -102,7 +102,7 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -116,7 +116,7 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -262,7 +262,7 @@ func (r apiDeleteDashboardListRequest) Execute() (DashboardListDeleteResponse, *
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -276,7 +276,7 @@ func (r apiDeleteDashboardListRequest) Execute() (DashboardListDeleteResponse, *
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -418,7 +418,7 @@ func (r apiGetAllDashboardListsRequest) Execute() (DashboardListListResponse, *_
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -432,7 +432,7 @@ func (r apiGetAllDashboardListsRequest) Execute() (DashboardListListResponse, *_
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -578,7 +578,7 @@ func (r apiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -592,7 +592,7 @@ func (r apiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -750,7 +750,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["api_key"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -764,7 +764,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["application_key"]; ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
