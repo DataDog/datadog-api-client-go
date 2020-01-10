@@ -236,6 +236,8 @@ func TestMetricListActive(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer teardownTest(t)
 	data := setupGock(t, "metrics/active_metrics.json", "GET", "metrics")
+	defer gock.Off()
+
 	var expected datadog.MetricsListResponse
 	json.Unmarshal([]byte(data), &expected)
 
