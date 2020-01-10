@@ -25,10 +25,10 @@ func setupTest(t *testing.T) func(t *testing.T) {
 		context.Background(),
 		datadog.ContextAPIKeys,
 		map[string]datadog.APIKey{
-			"api_key": datadog.APIKey{
+			"apiKeyAuth": datadog.APIKey{
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
 			},
-			"application_key": datadog.APIKey{
+			"appKeyAuth": datadog.APIKey{
 				Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
 			},
 		},
@@ -46,10 +46,10 @@ func setupUnitTest(t *testing.T) func(t *testing.T) {
 		context.Background(),
 		datadog.ContextAPIKeys,
 		map[string]datadog.APIKey{
-			"api_key": datadog.APIKey{
+			"apiKeyAuth": datadog.APIKey{
 				Key: "FAKE_KEY",
 			},
-			"application_key": datadog.APIKey{
+			"appKeyAuth": datadog.APIKey{
 				Key: "FAKE_KEY",
 			},
 		},
