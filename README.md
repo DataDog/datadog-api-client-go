@@ -23,6 +23,8 @@ All the documentation for this package is available through `api/v1/datadog/READ
 
 ## Contributing
 
+Test
+
 As most of the code in this repository is generated, we will only accept PRs for files
 that are not modified by our code-generation machinery (changes to the generated files
 would get overwritten). We happily accept contributions to files that are listed in:
