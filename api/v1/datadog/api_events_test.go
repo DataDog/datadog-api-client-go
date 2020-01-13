@@ -41,7 +41,7 @@ func TestEventLifecycle(t *testing.T) {
 
 	var fetchedEventResponse datadog.EventResponse
 
-	retry(time.Duration(2*time.Second), 10, func() bool {
+	retry(time.Duration(5*time.Second), 10, func() bool {
 		// Check event existence
 		fetchedEventResponse, httpresp, err = TESTAPICLIENT.EventsApi.GetEvent(TESTAUTH, event.GetId()).Execute()
 		if err != nil {
@@ -64,7 +64,7 @@ func TestEventLifecycle(t *testing.T) {
 
 	var eventListResponse datadog.EventListResponse
 
-	retry(time.Duration(2*time.Second), 10, func() bool {
+	retry(time.Duration(5*time.Second), 10, func() bool {
 		eventListResponse, httpresp, err = TESTAPICLIENT.EventsApi.ListEvents(TESTAUTH).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
 		if err != nil {
 			t.Logf("Error fetching events: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
