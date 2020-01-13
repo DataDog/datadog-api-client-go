@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	gock "gopkg.in/h2non/gock.v1"
@@ -34,10 +35,21 @@ func setupTest(t *testing.T) func(t *testing.T) {
 		},
 	)
 	config := datadog.NewConfiguration()
+	config.Debug = os.Getenv("DEBUG") == "true"
 	TESTAPICLIENT = datadog.NewAPIClient(config)
 	return func(t *testing.T) {
 		// TEARDOWN testing
 	}
+}
+
+func retry(interval time.Duration, count int, call func() bool) error {
+	for i := 0; i < count; i++ {
+		if call() {
+			return nil
+		}
+		time.Sleep(interval * time.Second)
+	}
+	return fmt.Errorf("Retry error: failed to satisfy the condition after %d times", count)
 }
 
 func setupUnitTest(t *testing.T) func(t *testing.T) {
