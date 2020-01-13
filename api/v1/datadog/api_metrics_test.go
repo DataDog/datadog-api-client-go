@@ -207,7 +207,7 @@ func TestMetrics(t *testing.T) {
 	assert.Nil(t, metadata.Unit)
 	assert.Nil(t, metadata.ShortName)
 	assert.Nil(t, metadata.StatsdInterval)
-	assert.Equal(t, datadog.MetricType(""), metadata.Type)
+	assert.Equal(t, "", metadata.Type)
 
 	newMetadata := datadog.MetricMetadata{
 		Description:    datadog.PtrString("description"),
@@ -215,7 +215,7 @@ func TestMetrics(t *testing.T) {
 		Unit:           datadog.PtrString("byte"),
 		ShortName:      datadog.PtrString("short_name"),
 		StatsdInterval: datadog.PtrInt64(20),
-		Type:           datadog.METRICTYPE_COUNT,
+		Type:           "count",
 	}
 
 	metadata, httpresp, err = api.EditMetricMetadata(TESTAUTH, testMetric).MetricMetadata(newMetadata).Execute()
@@ -229,7 +229,7 @@ func TestMetrics(t *testing.T) {
 	assert.Equal(t, "byte", metadata.GetUnit())
 	assert.Equal(t, "short_name", metadata.GetShortName())
 	assert.Equal(t, int64(20), metadata.GetStatsdInterval())
-	assert.Equal(t, datadog.METRICTYPE_COUNT, metadata.GetType())
+	assert.Equal(t, "count", metadata.GetType())
 }
 
 func TestMetricListActive(t *testing.T) {
