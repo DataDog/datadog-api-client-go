@@ -43,7 +43,7 @@ func TestGcpCreate(t *testing.T) {
 	testGCPAcct, _ := generateUniqueGcpAccount()
 	defer uninstallGcpIntegration(testGCPAcct)
 
-	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).Body(testGCPAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -58,7 +58,7 @@ func TestGcpListandDelete(t *testing.T) {
 	defer uninstallGcpIntegration(testGCPAcct)
 
 	// Setup Gcp Account to List
-	TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).Body(testGCPAcct).Execute()
 
 	gcpListOutput, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH).Execute()
 	if err != nil {
@@ -78,7 +78,7 @@ func TestGcpListandDelete(t *testing.T) {
 	assert.Assert(t, len(gcpListOutput) >= 1)
 
 	// Test account deletion as well
-	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(TESTAUTH).Body(testGCPAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error uninstalling GCP Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -93,19 +93,19 @@ func TestUpdateGcpAccount(t *testing.T) {
 	defer uninstallGcpIntegration(testGCPAcct)
 
 	// Setup Gcp Account to Update
-	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).GcpAccount(testGCPAcct).Execute()
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(TESTAUTH).Body(testGCPAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
+	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).Body(testGCPUpdateAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).GcpAccount(testGCPUpdateAcct).Execute()
+	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).Body(testGCPUpdateAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error updating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -128,7 +128,7 @@ func TestUpdateGcpAccount(t *testing.T) {
 }
 
 func uninstallGcpIntegration(account datadog.GcpAccount) {
-	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(TESTAUTH).GcpAccount(account).Execute()
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(TESTAUTH).Body(account).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Error uninstalling GCP Account: %v, Another test may have already removed this account.", account)
 	}

@@ -39,7 +39,7 @@ func TestCreateUser(t *testing.T) {
 	defer disableUser(testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).User(testUser).Execute()
+	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).Body(testUser).Execute()
 	if err != nil {
 		t.Fatalf("Error creating User %s: Response %s: %v", testUser.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -74,7 +74,7 @@ func TestUpdateUser(t *testing.T) {
 	defer disableUser(testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).User(testUser).Execute()
+	userCreateResponse, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).Body(testUser).Execute()
 	if err != nil {
 		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -82,7 +82,7 @@ func TestUpdateUser(t *testing.T) {
 	userCreateResponse.GetUser()
 
 	// Assert User Get with proper fields
-	userUpdateResponse, httpresp, err := TESTAPICLIENT.UsersApi.UpdateUser(TESTAUTH, testUser.GetHandle()).User(UPDATEUSER).Execute()
+	userUpdateResponse, httpresp, err := TESTAPICLIENT.UsersApi.UpdateUser(TESTAUTH, testUser.GetHandle()).Body(UPDATEUSER).Execute()
 	if err != nil {
 		t.Fatalf("Error getting User %s: Response %s: %v", testUser.GetHandle(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -103,7 +103,7 @@ func TestDisableUser(t *testing.T) {
 	defer disableUser(testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	_, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).User(testUser).Execute()
+	_, httpresp, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).Body(testUser).Execute()
 	if err != nil {
 		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
