@@ -39,38 +39,39 @@ func TestEventLifecycle(t *testing.T) {
 	assert.Equal(t, event.GetText(), testEvent.GetText())
 	assert.Assert(t, event.GetUrl() != "")
 
-	const retries = 5
-	retry := 0
-	var fetchedEvent datadog.Event
-	for retry < retries {
-		retry = retry + 1
+	var fetchedEventResponse datadog.EventResponse
+
+	retry(time.Duration(2*time.Second), 10, func() bool {
 		// Check event existence
-		fetchedEventResponse, httpresp, err := TESTAPICLIENT.EventsApi.GetEvent(TESTAUTH, event.GetId()).Execute()
+		fetchedEventResponse, httpresp, err = TESTAPICLIENT.EventsApi.GetEvent(TESTAUTH, event.GetId()).Execute()
 		if err != nil {
-			if retry < retries {
-				time.Sleep(5000 * time.Millisecond)
-				t.Logf("Retry %d", retry)
-				continue
-			}
-			t.Errorf("Error fetching Event %v: Response %v: %v", event.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Logf("Error fetching Event %v: Response %s: %v", event.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+			return false
 		}
-		fetchedEvent = fetchedEventResponse.GetEvent()
-		assert.Equal(t, httpresp.StatusCode, 200)
-		assert.Equal(t, event.GetTitle(), fetchedEvent.GetTitle())
-		assert.Equal(t, event.GetText(), fetchedEvent.GetText())
-		// not the same!!! assert.Equal(t, event.GetUrl(), fetchedEvent.GetUrl())
-		assert.Assert(t, fetchedEvent.GetUrl() != "")
-		break
-	}
+		return true
+	})
+
+	fetchedEvent := fetchedEventResponse.GetEvent()
+	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, event.GetTitle(), fetchedEvent.GetTitle())
+	assert.Equal(t, event.GetText(), fetchedEvent.GetText())
+	// not the same!!! assert.Equal(t, event.GetUrl(), fetchedEvent.GetUrl())
+	assert.Assert(t, fetchedEvent.GetUrl() != "")
 
 	// Find our event in the full list
 	start := event.GetDateHappened() - 10
 	end := start + 20
-	// eventListResponse, httpresp, err := TESTAPICLIENT.EventsApi.ListEvents(TESTAUTH).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
-	eventListResponse, httpresp, err := TESTAPICLIENT.EventsApi.ListEvents(TESTAUTH).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
-	if err != nil {
-		t.Errorf("Error fetching events: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
+
+	var eventListResponse datadog.EventListResponse
+
+	retry(time.Duration(2*time.Second), 10, func() bool {
+		eventListResponse, httpresp, err = TESTAPICLIENT.EventsApi.ListEvents(TESTAUTH).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
+		if err != nil {
+			t.Logf("Error fetching events: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			return false
+		}
+		return true
+	})
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	events := eventListResponse.GetEvents()

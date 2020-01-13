@@ -56,6 +56,8 @@ type APIClient struct {
 
 	DowntimesApi *DowntimesApiService
 
+	EventsApi *EventsApiService
+
 	GCPIntegrationApi *GCPIntegrationApiService
 
 	KeysApi *KeysApiService
@@ -96,6 +98,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AzureIntegrationApi = (*AzureIntegrationApiService)(&c.common)
 	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
 	c.DowntimesApi = (*DowntimesApiService)(&c.common)
+	c.EventsApi = (*EventsApiService)(&c.common)
 	c.GCPIntegrationApi = (*GCPIntegrationApiService)(&c.common)
 	c.KeysApi = (*KeysApiService)(&c.common)
 	c.LogsHTTPIntakeApi = (*LogsHTTPIntakeApiService)(&c.common)

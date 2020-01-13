@@ -103,6 +103,9 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**GetAllDowntimes**](docs/DowntimesApi.md#getalldowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**GetDowntime**](docs/DowntimesApi.md#getdowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
+*EventsApi* | [**CreateEvent**](docs/EventsApi.md#createevent) | **Post** /api/v1/events | Post an event
+*EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /api/v1/events/{event_id} | Get an event
+*EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream.
 *GCPIntegrationApi* | [**CreateGCPIntegration**](docs/GCPIntegrationApi.md#creategcpintegration) | **Post** /api/v1/integration/gcp | Add a GCP integration to your Datadog account.
 *GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP Integration from your Datadog account.
 *GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List configured GCP integrations.
@@ -185,6 +188,9 @@ Class | Method | HTTP request | Description
  - [Error429](docs/Error429.md)
  - [Error500](docs/Error500.md)
  - [Error503](docs/Error503.md)
+ - [Event](docs/Event.md)
+ - [EventListResponse](docs/EventListResponse.md)
+ - [EventResponse](docs/EventResponse.md)
  - [GcpAccount](docs/GcpAccount.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
  - [HttpLog](docs/HttpLog.md)
