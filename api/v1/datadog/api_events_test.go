@@ -25,7 +25,7 @@ func TestEventLifecycle(t *testing.T) {
 	defer teardownTest(t)
 
 	// Create event
-	eventResponse, httpresp, err := TESTAPICLIENT.EventsApi.CreateEvent(TESTAUTH).Event(testEvent).Execute()
+	eventResponse, httpresp, err := TESTAPICLIENT.EventsApi.CreateEvent(TESTAUTH).Body(testEvent).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, err.(datadog.GenericOpenAPIError).Body(), err)
 	}

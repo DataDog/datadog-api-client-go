@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SendLog
 
-> interface{} SendLog(ctx).HttpLog(httpLog).Execute()
+> interface{} SendLog(ctx).Body(body).Execute()
 
 
 
@@ -27,7 +27,7 @@ Other parameters are passed through a pointer to a apiSendLogRequest struct via 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **httpLog** | [**HttpLog**](HttpLog.md) | Log to send (JSON format) | 
+ **body** | [**HttpLog**](HttpLog.md) | Log to send (JSON format) | 
 
 ### Return type
 

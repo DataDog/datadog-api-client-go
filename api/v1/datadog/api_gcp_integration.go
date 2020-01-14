@@ -26,11 +26,11 @@ type GCPIntegrationApiService service
 type apiCreateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	apiService *GCPIntegrationApiService
-	gcpAccount *GcpAccount
+	body       *GcpAccount
 }
 
-func (r apiCreateGCPIntegrationRequest) GcpAccount(gcpAccount GcpAccount) apiCreateGCPIntegrationRequest {
-	r.gcpAccount = &gcpAccount
+func (r apiCreateGCPIntegrationRequest) Body(body GcpAccount) apiCreateGCPIntegrationRequest {
+	r.body = &body
 	return r
 }
 
@@ -86,8 +86,8 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.gcpAccount == nil {
-		return localVarReturnValue, nil, reportError("gcpAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -108,7 +108,7 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.gcpAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -205,11 +205,11 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 type apiDeleteGCPIntegrationRequest struct {
 	ctx        _context.Context
 	apiService *GCPIntegrationApiService
-	gcpAccount *GcpAccount
+	body       *GcpAccount
 }
 
-func (r apiDeleteGCPIntegrationRequest) GcpAccount(gcpAccount GcpAccount) apiDeleteGCPIntegrationRequest {
-	r.gcpAccount = &gcpAccount
+func (r apiDeleteGCPIntegrationRequest) Body(body GcpAccount) apiDeleteGCPIntegrationRequest {
+	r.body = &body
 	return r
 }
 
@@ -255,8 +255,8 @@ func (r apiDeleteGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.gcpAccount == nil {
-		return localVarReturnValue, nil, reportError("gcpAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -277,7 +277,7 @@ func (r apiDeleteGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.gcpAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -528,11 +528,11 @@ func (r apiListGCPIntegrationRequest) Execute() ([]GcpAccount, *_nethttp.Respons
 type apiUpdateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	apiService *GCPIntegrationApiService
-	gcpAccount *GcpAccount
+	body       *GcpAccount
 }
 
-func (r apiUpdateGCPIntegrationRequest) GcpAccount(gcpAccount GcpAccount) apiUpdateGCPIntegrationRequest {
-	r.gcpAccount = &gcpAccount
+func (r apiUpdateGCPIntegrationRequest) Body(body GcpAccount) apiUpdateGCPIntegrationRequest {
+	r.body = &body
 	return r
 }
 
@@ -580,8 +580,8 @@ func (r apiUpdateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.gcpAccount == nil {
-		return localVarReturnValue, nil, reportError("gcpAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -602,7 +602,7 @@ func (r apiUpdateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.gcpAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -60,7 +60,7 @@ func TestCreateOrg(t *testing.T) {
 	}
 	createBody.SetSubscription(orgCreateBody.GetSubscription())
 	createBody.SetBilling(orgCreateBody.GetBilling())
-	getOrgResp, _, err := TESTAPICLIENT.OrgsApi.CreateChildOrg(TESTAUTH).OrgCreateBody(createBody).Execute()
+	getOrgResp, _, err := TESTAPICLIENT.OrgsApi.CreateChildOrg(TESTAUTH).Body(createBody).Execute()
 	if err != nil {
 		t.Errorf("Failed to create the test org %s", err)
 	}
@@ -112,7 +112,7 @@ func TestUpdateOrg(t *testing.T) {
 	json.Unmarshal(setupGock(t, "orgs/org_update.json", "put", "/org"), &orgsFixture)
 
 	// Get mocked request data
-	updateOrgResp, _, err := TESTAPICLIENT.OrgsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId).Org(datadog.Org{Settings: orgsFixture.GetOrg().Settings}).Execute()
+	updateOrgResp, _, err := TESTAPICLIENT.OrgsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId).Body(datadog.Org{Settings: orgsFixture.GetOrg().Settings}).Execute()
 	if err != nil {
 		t.Errorf("Failed to update the test org %s", err)
 	}

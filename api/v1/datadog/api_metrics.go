@@ -24,13 +24,13 @@ var (
 type MetricsApiService service
 
 type apiSubmitMetricsRequest struct {
-	ctx            _context.Context
-	apiService     *MetricsApiService
-	metricsPayload *MetricsPayload
+	ctx        _context.Context
+	apiService *MetricsApiService
+	body       *MetricsPayload
 }
 
-func (r apiSubmitMetricsRequest) MetricsPayload(metricsPayload MetricsPayload) apiSubmitMetricsRequest {
-	r.metricsPayload = &metricsPayload
+func (r apiSubmitMetricsRequest) Body(body MetricsPayload) apiSubmitMetricsRequest {
+	r.body = &body
 	return r
 }
 
@@ -75,8 +75,8 @@ func (r apiSubmitMetricsRequest) Execute() (IntakePayloadAccepted, *_nethttp.Res
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.metricsPayload == nil {
-		return localVarReturnValue, nil, reportError("metricsPayload is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -97,7 +97,7 @@ func (r apiSubmitMetricsRequest) Execute() (IntakePayloadAccepted, *_nethttp.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.metricsPayload
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SubmitMetrics
 
-> IntakePayloadAccepted SubmitMetrics(ctx).MetricsPayload(metricsPayload).Execute()
+> IntakePayloadAccepted SubmitMetrics(ctx).Body(body).Execute()
 
 Submit metrics
 
@@ -27,7 +27,7 @@ Other parameters are passed through a pointer to a apiSubmitMetricsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **metricsPayload** | [**MetricsPayload**](MetricsPayload.md) |  | 
+ **body** | [**MetricsPayload**](MetricsPayload.md) |  | 
 
 ### Return type
 

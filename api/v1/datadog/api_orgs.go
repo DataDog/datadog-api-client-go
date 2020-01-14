@@ -26,13 +26,13 @@ var (
 type OrgsApiService service
 
 type apiCreateChildOrgRequest struct {
-	ctx           _context.Context
-	apiService    *OrgsApiService
-	orgCreateBody *OrgCreateBody
+	ctx        _context.Context
+	apiService *OrgsApiService
+	body       *OrgCreateBody
 }
 
-func (r apiCreateChildOrgRequest) OrgCreateBody(orgCreateBody OrgCreateBody) apiCreateChildOrgRequest {
-	r.orgCreateBody = &orgCreateBody
+func (r apiCreateChildOrgRequest) Body(body OrgCreateBody) apiCreateChildOrgRequest {
+	r.body = &body
 	return r
 }
 
@@ -81,8 +81,8 @@ func (r apiCreateChildOrgRequest) Execute() (OrgCreateResponse, *_nethttp.Respon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.orgCreateBody == nil {
-		return localVarReturnValue, nil, reportError("orgCreateBody is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -103,7 +103,7 @@ func (r apiCreateChildOrgRequest) Execute() (OrgCreateResponse, *_nethttp.Respon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.orgCreateBody
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -355,11 +355,11 @@ type apiUpdateOrgRequest struct {
 	ctx        _context.Context
 	apiService *OrgsApiService
 	publicId   string
-	org        *Org
+	body       *Org
 }
 
-func (r apiUpdateOrgRequest) Org(org Org) apiUpdateOrgRequest {
-	r.org = &org
+func (r apiUpdateOrgRequest) Body(body Org) apiUpdateOrgRequest {
+	r.body = &body
 	return r
 }
 
@@ -435,7 +435,7 @@ func (r apiUpdateOrgRequest) Execute() (OrgResponse, *_nethttp.Response, error) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.org
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

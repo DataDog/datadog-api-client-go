@@ -27,11 +27,11 @@ type UsersApiService service
 type apiCreateUserRequest struct {
 	ctx        _context.Context
 	apiService *UsersApiService
-	user       *User
+	body       *User
 }
 
-func (r apiCreateUserRequest) User(user User) apiCreateUserRequest {
-	r.user = &user
+func (r apiCreateUserRequest) Body(body User) apiCreateUserRequest {
+	r.body = &body
 	return r
 }
 
@@ -87,8 +87,8 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.user == nil {
-		return localVarReturnValue, nil, reportError("user is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -109,7 +109,7 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.user
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -685,11 +685,11 @@ type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	apiService *UsersApiService
 	userHandle string
-	user       *User
+	body       *User
 }
 
-func (r apiUpdateUserRequest) User(user User) apiUpdateUserRequest {
-	r.user = &user
+func (r apiUpdateUserRequest) Body(body User) apiUpdateUserRequest {
+	r.body = &body
 	return r
 }
 
@@ -749,8 +749,8 @@ func (r apiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.user == nil {
-		return localVarReturnValue, nil, reportError("user is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -771,7 +771,7 @@ func (r apiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.user
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

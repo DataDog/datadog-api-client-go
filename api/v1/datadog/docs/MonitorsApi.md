@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateMonitor
 
-> Monitor CreateMonitor(ctx).Monitor(monitor).Execute()
+> Monitor CreateMonitor(ctx).Body(body).Execute()
 
 Create a new Monitor
 
@@ -32,7 +32,7 @@ Other parameters are passed through a pointer to a apiCreateMonitorRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **monitor** | [**Monitor**](Monitor.md) | Monitor request object | 
+ **body** | [**Monitor**](Monitor.md) | Monitor request object | 
 
 ### Return type
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## EditMonitor
 
-> Monitor EditMonitor(ctx, monitorId).Monitor(monitor).Execute()
+> Monitor EditMonitor(ctx, monitorId).Body(body).Execute()
 
 Edit the specified monitor
 
@@ -119,7 +119,7 @@ Other parameters are passed through a pointer to a apiEditMonitorRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **monitor** | [**Monitor**](Monitor.md) | Monitor request object | 
+ **body** | [**Monitor**](Monitor.md) | Monitor request object | 
 
 ### Return type
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ## ValidateMonitor
 
-> Monitor ValidateMonitor(ctx).Monitor(monitor).Execute()
+> Monitor ValidateMonitor(ctx).Body(body).Execute()
 
 
 
@@ -245,7 +245,7 @@ Other parameters are passed through a pointer to a apiValidateMonitorRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **monitor** | [**Monitor**](Monitor.md) | Monitor request object | 
+ **body** | [**Monitor**](Monitor.md) | Monitor request object | 
 
 ### Return type
 

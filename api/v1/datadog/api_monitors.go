@@ -27,11 +27,11 @@ type MonitorsApiService service
 type apiCreateMonitorRequest struct {
 	ctx        _context.Context
 	apiService *MonitorsApiService
-	monitor    *Monitor
+	body       *Monitor
 }
 
-func (r apiCreateMonitorRequest) Monitor(monitor Monitor) apiCreateMonitorRequest {
-	r.monitor = &monitor
+func (r apiCreateMonitorRequest) Body(body Monitor) apiCreateMonitorRequest {
+	r.body = &body
 	return r
 }
 
@@ -76,8 +76,8 @@ func (r apiCreateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.monitor == nil {
-		return localVarReturnValue, nil, reportError("monitor is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (r apiCreateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.monitor
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -356,11 +356,11 @@ type apiEditMonitorRequest struct {
 	ctx        _context.Context
 	apiService *MonitorsApiService
 	monitorId  int64
-	monitor    *Monitor
+	body       *Monitor
 }
 
-func (r apiEditMonitorRequest) Monitor(monitor Monitor) apiEditMonitorRequest {
-	r.monitor = &monitor
+func (r apiEditMonitorRequest) Body(body Monitor) apiEditMonitorRequest {
+	r.body = &body
 	return r
 }
 
@@ -408,8 +408,8 @@ func (r apiEditMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) {
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.monitor == nil {
-		return localVarReturnValue, nil, reportError("monitor is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -430,7 +430,7 @@ func (r apiEditMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.monitor
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -902,11 +902,11 @@ func (r apiGetMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) {
 type apiValidateMonitorRequest struct {
 	ctx        _context.Context
 	apiService *MonitorsApiService
-	monitor    *Monitor
+	body       *Monitor
 }
 
-func (r apiValidateMonitorRequest) Monitor(monitor Monitor) apiValidateMonitorRequest {
-	r.monitor = &monitor
+func (r apiValidateMonitorRequest) Body(body Monitor) apiValidateMonitorRequest {
+	r.body = &body
 	return r
 }
 
@@ -951,8 +951,8 @@ func (r apiValidateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.monitor == nil {
-		return localVarReturnValue, nil, reportError("monitor is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -973,7 +973,7 @@ func (r apiValidateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.monitor
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
