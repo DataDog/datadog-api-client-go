@@ -119,6 +119,10 @@ func TestUpdateAWSAccount(t *testing.T) {
 }
 
 func TestDisableAWSAcct(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
 	// We already test this in the disableAWSAccount cleanup function, but good to have an explicit test
 	testAwsAccount := generateUniqueAwsAccount()
 
@@ -138,6 +142,10 @@ func TestDisableAWSAcct(t *testing.T) {
 }
 
 func TestGenerateNewExternalId(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
 	testAwsAccount := generateUniqueAwsAccount()
 	// Lets first create the account for us to generate a new id against
 	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(testAwsAccount).Execute()
@@ -145,6 +153,7 @@ func TestGenerateNewExternalId(t *testing.T) {
 		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
+	defer uninstallAWSIntegration(testAwsAccount)
 
 	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH).Body(testAwsAccount).Execute()
 	if err != nil {
@@ -155,6 +164,10 @@ func TestGenerateNewExternalId(t *testing.T) {
 }
 
 func TestListNamespaces(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
 	namespaces, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing AWS Namespaces: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)

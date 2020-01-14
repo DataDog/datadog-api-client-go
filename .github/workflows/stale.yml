@@ -28,6 +28,7 @@ jobs:
 
             1. Comment that the issue is still reproducible and include updated details requested in the issue template.
         days-before-stale: 30
+        days-before-close: 99999
         stale-issue-label: 'stale'
         exempt-issue-label: 'stale/exempt'
         stale-pr-message: >-
