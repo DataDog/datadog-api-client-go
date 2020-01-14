@@ -47,7 +47,7 @@ func retry(interval time.Duration, count int, call func() bool) error {
 		if call() {
 			return nil
 		}
-		time.Sleep(interval * time.Second)
+		time.Sleep(interval)
 	}
 	return fmt.Errorf("Retry error: failed to satisfy the condition after %d times", count)
 }
