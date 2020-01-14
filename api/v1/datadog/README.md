@@ -133,6 +133,11 @@ Class | Method | HTTP request | Description
 *OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
 *OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
+*TagsApi* | [**AddToHostTags**](docs/TagsApi.md#addtohosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
+*TagsApi* | [**GetAllHostTags**](docs/TagsApi.md#getallhosttags) | **Get** /api/v1/tags/hosts | Get a mapping of tags to hosts for your whole infrastrucutre
+*TagsApi* | [**GetHostTags**](docs/TagsApi.md#gethosttags) | **Get** /api/v1/tags/hosts/{host_name} | Get list of tags for a specific hosts
+*TagsApi* | [**RemoveHostTags**](docs/TagsApi.md#removehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove Host Tags
+*TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update a tags on a host
 *UsageApi* | [**GetUsageFargate**](docs/UsageApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for fargate.
 *UsageApi* | [**GetUsageHosts**](docs/UsageApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers.
 *UsageApi* | [**GetUsageLogs**](docs/UsageApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for logs.
@@ -193,6 +198,7 @@ Class | Method | HTTP request | Description
  - [EventResponse](docs/EventResponse.md)
  - [GcpAccount](docs/GcpAccount.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
+ - [HostTags](docs/HostTags.md)
  - [HttpLog](docs/HttpLog.md)
  - [HttpLogError](docs/HttpLogError.md)
  - [IdpFormData](docs/IdpFormData.md)
@@ -219,6 +225,7 @@ Class | Method | HTTP request | Description
  - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
  - [OrgSubscription](docs/OrgSubscription.md)
  - [Series](docs/Series.md)
+ - [TagToHosts](docs/TagToHosts.md)
  - [UsageFargateHour](docs/UsageFargateHour.md)
  - [UsageFargateResponse](docs/UsageFargateResponse.md)
  - [UsageHostHour](docs/UsageHostHour.md)
