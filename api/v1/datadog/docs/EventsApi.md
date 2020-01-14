@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateEvent
 
-> EventResponse CreateEvent(ctx).Event(event).Execute()
+> EventResponse CreateEvent(ctx).Body(body).Execute()
 
 Post an event
 
@@ -29,7 +29,7 @@ Other parameters are passed through a pointer to a apiCreateEventRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **event** | [**Event**](Event.md) | Event request object | 
+ **body** | [**Event**](Event.md) | Event request object | 
 
 ### Return type
 

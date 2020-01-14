@@ -24,13 +24,13 @@ var (
 type AWSLogsIntegrationApiService service
 
 type apiAWSLogsCheckLambdaAsyncRequest struct {
-	ctx                        _context.Context
-	apiService                 *AWSLogsIntegrationApiService
-	awsAccountAndLambdaRequest *AwsAccountAndLambdaRequest
+	ctx        _context.Context
+	apiService *AWSLogsIntegrationApiService
+	body       *AwsAccountAndLambdaRequest
 }
 
-func (r apiAWSLogsCheckLambdaAsyncRequest) AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest AwsAccountAndLambdaRequest) apiAWSLogsCheckLambdaAsyncRequest {
-	r.awsAccountAndLambdaRequest = &awsAccountAndLambdaRequest
+func (r apiAWSLogsCheckLambdaAsyncRequest) Body(body AwsAccountAndLambdaRequest) apiAWSLogsCheckLambdaAsyncRequest {
+	r.body = &body
 	return r
 }
 
@@ -80,8 +80,8 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccountAndLambdaRequest == nil {
-		return localVarReturnValue, nil, reportError("awsAccountAndLambdaRequest is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -102,7 +102,7 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccountAndLambdaRequest
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -197,13 +197,13 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Execute() (AwsLogsAsyncResponse, *_ne
 }
 
 type apiAWSLogsCheckServicesAsyncRequest struct {
-	ctx                    _context.Context
-	apiService             *AWSLogsIntegrationApiService
-	awsLogsServicesRequest *AwsLogsServicesRequest
+	ctx        _context.Context
+	apiService *AWSLogsIntegrationApiService
+	body       *AwsLogsServicesRequest
 }
 
-func (r apiAWSLogsCheckServicesAsyncRequest) AwsLogsServicesRequest(awsLogsServicesRequest AwsLogsServicesRequest) apiAWSLogsCheckServicesAsyncRequest {
-	r.awsLogsServicesRequest = &awsLogsServicesRequest
+func (r apiAWSLogsCheckServicesAsyncRequest) Body(body AwsLogsServicesRequest) apiAWSLogsCheckServicesAsyncRequest {
+	r.body = &body
 	return r
 }
 
@@ -253,8 +253,8 @@ func (r apiAWSLogsCheckServicesAsyncRequest) Execute() (AwsLogsAsyncResponse, *_
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsLogsServicesRequest == nil {
-		return localVarReturnValue, nil, reportError("awsLogsServicesRequest is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -275,7 +275,7 @@ func (r apiAWSLogsCheckServicesAsyncRequest) Execute() (AwsLogsAsyncResponse, *_
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsLogsServicesRequest
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -678,13 +678,13 @@ func (r apiAWSLogsServicesListRequest) Execute() ([]AwsLogsListServicesResponse,
 }
 
 type apiAddAWSLambdaARNRequest struct {
-	ctx                        _context.Context
-	apiService                 *AWSLogsIntegrationApiService
-	awsAccountAndLambdaRequest *AwsAccountAndLambdaRequest
+	ctx        _context.Context
+	apiService *AWSLogsIntegrationApiService
+	body       *AwsAccountAndLambdaRequest
 }
 
-func (r apiAddAWSLambdaARNRequest) AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest AwsAccountAndLambdaRequest) apiAddAWSLambdaARNRequest {
-	r.awsAccountAndLambdaRequest = &awsAccountAndLambdaRequest
+func (r apiAddAWSLambdaARNRequest) Body(body AwsAccountAndLambdaRequest) apiAddAWSLambdaARNRequest {
+	r.body = &body
 	return r
 }
 
@@ -730,8 +730,8 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccountAndLambdaRequest == nil {
-		return localVarReturnValue, nil, reportError("awsAccountAndLambdaRequest is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -752,7 +752,7 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccountAndLambdaRequest
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -847,13 +847,13 @@ func (r apiAddAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response, e
 }
 
 type apiDeleteAWSLambdaARNRequest struct {
-	ctx                        _context.Context
-	apiService                 *AWSLogsIntegrationApiService
-	awsAccountAndLambdaRequest *AwsAccountAndLambdaRequest
+	ctx        _context.Context
+	apiService *AWSLogsIntegrationApiService
+	body       *AwsAccountAndLambdaRequest
 }
 
-func (r apiDeleteAWSLambdaARNRequest) AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest AwsAccountAndLambdaRequest) apiDeleteAWSLambdaARNRequest {
-	r.awsAccountAndLambdaRequest = &awsAccountAndLambdaRequest
+func (r apiDeleteAWSLambdaARNRequest) Body(body AwsAccountAndLambdaRequest) apiDeleteAWSLambdaARNRequest {
+	r.body = &body
 	return r
 }
 
@@ -899,8 +899,8 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccountAndLambdaRequest == nil {
-		return localVarReturnValue, nil, reportError("awsAccountAndLambdaRequest is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -921,7 +921,7 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccountAndLambdaRequest
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1016,13 +1016,13 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 }
 
 type apiEnableAWSLogServicesRequest struct {
-	ctx                    _context.Context
-	apiService             *AWSLogsIntegrationApiService
-	awsLogsServicesRequest *AwsLogsServicesRequest
+	ctx        _context.Context
+	apiService *AWSLogsIntegrationApiService
+	body       *AwsLogsServicesRequest
 }
 
-func (r apiEnableAWSLogServicesRequest) AwsLogsServicesRequest(awsLogsServicesRequest AwsLogsServicesRequest) apiEnableAWSLogServicesRequest {
-	r.awsLogsServicesRequest = &awsLogsServicesRequest
+func (r apiEnableAWSLogServicesRequest) Body(body AwsLogsServicesRequest) apiEnableAWSLogServicesRequest {
+	r.body = &body
 	return r
 }
 
@@ -1068,8 +1068,8 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsLogsServicesRequest == nil {
-		return localVarReturnValue, nil, reportError("awsLogsServicesRequest is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1090,7 +1090,7 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsLogsServicesRequest
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

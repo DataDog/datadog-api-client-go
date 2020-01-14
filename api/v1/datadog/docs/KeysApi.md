@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## CreateAPIKey
 
-> ApiKeyResponse CreateAPIKey(ctx).ApiKey(apiKey).Execute()
+> ApiKeyResponse CreateAPIKey(ctx).Body(body).Execute()
 
 Create an API key with a given name.
 
@@ -36,7 +36,7 @@ Other parameters are passed through a pointer to a apiCreateAPIKeyRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiKey** | [**ApiKey**](ApiKey.md) |  | 
+ **body** | [**ApiKey**](ApiKey.md) |  | 
 
 ### Return type
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ## CreateApplicationKey
 
-> ApplicationKeyResponse CreateApplicationKey(ctx).ApplicationKey(applicationKey).Execute()
+> ApplicationKeyResponse CreateApplicationKey(ctx).Body(body).Execute()
 
 Create an application key with a given name.
 
@@ -75,7 +75,7 @@ Other parameters are passed through a pointer to a apiCreateApplicationKeyReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationKey** | [**ApplicationKey**](ApplicationKey.md) |  | 
+ **body** | [**ApplicationKey**](ApplicationKey.md) |  | 
 
 ### Return type
 
@@ -183,7 +183,7 @@ Name | Type | Description  | Notes
 
 ## EditAPIKey
 
-> ApiKeyResponse EditAPIKey(ctx, key).ApiKey(apiKey).Execute()
+> ApiKeyResponse EditAPIKey(ctx, key).Body(body).Execute()
 
 Edit an API key name.
 
@@ -205,7 +205,7 @@ Other parameters are passed through a pointer to a apiEditAPIKeyRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiKey** | [**ApiKey**](ApiKey.md) |  | 
+ **body** | [**ApiKey**](ApiKey.md) |  | 
 
 ### Return type
 
@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## EditApplicationKey
 
-> ApplicationKeyResponse EditApplicationKey(ctx, key).ApplicationKey(applicationKey).Execute()
+> ApplicationKeyResponse EditApplicationKey(ctx, key).Body(body).Execute()
 
 Edit an application key name.
 
@@ -249,7 +249,7 @@ Other parameters are passed through a pointer to a apiEditApplicationKeyRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **applicationKey** | [**ApplicationKey**](ApplicationKey.md) |  | 
+ **body** | [**ApplicationKey**](ApplicationKey.md) |  | 
 
 ### Return type
 

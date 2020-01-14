@@ -27,11 +27,11 @@ type EventsApiService service
 type apiCreateEventRequest struct {
 	ctx        _context.Context
 	apiService *EventsApiService
-	event      *Event
+	body       *Event
 }
 
-func (r apiCreateEventRequest) Event(event Event) apiCreateEventRequest {
-	r.event = &event
+func (r apiCreateEventRequest) Body(body Event) apiCreateEventRequest {
+	r.body = &body
 	return r
 }
 
@@ -113,8 +113,8 @@ func (r apiCreateEventRequest) Execute() (EventResponse, *_nethttp.Response, err
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.event == nil {
-		return localVarReturnValue, nil, reportError("event is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -135,7 +135,7 @@ func (r apiCreateEventRequest) Execute() (EventResponse, *_nethttp.Response, err
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.event
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

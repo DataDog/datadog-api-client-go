@@ -26,11 +26,11 @@ type LogsHTTPIntakeApiService service
 type apiSendLogRequest struct {
 	ctx        _context.Context
 	apiService *LogsHTTPIntakeApiService
-	httpLog    *HttpLog
+	body       *HttpLog
 }
 
-func (r apiSendLogRequest) HttpLog(httpLog HttpLog) apiSendLogRequest {
-	r.httpLog = &httpLog
+func (r apiSendLogRequest) Body(body HttpLog) apiSendLogRequest {
+	r.body = &body
 	return r
 }
 
@@ -72,8 +72,8 @@ func (r apiSendLogRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.httpLog == nil {
-		return localVarReturnValue, nil, reportError("httpLog is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -94,7 +94,7 @@ func (r apiSendLogRequest) Execute() (interface{}, *_nethttp.Response, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.httpLog
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ## CancelDowntimesByScope
 
-> CanceledDowntimesIds CancelDowntimesByScope(ctx).CancelDowntimesByScopeRequest(cancelDowntimesByScopeRequest).Execute()
+> CanceledDowntimesIds CancelDowntimesByScope(ctx).Body(body).Execute()
 
 Cancel downtimes by scope
 
@@ -75,7 +75,7 @@ Other parameters are passed through a pointer to a apiCancelDowntimesByScopeRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cancelDowntimesByScopeRequest** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for | 
+ **body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for | 
 
 ### Return type
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## CreateDowntime
 
-> Downtime CreateDowntime(ctx).Downtime(downtime).Execute()
+> Downtime CreateDowntime(ctx).Body(body).Execute()
 
 Schedule a downtime
 
@@ -114,7 +114,7 @@ Other parameters are passed through a pointer to a apiCreateDowntimeRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **downtime** | [**Downtime**](Downtime.md) | Downtime request object | 
+ **body** | [**Downtime**](Downtime.md) | Downtime request object | 
 
 ### Return type
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDowntime
 
-> Downtime UpdateDowntime(ctx, downtimeId).Downtime(downtime).Execute()
+> Downtime UpdateDowntime(ctx, downtimeId).Body(body).Execute()
 
 Update a downtime
 
@@ -240,7 +240,7 @@ Other parameters are passed through a pointer to a apiUpdateDowntimeRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **downtime** | [**Downtime**](Downtime.md) | Downtime request object | 
+ **body** | [**Downtime**](Downtime.md) | Downtime request object | 
 
 ### Return type
 

@@ -28,12 +28,12 @@ type apiAddToHostTagsRequest struct {
 	ctx        _context.Context
 	apiService *TagsApiService
 	hostName   string
-	hostTags   *HostTags
+	body       *HostTags
 	source     *string
 }
 
-func (r apiAddToHostTagsRequest) HostTags(hostTags HostTags) apiAddToHostTagsRequest {
-	r.hostTags = &hostTags
+func (r apiAddToHostTagsRequest) Body(body HostTags) apiAddToHostTagsRequest {
+	r.body = &body
 	return r
 }
 
@@ -87,8 +87,8 @@ func (r apiAddToHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.hostTags == nil {
-		return localVarReturnValue, nil, reportError("hostTags is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	if r.source != nil {
@@ -112,7 +112,7 @@ func (r apiAddToHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.hostTags
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -554,7 +554,6 @@ RemoveHostTags Remove Host Tags
 ### Remove Host Tags
 
  * **`source`** [*optional*, *default*= **users**]: The source of the tags (e.g. chef, puppet).
-
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName This endpoint allows you to remove all user-assigned tags for a single host.
 @return apiRemoveHostTagsRequest
@@ -690,12 +689,12 @@ type apiUpdateHostTagsRequest struct {
 	ctx        _context.Context
 	apiService *TagsApiService
 	hostName   string
-	hostTags   *HostTags
+	body       *HostTags
 	source     *string
 }
 
-func (r apiUpdateHostTagsRequest) HostTags(hostTags HostTags) apiUpdateHostTagsRequest {
-	r.hostTags = &hostTags
+func (r apiUpdateHostTagsRequest) Body(body HostTags) apiUpdateHostTagsRequest {
+	r.body = &body
 	return r
 }
 
@@ -749,8 +748,8 @@ func (r apiUpdateHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.hostTags == nil {
-		return localVarReturnValue, nil, reportError("hostTags is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	if r.source != nil {
@@ -774,7 +773,7 @@ func (r apiUpdateHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.hostTags
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## AWSLogsCheckLambdaAsync
 
-> AwsLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx).AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest).Execute()
+> AwsLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx).Body(body).Execute()
 
 Check function to see if a lambda_arn exists within an account.
 
@@ -33,7 +33,7 @@ Other parameters are passed through a pointer to a apiAWSLogsCheckLambdaAsyncReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccountAndLambdaRequest** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+ **body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ## AWSLogsCheckServicesAsync
 
-> AwsLogsAsyncResponse AWSLogsCheckServicesAsync(ctx).AwsLogsServicesRequest(awsLogsServicesRequest).Execute()
+> AwsLogsAsyncResponse AWSLogsCheckServicesAsync(ctx).Body(body).Execute()
 
 Asynchronous check for permissions for AWS log lambda config.
 
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiAWSLogsCheckServicesAsyncR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsLogsServicesRequest** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md) | AWS Logs Async Services check request body | 
+ **body** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md) | AWS Logs Async Services check request body | 
 
 ### Return type
 
@@ -164,7 +164,7 @@ Other parameters are passed through a pointer to a apiAWSLogsServicesListRequest
 
 ## AddAWSLambdaARN
 
-> interface{} AddAWSLambdaARN(ctx).AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest).Execute()
+> interface{} AddAWSLambdaARN(ctx).Body(body).Execute()
 
 Add a AWS Lambda ARN to your Datadog account.
 
@@ -181,7 +181,7 @@ Other parameters are passed through a pointer to a apiAddAWSLambdaARNRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccountAndLambdaRequest** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+ **body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSLambdaARN
 
-> interface{} DeleteAWSLambdaARN(ctx).AwsAccountAndLambdaRequest(awsAccountAndLambdaRequest).Execute()
+> interface{} DeleteAWSLambdaARN(ctx).Body(body).Execute()
 
 Delete a AWS Lambda ARN from your Datadog account.
 
@@ -220,7 +220,7 @@ Other parameters are passed through a pointer to a apiDeleteAWSLambdaARNRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccountAndLambdaRequest** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+ **body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## EnableAWSLogServices
 
-> interface{} EnableAWSLogServices(ctx).AwsLogsServicesRequest(awsLogsServicesRequest).Execute()
+> interface{} EnableAWSLogServices(ctx).Body(body).Execute()
 
 Enable Automatic Log collection for your AWS services.
 
@@ -259,7 +259,7 @@ Other parameters are passed through a pointer to a apiEnableAWSLogServicesReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsLogsServicesRequest** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md) | Enable AWS Log Services request object | 
+ **body** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md) | Enable AWS Log Services request object | 
 
 ### Return type
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## AddToHostTags
 
-> HostTags AddToHostTags(ctx, hostName).HostTags(hostTags).Source(source).Execute()
+> HostTags AddToHostTags(ctx, hostName).Body(body).Source(source).Execute()
 
 Add tags to a host
 
@@ -36,7 +36,7 @@ Other parameters are passed through a pointer to a apiAddToHostTagsRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **hostTags** | [**HostTags**](HostTags.md) | Add tags to host | 
+ **body** | [**HostTags**](HostTags.md) | Add tags to host | 
  **source** | **string** | Source to filter | 
 
 ### Return type
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ## UpdateHostTags
 
-> HostTags UpdateHostTags(ctx, hostName).HostTags(hostTags).Source(source).Execute()
+> HostTags UpdateHostTags(ctx, hostName).Body(body).Source(source).Execute()
 
 Update a tags on a host
 
@@ -208,7 +208,7 @@ Other parameters are passed through a pointer to a apiUpdateHostTagsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **hostTags** | [**HostTags**](HostTags.md) | Add tags to host | 
+ **body** | [**HostTags**](HostTags.md) | Add tags to host | 
  **source** | **string** | Source to filter | 
 
 ### Return type

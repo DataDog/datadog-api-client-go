@@ -26,11 +26,11 @@ type AWSIntegrationApiService service
 type apiCreateAWSAccountRequest struct {
 	ctx        _context.Context
 	apiService *AWSIntegrationApiService
-	awsAccount *AwsAccount
+	body       *AwsAccount
 }
 
-func (r apiCreateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiCreateAWSAccountRequest {
-	r.awsAccount = &awsAccount
+func (r apiCreateAWSAccountRequest) Body(body AwsAccount) apiCreateAWSAccountRequest {
+	r.body = &body
 	return r
 }
 
@@ -98,8 +98,8 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccount == nil {
-		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -120,7 +120,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -217,11 +217,11 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 type apiDeleteAWSAccountRequest struct {
 	ctx        _context.Context
 	apiService *AWSIntegrationApiService
-	awsAccount *AwsAccount
+	body       *AwsAccount
 }
 
-func (r apiDeleteAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiDeleteAWSAccountRequest {
-	r.awsAccount = &awsAccount
+func (r apiDeleteAWSAccountRequest) Body(body AwsAccount) apiDeleteAWSAccountRequest {
+	r.body = &body
 	return r
 }
 
@@ -270,8 +270,8 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccount == nil {
-		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -292,7 +292,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -389,11 +389,11 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 type apiGenerateNewAWSExternalIDRequest struct {
 	ctx        _context.Context
 	apiService *AWSIntegrationApiService
-	awsAccount *AwsAccount
+	body       *AwsAccount
 }
 
-func (r apiGenerateNewAWSExternalIDRequest) AwsAccount(awsAccount AwsAccount) apiGenerateNewAWSExternalIDRequest {
-	r.awsAccount = &awsAccount
+func (r apiGenerateNewAWSExternalIDRequest) Body(body AwsAccount) apiGenerateNewAWSExternalIDRequest {
+	r.body = &body
 	return r
 }
 
@@ -442,8 +442,8 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccount == nil {
-		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -464,7 +464,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -915,14 +915,14 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 type apiUpdateAWSAccountRequest struct {
 	ctx         _context.Context
 	apiService  *AWSIntegrationApiService
-	awsAccount  *AwsAccount
+	body        *AwsAccount
 	accountId   *string
 	roleName    *string
 	accessKeyId *string
 }
 
-func (r apiUpdateAWSAccountRequest) AwsAccount(awsAccount AwsAccount) apiUpdateAWSAccountRequest {
-	r.awsAccount = &awsAccount
+func (r apiUpdateAWSAccountRequest) Body(body AwsAccount) apiUpdateAWSAccountRequest {
+	r.body = &body
 	return r
 }
 
@@ -1015,8 +1015,8 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.awsAccount == nil {
-		return localVarReturnValue, nil, reportError("awsAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	if r.accountId != nil {
@@ -1046,7 +1046,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.awsAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

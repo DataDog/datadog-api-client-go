@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateGCPIntegration
 
-> interface{} CreateGCPIntegration(ctx).GcpAccount(gcpAccount).Execute()
+> interface{} CreateGCPIntegration(ctx).Body(body).Execute()
 
 Add a GCP integration to your Datadog account.
 
@@ -30,7 +30,7 @@ Other parameters are passed through a pointer to a apiCreateGCPIntegrationReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **gcpAccount** | [**GcpAccount**](GcpAccount.md) | Create a Datadog-Azure integration. | 
+ **body** | [**GcpAccount**](GcpAccount.md) | Create a Datadog-Azure integration. | 
 
 ### Return type
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ## DeleteGCPIntegration
 
-> interface{} DeleteGCPIntegration(ctx).GcpAccount(gcpAccount).Execute()
+> interface{} DeleteGCPIntegration(ctx).Body(body).Execute()
 
 Delete a GCP Integration from your Datadog account.
 
@@ -69,7 +69,7 @@ Other parameters are passed through a pointer to a apiDeleteGCPIntegrationReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **gcpAccount** | [**GcpAccount**](GcpAccount.md) | Delete a given Datadog-GCP integration. | 
+ **body** | [**GcpAccount**](GcpAccount.md) | Delete a given Datadog-GCP integration. | 
 
 ### Return type
 
@@ -126,7 +126,7 @@ Other parameters are passed through a pointer to a apiListGCPIntegrationRequest 
 
 ## UpdateGCPIntegration
 
-> interface{} UpdateGCPIntegration(ctx).GcpAccount(gcpAccount).Execute()
+> interface{} UpdateGCPIntegration(ctx).Body(body).Execute()
 
 Update a GCP integration in your Datadog account.
 
@@ -143,7 +143,7 @@ Other parameters are passed through a pointer to a apiUpdateGCPIntegrationReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **gcpAccount** | [**GcpAccount**](GcpAccount.md) | Update a Datadog-GCP integration. | 
+ **body** | [**GcpAccount**](GcpAccount.md) | Update a Datadog-GCP integration. | 
 
 ### Return type
 
