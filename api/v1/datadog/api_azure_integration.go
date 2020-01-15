@@ -24,13 +24,13 @@ var (
 type AzureIntegrationApiService service
 
 type apiAzureUpdateHostFiltersRequest struct {
-	ctx          _context.Context
-	apiService   *AzureIntegrationApiService
-	azureAccount *AzureAccount
+	ctx        _context.Context
+	apiService *AzureIntegrationApiService
+	body       *AzureAccount
 }
 
-func (r apiAzureUpdateHostFiltersRequest) AzureAccount(azureAccount AzureAccount) apiAzureUpdateHostFiltersRequest {
-	r.azureAccount = &azureAccount
+func (r apiAzureUpdateHostFiltersRequest) Body(body AzureAccount) apiAzureUpdateHostFiltersRequest {
+	r.body = &body
 	return r
 }
 
@@ -77,8 +77,8 @@ func (r apiAzureUpdateHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.azureAccount == nil {
-		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (r apiAzureUpdateHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.azureAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -194,13 +194,13 @@ func (r apiAzureUpdateHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 }
 
 type apiCreateAzureIntegrationRequest struct {
-	ctx          _context.Context
-	apiService   *AzureIntegrationApiService
-	azureAccount *AzureAccount
+	ctx        _context.Context
+	apiService *AzureIntegrationApiService
+	body       *AzureAccount
 }
 
-func (r apiCreateAzureIntegrationRequest) AzureAccount(azureAccount AzureAccount) apiCreateAzureIntegrationRequest {
-	r.azureAccount = &azureAccount
+func (r apiCreateAzureIntegrationRequest) Body(body AzureAccount) apiCreateAzureIntegrationRequest {
+	r.body = &body
 	return r
 }
 
@@ -248,8 +248,8 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.azureAccount == nil {
-		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -270,7 +270,7 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.azureAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -365,13 +365,13 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 }
 
 type apiDeleteAzureIntegrationRequest struct {
-	ctx          _context.Context
-	apiService   *AzureIntegrationApiService
-	azureAccount *AzureAccount
+	ctx        _context.Context
+	apiService *AzureIntegrationApiService
+	body       *AzureAccount
 }
 
-func (r apiDeleteAzureIntegrationRequest) AzureAccount(azureAccount AzureAccount) apiDeleteAzureIntegrationRequest {
-	r.azureAccount = &azureAccount
+func (r apiDeleteAzureIntegrationRequest) Body(body AzureAccount) apiDeleteAzureIntegrationRequest {
+	r.body = &body
 	return r
 }
 
@@ -417,8 +417,8 @@ func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.azureAccount == nil {
-		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -439,7 +439,7 @@ func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.azureAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -688,13 +688,13 @@ func (r apiListAzureIntegrationRequest) Execute() ([]AzureAccount, *_nethttp.Res
 }
 
 type apiUpdateAzureIntegrationRequest struct {
-	ctx          _context.Context
-	apiService   *AzureIntegrationApiService
-	azureAccount *AzureAccount
+	ctx        _context.Context
+	apiService *AzureIntegrationApiService
+	body       *AzureAccount
 }
 
-func (r apiUpdateAzureIntegrationRequest) AzureAccount(azureAccount AzureAccount) apiUpdateAzureIntegrationRequest {
-	r.azureAccount = &azureAccount
+func (r apiUpdateAzureIntegrationRequest) Body(body AzureAccount) apiUpdateAzureIntegrationRequest {
+	r.body = &body
 	return r
 }
 
@@ -744,8 +744,8 @@ func (r apiUpdateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.azureAccount == nil {
-		return localVarReturnValue, nil, reportError("azureAccount is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -766,7 +766,7 @@ func (r apiUpdateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.azureAccount
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

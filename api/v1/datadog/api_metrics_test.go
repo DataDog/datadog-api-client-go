@@ -62,7 +62,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 			}).Reply(200).JSON(map[string]string{"status": "ok"})
 
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-		_, _, err := TESTAPICLIENT.MetricsApi.SubmitMetrics(ctx).MetricsPayload(metricsPayload).Execute()
+		_, _, err := TESTAPICLIENT.MetricsApi.SubmitMetrics(ctx).Body(metricsPayload).Execute()
 		cancel()
 		assert.NoError(t, err)
 	})
@@ -102,7 +102,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 			}).Reply(200).JSON(map[string]string{"status": "ok"})
 
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-		_, _, err := TESTAPICLIENT.MetricsApi.SubmitMetrics(ctx).MetricsPayload(metricsPayload).Execute()
+		_, _, err := TESTAPICLIENT.MetricsApi.SubmitMetrics(ctx).Body(metricsPayload).Execute()
 		cancel()
 		assert.NoError(t, err)
 	})
@@ -131,7 +131,7 @@ func TestMetrics(t *testing.T) {
 		},
 	}
 
-	r, httpresp, err := api.SubmitMetrics(TESTAUTH).MetricsPayload(metricsPayload).Execute()
+	r, httpresp, err := api.SubmitMetrics(TESTAUTH).Body(metricsPayload).Execute()
 	if err != nil {
 		t.Fatalf("Error submitting metric %v: Response %s: %v", metricsPayload, err.(datadog.GenericOpenAPIError).Body(), err)
 	}

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## AzureUpdateHostFilters
 
-> interface{} AzureUpdateHostFilters(ctx).AzureAccount(azureAccount).Execute()
+> interface{} AzureUpdateHostFilters(ctx).Body(body).Execute()
 
 Update the defined list of host filters for a given Datadog-Azure integration.
 
@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiAzureUpdateHostFiltersRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azureAccount** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integrations host filters. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integrations host filters. | 
 
 ### Return type
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ## CreateAzureIntegration
 
-> interface{} CreateAzureIntegration(ctx).AzureAccount(azureAccount).Execute()
+> interface{} CreateAzureIntegration(ctx).Body(body).Execute()
 
 Add a Azure integration to your Datadog account.
 
@@ -70,7 +70,7 @@ Other parameters are passed through a pointer to a apiCreateAzureIntegrationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azureAccount** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration. | 
 
 ### Return type
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAzureIntegration
 
-> interface{} DeleteAzureIntegration(ctx).AzureAccount(azureAccount).Execute()
+> interface{} DeleteAzureIntegration(ctx).Body(body).Execute()
 
 Delete an Azure Integration from your Datadog account.
 
@@ -109,7 +109,7 @@ Other parameters are passed through a pointer to a apiDeleteAzureIntegrationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azureAccount** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration. | 
 
 ### Return type
 
@@ -166,7 +166,7 @@ Other parameters are passed through a pointer to a apiListAzureIntegrationReques
 
 ## UpdateAzureIntegration
 
-> interface{} UpdateAzureIntegration(ctx).AzureAccount(azureAccount).Execute()
+> interface{} UpdateAzureIntegration(ctx).Body(body).Execute()
 
 Update an Azure integration to your Datadog account.
 
@@ -183,7 +183,7 @@ Other parameters are passed through a pointer to a apiUpdateAzureIntegrationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azureAccount** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration. | 
 
 ### Return type
 

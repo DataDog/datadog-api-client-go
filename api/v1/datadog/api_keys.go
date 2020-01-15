@@ -27,11 +27,11 @@ type KeysApiService service
 type apiCreateAPIKeyRequest struct {
 	ctx        _context.Context
 	apiService *KeysApiService
-	apiKey     *ApiKey
+	body       *ApiKey
 }
 
-func (r apiCreateAPIKeyRequest) ApiKey(apiKey ApiKey) apiCreateAPIKeyRequest {
-	r.apiKey = &apiKey
+func (r apiCreateAPIKeyRequest) Body(body ApiKey) apiCreateAPIKeyRequest {
+	r.body = &body
 	return r
 }
 
@@ -94,7 +94,7 @@ func (r apiCreateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiKey
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -199,13 +199,13 @@ func (r apiCreateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 }
 
 type apiCreateApplicationKeyRequest struct {
-	ctx            _context.Context
-	apiService     *KeysApiService
-	applicationKey *ApplicationKey
+	ctx        _context.Context
+	apiService *KeysApiService
+	body       *ApplicationKey
 }
 
-func (r apiCreateApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiCreateApplicationKeyRequest {
-	r.applicationKey = &applicationKey
+func (r apiCreateApplicationKeyRequest) Body(body ApplicationKey) apiCreateApplicationKeyRequest {
+	r.body = &body
 	return r
 }
 
@@ -268,7 +268,7 @@ func (r apiCreateApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationKey
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -716,11 +716,11 @@ type apiEditAPIKeyRequest struct {
 	ctx        _context.Context
 	apiService *KeysApiService
 	key        string
-	apiKey     *ApiKey
+	body       *ApiKey
 }
 
-func (r apiEditAPIKeyRequest) ApiKey(apiKey ApiKey) apiEditAPIKeyRequest {
-	r.apiKey = &apiKey
+func (r apiEditAPIKeyRequest) Body(body ApiKey) apiEditAPIKeyRequest {
+	r.body = &body
 	return r
 }
 
@@ -786,7 +786,7 @@ func (r apiEditAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, err
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiKey
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -891,14 +891,14 @@ func (r apiEditAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, err
 }
 
 type apiEditApplicationKeyRequest struct {
-	ctx            _context.Context
-	apiService     *KeysApiService
-	key            string
-	applicationKey *ApplicationKey
+	ctx        _context.Context
+	apiService *KeysApiService
+	key        string
+	body       *ApplicationKey
 }
 
-func (r apiEditApplicationKeyRequest) ApplicationKey(applicationKey ApplicationKey) apiEditApplicationKeyRequest {
-	r.applicationKey = &applicationKey
+func (r apiEditApplicationKeyRequest) Body(body ApplicationKey) apiEditApplicationKeyRequest {
+	r.body = &body
 	return r
 }
 
@@ -964,7 +964,7 @@ func (r apiEditApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_netht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationKey
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

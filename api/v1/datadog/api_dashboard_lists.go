@@ -25,13 +25,13 @@ var (
 type DashboardListsApiService service
 
 type apiCreateDashboardListRequest struct {
-	ctx           _context.Context
-	apiService    *DashboardListsApiService
-	dashboardList *DashboardList
+	ctx        _context.Context
+	apiService *DashboardListsApiService
+	body       *DashboardList
 }
 
-func (r apiCreateDashboardListRequest) DashboardList(dashboardList DashboardList) apiCreateDashboardListRequest {
-	r.dashboardList = &dashboardList
+func (r apiCreateDashboardListRequest) Body(body DashboardList) apiCreateDashboardListRequest {
+	r.body = &body
 	return r
 }
 
@@ -76,8 +76,8 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.dashboardList == nil {
-		return localVarReturnValue, nil, reportError("dashboardList is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dashboardList
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -669,14 +669,14 @@ func (r apiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response
 }
 
 type apiUpdateDashboardListRequest struct {
-	ctx           _context.Context
-	apiService    *DashboardListsApiService
-	listId        int64
-	dashboardList *DashboardList
+	ctx        _context.Context
+	apiService *DashboardListsApiService
+	listId     int64
+	body       *DashboardList
 }
 
-func (r apiUpdateDashboardListRequest) DashboardList(dashboardList DashboardList) apiUpdateDashboardListRequest {
-	r.dashboardList = &dashboardList
+func (r apiUpdateDashboardListRequest) Body(body DashboardList) apiUpdateDashboardListRequest {
+	r.body = &body
 	return r
 }
 
@@ -724,8 +724,8 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.dashboardList == nil {
-		return localVarReturnValue, nil, reportError("dashboardList is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -746,7 +746,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dashboardList
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

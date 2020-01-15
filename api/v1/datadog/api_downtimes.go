@@ -152,13 +152,13 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 }
 
 type apiCancelDowntimesByScopeRequest struct {
-	ctx                           _context.Context
-	apiService                    *DowntimesApiService
-	cancelDowntimesByScopeRequest *CancelDowntimesByScopeRequest
+	ctx        _context.Context
+	apiService *DowntimesApiService
+	body       *CancelDowntimesByScopeRequest
 }
 
-func (r apiCancelDowntimesByScopeRequest) CancelDowntimesByScopeRequest(cancelDowntimesByScopeRequest CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequest {
-	r.cancelDowntimesByScopeRequest = &cancelDowntimesByScopeRequest
+func (r apiCancelDowntimesByScopeRequest) Body(body CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequest {
+	r.body = &body
 	return r
 }
 
@@ -204,8 +204,8 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.cancelDowntimesByScopeRequest == nil {
-		return localVarReturnValue, nil, reportError("cancelDowntimesByScopeRequest is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -226,7 +226,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cancelDowntimesByScopeRequest
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -323,11 +323,11 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 type apiCreateDowntimeRequest struct {
 	ctx        _context.Context
 	apiService *DowntimesApiService
-	downtime   *Downtime
+	body       *Downtime
 }
 
-func (r apiCreateDowntimeRequest) Downtime(downtime Downtime) apiCreateDowntimeRequest {
-	r.downtime = &downtime
+func (r apiCreateDowntimeRequest) Body(body Downtime) apiCreateDowntimeRequest {
+	r.body = &body
 	return r
 }
 
@@ -409,8 +409,8 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.downtime == nil {
-		return localVarReturnValue, nil, reportError("downtime is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -431,7 +431,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.downtime
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -824,11 +824,11 @@ type apiUpdateDowntimeRequest struct {
 	ctx        _context.Context
 	apiService *DowntimesApiService
 	downtimeId int64
-	downtime   *Downtime
+	body       *Downtime
 }
 
-func (r apiUpdateDowntimeRequest) Downtime(downtime Downtime) apiUpdateDowntimeRequest {
-	r.downtime = &downtime
+func (r apiUpdateDowntimeRequest) Body(body Downtime) apiUpdateDowntimeRequest {
+	r.body = &body
 	return r
 }
 
@@ -918,8 +918,8 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.downtime == nil {
-		return localVarReturnValue, nil, reportError("downtime is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -940,7 +940,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.downtime
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

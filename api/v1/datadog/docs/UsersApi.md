@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> UserResponse CreateUser(ctx).User(user).Execute()
+> UserResponse CreateUser(ctx).Body(body).Execute()
 
 Create user
 
@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | [**User**](User.md) | User object that needs to be created | 
+ **body** | [**User**](User.md) | User object that needs to be created | 
 
 ### Return type
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> UserResponse UpdateUser(ctx, userHandle).User(user).Execute()
+> UserResponse UpdateUser(ctx, userHandle).Body(body).Execute()
 
 Update user
 
@@ -196,7 +196,7 @@ Other parameters are passed through a pointer to a apiUpdateUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **user** | [**User**](User.md) | Description of the update | 
+ **body** | [**User**](User.md) | Description of the update | 
 
 ### Return type
 

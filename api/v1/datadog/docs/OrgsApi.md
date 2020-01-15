@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateChildOrg
 
-> OrgCreateResponse CreateChildOrg(ctx).OrgCreateBody(orgCreateBody).Execute()
+> OrgCreateResponse CreateChildOrg(ctx).Body(body).Execute()
 
 Create child-organization.
 
@@ -30,7 +30,7 @@ Other parameters are passed through a pointer to a apiCreateChildOrgRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orgCreateBody** | [**OrgCreateBody**](OrgCreateBody.md) | Org object that needs to be created | 
+ **body** | [**OrgCreateBody**](OrgCreateBody.md) | Org object that needs to be created | 
 
 ### Return type
 
@@ -87,7 +87,7 @@ Other parameters are passed through a pointer to a apiGetOrgRequest struct via t
 
 ## UpdateOrg
 
-> OrgResponse UpdateOrg(ctx, publicId).Org(org).Execute()
+> OrgResponse UpdateOrg(ctx, publicId).Body(body).Execute()
 
 Update the organization
 
@@ -109,7 +109,7 @@ Other parameters are passed through a pointer to a apiUpdateOrgRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **org** | [**Org**](Org.md) |  | 
+ **body** | [**Org**](Org.md) |  | 
 
 ### Return type
 

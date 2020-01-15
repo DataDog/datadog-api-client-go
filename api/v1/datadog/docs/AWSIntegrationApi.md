@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateAWSAccount
 
-> AwsAccountCreateResponse CreateAWSAccount(ctx).AwsAccount(awsAccount).Execute()
+> AwsAccountCreateResponse CreateAWSAccount(ctx).Body(body).Execute()
 
 Create an AWS Account
 
@@ -32,7 +32,7 @@ Other parameters are passed through a pointer to a apiCreateAWSAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccount** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
+ **body** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
 
 ### Return type
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSAccount
 
-> interface{} DeleteAWSAccount(ctx).AwsAccount(awsAccount).Execute()
+> interface{} DeleteAWSAccount(ctx).Body(body).Execute()
 
 Delete an AWS Account
 
@@ -71,7 +71,7 @@ Other parameters are passed through a pointer to a apiDeleteAWSAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccount** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
+ **body** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
 
 ### Return type
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## GenerateNewAWSExternalID
 
-> AwsAccountCreateResponse GenerateNewAWSExternalID(ctx).AwsAccount(awsAccount).Execute()
+> AwsAccountCreateResponse GenerateNewAWSExternalID(ctx).Body(body).Execute()
 
 Generate New External ID
 
@@ -110,7 +110,7 @@ Other parameters are passed through a pointer to a apiGenerateNewAWSExternalIDRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccount** | [**AwsAccount**](AwsAccount.md) | Generate New AWS External ID request object | 
+ **body** | [**AwsAccount**](AwsAccount.md) | Generate New AWS External ID request object | 
 
 ### Return type
 
@@ -208,7 +208,7 @@ Other parameters are passed through a pointer to a apiListAvailableAWSNamespaces
 
 ## UpdateAWSAccount
 
-> interface{} UpdateAWSAccount(ctx).AwsAccount(awsAccount).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+> interface{} UpdateAWSAccount(ctx).Body(body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
 Update an AWS Account
 
@@ -225,7 +225,7 @@ Other parameters are passed through a pointer to a apiUpdateAWSAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **awsAccount** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
+ **body** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
  **accountId** | **string** | Only return AWS accounts that matches this account_id. | 
  **roleName** | **string** | Only return AWS accounts that matches this role_name. *It is required if account_id is specified.* | 
  **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.* | 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateDashboardList
 
-> DashboardList CreateDashboardList(ctx).DashboardList(dashboardList).Execute()
+> DashboardList CreateDashboardList(ctx).Body(body).Execute()
 
 Create a dashboard list
 
@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardListRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dashboardList** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
+ **body** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
 
 ### Return type
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDashboardList
 
-> DashboardList UpdateDashboardList(ctx, listId).DashboardList(dashboardList).Execute()
+> DashboardList UpdateDashboardList(ctx, listId).Body(body).Execute()
 
 Update a dashboard list
 
@@ -196,7 +196,7 @@ Other parameters are passed through a pointer to a apiUpdateDashboardListRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dashboardList** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
+ **body** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
 
 ### Return type
 
