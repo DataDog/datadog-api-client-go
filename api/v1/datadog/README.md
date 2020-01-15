@@ -132,6 +132,14 @@ Class | Method | HTTP request | Description
 *OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get the organization
 *OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
 *OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
+*SLOApi* | [**BulkPartialDeleteSLO**](docs/SLOApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Delete (or partially delete) multiple service level objective objects.
+*SLOApi* | [**CheckCanDeleteSLO**](docs/SLOApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted.
+*SLOApi* | [**CreateSLO**](docs/SLOApi.md#createslo) | **Post** /api/v1/slo | Create a service level objective object.
+*SLOApi* | [**DeleteSLO**](docs/SLOApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete the specified service level objective object.
+*SLOApi* | [**EditSLO**](docs/SLOApi.md#editslo) | **Put** /api/v1/slo/{slo_id} | Edit the specified service level objective
+*SLOApi* | [**GetSLO**](docs/SLOApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a service level objective object
+*SLOApi* | [**GetSLOs**](docs/SLOApi.md#getslos) | **Get** /api/v1/slo | Get multiple service level objective objects by their IDs.
+*SLOApi* | [**HistoryForSLO**](docs/SLOApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get the history of the service level objective.
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *TagsApi* | [**AddToHostTags**](docs/TagsApi.md#addtohosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
 *TagsApi* | [**GetAllHostTags**](docs/TagsApi.md#getallhosttags) | **Get** /api/v1/tags/hosts | Get a mapping of tags to hosts for your whole infrastrucutre
@@ -174,6 +182,8 @@ Class | Method | HTTP request | Description
  - [AzureAccount](docs/AzureAccount.md)
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
+ - [CheckCanDeleteServiceLevelObjectiveResponse](docs/CheckCanDeleteServiceLevelObjectiveResponse.md)
+ - [CheckCanDeleteServiceLevelObjectiveResponseData](docs/CheckCanDeleteServiceLevelObjectiveResponseData.md)
  - [Creator](docs/Creator.md)
  - [DashboardList](docs/DashboardList.md)
  - [DashboardListDeleteResponse](docs/DashboardListDeleteResponse.md)
@@ -198,6 +208,14 @@ Class | Method | HTTP request | Description
  - [EventResponse](docs/EventResponse.md)
  - [GcpAccount](docs/GcpAccount.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
+ - [HistoryServiceLevelObjectiveGroups](docs/HistoryServiceLevelObjectiveGroups.md)
+ - [HistoryServiceLevelObjectiveMetrics](docs/HistoryServiceLevelObjectiveMetrics.md)
+ - [HistoryServiceLevelObjectiveMetricsSeries](docs/HistoryServiceLevelObjectiveMetricsSeries.md)
+ - [HistoryServiceLevelObjectiveMetricsSeriesMetadata](docs/HistoryServiceLevelObjectiveMetricsSeriesMetadata.md)
+ - [HistoryServiceLevelObjectiveOverall](docs/HistoryServiceLevelObjectiveOverall.md)
+ - [HistoryServiceLevelObjectiveResponse](docs/HistoryServiceLevelObjectiveResponse.md)
+ - [HistoryServiceLevelObjectiveResponseData](docs/HistoryServiceLevelObjectiveResponseData.md)
+ - [HistoryServiceLevelObjectiveResponseError](docs/HistoryServiceLevelObjectiveResponseError.md)
  - [HostTags](docs/HostTags.md)
  - [HttpLog](docs/HttpLog.md)
  - [HttpLogError](docs/HttpLogError.md)
@@ -225,6 +243,16 @@ Class | Method | HTTP request | Description
  - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
  - [OrgSubscription](docs/OrgSubscription.md)
  - [Series](docs/Series.md)
+ - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
+ - [ServiceLevelObjectiveDeleted](docs/ServiceLevelObjectiveDeleted.md)
+ - [ServiceLevelObjectiveListResponse](docs/ServiceLevelObjectiveListResponse.md)
+ - [ServiceLevelObjectiveQuery](docs/ServiceLevelObjectiveQuery.md)
+ - [ServiceLevelObjectiveResponse](docs/ServiceLevelObjectiveResponse.md)
+ - [ServiceLevelObjectivesBulkDeleted](docs/ServiceLevelObjectivesBulkDeleted.md)
+ - [ServiceLevelObjectivesBulkDeletedData](docs/ServiceLevelObjectivesBulkDeletedData.md)
+ - [ServiceLevelObjectivesBulkDeletedErrors](docs/ServiceLevelObjectivesBulkDeletedErrors.md)
+ - [SloThreshold](docs/SloThreshold.md)
+ - [SloTimeframe](docs/SloTimeframe.md)
  - [TagToHosts](docs/TagToHosts.md)
  - [UsageFargateHour](docs/UsageFargateHour.md)
  - [UsageFargateResponse](docs/UsageFargateResponse.md)
