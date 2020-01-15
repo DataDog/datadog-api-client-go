@@ -1,0 +1,398 @@
+{
+    "exact_total_matching": true,
+    "total_returned": 17,
+    "host_list": [
+        {
+            "last_reported_time": 1579104639,
+            "name": "go-client-test-host-1579104626",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579104626",
+            "id": 1772099136,
+            "aliases": [
+                "go-client-test-host-1579104626"
+            ]
+        },
+        {
+            "last_reported_time": 1579108311,
+            "name": "go-client-test-host-1579108302",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": true,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579108302",
+            "id": 1772283366,
+            "aliases": [
+                "go-client-test-host-1579108302"
+            ]
+        },
+        {
+            "last_reported_time": 1579103600,
+            "name": "go-client-test-host-1579103587",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579103587",
+            "id": 1772040171,
+            "aliases": [
+                "go-client-test-host-1579103587"
+            ]
+        },
+        {
+            "last_reported_time": 1579102688,
+            "name": "go-client-test-host-1579102674",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579102674",
+            "id": 1771998912,
+            "aliases": [
+                "go-client-test-host-1579102674"
+            ]
+        },
+        {
+            "last_reported_time": 1579103984,
+            "name": "go-client-test-host-1579103969",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579103969",
+            "id": 1772057191,
+            "aliases": [
+                "go-client-test-host-1579103969"
+            ]
+        },
+        {
+            "last_reported_time": 1579104514,
+            "name": "go-client-test-host-1579104494",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579104494",
+            "id": 1772093555,
+            "aliases": [
+                "go-client-test-host-1579104494"
+            ]
+        },
+        {
+            "last_reported_time": 1579104887,
+            "name": "go-client-test-host-1579104873",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579104873",
+            "id": 1772111001,
+            "aliases": [
+                "go-client-test-host-1579104873"
+            ]
+        },
+        {
+            "last_reported_time": 1579107963,
+            "name": "go-client-test-host-1579107949",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": true,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579107949",
+            "id": 1772261667,
+            "aliases": [
+                "go-client-test-host-1579107949"
+            ]
+        },
+        {
+            "last_reported_time": 1579108928,
+            "name": "go-client-test-host-1579108916",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": true,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579108916",
+            "id": 1772318284,
+            "aliases": [
+                "go-client-test-host-1579108916"
+            ]
+        },
+        {
+            "last_reported_time": 1579104016,
+            "name": "go-client-test-host-1579104007",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579104007",
+            "id": 1772058902,
+            "aliases": [
+                "go-client-test-host-1579104007"
+            ]
+        },
+        {
+            "last_reported_time": 1579104890,
+            "name": "go-client-test-host-1579104884",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579104884",
+            "id": 1772111047,
+            "aliases": [
+                "go-client-test-host-1579104884"
+            ]
+        },
+        {
+            "last_reported_time": 1579103874,
+            "name": "go-client-test-host-1579103865",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579103865",
+            "id": 1772053236,
+            "aliases": [
+                "go-client-test-host-1579103865"
+            ]
+        },
+        {
+            "last_reported_time": 1579107611,
+            "name": "go-client-test-host-1579107605",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": true,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579107605",
+            "id": 1772237026,
+            "aliases": [
+                "go-client-test-host-1579107605"
+            ]
+        },
+        {
+            "last_reported_time": 1579107997,
+            "name": "go-client-test-host-1579107987",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": true,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579107987",
+            "id": 1772264099,
+            "aliases": [
+                "go-client-test-host-1579107987"
+            ]
+        },
+        {
+            "last_reported_time": 1579102938,
+            "name": "go-client-test-host-1579102927",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579102927",
+            "id": 1772009766,
+            "aliases": [
+                "go-client-test-host-1579102927"
+            ]
+        },
+        {
+            "last_reported_time": 1579105300,
+            "name": "go-client-test-host-1579105289",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": false,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579105289",
+            "id": 1772130291,
+            "aliases": [
+                "go-client-test-host-1579105289"
+            ]
+        },
+        {
+            "last_reported_time": 1579109483,
+            "name": "go-client-test-host-1579109466",
+            "is_muted": false,
+            "mute_timeout": null,
+            "apps": [
+                "go"
+            ],
+            "tags_by_source": {},
+            "up": true,
+            "metrics": {
+                "load": null,
+                "iowait": null,
+                "cpu": null
+            },
+            "sources": [],
+            "meta": {},
+            "host_name": "go-client-test-host-1579109466",
+            "id": 1772342861,
+            "aliases": [
+                "go-client-test-host-1579109466"
+            ]
+        }
+    ],
+    "total_matching": 17
+}
