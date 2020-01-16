@@ -110,6 +110,10 @@ Class | Method | HTTP request | Description
 *GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP Integration from your Datadog account.
 *GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List configured GCP integrations.
 *GCPIntegrationApi* | [**UpdateGCPIntegration**](docs/GCPIntegrationApi.md#updategcpintegration) | **Put** /api/v1/integration/gcp | Update a GCP integration in your Datadog account.
+*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Get all hosts for your organization
+*HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Get total number of active hosts in your Datadog Account
+*HostsApi* | [**MuteHost**](docs/HostsApi.md#mutehost) | **Post** /api/v1/host/{host_name}/mute | Mute a Host
+*HostsApi* | [**UnmuteHost**](docs/HostsApi.md#unmutehost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a Host
 *KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key with a given name.
 *KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key with a given name.
 *KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete a given API key.
@@ -216,7 +220,14 @@ Class | Method | HTTP request | Description
  - [HistoryServiceLevelObjectiveResponse](docs/HistoryServiceLevelObjectiveResponse.md)
  - [HistoryServiceLevelObjectiveResponseData](docs/HistoryServiceLevelObjectiveResponseData.md)
  - [HistoryServiceLevelObjectiveResponseError](docs/HistoryServiceLevelObjectiveResponseError.md)
+ - [Host](docs/Host.md)
+ - [HostListResponse](docs/HostListResponse.md)
+ - [HostMeta](docs/HostMeta.md)
+ - [HostMetrics](docs/HostMetrics.md)
+ - [HostMuteResponse](docs/HostMuteResponse.md)
+ - [HostMuteSettings](docs/HostMuteSettings.md)
  - [HostTags](docs/HostTags.md)
+ - [HostTotals](docs/HostTotals.md)
  - [HttpLog](docs/HttpLog.md)
  - [HttpLogError](docs/HttpLogError.md)
  - [IdpFormData](docs/IdpFormData.md)
