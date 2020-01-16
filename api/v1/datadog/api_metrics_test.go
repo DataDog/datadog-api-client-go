@@ -139,7 +139,7 @@ func TestMetrics(t *testing.T) {
 	assert.Equal(t, "ok", r.GetStatus())
 
 	// Check that the metric was submitted successfully
-	err = retry(10, 10, func() bool {
+	err = retry(10, 15, func() bool {
 		metrics, httpresp, err := api.GetAllActiveMetrics(TESTAUTH).From(now).Execute()
 		if err != nil {
 			t.Logf("Error getting list of active metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
