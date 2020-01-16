@@ -51,14 +51,6 @@ func TestHosts(t *testing.T) {
 	}
 
 	// test methods
-	hostTotals, httpresp, err := api.GetHostTotals(TESTAUTH).Execute()
-	if err != nil {
-		t.Fatalf("Error getting host totals: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Greater(t, hostTotals.GetTotalActive(), int64(1))
-	assert.Greater(t, hostTotals.GetTotalUp(), int64(1))
-
 	hostMuteSettings := datadog.HostMuteSettings{
 		Message: datadog.PtrString("muting for test"),
 		End:     datadog.PtrInt64(now + 60),
@@ -100,7 +92,39 @@ func TestHosts(t *testing.T) {
 	assert.Equal(t, hostname, muteHostResp.GetHostname())
 }
 
-func TestHostsMocked(t *testing.T) {
+func TestHostTotalsMocked(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+	defer gock.Off()
+
+	fixturePath, err := filepath.Abs("fixtures/hosts/host_totals.json")
+	if err != nil {
+		t.Errorf("Failed to get fixture file path: %s", err)
+	}
+	data, err := ioutil.ReadFile(fixturePath)
+	if err != nil {
+		t.Errorf("Failed to open fixture file: %s", err)
+	}
+
+	gock.New("https://api.datadoghq.com/api/v1").
+		Get("/hosts/totals").
+		MatchParam("from", "123").
+		Reply(200).
+		JSON(data)
+
+	var expected datadog.HostListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := TESTAPICLIENT.HostsApi
+	hostListResp, httpresp, err := api.GetHostTotals(TESTAUTH).From(123).Execute()
+	if err != nil {
+		t.Errorf("Failed to get host totals: %v", err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.True(t, is.DeepEqual(expected, hostListResp)().Success())
+}
+
+func TestHostsSearchMocked(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer teardownTest(t)
 	defer gock.Off()
