@@ -112,7 +112,7 @@ func TestHostTotalsMocked(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
-	var expected datadog.HostListResponse
+	var expected datadog.HostTotals
 	json.Unmarshal([]byte(data), &expected)
 
 	api := TESTAPICLIENT.HostsApi
