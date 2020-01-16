@@ -218,7 +218,7 @@ func TestMetrics(t *testing.T) {
 		Type:           "count",
 	}
 
-	metadata, httpresp, err = api.EditMetricMetadata(TESTAUTH, testMetric).MetricMetadata(newMetadata).Execute()
+	metadata, httpresp, err = api.EditMetricMetadata(TESTAUTH, testMetric).Body(newMetadata).Execute()
 	if err != nil {
 		t.Errorf("Error editing metric metadata for %s: Response %s: %v", testMetric, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
