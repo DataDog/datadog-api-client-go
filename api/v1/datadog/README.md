@@ -125,6 +125,11 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
 *LogsHTTPIntakeApi* | [**SendLog**](docs/LogsHTTPIntakeApi.md#sendlog) | **Post** /v1/input | 
+*MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
+*MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
+*MetricsApi* | [**GetMetricMetadata**](docs/MetricsApi.md#getmetricmetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
+*MetricsApi* | [**QueryMetrics**](docs/MetricsApi.md#querymetrics) | **Get** /api/v1/query | Query timeseries points
+*MetricsApi* | [**SearchMetrics**](docs/MetricsApi.md#searchmetrics) | **Get** /api/v1/search | Search metrics
 *MetricsApi* | [**SubmitMetrics**](docs/MetricsApi.md#submitmetrics) | **Post** /api/v1/series | Submit metrics
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a new Monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
@@ -233,7 +238,14 @@ Class | Method | HTTP request | Description
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)
  - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
+ - [MetricMetadata](docs/MetricMetadata.md)
+ - [MetricSearchResponse](docs/MetricSearchResponse.md)
+ - [MetricSearchResponseResults](docs/MetricSearchResponseResults.md)
+ - [MetricsListResponse](docs/MetricsListResponse.md)
  - [MetricsPayload](docs/MetricsPayload.md)
+ - [MetricsQueryResponse](docs/MetricsQueryResponse.md)
+ - [MetricsQueryResponseSeries](docs/MetricsQueryResponseSeries.md)
+ - [MetricsQueryResponseUnit](docs/MetricsQueryResponseUnit.md)
  - [Monitor](docs/Monitor.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOptionsAggregation](docs/MonitorOptionsAggregation.md)
