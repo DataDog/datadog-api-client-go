@@ -74,13 +74,13 @@ func TestEventLifecycle(t *testing.T) {
 			return false
 		} else if len(eventListResponse.GetEvents()) == 0 {
 			events := eventListResponse.GetEvents()
+			var matchedEvent = false
 			for e := range events {
 				if events[e] == fetchedEvent {
-					return true
-				} else {
-					return false
+					matchedEvent = true
 				}
 			}
+			return matchedEvent
 		}
 		return true
 	})
