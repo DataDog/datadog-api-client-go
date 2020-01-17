@@ -1,12 +1,12 @@
 package datadog_test
 
 import (
-	is "gotest.tools/assert/cmp"
 	"testing"
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
+	is "gotest.tools/assert/cmp"
 )
 
 var testEvent = datadog.Event{
