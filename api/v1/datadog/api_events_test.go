@@ -72,17 +72,16 @@ func TestEventLifecycle(t *testing.T) {
 		if err != nil {
 			t.Logf("Error fetching events: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 			return false
-		} else if len(eventListResponse.GetEvents()) == 0 {
+		} else {
 			events := eventListResponse.GetEvents()
 			var matchedEvent = false
 			for e := range events {
-				if events[e] == fetchedEvent {
+				if events[e].GetId() == fetchedEvent.GetId() {
 					matchedEvent = true
 				}
 			}
 			return matchedEvent
 		}
-		return true
 	})
 
 	assert.Equal(t, httpresp.StatusCode, 200)
