@@ -64,14 +64,26 @@ func TestEventLifecycle(t *testing.T) {
 
 	var eventListResponse datadog.EventListResponse
 
+	// Confirm that the fetchedEvent is inside the getEvents response
+	// Use retry instead of assert as the response may not be empty but may also require
+	// some time for our event to show up in the response
 	retry(time.Duration(5*time.Second), 20, func() bool {
 		eventListResponse, httpresp, err = TESTAPICLIENT.EventsApi.ListEvents(TESTAUTH).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
 		if err != nil {
 			t.Logf("Error fetching events: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 			return false
+		} else {
+			events := eventListResponse.GetEvents()
+			var matchedEvent = false
+			for e := range events {
+				if events[e].GetId() == fetchedEvent.GetId() {
+					matchedEvent = true
+				}
+			}
+			return matchedEvent
 		}
-		return true
 	})
+
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	events := eventListResponse.GetEvents()
