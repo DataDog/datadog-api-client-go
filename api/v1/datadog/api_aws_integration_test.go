@@ -3,6 +3,7 @@ package datadog_test
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"reflect"
 	"testing"
 	"time"
@@ -179,7 +180,7 @@ func uninstallAWSIntegration(account datadog.AwsAccount) {
 }
 
 func retryCreateAccount(t *testing.T, awsAccount datadog.AwsAccount) error {
-	err := retry(10*time.Second, 10, func() bool {
+	err := retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(awsAccount).Execute()
 		if httpresp.StatusCode == 502 {
 			return false
@@ -193,7 +194,7 @@ func retryCreateAccount(t *testing.T, awsAccount datadog.AwsAccount) error {
 }
 
 func retryUpdateAccount(t *testing.T, body datadog.AwsAccount, accountID string, roleName string) error {
-	err := retry(10*time.Second, 10, func() bool {
+	err := retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
 			Body(body).
 			AccountId(accountID).
