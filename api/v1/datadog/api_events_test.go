@@ -1,6 +1,7 @@
 package datadog_test
 
 import (
+	is "gotest.tools/assert/cmp"
 	"testing"
 	"time"
 
@@ -84,4 +85,8 @@ func TestEventLifecycle(t *testing.T) {
 		return true
 	})
 
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	events := eventListResponse.GetEvents()
+	assert.Assert(t, is.Contains(events, fetchedEvent))
 }
