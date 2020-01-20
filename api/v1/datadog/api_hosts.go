@@ -30,9 +30,9 @@ type apiGetAllHostsRequest struct {
 	filter     *string
 	sortField  *string
 	sortDir    *string
-	start      *int32
-	count      *int32
-	from       *int32
+	start      *int64
+	count      *int64
+	from       *int64
 }
 
 func (r apiGetAllHostsRequest) Filter(filter string) apiGetAllHostsRequest {
@@ -50,17 +50,17 @@ func (r apiGetAllHostsRequest) SortDir(sortDir string) apiGetAllHostsRequest {
 	return r
 }
 
-func (r apiGetAllHostsRequest) Start(start int32) apiGetAllHostsRequest {
+func (r apiGetAllHostsRequest) Start(start int64) apiGetAllHostsRequest {
 	r.start = &start
 	return r
 }
 
-func (r apiGetAllHostsRequest) Count(count int32) apiGetAllHostsRequest {
+func (r apiGetAllHostsRequest) Count(count int64) apiGetAllHostsRequest {
 	r.count = &count
 	return r
 }
 
-func (r apiGetAllHostsRequest) From(from int32) apiGetAllHostsRequest {
+func (r apiGetAllHostsRequest) From(from int64) apiGetAllHostsRequest {
 	r.from = &from
 	return r
 }
@@ -242,10 +242,10 @@ func (r apiGetAllHostsRequest) Execute() (HostListResponse, *_nethttp.Response, 
 type apiGetHostTotalsRequest struct {
 	ctx        _context.Context
 	apiService *HostsApiService
-	from       *int32
+	from       *int64
 }
 
-func (r apiGetHostTotalsRequest) From(from int32) apiGetHostTotalsRequest {
+func (r apiGetHostTotalsRequest) From(from int64) apiGetHostTotalsRequest {
 	r.from = &from
 	return r
 }
