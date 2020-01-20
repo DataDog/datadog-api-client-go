@@ -24,7 +24,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 		testHost := "test"
 		testTags := []string{"tagA", "tagB"}
 		testType := "count"
-		testInterval := datadog.NullableInt32{Value: 20}
+		testInterval := datadog.NullableInt64{Value: 20}
 		testMetric := "hello.world"
 		testPoints := [][]float64{{5, 10.5}}
 		metricsPayload := datadog.MetricsPayload{

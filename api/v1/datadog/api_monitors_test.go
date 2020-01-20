@@ -21,7 +21,7 @@ var testMonitor = datadog.Monitor{
 	Options: &datadog.MonitorOptions{
 		NotifyAudit:       datadog.PtrBool(false),
 		Locked:            datadog.PtrBool(false),
-		TimeoutH:          datadog.PtrInt32(60),
+		TimeoutH:          datadog.PtrInt64(60),
 		RenotifyInterval:  datadog.PtrInt64(60),
 		EnableLogsSample:  datadog.PtrBool(true),
 		NoDataTimeframe:   nil,
