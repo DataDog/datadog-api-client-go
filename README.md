@@ -1,5 +1,7 @@
 # datadog-api-client-go
 
+[![codecov](https://codecov.io/gh/DataDog/datadog-api-client-go/branch/master/graph/badge.svg?token=9Vx8eU0VlA)](https://codecov.io/gh/DataDog/datadog-api-client-go)
+
 This repository contains a Go API client for the [Datadog API](https://docs.datadoghq.com/api/).
 The code is generated using [openapi-generator](https://github.com/OpenAPITools/openapi-generator)
 and [apigentools](https://github.com/DataDog/apigentools).
