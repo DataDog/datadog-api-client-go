@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// CheckCanDeleteServiceLevelObjectiveResponse struct for CheckCanDeleteServiceLevelObjectiveResponse
+// CheckCanDeleteServiceLevelObjectiveResponse A service level objective response containing the requested object.
 type CheckCanDeleteServiceLevelObjectiveResponse struct {
 	Data CheckCanDeleteServiceLevelObjectiveResponseData `json:"data"`
 	// A mapping of SLO id to it's current usages.

@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **SyntheticsCheckId** | Pointer to **int64** |  | [optional] 
 **ThresholdWindows** | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |  | [optional] 
 **Thresholds** | Pointer to [**MonitorThresholds**](MonitorThresholds.md) |  | [optional] 
-**TimeoutH** | Pointer to **int32** |  | [optional] 
+**TimeoutH** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -504,13 +504,13 @@ SetThresholds gets a reference to the given MonitorThresholds and assigns it to 
 
 ### GetTimeoutH
 
-`func (o *MonitorOptions) GetTimeoutH() int32`
+`func (o *MonitorOptions) GetTimeoutH() int64`
 
 GetTimeoutH returns the TimeoutH field if non-nil, zero value otherwise.
 
 ### GetTimeoutHOk
 
-`func (o *MonitorOptions) GetTimeoutHOk() (int32, bool)`
+`func (o *MonitorOptions) GetTimeoutHOk() (int64, bool)`
 
 GetTimeoutHOk returns a tuple with the TimeoutH field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -523,9 +523,9 @@ HasTimeoutH returns a boolean if a field has been set.
 
 ### SetTimeoutH
 
-`func (o *MonitorOptions) SetTimeoutH(v int32)`
+`func (o *MonitorOptions) SetTimeoutH(v int64)`
 
-SetTimeoutH gets a reference to the given int32 and assigns it to the TimeoutH field.
+SetTimeoutH gets a reference to the given int64 and assigns it to the TimeoutH field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
