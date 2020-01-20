@@ -33,9 +33,9 @@ Name | Type | Description  | Notes
  **filter** | **string** | String to filter search results | 
  **sortField** | **string** | Sort hosts by this field | 
  **sortDir** | **string** | Direction of sort | 
- **start** | **int32** | Host result to start search from | 
- **count** | **int32** | Number of hosts to return | 
- **from** | **int32** | Number of seconds from which you want to search your hosts | 
+ **start** | **int64** | Host result to start search from | 
+ **count** | **int64** | Number of hosts to return | 
+ **from** | **int64** | Number of seconds from which you want to search your hosts | 
 
 ### Return type
 
@@ -74,7 +74,7 @@ Other parameters are passed through a pointer to a apiGetHostTotalsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int32** | Number of seconds from which you want to get total number of active hosts | 
+ **from** | **int64** | Number of seconds from which you want to get total number of active hosts | 
 
 ### Return type
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Author** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Created** | Pointer to [**time.Time**](time.Time.md) | Date of creation of the dashboard list | [optional] [readonly] 
-**DashboardCount** | Pointer to **int32** | The number of dashboards in the list | [optional] [readonly] 
+**DashboardCount** | Pointer to **int64** | The number of dashboards in the list | [optional] [readonly] 
 **Id** | Pointer to **int64** | The ID of the dashboard list | [optional] [readonly] 
 **IsFavorite** | Pointer to **bool** | Whether or not the list is in the favorites | [optional] [readonly] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Date of last edition of the dashboard list | [optional] [readonly] 
@@ -67,13 +67,13 @@ SetCreated gets a reference to the given time.Time and assigns it to the Created
 
 ### GetDashboardCount
 
-`func (o *DashboardList) GetDashboardCount() int32`
+`func (o *DashboardList) GetDashboardCount() int64`
 
 GetDashboardCount returns the DashboardCount field if non-nil, zero value otherwise.
 
 ### GetDashboardCountOk
 
-`func (o *DashboardList) GetDashboardCountOk() (int32, bool)`
+`func (o *DashboardList) GetDashboardCountOk() (int64, bool)`
 
 GetDashboardCountOk returns a tuple with the DashboardCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -86,9 +86,9 @@ HasDashboardCount returns a boolean if a field has been set.
 
 ### SetDashboardCount
 
-`func (o *DashboardList) SetDashboardCount(v int32)`
+`func (o *DashboardList) SetDashboardCount(v int64)`
 
-SetDashboardCount gets a reference to the given int32 and assigns it to the DashboardCount field.
+SetDashboardCount gets a reference to the given int64 and assigns it to the DashboardCount field.
 
 ### GetId
 

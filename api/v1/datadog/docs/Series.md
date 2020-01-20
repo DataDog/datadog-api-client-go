@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Host** | Pointer to **string** | The name of the host that produced the metric. | [optional] 
-**Interval** | Pointer to **NullableInt32** | If the type of the metric is rate or count, define the corresponding interval. | [optional] 
+**Interval** | Pointer to **NullableInt64** | If the type of the metric is rate or count, define the corresponding interval. | [optional] 
 **Metric** | Pointer to **string** | The name of the timeseries | 
 **Points** | Pointer to [**[][]float64**](array.md) |  | 
 **Tags** | Pointer to **[]string** | A list of tags associated with the metric. | [optional] 
@@ -40,13 +40,13 @@ SetHost gets a reference to the given string and assigns it to the Host field.
 
 ### GetInterval
 
-`func (o *Series) GetInterval() NullableInt32`
+`func (o *Series) GetInterval() NullableInt64`
 
 GetInterval returns the Interval field if non-nil, zero value otherwise.
 
 ### GetIntervalOk
 
-`func (o *Series) GetIntervalOk() (NullableInt32, bool)`
+`func (o *Series) GetIntervalOk() (NullableInt64, bool)`
 
 GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -59,9 +59,9 @@ HasInterval returns a boolean if a field has been set.
 
 ### SetInterval
 
-`func (o *Series) SetInterval(v NullableInt32)`
+`func (o *Series) SetInterval(v NullableInt64)`
 
-SetInterval gets a reference to the given NullableInt32 and assigns it to the Interval field.
+SetInterval gets a reference to the given NullableInt64 and assigns it to the Interval field.
 
 ### SetIntervalExplicitNull
 
