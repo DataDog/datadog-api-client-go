@@ -34,7 +34,7 @@ type MonitorOptions struct {
 	SyntheticsCheckId  *int64                         `json:"synthetics_check_id,omitempty"`
 	ThresholdWindows   *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
 	Thresholds         *MonitorThresholds             `json:"thresholds,omitempty"`
-	TimeoutH           *int32                         `json:"timeout_h,omitempty"`
+	TimeoutH           *int64                         `json:"timeout_h,omitempty"`
 }
 
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
@@ -665,9 +665,9 @@ func (o *MonitorOptions) SetThresholds(v MonitorThresholds) {
 }
 
 // GetTimeoutH returns the TimeoutH field value if set, zero value otherwise.
-func (o *MonitorOptions) GetTimeoutH() int32 {
+func (o *MonitorOptions) GetTimeoutH() int64 {
 	if o == nil || o.TimeoutH == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TimeoutH
@@ -675,9 +675,9 @@ func (o *MonitorOptions) GetTimeoutH() int32 {
 
 // GetTimeoutHOk returns a tuple with the TimeoutH field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetTimeoutHOk() (int32, bool) {
+func (o *MonitorOptions) GetTimeoutHOk() (int64, bool) {
 	if o == nil || o.TimeoutH == nil {
-		var ret int32
+		var ret int64
 		return ret, false
 	}
 	return *o.TimeoutH, true
@@ -692,8 +692,8 @@ func (o *MonitorOptions) HasTimeoutH() bool {
 	return false
 }
 
-// SetTimeoutH gets a reference to the given int32 and assigns it to the TimeoutH field.
-func (o *MonitorOptions) SetTimeoutH(v int32) {
+// SetTimeoutH gets a reference to the given int64 and assigns it to the TimeoutH field.
+func (o *MonitorOptions) SetTimeoutH(v int64) {
 	o.TimeoutH = &v
 }
 

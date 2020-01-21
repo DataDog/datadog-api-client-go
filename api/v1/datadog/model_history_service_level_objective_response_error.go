@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveResponseError struct for HistoryServiceLevelObjectiveResponseError
+// HistoryServiceLevelObjectiveResponseError A service level objective response containing the requested history.
 type HistoryServiceLevelObjectiveResponseError struct {
 	// human readable error
 	Error *string `json:"error,omitempty"`

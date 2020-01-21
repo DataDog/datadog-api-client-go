@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// Creator struct for Creator
+// Creator Creator of the object
 type Creator struct {
 	Email  *string `json:"email,omitempty"`
 	Handle *string `json:"handle,omitempty"`

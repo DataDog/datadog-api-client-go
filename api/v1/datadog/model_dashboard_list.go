@@ -20,7 +20,7 @@ type DashboardList struct {
 	// Date of creation of the dashboard list
 	Created *time.Time `json:"created,omitempty"`
 	// The number of dashboards in the list
-	DashboardCount *int32 `json:"dashboard_count,omitempty"`
+	DashboardCount *int64 `json:"dashboard_count,omitempty"`
 	// The ID of the dashboard list
 	Id *int64 `json:"id,omitempty"`
 	// Whether or not the list is in the favorites
@@ -100,9 +100,9 @@ func (o *DashboardList) SetCreated(v time.Time) {
 }
 
 // GetDashboardCount returns the DashboardCount field value if set, zero value otherwise.
-func (o *DashboardList) GetDashboardCount() int32 {
+func (o *DashboardList) GetDashboardCount() int64 {
 	if o == nil || o.DashboardCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DashboardCount
@@ -110,9 +110,9 @@ func (o *DashboardList) GetDashboardCount() int32 {
 
 // GetDashboardCountOk returns a tuple with the DashboardCount field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetDashboardCountOk() (int32, bool) {
+func (o *DashboardList) GetDashboardCountOk() (int64, bool) {
 	if o == nil || o.DashboardCount == nil {
-		var ret int32
+		var ret int64
 		return ret, false
 	}
 	return *o.DashboardCount, true
@@ -127,8 +127,8 @@ func (o *DashboardList) HasDashboardCount() bool {
 	return false
 }
 
-// SetDashboardCount gets a reference to the given int32 and assigns it to the DashboardCount field.
-func (o *DashboardList) SetDashboardCount(v int32) {
+// SetDashboardCount gets a reference to the given int64 and assigns it to the DashboardCount field.
+func (o *DashboardList) SetDashboardCount(v int64) {
 	o.DashboardCount = &v
 }
 

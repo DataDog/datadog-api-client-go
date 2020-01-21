@@ -18,7 +18,7 @@ type Series struct {
 	// The name of the host that produced the metric.
 	Host *string `json:"host,omitempty"`
 	// If the type of the metric is rate or count, define the corresponding interval.
-	Interval *NullableInt32 `json:"interval,omitempty"`
+	Interval *NullableInt64 `json:"interval,omitempty"`
 	// The name of the timeseries
 	Metric string      `json:"metric"`
 	Points [][]float64 `json:"points"`
@@ -61,9 +61,9 @@ func (o *Series) SetHost(v string) {
 }
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
-func (o *Series) GetInterval() NullableInt32 {
+func (o *Series) GetInterval() NullableInt64 {
 	if o == nil || o.Interval == nil {
-		var ret NullableInt32
+		var ret NullableInt64
 		return ret
 	}
 	return *o.Interval
@@ -71,9 +71,9 @@ func (o *Series) GetInterval() NullableInt32 {
 
 // GetIntervalOk returns a tuple with the Interval field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Series) GetIntervalOk() (NullableInt32, bool) {
+func (o *Series) GetIntervalOk() (NullableInt64, bool) {
 	if o == nil || o.Interval == nil {
-		var ret NullableInt32
+		var ret NullableInt64
 		return ret, false
 	}
 	return *o.Interval, true
@@ -88,8 +88,8 @@ func (o *Series) HasInterval() bool {
 	return false
 }
 
-// SetInterval gets a reference to the given NullableInt32 and assigns it to the Interval field.
-func (o *Series) SetInterval(v NullableInt32) {
+// SetInterval gets a reference to the given NullableInt64 and assigns it to the Interval field.
+func (o *Series) SetInterval(v NullableInt64) {
 	o.Interval = &v
 }
 
