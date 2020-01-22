@@ -48,7 +48,7 @@ func TestIPRangesMocked(t *testing.T) {
 		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, 11, ipRanges.GetVersion())
+	assert.Equal(t, int64(11), ipRanges.GetVersion())
 	assert.Equal(t, "2019-07-29-11-48-00", ipRanges.GetModified())
 	assert.Equal(t, []string{"ipv4"}, ipRanges.Agents.GetPrefixesIpv4())
 	assert.Equal(t, []string{"ipv4"}, ipRanges.Api.GetPrefixesIpv4())
