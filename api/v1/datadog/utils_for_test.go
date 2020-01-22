@@ -52,6 +52,18 @@ func retry(interval time.Duration, count int, call func() bool) error {
 	return fmt.Errorf("Retry error: failed to satisfy the condition after %d times", count)
 }
 
+func readFixture(path string) (string, error) {
+	fixturePath, err := filepath.Abs(path)
+	if err != nil {
+		return "", fmt.Errorf("failed to get fixture file path: %v", err)
+	}
+	data, err := ioutil.ReadFile(fixturePath)
+	if err != nil {
+		return "", fmt.Errorf("failed to open fixture file: %v", err)
+	}
+	return string(data), nil
+}
+
 func setupUnitTest(t *testing.T) func(t *testing.T) {
 	// SETUP testing
 	TESTAUTH = context.WithValue(
