@@ -1,0 +1,60 @@
+{
+    "version": 11,
+    "modified": "2019-07-29-11-48-00",
+    "agents": {
+        "prefixes_ipv4": [
+            "ipv4"
+        ],
+        "prefixes_ipv6": [
+            "ipv6"
+        ]
+    },
+    "api": {
+        "prefixes_ipv4": [
+          "ipv4"
+        ],
+        "prefixes_ipv6": [
+          "ipv6"
+        ]
+    },
+    "apm": {
+        "prefixes_ipv4": [
+          "ipv4"
+        ],
+        "prefixes_ipv6": [
+          "ipv6"
+        ]
+    },
+    "logs": {
+        "prefixes_ipv4": [
+          "ipv4"
+        ],
+        "prefixes_ipv6": [
+          "ipv6"
+        ]
+    },
+    "process": {
+        "prefixes_ipv4": [
+          "ipv4"
+        ],
+        "prefixes_ipv6": [
+          "ipv6"
+        ]
+    },
+    "synthetics": {
+        "prefixes_ipv4": [
+          "ipv4"
+        ],
+        "prefixes_ipv6": [
+          "ipv6"
+        ]
+    },
+    "webhooks": {
+        "prefixes_ipv4": [
+          "ipv4"
+        ],
+        "prefixes_ipv6": [
+          "ipv6"
+        ]
+    }
+}

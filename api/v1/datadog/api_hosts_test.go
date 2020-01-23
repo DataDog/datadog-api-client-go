@@ -129,13 +129,9 @@ func TestHostsSearchMocked(t *testing.T) {
 	defer teardownTest(t)
 	defer gock.Off()
 
-	fixturePath, err := filepath.Abs("fixtures/hosts/host_search.json")
+	data, err := readFixture("fixtures/hosts/host_search.json")
 	if err != nil {
-		t.Errorf("Failed to get fixture file path: %s", err)
-	}
-	data, err := ioutil.ReadFile(fixturePath)
-	if err != nil {
-		t.Errorf("Failed to open fixture file: %s", err)
+		t.Errorf("Failed to read fixture: %s", err)
 	}
 
 	params := map[string]string{
