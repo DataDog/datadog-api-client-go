@@ -149,6 +149,7 @@ Class | Method | HTTP request | Description
 *SLOApi* | [**GetSLO**](docs/SLOApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a service level objective object
 *SLOApi* | [**GetSLOs**](docs/SLOApi.md#getslos) | **Get** /api/v1/slo | Get multiple service level objective objects by their IDs.
 *SLOApi* | [**HistoryForSLO**](docs/SLOApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get the history of the service level objective.
+*ServiceChecksApi* | [**SubmitServiceCheck**](docs/ServiceChecksApi.md#submitservicecheck) | **Post** /api/v1/check_run | Submit a Service Check
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *TagsApi* | [**AddToHostTags**](docs/TagsApi.md#addtohosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
 *TagsApi* | [**GetAllHostTags**](docs/TagsApi.md#getallhosttags) | **Get** /api/v1/tags/hosts | Get a mapping of tags to hosts for your whole infrastrucutre
@@ -262,6 +263,8 @@ Class | Method | HTTP request | Description
  - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
  - [OrgSubscription](docs/OrgSubscription.md)
  - [Series](docs/Series.md)
+ - [ServiceCheck](docs/ServiceCheck.md)
+ - [ServiceCheckStatus](docs/ServiceCheckStatus.md)
  - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
  - [ServiceLevelObjectiveDeleted](docs/ServiceLevelObjectiveDeleted.md)
  - [ServiceLevelObjectiveListResponse](docs/ServiceLevelObjectiveListResponse.md)
