@@ -38,16 +38,12 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 	testawsacc, testLambdaAcc, testServices := generateUniqueAwsLambdaAccounts()
-	defer uninstallAWSIntegration(testawsacc)
+	defer retryDeleteAccount(t, testawsacc)
 
 	// Assert AWS Integration Created with proper fields
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(testawsacc).Execute()
-	if err != nil {
-		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	retryCreateAccount(t, testawsacc)
 
-	_, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
 	if err != nil {
 		t.Fatalf("Error adding lamda ARN: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -80,14 +76,10 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 	testAWSAcc, testLambdaAcc, testServices := generateUniqueAwsLambdaAccounts()
-	defer uninstallAWSIntegration(testAWSAcc)
+	defer retryDeleteAccount(t, testAWSAcc)
 
 	// Create the AWS integration.
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(testAWSAcc).Execute()
-	if err != nil {
-		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	retryCreateAccount(t, testAWSAcc)
 
 	// Add Lambda to Account
 	addOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
@@ -157,14 +149,10 @@ func TestCheckLambdaAsync(t *testing.T) {
 	defer teardownTest(t)
 
 	testAWSAcc, testLambdaAcc, _ := generateUniqueAwsLambdaAccounts()
-	defer uninstallAWSIntegration(testAWSAcc)
+	defer retryDeleteAccount(t, testAWSAcc)
 
 	// Assert AWS Integration Created with proper fields
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(testAWSAcc).Execute()
-	if err != nil {
-		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	retryCreateAccount(t, testAWSAcc)
 
 	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
 	if err != nil {
@@ -194,14 +182,10 @@ func TestCheckServicesAsync(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 	testAWSAcc, _, testServices := generateUniqueAwsLambdaAccounts()
-	defer uninstallAWSIntegration(testAWSAcc)
+	defer retryDeleteAccount(t, testAWSAcc)
 
 	// Assert AWS Integration Created with proper fields
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(testAWSAcc).Execute()
-	if err != nil {
-		t.Fatalf("Error creating AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	retryCreateAccount(t, testAWSAcc)
 
 	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckServicesAsync(TESTAUTH).Body(testServices).Execute()
 	if err != nil {
