@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -153,7 +154,12 @@ func TestHostsSearchMocked(t *testing.T) {
 		JSON(data)
 
 	var expected datadog.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	dec := json.NewDecoder(strings.NewReader(data))
+	dec.DisallowUnknownFields()
+	err = dec.Decode(&expected)
+	if err != nil {
+		t.Errorf("Error parsing fixture: %v", err)
+	}
 
 	api := TESTAPICLIENT.HostsApi
 	hostListResp, httpresp, err := api.GetAllHosts(TESTAUTH).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).Execute()
