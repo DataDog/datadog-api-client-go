@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Get total number of active hosts in your Datadog Account
 *HostsApi* | [**MuteHost**](docs/HostsApi.md#mutehost) | **Post** /api/v1/host/{host_name}/mute | Mute a Host
 *HostsApi* | [**UnmuteHost**](docs/HostsApi.md#unmutehost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a Host
+*IPRangesApi* | [**GetIPRanges**](docs/IPRangesApi.md#getipranges) | **Get** / | 
 *KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key with a given name.
 *KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key with a given name.
 *KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete a given API key.
@@ -235,6 +236,8 @@ Class | Method | HTTP request | Description
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)
  - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
+ - [IpPrefixes](docs/IpPrefixes.md)
+ - [IpRanges](docs/IpRanges.md)
  - [MetricMetadata](docs/MetricMetadata.md)
  - [MetricSearchResponse](docs/MetricSearchResponse.md)
  - [MetricSearchResponseResults](docs/MetricSearchResponseResults.md)
