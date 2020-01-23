@@ -99,15 +99,12 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Assert(t, is.Contains(monitors, fetchedMonitor))
 
 	// Delete
-	_, httpresp, err = TESTAPICLIENT.MonitorsApi.DeleteMonitor(TESTAUTH, monitor.GetId()).Execute()
+	deletedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.DeleteMonitor(TESTAUTH, monitor.GetId()).Execute()
 	if err != nil {
 		t.Errorf("Error deleting Monitor %v: Response %s: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
-
-	// Check monitor non existence
-	_, httpresp, err = TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId()).Execute()
-	assert.Equal(t, httpresp.StatusCode, 404, "Monitor should be deleted: %v", err)
+	assert.Equal(t, monitor.GetId(), deletedMonitor.GetDeletedMonitorId())
 }
 
 func deleteMonitor(monitorID int64) {

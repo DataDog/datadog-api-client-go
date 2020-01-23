@@ -199,6 +199,7 @@ Class | Method | HTTP request | Description
  - [DashboardList](docs/DashboardList.md)
  - [DashboardListDeleteResponse](docs/DashboardListDeleteResponse.md)
  - [DashboardListListResponse](docs/DashboardListListResponse.md)
+ - [DeletedMonitor](docs/DeletedMonitor.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
  - [Error400](docs/Error400.md)

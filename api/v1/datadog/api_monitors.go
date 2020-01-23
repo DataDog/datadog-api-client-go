@@ -208,16 +208,16 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
 
 /*
 Execute executes the request
- @return map[string]int64
+ @return DeletedMonitor
 */
-func (r apiDeleteMonitorRequest) Execute() (map[string]int64, *_nethttp.Response, error) {
+func (r apiDeleteMonitorRequest) Execute() (DeletedMonitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]int64
+		localVarReturnValue  DeletedMonitor
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.DeleteMonitor")
@@ -299,7 +299,7 @@ func (r apiDeleteMonitorRequest) Execute() (map[string]int64, *_nethttp.Response
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v map[string]int64
+			var v DeletedMonitor
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

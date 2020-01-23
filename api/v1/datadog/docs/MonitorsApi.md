@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ## DeleteMonitor
 
-> map[string]int64 DeleteMonitor(ctx, monitorId).Execute()
+> DeletedMonitor DeleteMonitor(ctx, monitorId).Execute()
 
 Delete the specified monitor.
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]int64**
+[**DeletedMonitor**](DeletedMonitor.md)
 
 ### Authorization
 
