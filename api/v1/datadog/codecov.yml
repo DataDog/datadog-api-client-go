@@ -1,0 +1,16 @@
+comment:
+  layout: "files"
+  behavior: default
+  branches: null
+
+coverage:
+  range: 20..100
+  round: down
+  precision: 2
+
+  status:
+    project:
+      default:
+        target: 30
+        if_ci_failed: error
+    patch: off
