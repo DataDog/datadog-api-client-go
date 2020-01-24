@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **LastReportedTime** | Pointer to **int64** |  | [optional] 
 **Meta** | Pointer to [**HostMeta**](Host_meta.md) |  | [optional] 
 **Metrics** | Pointer to [**HostMetrics**](Host_metrics.md) |  | [optional] 
+**MuteTimeout** | Pointer to **int64** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Sources** | Pointer to **[]string** |  | [optional] 
 **TagsBySource** | Pointer to [**map[string][]string**](array.md) |  | [optional] 
@@ -244,6 +245,31 @@ HasMetrics returns a boolean if a field has been set.
 `func (o *Host) SetMetrics(v HostMetrics)`
 
 SetMetrics gets a reference to the given HostMetrics and assigns it to the Metrics field.
+
+### GetMuteTimeout
+
+`func (o *Host) GetMuteTimeout() int64`
+
+GetMuteTimeout returns the MuteTimeout field if non-nil, zero value otherwise.
+
+### GetMuteTimeoutOk
+
+`func (o *Host) GetMuteTimeoutOk() (int64, bool)`
+
+GetMuteTimeoutOk returns a tuple with the MuteTimeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasMuteTimeout
+
+`func (o *Host) HasMuteTimeout() bool`
+
+HasMuteTimeout returns a boolean if a field has been set.
+
+### SetMuteTimeout
+
+`func (o *Host) SetMuteTimeout(v int64)`
+
+SetMuteTimeout gets a reference to the given int64 and assigns it to the MuteTimeout field.
 
 ### GetName
 
