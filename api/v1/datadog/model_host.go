@@ -24,6 +24,7 @@ type Host struct {
 	LastReportedTime *int64               `json:"last_reported_time,omitempty"`
 	Meta             *HostMeta            `json:"meta,omitempty"`
 	Metrics          *HostMetrics         `json:"metrics,omitempty"`
+	MuteTimeout      *int64               `json:"mute_timeout,omitempty"`
 	Name             *string              `json:"name,omitempty"`
 	Sources          *[]string            `json:"sources,omitempty"`
 	TagsBySource     *map[string][]string `json:"tags_by_source,omitempty"`
@@ -325,6 +326,39 @@ func (o *Host) HasMetrics() bool {
 // SetMetrics gets a reference to the given HostMetrics and assigns it to the Metrics field.
 func (o *Host) SetMetrics(v HostMetrics) {
 	o.Metrics = &v
+}
+
+// GetMuteTimeout returns the MuteTimeout field value if set, zero value otherwise.
+func (o *Host) GetMuteTimeout() int64 {
+	if o == nil || o.MuteTimeout == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MuteTimeout
+}
+
+// GetMuteTimeoutOk returns a tuple with the MuteTimeout field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Host) GetMuteTimeoutOk() (int64, bool) {
+	if o == nil || o.MuteTimeout == nil {
+		var ret int64
+		return ret, false
+	}
+	return *o.MuteTimeout, true
+}
+
+// HasMuteTimeout returns a boolean if a field has been set.
+func (o *Host) HasMuteTimeout() bool {
+	if o != nil && o.MuteTimeout != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMuteTimeout gets a reference to the given int64 and assigns it to the MuteTimeout field.
+func (o *Host) SetMuteTimeout(v int64) {
+	o.MuteTimeout = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
