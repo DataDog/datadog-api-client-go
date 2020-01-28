@@ -1,0 +1,65 @@
+{
+    "check": {
+        "config": {
+            "assertions": [],
+            "request": {
+                "headers": {},
+                "method": "GET",
+                "timeout": 0,
+                "url": "https://datadoghq.com/"
+            },
+            "variables": []
+        }
+    },
+    "check_time": 1579711893111,
+    "check_version": 5,
+    "device_id": "laptop_large",
+    "probe_dc": "aws:sa-east-1",
+    "result": {
+        "browserType": "chrome",
+        "browserVersion": "78.0.3904.97",
+        "device": {
+            "height": 1100,
+            "id": "laptop_large",
+            "isMobile": false,
+            "name": "Laptop Large",
+            "width": 1440
+        },
+        "duration": 2999,
+        "eventType": "finished",
+        "mainDC": "us1.prod",
+        "passed": true,
+        "startUrl": "https://datadoghq.com/",
+        "stepDetails": [
+            {
+                "allowFailure": false,
+                "browserErrors": [],
+                "description": "Navigate to start URL",
+                "duration": 2999,
+                "resources": [
+                    {
+                        "duration": 1131.3570000056643,
+                        "method": "GET",
+                        "size": 4010,
+                        "status": 200,
+                        "timestamp": 1579711893246.643,
+                        "type": "document",
+                        "url": "https://datadoghq.com/"
+                    }
+                ],
+                "screenshotBucketKey": true,
+                "skipped": false,
+                "snapshotBucketKey": false,
+                "stepId": -1,
+                "type": "goToUrlAndMeasureTti",
+                "url": "about:blank",
+                "value": "https://datadoghq.com/",
+                "warnings": []
+            }
+        ],
+        "thumbnailsBucketKey": true,
+        "timeToInteractive": 2783
+    },
+    "result_id": "5140738909114888212",
+    "status": 0
+}

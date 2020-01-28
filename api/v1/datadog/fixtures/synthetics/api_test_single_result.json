@@ -1,0 +1,78 @@
+{
+   "status":1,
+   "check_time":1580204310361,
+   "check_version":2,
+   "result":{
+      "eventType":"finished",
+      "errorMessage":"[{\"index\":0,\"operator\":\"is\",\"property\":\"content-type\",\"type\":\"header\",\"target\":\"text/html\",\"valid\":false,\"actual\":\"text/html; charset=utf-8\"}]",
+      "nextTryAt":"2020-01-28T09:38:30.657Z",
+      "mainDC":"us1.prod",
+      "errorCode":"INCORRECT_ASSERTION",
+      "timings":{
+         "redirect":112,
+         "firstByte":76,
+         "tcp":17.9,
+         "ssl":38.4,
+         "dns":21.730858981609344,
+         "download":18.4,
+         "total":284.4
+      },
+      "initialResultID":"7761116396307201028",
+      "responseHeaders":{
+         "content-length":"49707",
+         "via":"1.1 a70b162ad0cdef09371d7a2f60fde2e8.cloudfront.net (CloudFront)",
+         "vary":"Accept-Encoding",
+         "x-xss-protection":"1; mode=block",
+         "x-content-type-options":"nosniff",
+         "x-edge-o15-rid":"ONruCJYtpRd81z0ieUw68UnLdndcTSH3Wq5LVmVl1YZFilZ6-JMFeA==",
+         "etag":"\"71148f6dc6ac9b6c661e038b64a6e4e6\"",
+         "cache-control":"public, must-revalidate, proxy-revalidate, max-age=0",
+         "referrer-policy":"no-referrer-when-downgrade",
+         "x-amz-cf-pop":"YTO50-C2",
+         "x-cache":"Miss from cloudfront",
+         "set-cookie":[
+            "country=US; Path=/",
+            "is_eu=false; Path=/"
+         ],
+         "last-modified":"Fri, 24 Jan 2020 21:09:37 GMT",
+         "x-amz-cf-id":"fdxOUomebboR7sCMVjETfwGLKBTx5_rQgNI3SCTWx4HYmgtRMFZsug==",
+         "date":"Tue, 28 Jan 2020 09:38:31 GMT",
+         "x-amz-version-id":"cSKEZJRZOaNZqoCOx7ZnXgnQ36qa7rZZ",
+         "strict-transport-security":"max-age=63072000; includeSubdomains; preload",
+         "server":"AmazonS3",
+         "connection":"close",
+         "x-amz-meta-dd-btag":"2107712-24411949-f9e5dabd",
+         "x-frame-options":"DENY",
+         "content-type":"text/html; charset=utf-8"
+      },
+      "httpStatusCode":200,
+      "responseSize":49707
+   },
+   "probe_dc":"aws:us-east-2",
+   "result_id":"7761116396307201795",
+   "check":{
+      "config":{
+         "request":{
+            "url":"https://datadoghq.com",
+            "headers":{
+               "testingJavaClient":"true"
+            },
+            "method":"GET",
+            "timeout":10.0
+         },
+         "assertions":[
+            {
+               "operator":"is",
+               "property":"content-type",
+               "type":"header",
+               "target":"text/html"
+            },
+            {
+               "operator":"lessThan",
+               "type":"responseTime",
+               "target":2000
+            }
+         ]
+      }
+   }
+}

@@ -1,0 +1,29 @@
+{
+    "last_timestamp_fetched": 1579711660000,
+    "results": [
+        {
+            "check_time": 1579711893111,
+            "check_version": 5,
+            "device_id": "laptop_large",
+            "probe_dc": "aws:sa-east-1",
+            "result": {
+                "device": {
+                    "height": 1100,
+                    "id": "laptop_large",
+                    "isMobile": false,
+                    "name": "Laptop Large",
+                    "width": 1440
+                },
+                "deviceId": "laptop_large",
+                "duration": 2999,
+                "errorCount": 0,
+                "errorMessage": null,
+                "stepCountCompleted": 1,
+                "stepCountTotal": 1,
+                "timings": null
+            },
+            "result_id": "5140738909114888212",
+            "status": 0
+        }
+    ]
+}
