@@ -1,7 +1,7 @@
 {
     "name": "main",
     "filter": {
-        "query": ""
+        "query": "host:test.log.index"
     },
     "num_retention_days": 15,
     "daily_limit": 200000000,

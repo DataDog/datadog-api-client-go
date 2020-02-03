@@ -56,8 +56,11 @@ func TestGetLogsIndex(t *testing.T) {
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, name, logsIndex.GetName())
+	assert.Equal(t, int64(15), logsIndex.GetNumRetentionDays())
+	assert.Equal(t, int64(200000000), logsIndex.GetDailyLimit())
+	assert.Equal(t, false, logsIndex.GetIsRateLimited())
 	filter := logsIndex.GetFilter()
-	assert.Equal(t, "", filter.GetQuery())
+	assert.Equal(t, "host:test.log.index", filter.GetQuery())
 	assert.Equal(t, 0, len(logsIndex.GetExclusionFilters()))
 }
 
