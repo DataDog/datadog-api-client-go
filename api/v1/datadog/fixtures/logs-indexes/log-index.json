@@ -1,0 +1,10 @@
+{
+    "name": "main",
+    "filter": {
+        "query": ""
+    },
+    "num_retention_days": 15,
+    "daily_limit": 200000000,
+    "is_rate_limited": false,
+    "exclusion_filters": []
+}
