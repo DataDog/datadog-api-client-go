@@ -116,7 +116,7 @@ func TestUpdateLogsIndex(t *testing.T) {
 
 	updateLogsIndex := datadog.LogsIndex{
 		Filter: logsIndex.GetFilter(),
-		ExclusionFilters: []datadog.LogsExclusion{{
+		ExclusionFilters: &[]datadog.LogsExclusion{{
 			Name:      "datadog-api-client-go",
 			IsEnabled: datadog.PtrBool(false),
 			Filter: &datadog.LogsExclusionFilter{
