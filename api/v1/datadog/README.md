@@ -126,6 +126,11 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
 *LogsHTTPIntakeApi* | [**SendLog**](docs/LogsHTTPIntakeApi.md#sendlog) | **Post** /v1/input | 
+*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | This endpoint returns an array of the LogIndex objects of your organization.
+*LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | This endpoint returns an Index identified by its name.
+*LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get the current order of your log indexes.
+*LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | This endpoint updates an Index identified by its name.
+*LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update the order of your log indexes.
 *MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
 *MetricsApi* | [**GetMetricMetadata**](docs/MetricsApi.md#getmetricmetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
@@ -253,6 +258,12 @@ Class | Method | HTTP request | Description
  - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
  - [IpPrefixes](docs/IpPrefixes.md)
  - [IpRanges](docs/IpRanges.md)
+ - [LogsExclusion](docs/LogsExclusion.md)
+ - [LogsExclusionFilter](docs/LogsExclusionFilter.md)
+ - [LogsIndex](docs/LogsIndex.md)
+ - [LogsIndexFilter](docs/LogsIndexFilter.md)
+ - [LogsIndexesOrder](docs/LogsIndexesOrder.md)
+ - [LogsIndexesResponse](docs/LogsIndexesResponse.md)
  - [MetricMetadata](docs/MetricMetadata.md)
  - [MetricSearchResponse](docs/MetricSearchResponse.md)
  - [MetricSearchResponseResults](docs/MetricSearchResponseResults.md)
@@ -394,6 +405,15 @@ Note, each API key must be added to a map of `map[string]APIKey` where the key i
 - **Location**: URL query string
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: application_key and passed in as the auth context for each request.
+
+
+### appKeyAuthHeader
+
+- **Type**: API key
+- **API key parameter name**: DD-APPLICATION-KEY
+- **Location**: HTTP header
+
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: DD-APPLICATION-KEY and passed in as the auth context for each request.
 
 
 ## Documentation for Utility Methods
