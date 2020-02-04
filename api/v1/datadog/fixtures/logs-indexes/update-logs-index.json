@@ -1,0 +1,19 @@
+{
+    "name": "main",
+    "filter": {
+        "query": "host:test.log.index"
+    },
+    "num_retention_days": 15,
+    "daily_limit": 200000000,
+    "is_rate_limited": false,
+    "exclusion_filters": [
+        {
+            "name": "datadog-api-client-go",
+            "is_enabled": false,
+            "filter": {
+                "query": "hostname:datadog-api-client-go",
+                "sample_rate": 1.0
+            }
+        }
+    ]
+}
