@@ -218,6 +218,6 @@ func deleteAPIKey(apiKeyValue string) {
 func deleteAppKey(appKeyHash string) {
 	_, httpresp, err := TESTAPICLIENT.KeysApi.DeleteApplicationKey(TESTAUTH, appKeyHash).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash, httpresp.StatusCode)
+		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)
 	}
 }
