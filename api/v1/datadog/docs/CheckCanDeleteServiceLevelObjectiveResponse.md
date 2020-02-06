@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewCheckCanDeleteServiceLevelObjectiveResponse
+
+`func NewCheckCanDeleteServiceLevelObjectiveResponse(data CheckCanDeleteServiceLevelObjectiveResponseData, ) *CheckCanDeleteServiceLevelObjectiveResponse`
+
+NewCheckCanDeleteServiceLevelObjectiveResponse instantiates a new CheckCanDeleteServiceLevelObjectiveResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewCheckCanDeleteServiceLevelObjectiveResponseWithDefaults
+
+`func NewCheckCanDeleteServiceLevelObjectiveResponseWithDefaults() *CheckCanDeleteServiceLevelObjectiveResponse`
+
+NewCheckCanDeleteServiceLevelObjectiveResponseWithDefaults instantiates a new CheckCanDeleteServiceLevelObjectiveResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetData
 
 `func (o *CheckCanDeleteServiceLevelObjectiveResponse) GetData() CheckCanDeleteServiceLevelObjectiveResponseData`

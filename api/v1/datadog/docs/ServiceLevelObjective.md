@@ -21,6 +21,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewServiceLevelObjective
+
+`func NewServiceLevelObjective(name string, thresholds []SloThreshold, type_ string, ) *ServiceLevelObjective`
+
+NewServiceLevelObjective instantiates a new ServiceLevelObjective object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServiceLevelObjectiveWithDefaults
+
+`func NewServiceLevelObjectiveWithDefaults() *ServiceLevelObjective`
+
+NewServiceLevelObjectiveWithDefaults instantiates a new ServiceLevelObjective object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCreatedAt
 
 `func (o *ServiceLevelObjective) GetCreatedAt() int64`

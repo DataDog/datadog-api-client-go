@@ -21,6 +21,25 @@ type SyntheticsAssertion struct {
 	Type     SyntheticsAssertionType     `json:"type"`
 }
 
+// NewSyntheticsAssertion instantiates a new SyntheticsAssertion object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsAssertion(operator SyntheticsAssertionOperator, type_ SyntheticsAssertionType) *SyntheticsAssertion {
+	this := SyntheticsAssertion{}
+	this.Operator = operator
+	this.Type = type_
+	return &this
+}
+
+// NewSyntheticsAssertionWithDefaults instantiates a new SyntheticsAssertion object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsAssertionWithDefaults() *SyntheticsAssertion {
+	this := SyntheticsAssertion{}
+	return &this
+}
+
 // GetOperator returns the Operator field value
 func (o *SyntheticsAssertion) GetOperator() SyntheticsAssertionOperator {
 	if o == nil {

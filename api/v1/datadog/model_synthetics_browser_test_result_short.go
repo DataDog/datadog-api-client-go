@@ -22,6 +22,23 @@ type SyntheticsBrowserTestResultShort struct {
 	Status    *SyntheticsTestMonitorStatus            `json:"status,omitempty"`
 }
 
+// NewSyntheticsBrowserTestResultShort instantiates a new SyntheticsBrowserTestResultShort object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsBrowserTestResultShort() *SyntheticsBrowserTestResultShort {
+	this := SyntheticsBrowserTestResultShort{}
+	return &this
+}
+
+// NewSyntheticsBrowserTestResultShortWithDefaults instantiates a new SyntheticsBrowserTestResultShort object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsBrowserTestResultShortWithDefaults() *SyntheticsBrowserTestResultShort {
+	this := SyntheticsBrowserTestResultShort{}
+	return &this
+}
+
 // GetCheckTime returns the CheckTime field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShort) GetCheckTime() float64 {
 	if o == nil || o.CheckTime == nil {

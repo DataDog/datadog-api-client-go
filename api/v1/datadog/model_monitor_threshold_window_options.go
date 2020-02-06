@@ -19,6 +19,23 @@ type MonitorThresholdWindowOptions struct {
 	TriggerWindow  *string `json:"trigger_window,omitempty"`
 }
 
+// NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorThresholdWindowOptions() *MonitorThresholdWindowOptions {
+	this := MonitorThresholdWindowOptions{}
+	return &this
+}
+
+// NewMonitorThresholdWindowOptionsWithDefaults instantiates a new MonitorThresholdWindowOptions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorThresholdWindowOptionsWithDefaults() *MonitorThresholdWindowOptions {
+	this := MonitorThresholdWindowOptions{}
+	return &this
+}
+
 // GetRecoveryWindow returns the RecoveryWindow field value if set, zero value otherwise.
 func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
 	if o == nil || o.RecoveryWindow == nil {

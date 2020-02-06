@@ -22,6 +22,25 @@ type SyntheticsBrowserVariable struct {
 	Type    SyntheticsBrowserVariableType `json:"type"`
 }
 
+// NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsBrowserVariable(name string, type_ SyntheticsBrowserVariableType) *SyntheticsBrowserVariable {
+	this := SyntheticsBrowserVariable{}
+	this.Name = name
+	this.Type = type_
+	return &this
+}
+
+// NewSyntheticsBrowserVariableWithDefaults instantiates a new SyntheticsBrowserVariable object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsBrowserVariableWithDefaults() *SyntheticsBrowserVariable {
+	this := SyntheticsBrowserVariable{}
+	return &this
+}
+
 // GetExample returns the Example field value if set, zero value otherwise.
 func (o *SyntheticsBrowserVariable) GetExample() string {
 	if o == nil || o.Example == nil {

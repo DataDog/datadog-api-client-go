@@ -37,6 +37,23 @@ type MonitorOptions struct {
 	TimeoutH           *int64                         `json:"timeout_h,omitempty"`
 }
 
+// NewMonitorOptions instantiates a new MonitorOptions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorOptions() *MonitorOptions {
+	this := MonitorOptions{}
+	return &this
+}
+
+// NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorOptionsWithDefaults() *MonitorOptions {
+	this := MonitorOptions{}
+	return &this
+}
+
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *MonitorOptions) GetAggregation() MonitorOptionsAggregation {
 	if o == nil || o.Aggregation == nil {

@@ -31,6 +31,24 @@ type MetricMetadata struct {
 	Unit *string `json:"unit,omitempty"`
 }
 
+// NewMetricMetadata instantiates a new MetricMetadata object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMetricMetadata(type_ string) *MetricMetadata {
+	this := MetricMetadata{}
+	this.Type = type_
+	return &this
+}
+
+// NewMetricMetadataWithDefaults instantiates a new MetricMetadata object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetricMetadataWithDefaults() *MetricMetadata {
+	this := MetricMetadata{}
+	return &this
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *MetricMetadata) GetDescription() string {
 	if o == nil || o.Description == nil {

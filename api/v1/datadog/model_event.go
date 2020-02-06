@@ -42,6 +42,25 @@ type Event struct {
 	Url   *string `json:"url,omitempty"`
 }
 
+// NewEvent instantiates a new Event object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEvent(text string, title string) *Event {
+	this := Event{}
+	this.Text = text
+	this.Title = title
+	return &this
+}
+
+// NewEventWithDefaults instantiates a new Event object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEventWithDefaults() *Event {
+	this := Event{}
+	return &this
+}
+
 // GetAggregationKey returns the AggregationKey field value if set, zero value otherwise.
 func (o *Event) GetAggregationKey() string {
 	if o == nil || o.AggregationKey == nil {

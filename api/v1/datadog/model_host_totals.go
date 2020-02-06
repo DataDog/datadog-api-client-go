@@ -19,6 +19,23 @@ type HostTotals struct {
 	TotalUp     *int64 `json:"total_up,omitempty"`
 }
 
+// NewHostTotals instantiates a new HostTotals object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHostTotals() *HostTotals {
+	this := HostTotals{}
+	return &this
+}
+
+// NewHostTotalsWithDefaults instantiates a new HostTotals object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHostTotalsWithDefaults() *HostTotals {
+	this := HostTotals{}
+	return &this
+}
+
 // GetTotalActive returns the TotalActive field value if set, zero value otherwise.
 func (o *HostTotals) GetTotalActive() int64 {
 	if o == nil || o.TotalActive == nil {

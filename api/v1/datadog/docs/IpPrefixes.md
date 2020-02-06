@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewIpPrefixes
+
+`func NewIpPrefixes() *IpPrefixes`
+
+NewIpPrefixes instantiates a new IpPrefixes object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewIpPrefixesWithDefaults
+
+`func NewIpPrefixesWithDefaults() *IpPrefixes`
+
+NewIpPrefixesWithDefaults instantiates a new IpPrefixes object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetPrefixesIpv4
 
 `func (o *IpPrefixes) GetPrefixesIpv4() []string`

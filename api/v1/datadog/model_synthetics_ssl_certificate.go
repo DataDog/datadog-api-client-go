@@ -30,6 +30,23 @@ type SyntheticsSslCertificate struct {
 	ValidTo        *time.Time                       `json:"validTo,omitempty"`
 }
 
+// NewSyntheticsSslCertificate instantiates a new SyntheticsSslCertificate object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsSslCertificate() *SyntheticsSslCertificate {
+	this := SyntheticsSslCertificate{}
+	return &this
+}
+
+// NewSyntheticsSslCertificateWithDefaults instantiates a new SyntheticsSslCertificate object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsSslCertificateWithDefaults() *SyntheticsSslCertificate {
+	this := SyntheticsSslCertificate{}
+	return &this
+}
+
 // GetCipher returns the Cipher field value if set, zero value otherwise.
 func (o *SyntheticsSslCertificate) GetCipher() string {
 	if o == nil || o.Cipher == nil {

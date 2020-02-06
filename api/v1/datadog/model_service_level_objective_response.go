@@ -20,6 +20,24 @@ type ServiceLevelObjectiveResponse struct {
 	Errors *[]string `json:"errors,omitempty"`
 }
 
+// NewServiceLevelObjectiveResponse instantiates a new ServiceLevelObjectiveResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectiveResponse(data ServiceLevelObjective) *ServiceLevelObjectiveResponse {
+	this := ServiceLevelObjectiveResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewServiceLevelObjectiveResponseWithDefaults instantiates a new ServiceLevelObjectiveResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectiveResponseWithDefaults() *ServiceLevelObjectiveResponse {
+	this := ServiceLevelObjectiveResponse{}
+	return &this
+}
+
 // GetData returns the Data field value
 func (o *ServiceLevelObjectiveResponse) GetData() ServiceLevelObjective {
 	if o == nil {

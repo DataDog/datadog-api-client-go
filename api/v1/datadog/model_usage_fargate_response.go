@@ -18,6 +18,23 @@ type UsageFargateResponse struct {
 	Usage *[]UsageFargateHour `json:"usage,omitempty"`
 }
 
+// NewUsageFargateResponse instantiates a new UsageFargateResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageFargateResponse() *UsageFargateResponse {
+	this := UsageFargateResponse{}
+	return &this
+}
+
+// NewUsageFargateResponseWithDefaults instantiates a new UsageFargateResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageFargateResponseWithDefaults() *UsageFargateResponse {
+	this := UsageFargateResponse{}
+	return &this
+}
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageFargateResponse) GetUsage() []UsageFargateHour {
 	if o == nil || o.Usage == nil {

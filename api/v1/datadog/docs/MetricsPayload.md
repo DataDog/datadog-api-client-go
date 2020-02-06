@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewMetricsPayload
+
+`func NewMetricsPayload() *MetricsPayload`
+
+NewMetricsPayload instantiates a new MetricsPayload object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMetricsPayloadWithDefaults
+
+`func NewMetricsPayloadWithDefaults() *MetricsPayload`
+
+NewMetricsPayloadWithDefaults instantiates a new MetricsPayload object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetSeries
 
 `func (o *MetricsPayload) GetSeries() []Series`

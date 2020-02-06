@@ -1,0 +1,20 @@
+# LogsProcessor
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**LogsProcessorInterface** | **interface { GetType() string }** | An interface that can hold any of the proper implementing types |
+
+## Methods
+
+### NewLogsProcessor
+
+`func NewLogsProcessor() *LogsProcessor`
+
+NewLogsProcessor instantiates a new LogsProcessor object
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

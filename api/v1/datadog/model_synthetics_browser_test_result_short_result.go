@@ -22,6 +22,23 @@ type SyntheticsBrowserTestResultShortResult struct {
 	StepCountTotal     *int64            `json:"stepCountTotal,omitempty"`
 }
 
+// NewSyntheticsBrowserTestResultShortResult instantiates a new SyntheticsBrowserTestResultShortResult object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsBrowserTestResultShortResult() *SyntheticsBrowserTestResultShortResult {
+	this := SyntheticsBrowserTestResultShortResult{}
+	return &this
+}
+
+// NewSyntheticsBrowserTestResultShortResultWithDefaults instantiates a new SyntheticsBrowserTestResultShortResult object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsBrowserTestResultShortResultWithDefaults() *SyntheticsBrowserTestResultShortResult {
+	this := SyntheticsBrowserTestResultShortResult{}
+	return &this
+}
+
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetDevice() SyntheticsDevice {
 	if o == nil || o.Device == nil {

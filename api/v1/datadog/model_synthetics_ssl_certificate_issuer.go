@@ -23,6 +23,23 @@ type SyntheticsSslCertificateIssuer struct {
 	ST *string `json:"ST,omitempty"`
 }
 
+// NewSyntheticsSslCertificateIssuer instantiates a new SyntheticsSslCertificateIssuer object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsSslCertificateIssuer() *SyntheticsSslCertificateIssuer {
+	this := SyntheticsSslCertificateIssuer{}
+	return &this
+}
+
+// NewSyntheticsSslCertificateIssuerWithDefaults instantiates a new SyntheticsSslCertificateIssuer object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsSslCertificateIssuerWithDefaults() *SyntheticsSslCertificateIssuer {
+	this := SyntheticsSslCertificateIssuer{}
+	return &this
+}
+
 // GetC returns the C field value if set, zero value otherwise.
 func (o *SyntheticsSslCertificateIssuer) GetC() string {
 	if o == nil || o.C == nil {

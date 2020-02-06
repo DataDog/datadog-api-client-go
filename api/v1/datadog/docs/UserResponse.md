@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewUserResponse
+
+`func NewUserResponse() *UserResponse`
+
+NewUserResponse instantiates a new UserResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewUserResponseWithDefaults
+
+`func NewUserResponseWithDefaults() *UserResponse`
+
+NewUserResponseWithDefaults instantiates a new UserResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetUser
 
 `func (o *UserResponse) GetUser() User`

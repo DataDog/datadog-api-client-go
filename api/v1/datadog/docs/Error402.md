@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewError402
+
+`func NewError402(errors []string, ) *Error402`
+
+NewError402 instantiates a new Error402 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewError402WithDefaults
+
+`func NewError402WithDefaults() *Error402`
+
+NewError402WithDefaults instantiates a new Error402 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetErrors
 
 `func (o *Error402) GetErrors() []string`

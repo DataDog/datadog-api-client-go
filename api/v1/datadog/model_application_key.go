@@ -20,6 +20,23 @@ type ApplicationKey struct {
 	Owner *string `json:"owner,omitempty"`
 }
 
+// NewApplicationKey instantiates a new ApplicationKey object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationKey() *ApplicationKey {
+	this := ApplicationKey{}
+	return &this
+}
+
+// NewApplicationKeyWithDefaults instantiates a new ApplicationKey object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationKeyWithDefaults() *ApplicationKey {
+	this := ApplicationKey{}
+	return &this
+}
+
 // GetHash returns the Hash field value if set, zero value otherwise.
 func (o *ApplicationKey) GetHash() string {
 	if o == nil || o.Hash == nil {

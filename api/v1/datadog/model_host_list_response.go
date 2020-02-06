@@ -20,6 +20,23 @@ type HostListResponse struct {
 	TotalReturned *int64  `json:"total_returned,omitempty"`
 }
 
+// NewHostListResponse instantiates a new HostListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHostListResponse() *HostListResponse {
+	this := HostListResponse{}
+	return &this
+}
+
+// NewHostListResponseWithDefaults instantiates a new HostListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHostListResponseWithDefaults() *HostListResponse {
+	this := HostListResponse{}
+	return &this
+}
+
 // GetHostList returns the HostList field value if set, zero value otherwise.
 func (o *HostListResponse) GetHostList() []Host {
 	if o == nil || o.HostList == nil {

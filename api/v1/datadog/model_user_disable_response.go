@@ -18,6 +18,23 @@ type UserDisableResponse struct {
 	Message *string `json:"message,omitempty"`
 }
 
+// NewUserDisableResponse instantiates a new UserDisableResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUserDisableResponse() *UserDisableResponse {
+	this := UserDisableResponse{}
+	return &this
+}
+
+// NewUserDisableResponseWithDefaults instantiates a new UserDisableResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUserDisableResponseWithDefaults() *UserDisableResponse {
+	this := UserDisableResponse{}
+	return &this
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *UserDisableResponse) GetMessage() string {
 	if o == nil || o.Message == nil {

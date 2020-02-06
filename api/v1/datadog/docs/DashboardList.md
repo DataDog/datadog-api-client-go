@@ -15,6 +15,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewDashboardList
+
+`func NewDashboardList(name string, ) *DashboardList`
+
+NewDashboardList instantiates a new DashboardList object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewDashboardListWithDefaults
+
+`func NewDashboardListWithDefaults() *DashboardList`
+
+NewDashboardListWithDefaults instantiates a new DashboardList object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetAuthor
 
 `func (o *DashboardList) GetAuthor() Creator`

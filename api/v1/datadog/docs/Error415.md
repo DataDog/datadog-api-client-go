@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewError415
+
+`func NewError415(errors []string, ) *Error415`
+
+NewError415 instantiates a new Error415 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewError415WithDefaults
+
+`func NewError415WithDefaults() *Error415`
+
+NewError415WithDefaults instantiates a new Error415 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetErrors
 
 `func (o *Error415) GetErrors() []string`

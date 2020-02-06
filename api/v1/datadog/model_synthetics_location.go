@@ -22,6 +22,23 @@ type SyntheticsLocation struct {
 	Region      *string `json:"region,omitempty"`
 }
 
+// NewSyntheticsLocation instantiates a new SyntheticsLocation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsLocation() *SyntheticsLocation {
+	this := SyntheticsLocation{}
+	return &this
+}
+
+// NewSyntheticsLocationWithDefaults instantiates a new SyntheticsLocation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsLocationWithDefaults() *SyntheticsLocation {
+	this := SyntheticsLocation{}
+	return &this
+}
+
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *SyntheticsLocation) GetDisplayName() string {
 	if o == nil || o.DisplayName == nil {

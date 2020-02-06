@@ -27,6 +27,23 @@ type MetricsQueryResponseUnit struct {
 	ShortName *string `json:"short_name,omitempty"`
 }
 
+// NewMetricsQueryResponseUnit instantiates a new MetricsQueryResponseUnit object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMetricsQueryResponseUnit() *MetricsQueryResponseUnit {
+	this := MetricsQueryResponseUnit{}
+	return &this
+}
+
+// NewMetricsQueryResponseUnitWithDefaults instantiates a new MetricsQueryResponseUnit object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetricsQueryResponseUnitWithDefaults() *MetricsQueryResponseUnit {
+	this := MetricsQueryResponseUnit{}
+	return &this
+}
+
 // GetFamily returns the Family field value if set, zero value otherwise.
 func (o *MetricsQueryResponseUnit) GetFamily() string {
 	if o == nil || o.Family == nil {

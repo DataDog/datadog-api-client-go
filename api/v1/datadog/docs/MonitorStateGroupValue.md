@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewMonitorStateGroupValue
+
+`func NewMonitorStateGroupValue() *MonitorStateGroupValue`
+
+NewMonitorStateGroupValue instantiates a new MonitorStateGroupValue object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMonitorStateGroupValueWithDefaults
+
+`func NewMonitorStateGroupValueWithDefaults() *MonitorStateGroupValue`
+
+NewMonitorStateGroupValueWithDefaults instantiates a new MonitorStateGroupValue object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetFromTs
 
 `func (o *MonitorStateGroupValue) GetFromTs() int64`

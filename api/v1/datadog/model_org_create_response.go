@@ -21,6 +21,23 @@ type OrgCreateResponse struct {
 	User           *User           `json:"user,omitempty"`
 }
 
+// NewOrgCreateResponse instantiates a new OrgCreateResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgCreateResponse() *OrgCreateResponse {
+	this := OrgCreateResponse{}
+	return &this
+}
+
+// NewOrgCreateResponseWithDefaults instantiates a new OrgCreateResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgCreateResponseWithDefaults() *OrgCreateResponse {
+	this := OrgCreateResponse{}
+	return &this
+}
+
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *OrgCreateResponse) GetApiKey() ApiKey {
 	if o == nil || o.ApiKey == nil {

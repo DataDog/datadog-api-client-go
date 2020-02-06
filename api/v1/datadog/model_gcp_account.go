@@ -42,6 +42,23 @@ type GcpAccount struct {
 	Type *string `json:"type,omitempty"`
 }
 
+// NewGcpAccount instantiates a new GcpAccount object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGcpAccount() *GcpAccount {
+	this := GcpAccount{}
+	return &this
+}
+
+// NewGcpAccountWithDefaults instantiates a new GcpAccount object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGcpAccountWithDefaults() *GcpAccount {
+	this := GcpAccount{}
+	return &this
+}
+
 // GetAuthProviderX509CertUrl returns the AuthProviderX509CertUrl field value if set, zero value otherwise.
 func (o *GcpAccount) GetAuthProviderX509CertUrl() string {
 	if o == nil || o.AuthProviderX509CertUrl == nil {

@@ -29,6 +29,23 @@ type HistoryServiceLevelObjectiveOverall struct {
 	Uptime *float64 `json:"uptime,omitempty"`
 }
 
+// NewHistoryServiceLevelObjectiveOverall instantiates a new HistoryServiceLevelObjectiveOverall object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveOverall() *HistoryServiceLevelObjectiveOverall {
+	this := HistoryServiceLevelObjectiveOverall{}
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveOverallWithDefaults instantiates a new HistoryServiceLevelObjectiveOverall object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveOverallWithDefaults() *HistoryServiceLevelObjectiveOverall {
+	this := HistoryServiceLevelObjectiveOverall{}
+	return &this
+}
+
 // GetHistory returns the History field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveOverall) GetHistory() [][]float64 {
 	if o == nil || o.History == nil {

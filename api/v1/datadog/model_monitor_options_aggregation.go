@@ -20,6 +20,23 @@ type MonitorOptionsAggregation struct {
 	Type    *string `json:"type,omitempty"`
 }
 
+// NewMonitorOptionsAggregation instantiates a new MonitorOptionsAggregation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorOptionsAggregation() *MonitorOptionsAggregation {
+	this := MonitorOptionsAggregation{}
+	return &this
+}
+
+// NewMonitorOptionsAggregationWithDefaults instantiates a new MonitorOptionsAggregation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorOptionsAggregationWithDefaults() *MonitorOptionsAggregation {
+	this := MonitorOptionsAggregation{}
+	return &this
+}
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *MonitorOptionsAggregation) GetGroupBy() string {
 	if o == nil || o.GroupBy == nil {

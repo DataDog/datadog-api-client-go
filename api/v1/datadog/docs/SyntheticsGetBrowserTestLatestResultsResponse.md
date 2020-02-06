@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSyntheticsGetBrowserTestLatestResultsResponse
+
+`func NewSyntheticsGetBrowserTestLatestResultsResponse() *SyntheticsGetBrowserTestLatestResultsResponse`
+
+NewSyntheticsGetBrowserTestLatestResultsResponse instantiates a new SyntheticsGetBrowserTestLatestResultsResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsGetBrowserTestLatestResultsResponseWithDefaults
+
+`func NewSyntheticsGetBrowserTestLatestResultsResponseWithDefaults() *SyntheticsGetBrowserTestLatestResultsResponse`
+
+NewSyntheticsGetBrowserTestLatestResultsResponseWithDefaults instantiates a new SyntheticsGetBrowserTestLatestResultsResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetLastTimestampFetched
 
 `func (o *SyntheticsGetBrowserTestLatestResultsResponse) GetLastTimestampFetched() int64`

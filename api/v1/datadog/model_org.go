@@ -24,6 +24,23 @@ type Org struct {
 	Subscription *OrgSubscription `json:"subscription,omitempty"`
 }
 
+// NewOrg instantiates a new Org object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrg() *Org {
+	this := Org{}
+	return &this
+}
+
+// NewOrgWithDefaults instantiates a new Org object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgWithDefaults() *Org {
+	this := Org{}
+	return &this
+}
+
 // GetBilling returns the Billing field value if set, zero value otherwise.
 func (o *Org) GetBilling() OrgBilling {
 	if o == nil || o.Billing == nil {

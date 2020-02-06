@@ -19,6 +19,25 @@ type SyntheticsStepDetailWarnings struct {
 	Type    string `json:"type"`
 }
 
+// NewSyntheticsStepDetailWarnings instantiates a new SyntheticsStepDetailWarnings object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsStepDetailWarnings(message string, type_ string) *SyntheticsStepDetailWarnings {
+	this := SyntheticsStepDetailWarnings{}
+	this.Message = message
+	this.Type = type_
+	return &this
+}
+
+// NewSyntheticsStepDetailWarningsWithDefaults instantiates a new SyntheticsStepDetailWarnings object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsStepDetailWarningsWithDefaults() *SyntheticsStepDetailWarnings {
+	this := SyntheticsStepDetailWarnings{}
+	return &this
+}
+
 // GetMessage returns the Message field value
 func (o *SyntheticsStepDetailWarnings) GetMessage() string {
 	if o == nil {

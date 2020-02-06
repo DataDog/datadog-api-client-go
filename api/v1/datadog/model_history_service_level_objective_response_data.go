@@ -26,6 +26,23 @@ type HistoryServiceLevelObjectiveResponseData struct {
 	ToTs *int64 `json:"to_ts,omitempty"`
 }
 
+// NewHistoryServiceLevelObjectiveResponseData instantiates a new HistoryServiceLevelObjectiveResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveResponseData() *HistoryServiceLevelObjectiveResponseData {
+	this := HistoryServiceLevelObjectiveResponseData{}
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveResponseDataWithDefaults instantiates a new HistoryServiceLevelObjectiveResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveResponseDataWithDefaults() *HistoryServiceLevelObjectiveResponseData {
+	this := HistoryServiceLevelObjectiveResponseData{}
+	return &this
+}
+
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseData) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {

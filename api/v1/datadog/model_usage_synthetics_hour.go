@@ -22,6 +22,23 @@ type UsageSyntheticsHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 }
 
+// NewUsageSyntheticsHour instantiates a new UsageSyntheticsHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageSyntheticsHour() *UsageSyntheticsHour {
+	this := UsageSyntheticsHour{}
+	return &this
+}
+
+// NewUsageSyntheticsHourWithDefaults instantiates a new UsageSyntheticsHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageSyntheticsHourWithDefaults() *UsageSyntheticsHour {
+	this := UsageSyntheticsHour{}
+	return &this
+}
+
 // GetCheckCallsCount returns the CheckCallsCount field value if set, zero value otherwise.
 func (o *UsageSyntheticsHour) GetCheckCallsCount() int64 {
 	if o == nil || o.CheckCallsCount == nil {

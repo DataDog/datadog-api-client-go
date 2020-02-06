@@ -18,6 +18,23 @@ type SyntheticsSetTestPauseStatusPayload struct {
 	NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
 }
 
+// NewSyntheticsSetTestPauseStatusPayload instantiates a new SyntheticsSetTestPauseStatusPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsSetTestPauseStatusPayload() *SyntheticsSetTestPauseStatusPayload {
+	this := SyntheticsSetTestPauseStatusPayload{}
+	return &this
+}
+
+// NewSyntheticsSetTestPauseStatusPayloadWithDefaults instantiates a new SyntheticsSetTestPauseStatusPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsSetTestPauseStatusPayloadWithDefaults() *SyntheticsSetTestPauseStatusPayload {
+	this := SyntheticsSetTestPauseStatusPayload{}
+	return &this
+}
+
 // GetNewStatus returns the NewStatus field value if set, zero value otherwise.
 func (o *SyntheticsSetTestPauseStatusPayload) GetNewStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.NewStatus == nil {

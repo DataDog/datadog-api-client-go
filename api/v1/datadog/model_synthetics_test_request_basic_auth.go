@@ -19,6 +19,25 @@ type SyntheticsTestRequestBasicAuth struct {
 	Username string `json:"username"`
 }
 
+// NewSyntheticsTestRequestBasicAuth instantiates a new SyntheticsTestRequestBasicAuth object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsTestRequestBasicAuth(password string, username string) *SyntheticsTestRequestBasicAuth {
+	this := SyntheticsTestRequestBasicAuth{}
+	this.Password = password
+	this.Username = username
+	return &this
+}
+
+// NewSyntheticsTestRequestBasicAuthWithDefaults instantiates a new SyntheticsTestRequestBasicAuth object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsTestRequestBasicAuthWithDefaults() *SyntheticsTestRequestBasicAuth {
+	this := SyntheticsTestRequestBasicAuth{}
+	return &this
+}
+
 // GetPassword returns the Password field value
 func (o *SyntheticsTestRequestBasicAuth) GetPassword() string {
 	if o == nil {

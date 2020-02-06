@@ -19,6 +19,25 @@ type ServiceLevelObjectivesBulkDeleted struct {
 	Errors []ServiceLevelObjectivesBulkDeletedErrors `json:"errors"`
 }
 
+// NewServiceLevelObjectivesBulkDeleted instantiates a new ServiceLevelObjectivesBulkDeleted object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectivesBulkDeleted(data ServiceLevelObjectivesBulkDeletedData, errors []ServiceLevelObjectivesBulkDeletedErrors) *ServiceLevelObjectivesBulkDeleted {
+	this := ServiceLevelObjectivesBulkDeleted{}
+	this.Data = data
+	this.Errors = errors
+	return &this
+}
+
+// NewServiceLevelObjectivesBulkDeletedWithDefaults instantiates a new ServiceLevelObjectivesBulkDeleted object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectivesBulkDeletedWithDefaults() *ServiceLevelObjectivesBulkDeleted {
+	this := ServiceLevelObjectivesBulkDeleted{}
+	return &this
+}
+
 // GetData returns the Data field value
 func (o *ServiceLevelObjectivesBulkDeleted) GetData() ServiceLevelObjectivesBulkDeletedData {
 	if o == nil {

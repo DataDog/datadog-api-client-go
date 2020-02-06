@@ -13,6 +13,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewHistoryServiceLevelObjectiveResponseData
+
+`func NewHistoryServiceLevelObjectiveResponseData() *HistoryServiceLevelObjectiveResponseData`
+
+NewHistoryServiceLevelObjectiveResponseData instantiates a new HistoryServiceLevelObjectiveResponseData object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewHistoryServiceLevelObjectiveResponseDataWithDefaults
+
+`func NewHistoryServiceLevelObjectiveResponseDataWithDefaults() *HistoryServiceLevelObjectiveResponseData`
+
+NewHistoryServiceLevelObjectiveResponseDataWithDefaults instantiates a new HistoryServiceLevelObjectiveResponseData object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetFromTs
 
 `func (o *HistoryServiceLevelObjectiveResponseData) GetFromTs() int64`

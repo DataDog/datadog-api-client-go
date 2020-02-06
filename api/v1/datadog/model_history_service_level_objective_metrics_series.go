@@ -26,6 +26,23 @@ type HistoryServiceLevelObjectiveMetricsSeries struct {
 	Values *[]float64 `json:"values,omitempty"`
 }
 
+// NewHistoryServiceLevelObjectiveMetricsSeries instantiates a new HistoryServiceLevelObjectiveMetricsSeries object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveMetricsSeries() *HistoryServiceLevelObjectiveMetricsSeries {
+	this := HistoryServiceLevelObjectiveMetricsSeries{}
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveMetricsSeriesWithDefaults instantiates a new HistoryServiceLevelObjectiveMetricsSeries object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveMetricsSeriesWithDefaults() *HistoryServiceLevelObjectiveMetricsSeries {
+	this := HistoryServiceLevelObjectiveMetricsSeries{}
+	return &this
+}
+
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCount() int64 {
 	if o == nil || o.Count == nil {

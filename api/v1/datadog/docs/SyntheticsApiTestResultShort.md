@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSyntheticsApiTestResultShort
+
+`func NewSyntheticsApiTestResultShort() *SyntheticsApiTestResultShort`
+
+NewSyntheticsApiTestResultShort instantiates a new SyntheticsApiTestResultShort object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsApiTestResultShortWithDefaults
+
+`func NewSyntheticsApiTestResultShortWithDefaults() *SyntheticsApiTestResultShort`
+
+NewSyntheticsApiTestResultShortWithDefaults instantiates a new SyntheticsApiTestResultShort object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCheckTime
 
 `func (o *SyntheticsApiTestResultShort) GetCheckTime() float64`

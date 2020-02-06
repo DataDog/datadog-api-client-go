@@ -21,6 +21,26 @@ type SyntheticsBrowserError struct {
 	Type        string `json:"type"`
 }
 
+// NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsBrowserError(description string, name string, type_ string) *SyntheticsBrowserError {
+	this := SyntheticsBrowserError{}
+	this.Description = description
+	this.Name = name
+	this.Type = type_
+	return &this
+}
+
+// NewSyntheticsBrowserErrorWithDefaults instantiates a new SyntheticsBrowserError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsBrowserErrorWithDefaults() *SyntheticsBrowserError {
+	this := SyntheticsBrowserError{}
+	return &this
+}
+
 // GetDescription returns the Description field value
 func (o *SyntheticsBrowserError) GetDescription() string {
 	if o == nil {

@@ -22,6 +22,27 @@ type SyntheticsDevice struct {
 	Width    int64              `json:"width"`
 }
 
+// NewSyntheticsDevice instantiates a new SyntheticsDevice object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsDevice(height int64, id SyntheticsDeviceId, name string, width int64) *SyntheticsDevice {
+	this := SyntheticsDevice{}
+	this.Height = height
+	this.Id = id
+	this.Name = name
+	this.Width = width
+	return &this
+}
+
+// NewSyntheticsDeviceWithDefaults instantiates a new SyntheticsDevice object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsDeviceWithDefaults() *SyntheticsDevice {
+	this := SyntheticsDevice{}
+	return &this
+}
+
 // GetHeight returns the Height field value
 func (o *SyntheticsDevice) GetHeight() int64 {
 	if o == nil {

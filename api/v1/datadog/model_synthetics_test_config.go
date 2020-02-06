@@ -20,6 +20,25 @@ type SyntheticsTestConfig struct {
 	Variables  *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 }
 
+// NewSyntheticsTestConfig instantiates a new SyntheticsTestConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsTestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest) *SyntheticsTestConfig {
+	this := SyntheticsTestConfig{}
+	this.Assertions = assertions
+	this.Request = request
+	return &this
+}
+
+// NewSyntheticsTestConfigWithDefaults instantiates a new SyntheticsTestConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsTestConfigWithDefaults() *SyntheticsTestConfig {
+	this := SyntheticsTestConfig{}
+	return &this
+}
+
 // GetAssertions returns the Assertions field value
 func (o *SyntheticsTestConfig) GetAssertions() []SyntheticsAssertion {
 	if o == nil {

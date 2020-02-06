@@ -13,6 +13,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSyntheticsSslCertificateIssuer
+
+`func NewSyntheticsSslCertificateIssuer() *SyntheticsSslCertificateIssuer`
+
+NewSyntheticsSslCertificateIssuer instantiates a new SyntheticsSslCertificateIssuer object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsSslCertificateIssuerWithDefaults
+
+`func NewSyntheticsSslCertificateIssuerWithDefaults() *SyntheticsSslCertificateIssuer`
+
+NewSyntheticsSslCertificateIssuerWithDefaults instantiates a new SyntheticsSslCertificateIssuer object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetC
 
 `func (o *SyntheticsSslCertificateIssuer) GetC() string`

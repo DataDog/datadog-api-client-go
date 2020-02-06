@@ -28,6 +28,23 @@ type IpRanges struct {
 	Webhooks *IpPrefixes `json:"webhooks,omitempty"`
 }
 
+// NewIpRanges instantiates a new IpRanges object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewIpRanges() *IpRanges {
+	this := IpRanges{}
+	return &this
+}
+
+// NewIpRangesWithDefaults instantiates a new IpRanges object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIpRangesWithDefaults() *IpRanges {
+	this := IpRanges{}
+	return &this
+}
+
 // GetAgents returns the Agents field value if set, zero value otherwise.
 func (o *IpRanges) GetAgents() IpPrefixes {
 	if o == nil || o.Agents == nil {

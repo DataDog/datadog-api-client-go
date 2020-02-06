@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewError500
+
+`func NewError500(errors []string, ) *Error500`
+
+NewError500 instantiates a new Error500 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewError500WithDefaults
+
+`func NewError500WithDefaults() *Error500`
+
+NewError500WithDefaults instantiates a new Error500 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetErrors
 
 `func (o *Error500) GetErrors() []string`
