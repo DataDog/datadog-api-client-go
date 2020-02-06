@@ -164,15 +164,16 @@ func TestCheckLambdaAsync(t *testing.T) {
 	assert.Equal(t, status.GetStatus(), "created")
 
 	// Give the async call time to finish
-	time.Sleep(10 * time.Second)
+	retry(time.Duration(5*time.Second), 10, func() bool {
+		status, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
+		if err != nil {
+			t.Logf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			return false
+		}
+		assert.Equal(t, httpresp.StatusCode, 200)
+		return len(status.GetErrors()) > 0
+	})
 
-	status, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
-	if err != nil {
-		t.Fatalf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
-
-	assert.Assert(t, len(status.GetErrors()) > 0)
 	assert.Assert(t, status.GetErrors()[0].GetCode() != "")
 	assert.Assert(t, status.GetErrors()[0].GetMessage() != "")
 	assert.Equal(t, status.GetStatus(), "error")
