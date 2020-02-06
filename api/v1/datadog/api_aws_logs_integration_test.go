@@ -170,8 +170,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 			t.Logf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)
 			return false
 		}
-		assert.Equal(t, httpresp.StatusCode, 200)
-		return len(status.GetErrors()) > 0
+		return httpresp.StatusCode == 200 && len(status.GetErrors()) > 0
 	})
 
 	assert.Assert(t, status.GetErrors()[0].GetCode() != "")
