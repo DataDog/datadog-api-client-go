@@ -211,13 +211,13 @@ func TestApplicationKeyFunctions(t *testing.T) {
 func deleteAPIKey(apiKeyValue string) {
 	_, httpresp, err := TESTAPICLIENT.KeysApi.DeleteAPIKey(TESTAUTH, apiKeyValue).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue, httpresp.StatusCode)
+		log.Printf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue[len(apiKeyValue)-4:], httpresp.StatusCode)
 	}
 }
 
 func deleteAppKey(appKeyHash string) {
 	_, httpresp, err := TESTAPICLIENT.KeysApi.DeleteApplicationKey(TESTAUTH, appKeyHash).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash, httpresp.StatusCode)
+		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)
 	}
 }
