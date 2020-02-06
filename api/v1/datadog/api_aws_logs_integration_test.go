@@ -172,6 +172,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
+	assert.Assert(t, len(status.GetErrors()) > 0)
 	assert.Assert(t, status.GetErrors()[0].GetCode() != "")
 	assert.Assert(t, status.GetErrors()[0].GetMessage() != "")
 	assert.Equal(t, status.GetStatus(), "error")
