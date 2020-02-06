@@ -35,6 +35,23 @@ type Monitor struct {
 	Type *string `json:"type,omitempty"`
 }
 
+// NewMonitor instantiates a new Monitor object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitor() *Monitor {
+	this := Monitor{}
+	return &this
+}
+
+// NewMonitorWithDefaults instantiates a new Monitor object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorWithDefaults() *Monitor {
+	this := Monitor{}
+	return &this
+}
+
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *Monitor) GetCreated() time.Time {
 	if o == nil || o.Created == nil {

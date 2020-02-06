@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSyntheticsGetTestLatestResultsPayload
+
+`func NewSyntheticsGetTestLatestResultsPayload(fromTs float64, toTs float64, ) *SyntheticsGetTestLatestResultsPayload`
+
+NewSyntheticsGetTestLatestResultsPayload instantiates a new SyntheticsGetTestLatestResultsPayload object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsGetTestLatestResultsPayloadWithDefaults
+
+`func NewSyntheticsGetTestLatestResultsPayloadWithDefaults() *SyntheticsGetTestLatestResultsPayload`
+
+NewSyntheticsGetTestLatestResultsPayloadWithDefaults instantiates a new SyntheticsGetTestLatestResultsPayload object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetFromTs
 
 `func (o *SyntheticsGetTestLatestResultsPayload) GetFromTs() float64`

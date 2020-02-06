@@ -22,6 +22,23 @@ type UsageFargateHour struct {
 	TasksCount *int64 `json:"tasks_count,omitempty"`
 }
 
+// NewUsageFargateHour instantiates a new UsageFargateHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageFargateHour() *UsageFargateHour {
+	this := UsageFargateHour{}
+	return &this
+}
+
+// NewUsageFargateHourWithDefaults instantiates a new UsageFargateHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageFargateHourWithDefaults() *UsageFargateHour {
+	this := UsageFargateHour{}
+	return &this
+}
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {

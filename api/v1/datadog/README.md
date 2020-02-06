@@ -18,7 +18,6 @@ Install the following dependencies:
 go get github.com/stretchr/testify/assert
 go get golang.org/x/oauth2
 go get golang.org/x/net/context
-go get github.com/antihax/optional
 ```
 
 Put the package under your project folder and add the following in import:
@@ -131,6 +130,13 @@ Class | Method | HTTP request | Description
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get the current order of your log indexes.
 *LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | This endpoint updates an Index identified by its name.
 *LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update the order of your log indexes.
+*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline in your organization.
+*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a given pipeline from your organization.
+*LogsPipelinesApi* | [**GetAllLogsPipelines**](docs/LogsPipelinesApi.md#getalllogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all pipelines from your organization.
+*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a specific pipeline from your organization.
+*LogsPipelinesApi* | [**GetLogsPipelineOrder**](docs/LogsPipelinesApi.md#getlogspipelineorder) | **Get** /api/v1/logs/config/pipeline-order | Get the current order of your pipelines.
+*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline in your organization.
+*LogsPipelinesApi* | [**UpdateLogsPipelineOrder**](docs/LogsPipelinesApi.md#updatelogspipelineorder) | **Put** /api/v1/logs/config/pipeline-order | Update the order of your pipelines.
 *MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
 *MetricsApi* | [**GetMetricMetadata**](docs/MetricsApi.md#getmetricmetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
@@ -258,12 +264,34 @@ Class | Method | HTTP request | Description
  - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
  - [IpPrefixes](docs/IpPrefixes.md)
  - [IpRanges](docs/IpRanges.md)
+ - [LogsApiError](docs/LogsApiError.md)
+ - [LogsApiErrorResponse](docs/LogsApiErrorResponse.md)
+ - [LogsArithmeticProcessor](docs/LogsArithmeticProcessor.md)
+ - [LogsCategoryProcessor](docs/LogsCategoryProcessor.md)
+ - [LogsCategoryProcessorCategories](docs/LogsCategoryProcessorCategories.md)
+ - [LogsDateRemapper](docs/LogsDateRemapper.md)
  - [LogsExclusion](docs/LogsExclusion.md)
  - [LogsExclusionFilter](docs/LogsExclusionFilter.md)
+ - [LogsFilter](docs/LogsFilter.md)
+ - [LogsGeoIpParser](docs/LogsGeoIpParser.md)
+ - [LogsGrokParser](docs/LogsGrokParser.md)
+ - [LogsGrokParserRules](docs/LogsGrokParserRules.md)
  - [LogsIndex](docs/LogsIndex.md)
  - [LogsIndexFilter](docs/LogsIndexFilter.md)
  - [LogsIndexesOrder](docs/LogsIndexesOrder.md)
  - [LogsIndexesResponse](docs/LogsIndexesResponse.md)
+ - [LogsLookupProcessor](docs/LogsLookupProcessor.md)
+ - [LogsMessageRemapper](docs/LogsMessageRemapper.md)
+ - [LogsPipeline](docs/LogsPipeline.md)
+ - [LogsPipelinesOrder](docs/LogsPipelinesOrder.md)
+ - [LogsProcessor](docs/LogsProcessor.md)
+ - [LogsRemapper](docs/LogsRemapper.md)
+ - [LogsServiceRemapper](docs/LogsServiceRemapper.md)
+ - [LogsStatusRemapper](docs/LogsStatusRemapper.md)
+ - [LogsStringBuilderProcessor](docs/LogsStringBuilderProcessor.md)
+ - [LogsTraceRemapper](docs/LogsTraceRemapper.md)
+ - [LogsUrlParser](docs/LogsUrlParser.md)
+ - [LogsUserAgentParser](docs/LogsUserAgentParser.md)
  - [MetricMetadata](docs/MetricMetadata.md)
  - [MetricSearchResponse](docs/MetricSearchResponse.md)
  - [MetricSearchResponseResults](docs/MetricSearchResponseResults.md)

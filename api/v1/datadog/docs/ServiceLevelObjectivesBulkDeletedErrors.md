@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewServiceLevelObjectivesBulkDeletedErrors
+
+`func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe string, ) *ServiceLevelObjectivesBulkDeletedErrors`
+
+NewServiceLevelObjectivesBulkDeletedErrors instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults
+
+`func NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults() *ServiceLevelObjectivesBulkDeletedErrors`
+
+NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetId
 
 `func (o *ServiceLevelObjectivesBulkDeletedErrors) GetId() string`

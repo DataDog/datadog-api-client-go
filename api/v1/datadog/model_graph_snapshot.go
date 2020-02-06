@@ -20,6 +20,23 @@ type GraphSnapshot struct {
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
 }
 
+// NewGraphSnapshot instantiates a new GraphSnapshot object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGraphSnapshot() *GraphSnapshot {
+	this := GraphSnapshot{}
+	return &this
+}
+
+// NewGraphSnapshotWithDefaults instantiates a new GraphSnapshot object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGraphSnapshotWithDefaults() *GraphSnapshot {
+	this := GraphSnapshot{}
+	return &this
+}
+
 // GetGraphDef returns the GraphDef field value if set, zero value otherwise.
 func (o *GraphSnapshot) GetGraphDef() string {
 	if o == nil || o.GraphDef == nil {

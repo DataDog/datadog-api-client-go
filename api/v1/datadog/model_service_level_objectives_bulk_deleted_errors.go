@@ -23,6 +23,26 @@ type ServiceLevelObjectivesBulkDeletedErrors struct {
 	Timeframe string `json:"timeframe"`
 }
 
+// NewServiceLevelObjectivesBulkDeletedErrors instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe string) *ServiceLevelObjectivesBulkDeletedErrors {
+	this := ServiceLevelObjectivesBulkDeletedErrors{}
+	this.Id = id
+	this.Message = message
+	this.Timeframe = timeframe
+	return &this
+}
+
+// NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults() *ServiceLevelObjectivesBulkDeletedErrors {
+	this := ServiceLevelObjectivesBulkDeletedErrors{}
+	return &this
+}
+
 // GetId returns the Id field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) GetId() string {
 	if o == nil {

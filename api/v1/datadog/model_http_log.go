@@ -21,6 +21,23 @@ type HttpLog struct {
 	Message  *string `json:"message,omitempty"`
 }
 
+// NewHttpLog instantiates a new HttpLog object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHttpLog() *HttpLog {
+	this := HttpLog{}
+	return &this
+}
+
+// NewHttpLogWithDefaults instantiates a new HttpLog object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHttpLogWithDefaults() *HttpLog {
+	this := HttpLog{}
+	return &this
+}
+
 // GetDdsource returns the Ddsource field value if set, zero value otherwise.
 func (o *HttpLog) GetDdsource() string {
 	if o == nil || o.Ddsource == nil {

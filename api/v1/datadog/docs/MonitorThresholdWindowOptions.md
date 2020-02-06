@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewMonitorThresholdWindowOptions
+
+`func NewMonitorThresholdWindowOptions() *MonitorThresholdWindowOptions`
+
+NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMonitorThresholdWindowOptionsWithDefaults
+
+`func NewMonitorThresholdWindowOptionsWithDefaults() *MonitorThresholdWindowOptions`
+
+NewMonitorThresholdWindowOptionsWithDefaults instantiates a new MonitorThresholdWindowOptions object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetRecoveryWindow
 
 `func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string`

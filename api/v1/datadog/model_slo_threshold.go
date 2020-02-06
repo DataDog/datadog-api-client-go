@@ -25,6 +25,25 @@ type SloThreshold struct {
 	WarningDisplay *string `json:"warning_display,omitempty"`
 }
 
+// NewSloThreshold instantiates a new SloThreshold object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSloThreshold(target float64, timeframe SloTimeframe) *SloThreshold {
+	this := SloThreshold{}
+	this.Target = target
+	this.Timeframe = timeframe
+	return &this
+}
+
+// NewSloThresholdWithDefaults instantiates a new SloThreshold object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSloThresholdWithDefaults() *SloThreshold {
+	this := SloThreshold{}
+	return &this
+}
+
 // GetTarget returns the Target field value
 func (o *SloThreshold) GetTarget() float64 {
 	if o == nil {

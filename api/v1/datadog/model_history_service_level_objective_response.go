@@ -20,6 +20,24 @@ type HistoryServiceLevelObjectiveResponse struct {
 	Errors *[]HistoryServiceLevelObjectiveResponseError `json:"errors,omitempty"`
 }
 
+// NewHistoryServiceLevelObjectiveResponse instantiates a new HistoryServiceLevelObjectiveResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveResponse(data HistoryServiceLevelObjectiveResponseData) *HistoryServiceLevelObjectiveResponse {
+	this := HistoryServiceLevelObjectiveResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveResponseWithDefaults instantiates a new HistoryServiceLevelObjectiveResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveResponseWithDefaults() *HistoryServiceLevelObjectiveResponse {
+	this := HistoryServiceLevelObjectiveResponse{}
+	return &this
+}
+
 // GetData returns the Data field value
 func (o *HistoryServiceLevelObjectiveResponse) GetData() HistoryServiceLevelObjectiveResponseData {
 	if o == nil {

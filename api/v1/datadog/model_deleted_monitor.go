@@ -19,6 +19,23 @@ type DeletedMonitor struct {
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
 }
 
+// NewDeletedMonitor instantiates a new DeletedMonitor object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeletedMonitor() *DeletedMonitor {
+	this := DeletedMonitor{}
+	return &this
+}
+
+// NewDeletedMonitorWithDefaults instantiates a new DeletedMonitor object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeletedMonitorWithDefaults() *DeletedMonitor {
+	this := DeletedMonitor{}
+	return &this
+}
+
 // GetDeletedMonitorId returns the DeletedMonitorId field value if set, zero value otherwise.
 func (o *DeletedMonitor) GetDeletedMonitorId() int64 {
 	if o == nil || o.DeletedMonitorId == nil {

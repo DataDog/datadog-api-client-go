@@ -18,6 +18,24 @@ type Error404 struct {
 	Errors []string `json:"errors"`
 }
 
+// NewError404 instantiates a new Error404 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewError404(errors []string) *Error404 {
+	this := Error404{}
+	this.Errors = errors
+	return &this
+}
+
+// NewError404WithDefaults instantiates a new Error404 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewError404WithDefaults() *Error404 {
+	this := Error404{}
+	return &this
+}
+
 // GetErrors returns the Errors field value
 func (o *Error404) GetErrors() []string {
 	if o == nil {

@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewError401
+
+`func NewError401(errors []string, ) *Error401`
+
+NewError401 instantiates a new Error401 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewError401WithDefaults
+
+`func NewError401WithDefaults() *Error401`
+
+NewError401WithDefaults instantiates a new Error401 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetErrors
 
 `func (o *Error401) GetErrors() []string`

@@ -19,6 +19,24 @@ type ServiceLevelObjectiveDeleted struct {
 	Data []string `json:"data"`
 }
 
+// NewServiceLevelObjectiveDeleted instantiates a new ServiceLevelObjectiveDeleted object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectiveDeleted(data []string) *ServiceLevelObjectiveDeleted {
+	this := ServiceLevelObjectiveDeleted{}
+	this.Data = data
+	return &this
+}
+
+// NewServiceLevelObjectiveDeletedWithDefaults instantiates a new ServiceLevelObjectiveDeleted object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectiveDeletedWithDefaults() *ServiceLevelObjectiveDeleted {
+	this := ServiceLevelObjectiveDeleted{}
+	return &this
+}
+
 // GetData returns the Data field value
 func (o *ServiceLevelObjectiveDeleted) GetData() []string {
 	if o == nil {

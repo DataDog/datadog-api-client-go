@@ -18,6 +18,23 @@ type LogsIndexesResponse struct {
 	Indexes *[]LogsIndex `json:"indexes,omitempty"`
 }
 
+// NewLogsIndexesResponse instantiates a new LogsIndexesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLogsIndexesResponse() *LogsIndexesResponse {
+	this := LogsIndexesResponse{}
+	return &this
+}
+
+// NewLogsIndexesResponseWithDefaults instantiates a new LogsIndexesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLogsIndexesResponseWithDefaults() *LogsIndexesResponse {
+	this := LogsIndexesResponse{}
+	return &this
+}
+
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *LogsIndexesResponse) GetIndexes() []LogsIndex {
 	if o == nil || o.Indexes == nil {

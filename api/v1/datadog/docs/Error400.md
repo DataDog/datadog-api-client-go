@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewError400
+
+`func NewError400(errors []string, ) *Error400`
+
+NewError400 instantiates a new Error400 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewError400WithDefaults
+
+`func NewError400WithDefaults() *Error400`
+
+NewError400WithDefaults instantiates a new Error400 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetErrors
 
 `func (o *Error400) GetErrors() []string`

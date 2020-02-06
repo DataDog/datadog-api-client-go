@@ -14,6 +14,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewMetricMetadata
+
+`func NewMetricMetadata(type_ string, ) *MetricMetadata`
+
+NewMetricMetadata instantiates a new MetricMetadata object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMetricMetadataWithDefaults
+
+`func NewMetricMetadataWithDefaults() *MetricMetadata`
+
+NewMetricMetadataWithDefaults instantiates a new MetricMetadata object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetDescription
 
 `func (o *MetricMetadata) GetDescription() string`

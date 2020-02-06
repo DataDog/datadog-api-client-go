@@ -20,6 +20,23 @@ type MonitorState struct {
 	OverallState *MonitorOverallStates         `json:"overall_state,omitempty"`
 }
 
+// NewMonitorState instantiates a new MonitorState object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorState() *MonitorState {
+	this := MonitorState{}
+	return &this
+}
+
+// NewMonitorStateWithDefaults instantiates a new MonitorState object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorStateWithDefaults() *MonitorState {
+	this := MonitorState{}
+	return &this
+}
+
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 	if o == nil || o.Groups == nil {

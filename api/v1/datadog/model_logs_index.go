@@ -28,6 +28,24 @@ type LogsIndex struct {
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 }
 
+// NewLogsIndex instantiates a new LogsIndex object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLogsIndex(filter LogsIndexFilter) *LogsIndex {
+	this := LogsIndex{}
+	this.Filter = filter
+	return &this
+}
+
+// NewLogsIndexWithDefaults instantiates a new LogsIndex object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLogsIndexWithDefaults() *LogsIndex {
+	this := LogsIndex{}
+	return &this
+}
+
 // GetDailyLimit returns the DailyLimit field value if set, zero value otherwise.
 func (o *LogsIndex) GetDailyLimit() int64 {
 	if o == nil || o.DailyLimit == nil {

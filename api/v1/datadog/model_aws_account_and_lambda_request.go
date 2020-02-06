@@ -21,6 +21,25 @@ type AwsAccountAndLambdaRequest struct {
 	LambdaArn string `json:"lambda_arn"`
 }
 
+// NewAwsAccountAndLambdaRequest instantiates a new AwsAccountAndLambdaRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAwsAccountAndLambdaRequest(accountId string, lambdaArn string) *AwsAccountAndLambdaRequest {
+	this := AwsAccountAndLambdaRequest{}
+	this.AccountId = accountId
+	this.LambdaArn = lambdaArn
+	return &this
+}
+
+// NewAwsAccountAndLambdaRequestWithDefaults instantiates a new AwsAccountAndLambdaRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAwsAccountAndLambdaRequestWithDefaults() *AwsAccountAndLambdaRequest {
+	this := AwsAccountAndLambdaRequest{}
+	return &this
+}
+
 // GetAccountId returns the AccountId field value
 func (o *AwsAccountAndLambdaRequest) GetAccountId() string {
 	if o == nil {

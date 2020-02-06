@@ -18,6 +18,23 @@ type OrgResponse struct {
 	Org *Org `json:"org,omitempty"`
 }
 
+// NewOrgResponse instantiates a new OrgResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgResponse() *OrgResponse {
+	this := OrgResponse{}
+	return &this
+}
+
+// NewOrgResponseWithDefaults instantiates a new OrgResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgResponseWithDefaults() *OrgResponse {
+	this := OrgResponse{}
+	return &this
+}
+
 // GetOrg returns the Org field value if set, zero value otherwise.
 func (o *OrgResponse) GetOrg() Org {
 	if o == nil || o.Org == nil {

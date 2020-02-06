@@ -20,6 +20,25 @@ type SyntheticsGetTestLatestResultsPayload struct {
 	ToTs    float64   `json:"to_ts"`
 }
 
+// NewSyntheticsGetTestLatestResultsPayload instantiates a new SyntheticsGetTestLatestResultsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsGetTestLatestResultsPayload(fromTs float64, toTs float64) *SyntheticsGetTestLatestResultsPayload {
+	this := SyntheticsGetTestLatestResultsPayload{}
+	this.FromTs = fromTs
+	this.ToTs = toTs
+	return &this
+}
+
+// NewSyntheticsGetTestLatestResultsPayloadWithDefaults instantiates a new SyntheticsGetTestLatestResultsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsGetTestLatestResultsPayloadWithDefaults() *SyntheticsGetTestLatestResultsPayload {
+	this := SyntheticsGetTestLatestResultsPayload{}
+	return &this
+}
+
 // GetFromTs returns the FromTs field value
 func (o *SyntheticsGetTestLatestResultsPayload) GetFromTs() float64 {
 	if o == nil {

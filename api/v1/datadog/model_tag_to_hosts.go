@@ -18,6 +18,23 @@ type TagToHosts struct {
 	Tags *map[string][]string `json:"tags,omitempty"`
 }
 
+// NewTagToHosts instantiates a new TagToHosts object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTagToHosts() *TagToHosts {
+	this := TagToHosts{}
+	return &this
+}
+
+// NewTagToHostsWithDefaults instantiates a new TagToHosts object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTagToHostsWithDefaults() *TagToHosts {
+	this := TagToHosts{}
+	return &this
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *TagToHosts) GetTags() map[string][]string {
 	if o == nil || o.Tags == nil {

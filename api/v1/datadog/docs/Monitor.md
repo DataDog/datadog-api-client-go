@@ -21,6 +21,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewMonitor
+
+`func NewMonitor() *Monitor`
+
+NewMonitor instantiates a new Monitor object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMonitorWithDefaults
+
+`func NewMonitorWithDefaults() *Monitor`
+
+NewMonitorWithDefaults instantiates a new Monitor object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCreated
 
 `func (o *Monitor) GetCreated() time.Time`

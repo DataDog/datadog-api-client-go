@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewMetricsQueryResponseUnit
+
+`func NewMetricsQueryResponseUnit() *MetricsQueryResponseUnit`
+
+NewMetricsQueryResponseUnit instantiates a new MetricsQueryResponseUnit object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMetricsQueryResponseUnitWithDefaults
+
+`func NewMetricsQueryResponseUnitWithDefaults() *MetricsQueryResponseUnit`
+
+NewMetricsQueryResponseUnitWithDefaults instantiates a new MetricsQueryResponseUnit object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetFamily
 
 `func (o *MetricsQueryResponseUnit) GetFamily() string`

@@ -20,6 +20,24 @@ type IdpFormData struct {
 	IdpFile *os.File `json:"idp_file"`
 }
 
+// NewIdpFormData instantiates a new IdpFormData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewIdpFormData(idpFile *os.File) *IdpFormData {
+	this := IdpFormData{}
+	this.IdpFile = idpFile
+	return &this
+}
+
+// NewIdpFormDataWithDefaults instantiates a new IdpFormData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIdpFormDataWithDefaults() *IdpFormData {
+	this := IdpFormData{}
+	return &this
+}
+
 // GetIdpFile returns the IdpFile field value
 func (o *IdpFormData) GetIdpFile() *os.File {
 	if o == nil {

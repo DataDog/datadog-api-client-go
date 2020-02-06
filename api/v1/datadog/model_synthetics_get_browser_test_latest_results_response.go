@@ -19,6 +19,23 @@ type SyntheticsGetBrowserTestLatestResultsResponse struct {
 	Results              *[]SyntheticsBrowserTestResultShort `json:"results,omitempty"`
 }
 
+// NewSyntheticsGetBrowserTestLatestResultsResponse instantiates a new SyntheticsGetBrowserTestLatestResultsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsGetBrowserTestLatestResultsResponse() *SyntheticsGetBrowserTestLatestResultsResponse {
+	this := SyntheticsGetBrowserTestLatestResultsResponse{}
+	return &this
+}
+
+// NewSyntheticsGetBrowserTestLatestResultsResponseWithDefaults instantiates a new SyntheticsGetBrowserTestLatestResultsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsGetBrowserTestLatestResultsResponseWithDefaults() *SyntheticsGetBrowserTestLatestResultsResponse {
+	this := SyntheticsGetBrowserTestLatestResultsResponse{}
+	return &this
+}
+
 // GetLastTimestampFetched returns the LastTimestampFetched field value if set, zero value otherwise.
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) GetLastTimestampFetched() int64 {
 	if o == nil || o.LastTimestampFetched == nil {

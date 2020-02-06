@@ -22,6 +22,23 @@ type DowntimeRecurrence struct {
 	WeekDays         *[]string      `json:"week_days,omitempty"`
 }
 
+// NewDowntimeRecurrence instantiates a new DowntimeRecurrence object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDowntimeRecurrence() *DowntimeRecurrence {
+	this := DowntimeRecurrence{}
+	return &this
+}
+
+// NewDowntimeRecurrenceWithDefaults instantiates a new DowntimeRecurrence object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDowntimeRecurrenceWithDefaults() *DowntimeRecurrence {
+	this := DowntimeRecurrence{}
+	return &this
+}
+
 // GetPeriod returns the Period field value if set, zero value otherwise.
 func (o *DowntimeRecurrence) GetPeriod() int32 {
 	if o == nil || o.Period == nil {

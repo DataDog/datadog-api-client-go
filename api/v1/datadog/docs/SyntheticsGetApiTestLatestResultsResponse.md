@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSyntheticsGetApiTestLatestResultsResponse
+
+`func NewSyntheticsGetApiTestLatestResultsResponse() *SyntheticsGetApiTestLatestResultsResponse`
+
+NewSyntheticsGetApiTestLatestResultsResponse instantiates a new SyntheticsGetApiTestLatestResultsResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsGetApiTestLatestResultsResponseWithDefaults
+
+`func NewSyntheticsGetApiTestLatestResultsResponseWithDefaults() *SyntheticsGetApiTestLatestResultsResponse`
+
+NewSyntheticsGetApiTestLatestResultsResponseWithDefaults instantiates a new SyntheticsGetApiTestLatestResultsResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetLastTimestampFetched
 
 `func (o *SyntheticsGetApiTestLatestResultsResponse) GetLastTimestampFetched() int64`

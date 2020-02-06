@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewMetricSearchResponse
+
+`func NewMetricSearchResponse() *MetricSearchResponse`
+
+NewMetricSearchResponse instantiates a new MetricSearchResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMetricSearchResponseWithDefaults
+
+`func NewMetricSearchResponseWithDefaults() *MetricSearchResponse`
+
+NewMetricSearchResponseWithDefaults instantiates a new MetricSearchResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetResults
 
 `func (o *MetricSearchResponse) GetResults() MetricSearchResponseResults`

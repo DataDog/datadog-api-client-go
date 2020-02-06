@@ -18,6 +18,23 @@ type SyntheticsApiTestResultShortResult struct {
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 }
 
+// NewSyntheticsApiTestResultShortResult instantiates a new SyntheticsApiTestResultShortResult object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsApiTestResultShortResult() *SyntheticsApiTestResultShortResult {
+	this := SyntheticsApiTestResultShortResult{}
+	return &this
+}
+
+// NewSyntheticsApiTestResultShortResultWithDefaults instantiates a new SyntheticsApiTestResultShortResult object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsApiTestResultShortResultWithDefaults() *SyntheticsApiTestResultShortResult {
+	this := SyntheticsApiTestResultShortResult{}
+	return &this
+}
+
 // GetTimings returns the Timings field value if set, zero value otherwise.
 func (o *SyntheticsApiTestResultShortResult) GetTimings() SyntheticsTiming {
 	if o == nil || o.Timings == nil {

@@ -26,6 +26,23 @@ type SyntheticsTiming struct {
 	Wait      *float64 `json:"wait,omitempty"`
 }
 
+// NewSyntheticsTiming instantiates a new SyntheticsTiming object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsTiming() *SyntheticsTiming {
+	this := SyntheticsTiming{}
+	return &this
+}
+
+// NewSyntheticsTimingWithDefaults instantiates a new SyntheticsTiming object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsTimingWithDefaults() *SyntheticsTiming {
+	this := SyntheticsTiming{}
+	return &this
+}
+
 // GetDns returns the Dns field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetDns() float64 {
 	if o == nil || o.Dns == nil {

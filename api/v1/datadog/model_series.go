@@ -27,6 +27,29 @@ type Series struct {
 	Type *string   `json:"type,omitempty"`
 }
 
+// NewSeries instantiates a new Series object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSeries(metric string, points [][]float64) *Series {
+	this := Series{}
+	this.Metric = metric
+	this.Points = points
+	var type_ string = "gauge"
+	this.Type = &type_
+	return &this
+}
+
+// NewSeriesWithDefaults instantiates a new Series object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSeriesWithDefaults() *Series {
+	this := Series{}
+	var type_ string = "gauge"
+	this.Type = &type_
+	return &this
+}
+
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *Series) GetHost() string {
 	if o == nil || o.Host == nil {

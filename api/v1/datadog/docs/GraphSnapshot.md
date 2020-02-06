@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewGraphSnapshot
+
+`func NewGraphSnapshot() *GraphSnapshot`
+
+NewGraphSnapshot instantiates a new GraphSnapshot object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewGraphSnapshotWithDefaults
+
+`func NewGraphSnapshotWithDefaults() *GraphSnapshot`
+
+NewGraphSnapshotWithDefaults instantiates a new GraphSnapshot object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetGraphDef
 
 `func (o *GraphSnapshot) GetGraphDef() string`

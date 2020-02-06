@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewAwsLogsListResponse
+
+`func NewAwsLogsListResponse() *AwsLogsListResponse`
+
+NewAwsLogsListResponse instantiates a new AwsLogsListResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewAwsLogsListResponseWithDefaults
+
+`func NewAwsLogsListResponseWithDefaults() *AwsLogsListResponse`
+
+NewAwsLogsListResponseWithDefaults instantiates a new AwsLogsListResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetAccountId
 
 `func (o *AwsLogsListResponse) GetAccountId() string`

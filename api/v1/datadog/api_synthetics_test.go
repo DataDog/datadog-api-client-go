@@ -91,8 +91,8 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.Error(), err)
 	}
-	publicId := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(publicId)
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(publicID)
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, synt.GetName(), "testing Synthetics API test")
 
@@ -103,17 +103,17 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	synt.CreatedBy = nil
 	synt.ModifiedAt = nil
 	synt.PublicId = nil
-	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTest(TESTAUTH, publicId).Body(synt).Execute()
+	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTest(TESTAUTH, publicID).Body(synt).Execute()
 	if err != nil {
-		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, synt.GetName(), "updated name")
 
 	// Get API test
-	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetTest(TESTAUTH, publicId).Execute()
+	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetTest(TESTAUTH, publicID).Execute()
 	if err != nil {
-		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, synt.GetName(), "updated name")
@@ -122,20 +122,20 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// Stop API test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicId).
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
 		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
-		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, pauseStatus, true)
 
 	// Start API test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicId).
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
 		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
-		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, pauseStatus, true)
@@ -143,7 +143,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetApiTestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetAPITestLatestResults(TESTAUTH, publicId).
+	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetAPITestLatestResults(TESTAUTH, publicID).
 		Body(datadog.SyntheticsGetTestLatestResultsPayload{
 			FromTs:  0,
 			ProbeDc: &locs,
@@ -152,7 +152,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 		Execute()
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
-			publicId, err.Error(), err)
+			publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -177,9 +177,9 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 
 	// Delete API test
 	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.DeleteTests(TESTAUTH).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicId}}).Execute()
+		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
 	if err != nil {
-		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 }
@@ -193,8 +193,8 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.Error(), err)
 	}
-	publicId := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(publicId)
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(publicID)
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, synt.GetName(), "testing Synthetics Browser test")
 
@@ -205,17 +205,17 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	synt.CreatedBy = nil
 	synt.ModifiedAt = nil
 	synt.PublicId = nil
-	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTest(TESTAUTH, publicId).Body(synt).Execute()
+	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTest(TESTAUTH, publicID).Body(synt).Execute()
 	if err != nil {
-		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, synt.GetName(), "updated name")
 
 	// Get Browser test
-	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetTest(TESTAUTH, publicId).Execute()
+	synt, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetTest(TESTAUTH, publicID).Execute()
 	if err != nil {
-		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, synt.GetName(), "updated name")
@@ -224,20 +224,20 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	// Start Browser test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicId).
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
 		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
-		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, pauseStatus, true)
 
 	// Stop Browser test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicId).
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
 		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
-		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, pauseStatus, true)
@@ -245,7 +245,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	// Get the most recent Browser test results
 	var latestResults datadog.SyntheticsGetBrowserTestLatestResultsResponse
 	locs := synt.GetLocations()
-	latestResults, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetBrowserTestLatestResults(TESTAUTH, publicId).
+	latestResults, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetBrowserTestLatestResults(TESTAUTH, publicID).
 		Body(datadog.SyntheticsGetTestLatestResultsPayload{
 			FromTs:  0,
 			ProbeDc: &locs,
@@ -254,7 +254,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 		Execute()
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
-			publicId, err.Error(), err)
+			publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Assert(t, len(latestResults.GetResults()) == 0)
@@ -279,9 +279,9 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 
 	// Delete Browser test
 	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.DeleteTests(TESTAUTH).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicId}}).Execute()
+		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
 	if err != nil {
-		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicId, err.Error(), err)
+		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 }
@@ -296,8 +296,8 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.Error(), err)
 	}
-	publicIdAPI := syntAPI.GetPublicId()
-	defer deleteSyntheticsTestIfExists(publicIdAPI)
+	publicIDAPI := syntAPI.GetPublicId()
+	defer deleteSyntheticsTestIfExists(publicIDAPI)
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, syntAPI.GetName(), "testing Synthetics API test")
 
@@ -306,8 +306,8 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.Error(), err)
 	}
-	publicIdBrowser := syntBrowser.GetPublicId()
-	defer deleteSyntheticsTestIfExists(publicIdBrowser)
+	publicIDBrowser := syntBrowser.GetPublicId()
+	defer deleteSyntheticsTestIfExists(publicIDBrowser)
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, syntBrowser.GetName(), "testing Synthetics Browser test")
 
@@ -319,8 +319,8 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	td := allTests.GetTests()
-	assertPublicIDPresent(t, publicIdAPI, td)
-	assertPublicIDPresent(t, publicIdBrowser, td)
+	assertPublicIDPresent(t, publicIDAPI, td)
+	assertPublicIDPresent(t, publicIDBrowser, td)
 }
 
 func TestSyntheticsGetAllLocations(t *testing.T) {

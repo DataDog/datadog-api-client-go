@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSyntheticsTestRequestBasicAuth
+
+`func NewSyntheticsTestRequestBasicAuth(password string, username string, ) *SyntheticsTestRequestBasicAuth`
+
+NewSyntheticsTestRequestBasicAuth instantiates a new SyntheticsTestRequestBasicAuth object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsTestRequestBasicAuthWithDefaults
+
+`func NewSyntheticsTestRequestBasicAuthWithDefaults() *SyntheticsTestRequestBasicAuth`
+
+NewSyntheticsTestRequestBasicAuthWithDefaults instantiates a new SyntheticsTestRequestBasicAuth object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetPassword
 
 `func (o *SyntheticsTestRequestBasicAuth) GetPassword() string`

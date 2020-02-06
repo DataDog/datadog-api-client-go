@@ -18,6 +18,23 @@ type MetricSearchResponse struct {
 	Results *MetricSearchResponseResults `json:"results,omitempty"`
 }
 
+// NewMetricSearchResponse instantiates a new MetricSearchResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMetricSearchResponse() *MetricSearchResponse {
+	this := MetricSearchResponse{}
+	return &this
+}
+
+// NewMetricSearchResponseWithDefaults instantiates a new MetricSearchResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetricSearchResponseWithDefaults() *MetricSearchResponse {
+	this := MetricSearchResponse{}
+	return &this
+}
+
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *MetricSearchResponse) GetResults() MetricSearchResponseResults {
 	if o == nil || o.Results == nil {

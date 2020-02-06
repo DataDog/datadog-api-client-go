@@ -18,6 +18,24 @@ type Error413 struct {
 	Errors []string `json:"errors"`
 }
 
+// NewError413 instantiates a new Error413 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewError413(errors []string) *Error413 {
+	this := Error413{}
+	this.Errors = errors
+	return &this
+}
+
+// NewError413WithDefaults instantiates a new Error413 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewError413WithDefaults() *Error413 {
+	this := Error413{}
+	return &this
+}
+
 // GetErrors returns the Errors field value
 func (o *Error413) GetErrors() []string {
 	if o == nil {

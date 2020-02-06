@@ -67,6 +67,23 @@ type UsageSummaryResponse struct {
 	Usage                               *[]UsageSummaryDate `json:"usage,omitempty"`
 }
 
+// NewUsageSummaryResponse instantiates a new UsageSummaryResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageSummaryResponse() *UsageSummaryResponse {
+	this := UsageSummaryResponse{}
+	return &this
+}
+
+// NewUsageSummaryResponseWithDefaults instantiates a new UsageSummaryResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageSummaryResponseWithDefaults() *UsageSummaryResponse {
+	this := UsageSummaryResponse{}
+	return &this
+}
+
 // GetAgentHostTop99pSum returns the AgentHostTop99pSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetAgentHostTop99pSum() int64 {
 	if o == nil || o.AgentHostTop99pSum == nil {

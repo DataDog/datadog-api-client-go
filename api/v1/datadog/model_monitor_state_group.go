@@ -26,6 +26,23 @@ type MonitorStateGroup struct {
 	TriggeringValue *MonitorStateGroupValue `json:"triggering_value,omitempty"`
 }
 
+// NewMonitorStateGroup instantiates a new MonitorStateGroup object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorStateGroup() *MonitorStateGroup {
+	this := MonitorStateGroup{}
+	return &this
+}
+
+// NewMonitorStateGroupWithDefaults instantiates a new MonitorStateGroup object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorStateGroupWithDefaults() *MonitorStateGroup {
+	this := MonitorStateGroup{}
+	return &this
+}
+
 // GetLastDataTs returns the LastDataTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastDataTs() int64 {
 	if o == nil || o.LastDataTs == nil {
