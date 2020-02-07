@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## GetAllLogIndexes
 
-> LogsIndexesResponse GetAllLogIndexes(ctx).Execute()
+> LogsIndexListResponse GetAllLogIndexes(ctx).Execute()
 
 This endpoint returns an array of the LogIndex objects of your organization.
 
@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiGetAllLogIndexesRequest st
 
 ### Return type
 
-[**LogsIndexesResponse**](LogsIndexesResponse.md)
+[**LogsIndexListResponse**](LogsIndexListResponse.md)
 
 ### Authorization
 

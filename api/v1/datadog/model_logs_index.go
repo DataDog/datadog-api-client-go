@@ -19,7 +19,7 @@ type LogsIndex struct {
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
 	// An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
-	Filter           LogsIndexFilter  `json:"filter"`
+	Filter           LogsFilter       `json:"filter"`
 	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC.
 	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
 	// The name of the index.
@@ -32,7 +32,7 @@ type LogsIndex struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsIndex(filter LogsIndexFilter) *LogsIndex {
+func NewLogsIndex(filter LogsFilter) *LogsIndex {
 	this := LogsIndex{}
 	this.Filter = filter
 	return &this
@@ -113,9 +113,9 @@ func (o *LogsIndex) SetExclusionFilters(v []LogsExclusion) {
 }
 
 // GetFilter returns the Filter field value
-func (o *LogsIndex) GetFilter() LogsIndexFilter {
+func (o *LogsIndex) GetFilter() LogsFilter {
 	if o == nil {
-		var ret LogsIndexFilter
+		var ret LogsFilter
 		return ret
 	}
 
@@ -123,7 +123,7 @@ func (o *LogsIndex) GetFilter() LogsIndexFilter {
 }
 
 // SetFilter sets field value
-func (o *LogsIndex) SetFilter(v LogsIndexFilter) {
+func (o *LogsIndex) SetFilter(v LogsFilter) {
 	o.Filter = v
 }
 
