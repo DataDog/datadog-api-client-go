@@ -383,7 +383,7 @@ type apiListEventsRequest struct {
 	apiService   *EventsApiService
 	start        *int64
 	end          *int64
-	priority     *string
+	priority     *EventPriority
 	sources      *string
 	tags         *string
 	unaggregated *bool
@@ -399,7 +399,7 @@ func (r apiListEventsRequest) End(end int64) apiListEventsRequest {
 	return r
 }
 
-func (r apiListEventsRequest) Priority(priority string) apiListEventsRequest {
+func (r apiListEventsRequest) Priority(priority EventPriority) apiListEventsRequest {
 	r.priority = &priority
 	return r
 }

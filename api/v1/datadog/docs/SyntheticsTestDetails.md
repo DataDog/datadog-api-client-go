@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 **PublicId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
 **StepCount** | Pointer to **int64** |  | [optional] 
-**Subtype** | Pointer to **string** |  | [optional] 
+**Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
 
 ## Methods
 
@@ -367,13 +367,13 @@ SetStepCount gets a reference to the given int64 and assigns it to the StepCount
 
 ### GetSubtype
 
-`func (o *SyntheticsTestDetails) GetSubtype() string`
+`func (o *SyntheticsTestDetails) GetSubtype() SyntheticsTestDetailsSubType`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *SyntheticsTestDetails) GetSubtypeOk() (string, bool)`
+`func (o *SyntheticsTestDetails) GetSubtypeOk() (SyntheticsTestDetailsSubType, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -386,9 +386,9 @@ HasSubtype returns a boolean if a field has been set.
 
 ### SetSubtype
 
-`func (o *SyntheticsTestDetails) SetSubtype(v string)`
+`func (o *SyntheticsTestDetails) SetSubtype(v SyntheticsTestDetailsSubType)`
 
-SetSubtype gets a reference to the given string and assigns it to the Subtype field.
+SetSubtype gets a reference to the given SyntheticsTestDetailsSubType and assigns it to the Subtype field.
 
 ### GetTags
 
@@ -417,13 +417,13 @@ SetTags gets a reference to the given []string and assigns it to the Tags field.
 
 ### GetType
 
-`func (o *SyntheticsTestDetails) GetType() string`
+`func (o *SyntheticsTestDetails) GetType() SyntheticsTestDetailsType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SyntheticsTestDetails) GetTypeOk() (string, bool)`
+`func (o *SyntheticsTestDetails) GetTypeOk() (SyntheticsTestDetailsType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -436,9 +436,9 @@ HasType returns a boolean if a field has been set.
 
 ### SetType
 
-`func (o *SyntheticsTestDetails) SetType(v string)`
+`func (o *SyntheticsTestDetails) SetType(v SyntheticsTestDetailsType)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType gets a reference to the given SyntheticsTestDetailsType and assigns it to the Type field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

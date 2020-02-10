@@ -15,15 +15,15 @@ import (
 
 // SyntheticsStepDetailWarnings struct for SyntheticsStepDetailWarnings
 type SyntheticsStepDetailWarnings struct {
-	Message string `json:"message"`
-	Type    string `json:"type"`
+	Message string                `json:"message"`
+	Type    SyntheticsWarningType `json:"type"`
 }
 
 // NewSyntheticsStepDetailWarnings instantiates a new SyntheticsStepDetailWarnings object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsStepDetailWarnings(message string, type_ string) *SyntheticsStepDetailWarnings {
+func NewSyntheticsStepDetailWarnings(message string, type_ SyntheticsWarningType) *SyntheticsStepDetailWarnings {
 	this := SyntheticsStepDetailWarnings{}
 	this.Message = message
 	this.Type = type_
@@ -54,9 +54,9 @@ func (o *SyntheticsStepDetailWarnings) SetMessage(v string) {
 }
 
 // GetType returns the Type field value
-func (o *SyntheticsStepDetailWarnings) GetType() string {
+func (o *SyntheticsStepDetailWarnings) GetType() SyntheticsWarningType {
 	if o == nil {
-		var ret string
+		var ret SyntheticsWarningType
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *SyntheticsStepDetailWarnings) GetType() string {
 }
 
 // SetType sets field value
-func (o *SyntheticsStepDetailWarnings) SetType(v string) {
+func (o *SyntheticsStepDetailWarnings) SetType(v SyntheticsWarningType) {
 	o.Type = v
 }
 

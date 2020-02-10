@@ -17,7 +17,7 @@ import (
 type OrgSettings struct {
 	PrivateWidgetShare         *bool                                  `json:"private_widget_share,omitempty"`
 	Saml                       *OrgSettingsSaml                       `json:"saml,omitempty"`
-	SamlAutocreateAccessRole   *string                                `json:"saml_autocreate_access_role,omitempty"`
+	SamlAutocreateAccessRole   *AccessRole                            `json:"saml_autocreate_access_role,omitempty"`
 	SamlAutocreateUsersDomains *OrgSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
 	SamlCanBeEnabled           *bool                                  `json:"saml_can_be_enabled,omitempty"`
 	SamlIdpEndpoint            *string                                `json:"saml_idp_endpoint,omitempty"`
@@ -111,9 +111,9 @@ func (o *OrgSettings) SetSaml(v OrgSettingsSaml) {
 }
 
 // GetSamlAutocreateAccessRole returns the SamlAutocreateAccessRole field value if set, zero value otherwise.
-func (o *OrgSettings) GetSamlAutocreateAccessRole() string {
+func (o *OrgSettings) GetSamlAutocreateAccessRole() AccessRole {
 	if o == nil || o.SamlAutocreateAccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret
 	}
 	return *o.SamlAutocreateAccessRole
@@ -121,9 +121,9 @@ func (o *OrgSettings) GetSamlAutocreateAccessRole() string {
 
 // GetSamlAutocreateAccessRoleOk returns a tuple with the SamlAutocreateAccessRole field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (string, bool) {
+func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (AccessRole, bool) {
 	if o == nil || o.SamlAutocreateAccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret, false
 	}
 	return *o.SamlAutocreateAccessRole, true
@@ -138,8 +138,8 @@ func (o *OrgSettings) HasSamlAutocreateAccessRole() bool {
 	return false
 }
 
-// SetSamlAutocreateAccessRole gets a reference to the given string and assigns it to the SamlAutocreateAccessRole field.
-func (o *OrgSettings) SetSamlAutocreateAccessRole(v string) {
+// SetSamlAutocreateAccessRole gets a reference to the given AccessRole and assigns it to the SamlAutocreateAccessRole field.
+func (o *OrgSettings) SetSamlAutocreateAccessRole(v AccessRole) {
 	o.SamlAutocreateAccessRole = &v
 }
 

@@ -31,8 +31,7 @@ type Monitor struct {
 	Query        *string               `json:"query,omitempty"`
 	State        *MonitorState         `json:"state,omitempty"`
 	Tags         *[]string             `json:"tags,omitempty"`
-	// The type of the monitor
-	Type *string `json:"type,omitempty"`
+	Type         *MonitorType          `json:"type,omitempty"`
 }
 
 // NewMonitor instantiates a new Monitor object
@@ -482,9 +481,9 @@ func (o *Monitor) SetTags(v []string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Monitor) GetType() string {
+func (o *Monitor) GetType() MonitorType {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret MonitorType
 		return ret
 	}
 	return *o.Type
@@ -492,9 +491,9 @@ func (o *Monitor) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetTypeOk() (string, bool) {
+func (o *Monitor) GetTypeOk() (MonitorType, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret MonitorType
 		return ret, false
 	}
 	return *o.Type, true
@@ -509,8 +508,8 @@ func (o *Monitor) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Monitor) SetType(v string) {
+// SetType gets a reference to the given MonitorType and assigns it to the Type field.
+func (o *Monitor) SetType(v MonitorType) {
 	o.Type = &v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessRole** | Pointer to **string** |  | [optional] 
+**AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] 
 **Disabled** | Pointer to **bool** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Handle** | Pointer to **string** |  | [optional] 
@@ -33,13 +33,13 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccessRole
 
-`func (o *User) GetAccessRole() string`
+`func (o *User) GetAccessRole() AccessRole`
 
 GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
 
 ### GetAccessRoleOk
 
-`func (o *User) GetAccessRoleOk() (string, bool)`
+`func (o *User) GetAccessRoleOk() (AccessRole, bool)`
 
 GetAccessRoleOk returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -52,9 +52,9 @@ HasAccessRole returns a boolean if a field has been set.
 
 ### SetAccessRole
 
-`func (o *User) SetAccessRole(v string)`
+`func (o *User) SetAccessRole(v AccessRole)`
 
-SetAccessRole gets a reference to the given string and assigns it to the AccessRole field.
+SetAccessRole gets a reference to the given AccessRole and assigns it to the AccessRole field.
 
 ### GetDisabled
 

@@ -15,22 +15,22 @@ import (
 
 // SyntheticsTestDetails struct for SyntheticsTestDetails
 type SyntheticsTestDetails struct {
-	Config       *SyntheticsTestConfig        `json:"config,omitempty"`
-	CreatedAt    *string                      `json:"created_at,omitempty"`
-	CreatedBy    *SyntheticsTestAuthor        `json:"created_by,omitempty"`
-	Locations    *[]string                    `json:"locations,omitempty"`
-	Message      *string                      `json:"message,omitempty"`
-	ModifiedAt   *string                      `json:"modified_at,omitempty"`
-	ModifiedBy   *SyntheticsTestAuthor        `json:"modified_by,omitempty"`
-	Name         *string                      `json:"name,omitempty"`
-	Options      *SyntheticsTestOptions       `json:"options,omitempty"`
-	OverallState *SyntheticsTestMonitorStatus `json:"overall_state,omitempty"`
-	PublicId     *string                      `json:"public_id,omitempty"`
-	Status       *SyntheticsTestPauseStatus   `json:"status,omitempty"`
-	StepCount    *int64                       `json:"stepCount,omitempty"`
-	Subtype      *string                      `json:"subtype,omitempty"`
-	Tags         *[]string                    `json:"tags,omitempty"`
-	Type         *string                      `json:"type,omitempty"`
+	Config       *SyntheticsTestConfig         `json:"config,omitempty"`
+	CreatedAt    *string                       `json:"created_at,omitempty"`
+	CreatedBy    *SyntheticsTestAuthor         `json:"created_by,omitempty"`
+	Locations    *[]string                     `json:"locations,omitempty"`
+	Message      *string                       `json:"message,omitempty"`
+	ModifiedAt   *string                       `json:"modified_at,omitempty"`
+	ModifiedBy   *SyntheticsTestAuthor         `json:"modified_by,omitempty"`
+	Name         *string                       `json:"name,omitempty"`
+	Options      *SyntheticsTestOptions        `json:"options,omitempty"`
+	OverallState *SyntheticsTestMonitorStatus  `json:"overall_state,omitempty"`
+	PublicId     *string                       `json:"public_id,omitempty"`
+	Status       *SyntheticsTestPauseStatus    `json:"status,omitempty"`
+	StepCount    *int64                        `json:"stepCount,omitempty"`
+	Subtype      *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+	Tags         *[]string                     `json:"tags,omitempty"`
+	Type         *SyntheticsTestDetailsType    `json:"type,omitempty"`
 }
 
 // NewSyntheticsTestDetails instantiates a new SyntheticsTestDetails object
@@ -480,9 +480,9 @@ func (o *SyntheticsTestDetails) SetStepCount(v int64) {
 }
 
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetSubtype() string {
+func (o *SyntheticsTestDetails) GetSubtype() SyntheticsTestDetailsSubType {
 	if o == nil || o.Subtype == nil {
-		var ret string
+		var ret SyntheticsTestDetailsSubType
 		return ret
 	}
 	return *o.Subtype
@@ -490,9 +490,9 @@ func (o *SyntheticsTestDetails) GetSubtype() string {
 
 // GetSubtypeOk returns a tuple with the Subtype field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetSubtypeOk() (string, bool) {
+func (o *SyntheticsTestDetails) GetSubtypeOk() (SyntheticsTestDetailsSubType, bool) {
 	if o == nil || o.Subtype == nil {
-		var ret string
+		var ret SyntheticsTestDetailsSubType
 		return ret, false
 	}
 	return *o.Subtype, true
@@ -507,8 +507,8 @@ func (o *SyntheticsTestDetails) HasSubtype() bool {
 	return false
 }
 
-// SetSubtype gets a reference to the given string and assigns it to the Subtype field.
-func (o *SyntheticsTestDetails) SetSubtype(v string) {
+// SetSubtype gets a reference to the given SyntheticsTestDetailsSubType and assigns it to the Subtype field.
+func (o *SyntheticsTestDetails) SetSubtype(v SyntheticsTestDetailsSubType) {
 	o.Subtype = &v
 }
 
@@ -546,9 +546,9 @@ func (o *SyntheticsTestDetails) SetTags(v []string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetType() string {
+func (o *SyntheticsTestDetails) GetType() SyntheticsTestDetailsType {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret SyntheticsTestDetailsType
 		return ret
 	}
 	return *o.Type
@@ -556,9 +556,9 @@ func (o *SyntheticsTestDetails) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetTypeOk() (string, bool) {
+func (o *SyntheticsTestDetails) GetTypeOk() (SyntheticsTestDetailsType, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret SyntheticsTestDetailsType
 		return ret, false
 	}
 	return *o.Type, true
@@ -573,8 +573,8 @@ func (o *SyntheticsTestDetails) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *SyntheticsTestDetails) SetType(v string) {
+// SetType gets a reference to the given SyntheticsTestDetailsType and assigns it to the Type field.
+func (o *SyntheticsTestDetails) SetType(v SyntheticsTestDetailsType) {
 	o.Type = &v
 }
 
