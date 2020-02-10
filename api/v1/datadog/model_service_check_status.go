@@ -24,6 +24,11 @@ const (
 	SERVICECHECKSTATUS_UNKNOWN  ServiceCheckStatus = 3
 )
 
+// Ptr returns reference to ServiceCheckStatus value
+func (v ServiceCheckStatus) Ptr() *ServiceCheckStatus {
+	return &v
+}
+
 type NullableServiceCheckStatus struct {
 	Value        ServiceCheckStatus
 	ExplicitNull bool

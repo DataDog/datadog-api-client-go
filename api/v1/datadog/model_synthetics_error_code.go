@@ -27,6 +27,11 @@ const (
 	SYNTHETICSERRORCODE_INCORRECT_ASSERTION SyntheticsErrorCode = "INCORRECT_ASSERTION"
 )
 
+// Ptr returns reference to SyntheticsErrorCode value
+func (v SyntheticsErrorCode) Ptr() *SyntheticsErrorCode {
+	return &v
+}
+
 type NullableSyntheticsErrorCode struct {
 	Value        SyntheticsErrorCode
 	ExplicitNull bool

@@ -29,6 +29,11 @@ const (
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_THAN  SyntheticsAssertionOperator = "isInMoreThan"
 )
 
+// Ptr returns reference to SyntheticsAssertionOperator value
+func (v SyntheticsAssertionOperator) Ptr() *SyntheticsAssertionOperator {
+	return &v
+}
+
 type NullableSyntheticsAssertionOperator struct {
 	Value        SyntheticsAssertionOperator
 	ExplicitNull bool

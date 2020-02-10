@@ -23,6 +23,11 @@ const (
 	SLOTIMEFRAME__90D SloTimeframe = "90d"
 )
 
+// Ptr returns reference to SLOTimeframe value
+func (v SloTimeframe) Ptr() *SloTimeframe {
+	return &v
+}
+
 type NullableSloTimeframe struct {
 	Value        SloTimeframe
 	ExplicitNull bool

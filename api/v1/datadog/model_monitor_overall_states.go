@@ -27,6 +27,11 @@ const (
 	MONITOROVERALLSTATES_WARN    MonitorOverallStates = "Warn"
 )
 
+// Ptr returns reference to MonitorOverallStates value
+func (v MonitorOverallStates) Ptr() *MonitorOverallStates {
+	return &v
+}
+
 type NullableMonitorOverallStates struct {
 	Value        MonitorOverallStates
 	ExplicitNull bool
