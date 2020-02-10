@@ -21,11 +21,11 @@ var testMonitor = datadog.Monitor{
 	Options: &datadog.MonitorOptions{
 		NotifyAudit:       datadog.PtrBool(false),
 		Locked:            datadog.PtrBool(false),
-		TimeoutH:          &datadog.NullableInt64{Value:60},
-		RenotifyInterval:  &datadog.NullableInt64{Value:60},
+		TimeoutH:          &datadog.NullableInt64{Value: 60},
+		RenotifyInterval:  &datadog.NullableInt64{Value: 60},
 		EnableLogsSample:  datadog.PtrBool(true),
 		NoDataTimeframe:   nil,
-		NewHostDelay:      &datadog.NullableInt64{Value:600},
+		NewHostDelay:      &datadog.NullableInt64{Value: 600},
 		RequireFullWindow: datadog.PtrBool(true),
 		NotifyNoData:      datadog.PtrBool(false),
 		IncludeTags:       datadog.PtrBool(true),
@@ -34,6 +34,20 @@ var testMonitor = datadog.Monitor{
 		Thresholds: &datadog.MonitorThresholds{
 			Critical: datadog.PtrFloat64(2),
 			Warning:  &datadog.NullableFloat64{Value: 1},
+		},
+	},
+}
+
+var testUpdateMonitor = datadog.Monitor{
+	Name:    datadog.PtrString("Go - updated name"),
+	Options: &datadog.MonitorOptions{
+		TimeoutH:          &datadog.NullableInt64{ExplicitNull:true},
+		RenotifyInterval:  &datadog.NullableInt64{ExplicitNull:true},
+		NewHostDelay:      &datadog.NullableInt64{ExplicitNull:true},
+		EvaluationDelay:   &datadog.NullableInt64{ExplicitNull:true},
+		Thresholds: &datadog.MonitorThresholds{
+			Critical: datadog.PtrFloat64(2),
+			Warning:  &datadog.NullableFloat64{ExplicitNull:true},
 		},
 	},
 }
@@ -74,13 +88,21 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(t, monitor.GetName(), testMonitor.GetName())
 
 	// Edit a monitor
-	editedMonitor := datadog.Monitor{Name: datadog.PtrString("updated name")}
-	updatedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.EditMonitor(TESTAUTH, monitor.GetId()).Body(editedMonitor).Execute()
+	updatedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.EditMonitor(TESTAUTH, monitor.GetId()).Body(testUpdateMonitor).Execute()
 	if err != nil {
 		t.Errorf("Error updating Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Equal(t, editedMonitor.GetName(), updatedMonitor.GetName())
+	assert.Equal(t, testUpdateMonitor.GetName(), updatedMonitor.GetName())
+
+	// Assert Explicitly null fields
+	var monitorOptions = updatedMonitor.GetOptions()
+	var monitorOptionThresholds = monitorOptions.GetThresholds()
+	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetTimeoutH())
+	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetRenotifyInterval())
+	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetNewHostDelay())
+	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetEvaluationDelay())
+	assert.Equal(t, datadog.NullableFloat64{ExplicitNull: true}, monitorOptionThresholds.GetWarning())
 
 	// Check monitor existence
 	fetchedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId()).Execute()
