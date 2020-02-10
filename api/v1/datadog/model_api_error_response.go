@@ -13,31 +13,31 @@ import (
 	"encoding/json"
 )
 
-// Error402 struct for Error402
-type Error402 struct {
+// ApiErrorResponse struct for ApiErrorResponse
+type ApiErrorResponse struct {
 	Errors []string `json:"errors"`
 }
 
-// NewError402 instantiates a new Error402 object
+// NewApiErrorResponse instantiates a new ApiErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewError402(errors []string) *Error402 {
-	this := Error402{}
+func NewApiErrorResponse(errors []string) *ApiErrorResponse {
+	this := ApiErrorResponse{}
 	this.Errors = errors
 	return &this
 }
 
-// NewError402WithDefaults instantiates a new Error402 object
+// NewApiErrorResponseWithDefaults instantiates a new ApiErrorResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewError402WithDefaults() *Error402 {
-	this := Error402{}
+func NewApiErrorResponseWithDefaults() *ApiErrorResponse {
+	this := ApiErrorResponse{}
 	return &this
 }
 
 // GetErrors returns the Errors field value
-func (o *Error402) GetErrors() []string {
+func (o *ApiErrorResponse) GetErrors() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -47,16 +47,16 @@ func (o *Error402) GetErrors() []string {
 }
 
 // SetErrors sets field value
-func (o *Error402) SetErrors(v []string) {
+func (o *ApiErrorResponse) SetErrors(v []string) {
 	o.Errors = v
 }
 
-type NullableError402 struct {
-	Value        Error402
+type NullableApiErrorResponse struct {
+	Value        ApiErrorResponse
 	ExplicitNull bool
 }
 
-func (v NullableError402) MarshalJSON() ([]byte, error) {
+func (v NullableApiErrorResponse) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -65,7 +65,7 @@ func (v NullableError402) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableError402) UnmarshalJSON(src []byte) error {
+func (v *NullableApiErrorResponse) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

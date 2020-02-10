@@ -197,6 +197,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ApiErrorResponse](docs/ApiErrorResponse.md)
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyListResponse](docs/ApiKeyListResponse.md)
  - [ApiKeyResponse](docs/ApiKeyResponse.md)
@@ -225,16 +226,6 @@ Class | Method | HTTP request | Description
  - [DeletedMonitor](docs/DeletedMonitor.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
- - [Error400](docs/Error400.md)
- - [Error401](docs/Error401.md)
- - [Error402](docs/Error402.md)
- - [Error403](docs/Error403.md)
- - [Error404](docs/Error404.md)
- - [Error408](docs/Error408.md)
- - [Error409](docs/Error409.md)
- - [Error413](docs/Error413.md)
- - [Error415](docs/Error415.md)
- - [Error500](docs/Error500.md)
  - [Event](docs/Event.md)
  - [EventListResponse](docs/EventListResponse.md)
  - [EventResponse](docs/EventResponse.md)
