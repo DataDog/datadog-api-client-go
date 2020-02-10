@@ -18,7 +18,7 @@ func generateUniqueUser(t *testing.T) datadog.User {
 		Name:       datadog.PtrString(prefix),
 		Email:      datadog.PtrString(email),
 		Handle:     datadog.PtrString(email),
-		AccessRole: datadog.ACCESSROLE_RO.Ptr(),
+		AccessRole: datadog.ACCESSROLE_READ_ONLY.Ptr(),
 	}
 }
 
@@ -27,7 +27,7 @@ func generateUniqueUser(t *testing.T) datadog.User {
 var UPDATEUSER = datadog.User{
 	Name:       datadog.PtrString("test update user"),
 	Disabled:   datadog.PtrBool(true),
-	AccessRole: datadog.ACCESSROLE_ST.Ptr(),
+	AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
 }
 
 func TestCreateUser(t *testing.T) {

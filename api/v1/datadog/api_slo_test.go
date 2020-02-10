@@ -16,7 +16,7 @@ var testMonitorSLO = datadog.ServiceLevelObjective{
 	Description: &datadog.NullableString{Value: "Track the uptime of host foo which is critical to us."},
 	Tags:        &[]string{"app:core", "kpi"},
 	Thresholds: []datadog.SloThreshold{{
-		Timeframe: datadog.SLOTIMEFRAME__30D,
+		Timeframe: datadog.SLOTIMEFRAME_THIRTY_DAYS,
 		Target:    95.0,
 		Warning:   datadog.PtrFloat64(98.0),
 	}},
@@ -28,7 +28,7 @@ var testEventSLO = datadog.ServiceLevelObjective{
 	Description: &datadog.NullableString{Value: "Make sure we don't have too many failed HTTP responses."},
 	Tags:        &[]string{"app:httpd"},
 	Thresholds: []datadog.SloThreshold{{
-		Timeframe: datadog.SLOTIMEFRAME__7D,
+		Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
 		Target:    95.0,
 		Warning:   datadog.PtrFloat64(98.0),
 	}},
@@ -226,7 +226,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	var deleteResp datadog.ServiceLevelObjectivesBulkDeleted
 	deleteResp, httpresp, err = TESTAPICLIENT.SLOApi.BulkPartialDeleteSLO(TESTAUTH).
 		Body(map[string][]datadog.SloTimeframe{
-			eventSLO.GetId(): []datadog.SloTimeframe{datadog.SLOTIMEFRAME__7D},
+			eventSLO.GetId(): []datadog.SloTimeframe{datadog.SLOTIMEFRAME_SEVEN_DAYS},
 		}).Execute()
 
 	if err != nil {
