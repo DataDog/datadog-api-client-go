@@ -13,30 +13,30 @@ import (
 	"encoding/json"
 )
 
-// LogsIndexesResponse struct for LogsIndexesResponse
-type LogsIndexesResponse struct {
+// LogsIndexListResponse struct for LogsIndexListResponse
+type LogsIndexListResponse struct {
 	Indexes *[]LogsIndex `json:"indexes,omitempty"`
 }
 
-// NewLogsIndexesResponse instantiates a new LogsIndexesResponse object
+// NewLogsIndexListResponse instantiates a new LogsIndexListResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsIndexesResponse() *LogsIndexesResponse {
-	this := LogsIndexesResponse{}
+func NewLogsIndexListResponse() *LogsIndexListResponse {
+	this := LogsIndexListResponse{}
 	return &this
 }
 
-// NewLogsIndexesResponseWithDefaults instantiates a new LogsIndexesResponse object
+// NewLogsIndexListResponseWithDefaults instantiates a new LogsIndexListResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLogsIndexesResponseWithDefaults() *LogsIndexesResponse {
-	this := LogsIndexesResponse{}
+func NewLogsIndexListResponseWithDefaults() *LogsIndexListResponse {
+	this := LogsIndexListResponse{}
 	return &this
 }
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
-func (o *LogsIndexesResponse) GetIndexes() []LogsIndex {
+func (o *LogsIndexListResponse) GetIndexes() []LogsIndex {
 	if o == nil || o.Indexes == nil {
 		var ret []LogsIndex
 		return ret
@@ -46,7 +46,7 @@ func (o *LogsIndexesResponse) GetIndexes() []LogsIndex {
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndexesResponse) GetIndexesOk() ([]LogsIndex, bool) {
+func (o *LogsIndexListResponse) GetIndexesOk() ([]LogsIndex, bool) {
 	if o == nil || o.Indexes == nil {
 		var ret []LogsIndex
 		return ret, false
@@ -55,7 +55,7 @@ func (o *LogsIndexesResponse) GetIndexesOk() ([]LogsIndex, bool) {
 }
 
 // HasIndexes returns a boolean if a field has been set.
-func (o *LogsIndexesResponse) HasIndexes() bool {
+func (o *LogsIndexListResponse) HasIndexes() bool {
 	if o != nil && o.Indexes != nil {
 		return true
 	}
@@ -64,16 +64,16 @@ func (o *LogsIndexesResponse) HasIndexes() bool {
 }
 
 // SetIndexes gets a reference to the given []LogsIndex and assigns it to the Indexes field.
-func (o *LogsIndexesResponse) SetIndexes(v []LogsIndex) {
+func (o *LogsIndexListResponse) SetIndexes(v []LogsIndex) {
 	o.Indexes = &v
 }
 
-type NullableLogsIndexesResponse struct {
-	Value        LogsIndexesResponse
+type NullableLogsIndexListResponse struct {
+	Value        LogsIndexListResponse
 	ExplicitNull bool
 }
 
-func (v NullableLogsIndexesResponse) MarshalJSON() ([]byte, error) {
+func (v NullableLogsIndexListResponse) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -82,7 +82,7 @@ func (v NullableLogsIndexesResponse) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableLogsIndexesResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableLogsIndexListResponse) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

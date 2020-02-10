@@ -47,16 +47,16 @@ func (a *LogsIndexesApiService) GetAllLogIndexes(ctx _context.Context) apiGetAll
 
 /*
 Execute executes the request
- @return LogsIndexesResponse
+ @return LogsIndexListResponse
 */
-func (r apiGetAllLogIndexesRequest) Execute() (LogsIndexesResponse, *_nethttp.Response, error) {
+func (r apiGetAllLogIndexesRequest) Execute() (LogsIndexListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LogsIndexesResponse
+		localVarReturnValue  LogsIndexListResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetAllLogIndexes")
@@ -137,7 +137,7 @@ func (r apiGetAllLogIndexesRequest) Execute() (LogsIndexesResponse, *_nethttp.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v LogsIndexesResponse
+			var v LogsIndexListResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DailyLimit** | Pointer to **int64** | The number of log-events you can send in this index per day before you are rate-limited. | [optional] [readonly] 
 **ExclusionFilters** | Pointer to [**[]LogsExclusion**](LogsExclusion.md) | An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored. | [optional] 
-**Filter** | Pointer to [**LogsIndexFilter**](LogsIndexFilter.md) |  | 
+**Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | 
 **IsRateLimited** | Pointer to **bool** | A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC. | [optional] [readonly] 
 **Name** | Pointer to **string** | The name of the index. | [optional] [readonly] 
 **NumRetentionDays** | Pointer to **int64** | The number of days before logs are deleted from this index | [optional] [readonly] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewLogsIndex
 
-`func NewLogsIndex(filter LogsIndexFilter, ) *LogsIndex`
+`func NewLogsIndex(filter LogsFilter, ) *LogsIndex`
 
 NewLogsIndex instantiates a new LogsIndex object
 This constructor will assign default values to properties that have it defined,
@@ -82,13 +82,13 @@ SetExclusionFilters gets a reference to the given []LogsExclusion and assigns it
 
 ### GetFilter
 
-`func (o *LogsIndex) GetFilter() LogsIndexFilter`
+`func (o *LogsIndex) GetFilter() LogsFilter`
 
 GetFilter returns the Filter field if non-nil, zero value otherwise.
 
 ### GetFilterOk
 
-`func (o *LogsIndex) GetFilterOk() (LogsIndexFilter, bool)`
+`func (o *LogsIndex) GetFilterOk() (LogsFilter, bool)`
 
 GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -101,9 +101,9 @@ HasFilter returns a boolean if a field has been set.
 
 ### SetFilter
 
-`func (o *LogsIndex) SetFilter(v LogsIndexFilter)`
+`func (o *LogsIndex) SetFilter(v LogsFilter)`
 
-SetFilter gets a reference to the given LogsIndexFilter and assigns it to the Filter field.
+SetFilter gets a reference to the given LogsFilter and assigns it to the Filter field.
 
 ### GetIsRateLimited
 
