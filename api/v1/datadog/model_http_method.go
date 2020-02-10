@@ -27,6 +27,11 @@ const (
 	HTTPMETHOD_OPTIONS HttpMethod = "OPTIONS"
 )
 
+// Ptr returns reference to HTTPMethod value
+func (v HttpMethod) Ptr() *HttpMethod {
+	return &v
+}
+
 type NullableHttpMethod struct {
 	Value        HttpMethod
 	ExplicitNull bool

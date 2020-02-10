@@ -25,6 +25,11 @@ const (
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR SyntheticsTestProcessStatus = "finished_with_error"
 )
 
+// Ptr returns reference to SyntheticsTestProcessStatus value
+func (v SyntheticsTestProcessStatus) Ptr() *SyntheticsTestProcessStatus {
+	return &v
+}
+
 type NullableSyntheticsTestProcessStatus struct {
 	Value        SyntheticsTestProcessStatus
 	ExplicitNull bool

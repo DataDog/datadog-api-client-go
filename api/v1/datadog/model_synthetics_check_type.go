@@ -31,6 +31,11 @@ const (
 	SYNTHETICSCHECKTYPE_MATCH_REGEX     SyntheticsCheckType = "matchRegex"
 )
 
+// Ptr returns reference to SyntheticsCheckType value
+func (v SyntheticsCheckType) Ptr() *SyntheticsCheckType {
+	return &v
+}
+
 type NullableSyntheticsCheckType struct {
 	Value        SyntheticsCheckType
 	ExplicitNull bool

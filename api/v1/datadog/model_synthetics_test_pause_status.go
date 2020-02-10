@@ -22,6 +22,11 @@ const (
 	SYNTHETICSTESTPAUSESTATUS_PAUSED SyntheticsTestPauseStatus = "paused"
 )
 
+// Ptr returns reference to SyntheticsTestPauseStatus value
+func (v SyntheticsTestPauseStatus) Ptr() *SyntheticsTestPauseStatus {
+	return &v
+}
+
 type NullableSyntheticsTestPauseStatus struct {
 	Value        SyntheticsTestPauseStatus
 	ExplicitNull bool

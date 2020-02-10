@@ -24,6 +24,11 @@ const (
 	SYNTHETICSBROWSERVARIABLETYPE_TEXT    SyntheticsBrowserVariableType = "text"
 )
 
+// Ptr returns reference to SyntheticsBrowserVariableType value
+func (v SyntheticsBrowserVariableType) Ptr() *SyntheticsBrowserVariableType {
+	return &v
+}
+
 type NullableSyntheticsBrowserVariableType struct {
 	Value        SyntheticsBrowserVariableType
 	ExplicitNull bool

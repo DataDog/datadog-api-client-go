@@ -23,6 +23,11 @@ const (
 	SYNTHETICSTESTMONITORSTATUS_NO_DATA     SyntheticsTestMonitorStatus = 2
 )
 
+// Ptr returns reference to SyntheticsTestMonitorStatus value
+func (v SyntheticsTestMonitorStatus) Ptr() *SyntheticsTestMonitorStatus {
+	return &v
+}
+
 type NullableSyntheticsTestMonitorStatus struct {
 	Value        SyntheticsTestMonitorStatus
 	ExplicitNull bool
