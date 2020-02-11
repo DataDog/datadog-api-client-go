@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrivateWidgetShare** | Pointer to **bool** |  | [optional] 
 **Saml** | Pointer to [**OrgSettingsSaml**](Org_settings_saml.md) |  | [optional] 
-**SamlAutocreateAccessRole** | Pointer to **string** |  | [optional] 
+**SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] 
 **SamlAutocreateUsersDomains** | Pointer to [**OrgSettingsSamlAutocreateUsersDomains**](Org_settings_saml_autocreate_users_domains.md) |  | [optional] 
 **SamlCanBeEnabled** | Pointer to **bool** |  | [optional] 
 **SamlIdpEndpoint** | Pointer to **string** |  | [optional] 
@@ -86,13 +86,13 @@ SetSaml gets a reference to the given OrgSettingsSaml and assigns it to the Saml
 
 ### GetSamlAutocreateAccessRole
 
-`func (o *OrgSettings) GetSamlAutocreateAccessRole() string`
+`func (o *OrgSettings) GetSamlAutocreateAccessRole() AccessRole`
 
 GetSamlAutocreateAccessRole returns the SamlAutocreateAccessRole field if non-nil, zero value otherwise.
 
 ### GetSamlAutocreateAccessRoleOk
 
-`func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (string, bool)`
+`func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (AccessRole, bool)`
 
 GetSamlAutocreateAccessRoleOk returns a tuple with the SamlAutocreateAccessRole field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -105,9 +105,9 @@ HasSamlAutocreateAccessRole returns a boolean if a field has been set.
 
 ### SetSamlAutocreateAccessRole
 
-`func (o *OrgSettings) SetSamlAutocreateAccessRole(v string)`
+`func (o *OrgSettings) SetSamlAutocreateAccessRole(v AccessRole)`
 
-SetSamlAutocreateAccessRole gets a reference to the given string and assigns it to the SamlAutocreateAccessRole field.
+SetSamlAutocreateAccessRole gets a reference to the given AccessRole and assigns it to the SamlAutocreateAccessRole field.
 
 ### GetSamlAutocreateUsersDomains
 

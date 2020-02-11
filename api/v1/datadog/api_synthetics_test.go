@@ -49,11 +49,11 @@ var testSyntheticsAPI = datadog.SyntheticsTestDetails{
 			Count:    datadog.PtrInt64(5),
 			Interval: datadog.PtrFloat64(10),
 		},
-		TickEvery: datadog.PtrInt64(60),
+		TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
 	},
-	Subtype: datadog.PtrString("http"),
+	Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 	Tags:    &[]string{"testing:api"},
-	Type:    datadog.PtrString("api"),
+	Type:    datadog.SYNTHETICSTESTDETAILSTYPE_API.Ptr(),
 }
 
 var testSyntheticsBrowser = datadog.SyntheticsTestDetails{
@@ -76,10 +76,10 @@ var testSyntheticsBrowser = datadog.SyntheticsTestDetails{
 			Count:    datadog.PtrInt64(5),
 			Interval: datadog.PtrFloat64(10),
 		},
-		TickEvery: datadog.PtrInt64(300),
+		TickEvery: datadog.SYNTHETICSTICKINTERVAL_FIVE_MINUTES.Ptr(),
 	},
 	Tags: &[]string{"testing:browser"},
-	Type: datadog.PtrString("browser"),
+	Type: datadog.SYNTHETICSTESTDETAILSTYPE_BROWSER.Ptr(),
 }
 
 func TestSyntheticsAPITestLifecycle(t *testing.T) {

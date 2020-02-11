@@ -15,13 +15,13 @@ import (
 
 // User struct for User
 type User struct {
-	AccessRole *string `json:"access_role,omitempty"`
-	Disabled   *bool   `json:"disabled,omitempty"`
-	Email      *string `json:"email,omitempty"`
-	Handle     *string `json:"handle,omitempty"`
-	Icon       *string `json:"icon,omitempty"`
-	Name       *string `json:"name,omitempty"`
-	Verified   *bool   `json:"verified,omitempty"`
+	AccessRole *AccessRole `json:"access_role,omitempty"`
+	Disabled   *bool       `json:"disabled,omitempty"`
+	Email      *string     `json:"email,omitempty"`
+	Handle     *string     `json:"handle,omitempty"`
+	Icon       *string     `json:"icon,omitempty"`
+	Name       *string     `json:"name,omitempty"`
+	Verified   *bool       `json:"verified,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -42,9 +42,9 @@ func NewUserWithDefaults() *User {
 }
 
 // GetAccessRole returns the AccessRole field value if set, zero value otherwise.
-func (o *User) GetAccessRole() string {
+func (o *User) GetAccessRole() AccessRole {
 	if o == nil || o.AccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret
 	}
 	return *o.AccessRole
@@ -52,9 +52,9 @@ func (o *User) GetAccessRole() string {
 
 // GetAccessRoleOk returns a tuple with the AccessRole field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetAccessRoleOk() (string, bool) {
+func (o *User) GetAccessRoleOk() (AccessRole, bool) {
 	if o == nil || o.AccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret, false
 	}
 	return *o.AccessRole, true
@@ -69,8 +69,8 @@ func (o *User) HasAccessRole() bool {
 	return false
 }
 
-// SetAccessRole gets a reference to the given string and assigns it to the AccessRole field.
-func (o *User) SetAccessRole(v string) {
+// SetAccessRole gets a reference to the given AccessRole and assigns it to the AccessRole field.
+func (o *User) SetAccessRole(v AccessRole) {
 	o.AccessRole = &v
 }
 

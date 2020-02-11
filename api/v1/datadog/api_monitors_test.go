@@ -11,7 +11,7 @@ import (
 
 var testMonitor = datadog.Monitor{
 	Name:    datadog.PtrString("name for Go client monitor foo"),
-	Type:    datadog.PtrString("log alert"),
+	Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
 	Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2"),
 	Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 	Tags: &[]string{

@@ -36,18 +36,16 @@ type ServiceLevelObjective struct {
 	// A list of tags (e.g. \"env:prod\") associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
-	Thresholds []SloThreshold `json:"thresholds"`
-	// The type of the service level objective.
-	Type string `json:"type"`
-	// A numeric representation of the type of the service level objective (0 for monitor, 1 for metric). Always included in service level objective responses. Ignored in create/update requests.
-	TypeId *int32 `json:"type_id,omitempty"`
+	Thresholds []SloThreshold                    `json:"thresholds"`
+	Type       ServiceLevelObjectiveType         `json:"type"`
+	TypeId     *ServiceLevelObjectiveTypeNumeric `json:"type_id,omitempty"`
 }
 
 // NewServiceLevelObjective instantiates a new ServiceLevelObjective object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjective(name string, thresholds []SloThreshold, type_ string) *ServiceLevelObjective {
+func NewServiceLevelObjective(name string, thresholds []SloThreshold, type_ ServiceLevelObjectiveType) *ServiceLevelObjective {
 	this := ServiceLevelObjective{}
 	this.Name = name
 	this.Thresholds = thresholds
@@ -424,9 +422,9 @@ func (o *ServiceLevelObjective) SetThresholds(v []SloThreshold) {
 }
 
 // GetType returns the Type field value
-func (o *ServiceLevelObjective) GetType() string {
+func (o *ServiceLevelObjective) GetType() ServiceLevelObjectiveType {
 	if o == nil {
-		var ret string
+		var ret ServiceLevelObjectiveType
 		return ret
 	}
 
@@ -434,14 +432,14 @@ func (o *ServiceLevelObjective) GetType() string {
 }
 
 // SetType sets field value
-func (o *ServiceLevelObjective) SetType(v string) {
+func (o *ServiceLevelObjective) SetType(v ServiceLevelObjectiveType) {
 	o.Type = v
 }
 
 // GetTypeId returns the TypeId field value if set, zero value otherwise.
-func (o *ServiceLevelObjective) GetTypeId() int32 {
+func (o *ServiceLevelObjective) GetTypeId() ServiceLevelObjectiveTypeNumeric {
 	if o == nil || o.TypeId == nil {
-		var ret int32
+		var ret ServiceLevelObjectiveTypeNumeric
 		return ret
 	}
 	return *o.TypeId
@@ -449,9 +447,9 @@ func (o *ServiceLevelObjective) GetTypeId() int32 {
 
 // GetTypeIdOk returns a tuple with the TypeId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjective) GetTypeIdOk() (int32, bool) {
+func (o *ServiceLevelObjective) GetTypeIdOk() (ServiceLevelObjectiveTypeNumeric, bool) {
 	if o == nil || o.TypeId == nil {
-		var ret int32
+		var ret ServiceLevelObjectiveTypeNumeric
 		return ret, false
 	}
 	return *o.TypeId, true
@@ -466,8 +464,8 @@ func (o *ServiceLevelObjective) HasTypeId() bool {
 	return false
 }
 
-// SetTypeId gets a reference to the given int32 and assigns it to the TypeId field.
-func (o *ServiceLevelObjective) SetTypeId(v int32) {
+// SetTypeId gets a reference to the given ServiceLevelObjectiveTypeNumeric and assigns it to the TypeId field.
+func (o *ServiceLevelObjective) SetTypeId(v ServiceLevelObjectiveTypeNumeric) {
 	o.TypeId = &v
 }
 

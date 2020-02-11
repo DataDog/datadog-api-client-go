@@ -20,7 +20,7 @@ type SyntheticsStepDetail struct {
 	Description         *string                         `json:"description,omitempty"`
 	Duration            *float64                        `json:"duration,omitempty"`
 	Error               *string                         `json:"error,omitempty"`
-	PlayingTab          *int64                          `json:"playingTab,omitempty"`
+	PlayingTab          *SyntheticsPlayingTab           `json:"playingTab,omitempty"`
 	Resources           *[]SyntheticsResource           `json:"resources,omitempty"`
 	ScreenshotBucketKey *bool                           `json:"screenshotBucketKey,omitempty"`
 	Skipped             *bool                           `json:"skipped,omitempty"`
@@ -217,9 +217,9 @@ func (o *SyntheticsStepDetail) SetError(v string) {
 }
 
 // GetPlayingTab returns the PlayingTab field value if set, zero value otherwise.
-func (o *SyntheticsStepDetail) GetPlayingTab() int64 {
+func (o *SyntheticsStepDetail) GetPlayingTab() SyntheticsPlayingTab {
 	if o == nil || o.PlayingTab == nil {
-		var ret int64
+		var ret SyntheticsPlayingTab
 		return ret
 	}
 	return *o.PlayingTab
@@ -227,9 +227,9 @@ func (o *SyntheticsStepDetail) GetPlayingTab() int64 {
 
 // GetPlayingTabOk returns a tuple with the PlayingTab field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetPlayingTabOk() (int64, bool) {
+func (o *SyntheticsStepDetail) GetPlayingTabOk() (SyntheticsPlayingTab, bool) {
 	if o == nil || o.PlayingTab == nil {
-		var ret int64
+		var ret SyntheticsPlayingTab
 		return ret, false
 	}
 	return *o.PlayingTab, true
@@ -244,8 +244,8 @@ func (o *SyntheticsStepDetail) HasPlayingTab() bool {
 	return false
 }
 
-// SetPlayingTab gets a reference to the given int64 and assigns it to the PlayingTab field.
-func (o *SyntheticsStepDetail) SetPlayingTab(v int64) {
+// SetPlayingTab gets a reference to the given SyntheticsPlayingTab and assigns it to the PlayingTab field.
+func (o *SyntheticsStepDetail) SetPlayingTab(v SyntheticsPlayingTab) {
 	o.PlayingTab = &v
 }
 

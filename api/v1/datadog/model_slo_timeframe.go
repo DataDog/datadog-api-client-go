@@ -18,9 +18,9 @@ type SloTimeframe string
 
 // List of SLOTimeframe
 const (
-	SLOTIMEFRAME__7D  SloTimeframe = "7d"
-	SLOTIMEFRAME__30D SloTimeframe = "30d"
-	SLOTIMEFRAME__90D SloTimeframe = "90d"
+	SLOTIMEFRAME_SEVEN_DAYS  SloTimeframe = "7d"
+	SLOTIMEFRAME_THIRTY_DAYS SloTimeframe = "30d"
+	SLOTIMEFRAME_NINETY_DAYS SloTimeframe = "90d"
 )
 
 // Ptr returns reference to SLOTimeframe value

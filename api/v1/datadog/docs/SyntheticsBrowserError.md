@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | 
 **Name** | Pointer to **string** |  | 
 **StatusCode** | Pointer to **int64** |  | [optional] 
-**Type** | Pointer to **string** |  | 
+**Type** | Pointer to [**SyntheticsBrowserErrorType**](SyntheticsBrowserErrorType.md) |  | 
 
 ## Methods
 
 ### NewSyntheticsBrowserError
 
-`func NewSyntheticsBrowserError(description string, name string, type_ string, ) *SyntheticsBrowserError`
+`func NewSyntheticsBrowserError(description string, name string, type_ SyntheticsBrowserErrorType, ) *SyntheticsBrowserError`
 
 NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object
 This constructor will assign default values to properties that have it defined,
@@ -105,13 +105,13 @@ SetStatusCode gets a reference to the given int64 and assigns it to the StatusCo
 
 ### GetType
 
-`func (o *SyntheticsBrowserError) GetType() string`
+`func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SyntheticsBrowserError) GetTypeOk() (string, bool)`
+`func (o *SyntheticsBrowserError) GetTypeOk() (SyntheticsBrowserErrorType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -124,9 +124,9 @@ HasType returns a boolean if a field has been set.
 
 ### SetType
 
-`func (o *SyntheticsBrowserError) SetType(v string)`
+`func (o *SyntheticsBrowserError) SetType(v SyntheticsBrowserErrorType)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType gets a reference to the given SyntheticsBrowserErrorType and assigns it to the Type field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

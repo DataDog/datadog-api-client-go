@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int64** | POSIX timestamp. | 
  **end** | **int64** | POSIX timestamp. | 
- **priority** | **string** | Priority of your events: **low** or **normal**. | 
+ **priority** | [**EventPriority**](.md) | Priority of your events: **low** or **normal**. | 
  **sources** | **string** | A comma separated string of sources. | 
  **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0. | 
  **unaggregated** | **bool** | Set unaggregated to &#x60;true&#x60; to return all events within the specified [&#x60;start&#x60;,&#x60;end&#x60;] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won&#39;t be available in the output. | 

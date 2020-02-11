@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Duration** | Pointer to **float64** |  | [optional] 
 **Error** | Pointer to **string** |  | [optional] 
-**PlayingTab** | Pointer to **int64** |  | [optional] 
+**PlayingTab** | Pointer to [**SyntheticsPlayingTab**](SyntheticsPlayingTab.md) |  | [optional] 
 **Resources** | Pointer to [**[]SyntheticsResource**](SyntheticsResource.md) |  | [optional] 
 **ScreenshotBucketKey** | Pointer to **bool** |  | [optional] 
 **Skipped** | Pointer to **bool** |  | [optional] 
@@ -168,13 +168,13 @@ SetError gets a reference to the given string and assigns it to the Error field.
 
 ### GetPlayingTab
 
-`func (o *SyntheticsStepDetail) GetPlayingTab() int64`
+`func (o *SyntheticsStepDetail) GetPlayingTab() SyntheticsPlayingTab`
 
 GetPlayingTab returns the PlayingTab field if non-nil, zero value otherwise.
 
 ### GetPlayingTabOk
 
-`func (o *SyntheticsStepDetail) GetPlayingTabOk() (int64, bool)`
+`func (o *SyntheticsStepDetail) GetPlayingTabOk() (SyntheticsPlayingTab, bool)`
 
 GetPlayingTabOk returns a tuple with the PlayingTab field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -187,9 +187,9 @@ HasPlayingTab returns a boolean if a field has been set.
 
 ### SetPlayingTab
 
-`func (o *SyntheticsStepDetail) SetPlayingTab(v int64)`
+`func (o *SyntheticsStepDetail) SetPlayingTab(v SyntheticsPlayingTab)`
 
-SetPlayingTab gets a reference to the given int64 and assigns it to the PlayingTab field.
+SetPlayingTab gets a reference to the given SyntheticsPlayingTab and assigns it to the PlayingTab field.
 
 ### GetResources
 
