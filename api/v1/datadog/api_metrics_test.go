@@ -24,7 +24,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 		testHost := "test"
 		testTags := []string{"tagA", "tagB"}
 		testType := "count"
-		testInterval := datadog.NullableInt64{Value: 20}
+		testInterval := datadog.NewNullableInt64(datadog.PtrInt64(20))
 		testMetric := "hello.world"
 		testPoints := [][]float64{{5, 10.5}}
 		metricsPayload := datadog.MetricsPayload{
@@ -32,7 +32,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 				datadog.Series{
 					Host:     &testHost,
 					Type:     &testType,
-					Interval: &testInterval,
+					Interval: *testInterval,
 					Metric:   testMetric,
 					Points:   testPoints,
 					Tags:     &testTags,
@@ -53,7 +53,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 				// Check equality
 				assert.Equal(t, *payload.GetSeries()[0].Host, testHost)
 				assert.Equal(t, *payload.GetSeries()[0].Type, testType)
-				assert.Equal(t, payload.GetSeries()[0].Interval.Value, testInterval.Value)
+				assert.Equal(t, payload.GetSeries()[0].Interval.Get(), testInterval.Get())
 				assert.Equal(t, payload.GetSeries()[0].Metric, testMetric)
 				assert.Equal(t, payload.GetSeries()[0].Points, testPoints)
 				assert.Equal(t, *payload.GetSeries()[0].Tags, testTags)

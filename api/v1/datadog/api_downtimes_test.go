@@ -20,14 +20,13 @@ func TestDowntimeLifecycle(t *testing.T) {
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope:    &[]string{"*"},
-		Recurrence: &datadog.NullableDowntimeRecurrence{Value: datadog.DowntimeRecurrence{
-			Type:     datadog.PtrString("weeks"),
-			Period:   datadog.PtrInt32(1),
-			WeekDays: &[]string{"Mon", "Tue", "Wed", "Thu", "Fri"},
-			UntilDate: &datadog.NullableInt64{
-				Value: start.Unix() + 21*24*60*60, // +21d
-			},
-		}},
+		Recurrence: *datadog.NewNullableDowntimeRecurrence(
+			&datadog.DowntimeRecurrence{
+				Type: datadog.PtrString("weeks"),
+				Period: datadog.PtrInt32(1),
+				WeekDays: &[]string{"Mon", "Tue", "Wed", "Thu", "Fri"},
+				UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() +  21*24*60*60)), // +21d
+			}),
 	}
 
 	// Create downtime
@@ -101,9 +100,7 @@ func TestMonitorDowntime(t *testing.T) {
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope:    &[]string{"*"},
-		MonitorId: &datadog.NullableInt64{
-			Value: monitorID,
-		},
+		MonitorId: *datadog.NewNullableInt64(datadog.PtrInt64(monitorID)),
 	}
 
 	// Create downtime
@@ -114,7 +111,7 @@ func TestMonitorDowntime(t *testing.T) {
 	defer cancelDowntime(downtime.GetId())
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	assert.Equal(t, downtime.GetMonitorId().Value, monitorID)
+	assert.Equal(t, *downtime.GetMonitorId().Get(), monitorID)
 }
 
 func TestScopedDowntime(t *testing.T) {
@@ -213,26 +210,26 @@ func TestDowntimeRecurrence(t *testing.T) {
 			Type:     datadog.PtrString("weeks"),
 			Period:   datadog.PtrInt32(1),
 			WeekDays: &[]string{"Mon", "Tue", "Wed", "Thu", "Fri"},
-			UntilDate: &datadog.NullableInt64{
-				Value: start.Unix() + 21*24*60*60, // +21d
-			}}, 200},
+			UntilDate: *datadog.NewNullableInt64(
+				datadog.PtrInt64(start.Unix() + 21*24*60*60), // +21d
+			)}, 200},
 		{"until occurrences", datadog.DowntimeRecurrence{
 			Type:     datadog.PtrString("weeks"),
 			Period:   datadog.PtrInt32(1),
 			WeekDays: &[]string{"Mon", "Tue", "Wed", "Thu", "Fri"},
-			UntilOccurrences: &datadog.NullableInt32{
-				Value: 3,
-			}}, 200},
+			UntilOccurrences: *datadog.NewNullableInt32(
+				datadog.PtrInt32(3),
+			)}, 200},
 		{"until occurences and until date are mutually exclusive", datadog.DowntimeRecurrence{
 			Type:     datadog.PtrString("weeks"),
 			Period:   datadog.PtrInt32(1),
 			WeekDays: &[]string{"Mon", "Tue", "Wed", "Thu", "Fri"},
-			UntilOccurrences: &datadog.NullableInt32{
-				Value: 3,
-			},
-			UntilDate: &datadog.NullableInt64{
-				Value: start.Unix() + 21*24*60*60, // +21d
-			}}, 400},
+			UntilOccurrences: *datadog.NewNullableInt32(
+				datadog.PtrInt32(3),
+			),
+			UntilDate: *datadog.NewNullableInt64(
+				datadog.PtrInt64(start.Unix() + 21*24*60*60), // +21d
+			)}, 400},
 	}
 
 	for _, tc := range testCases {
@@ -242,7 +239,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 				Start:      datadog.PtrInt64(start.Unix()),
 				Timezone:   datadog.PtrString("Etc/UTC"),
 				Scope:      &[]string{"*"},
-				Recurrence: &datadog.NullableDowntimeRecurrence{Value: tc.DowntimeRecurence},
+				Recurrence: *datadog.NewNullableDowntimeRecurrence(&tc.DowntimeRecurence),
 			}
 
 			downtime, httpresp, err := TESTAPICLIENT.DowntimesApi.CreateDowntime(TESTAUTH).Body(testDowntime).Execute()
