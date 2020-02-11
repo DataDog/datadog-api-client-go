@@ -21,33 +21,33 @@ var testMonitor = datadog.Monitor{
 	Options: &datadog.MonitorOptions{
 		NotifyAudit:       datadog.PtrBool(false),
 		Locked:            datadog.PtrBool(false),
-		TimeoutH:          &datadog.NullableInt64{Value: 60},
-		RenotifyInterval:  &datadog.NullableInt64{Value: 60},
+		TimeoutH:          *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+		RenotifyInterval:  *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 		EnableLogsSample:  datadog.PtrBool(true),
-		NoDataTimeframe:   nil,
-		NewHostDelay:      &datadog.NullableInt64{Value: 600},
+		NoDataTimeframe:   *datadog.NewNullableInt64(nil),
+		NewHostDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(600)),
 		RequireFullWindow: datadog.PtrBool(true),
 		NotifyNoData:      datadog.PtrBool(false),
 		IncludeTags:       datadog.PtrBool(true),
-		EvaluationDelay:   &datadog.NullableInt64{Value: 700},
+		EvaluationDelay:   *datadog.NewNullableInt64(datadog.PtrInt64(700)),
 		EscalationMessage: datadog.PtrString("the situation has escalated"),
 		Thresholds: &datadog.MonitorThresholds{
 			Critical: datadog.PtrFloat64(2),
-			Warning:  &datadog.NullableFloat64{Value: 1},
+			Warning:   *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 		},
 	},
 }
 
 var testUpdateMonitor = datadog.Monitor{
-	Name:    datadog.PtrString("Go - updated name"),
+	Name: datadog.PtrString("Go - updated name"),
 	Options: &datadog.MonitorOptions{
-		TimeoutH:          &datadog.NullableInt64{ExplicitNull:true},
-		RenotifyInterval:  &datadog.NullableInt64{ExplicitNull:true},
-		NewHostDelay:      &datadog.NullableInt64{ExplicitNull:true},
-		EvaluationDelay:   &datadog.NullableInt64{ExplicitNull:true},
+		TimeoutH:         *datadog.NewNullableInt64(nil),
+		RenotifyInterval: *datadog.NewNullableInt64(nil),
+		NewHostDelay:     *datadog.NewNullableInt64(nil),
+		EvaluationDelay:  *datadog.NewNullableInt64(nil),
 		Thresholds: &datadog.MonitorThresholds{
 			Critical: datadog.PtrFloat64(2),
-			Warning:  &datadog.NullableFloat64{ExplicitNull:true},
+			Warning:  *datadog.NewNullableFloat64(nil),
 		},
 	},
 }
@@ -98,11 +98,12 @@ func TestMonitorLifecycle(t *testing.T) {
 	// Assert Explicitly null fields
 	var monitorOptions = updatedMonitor.GetOptions()
 	var monitorOptionThresholds = monitorOptions.GetThresholds()
-	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetTimeoutH())
-	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetRenotifyInterval())
-	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetNewHostDelay())
-	assert.Equal(t, datadog.NullableInt64{ExplicitNull: true}, monitorOptions.GetEvaluationDelay())
-	assert.Equal(t, datadog.NullableFloat64{ExplicitNull: true}, monitorOptionThresholds.GetWarning())
+	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetTimeoutH())
+	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetRenotifyInterval())
+	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetNewHostDelay())
+	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetEvaluationDelay())
+	// Warning isn't returned in the API response if its unset
+	assert.Equal(t, datadog.NullableFloat64{}, monitorOptionThresholds.GetWarning())
 
 	// Check monitor existence
 	fetchedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId()).Execute()
