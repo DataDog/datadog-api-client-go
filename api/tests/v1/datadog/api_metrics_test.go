@@ -1,4 +1,4 @@
-package datadog_test
+package datadog
 
 import (
 	"context"
@@ -9,9 +9,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/tests"
+
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
-	gock "gopkg.in/h2non/gock.v1"
+	"gopkg.in/h2non/gock.v1"
 )
 
 func TestMetricSubmissionMock(t *testing.T) {
@@ -139,7 +141,7 @@ func TestMetrics(t *testing.T) {
 	assert.Equal(t, "ok", r.GetStatus())
 
 	// Check that the metric was submitted successfully
-	err = retry(10*time.Second, 10, func() bool {
+	err = test_utils.Retry(10*time.Second, 10, func() bool {
 		metrics, httpresp, err := api.GetAllActiveMetrics(TESTAUTH).From(now).Execute()
 		if err != nil {
 			t.Logf("Error getting list of active metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)

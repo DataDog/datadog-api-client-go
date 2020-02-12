@@ -1,4 +1,4 @@
-package datadog_test
+package datadog
 
 import (
 	"encoding/json"
@@ -8,9 +8,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/tests"
+
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
-	gock "gopkg.in/h2non/gock.v1"
+	"gopkg.in/h2non/gock.v1"
 	is "gotest.tools/assert/cmp"
 )
 
@@ -39,7 +41,7 @@ func TestHosts(t *testing.T) {
 	assert.Equal(t, "ok", r.GetStatus())
 
 	// wait for host to appear
-	err = retry(10*time.Second, 10, func() bool {
+	err = test_utils.Retry(10*time.Second, 10, func() bool {
 		_, httpresp, err := TESTAPICLIENT.TagsApi.GetHostTags(TESTAUTH, hostname).Execute()
 		if err != nil {
 			t.Logf("Error getting host tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -129,7 +131,7 @@ func TestHostsSearchMocked(t *testing.T) {
 	defer teardownTest(t)
 	defer gock.Off()
 
-	data, err := readFixture("fixtures/hosts/host_search.json")
+	data, err := test_utils.ReadFixture("fixtures/hosts/host_search.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}

@@ -1,7 +1,9 @@
-package datadog_test
+package datadog
 
 import (
 	"testing"
+
+	"github.com/DataDog/datadog-api-client-go/api/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
@@ -32,7 +34,7 @@ func TestIPRangesMocked(t *testing.T) {
 	defer gock.Off()
 	defer teardownTest(t)
 
-	data, err := readFixture("fixtures/ip-ranges/ip-ranges.json")
+	data, err := test_utils.ReadFixture("fixtures/ip-ranges/ip-ranges.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}

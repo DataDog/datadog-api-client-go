@@ -1,9 +1,11 @@
-package datadog_test
+package datadog
 
 import (
 	"fmt"
 	"testing"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -164,7 +166,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	assert.Equal(t, status.GetStatus(), "created")
 
 	// Give the async call time to finish
-	retry(time.Duration(5*time.Second), 10, func() bool {
+	test_utils.Retry(time.Duration(5*time.Second), 10, func() bool {
 		status, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
 		if err != nil {
 			t.Logf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)

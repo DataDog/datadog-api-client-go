@@ -1,8 +1,10 @@
-package datadog_test
+package datadog
 
 import (
 	"testing"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -41,7 +43,7 @@ func TestEventLifecycle(t *testing.T) {
 
 	var fetchedEventResponse datadog.EventResponse
 
-	retry(time.Duration(5*time.Second), 20, func() bool {
+	test_utils.Retry(time.Duration(5*time.Second), 20, func() bool {
 		// Check event existence
 		fetchedEventResponse, httpresp, err = TESTAPICLIENT.EventsApi.GetEvent(TESTAUTH, event.GetId()).Execute()
 		if err != nil {
@@ -65,9 +67,9 @@ func TestEventLifecycle(t *testing.T) {
 	var eventListResponse datadog.EventListResponse
 
 	// Confirm that the fetchedEvent is inside the getEvents response
-	// Use retry instead of assert as the response may not be empty but may also require
+	// Use Retry instead of assert as the response may not be empty but may also require
 	// some time for our event to show up in the response
-	retry(time.Duration(5*time.Second), 20, func() bool {
+	test_utils.Retry(time.Duration(5*time.Second), 20, func() bool {
 		var matchedEvent = false
 		eventListResponse, httpresp, err = TESTAPICLIENT.EventsApi.ListEvents(TESTAUTH).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
 		if err != nil {

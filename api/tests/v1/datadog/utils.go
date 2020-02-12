@@ -1,4 +1,4 @@
-package datadog_test
+package datadog
 
 import (
 	"context"
@@ -8,10 +8,9 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	gock "gopkg.in/h2non/gock.v1"
+	"gopkg.in/h2non/gock.v1"
 )
 
 // TESTAPICLIENT is the api client to use for tests
@@ -40,28 +39,6 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	return func(t *testing.T) {
 		// TEARDOWN testing
 	}
-}
-
-func retry(interval time.Duration, count int, call func() bool) error {
-	for i := 0; i < count; i++ {
-		if call() {
-			return nil
-		}
-		time.Sleep(interval)
-	}
-	return fmt.Errorf("Retry error: failed to satisfy the condition after %d times", count)
-}
-
-func readFixture(path string) (string, error) {
-	fixturePath, err := filepath.Abs(path)
-	if err != nil {
-		return "", fmt.Errorf("failed to get fixture file path: %v", err)
-	}
-	data, err := ioutil.ReadFile(fixturePath)
-	if err != nil {
-		return "", fmt.Errorf("failed to open fixture file: %v", err)
-	}
-	return string(data), nil
 }
 
 func setupUnitTest(t *testing.T) func(t *testing.T) {

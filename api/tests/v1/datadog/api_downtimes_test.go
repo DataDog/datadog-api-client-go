@@ -1,4 +1,4 @@
-package datadog_test
+package datadog
 
 import (
 	"log"
