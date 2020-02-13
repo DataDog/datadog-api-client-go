@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/tests"
+	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
@@ -141,7 +141,7 @@ func TestMetrics(t *testing.T) {
 	assert.Equal(t, "ok", r.GetStatus())
 
 	// Check that the metric was submitted successfully
-	err = test_utils.Retry(10*time.Second, 10, func() bool {
+	err = tests.Retry(10*time.Second, 10, func() bool {
 		metrics, httpresp, err := api.GetAllActiveMetrics(TESTAUTH).From(now).Execute()
 		if err != nil {
 			t.Logf("Error getting list of active metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)

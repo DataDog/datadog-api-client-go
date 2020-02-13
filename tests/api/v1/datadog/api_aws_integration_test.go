@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/tests"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"gotest.tools/assert"
 )
 
@@ -159,7 +159,7 @@ func TestListNamespaces(t *testing.T) {
 }
 
 func retryDeleteAccount(t *testing.T, awsAccount datadog.AwsAccount) {
-	err := test_utils.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
+	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).Body(awsAccount).Execute()
 		if httpresp.StatusCode == 502 {
 			return false
@@ -172,7 +172,7 @@ func retryDeleteAccount(t *testing.T, awsAccount datadog.AwsAccount) {
 }
 
 func retryCreateAccount(t *testing.T, awsAccount datadog.AwsAccount) {
-	err := test_utils.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
+	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(awsAccount).Execute()
 		if httpresp.StatusCode == 502 {
 			return false
@@ -185,7 +185,7 @@ func retryCreateAccount(t *testing.T, awsAccount datadog.AwsAccount) {
 }
 
 func retryUpdateAccount(t *testing.T, body datadog.AwsAccount, accountID string, roleName string) {
-	err := test_utils.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
+	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
 			Body(body).
 			AccountId(accountID).

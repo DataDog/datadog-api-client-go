@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/tests"
+	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
@@ -37,7 +37,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(t, "ok", r.GetStatus())
 
 	// wait for host to appear
-	err = test_utils.Retry(10*time.Second, 10, func() bool {
+	err = tests.Retry(10*time.Second, 10, func() bool {
 		_, httpresp, err := api.GetHostTags(TESTAUTH, hostname).Execute()
 		if err != nil {
 			t.Logf("Error getting host tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -74,7 +74,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, 0, len(getHostTags.GetTags())) // filtering on a different source gives 0 tags
 
-	err = test_utils.Retry(10*time.Second, 10, func() bool {
+	err = tests.Retry(10*time.Second, 10, func() bool {
 		hostTagsList, httpresp, err := api.GetAllHostTags(TESTAUTH).Source("datadog").Execute()
 		if err != nil {
 			t.Logf("Error getting all tags: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)

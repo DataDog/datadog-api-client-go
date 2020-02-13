@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/tests"
+	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
@@ -41,7 +41,7 @@ func TestHosts(t *testing.T) {
 	assert.Equal(t, "ok", r.GetStatus())
 
 	// wait for host to appear
-	err = test_utils.Retry(10*time.Second, 10, func() bool {
+	err = tests.Retry(10*time.Second, 10, func() bool {
 		_, httpresp, err := TESTAPICLIENT.TagsApi.GetHostTags(TESTAUTH, hostname).Execute()
 		if err != nil {
 			t.Logf("Error getting host tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -131,7 +131,7 @@ func TestHostsSearchMocked(t *testing.T) {
 	defer teardownTest(t)
 	defer gock.Off()
 
-	data, err := test_utils.ReadFixture("fixtures/hosts/host_search.json")
+	data, err := tests.ReadFixture("fixtures/hosts/host_search.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}

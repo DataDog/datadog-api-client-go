@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/tests"
+	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gopkg.in/h2non/gock.v1"
@@ -17,7 +17,7 @@ func TestGetAllLogsIndexes(t *testing.T) {
 	defer gock.Off()
 	defer teardownTest(t)
 
-	data, err := test_utils.ReadFixture("fixtures/logs-indexes/log-indexes.json")
+	data, err := tests.ReadFixture("fixtures/logs-indexes/log-indexes.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
@@ -40,7 +40,7 @@ func TestGetLogsIndex(t *testing.T) {
 	defer gock.Off()
 	defer teardownTest(t)
 
-	data, err := test_utils.ReadFixture("fixtures/logs-indexes/log-index.json")
+	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
@@ -71,7 +71,7 @@ func TestLogsIndexOrder(t *testing.T) {
 	defer gock.Off()
 	defer teardownTest(t)
 
-	data, err := test_utils.ReadFixture("fixtures/logs-indexes/logs-index-order.json")
+	data, err := tests.ReadFixture("fixtures/logs-indexes/logs-index-order.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
@@ -97,7 +97,7 @@ func TestUpdateLogsIndex(t *testing.T) {
 	defer gock.Off()
 	defer teardownTest(t)
 
-	data, err := test_utils.ReadFixture("fixtures/logs-indexes/log-index.json")
+	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
@@ -128,7 +128,7 @@ func TestUpdateLogsIndex(t *testing.T) {
 		}},
 	}
 
-	data, err = test_utils.ReadFixture("fixtures/logs-indexes/update-logs-index.json")
+	data, err = tests.ReadFixture("fixtures/logs-indexes/update-logs-index.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
@@ -151,7 +151,7 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 	defer gock.Off()
 	defer teardownTest(t)
 
-	data, err := test_utils.ReadFixture("fixtures/logs-indexes/logs-index-order.json")
+	data, err := tests.ReadFixture("fixtures/logs-indexes/logs-index-order.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
@@ -171,7 +171,7 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 	newOrder = append(newOrder[1:], newOrder[:1]...)
 	indexOrder.SetIndexNames(newOrder)
 
-	data, err = test_utils.ReadFixture("fixtures/logs-indexes/update-logs-index-order.json")
+	data, err = tests.ReadFixture("fixtures/logs-indexes/update-logs-index-order.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
