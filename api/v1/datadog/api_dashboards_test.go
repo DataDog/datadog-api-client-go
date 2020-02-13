@@ -364,6 +364,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	serviceSummaryWidgetDefinition.SetTime(*widgetTimePastOneHour)
 
 	serviceSummaryWidget := datadog.NewWidget(serviceSummaryWidgetDefinition.AsWidgetDefinition())
+	serviceSummaryWidget.SetLayout(*widgetLayout)
 
 	// Table Widget
 	tableWidgetDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
@@ -605,7 +606,6 @@ func TestDashboardLifecycle(t *testing.T) {
 		*scatterPlotWidget,
 		*sloWidget,
 		*serviceMapWidget,
-		*serviceSummaryWidget,
 		*tableWidget,
 		*timeseriesWidget,
 		*timeseriesWidgetProcessQuery,
@@ -645,6 +645,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*imageWidget,
 		*logStreamWidget,
 		*monitorSummaryWidget,
+		*serviceSummaryWidget,
 	}
 
 	freeDashboard := datadog.NewDashboardWithDefaults()
