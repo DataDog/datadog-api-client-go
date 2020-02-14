@@ -14,10 +14,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
-// TEST_API_CLIENT is the api client to use for tests
-var TestApiClient *datadog.APIClient
+// TestAPIClient is the api client to use for tests
+var TestAPIClient *datadog.APIClient
 
-// TESTAUTH is the authentication context to use with each test API call
+// TestAuth is the authentication context to use with each test API call
 var TestAuth context.Context
 
 func setupTest(t *testing.T) func(t *testing.T) {
@@ -36,7 +36,7 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	)
 	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
-	TestApiClient = datadog.NewAPIClient(config)
+	TestAPIClient = datadog.NewAPIClient(config)
 	return func(t *testing.T) {
 		// TEARDOWN testing
 	}
@@ -58,7 +58,7 @@ func setupUnitTest(t *testing.T) func(t *testing.T) {
 	)
 	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
-	TestApiClient = datadog.NewAPIClient(config)
+	TestAPIClient = datadog.NewAPIClient(config)
 	return func(t *testing.T) {
 		// TEARDOWN testing
 	}

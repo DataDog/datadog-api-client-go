@@ -19,9 +19,9 @@ import (
 )
 
 const (
-	integrationTimeboardId string = "1"
-	customTimeboardId      string = "q5j-nti-fv6"
-	customScreenboardId    string = "4n7-s4g-dqv"
+	integrationTimeboardID string = "1"
+	customTimeboardID      string = "q5j-nti-fv6"
+	customScreenboardID    string = "4n7-s4g-dqv"
 )
 
 var (
@@ -73,9 +73,9 @@ func TestDashboardListItemCRUD(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	integrationTimeboard := datadog.NewDashboardListItem(integrationTimeboardId, datadog.DASHBOARDTYPE_INTEGRATION_TIMEBOARD)
-	customTimeboard := datadog.NewDashboardListItem(customTimeboardId, datadog.DASHBOARDTYPE_CUSTOM_TIMEBOARD)
-	customScreenboard := datadog.NewDashboardListItem(customScreenboardId, datadog.DASHBOARDTYPE_CUSTOM_SCREENBOARD)
+	integrationTimeboard := datadog.NewDashboardListItem(integrationTimeboardID, datadog.DASHBOARDTYPE_INTEGRATION_TIMEBOARD)
+	customTimeboard := datadog.NewDashboardListItem(customTimeboardID, datadog.DASHBOARDTYPE_CUSTOM_TIMEBOARD)
+	customScreenboard := datadog.NewDashboardListItem(customScreenboardID, datadog.DASHBOARDTYPE_CUSTOM_SCREENBOARD)
 
 	dashboards := []datadog.DashboardListItem{
 		*integrationTimeboard,
@@ -84,7 +84,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	}
 	body := datadog.NewDashboardListItems(dashboards)
 
-	addResponse, httpresp, err := TestApiClient.DashboardListsApi.AddDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
+	addResponse, httpresp, err := TestAPIClient.DashboardListsApi.AddDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
 	if err != nil {
 		t.Fatalf("error adding items to dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -94,7 +94,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.Contains(t, addResponse.GetAddedDashboardsToList(), *customTimeboard)
 	assert.Contains(t, addResponse.GetAddedDashboardsToList(), *customScreenboard)
 
-	deleteResponse, httpresp, err := TestApiClient.DashboardListsApi.DeleteDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
+	deleteResponse, httpresp, err := TestAPIClient.DashboardListsApi.DeleteDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
 	if err != nil {
 		t.Fatalf("error deleting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -104,7 +104,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.Contains(t, deleteResponse.GetDeletedDashboardsFromList(), *customTimeboard)
 	assert.Contains(t, deleteResponse.GetDeletedDashboardsFromList(), *customScreenboard)
 
-	getResponse, httpresp, err := TestApiClient.DashboardListsApi.GetDashboardListItems(TestAuth, dashboardListID).Execute()
+	getResponse, httpresp, err := TestAPIClient.DashboardListsApi.GetDashboardListItems(TestAuth, dashboardListID).Execute()
 	if err != nil {
 		t.Fatalf("error getting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -112,7 +112,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.Equal(t, int32(0), getResponse.GetTotal())
 	assert.Equal(t, 0, len(getResponse.GetDashboards()))
 
-	updateResponse, httpresp, err := TestApiClient.DashboardListsApi.UpdateDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
+	updateResponse, httpresp, err := TestAPIClient.DashboardListsApi.UpdateDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
 	if err != nil {
 		t.Fatalf("error updating items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -128,14 +128,14 @@ func TestDashboardListItemCRUD(t *testing.T) {
 		*customTimeboard,
 	}
 	body.SetDashboards(dashboards)
-	deleteResponse, httpresp, err = TestApiClient.DashboardListsApi.DeleteDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
+	deleteResponse, httpresp, err = TestAPIClient.DashboardListsApi.DeleteDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
 	if err != nil {
 		t.Fatalf("error deleting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, 2, len(deleteResponse.GetDeletedDashboardsFromList()))
 	assert.Equal(t, 200, httpresp.StatusCode)
-	getResponse, httpresp, err = TestApiClient.DashboardListsApi.GetDashboardListItems(TestAuth, dashboardListID).Execute()
+	getResponse, httpresp, err = TestAPIClient.DashboardListsApi.GetDashboardListItems(TestAuth, dashboardListID).Execute()
 	if err != nil {
 		t.Fatalf("error getting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -143,7 +143,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.Equal(t, int32(1), getResponse.GetTotal())
 	assert.True(t, getResponse.GetDashboards()[0].GetIsReadOnly())
 	assert.True(t, getResponse.GetDashboards()[0].GetIsShared())
-	assert.Equal(t, customScreenboardId, getResponse.GetDashboards()[0].GetId())
+	assert.Equal(t, customScreenboardID, getResponse.GetDashboards()[0].GetId())
 	assert.Equal(t, datadog.DASHBOARDTYPE_CUSTOM_SCREENBOARD, getResponse.GetDashboards()[0].GetType())
 	assert.Equal(t, "For dashboard list tests - DO NOT DELETE", getResponse.GetDashboards()[0].GetTitle())
 	assert.Equal(t, "/dashboard/4n7-s4g-dqv/for-dashboard-list-tests---do-not-delete", getResponse.GetDashboards()[0].GetUrl())
