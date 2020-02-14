@@ -46,51 +46,7 @@ type APIClient struct {
 
 	// API Services
 
-	AWSIntegrationApi *AWSIntegrationApiService
-
-	AWSLogsIntegrationApi *AWSLogsIntegrationApiService
-
-	AzureIntegrationApi *AzureIntegrationApiService
-
 	DashboardListsApi *DashboardListsApiService
-
-	DowntimesApi *DowntimesApiService
-
-	EventsApi *EventsApiService
-
-	GCPIntegrationApi *GCPIntegrationApiService
-
-	HostsApi *HostsApiService
-
-	IPRangesApi *IPRangesApiService
-
-	KeysApi *KeysApiService
-
-	LogsApi *LogsApiService
-
-	LogsIndexesApi *LogsIndexesApiService
-
-	LogsPipelinesApi *LogsPipelinesApiService
-
-	MetricsApi *MetricsApiService
-
-	MonitorsApi *MonitorsApiService
-
-	OrgsApi *OrgsApiService
-
-	SLOApi *SLOApiService
-
-	ServiceChecksApi *ServiceChecksApiService
-
-	SnapshotsApi *SnapshotsApiService
-
-	SyntheticsApi *SyntheticsApiService
-
-	TagsApi *TagsApiService
-
-	UsageApi *UsageApiService
-
-	UsersApi *UsersApiService
 }
 
 type service struct {
@@ -109,29 +65,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AWSIntegrationApi = (*AWSIntegrationApiService)(&c.common)
-	c.AWSLogsIntegrationApi = (*AWSLogsIntegrationApiService)(&c.common)
-	c.AzureIntegrationApi = (*AzureIntegrationApiService)(&c.common)
 	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
-	c.DowntimesApi = (*DowntimesApiService)(&c.common)
-	c.EventsApi = (*EventsApiService)(&c.common)
-	c.GCPIntegrationApi = (*GCPIntegrationApiService)(&c.common)
-	c.HostsApi = (*HostsApiService)(&c.common)
-	c.IPRangesApi = (*IPRangesApiService)(&c.common)
-	c.KeysApi = (*KeysApiService)(&c.common)
-	c.LogsApi = (*LogsApiService)(&c.common)
-	c.LogsIndexesApi = (*LogsIndexesApiService)(&c.common)
-	c.LogsPipelinesApi = (*LogsPipelinesApiService)(&c.common)
-	c.MetricsApi = (*MetricsApiService)(&c.common)
-	c.MonitorsApi = (*MonitorsApiService)(&c.common)
-	c.OrgsApi = (*OrgsApiService)(&c.common)
-	c.SLOApi = (*SLOApiService)(&c.common)
-	c.ServiceChecksApi = (*ServiceChecksApiService)(&c.common)
-	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
-	c.SyntheticsApi = (*SyntheticsApiService)(&c.common)
-	c.TagsApi = (*TagsApiService)(&c.common)
-	c.UsageApi = (*UsageApiService)(&c.common)
-	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c
 }

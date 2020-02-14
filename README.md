@@ -29,8 +29,6 @@ As most of the code in this repository is generated, we will only accept PRs for
 that are not modified by our code-generation machinery (changes to the generated files
 would get overwritten). We happily accept contributions to files that are listed in:
 
-* `v1/.openapi-generator-ignore`
 
 as well as tests files:
 
-* `v1/*_tests.go`
