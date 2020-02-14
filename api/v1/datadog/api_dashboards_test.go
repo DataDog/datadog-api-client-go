@@ -1,7 +1,9 @@
 package datadog_test
 
 import (
+	"fmt"
 	"log"
+	"strings"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -635,7 +637,27 @@ func TestDashboardLifecycle(t *testing.T) {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
+
 	assert.DeepEqual(t, getDashboard, createdDashboard)
+
+	assertDashboardDefinition := func(dashboard *datadog.Dashboard, response datadog.Dashboard) {
+		// Assert root dashboard items on the create response
+		assert.Equal(t, dashboard.GetTitle(), response.GetTitle())
+		assert.Equal(t, dashboard.GetDescription(), response.GetDescription())
+		assert.Equal(t, dashboard.GetIsReadOnly(), response.GetIsReadOnly())
+		// The end of the url is a normalized version of the title, so lets just check the beginning of the URL
+		assert.Assert(t, strings.HasPrefix(response.GetUrl(), fmt.Sprintf("/dashboard/%s", response.GetId())))
+		assert.Assert(t, response.GetCreatedAt().Unix() > 0)
+		assert.Assert(t, response.GetModifiedAt().Unix() > 0)
+		assert.Assert(t, len(response.GetAuthorHandle()) > 0)
+		assert.Equal(t, dashboard.GetLayoutType(), response.GetLayoutType())
+		assert.Equal(t, len(dashboard.GetNotifyList()), len(response.GetNotifyList()))
+
+		// Template Variables
+		assert.DeepEqual(t, dashboard.GetTemplateVariables()[0], response.GetTemplateVariables()[0])
+	}
+
+	assertDashboardDefinition(dashboard, createdDashboard)
 
 	freeWidgetList := []datadog.Widget{
 		*eventStreamWidget,
@@ -669,68 +691,88 @@ func TestDashboardLifecycle(t *testing.T) {
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.DeepEqual(t, getFreeDashboard, createdFreeDashboard)
-	/*
-		assertTrue(response.getUrl(),contains(fmt.Sprintf("/dashboard/%s", response.getId())))
-		assertNotNull(response.getCreatedAt())
-		assertNotNull(response.getModifiedAt())
-		assertNotNull(response.getAuthorHandle())
-		assert.Equal(t, dashboard.getLayoutType(), response.getLayoutType())
-		assert.Equal(t, dashboard.getNotifyList(), response.getNotifyList())
-		assert.Equal(t, templateVariables, response.getTemplateVariables())
-		for _, checkWidget := range response.getWidgets() {
-			assertNotNull(checkWidget.getId())
-			checkWidget.setId(nil)
-			if checkWidget.getDefinition(),getType(),equals("group") {
-				for _, subWidget := range checkWidget.getDefinition(),(*GroupWidgetDefinition),getWidgets() {
-					subWidget.id(nil)
-				}
+
+	assertDashboardDefinition(freeDashboard, createdFreeDashboard)
+
+	for _, checkWidget := range getFreeDashboard.GetWidgets() {
+		assert.Assert(t, checkWidget.GetId() > 0)
+		checkWidget.Id = nil
+		checkWidgetDefinition := checkWidget.GetDefinition().WidgetDefinitionInterface
+		if checkWidgetDefinition.GetType() == "group" {
+			def, ok := checkWidgetDefinition.(*datadog.GroupWidgetDefinition)
+			if !ok {
+				t.Fatal("Cast fail for GroupWidgetDefinition")
+			}
+			for _, subWidget := range def.GetWidgets() {
+				subWidget.Id = nil
 			}
 		}
-		for _, checkWidget := range getFreeResponse.getWidgets() {
-			assertNotNull(checkWidget.getId())
-			checkWidget.id(nil)
+	}
+	for _, checkWidget := range getFreeDashboard.GetWidgets() {
+		assert.Assert(t, checkWidget.GetId() > 0)
+		checkWidget.Id = nil
+	}
+
+	// Update dashboard widgets
+	/*
+		dashboard.SetDescription("Updated dashboard description")
+		dashboardWidgets := dashboard.GetWidgets()
+
+		noteWidgetDefinition.SetContent("Updated content")
+		noteWidgetDefinition.SetFontSize("30")
+		noteWidget.SetDefinition(noteWidgetDefinition.AsWidgetDefinition())
+
+		dashboardWidgets = append(dashboardWidgets, *noteWidget)
+		dashboard.SetWidgets(dashboardWidgets)
+
+		updateResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.UpdateDashboard(TESTAUTH, createdFreeDashboard.GetId()).Body(*dashboard).Execute()
+		if err != nil {
+			t.Fatalf("Error updating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
-		dashboard.description("Updated dashboard description"),addWidgetsItem(noteWidget.definition(noteDefinition.SetContent("Updated content"),fontSize("30")))
-		updateResponse := api.updateDashboard(response.getId()),body(dashboard),execute()
-		assert.Equal(t, dashboard.getDescription(), updateResponse.getDescription())
-		assert.Equal(t, dashboard.getTitle(), updateResponse.getTitle())
-		assert.Equal(t, dashboard.getWidgets(),get(0), updateResponse.getWidgets(),get(0),id(nil))
+		assert.Equal(t, 200, httpresp.StatusCode)
+
+		assert.Equal(t, dashboard.GetDescription(), updateResponse.GetDescription())
+		assert.Equal(t, dashboard.GetTitle(), updateResponse.GetTitle())
+
+		updateResponse.Id = nil
+		assert.Equal(t, dashboard.GetWidgets()[0], updateResponse.GetWidgets()[0])
+
 		foundWidget := false
-		for _, noteWidgetResponse := range updateResponse.getWidgets() {
-			if noteWidgetResponse.getDefinition(),getType(),equals("note") {
-				def, ok := noteWidgetResponse.getDefinition(),(*NoteWidgetDefinition)
+		for _, noteWidgetResponse := range updateResponse.GetWidgets() {
+			noteWidgetResponseDefinition := noteWidgetResponse.GetDefinition().WidgetDefinitionInterface
+			if noteWidgetResponseDefinition.GetType() == "note" {
+				def, ok := noteWidgetResponseDefinition.(*datadog.NoteWidgetDefinition)
 				if !ok {
-					panic("XXX Cast fail for *parser.GoCastType")
+					t.Fatal("Cast fail for NoteWidgetDefinition")
 				}
 				foundWidget = true
-				assert.Equal(t, "Updated content", def.getContent())
-				assert.Equal(t, "30", def.getFontSize())
+				assert.Equal(t, "Updated content", def.GetContent())
+				assert.Equal(t, "30", def.GetFontSize())
 				break
 			}
 		}
-		assertTrue(foundWidget)
-		assertTrue(updateResponse.getWidgets(),
-			Size: datadog.PtrString() > 1)
-		deleteResponse := api.deleteDashboard(response.getId()),execute()
-		assert.Equal(t, deleteResponse.getDeletedDashboardId(), response.getId())
+		assert.Assert(t, foundWidget)
+		assert.Assert(t, len(updateResponse.GetWidgets()) > 1)
 	*/
+
+	deleteResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.DeleteDashboard(TESTAUTH, createdFreeDashboard.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(t, createdFreeDashboard.GetId(), deleteResponse.GetDeletedDashboardId())
+
 }
 
-func TestGetAllDashboardTest(t *testing.T) {
+func TestDashboardGetAll(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	/*
-		getAllResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.GetAllDashboards(TESTAUTH),Execute()
-
-		assertNotNull(getAllResponse.getDashboards(),get(0),getAuthorHandle())
-		assertNotNull(getAllResponse.getDashboards(),get(0),getCreatedAt())
-		assertNotNull(getAllResponse.getDashboards(),get(0),getModifiedAt())
-		assertNotNull(getAllResponse.getDashboards(),get(0),getId())
-		assertNotNull(getAllResponse.getDashboards(),get(0),getIsReadOnly())
-		assertNotNull(getAllResponse.getDashboards(),get(0),getLayoutType())
-		assertNotNull(getAllResponse.getDashboards(),get(0),getTitle())
-		assertNotNull(getAllResponse.getDashboards(),get(0),getUrl())
-	*/
+	getAllResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.GetAllDashboards(TESTAUTH).Execute()
+	if err != nil {
+		t.Fatalf("Error getting all dashboards: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Assert(t, len(getAllResponse.GetDashboards()) >= 0)
 }
 
 func deleteDashboard(dashboardID string) {
