@@ -1,4 +1,4 @@
-package datadog_test
+package test
 
 import (
 	"fmt"
