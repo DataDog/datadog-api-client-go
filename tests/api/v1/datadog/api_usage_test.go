@@ -4,7 +4,7 @@
  * Licensed under a 3-clause BSD style license (see LICENSE)
  */
 
-package datadog
+package test
 
 import (
 	"testing"

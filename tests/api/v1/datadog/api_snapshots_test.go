@@ -1,4 +1,4 @@
-package datadog
+package test
 
 import (
 	"testing"

@@ -4,7 +4,7 @@
  * Copyright 2020-Present Datadog, Inc.
  */
 
-package datadog
+package test
 
 import (
 	"fmt"
