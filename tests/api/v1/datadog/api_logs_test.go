@@ -43,7 +43,7 @@ func TestLogsList(t *testing.T) {
 		Ddsource: &source,
 		Ddtags:   datadog.PtrString("go,test,list"),
 		Hostname: &hostname,
-		Message:  &message,
+		Message:  datadog.PtrString(fmt.Sprintf(`{"timestamp": %d, "message": "%s"}`, (now.Unix()-1)*1000, message)),
 	}
 
 	// Create log entry
@@ -53,8 +53,8 @@ func TestLogsList(t *testing.T) {
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	secondMessage := "second-" + message
-	httpLog.SetMessage(secondMessage)
+	secondMessage := fmt.Sprintf("second-test-log-list-%d", nanoNow)
+	httpLog.SetMessage(fmt.Sprintf(`{"timestamp": %d, "message": "%s"}`, (now.Unix())*1000, secondMessage))
 
 	// Create second log entry
 	_, httpresp, err = TESTAPICLIENT.LogsApi.SendLog(TESTAUTH).Body(httpLog).Execute()
