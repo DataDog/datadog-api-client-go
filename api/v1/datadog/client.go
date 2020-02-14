@@ -66,7 +66,7 @@ type APIClient struct {
 
 	KeysApi *KeysApiService
 
-	LogsHTTPIntakeApi *LogsHTTPIntakeApiService
+	LogsApi *LogsApiService
 
 	LogsIndexesApi *LogsIndexesApiService
 
@@ -119,7 +119,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.HostsApi = (*HostsApiService)(&c.common)
 	c.IPRangesApi = (*IPRangesApiService)(&c.common)
 	c.KeysApi = (*KeysApiService)(&c.common)
-	c.LogsHTTPIntakeApi = (*LogsHTTPIntakeApiService)(&c.common)
+	c.LogsApi = (*LogsApiService)(&c.common)
 	c.LogsIndexesApi = (*LogsIndexesApiService)(&c.common)
 	c.LogsPipelinesApi = (*LogsPipelinesApiService)(&c.common)
 	c.MetricsApi = (*MetricsApiService)(&c.common)
