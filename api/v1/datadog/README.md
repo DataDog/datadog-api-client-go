@@ -124,7 +124,8 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys available for your account.
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
-*LogsHTTPIntakeApi* | [**SendLog**](docs/LogsHTTPIntakeApi.md#sendlog) | **Post** /v1/input | 
+*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
+*LogsApi* | [**SendLog**](docs/LogsApi.md#sendlog) | **Post** /v1/input | 
 *LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | This endpoint returns an array of the LogIndex objects of your organization.
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | This endpoint returns an Index identified by its name.
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get the current order of your log indexes.
@@ -258,6 +259,8 @@ Class | Method | HTTP request | Description
  - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
  - [IpPrefixes](docs/IpPrefixes.md)
  - [IpRanges](docs/IpRanges.md)
+ - [Log](docs/Log.md)
+ - [LogContent](docs/LogContent.md)
  - [LogsApiError](docs/LogsApiError.md)
  - [LogsApiErrorResponse](docs/LogsApiErrorResponse.md)
  - [LogsArithmeticProcessor](docs/LogsArithmeticProcessor.md)
@@ -273,6 +276,9 @@ Class | Method | HTTP request | Description
  - [LogsIndex](docs/LogsIndex.md)
  - [LogsIndexListResponse](docs/LogsIndexListResponse.md)
  - [LogsIndexesOrder](docs/LogsIndexesOrder.md)
+ - [LogsListRequest](docs/LogsListRequest.md)
+ - [LogsListRequestTime](docs/LogsListRequestTime.md)
+ - [LogsListResponse](docs/LogsListResponse.md)
  - [LogsLookupProcessor](docs/LogsLookupProcessor.md)
  - [LogsMessageRemapper](docs/LogsMessageRemapper.md)
  - [LogsPipeline](docs/LogsPipeline.md)
@@ -280,6 +286,7 @@ Class | Method | HTTP request | Description
  - [LogsProcessor](docs/LogsProcessor.md)
  - [LogsRemapper](docs/LogsRemapper.md)
  - [LogsServiceRemapper](docs/LogsServiceRemapper.md)
+ - [LogsSort](docs/LogsSort.md)
  - [LogsStatusRemapper](docs/LogsStatusRemapper.md)
  - [LogsStringBuilderProcessor](docs/LogsStringBuilderProcessor.md)
  - [LogsTraceRemapper](docs/LogsTraceRemapper.md)

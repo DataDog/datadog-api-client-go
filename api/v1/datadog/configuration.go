@@ -170,7 +170,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"LogsHTTPIntakeApiService.SendLog": {
+			"LogsApiService.SendLog": {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
