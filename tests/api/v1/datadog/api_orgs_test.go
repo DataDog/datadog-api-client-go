@@ -1,10 +1,4 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
-
-package datadog_test
+package datadog
 
 import (
 	"encoding/json"
@@ -38,7 +32,7 @@ func TestGetOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetPublicId(), org.GetPublicId())
 	assert.Equal(t, orgFixture.GetSettings(), org.GetSettings())
 	assert.Equal(t, org.GetCreated(), "")
-	assert.Equal(t, org.GetDescription(), "")
+	assert.Equal(t, (org.GetDescription()), "")
 
 	orgBillingFixture := orgFixture.GetBilling()
 	orgBillingResp := org.GetBilling()
@@ -118,7 +112,7 @@ func TestUpdateOrg(t *testing.T) {
 	json.Unmarshal(setupGock(t, "orgs/org_update.json", "put", "/org"), &orgsFixture)
 
 	// Get mocked request data
-	updateOrgResp, _, err := TESTAPICLIENT.OrgsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId).Body(Org{Settings: orgsFixture.GetOrg().Settings}).Execute()
+	updateOrgResp, _, err := TESTAPICLIENT.OrgsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId).Body(datadog.Org{Settings: orgsFixture.GetOrg().Settings}).Execute()
 	if err != nil {
 		t.Errorf("Failed to update the test org %s", err)
 	}
@@ -129,7 +123,7 @@ func TestUpdateOrg(t *testing.T) {
 	assert.Equal(t, orgFixture.GetName(), updateResp.GetName())
 	assert.Equal(t, orgFixture.GetPublicId(), updateResp.GetPublicId())
 	assert.Equal(t, updateResp.GetCreated(), updateResp.GetCreated())
-	assert.Equal(t, updateResp.GetDescription(), "")
+	assert.Equal(t, (updateResp.GetDescription()), "")
 
 	orgBillingFixture := orgFixture.GetBilling()
 	orgBillingResp := updateResp.GetBilling()
