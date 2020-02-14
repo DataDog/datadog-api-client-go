@@ -109,7 +109,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 		t.Fatalf("error getting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, int32(0), getResponse.GetTotal())
+	assert.Equal(t, int64(0), getResponse.GetTotal())
 	assert.Equal(t, 0, len(getResponse.GetDashboards()))
 
 	updateResponse, httpresp, err := TestAPIClient.DashboardListsApi.UpdateDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
@@ -140,7 +140,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 		t.Fatalf("error getting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 1, len(getResponse.GetDashboards()))
-	assert.Equal(t, int32(1), getResponse.GetTotal())
+	assert.Equal(t, int64(1), getResponse.GetTotal())
 	assert.True(t, getResponse.GetDashboards()[0].GetIsReadOnly())
 	assert.True(t, getResponse.GetDashboards()[0].GetIsShared())
 	assert.Equal(t, customScreenboardID, getResponse.GetDashboards()[0].GetId())

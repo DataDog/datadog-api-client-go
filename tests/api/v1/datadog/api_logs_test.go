@@ -1,4 +1,4 @@
-package datadog_test
+package test
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"gotest.tools/assert"
 )
 
@@ -75,7 +76,7 @@ func TestLogsList(t *testing.T) {
 	var logsResponse datadog.LogsListResponse
 
 	// Make sure that both log items are indexed
-	retry(time.Duration(5)*time.Second, 10, func() bool {
+	tests.Retry(time.Duration(5)*time.Second, 10, func() bool {
 		logsResponse, httpresp, err = TESTAPICLIENT.LogsApi.ListLogs(TESTAUTH).Body(logsRequest).Execute()
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
