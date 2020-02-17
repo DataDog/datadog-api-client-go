@@ -1,4 +1,10 @@
-package datadog_test
+/*
+ * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+ * This product includes software developed at Datadog (https://www.datadoghq.com/).
+ * Copyright 2019-Present Datadog, Inc.
+ */
+
+package test
 
 import (
 	"log"
@@ -6,12 +12,13 @@ import (
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"gotest.tools/assert"
 )
 
 func ensureNoPagerDuty(t *testing.T) {
 	// Make sure that there is not parallel execution
-	err := retry(time.Duration(5)*time.Second, 10, func() bool {
+	err := tests.Retry(time.Duration(5)*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegration(TESTAUTH).Execute()
 		return httpresp.StatusCode != 200
 	})
