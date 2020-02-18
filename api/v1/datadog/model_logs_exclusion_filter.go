@@ -20,6 +20,24 @@ type LogsExclusionFilter struct {
 	SampleRate float64 `json:"sample_rate"`
 }
 
+// NewLogsExclusionFilter instantiates a new LogsExclusionFilter object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLogsExclusionFilter(sampleRate float64) *LogsExclusionFilter {
+	this := LogsExclusionFilter{}
+	this.SampleRate = sampleRate
+	return &this
+}
+
+// NewLogsExclusionFilterWithDefaults instantiates a new LogsExclusionFilter object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLogsExclusionFilterWithDefaults() *LogsExclusionFilter {
+	this := LogsExclusionFilter{}
+	return &this
+}
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsExclusionFilter) GetQuery() string {
 	if o == nil || o.Query == nil {

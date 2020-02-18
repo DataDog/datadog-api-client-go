@@ -18,6 +18,23 @@ type SyntheticsDevices struct {
 	Devices *[]SyntheticsDevice `json:"devices,omitempty"`
 }
 
+// NewSyntheticsDevices instantiates a new SyntheticsDevices object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsDevices() *SyntheticsDevices {
+	this := SyntheticsDevices{}
+	return &this
+}
+
+// NewSyntheticsDevicesWithDefaults instantiates a new SyntheticsDevices object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsDevicesWithDefaults() *SyntheticsDevices {
+	this := SyntheticsDevices{}
+	return &this
+}
+
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *SyntheticsDevices) GetDevices() []SyntheticsDevice {
 	if o == nil || o.Devices == nil {

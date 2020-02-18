@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSloThreshold
+
+`func NewSloThreshold(target float64, timeframe SloTimeframe, ) *SloThreshold`
+
+NewSloThreshold instantiates a new SloThreshold object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSloThresholdWithDefaults
+
+`func NewSloThresholdWithDefaults() *SloThreshold`
+
+NewSloThresholdWithDefaults instantiates a new SloThreshold object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetTarget
 
 `func (o *SloThreshold) GetTarget() float64`

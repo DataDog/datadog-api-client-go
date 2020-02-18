@@ -20,7 +20,24 @@ type SyntheticsTestOptions struct {
 	FollowRedirects   *bool                       `json:"follow_redirects,omitempty"`
 	MinLocationFailed *int64                      `json:"min_location_failed,omitempty"`
 	Retry             *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-	TickEvery         *int64                      `json:"tick_every,omitempty"`
+	TickEvery         *SyntheticsTickInterval     `json:"tick_every,omitempty"`
+}
+
+// NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsTestOptions() *SyntheticsTestOptions {
+	this := SyntheticsTestOptions{}
+	return &this
+}
+
+// NewSyntheticsTestOptionsWithDefaults instantiates a new SyntheticsTestOptions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsTestOptionsWithDefaults() *SyntheticsTestOptions {
+	this := SyntheticsTestOptions{}
+	return &this
 }
 
 // GetAcceptSelfSigned returns the AcceptSelfSigned field value if set, zero value otherwise.
@@ -189,9 +206,9 @@ func (o *SyntheticsTestOptions) SetRetry(v SyntheticsTestOptionsRetry) {
 }
 
 // GetTickEvery returns the TickEvery field value if set, zero value otherwise.
-func (o *SyntheticsTestOptions) GetTickEvery() int64 {
+func (o *SyntheticsTestOptions) GetTickEvery() SyntheticsTickInterval {
 	if o == nil || o.TickEvery == nil {
-		var ret int64
+		var ret SyntheticsTickInterval
 		return ret
 	}
 	return *o.TickEvery
@@ -199,9 +216,9 @@ func (o *SyntheticsTestOptions) GetTickEvery() int64 {
 
 // GetTickEveryOk returns a tuple with the TickEvery field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetTickEveryOk() (int64, bool) {
+func (o *SyntheticsTestOptions) GetTickEveryOk() (SyntheticsTickInterval, bool) {
 	if o == nil || o.TickEvery == nil {
-		var ret int64
+		var ret SyntheticsTickInterval
 		return ret, false
 	}
 	return *o.TickEvery, true
@@ -216,8 +233,8 @@ func (o *SyntheticsTestOptions) HasTickEvery() bool {
 	return false
 }
 
-// SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.
-func (o *SyntheticsTestOptions) SetTickEvery(v int64) {
+// SetTickEvery gets a reference to the given SyntheticsTickInterval and assigns it to the TickEvery field.
+func (o *SyntheticsTestOptions) SetTickEvery(v SyntheticsTickInterval) {
 	o.TickEvery = &v
 }
 

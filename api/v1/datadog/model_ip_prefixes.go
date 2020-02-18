@@ -21,6 +21,23 @@ type IpPrefixes struct {
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 }
 
+// NewIpPrefixes instantiates a new IpPrefixes object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewIpPrefixes() *IpPrefixes {
+	this := IpPrefixes{}
+	return &this
+}
+
+// NewIpPrefixesWithDefaults instantiates a new IpPrefixes object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIpPrefixesWithDefaults() *IpPrefixes {
+	this := IpPrefixes{}
+	return &this
+}
+
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
 func (o *IpPrefixes) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {

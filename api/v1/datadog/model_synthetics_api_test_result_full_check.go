@@ -18,6 +18,24 @@ type SyntheticsApiTestResultFullCheck struct {
 	Config SyntheticsTestConfig `json:"config"`
 }
 
+// NewSyntheticsApiTestResultFullCheck instantiates a new SyntheticsApiTestResultFullCheck object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsApiTestResultFullCheck(config SyntheticsTestConfig) *SyntheticsApiTestResultFullCheck {
+	this := SyntheticsApiTestResultFullCheck{}
+	this.Config = config
+	return &this
+}
+
+// NewSyntheticsApiTestResultFullCheckWithDefaults instantiates a new SyntheticsApiTestResultFullCheck object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsApiTestResultFullCheckWithDefaults() *SyntheticsApiTestResultFullCheck {
+	this := SyntheticsApiTestResultFullCheck{}
+	return &this
+}
+
 // GetConfig returns the Config field value
 func (o *SyntheticsApiTestResultFullCheck) GetConfig() SyntheticsTestConfig {
 	if o == nil {

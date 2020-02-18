@@ -29,6 +29,23 @@ type HistoryServiceLevelObjectiveMetricsSeriesMetadata struct {
 	Unit *string `json:"unit,omitempty"`
 }
 
+// NewHistoryServiceLevelObjectiveMetricsSeriesMetadata instantiates a new HistoryServiceLevelObjectiveMetricsSeriesMetadata object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveMetricsSeriesMetadata() *HistoryServiceLevelObjectiveMetricsSeriesMetadata {
+	this := HistoryServiceLevelObjectiveMetricsSeriesMetadata{}
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveMetricsSeriesMetadataWithDefaults instantiates a new HistoryServiceLevelObjectiveMetricsSeriesMetadata object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveMetricsSeriesMetadataWithDefaults() *HistoryServiceLevelObjectiveMetricsSeriesMetadata {
+	this := HistoryServiceLevelObjectiveMetricsSeriesMetadata{}
+	return &this
+}
+
 // GetAggr returns the Aggr field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggr() string {
 	if o == nil || o.Aggr == nil {

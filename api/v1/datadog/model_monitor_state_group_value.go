@@ -22,6 +22,23 @@ type MonitorStateGroupValue struct {
 	Value  *float64 `json:"value,omitempty"`
 }
 
+// NewMonitorStateGroupValue instantiates a new MonitorStateGroupValue object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorStateGroupValue() *MonitorStateGroupValue {
+	this := MonitorStateGroupValue{}
+	return &this
+}
+
+// NewMonitorStateGroupValueWithDefaults instantiates a new MonitorStateGroupValue object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorStateGroupValueWithDefaults() *MonitorStateGroupValue {
+	this := MonitorStateGroupValue{}
+	return &this
+}
+
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
 func (o *MonitorStateGroupValue) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {

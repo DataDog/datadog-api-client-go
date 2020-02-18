@@ -16,7 +16,7 @@ import (
 // MonitorOptions struct for MonitorOptions
 type MonitorOptions struct {
 	Aggregation        *MonitorOptionsAggregation     `json:"aggregation,omitempty"`
-	DeviceIds          *[]string                      `json:"device_ids,omitempty"`
+	DeviceIds          *[]MonitorDeviceId             `json:"device_ids,omitempty"`
 	EnableLogsSample   *bool                          `json:"enable_logs_sample,omitempty"`
 	EscalationMessage  *string                        `json:"escalation_message,omitempty"`
 	EvaluationDelay    *int64                         `json:"evaluation_delay,omitempty"`
@@ -35,6 +35,23 @@ type MonitorOptions struct {
 	ThresholdWindows   *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
 	Thresholds         *MonitorThresholds             `json:"thresholds,omitempty"`
 	TimeoutH           *int64                         `json:"timeout_h,omitempty"`
+}
+
+// NewMonitorOptions instantiates a new MonitorOptions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorOptions() *MonitorOptions {
+	this := MonitorOptions{}
+	return &this
+}
+
+// NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorOptionsWithDefaults() *MonitorOptions {
+	this := MonitorOptions{}
+	return &this
 }
 
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
@@ -71,9 +88,9 @@ func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation) {
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
-func (o *MonitorOptions) GetDeviceIds() []string {
+func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceId {
 	if o == nil || o.DeviceIds == nil {
-		var ret []string
+		var ret []MonitorDeviceId
 		return ret
 	}
 	return *o.DeviceIds
@@ -81,9 +98,9 @@ func (o *MonitorOptions) GetDeviceIds() []string {
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetDeviceIdsOk() ([]string, bool) {
+func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceId, bool) {
 	if o == nil || o.DeviceIds == nil {
-		var ret []string
+		var ret []MonitorDeviceId
 		return ret, false
 	}
 	return *o.DeviceIds, true
@@ -98,8 +115,8 @@ func (o *MonitorOptions) HasDeviceIds() bool {
 	return false
 }
 
-// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
-func (o *MonitorOptions) SetDeviceIds(v []string) {
+// SetDeviceIds gets a reference to the given []MonitorDeviceId and assigns it to the DeviceIds field.
+func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceId) {
 	o.DeviceIds = &v
 }
 

@@ -20,6 +20,23 @@ type HostMetrics struct {
 	Load   *float64 `json:"load,omitempty"`
 }
 
+// NewHostMetrics instantiates a new HostMetrics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHostMetrics() *HostMetrics {
+	this := HostMetrics{}
+	return &this
+}
+
+// NewHostMetricsWithDefaults instantiates a new HostMetrics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHostMetricsWithDefaults() *HostMetrics {
+	this := HostMetrics{}
+	return &this
+}
+
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *HostMetrics) GetCpu() float64 {
 	if o == nil || o.Cpu == nil {

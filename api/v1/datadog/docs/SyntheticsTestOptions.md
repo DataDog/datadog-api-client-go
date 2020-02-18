@@ -9,9 +9,26 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** |  | [optional] 
 **MinLocationFailed** | Pointer to **int64** |  | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptions_retry.md) |  | [optional] 
-**TickEvery** | Pointer to **int64** |  | [optional] 
+**TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
 
 ## Methods
+
+### NewSyntheticsTestOptions
+
+`func NewSyntheticsTestOptions() *SyntheticsTestOptions`
+
+NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsTestOptionsWithDefaults
+
+`func NewSyntheticsTestOptionsWithDefaults() *SyntheticsTestOptions`
+
+NewSyntheticsTestOptionsWithDefaults instantiates a new SyntheticsTestOptions object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetAcceptSelfSigned
 
@@ -140,13 +157,13 @@ SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it
 
 ### GetTickEvery
 
-`func (o *SyntheticsTestOptions) GetTickEvery() int64`
+`func (o *SyntheticsTestOptions) GetTickEvery() SyntheticsTickInterval`
 
 GetTickEvery returns the TickEvery field if non-nil, zero value otherwise.
 
 ### GetTickEveryOk
 
-`func (o *SyntheticsTestOptions) GetTickEveryOk() (int64, bool)`
+`func (o *SyntheticsTestOptions) GetTickEveryOk() (SyntheticsTickInterval, bool)`
 
 GetTickEveryOk returns a tuple with the TickEvery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -159,9 +176,9 @@ HasTickEvery returns a boolean if a field has been set.
 
 ### SetTickEvery
 
-`func (o *SyntheticsTestOptions) SetTickEvery(v int64)`
+`func (o *SyntheticsTestOptions) SetTickEvery(v SyntheticsTickInterval)`
 
-SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.
+SetTickEvery gets a reference to the given SyntheticsTickInterval and assigns it to the TickEvery field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

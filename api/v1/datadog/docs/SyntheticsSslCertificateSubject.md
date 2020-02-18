@@ -14,6 +14,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSyntheticsSslCertificateSubject
+
+`func NewSyntheticsSslCertificateSubject() *SyntheticsSslCertificateSubject`
+
+NewSyntheticsSslCertificateSubject instantiates a new SyntheticsSslCertificateSubject object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsSslCertificateSubjectWithDefaults
+
+`func NewSyntheticsSslCertificateSubjectWithDefaults() *SyntheticsSslCertificateSubject`
+
+NewSyntheticsSslCertificateSubjectWithDefaults instantiates a new SyntheticsSslCertificateSubject object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetC
 
 `func (o *SyntheticsSslCertificateSubject) GetC() string`

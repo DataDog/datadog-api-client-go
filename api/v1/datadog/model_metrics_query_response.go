@@ -35,6 +35,23 @@ type MetricsQueryResponse struct {
 	ToDate *int64 `json:"to_date,omitempty"`
 }
 
+// NewMetricsQueryResponse instantiates a new MetricsQueryResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMetricsQueryResponse() *MetricsQueryResponse {
+	this := MetricsQueryResponse{}
+	return &this
+}
+
+// NewMetricsQueryResponseWithDefaults instantiates a new MetricsQueryResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetricsQueryResponseWithDefaults() *MetricsQueryResponse {
+	this := MetricsQueryResponse{}
+	return &this
+}
+
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetError() string {
 	if o == nil || o.Error == nil {

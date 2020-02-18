@@ -18,6 +18,23 @@ type AwsAccountListResponse struct {
 	Accounts *[]AwsAccount `json:"accounts,omitempty"`
 }
 
+// NewAwsAccountListResponse instantiates a new AwsAccountListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAwsAccountListResponse() *AwsAccountListResponse {
+	this := AwsAccountListResponse{}
+	return &this
+}
+
+// NewAwsAccountListResponseWithDefaults instantiates a new AwsAccountListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAwsAccountListResponseWithDefaults() *AwsAccountListResponse {
+	this := AwsAccountListResponse{}
+	return &this
+}
+
 // GetAccounts returns the Accounts field value if set, zero value otherwise.
 func (o *AwsAccountListResponse) GetAccounts() []AwsAccount {
 	if o == nil || o.Accounts == nil {

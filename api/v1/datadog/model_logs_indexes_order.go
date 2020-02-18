@@ -19,6 +19,24 @@ type LogsIndexesOrder struct {
 	IndexNames []string `json:"index_names"`
 }
 
+// NewLogsIndexesOrder instantiates a new LogsIndexesOrder object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLogsIndexesOrder(indexNames []string) *LogsIndexesOrder {
+	this := LogsIndexesOrder{}
+	this.IndexNames = indexNames
+	return &this
+}
+
+// NewLogsIndexesOrderWithDefaults instantiates a new LogsIndexesOrder object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLogsIndexesOrderWithDefaults() *LogsIndexesOrder {
+	this := LogsIndexesOrder{}
+	return &this
+}
+
 // GetIndexNames returns the IndexNames field value
 func (o *LogsIndexesOrder) GetIndexNames() []string {
 	if o == nil {

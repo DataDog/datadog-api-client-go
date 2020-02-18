@@ -23,6 +23,25 @@ type ServiceCheck struct {
 	Timestamp *int64             `json:"timestamp,omitempty"`
 }
 
+// NewServiceCheck instantiates a new ServiceCheck object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceCheck(check string, status ServiceCheckStatus) *ServiceCheck {
+	this := ServiceCheck{}
+	this.Check = check
+	this.Status = status
+	return &this
+}
+
+// NewServiceCheckWithDefaults instantiates a new ServiceCheck object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceCheckWithDefaults() *ServiceCheck {
+	this := ServiceCheck{}
+	return &this
+}
+
 // GetCheck returns the Check field value
 func (o *ServiceCheck) GetCheck() string {
 	if o == nil {

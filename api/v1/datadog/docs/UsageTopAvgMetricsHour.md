@@ -6,10 +6,27 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AvgMetricHour** | Pointer to **int64** | Average number of timeseries per hour in which the metric occurs. | [optional] 
 **MaxMetricHour** | Pointer to **int64** | Maximum number of timeseries per hour in which the metric occurs. | [optional] 
-**MetricCategory** | Pointer to **string** | Contains the metric category. | [optional] 
+**MetricCategory** | Pointer to [**UsageMetricCategory**](UsageMetricCategory.md) |  | [optional] 
 **MetricName** | Pointer to **string** | Contains the custom metric name. | [optional] 
 
 ## Methods
+
+### NewUsageTopAvgMetricsHour
+
+`func NewUsageTopAvgMetricsHour() *UsageTopAvgMetricsHour`
+
+NewUsageTopAvgMetricsHour instantiates a new UsageTopAvgMetricsHour object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewUsageTopAvgMetricsHourWithDefaults
+
+`func NewUsageTopAvgMetricsHourWithDefaults() *UsageTopAvgMetricsHour`
+
+NewUsageTopAvgMetricsHourWithDefaults instantiates a new UsageTopAvgMetricsHour object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetAvgMetricHour
 
@@ -63,13 +80,13 @@ SetMaxMetricHour gets a reference to the given int64 and assigns it to the MaxMe
 
 ### GetMetricCategory
 
-`func (o *UsageTopAvgMetricsHour) GetMetricCategory() string`
+`func (o *UsageTopAvgMetricsHour) GetMetricCategory() UsageMetricCategory`
 
 GetMetricCategory returns the MetricCategory field if non-nil, zero value otherwise.
 
 ### GetMetricCategoryOk
 
-`func (o *UsageTopAvgMetricsHour) GetMetricCategoryOk() (string, bool)`
+`func (o *UsageTopAvgMetricsHour) GetMetricCategoryOk() (UsageMetricCategory, bool)`
 
 GetMetricCategoryOk returns a tuple with the MetricCategory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -82,9 +99,9 @@ HasMetricCategory returns a boolean if a field has been set.
 
 ### SetMetricCategory
 
-`func (o *UsageTopAvgMetricsHour) SetMetricCategory(v string)`
+`func (o *UsageTopAvgMetricsHour) SetMetricCategory(v UsageMetricCategory)`
 
-SetMetricCategory gets a reference to the given string and assigns it to the MetricCategory field.
+SetMetricCategory gets a reference to the given UsageMetricCategory and assigns it to the MetricCategory field.
 
 ### GetMetricName
 

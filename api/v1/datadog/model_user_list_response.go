@@ -18,6 +18,23 @@ type UserListResponse struct {
 	Users *[]User `json:"users,omitempty"`
 }
 
+// NewUserListResponse instantiates a new UserListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUserListResponse() *UserListResponse {
+	this := UserListResponse{}
+	return &this
+}
+
+// NewUserListResponseWithDefaults instantiates a new UserListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUserListResponseWithDefaults() *UserListResponse {
+	this := UserListResponse{}
+	return &this
+}
+
 // GetUsers returns the Users field value if set, zero value otherwise.
 func (o *UserListResponse) GetUsers() []User {
 	if o == nil || o.Users == nil {

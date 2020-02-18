@@ -16,19 +16,17 @@ import (
 // Event struct for Event
 type Event struct {
 	// An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.
-	AggregationKey *string `json:"aggregation_key,omitempty"`
-	// If it is an alert event, set its type between: error, warning, info, and success.
-	AlertType *string `json:"alert_type,omitempty"`
+	AggregationKey *string         `json:"aggregation_key,omitempty"`
+	AlertType      *EventAlertType `json:"alert_type,omitempty"`
 	// POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 1 year, 24 days (389 days)
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A list of device names to post the event with.
 	DeviceName *[]string `json:"device_name,omitempty"`
 	// Host name to associate with the event. Any tags associated with the host are also applied to this event.
-	Host    *string `json:"host,omitempty"`
-	Id      *int64  `json:"id,omitempty"`
-	Payload *string `json:"payload,omitempty"`
-	// The priority of the event: normal or low.
-	Priority *string `json:"priority,omitempty"`
+	Host     *string        `json:"host,omitempty"`
+	Id       *int64         `json:"id,omitempty"`
+	Payload  *string        `json:"payload,omitempty"`
+	Priority *EventPriority `json:"priority,omitempty"`
 	// ID of the parent event. Must be sent as an integer (i.e. no quotes).
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
 	// The type of event being posted. Options: nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, ... [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value)
@@ -40,6 +38,25 @@ type Event struct {
 	// The event title. Limited to 100 characters. Use msg_title with the Datadog Ruby library.
 	Title string  `json:"title"`
 	Url   *string `json:"url,omitempty"`
+}
+
+// NewEvent instantiates a new Event object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEvent(text string, title string) *Event {
+	this := Event{}
+	this.Text = text
+	this.Title = title
+	return &this
+}
+
+// NewEventWithDefaults instantiates a new Event object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEventWithDefaults() *Event {
+	this := Event{}
+	return &this
 }
 
 // GetAggregationKey returns the AggregationKey field value if set, zero value otherwise.
@@ -76,9 +93,9 @@ func (o *Event) SetAggregationKey(v string) {
 }
 
 // GetAlertType returns the AlertType field value if set, zero value otherwise.
-func (o *Event) GetAlertType() string {
+func (o *Event) GetAlertType() EventAlertType {
 	if o == nil || o.AlertType == nil {
-		var ret string
+		var ret EventAlertType
 		return ret
 	}
 	return *o.AlertType
@@ -86,9 +103,9 @@ func (o *Event) GetAlertType() string {
 
 // GetAlertTypeOk returns a tuple with the AlertType field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetAlertTypeOk() (string, bool) {
+func (o *Event) GetAlertTypeOk() (EventAlertType, bool) {
 	if o == nil || o.AlertType == nil {
-		var ret string
+		var ret EventAlertType
 		return ret, false
 	}
 	return *o.AlertType, true
@@ -103,8 +120,8 @@ func (o *Event) HasAlertType() bool {
 	return false
 }
 
-// SetAlertType gets a reference to the given string and assigns it to the AlertType field.
-func (o *Event) SetAlertType(v string) {
+// SetAlertType gets a reference to the given EventAlertType and assigns it to the AlertType field.
+func (o *Event) SetAlertType(v EventAlertType) {
 	o.AlertType = &v
 }
 
@@ -274,9 +291,9 @@ func (o *Event) SetPayload(v string) {
 }
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *Event) GetPriority() string {
+func (o *Event) GetPriority() EventPriority {
 	if o == nil || o.Priority == nil {
-		var ret string
+		var ret EventPriority
 		return ret
 	}
 	return *o.Priority
@@ -284,9 +301,9 @@ func (o *Event) GetPriority() string {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetPriorityOk() (string, bool) {
+func (o *Event) GetPriorityOk() (EventPriority, bool) {
 	if o == nil || o.Priority == nil {
-		var ret string
+		var ret EventPriority
 		return ret, false
 	}
 	return *o.Priority, true
@@ -301,8 +318,8 @@ func (o *Event) HasPriority() bool {
 	return false
 }
 
-// SetPriority gets a reference to the given string and assigns it to the Priority field.
-func (o *Event) SetPriority(v string) {
+// SetPriority gets a reference to the given EventPriority and assigns it to the Priority field.
+func (o *Event) SetPriority(v EventPriority) {
 	o.Priority = &v
 }
 

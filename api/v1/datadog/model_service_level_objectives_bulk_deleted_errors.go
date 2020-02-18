@@ -18,9 +18,28 @@ type ServiceLevelObjectivesBulkDeletedErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`
 	// The error message
-	Message string `json:"message"`
-	// The timeframe of the threshold associated with this error or \"all\" if all thresholds are affected.
-	Timeframe string `json:"timeframe"`
+	Message   string            `json:"message"`
+	Timeframe SloErrorTimeframe `json:"timeframe"`
+}
+
+// NewServiceLevelObjectivesBulkDeletedErrors instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe SloErrorTimeframe) *ServiceLevelObjectivesBulkDeletedErrors {
+	this := ServiceLevelObjectivesBulkDeletedErrors{}
+	this.Id = id
+	this.Message = message
+	this.Timeframe = timeframe
+	return &this
+}
+
+// NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults() *ServiceLevelObjectivesBulkDeletedErrors {
+	this := ServiceLevelObjectivesBulkDeletedErrors{}
+	return &this
 }
 
 // GetId returns the Id field value
@@ -54,9 +73,9 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) SetMessage(v string) {
 }
 
 // GetTimeframe returns the Timeframe field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() string {
+func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SloErrorTimeframe {
 	if o == nil {
-		var ret string
+		var ret SloErrorTimeframe
 		return ret
 	}
 
@@ -64,7 +83,7 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() string {
 }
 
 // SetTimeframe sets field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v string) {
+func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SloErrorTimeframe) {
 	o.Timeframe = v
 }
 

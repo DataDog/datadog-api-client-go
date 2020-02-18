@@ -24,6 +24,23 @@ type SyntheticsBrowserTestResultFull struct {
 	Status       *SyntheticsTestMonitorStatus      `json:"status,omitempty"`
 }
 
+// NewSyntheticsBrowserTestResultFull instantiates a new SyntheticsBrowserTestResultFull object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsBrowserTestResultFull() *SyntheticsBrowserTestResultFull {
+	this := SyntheticsBrowserTestResultFull{}
+	return &this
+}
+
+// NewSyntheticsBrowserTestResultFullWithDefaults instantiates a new SyntheticsBrowserTestResultFull object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsBrowserTestResultFullWithDefaults() *SyntheticsBrowserTestResultFull {
+	this := SyntheticsBrowserTestResultFull{}
+	return &this
+}
+
 // GetCheck returns the Check field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsApiTestResultFullCheck {
 	if o == nil || o.Check == nil {

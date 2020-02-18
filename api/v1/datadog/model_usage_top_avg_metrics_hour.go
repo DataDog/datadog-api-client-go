@@ -18,11 +18,27 @@ type UsageTopAvgMetricsHour struct {
 	// Average number of timeseries per hour in which the metric occurs.
 	AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
 	// Maximum number of timeseries per hour in which the metric occurs.
-	MaxMetricHour *int64 `json:"max_metric_hour,omitempty"`
-	// Contains the metric category.
-	MetricCategory *string `json:"metric_category,omitempty"`
+	MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
+	MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
 	// Contains the custom metric name.
 	MetricName *string `json:"metric_name,omitempty"`
+}
+
+// NewUsageTopAvgMetricsHour instantiates a new UsageTopAvgMetricsHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageTopAvgMetricsHour() *UsageTopAvgMetricsHour {
+	this := UsageTopAvgMetricsHour{}
+	return &this
+}
+
+// NewUsageTopAvgMetricsHourWithDefaults instantiates a new UsageTopAvgMetricsHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageTopAvgMetricsHourWithDefaults() *UsageTopAvgMetricsHour {
+	this := UsageTopAvgMetricsHour{}
+	return &this
 }
 
 // GetAvgMetricHour returns the AvgMetricHour field value if set, zero value otherwise.
@@ -92,9 +108,9 @@ func (o *UsageTopAvgMetricsHour) SetMaxMetricHour(v int64) {
 }
 
 // GetMetricCategory returns the MetricCategory field value if set, zero value otherwise.
-func (o *UsageTopAvgMetricsHour) GetMetricCategory() string {
+func (o *UsageTopAvgMetricsHour) GetMetricCategory() UsageMetricCategory {
 	if o == nil || o.MetricCategory == nil {
-		var ret string
+		var ret UsageMetricCategory
 		return ret
 	}
 	return *o.MetricCategory
@@ -102,9 +118,9 @@ func (o *UsageTopAvgMetricsHour) GetMetricCategory() string {
 
 // GetMetricCategoryOk returns a tuple with the MetricCategory field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTopAvgMetricsHour) GetMetricCategoryOk() (string, bool) {
+func (o *UsageTopAvgMetricsHour) GetMetricCategoryOk() (UsageMetricCategory, bool) {
 	if o == nil || o.MetricCategory == nil {
-		var ret string
+		var ret UsageMetricCategory
 		return ret, false
 	}
 	return *o.MetricCategory, true
@@ -119,8 +135,8 @@ func (o *UsageTopAvgMetricsHour) HasMetricCategory() bool {
 	return false
 }
 
-// SetMetricCategory gets a reference to the given string and assigns it to the MetricCategory field.
-func (o *UsageTopAvgMetricsHour) SetMetricCategory(v string) {
+// SetMetricCategory gets a reference to the given UsageMetricCategory and assigns it to the MetricCategory field.
+func (o *UsageTopAvgMetricsHour) SetMetricCategory(v UsageMetricCategory) {
 	o.MetricCategory = &v
 }
 

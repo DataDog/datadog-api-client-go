@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AggregationKey** | Pointer to **string** | An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream. | [optional] 
-**AlertType** | Pointer to **string** | If it is an alert event, set its type between: error, warning, info, and success. | [optional] 
+**AlertType** | Pointer to [**EventAlertType**](EventAlertType.md) |  | [optional] 
 **DateHappened** | Pointer to **int64** | POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 1 year, 24 days (389 days) | [optional] 
 **DeviceName** | Pointer to **[]string** | A list of device names to post the event with. | [optional] 
 **Host** | Pointer to **string** | Host name to associate with the event. Any tags associated with the host are also applied to this event. | [optional] 
 **Id** | Pointer to **int64** |  | [optional] [readonly] 
 **Payload** | Pointer to **string** |  | [optional] [readonly] 
-**Priority** | Pointer to **string** | The priority of the event: normal or low. | [optional] 
+**Priority** | Pointer to [**EventPriority**](EventPriority.md) |  | [optional] 
 **RelatedEventId** | Pointer to **int64** | ID of the parent event. Must be sent as an integer (i.e. no quotes). | [optional] 
 **SourceTypeName** | Pointer to **string** | The type of event being posted. Options: nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, ... [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags to apply to the event. | [optional] 
@@ -20,6 +20,23 @@ Name | Type | Description | Notes
 **Url** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods
+
+### NewEvent
+
+`func NewEvent(text string, title string, ) *Event`
+
+NewEvent instantiates a new Event object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewEventWithDefaults
+
+`func NewEventWithDefaults() *Event`
+
+NewEventWithDefaults instantiates a new Event object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetAggregationKey
 
@@ -48,13 +65,13 @@ SetAggregationKey gets a reference to the given string and assigns it to the Agg
 
 ### GetAlertType
 
-`func (o *Event) GetAlertType() string`
+`func (o *Event) GetAlertType() EventAlertType`
 
 GetAlertType returns the AlertType field if non-nil, zero value otherwise.
 
 ### GetAlertTypeOk
 
-`func (o *Event) GetAlertTypeOk() (string, bool)`
+`func (o *Event) GetAlertTypeOk() (EventAlertType, bool)`
 
 GetAlertTypeOk returns a tuple with the AlertType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -67,9 +84,9 @@ HasAlertType returns a boolean if a field has been set.
 
 ### SetAlertType
 
-`func (o *Event) SetAlertType(v string)`
+`func (o *Event) SetAlertType(v EventAlertType)`
 
-SetAlertType gets a reference to the given string and assigns it to the AlertType field.
+SetAlertType gets a reference to the given EventAlertType and assigns it to the AlertType field.
 
 ### GetDateHappened
 
@@ -198,13 +215,13 @@ SetPayload gets a reference to the given string and assigns it to the Payload fi
 
 ### GetPriority
 
-`func (o *Event) GetPriority() string`
+`func (o *Event) GetPriority() EventPriority`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *Event) GetPriorityOk() (string, bool)`
+`func (o *Event) GetPriorityOk() (EventPriority, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -217,9 +234,9 @@ HasPriority returns a boolean if a field has been set.
 
 ### SetPriority
 
-`func (o *Event) SetPriority(v string)`
+`func (o *Event) SetPriority(v EventPriority)`
 
-SetPriority gets a reference to the given string and assigns it to the Priority field.
+SetPriority gets a reference to the given EventPriority and assigns it to the Priority field.
 
 ### GetRelatedEventId
 

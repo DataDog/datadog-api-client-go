@@ -20,6 +20,24 @@ type LogsExclusion struct {
 	Name      string               `json:"name"`
 }
 
+// NewLogsExclusion instantiates a new LogsExclusion object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLogsExclusion(name string) *LogsExclusion {
+	this := LogsExclusion{}
+	this.Name = name
+	return &this
+}
+
+// NewLogsExclusionWithDefaults instantiates a new LogsExclusion object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLogsExclusionWithDefaults() *LogsExclusion {
+	this := LogsExclusion{}
+	return &this
+}
+
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsExclusion) GetFilter() LogsExclusionFilter {
 	if o == nil || o.Filter == nil {

@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewServiceLevelObjectivesBulkDeleted
+
+`func NewServiceLevelObjectivesBulkDeleted(data ServiceLevelObjectivesBulkDeletedData, errors []ServiceLevelObjectivesBulkDeletedErrors, ) *ServiceLevelObjectivesBulkDeleted`
+
+NewServiceLevelObjectivesBulkDeleted instantiates a new ServiceLevelObjectivesBulkDeleted object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServiceLevelObjectivesBulkDeletedWithDefaults
+
+`func NewServiceLevelObjectivesBulkDeletedWithDefaults() *ServiceLevelObjectivesBulkDeleted`
+
+NewServiceLevelObjectivesBulkDeletedWithDefaults instantiates a new ServiceLevelObjectivesBulkDeleted object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetData
 
 `func (o *ServiceLevelObjectivesBulkDeleted) GetData() ServiceLevelObjectivesBulkDeletedData`

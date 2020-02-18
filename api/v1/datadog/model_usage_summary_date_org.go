@@ -62,6 +62,23 @@ type UsageSummaryDateOrg struct {
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
 }
 
+// NewUsageSummaryDateOrg instantiates a new UsageSummaryDateOrg object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageSummaryDateOrg() *UsageSummaryDateOrg {
+	this := UsageSummaryDateOrg{}
+	return &this
+}
+
+// NewUsageSummaryDateOrgWithDefaults instantiates a new UsageSummaryDateOrg object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageSummaryDateOrgWithDefaults() *UsageSummaryDateOrg {
+	this := UsageSummaryDateOrg{}
+	return &this
+}
+
 // GetAgentHostTop99p returns the AgentHostTop99p field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetAgentHostTop99p() int64 {
 	if o == nil || o.AgentHostTop99p == nil {

@@ -18,7 +18,6 @@ Install the following dependencies:
 go get github.com/stretchr/testify/assert
 go get golang.org/x/oauth2
 go get golang.org/x/net/context
-go get github.com/antihax/optional
 ```
 
 Put the package under your project folder and add the following in import:
@@ -125,12 +124,20 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys available for your account.
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
-*LogsHTTPIntakeApi* | [**SendLog**](docs/LogsHTTPIntakeApi.md#sendlog) | **Post** /v1/input | 
+*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
+*LogsApi* | [**SendLog**](docs/LogsApi.md#sendlog) | **Post** /v1/input | 
 *LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | This endpoint returns an array of the LogIndex objects of your organization.
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | This endpoint returns an Index identified by its name.
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get the current order of your log indexes.
 *LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | This endpoint updates an Index identified by its name.
 *LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update the order of your log indexes.
+*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline in your organization.
+*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a given pipeline from your organization.
+*LogsPipelinesApi* | [**GetAllLogsPipelines**](docs/LogsPipelinesApi.md#getalllogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all pipelines from your organization.
+*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a specific pipeline from your organization.
+*LogsPipelinesApi* | [**GetLogsPipelineOrder**](docs/LogsPipelinesApi.md#getlogspipelineorder) | **Get** /api/v1/logs/config/pipeline-order | Get the current order of your pipelines.
+*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline in your organization.
+*LogsPipelinesApi* | [**UpdateLogsPipelineOrder**](docs/LogsPipelinesApi.md#updatelogspipelineorder) | **Put** /api/v1/logs/config/pipeline-order | Update the order of your pipelines.
 *MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
 *MetricsApi* | [**GetMetricMetadata**](docs/MetricsApi.md#getmetricmetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
@@ -191,6 +198,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AccessRole](docs/AccessRole.md)
+ - [ApiErrorResponse](docs/ApiErrorResponse.md)
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyListResponse](docs/ApiKeyListResponse.md)
  - [ApiKeyResponse](docs/ApiKeyResponse.md)
@@ -219,18 +228,10 @@ Class | Method | HTTP request | Description
  - [DeletedMonitor](docs/DeletedMonitor.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
- - [Error400](docs/Error400.md)
- - [Error401](docs/Error401.md)
- - [Error402](docs/Error402.md)
- - [Error403](docs/Error403.md)
- - [Error404](docs/Error404.md)
- - [Error408](docs/Error408.md)
- - [Error409](docs/Error409.md)
- - [Error413](docs/Error413.md)
- - [Error415](docs/Error415.md)
- - [Error500](docs/Error500.md)
  - [Event](docs/Event.md)
+ - [EventAlertType](docs/EventAlertType.md)
  - [EventListResponse](docs/EventListResponse.md)
+ - [EventPriority](docs/EventPriority.md)
  - [EventResponse](docs/EventResponse.md)
  - [GcpAccount](docs/GcpAccount.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
@@ -258,12 +259,39 @@ Class | Method | HTTP request | Description
  - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
  - [IpPrefixes](docs/IpPrefixes.md)
  - [IpRanges](docs/IpRanges.md)
+ - [Log](docs/Log.md)
+ - [LogContent](docs/LogContent.md)
+ - [LogsApiError](docs/LogsApiError.md)
+ - [LogsApiErrorResponse](docs/LogsApiErrorResponse.md)
+ - [LogsArithmeticProcessor](docs/LogsArithmeticProcessor.md)
+ - [LogsCategoryProcessor](docs/LogsCategoryProcessor.md)
+ - [LogsCategoryProcessorCategories](docs/LogsCategoryProcessorCategories.md)
+ - [LogsDateRemapper](docs/LogsDateRemapper.md)
  - [LogsExclusion](docs/LogsExclusion.md)
  - [LogsExclusionFilter](docs/LogsExclusionFilter.md)
+ - [LogsFilter](docs/LogsFilter.md)
+ - [LogsGeoIpParser](docs/LogsGeoIpParser.md)
+ - [LogsGrokParser](docs/LogsGrokParser.md)
+ - [LogsGrokParserRules](docs/LogsGrokParserRules.md)
  - [LogsIndex](docs/LogsIndex.md)
- - [LogsIndexFilter](docs/LogsIndexFilter.md)
+ - [LogsIndexListResponse](docs/LogsIndexListResponse.md)
  - [LogsIndexesOrder](docs/LogsIndexesOrder.md)
- - [LogsIndexesResponse](docs/LogsIndexesResponse.md)
+ - [LogsListRequest](docs/LogsListRequest.md)
+ - [LogsListRequestTime](docs/LogsListRequestTime.md)
+ - [LogsListResponse](docs/LogsListResponse.md)
+ - [LogsLookupProcessor](docs/LogsLookupProcessor.md)
+ - [LogsMessageRemapper](docs/LogsMessageRemapper.md)
+ - [LogsPipeline](docs/LogsPipeline.md)
+ - [LogsPipelinesOrder](docs/LogsPipelinesOrder.md)
+ - [LogsProcessor](docs/LogsProcessor.md)
+ - [LogsRemapper](docs/LogsRemapper.md)
+ - [LogsServiceRemapper](docs/LogsServiceRemapper.md)
+ - [LogsSort](docs/LogsSort.md)
+ - [LogsStatusRemapper](docs/LogsStatusRemapper.md)
+ - [LogsStringBuilderProcessor](docs/LogsStringBuilderProcessor.md)
+ - [LogsTraceRemapper](docs/LogsTraceRemapper.md)
+ - [LogsUrlParser](docs/LogsUrlParser.md)
+ - [LogsUserAgentParser](docs/LogsUserAgentParser.md)
  - [MetricMetadata](docs/MetricMetadata.md)
  - [MetricSearchResponse](docs/MetricSearchResponse.md)
  - [MetricSearchResponseResults](docs/MetricSearchResponseResults.md)
@@ -273,6 +301,7 @@ Class | Method | HTTP request | Description
  - [MetricsQueryResponseSeries](docs/MetricsQueryResponseSeries.md)
  - [MetricsQueryResponseUnit](docs/MetricsQueryResponseUnit.md)
  - [Monitor](docs/Monitor.md)
+ - [MonitorDeviceId](docs/MonitorDeviceId.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOptionsAggregation](docs/MonitorOptionsAggregation.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
@@ -281,6 +310,7 @@ Class | Method | HTTP request | Description
  - [MonitorStateGroupValue](docs/MonitorStateGroupValue.md)
  - [MonitorThresholdWindowOptions](docs/MonitorThresholdWindowOptions.md)
  - [MonitorThresholds](docs/MonitorThresholds.md)
+ - [MonitorType](docs/MonitorType.md)
  - [Org](docs/Org.md)
  - [OrgBilling](docs/OrgBilling.md)
  - [OrgCreateBody](docs/OrgCreateBody.md)
@@ -299,9 +329,12 @@ Class | Method | HTTP request | Description
  - [ServiceLevelObjectiveListResponse](docs/ServiceLevelObjectiveListResponse.md)
  - [ServiceLevelObjectiveQuery](docs/ServiceLevelObjectiveQuery.md)
  - [ServiceLevelObjectiveResponse](docs/ServiceLevelObjectiveResponse.md)
+ - [ServiceLevelObjectiveType](docs/ServiceLevelObjectiveType.md)
+ - [ServiceLevelObjectiveTypeNumeric](docs/ServiceLevelObjectiveTypeNumeric.md)
  - [ServiceLevelObjectivesBulkDeleted](docs/ServiceLevelObjectivesBulkDeleted.md)
  - [ServiceLevelObjectivesBulkDeletedData](docs/ServiceLevelObjectivesBulkDeletedData.md)
  - [ServiceLevelObjectivesBulkDeletedErrors](docs/ServiceLevelObjectivesBulkDeletedErrors.md)
+ - [SloErrorTimeframe](docs/SloErrorTimeframe.md)
  - [SloThreshold](docs/SloThreshold.md)
  - [SloTimeframe](docs/SloTimeframe.md)
  - [SyntheticsApiTestResultData](docs/SyntheticsApiTestResultData.md)
@@ -313,6 +346,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsAssertionOperator](docs/SyntheticsAssertionOperator.md)
  - [SyntheticsAssertionType](docs/SyntheticsAssertionType.md)
  - [SyntheticsBrowserError](docs/SyntheticsBrowserError.md)
+ - [SyntheticsBrowserErrorType](docs/SyntheticsBrowserErrorType.md)
  - [SyntheticsBrowserTestResultData](docs/SyntheticsBrowserTestResultData.md)
  - [SyntheticsBrowserTestResultFull](docs/SyntheticsBrowserTestResultFull.md)
  - [SyntheticsBrowserTestResultShort](docs/SyntheticsBrowserTestResultShort.md)
@@ -333,7 +367,9 @@ Class | Method | HTTP request | Description
  - [SyntheticsGetTestLatestResultsPayload](docs/SyntheticsGetTestLatestResultsPayload.md)
  - [SyntheticsLocation](docs/SyntheticsLocation.md)
  - [SyntheticsLocations](docs/SyntheticsLocations.md)
+ - [SyntheticsPlayingTab](docs/SyntheticsPlayingTab.md)
  - [SyntheticsResource](docs/SyntheticsResource.md)
+ - [SyntheticsResourceType](docs/SyntheticsResourceType.md)
  - [SyntheticsSetTestPauseStatusPayload](docs/SyntheticsSetTestPauseStatusPayload.md)
  - [SyntheticsSslCertificate](docs/SyntheticsSslCertificate.md)
  - [SyntheticsSslCertificateIssuer](docs/SyntheticsSslCertificateIssuer.md)
@@ -344,6 +380,8 @@ Class | Method | HTTP request | Description
  - [SyntheticsTestAuthor](docs/SyntheticsTestAuthor.md)
  - [SyntheticsTestConfig](docs/SyntheticsTestConfig.md)
  - [SyntheticsTestDetails](docs/SyntheticsTestDetails.md)
+ - [SyntheticsTestDetailsSubType](docs/SyntheticsTestDetailsSubType.md)
+ - [SyntheticsTestDetailsType](docs/SyntheticsTestDetailsType.md)
  - [SyntheticsTestMonitorStatus](docs/SyntheticsTestMonitorStatus.md)
  - [SyntheticsTestOptions](docs/SyntheticsTestOptions.md)
  - [SyntheticsTestOptionsRetry](docs/SyntheticsTestOptionsRetry.md)
@@ -351,7 +389,9 @@ Class | Method | HTTP request | Description
  - [SyntheticsTestProcessStatus](docs/SyntheticsTestProcessStatus.md)
  - [SyntheticsTestRequest](docs/SyntheticsTestRequest.md)
  - [SyntheticsTestRequestBasicAuth](docs/SyntheticsTestRequestBasicAuth.md)
+ - [SyntheticsTickInterval](docs/SyntheticsTickInterval.md)
  - [SyntheticsTiming](docs/SyntheticsTiming.md)
+ - [SyntheticsWarningType](docs/SyntheticsWarningType.md)
  - [TagToHosts](docs/TagToHosts.md)
  - [UsageFargateHour](docs/UsageFargateHour.md)
  - [UsageFargateResponse](docs/UsageFargateResponse.md)
@@ -359,6 +399,7 @@ Class | Method | HTTP request | Description
  - [UsageHostsResponse](docs/UsageHostsResponse.md)
  - [UsageLogsHour](docs/UsageLogsHour.md)
  - [UsageLogsResponse](docs/UsageLogsResponse.md)
+ - [UsageMetricCategory](docs/UsageMetricCategory.md)
  - [UsageSummaryDate](docs/UsageSummaryDate.md)
  - [UsageSummaryDateOrg](docs/UsageSummaryDateOrg.md)
  - [UsageSummaryResponse](docs/UsageSummaryResponse.md)

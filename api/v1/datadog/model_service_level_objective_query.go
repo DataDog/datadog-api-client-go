@@ -21,6 +21,25 @@ type ServiceLevelObjectiveQuery struct {
 	Numerator string `json:"numerator"`
 }
 
+// NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectiveQuery(denominator string, numerator string) *ServiceLevelObjectiveQuery {
+	this := ServiceLevelObjectiveQuery{}
+	this.Denominator = denominator
+	this.Numerator = numerator
+	return &this
+}
+
+// NewServiceLevelObjectiveQueryWithDefaults instantiates a new ServiceLevelObjectiveQuery object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectiveQueryWithDefaults() *ServiceLevelObjectiveQuery {
+	this := ServiceLevelObjectiveQuery{}
+	return &this
+}
+
 // GetDenominator returns the Denominator field value
 func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
 	if o == nil {

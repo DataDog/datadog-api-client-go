@@ -22,6 +22,23 @@ type UsageTraceHour struct {
 	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
 }
 
+// NewUsageTraceHour instantiates a new UsageTraceHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageTraceHour() *UsageTraceHour {
+	this := UsageTraceHour{}
+	return &this
+}
+
+// NewUsageTraceHourWithDefaults instantiates a new UsageTraceHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageTraceHourWithDefaults() *UsageTraceHour {
+	this := UsageTraceHour{}
+	return &this
+}
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageTraceHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {

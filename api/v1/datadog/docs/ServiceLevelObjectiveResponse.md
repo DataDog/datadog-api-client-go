@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewServiceLevelObjectiveResponse
+
+`func NewServiceLevelObjectiveResponse(data ServiceLevelObjective, ) *ServiceLevelObjectiveResponse`
+
+NewServiceLevelObjectiveResponse instantiates a new ServiceLevelObjectiveResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServiceLevelObjectiveResponseWithDefaults
+
+`func NewServiceLevelObjectiveResponseWithDefaults() *ServiceLevelObjectiveResponse`
+
+NewServiceLevelObjectiveResponseWithDefaults instantiates a new ServiceLevelObjectiveResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetData
 
 `func (o *ServiceLevelObjectiveResponse) GetData() ServiceLevelObjective`

@@ -19,6 +19,23 @@ type DashboardListListResponse struct {
 	DashboardLists *[]DashboardList `json:"dashboard_lists,omitempty"`
 }
 
+// NewDashboardListListResponse instantiates a new DashboardListListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDashboardListListResponse() *DashboardListListResponse {
+	this := DashboardListListResponse{}
+	return &this
+}
+
+// NewDashboardListListResponseWithDefaults instantiates a new DashboardListListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDashboardListListResponseWithDefaults() *DashboardListListResponse {
+	this := DashboardListListResponse{}
+	return &this
+}
+
 // GetDashboardLists returns the DashboardLists field value if set, zero value otherwise.
 func (o *DashboardListListResponse) GetDashboardLists() []DashboardList {
 	if o == nil || o.DashboardLists == nil {

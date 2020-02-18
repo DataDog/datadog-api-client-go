@@ -15,14 +15,31 @@ import (
 
 // SyntheticsResource struct for SyntheticsResource
 type SyntheticsResource struct {
-	Duration  *float64 `json:"duration,omitempty"`
-	Method    *string  `json:"method,omitempty"`
-	Size      *int64   `json:"size,omitempty"`
-	Status    *int64   `json:"status,omitempty"`
-	Timestamp *float64 `json:"timestamp,omitempty"`
-	TraceId   *string  `json:"traceId,omitempty"`
-	Type      *string  `json:"type,omitempty"`
-	Url       *string  `json:"url,omitempty"`
+	Duration  *float64                `json:"duration,omitempty"`
+	Method    *string                 `json:"method,omitempty"`
+	Size      *int64                  `json:"size,omitempty"`
+	Status    *int64                  `json:"status,omitempty"`
+	Timestamp *float64                `json:"timestamp,omitempty"`
+	TraceId   *string                 `json:"traceId,omitempty"`
+	Type      *SyntheticsResourceType `json:"type,omitempty"`
+	Url       *string                 `json:"url,omitempty"`
+}
+
+// NewSyntheticsResource instantiates a new SyntheticsResource object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsResource() *SyntheticsResource {
+	this := SyntheticsResource{}
+	return &this
+}
+
+// NewSyntheticsResourceWithDefaults instantiates a new SyntheticsResource object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsResourceWithDefaults() *SyntheticsResource {
+	this := SyntheticsResource{}
+	return &this
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
@@ -224,9 +241,9 @@ func (o *SyntheticsResource) SetTraceId(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *SyntheticsResource) GetType() string {
+func (o *SyntheticsResource) GetType() SyntheticsResourceType {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret SyntheticsResourceType
 		return ret
 	}
 	return *o.Type
@@ -234,9 +251,9 @@ func (o *SyntheticsResource) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetTypeOk() (string, bool) {
+func (o *SyntheticsResource) GetTypeOk() (SyntheticsResourceType, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret SyntheticsResourceType
 		return ret, false
 	}
 	return *o.Type, true
@@ -251,8 +268,8 @@ func (o *SyntheticsResource) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *SyntheticsResource) SetType(v string) {
+// SetType gets a reference to the given SyntheticsResourceType and assigns it to the Type field.
+func (o *SyntheticsResource) SetType(v SyntheticsResourceType) {
 	o.Type = &v
 }
 

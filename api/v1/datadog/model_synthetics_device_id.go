@@ -23,6 +23,11 @@ const (
 	SYNTHETICSDEVICEID_MOBILE_SMALL SyntheticsDeviceId = "mobile_small"
 )
 
+// Ptr returns reference to SyntheticsDeviceID value
+func (v SyntheticsDeviceId) Ptr() *SyntheticsDeviceId {
+	return &v
+}
+
 type NullableSyntheticsDeviceId struct {
 	Value        SyntheticsDeviceId
 	ExplicitNull bool

@@ -10,10 +10,27 @@ Name | Type | Description | Notes
 **Status** | Pointer to **int64** |  | [optional] 
 **Timestamp** | Pointer to **float64** |  | [optional] 
 **TraceId** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**SyntheticsResourceType**](SyntheticsResourceType.md) |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
+
+### NewSyntheticsResource
+
+`func NewSyntheticsResource() *SyntheticsResource`
+
+NewSyntheticsResource instantiates a new SyntheticsResource object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSyntheticsResourceWithDefaults
+
+`func NewSyntheticsResourceWithDefaults() *SyntheticsResource`
+
+NewSyntheticsResourceWithDefaults instantiates a new SyntheticsResource object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetDuration
 
@@ -167,13 +184,13 @@ SetTraceId gets a reference to the given string and assigns it to the TraceId fi
 
 ### GetType
 
-`func (o *SyntheticsResource) GetType() string`
+`func (o *SyntheticsResource) GetType() SyntheticsResourceType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SyntheticsResource) GetTypeOk() (string, bool)`
+`func (o *SyntheticsResource) GetTypeOk() (SyntheticsResourceType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -186,9 +203,9 @@ HasType returns a boolean if a field has been set.
 
 ### SetType
 
-`func (o *SyntheticsResource) SetType(v string)`
+`func (o *SyntheticsResource) SetType(v SyntheticsResourceType)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType gets a reference to the given SyntheticsResourceType and assigns it to the Type field.
 
 ### GetUrl
 

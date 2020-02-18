@@ -20,6 +20,26 @@ type OrgCreateBody struct {
 	Subscription OrgSubscription `json:"subscription"`
 }
 
+// NewOrgCreateBody instantiates a new OrgCreateBody object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgCreateBody(billing OrgBilling, name string, subscription OrgSubscription) *OrgCreateBody {
+	this := OrgCreateBody{}
+	this.Billing = billing
+	this.Name = name
+	this.Subscription = subscription
+	return &this
+}
+
+// NewOrgCreateBodyWithDefaults instantiates a new OrgCreateBody object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgCreateBodyWithDefaults() *OrgCreateBody {
+	this := OrgCreateBody{}
+	return &this
+}
+
 // GetBilling returns the Billing field value
 func (o *OrgCreateBody) GetBilling() OrgBilling {
 	if o == nil {

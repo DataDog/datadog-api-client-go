@@ -15,10 +15,30 @@ import (
 
 // SyntheticsBrowserError struct for SyntheticsBrowserError
 type SyntheticsBrowserError struct {
-	Description string `json:"description"`
-	Name        string `json:"name"`
-	StatusCode  *int64 `json:"statusCode,omitempty"`
-	Type        string `json:"type"`
+	Description string                     `json:"description"`
+	Name        string                     `json:"name"`
+	StatusCode  *int64                     `json:"statusCode,omitempty"`
+	Type        SyntheticsBrowserErrorType `json:"type"`
+}
+
+// NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsBrowserError(description string, name string, type_ SyntheticsBrowserErrorType) *SyntheticsBrowserError {
+	this := SyntheticsBrowserError{}
+	this.Description = description
+	this.Name = name
+	this.Type = type_
+	return &this
+}
+
+// NewSyntheticsBrowserErrorWithDefaults instantiates a new SyntheticsBrowserError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsBrowserErrorWithDefaults() *SyntheticsBrowserError {
+	this := SyntheticsBrowserError{}
+	return &this
 }
 
 // GetDescription returns the Description field value
@@ -85,9 +105,9 @@ func (o *SyntheticsBrowserError) SetStatusCode(v int64) {
 }
 
 // GetType returns the Type field value
-func (o *SyntheticsBrowserError) GetType() string {
+func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType {
 	if o == nil {
-		var ret string
+		var ret SyntheticsBrowserErrorType
 		return ret
 	}
 
@@ -95,7 +115,7 @@ func (o *SyntheticsBrowserError) GetType() string {
 }
 
 // SetType sets field value
-func (o *SyntheticsBrowserError) SetType(v string) {
+func (o *SyntheticsBrowserError) SetType(v SyntheticsBrowserErrorType) {
 	o.Type = v
 }
 

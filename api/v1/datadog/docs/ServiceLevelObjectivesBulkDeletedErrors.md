@@ -6,9 +6,26 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | The ID of the service level objective object associated with this error. | 
 **Message** | Pointer to **string** | The error message | 
-**Timeframe** | Pointer to **string** | The timeframe of the threshold associated with this error or \&quot;all\&quot; if all thresholds are affected. | 
+**Timeframe** | Pointer to [**SloErrorTimeframe**](SLOErrorTimeframe.md) |  | 
 
 ## Methods
+
+### NewServiceLevelObjectivesBulkDeletedErrors
+
+`func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe SloErrorTimeframe, ) *ServiceLevelObjectivesBulkDeletedErrors`
+
+NewServiceLevelObjectivesBulkDeletedErrors instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults
+
+`func NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults() *ServiceLevelObjectivesBulkDeletedErrors`
+
+NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
@@ -62,13 +79,13 @@ SetMessage gets a reference to the given string and assigns it to the Message fi
 
 ### GetTimeframe
 
-`func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() string`
+`func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SloErrorTimeframe`
 
 GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
 
 ### GetTimeframeOk
 
-`func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframeOk() (string, bool)`
+`func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframeOk() (SloErrorTimeframe, bool)`
 
 GetTimeframeOk returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +98,9 @@ HasTimeframe returns a boolean if a field has been set.
 
 ### SetTimeframe
 
-`func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v string)`
+`func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SloErrorTimeframe)`
 
-SetTimeframe gets a reference to the given string and assigns it to the Timeframe field.
+SetTimeframe gets a reference to the given SloErrorTimeframe and assigns it to the Timeframe field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

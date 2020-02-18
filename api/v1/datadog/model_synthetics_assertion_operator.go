@@ -18,16 +18,21 @@ type SyntheticsAssertionOperator string
 
 // List of SyntheticsAssertionOperator
 const (
-	SYNTHETICSASSERTIONOPERATOR_CONTAINS         SyntheticsAssertionOperator = "contains"
-	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN SyntheticsAssertionOperator = "doesNotContain"
-	SYNTHETICSASSERTIONOPERATOR_IS               SyntheticsAssertionOperator = "is"
-	SYNTHETICSASSERTIONOPERATOR_IS_NOT           SyntheticsAssertionOperator = "isNot"
-	SYNTHETICSASSERTIONOPERATOR_LESS_THAN        SyntheticsAssertionOperator = "lessThan"
-	SYNTHETICSASSERTIONOPERATOR_MATCHES          SyntheticsAssertionOperator = "matches"
-	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH   SyntheticsAssertionOperator = "doesNotMatch"
-	SYNTHETICSASSERTIONOPERATOR_VALIDATES        SyntheticsAssertionOperator = "validates"
-	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_THAN  SyntheticsAssertionOperator = "isInMoreThan"
+	SYNTHETICSASSERTIONOPERATOR_CONTAINS             SyntheticsAssertionOperator = "contains"
+	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN     SyntheticsAssertionOperator = "doesNotContain"
+	SYNTHETICSASSERTIONOPERATOR_IS                   SyntheticsAssertionOperator = "is"
+	SYNTHETICSASSERTIONOPERATOR_IS_NOT               SyntheticsAssertionOperator = "isNot"
+	SYNTHETICSASSERTIONOPERATOR_LESS_THAN            SyntheticsAssertionOperator = "lessThan"
+	SYNTHETICSASSERTIONOPERATOR_MATCHES              SyntheticsAssertionOperator = "matches"
+	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH       SyntheticsAssertionOperator = "doesNotMatch"
+	SYNTHETICSASSERTIONOPERATOR_VALIDATES            SyntheticsAssertionOperator = "validates"
+	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN SyntheticsAssertionOperator = "isInMoreThan"
 )
+
+// Ptr returns reference to SyntheticsAssertionOperator value
+func (v SyntheticsAssertionOperator) Ptr() *SyntheticsAssertionOperator {
+	return &v
+}
 
 type NullableSyntheticsAssertionOperator struct {
 	Value        SyntheticsAssertionOperator

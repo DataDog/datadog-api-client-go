@@ -39,6 +39,11 @@ const (
 	SYNTHETICSSTEPTYPE_WAIT                      SyntheticsStepType = "wait"
 )
 
+// Ptr returns reference to SyntheticsStepType value
+func (v SyntheticsStepType) Ptr() *SyntheticsStepType {
+	return &v
+}
+
 type NullableSyntheticsStepType struct {
 	Value        SyntheticsStepType
 	ExplicitNull bool

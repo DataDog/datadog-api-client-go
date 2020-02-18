@@ -18,6 +18,23 @@ type SyntheticsDeleteTestsPayload struct {
 	PublicIds *[]string `json:"public_ids,omitempty"`
 }
 
+// NewSyntheticsDeleteTestsPayload instantiates a new SyntheticsDeleteTestsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSyntheticsDeleteTestsPayload() *SyntheticsDeleteTestsPayload {
+	this := SyntheticsDeleteTestsPayload{}
+	return &this
+}
+
+// NewSyntheticsDeleteTestsPayloadWithDefaults instantiates a new SyntheticsDeleteTestsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSyntheticsDeleteTestsPayloadWithDefaults() *SyntheticsDeleteTestsPayload {
+	this := SyntheticsDeleteTestsPayload{}
+	return &this
+}
+
 // GetPublicIds returns the PublicIds field value if set, zero value otherwise.
 func (o *SyntheticsDeleteTestsPayload) GetPublicIds() []string {
 	if o == nil || o.PublicIds == nil {

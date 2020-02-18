@@ -19,6 +19,23 @@ type HistoryServiceLevelObjectiveResponseError struct {
 	Error *string `json:"error,omitempty"`
 }
 
+// NewHistoryServiceLevelObjectiveResponseError instantiates a new HistoryServiceLevelObjectiveResponseError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveResponseError() *HistoryServiceLevelObjectiveResponseError {
+	this := HistoryServiceLevelObjectiveResponseError{}
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveResponseErrorWithDefaults instantiates a new HistoryServiceLevelObjectiveResponseError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveResponseErrorWithDefaults() *HistoryServiceLevelObjectiveResponseError {
+	this := HistoryServiceLevelObjectiveResponseError{}
+	return &this
+}
+
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *HistoryServiceLevelObjectiveResponseError) GetError() string {
 	if o == nil || o.Error == nil {

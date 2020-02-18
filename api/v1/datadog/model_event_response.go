@@ -19,6 +19,23 @@ type EventResponse struct {
 	Status *string `json:"status,omitempty"`
 }
 
+// NewEventResponse instantiates a new EventResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEventResponse() *EventResponse {
+	this := EventResponse{}
+	return &this
+}
+
+// NewEventResponseWithDefaults instantiates a new EventResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEventResponseWithDefaults() *EventResponse {
+	this := EventResponse{}
+	return &this
+}
+
 // GetEvent returns the Event field value if set, zero value otherwise.
 func (o *EventResponse) GetEvent() Event {
 	if o == nil || o.Event == nil {

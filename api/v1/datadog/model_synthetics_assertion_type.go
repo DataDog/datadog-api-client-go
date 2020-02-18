@@ -26,6 +26,11 @@ const (
 	SYNTHETICSASSERTIONTYPE_PROPERTY      SyntheticsAssertionType = "property"
 )
 
+// Ptr returns reference to SyntheticsAssertionType value
+func (v SyntheticsAssertionType) Ptr() *SyntheticsAssertionType {
+	return &v
+}
+
 type NullableSyntheticsAssertionType struct {
 	Value        SyntheticsAssertionType
 	ExplicitNull bool
