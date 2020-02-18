@@ -58,7 +58,19 @@ func TestPagerDutyLifecycle(t *testing.T) {
 		ApiToken:  datadog.PtrString("y_NbAkKc66ryYTWUXYEu"),
 	}
 
-	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegration(TESTAUTH).Body(pagerDutyRequest).Execute()
+	servicesAndSchedules := datadog.PagerDutyServicesAndSchedules{
+		Services: &[]datadog.PagerDutyService{{
+			ServiceName: "test_go",
+			ServiceKey:  "deadbeef",
+		}},
+		Schedules: &[]string{"https://_deadbeef.pagerduty.com/schedules#DEAD3F"},
+	}
+
+	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(TESTAUTH).Body(servicesAndSchedules).Execute()
+	assert.NilError(t, err)
+	assert.Equal(t, httpresp.StatusCode, 404)
+
+	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegration(TESTAUTH).Body(pagerDutyRequest).Execute()
 	defer deletePagerDuty()
 	assert.NilError(t, err)
 	assert.Equal(t, httpresp.StatusCode, 204)
@@ -67,13 +79,6 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	assert.NilError(t, err)
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	servicesAndSchedules := datadog.PagerDutyServicesAndSchedules{
-		Services: &[]datadog.PagerDutyService{{
-			ServiceName: "test_go",
-			ServiceKey:  "deadbeef",
-		}},
-		Schedules: &[]string{"https://_deadbeef.pagerduty.com/schedules#DEAD3F"},
-	}
 	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(TESTAUTH).Body(servicesAndSchedules).Execute()
 	assert.NilError(t, err)
 	assert.Equal(t, httpresp.StatusCode, 204)
