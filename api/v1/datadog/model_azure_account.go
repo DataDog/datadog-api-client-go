@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -278,25 +277,65 @@ func (o *AzureAccount) SetTenantName(v string) {
 	o.TenantName = &v
 }
 
+func (o AzureAccount) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.ClientId != nil {
+		toSerialize["client_id"] = o.ClientId
+	}
+	if o.ClientSecret != nil {
+		toSerialize["client_secret"] = o.ClientSecret
+	}
+	if o.Errors != nil {
+		toSerialize["errors"] = o.Errors
+	}
+	if o.HostFilters != nil {
+		toSerialize["host_filters"] = o.HostFilters
+	}
+	if o.NewClientId != nil {
+		toSerialize["new_client_id"] = o.NewClientId
+	}
+	if o.NewTenantName != nil {
+		toSerialize["new_tenant_name"] = o.NewTenantName
+	}
+	if o.TenantName != nil {
+		toSerialize["tenant_name"] = o.TenantName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAzureAccount struct {
-	Value        AzureAccount
-	ExplicitNull bool
+	value *AzureAccount
+	isSet bool
+}
+
+func (v NullableAzureAccount) Get() *AzureAccount {
+	return v.value
+}
+
+func (v NullableAzureAccount) Set(val *AzureAccount) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAzureAccount) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAzureAccount) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAzureAccount(val *AzureAccount) *NullableAzureAccount {
+	return &NullableAzureAccount{value: val, isSet: true}
 }
 
 func (v NullableAzureAccount) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAzureAccount) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

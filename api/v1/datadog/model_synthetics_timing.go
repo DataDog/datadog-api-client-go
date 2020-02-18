@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -340,25 +339,71 @@ func (o *SyntheticsTiming) SetWait(v float64) {
 	o.Wait = &v
 }
 
+func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Dns != nil {
+		toSerialize["dns"] = o.Dns
+	}
+	if o.Download != nil {
+		toSerialize["download"] = o.Download
+	}
+	if o.FirstByte != nil {
+		toSerialize["firstByte"] = o.FirstByte
+	}
+	if o.Handshake != nil {
+		toSerialize["handshake"] = o.Handshake
+	}
+	if o.Redirect != nil {
+		toSerialize["redirect"] = o.Redirect
+	}
+	if o.Ssl != nil {
+		toSerialize["ssl"] = o.Ssl
+	}
+	if o.Tcp != nil {
+		toSerialize["tcp"] = o.Tcp
+	}
+	if o.Total != nil {
+		toSerialize["total"] = o.Total
+	}
+	if o.Wait != nil {
+		toSerialize["wait"] = o.Wait
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsTiming struct {
-	Value        SyntheticsTiming
-	ExplicitNull bool
+	value *SyntheticsTiming
+	isSet bool
+}
+
+func (v NullableSyntheticsTiming) Get() *SyntheticsTiming {
+	return v.value
+}
+
+func (v NullableSyntheticsTiming) Set(val *SyntheticsTiming) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTiming) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTiming) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTiming(val *SyntheticsTiming) *NullableSyntheticsTiming {
+	return &NullableSyntheticsTiming{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTiming) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTiming) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -103,25 +102,50 @@ func (o *LogsCategoryProcessorCategories) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsCategoryProcessorCategories) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Filter != nil {
+		toSerialize["filter"] = o.Filter
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsCategoryProcessorCategories struct {
-	Value        LogsCategoryProcessorCategories
-	ExplicitNull bool
+	value *LogsCategoryProcessorCategories
+	isSet bool
+}
+
+func (v NullableLogsCategoryProcessorCategories) Get() *LogsCategoryProcessorCategories {
+	return v.value
+}
+
+func (v NullableLogsCategoryProcessorCategories) Set(val *LogsCategoryProcessorCategories) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsCategoryProcessorCategories) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsCategoryProcessorCategories) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsCategoryProcessorCategories(val *LogsCategoryProcessorCategories) *NullableLogsCategoryProcessorCategories {
+	return &NullableLogsCategoryProcessorCategories{value: val, isSet: true}
 }
 
 func (v NullableLogsCategoryProcessorCategories) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsCategoryProcessorCategories) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -29,24 +28,37 @@ func (v MonitorDeviceId) Ptr() *MonitorDeviceId {
 }
 
 type NullableMonitorDeviceId struct {
-	Value        MonitorDeviceId
-	ExplicitNull bool
+	value *MonitorDeviceId
+	isSet bool
+}
+
+func (v NullableMonitorDeviceId) Get() *MonitorDeviceId {
+	return v.value
+}
+
+func (v NullableMonitorDeviceId) Set(val *MonitorDeviceId) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorDeviceId) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorDeviceId) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorDeviceId(val *MonitorDeviceId) *NullableMonitorDeviceId {
+	return &NullableMonitorDeviceId{value: val, isSet: true}
 }
 
 func (v NullableMonitorDeviceId) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorDeviceId) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

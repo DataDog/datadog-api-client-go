@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *SyntheticsSetTestPauseStatusPayload) SetNewStatus(v SyntheticsTestPause
 	o.NewStatus = &v
 }
 
+func (o SyntheticsSetTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.NewStatus != nil {
+		toSerialize["new_status"] = o.NewStatus
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsSetTestPauseStatusPayload struct {
-	Value        SyntheticsSetTestPauseStatusPayload
-	ExplicitNull bool
+	value *SyntheticsSetTestPauseStatusPayload
+	isSet bool
+}
+
+func (v NullableSyntheticsSetTestPauseStatusPayload) Get() *SyntheticsSetTestPauseStatusPayload {
+	return v.value
+}
+
+func (v NullableSyntheticsSetTestPauseStatusPayload) Set(val *SyntheticsSetTestPauseStatusPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsSetTestPauseStatusPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsSetTestPauseStatusPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsSetTestPauseStatusPayload(val *SyntheticsSetTestPauseStatusPayload) *NullableSyntheticsSetTestPauseStatusPayload {
+	return &NullableSyntheticsSetTestPauseStatusPayload{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsSetTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsSetTestPauseStatusPayload) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

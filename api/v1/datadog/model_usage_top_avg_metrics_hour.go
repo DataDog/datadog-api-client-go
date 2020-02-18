@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -173,25 +172,56 @@ func (o *UsageTopAvgMetricsHour) SetMetricName(v string) {
 	o.MetricName = &v
 }
 
+func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AvgMetricHour != nil {
+		toSerialize["avg_metric_hour"] = o.AvgMetricHour
+	}
+	if o.MaxMetricHour != nil {
+		toSerialize["max_metric_hour"] = o.MaxMetricHour
+	}
+	if o.MetricCategory != nil {
+		toSerialize["metric_category"] = o.MetricCategory
+	}
+	if o.MetricName != nil {
+		toSerialize["metric_name"] = o.MetricName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageTopAvgMetricsHour struct {
-	Value        UsageTopAvgMetricsHour
-	ExplicitNull bool
+	value *UsageTopAvgMetricsHour
+	isSet bool
+}
+
+func (v NullableUsageTopAvgMetricsHour) Get() *UsageTopAvgMetricsHour {
+	return v.value
+}
+
+func (v NullableUsageTopAvgMetricsHour) Set(val *UsageTopAvgMetricsHour) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageTopAvgMetricsHour) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageTopAvgMetricsHour) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageTopAvgMetricsHour(val *UsageTopAvgMetricsHour) *NullableUsageTopAvgMetricsHour {
+	return &NullableUsageTopAvgMetricsHour{value: val, isSet: true}
 }
 
 func (v NullableUsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageTopAvgMetricsHour) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

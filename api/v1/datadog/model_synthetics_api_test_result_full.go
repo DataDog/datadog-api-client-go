@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -272,25 +271,65 @@ func (o *SyntheticsApiTestResultFull) SetStatus(v SyntheticsTestMonitorStatus) {
 	o.Status = &v
 }
 
+func (o SyntheticsApiTestResultFull) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Check != nil {
+		toSerialize["check"] = o.Check
+	}
+	if o.CheckTime != nil {
+		toSerialize["check_time"] = o.CheckTime
+	}
+	if o.CheckVersion != nil {
+		toSerialize["check_version"] = o.CheckVersion
+	}
+	if o.ProbeDc != nil {
+		toSerialize["probe_dc"] = o.ProbeDc
+	}
+	if o.Result != nil {
+		toSerialize["result"] = o.Result
+	}
+	if o.ResultId != nil {
+		toSerialize["result_id"] = o.ResultId
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsApiTestResultFull struct {
-	Value        SyntheticsApiTestResultFull
-	ExplicitNull bool
+	value *SyntheticsApiTestResultFull
+	isSet bool
+}
+
+func (v NullableSyntheticsApiTestResultFull) Get() *SyntheticsApiTestResultFull {
+	return v.value
+}
+
+func (v NullableSyntheticsApiTestResultFull) Set(val *SyntheticsApiTestResultFull) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsApiTestResultFull) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsApiTestResultFull) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsApiTestResultFull(val *SyntheticsApiTestResultFull) *NullableSyntheticsApiTestResultFull {
+	return &NullableSyntheticsApiTestResultFull{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsApiTestResultFull) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsApiTestResultFull) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

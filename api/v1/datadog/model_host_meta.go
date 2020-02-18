@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *HostMeta) SetNixV(v []string) {
 	o.NixV = &v
 }
 
+func (o HostMeta) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.NixV != nil {
+		toSerialize["nixV"] = o.NixV
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHostMeta struct {
-	Value        HostMeta
-	ExplicitNull bool
+	value *HostMeta
+	isSet bool
+}
+
+func (v NullableHostMeta) Get() *HostMeta {
+	return v.value
+}
+
+func (v NullableHostMeta) Set(val *HostMeta) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHostMeta) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHostMeta) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHostMeta(val *HostMeta) *NullableHostMeta {
+	return &NullableHostMeta{value: val, isSet: true}
 }
 
 func (v NullableHostMeta) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHostMeta) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

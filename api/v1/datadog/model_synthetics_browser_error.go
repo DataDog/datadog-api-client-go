@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -119,25 +118,56 @@ func (o *SyntheticsBrowserError) SetType(v SyntheticsBrowserErrorType) {
 	o.Type = v
 }
 
+func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.StatusCode != nil {
+		toSerialize["statusCode"] = o.StatusCode
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsBrowserError struct {
-	Value        SyntheticsBrowserError
-	ExplicitNull bool
+	value *SyntheticsBrowserError
+	isSet bool
+}
+
+func (v NullableSyntheticsBrowserError) Get() *SyntheticsBrowserError {
+	return v.value
+}
+
+func (v NullableSyntheticsBrowserError) Set(val *SyntheticsBrowserError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsBrowserError) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsBrowserError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsBrowserError(val *SyntheticsBrowserError) *NullableSyntheticsBrowserError {
+	return &NullableSyntheticsBrowserError{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsBrowserError) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsBrowserError) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

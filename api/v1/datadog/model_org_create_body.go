@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -85,25 +84,53 @@ func (o *OrgCreateBody) SetSubscription(v OrgSubscription) {
 	o.Subscription = v
 }
 
+func (o OrgCreateBody) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["billing"] = o.Billing
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["subscription"] = o.Subscription
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgCreateBody struct {
-	Value        OrgCreateBody
-	ExplicitNull bool
+	value *OrgCreateBody
+	isSet bool
+}
+
+func (v NullableOrgCreateBody) Get() *OrgCreateBody {
+	return v.value
+}
+
+func (v NullableOrgCreateBody) Set(val *OrgCreateBody) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgCreateBody) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgCreateBody) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgCreateBody(val *OrgCreateBody) *NullableOrgCreateBody {
+	return &NullableOrgCreateBody{value: val, isSet: true}
 }
 
 func (v NullableOrgCreateBody) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgCreateBody) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

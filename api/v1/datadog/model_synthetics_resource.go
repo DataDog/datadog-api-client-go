@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -306,25 +305,68 @@ func (o *SyntheticsResource) SetUrl(v string) {
 	o.Url = &v
 }
 
+func (o SyntheticsResource) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Duration != nil {
+		toSerialize["duration"] = o.Duration
+	}
+	if o.Method != nil {
+		toSerialize["method"] = o.Method
+	}
+	if o.Size != nil {
+		toSerialize["size"] = o.Size
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Timestamp != nil {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if o.TraceId != nil {
+		toSerialize["traceId"] = o.TraceId
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.Url != nil {
+		toSerialize["url"] = o.Url
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsResource struct {
-	Value        SyntheticsResource
-	ExplicitNull bool
+	value *SyntheticsResource
+	isSet bool
+}
+
+func (v NullableSyntheticsResource) Get() *SyntheticsResource {
+	return v.value
+}
+
+func (v NullableSyntheticsResource) Set(val *SyntheticsResource) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsResource) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsResource) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsResource(val *SyntheticsResource) *NullableSyntheticsResource {
+	return &NullableSyntheticsResource{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsResource) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsResource) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

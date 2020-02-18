@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -136,25 +135,59 @@ func (o *SyntheticsDevice) SetWidth(v int64) {
 	o.Width = v
 }
 
+func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["height"] = o.Height
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.IsMobile != nil {
+		toSerialize["isMobile"] = o.IsMobile
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["width"] = o.Width
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsDevice struct {
-	Value        SyntheticsDevice
-	ExplicitNull bool
+	value *SyntheticsDevice
+	isSet bool
+}
+
+func (v NullableSyntheticsDevice) Get() *SyntheticsDevice {
+	return v.value
+}
+
+func (v NullableSyntheticsDevice) Set(val *SyntheticsDevice) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsDevice) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsDevice) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsDevice(val *SyntheticsDevice) *NullableSyntheticsDevice {
+	return &NullableSyntheticsDevice{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsDevice) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsDevice) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

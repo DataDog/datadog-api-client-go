@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -182,30 +181,61 @@ func (o *LogsTraceRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Sources != nil {
+		toSerialize["sources"] = o.Sources
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 // AsLogsProcessor wraps this instance of LogsTraceRemapper in LogsProcessor
 func (s *LogsTraceRemapper) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
 type NullableLogsTraceRemapper struct {
-	Value        LogsTraceRemapper
-	ExplicitNull bool
+	value *LogsTraceRemapper
+	isSet bool
+}
+
+func (v NullableLogsTraceRemapper) Get() *LogsTraceRemapper {
+	return v.value
+}
+
+func (v NullableLogsTraceRemapper) Set(val *LogsTraceRemapper) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsTraceRemapper) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsTraceRemapper) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsTraceRemapper(val *LogsTraceRemapper) *NullableLogsTraceRemapper {
+	return &NullableLogsTraceRemapper{value: val, isSet: true}
 }
 
 func (v NullableLogsTraceRemapper) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsTraceRemapper) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

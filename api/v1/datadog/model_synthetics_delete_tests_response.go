@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *SyntheticsDeleteTestsResponse) SetDeletedTests(v []SyntheticsDeleteTest
 	o.DeletedTests = &v
 }
 
+func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.DeletedTests != nil {
+		toSerialize["deleted_tests"] = o.DeletedTests
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsDeleteTestsResponse struct {
-	Value        SyntheticsDeleteTestsResponse
-	ExplicitNull bool
+	value *SyntheticsDeleteTestsResponse
+	isSet bool
+}
+
+func (v NullableSyntheticsDeleteTestsResponse) Get() *SyntheticsDeleteTestsResponse {
+	return v.value
+}
+
+func (v NullableSyntheticsDeleteTestsResponse) Set(val *SyntheticsDeleteTestsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsDeleteTestsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsDeleteTestsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsDeleteTestsResponse(val *SyntheticsDeleteTestsResponse) *NullableSyntheticsDeleteTestsResponse {
+	return &NullableSyntheticsDeleteTestsResponse{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsDeleteTestsResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
