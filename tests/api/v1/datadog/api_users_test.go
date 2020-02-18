@@ -11,14 +11,13 @@ import (
 	"log"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
 )
 
 func generateUniqueUser(t *testing.T) datadog.User {
-	prefix := fmt.Sprintf("%s-%d", t.Name(), time.Now().UnixNano())
+	prefix := fmt.Sprintf("%s-%d", t.Name(), TESTCLOCK.Now().UnixNano())
 	email := strings.ToLower(prefix) + "@integration-tests-accnt-for-sdk-ci.com"
 	return datadog.User{
 		Name:       datadog.PtrString(prefix),
@@ -105,6 +104,9 @@ func TestUpdateUser(t *testing.T) {
 
 func TestDisableUser(t *testing.T) {
 	// We already test this in the disableUser cleanup function, but good to have an explicit test
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
 	testUser := generateUniqueUser(t)
 	defer disableUser(testUser.GetHandle())
 

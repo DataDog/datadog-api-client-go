@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"log"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -21,7 +20,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	now := time.Now()
+	now := TESTCLOCK.Now()
 
 	// Create a pipeline
 	grokParser := datadog.NewLogsGrokParserWithDefaults()

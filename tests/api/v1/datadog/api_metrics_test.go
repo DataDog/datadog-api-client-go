@@ -37,7 +37,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 		testPoints := [][]float64{{5, 10.5}}
 		metricsPayload := datadog.MetricsPayload{
 			Series: &[]datadog.Series{
-				datadog.Series{
+				{
 					Host:     &testHost,
 					Type:     &testType,
 					Interval: &testInterval,
@@ -81,7 +81,7 @@ func TestMetricSubmissionMock(t *testing.T) {
 		testTags := []string{"tagA", "tagB"}
 		metricsPayload := datadog.MetricsPayload{
 			Series: &[]datadog.Series{
-				datadog.Series{
+				{
 					Host:   &testHost,
 					Metric: "hello.world",
 					Points: [][]float64{{5, 10.5}, {6, 11}},
@@ -121,7 +121,7 @@ func TestMetrics(t *testing.T) {
 	defer teardownTest(t)
 
 	api := TESTAPICLIENT.MetricsApi
-	now := time.Now().Unix()
+	now := TESTCLOCK.Now().Unix()
 
 	testMetric := fmt.Sprintf("go.client.test.%d", now)
 	testPoints := [][]float64{{float64(now - 60), 10.5}, {float64(now), 11}}
@@ -130,7 +130,7 @@ func TestMetrics(t *testing.T) {
 	testQuery := fmt.Sprintf("avg:%s{bar:baz}by{host}", testMetric)
 	metricsPayload := datadog.MetricsPayload{
 		Series: &[]datadog.Series{
-			datadog.Series{
+			{
 				Host:   &testHost,
 				Metric: testMetric,
 				Points: testPoints,

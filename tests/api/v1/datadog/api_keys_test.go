@@ -9,6 +9,7 @@ package test
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"testing"
 	"time"
 
@@ -16,10 +17,20 @@ import (
 	"gotest.tools/assert"
 )
 
+func removeSecretsFromAPIKey(k *datadog.ApiKey) {
+	if k != nil {
+		k.Key = datadog.PtrString("1234567890123456789012")
+	}
+}
+
 func TestApiKeyFunctions(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
+
+	// TODO remove when API keys support non secret primary identifiers
+	// NOTE do not forget to replace time -> TESTCLOCK
+	TESTAPICLIENT.GetConfig().HTTPClient = http.DefaultClient
 
 	// Create API Key
 	// ----------------------------------
@@ -62,7 +73,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	assert.Equal(t, createAPIKeyName, getAPIKeyName)
 	assert.Equal(t, createAPIKeyCreated, getAPIKeyCreated)
 	assert.Equal(t, createAPIKeyCreatedBy, getAPIKeyCreatedBy)
-	assert.Equal(t, createAPIKeyValue, getAPIKeyValue)
+	assert.Assert(t, getAPIKeyValue != "")
 
 	// Get All API Keys
 	// ----------------------------------
@@ -79,7 +90,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Edit API Key
 	// ----------------------------------
-	newAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	newAPIKeyName := fmt.Sprintf("new-%s", testAPIKeyName)
 	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditAPIKey(TESTAUTH, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -123,6 +134,10 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
+
+	// TODO remove when API keys support non secret primary identifiers
+	// NOTE do not forget to replace time -> TESTCLOCK
+	TESTAPICLIENT.GetConfig().HTTPClient = http.DefaultClient
 
 	// Create Application Key
 	// ----------------------------------
@@ -178,7 +193,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Edit Application Key
 	// ----------------------------------
-	newAppKeyName := fmt.Sprintf("New %s:%d", t.Name(), time.Now().UnixNano())
+	newAppKeyName := fmt.Sprintf("New %s", testAppKeyName)
 	appKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditApplicationKey(TESTAUTH, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)

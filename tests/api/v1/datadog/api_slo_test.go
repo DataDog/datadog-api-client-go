@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"log"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -99,7 +98,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	assert.Equal(t, slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
-	now := time.Now().Unix()
+	now := TESTCLOCK.Now().Unix()
 	_, httpresp, err = TESTAPICLIENT.SLOApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
 		FromTs(fmt.Sprintf("%d", now-11)).ToTs(fmt.Sprintf("%d", now-1)).Execute()
 	// the contents of history really depend on the org that this test is running in, so we just ensure
@@ -164,7 +163,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 	assert.Equal(t, slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
-	now := time.Now().Unix()
+	now := TESTCLOCK.Now().Unix()
 	_, httpresp, err = TESTAPICLIENT.SLOApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
 		FromTs(fmt.Sprintf("%d", now-11)).ToTs(fmt.Sprintf("%d", now-1)).Execute()
 	// the contents of history really depend on the org that this test is running in, so we just ensure
@@ -232,7 +231,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	var deleteResp datadog.ServiceLevelObjectivesBulkDeleted
 	deleteResp, httpresp, err = TESTAPICLIENT.SLOApi.BulkPartialDeleteSLO(TESTAUTH).
 		Body(map[string][]datadog.SloTimeframe{
-			eventSLO.GetId(): []datadog.SloTimeframe{datadog.SLOTIMEFRAME_SEVEN_DAYS},
+			eventSLO.GetId(): {datadog.SLOTIMEFRAME_SEVEN_DAYS},
 		}).Execute()
 
 	if err != nil {

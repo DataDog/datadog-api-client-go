@@ -4,3 +4,5 @@ go get github.com/pkg/errors
 go get github.com/google/go-cmp
 go get gotest.tools
 go get golang.org/x/lint/golint
+go get github.com/dnaeon/go-vcr
+go get github.com/jonboulle/clockwork

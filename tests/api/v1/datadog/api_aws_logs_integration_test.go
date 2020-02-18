@@ -18,7 +18,7 @@ import (
 )
 
 func generateUniqueAwsLambdaAccounts() (datadog.AwsAccount, datadog.AwsAccountAndLambdaRequest, datadog.AwsLogsServicesRequest) {
-	accountID := fmt.Sprintf("go_%09d", time.Now().UnixNano()%1000000000)
+	accountID := fmt.Sprintf("go_%09d", TESTCLOCK.Now().UnixNano()%1000000000)
 	var uniqueAwsAccount = datadog.AwsAccount{
 		AccountId:                     &accountID,
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),

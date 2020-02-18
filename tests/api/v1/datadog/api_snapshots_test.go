@@ -8,7 +8,6 @@ package test
 
 import (
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -18,7 +17,7 @@ func TestGetGraphSnapshot(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	start := time.Now().Unix()
+	start := TESTCLOCK.Now().Unix()
 	end := start + 24*60*60
 	graphDef := `{"requests": [{"q": "system.load.1{*}"}]}`
 	metricQuery := "system.load.1{*}"

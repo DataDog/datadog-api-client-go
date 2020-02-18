@@ -19,7 +19,7 @@ import (
 )
 
 func generateUniqueAwsAccount() datadog.AwsAccount {
-	accountID := fmt.Sprintf("go_%09d", time.Now().UnixNano()%1000000000)
+	accountID := fmt.Sprintf("go_%09d", TESTCLOCK.Now().UnixNano()%1000000000)
 	return datadog.AwsAccount{
 		AccountId:                     &accountID,
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),

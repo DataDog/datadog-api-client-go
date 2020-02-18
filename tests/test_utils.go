@@ -9,6 +9,7 @@ package tests
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"time"
 )
@@ -19,7 +20,9 @@ func Retry(interval time.Duration, count int, call func() bool) error {
 		if call() {
 			return nil
 		}
-		time.Sleep(interval)
+		if os.Getenv("RECORD") == "true" {
+			time.Sleep(interval)
+		}
 	}
 	return fmt.Errorf("Retry error: failed to satisfy the condition after %d times", count)
 }
