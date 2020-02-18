@@ -42,7 +42,7 @@ func TestPagerDutyDelete204(t *testing.T) {
 
 	ensureNoPagerDuty(t)
 
-	_, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(TESTAUTH).Execute()
+	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(TESTAUTH).Execute()
 	assert.NilError(t, err)
 	assert.Equal(t, httpresp.StatusCode, 204)
 }
@@ -53,7 +53,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 
 	ensureNoPagerDuty(t)
 
-	pagerDutyRequest := datadog.PagerDuty{
+	pagerDutyRequest := datadog.PagerDutyIntegration{
 		Subdomain: datadog.PtrString("_deadbeef"),
 		ApiToken:  datadog.PtrString("y_NbAkKc66ryYTWUXYEu"),
 	}
@@ -89,7 +89,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 }
 
 func deletePagerDuty() {
-	_, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(TESTAUTH).Execute()
+	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(TESTAUTH).Execute()
 	if httpresp.StatusCode != 204 || err != nil {
 		log.Printf("Error uninstalling PagerDuty integration: Another test may have already removed this account: %v", err)
 	}
