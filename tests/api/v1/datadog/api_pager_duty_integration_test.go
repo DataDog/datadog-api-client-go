@@ -66,11 +66,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 		Schedules: &[]string{"https://_deadbeef.pagerduty.com/schedules#DEAD3F"},
 	}
 
-	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(TESTAUTH).Body(servicesAndSchedules).Execute()
-	assert.NilError(t, err)
-	assert.Equal(t, httpresp.StatusCode, 404)
-
-	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegration(TESTAUTH).Body(pagerDutyRequest).Execute()
+	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegration(TESTAUTH).Body(pagerDutyRequest).Execute()
 	defer deletePagerDuty()
 	assert.NilError(t, err)
 	assert.Equal(t, httpresp.StatusCode, 204)
