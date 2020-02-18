@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 set -e
-golint *.go
-go test -coverprofile=coverage.txt -covermode=atomic -v
+golint ./...
+go test -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
