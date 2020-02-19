@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *UsageTopAvgMetricsResponse) SetUsage(v []UsageTopAvgMetricsHour) {
 	o.Usage = &v
 }
 
+func (o UsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Usage != nil {
+		toSerialize["usage"] = o.Usage
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageTopAvgMetricsResponse struct {
-	Value        UsageTopAvgMetricsResponse
-	ExplicitNull bool
+	value *UsageTopAvgMetricsResponse
+	isSet bool
+}
+
+func (v NullableUsageTopAvgMetricsResponse) Get() *UsageTopAvgMetricsResponse {
+	return v.value
+}
+
+func (v NullableUsageTopAvgMetricsResponse) Set(val *UsageTopAvgMetricsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageTopAvgMetricsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageTopAvgMetricsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageTopAvgMetricsResponse(val *UsageTopAvgMetricsResponse) *NullableUsageTopAvgMetricsResponse {
+	return &NullableUsageTopAvgMetricsResponse{value: val, isSet: true}
 }
 
 func (v NullableUsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageTopAvgMetricsResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

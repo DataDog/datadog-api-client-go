@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -29,24 +28,37 @@ func (v SyntheticsDeviceId) Ptr() *SyntheticsDeviceId {
 }
 
 type NullableSyntheticsDeviceId struct {
-	Value        SyntheticsDeviceId
-	ExplicitNull bool
+	value *SyntheticsDeviceId
+	isSet bool
+}
+
+func (v NullableSyntheticsDeviceId) Get() *SyntheticsDeviceId {
+	return v.value
+}
+
+func (v NullableSyntheticsDeviceId) Set(val *SyntheticsDeviceId) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsDeviceId) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsDeviceId) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsDeviceId(val *SyntheticsDeviceId) *NullableSyntheticsDeviceId {
+	return &NullableSyntheticsDeviceId{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsDeviceId) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsDeviceId) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -170,25 +169,59 @@ func (o *SyntheticsBrowserVariable) SetType(v SyntheticsBrowserVariableType) {
 	o.Type = v
 }
 
+func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Example != nil {
+		toSerialize["example"] = o.Example
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Pattern != nil {
+		toSerialize["pattern"] = o.Pattern
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsBrowserVariable struct {
-	Value        SyntheticsBrowserVariable
-	ExplicitNull bool
+	value *SyntheticsBrowserVariable
+	isSet bool
+}
+
+func (v NullableSyntheticsBrowserVariable) Get() *SyntheticsBrowserVariable {
+	return v.value
+}
+
+func (v NullableSyntheticsBrowserVariable) Set(val *SyntheticsBrowserVariable) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsBrowserVariable) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsBrowserVariable) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsBrowserVariable(val *SyntheticsBrowserVariable) *NullableSyntheticsBrowserVariable {
+	return &NullableSyntheticsBrowserVariable{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsBrowserVariable) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

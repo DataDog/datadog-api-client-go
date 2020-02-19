@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -306,25 +305,71 @@ func (o *SyntheticsTestRequest) SetUrl(v string) {
 	o.Url = v
 }
 
+func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.BasicAuth != nil {
+		toSerialize["basicAuth"] = o.BasicAuth
+	}
+	if o.Body != nil {
+		toSerialize["body"] = o.Body
+	}
+	if o.Headers != nil {
+		toSerialize["headers"] = o.Headers
+	}
+	if o.Host != nil {
+		toSerialize["host"] = o.Host
+	}
+	if true {
+		toSerialize["method"] = o.Method
+	}
+	if o.Port != nil {
+		toSerialize["port"] = o.Port
+	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if o.Timeout != nil {
+		toSerialize["timeout"] = o.Timeout
+	}
+	if true {
+		toSerialize["url"] = o.Url
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsTestRequest struct {
-	Value        SyntheticsTestRequest
-	ExplicitNull bool
+	value *SyntheticsTestRequest
+	isSet bool
+}
+
+func (v NullableSyntheticsTestRequest) Get() *SyntheticsTestRequest {
+	return v.value
+}
+
+func (v NullableSyntheticsTestRequest) Set(val *SyntheticsTestRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTestRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTestRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTestRequest(val *SyntheticsTestRequest) *NullableSyntheticsTestRequest {
+	return &NullableSyntheticsTestRequest{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTestRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTestRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

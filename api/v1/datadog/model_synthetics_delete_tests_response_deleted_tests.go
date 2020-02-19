@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -103,25 +102,50 @@ func (o *SyntheticsDeleteTestsResponseDeletedTests) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+func (o SyntheticsDeleteTestsResponseDeletedTests) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsDeleteTestsResponseDeletedTests struct {
-	Value        SyntheticsDeleteTestsResponseDeletedTests
-	ExplicitNull bool
+	value *SyntheticsDeleteTestsResponseDeletedTests
+	isSet bool
+}
+
+func (v NullableSyntheticsDeleteTestsResponseDeletedTests) Get() *SyntheticsDeleteTestsResponseDeletedTests {
+	return v.value
+}
+
+func (v NullableSyntheticsDeleteTestsResponseDeletedTests) Set(val *SyntheticsDeleteTestsResponseDeletedTests) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsDeleteTestsResponseDeletedTests) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsDeleteTestsResponseDeletedTests) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsDeleteTestsResponseDeletedTests(val *SyntheticsDeleteTestsResponseDeletedTests) *NullableSyntheticsDeleteTestsResponseDeletedTests {
+	return &NullableSyntheticsDeleteTestsResponseDeletedTests{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsDeleteTestsResponseDeletedTests) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsDeleteTestsResponseDeletedTests) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

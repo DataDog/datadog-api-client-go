@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -27,24 +26,37 @@ func (v SyntheticsWarningType) Ptr() *SyntheticsWarningType {
 }
 
 type NullableSyntheticsWarningType struct {
-	Value        SyntheticsWarningType
-	ExplicitNull bool
+	value *SyntheticsWarningType
+	isSet bool
+}
+
+func (v NullableSyntheticsWarningType) Get() *SyntheticsWarningType {
+	return v.value
+}
+
+func (v NullableSyntheticsWarningType) Set(val *SyntheticsWarningType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsWarningType) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsWarningType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsWarningType(val *SyntheticsWarningType) *NullableSyntheticsWarningType {
+	return &NullableSyntheticsWarningType{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsWarningType) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsWarningType) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

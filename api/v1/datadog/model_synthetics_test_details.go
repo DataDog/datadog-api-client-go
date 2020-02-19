@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -578,25 +577,92 @@ func (o *SyntheticsTestDetails) SetType(v SyntheticsTestDetailsType) {
 	o.Type = &v
 }
 
+func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Config != nil {
+		toSerialize["config"] = o.Config
+	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
+	}
+	if o.Locations != nil {
+		toSerialize["locations"] = o.Locations
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
+	}
+	if o.ModifiedBy != nil {
+		toSerialize["modified_by"] = o.ModifiedBy
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Options != nil {
+		toSerialize["options"] = o.Options
+	}
+	if o.OverallState != nil {
+		toSerialize["overall_state"] = o.OverallState
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.StepCount != nil {
+		toSerialize["stepCount"] = o.StepCount
+	}
+	if o.Subtype != nil {
+		toSerialize["subtype"] = o.Subtype
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsTestDetails struct {
-	Value        SyntheticsTestDetails
-	ExplicitNull bool
+	value *SyntheticsTestDetails
+	isSet bool
+}
+
+func (v NullableSyntheticsTestDetails) Get() *SyntheticsTestDetails {
+	return v.value
+}
+
+func (v NullableSyntheticsTestDetails) Set(val *SyntheticsTestDetails) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTestDetails) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTestDetails) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTestDetails(val *SyntheticsTestDetails) *NullableSyntheticsTestDetails {
+	return &NullableSyntheticsTestDetails{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTestDetails) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTestDetails) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

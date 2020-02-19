@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -272,25 +271,65 @@ func (o *User) SetVerified(v bool) {
 	o.Verified = &v
 }
 
+func (o User) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AccessRole != nil {
+		toSerialize["access_role"] = o.AccessRole
+	}
+	if o.Disabled != nil {
+		toSerialize["disabled"] = o.Disabled
+	}
+	if o.Email != nil {
+		toSerialize["email"] = o.Email
+	}
+	if o.Handle != nil {
+		toSerialize["handle"] = o.Handle
+	}
+	if o.Icon != nil {
+		toSerialize["icon"] = o.Icon
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Verified != nil {
+		toSerialize["verified"] = o.Verified
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUser struct {
-	Value        User
-	ExplicitNull bool
+	value *User
+	isSet bool
+}
+
+func (v NullableUser) Get() *User {
+	return v.value
+}
+
+func (v NullableUser) Set(val *User) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUser) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUser(val *User) *NullableUser {
+	return &NullableUser{value: val, isSet: true}
 }
 
 func (v NullableUser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

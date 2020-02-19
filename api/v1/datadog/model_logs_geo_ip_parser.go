@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -185,30 +184,64 @@ func (o *LogsGeoIpParser) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsGeoIpParser) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sources"] = o.Sources
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 // AsLogsProcessor wraps this instance of LogsGeoIpParser in LogsProcessor
 func (s *LogsGeoIpParser) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
 type NullableLogsGeoIpParser struct {
-	Value        LogsGeoIpParser
-	ExplicitNull bool
+	value *LogsGeoIpParser
+	isSet bool
+}
+
+func (v NullableLogsGeoIpParser) Get() *LogsGeoIpParser {
+	return v.value
+}
+
+func (v NullableLogsGeoIpParser) Set(val *LogsGeoIpParser) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsGeoIpParser) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsGeoIpParser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsGeoIpParser(val *LogsGeoIpParser) *NullableLogsGeoIpParser {
+	return &NullableLogsGeoIpParser{value: val, isSet: true}
 }
 
 func (v NullableLogsGeoIpParser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsGeoIpParser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

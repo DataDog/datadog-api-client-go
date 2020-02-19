@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -488,25 +487,83 @@ func (o *GcpAccount) SetType(v string) {
 	o.Type = &v
 }
 
+func (o GcpAccount) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AuthProviderX509CertUrl != nil {
+		toSerialize["auth_provider_x509_cert_url"] = o.AuthProviderX509CertUrl
+	}
+	if o.AuthUri != nil {
+		toSerialize["auth_uri"] = o.AuthUri
+	}
+	if o.Automute != nil {
+		toSerialize["automute"] = o.Automute
+	}
+	if o.ClientEmail != nil {
+		toSerialize["client_email"] = o.ClientEmail
+	}
+	if o.ClientId != nil {
+		toSerialize["client_id"] = o.ClientId
+	}
+	if o.ClientX509CertUrl != nil {
+		toSerialize["client_x509_cert_url"] = o.ClientX509CertUrl
+	}
+	if o.Errors != nil {
+		toSerialize["errors"] = o.Errors
+	}
+	if o.HostFilters != nil {
+		toSerialize["host_filters"] = o.HostFilters
+	}
+	if o.PrivateKey != nil {
+		toSerialize["private_key"] = o.PrivateKey
+	}
+	if o.PrivateKeyId != nil {
+		toSerialize["private_key_id"] = o.PrivateKeyId
+	}
+	if o.ProjectId != nil {
+		toSerialize["project_id"] = o.ProjectId
+	}
+	if o.TokenUri != nil {
+		toSerialize["token_uri"] = o.TokenUri
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGcpAccount struct {
-	Value        GcpAccount
-	ExplicitNull bool
+	value *GcpAccount
+	isSet bool
+}
+
+func (v NullableGcpAccount) Get() *GcpAccount {
+	return v.value
+}
+
+func (v NullableGcpAccount) Set(val *GcpAccount) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGcpAccount) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableGcpAccount) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGcpAccount(val *GcpAccount) *NullableGcpAccount {
+	return &NullableGcpAccount{value: val, isSet: true}
 }
 
 func (v NullableGcpAccount) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGcpAccount) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

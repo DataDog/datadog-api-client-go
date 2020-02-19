@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -35,24 +34,37 @@ func (v SyntheticsTickInterval) Ptr() *SyntheticsTickInterval {
 }
 
 type NullableSyntheticsTickInterval struct {
-	Value        SyntheticsTickInterval
-	ExplicitNull bool
+	value *SyntheticsTickInterval
+	isSet bool
+}
+
+func (v NullableSyntheticsTickInterval) Get() *SyntheticsTickInterval {
+	return v.value
+}
+
+func (v NullableSyntheticsTickInterval) Set(val *SyntheticsTickInterval) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTickInterval) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTickInterval) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTickInterval(val *SyntheticsTickInterval) *NullableSyntheticsTickInterval {
+	return &NullableSyntheticsTickInterval{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTickInterval) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTickInterval) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

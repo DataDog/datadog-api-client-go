@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -909,25 +908,119 @@ func (o *UsageSummaryResponse) SetUsage(v []UsageSummaryDate) {
 	o.Usage = &v
 }
 
+func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AgentHostTop99pSum != nil {
+		toSerialize["agent_host_top99p_sum"] = o.AgentHostTop99pSum
+	}
+	if o.ApmHostTop99pSum != nil {
+		toSerialize["apm_host_top99p_sum"] = o.ApmHostTop99pSum
+	}
+	if o.AwsHostTop99pSum != nil {
+		toSerialize["aws_host_top99p_sum"] = o.AwsHostTop99pSum
+	}
+	if o.AwsLambdaFuncCount != nil {
+		toSerialize["aws_lambda_func_count"] = o.AwsLambdaFuncCount
+	}
+	if o.AwsLambdaInvocationsSum != nil {
+		toSerialize["aws_lambda_invocations_sum"] = o.AwsLambdaInvocationsSum
+	}
+	if o.AzureHostTop99pSum != nil {
+		toSerialize["azure_host_top99p_sum"] = o.AzureHostTop99pSum
+	}
+	if o.BillableIngestedBytesAggSum != nil {
+		toSerialize["billable_ingested_bytes_agg_sum"] = o.BillableIngestedBytesAggSum
+	}
+	if o.ContainerAvgSum != nil {
+		toSerialize["container_avg_sum"] = o.ContainerAvgSum
+	}
+	if o.ContainerHwmSum != nil {
+		toSerialize["container_hwm_sum"] = o.ContainerHwmSum
+	}
+	if o.CustomTsSum != nil {
+		toSerialize["custom_ts_sum"] = o.CustomTsSum
+	}
+	if o.EndDate != nil {
+		toSerialize["end_date"] = o.EndDate
+	}
+	if o.FargateTasksCountAvgSum != nil {
+		toSerialize["fargate_tasks_count_avg_sum"] = o.FargateTasksCountAvgSum
+	}
+	if o.FargateTasksCountHwmSum != nil {
+		toSerialize["fargate_tasks_count_hwm_sum"] = o.FargateTasksCountHwmSum
+	}
+	if o.GcpHostTop99pSum != nil {
+		toSerialize["gcp_host_top99p_sum"] = o.GcpHostTop99pSum
+	}
+	if o.IndexedEventsCountAggSum != nil {
+		toSerialize["indexed_events_count_agg_sum"] = o.IndexedEventsCountAggSum
+	}
+	if o.InfraHostTop99pSum != nil {
+		toSerialize["infra_host_top99p_sum"] = o.InfraHostTop99pSum
+	}
+	if o.IngestedEventsBytesAggSum != nil {
+		toSerialize["ingested_events_bytes_agg_sum"] = o.IngestedEventsBytesAggSum
+	}
+	if o.LastUpdated != nil {
+		toSerialize["last_updated"] = o.LastUpdated
+	}
+	if o.NetflowIndexedEventsCountAggSum != nil {
+		toSerialize["netflow_indexed_events_count_agg_sum"] = o.NetflowIndexedEventsCountAggSum
+	}
+	if o.NpmHostTop99pSum != nil {
+		toSerialize["npm_host_top99p_sum"] = o.NpmHostTop99pSum
+	}
+	if o.StartDate != nil {
+		toSerialize["start_date"] = o.StartDate
+	}
+	if o.SyntheticsBrowserCheckCallsCountAggSum != nil {
+		toSerialize["synthetics_browser_check_calls_count_agg_sum"] = o.SyntheticsBrowserCheckCallsCountAggSum
+	}
+	if o.SyntheticsCheckCallsCountAggSum != nil {
+		toSerialize["synthetics_check_calls_count_agg_sum"] = o.SyntheticsCheckCallsCountAggSum
+	}
+	if o.TraceSearchIndexedEventsCountAggSum != nil {
+		toSerialize["trace_search_indexed_events_count_agg_sum"] = o.TraceSearchIndexedEventsCountAggSum
+	}
+	if o.Usage != nil {
+		toSerialize["usage"] = o.Usage
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageSummaryResponse struct {
-	Value        UsageSummaryResponse
-	ExplicitNull bool
+	value *UsageSummaryResponse
+	isSet bool
+}
+
+func (v NullableUsageSummaryResponse) Get() *UsageSummaryResponse {
+	return v.value
+}
+
+func (v NullableUsageSummaryResponse) Set(val *UsageSummaryResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageSummaryResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageSummaryResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageSummaryResponse(val *UsageSummaryResponse) *NullableUsageSummaryResponse {
+	return &NullableUsageSummaryResponse{value: val, isSet: true}
 }
 
 func (v NullableUsageSummaryResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageSummaryResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

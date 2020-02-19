@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -349,25 +348,71 @@ func (o *MetricsQueryResponse) SetToDate(v int64) {
 	o.ToDate = &v
 }
 
+func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Error != nil {
+		toSerialize["error"] = o.Error
+	}
+	if o.FromDate != nil {
+		toSerialize["from_date"] = o.FromDate
+	}
+	if o.GroupBy != nil {
+		toSerialize["group_by"] = o.GroupBy
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if o.ResType != nil {
+		toSerialize["res_type"] = o.ResType
+	}
+	if o.Series != nil {
+		toSerialize["series"] = o.Series
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.ToDate != nil {
+		toSerialize["to_date"] = o.ToDate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMetricsQueryResponse struct {
-	Value        MetricsQueryResponse
-	ExplicitNull bool
+	value *MetricsQueryResponse
+	isSet bool
+}
+
+func (v NullableMetricsQueryResponse) Get() *MetricsQueryResponse {
+	return v.value
+}
+
+func (v NullableMetricsQueryResponse) Set(val *MetricsQueryResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricsQueryResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMetricsQueryResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricsQueryResponse(val *MetricsQueryResponse) *NullableMetricsQueryResponse {
+	return &NullableMetricsQueryResponse{value: val, isSet: true}
 }
 
 func (v NullableMetricsQueryResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMetricsQueryResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

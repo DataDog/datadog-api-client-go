@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -238,25 +237,62 @@ func (o *AwsAccount) SetRoleName(v string) {
 	o.RoleName = &v
 }
 
+func (o AwsAccount) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AccessKeyId != nil {
+		toSerialize["access_key_id"] = o.AccessKeyId
+	}
+	if o.AccountId != nil {
+		toSerialize["account_id"] = o.AccountId
+	}
+	if o.AccountSpecificNamespaceRules != nil {
+		toSerialize["account_specific_namespace_rules"] = o.AccountSpecificNamespaceRules
+	}
+	if o.FilterTags != nil {
+		toSerialize["filter_tags"] = o.FilterTags
+	}
+	if o.HostTags != nil {
+		toSerialize["host_tags"] = o.HostTags
+	}
+	if o.RoleName != nil {
+		toSerialize["role_name"] = o.RoleName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAwsAccount struct {
-	Value        AwsAccount
-	ExplicitNull bool
+	value *AwsAccount
+	isSet bool
+}
+
+func (v NullableAwsAccount) Get() *AwsAccount {
+	return v.value
+}
+
+func (v NullableAwsAccount) Set(val *AwsAccount) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAwsAccount) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAwsAccount) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAwsAccount(val *AwsAccount) *NullableAwsAccount {
+	return &NullableAwsAccount{value: val, isSet: true}
 }
 
 func (v NullableAwsAccount) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAwsAccount) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

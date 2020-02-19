@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *AwsAccountListResponse) SetAccounts(v []AwsAccount) {
 	o.Accounts = &v
 }
 
+func (o AwsAccountListResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Accounts != nil {
+		toSerialize["accounts"] = o.Accounts
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAwsAccountListResponse struct {
-	Value        AwsAccountListResponse
-	ExplicitNull bool
+	value *AwsAccountListResponse
+	isSet bool
+}
+
+func (v NullableAwsAccountListResponse) Get() *AwsAccountListResponse {
+	return v.value
+}
+
+func (v NullableAwsAccountListResponse) Set(val *AwsAccountListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAwsAccountListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAwsAccountListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAwsAccountListResponse(val *AwsAccountListResponse) *NullableAwsAccountListResponse {
+	return &NullableAwsAccountListResponse{value: val, isSet: true}
 }
 
 func (v NullableAwsAccountListResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAwsAccountListResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

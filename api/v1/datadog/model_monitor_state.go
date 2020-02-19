@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -136,25 +135,53 @@ func (o *MonitorState) SetOverallState(v MonitorOverallStates) {
 	o.OverallState = &v
 }
 
+func (o MonitorState) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Groups != nil {
+		toSerialize["groups"] = o.Groups
+	}
+	if o.MonitorId != nil {
+		toSerialize["monitor_id"] = o.MonitorId
+	}
+	if o.OverallState != nil {
+		toSerialize["overall_state"] = o.OverallState
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitorState struct {
-	Value        MonitorState
-	ExplicitNull bool
+	value *MonitorState
+	isSet bool
+}
+
+func (v NullableMonitorState) Get() *MonitorState {
+	return v.value
+}
+
+func (v NullableMonitorState) Set(val *MonitorState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorState) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorState(val *MonitorState) *NullableMonitorState {
+	return &NullableMonitorState{value: val, isSet: true}
 }
 
 func (v NullableMonitorState) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorState) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

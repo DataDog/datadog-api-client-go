@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -69,25 +68,47 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponseData) SetOk(v []string) {
 	o.Ok = &v
 }
 
+func (o CheckCanDeleteServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Ok != nil {
+		toSerialize["ok"] = o.Ok
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCheckCanDeleteServiceLevelObjectiveResponseData struct {
-	Value        CheckCanDeleteServiceLevelObjectiveResponseData
-	ExplicitNull bool
+	value *CheckCanDeleteServiceLevelObjectiveResponseData
+	isSet bool
+}
+
+func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) Get() *CheckCanDeleteServiceLevelObjectiveResponseData {
+	return v.value
+}
+
+func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) Set(val *CheckCanDeleteServiceLevelObjectiveResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCheckCanDeleteServiceLevelObjectiveResponseData(val *CheckCanDeleteServiceLevelObjectiveResponseData) *NullableCheckCanDeleteServiceLevelObjectiveResponseData {
+	return &NullableCheckCanDeleteServiceLevelObjectiveResponseData{value: val, isSet: true}
 }
 
 func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCheckCanDeleteServiceLevelObjectiveResponseData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

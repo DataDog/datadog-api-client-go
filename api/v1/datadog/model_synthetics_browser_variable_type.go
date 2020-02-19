@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -30,24 +29,37 @@ func (v SyntheticsBrowserVariableType) Ptr() *SyntheticsBrowserVariableType {
 }
 
 type NullableSyntheticsBrowserVariableType struct {
-	Value        SyntheticsBrowserVariableType
-	ExplicitNull bool
+	value *SyntheticsBrowserVariableType
+	isSet bool
+}
+
+func (v NullableSyntheticsBrowserVariableType) Get() *SyntheticsBrowserVariableType {
+	return v.value
+}
+
+func (v NullableSyntheticsBrowserVariableType) Set(val *SyntheticsBrowserVariableType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsBrowserVariableType) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsBrowserVariableType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsBrowserVariableType(val *SyntheticsBrowserVariableType) *NullableSyntheticsBrowserVariableType {
+	return &NullableSyntheticsBrowserVariableType{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsBrowserVariableType) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsBrowserVariableType) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

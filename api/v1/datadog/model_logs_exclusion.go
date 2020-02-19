@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -119,25 +118,53 @@ func (o *LogsExclusion) SetName(v string) {
 	o.Name = v
 }
 
+func (o LogsExclusion) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Filter != nil {
+		toSerialize["filter"] = o.Filter
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsExclusion struct {
-	Value        LogsExclusion
-	ExplicitNull bool
+	value *LogsExclusion
+	isSet bool
+}
+
+func (v NullableLogsExclusion) Get() *LogsExclusion {
+	return v.value
+}
+
+func (v NullableLogsExclusion) Set(val *LogsExclusion) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsExclusion) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsExclusion) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsExclusion(val *LogsExclusion) *NullableLogsExclusion {
+	return &NullableLogsExclusion{value: val, isSet: true}
 }
 
 func (v NullableLogsExclusion) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsExclusion) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

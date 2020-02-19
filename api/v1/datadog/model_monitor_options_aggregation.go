@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -136,25 +135,53 @@ func (o *MonitorOptionsAggregation) SetType(v string) {
 	o.Type = &v
 }
 
+func (o MonitorOptionsAggregation) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.GroupBy != nil {
+		toSerialize["group_by"] = o.GroupBy
+	}
+	if o.Metric != nil {
+		toSerialize["metric"] = o.Metric
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitorOptionsAggregation struct {
-	Value        MonitorOptionsAggregation
-	ExplicitNull bool
+	value *MonitorOptionsAggregation
+	isSet bool
+}
+
+func (v NullableMonitorOptionsAggregation) Get() *MonitorOptionsAggregation {
+	return v.value
+}
+
+func (v NullableMonitorOptionsAggregation) Set(val *MonitorOptionsAggregation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorOptionsAggregation) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorOptionsAggregation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorOptionsAggregation(val *MonitorOptionsAggregation) *NullableMonitorOptionsAggregation {
+	return &NullableMonitorOptionsAggregation{value: val, isSet: true}
 }
 
 func (v NullableMonitorOptionsAggregation) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorOptionsAggregation) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

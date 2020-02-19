@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -69,25 +68,47 @@ func (o *DeletedMonitor) SetDeletedMonitorId(v int64) {
 	o.DeletedMonitorId = &v
 }
 
+func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.DeletedMonitorId != nil {
+		toSerialize["deleted_monitor_id"] = o.DeletedMonitorId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDeletedMonitor struct {
-	Value        DeletedMonitor
-	ExplicitNull bool
+	value *DeletedMonitor
+	isSet bool
+}
+
+func (v NullableDeletedMonitor) Get() *DeletedMonitor {
+	return v.value
+}
+
+func (v NullableDeletedMonitor) Set(val *DeletedMonitor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeletedMonitor) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableDeletedMonitor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeletedMonitor(val *DeletedMonitor) *NullableDeletedMonitor {
+	return &NullableDeletedMonitor{value: val, isSet: true}
 }
 
 func (v NullableDeletedMonitor) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDeletedMonitor) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
