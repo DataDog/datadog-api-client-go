@@ -40,7 +40,6 @@ func setClock(t *testing.T) {
 	}
 	defer f.Close()
 	now := clockwork.NewRealClock().Now()
-	t.Logf(">>> %v %d %d", now, now.Unix(), now.UnixNano())
 	f.WriteString(now.Format(time.RFC3339Nano))
 	TestClock = clockwork.NewFakeClockAt(now)
 }
@@ -54,7 +53,6 @@ func restoreClock(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Could not parse clock date: %v", err)
 	}
-	t.Logf("<<< %v %d %d", now, now.Unix(), now.UnixNano())
 	TestClock = clockwork.NewFakeClockAt(now)
 }
 
