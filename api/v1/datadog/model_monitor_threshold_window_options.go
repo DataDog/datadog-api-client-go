@@ -14,8 +14,8 @@ import (
 
 // MonitorThresholdWindowOptions struct for MonitorThresholdWindowOptions
 type MonitorThresholdWindowOptions struct {
-	RecoveryWindow *string `json:"recovery_window,omitempty"`
-	TriggerWindow  *string `json:"trigger_window,omitempty"`
+	RecoveryWindow NullableString `json:"recovery_window,omitempty"`
+	TriggerWindow  NullableString `json:"trigger_window,omitempty"`
 }
 
 // NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object
@@ -36,79 +36,79 @@ func NewMonitorThresholdWindowOptionsWithDefaults() *MonitorThresholdWindowOptio
 }
 
 // GetRecoveryWindow returns the RecoveryWindow field value if set, zero value otherwise.
-func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
-	if o == nil || o.RecoveryWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() NullableString {
+	if o == nil {
+		var ret NullableString
 		return ret
 	}
-	return *o.RecoveryWindow
+	return o.RecoveryWindow
 }
 
 // GetRecoveryWindowOk returns a tuple with the RecoveryWindow field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (string, bool) {
-	if o == nil || o.RecoveryWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (NullableString, bool) {
+	if o == nil {
+		var ret NullableString
 		return ret, false
 	}
-	return *o.RecoveryWindow, true
+	return o.RecoveryWindow, o.RecoveryWindow.IsSet()
 }
 
 // HasRecoveryWindow returns a boolean if a field has been set.
 func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
-	if o != nil && o.RecoveryWindow != nil {
+	if o != nil && o.RecoveryWindow.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRecoveryWindow gets a reference to the given string and assigns it to the RecoveryWindow field.
-func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string) {
-	o.RecoveryWindow = &v
+// SetRecoveryWindow gets a reference to the given NullableString and assigns it to the RecoveryWindow field.
+func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v NullableString) {
+	o.RecoveryWindow = v
 }
 
 // GetTriggerWindow returns the TriggerWindow field value if set, zero value otherwise.
-func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
-	if o == nil || o.TriggerWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetTriggerWindow() NullableString {
+	if o == nil {
+		var ret NullableString
 		return ret
 	}
-	return *o.TriggerWindow
+	return o.TriggerWindow
 }
 
 // GetTriggerWindowOk returns a tuple with the TriggerWindow field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (string, bool) {
-	if o == nil || o.TriggerWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (NullableString, bool) {
+	if o == nil {
+		var ret NullableString
 		return ret, false
 	}
-	return *o.TriggerWindow, true
+	return o.TriggerWindow, o.TriggerWindow.IsSet()
 }
 
 // HasTriggerWindow returns a boolean if a field has been set.
 func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
-	if o != nil && o.TriggerWindow != nil {
+	if o != nil && o.TriggerWindow.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTriggerWindow gets a reference to the given string and assigns it to the TriggerWindow field.
-func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
-	o.TriggerWindow = &v
+// SetTriggerWindow gets a reference to the given NullableString and assigns it to the TriggerWindow field.
+func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v NullableString) {
+	o.TriggerWindow = v
 }
 
 func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
-	if o.RecoveryWindow != nil {
-		toSerialize["recovery_window"] = o.RecoveryWindow
+	if o.RecoveryWindow.IsSet() {
+		toSerialize["recovery_window"] = o.RecoveryWindow.Get()
 	}
-	if o.TriggerWindow != nil {
-		toSerialize["trigger_window"] = o.TriggerWindow
+	if o.TriggerWindow.IsSet() {
+		toSerialize["trigger_window"] = o.TriggerWindow.Get()
 	}
 	return json.Marshal(toSerialize)
 }
