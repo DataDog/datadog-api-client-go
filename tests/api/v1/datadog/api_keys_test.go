@@ -14,16 +14,15 @@ import (
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"gotest.tools/assert"
 )
 
-func removeSecretsFromAPIKey(k *datadog.ApiKey) {
-	if k != nil {
-		k.Key = datadog.PtrString("1234567890123456789012")
-	}
-}
-
 func TestApiKeyFunctions(t *testing.T) {
+	if !tests.IsRecording() {
+		t.Skip("This test case does not support reply from recording")
+	}
+
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
@@ -73,7 +72,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	assert.Equal(t, createAPIKeyName, getAPIKeyName)
 	assert.Equal(t, createAPIKeyCreated, getAPIKeyCreated)
 	assert.Equal(t, createAPIKeyCreatedBy, getAPIKeyCreatedBy)
-	assert.Assert(t, getAPIKeyValue != "")
+	assert.Equal(t, createAPIKeyValue, getAPIKeyValue)
 
 	// Get All API Keys
 	// ----------------------------------
@@ -131,6 +130,10 @@ func TestApiKeyFunctions(t *testing.T) {
 }
 
 func TestApplicationKeyFunctions(t *testing.T) {
+	if !tests.IsRecording() {
+		t.Skip("This test case does not support reply from recording")
+	}
+
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)

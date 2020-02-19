@@ -14,13 +14,18 @@ import (
 	"time"
 )
 
+// IsRecording returns true if the recording mode is enabled
+func IsRecording() bool {
+	return os.Getenv("RECORD") == "true"
+}
+
 // Retry calls the call function for count times every interval while it returns false
 func Retry(interval time.Duration, count int, call func() bool) error {
 	for i := 0; i < count; i++ {
 		if call() {
 			return nil
 		}
-		if os.Getenv("RECORD") == "true" {
+		if IsRecording() {
 			time.Sleep(interval)
 		}
 	}
