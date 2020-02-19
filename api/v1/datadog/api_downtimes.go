@@ -97,7 +97,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -111,7 +111,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -237,7 +237,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -251,7 +251,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -442,7 +442,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -456,7 +456,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -597,7 +597,7 @@ func (r apiGetAllDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, er
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -611,7 +611,7 @@ func (r apiGetAllDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, er
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -747,7 +747,7 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -761,7 +761,7 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -951,7 +951,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -965,7 +965,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}

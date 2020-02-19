@@ -106,7 +106,7 @@ func (r apiCreatePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -120,7 +120,7 @@ func (r apiCreatePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -240,7 +240,7 @@ func (r apiDeletePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -254,7 +254,7 @@ func (r apiDeletePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -365,7 +365,7 @@ func (r apiGetPagerDutyIntegrationRequest) Execute() (PagerDutyIntegration, *_ne
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -379,7 +379,7 @@ func (r apiGetPagerDutyIntegrationRequest) Execute() (PagerDutyIntegration, *_ne
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -540,7 +540,7 @@ func (r apiUpdatePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -554,7 +554,7 @@ func (r apiUpdatePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}

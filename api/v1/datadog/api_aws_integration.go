@@ -131,7 +131,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -145,7 +145,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -303,7 +303,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -317,7 +317,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -475,7 +475,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -489,7 +489,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -665,7 +665,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -679,7 +679,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -829,7 +829,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -843,7 +843,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -1057,7 +1057,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -1071,7 +1071,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
