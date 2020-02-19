@@ -757,7 +757,7 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	deleteResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.DeleteDashboard(TESTAUTH, createdFreeDashboard.GetId()).Execute()
 	if err != nil {
-		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error deleting dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, createdFreeDashboard.GetId(), deleteResponse.GetDeletedDashboardId())
