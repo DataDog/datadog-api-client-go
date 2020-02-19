@@ -154,6 +154,10 @@ Class | Method | HTTP request | Description
 *OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get the organization
 *OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
 *OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
+*PagerDutyIntegrationApi* | [**CreatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#createpagerdutyintegration) | **Put** /api/v1/integration/pagerduty | Create a PagerDuty integration
+*PagerDutyIntegrationApi* | [**DeletePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegration) | **Delete** /api/v1/integration/pagerduty | Delete a PagerDuty integration
+*PagerDutyIntegrationApi* | [**GetPagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegration) | **Get** /api/v1/integration/pagerduty | Get a PagerDuty integration
+*PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegration) | **Post** /api/v1/integration/pagerduty | Add new services and schedules
 *SLOApi* | [**BulkPartialDeleteSLO**](docs/SLOApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Delete (or partially delete) multiple service level objective objects.
 *SLOApi* | [**CheckCanDeleteSLO**](docs/SLOApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted.
 *SLOApi* | [**CreateSLO**](docs/SLOApi.md#createslo) | **Post** /api/v1/slo | Create a service level objective object.
@@ -321,6 +325,9 @@ Class | Method | HTTP request | Description
  - [OrgSettingsSaml](docs/OrgSettingsSaml.md)
  - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
  - [OrgSubscription](docs/OrgSubscription.md)
+ - [PagerDutyIntegration](docs/PagerDutyIntegration.md)
+ - [PagerDutyService](docs/PagerDutyService.md)
+ - [PagerDutyServicesAndSchedules](docs/PagerDutyServicesAndSchedules.md)
  - [Series](docs/Series.md)
  - [ServiceCheck](docs/ServiceCheck.md)
  - [ServiceCheckStatus](docs/ServiceCheckStatus.md)
