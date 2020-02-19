@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -236,30 +235,70 @@ func (o *LogsLookupProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.DefaultLookup != nil {
+		toSerialize["default_lookup"] = o.DefaultLookup
+	}
+	if true {
+		toSerialize["lookup_table"] = o.LookupTable
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 // AsLogsProcessor wraps this instance of LogsLookupProcessor in LogsProcessor
 func (s *LogsLookupProcessor) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
 type NullableLogsLookupProcessor struct {
-	Value        LogsLookupProcessor
-	ExplicitNull bool
+	value *LogsLookupProcessor
+	isSet bool
+}
+
+func (v NullableLogsLookupProcessor) Get() *LogsLookupProcessor {
+	return v.value
+}
+
+func (v NullableLogsLookupProcessor) Set(val *LogsLookupProcessor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsLookupProcessor) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsLookupProcessor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsLookupProcessor(val *LogsLookupProcessor) *NullableLogsLookupProcessor {
+	return &NullableLogsLookupProcessor{value: val, isSet: true}
 }
 
 func (v NullableLogsLookupProcessor) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsLookupProcessor) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -31,24 +30,37 @@ func (v DashboardType) Ptr() *DashboardType {
 }
 
 type NullableDashboardType struct {
-	Value        DashboardType
-	ExplicitNull bool
+	value *DashboardType
+	isSet bool
+}
+
+func (v NullableDashboardType) Get() *DashboardType {
+	return v.value
+}
+
+func (v NullableDashboardType) Set(val *DashboardType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDashboardType) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableDashboardType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDashboardType(val *DashboardType) *NullableDashboardType {
+	return &NullableDashboardType{value: val, isSet: true}
 }
 
 func (v NullableDashboardType) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDashboardType) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

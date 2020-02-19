@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -714,25 +713,104 @@ func (o *MonitorOptions) SetTimeoutH(v int64) {
 	o.TimeoutH = &v
 }
 
+func (o MonitorOptions) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Aggregation != nil {
+		toSerialize["aggregation"] = o.Aggregation
+	}
+	if o.DeviceIds != nil {
+		toSerialize["device_ids"] = o.DeviceIds
+	}
+	if o.EnableLogsSample != nil {
+		toSerialize["enable_logs_sample"] = o.EnableLogsSample
+	}
+	if o.EscalationMessage != nil {
+		toSerialize["escalation_message"] = o.EscalationMessage
+	}
+	if o.EvaluationDelay != nil {
+		toSerialize["evaluation_delay"] = o.EvaluationDelay
+	}
+	if o.IncludeTags != nil {
+		toSerialize["include_tags"] = o.IncludeTags
+	}
+	if o.Locked != nil {
+		toSerialize["locked"] = o.Locked
+	}
+	if o.MinFailureDuration != nil {
+		toSerialize["min_failure_duration"] = o.MinFailureDuration
+	}
+	if o.MinLocationFailed != nil {
+		toSerialize["min_location_failed"] = o.MinLocationFailed
+	}
+	if o.NewHostDelay != nil {
+		toSerialize["new_host_delay"] = o.NewHostDelay
+	}
+	if o.NoDataTimeframe != nil {
+		toSerialize["no_data_timeframe"] = o.NoDataTimeframe
+	}
+	if o.NotifyAudit != nil {
+		toSerialize["notify_audit"] = o.NotifyAudit
+	}
+	if o.NotifyNoData != nil {
+		toSerialize["notify_no_data"] = o.NotifyNoData
+	}
+	if o.RenotifyInterval != nil {
+		toSerialize["renotify_interval"] = o.RenotifyInterval
+	}
+	if o.RequireFullWindow != nil {
+		toSerialize["require_full_window"] = o.RequireFullWindow
+	}
+	if o.Silenced != nil {
+		toSerialize["silenced"] = o.Silenced
+	}
+	if o.SyntheticsCheckId != nil {
+		toSerialize["synthetics_check_id"] = o.SyntheticsCheckId
+	}
+	if o.ThresholdWindows != nil {
+		toSerialize["threshold_windows"] = o.ThresholdWindows
+	}
+	if o.Thresholds != nil {
+		toSerialize["thresholds"] = o.Thresholds
+	}
+	if o.TimeoutH != nil {
+		toSerialize["timeout_h"] = o.TimeoutH
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitorOptions struct {
-	Value        MonitorOptions
-	ExplicitNull bool
+	value *MonitorOptions
+	isSet bool
+}
+
+func (v NullableMonitorOptions) Get() *MonitorOptions {
+	return v.value
+}
+
+func (v NullableMonitorOptions) Set(val *MonitorOptions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorOptions) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorOptions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorOptions(val *MonitorOptions) *NullableMonitorOptions {
+	return &NullableMonitorOptions{value: val, isSet: true}
 }
 
 func (v NullableMonitorOptions) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorOptions) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

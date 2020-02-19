@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *UsageLogsResponse) SetUsage(v []UsageLogsHour) {
 	o.Usage = &v
 }
 
+func (o UsageLogsResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Usage != nil {
+		toSerialize["usage"] = o.Usage
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageLogsResponse struct {
-	Value        UsageLogsResponse
-	ExplicitNull bool
+	value *UsageLogsResponse
+	isSet bool
+}
+
+func (v NullableUsageLogsResponse) Get() *UsageLogsResponse {
+	return v.value
+}
+
+func (v NullableUsageLogsResponse) Set(val *UsageLogsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageLogsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageLogsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageLogsResponse(val *UsageLogsResponse) *NullableUsageLogsResponse {
+	return &NullableUsageLogsResponse{value: val, isSet: true}
 }
 
 func (v NullableUsageLogsResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageLogsResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

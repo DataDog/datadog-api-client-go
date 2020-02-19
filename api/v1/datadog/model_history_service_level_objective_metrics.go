@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -277,25 +276,65 @@ func (o *HistoryServiceLevelObjectiveMetrics) SetRespVersion(v int64) {
 	o.RespVersion = &v
 }
 
+func (o HistoryServiceLevelObjectiveMetrics) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Denominator != nil {
+		toSerialize["denominator"] = o.Denominator
+	}
+	if o.Interval != nil {
+		toSerialize["interval"] = o.Interval
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.Numerator != nil {
+		toSerialize["numerator"] = o.Numerator
+	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if o.ResType != nil {
+		toSerialize["res_type"] = o.ResType
+	}
+	if o.RespVersion != nil {
+		toSerialize["resp_version"] = o.RespVersion
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHistoryServiceLevelObjectiveMetrics struct {
-	Value        HistoryServiceLevelObjectiveMetrics
-	ExplicitNull bool
+	value *HistoryServiceLevelObjectiveMetrics
+	isSet bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetrics) Get() *HistoryServiceLevelObjectiveMetrics {
+	return v.value
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetrics) Set(val *HistoryServiceLevelObjectiveMetrics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetrics) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetrics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHistoryServiceLevelObjectiveMetrics(val *HistoryServiceLevelObjectiveMetrics) *NullableHistoryServiceLevelObjectiveMetrics {
+	return &NullableHistoryServiceLevelObjectiveMetrics{value: val, isSet: true}
 }
 
 func (v NullableHistoryServiceLevelObjectiveMetrics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHistoryServiceLevelObjectiveMetrics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

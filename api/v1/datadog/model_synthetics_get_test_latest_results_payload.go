@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -102,25 +101,53 @@ func (o *SyntheticsGetTestLatestResultsPayload) SetToTs(v float64) {
 	o.ToTs = v
 }
 
+func (o SyntheticsGetTestLatestResultsPayload) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["from_ts"] = o.FromTs
+	}
+	if o.ProbeDc != nil {
+		toSerialize["probe_dc"] = o.ProbeDc
+	}
+	if true {
+		toSerialize["to_ts"] = o.ToTs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsGetTestLatestResultsPayload struct {
-	Value        SyntheticsGetTestLatestResultsPayload
-	ExplicitNull bool
+	value *SyntheticsGetTestLatestResultsPayload
+	isSet bool
+}
+
+func (v NullableSyntheticsGetTestLatestResultsPayload) Get() *SyntheticsGetTestLatestResultsPayload {
+	return v.value
+}
+
+func (v NullableSyntheticsGetTestLatestResultsPayload) Set(val *SyntheticsGetTestLatestResultsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsGetTestLatestResultsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsGetTestLatestResultsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsGetTestLatestResultsPayload(val *SyntheticsGetTestLatestResultsPayload) *NullableSyntheticsGetTestLatestResultsPayload {
+	return &NullableSyntheticsGetTestLatestResultsPayload{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsGetTestLatestResultsPayload) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsGetTestLatestResultsPayload) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

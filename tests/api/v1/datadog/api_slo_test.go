@@ -18,7 +18,7 @@ import (
 var testMonitorSLO = datadog.ServiceLevelObjective{
 	Type:        "monitor",
 	Name:        "Critical Foo Host Uptime",
-	Description: &datadog.NullableString{Value: "Track the uptime of host foo which is critical to us."},
+	Description: *datadog.NewNullableString(datadog.PtrString("Track the uptime of host foo which is critical to us.")),
 	Tags:        &[]string{"app:core", "kpi"},
 	Thresholds: []datadog.SloThreshold{{
 		Timeframe: datadog.SLOTIMEFRAME_THIRTY_DAYS,
@@ -30,7 +30,7 @@ var testMonitorSLO = datadog.ServiceLevelObjective{
 var testEventSLO = datadog.ServiceLevelObjective{
 	Type:        "metric",
 	Name:        "HTTP Return Codes",
-	Description: &datadog.NullableString{Value: "Make sure we don't have too many failed HTTP responses."},
+	Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
 	Tags:        &[]string{"app:httpd"},
 	Thresholds: []datadog.SloThreshold{{
 		Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
@@ -68,14 +68,14 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	assert.Equal(t, slo.GetName(), testMonitorSLO.GetName())
 
 	// Edit SLO
-	slo.SetDescription(datadog.NullableString{Value: "Updated description"})
+	slo.SetDescription(*datadog.NewNullableString(datadog.PtrString("Updated description")))
 	sloResp, httpresp, err = TESTAPICLIENT.SLOApi.EditSLO(TESTAUTH, slo.GetId()).Body(slo).Execute()
 	if err != nil {
 		t.Fatalf("Error updating SLO %v: Response %s: %v", slo, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	slo2 := sloResp.GetData()[0]
-	assert.Equal(t, slo2.GetDescription().Value, "Updated description")
+	assert.Equal(t, *slo2.GetDescription().Get(), "Updated description")
 
 	// Check that the SLO can be deleted
 	var canDeleteResp datadog.CheckCanDeleteServiceLevelObjectiveResponse
@@ -133,14 +133,14 @@ func TestSLOEventLifecycle(t *testing.T) {
 	assert.Equal(t, slo.GetName(), testEventSLO.GetName())
 
 	// Edit SLO
-	slo.SetDescription(datadog.NullableString{Value: "Updated description"})
+	slo.SetDescription(*datadog.NewNullableString(datadog.PtrString("Updated description")))
 	sloResp, httpresp, err = TESTAPICLIENT.SLOApi.EditSLO(TESTAUTH, slo.GetId()).Body(slo).Execute()
 	if err != nil {
 		t.Fatalf("Error updating SLO %v: Response %s: %v", slo, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	slo2 := sloResp.GetData()[0]
-	assert.Equal(t, slo2.GetDescription().Value, "Updated description")
+	assert.Equal(t, *slo2.GetDescription().Get(), "Updated description")
 
 	// Check that the SLO can be deleted
 	var canDeleteResp datadog.CheckCanDeleteServiceLevelObjectiveResponse

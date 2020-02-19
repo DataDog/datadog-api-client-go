@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -51,25 +50,47 @@ func (o *SyntheticsApiTestResultFullCheck) SetConfig(v SyntheticsTestConfig) {
 	o.Config = v
 }
 
+func (o SyntheticsApiTestResultFullCheck) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["config"] = o.Config
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsApiTestResultFullCheck struct {
-	Value        SyntheticsApiTestResultFullCheck
-	ExplicitNull bool
+	value *SyntheticsApiTestResultFullCheck
+	isSet bool
+}
+
+func (v NullableSyntheticsApiTestResultFullCheck) Get() *SyntheticsApiTestResultFullCheck {
+	return v.value
+}
+
+func (v NullableSyntheticsApiTestResultFullCheck) Set(val *SyntheticsApiTestResultFullCheck) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsApiTestResultFullCheck) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsApiTestResultFullCheck) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsApiTestResultFullCheck(val *SyntheticsApiTestResultFullCheck) *NullableSyntheticsApiTestResultFullCheck {
+	return &NullableSyntheticsApiTestResultFullCheck{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsApiTestResultFullCheck) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsApiTestResultFullCheck) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

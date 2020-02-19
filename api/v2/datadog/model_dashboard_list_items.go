@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -87,25 +86,50 @@ func (o *DashboardListItems) SetTotal(v int64) {
 	o.Total = &v
 }
 
+func (o DashboardListItems) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["dashboards"] = o.Dashboards
+	}
+	if o.Total != nil {
+		toSerialize["total"] = o.Total
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDashboardListItems struct {
-	Value        DashboardListItems
-	ExplicitNull bool
+	value *DashboardListItems
+	isSet bool
+}
+
+func (v NullableDashboardListItems) Get() *DashboardListItems {
+	return v.value
+}
+
+func (v NullableDashboardListItems) Set(val *DashboardListItems) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDashboardListItems) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableDashboardListItems) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDashboardListItems(val *DashboardListItems) *NullableDashboardListItems {
+	return &NullableDashboardListItems{value: val, isSet: true}
 }
 
 func (v NullableDashboardListItems) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDashboardListItems) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

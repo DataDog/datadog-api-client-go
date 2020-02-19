@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -102,25 +101,50 @@ func (o *AwsLogsAsyncResponseErrors) SetMessage(v string) {
 	o.Message = &v
 }
 
+func (o AwsLogsAsyncResponseErrors) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Code != nil {
+		toSerialize["code"] = o.Code
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAwsLogsAsyncResponseErrors struct {
-	Value        AwsLogsAsyncResponseErrors
-	ExplicitNull bool
+	value *AwsLogsAsyncResponseErrors
+	isSet bool
+}
+
+func (v NullableAwsLogsAsyncResponseErrors) Get() *AwsLogsAsyncResponseErrors {
+	return v.value
+}
+
+func (v NullableAwsLogsAsyncResponseErrors) Set(val *AwsLogsAsyncResponseErrors) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAwsLogsAsyncResponseErrors) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAwsLogsAsyncResponseErrors) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAwsLogsAsyncResponseErrors(val *AwsLogsAsyncResponseErrors) *NullableAwsLogsAsyncResponseErrors {
+	return &NullableAwsLogsAsyncResponseErrors{value: val, isSet: true}
 }
 
 func (v NullableAwsLogsAsyncResponseErrors) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAwsLogsAsyncResponseErrors) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

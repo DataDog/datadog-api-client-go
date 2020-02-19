@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -45,24 +44,37 @@ func (v SyntheticsStepType) Ptr() *SyntheticsStepType {
 }
 
 type NullableSyntheticsStepType struct {
-	Value        SyntheticsStepType
-	ExplicitNull bool
+	value *SyntheticsStepType
+	isSet bool
+}
+
+func (v NullableSyntheticsStepType) Get() *SyntheticsStepType {
+	return v.value
+}
+
+func (v NullableSyntheticsStepType) Set(val *SyntheticsStepType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsStepType) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsStepType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsStepType(val *SyntheticsStepType) *NullableSyntheticsStepType {
+	return &NullableSyntheticsStepType{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsStepType) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsStepType) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

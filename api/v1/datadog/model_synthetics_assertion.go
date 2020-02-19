@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -136,25 +135,56 @@ func (o *SyntheticsAssertion) SetType(v SyntheticsAssertionType) {
 	o.Type = v
 }
 
+func (o SyntheticsAssertion) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["operator"] = o.Operator
+	}
+	if o.Property != nil {
+		toSerialize["property"] = o.Property
+	}
+	if o.Target != nil {
+		toSerialize["target"] = o.Target
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsAssertion struct {
-	Value        SyntheticsAssertion
-	ExplicitNull bool
+	value *SyntheticsAssertion
+	isSet bool
+}
+
+func (v NullableSyntheticsAssertion) Get() *SyntheticsAssertion {
+	return v.value
+}
+
+func (v NullableSyntheticsAssertion) Set(val *SyntheticsAssertion) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsAssertion) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsAssertion) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsAssertion(val *SyntheticsAssertion) *NullableSyntheticsAssertion {
+	return &NullableSyntheticsAssertion{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsAssertion) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsAssertion) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

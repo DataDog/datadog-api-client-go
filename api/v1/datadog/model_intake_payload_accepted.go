@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *IntakePayloadAccepted) SetStatus(v string) {
 	o.Status = &v
 }
 
+func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIntakePayloadAccepted struct {
-	Value        IntakePayloadAccepted
-	ExplicitNull bool
+	value *IntakePayloadAccepted
+	isSet bool
+}
+
+func (v NullableIntakePayloadAccepted) Get() *IntakePayloadAccepted {
+	return v.value
+}
+
+func (v NullableIntakePayloadAccepted) Set(val *IntakePayloadAccepted) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIntakePayloadAccepted) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableIntakePayloadAccepted) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIntakePayloadAccepted(val *IntakePayloadAccepted) *NullableIntakePayloadAccepted {
+	return &NullableIntakePayloadAccepted{value: val, isSet: true}
 }
 
 func (v NullableIntakePayloadAccepted) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIntakePayloadAccepted) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

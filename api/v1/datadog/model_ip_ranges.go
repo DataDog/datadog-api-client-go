@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -342,25 +341,71 @@ func (o *IpRanges) SetWebhooks(v IpPrefixes) {
 	o.Webhooks = &v
 }
 
+func (o IpRanges) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Agents != nil {
+		toSerialize["agents"] = o.Agents
+	}
+	if o.Api != nil {
+		toSerialize["api"] = o.Api
+	}
+	if o.Apm != nil {
+		toSerialize["apm"] = o.Apm
+	}
+	if o.Logs != nil {
+		toSerialize["logs"] = o.Logs
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	if o.Process != nil {
+		toSerialize["process"] = o.Process
+	}
+	if o.Synthetics != nil {
+		toSerialize["synthetics"] = o.Synthetics
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
+	if o.Webhooks != nil {
+		toSerialize["webhooks"] = o.Webhooks
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIpRanges struct {
-	Value        IpRanges
-	ExplicitNull bool
+	value *IpRanges
+	isSet bool
+}
+
+func (v NullableIpRanges) Get() *IpRanges {
+	return v.value
+}
+
+func (v NullableIpRanges) Set(val *IpRanges) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIpRanges) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableIpRanges) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIpRanges(val *IpRanges) *NullableIpRanges {
+	return &NullableIpRanges{value: val, isSet: true}
 }
 
 func (v NullableIpRanges) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIpRanges) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

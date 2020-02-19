@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -104,25 +103,50 @@ func (o *AwsLogsListServicesResponse) SetLabel(v string) {
 	o.Label = &v
 }
 
+func (o AwsLogsListServicesResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Label != nil {
+		toSerialize["label"] = o.Label
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAwsLogsListServicesResponse struct {
-	Value        AwsLogsListServicesResponse
-	ExplicitNull bool
+	value *AwsLogsListServicesResponse
+	isSet bool
+}
+
+func (v NullableAwsLogsListServicesResponse) Get() *AwsLogsListServicesResponse {
+	return v.value
+}
+
+func (v NullableAwsLogsListServicesResponse) Set(val *AwsLogsListServicesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAwsLogsListServicesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAwsLogsListServicesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAwsLogsListServicesResponse(val *AwsLogsListServicesResponse) *NullableAwsLogsListServicesResponse {
+	return &NullableAwsLogsListServicesResponse{value: val, isSet: true}
 }
 
 func (v NullableAwsLogsListServicesResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAwsLogsListServicesResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -165,30 +164,61 @@ func (o *LogsDateRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsDateRemapper) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sources"] = o.Sources
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 // AsLogsProcessor wraps this instance of LogsDateRemapper in LogsProcessor
 func (s *LogsDateRemapper) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
 type NullableLogsDateRemapper struct {
-	Value        LogsDateRemapper
-	ExplicitNull bool
+	value *LogsDateRemapper
+	isSet bool
+}
+
+func (v NullableLogsDateRemapper) Get() *LogsDateRemapper {
+	return v.value
+}
+
+func (v NullableLogsDateRemapper) Set(val *LogsDateRemapper) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsDateRemapper) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsDateRemapper) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsDateRemapper(val *LogsDateRemapper) *NullableLogsDateRemapper {
+	return &NullableLogsDateRemapper{value: val, isSet: true}
 }
 
 func (v NullableLogsDateRemapper) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsDateRemapper) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

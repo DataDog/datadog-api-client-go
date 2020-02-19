@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -443,25 +442,80 @@ func (o *SyntheticsSslCertificate) SetValidTo(v time.Time) {
 	o.ValidTo = &v
 }
 
+func (o SyntheticsSslCertificate) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Cipher != nil {
+		toSerialize["cipher"] = o.Cipher
+	}
+	if o.Exponent != nil {
+		toSerialize["exponent"] = o.Exponent
+	}
+	if o.ExtKeyUsage != nil {
+		toSerialize["extKeyUsage"] = o.ExtKeyUsage
+	}
+	if o.Fingerprint != nil {
+		toSerialize["fingerprint"] = o.Fingerprint
+	}
+	if o.Fingerprint256 != nil {
+		toSerialize["fingerprint256"] = o.Fingerprint256
+	}
+	if o.Issuer != nil {
+		toSerialize["issuer"] = o.Issuer
+	}
+	if o.Modulus != nil {
+		toSerialize["modulus"] = o.Modulus
+	}
+	if o.Protocol != nil {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if o.SerialNumber != nil {
+		toSerialize["serialNumber"] = o.SerialNumber
+	}
+	if o.Subject != nil {
+		toSerialize["subject"] = o.Subject
+	}
+	if o.ValidFrom != nil {
+		toSerialize["validFrom"] = o.ValidFrom
+	}
+	if o.ValidTo != nil {
+		toSerialize["validTo"] = o.ValidTo
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsSslCertificate struct {
-	Value        SyntheticsSslCertificate
-	ExplicitNull bool
+	value *SyntheticsSslCertificate
+	isSet bool
+}
+
+func (v NullableSyntheticsSslCertificate) Get() *SyntheticsSslCertificate {
+	return v.value
+}
+
+func (v NullableSyntheticsSslCertificate) Set(val *SyntheticsSslCertificate) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsSslCertificate) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsSslCertificate) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsSslCertificate(val *SyntheticsSslCertificate) *NullableSyntheticsSslCertificate {
+	return &NullableSyntheticsSslCertificate{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsSslCertificate) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsSslCertificate) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

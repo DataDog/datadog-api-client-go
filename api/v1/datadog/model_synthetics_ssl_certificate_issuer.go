@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -238,25 +237,62 @@ func (o *SyntheticsSslCertificateIssuer) SetST(v string) {
 	o.ST = &v
 }
 
+func (o SyntheticsSslCertificateIssuer) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.C != nil {
+		toSerialize["C"] = o.C
+	}
+	if o.CN != nil {
+		toSerialize["CN"] = o.CN
+	}
+	if o.L != nil {
+		toSerialize["L"] = o.L
+	}
+	if o.O != nil {
+		toSerialize["O"] = o.O
+	}
+	if o.OU != nil {
+		toSerialize["OU"] = o.OU
+	}
+	if o.ST != nil {
+		toSerialize["ST"] = o.ST
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsSslCertificateIssuer struct {
-	Value        SyntheticsSslCertificateIssuer
-	ExplicitNull bool
+	value *SyntheticsSslCertificateIssuer
+	isSet bool
+}
+
+func (v NullableSyntheticsSslCertificateIssuer) Get() *SyntheticsSslCertificateIssuer {
+	return v.value
+}
+
+func (v NullableSyntheticsSslCertificateIssuer) Set(val *SyntheticsSslCertificateIssuer) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsSslCertificateIssuer) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsSslCertificateIssuer) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsSslCertificateIssuer(val *SyntheticsSslCertificateIssuer) *NullableSyntheticsSslCertificateIssuer {
+	return &NullableSyntheticsSslCertificateIssuer{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsSslCertificateIssuer) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsSslCertificateIssuer) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

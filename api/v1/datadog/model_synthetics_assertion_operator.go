@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -35,24 +34,37 @@ func (v SyntheticsAssertionOperator) Ptr() *SyntheticsAssertionOperator {
 }
 
 type NullableSyntheticsAssertionOperator struct {
-	Value        SyntheticsAssertionOperator
-	ExplicitNull bool
+	value *SyntheticsAssertionOperator
+	isSet bool
+}
+
+func (v NullableSyntheticsAssertionOperator) Get() *SyntheticsAssertionOperator {
+	return v.value
+}
+
+func (v NullableSyntheticsAssertionOperator) Set(val *SyntheticsAssertionOperator) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsAssertionOperator) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsAssertionOperator) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsAssertionOperator(val *SyntheticsAssertionOperator) *NullableSyntheticsAssertionOperator {
+	return &NullableSyntheticsAssertionOperator{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsAssertionOperator) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

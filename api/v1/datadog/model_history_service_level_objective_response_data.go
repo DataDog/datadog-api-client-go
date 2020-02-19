@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -241,25 +240,62 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
+func (o HistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.FromTs != nil {
+		toSerialize["from_ts"] = o.FromTs
+	}
+	if o.Groups != nil {
+		toSerialize["groups"] = o.Groups
+	}
+	if o.Overall != nil {
+		toSerialize["overall"] = o.Overall
+	}
+	if o.Series != nil {
+		toSerialize["series"] = o.Series
+	}
+	if o.Thresholds != nil {
+		toSerialize["thresholds"] = o.Thresholds
+	}
+	if o.ToTs != nil {
+		toSerialize["to_ts"] = o.ToTs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHistoryServiceLevelObjectiveResponseData struct {
-	Value        HistoryServiceLevelObjectiveResponseData
-	ExplicitNull bool
+	value *HistoryServiceLevelObjectiveResponseData
+	isSet bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) Get() *HistoryServiceLevelObjectiveResponseData {
+	return v.value
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) Set(val *HistoryServiceLevelObjectiveResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHistoryServiceLevelObjectiveResponseData(val *HistoryServiceLevelObjectiveResponseData) *NullableHistoryServiceLevelObjectiveResponseData {
+	return &NullableHistoryServiceLevelObjectiveResponseData{value: val, isSet: true}
 }
 
 func (v NullableHistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHistoryServiceLevelObjectiveResponseData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

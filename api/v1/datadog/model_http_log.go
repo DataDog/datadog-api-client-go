@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -170,25 +169,56 @@ func (o *HttpLog) SetMessage(v string) {
 	o.Message = &v
 }
 
+func (o HttpLog) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Ddsource != nil {
+		toSerialize["ddsource"] = o.Ddsource
+	}
+	if o.Ddtags != nil {
+		toSerialize["ddtags"] = o.Ddtags
+	}
+	if o.Hostname != nil {
+		toSerialize["hostname"] = o.Hostname
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHttpLog struct {
-	Value        HttpLog
-	ExplicitNull bool
+	value *HttpLog
+	isSet bool
+}
+
+func (v NullableHttpLog) Get() *HttpLog {
+	return v.value
+}
+
+func (v NullableHttpLog) Set(val *HttpLog) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHttpLog) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHttpLog) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHttpLog(val *HttpLog) *NullableHttpLog {
+	return &NullableHttpLog{value: val, isSet: true}
 }
 
 func (v NullableHttpLog) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHttpLog) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
