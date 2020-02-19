@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -136,25 +135,53 @@ func (o *Creator) SetName(v string) {
 	o.Name = &v
 }
 
+func (o Creator) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Email != nil {
+		toSerialize["email"] = o.Email
+	}
+	if o.Handle != nil {
+		toSerialize["handle"] = o.Handle
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCreator struct {
-	Value        Creator
-	ExplicitNull bool
+	value *Creator
+	isSet bool
+}
+
+func (v NullableCreator) Get() *Creator {
+	return v.value
+}
+
+func (v NullableCreator) Set(val *Creator) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreator) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableCreator) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreator(val *Creator) *NullableCreator {
+	return &NullableCreator{value: val, isSet: true}
 }
 
 func (v NullableCreator) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCreator) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

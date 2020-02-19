@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -238,25 +237,62 @@ func (o *MonitorThresholds) SetWarningRecovery(v float64) {
 	o.WarningRecovery = &v
 }
 
+func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Critical != nil {
+		toSerialize["critical"] = o.Critical
+	}
+	if o.CriticalRecovery != nil {
+		toSerialize["critical_recovery"] = o.CriticalRecovery
+	}
+	if o.Ok != nil {
+		toSerialize["ok"] = o.Ok
+	}
+	if o.Unknown != nil {
+		toSerialize["unknown"] = o.Unknown
+	}
+	if o.Warning != nil {
+		toSerialize["warning"] = o.Warning
+	}
+	if o.WarningRecovery != nil {
+		toSerialize["warning_recovery"] = o.WarningRecovery
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitorThresholds struct {
-	Value        MonitorThresholds
-	ExplicitNull bool
+	value *MonitorThresholds
+	isSet bool
+}
+
+func (v NullableMonitorThresholds) Get() *MonitorThresholds {
+	return v.value
+}
+
+func (v NullableMonitorThresholds) Set(val *MonitorThresholds) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorThresholds) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorThresholds) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorThresholds(val *MonitorThresholds) *NullableMonitorThresholds {
+	return &NullableMonitorThresholds{value: val, isSet: true}
 }
 
 func (v NullableMonitorThresholds) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorThresholds) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

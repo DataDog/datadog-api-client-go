@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,24 +27,37 @@ func (v ServiceLevelObjectiveTypeNumeric) Ptr() *ServiceLevelObjectiveTypeNumeri
 }
 
 type NullableServiceLevelObjectiveTypeNumeric struct {
-	Value        ServiceLevelObjectiveTypeNumeric
-	ExplicitNull bool
+	value *ServiceLevelObjectiveTypeNumeric
+	isSet bool
+}
+
+func (v NullableServiceLevelObjectiveTypeNumeric) Get() *ServiceLevelObjectiveTypeNumeric {
+	return v.value
+}
+
+func (v NullableServiceLevelObjectiveTypeNumeric) Set(val *ServiceLevelObjectiveTypeNumeric) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjectiveTypeNumeric) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjectiveTypeNumeric) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjectiveTypeNumeric(val *ServiceLevelObjectiveTypeNumeric) *NullableServiceLevelObjectiveTypeNumeric {
+	return &NullableServiceLevelObjectiveTypeNumeric{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjectiveTypeNumeric) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjectiveTypeNumeric) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

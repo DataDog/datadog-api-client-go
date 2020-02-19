@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -272,25 +271,65 @@ func (o *SyntheticsSslCertificateSubject) SetAltName(v string) {
 	o.AltName = &v
 }
 
+func (o SyntheticsSslCertificateSubject) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.C != nil {
+		toSerialize["C"] = o.C
+	}
+	if o.CN != nil {
+		toSerialize["CN"] = o.CN
+	}
+	if o.L != nil {
+		toSerialize["L"] = o.L
+	}
+	if o.O != nil {
+		toSerialize["O"] = o.O
+	}
+	if o.OU != nil {
+		toSerialize["OU"] = o.OU
+	}
+	if o.ST != nil {
+		toSerialize["ST"] = o.ST
+	}
+	if o.AltName != nil {
+		toSerialize["altName"] = o.AltName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsSslCertificateSubject struct {
-	Value        SyntheticsSslCertificateSubject
-	ExplicitNull bool
+	value *SyntheticsSslCertificateSubject
+	isSet bool
+}
+
+func (v NullableSyntheticsSslCertificateSubject) Get() *SyntheticsSslCertificateSubject {
+	return v.value
+}
+
+func (v NullableSyntheticsSslCertificateSubject) Set(val *SyntheticsSslCertificateSubject) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsSslCertificateSubject) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsSslCertificateSubject) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsSslCertificateSubject(val *SyntheticsSslCertificateSubject) *NullableSyntheticsSslCertificateSubject {
+	return &NullableSyntheticsSslCertificateSubject{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsSslCertificateSubject) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsSslCertificateSubject) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

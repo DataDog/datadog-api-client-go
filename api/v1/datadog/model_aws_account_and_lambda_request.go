@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -70,25 +69,50 @@ func (o *AwsAccountAndLambdaRequest) SetLambdaArn(v string) {
 	o.LambdaArn = v
 }
 
+func (o AwsAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["account_id"] = o.AccountId
+	}
+	if true {
+		toSerialize["lambda_arn"] = o.LambdaArn
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAwsAccountAndLambdaRequest struct {
-	Value        AwsAccountAndLambdaRequest
-	ExplicitNull bool
+	value *AwsAccountAndLambdaRequest
+	isSet bool
+}
+
+func (v NullableAwsAccountAndLambdaRequest) Get() *AwsAccountAndLambdaRequest {
+	return v.value
+}
+
+func (v NullableAwsAccountAndLambdaRequest) Set(val *AwsAccountAndLambdaRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAwsAccountAndLambdaRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAwsAccountAndLambdaRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAwsAccountAndLambdaRequest(val *AwsAccountAndLambdaRequest) *NullableAwsAccountAndLambdaRequest {
+	return &NullableAwsAccountAndLambdaRequest{value: val, isSet: true}
 }
 
 func (v NullableAwsAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAwsAccountAndLambdaRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -209,25 +208,59 @@ func (o *MetricsQueryResponseUnit) SetShortName(v string) {
 	o.ShortName = &v
 }
 
+func (o MetricsQueryResponseUnit) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Family != nil {
+		toSerialize["family"] = o.Family
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Plural != nil {
+		toSerialize["plural"] = o.Plural
+	}
+	if o.ScaleFactor != nil {
+		toSerialize["scale_factor"] = o.ScaleFactor
+	}
+	if o.ShortName != nil {
+		toSerialize["short_name"] = o.ShortName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMetricsQueryResponseUnit struct {
-	Value        MetricsQueryResponseUnit
-	ExplicitNull bool
+	value *MetricsQueryResponseUnit
+	isSet bool
+}
+
+func (v NullableMetricsQueryResponseUnit) Get() *MetricsQueryResponseUnit {
+	return v.value
+}
+
+func (v NullableMetricsQueryResponseUnit) Set(val *MetricsQueryResponseUnit) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricsQueryResponseUnit) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMetricsQueryResponseUnit) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricsQueryResponseUnit(val *MetricsQueryResponseUnit) *NullableMetricsQueryResponseUnit {
+	return &NullableMetricsQueryResponseUnit{value: val, isSet: true}
 }
 
 func (v NullableMetricsQueryResponseUnit) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMetricsQueryResponseUnit) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

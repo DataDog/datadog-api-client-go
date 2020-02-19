@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -224,30 +223,67 @@ func (o *LogsUserAgentParser) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.IsEncoded != nil {
+		toSerialize["is_encoded"] = o.IsEncoded
+	}
+	if true {
+		toSerialize["sources"] = o.Sources
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 // AsLogsProcessor wraps this instance of LogsUserAgentParser in LogsProcessor
 func (s *LogsUserAgentParser) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
 type NullableLogsUserAgentParser struct {
-	Value        LogsUserAgentParser
-	ExplicitNull bool
+	value *LogsUserAgentParser
+	isSet bool
+}
+
+func (v NullableLogsUserAgentParser) Get() *LogsUserAgentParser {
+	return v.value
+}
+
+func (v NullableLogsUserAgentParser) Set(val *LogsUserAgentParser) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsUserAgentParser) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsUserAgentParser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsUserAgentParser(val *LogsUserAgentParser) *NullableLogsUserAgentParser {
+	return &NullableLogsUserAgentParser{value: val, isSet: true}
 }
 
 func (v NullableLogsUserAgentParser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsUserAgentParser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -239,25 +238,62 @@ func (o *LogContent) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
+func (o LogContent) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.Host != nil {
+		toSerialize["host"] = o.Host
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.Service != nil {
+		toSerialize["service"] = o.Service
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.Timestamp != nil {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogContent struct {
-	Value        LogContent
-	ExplicitNull bool
+	value *LogContent
+	isSet bool
+}
+
+func (v NullableLogContent) Get() *LogContent {
+	return v.value
+}
+
+func (v NullableLogContent) Set(val *LogContent) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogContent) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogContent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogContent(val *LogContent) *NullableLogContent {
+	return &NullableLogContent{value: val, isSet: true}
 }
 
 func (v NullableLogContent) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogContent) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -204,25 +203,59 @@ func (o *SyntheticsBrowserTestResultShortResult) SetStepCountTotal(v int64) {
 	o.StepCountTotal = &v
 }
 
+func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Device != nil {
+		toSerialize["device"] = o.Device
+	}
+	if o.Duration != nil {
+		toSerialize["duration"] = o.Duration
+	}
+	if o.ErrorCount != nil {
+		toSerialize["errorCount"] = o.ErrorCount
+	}
+	if o.StepCountCompleted != nil {
+		toSerialize["stepCountCompleted"] = o.StepCountCompleted
+	}
+	if o.StepCountTotal != nil {
+		toSerialize["stepCountTotal"] = o.StepCountTotal
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsBrowserTestResultShortResult struct {
-	Value        SyntheticsBrowserTestResultShortResult
-	ExplicitNull bool
+	value *SyntheticsBrowserTestResultShortResult
+	isSet bool
+}
+
+func (v NullableSyntheticsBrowserTestResultShortResult) Get() *SyntheticsBrowserTestResultShortResult {
+	return v.value
+}
+
+func (v NullableSyntheticsBrowserTestResultShortResult) Set(val *SyntheticsBrowserTestResultShortResult) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsBrowserTestResultShortResult) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsBrowserTestResultShortResult) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsBrowserTestResultShortResult(val *SyntheticsBrowserTestResultShortResult) *NullableSyntheticsBrowserTestResultShortResult {
+	return &NullableSyntheticsBrowserTestResultShortResult{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsBrowserTestResultShortResult) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

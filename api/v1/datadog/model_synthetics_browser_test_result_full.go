@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -272,25 +271,65 @@ func (o *SyntheticsBrowserTestResultFull) SetStatus(v SyntheticsTestMonitorStatu
 	o.Status = &v
 }
 
+func (o SyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Check != nil {
+		toSerialize["check"] = o.Check
+	}
+	if o.CheckTime != nil {
+		toSerialize["check_time"] = o.CheckTime
+	}
+	if o.CheckVersion != nil {
+		toSerialize["check_version"] = o.CheckVersion
+	}
+	if o.ProbeDc != nil {
+		toSerialize["probe_dc"] = o.ProbeDc
+	}
+	if o.Result != nil {
+		toSerialize["result"] = o.Result
+	}
+	if o.ResultId != nil {
+		toSerialize["result_id"] = o.ResultId
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsBrowserTestResultFull struct {
-	Value        SyntheticsBrowserTestResultFull
-	ExplicitNull bool
+	value *SyntheticsBrowserTestResultFull
+	isSet bool
+}
+
+func (v NullableSyntheticsBrowserTestResultFull) Get() *SyntheticsBrowserTestResultFull {
+	return v.value
+}
+
+func (v NullableSyntheticsBrowserTestResultFull) Set(val *SyntheticsBrowserTestResultFull) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsBrowserTestResultFull) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsBrowserTestResultFull) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsBrowserTestResultFull(val *SyntheticsBrowserTestResultFull) *NullableSyntheticsBrowserTestResultFull {
+	return &NullableSyntheticsBrowserTestResultFull{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsBrowserTestResultFull) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

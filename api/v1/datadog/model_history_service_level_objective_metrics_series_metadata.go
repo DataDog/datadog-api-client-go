@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -244,25 +243,62 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetUnit(v string) {
 	o.Unit = &v
 }
 
+func (o HistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Aggr != nil {
+		toSerialize["aggr"] = o.Aggr
+	}
+	if o.Expression != nil {
+		toSerialize["expression"] = o.Expression
+	}
+	if o.Metric != nil {
+		toSerialize["metric"] = o.Metric
+	}
+	if o.QueryIndex != nil {
+		toSerialize["query_index"] = o.QueryIndex
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
+	if o.Unit != nil {
+		toSerialize["unit"] = o.Unit
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata struct {
-	Value        HistoryServiceLevelObjectiveMetricsSeriesMetadata
-	ExplicitNull bool
+	value *HistoryServiceLevelObjectiveMetricsSeriesMetadata
+	isSet bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) Get() *HistoryServiceLevelObjectiveMetricsSeriesMetadata {
+	return v.value
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) Set(val *HistoryServiceLevelObjectiveMetricsSeriesMetadata) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHistoryServiceLevelObjectiveMetricsSeriesMetadata(val *HistoryServiceLevelObjectiveMetricsSeriesMetadata) *NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata {
+	return &NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata{value: val, isSet: true}
 }
 
 func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

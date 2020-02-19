@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *MetricSearchResponse) SetResults(v MetricSearchResponseResults) {
 	o.Results = &v
 }
 
+func (o MetricSearchResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Results != nil {
+		toSerialize["results"] = o.Results
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMetricSearchResponse struct {
-	Value        MetricSearchResponse
-	ExplicitNull bool
+	value *MetricSearchResponse
+	isSet bool
+}
+
+func (v NullableMetricSearchResponse) Get() *MetricSearchResponse {
+	return v.value
+}
+
+func (v NullableMetricSearchResponse) Set(val *MetricSearchResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricSearchResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMetricSearchResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricSearchResponse(val *MetricSearchResponse) *NullableMetricSearchResponse {
+	return &NullableMetricSearchResponse{value: val, isSet: true}
 }
 
 func (v NullableMetricSearchResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMetricSearchResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

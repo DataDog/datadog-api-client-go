@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -104,25 +103,50 @@ func (o *IpPrefixes) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = &v
 }
 
+func (o IpPrefixes) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.PrefixesIpv4 != nil {
+		toSerialize["prefixes_ipv4"] = o.PrefixesIpv4
+	}
+	if o.PrefixesIpv6 != nil {
+		toSerialize["prefixes_ipv6"] = o.PrefixesIpv6
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIpPrefixes struct {
-	Value        IpPrefixes
-	ExplicitNull bool
+	value *IpPrefixes
+	isSet bool
+}
+
+func (v NullableIpPrefixes) Get() *IpPrefixes {
+	return v.value
+}
+
+func (v NullableIpPrefixes) Set(val *IpPrefixes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIpPrefixes) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableIpPrefixes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIpPrefixes(val *IpPrefixes) *NullableIpPrefixes {
+	return &NullableIpPrefixes{value: val, isSet: true}
 }
 
 func (v NullableIpPrefixes) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIpPrefixes) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

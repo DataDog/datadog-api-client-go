@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,24 +27,37 @@ func (v LogsSort) Ptr() *LogsSort {
 }
 
 type NullableLogsSort struct {
-	Value        LogsSort
-	ExplicitNull bool
+	value *LogsSort
+	isSet bool
+}
+
+func (v NullableLogsSort) Get() *LogsSort {
+	return v.value
+}
+
+func (v NullableLogsSort) Set(val *LogsSort) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsSort) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsSort) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsSort(val *LogsSort) *NullableLogsSort {
+	return &NullableLogsSort{value: val, isSet: true}
 }
 
 func (v NullableLogsSort) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsSort) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
