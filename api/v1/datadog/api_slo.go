@@ -108,7 +108,7 @@ func (r apiBulkPartialDeleteSLORequest) Execute() (ServiceLevelObjectivesBulkDel
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -122,7 +122,7 @@ func (r apiBulkPartialDeleteSLORequest) Execute() (ServiceLevelObjectivesBulkDel
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -285,7 +285,7 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteServiceLevelObject
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -299,7 +299,7 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteServiceLevelObject
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -461,7 +461,7 @@ func (r apiCreateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_net
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -475,7 +475,7 @@ func (r apiCreateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_net
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -631,7 +631,7 @@ func (r apiDeleteSLORequest) Execute() (ServiceLevelObjectiveDeleted, *_nethttp.
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -645,7 +645,7 @@ func (r apiDeleteSLORequest) Execute() (ServiceLevelObjectiveDeleted, *_nethttp.
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -823,7 +823,7 @@ func (r apiEditSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -837,7 +837,7 @@ func (r apiEditSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -1003,7 +1003,7 @@ func (r apiGetSLORequest) Execute() (ServiceLevelObjectiveResponse, *_nethttp.Re
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -1017,7 +1017,7 @@ func (r apiGetSLORequest) Execute() (ServiceLevelObjectiveResponse, *_nethttp.Re
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -1191,7 +1191,7 @@ func (r apiGetSLOsRequest) Execute() (ServiceLevelObjectiveListResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -1205,7 +1205,7 @@ func (r apiGetSLOsRequest) Execute() (ServiceLevelObjectiveListResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -1385,7 +1385,7 @@ func (r apiHistoryForSLORequest) Execute() (HistoryServiceLevelObjectiveResponse
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -1399,7 +1399,7 @@ func (r apiHistoryForSLORequest) Execute() (HistoryServiceLevelObjectiveResponse
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
