@@ -114,7 +114,7 @@ func (r apiCreateChildOrgRequest) Execute() (OrgCreateResponse, *_nethttp.Respon
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -128,7 +128,7 @@ func (r apiCreateChildOrgRequest) Execute() (OrgCreateResponse, *_nethttp.Respon
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -268,7 +268,7 @@ func (r apiGetOrgRequest) Execute() (OrgListResponse, *_nethttp.Response, error)
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -282,7 +282,7 @@ func (r apiGetOrgRequest) Execute() (OrgListResponse, *_nethttp.Response, error)
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -446,7 +446,7 @@ func (r apiUpdateOrgRequest) Execute() (OrgResponse, *_nethttp.Response, error) 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -460,7 +460,7 @@ func (r apiUpdateOrgRequest) Execute() (OrgResponse, *_nethttp.Response, error) 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -634,7 +634,7 @@ func (r apiUploadIdPForOrgRequest) Execute() (IdpResponse, *_nethttp.Response, e
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -648,7 +648,7 @@ func (r apiUploadIdPForOrgRequest) Execute() (IdpResponse, *_nethttp.Response, e
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}

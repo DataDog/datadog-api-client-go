@@ -431,37 +431,37 @@ Class | Method | HTTP request | Description
 ### apiKeyAuth
 
 - **Type**: API key
-- **API key parameter name**: api_key
-- **Location**: URL query string
-
-Note, each API key must be added to a map of `map[string]APIKey` where the key is: api_key and passed in as the auth context for each request.
-
-
-### apiKeyAuthHeader
-
-- **Type**: API key
 - **API key parameter name**: DD-API-KEY
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: DD-API-KEY and passed in as the auth context for each request.
 
 
-### appKeyAuth
+### apiKeyAuthQuery
 
 - **Type**: API key
-- **API key parameter name**: application_key
+- **API key parameter name**: api_key
 - **Location**: URL query string
 
-Note, each API key must be added to a map of `map[string]APIKey` where the key is: application_key and passed in as the auth context for each request.
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: api_key and passed in as the auth context for each request.
 
 
-### appKeyAuthHeader
+### appKeyAuth
 
 - **Type**: API key
 - **API key parameter name**: DD-APPLICATION-KEY
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: DD-APPLICATION-KEY and passed in as the auth context for each request.
+
+
+### appKeyAuthQuery
+
+- **Type**: API key
+- **API key parameter name**: application_key
+- **Location**: URL query string
+
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: application_key and passed in as the auth context for each request.
 
 
 ## Documentation for Utility Methods

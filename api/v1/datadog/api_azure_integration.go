@@ -110,7 +110,7 @@ func (r apiAzureUpdateHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -124,7 +124,7 @@ func (r apiAzureUpdateHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -281,7 +281,7 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -295,7 +295,7 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -450,7 +450,7 @@ func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -464,7 +464,7 @@ func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -604,7 +604,7 @@ func (r apiListAzureIntegrationRequest) Execute() ([]AzureAccount, *_nethttp.Res
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -618,7 +618,7 @@ func (r apiListAzureIntegrationRequest) Execute() ([]AzureAccount, *_nethttp.Res
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -777,7 +777,7 @@ func (r apiUpdateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -791,7 +791,7 @@ func (r apiUpdateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
