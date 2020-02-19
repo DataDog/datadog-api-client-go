@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -69,25 +68,47 @@ func (o *HistoryServiceLevelObjectiveResponseError) SetError(v string) {
 	o.Error = &v
 }
 
+func (o HistoryServiceLevelObjectiveResponseError) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Error != nil {
+		toSerialize["error"] = o.Error
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHistoryServiceLevelObjectiveResponseError struct {
-	Value        HistoryServiceLevelObjectiveResponseError
-	ExplicitNull bool
+	value *HistoryServiceLevelObjectiveResponseError
+	isSet bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) Get() *HistoryServiceLevelObjectiveResponseError {
+	return v.value
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) Set(val *HistoryServiceLevelObjectiveResponseError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHistoryServiceLevelObjectiveResponseError(val *HistoryServiceLevelObjectiveResponseError) *NullableHistoryServiceLevelObjectiveResponseError {
+	return &NullableHistoryServiceLevelObjectiveResponseError{value: val, isSet: true}
 }
 
 func (v NullableHistoryServiceLevelObjectiveResponseError) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHistoryServiceLevelObjectiveResponseError) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

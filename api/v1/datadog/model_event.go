@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -485,25 +484,86 @@ func (o *Event) SetUrl(v string) {
 	o.Url = &v
 }
 
+func (o Event) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AggregationKey != nil {
+		toSerialize["aggregation_key"] = o.AggregationKey
+	}
+	if o.AlertType != nil {
+		toSerialize["alert_type"] = o.AlertType
+	}
+	if o.DateHappened != nil {
+		toSerialize["date_happened"] = o.DateHappened
+	}
+	if o.DeviceName != nil {
+		toSerialize["device_name"] = o.DeviceName
+	}
+	if o.Host != nil {
+		toSerialize["host"] = o.Host
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Payload != nil {
+		toSerialize["payload"] = o.Payload
+	}
+	if o.Priority != nil {
+		toSerialize["priority"] = o.Priority
+	}
+	if o.RelatedEventId != nil {
+		toSerialize["related_event_id"] = o.RelatedEventId
+	}
+	if o.SourceTypeName != nil {
+		toSerialize["source_type_name"] = o.SourceTypeName
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if true {
+		toSerialize["text"] = o.Text
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Url != nil {
+		toSerialize["url"] = o.Url
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEvent struct {
-	Value        Event
-	ExplicitNull bool
+	value *Event
+	isSet bool
+}
+
+func (v NullableEvent) Get() *Event {
+	return v.value
+}
+
+func (v NullableEvent) Set(val *Event) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEvent) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableEvent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEvent(val *Event) *NullableEvent {
+	return &NullableEvent{value: val, isSet: true}
 }
 
 func (v NullableEvent) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEvent) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

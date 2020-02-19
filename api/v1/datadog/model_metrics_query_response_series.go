@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -419,25 +418,77 @@ func (o *MetricsQueryResponseSeries) SetUnit(v []MetricsQueryResponseUnit) {
 	o.Unit = &v
 }
 
+func (o MetricsQueryResponseSeries) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Aggr != nil {
+		toSerialize["aggr"] = o.Aggr
+	}
+	if o.DisplayName != nil {
+		toSerialize["display_name"] = o.DisplayName
+	}
+	if o.End != nil {
+		toSerialize["end"] = o.End
+	}
+	if o.Expression != nil {
+		toSerialize["expression"] = o.Expression
+	}
+	if o.Interval != nil {
+		toSerialize["interval"] = o.Interval
+	}
+	if o.Length != nil {
+		toSerialize["length"] = o.Length
+	}
+	if o.Metric != nil {
+		toSerialize["metric"] = o.Metric
+	}
+	if o.Pointlist != nil {
+		toSerialize["pointlist"] = o.Pointlist
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
+	if o.Start != nil {
+		toSerialize["start"] = o.Start
+	}
+	if o.Unit != nil {
+		toSerialize["unit"] = o.Unit
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMetricsQueryResponseSeries struct {
-	Value        MetricsQueryResponseSeries
-	ExplicitNull bool
+	value *MetricsQueryResponseSeries
+	isSet bool
+}
+
+func (v NullableMetricsQueryResponseSeries) Get() *MetricsQueryResponseSeries {
+	return v.value
+}
+
+func (v NullableMetricsQueryResponseSeries) Set(val *MetricsQueryResponseSeries) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricsQueryResponseSeries) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMetricsQueryResponseSeries) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricsQueryResponseSeries(val *MetricsQueryResponseSeries) *NullableMetricsQueryResponseSeries {
+	return &NullableMetricsQueryResponseSeries{value: val, isSet: true}
 }
 
 func (v NullableMetricsQueryResponseSeries) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMetricsQueryResponseSeries) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

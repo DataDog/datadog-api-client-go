@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -102,25 +101,50 @@ func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
 	o.TriggerWindow = &v
 }
 
+func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.RecoveryWindow != nil {
+		toSerialize["recovery_window"] = o.RecoveryWindow
+	}
+	if o.TriggerWindow != nil {
+		toSerialize["trigger_window"] = o.TriggerWindow
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitorThresholdWindowOptions struct {
-	Value        MonitorThresholdWindowOptions
-	ExplicitNull bool
+	value *MonitorThresholdWindowOptions
+	isSet bool
+}
+
+func (v NullableMonitorThresholdWindowOptions) Get() *MonitorThresholdWindowOptions {
+	return v.value
+}
+
+func (v NullableMonitorThresholdWindowOptions) Set(val *MonitorThresholdWindowOptions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorThresholdWindowOptions) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorThresholdWindowOptions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorThresholdWindowOptions(val *MonitorThresholdWindowOptions) *NullableMonitorThresholdWindowOptions {
+	return &NullableMonitorThresholdWindowOptions{value: val, isSet: true}
 }
 
 func (v NullableMonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorThresholdWindowOptions) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,50 @@ func (o *SyntheticsTestRequestBasicAuth) SetUsername(v string) {
 	o.Username = v
 }
 
+func (o SyntheticsTestRequestBasicAuth) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["password"] = o.Password
+	}
+	if true {
+		toSerialize["username"] = o.Username
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsTestRequestBasicAuth struct {
-	Value        SyntheticsTestRequestBasicAuth
-	ExplicitNull bool
+	value *SyntheticsTestRequestBasicAuth
+	isSet bool
+}
+
+func (v NullableSyntheticsTestRequestBasicAuth) Get() *SyntheticsTestRequestBasicAuth {
+	return v.value
+}
+
+func (v NullableSyntheticsTestRequestBasicAuth) Set(val *SyntheticsTestRequestBasicAuth) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTestRequestBasicAuth) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTestRequestBasicAuth) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTestRequestBasicAuth(val *SyntheticsTestRequestBasicAuth) *NullableSyntheticsTestRequestBasicAuth {
+	return &NullableSyntheticsTestRequestBasicAuth{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTestRequestBasicAuth) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTestRequestBasicAuth) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

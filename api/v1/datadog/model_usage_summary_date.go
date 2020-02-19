@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -803,25 +802,110 @@ func (o *UsageSummaryDate) SetTraceSearchIndexedEventsCountSum(v int64) {
 	o.TraceSearchIndexedEventsCountSum = &v
 }
 
+func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AgentHostTop99p != nil {
+		toSerialize["agent_host_top99p"] = o.AgentHostTop99p
+	}
+	if o.ApmHostTop99p != nil {
+		toSerialize["apm_host_top99p"] = o.ApmHostTop99p
+	}
+	if o.AwsHostTop99p != nil {
+		toSerialize["aws_host_top99p"] = o.AwsHostTop99p
+	}
+	if o.AwsLambdaFuncCount != nil {
+		toSerialize["aws_lambda_func_count"] = o.AwsLambdaFuncCount
+	}
+	if o.AwsLambdaInvocationsSum != nil {
+		toSerialize["aws_lambda_invocations_sum"] = o.AwsLambdaInvocationsSum
+	}
+	if o.BillableIngestedBytesSum != nil {
+		toSerialize["billable_ingested_bytes_sum"] = o.BillableIngestedBytesSum
+	}
+	if o.ContainerAvg != nil {
+		toSerialize["container_avg"] = o.ContainerAvg
+	}
+	if o.ContainerHwm != nil {
+		toSerialize["container_hwm"] = o.ContainerHwm
+	}
+	if o.CustomTsAvg != nil {
+		toSerialize["custom_ts_avg"] = o.CustomTsAvg
+	}
+	if o.Date != nil {
+		toSerialize["date"] = o.Date
+	}
+	if o.FargateTasksCountAvg != nil {
+		toSerialize["fargate_tasks_count_avg"] = o.FargateTasksCountAvg
+	}
+	if o.FargateTasksCountHwm != nil {
+		toSerialize["fargate_tasks_count_hwm"] = o.FargateTasksCountHwm
+	}
+	if o.GcpHostTop99p != nil {
+		toSerialize["gcp_host_top99p"] = o.GcpHostTop99p
+	}
+	if o.IndexedEventsCountSum != nil {
+		toSerialize["indexed_events_count_sum"] = o.IndexedEventsCountSum
+	}
+	if o.InfraHostTop99p != nil {
+		toSerialize["infra_host_top99p"] = o.InfraHostTop99p
+	}
+	if o.IngestedEventsBytesSum != nil {
+		toSerialize["ingested_events_bytes_sum"] = o.IngestedEventsBytesSum
+	}
+	if o.NetflowIndexedEventsCountSum != nil {
+		toSerialize["netflow_indexed_events_count_sum"] = o.NetflowIndexedEventsCountSum
+	}
+	if o.NpmHostTop99p != nil {
+		toSerialize["npm_host_top99p"] = o.NpmHostTop99p
+	}
+	if o.Orgs != nil {
+		toSerialize["orgs"] = o.Orgs
+	}
+	if o.SyntheticsBrowserCheckCallsCountSum != nil {
+		toSerialize["synthetics_browser_check_calls_count_sum"] = o.SyntheticsBrowserCheckCallsCountSum
+	}
+	if o.SyntheticsCheckCallsCountSum != nil {
+		toSerialize["synthetics_check_calls_count_sum"] = o.SyntheticsCheckCallsCountSum
+	}
+	if o.TraceSearchIndexedEventsCountSum != nil {
+		toSerialize["trace_search_indexed_events_count_sum"] = o.TraceSearchIndexedEventsCountSum
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageSummaryDate struct {
-	Value        UsageSummaryDate
-	ExplicitNull bool
+	value *UsageSummaryDate
+	isSet bool
+}
+
+func (v NullableUsageSummaryDate) Get() *UsageSummaryDate {
+	return v.value
+}
+
+func (v NullableUsageSummaryDate) Set(val *UsageSummaryDate) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageSummaryDate) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageSummaryDate) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageSummaryDate(val *UsageSummaryDate) *NullableUsageSummaryDate {
+	return &NullableUsageSummaryDate{value: val, isSet: true}
 }
 
 func (v NullableUsageSummaryDate) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageSummaryDate) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

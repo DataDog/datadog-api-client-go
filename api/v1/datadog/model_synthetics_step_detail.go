@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -612,25 +611,95 @@ func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarnings) {
 	o.Warnings = &v
 }
 
+func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.BrowserErrors != nil {
+		toSerialize["browserErrors"] = o.BrowserErrors
+	}
+	if o.CheckType != nil {
+		toSerialize["checkType"] = o.CheckType
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Duration != nil {
+		toSerialize["duration"] = o.Duration
+	}
+	if o.Error != nil {
+		toSerialize["error"] = o.Error
+	}
+	if o.PlayingTab != nil {
+		toSerialize["playingTab"] = o.PlayingTab
+	}
+	if o.Resources != nil {
+		toSerialize["resources"] = o.Resources
+	}
+	if o.ScreenshotBucketKey != nil {
+		toSerialize["screenshotBucketKey"] = o.ScreenshotBucketKey
+	}
+	if o.Skipped != nil {
+		toSerialize["skipped"] = o.Skipped
+	}
+	if o.SnapshotBucketKey != nil {
+		toSerialize["snapshotBucketKey"] = o.SnapshotBucketKey
+	}
+	if o.StepId != nil {
+		toSerialize["stepId"] = o.StepId
+	}
+	if o.SubTestStepDetails != nil {
+		toSerialize["subTestStepDetails"] = o.SubTestStepDetails
+	}
+	if o.TimeToInteractive != nil {
+		toSerialize["timeToInteractive"] = o.TimeToInteractive
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.Url != nil {
+		toSerialize["url"] = o.Url
+	}
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
+	if o.Warnings != nil {
+		toSerialize["warnings"] = o.Warnings
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsStepDetail struct {
-	Value        SyntheticsStepDetail
-	ExplicitNull bool
+	value *SyntheticsStepDetail
+	isSet bool
+}
+
+func (v NullableSyntheticsStepDetail) Get() *SyntheticsStepDetail {
+	return v.value
+}
+
+func (v NullableSyntheticsStepDetail) Set(val *SyntheticsStepDetail) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsStepDetail) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsStepDetail) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsStepDetail(val *SyntheticsStepDetail) *NullableSyntheticsStepDetail {
+	return &NullableSyntheticsStepDetail{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsStepDetail) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsStepDetail) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

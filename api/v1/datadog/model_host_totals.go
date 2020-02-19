@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -102,25 +101,50 @@ func (o *HostTotals) SetTotalUp(v int64) {
 	o.TotalUp = &v
 }
 
+func (o HostTotals) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.TotalActive != nil {
+		toSerialize["total_active"] = o.TotalActive
+	}
+	if o.TotalUp != nil {
+		toSerialize["total_up"] = o.TotalUp
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHostTotals struct {
-	Value        HostTotals
-	ExplicitNull bool
+	value *HostTotals
+	isSet bool
+}
+
+func (v NullableHostTotals) Get() *HostTotals {
+	return v.value
+}
+
+func (v NullableHostTotals) Set(val *HostTotals) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHostTotals) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHostTotals) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHostTotals(val *HostTotals) *NullableHostTotals {
+	return &NullableHostTotals{value: val, isSet: true}
 }
 
 func (v NullableHostTotals) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHostTotals) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

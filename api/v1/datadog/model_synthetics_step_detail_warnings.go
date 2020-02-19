@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,50 @@ func (o *SyntheticsStepDetailWarnings) SetType(v SyntheticsWarningType) {
 	o.Type = v
 }
 
+func (o SyntheticsStepDetailWarnings) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsStepDetailWarnings struct {
-	Value        SyntheticsStepDetailWarnings
-	ExplicitNull bool
+	value *SyntheticsStepDetailWarnings
+	isSet bool
+}
+
+func (v NullableSyntheticsStepDetailWarnings) Get() *SyntheticsStepDetailWarnings {
+	return v.value
+}
+
+func (v NullableSyntheticsStepDetailWarnings) Set(val *SyntheticsStepDetailWarnings) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsStepDetailWarnings) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsStepDetailWarnings) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsStepDetailWarnings(val *SyntheticsStepDetailWarnings) *NullableSyntheticsStepDetailWarnings {
+	return &NullableSyntheticsStepDetailWarnings{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsStepDetailWarnings) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsStepDetailWarnings) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

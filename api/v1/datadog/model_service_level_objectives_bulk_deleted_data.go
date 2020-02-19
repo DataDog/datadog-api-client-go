@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -104,25 +103,50 @@ func (o *ServiceLevelObjectivesBulkDeletedData) SetUpdated(v []string) {
 	o.Updated = &v
 }
 
+func (o ServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Deleted != nil {
+		toSerialize["deleted"] = o.Deleted
+	}
+	if o.Updated != nil {
+		toSerialize["updated"] = o.Updated
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceLevelObjectivesBulkDeletedData struct {
-	Value        ServiceLevelObjectivesBulkDeletedData
-	ExplicitNull bool
+	value *ServiceLevelObjectivesBulkDeletedData
+	isSet bool
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) Get() *ServiceLevelObjectivesBulkDeletedData {
+	return v.value
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) Set(val *ServiceLevelObjectivesBulkDeletedData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjectivesBulkDeletedData(val *ServiceLevelObjectivesBulkDeletedData) *NullableServiceLevelObjectivesBulkDeletedData {
+	return &NullableServiceLevelObjectivesBulkDeletedData{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjectivesBulkDeletedData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

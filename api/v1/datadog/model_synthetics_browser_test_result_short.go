@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -204,25 +203,59 @@ func (o *SyntheticsBrowserTestResultShort) SetStatus(v SyntheticsTestMonitorStat
 	o.Status = &v
 }
 
+func (o SyntheticsBrowserTestResultShort) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.CheckTime != nil {
+		toSerialize["check_time"] = o.CheckTime
+	}
+	if o.ProbeDc != nil {
+		toSerialize["probe_dc"] = o.ProbeDc
+	}
+	if o.Result != nil {
+		toSerialize["result"] = o.Result
+	}
+	if o.ResultId != nil {
+		toSerialize["result_id"] = o.ResultId
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsBrowserTestResultShort struct {
-	Value        SyntheticsBrowserTestResultShort
-	ExplicitNull bool
+	value *SyntheticsBrowserTestResultShort
+	isSet bool
+}
+
+func (v NullableSyntheticsBrowserTestResultShort) Get() *SyntheticsBrowserTestResultShort {
+	return v.value
+}
+
+func (v NullableSyntheticsBrowserTestResultShort) Set(val *SyntheticsBrowserTestResultShort) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsBrowserTestResultShort) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsBrowserTestResultShort) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsBrowserTestResultShort(val *SyntheticsBrowserTestResultShort) *NullableSyntheticsBrowserTestResultShort {
+	return &NullableSyntheticsBrowserTestResultShort{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsBrowserTestResultShort) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsBrowserTestResultShort) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

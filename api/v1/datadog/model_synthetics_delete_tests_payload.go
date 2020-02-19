@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *SyntheticsDeleteTestsPayload) SetPublicIds(v []string) {
 	o.PublicIds = &v
 }
 
+func (o SyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.PublicIds != nil {
+		toSerialize["public_ids"] = o.PublicIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsDeleteTestsPayload struct {
-	Value        SyntheticsDeleteTestsPayload
-	ExplicitNull bool
+	value *SyntheticsDeleteTestsPayload
+	isSet bool
+}
+
+func (v NullableSyntheticsDeleteTestsPayload) Get() *SyntheticsDeleteTestsPayload {
+	return v.value
+}
+
+func (v NullableSyntheticsDeleteTestsPayload) Set(val *SyntheticsDeleteTestsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsDeleteTestsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsDeleteTestsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsDeleteTestsPayload(val *SyntheticsDeleteTestsPayload) *NullableSyntheticsDeleteTestsPayload {
+	return &NullableSyntheticsDeleteTestsPayload{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsDeleteTestsPayload) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

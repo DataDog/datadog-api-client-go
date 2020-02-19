@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -222,30 +221,67 @@ func (o *LogsStringBuilderProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.IsReplaceMissing != nil {
+		toSerialize["is_replace_missing"] = o.IsReplaceMissing
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if true {
+		toSerialize["template"] = o.Template
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 // AsLogsProcessor wraps this instance of LogsStringBuilderProcessor in LogsProcessor
 func (s *LogsStringBuilderProcessor) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
 type NullableLogsStringBuilderProcessor struct {
-	Value        LogsStringBuilderProcessor
-	ExplicitNull bool
+	value *LogsStringBuilderProcessor
+	isSet bool
+}
+
+func (v NullableLogsStringBuilderProcessor) Get() *LogsStringBuilderProcessor {
+	return v.value
+}
+
+func (v NullableLogsStringBuilderProcessor) Set(val *LogsStringBuilderProcessor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsStringBuilderProcessor) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsStringBuilderProcessor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsStringBuilderProcessor(val *LogsStringBuilderProcessor) *NullableLogsStringBuilderProcessor {
+	return &NullableLogsStringBuilderProcessor{value: val, isSet: true}
 }
 
 func (v NullableLogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsStringBuilderProcessor) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

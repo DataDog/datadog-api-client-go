@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -208,25 +207,59 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) SetValues(v []float64) {
 	o.Values = &v
 }
 
+func (o HistoryServiceLevelObjectiveMetricsSeries) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Count != nil {
+		toSerialize["count"] = o.Count
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if o.Sum != nil {
+		toSerialize["sum"] = o.Sum
+	}
+	if o.Times != nil {
+		toSerialize["times"] = o.Times
+	}
+	if o.Values != nil {
+		toSerialize["values"] = o.Values
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHistoryServiceLevelObjectiveMetricsSeries struct {
-	Value        HistoryServiceLevelObjectiveMetricsSeries
-	ExplicitNull bool
+	value *HistoryServiceLevelObjectiveMetricsSeries
+	isSet bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeries) Get() *HistoryServiceLevelObjectiveMetricsSeries {
+	return v.value
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeries) Set(val *HistoryServiceLevelObjectiveMetricsSeries) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeries) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHistoryServiceLevelObjectiveMetricsSeries) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHistoryServiceLevelObjectiveMetricsSeries(val *HistoryServiceLevelObjectiveMetricsSeries) *NullableHistoryServiceLevelObjectiveMetricsSeries {
+	return &NullableHistoryServiceLevelObjectiveMetricsSeries{value: val, isSet: true}
 }
 
 func (v NullableHistoryServiceLevelObjectiveMetricsSeries) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHistoryServiceLevelObjectiveMetricsSeries) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

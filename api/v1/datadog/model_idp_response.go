@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -51,25 +50,47 @@ func (o *IdpResponse) SetMessage(v string) {
 	o.Message = v
 }
 
+func (o IdpResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIdpResponse struct {
-	Value        IdpResponse
-	ExplicitNull bool
+	value *IdpResponse
+	isSet bool
+}
+
+func (v NullableIdpResponse) Get() *IdpResponse {
+	return v.value
+}
+
+func (v NullableIdpResponse) Set(val *IdpResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIdpResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableIdpResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIdpResponse(val *IdpResponse) *NullableIdpResponse {
+	return &NullableIdpResponse{value: val, isSet: true}
 }
 
 func (v NullableIdpResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIdpResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

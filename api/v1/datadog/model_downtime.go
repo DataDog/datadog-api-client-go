@@ -9,28 +9,27 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // Downtime struct for Downtime
 type Downtime struct {
-	Active       *bool                       `json:"active,omitempty"`
-	Canceled     *NullableInt64              `json:"canceled,omitempty"`
-	CreatorId    *int32                      `json:"creator_id,omitempty"`
-	Disabled     *bool                       `json:"disabled,omitempty"`
-	DowntimeType *int32                      `json:"downtime_type,omitempty"`
-	End          *NullableInt64              `json:"end,omitempty"`
-	Id           *int64                      `json:"id,omitempty"`
-	Message      *string                     `json:"message,omitempty"`
-	MonitorId    *NullableInt64              `json:"monitor_id,omitempty"`
-	MonitorTags  *[]string                   `json:"monitor_tags,omitempty"`
-	ParentId     *NullableInt64              `json:"parent_id,omitempty"`
-	Recurrence   *NullableDowntimeRecurrence `json:"recurrence,omitempty"`
-	Scope        *[]string                   `json:"scope,omitempty"`
-	Start        *int64                      `json:"start,omitempty"`
-	Timezone     *string                     `json:"timezone,omitempty"`
-	UpdaterId    *int32                      `json:"updater_id,omitempty"`
+	Active       *bool                      `json:"active,omitempty"`
+	Canceled     NullableInt64              `json:"canceled,omitempty"`
+	CreatorId    *int32                     `json:"creator_id,omitempty"`
+	Disabled     *bool                      `json:"disabled,omitempty"`
+	DowntimeType *int32                     `json:"downtime_type,omitempty"`
+	End          NullableInt64              `json:"end,omitempty"`
+	Id           *int64                     `json:"id,omitempty"`
+	Message      *string                    `json:"message,omitempty"`
+	MonitorId    NullableInt64              `json:"monitor_id,omitempty"`
+	MonitorTags  *[]string                  `json:"monitor_tags,omitempty"`
+	ParentId     NullableInt64              `json:"parent_id,omitempty"`
+	Recurrence   NullableDowntimeRecurrence `json:"recurrence,omitempty"`
+	Scope        *[]string                  `json:"scope,omitempty"`
+	Start        *int64                     `json:"start,omitempty"`
+	Timezone     *string                    `json:"timezone,omitempty"`
+	UpdaterId    *int32                     `json:"updater_id,omitempty"`
 }
 
 // NewDowntime instantiates a new Downtime object
@@ -85,26 +84,26 @@ func (o *Downtime) SetActive(v bool) {
 
 // GetCanceled returns the Canceled field value if set, zero value otherwise.
 func (o *Downtime) GetCanceled() NullableInt64 {
-	if o == nil || o.Canceled == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret
 	}
-	return *o.Canceled
+	return o.Canceled
 }
 
 // GetCanceledOk returns a tuple with the Canceled field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Downtime) GetCanceledOk() (NullableInt64, bool) {
-	if o == nil || o.Canceled == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret, false
 	}
-	return *o.Canceled, true
+	return o.Canceled, o.Canceled.IsSet()
 }
 
 // HasCanceled returns a boolean if a field has been set.
 func (o *Downtime) HasCanceled() bool {
-	if o != nil && o.Canceled != nil {
+	if o != nil && o.Canceled.IsSet() {
 		return true
 	}
 
@@ -113,7 +112,7 @@ func (o *Downtime) HasCanceled() bool {
 
 // SetCanceled gets a reference to the given NullableInt64 and assigns it to the Canceled field.
 func (o *Downtime) SetCanceled(v NullableInt64) {
-	o.Canceled = &v
+	o.Canceled = v
 }
 
 // GetCreatorId returns the CreatorId field value if set, zero value otherwise.
@@ -217,26 +216,26 @@ func (o *Downtime) SetDowntimeType(v int32) {
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *Downtime) GetEnd() NullableInt64 {
-	if o == nil || o.End == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret
 	}
-	return *o.End
+	return o.End
 }
 
 // GetEndOk returns a tuple with the End field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Downtime) GetEndOk() (NullableInt64, bool) {
-	if o == nil || o.End == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret, false
 	}
-	return *o.End, true
+	return o.End, o.End.IsSet()
 }
 
 // HasEnd returns a boolean if a field has been set.
 func (o *Downtime) HasEnd() bool {
-	if o != nil && o.End != nil {
+	if o != nil && o.End.IsSet() {
 		return true
 	}
 
@@ -245,7 +244,7 @@ func (o *Downtime) HasEnd() bool {
 
 // SetEnd gets a reference to the given NullableInt64 and assigns it to the End field.
 func (o *Downtime) SetEnd(v NullableInt64) {
-	o.End = &v
+	o.End = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -316,26 +315,26 @@ func (o *Downtime) SetMessage(v string) {
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
 func (o *Downtime) GetMonitorId() NullableInt64 {
-	if o == nil || o.MonitorId == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret
 	}
-	return *o.MonitorId
+	return o.MonitorId
 }
 
 // GetMonitorIdOk returns a tuple with the MonitorId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Downtime) GetMonitorIdOk() (NullableInt64, bool) {
-	if o == nil || o.MonitorId == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret, false
 	}
-	return *o.MonitorId, true
+	return o.MonitorId, o.MonitorId.IsSet()
 }
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *Downtime) HasMonitorId() bool {
-	if o != nil && o.MonitorId != nil {
+	if o != nil && o.MonitorId.IsSet() {
 		return true
 	}
 
@@ -344,7 +343,7 @@ func (o *Downtime) HasMonitorId() bool {
 
 // SetMonitorId gets a reference to the given NullableInt64 and assigns it to the MonitorId field.
 func (o *Downtime) SetMonitorId(v NullableInt64) {
-	o.MonitorId = &v
+	o.MonitorId = v
 }
 
 // GetMonitorTags returns the MonitorTags field value if set, zero value otherwise.
@@ -382,26 +381,26 @@ func (o *Downtime) SetMonitorTags(v []string) {
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
 func (o *Downtime) GetParentId() NullableInt64 {
-	if o == nil || o.ParentId == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret
 	}
-	return *o.ParentId
+	return o.ParentId
 }
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Downtime) GetParentIdOk() (NullableInt64, bool) {
-	if o == nil || o.ParentId == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret, false
 	}
-	return *o.ParentId, true
+	return o.ParentId, o.ParentId.IsSet()
 }
 
 // HasParentId returns a boolean if a field has been set.
 func (o *Downtime) HasParentId() bool {
-	if o != nil && o.ParentId != nil {
+	if o != nil && o.ParentId.IsSet() {
 		return true
 	}
 
@@ -410,31 +409,31 @@ func (o *Downtime) HasParentId() bool {
 
 // SetParentId gets a reference to the given NullableInt64 and assigns it to the ParentId field.
 func (o *Downtime) SetParentId(v NullableInt64) {
-	o.ParentId = &v
+	o.ParentId = v
 }
 
 // GetRecurrence returns the Recurrence field value if set, zero value otherwise.
 func (o *Downtime) GetRecurrence() NullableDowntimeRecurrence {
-	if o == nil || o.Recurrence == nil {
+	if o == nil {
 		var ret NullableDowntimeRecurrence
 		return ret
 	}
-	return *o.Recurrence
+	return o.Recurrence
 }
 
 // GetRecurrenceOk returns a tuple with the Recurrence field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Downtime) GetRecurrenceOk() (NullableDowntimeRecurrence, bool) {
-	if o == nil || o.Recurrence == nil {
+	if o == nil {
 		var ret NullableDowntimeRecurrence
 		return ret, false
 	}
-	return *o.Recurrence, true
+	return o.Recurrence, o.Recurrence.IsSet()
 }
 
 // HasRecurrence returns a boolean if a field has been set.
 func (o *Downtime) HasRecurrence() bool {
-	if o != nil && o.Recurrence != nil {
+	if o != nil && o.Recurrence.IsSet() {
 		return true
 	}
 
@@ -443,7 +442,7 @@ func (o *Downtime) HasRecurrence() bool {
 
 // SetRecurrence gets a reference to the given NullableDowntimeRecurrence and assigns it to the Recurrence field.
 func (o *Downtime) SetRecurrence(v NullableDowntimeRecurrence) {
-	o.Recurrence = &v
+	o.Recurrence = v
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
@@ -578,25 +577,92 @@ func (o *Downtime) SetUpdaterId(v int32) {
 	o.UpdaterId = &v
 }
 
+func (o Downtime) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Active != nil {
+		toSerialize["active"] = o.Active
+	}
+	if o.Canceled.IsSet() {
+		toSerialize["canceled"] = o.Canceled.Get()
+	}
+	if o.CreatorId != nil {
+		toSerialize["creator_id"] = o.CreatorId
+	}
+	if o.Disabled != nil {
+		toSerialize["disabled"] = o.Disabled
+	}
+	if o.DowntimeType != nil {
+		toSerialize["downtime_type"] = o.DowntimeType
+	}
+	if o.End.IsSet() {
+		toSerialize["end"] = o.End.Get()
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.MonitorId.IsSet() {
+		toSerialize["monitor_id"] = o.MonitorId.Get()
+	}
+	if o.MonitorTags != nil {
+		toSerialize["monitor_tags"] = o.MonitorTags
+	}
+	if o.ParentId.IsSet() {
+		toSerialize["parent_id"] = o.ParentId.Get()
+	}
+	if o.Recurrence.IsSet() {
+		toSerialize["recurrence"] = o.Recurrence.Get()
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
+	if o.Start != nil {
+		toSerialize["start"] = o.Start
+	}
+	if o.Timezone != nil {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if o.UpdaterId != nil {
+		toSerialize["updater_id"] = o.UpdaterId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDowntime struct {
-	Value        Downtime
-	ExplicitNull bool
+	value *Downtime
+	isSet bool
+}
+
+func (v NullableDowntime) Get() *Downtime {
+	return v.value
+}
+
+func (v NullableDowntime) Set(val *Downtime) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDowntime) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableDowntime) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDowntime(val *Downtime) *NullableDowntime {
+	return &NullableDowntime{value: val, isSet: true}
 }
 
 func (v NullableDowntime) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDowntime) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

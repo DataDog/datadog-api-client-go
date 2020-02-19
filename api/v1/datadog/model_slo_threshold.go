@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -173,25 +172,59 @@ func (o *SloThreshold) SetWarningDisplay(v string) {
 	o.WarningDisplay = &v
 }
 
+func (o SloThreshold) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if o.TargetDisplay != nil {
+		toSerialize["target_display"] = o.TargetDisplay
+	}
+	if true {
+		toSerialize["timeframe"] = o.Timeframe
+	}
+	if o.Warning != nil {
+		toSerialize["warning"] = o.Warning
+	}
+	if o.WarningDisplay != nil {
+		toSerialize["warning_display"] = o.WarningDisplay
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSloThreshold struct {
-	Value        SloThreshold
-	ExplicitNull bool
+	value *SloThreshold
+	isSet bool
+}
+
+func (v NullableSloThreshold) Get() *SloThreshold {
+	return v.value
+}
+
+func (v NullableSloThreshold) Set(val *SloThreshold) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSloThreshold) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSloThreshold) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSloThreshold(val *SloThreshold) *NullableSloThreshold {
+	return &NullableSloThreshold{value: val, isSet: true}
 }
 
 func (v NullableSloThreshold) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSloThreshold) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

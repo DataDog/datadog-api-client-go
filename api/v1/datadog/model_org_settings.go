@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -374,25 +373,74 @@ func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSaml) {
 	o.SamlStrictMode = &v
 }
 
+func (o OrgSettings) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.PrivateWidgetShare != nil {
+		toSerialize["private_widget_share"] = o.PrivateWidgetShare
+	}
+	if o.Saml != nil {
+		toSerialize["saml"] = o.Saml
+	}
+	if o.SamlAutocreateAccessRole != nil {
+		toSerialize["saml_autocreate_access_role"] = o.SamlAutocreateAccessRole
+	}
+	if o.SamlAutocreateUsersDomains != nil {
+		toSerialize["saml_autocreate_users_domains"] = o.SamlAutocreateUsersDomains
+	}
+	if o.SamlCanBeEnabled != nil {
+		toSerialize["saml_can_be_enabled"] = o.SamlCanBeEnabled
+	}
+	if o.SamlIdpEndpoint != nil {
+		toSerialize["saml_idp_endpoint"] = o.SamlIdpEndpoint
+	}
+	if o.SamlIdpInitiatedLogin != nil {
+		toSerialize["saml_idp_initiated_login"] = o.SamlIdpInitiatedLogin
+	}
+	if o.SamlIdpMetadataUploaded != nil {
+		toSerialize["saml_idp_metadata_uploaded"] = o.SamlIdpMetadataUploaded
+	}
+	if o.SamlLoginUrl != nil {
+		toSerialize["saml_login_url"] = o.SamlLoginUrl
+	}
+	if o.SamlStrictMode != nil {
+		toSerialize["saml_strict_mode"] = o.SamlStrictMode
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgSettings struct {
-	Value        OrgSettings
-	ExplicitNull bool
+	value *OrgSettings
+	isSet bool
+}
+
+func (v NullableOrgSettings) Get() *OrgSettings {
+	return v.value
+}
+
+func (v NullableOrgSettings) Set(val *OrgSettings) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgSettings) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgSettings) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgSettings(val *OrgSettings) *NullableOrgSettings {
+	return &NullableOrgSettings{value: val, isSet: true}
 }
 
 func (v NullableOrgSettings) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgSettings) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

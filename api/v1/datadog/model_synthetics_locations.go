@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *SyntheticsLocations) SetLocations(v []SyntheticsLocation) {
 	o.Locations = &v
 }
 
+func (o SyntheticsLocations) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Locations != nil {
+		toSerialize["locations"] = o.Locations
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsLocations struct {
-	Value        SyntheticsLocations
-	ExplicitNull bool
+	value *SyntheticsLocations
+	isSet bool
+}
+
+func (v NullableSyntheticsLocations) Get() *SyntheticsLocations {
+	return v.value
+}
+
+func (v NullableSyntheticsLocations) Set(val *SyntheticsLocations) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsLocations) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsLocations) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsLocations(val *SyntheticsLocations) *NullableSyntheticsLocations {
+	return &NullableSyntheticsLocations{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsLocations) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsLocations) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

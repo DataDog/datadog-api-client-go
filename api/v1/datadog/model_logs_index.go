@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -226,25 +225,62 @@ func (o *LogsIndex) SetNumRetentionDays(v int64) {
 	o.NumRetentionDays = &v
 }
 
+func (o LogsIndex) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.DailyLimit != nil {
+		toSerialize["daily_limit"] = o.DailyLimit
+	}
+	if o.ExclusionFilters != nil {
+		toSerialize["exclusion_filters"] = o.ExclusionFilters
+	}
+	if true {
+		toSerialize["filter"] = o.Filter
+	}
+	if o.IsRateLimited != nil {
+		toSerialize["is_rate_limited"] = o.IsRateLimited
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.NumRetentionDays != nil {
+		toSerialize["num_retention_days"] = o.NumRetentionDays
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsIndex struct {
-	Value        LogsIndex
-	ExplicitNull bool
+	value *LogsIndex
+	isSet bool
+}
+
+func (v NullableLogsIndex) Get() *LogsIndex {
+	return v.value
+}
+
+func (v NullableLogsIndex) Set(val *LogsIndex) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsIndex) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsIndex) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsIndex(val *LogsIndex) *NullableLogsIndex {
+	return &NullableLogsIndex{value: val, isSet: true}
 }
 
 func (v NullableLogsIndex) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsIndex) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

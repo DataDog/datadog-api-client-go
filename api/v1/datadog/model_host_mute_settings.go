@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -139,25 +138,53 @@ func (o *HostMuteSettings) SetOverride(v bool) {
 	o.Override = &v
 }
 
+func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.End != nil {
+		toSerialize["end"] = o.End
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.Override != nil {
+		toSerialize["override"] = o.Override
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHostMuteSettings struct {
-	Value        HostMuteSettings
-	ExplicitNull bool
+	value *HostMuteSettings
+	isSet bool
+}
+
+func (v NullableHostMuteSettings) Get() *HostMuteSettings {
+	return v.value
+}
+
+func (v NullableHostMuteSettings) Set(val *HostMuteSettings) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHostMuteSettings) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHostMuteSettings) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHostMuteSettings(val *HostMuteSettings) *NullableHostMuteSettings {
+	return &NullableHostMuteSettings{value: val, isSet: true}
 }
 
 func (v NullableHostMuteSettings) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHostMuteSettings) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

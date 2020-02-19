@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -102,25 +101,50 @@ func (o *Log) SetId(v string) {
 	o.Id = &v
 }
 
+func (o Log) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Content != nil {
+		toSerialize["content"] = o.Content
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLog struct {
-	Value        Log
-	ExplicitNull bool
+	value *Log
+	isSet bool
+}
+
+func (v NullableLog) Get() *Log {
+	return v.value
+}
+
+func (v NullableLog) Set(val *Log) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLog) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLog) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLog(val *Log) *NullableLog {
+	return &NullableLog{value: val, isSet: true}
 }
 
 func (v NullableLog) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLog) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

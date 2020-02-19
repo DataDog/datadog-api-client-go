@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -136,25 +135,53 @@ func (o *ApplicationKey) SetOwner(v string) {
 	o.Owner = &v
 }
 
+func (o ApplicationKey) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Hash != nil {
+		toSerialize["hash"] = o.Hash
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Owner != nil {
+		toSerialize["owner"] = o.Owner
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationKey struct {
-	Value        ApplicationKey
-	ExplicitNull bool
+	value *ApplicationKey
+	isSet bool
+}
+
+func (v NullableApplicationKey) Get() *ApplicationKey {
+	return v.value
+}
+
+func (v NullableApplicationKey) Set(val *ApplicationKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableApplicationKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationKey(val *ApplicationKey) *NullableApplicationKey {
+	return &NullableApplicationKey{value: val, isSet: true}
 }
 
 func (v NullableApplicationKey) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationKey) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
