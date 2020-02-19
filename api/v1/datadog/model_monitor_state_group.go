@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -340,25 +339,71 @@ func (o *MonitorStateGroup) SetTriggeringValue(v MonitorStateGroupValue) {
 	o.TriggeringValue = &v
 }
 
+func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.LastDataTs != nil {
+		toSerialize["last_data_ts"] = o.LastDataTs
+	}
+	if o.LastNodataTs != nil {
+		toSerialize["last_nodata_ts"] = o.LastNodataTs
+	}
+	if o.LastNotifiedTs != nil {
+		toSerialize["last_notified_ts"] = o.LastNotifiedTs
+	}
+	if o.LastResolvedTs != nil {
+		toSerialize["last_resolved_ts"] = o.LastResolvedTs
+	}
+	if o.LastTriggeredTs != nil {
+		toSerialize["last_triggered_ts"] = o.LastTriggeredTs
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.TriggeringValue != nil {
+		toSerialize["triggering_value"] = o.TriggeringValue
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitorStateGroup struct {
-	Value        MonitorStateGroup
-	ExplicitNull bool
+	value *MonitorStateGroup
+	isSet bool
+}
+
+func (v NullableMonitorStateGroup) Get() *MonitorStateGroup {
+	return v.value
+}
+
+func (v NullableMonitorStateGroup) Set(val *MonitorStateGroup) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorStateGroup) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorStateGroup) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorStateGroup(val *MonitorStateGroup) *NullableMonitorStateGroup {
+	return &NullableMonitorStateGroup{value: val, isSet: true}
 }
 
 func (v NullableMonitorStateGroup) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorStateGroup) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

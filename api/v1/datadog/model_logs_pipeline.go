@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -261,25 +260,65 @@ func (o *LogsPipeline) SetType(v string) {
 	o.Type = &v
 }
 
+func (o LogsPipeline) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Filter != nil {
+		toSerialize["filter"] = o.Filter
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.IsReadOnly != nil {
+		toSerialize["is_read_only"] = o.IsReadOnly
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Processors != nil {
+		toSerialize["processors"] = o.Processors
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsPipeline struct {
-	Value        LogsPipeline
-	ExplicitNull bool
+	value *LogsPipeline
+	isSet bool
+}
+
+func (v NullableLogsPipeline) Get() *LogsPipeline {
+	return v.value
+}
+
+func (v NullableLogsPipeline) Set(val *LogsPipeline) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsPipeline) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsPipeline) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsPipeline(val *LogsPipeline) *NullableLogsPipeline {
+	return &NullableLogsPipeline{value: val, isSet: true}
 }
 
 func (v NullableLogsPipeline) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsPipeline) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -87,25 +86,53 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SloErrorTimefra
 	o.Timeframe = v
 }
 
+func (o ServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	if true {
+		toSerialize["timeframe"] = o.Timeframe
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceLevelObjectivesBulkDeletedErrors struct {
-	Value        ServiceLevelObjectivesBulkDeletedErrors
-	ExplicitNull bool
+	value *ServiceLevelObjectivesBulkDeletedErrors
+	isSet bool
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) Get() *ServiceLevelObjectivesBulkDeletedErrors {
+	return v.value
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) Set(val *ServiceLevelObjectivesBulkDeletedErrors) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjectivesBulkDeletedErrors(val *ServiceLevelObjectivesBulkDeletedErrors) *NullableServiceLevelObjectivesBulkDeletedErrors {
+	return &NullableServiceLevelObjectivesBulkDeletedErrors{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjectivesBulkDeletedErrors) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

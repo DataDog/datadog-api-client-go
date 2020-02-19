@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -374,25 +373,74 @@ func (o *SyntheticsApiTestResultData) SetTimings(v SyntheticsTiming) {
 	o.Timings = &v
 }
 
+func (o SyntheticsApiTestResultData) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Cert != nil {
+		toSerialize["cert"] = o.Cert
+	}
+	if o.ErrorCode != nil {
+		toSerialize["errorCode"] = o.ErrorCode
+	}
+	if o.ErrorMessage != nil {
+		toSerialize["errorMessage"] = o.ErrorMessage
+	}
+	if o.EventType != nil {
+		toSerialize["eventType"] = o.EventType
+	}
+	if o.HttpStatusCode != nil {
+		toSerialize["httpStatusCode"] = o.HttpStatusCode
+	}
+	if o.RequestHeaders != nil {
+		toSerialize["requestHeaders"] = o.RequestHeaders
+	}
+	if o.ResponseBody != nil {
+		toSerialize["responseBody"] = o.ResponseBody
+	}
+	if o.ResponseHeaders != nil {
+		toSerialize["responseHeaders"] = o.ResponseHeaders
+	}
+	if o.ResponseSize != nil {
+		toSerialize["responseSize"] = o.ResponseSize
+	}
+	if o.Timings != nil {
+		toSerialize["timings"] = o.Timings
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsApiTestResultData struct {
-	Value        SyntheticsApiTestResultData
-	ExplicitNull bool
+	value *SyntheticsApiTestResultData
+	isSet bool
+}
+
+func (v NullableSyntheticsApiTestResultData) Get() *SyntheticsApiTestResultData {
+	return v.value
+}
+
+func (v NullableSyntheticsApiTestResultData) Set(val *SyntheticsApiTestResultData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsApiTestResultData) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsApiTestResultData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsApiTestResultData(val *SyntheticsApiTestResultData) *NullableSyntheticsApiTestResultData {
+	return &NullableSyntheticsApiTestResultData{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsApiTestResultData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsApiTestResultData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

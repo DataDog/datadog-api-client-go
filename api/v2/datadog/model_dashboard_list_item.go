@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -419,25 +418,80 @@ func (o *DashboardListItem) SetUrl(v string) {
 	o.Url = &v
 }
 
+func (o DashboardListItem) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Author != nil {
+		toSerialize["author"] = o.Author
+	}
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
+	}
+	if o.Icon != nil {
+		toSerialize["icon"] = o.Icon
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.IsFavorite != nil {
+		toSerialize["is_favorite"] = o.IsFavorite
+	}
+	if o.IsReadOnly != nil {
+		toSerialize["is_read_only"] = o.IsReadOnly
+	}
+	if o.IsShared != nil {
+		toSerialize["is_shared"] = o.IsShared
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	if o.Popularity != nil {
+		toSerialize["popularity"] = o.Popularity
+	}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.Url != nil {
+		toSerialize["url"] = o.Url
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDashboardListItem struct {
-	Value        DashboardListItem
-	ExplicitNull bool
+	value *DashboardListItem
+	isSet bool
+}
+
+func (v NullableDashboardListItem) Get() *DashboardListItem {
+	return v.value
+}
+
+func (v NullableDashboardListItem) Set(val *DashboardListItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDashboardListItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableDashboardListItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDashboardListItem(val *DashboardListItem) *NullableDashboardListItem {
+	return &NullableDashboardListItem{value: val, isSet: true}
 }
 
 func (v NullableDashboardListItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDashboardListItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

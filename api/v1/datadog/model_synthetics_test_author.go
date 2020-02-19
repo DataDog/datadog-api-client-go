@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -170,25 +169,56 @@ func (o *SyntheticsTestAuthor) SetName(v string) {
 	o.Name = &v
 }
 
+func (o SyntheticsTestAuthor) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Email != nil {
+		toSerialize["email"] = o.Email
+	}
+	if o.Handle != nil {
+		toSerialize["handle"] = o.Handle
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsTestAuthor struct {
-	Value        SyntheticsTestAuthor
-	ExplicitNull bool
+	value *SyntheticsTestAuthor
+	isSet bool
+}
+
+func (v NullableSyntheticsTestAuthor) Get() *SyntheticsTestAuthor {
+	return v.value
+}
+
+func (v NullableSyntheticsTestAuthor) Set(val *SyntheticsTestAuthor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTestAuthor) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTestAuthor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTestAuthor(val *SyntheticsTestAuthor) *NullableSyntheticsTestAuthor {
+	return &NullableSyntheticsTestAuthor{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTestAuthor) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTestAuthor) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -33,24 +32,37 @@ func (v HttpMethod) Ptr() *HttpMethod {
 }
 
 type NullableHttpMethod struct {
-	Value        HttpMethod
-	ExplicitNull bool
+	value *HttpMethod
+	isSet bool
+}
+
+func (v NullableHttpMethod) Get() *HttpMethod {
+	return v.value
+}
+
+func (v NullableHttpMethod) Set(val *HttpMethod) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHttpMethod) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHttpMethod) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHttpMethod(val *HttpMethod) *NullableHttpMethod {
+	return &NullableHttpMethod{value: val, isSet: true}
 }
 
 func (v NullableHttpMethod) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHttpMethod) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

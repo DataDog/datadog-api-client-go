@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -91,25 +90,50 @@ func (o *LogsGrokParserRules) SetSupportRules(v string) {
 	o.SupportRules = &v
 }
 
+func (o LogsGrokParserRules) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["match_rules"] = o.MatchRules
+	}
+	if o.SupportRules != nil {
+		toSerialize["support_rules"] = o.SupportRules
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsGrokParserRules struct {
-	Value        LogsGrokParserRules
-	ExplicitNull bool
+	value *LogsGrokParserRules
+	isSet bool
+}
+
+func (v NullableLogsGrokParserRules) Get() *LogsGrokParserRules {
+	return v.value
+}
+
+func (v NullableLogsGrokParserRules) Set(val *LogsGrokParserRules) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsGrokParserRules) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsGrokParserRules) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsGrokParserRules(val *LogsGrokParserRules) *NullableLogsGrokParserRules {
+	return &NullableLogsGrokParserRules{value: val, isSet: true}
 }
 
 func (v NullableLogsGrokParserRules) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsGrokParserRules) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

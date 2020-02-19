@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -51,25 +50,47 @@ func (o *ApiErrorResponse) SetErrors(v []string) {
 	o.Errors = v
 }
 
+func (o ApiErrorResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["errors"] = o.Errors
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApiErrorResponse struct {
-	Value        ApiErrorResponse
-	ExplicitNull bool
+	value *ApiErrorResponse
+	isSet bool
+}
+
+func (v NullableApiErrorResponse) Get() *ApiErrorResponse {
+	return v.value
+}
+
+func (v NullableApiErrorResponse) Set(val *ApiErrorResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApiErrorResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableApiErrorResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApiErrorResponse(val *ApiErrorResponse) *NullableApiErrorResponse {
+	return &NullableApiErrorResponse{value: val, isSet: true}
 }
 
 func (v NullableApiErrorResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApiErrorResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -106,25 +105,53 @@ func (o *LogsListRequestTime) SetTo(v time.Time) {
 	o.To = v
 }
 
+func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["from"] = o.From
+	}
+	if o.Timezone != nil {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if true {
+		toSerialize["to"] = o.To
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsListRequestTime struct {
-	Value        LogsListRequestTime
-	ExplicitNull bool
+	value *LogsListRequestTime
+	isSet bool
+}
+
+func (v NullableLogsListRequestTime) Get() *LogsListRequestTime {
+	return v.value
+}
+
+func (v NullableLogsListRequestTime) Set(val *LogsListRequestTime) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsListRequestTime) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsListRequestTime) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsListRequestTime(val *LogsListRequestTime) *NullableLogsListRequestTime {
+	return &NullableLogsListRequestTime{value: val, isSet: true}
 }
 
 func (v NullableLogsListRequestTime) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsListRequestTime) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

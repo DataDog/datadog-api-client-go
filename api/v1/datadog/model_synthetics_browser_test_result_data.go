@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -408,25 +407,77 @@ func (o *SyntheticsBrowserTestResultData) SetTimeToInteractive(v float64) {
 	o.TimeToInteractive = &v
 }
 
+func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.BrowserType != nil {
+		toSerialize["browserType"] = o.BrowserType
+	}
+	if o.BrowserVersion != nil {
+		toSerialize["browserVersion"] = o.BrowserVersion
+	}
+	if o.Device != nil {
+		toSerialize["device"] = o.Device
+	}
+	if o.Duration != nil {
+		toSerialize["duration"] = o.Duration
+	}
+	if o.Error != nil {
+		toSerialize["error"] = o.Error
+	}
+	if o.Passed != nil {
+		toSerialize["passed"] = o.Passed
+	}
+	if o.ReceivedEmailCount != nil {
+		toSerialize["receivedEmailCount"] = o.ReceivedEmailCount
+	}
+	if o.StartUrl != nil {
+		toSerialize["startUrl"] = o.StartUrl
+	}
+	if o.StepDetails != nil {
+		toSerialize["stepDetails"] = o.StepDetails
+	}
+	if o.ThumbnailsBucketKey != nil {
+		toSerialize["thumbnailsBucketKey"] = o.ThumbnailsBucketKey
+	}
+	if o.TimeToInteractive != nil {
+		toSerialize["timeToInteractive"] = o.TimeToInteractive
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsBrowserTestResultData struct {
-	Value        SyntheticsBrowserTestResultData
-	ExplicitNull bool
+	value *SyntheticsBrowserTestResultData
+	isSet bool
+}
+
+func (v NullableSyntheticsBrowserTestResultData) Get() *SyntheticsBrowserTestResultData {
+	return v.value
+}
+
+func (v NullableSyntheticsBrowserTestResultData) Set(val *SyntheticsBrowserTestResultData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsBrowserTestResultData) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsBrowserTestResultData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsBrowserTestResultData(val *SyntheticsBrowserTestResultData) *NullableSyntheticsBrowserTestResultData {
+	return &NullableSyntheticsBrowserTestResultData{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsBrowserTestResultData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

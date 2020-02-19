@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -29,24 +28,37 @@ func (v SloTimeframe) Ptr() *SloTimeframe {
 }
 
 type NullableSloTimeframe struct {
-	Value        SloTimeframe
-	ExplicitNull bool
+	value *SloTimeframe
+	isSet bool
+}
+
+func (v NullableSloTimeframe) Get() *SloTimeframe {
+	return v.value
+}
+
+func (v NullableSloTimeframe) Set(val *SloTimeframe) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSloTimeframe) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSloTimeframe) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSloTimeframe(val *SloTimeframe) *NullableSloTimeframe {
+	return &NullableSloTimeframe{value: val, isSet: true}
 }
 
 func (v NullableSloTimeframe) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSloTimeframe) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

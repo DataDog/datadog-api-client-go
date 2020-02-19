@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -339,30 +338,76 @@ func (o *LogsRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+func (o LogsRemapper) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.OverrideOnConflict != nil {
+		toSerialize["override_on_conflict"] = o.OverrideOnConflict
+	}
+	if o.PreserveSource != nil {
+		toSerialize["preserve_source"] = o.PreserveSource
+	}
+	if o.SourceType != nil {
+		toSerialize["source_type"] = o.SourceType
+	}
+	if true {
+		toSerialize["sources"] = o.Sources
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if o.TargetType != nil {
+		toSerialize["target_type"] = o.TargetType
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.IsEnabled != nil {
+		toSerialize["is_enabled"] = o.IsEnabled
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 // AsLogsProcessor wraps this instance of LogsRemapper in LogsProcessor
 func (s *LogsRemapper) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
 type NullableLogsRemapper struct {
-	Value        LogsRemapper
-	ExplicitNull bool
+	value *LogsRemapper
+	isSet bool
+}
+
+func (v NullableLogsRemapper) Get() *LogsRemapper {
+	return v.value
+}
+
+func (v NullableLogsRemapper) Set(val *LogsRemapper) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsRemapper) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsRemapper) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsRemapper(val *LogsRemapper) *NullableLogsRemapper {
+	return &NullableLogsRemapper{value: val, isSet: true}
 }
 
 func (v NullableLogsRemapper) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsRemapper) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

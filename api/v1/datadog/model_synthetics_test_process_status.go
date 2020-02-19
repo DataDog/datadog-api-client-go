@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -31,24 +30,37 @@ func (v SyntheticsTestProcessStatus) Ptr() *SyntheticsTestProcessStatus {
 }
 
 type NullableSyntheticsTestProcessStatus struct {
-	Value        SyntheticsTestProcessStatus
-	ExplicitNull bool
+	value *SyntheticsTestProcessStatus
+	isSet bool
+}
+
+func (v NullableSyntheticsTestProcessStatus) Get() *SyntheticsTestProcessStatus {
+	return v.value
+}
+
+func (v NullableSyntheticsTestProcessStatus) Set(val *SyntheticsTestProcessStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTestProcessStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTestProcessStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTestProcessStatus(val *SyntheticsTestProcessStatus) *NullableSyntheticsTestProcessStatus {
+	return &NullableSyntheticsTestProcessStatus{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTestProcessStatus) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTestProcessStatus) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

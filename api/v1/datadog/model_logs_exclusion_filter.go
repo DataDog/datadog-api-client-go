@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -86,25 +85,50 @@ func (o *LogsExclusionFilter) SetSampleRate(v float64) {
 	o.SampleRate = v
 }
 
+func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if true {
+		toSerialize["sample_rate"] = o.SampleRate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsExclusionFilter struct {
-	Value        LogsExclusionFilter
-	ExplicitNull bool
+	value *LogsExclusionFilter
+	isSet bool
+}
+
+func (v NullableLogsExclusionFilter) Get() *LogsExclusionFilter {
+	return v.value
+}
+
+func (v NullableLogsExclusionFilter) Set(val *LogsExclusionFilter) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsExclusionFilter) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsExclusionFilter) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsExclusionFilter(val *LogsExclusionFilter) *NullableLogsExclusionFilter {
+	return &NullableLogsExclusionFilter{value: val, isSet: true}
 }
 
 func (v NullableLogsExclusionFilter) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsExclusionFilter) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

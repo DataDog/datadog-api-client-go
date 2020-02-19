@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -52,25 +51,47 @@ func (o *ServiceLevelObjectiveDeleted) SetData(v []string) {
 	o.Data = v
 }
 
+func (o ServiceLevelObjectiveDeleted) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceLevelObjectiveDeleted struct {
-	Value        ServiceLevelObjectiveDeleted
-	ExplicitNull bool
+	value *ServiceLevelObjectiveDeleted
+	isSet bool
+}
+
+func (v NullableServiceLevelObjectiveDeleted) Get() *ServiceLevelObjectiveDeleted {
+	return v.value
+}
+
+func (v NullableServiceLevelObjectiveDeleted) Set(val *ServiceLevelObjectiveDeleted) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjectiveDeleted) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjectiveDeleted) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjectiveDeleted(val *ServiceLevelObjectiveDeleted) *NullableServiceLevelObjectiveDeleted {
+	return &NullableServiceLevelObjectiveDeleted{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjectiveDeleted) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjectiveDeleted) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

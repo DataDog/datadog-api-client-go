@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -68,25 +67,47 @@ func (o *OrgListResponse) SetOrgs(v []Org) {
 	o.Orgs = &v
 }
 
+func (o OrgListResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Orgs != nil {
+		toSerialize["orgs"] = o.Orgs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgListResponse struct {
-	Value        OrgListResponse
-	ExplicitNull bool
+	value *OrgListResponse
+	isSet bool
+}
+
+func (v NullableOrgListResponse) Get() *OrgListResponse {
+	return v.value
+}
+
+func (v NullableOrgListResponse) Set(val *OrgListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgListResponse(val *OrgListResponse) *NullableOrgListResponse {
+	return &NullableOrgListResponse{value: val, isSet: true}
 }
 
 func (v NullableOrgListResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgListResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

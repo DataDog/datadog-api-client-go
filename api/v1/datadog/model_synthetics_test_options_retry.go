@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -102,25 +101,50 @@ func (o *SyntheticsTestOptionsRetry) SetInterval(v float64) {
 	o.Interval = &v
 }
 
+func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Count != nil {
+		toSerialize["count"] = o.Count
+	}
+	if o.Interval != nil {
+		toSerialize["interval"] = o.Interval
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSyntheticsTestOptionsRetry struct {
-	Value        SyntheticsTestOptionsRetry
-	ExplicitNull bool
+	value *SyntheticsTestOptionsRetry
+	isSet bool
+}
+
+func (v NullableSyntheticsTestOptionsRetry) Get() *SyntheticsTestOptionsRetry {
+	return v.value
+}
+
+func (v NullableSyntheticsTestOptionsRetry) Set(val *SyntheticsTestOptionsRetry) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSyntheticsTestOptionsRetry) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSyntheticsTestOptionsRetry) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSyntheticsTestOptionsRetry(val *SyntheticsTestOptionsRetry) *NullableSyntheticsTestOptionsRetry {
+	return &NullableSyntheticsTestOptionsRetry{value: val, isSet: true}
 }
 
 func (v NullableSyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSyntheticsTestOptionsRetry) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

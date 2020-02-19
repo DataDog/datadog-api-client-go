@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -208,25 +207,62 @@ func (o *LogsListRequest) SetTime(v LogsListRequestTime) {
 	o.Time = v
 }
 
+func (o LogsListRequest) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Index != nil {
+		toSerialize["index"] = o.Index
+	}
+	if o.Limit != nil {
+		toSerialize["limit"] = o.Limit
+	}
+	if true {
+		toSerialize["query"] = o.Query
+	}
+	if o.Sort != nil {
+		toSerialize["sort"] = o.Sort
+	}
+	if o.StartAt != nil {
+		toSerialize["startAt"] = o.StartAt
+	}
+	if true {
+		toSerialize["time"] = o.Time
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLogsListRequest struct {
-	Value        LogsListRequest
-	ExplicitNull bool
+	value *LogsListRequest
+	isSet bool
+}
+
+func (v NullableLogsListRequest) Get() *LogsListRequest {
+	return v.value
+}
+
+func (v NullableLogsListRequest) Set(val *LogsListRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsListRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableLogsListRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsListRequest(val *LogsListRequest) *NullableLogsListRequest {
+	return &NullableLogsListRequest{value: val, isSet: true}
 }
 
 func (v NullableLogsListRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLogsListRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
