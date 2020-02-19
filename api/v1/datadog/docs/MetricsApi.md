@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
 
 ### HTTP request headers
 

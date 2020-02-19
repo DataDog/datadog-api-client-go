@@ -112,7 +112,7 @@ func (r apiCreateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -126,7 +126,7 @@ func (r apiCreateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -281,7 +281,7 @@ func (r apiDeleteLogsPipelineRequest) Execute() (*_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -295,7 +295,7 @@ func (r apiDeleteLogsPipelineRequest) Execute() (*_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -418,7 +418,7 @@ func (r apiGetAllLogsPipelinesRequest) Execute() ([]LogsPipeline, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -432,7 +432,7 @@ func (r apiGetAllLogsPipelinesRequest) Execute() ([]LogsPipeline, *_nethttp.Resp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -568,7 +568,7 @@ func (r apiGetLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -582,7 +582,7 @@ func (r apiGetLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -724,7 +724,7 @@ func (r apiGetLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_nethttp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -738,7 +738,7 @@ func (r apiGetLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_nethttp
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -890,7 +890,7 @@ func (r apiUpdateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -904,7 +904,7 @@ func (r apiUpdateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -1065,7 +1065,7 @@ func (r apiUpdateLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_neth
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -1079,7 +1079,7 @@ func (r apiUpdateLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_neth
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
