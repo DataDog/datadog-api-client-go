@@ -13,7 +13,6 @@ import (
 	"log"
 	"path/filepath"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -153,7 +152,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 		Body(datadog.SyntheticsGetTestLatestResultsPayload{
 			FromTs:  0,
 			ProbeDc: &locs,
-			ToTs:    float64(time.Now().Unix()),
+			ToTs:    float64(TESTCLOCK.Now().Unix()),
 		}).
 		Execute()
 	if err != nil {
@@ -255,7 +254,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 		Body(datadog.SyntheticsGetTestLatestResultsPayload{
 			FromTs:  0,
 			ProbeDc: &locs,
-			ToTs:    float64(time.Now().Unix()),
+			ToTs:    float64(TESTCLOCK.Now().Unix()),
 		}).
 		Execute()
 	if err != nil {

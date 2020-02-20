@@ -9,7 +9,6 @@ package test
 import (
 	"log"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -20,7 +19,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	start := time.Now()
+	start := TESTCLOCK.Now()
 	testDowntime := datadog.Downtime{
 		Message:  datadog.PtrString("Testing downtime from Go client"),
 		Start:    datadog.PtrInt64(start.Unix()),
@@ -100,7 +99,7 @@ func TestMonitorDowntime(t *testing.T) {
 	monitorID := monitor.GetId()
 	defer deleteMonitor(monitorID)
 
-	start := time.Now()
+	start := TESTCLOCK.Now()
 	testDowntime := datadog.Downtime{
 		Message:  datadog.PtrString("Testing downtime with monitor from Go client"),
 		Start:    datadog.PtrInt64(start.Unix()),
@@ -124,7 +123,7 @@ func TestScopedDowntime(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	start := time.Now()
+	start := TESTCLOCK.Now()
 	testDowntimes := []datadog.Downtime{{
 		Message:  datadog.PtrString("Testing scope downtime: client, go"),
 		Start:    datadog.PtrInt64(start.Unix()),
@@ -177,7 +176,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	start := time.Now()
+	start := TESTCLOCK.Now()
 	testCases := []struct {
 		Name               string
 		DowntimeRecurence  datadog.DowntimeRecurrence

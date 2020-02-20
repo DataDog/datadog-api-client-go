@@ -9,9 +9,15 @@ package tests
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"time"
 )
+
+// IsRecording returns true if the recording mode is enabled
+func IsRecording() bool {
+	return os.Getenv("RECORD") == "true"
+}
 
 // Retry calls the call function for count times every interval while it returns false
 func Retry(interval time.Duration, count int, call func() bool) error {
@@ -19,7 +25,9 @@ func Retry(interval time.Duration, count int, call func() bool) error {
 		if call() {
 			return nil
 		}
-		time.Sleep(interval)
+		if IsRecording() {
+			time.Sleep(interval)
+		}
 	}
 	return fmt.Errorf("Retry error: failed to satisfy the condition after %d times", count)
 }

@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"log"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
@@ -21,9 +20,9 @@ func TestDashboardListLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	start := time.Now()
+	start := TESTCLOCK.Now().Unix()
 	testDashboardList := datadog.DashboardList{
-		Name: fmt.Sprintf("go dashboard list %s", start),
+		Name: fmt.Sprintf("go dashboard list %d", start),
 	}
 
 	// Create downtime
@@ -37,7 +36,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Equal(t, dashboardList.GetName(), testDashboardList.GetName())
 
 	// Edit a downtime
-	editedDashboardList := datadog.DashboardList{Name: fmt.Sprintf("go dashboard list updated %s", start)}
+	editedDashboardList := datadog.DashboardList{Name: fmt.Sprintf("go dashboard list updated %d", start)}
 	updatedDashboardList, httpresp, err := TESTAPICLIENT.DashboardListsApi.UpdateDashboardList(TESTAUTH, dashboardList.GetId()).Body(editedDashboardList).Execute()
 	if err != nil {
 		t.Errorf("Error updating dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)

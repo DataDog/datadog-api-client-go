@@ -33,7 +33,7 @@ func TestLogsList(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	now := time.Now()
+	now := TESTCLOCK.Now()
 	nanoNow := now.UnixNano()
 	source := fmt.Sprintf("go-client-test-%d", nanoNow)
 	message := fmt.Sprintf("test-log-list-%d", nanoNow)
@@ -52,6 +52,7 @@ func TestLogsList(t *testing.T) {
 		t.Fatalf("Error creating log: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
+	time.Sleep(time.Duration(500) * time.Microsecond)
 
 	secondMessage := fmt.Sprintf("second-test-log-list-%d", nanoNow)
 	httpLog.SetMessage(fmt.Sprintf(`{"timestamp": %d, "message": "%s"}`, (now.Unix())*1000, secondMessage))

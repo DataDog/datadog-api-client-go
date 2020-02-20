@@ -10,14 +10,13 @@ import (
 	"fmt"
 	"log"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
 )
 
 func generateUniqueAzureAccount() (datadog.AzureAccount, datadog.AzureAccount, datadog.AzureAccount) {
-	tenantName := fmt.Sprintf("go_test-1234-5678-9101-%s", time.Now())
+	tenantName := fmt.Sprintf("go_test-1234-5678-9101-%d", TESTCLOCK.Now().Unix())
 	var testAzureAcct = datadog.AzureAccount{
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
 		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
