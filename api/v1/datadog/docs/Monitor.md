@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Deleted** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**Id** | Pointer to **int64** | ID of this monitor | [optional] 
+**Deleted** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
+**Id** | Pointer to **int64** | ID of this monitor | [optional] [readonly] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**Multi** | Pointer to **bool** |  | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
+**Multi** | Pointer to **bool** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
