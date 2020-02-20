@@ -9,17 +9,27 @@ package test
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"testing"
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"gotest.tools/assert"
 )
 
 func TestApiKeyFunctions(t *testing.T) {
+	if !tests.IsRecording() {
+		t.Skip("This test case does not support reply from recording")
+	}
+
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
+
+	// TODO remove when API keys support non secret primary identifiers
+	// NOTE do not forget to replace time -> TESTCLOCK
+	TESTAPICLIENT.GetConfig().HTTPClient = http.DefaultClient
 
 	// Create API Key
 	// ----------------------------------
@@ -79,7 +89,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Edit API Key
 	// ----------------------------------
-	newAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	newAPIKeyName := fmt.Sprintf("new-%s", testAPIKeyName)
 	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditAPIKey(TESTAUTH, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -120,9 +130,17 @@ func TestApiKeyFunctions(t *testing.T) {
 }
 
 func TestApplicationKeyFunctions(t *testing.T) {
+	if !tests.IsRecording() {
+		t.Skip("This test case does not support reply from recording")
+	}
+
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
+
+	// TODO remove when API keys support non secret primary identifiers
+	// NOTE do not forget to replace time -> TESTCLOCK
+	TESTAPICLIENT.GetConfig().HTTPClient = http.DefaultClient
 
 	// Create Application Key
 	// ----------------------------------
@@ -178,7 +196,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Edit Application Key
 	// ----------------------------------
-	newAppKeyName := fmt.Sprintf("New %s:%d", t.Name(), time.Now().UnixNano())
+	newAppKeyName := fmt.Sprintf("New %s", testAppKeyName)
 	appKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditApplicationKey(TESTAUTH, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)

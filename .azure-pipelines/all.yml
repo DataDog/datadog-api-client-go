@@ -20,10 +20,11 @@ jobs:
       displayName: Run integration tests
       inputs:
         command: run
-        arguments: --volume /home/vsts/work/1/s:/datadog-api-client-go --env DD_TEST_CLIENT_API_KEY --env DD_TEST_CLIENT_APP_KEY datadog-go-integration-test
+        arguments: --volume /home/vsts/work/1/s:/datadog-api-client-go --env RECORD --env DD_TEST_CLIENT_API_KEY --env DD_TEST_CLIENT_APP_KEY datadog-go-integration-test
       env:
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
+        RECORD: "true"
     - script: |
         bash <(curl -s https://codecov.io/bash) -F integration
       displayName: Upload to codecov.io

@@ -10,14 +10,13 @@ import (
 	"fmt"
 	"log"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
 )
 
 func generateUniqueGcpAccount() (datadog.GcpAccount, datadog.GcpAccount) {
-	projectID := fmt.Sprintf("go_%s", time.Now())
+	projectID := fmt.Sprintf("go_%d", TESTCLOCK.Now().Unix())
 	var testGcpAccount = datadog.GcpAccount{
 		Type:                    datadog.PtrString("service_account"),
 		ProjectId:               datadog.PtrString(projectID),

@@ -15,14 +15,14 @@ import (
 )
 
 func getStartEndHr() (time.Time, time.Time) {
-	year, month, _ := time.Now().Date()
+	year, month, _ := TESTCLOCK.Now().Date()
 	start := time.Date(year, month-1, 12, 0, 0, 0, 0, time.UTC)
 	end := time.Date(year, month-1, 13, 0, 0, 0, 0, time.UTC)
 	return start, end
 }
 
 func getStartEndMonth() (time.Time, time.Time) {
-	year, month, _ := time.Now().Date()
+	year, month, _ := TESTCLOCK.Now().Date()
 	start := time.Date(year, month-2, 1, 0, 0, 0, 0, time.UTC)
 	end := time.Date(year, month-1, 1, 0, 0, 0, 0, time.UTC)
 	return start, end
@@ -118,7 +118,7 @@ func TestUsageTopAvgMetrics(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageTopAvgMetrics(TESTAUTH).Month(time.Now()).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageTopAvgMetrics(TESTAUTH).Month(TESTCLOCK.Now()).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Avg Metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

@@ -9,14 +9,13 @@ package test
 import (
 	"fmt"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gotest.tools/assert"
 )
 
 func createServiceCheck(t *testing.T) datadog.ServiceCheck {
-	now := time.Now().Unix()
+	now := TESTCLOCK.Now().Unix()
 	return datadog.ServiceCheck{
 		Check:    t.Name(),
 		HostName: datadog.PtrString(fmt.Sprintf("go-client-test-host-%d", now)),

@@ -1,0 +1,576 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"series":[{"host":"go-client-test-host-1582121544","metric":"go.client.test.metric","points":[[1582121544,0]]}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/series
+    method: POST
+  response:
+    body: '{"status": "ok"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "16"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - text/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:24 GMT
+      Dd-Pool:
+      - propjoe
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 202 Accepted
+    code: 202
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544
+    method: GET
+  response:
+    body: '{"errors": ["No host matches that host_id"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:24 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+    code: 404
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544
+    method: GET
+  response:
+    body: '{"errors": ["No host matches that host_id"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:34 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+    code: 404
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544
+    method: GET
+  response:
+    body: '{"tags":[]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "11"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:44 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:12:44 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - rxkz+JB0yzarEINDeNWQGs9dk7PLNAMnAw2wV8MNkZOhKDtz+JOpGuIyyBUaWwyF
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"tags":["test:client_go"]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544?source=datadog
+    method: POST
+  response:
+    body: '{"host":"go-client-test-host-1582121544","tags":["test:client_go"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "67"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:45 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:12:45 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - nSRgqrrNNmPPT6VSGZq0R9QdtdJF1qxzho2//eboP+tsIQDRgfSx3bSVb1t6QyYb
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544?source=datadog
+    method: GET
+  response:
+    body: '{"tags":["test:client_go"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:45 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:12:45 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - OxP+mFpjAbASiVhNf+t4MttAs95ZlMiGosIRnYJJGFoApNgv2oxtdzpnmNlMOki6
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544?source=users
+    method: GET
+  response:
+    body: '{"tags":[]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "11"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:46 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:12:46 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - eORbNuNjI+uNwQ5fL4WiSFLQTO+rx/Fd8RRk0TnSyEY4gQIkjrXIuJ1XAoOa+8yj
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts?source=datadog
+    method: GET
+  response:
+    body: '{"tags":{"index:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"id:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"bosh_job:tcp_router":["tcp-router-0"],"deployment:cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_name:database":["database-0"],"ip:10.0.4.38":["mysql-monitor-0"],"index:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"bosh_job:mysql_monitor":["mysql-monitor-0"],"name:compute/1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"bosh_job:backup_restore":["backup-restore-0"],"internal-hostname:vm-07da94a6-9c0a-433b-4966-5315e3122203.c.datadog-integrations-lab.internal":["backup-restore-0"],"created_at:2019-10-04t10:22:56z":["router-0"],"director:p-bosh":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"datadog-nozzle-datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"cf-2c820dc098e0cb619432-compute":["compute-1","compute-0"],"index:1":["compute-1"],"index:0":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"pcf-24-cf-ssh":["control-0"],"internal-hostname:vm-15a8a061-1d55-4a38-5f09-5cf96c7a61b0.c.datadog-integrations-lab.internal":["compute-1"],"user_data:_server_:_name_:_vm-15a8a061-1d55-4a38-5f09-5cf96c7a61b0_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["compute-1"],"datadog-nozzle":["datadog-firehose-nozzle-0"],"pcf-24-cf-wss":["router-0"],"cf-2c820dc098e0cb619432-blobstore":["blobstore-0"],"user_data:_server_:_name_:_vm-25e6f08b-fb54-424b-62ea-fd41e17cbb05_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["datadog-firehose-nozzle-0"],"created_at:2019-07-02t10:09:47z":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t16:07:36z":["blobstore-0"],"name:backup_restore/dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"id:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance-id:3158098367015719868":["datadog-firehose-nozzle-0"],"bosh_job:database":["database-0"],"internal-hostname:vm-25e6f08b-fb54-424b-62ea-fd41e17cbb05.c.datadog-integrations-lab.internal":["datadog-firehose-nozzle-0"],"bosh_job:compute":["compute-1","compute-0"],"user_data:_server_:_name_:_vm-63283112-e5d3-47d5-5577-43e43846c5ec_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["compute-0"],"user_data:_server_:_name_:_vm-dcd8a575-516a-4dc8-4464-69f741a0a424_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-tcp-router":["tcp-router-0"],"id:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"bosh_job:blobstore":["blobstore-0"],"index:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"instance_group:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"id:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"bosh_id:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"bosh_ip:10.0.4.40":["datadog-firehose-nozzle-0"],"instance-type:custom-4-16384":["control-0"],"user_data:_server_:_name_:_vm-d80f012b-1265-43ae-7561-6c551adc94c4_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["database-0"],"index:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"cf-2c820dc098e0cb619432-mysql-monitor":["mysql-monitor-0"],"name:mysql_monitor/7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"instance_group:mysql_monitor":["mysql-monitor-0"],"bosh_index:0":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"instance-type:custom-8-49152":["compute-1","compute-0"],"bosh_name:backup_restore":["backup-restore-0"],"id:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"bosh_name:mysql_monitor":["mysql-monitor-0"],"instance-id:8463652462536672371":["control-0"],"job:control":["control-0"],"index:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance-type:custom-1-1024":["router-0","backup-restore-0","tcp-router-0","mysql-monitor-0"],"instance-type:custom-2-8192":["database-0"],"p-bosh":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_ip:10.0.4.38":["mysql-monitor-0"],"name:tcp_router/d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"pcf-lb":["router-0","control-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-blobstore":["blobstore-0"],"bosh_name:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"p-bosh-datadog-nozzle-datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t18:10:51z":["mysql-monitor-0"],"bosh_az:europe-west1-b":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_az:europe-west1-c":["compute-1"],"name:compute/81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"index:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"job:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"project:datadog-integrations-lab":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"numeric_project_id:116803814856":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-router":["router-0"],"bosh_id:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"job:blobstore":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-backup-restore":["backup-restore-0"],"bosh_ip:10.0.4.23":["control-0"],"bosh_name:router":["router-0"],"bosh_ip:10.0.4.26":["router-0"],"instance_group:control":["control-0"],"bosh_ip:10.0.4.24":["compute-0"],"bosh_ip:10.0.4.25":["backup-restore-0"],"job:backup_restore":["backup-restore-0"],"bosh_ip:10.0.4.29":["compute-1"],"cf-2c820dc098e0cb619432-control":["control-0"],"bosh_id:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"instance_group:router":["router-0"],"instance-id:4148845668908835726":["router-0"],"instance_group:backup_restore":["backup-restore-0"],"name:datadog-firehose-nozzle/3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"index:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"instance-type:custom-2-4096":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-compute":["compute-1","compute-0"],"datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"internal-hostname:vm-b26e160b-c434-4daa-7add-bb289c295ee5.c.datadog-integrations-lab.internal":["mysql-monitor-0"],"bosh_name:blobstore":["blobstore-0"],"omg-no-ip":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"instance-id:2733801103351819664":["backup-restore-0"],"instance_group:compute":["compute-1","compute-0"],"job:database":["database-0"],"cf-2c820dc098e0cb619432-tcp-router":["tcp-router-0"],"job:router":["router-0"],"p-bosh-cf-2c820dc098e0cb619432-mysql-monitor":["mysql-monitor-0"],"name:database/757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance_group:database":["database-0"],"name:router/0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"deployment:datadog-nozzle":["datadog-firehose-nozzle-0"],"test_autorelease:system-probe.2":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"created_at:2019-11-18t10:00:57z":["database-0"],"bosh_index:1":["compute-1"],"internal-hostname:vm-dcd8a575-516a-4dc8-4464-69f741a0a424.c.datadog-integrations-lab.internal":["blobstore-0"],"instance_group:tcp_router":["tcp-router-0"],"internal-hostname:vm-a64b4788-997a-4ea1-42ff-cbb6f987d25a.c.datadog-integrations-lab.internal":["router-0"],"p-bosh-cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_address:10.0.4.29":["compute-1"],"instance-type:custom-1-2048":["datadog-firehose-nozzle-0"],"index:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"instance-id:8169066737377684339":["mysql-monitor-0"],"bosh_address:10.0.4.22":["blobstore-0"],"bosh_address:10.0.4.23":["control-0"],"bosh_address:10.0.4.24":["compute-0"],"bosh_address:10.0.4.25":["backup-restore-0"],"bosh_address:10.0.4.26":["router-0"],"instance-id:6850996408719939602":["compute-1"],"bosh_ip:10.0.4.22":["blobstore-0"],"bosh_id:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"instance-id:6845383994576158542":["compute-0"],"ip:10.0.4.40":["datadog-firehose-nozzle-0"],"id:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"created_at:2019-09-09t18:01:51z":["backup-restore-0"],"bosh_ip:10.0.4.21":["database-0"],"bosh_address:10.0.4.21":["database-0"],"mysql-monitor":["mysql-monitor-0"],"created_at:2019-09-09t16:16:05z":["control-0"],"bosh_ip:10.0.4.27":["tcp-router-0"],"id:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"compute":["compute-1","compute-0"],"index:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"internal-hostname:vm-c6c6e41a-82df-4f0d-5b26-330d8cde4f85.c.datadog-integrations-lab.internal":["control-0"],"internal-hostname:vm-63283112-e5d3-47d5-5577-43e43846c5ec.c.datadog-integrations-lab.internal":["compute-0"],"cf-2c820dc098e0cb619432-router":["router-0"],"tcp-router":["tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-database":["database-0"],"id:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"p-bosh-datadog-nozzle":["datadog-firehose-nozzle-0"],"bosh_job:control":["control-0"],"pcf-24-cf-tcp":["tcp-router-0"],"bosh_address:10.0.4.27":["tcp-router-0"],"bosh_name:control":["control-0"],"control":["control-0"],"user_data:_server_:_name_:_vm-b26e160b-c434-4daa-7add-bb289c295ee5_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["mysql-monitor-0"],"pcf-24-httpslb":["router-0"],"instance_group:blobstore":["blobstore-0"],"bosh_id:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"bosh_job:router":["router-0"],"name:control/339a8408-3549-4927-9416-8488fe732c62":["control-0"],"user_data:_server_:_name_:_vm-a64b4788-997a-4ea1-42ff-cbb6f987d25a_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["router-0"],"job:mysql_monitor":["mysql-monitor-0"],"bosh_name:compute":["compute-1","compute-0"],"bosh_deployment:cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"name:blobstore/ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"cf-2c820dc098e0cb619432-database":["database-0"],"bosh_id:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"bosh_name:tcp_router":["tcp-router-0"],"user_data:_server_:_name_:_vm-3a05c14b-1a70-4df2-406e-c84d58a62969_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["tcp-router-0"],"job:compute":["compute-1","compute-0"],"user_data:_server_:_name_:_vm-07da94a6-9c0a-433b-4966-5315e3122203_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["backup-restore-0"],"bosh_job:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"zone:europe-west1-c":["compute-1"],"zone:europe-west1-b":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-control":["control-0"],"cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"user_data:_server_:_name_:_vm-c6c6e41a-82df-4f0d-5b26-330d8cde4f85_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["control-0"],"bosh_deployment:datadog-nozzle":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t18:11:52z":["tcp-router-0"],"instance-id:4059195034138560087":["blobstore-0"],"ip:10.0.4.21":["database-0"],"ip:10.0.4.22":["blobstore-0"],"ip:10.0.4.23":["control-0"],"ip:10.0.4.24":["compute-0"],"ip:10.0.4.25":["backup-restore-0"],"ip:10.0.4.26":["router-0"],"ip:10.0.4.27":["tcp-router-0"],"ip:10.0.4.29":["compute-1"],"blobstore":["blobstore-0"],"index:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"created_at:2019-09-09t16:45:40z":["compute-0"],"created_at:2019-10-04t11:03:37z":["compute-1"],"bosh_id:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"internal-hostname:vm-3a05c14b-1a70-4df2-406e-c84d58a62969.c.datadog-integrations-lab.internal":["tcp-router-0"],"router":["router-0"],"bosh_address:10.0.4.38":["mysql-monitor-0"],"bosh_address:10.0.4.40":["datadog-firehose-nozzle-0"],"bosh_id:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"instance-id:2956639730537583910":["database-0"],"id:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"instance-id:8748261571372460847":["tcp-router-0"],"cf-2c820dc098e0cb619432-backup-restore":["backup-restore-0"],"database":["database-0"],"job:tcp_router":["tcp-router-0"],"cloudfoundry":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"backup-restore":["backup-restore-0"],"id:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"internal-hostname:vm-d80f012b-1265-43ae-7561-6c551adc94c4.c.datadog-integrations-lab.internal":["database-0"],"bosh_id:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"bosh_id:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"]}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:46 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:12:46 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - HTCsbjwqQM0jTFHFq9ukWObBv4f/yxvHIxzrANPhzJkr6s3+rN5uCN3TcZuK2V2B
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts?source=datadog
+    method: GET
+  response:
+    body: '{"tags":{"index:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"id:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"bosh_job:tcp_router":["tcp-router-0"],"deployment:cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_name:database":["database-0"],"ip:10.0.4.38":["mysql-monitor-0"],"index:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"bosh_job:mysql_monitor":["mysql-monitor-0"],"name:compute/1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"bosh_job:backup_restore":["backup-restore-0"],"internal-hostname:vm-07da94a6-9c0a-433b-4966-5315e3122203.c.datadog-integrations-lab.internal":["backup-restore-0"],"created_at:2019-10-04t10:22:56z":["router-0"],"director:p-bosh":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"datadog-nozzle-datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"cf-2c820dc098e0cb619432-compute":["compute-1","compute-0"],"index:1":["compute-1"],"index:0":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"pcf-24-cf-ssh":["control-0"],"internal-hostname:vm-15a8a061-1d55-4a38-5f09-5cf96c7a61b0.c.datadog-integrations-lab.internal":["compute-1"],"user_data:_server_:_name_:_vm-15a8a061-1d55-4a38-5f09-5cf96c7a61b0_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["compute-1"],"datadog-nozzle":["datadog-firehose-nozzle-0"],"pcf-24-cf-wss":["router-0"],"cf-2c820dc098e0cb619432-blobstore":["blobstore-0"],"user_data:_server_:_name_:_vm-25e6f08b-fb54-424b-62ea-fd41e17cbb05_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["datadog-firehose-nozzle-0"],"created_at:2019-07-02t10:09:47z":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t16:07:36z":["blobstore-0"],"name:backup_restore/dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"id:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance-id:3158098367015719868":["datadog-firehose-nozzle-0"],"bosh_job:database":["database-0"],"internal-hostname:vm-25e6f08b-fb54-424b-62ea-fd41e17cbb05.c.datadog-integrations-lab.internal":["datadog-firehose-nozzle-0"],"bosh_job:compute":["compute-1","compute-0"],"user_data:_server_:_name_:_vm-63283112-e5d3-47d5-5577-43e43846c5ec_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["compute-0"],"user_data:_server_:_name_:_vm-dcd8a575-516a-4dc8-4464-69f741a0a424_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-tcp-router":["tcp-router-0"],"id:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"bosh_job:blobstore":["blobstore-0"],"index:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"instance_group:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"id:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"bosh_id:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"bosh_ip:10.0.4.40":["datadog-firehose-nozzle-0"],"instance-type:custom-4-16384":["control-0"],"user_data:_server_:_name_:_vm-d80f012b-1265-43ae-7561-6c551adc94c4_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["database-0"],"index:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"cf-2c820dc098e0cb619432-mysql-monitor":["mysql-monitor-0"],"name:mysql_monitor/7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"instance_group:mysql_monitor":["mysql-monitor-0"],"bosh_index:0":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"instance-type:custom-8-49152":["compute-1","compute-0"],"bosh_name:backup_restore":["backup-restore-0"],"id:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"bosh_name:mysql_monitor":["mysql-monitor-0"],"instance-id:8463652462536672371":["control-0"],"job:control":["control-0"],"index:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance-type:custom-1-1024":["router-0","backup-restore-0","tcp-router-0","mysql-monitor-0"],"instance-type:custom-2-8192":["database-0"],"p-bosh":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_ip:10.0.4.38":["mysql-monitor-0"],"name:tcp_router/d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"pcf-lb":["router-0","control-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-blobstore":["blobstore-0"],"bosh_name:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"p-bosh-datadog-nozzle-datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t18:10:51z":["mysql-monitor-0"],"bosh_az:europe-west1-b":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_az:europe-west1-c":["compute-1"],"name:compute/81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"index:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"job:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"project:datadog-integrations-lab":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"numeric_project_id:116803814856":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-router":["router-0"],"bosh_id:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"job:blobstore":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-backup-restore":["backup-restore-0"],"bosh_ip:10.0.4.23":["control-0"],"bosh_name:router":["router-0"],"bosh_ip:10.0.4.26":["router-0"],"instance_group:control":["control-0"],"bosh_ip:10.0.4.24":["compute-0"],"bosh_ip:10.0.4.25":["backup-restore-0"],"job:backup_restore":["backup-restore-0"],"bosh_ip:10.0.4.29":["compute-1"],"cf-2c820dc098e0cb619432-control":["control-0"],"bosh_id:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"instance_group:router":["router-0"],"instance-id:4148845668908835726":["router-0"],"instance_group:backup_restore":["backup-restore-0"],"name:datadog-firehose-nozzle/3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"index:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"instance-type:custom-2-4096":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-compute":["compute-1","compute-0"],"datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"internal-hostname:vm-b26e160b-c434-4daa-7add-bb289c295ee5.c.datadog-integrations-lab.internal":["mysql-monitor-0"],"bosh_name:blobstore":["blobstore-0"],"omg-no-ip":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"instance-id:2733801103351819664":["backup-restore-0"],"instance_group:compute":["compute-1","compute-0"],"job:database":["database-0"],"cf-2c820dc098e0cb619432-tcp-router":["tcp-router-0"],"job:router":["router-0"],"p-bosh-cf-2c820dc098e0cb619432-mysql-monitor":["mysql-monitor-0"],"name:database/757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance_group:database":["database-0"],"name:router/0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"deployment:datadog-nozzle":["datadog-firehose-nozzle-0"],"test_autorelease:system-probe.2":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"created_at:2019-11-18t10:00:57z":["database-0"],"bosh_index:1":["compute-1"],"internal-hostname:vm-dcd8a575-516a-4dc8-4464-69f741a0a424.c.datadog-integrations-lab.internal":["blobstore-0"],"instance_group:tcp_router":["tcp-router-0"],"internal-hostname:vm-a64b4788-997a-4ea1-42ff-cbb6f987d25a.c.datadog-integrations-lab.internal":["router-0"],"p-bosh-cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_address:10.0.4.29":["compute-1"],"instance-type:custom-1-2048":["datadog-firehose-nozzle-0"],"index:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"instance-id:8169066737377684339":["mysql-monitor-0"],"bosh_address:10.0.4.22":["blobstore-0"],"bosh_address:10.0.4.23":["control-0"],"bosh_address:10.0.4.24":["compute-0"],"bosh_address:10.0.4.25":["backup-restore-0"],"bosh_address:10.0.4.26":["router-0"],"instance-id:6850996408719939602":["compute-1"],"bosh_ip:10.0.4.22":["blobstore-0"],"bosh_id:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"instance-id:6845383994576158542":["compute-0"],"ip:10.0.4.40":["datadog-firehose-nozzle-0"],"id:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"created_at:2019-09-09t18:01:51z":["backup-restore-0"],"bosh_ip:10.0.4.21":["database-0"],"bosh_address:10.0.4.21":["database-0"],"mysql-monitor":["mysql-monitor-0"],"created_at:2019-09-09t16:16:05z":["control-0"],"bosh_ip:10.0.4.27":["tcp-router-0"],"id:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"compute":["compute-1","compute-0"],"index:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"internal-hostname:vm-c6c6e41a-82df-4f0d-5b26-330d8cde4f85.c.datadog-integrations-lab.internal":["control-0"],"internal-hostname:vm-63283112-e5d3-47d5-5577-43e43846c5ec.c.datadog-integrations-lab.internal":["compute-0"],"cf-2c820dc098e0cb619432-router":["router-0"],"tcp-router":["tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-database":["database-0"],"id:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"p-bosh-datadog-nozzle":["datadog-firehose-nozzle-0"],"bosh_job:control":["control-0"],"pcf-24-cf-tcp":["tcp-router-0"],"bosh_address:10.0.4.27":["tcp-router-0"],"bosh_name:control":["control-0"],"control":["control-0"],"user_data:_server_:_name_:_vm-b26e160b-c434-4daa-7add-bb289c295ee5_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["mysql-monitor-0"],"pcf-24-httpslb":["router-0"],"instance_group:blobstore":["blobstore-0"],"bosh_id:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"bosh_job:router":["router-0"],"name:control/339a8408-3549-4927-9416-8488fe732c62":["control-0"],"user_data:_server_:_name_:_vm-a64b4788-997a-4ea1-42ff-cbb6f987d25a_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["router-0"],"job:mysql_monitor":["mysql-monitor-0"],"bosh_name:compute":["compute-1","compute-0"],"bosh_deployment:cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"name:blobstore/ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"cf-2c820dc098e0cb619432-database":["database-0"],"bosh_id:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"bosh_name:tcp_router":["tcp-router-0"],"user_data:_server_:_name_:_vm-3a05c14b-1a70-4df2-406e-c84d58a62969_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["tcp-router-0"],"job:compute":["compute-1","compute-0"],"user_data:_server_:_name_:_vm-07da94a6-9c0a-433b-4966-5315e3122203_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["backup-restore-0"],"bosh_job:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"zone:europe-west1-c":["compute-1"],"zone:europe-west1-b":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-control":["control-0"],"cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"user_data:_server_:_name_:_vm-c6c6e41a-82df-4f0d-5b26-330d8cde4f85_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["control-0"],"bosh_deployment:datadog-nozzle":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t18:11:52z":["tcp-router-0"],"instance-id:4059195034138560087":["blobstore-0"],"ip:10.0.4.21":["database-0"],"ip:10.0.4.22":["blobstore-0"],"ip:10.0.4.23":["control-0"],"ip:10.0.4.24":["compute-0"],"ip:10.0.4.25":["backup-restore-0"],"ip:10.0.4.26":["router-0"],"ip:10.0.4.27":["tcp-router-0"],"ip:10.0.4.29":["compute-1"],"blobstore":["blobstore-0"],"index:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"created_at:2019-09-09t16:45:40z":["compute-0"],"created_at:2019-10-04t11:03:37z":["compute-1"],"bosh_id:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"internal-hostname:vm-3a05c14b-1a70-4df2-406e-c84d58a62969.c.datadog-integrations-lab.internal":["tcp-router-0"],"router":["router-0"],"bosh_address:10.0.4.38":["mysql-monitor-0"],"bosh_address:10.0.4.40":["datadog-firehose-nozzle-0"],"bosh_id:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"instance-id:2956639730537583910":["database-0"],"id:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"instance-id:8748261571372460847":["tcp-router-0"],"cf-2c820dc098e0cb619432-backup-restore":["backup-restore-0"],"database":["database-0"],"job:tcp_router":["tcp-router-0"],"cloudfoundry":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"backup-restore":["backup-restore-0"],"id:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"internal-hostname:vm-d80f012b-1265-43ae-7561-6c551adc94c4.c.datadog-integrations-lab.internal":["database-0"],"bosh_id:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"bosh_id:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"]}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:12:56 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:12:56 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - NueLa2zkdBcl9S7BHrRuWyjAeR9iWgPFe330KTY6Cp0/yUhjUktbxu5rG2fG6gBk
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts?source=datadog
+    method: GET
+  response:
+    body: '{"tags":{"index:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"id:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"bosh_job:tcp_router":["tcp-router-0"],"deployment:cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_name:database":["database-0"],"ip:10.0.4.38":["mysql-monitor-0"],"index:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"bosh_job:mysql_monitor":["mysql-monitor-0"],"name:compute/1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"bosh_job:backup_restore":["backup-restore-0"],"internal-hostname:vm-07da94a6-9c0a-433b-4966-5315e3122203.c.datadog-integrations-lab.internal":["backup-restore-0"],"created_at:2019-10-04t10:22:56z":["router-0"],"director:p-bosh":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"datadog-nozzle-datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"cf-2c820dc098e0cb619432-compute":["compute-1","compute-0"],"index:1":["compute-1"],"index:0":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"pcf-24-cf-ssh":["control-0"],"internal-hostname:vm-15a8a061-1d55-4a38-5f09-5cf96c7a61b0.c.datadog-integrations-lab.internal":["compute-1"],"user_data:_server_:_name_:_vm-15a8a061-1d55-4a38-5f09-5cf96c7a61b0_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["compute-1"],"datadog-nozzle":["datadog-firehose-nozzle-0"],"pcf-24-cf-wss":["router-0"],"cf-2c820dc098e0cb619432-blobstore":["blobstore-0"],"user_data:_server_:_name_:_vm-25e6f08b-fb54-424b-62ea-fd41e17cbb05_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["datadog-firehose-nozzle-0"],"created_at:2019-07-02t10:09:47z":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t16:07:36z":["blobstore-0"],"name:backup_restore/dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"id:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance-id:3158098367015719868":["datadog-firehose-nozzle-0"],"bosh_job:database":["database-0"],"internal-hostname:vm-25e6f08b-fb54-424b-62ea-fd41e17cbb05.c.datadog-integrations-lab.internal":["datadog-firehose-nozzle-0"],"bosh_job:compute":["compute-1","compute-0"],"user_data:_server_:_name_:_vm-63283112-e5d3-47d5-5577-43e43846c5ec_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["compute-0"],"user_data:_server_:_name_:_vm-dcd8a575-516a-4dc8-4464-69f741a0a424_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-tcp-router":["tcp-router-0"],"id:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"bosh_job:blobstore":["blobstore-0"],"index:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"instance_group:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"id:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"bosh_id:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"bosh_ip:10.0.4.40":["datadog-firehose-nozzle-0"],"instance-type:custom-4-16384":["control-0"],"user_data:_server_:_name_:_vm-d80f012b-1265-43ae-7561-6c551adc94c4_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["database-0"],"index:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"cf-2c820dc098e0cb619432-mysql-monitor":["mysql-monitor-0"],"name:mysql_monitor/7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"instance_group:mysql_monitor":["mysql-monitor-0"],"bosh_index:0":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"instance-type:custom-8-49152":["compute-1","compute-0"],"bosh_name:backup_restore":["backup-restore-0"],"id:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"bosh_name:mysql_monitor":["mysql-monitor-0"],"instance-id:8463652462536672371":["control-0"],"job:control":["control-0"],"index:757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance-type:custom-1-1024":["router-0","backup-restore-0","tcp-router-0","mysql-monitor-0"],"instance-type:custom-2-8192":["database-0"],"p-bosh":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_ip:10.0.4.38":["mysql-monitor-0"],"name:tcp_router/d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"pcf-lb":["router-0","control-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-blobstore":["blobstore-0"],"bosh_name:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"p-bosh-datadog-nozzle-datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t18:10:51z":["mysql-monitor-0"],"bosh_az:europe-west1-b":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_az:europe-west1-c":["compute-1"],"name:compute/81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"index:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"job:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"project:datadog-integrations-lab":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"numeric_project_id:116803814856":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-router":["router-0"],"bosh_id:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"job:blobstore":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-backup-restore":["backup-restore-0"],"bosh_ip:10.0.4.23":["control-0"],"bosh_name:router":["router-0"],"bosh_ip:10.0.4.26":["router-0"],"instance_group:control":["control-0"],"bosh_ip:10.0.4.24":["compute-0"],"bosh_ip:10.0.4.25":["backup-restore-0"],"job:backup_restore":["backup-restore-0"],"bosh_ip:10.0.4.29":["compute-1"],"cf-2c820dc098e0cb619432-control":["control-0"],"bosh_id:0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"instance_group:router":["router-0"],"instance-id:4148845668908835726":["router-0"],"instance_group:backup_restore":["backup-restore-0"],"test:client_go":["go-client-test-host-1582121544"],"name:datadog-firehose-nozzle/3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"index:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"instance-type:custom-2-4096":["blobstore-0"],"p-bosh-cf-2c820dc098e0cb619432-compute":["compute-1","compute-0"],"datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"internal-hostname:vm-b26e160b-c434-4daa-7add-bb289c295ee5.c.datadog-integrations-lab.internal":["mysql-monitor-0"],"bosh_name:blobstore":["blobstore-0"],"omg-no-ip":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"instance-id:2733801103351819664":["backup-restore-0"],"instance_group:compute":["compute-1","compute-0"],"job:database":["database-0"],"cf-2c820dc098e0cb619432-tcp-router":["tcp-router-0"],"job:router":["router-0"],"p-bosh-cf-2c820dc098e0cb619432-mysql-monitor":["mysql-monitor-0"],"name:database/757225e9-0cfb-449e-907c-7a4921a2f671":["database-0"],"instance_group:database":["database-0"],"name:router/0c239202-962b-4ac4-b70b-fa72fe322225":["router-0"],"deployment:datadog-nozzle":["datadog-firehose-nozzle-0"],"test_autorelease:system-probe.2":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"created_at:2019-11-18t10:00:57z":["database-0"],"bosh_index:1":["compute-1"],"internal-hostname:vm-dcd8a575-516a-4dc8-4464-69f741a0a424.c.datadog-integrations-lab.internal":["blobstore-0"],"instance_group:tcp_router":["tcp-router-0"],"internal-hostname:vm-a64b4788-997a-4ea1-42ff-cbb6f987d25a.c.datadog-integrations-lab.internal":["router-0"],"p-bosh-cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"bosh_address:10.0.4.29":["compute-1"],"instance-type:custom-1-2048":["datadog-firehose-nozzle-0"],"index:1d2a861f-bdd1-4143-b22c-a18112dc8e1b":["compute-1"],"instance-id:8169066737377684339":["mysql-monitor-0"],"bosh_address:10.0.4.22":["blobstore-0"],"bosh_address:10.0.4.23":["control-0"],"bosh_address:10.0.4.24":["compute-0"],"bosh_address:10.0.4.25":["backup-restore-0"],"bosh_address:10.0.4.26":["router-0"],"instance-id:6850996408719939602":["compute-1"],"bosh_ip:10.0.4.22":["blobstore-0"],"bosh_id:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"instance-id:6845383994576158542":["compute-0"],"ip:10.0.4.40":["datadog-firehose-nozzle-0"],"id:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"created_at:2019-09-09t18:01:51z":["backup-restore-0"],"bosh_ip:10.0.4.21":["database-0"],"bosh_address:10.0.4.21":["database-0"],"mysql-monitor":["mysql-monitor-0"],"created_at:2019-09-09t16:16:05z":["control-0"],"bosh_ip:10.0.4.27":["tcp-router-0"],"id:81069af8-7ff1-4b5e-83d4-cdaa9f53c48e":["compute-0"],"compute":["compute-1","compute-0"],"index:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"internal-hostname:vm-c6c6e41a-82df-4f0d-5b26-330d8cde4f85.c.datadog-integrations-lab.internal":["control-0"],"internal-hostname:vm-63283112-e5d3-47d5-5577-43e43846c5ec.c.datadog-integrations-lab.internal":["compute-0"],"cf-2c820dc098e0cb619432-router":["router-0"],"tcp-router":["tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-database":["database-0"],"id:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"p-bosh-datadog-nozzle":["datadog-firehose-nozzle-0"],"bosh_job:control":["control-0"],"pcf-24-cf-tcp":["tcp-router-0"],"bosh_address:10.0.4.27":["tcp-router-0"],"bosh_name:control":["control-0"],"control":["control-0"],"user_data:_server_:_name_:_vm-b26e160b-c434-4daa-7add-bb289c295ee5_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["mysql-monitor-0"],"pcf-24-httpslb":["router-0"],"instance_group:blobstore":["blobstore-0"],"bosh_id:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"bosh_job:router":["router-0"],"name:control/339a8408-3549-4927-9416-8488fe732c62":["control-0"],"user_data:_server_:_name_:_vm-a64b4788-997a-4ea1-42ff-cbb6f987d25a_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["router-0"],"job:mysql_monitor":["mysql-monitor-0"],"bosh_name:compute":["compute-1","compute-0"],"bosh_deployment:cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"name:blobstore/ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"cf-2c820dc098e0cb619432-database":["database-0"],"bosh_id:339a8408-3549-4927-9416-8488fe732c62":["control-0"],"bosh_name:tcp_router":["tcp-router-0"],"user_data:_server_:_name_:_vm-3a05c14b-1a70-4df2-406e-c84d58a62969_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["tcp-router-0"],"job:compute":["compute-1","compute-0"],"user_data:_server_:_name_:_vm-07da94a6-9c0a-433b-4966-5315e3122203_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["backup-restore-0"],"bosh_job:datadog-firehose-nozzle":["datadog-firehose-nozzle-0"],"zone:europe-west1-c":["compute-1"],"zone:europe-west1-b":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-0","blobstore-0","database-0","tcp-router-0"],"p-bosh-cf-2c820dc098e0cb619432-control":["control-0"],"cf-2c820dc098e0cb619432":["mysql-monitor-0","router-0","backup-restore-0","control-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"user_data:_server_:_name_:_vm-c6c6e41a-82df-4f0d-5b26-330d8cde4f85_registry_:_endpoint_:_://:_:0_dns_:_nameserver_:_169.254.169.254":["control-0"],"bosh_deployment:datadog-nozzle":["datadog-firehose-nozzle-0"],"created_at:2019-09-09t18:11:52z":["tcp-router-0"],"instance-id:4059195034138560087":["blobstore-0"],"ip:10.0.4.21":["database-0"],"ip:10.0.4.22":["blobstore-0"],"ip:10.0.4.23":["control-0"],"ip:10.0.4.24":["compute-0"],"ip:10.0.4.25":["backup-restore-0"],"ip:10.0.4.26":["router-0"],"ip:10.0.4.27":["tcp-router-0"],"ip:10.0.4.29":["compute-1"],"blobstore":["blobstore-0"],"index:ee6e196b-0993-4a5d-a25f-b4c9f2455254":["blobstore-0"],"created_at:2019-09-09t16:45:40z":["compute-0"],"created_at:2019-10-04t11:03:37z":["compute-1"],"bosh_id:d1450367-4b0c-4e92-979e-b5ed4390de80":["tcp-router-0"],"internal-hostname:vm-3a05c14b-1a70-4df2-406e-c84d58a62969.c.datadog-integrations-lab.internal":["tcp-router-0"],"router":["router-0"],"bosh_address:10.0.4.38":["mysql-monitor-0"],"bosh_address:10.0.4.40":["datadog-firehose-nozzle-0"],"bosh_id:7bfcecea-bfa4-469b-af9f-2f68e57c1c7c":["mysql-monitor-0"],"instance-id:2956639730537583910":["database-0"],"id:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"instance-id:8748261571372460847":["tcp-router-0"],"cf-2c820dc098e0cb619432-backup-restore":["backup-restore-0"],"database":["database-0"],"job:tcp_router":["tcp-router-0"],"cloudfoundry":["mysql-monitor-0","router-0","backup-restore-0","control-0","datadog-firehose-nozzle-0","compute-1","compute-0","blobstore-0","database-0","tcp-router-0"],"backup-restore":["backup-restore-0"],"id:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"],"internal-hostname:vm-d80f012b-1265-43ae-7561-6c551adc94c4.c.datadog-integrations-lab.internal":["database-0"],"bosh_id:3b9d5040-e06f-4973-9438-b887c909df02":["datadog-firehose-nozzle-0"],"bosh_id:dc71bfe4-50b3-4cc9-84f3-d88d1c50b627":["backup-restore-0"]}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:13:09 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:13:08 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 0Ldh7zbvTvxG6fwW0tw8N7mZPnI2XNOUoKCE8H0O1+b4UJVtdo0G52qWoFveZXDz
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts?source=users
+    method: GET
+  response:
+    body: '{"tags":{"lala:lolo":["go-client-test-host"],"environment:production":["go-client-test-host"],"role:webserver":["go-client-test-host"]}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:13:09 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:13:09 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - zgs4/R8U39Dx88K274ycCG8gmotK2r1yjyecTfeITqBuGEc/zW9V1MMOyMl9URns
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"tags":["foo:bar","toto:tata"]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544?source=datadog
+    method: PUT
+  response:
+    body: '{"host":"go-client-test-host-1582121544","tags":["foo:bar","toto:tata"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "72"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:13:09 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:13:09 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - CFSDBBie5Okt4N1oWVJNTAqpt778eCo7VQZ0NhVFWw8MHYFUwuA7DURhpFRYY+Wy
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-client-test-host-1582121544?source=datadog
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "4"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Feb 2020 14:13:09 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:13:09 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - nSRgqrrNNmPPT6VSGZq0R9QdtdJF1qxzho2//eboP+tsIQDRgfSx3bSVb1t6QyYb
+      X-Dd-Version:
+      - "35.2189722"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""

@@ -27,7 +27,7 @@ func TestHosts(t *testing.T) {
 	defer teardownTest(t)
 
 	api := TESTAPICLIENT.HostsApi
-	now := time.Now().Unix()
+	now := TESTCLOCK.Now().Unix()
 
 	hostname := fmt.Sprintf("go-client-test-host-%d", now)
 

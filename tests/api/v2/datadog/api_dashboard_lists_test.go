@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"os"
 	"testing"
-	"time"
 
 	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -35,23 +34,24 @@ func initializeClientV1() {
 		context.Background(),
 		datadogV1.ContextAPIKeys,
 		map[string]datadogV1.APIKey{
-			"apiKeyAuth": datadogV1.APIKey{
+			"apiKeyAuth": {
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
 			},
-			"appKeyAuth": datadogV1.APIKey{
+			"appKeyAuth": {
 				Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
 			},
 		},
 	)
 	config := datadogV1.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
+	config.HTTPClient = TestAPIClient.GetConfig().HTTPClient
 	testAPIClientV1 = datadogV1.NewAPIClient(config)
 }
 
 func createDashboardList() error {
 	initializeClientV1()
 	res, httpresp, err := testAPIClientV1.DashboardListsApi.CreateDashboardList(testAuthV1).
-		Body(datadogV1.DashboardList{Name: fmt.Sprintf("go-client-test-v2-%d", time.Now().Unix())}).
+		Body(datadogV1.DashboardList{Name: fmt.Sprintf("go-client-test-v2-%d", TestClock.Now().Unix())}).
 		Execute()
 	if err != nil || httpresp.StatusCode != 200 {
 		return fmt.Errorf("error creating dashboard list: %v", err.(datadogV1.GenericOpenAPIError).Body())
