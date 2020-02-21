@@ -139,7 +139,7 @@ func (r apiCreateEventRequest) Execute() (EventResponse, *_nethttp.Response, err
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["apiKeyAuthQuery"]; ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
