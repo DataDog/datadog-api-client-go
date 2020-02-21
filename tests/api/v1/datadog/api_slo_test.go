@@ -20,7 +20,7 @@ var testMonitorSLO = datadog.ServiceLevelObjective{
 	Name:        "Critical Foo Host Uptime",
 	Description: *datadog.NewNullableString(datadog.PtrString("Track the uptime of host foo which is critical to us.")),
 	Tags:        &[]string{"app:core", "kpi"},
-	Thresholds: []datadog.SloThreshold{{
+	Thresholds: []datadog.SLOThreshold{{
 		Timeframe: datadog.SLOTIMEFRAME_THIRTY_DAYS,
 		Target:    95.0,
 		Warning:   datadog.PtrFloat64(98.0),
@@ -32,7 +32,7 @@ var testEventSLO = datadog.ServiceLevelObjective{
 	Name:        "HTTP Return Codes",
 	Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
 	Tags:        &[]string{"app:httpd"},
-	Thresholds: []datadog.SloThreshold{{
+	Thresholds: []datadog.SLOThreshold{{
 		Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
 		Target:    95.0,
 		Warning:   datadog.PtrFloat64(98.0),
@@ -230,7 +230,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	// Use bulk delete operation to delete the event SLO
 	var deleteResp datadog.ServiceLevelObjectivesBulkDeleted
 	deleteResp, httpresp, err = TESTAPICLIENT.SLOApi.BulkPartialDeleteSLO(TESTAUTH).
-		Body(map[string][]datadog.SloTimeframe{
+		Body(map[string][]datadog.SLOTimeframe{
 			eventSLO.GetId(): {datadog.SLOTIMEFRAME_SEVEN_DAYS},
 		}).Execute()
 

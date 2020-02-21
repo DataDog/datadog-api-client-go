@@ -39,13 +39,13 @@ var testMonitor = datadog.Monitor{
 		EscalationMessage: datadog.PtrString("the situation has escalated"),
 		Thresholds: &datadog.MonitorThresholds{
 			Critical: datadog.PtrFloat64(2),
-			Warning:   *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
+			Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 		},
 	},
 }
 
 var testUpdateMonitor = datadog.Monitor{
-	Name: datadog.PtrString("Go - updated name"),
+	Name: datadog.PtrString("updated name"),
 	Options: &datadog.MonitorOptions{
 		TimeoutH:         *datadog.NewNullableInt64(nil),
 		RenotifyInterval: *datadog.NewNullableInt64(nil),

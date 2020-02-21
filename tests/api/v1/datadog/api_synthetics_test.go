@@ -74,7 +74,7 @@ var testSyntheticsBrowser = datadog.SyntheticsTestDetails{
 	Name:      datadog.PtrString("testing Synthetics Browser test"),
 	Options: &datadog.SyntheticsTestOptions{
 		AcceptSelfSigned:  datadog.PtrBool(false),
-		DeviceIds:         &[]datadog.SyntheticsDeviceId{datadog.SYNTHETICSDEVICEID_TABLET},
+		DeviceIds:         &[]datadog.SyntheticsDeviceID{datadog.SYNTHETICSDEVICEID_TABLET},
 		FollowRedirects:   datadog.PtrBool(true),
 		MinLocationFailed: datadog.PtrInt64(10),
 		Retry: &datadog.SyntheticsTestOptionsRetry{
@@ -146,7 +146,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	assert.Equal(t, pauseStatus, true)
 
 	// Get the most recent API test results
-	var latestResults datadog.SyntheticsGetApiTestLatestResultsResponse
+	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
 	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetAPITestLatestResults(TESTAUTH, publicID).
 		Body(datadog.SyntheticsGetTestLatestResultsPayload{
@@ -172,7 +172,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 
 	// Get a specific API test result
 	// Again, using a mock response to just test deserialization
-	var singleResult datadog.SyntheticsApiTestResultFull
+	var singleResult datadog.SyntheticsAPITestResultFull
 	fixturePath, _ = filepath.Abs("fixtures/synthetics/api_test_single_result.json")
 	data, _ = ioutil.ReadFile(fixturePath)
 	err = json.Unmarshal(data, &singleResult)

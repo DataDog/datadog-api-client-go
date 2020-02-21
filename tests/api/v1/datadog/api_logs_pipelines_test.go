@@ -57,7 +57,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	remapper.SetOverrideOnConflict(true)
 	remapper.SetName("log message remapper")
 
-	urlParser := datadog.NewLogsUrlParserWithDefaults()
+	urlParser := datadog.NewLogsURLParserWithDefaults()
 	urlParser.SetSources([]string{"source"})
 	urlParser.SetTarget("target")
 	urlParser.SetName("URL parser")
@@ -91,7 +91,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	stringBuilderProcessor.SetIsReplaceMissing(true)
 	stringBuilderProcessor.SetName("string builder processor")
 
-	geoIPParser := datadog.NewLogsGeoIpParserWithDefaults()
+	geoIPParser := datadog.NewLogsGeoIPParserWithDefaults()
 	geoIPParser.SetSources([]string{"source"})
 	geoIPParser.SetTarget("target")
 	geoIPParser.SetName("geo IP parser")

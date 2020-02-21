@@ -18,9 +18,9 @@ import (
 	"gotest.tools/assert"
 )
 
-func generateUniqueAwsAccount() datadog.AwsAccount {
+func generateUniqueAWSAccount() datadog.AWSAccount {
 	accountID := fmt.Sprintf("go_%09d", TESTCLOCK.Now().UnixNano()%1000000000)
-	return datadog.AwsAccount{
+	return datadog.AWSAccount{
 		AccountId:                     &accountID,
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
@@ -29,7 +29,7 @@ func generateUniqueAwsAccount() datadog.AwsAccount {
 	}
 }
 
-var TESTUPDATEAWSACC = datadog.AwsAccount{
+var TESTUPDATEAWSACC = datadog.AWSAccount{
 	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRoleUpdated"),
 	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
@@ -41,16 +41,16 @@ func TestCreateAWSAccount(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	testAwsAccount := generateUniqueAwsAccount()
+	testAWSAccount := generateUniqueAWSAccount()
 
 	// Assert AWS Integration Created with proper fields
-	retryCreateAccount(t, testAwsAccount)
-	defer retryDeleteAccount(t, testAwsAccount)
+	retryCreateAccount(t, testAWSAccount)
+	defer retryDeleteAccount(t, testAWSAccount)
 
 	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.
 		GetAllAWSAccounts(TESTAUTH).
-		AccountId(testAwsAccount.GetAccountId()).
-		RoleName(testAwsAccount.GetRoleName()).
+		AccountId(testAWSAccount.GetAccountId()).
+		RoleName(testAWSAccount.GetRoleName()).
 		Execute()
 	if err != nil {
 		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -61,12 +61,12 @@ func TestCreateAWSAccount(t *testing.T) {
 	assert.Assert(t, len(awsAccounts) > 0, "No AWS accounts found")
 
 	awsAcct := awsAccounts[0]
-	assert.Equal(t, awsAcct.GetAccountId(), testAwsAccount.GetAccountId())
-	assert.Equal(t, awsAcct.GetRoleName(), testAwsAccount.GetRoleName())
+	assert.Equal(t, awsAcct.GetAccountId(), testAWSAccount.GetAccountId())
+	assert.Equal(t, awsAcct.GetRoleName(), testAWSAccount.GetRoleName())
 	// Golang doesn't have an equality operator defined for slices
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetHostTags(), testAwsAccount.GetHostTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetFilterTags(), testAwsAccount.GetFilterTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetAccountSpecificNamespaceRules(), testAwsAccount.GetAccountSpecificNamespaceRules()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetHostTags(), testAWSAccount.GetHostTags()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetFilterTags(), testAWSAccount.GetFilterTags()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetAccountSpecificNamespaceRules(), testAWSAccount.GetAccountSpecificNamespaceRules()), true)
 }
 
 func TestUpdateAWSAccount(t *testing.T) {
@@ -74,15 +74,15 @@ func TestUpdateAWSAccount(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	testAwsAccount := generateUniqueAwsAccount()
+	testAWSAccount := generateUniqueAWSAccount()
 
 	// Assert AWS Integration Created with proper fields
-	retryCreateAccount(t, testAwsAccount)
-	defer retryDeleteAccount(t, testAwsAccount)
+	retryCreateAccount(t, testAWSAccount)
+	defer retryDeleteAccount(t, testAWSAccount)
 
-	retryUpdateAccount(t, TESTUPDATEAWSACC, testAwsAccount.GetAccountId(), testAwsAccount.GetRoleName())
-	UPDATEDAWSACCT := datadog.AwsAccount{
-		AccountId: testAwsAccount.AccountId,
+	retryUpdateAccount(t, TESTUPDATEAWSACC, testAWSAccount.GetAccountId(), testAWSAccount.GetRoleName())
+	UPDATEDAWSACCT := datadog.AWSAccount{
+		AccountId: testAWSAccount.AccountId,
 		RoleName:  TESTUPDATEAWSACC.RoleName,
 	}
 	defer retryDeleteAccount(t, UPDATEDAWSACCT)
@@ -115,12 +115,12 @@ func TestDisableAWSAcct(t *testing.T) {
 	defer teardownTest(t)
 
 	// We already test this in the disableAWSAccount cleanup function, but good to have an explicit test
-	testAwsAccount := generateUniqueAwsAccount()
+	testAWSAccount := generateUniqueAWSAccount()
 
 	// Lets first create the account of us to delete
-	retryCreateAccount(t, testAwsAccount)
+	retryCreateAccount(t, testAWSAccount)
 
-	retryDeleteAccount(t, testAwsAccount)
+	retryDeleteAccount(t, testAWSAccount)
 }
 
 func TestGenerateNewExternalId(t *testing.T) {
@@ -128,12 +128,12 @@ func TestGenerateNewExternalId(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	testAwsAccount := generateUniqueAwsAccount()
+	testAWSAccount := generateUniqueAWSAccount()
 	// Lets first create the account for us to generate a new id against
-	retryCreateAccount(t, testAwsAccount)
-	defer retryDeleteAccount(t, testAwsAccount)
+	retryCreateAccount(t, testAWSAccount)
+	defer retryDeleteAccount(t, testAWSAccount)
 
-	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH).Body(testAwsAccount).Execute()
+	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH).Body(testAWSAccount).Execute()
 	if err != nil {
 		t.Fatalf("Error generating new AWS External ID: Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -164,7 +164,7 @@ func TestListNamespaces(t *testing.T) {
 	assert.Assert(t, namespacesCheck["xray"], true)
 }
 
-func retryDeleteAccount(t *testing.T, awsAccount datadog.AwsAccount) {
+func retryDeleteAccount(t *testing.T, awsAccount datadog.AWSAccount) {
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).Body(awsAccount).Execute()
 		if httpresp.StatusCode == 502 {
@@ -177,7 +177,7 @@ func retryDeleteAccount(t *testing.T, awsAccount datadog.AwsAccount) {
 	}
 }
 
-func retryCreateAccount(t *testing.T, awsAccount datadog.AwsAccount) {
+func retryCreateAccount(t *testing.T, awsAccount datadog.AWSAccount) {
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(awsAccount).Execute()
 		if httpresp.StatusCode == 502 {
@@ -190,7 +190,7 @@ func retryCreateAccount(t *testing.T, awsAccount datadog.AwsAccount) {
 	}
 }
 
-func retryUpdateAccount(t *testing.T, body datadog.AwsAccount, accountID string, roleName string) {
+func retryUpdateAccount(t *testing.T, body datadog.AWSAccount, accountID string, roleName string) {
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).
 			Body(body).
