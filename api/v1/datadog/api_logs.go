@@ -202,7 +202,7 @@ func (r apiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, err
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v LogsApiErrorResponse
+			var v LogsAPIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -212,7 +212,7 @@ func (r apiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, err
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -238,10 +238,10 @@ func (r apiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, err
 type apiSendLogRequest struct {
 	ctx        _context.Context
 	apiService *LogsApiService
-	body       *HttpLog
+	body       *HTTPLog
 }
 
-func (r apiSendLogRequest) Body(body HttpLog) apiSendLogRequest {
+func (r apiSendLogRequest) Body(body HTTPLog) apiSendLogRequest {
 	r.body = &body
 	return r
 }
@@ -352,7 +352,7 @@ func (r apiSendLogRequest) Execute() (interface{}, *_nethttp.Response, error) {
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		var v HttpLogError
+		var v HTTPLogError
 		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()

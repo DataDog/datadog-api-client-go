@@ -12,30 +12,30 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsApiTestResultShortResult struct for SyntheticsApiTestResultShortResult
-type SyntheticsApiTestResultShortResult struct {
+// SyntheticsAPITestResultShortResult struct for SyntheticsAPITestResultShortResult
+type SyntheticsAPITestResultShortResult struct {
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 }
 
-// NewSyntheticsApiTestResultShortResult instantiates a new SyntheticsApiTestResultShortResult object
+// NewSyntheticsAPITestResultShortResult instantiates a new SyntheticsAPITestResultShortResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsApiTestResultShortResult() *SyntheticsApiTestResultShortResult {
-	this := SyntheticsApiTestResultShortResult{}
+func NewSyntheticsAPITestResultShortResult() *SyntheticsAPITestResultShortResult {
+	this := SyntheticsAPITestResultShortResult{}
 	return &this
 }
 
-// NewSyntheticsApiTestResultShortResultWithDefaults instantiates a new SyntheticsApiTestResultShortResult object
+// NewSyntheticsAPITestResultShortResultWithDefaults instantiates a new SyntheticsAPITestResultShortResult object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsApiTestResultShortResultWithDefaults() *SyntheticsApiTestResultShortResult {
-	this := SyntheticsApiTestResultShortResult{}
+func NewSyntheticsAPITestResultShortResultWithDefaults() *SyntheticsAPITestResultShortResult {
+	this := SyntheticsAPITestResultShortResult{}
 	return &this
 }
 
 // GetTimings returns the Timings field value if set, zero value otherwise.
-func (o *SyntheticsApiTestResultShortResult) GetTimings() SyntheticsTiming {
+func (o *SyntheticsAPITestResultShortResult) GetTimings() SyntheticsTiming {
 	if o == nil || o.Timings == nil {
 		var ret SyntheticsTiming
 		return ret
@@ -45,7 +45,7 @@ func (o *SyntheticsApiTestResultShortResult) GetTimings() SyntheticsTiming {
 
 // GetTimingsOk returns a tuple with the Timings field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsApiTestResultShortResult) GetTimingsOk() (SyntheticsTiming, bool) {
+func (o *SyntheticsAPITestResultShortResult) GetTimingsOk() (SyntheticsTiming, bool) {
 	if o == nil || o.Timings == nil {
 		var ret SyntheticsTiming
 		return ret, false
@@ -54,7 +54,7 @@ func (o *SyntheticsApiTestResultShortResult) GetTimingsOk() (SyntheticsTiming, b
 }
 
 // HasTimings returns a boolean if a field has been set.
-func (o *SyntheticsApiTestResultShortResult) HasTimings() bool {
+func (o *SyntheticsAPITestResultShortResult) HasTimings() bool {
 	if o != nil && o.Timings != nil {
 		return true
 	}
@@ -63,11 +63,11 @@ func (o *SyntheticsApiTestResultShortResult) HasTimings() bool {
 }
 
 // SetTimings gets a reference to the given SyntheticsTiming and assigns it to the Timings field.
-func (o *SyntheticsApiTestResultShortResult) SetTimings(v SyntheticsTiming) {
+func (o *SyntheticsAPITestResultShortResult) SetTimings(v SyntheticsTiming) {
 	o.Timings = &v
 }
 
-func (o SyntheticsApiTestResultShortResult) MarshalJSON() ([]byte, error) {
+func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Timings != nil {
@@ -76,38 +76,38 @@ func (o SyntheticsApiTestResultShortResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableSyntheticsApiTestResultShortResult struct {
-	value *SyntheticsApiTestResultShortResult
+type NullableSyntheticsAPITestResultShortResult struct {
+	value *SyntheticsAPITestResultShortResult
 	isSet bool
 }
 
-func (v NullableSyntheticsApiTestResultShortResult) Get() *SyntheticsApiTestResultShortResult {
+func (v NullableSyntheticsAPITestResultShortResult) Get() *SyntheticsAPITestResultShortResult {
 	return v.value
 }
 
-func (v NullableSyntheticsApiTestResultShortResult) Set(val *SyntheticsApiTestResultShortResult) {
+func (v NullableSyntheticsAPITestResultShortResult) Set(val *SyntheticsAPITestResultShortResult) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsApiTestResultShortResult) IsSet() bool {
+func (v NullableSyntheticsAPITestResultShortResult) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsApiTestResultShortResult) Unset() {
+func (v NullableSyntheticsAPITestResultShortResult) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsApiTestResultShortResult(val *SyntheticsApiTestResultShortResult) *NullableSyntheticsApiTestResultShortResult {
-	return &NullableSyntheticsApiTestResultShortResult{value: val, isSet: true}
+func NewNullableSyntheticsAPITestResultShortResult(val *SyntheticsAPITestResultShortResult) *NullableSyntheticsAPITestResultShortResult {
+	return &NullableSyntheticsAPITestResultShortResult{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsApiTestResultShortResult) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsApiTestResultShortResult) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsAPITestResultShortResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

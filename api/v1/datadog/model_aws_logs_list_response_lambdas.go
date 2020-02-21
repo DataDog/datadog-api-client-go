@@ -12,30 +12,30 @@ import (
 	"encoding/json"
 )
 
-// AwsLogsListResponseLambdas struct for AwsLogsListResponseLambdas
-type AwsLogsListResponseLambdas struct {
+// AWSLogsListResponseLambdas struct for AWSLogsListResponseLambdas
+type AWSLogsListResponseLambdas struct {
 	Arn *string `json:"arn,omitempty"`
 }
 
-// NewAwsLogsListResponseLambdas instantiates a new AwsLogsListResponseLambdas object
+// NewAWSLogsListResponseLambdas instantiates a new AWSLogsListResponseLambdas object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsLogsListResponseLambdas() *AwsLogsListResponseLambdas {
-	this := AwsLogsListResponseLambdas{}
+func NewAWSLogsListResponseLambdas() *AWSLogsListResponseLambdas {
+	this := AWSLogsListResponseLambdas{}
 	return &this
 }
 
-// NewAwsLogsListResponseLambdasWithDefaults instantiates a new AwsLogsListResponseLambdas object
+// NewAWSLogsListResponseLambdasWithDefaults instantiates a new AWSLogsListResponseLambdas object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAwsLogsListResponseLambdasWithDefaults() *AwsLogsListResponseLambdas {
-	this := AwsLogsListResponseLambdas{}
+func NewAWSLogsListResponseLambdasWithDefaults() *AWSLogsListResponseLambdas {
+	this := AWSLogsListResponseLambdas{}
 	return &this
 }
 
 // GetArn returns the Arn field value if set, zero value otherwise.
-func (o *AwsLogsListResponseLambdas) GetArn() string {
+func (o *AWSLogsListResponseLambdas) GetArn() string {
 	if o == nil || o.Arn == nil {
 		var ret string
 		return ret
@@ -45,7 +45,7 @@ func (o *AwsLogsListResponseLambdas) GetArn() string {
 
 // GetArnOk returns a tuple with the Arn field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsListResponseLambdas) GetArnOk() (string, bool) {
+func (o *AWSLogsListResponseLambdas) GetArnOk() (string, bool) {
 	if o == nil || o.Arn == nil {
 		var ret string
 		return ret, false
@@ -54,7 +54,7 @@ func (o *AwsLogsListResponseLambdas) GetArnOk() (string, bool) {
 }
 
 // HasArn returns a boolean if a field has been set.
-func (o *AwsLogsListResponseLambdas) HasArn() bool {
+func (o *AWSLogsListResponseLambdas) HasArn() bool {
 	if o != nil && o.Arn != nil {
 		return true
 	}
@@ -63,11 +63,11 @@ func (o *AwsLogsListResponseLambdas) HasArn() bool {
 }
 
 // SetArn gets a reference to the given string and assigns it to the Arn field.
-func (o *AwsLogsListResponseLambdas) SetArn(v string) {
+func (o *AWSLogsListResponseLambdas) SetArn(v string) {
 	o.Arn = &v
 }
 
-func (o AwsLogsListResponseLambdas) MarshalJSON() ([]byte, error) {
+func (o AWSLogsListResponseLambdas) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Arn != nil {
@@ -76,38 +76,38 @@ func (o AwsLogsListResponseLambdas) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAwsLogsListResponseLambdas struct {
-	value *AwsLogsListResponseLambdas
+type NullableAWSLogsListResponseLambdas struct {
+	value *AWSLogsListResponseLambdas
 	isSet bool
 }
 
-func (v NullableAwsLogsListResponseLambdas) Get() *AwsLogsListResponseLambdas {
+func (v NullableAWSLogsListResponseLambdas) Get() *AWSLogsListResponseLambdas {
 	return v.value
 }
 
-func (v NullableAwsLogsListResponseLambdas) Set(val *AwsLogsListResponseLambdas) {
+func (v NullableAWSLogsListResponseLambdas) Set(val *AWSLogsListResponseLambdas) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAwsLogsListResponseLambdas) IsSet() bool {
+func (v NullableAWSLogsListResponseLambdas) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAwsLogsListResponseLambdas) Unset() {
+func (v NullableAWSLogsListResponseLambdas) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAwsLogsListResponseLambdas(val *AwsLogsListResponseLambdas) *NullableAwsLogsListResponseLambdas {
-	return &NullableAwsLogsListResponseLambdas{value: val, isSet: true}
+func NewNullableAWSLogsListResponseLambdas(val *AWSLogsListResponseLambdas) *NullableAWSLogsListResponseLambdas {
+	return &NullableAWSLogsListResponseLambdas{value: val, isSet: true}
 }
 
-func (v NullableAwsLogsListResponseLambdas) MarshalJSON() ([]byte, error) {
+func (v NullableAWSLogsListResponseLambdas) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAwsLogsListResponseLambdas) UnmarshalJSON(src []byte) error {
+func (v *NullableAWSLogsListResponseLambdas) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

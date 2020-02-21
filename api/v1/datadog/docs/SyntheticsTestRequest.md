@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Body** | Pointer to **string** |  | [optional] 
 **Headers** | Pointer to **map[string]string** |  | [optional] 
 **Host** | Pointer to **string** |  | [optional] 
-**Method** | Pointer to [**HttpMethod**](HTTPMethod.md) |  | 
+**Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | 
 **Port** | Pointer to **int64** |  | [optional] 
 **Query** | Pointer to [**interface{}**](.md) |  | [optional] 
 **Timeout** | Pointer to **float64** |  | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsTestRequest
 
-`func NewSyntheticsTestRequest(method HttpMethod, url string, ) *SyntheticsTestRequest`
+`func NewSyntheticsTestRequest(method HTTPMethod, url string, ) *SyntheticsTestRequest`
 
 NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object
 This constructor will assign default values to properties that have it defined,
@@ -135,13 +135,13 @@ SetHost gets a reference to the given string and assigns it to the Host field.
 
 ### GetMethod
 
-`func (o *SyntheticsTestRequest) GetMethod() HttpMethod`
+`func (o *SyntheticsTestRequest) GetMethod() HTTPMethod`
 
 GetMethod returns the Method field if non-nil, zero value otherwise.
 
 ### GetMethodOk
 
-`func (o *SyntheticsTestRequest) GetMethodOk() (HttpMethod, bool)`
+`func (o *SyntheticsTestRequest) GetMethodOk() (HTTPMethod, bool)`
 
 GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -154,9 +154,9 @@ HasMethod returns a boolean if a field has been set.
 
 ### SetMethod
 
-`func (o *SyntheticsTestRequest) SetMethod(v HttpMethod)`
+`func (o *SyntheticsTestRequest) SetMethod(v HTTPMethod)`
 
-SetMethod gets a reference to the given HttpMethod and assigns it to the Method field.
+SetMethod gets a reference to the given HTTPMethod and assigns it to the Method field.
 
 ### GetPort
 

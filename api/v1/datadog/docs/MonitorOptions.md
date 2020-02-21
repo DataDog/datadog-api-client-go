@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptions_aggregation.md) |  | [optional] 
-**DeviceIds** | Pointer to [**[]MonitorDeviceId**](MonitorDeviceID.md) |  | [optional] 
+**DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) |  | [optional] 
 **EnableLogsSample** | Pointer to **bool** |  | [optional] 
 **EscalationMessage** | Pointer to **string** |  | [optional] 
 **EvaluationDelay** | Pointer to **NullableInt64** |  | [optional] 
@@ -71,13 +71,13 @@ SetAggregation gets a reference to the given MonitorOptionsAggregation and assig
 
 ### GetDeviceIds
 
-`func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceId`
+`func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID`
 
 GetDeviceIds returns the DeviceIds field if non-nil, zero value otherwise.
 
 ### GetDeviceIdsOk
 
-`func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceId, bool)`
+`func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceID, bool)`
 
 GetDeviceIdsOk returns a tuple with the DeviceIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -90,9 +90,9 @@ HasDeviceIds returns a boolean if a field has been set.
 
 ### SetDeviceIds
 
-`func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceId)`
+`func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceID)`
 
-SetDeviceIds gets a reference to the given []MonitorDeviceId and assigns it to the DeviceIds field.
+SetDeviceIds gets a reference to the given []MonitorDeviceID and assigns it to the DeviceIds field.
 
 ### GetEnableLogsSample
 

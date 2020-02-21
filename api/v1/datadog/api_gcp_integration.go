@@ -26,10 +26,10 @@ type GCPIntegrationApiService service
 type apiCreateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	apiService *GCPIntegrationApiService
-	body       *GcpAccount
+	body       *GCPAccount
 }
 
-func (r apiCreateGCPIntegrationRequest) Body(body GcpAccount) apiCreateGCPIntegrationRequest {
+func (r apiCreateGCPIntegrationRequest) Body(body GCPAccount) apiCreateGCPIntegrationRequest {
 	r.body = &body
 	return r
 }
@@ -169,7 +169,7 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,7 +179,7 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -205,10 +205,10 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 type apiDeleteGCPIntegrationRequest struct {
 	ctx        _context.Context
 	apiService *GCPIntegrationApiService
-	body       *GcpAccount
+	body       *GCPAccount
 }
 
-func (r apiDeleteGCPIntegrationRequest) Body(body GcpAccount) apiDeleteGCPIntegrationRequest {
+func (r apiDeleteGCPIntegrationRequest) Body(body GCPAccount) apiDeleteGCPIntegrationRequest {
 	r.body = &body
 	return r
 }
@@ -338,7 +338,7 @@ func (r apiDeleteGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +348,7 @@ func (r apiDeleteGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,16 +392,16 @@ func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) apiL
 
 /*
 Execute executes the request
- @return []GcpAccount
+ @return []GCPAccount
 */
-func (r apiListGCPIntegrationRequest) Execute() ([]GcpAccount, *_nethttp.Response, error) {
+func (r apiListGCPIntegrationRequest) Execute() ([]GCPAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []GcpAccount
+		localVarReturnValue  []GCPAccount
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.ListGCPIntegration")
@@ -482,7 +482,7 @@ func (r apiListGCPIntegrationRequest) Execute() ([]GcpAccount, *_nethttp.Respons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v []GcpAccount
+			var v []GCPAccount
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -492,7 +492,7 @@ func (r apiListGCPIntegrationRequest) Execute() ([]GcpAccount, *_nethttp.Respons
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -502,7 +502,7 @@ func (r apiListGCPIntegrationRequest) Execute() ([]GcpAccount, *_nethttp.Respons
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -528,10 +528,10 @@ func (r apiListGCPIntegrationRequest) Execute() ([]GcpAccount, *_nethttp.Respons
 type apiUpdateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	apiService *GCPIntegrationApiService
-	body       *GcpAccount
+	body       *GCPAccount
 }
 
-func (r apiUpdateGCPIntegrationRequest) Body(body GcpAccount) apiUpdateGCPIntegrationRequest {
+func (r apiUpdateGCPIntegrationRequest) Body(body GCPAccount) apiUpdateGCPIntegrationRequest {
 	r.body = &body
 	return r
 }
@@ -663,7 +663,7 @@ func (r apiUpdateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -673,7 +673,7 @@ func (r apiUpdateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiErrorResponse
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -9,10 +9,10 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1582207937&metric_query=system.load.1%7B%2A%7D&start=1582121537
+    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1582391685&metric_query=system.load.1%7B%2A%7D&start=1582305285
     method: GET
   response:
-    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2020-02-19/9f7dc97bd63a9b79a1505dc9ee575583610f4731.png","metric_query":"system.load.1{*}"}'
+    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2020-02-21/421141e8e8096ed0e9563389d0db66608bff7aaa.png","metric_query":"system.load.1{*}"}'
     headers:
       Cache-Control:
       - no-cache
@@ -23,13 +23,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:12:18 GMT
+      - Fri, 21 Feb 2020 17:14:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:12:18 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -38,9 +38,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - fFk0sZgwwse+ZeEmqVGZPgcNG+SDXdM7Y74n6iOGuvoZenvaYEqZOvpOSMu1XDXx
+      - 8jOW1djIgkdkj4STw+0pQ3G+kGKfu548DWINvnE6phacY0k9vgC3cU1LaI38XIYk
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -48,9 +48,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "58"
+      - "57"
       X-Ratelimit-Reset:
-      - "2862"
+      - "2715"
     status: 200 OK
     code: 200
     duration: ""

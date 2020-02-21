@@ -43,16 +43,16 @@ func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) apiGetIPRangesReq
 
 /*
 Execute executes the request
- @return IpRanges
+ @return IPRanges
 */
-func (r apiGetIPRangesRequest) Execute() (IpRanges, *_nethttp.Response, error) {
+func (r apiGetIPRangesRequest) Execute() (IPRanges, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  IpRanges
+		localVarReturnValue  IPRanges
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IPRangesApiService.GetIPRanges")
@@ -105,7 +105,7 @@ func (r apiGetIPRangesRequest) Execute() (IpRanges, *_nethttp.Response, error) {
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v IpRanges
+			var v IPRanges
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

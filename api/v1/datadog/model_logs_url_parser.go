@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// LogsUrlParser This processor extracts query parameters and other important parameters from a URL.
-type LogsUrlParser struct {
+// LogsURLParser This processor extracts query parameters and other important parameters from a URL.
+type LogsURLParser struct {
 	// Array of source attributes
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`
@@ -26,12 +26,12 @@ type LogsUrlParser struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// NewLogsUrlParser instantiates a new LogsUrlParser object
+// NewLogsURLParser instantiates a new LogsURLParser object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsUrlParser(sources []string, target string) *LogsUrlParser {
-	this := LogsUrlParser{}
+func NewLogsURLParser(sources []string, target string) *LogsURLParser {
+	this := LogsURLParser{}
 	this.Sources = sources
 	this.Target = target
 	var type_ string = "url-parser"
@@ -41,11 +41,11 @@ func NewLogsUrlParser(sources []string, target string) *LogsUrlParser {
 	return &this
 }
 
-// NewLogsUrlParserWithDefaults instantiates a new LogsUrlParser object
+// NewLogsURLParserWithDefaults instantiates a new LogsURLParser object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLogsUrlParserWithDefaults() *LogsUrlParser {
-	this := LogsUrlParser{}
+func NewLogsURLParserWithDefaults() *LogsURLParser {
+	this := LogsURLParser{}
 	var target string = "http.url_details"
 	this.Target = target
 	var type_ string = "url-parser"
@@ -56,7 +56,7 @@ func NewLogsUrlParserWithDefaults() *LogsUrlParser {
 }
 
 // GetSources returns the Sources field value
-func (o *LogsUrlParser) GetSources() []string {
+func (o *LogsURLParser) GetSources() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -66,12 +66,12 @@ func (o *LogsUrlParser) GetSources() []string {
 }
 
 // SetSources sets field value
-func (o *LogsUrlParser) SetSources(v []string) {
+func (o *LogsURLParser) SetSources(v []string) {
 	o.Sources = v
 }
 
 // GetTarget returns the Target field value
-func (o *LogsUrlParser) GetTarget() string {
+func (o *LogsURLParser) GetTarget() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -81,12 +81,12 @@ func (o *LogsUrlParser) GetTarget() string {
 }
 
 // SetTarget sets field value
-func (o *LogsUrlParser) SetTarget(v string) {
+func (o *LogsURLParser) SetTarget(v string) {
 	o.Target = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *LogsUrlParser) GetType() string {
+func (o *LogsURLParser) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -96,7 +96,7 @@ func (o *LogsUrlParser) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsUrlParser) GetTypeOk() (string, bool) {
+func (o *LogsURLParser) GetTypeOk() (string, bool) {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret, false
@@ -105,7 +105,7 @@ func (o *LogsUrlParser) GetTypeOk() (string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *LogsUrlParser) HasType() bool {
+func (o *LogsURLParser) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -114,12 +114,12 @@ func (o *LogsUrlParser) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *LogsUrlParser) SetType(v string) {
+func (o *LogsURLParser) SetType(v string) {
 	o.Type = &v
 }
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
-func (o *LogsUrlParser) GetIsEnabled() bool {
+func (o *LogsURLParser) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
 		var ret bool
 		return ret
@@ -129,7 +129,7 @@ func (o *LogsUrlParser) GetIsEnabled() bool {
 
 // GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsUrlParser) GetIsEnabledOk() (bool, bool) {
+func (o *LogsURLParser) GetIsEnabledOk() (bool, bool) {
 	if o == nil || o.IsEnabled == nil {
 		var ret bool
 		return ret, false
@@ -138,7 +138,7 @@ func (o *LogsUrlParser) GetIsEnabledOk() (bool, bool) {
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
-func (o *LogsUrlParser) HasIsEnabled() bool {
+func (o *LogsURLParser) HasIsEnabled() bool {
 	if o != nil && o.IsEnabled != nil {
 		return true
 	}
@@ -147,12 +147,12 @@ func (o *LogsUrlParser) HasIsEnabled() bool {
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
-func (o *LogsUrlParser) SetIsEnabled(v bool) {
+func (o *LogsURLParser) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *LogsUrlParser) GetName() string {
+func (o *LogsURLParser) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -162,7 +162,7 @@ func (o *LogsUrlParser) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsUrlParser) GetNameOk() (string, bool) {
+func (o *LogsURLParser) GetNameOk() (string, bool) {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret, false
@@ -171,7 +171,7 @@ func (o *LogsUrlParser) GetNameOk() (string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *LogsUrlParser) HasName() bool {
+func (o *LogsURLParser) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -180,11 +180,11 @@ func (o *LogsUrlParser) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *LogsUrlParser) SetName(v string) {
+func (o *LogsURLParser) SetName(v string) {
 	o.Name = &v
 }
 
-func (o LogsUrlParser) MarshalJSON() ([]byte, error) {
+func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -205,43 +205,43 @@ func (o LogsUrlParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-// AsLogsProcessor wraps this instance of LogsUrlParser in LogsProcessor
-func (s *LogsUrlParser) AsLogsProcessor() LogsProcessor {
+// AsLogsProcessor wraps this instance of LogsURLParser in LogsProcessor
+func (s *LogsURLParser) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
-type NullableLogsUrlParser struct {
-	value *LogsUrlParser
+type NullableLogsURLParser struct {
+	value *LogsURLParser
 	isSet bool
 }
 
-func (v NullableLogsUrlParser) Get() *LogsUrlParser {
+func (v NullableLogsURLParser) Get() *LogsURLParser {
 	return v.value
 }
 
-func (v NullableLogsUrlParser) Set(val *LogsUrlParser) {
+func (v NullableLogsURLParser) Set(val *LogsURLParser) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogsUrlParser) IsSet() bool {
+func (v NullableLogsURLParser) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsUrlParser) Unset() {
+func (v NullableLogsURLParser) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogsUrlParser(val *LogsUrlParser) *NullableLogsUrlParser {
-	return &NullableLogsUrlParser{value: val, isSet: true}
+func NewNullableLogsURLParser(val *LogsURLParser) *NullableLogsURLParser {
+	return &NullableLogsURLParser{value: val, isSet: true}
 }
 
-func (v NullableLogsUrlParser) MarshalJSON() ([]byte, error) {
+func (v NullableLogsURLParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogsUrlParser) UnmarshalJSON(src []byte) error {
+func (v *NullableLogsURLParser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

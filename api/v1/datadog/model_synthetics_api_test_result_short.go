@@ -12,34 +12,34 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsApiTestResultShort struct for SyntheticsApiTestResultShort
-type SyntheticsApiTestResultShort struct {
+// SyntheticsAPITestResultShort struct for SyntheticsAPITestResultShort
+type SyntheticsAPITestResultShort struct {
 	CheckTime *float64                            `json:"check_time,omitempty"`
 	ProbeDc   *string                             `json:"probe_dc,omitempty"`
-	Result    *SyntheticsApiTestResultShortResult `json:"result,omitempty"`
+	Result    *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
 	ResultId  *string                             `json:"result_id,omitempty"`
 	Status    *SyntheticsTestMonitorStatus        `json:"status,omitempty"`
 }
 
-// NewSyntheticsApiTestResultShort instantiates a new SyntheticsApiTestResultShort object
+// NewSyntheticsAPITestResultShort instantiates a new SyntheticsAPITestResultShort object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsApiTestResultShort() *SyntheticsApiTestResultShort {
-	this := SyntheticsApiTestResultShort{}
+func NewSyntheticsAPITestResultShort() *SyntheticsAPITestResultShort {
+	this := SyntheticsAPITestResultShort{}
 	return &this
 }
 
-// NewSyntheticsApiTestResultShortWithDefaults instantiates a new SyntheticsApiTestResultShort object
+// NewSyntheticsAPITestResultShortWithDefaults instantiates a new SyntheticsAPITestResultShort object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsApiTestResultShortWithDefaults() *SyntheticsApiTestResultShort {
-	this := SyntheticsApiTestResultShort{}
+func NewSyntheticsAPITestResultShortWithDefaults() *SyntheticsAPITestResultShort {
+	this := SyntheticsAPITestResultShort{}
 	return &this
 }
 
 // GetCheckTime returns the CheckTime field value if set, zero value otherwise.
-func (o *SyntheticsApiTestResultShort) GetCheckTime() float64 {
+func (o *SyntheticsAPITestResultShort) GetCheckTime() float64 {
 	if o == nil || o.CheckTime == nil {
 		var ret float64
 		return ret
@@ -49,7 +49,7 @@ func (o *SyntheticsApiTestResultShort) GetCheckTime() float64 {
 
 // GetCheckTimeOk returns a tuple with the CheckTime field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsApiTestResultShort) GetCheckTimeOk() (float64, bool) {
+func (o *SyntheticsAPITestResultShort) GetCheckTimeOk() (float64, bool) {
 	if o == nil || o.CheckTime == nil {
 		var ret float64
 		return ret, false
@@ -58,7 +58,7 @@ func (o *SyntheticsApiTestResultShort) GetCheckTimeOk() (float64, bool) {
 }
 
 // HasCheckTime returns a boolean if a field has been set.
-func (o *SyntheticsApiTestResultShort) HasCheckTime() bool {
+func (o *SyntheticsAPITestResultShort) HasCheckTime() bool {
 	if o != nil && o.CheckTime != nil {
 		return true
 	}
@@ -67,12 +67,12 @@ func (o *SyntheticsApiTestResultShort) HasCheckTime() bool {
 }
 
 // SetCheckTime gets a reference to the given float64 and assigns it to the CheckTime field.
-func (o *SyntheticsApiTestResultShort) SetCheckTime(v float64) {
+func (o *SyntheticsAPITestResultShort) SetCheckTime(v float64) {
 	o.CheckTime = &v
 }
 
 // GetProbeDc returns the ProbeDc field value if set, zero value otherwise.
-func (o *SyntheticsApiTestResultShort) GetProbeDc() string {
+func (o *SyntheticsAPITestResultShort) GetProbeDc() string {
 	if o == nil || o.ProbeDc == nil {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *SyntheticsApiTestResultShort) GetProbeDc() string {
 
 // GetProbeDcOk returns a tuple with the ProbeDc field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsApiTestResultShort) GetProbeDcOk() (string, bool) {
+func (o *SyntheticsAPITestResultShort) GetProbeDcOk() (string, bool) {
 	if o == nil || o.ProbeDc == nil {
 		var ret string
 		return ret, false
@@ -91,7 +91,7 @@ func (o *SyntheticsApiTestResultShort) GetProbeDcOk() (string, bool) {
 }
 
 // HasProbeDc returns a boolean if a field has been set.
-func (o *SyntheticsApiTestResultShort) HasProbeDc() bool {
+func (o *SyntheticsAPITestResultShort) HasProbeDc() bool {
 	if o != nil && o.ProbeDc != nil {
 		return true
 	}
@@ -100,14 +100,14 @@ func (o *SyntheticsApiTestResultShort) HasProbeDc() bool {
 }
 
 // SetProbeDc gets a reference to the given string and assigns it to the ProbeDc field.
-func (o *SyntheticsApiTestResultShort) SetProbeDc(v string) {
+func (o *SyntheticsAPITestResultShort) SetProbeDc(v string) {
 	o.ProbeDc = &v
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *SyntheticsApiTestResultShort) GetResult() SyntheticsApiTestResultShortResult {
+func (o *SyntheticsAPITestResultShort) GetResult() SyntheticsAPITestResultShortResult {
 	if o == nil || o.Result == nil {
-		var ret SyntheticsApiTestResultShortResult
+		var ret SyntheticsAPITestResultShortResult
 		return ret
 	}
 	return *o.Result
@@ -115,16 +115,16 @@ func (o *SyntheticsApiTestResultShort) GetResult() SyntheticsApiTestResultShortR
 
 // GetResultOk returns a tuple with the Result field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsApiTestResultShort) GetResultOk() (SyntheticsApiTestResultShortResult, bool) {
+func (o *SyntheticsAPITestResultShort) GetResultOk() (SyntheticsAPITestResultShortResult, bool) {
 	if o == nil || o.Result == nil {
-		var ret SyntheticsApiTestResultShortResult
+		var ret SyntheticsAPITestResultShortResult
 		return ret, false
 	}
 	return *o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
-func (o *SyntheticsApiTestResultShort) HasResult() bool {
+func (o *SyntheticsAPITestResultShort) HasResult() bool {
 	if o != nil && o.Result != nil {
 		return true
 	}
@@ -132,13 +132,13 @@ func (o *SyntheticsApiTestResultShort) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given SyntheticsApiTestResultShortResult and assigns it to the Result field.
-func (o *SyntheticsApiTestResultShort) SetResult(v SyntheticsApiTestResultShortResult) {
+// SetResult gets a reference to the given SyntheticsAPITestResultShortResult and assigns it to the Result field.
+func (o *SyntheticsAPITestResultShort) SetResult(v SyntheticsAPITestResultShortResult) {
 	o.Result = &v
 }
 
 // GetResultId returns the ResultId field value if set, zero value otherwise.
-func (o *SyntheticsApiTestResultShort) GetResultId() string {
+func (o *SyntheticsAPITestResultShort) GetResultId() string {
 	if o == nil || o.ResultId == nil {
 		var ret string
 		return ret
@@ -148,7 +148,7 @@ func (o *SyntheticsApiTestResultShort) GetResultId() string {
 
 // GetResultIdOk returns a tuple with the ResultId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsApiTestResultShort) GetResultIdOk() (string, bool) {
+func (o *SyntheticsAPITestResultShort) GetResultIdOk() (string, bool) {
 	if o == nil || o.ResultId == nil {
 		var ret string
 		return ret, false
@@ -157,7 +157,7 @@ func (o *SyntheticsApiTestResultShort) GetResultIdOk() (string, bool) {
 }
 
 // HasResultId returns a boolean if a field has been set.
-func (o *SyntheticsApiTestResultShort) HasResultId() bool {
+func (o *SyntheticsAPITestResultShort) HasResultId() bool {
 	if o != nil && o.ResultId != nil {
 		return true
 	}
@@ -166,12 +166,12 @@ func (o *SyntheticsApiTestResultShort) HasResultId() bool {
 }
 
 // SetResultId gets a reference to the given string and assigns it to the ResultId field.
-func (o *SyntheticsApiTestResultShort) SetResultId(v string) {
+func (o *SyntheticsAPITestResultShort) SetResultId(v string) {
 	o.ResultId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SyntheticsApiTestResultShort) GetStatus() SyntheticsTestMonitorStatus {
+func (o *SyntheticsAPITestResultShort) GetStatus() SyntheticsTestMonitorStatus {
 	if o == nil || o.Status == nil {
 		var ret SyntheticsTestMonitorStatus
 		return ret
@@ -181,7 +181,7 @@ func (o *SyntheticsApiTestResultShort) GetStatus() SyntheticsTestMonitorStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsApiTestResultShort) GetStatusOk() (SyntheticsTestMonitorStatus, bool) {
+func (o *SyntheticsAPITestResultShort) GetStatusOk() (SyntheticsTestMonitorStatus, bool) {
 	if o == nil || o.Status == nil {
 		var ret SyntheticsTestMonitorStatus
 		return ret, false
@@ -190,7 +190,7 @@ func (o *SyntheticsApiTestResultShort) GetStatusOk() (SyntheticsTestMonitorStatu
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *SyntheticsApiTestResultShort) HasStatus() bool {
+func (o *SyntheticsAPITestResultShort) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -199,11 +199,11 @@ func (o *SyntheticsApiTestResultShort) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given SyntheticsTestMonitorStatus and assigns it to the Status field.
-func (o *SyntheticsApiTestResultShort) SetStatus(v SyntheticsTestMonitorStatus) {
+func (o *SyntheticsAPITestResultShort) SetStatus(v SyntheticsTestMonitorStatus) {
 	o.Status = &v
 }
 
-func (o SyntheticsApiTestResultShort) MarshalJSON() ([]byte, error) {
+func (o SyntheticsAPITestResultShort) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.CheckTime != nil {
@@ -224,38 +224,38 @@ func (o SyntheticsApiTestResultShort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableSyntheticsApiTestResultShort struct {
-	value *SyntheticsApiTestResultShort
+type NullableSyntheticsAPITestResultShort struct {
+	value *SyntheticsAPITestResultShort
 	isSet bool
 }
 
-func (v NullableSyntheticsApiTestResultShort) Get() *SyntheticsApiTestResultShort {
+func (v NullableSyntheticsAPITestResultShort) Get() *SyntheticsAPITestResultShort {
 	return v.value
 }
 
-func (v NullableSyntheticsApiTestResultShort) Set(val *SyntheticsApiTestResultShort) {
+func (v NullableSyntheticsAPITestResultShort) Set(val *SyntheticsAPITestResultShort) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsApiTestResultShort) IsSet() bool {
+func (v NullableSyntheticsAPITestResultShort) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsApiTestResultShort) Unset() {
+func (v NullableSyntheticsAPITestResultShort) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsApiTestResultShort(val *SyntheticsApiTestResultShort) *NullableSyntheticsApiTestResultShort {
-	return &NullableSyntheticsApiTestResultShort{value: val, isSet: true}
+func NewNullableSyntheticsAPITestResultShort(val *SyntheticsAPITestResultShort) *NullableSyntheticsAPITestResultShort {
+	return &NullableSyntheticsAPITestResultShort{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsApiTestResultShort) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsAPITestResultShort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsApiTestResultShort) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsAPITestResultShort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

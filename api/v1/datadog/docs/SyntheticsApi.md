@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## GetAPITestLatestResults
 
-> SyntheticsGetApiTestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).Body(body).Execute()
+> SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).Body(body).Execute()
 
 Get test latest results (as summaries)
 
@@ -126,7 +126,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SyntheticsGetApiTestLatestResultsResponse**](SyntheticsGetAPITestLatestResultsResponse.md)
+[**SyntheticsGetAPITestLatestResultsResponse**](SyntheticsGetAPITestLatestResultsResponse.md)
 
 ### Authorization
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ## GetAPITestResult
 
-> SyntheticsApiTestResultFull GetAPITestResult(ctx, publicId, resultId).Execute()
+> SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId).Execute()
 
 Get test result (API)
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SyntheticsApiTestResultFull**](SyntheticsAPITestResultFull.md)
+[**SyntheticsAPITestResultFull**](SyntheticsAPITestResultFull.md)
 
 ### Authorization
 

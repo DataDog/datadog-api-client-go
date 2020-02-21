@@ -12,35 +12,35 @@ import (
 	"encoding/json"
 )
 
-// AwsAccountAndLambdaRequest struct for AwsAccountAndLambdaRequest
-type AwsAccountAndLambdaRequest struct {
+// AWSAccountAndLambdaRequest struct for AWSAccountAndLambdaRequest
+type AWSAccountAndLambdaRequest struct {
 	// Your AWS Account ID without dashes.
 	AccountId string `json:"account_id"`
 	// ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
 	LambdaArn string `json:"lambda_arn"`
 }
 
-// NewAwsAccountAndLambdaRequest instantiates a new AwsAccountAndLambdaRequest object
+// NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsAccountAndLambdaRequest(accountId string, lambdaArn string) *AwsAccountAndLambdaRequest {
-	this := AwsAccountAndLambdaRequest{}
+func NewAWSAccountAndLambdaRequest(accountId string, lambdaArn string) *AWSAccountAndLambdaRequest {
+	this := AWSAccountAndLambdaRequest{}
 	this.AccountId = accountId
 	this.LambdaArn = lambdaArn
 	return &this
 }
 
-// NewAwsAccountAndLambdaRequestWithDefaults instantiates a new AwsAccountAndLambdaRequest object
+// NewAWSAccountAndLambdaRequestWithDefaults instantiates a new AWSAccountAndLambdaRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAwsAccountAndLambdaRequestWithDefaults() *AwsAccountAndLambdaRequest {
-	this := AwsAccountAndLambdaRequest{}
+func NewAWSAccountAndLambdaRequestWithDefaults() *AWSAccountAndLambdaRequest {
+	this := AWSAccountAndLambdaRequest{}
 	return &this
 }
 
 // GetAccountId returns the AccountId field value
-func (o *AwsAccountAndLambdaRequest) GetAccountId() string {
+func (o *AWSAccountAndLambdaRequest) GetAccountId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -50,12 +50,12 @@ func (o *AwsAccountAndLambdaRequest) GetAccountId() string {
 }
 
 // SetAccountId sets field value
-func (o *AwsAccountAndLambdaRequest) SetAccountId(v string) {
+func (o *AWSAccountAndLambdaRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
 
 // GetLambdaArn returns the LambdaArn field value
-func (o *AwsAccountAndLambdaRequest) GetLambdaArn() string {
+func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -65,11 +65,11 @@ func (o *AwsAccountAndLambdaRequest) GetLambdaArn() string {
 }
 
 // SetLambdaArn sets field value
-func (o *AwsAccountAndLambdaRequest) SetLambdaArn(v string) {
+func (o *AWSAccountAndLambdaRequest) SetLambdaArn(v string) {
 	o.LambdaArn = v
 }
 
-func (o AwsAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
+func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -81,38 +81,38 @@ func (o AwsAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAwsAccountAndLambdaRequest struct {
-	value *AwsAccountAndLambdaRequest
+type NullableAWSAccountAndLambdaRequest struct {
+	value *AWSAccountAndLambdaRequest
 	isSet bool
 }
 
-func (v NullableAwsAccountAndLambdaRequest) Get() *AwsAccountAndLambdaRequest {
+func (v NullableAWSAccountAndLambdaRequest) Get() *AWSAccountAndLambdaRequest {
 	return v.value
 }
 
-func (v NullableAwsAccountAndLambdaRequest) Set(val *AwsAccountAndLambdaRequest) {
+func (v NullableAWSAccountAndLambdaRequest) Set(val *AWSAccountAndLambdaRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAwsAccountAndLambdaRequest) IsSet() bool {
+func (v NullableAWSAccountAndLambdaRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAwsAccountAndLambdaRequest) Unset() {
+func (v NullableAWSAccountAndLambdaRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAwsAccountAndLambdaRequest(val *AwsAccountAndLambdaRequest) *NullableAwsAccountAndLambdaRequest {
-	return &NullableAwsAccountAndLambdaRequest{value: val, isSet: true}
+func NewNullableAWSAccountAndLambdaRequest(val *AWSAccountAndLambdaRequest) *NullableAWSAccountAndLambdaRequest {
+	return &NullableAWSAccountAndLambdaRequest{value: val, isSet: true}
 }
 
-func (v NullableAwsAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
+func (v NullableAWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAwsAccountAndLambdaRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableAWSAccountAndLambdaRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

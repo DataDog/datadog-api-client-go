@@ -12,31 +12,31 @@ import (
 	"encoding/json"
 )
 
-// ApiErrorResponse struct for ApiErrorResponse
-type ApiErrorResponse struct {
+// APIErrorResponse struct for APIErrorResponse
+type APIErrorResponse struct {
 	Errors []string `json:"errors"`
 }
 
-// NewApiErrorResponse instantiates a new ApiErrorResponse object
+// NewAPIErrorResponse instantiates a new APIErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiErrorResponse(errors []string) *ApiErrorResponse {
-	this := ApiErrorResponse{}
+func NewAPIErrorResponse(errors []string) *APIErrorResponse {
+	this := APIErrorResponse{}
 	this.Errors = errors
 	return &this
 }
 
-// NewApiErrorResponseWithDefaults instantiates a new ApiErrorResponse object
+// NewAPIErrorResponseWithDefaults instantiates a new APIErrorResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewApiErrorResponseWithDefaults() *ApiErrorResponse {
-	this := ApiErrorResponse{}
+func NewAPIErrorResponseWithDefaults() *APIErrorResponse {
+	this := APIErrorResponse{}
 	return &this
 }
 
 // GetErrors returns the Errors field value
-func (o *ApiErrorResponse) GetErrors() []string {
+func (o *APIErrorResponse) GetErrors() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -46,11 +46,11 @@ func (o *ApiErrorResponse) GetErrors() []string {
 }
 
 // SetErrors sets field value
-func (o *ApiErrorResponse) SetErrors(v []string) {
+func (o *APIErrorResponse) SetErrors(v []string) {
 	o.Errors = v
 }
 
-func (o ApiErrorResponse) MarshalJSON() ([]byte, error) {
+func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -59,38 +59,38 @@ func (o ApiErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableApiErrorResponse struct {
-	value *ApiErrorResponse
+type NullableAPIErrorResponse struct {
+	value *APIErrorResponse
 	isSet bool
 }
 
-func (v NullableApiErrorResponse) Get() *ApiErrorResponse {
+func (v NullableAPIErrorResponse) Get() *APIErrorResponse {
 	return v.value
 }
 
-func (v NullableApiErrorResponse) Set(val *ApiErrorResponse) {
+func (v NullableAPIErrorResponse) Set(val *APIErrorResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableApiErrorResponse) IsSet() bool {
+func (v NullableAPIErrorResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableApiErrorResponse) Unset() {
+func (v NullableAPIErrorResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableApiErrorResponse(val *ApiErrorResponse) *NullableApiErrorResponse {
-	return &NullableApiErrorResponse{value: val, isSet: true}
+func NewNullableAPIErrorResponse(val *APIErrorResponse) *NullableAPIErrorResponse {
+	return &NullableAPIErrorResponse{value: val, isSet: true}
 }
 
-func (v NullableApiErrorResponse) MarshalJSON() ([]byte, error) {
+func (v NullableAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableApiErrorResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableAPIErrorResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateAWSAccount
 
-> AwsAccountCreateResponse CreateAWSAccount(ctx).Body(body).Execute()
+> AWSAccountCreateResponse CreateAWSAccount(ctx).Body(body).Execute()
 
 Create an AWS Account
 
@@ -32,11 +32,11 @@ Other parameters are passed through a pointer to a apiCreateAWSAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
+ **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
 
 ### Return type
 
-[**AwsAccountCreateResponse**](AWSAccountCreateResponse.md)
+[**AWSAccountCreateResponse**](AWSAccountCreateResponse.md)
 
 ### Authorization
 
@@ -71,7 +71,7 @@ Other parameters are passed through a pointer to a apiDeleteAWSAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
+ **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
 
 ### Return type
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## GenerateNewAWSExternalID
 
-> AwsAccountCreateResponse GenerateNewAWSExternalID(ctx).Body(body).Execute()
+> AWSAccountCreateResponse GenerateNewAWSExternalID(ctx).Body(body).Execute()
 
 Generate New External ID
 
@@ -110,11 +110,11 @@ Other parameters are passed through a pointer to a apiGenerateNewAWSExternalIDRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsAccount**](AwsAccount.md) | Generate New AWS External ID request object | 
+ **body** | [**AWSAccount**](AWSAccount.md) | Generate New AWS External ID request object | 
 
 ### Return type
 
-[**AwsAccountCreateResponse**](AWSAccountCreateResponse.md)
+[**AWSAccountCreateResponse**](AWSAccountCreateResponse.md)
 
 ### Authorization
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ## GetAllAWSAccounts
 
-> AwsAccountListResponse GetAllAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+> AWSAccountListResponse GetAllAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
 Get Installed AWS Accounts
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AwsAccountListResponse**](AWSAccountListResponse.md)
+[**AWSAccountListResponse**](AWSAccountListResponse.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Other parameters are passed through a pointer to a apiUpdateAWSAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsAccount**](AwsAccount.md) | AWS request object | 
+ **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
  **accountId** | **string** | Only return AWS accounts that matches this account_id. | 
  **roleName** | **string** | Only return AWS accounts that matches this role_name. *It is required if account_id is specified.* | 
  **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.* | 

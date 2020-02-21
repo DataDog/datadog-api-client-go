@@ -12,32 +12,32 @@ import (
 	"encoding/json"
 )
 
-// LogsApiErrorResponse Response returned by the Logs API when errors occur
-type LogsApiErrorResponse struct {
-	Error *LogsApiError `json:"error,omitempty"`
+// LogsAPIErrorResponse Response returned by the Logs API when errors occur
+type LogsAPIErrorResponse struct {
+	Error *LogsAPIError `json:"error,omitempty"`
 }
 
-// NewLogsApiErrorResponse instantiates a new LogsApiErrorResponse object
+// NewLogsAPIErrorResponse instantiates a new LogsAPIErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsApiErrorResponse() *LogsApiErrorResponse {
-	this := LogsApiErrorResponse{}
+func NewLogsAPIErrorResponse() *LogsAPIErrorResponse {
+	this := LogsAPIErrorResponse{}
 	return &this
 }
 
-// NewLogsApiErrorResponseWithDefaults instantiates a new LogsApiErrorResponse object
+// NewLogsAPIErrorResponseWithDefaults instantiates a new LogsAPIErrorResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLogsApiErrorResponseWithDefaults() *LogsApiErrorResponse {
-	this := LogsApiErrorResponse{}
+func NewLogsAPIErrorResponseWithDefaults() *LogsAPIErrorResponse {
+	this := LogsAPIErrorResponse{}
 	return &this
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *LogsApiErrorResponse) GetError() LogsApiError {
+func (o *LogsAPIErrorResponse) GetError() LogsAPIError {
 	if o == nil || o.Error == nil {
-		var ret LogsApiError
+		var ret LogsAPIError
 		return ret
 	}
 	return *o.Error
@@ -45,16 +45,16 @@ func (o *LogsApiErrorResponse) GetError() LogsApiError {
 
 // GetErrorOk returns a tuple with the Error field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsApiErrorResponse) GetErrorOk() (LogsApiError, bool) {
+func (o *LogsAPIErrorResponse) GetErrorOk() (LogsAPIError, bool) {
 	if o == nil || o.Error == nil {
-		var ret LogsApiError
+		var ret LogsAPIError
 		return ret, false
 	}
 	return *o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
-func (o *LogsApiErrorResponse) HasError() bool {
+func (o *LogsAPIErrorResponse) HasError() bool {
 	if o != nil && o.Error != nil {
 		return true
 	}
@@ -62,12 +62,12 @@ func (o *LogsApiErrorResponse) HasError() bool {
 	return false
 }
 
-// SetError gets a reference to the given LogsApiError and assigns it to the Error field.
-func (o *LogsApiErrorResponse) SetError(v LogsApiError) {
+// SetError gets a reference to the given LogsAPIError and assigns it to the Error field.
+func (o *LogsAPIErrorResponse) SetError(v LogsAPIError) {
 	o.Error = &v
 }
 
-func (o LogsApiErrorResponse) MarshalJSON() ([]byte, error) {
+func (o LogsAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Error != nil {
@@ -76,38 +76,38 @@ func (o LogsApiErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableLogsApiErrorResponse struct {
-	value *LogsApiErrorResponse
+type NullableLogsAPIErrorResponse struct {
+	value *LogsAPIErrorResponse
 	isSet bool
 }
 
-func (v NullableLogsApiErrorResponse) Get() *LogsApiErrorResponse {
+func (v NullableLogsAPIErrorResponse) Get() *LogsAPIErrorResponse {
 	return v.value
 }
 
-func (v NullableLogsApiErrorResponse) Set(val *LogsApiErrorResponse) {
+func (v NullableLogsAPIErrorResponse) Set(val *LogsAPIErrorResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogsApiErrorResponse) IsSet() bool {
+func (v NullableLogsAPIErrorResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsApiErrorResponse) Unset() {
+func (v NullableLogsAPIErrorResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogsApiErrorResponse(val *LogsApiErrorResponse) *NullableLogsApiErrorResponse {
-	return &NullableLogsApiErrorResponse{value: val, isSet: true}
+func NewNullableLogsAPIErrorResponse(val *LogsAPIErrorResponse) *NullableLogsAPIErrorResponse {
+	return &NullableLogsAPIErrorResponse{value: val, isSet: true}
 }
 
-func (v NullableLogsApiErrorResponse) MarshalJSON() ([]byte, error) {
+func (v NullableLogsAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogsApiErrorResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableLogsAPIErrorResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

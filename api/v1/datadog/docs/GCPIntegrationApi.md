@@ -30,7 +30,7 @@ Other parameters are passed through a pointer to a apiCreateGCPIntegrationReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GcpAccount**](GcpAccount.md) | Create a Datadog-Azure integration. | 
+ **body** | [**GCPAccount**](GCPAccount.md) | Create a Datadog-Azure integration. | 
 
 ### Return type
 
@@ -69,7 +69,7 @@ Other parameters are passed through a pointer to a apiDeleteGCPIntegrationReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GcpAccount**](GcpAccount.md) | Delete a given Datadog-GCP integration. | 
+ **body** | [**GCPAccount**](GCPAccount.md) | Delete a given Datadog-GCP integration. | 
 
 ### Return type
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## ListGCPIntegration
 
-> []GcpAccount ListGCPIntegration(ctx).Execute()
+> []GCPAccount ListGCPIntegration(ctx).Execute()
 
 List configured GCP integrations.
 
@@ -108,7 +108,7 @@ Other parameters are passed through a pointer to a apiListGCPIntegrationRequest 
 
 ### Return type
 
-[**[]GcpAccount**](GCPAccount.md)
+[**[]GCPAccount**](GCPAccount.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ Other parameters are passed through a pointer to a apiUpdateGCPIntegrationReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GcpAccount**](GcpAccount.md) | Update a Datadog-GCP integration. | 
+ **body** | [**GCPAccount**](GCPAccount.md) | Update a Datadog-GCP integration. | 
 
 ### Return type
 

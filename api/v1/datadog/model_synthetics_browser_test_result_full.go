@@ -14,7 +14,7 @@ import (
 
 // SyntheticsBrowserTestResultFull struct for SyntheticsBrowserTestResultFull
 type SyntheticsBrowserTestResultFull struct {
-	Check        *SyntheticsApiTestResultFullCheck `json:"check,omitempty"`
+	Check        *SyntheticsAPITestResultFullCheck `json:"check,omitempty"`
 	CheckTime    *float64                          `json:"check_time,omitempty"`
 	CheckVersion *int64                            `json:"check_version,omitempty"`
 	ProbeDc      *string                           `json:"probe_dc,omitempty"`
@@ -41,9 +41,9 @@ func NewSyntheticsBrowserTestResultFullWithDefaults() *SyntheticsBrowserTestResu
 }
 
 // GetCheck returns the Check field value if set, zero value otherwise.
-func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsApiTestResultFullCheck {
+func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsAPITestResultFullCheck {
 	if o == nil || o.Check == nil {
-		var ret SyntheticsApiTestResultFullCheck
+		var ret SyntheticsAPITestResultFullCheck
 		return ret
 	}
 	return *o.Check
@@ -51,9 +51,9 @@ func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsApiTestResultFull
 
 // GetCheckOk returns a tuple with the Check field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserTestResultFull) GetCheckOk() (SyntheticsApiTestResultFullCheck, bool) {
+func (o *SyntheticsBrowserTestResultFull) GetCheckOk() (SyntheticsAPITestResultFullCheck, bool) {
 	if o == nil || o.Check == nil {
-		var ret SyntheticsApiTestResultFullCheck
+		var ret SyntheticsAPITestResultFullCheck
 		return ret, false
 	}
 	return *o.Check, true
@@ -68,8 +68,8 @@ func (o *SyntheticsBrowserTestResultFull) HasCheck() bool {
 	return false
 }
 
-// SetCheck gets a reference to the given SyntheticsApiTestResultFullCheck and assigns it to the Check field.
-func (o *SyntheticsBrowserTestResultFull) SetCheck(v SyntheticsApiTestResultFullCheck) {
+// SetCheck gets a reference to the given SyntheticsAPITestResultFullCheck and assigns it to the Check field.
+func (o *SyntheticsBrowserTestResultFull) SetCheck(v SyntheticsAPITestResultFullCheck) {
 	o.Check = &v
 }
 

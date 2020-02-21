@@ -14,7 +14,7 @@ func TestLogHTTPIntake(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	httpLog := datadog.HttpLog{
+	httpLog := datadog.HTTPLog{
 		Ddsource: datadog.PtrString("source"),
 		Ddtags:   datadog.PtrString("go,test,intake"),
 		Hostname: datadog.PtrString("datadog-api-client-go-test"),
@@ -39,7 +39,7 @@ func TestLogsList(t *testing.T) {
 	message := fmt.Sprintf("test-log-list-%d", nanoNow)
 	hostname := fmt.Sprintf("datadog-api-client-go-test-%d", nanoNow)
 
-	httpLog := datadog.HttpLog{
+	httpLog := datadog.HTTPLog{
 		Ddsource: &source,
 		Ddtags:   datadog.PtrString("go,test,list"),
 		Hostname: &hostname,

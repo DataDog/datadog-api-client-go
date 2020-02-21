@@ -15,7 +15,7 @@ import (
 // MonitorOptions struct for MonitorOptions
 type MonitorOptions struct {
 	Aggregation        *MonitorOptionsAggregation     `json:"aggregation,omitempty"`
-	DeviceIds          *[]MonitorDeviceId             `json:"device_ids,omitempty"`
+	DeviceIds          *[]MonitorDeviceID             `json:"device_ids,omitempty"`
 	EnableLogsSample   *bool                          `json:"enable_logs_sample,omitempty"`
 	EscalationMessage  *string                        `json:"escalation_message,omitempty"`
 	EvaluationDelay    NullableInt64                  `json:"evaluation_delay,omitempty"`
@@ -87,9 +87,9 @@ func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation) {
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
-func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceId {
+func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID {
 	if o == nil || o.DeviceIds == nil {
-		var ret []MonitorDeviceId
+		var ret []MonitorDeviceID
 		return ret
 	}
 	return *o.DeviceIds
@@ -97,9 +97,9 @@ func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceId {
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceId, bool) {
+func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
-		var ret []MonitorDeviceId
+		var ret []MonitorDeviceID
 		return ret, false
 	}
 	return *o.DeviceIds, true
@@ -114,8 +114,8 @@ func (o *MonitorOptions) HasDeviceIds() bool {
 	return false
 }
 
-// SetDeviceIds gets a reference to the given []MonitorDeviceId and assigns it to the DeviceIds field.
-func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceId) {
+// SetDeviceIds gets a reference to the given []MonitorDeviceID and assigns it to the DeviceIds field.
+func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceID) {
 	o.DeviceIds = &v
 }
 

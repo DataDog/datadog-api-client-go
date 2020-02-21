@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The name of the service level objective object. | 
 **Query** | Pointer to [**ServiceLevelObjectiveQuery**](ServiceLevelObjective_query.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags (e.g. \&quot;env:prod\&quot;) associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests. | [optional] 
-**Thresholds** | Pointer to [**[]SloThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
+**Thresholds** | Pointer to [**[]SLOThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
 **Type** | Pointer to [**ServiceLevelObjectiveType**](ServiceLevelObjectiveType.md) |  | 
 **TypeId** | Pointer to [**ServiceLevelObjectiveTypeNumeric**](ServiceLevelObjectiveTypeNumeric.md) |  | [optional] 
 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewServiceLevelObjective
 
-`func NewServiceLevelObjective(name string, thresholds []SloThreshold, type_ ServiceLevelObjectiveType, ) *ServiceLevelObjective`
+`func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ ServiceLevelObjectiveType, ) *ServiceLevelObjective`
 
 NewServiceLevelObjective instantiates a new ServiceLevelObjective object
 This constructor will assign default values to properties that have it defined,
@@ -322,13 +322,13 @@ SetTags gets a reference to the given []string and assigns it to the Tags field.
 
 ### GetThresholds
 
-`func (o *ServiceLevelObjective) GetThresholds() []SloThreshold`
+`func (o *ServiceLevelObjective) GetThresholds() []SLOThreshold`
 
 GetThresholds returns the Thresholds field if non-nil, zero value otherwise.
 
 ### GetThresholdsOk
 
-`func (o *ServiceLevelObjective) GetThresholdsOk() ([]SloThreshold, bool)`
+`func (o *ServiceLevelObjective) GetThresholdsOk() ([]SLOThreshold, bool)`
 
 GetThresholdsOk returns a tuple with the Thresholds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -341,9 +341,9 @@ HasThresholds returns a boolean if a field has been set.
 
 ### SetThresholds
 
-`func (o *ServiceLevelObjective) SetThresholds(v []SloThreshold)`
+`func (o *ServiceLevelObjective) SetThresholds(v []SLOThreshold)`
 
-SetThresholds gets a reference to the given []SloThreshold and assigns it to the Thresholds field.
+SetThresholds gets a reference to the given []SLOThreshold and assigns it to the Thresholds field.
 
 ### GetType
 

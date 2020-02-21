@@ -64,7 +64,7 @@ func (s *LogsProcessor) UnmarshalJSON(src []byte) error {
 			s.LogsProcessorInterface = result
 			return nil
 		case "geo-ip-parser":
-			var result *LogsGeoIpParser = &LogsGeoIpParser{}
+			var result *LogsGeoIPParser = &LogsGeoIPParser{}
 			err = json.Unmarshal(src, result)
 			if err != nil {
 				return err
@@ -128,7 +128,7 @@ func (s *LogsProcessor) UnmarshalJSON(src []byte) error {
 			s.LogsProcessorInterface = result
 			return nil
 		case "url-parser":
-			var result *LogsUrlParser = &LogsUrlParser{}
+			var result *LogsURLParser = &LogsURLParser{}
 			err = json.Unmarshal(src, result)
 			if err != nil {
 				return err

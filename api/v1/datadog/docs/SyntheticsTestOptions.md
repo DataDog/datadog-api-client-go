@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AcceptSelfSigned** | Pointer to **bool** |  | [optional] 
-**DeviceIds** | Pointer to [**[]SyntheticsDeviceId**](SyntheticsDeviceID.md) |  | [optional] 
+**DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | [optional] 
 **FollowRedirects** | Pointer to **bool** |  | [optional] 
 **MinLocationFailed** | Pointer to **int64** |  | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptions_retry.md) |  | [optional] 
@@ -57,13 +57,13 @@ SetAcceptSelfSigned gets a reference to the given bool and assigns it to the Acc
 
 ### GetDeviceIds
 
-`func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceId`
+`func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceID`
 
 GetDeviceIds returns the DeviceIds field if non-nil, zero value otherwise.
 
 ### GetDeviceIdsOk
 
-`func (o *SyntheticsTestOptions) GetDeviceIdsOk() ([]SyntheticsDeviceId, bool)`
+`func (o *SyntheticsTestOptions) GetDeviceIdsOk() ([]SyntheticsDeviceID, bool)`
 
 GetDeviceIdsOk returns a tuple with the DeviceIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -76,9 +76,9 @@ HasDeviceIds returns a boolean if a field has been set.
 
 ### SetDeviceIds
 
-`func (o *SyntheticsTestOptions) SetDeviceIds(v []SyntheticsDeviceId)`
+`func (o *SyntheticsTestOptions) SetDeviceIds(v []SyntheticsDeviceID)`
 
-SetDeviceIds gets a reference to the given []SyntheticsDeviceId and assigns it to the DeviceIds field.
+SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
 
 ### GetFollowRedirects
 

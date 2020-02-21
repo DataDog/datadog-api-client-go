@@ -12,33 +12,33 @@ import (
 	"encoding/json"
 )
 
-// HttpLogError struct for HttpLogError
-type HttpLogError struct {
+// HTTPLogError struct for HTTPLogError
+type HTTPLogError struct {
 	Code    int32  `json:"code"`
 	Message string `json:"message"`
 }
 
-// NewHttpLogError instantiates a new HttpLogError object
+// NewHTTPLogError instantiates a new HTTPLogError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpLogError(code int32, message string) *HttpLogError {
-	this := HttpLogError{}
+func NewHTTPLogError(code int32, message string) *HTTPLogError {
+	this := HTTPLogError{}
 	this.Code = code
 	this.Message = message
 	return &this
 }
 
-// NewHttpLogErrorWithDefaults instantiates a new HttpLogError object
+// NewHTTPLogErrorWithDefaults instantiates a new HTTPLogError object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHttpLogErrorWithDefaults() *HttpLogError {
-	this := HttpLogError{}
+func NewHTTPLogErrorWithDefaults() *HTTPLogError {
+	this := HTTPLogError{}
 	return &this
 }
 
 // GetCode returns the Code field value
-func (o *HttpLogError) GetCode() int32 {
+func (o *HTTPLogError) GetCode() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -48,12 +48,12 @@ func (o *HttpLogError) GetCode() int32 {
 }
 
 // SetCode sets field value
-func (o *HttpLogError) SetCode(v int32) {
+func (o *HTTPLogError) SetCode(v int32) {
 	o.Code = v
 }
 
 // GetMessage returns the Message field value
-func (o *HttpLogError) GetMessage() string {
+func (o *HTTPLogError) GetMessage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -63,11 +63,11 @@ func (o *HttpLogError) GetMessage() string {
 }
 
 // SetMessage sets field value
-func (o *HttpLogError) SetMessage(v string) {
+func (o *HTTPLogError) SetMessage(v string) {
 	o.Message = v
 }
 
-func (o HttpLogError) MarshalJSON() ([]byte, error) {
+func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -79,38 +79,38 @@ func (o HttpLogError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableHttpLogError struct {
-	value *HttpLogError
+type NullableHTTPLogError struct {
+	value *HTTPLogError
 	isSet bool
 }
 
-func (v NullableHttpLogError) Get() *HttpLogError {
+func (v NullableHTTPLogError) Get() *HTTPLogError {
 	return v.value
 }
 
-func (v NullableHttpLogError) Set(val *HttpLogError) {
+func (v NullableHTTPLogError) Set(val *HTTPLogError) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHttpLogError) IsSet() bool {
+func (v NullableHTTPLogError) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHttpLogError) Unset() {
+func (v NullableHTTPLogError) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHttpLogError(val *HttpLogError) *NullableHttpLogError {
-	return &NullableHttpLogError{value: val, isSet: true}
+func NewNullableHTTPLogError(val *HTTPLogError) *NullableHTTPLogError {
+	return &NullableHTTPLogError{value: val, isSet: true}
 }
 
-func (v NullableHttpLogError) MarshalJSON() ([]byte, error) {
+func (v NullableHTTPLogError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHttpLogError) UnmarshalJSON(src []byte) error {
+func (v *NullableHTTPLogError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

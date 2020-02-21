@@ -13,41 +13,41 @@ import (
 	"time"
 )
 
-// SyntheticsSslCertificate struct for SyntheticsSslCertificate
-type SyntheticsSslCertificate struct {
+// SyntheticsSSLCertificate struct for SyntheticsSSLCertificate
+type SyntheticsSSLCertificate struct {
 	Cipher         *string                          `json:"cipher,omitempty"`
 	Exponent       *float64                         `json:"exponent,omitempty"`
 	ExtKeyUsage    *[]string                        `json:"extKeyUsage,omitempty"`
 	Fingerprint    *string                          `json:"fingerprint,omitempty"`
 	Fingerprint256 *string                          `json:"fingerprint256,omitempty"`
-	Issuer         *SyntheticsSslCertificateIssuer  `json:"issuer,omitempty"`
+	Issuer         *SyntheticsSSLCertificateIssuer  `json:"issuer,omitempty"`
 	Modulus        *string                          `json:"modulus,omitempty"`
 	Protocol       *string                          `json:"protocol,omitempty"`
 	SerialNumber   *string                          `json:"serialNumber,omitempty"`
-	Subject        *SyntheticsSslCertificateSubject `json:"subject,omitempty"`
+	Subject        *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
 	ValidFrom      *time.Time                       `json:"validFrom,omitempty"`
 	ValidTo        *time.Time                       `json:"validTo,omitempty"`
 }
 
-// NewSyntheticsSslCertificate instantiates a new SyntheticsSslCertificate object
+// NewSyntheticsSSLCertificate instantiates a new SyntheticsSSLCertificate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsSslCertificate() *SyntheticsSslCertificate {
-	this := SyntheticsSslCertificate{}
+func NewSyntheticsSSLCertificate() *SyntheticsSSLCertificate {
+	this := SyntheticsSSLCertificate{}
 	return &this
 }
 
-// NewSyntheticsSslCertificateWithDefaults instantiates a new SyntheticsSslCertificate object
+// NewSyntheticsSSLCertificateWithDefaults instantiates a new SyntheticsSSLCertificate object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsSslCertificateWithDefaults() *SyntheticsSslCertificate {
-	this := SyntheticsSslCertificate{}
+func NewSyntheticsSSLCertificateWithDefaults() *SyntheticsSSLCertificate {
+	this := SyntheticsSSLCertificate{}
 	return &this
 }
 
 // GetCipher returns the Cipher field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetCipher() string {
+func (o *SyntheticsSSLCertificate) GetCipher() string {
 	if o == nil || o.Cipher == nil {
 		var ret string
 		return ret
@@ -57,7 +57,7 @@ func (o *SyntheticsSslCertificate) GetCipher() string {
 
 // GetCipherOk returns a tuple with the Cipher field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetCipherOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetCipherOk() (string, bool) {
 	if o == nil || o.Cipher == nil {
 		var ret string
 		return ret, false
@@ -66,7 +66,7 @@ func (o *SyntheticsSslCertificate) GetCipherOk() (string, bool) {
 }
 
 // HasCipher returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasCipher() bool {
+func (o *SyntheticsSSLCertificate) HasCipher() bool {
 	if o != nil && o.Cipher != nil {
 		return true
 	}
@@ -75,12 +75,12 @@ func (o *SyntheticsSslCertificate) HasCipher() bool {
 }
 
 // SetCipher gets a reference to the given string and assigns it to the Cipher field.
-func (o *SyntheticsSslCertificate) SetCipher(v string) {
+func (o *SyntheticsSSLCertificate) SetCipher(v string) {
 	o.Cipher = &v
 }
 
 // GetExponent returns the Exponent field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetExponent() float64 {
+func (o *SyntheticsSSLCertificate) GetExponent() float64 {
 	if o == nil || o.Exponent == nil {
 		var ret float64
 		return ret
@@ -90,7 +90,7 @@ func (o *SyntheticsSslCertificate) GetExponent() float64 {
 
 // GetExponentOk returns a tuple with the Exponent field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetExponentOk() (float64, bool) {
+func (o *SyntheticsSSLCertificate) GetExponentOk() (float64, bool) {
 	if o == nil || o.Exponent == nil {
 		var ret float64
 		return ret, false
@@ -99,7 +99,7 @@ func (o *SyntheticsSslCertificate) GetExponentOk() (float64, bool) {
 }
 
 // HasExponent returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasExponent() bool {
+func (o *SyntheticsSSLCertificate) HasExponent() bool {
 	if o != nil && o.Exponent != nil {
 		return true
 	}
@@ -108,12 +108,12 @@ func (o *SyntheticsSslCertificate) HasExponent() bool {
 }
 
 // SetExponent gets a reference to the given float64 and assigns it to the Exponent field.
-func (o *SyntheticsSslCertificate) SetExponent(v float64) {
+func (o *SyntheticsSSLCertificate) SetExponent(v float64) {
 	o.Exponent = &v
 }
 
 // GetExtKeyUsage returns the ExtKeyUsage field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetExtKeyUsage() []string {
+func (o *SyntheticsSSLCertificate) GetExtKeyUsage() []string {
 	if o == nil || o.ExtKeyUsage == nil {
 		var ret []string
 		return ret
@@ -123,7 +123,7 @@ func (o *SyntheticsSslCertificate) GetExtKeyUsage() []string {
 
 // GetExtKeyUsageOk returns a tuple with the ExtKeyUsage field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetExtKeyUsageOk() ([]string, bool) {
+func (o *SyntheticsSSLCertificate) GetExtKeyUsageOk() ([]string, bool) {
 	if o == nil || o.ExtKeyUsage == nil {
 		var ret []string
 		return ret, false
@@ -132,7 +132,7 @@ func (o *SyntheticsSslCertificate) GetExtKeyUsageOk() ([]string, bool) {
 }
 
 // HasExtKeyUsage returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasExtKeyUsage() bool {
+func (o *SyntheticsSSLCertificate) HasExtKeyUsage() bool {
 	if o != nil && o.ExtKeyUsage != nil {
 		return true
 	}
@@ -141,12 +141,12 @@ func (o *SyntheticsSslCertificate) HasExtKeyUsage() bool {
 }
 
 // SetExtKeyUsage gets a reference to the given []string and assigns it to the ExtKeyUsage field.
-func (o *SyntheticsSslCertificate) SetExtKeyUsage(v []string) {
+func (o *SyntheticsSSLCertificate) SetExtKeyUsage(v []string) {
 	o.ExtKeyUsage = &v
 }
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetFingerprint() string {
+func (o *SyntheticsSSLCertificate) GetFingerprint() string {
 	if o == nil || o.Fingerprint == nil {
 		var ret string
 		return ret
@@ -156,7 +156,7 @@ func (o *SyntheticsSslCertificate) GetFingerprint() string {
 
 // GetFingerprintOk returns a tuple with the Fingerprint field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetFingerprintOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetFingerprintOk() (string, bool) {
 	if o == nil || o.Fingerprint == nil {
 		var ret string
 		return ret, false
@@ -165,7 +165,7 @@ func (o *SyntheticsSslCertificate) GetFingerprintOk() (string, bool) {
 }
 
 // HasFingerprint returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasFingerprint() bool {
+func (o *SyntheticsSSLCertificate) HasFingerprint() bool {
 	if o != nil && o.Fingerprint != nil {
 		return true
 	}
@@ -174,12 +174,12 @@ func (o *SyntheticsSslCertificate) HasFingerprint() bool {
 }
 
 // SetFingerprint gets a reference to the given string and assigns it to the Fingerprint field.
-func (o *SyntheticsSslCertificate) SetFingerprint(v string) {
+func (o *SyntheticsSSLCertificate) SetFingerprint(v string) {
 	o.Fingerprint = &v
 }
 
 // GetFingerprint256 returns the Fingerprint256 field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetFingerprint256() string {
+func (o *SyntheticsSSLCertificate) GetFingerprint256() string {
 	if o == nil || o.Fingerprint256 == nil {
 		var ret string
 		return ret
@@ -189,7 +189,7 @@ func (o *SyntheticsSslCertificate) GetFingerprint256() string {
 
 // GetFingerprint256Ok returns a tuple with the Fingerprint256 field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetFingerprint256Ok() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetFingerprint256Ok() (string, bool) {
 	if o == nil || o.Fingerprint256 == nil {
 		var ret string
 		return ret, false
@@ -198,7 +198,7 @@ func (o *SyntheticsSslCertificate) GetFingerprint256Ok() (string, bool) {
 }
 
 // HasFingerprint256 returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasFingerprint256() bool {
+func (o *SyntheticsSSLCertificate) HasFingerprint256() bool {
 	if o != nil && o.Fingerprint256 != nil {
 		return true
 	}
@@ -207,14 +207,14 @@ func (o *SyntheticsSslCertificate) HasFingerprint256() bool {
 }
 
 // SetFingerprint256 gets a reference to the given string and assigns it to the Fingerprint256 field.
-func (o *SyntheticsSslCertificate) SetFingerprint256(v string) {
+func (o *SyntheticsSSLCertificate) SetFingerprint256(v string) {
 	o.Fingerprint256 = &v
 }
 
 // GetIssuer returns the Issuer field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetIssuer() SyntheticsSslCertificateIssuer {
+func (o *SyntheticsSSLCertificate) GetIssuer() SyntheticsSSLCertificateIssuer {
 	if o == nil || o.Issuer == nil {
-		var ret SyntheticsSslCertificateIssuer
+		var ret SyntheticsSSLCertificateIssuer
 		return ret
 	}
 	return *o.Issuer
@@ -222,16 +222,16 @@ func (o *SyntheticsSslCertificate) GetIssuer() SyntheticsSslCertificateIssuer {
 
 // GetIssuerOk returns a tuple with the Issuer field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetIssuerOk() (SyntheticsSslCertificateIssuer, bool) {
+func (o *SyntheticsSSLCertificate) GetIssuerOk() (SyntheticsSSLCertificateIssuer, bool) {
 	if o == nil || o.Issuer == nil {
-		var ret SyntheticsSslCertificateIssuer
+		var ret SyntheticsSSLCertificateIssuer
 		return ret, false
 	}
 	return *o.Issuer, true
 }
 
 // HasIssuer returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasIssuer() bool {
+func (o *SyntheticsSSLCertificate) HasIssuer() bool {
 	if o != nil && o.Issuer != nil {
 		return true
 	}
@@ -239,13 +239,13 @@ func (o *SyntheticsSslCertificate) HasIssuer() bool {
 	return false
 }
 
-// SetIssuer gets a reference to the given SyntheticsSslCertificateIssuer and assigns it to the Issuer field.
-func (o *SyntheticsSslCertificate) SetIssuer(v SyntheticsSslCertificateIssuer) {
+// SetIssuer gets a reference to the given SyntheticsSSLCertificateIssuer and assigns it to the Issuer field.
+func (o *SyntheticsSSLCertificate) SetIssuer(v SyntheticsSSLCertificateIssuer) {
 	o.Issuer = &v
 }
 
 // GetModulus returns the Modulus field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetModulus() string {
+func (o *SyntheticsSSLCertificate) GetModulus() string {
 	if o == nil || o.Modulus == nil {
 		var ret string
 		return ret
@@ -255,7 +255,7 @@ func (o *SyntheticsSslCertificate) GetModulus() string {
 
 // GetModulusOk returns a tuple with the Modulus field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetModulusOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetModulusOk() (string, bool) {
 	if o == nil || o.Modulus == nil {
 		var ret string
 		return ret, false
@@ -264,7 +264,7 @@ func (o *SyntheticsSslCertificate) GetModulusOk() (string, bool) {
 }
 
 // HasModulus returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasModulus() bool {
+func (o *SyntheticsSSLCertificate) HasModulus() bool {
 	if o != nil && o.Modulus != nil {
 		return true
 	}
@@ -273,12 +273,12 @@ func (o *SyntheticsSslCertificate) HasModulus() bool {
 }
 
 // SetModulus gets a reference to the given string and assigns it to the Modulus field.
-func (o *SyntheticsSslCertificate) SetModulus(v string) {
+func (o *SyntheticsSSLCertificate) SetModulus(v string) {
 	o.Modulus = &v
 }
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetProtocol() string {
+func (o *SyntheticsSSLCertificate) GetProtocol() string {
 	if o == nil || o.Protocol == nil {
 		var ret string
 		return ret
@@ -288,7 +288,7 @@ func (o *SyntheticsSslCertificate) GetProtocol() string {
 
 // GetProtocolOk returns a tuple with the Protocol field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetProtocolOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetProtocolOk() (string, bool) {
 	if o == nil || o.Protocol == nil {
 		var ret string
 		return ret, false
@@ -297,7 +297,7 @@ func (o *SyntheticsSslCertificate) GetProtocolOk() (string, bool) {
 }
 
 // HasProtocol returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasProtocol() bool {
+func (o *SyntheticsSSLCertificate) HasProtocol() bool {
 	if o != nil && o.Protocol != nil {
 		return true
 	}
@@ -306,12 +306,12 @@ func (o *SyntheticsSslCertificate) HasProtocol() bool {
 }
 
 // SetProtocol gets a reference to the given string and assigns it to the Protocol field.
-func (o *SyntheticsSslCertificate) SetProtocol(v string) {
+func (o *SyntheticsSSLCertificate) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
 // GetSerialNumber returns the SerialNumber field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetSerialNumber() string {
+func (o *SyntheticsSSLCertificate) GetSerialNumber() string {
 	if o == nil || o.SerialNumber == nil {
 		var ret string
 		return ret
@@ -321,7 +321,7 @@ func (o *SyntheticsSslCertificate) GetSerialNumber() string {
 
 // GetSerialNumberOk returns a tuple with the SerialNumber field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetSerialNumberOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetSerialNumberOk() (string, bool) {
 	if o == nil || o.SerialNumber == nil {
 		var ret string
 		return ret, false
@@ -330,7 +330,7 @@ func (o *SyntheticsSslCertificate) GetSerialNumberOk() (string, bool) {
 }
 
 // HasSerialNumber returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasSerialNumber() bool {
+func (o *SyntheticsSSLCertificate) HasSerialNumber() bool {
 	if o != nil && o.SerialNumber != nil {
 		return true
 	}
@@ -339,14 +339,14 @@ func (o *SyntheticsSslCertificate) HasSerialNumber() bool {
 }
 
 // SetSerialNumber gets a reference to the given string and assigns it to the SerialNumber field.
-func (o *SyntheticsSslCertificate) SetSerialNumber(v string) {
+func (o *SyntheticsSSLCertificate) SetSerialNumber(v string) {
 	o.SerialNumber = &v
 }
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetSubject() SyntheticsSslCertificateSubject {
+func (o *SyntheticsSSLCertificate) GetSubject() SyntheticsSSLCertificateSubject {
 	if o == nil || o.Subject == nil {
-		var ret SyntheticsSslCertificateSubject
+		var ret SyntheticsSSLCertificateSubject
 		return ret
 	}
 	return *o.Subject
@@ -354,16 +354,16 @@ func (o *SyntheticsSslCertificate) GetSubject() SyntheticsSslCertificateSubject 
 
 // GetSubjectOk returns a tuple with the Subject field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetSubjectOk() (SyntheticsSslCertificateSubject, bool) {
+func (o *SyntheticsSSLCertificate) GetSubjectOk() (SyntheticsSSLCertificateSubject, bool) {
 	if o == nil || o.Subject == nil {
-		var ret SyntheticsSslCertificateSubject
+		var ret SyntheticsSSLCertificateSubject
 		return ret, false
 	}
 	return *o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasSubject() bool {
+func (o *SyntheticsSSLCertificate) HasSubject() bool {
 	if o != nil && o.Subject != nil {
 		return true
 	}
@@ -371,13 +371,13 @@ func (o *SyntheticsSslCertificate) HasSubject() bool {
 	return false
 }
 
-// SetSubject gets a reference to the given SyntheticsSslCertificateSubject and assigns it to the Subject field.
-func (o *SyntheticsSslCertificate) SetSubject(v SyntheticsSslCertificateSubject) {
+// SetSubject gets a reference to the given SyntheticsSSLCertificateSubject and assigns it to the Subject field.
+func (o *SyntheticsSSLCertificate) SetSubject(v SyntheticsSSLCertificateSubject) {
 	o.Subject = &v
 }
 
 // GetValidFrom returns the ValidFrom field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetValidFrom() time.Time {
+func (o *SyntheticsSSLCertificate) GetValidFrom() time.Time {
 	if o == nil || o.ValidFrom == nil {
 		var ret time.Time
 		return ret
@@ -387,7 +387,7 @@ func (o *SyntheticsSslCertificate) GetValidFrom() time.Time {
 
 // GetValidFromOk returns a tuple with the ValidFrom field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetValidFromOk() (time.Time, bool) {
+func (o *SyntheticsSSLCertificate) GetValidFromOk() (time.Time, bool) {
 	if o == nil || o.ValidFrom == nil {
 		var ret time.Time
 		return ret, false
@@ -396,7 +396,7 @@ func (o *SyntheticsSslCertificate) GetValidFromOk() (time.Time, bool) {
 }
 
 // HasValidFrom returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasValidFrom() bool {
+func (o *SyntheticsSSLCertificate) HasValidFrom() bool {
 	if o != nil && o.ValidFrom != nil {
 		return true
 	}
@@ -405,12 +405,12 @@ func (o *SyntheticsSslCertificate) HasValidFrom() bool {
 }
 
 // SetValidFrom gets a reference to the given time.Time and assigns it to the ValidFrom field.
-func (o *SyntheticsSslCertificate) SetValidFrom(v time.Time) {
+func (o *SyntheticsSSLCertificate) SetValidFrom(v time.Time) {
 	o.ValidFrom = &v
 }
 
 // GetValidTo returns the ValidTo field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificate) GetValidTo() time.Time {
+func (o *SyntheticsSSLCertificate) GetValidTo() time.Time {
 	if o == nil || o.ValidTo == nil {
 		var ret time.Time
 		return ret
@@ -420,7 +420,7 @@ func (o *SyntheticsSslCertificate) GetValidTo() time.Time {
 
 // GetValidToOk returns a tuple with the ValidTo field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificate) GetValidToOk() (time.Time, bool) {
+func (o *SyntheticsSSLCertificate) GetValidToOk() (time.Time, bool) {
 	if o == nil || o.ValidTo == nil {
 		var ret time.Time
 		return ret, false
@@ -429,7 +429,7 @@ func (o *SyntheticsSslCertificate) GetValidToOk() (time.Time, bool) {
 }
 
 // HasValidTo returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificate) HasValidTo() bool {
+func (o *SyntheticsSSLCertificate) HasValidTo() bool {
 	if o != nil && o.ValidTo != nil {
 		return true
 	}
@@ -438,11 +438,11 @@ func (o *SyntheticsSslCertificate) HasValidTo() bool {
 }
 
 // SetValidTo gets a reference to the given time.Time and assigns it to the ValidTo field.
-func (o *SyntheticsSslCertificate) SetValidTo(v time.Time) {
+func (o *SyntheticsSSLCertificate) SetValidTo(v time.Time) {
 	o.ValidTo = &v
 }
 
-func (o SyntheticsSslCertificate) MarshalJSON() ([]byte, error) {
+func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Cipher != nil {
@@ -484,38 +484,38 @@ func (o SyntheticsSslCertificate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableSyntheticsSslCertificate struct {
-	value *SyntheticsSslCertificate
+type NullableSyntheticsSSLCertificate struct {
+	value *SyntheticsSSLCertificate
 	isSet bool
 }
 
-func (v NullableSyntheticsSslCertificate) Get() *SyntheticsSslCertificate {
+func (v NullableSyntheticsSSLCertificate) Get() *SyntheticsSSLCertificate {
 	return v.value
 }
 
-func (v NullableSyntheticsSslCertificate) Set(val *SyntheticsSslCertificate) {
+func (v NullableSyntheticsSSLCertificate) Set(val *SyntheticsSSLCertificate) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsSslCertificate) IsSet() bool {
+func (v NullableSyntheticsSSLCertificate) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsSslCertificate) Unset() {
+func (v NullableSyntheticsSSLCertificate) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsSslCertificate(val *SyntheticsSslCertificate) *NullableSyntheticsSslCertificate {
-	return &NullableSyntheticsSslCertificate{value: val, isSet: true}
+func NewNullableSyntheticsSSLCertificate(val *SyntheticsSSLCertificate) *NullableSyntheticsSSLCertificate {
+	return &NullableSyntheticsSSLCertificate{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsSslCertificate) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsSslCertificate) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsSSLCertificate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

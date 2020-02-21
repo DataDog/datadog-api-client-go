@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"name":"go dashboard list 1582121391"}
+      {"name":"go dashboard list 1582305222"}
     form: {}
     headers:
       Accept:
@@ -15,8 +15,8 @@ interactions:
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
     method: POST
   response:
-    body: '{"is_favorite":false,"name":"go dashboard list 1582121391","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
-      Muesch"},"created":"2020-02-19T14:09:51.699943+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-19T14:09:51.699960+00:00","id":80797}'
+    body: '{"is_favorite":false,"name":"go dashboard list 1582305222","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch"},"created":"2020-02-21T17:13:43.062707+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-21T17:13:43.062721+00:00","id":81297}'
     headers:
       Cache-Control:
       - no-cache
@@ -27,13 +27,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:09:51 GMT
+      - Fri, 21 Feb 2020 17:13:43 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:09:51 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vYQu3ls2HKdZ2pXErBiwg/FlJyuK31hjiI+oJSqoEPPw/7mzimb2FzvWEsshbznY
+      - OxP+mFpjAbASiVhNf+t4MttAs95ZlMiGosIRnYJJGFoApNgv2oxtdzpnmNlMOki6
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -52,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"name":"go dashboard list updated 1582121391"}
+      {"name":"go dashboard list updated 1582305222"}
     form: {}
     headers:
       Accept:
@@ -61,11 +61,11 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/80797
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/81297
     method: PUT
   response:
-    body: '{"is_favorite":false,"name":"go dashboard list updated 1582121391","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
-      Muesch"},"created":"2020-02-19T14:09:51.699943+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-19T14:09:51.857982+00:00","id":80797}'
+    body: '{"is_favorite":false,"name":"go dashboard list updated 1582305222","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch"},"created":"2020-02-21T17:13:43.062707+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-21T17:13:43.213759+00:00","id":81297}'
     headers:
       Cache-Control:
       - no-cache
@@ -76,13 +76,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:09:53 GMT
+      - Fri, 21 Feb 2020 17:13:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:09:51 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -91,9 +91,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - eORbNuNjI+uNwQ5fL4WiSFLQTO+rx/Fd8RRk0TnSyEY4gQIkjrXIuJ1XAoOa+8yj
+      - 2VXDwI2pcuhRZeQ6xt/fJh1koMYSfGcgQg5wAzgLqeh10Zf5/W946U7T5w6SEIhy
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -107,11 +107,11 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/80797
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/81297
     method: GET
   response:
-    body: '{"is_favorite":false,"name":"go dashboard list updated 1582121391","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
-      Muesch"},"created":"2020-02-19T14:09:51.699943+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-19T14:09:51.857982+00:00","id":80797}'
+    body: '{"is_favorite":false,"name":"go dashboard list updated 1582305222","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch"},"created":"2020-02-21T17:13:43.062707+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-21T17:13:43.213759+00:00","id":81297}'
     headers:
       Cache-Control:
       - no-cache
@@ -122,13 +122,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:09:53 GMT
+      - Fri, 21 Feb 2020 17:13:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:09:53 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -137,9 +137,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - pNNj5PhODCVJlRBPEhZP3s9KL9kvFYv//TnGsiPp+3AqL7R5kIW2JlCWtfMcXeFn
+      - dPTJBBDv5jeY1gnH1FisDpda5Hi0boOGbsHxIOi4qkMt+QLOH7F7P7MeSr40vXZ0
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -161,8 +161,8 @@ interactions:
       Kabrda"},"created":"2019-12-16T16:29:00.003270+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2019-12-16T16:29:00.003285+00:00","id":74817},{"is_favorite":false,"name":"2019-12-16
       17:09:00.04840333 +0000 UTC m=+9.309455448","dashboard_count":0,"author":{"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda"},"created":"2019-12-16T17:09:00.129525+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2019-12-16T17:09:00.129545+00:00","id":74821},{"is_favorite":false,"name":"go
-      dashboard list updated 1582121391","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
-      Muesch"},"created":"2020-02-19T14:09:51.699943+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-19T14:09:51.857982+00:00","id":80797},{"is_favorite":false,"name":"Terraform
+      dashboard list updated 1582305222","dashboard_count":0,"author":{"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch"},"created":"2020-02-21T17:13:43.062707+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-02-21T17:13:43.213759+00:00","id":81297},{"is_favorite":false,"name":"Terraform
       newest Created List","dashboard_count":2,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2020-01-17T17:40:43.526068+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-01-17T17:40:43.952145+00:00","id":77464},{"is_favorite":false,"name":"updated2019-12-16
       17:29:10.32440715 +0000 UTC m=+8.542323035","dashboard_count":0,"author":{"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda"},"created":"2019-12-16T17:29:10.378367+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2019-12-16T17:29:10.441497+00:00","id":74826}]}'
@@ -176,13 +176,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:09:53 GMT
+      - Fri, 21 Feb 2020 17:13:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:09:53 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -191,9 +191,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - NueLa2zkdBcl9S7BHrRuWyjAeR9iWgPFe330KTY6Cp0/yUhjUktbxu5rG2fG6gBk
+      - xDB9TwFteerR1wCiwj8/TgXRHM8VsESQxiCQvltAxyn4fse47E64CquSvdpyvFXM
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -207,10 +207,10 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/80797
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/81297
     method: DELETE
   response:
-    body: '{"deleted_dashboard_list_id":80797}'
+    body: '{"deleted_dashboard_list_id":81297}'
     headers:
       Cache-Control:
       - no-cache
@@ -221,13 +221,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:09:55 GMT
+      - Fri, 21 Feb 2020 17:13:47 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:09:53 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -236,9 +236,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - FB5oGxuL9E/cplxahdQnU5Nw5E7KX0Smq18it9qYKIt8BXsSloE0IpDRA39tfQwn
+      - GAK1J4mJd/EBZfEK4rqUw9OeB9GOeKgSyrXGtzNUi5zrv5sHYU56xJgA4bcbtgUA
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -252,10 +252,10 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/80797
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/81297
     method: DELETE
   response:
-    body: '{"errors": ["Manual Dashboard List with id 80797 not found"]}'
+    body: '{"errors": ["Manual Dashboard List with id 81297 not found"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -266,7 +266,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:09:55 GMT
+      - Fri, 21 Feb 2020 17:13:47 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -278,7 +278,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

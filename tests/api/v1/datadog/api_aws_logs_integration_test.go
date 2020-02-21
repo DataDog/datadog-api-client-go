@@ -17,9 +17,9 @@ import (
 	"gotest.tools/assert"
 )
 
-func generateUniqueAwsLambdaAccounts() (datadog.AwsAccount, datadog.AwsAccountAndLambdaRequest, datadog.AwsLogsServicesRequest) {
+func generateUniqueAWSLambdaAccounts() (datadog.AWSAccount, datadog.AWSAccountAndLambdaRequest, datadog.AWSLogsServicesRequest) {
 	accountID := fmt.Sprintf("go_%09d", TESTCLOCK.Now().UnixNano()%1000000000)
-	var uniqueAwsAccount = datadog.AwsAccount{
+	var uniqueAWSAccount = datadog.AWSAccount{
 		AccountId:                     &accountID,
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
@@ -27,17 +27,17 @@ func generateUniqueAwsLambdaAccounts() (datadog.AwsAccount, datadog.AwsAccountAn
 		HostTags:                      &[]string{"filter:one", "filtertwo"},
 	}
 
-	var testLambdaArn = datadog.AwsAccountAndLambdaRequest{
-		AccountId: *uniqueAwsAccount.AccountId,
+	var testLambdaArn = datadog.AWSAccountAndLambdaRequest{
+		AccountId: *uniqueAWSAccount.AccountId,
 		LambdaArn: "arn:aws:lambda:us-east-1:123456789101:function:GoClientTest",
 	}
 
-	var savedServices = datadog.AwsLogsServicesRequest{
-		AccountId: *uniqueAwsAccount.AccountId,
+	var savedServices = datadog.AWSLogsServicesRequest{
+		AccountId: *uniqueAWSAccount.AccountId,
 		Services:  []string{"s3", "elb", "elbv2", "cloudfront", "redshift", "lambda"},
 	}
 
-	return uniqueAwsAccount, testLambdaArn, savedServices
+	return uniqueAWSAccount, testLambdaArn, savedServices
 }
 
 // Test AddAWSLambdaARN and EnableServices endpoints
@@ -45,7 +45,7 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	testawsacc, testLambdaAcc, testServices := generateUniqueAwsLambdaAccounts()
+	testawsacc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts()
 	defer retryDeleteAccount(t, testawsacc)
 
 	// Assert AWS Integration Created with proper fields
@@ -83,7 +83,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	testAWSAcc, testLambdaAcc, testServices := generateUniqueAwsLambdaAccounts()
+	testAWSAcc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts()
 	defer retryDeleteAccount(t, testAWSAcc)
 
 	// Create the AWS integration.
@@ -135,7 +135,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	var listOfARNs2 []datadog.AwsLogsListResponseLambdas
+	var listOfARNs2 []datadog.AWSLogsListResponseLambdas
 	var accountExistsAfterDelete = false
 	for _, Account := range listOutput2 {
 		if Account.GetAccountId() == *testAWSAcc.AccountId {
@@ -156,7 +156,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	testAWSAcc, testLambdaAcc, _ := generateUniqueAwsLambdaAccounts()
+	testAWSAcc, testLambdaAcc, _ := generateUniqueAWSLambdaAccounts()
 	defer retryDeleteAccount(t, testAWSAcc)
 
 	// Assert AWS Integration Created with proper fields
@@ -190,7 +190,7 @@ func TestCheckServicesAsync(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	testAWSAcc, _, testServices := generateUniqueAwsLambdaAccounts()
+	testAWSAcc, _, testServices := generateUniqueAWSLambdaAccounts()
 	defer retryDeleteAccount(t, testAWSAcc)
 
 	// Assert AWS Integration Created with proper fields

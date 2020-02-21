@@ -1,4 +1,4 @@
-# AwsAccountAndLambdaInput
+# AWSAccountAndLambdaRequest
 
 ## Properties
 
@@ -9,53 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewAWSAccountAndLambdaRequest
+
+`func NewAWSAccountAndLambdaRequest(accountId string, lambdaArn string, ) *AWSAccountAndLambdaRequest`
+
+NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewAWSAccountAndLambdaRequestWithDefaults
+
+`func NewAWSAccountAndLambdaRequestWithDefaults() *AWSAccountAndLambdaRequest`
+
+NewAWSAccountAndLambdaRequestWithDefaults instantiates a new AWSAccountAndLambdaRequest object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetAccountId
 
-`func (o *AwsAccountAndLambdaInput) GetAccountId() string`
+`func (o *AWSAccountAndLambdaRequest) GetAccountId() string`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *AwsAccountAndLambdaInput) GetAccountIdOk() (string, bool)`
+`func (o *AWSAccountAndLambdaRequest) GetAccountIdOk() (string, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasAccountId
 
-`func (o *AwsAccountAndLambdaInput) HasAccountId() bool`
+`func (o *AWSAccountAndLambdaRequest) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
 
 ### SetAccountId
 
-`func (o *AwsAccountAndLambdaInput) SetAccountId(v string)`
+`func (o *AWSAccountAndLambdaRequest) SetAccountId(v string)`
 
 SetAccountId gets a reference to the given string and assigns it to the AccountId field.
 
 ### GetLambdaArn
 
-`func (o *AwsAccountAndLambdaInput) GetLambdaArn() string`
+`func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string`
 
 GetLambdaArn returns the LambdaArn field if non-nil, zero value otherwise.
 
 ### GetLambdaArnOk
 
-`func (o *AwsAccountAndLambdaInput) GetLambdaArnOk() (string, bool)`
+`func (o *AWSAccountAndLambdaRequest) GetLambdaArnOk() (string, bool)`
 
 GetLambdaArnOk returns a tuple with the LambdaArn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasLambdaArn
 
-`func (o *AwsAccountAndLambdaInput) HasLambdaArn() bool`
+`func (o *AWSAccountAndLambdaRequest) HasLambdaArn() bool`
 
 HasLambdaArn returns a boolean if a field has been set.
 
 ### SetLambdaArn
 
-`func (o *AwsAccountAndLambdaInput) SetLambdaArn(v string)`
+`func (o *AWSAccountAndLambdaRequest) SetLambdaArn(v string)`
 
 SetLambdaArn gets a reference to the given string and assigns it to the LambdaArn field.
 

@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// GcpAccount struct for GcpAccount
-type GcpAccount struct {
+// GCPAccount struct for GCPAccount
+type GCPAccount struct {
 	// Should be https://www.googleapis.com/oauth2/v1/certs.
 	AuthProviderX509CertUrl *string `json:"auth_provider_x509_cert_url,omitempty"`
 	// Should be https://accounts.google.com/o/oauth2/auth.
@@ -41,25 +41,25 @@ type GcpAccount struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// NewGcpAccount instantiates a new GcpAccount object
+// NewGCPAccount instantiates a new GCPAccount object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGcpAccount() *GcpAccount {
-	this := GcpAccount{}
+func NewGCPAccount() *GCPAccount {
+	this := GCPAccount{}
 	return &this
 }
 
-// NewGcpAccountWithDefaults instantiates a new GcpAccount object
+// NewGCPAccountWithDefaults instantiates a new GCPAccount object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGcpAccountWithDefaults() *GcpAccount {
-	this := GcpAccount{}
+func NewGCPAccountWithDefaults() *GCPAccount {
+	this := GCPAccount{}
 	return &this
 }
 
 // GetAuthProviderX509CertUrl returns the AuthProviderX509CertUrl field value if set, zero value otherwise.
-func (o *GcpAccount) GetAuthProviderX509CertUrl() string {
+func (o *GCPAccount) GetAuthProviderX509CertUrl() string {
 	if o == nil || o.AuthProviderX509CertUrl == nil {
 		var ret string
 		return ret
@@ -69,7 +69,7 @@ func (o *GcpAccount) GetAuthProviderX509CertUrl() string {
 
 // GetAuthProviderX509CertUrlOk returns a tuple with the AuthProviderX509CertUrl field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetAuthProviderX509CertUrlOk() (string, bool) {
+func (o *GCPAccount) GetAuthProviderX509CertUrlOk() (string, bool) {
 	if o == nil || o.AuthProviderX509CertUrl == nil {
 		var ret string
 		return ret, false
@@ -78,7 +78,7 @@ func (o *GcpAccount) GetAuthProviderX509CertUrlOk() (string, bool) {
 }
 
 // HasAuthProviderX509CertUrl returns a boolean if a field has been set.
-func (o *GcpAccount) HasAuthProviderX509CertUrl() bool {
+func (o *GCPAccount) HasAuthProviderX509CertUrl() bool {
 	if o != nil && o.AuthProviderX509CertUrl != nil {
 		return true
 	}
@@ -87,12 +87,12 @@ func (o *GcpAccount) HasAuthProviderX509CertUrl() bool {
 }
 
 // SetAuthProviderX509CertUrl gets a reference to the given string and assigns it to the AuthProviderX509CertUrl field.
-func (o *GcpAccount) SetAuthProviderX509CertUrl(v string) {
+func (o *GCPAccount) SetAuthProviderX509CertUrl(v string) {
 	o.AuthProviderX509CertUrl = &v
 }
 
 // GetAuthUri returns the AuthUri field value if set, zero value otherwise.
-func (o *GcpAccount) GetAuthUri() string {
+func (o *GCPAccount) GetAuthUri() string {
 	if o == nil || o.AuthUri == nil {
 		var ret string
 		return ret
@@ -102,7 +102,7 @@ func (o *GcpAccount) GetAuthUri() string {
 
 // GetAuthUriOk returns a tuple with the AuthUri field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetAuthUriOk() (string, bool) {
+func (o *GCPAccount) GetAuthUriOk() (string, bool) {
 	if o == nil || o.AuthUri == nil {
 		var ret string
 		return ret, false
@@ -111,7 +111,7 @@ func (o *GcpAccount) GetAuthUriOk() (string, bool) {
 }
 
 // HasAuthUri returns a boolean if a field has been set.
-func (o *GcpAccount) HasAuthUri() bool {
+func (o *GCPAccount) HasAuthUri() bool {
 	if o != nil && o.AuthUri != nil {
 		return true
 	}
@@ -120,12 +120,12 @@ func (o *GcpAccount) HasAuthUri() bool {
 }
 
 // SetAuthUri gets a reference to the given string and assigns it to the AuthUri field.
-func (o *GcpAccount) SetAuthUri(v string) {
+func (o *GCPAccount) SetAuthUri(v string) {
 	o.AuthUri = &v
 }
 
 // GetAutomute returns the Automute field value if set, zero value otherwise.
-func (o *GcpAccount) GetAutomute() bool {
+func (o *GCPAccount) GetAutomute() bool {
 	if o == nil || o.Automute == nil {
 		var ret bool
 		return ret
@@ -135,7 +135,7 @@ func (o *GcpAccount) GetAutomute() bool {
 
 // GetAutomuteOk returns a tuple with the Automute field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetAutomuteOk() (bool, bool) {
+func (o *GCPAccount) GetAutomuteOk() (bool, bool) {
 	if o == nil || o.Automute == nil {
 		var ret bool
 		return ret, false
@@ -144,7 +144,7 @@ func (o *GcpAccount) GetAutomuteOk() (bool, bool) {
 }
 
 // HasAutomute returns a boolean if a field has been set.
-func (o *GcpAccount) HasAutomute() bool {
+func (o *GCPAccount) HasAutomute() bool {
 	if o != nil && o.Automute != nil {
 		return true
 	}
@@ -153,12 +153,12 @@ func (o *GcpAccount) HasAutomute() bool {
 }
 
 // SetAutomute gets a reference to the given bool and assigns it to the Automute field.
-func (o *GcpAccount) SetAutomute(v bool) {
+func (o *GCPAccount) SetAutomute(v bool) {
 	o.Automute = &v
 }
 
 // GetClientEmail returns the ClientEmail field value if set, zero value otherwise.
-func (o *GcpAccount) GetClientEmail() string {
+func (o *GCPAccount) GetClientEmail() string {
 	if o == nil || o.ClientEmail == nil {
 		var ret string
 		return ret
@@ -168,7 +168,7 @@ func (o *GcpAccount) GetClientEmail() string {
 
 // GetClientEmailOk returns a tuple with the ClientEmail field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetClientEmailOk() (string, bool) {
+func (o *GCPAccount) GetClientEmailOk() (string, bool) {
 	if o == nil || o.ClientEmail == nil {
 		var ret string
 		return ret, false
@@ -177,7 +177,7 @@ func (o *GcpAccount) GetClientEmailOk() (string, bool) {
 }
 
 // HasClientEmail returns a boolean if a field has been set.
-func (o *GcpAccount) HasClientEmail() bool {
+func (o *GCPAccount) HasClientEmail() bool {
 	if o != nil && o.ClientEmail != nil {
 		return true
 	}
@@ -186,12 +186,12 @@ func (o *GcpAccount) HasClientEmail() bool {
 }
 
 // SetClientEmail gets a reference to the given string and assigns it to the ClientEmail field.
-func (o *GcpAccount) SetClientEmail(v string) {
+func (o *GCPAccount) SetClientEmail(v string) {
 	o.ClientEmail = &v
 }
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
-func (o *GcpAccount) GetClientId() string {
+func (o *GCPAccount) GetClientId() string {
 	if o == nil || o.ClientId == nil {
 		var ret string
 		return ret
@@ -201,7 +201,7 @@ func (o *GcpAccount) GetClientId() string {
 
 // GetClientIdOk returns a tuple with the ClientId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetClientIdOk() (string, bool) {
+func (o *GCPAccount) GetClientIdOk() (string, bool) {
 	if o == nil || o.ClientId == nil {
 		var ret string
 		return ret, false
@@ -210,7 +210,7 @@ func (o *GcpAccount) GetClientIdOk() (string, bool) {
 }
 
 // HasClientId returns a boolean if a field has been set.
-func (o *GcpAccount) HasClientId() bool {
+func (o *GCPAccount) HasClientId() bool {
 	if o != nil && o.ClientId != nil {
 		return true
 	}
@@ -219,12 +219,12 @@ func (o *GcpAccount) HasClientId() bool {
 }
 
 // SetClientId gets a reference to the given string and assigns it to the ClientId field.
-func (o *GcpAccount) SetClientId(v string) {
+func (o *GCPAccount) SetClientId(v string) {
 	o.ClientId = &v
 }
 
 // GetClientX509CertUrl returns the ClientX509CertUrl field value if set, zero value otherwise.
-func (o *GcpAccount) GetClientX509CertUrl() string {
+func (o *GCPAccount) GetClientX509CertUrl() string {
 	if o == nil || o.ClientX509CertUrl == nil {
 		var ret string
 		return ret
@@ -234,7 +234,7 @@ func (o *GcpAccount) GetClientX509CertUrl() string {
 
 // GetClientX509CertUrlOk returns a tuple with the ClientX509CertUrl field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetClientX509CertUrlOk() (string, bool) {
+func (o *GCPAccount) GetClientX509CertUrlOk() (string, bool) {
 	if o == nil || o.ClientX509CertUrl == nil {
 		var ret string
 		return ret, false
@@ -243,7 +243,7 @@ func (o *GcpAccount) GetClientX509CertUrlOk() (string, bool) {
 }
 
 // HasClientX509CertUrl returns a boolean if a field has been set.
-func (o *GcpAccount) HasClientX509CertUrl() bool {
+func (o *GCPAccount) HasClientX509CertUrl() bool {
 	if o != nil && o.ClientX509CertUrl != nil {
 		return true
 	}
@@ -252,12 +252,12 @@ func (o *GcpAccount) HasClientX509CertUrl() bool {
 }
 
 // SetClientX509CertUrl gets a reference to the given string and assigns it to the ClientX509CertUrl field.
-func (o *GcpAccount) SetClientX509CertUrl(v string) {
+func (o *GCPAccount) SetClientX509CertUrl(v string) {
 	o.ClientX509CertUrl = &v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *GcpAccount) GetErrors() []string {
+func (o *GCPAccount) GetErrors() []string {
 	if o == nil || o.Errors == nil {
 		var ret []string
 		return ret
@@ -267,7 +267,7 @@ func (o *GcpAccount) GetErrors() []string {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetErrorsOk() ([]string, bool) {
+func (o *GCPAccount) GetErrorsOk() ([]string, bool) {
 	if o == nil || o.Errors == nil {
 		var ret []string
 		return ret, false
@@ -276,7 +276,7 @@ func (o *GcpAccount) GetErrorsOk() ([]string, bool) {
 }
 
 // HasErrors returns a boolean if a field has been set.
-func (o *GcpAccount) HasErrors() bool {
+func (o *GCPAccount) HasErrors() bool {
 	if o != nil && o.Errors != nil {
 		return true
 	}
@@ -285,12 +285,12 @@ func (o *GcpAccount) HasErrors() bool {
 }
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
-func (o *GcpAccount) SetErrors(v []string) {
+func (o *GCPAccount) SetErrors(v []string) {
 	o.Errors = &v
 }
 
 // GetHostFilters returns the HostFilters field value if set, zero value otherwise.
-func (o *GcpAccount) GetHostFilters() string {
+func (o *GCPAccount) GetHostFilters() string {
 	if o == nil || o.HostFilters == nil {
 		var ret string
 		return ret
@@ -300,7 +300,7 @@ func (o *GcpAccount) GetHostFilters() string {
 
 // GetHostFiltersOk returns a tuple with the HostFilters field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetHostFiltersOk() (string, bool) {
+func (o *GCPAccount) GetHostFiltersOk() (string, bool) {
 	if o == nil || o.HostFilters == nil {
 		var ret string
 		return ret, false
@@ -309,7 +309,7 @@ func (o *GcpAccount) GetHostFiltersOk() (string, bool) {
 }
 
 // HasHostFilters returns a boolean if a field has been set.
-func (o *GcpAccount) HasHostFilters() bool {
+func (o *GCPAccount) HasHostFilters() bool {
 	if o != nil && o.HostFilters != nil {
 		return true
 	}
@@ -318,12 +318,12 @@ func (o *GcpAccount) HasHostFilters() bool {
 }
 
 // SetHostFilters gets a reference to the given string and assigns it to the HostFilters field.
-func (o *GcpAccount) SetHostFilters(v string) {
+func (o *GCPAccount) SetHostFilters(v string) {
 	o.HostFilters = &v
 }
 
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
-func (o *GcpAccount) GetPrivateKey() string {
+func (o *GCPAccount) GetPrivateKey() string {
 	if o == nil || o.PrivateKey == nil {
 		var ret string
 		return ret
@@ -333,7 +333,7 @@ func (o *GcpAccount) GetPrivateKey() string {
 
 // GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetPrivateKeyOk() (string, bool) {
+func (o *GCPAccount) GetPrivateKeyOk() (string, bool) {
 	if o == nil || o.PrivateKey == nil {
 		var ret string
 		return ret, false
@@ -342,7 +342,7 @@ func (o *GcpAccount) GetPrivateKeyOk() (string, bool) {
 }
 
 // HasPrivateKey returns a boolean if a field has been set.
-func (o *GcpAccount) HasPrivateKey() bool {
+func (o *GCPAccount) HasPrivateKey() bool {
 	if o != nil && o.PrivateKey != nil {
 		return true
 	}
@@ -351,12 +351,12 @@ func (o *GcpAccount) HasPrivateKey() bool {
 }
 
 // SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
-func (o *GcpAccount) SetPrivateKey(v string) {
+func (o *GCPAccount) SetPrivateKey(v string) {
 	o.PrivateKey = &v
 }
 
 // GetPrivateKeyId returns the PrivateKeyId field value if set, zero value otherwise.
-func (o *GcpAccount) GetPrivateKeyId() string {
+func (o *GCPAccount) GetPrivateKeyId() string {
 	if o == nil || o.PrivateKeyId == nil {
 		var ret string
 		return ret
@@ -366,7 +366,7 @@ func (o *GcpAccount) GetPrivateKeyId() string {
 
 // GetPrivateKeyIdOk returns a tuple with the PrivateKeyId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetPrivateKeyIdOk() (string, bool) {
+func (o *GCPAccount) GetPrivateKeyIdOk() (string, bool) {
 	if o == nil || o.PrivateKeyId == nil {
 		var ret string
 		return ret, false
@@ -375,7 +375,7 @@ func (o *GcpAccount) GetPrivateKeyIdOk() (string, bool) {
 }
 
 // HasPrivateKeyId returns a boolean if a field has been set.
-func (o *GcpAccount) HasPrivateKeyId() bool {
+func (o *GCPAccount) HasPrivateKeyId() bool {
 	if o != nil && o.PrivateKeyId != nil {
 		return true
 	}
@@ -384,12 +384,12 @@ func (o *GcpAccount) HasPrivateKeyId() bool {
 }
 
 // SetPrivateKeyId gets a reference to the given string and assigns it to the PrivateKeyId field.
-func (o *GcpAccount) SetPrivateKeyId(v string) {
+func (o *GCPAccount) SetPrivateKeyId(v string) {
 	o.PrivateKeyId = &v
 }
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *GcpAccount) GetProjectId() string {
+func (o *GCPAccount) GetProjectId() string {
 	if o == nil || o.ProjectId == nil {
 		var ret string
 		return ret
@@ -399,7 +399,7 @@ func (o *GcpAccount) GetProjectId() string {
 
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetProjectIdOk() (string, bool) {
+func (o *GCPAccount) GetProjectIdOk() (string, bool) {
 	if o == nil || o.ProjectId == nil {
 		var ret string
 		return ret, false
@@ -408,7 +408,7 @@ func (o *GcpAccount) GetProjectIdOk() (string, bool) {
 }
 
 // HasProjectId returns a boolean if a field has been set.
-func (o *GcpAccount) HasProjectId() bool {
+func (o *GCPAccount) HasProjectId() bool {
 	if o != nil && o.ProjectId != nil {
 		return true
 	}
@@ -417,12 +417,12 @@ func (o *GcpAccount) HasProjectId() bool {
 }
 
 // SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *GcpAccount) SetProjectId(v string) {
+func (o *GCPAccount) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
 // GetTokenUri returns the TokenUri field value if set, zero value otherwise.
-func (o *GcpAccount) GetTokenUri() string {
+func (o *GCPAccount) GetTokenUri() string {
 	if o == nil || o.TokenUri == nil {
 		var ret string
 		return ret
@@ -432,7 +432,7 @@ func (o *GcpAccount) GetTokenUri() string {
 
 // GetTokenUriOk returns a tuple with the TokenUri field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetTokenUriOk() (string, bool) {
+func (o *GCPAccount) GetTokenUriOk() (string, bool) {
 	if o == nil || o.TokenUri == nil {
 		var ret string
 		return ret, false
@@ -441,7 +441,7 @@ func (o *GcpAccount) GetTokenUriOk() (string, bool) {
 }
 
 // HasTokenUri returns a boolean if a field has been set.
-func (o *GcpAccount) HasTokenUri() bool {
+func (o *GCPAccount) HasTokenUri() bool {
 	if o != nil && o.TokenUri != nil {
 		return true
 	}
@@ -450,12 +450,12 @@ func (o *GcpAccount) HasTokenUri() bool {
 }
 
 // SetTokenUri gets a reference to the given string and assigns it to the TokenUri field.
-func (o *GcpAccount) SetTokenUri(v string) {
+func (o *GCPAccount) SetTokenUri(v string) {
 	o.TokenUri = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *GcpAccount) GetType() string {
+func (o *GCPAccount) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -465,7 +465,7 @@ func (o *GcpAccount) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GcpAccount) GetTypeOk() (string, bool) {
+func (o *GCPAccount) GetTypeOk() (string, bool) {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret, false
@@ -474,7 +474,7 @@ func (o *GcpAccount) GetTypeOk() (string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *GcpAccount) HasType() bool {
+func (o *GCPAccount) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -483,11 +483,11 @@ func (o *GcpAccount) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *GcpAccount) SetType(v string) {
+func (o *GCPAccount) SetType(v string) {
 	o.Type = &v
 }
 
-func (o GcpAccount) MarshalJSON() ([]byte, error) {
+func (o GCPAccount) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AuthProviderX509CertUrl != nil {
@@ -532,38 +532,38 @@ func (o GcpAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableGcpAccount struct {
-	value *GcpAccount
+type NullableGCPAccount struct {
+	value *GCPAccount
 	isSet bool
 }
 
-func (v NullableGcpAccount) Get() *GcpAccount {
+func (v NullableGCPAccount) Get() *GCPAccount {
 	return v.value
 }
 
-func (v NullableGcpAccount) Set(val *GcpAccount) {
+func (v NullableGCPAccount) Set(val *GCPAccount) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGcpAccount) IsSet() bool {
+func (v NullableGCPAccount) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableGcpAccount) Unset() {
+func (v NullableGCPAccount) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGcpAccount(val *GcpAccount) *NullableGcpAccount {
-	return &NullableGcpAccount{value: val, isSet: true}
+func NewNullableGCPAccount(val *GCPAccount) *NullableGCPAccount {
+	return &NullableGCPAccount{value: val, isSet: true}
 }
 
-func (v NullableGcpAccount) MarshalJSON() ([]byte, error) {
+func (v NullableGCPAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGcpAccount) UnmarshalJSON(src []byte) error {
+func (v *NullableGCPAccount) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

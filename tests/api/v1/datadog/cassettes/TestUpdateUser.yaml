@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"testupdateuser-1582121592726642000@integration-tests-accnt-for-sdk-ci.com","handle":"testupdateuser-1582121592726642000@integration-tests-accnt-for-sdk-ci.com","name":"TestUpdateUser-1582121592726642000"}
+      {"access_role":"ro","email":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","handle":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","name":"TestUpdateUser-1582305295080841000"}
     form: {}
     headers:
       Accept:
@@ -15,7 +15,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"testupdateuser-1582121592726642000@integration-tests-accnt-for-sdk-ci.com","name":"TestUpdateUser-1582121592726642000","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"testupdateuser-1582121592726642000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/e735e61fcc4aa6463e502436d56809e1?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","name":"TestUpdateUser-1582305295080841000","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/f5d9926e94b62ebd306e282c11e50a65?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -26,13 +26,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:13:13 GMT
+      - Fri, 21 Feb 2020 17:14:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:13:12 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:55 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -41,9 +41,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - j0VNx9cZdAj+uuO7pabHlao4Ioc5q8ovvp4Ja/NYzbHA51zSBYXNvtO+8cOYbE0B
+      - mIWJPPM06xs5rSGFgggpdD5UbOnt6ntntAO8/8YDsVuXnSmp/k0aZ5dEUtAKB7Td
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -60,11 +60,11 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/user/testupdateuser-1582121592726642000%40integration-tests-accnt-for-sdk-ci.com
+    url: https://api.datadoghq.com/api/v1/user/testupdateuser-1582305295080841000%40integration-tests-accnt-for-sdk-ci.com
     method: PUT
   response:
-    body: '{"user":{"disabled":true,"handle":"testupdateuser-1582121592726642000@integration-tests-accnt-for-sdk-ci.com","name":"test
-      update user","title":null,"is_admin":false,"role":null,"access_role":"st","verified":false,"email":"testupdateuser-1582121592726642000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/e735e61fcc4aa6463e502436d56809e1?s=48&d=retro"}}'
+    body: '{"user":{"disabled":true,"handle":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","name":"test
+      update user","title":null,"is_admin":false,"role":null,"access_role":"st","verified":false,"email":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/f5d9926e94b62ebd306e282c11e50a65?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -75,13 +75,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:13:13 GMT
+      - Fri, 21 Feb 2020 17:14:56 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:13:13 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:55 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -90,9 +90,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - A5a5htKhTUF1FdBQZRUZl4RVawKwk2RUtaZz3EDBmdXc0X6i0O7TBEBWn4bIBQ01
+      - gVnECQ7ifaEfJ6BNPsXSglLjlU41ay4U8jXHC6V3+oC4U6gHkBb20H5zrSJj1zee
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -106,7 +106,7 @@ interactions:
       - applcation/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/user/testupdateuser-1582121592726642000%40integration-tests-accnt-for-sdk-ci.com
+    url: https://api.datadoghq.com/api/v1/user/testupdateuser-1582305295080841000%40integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
     body: '{"errors": ["User is already disabled"]}'
@@ -122,7 +122,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:13:13 GMT
+      - Fri, 21 Feb 2020 17:14:56 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -132,7 +132,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

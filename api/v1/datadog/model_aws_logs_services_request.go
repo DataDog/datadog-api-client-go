@@ -12,35 +12,35 @@ import (
 	"encoding/json"
 )
 
-// AwsLogsServicesRequest struct for AwsLogsServicesRequest
-type AwsLogsServicesRequest struct {
+// AWSLogsServicesRequest struct for AWSLogsServicesRequest
+type AWSLogsServicesRequest struct {
 	// Your AWS Account ID without dashes.
 	AccountId string `json:"account_id"`
 	// Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
 	Services []string `json:"services"`
 }
 
-// NewAwsLogsServicesRequest instantiates a new AwsLogsServicesRequest object
+// NewAWSLogsServicesRequest instantiates a new AWSLogsServicesRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsLogsServicesRequest(accountId string, services []string) *AwsLogsServicesRequest {
-	this := AwsLogsServicesRequest{}
+func NewAWSLogsServicesRequest(accountId string, services []string) *AWSLogsServicesRequest {
+	this := AWSLogsServicesRequest{}
 	this.AccountId = accountId
 	this.Services = services
 	return &this
 }
 
-// NewAwsLogsServicesRequestWithDefaults instantiates a new AwsLogsServicesRequest object
+// NewAWSLogsServicesRequestWithDefaults instantiates a new AWSLogsServicesRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAwsLogsServicesRequestWithDefaults() *AwsLogsServicesRequest {
-	this := AwsLogsServicesRequest{}
+func NewAWSLogsServicesRequestWithDefaults() *AWSLogsServicesRequest {
+	this := AWSLogsServicesRequest{}
 	return &this
 }
 
 // GetAccountId returns the AccountId field value
-func (o *AwsLogsServicesRequest) GetAccountId() string {
+func (o *AWSLogsServicesRequest) GetAccountId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -50,12 +50,12 @@ func (o *AwsLogsServicesRequest) GetAccountId() string {
 }
 
 // SetAccountId sets field value
-func (o *AwsLogsServicesRequest) SetAccountId(v string) {
+func (o *AWSLogsServicesRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
 
 // GetServices returns the Services field value
-func (o *AwsLogsServicesRequest) GetServices() []string {
+func (o *AWSLogsServicesRequest) GetServices() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -65,11 +65,11 @@ func (o *AwsLogsServicesRequest) GetServices() []string {
 }
 
 // SetServices sets field value
-func (o *AwsLogsServicesRequest) SetServices(v []string) {
+func (o *AWSLogsServicesRequest) SetServices(v []string) {
 	o.Services = v
 }
 
-func (o AwsLogsServicesRequest) MarshalJSON() ([]byte, error) {
+func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -81,38 +81,38 @@ func (o AwsLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAwsLogsServicesRequest struct {
-	value *AwsLogsServicesRequest
+type NullableAWSLogsServicesRequest struct {
+	value *AWSLogsServicesRequest
 	isSet bool
 }
 
-func (v NullableAwsLogsServicesRequest) Get() *AwsLogsServicesRequest {
+func (v NullableAWSLogsServicesRequest) Get() *AWSLogsServicesRequest {
 	return v.value
 }
 
-func (v NullableAwsLogsServicesRequest) Set(val *AwsLogsServicesRequest) {
+func (v NullableAWSLogsServicesRequest) Set(val *AWSLogsServicesRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAwsLogsServicesRequest) IsSet() bool {
+func (v NullableAWSLogsServicesRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAwsLogsServicesRequest) Unset() {
+func (v NullableAWSLogsServicesRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAwsLogsServicesRequest(val *AwsLogsServicesRequest) *NullableAwsLogsServicesRequest {
-	return &NullableAwsLogsServicesRequest{value: val, isSet: true}
+func NewNullableAWSLogsServicesRequest(val *AWSLogsServicesRequest) *NullableAWSLogsServicesRequest {
+	return &NullableAWSLogsServicesRequest{value: val, isSet: true}
 }
 
-func (v NullableAwsLogsServicesRequest) MarshalJSON() ([]byte, error) {
+func (v NullableAWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAwsLogsServicesRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableAWSLogsServicesRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
