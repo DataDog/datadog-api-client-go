@@ -12,53 +12,53 @@ import (
 	"encoding/json"
 )
 
-// MonitorDeviceId the model 'MonitorDeviceId'
-type MonitorDeviceId string
+// MonitorDeviceID the model 'MonitorDeviceID'
+type MonitorDeviceID string
 
 // List of MonitorDeviceID
 const (
-	MONITORDEVICEID_LAPTOP_LARGE MonitorDeviceId = "laptop_large"
-	MONITORDEVICEID_TABLET       MonitorDeviceId = "tablet"
-	MONITORDEVICEID_MOBILE_SMALL MonitorDeviceId = "mobile_small"
+	MONITORDEVICEID_LAPTOP_LARGE MonitorDeviceID = "laptop_large"
+	MONITORDEVICEID_TABLET       MonitorDeviceID = "tablet"
+	MONITORDEVICEID_MOBILE_SMALL MonitorDeviceID = "mobile_small"
 )
 
 // Ptr returns reference to MonitorDeviceID value
-func (v MonitorDeviceId) Ptr() *MonitorDeviceId {
+func (v MonitorDeviceID) Ptr() *MonitorDeviceID {
 	return &v
 }
 
-type NullableMonitorDeviceId struct {
-	value *MonitorDeviceId
+type NullableMonitorDeviceID struct {
+	value *MonitorDeviceID
 	isSet bool
 }
 
-func (v NullableMonitorDeviceId) Get() *MonitorDeviceId {
+func (v NullableMonitorDeviceID) Get() *MonitorDeviceID {
 	return v.value
 }
 
-func (v NullableMonitorDeviceId) Set(val *MonitorDeviceId) {
+func (v NullableMonitorDeviceID) Set(val *MonitorDeviceID) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMonitorDeviceId) IsSet() bool {
+func (v NullableMonitorDeviceID) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorDeviceId) Unset() {
+func (v NullableMonitorDeviceID) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMonitorDeviceId(val *MonitorDeviceId) *NullableMonitorDeviceId {
-	return &NullableMonitorDeviceId{value: val, isSet: true}
+func NewNullableMonitorDeviceID(val *MonitorDeviceID) *NullableMonitorDeviceID {
+	return &NullableMonitorDeviceID{value: val, isSet: true}
 }
 
-func (v NullableMonitorDeviceId) MarshalJSON() ([]byte, error) {
+func (v NullableMonitorDeviceID) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMonitorDeviceId) UnmarshalJSON(src []byte) error {
+func (v *NullableMonitorDeviceID) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

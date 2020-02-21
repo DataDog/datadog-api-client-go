@@ -1,4 +1,4 @@
-# IpPrefixes
+# IPPrefixes
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIpPrefixes
+### NewIPPrefixes
 
-`func NewIpPrefixes() *IpPrefixes`
+`func NewIPPrefixes() *IPPrefixes`
 
-NewIpPrefixes instantiates a new IpPrefixes object
+NewIPPrefixes instantiates a new IPPrefixes object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewIpPrefixesWithDefaults
+### NewIPPrefixesWithDefaults
 
-`func NewIpPrefixesWithDefaults() *IpPrefixes`
+`func NewIPPrefixesWithDefaults() *IPPrefixes`
 
-NewIpPrefixesWithDefaults instantiates a new IpPrefixes object
+NewIPPrefixesWithDefaults instantiates a new IPPrefixes object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetPrefixesIpv4
 
-`func (o *IpPrefixes) GetPrefixesIpv4() []string`
+`func (o *IPPrefixes) GetPrefixesIpv4() []string`
 
 GetPrefixesIpv4 returns the PrefixesIpv4 field if non-nil, zero value otherwise.
 
 ### GetPrefixesIpv4Ok
 
-`func (o *IpPrefixes) GetPrefixesIpv4Ok() ([]string, bool)`
+`func (o *IPPrefixes) GetPrefixesIpv4Ok() ([]string, bool)`
 
 GetPrefixesIpv4Ok returns a tuple with the PrefixesIpv4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasPrefixesIpv4
 
-`func (o *IpPrefixes) HasPrefixesIpv4() bool`
+`func (o *IPPrefixes) HasPrefixesIpv4() bool`
 
 HasPrefixesIpv4 returns a boolean if a field has been set.
 
 ### SetPrefixesIpv4
 
-`func (o *IpPrefixes) SetPrefixesIpv4(v []string)`
+`func (o *IPPrefixes) SetPrefixesIpv4(v []string)`
 
 SetPrefixesIpv4 gets a reference to the given []string and assigns it to the PrefixesIpv4 field.
 
 ### GetPrefixesIpv6
 
-`func (o *IpPrefixes) GetPrefixesIpv6() []string`
+`func (o *IPPrefixes) GetPrefixesIpv6() []string`
 
 GetPrefixesIpv6 returns the PrefixesIpv6 field if non-nil, zero value otherwise.
 
 ### GetPrefixesIpv6Ok
 
-`func (o *IpPrefixes) GetPrefixesIpv6Ok() ([]string, bool)`
+`func (o *IPPrefixes) GetPrefixesIpv6Ok() ([]string, bool)`
 
 GetPrefixesIpv6Ok returns a tuple with the PrefixesIpv6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasPrefixesIpv6
 
-`func (o *IpPrefixes) HasPrefixesIpv6() bool`
+`func (o *IPPrefixes) HasPrefixesIpv6() bool`
 
 HasPrefixesIpv6 returns a boolean if a field has been set.
 
 ### SetPrefixesIpv6
 
-`func (o *IpPrefixes) SetPrefixesIpv6(v []string)`
+`func (o *IPPrefixes) SetPrefixesIpv6(v []string)`
 
 SetPrefixesIpv6 gets a reference to the given []string and assigns it to the PrefixesIpv6 field.
 

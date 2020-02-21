@@ -12,53 +12,53 @@ import (
 	"encoding/json"
 )
 
-// SloTimeframe the model 'SloTimeframe'
-type SloTimeframe string
+// SLOTimeframe the model 'SLOTimeframe'
+type SLOTimeframe string
 
 // List of SLOTimeframe
 const (
-	SLOTIMEFRAME_SEVEN_DAYS  SloTimeframe = "7d"
-	SLOTIMEFRAME_THIRTY_DAYS SloTimeframe = "30d"
-	SLOTIMEFRAME_NINETY_DAYS SloTimeframe = "90d"
+	SLOTIMEFRAME_SEVEN_DAYS  SLOTimeframe = "7d"
+	SLOTIMEFRAME_THIRTY_DAYS SLOTimeframe = "30d"
+	SLOTIMEFRAME_NINETY_DAYS SLOTimeframe = "90d"
 )
 
 // Ptr returns reference to SLOTimeframe value
-func (v SloTimeframe) Ptr() *SloTimeframe {
+func (v SLOTimeframe) Ptr() *SLOTimeframe {
 	return &v
 }
 
-type NullableSloTimeframe struct {
-	value *SloTimeframe
+type NullableSLOTimeframe struct {
+	value *SLOTimeframe
 	isSet bool
 }
 
-func (v NullableSloTimeframe) Get() *SloTimeframe {
+func (v NullableSLOTimeframe) Get() *SLOTimeframe {
 	return v.value
 }
 
-func (v NullableSloTimeframe) Set(val *SloTimeframe) {
+func (v NullableSLOTimeframe) Set(val *SLOTimeframe) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSloTimeframe) IsSet() bool {
+func (v NullableSLOTimeframe) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSloTimeframe) Unset() {
+func (v NullableSLOTimeframe) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSloTimeframe(val *SloTimeframe) *NullableSloTimeframe {
-	return &NullableSloTimeframe{value: val, isSet: true}
+func NewNullableSLOTimeframe(val *SLOTimeframe) *NullableSLOTimeframe {
+	return &NullableSLOTimeframe{value: val, isSet: true}
 }
 
-func (v NullableSloTimeframe) MarshalJSON() ([]byte, error) {
+func (v NullableSLOTimeframe) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSloTimeframe) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOTimeframe) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

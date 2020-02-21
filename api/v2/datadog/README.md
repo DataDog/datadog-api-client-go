@@ -81,7 +81,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [ApiErrorResponse](docs/ApiErrorResponse.md)
+ - [APIErrorResponse](docs/APIErrorResponse.md)
  - [Creator](docs/Creator.md)
  - [DashboardListAddItemsResponse](docs/DashboardListAddItemsResponse.md)
  - [DashboardListDeleteItemsResponse](docs/DashboardListDeleteItemsResponse.md)

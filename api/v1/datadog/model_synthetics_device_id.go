@@ -12,53 +12,53 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDeviceId the model 'SyntheticsDeviceId'
-type SyntheticsDeviceId string
+// SyntheticsDeviceID the model 'SyntheticsDeviceID'
+type SyntheticsDeviceID string
 
 // List of SyntheticsDeviceID
 const (
-	SYNTHETICSDEVICEID_LAPTOP_LARGE SyntheticsDeviceId = "laptop_large"
-	SYNTHETICSDEVICEID_TABLET       SyntheticsDeviceId = "tablet"
-	SYNTHETICSDEVICEID_MOBILE_SMALL SyntheticsDeviceId = "mobile_small"
+	SYNTHETICSDEVICEID_LAPTOP_LARGE SyntheticsDeviceID = "laptop_large"
+	SYNTHETICSDEVICEID_TABLET       SyntheticsDeviceID = "tablet"
+	SYNTHETICSDEVICEID_MOBILE_SMALL SyntheticsDeviceID = "mobile_small"
 )
 
 // Ptr returns reference to SyntheticsDeviceID value
-func (v SyntheticsDeviceId) Ptr() *SyntheticsDeviceId {
+func (v SyntheticsDeviceID) Ptr() *SyntheticsDeviceID {
 	return &v
 }
 
-type NullableSyntheticsDeviceId struct {
-	value *SyntheticsDeviceId
+type NullableSyntheticsDeviceID struct {
+	value *SyntheticsDeviceID
 	isSet bool
 }
 
-func (v NullableSyntheticsDeviceId) Get() *SyntheticsDeviceId {
+func (v NullableSyntheticsDeviceID) Get() *SyntheticsDeviceID {
 	return v.value
 }
 
-func (v NullableSyntheticsDeviceId) Set(val *SyntheticsDeviceId) {
+func (v NullableSyntheticsDeviceID) Set(val *SyntheticsDeviceID) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsDeviceId) IsSet() bool {
+func (v NullableSyntheticsDeviceID) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsDeviceId) Unset() {
+func (v NullableSyntheticsDeviceID) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsDeviceId(val *SyntheticsDeviceId) *NullableSyntheticsDeviceId {
-	return &NullableSyntheticsDeviceId{value: val, isSet: true}
+func NewNullableSyntheticsDeviceID(val *SyntheticsDeviceID) *NullableSyntheticsDeviceID {
+	return &NullableSyntheticsDeviceID{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsDeviceId) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsDeviceID) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsDeviceId) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsDeviceID) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

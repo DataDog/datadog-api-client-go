@@ -12,31 +12,31 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsApiTestResultFullCheck struct for SyntheticsApiTestResultFullCheck
-type SyntheticsApiTestResultFullCheck struct {
+// SyntheticsAPITestResultFullCheck struct for SyntheticsAPITestResultFullCheck
+type SyntheticsAPITestResultFullCheck struct {
 	Config SyntheticsTestConfig `json:"config"`
 }
 
-// NewSyntheticsApiTestResultFullCheck instantiates a new SyntheticsApiTestResultFullCheck object
+// NewSyntheticsAPITestResultFullCheck instantiates a new SyntheticsAPITestResultFullCheck object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsApiTestResultFullCheck(config SyntheticsTestConfig) *SyntheticsApiTestResultFullCheck {
-	this := SyntheticsApiTestResultFullCheck{}
+func NewSyntheticsAPITestResultFullCheck(config SyntheticsTestConfig) *SyntheticsAPITestResultFullCheck {
+	this := SyntheticsAPITestResultFullCheck{}
 	this.Config = config
 	return &this
 }
 
-// NewSyntheticsApiTestResultFullCheckWithDefaults instantiates a new SyntheticsApiTestResultFullCheck object
+// NewSyntheticsAPITestResultFullCheckWithDefaults instantiates a new SyntheticsAPITestResultFullCheck object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsApiTestResultFullCheckWithDefaults() *SyntheticsApiTestResultFullCheck {
-	this := SyntheticsApiTestResultFullCheck{}
+func NewSyntheticsAPITestResultFullCheckWithDefaults() *SyntheticsAPITestResultFullCheck {
+	this := SyntheticsAPITestResultFullCheck{}
 	return &this
 }
 
 // GetConfig returns the Config field value
-func (o *SyntheticsApiTestResultFullCheck) GetConfig() SyntheticsTestConfig {
+func (o *SyntheticsAPITestResultFullCheck) GetConfig() SyntheticsTestConfig {
 	if o == nil {
 		var ret SyntheticsTestConfig
 		return ret
@@ -46,11 +46,11 @@ func (o *SyntheticsApiTestResultFullCheck) GetConfig() SyntheticsTestConfig {
 }
 
 // SetConfig sets field value
-func (o *SyntheticsApiTestResultFullCheck) SetConfig(v SyntheticsTestConfig) {
+func (o *SyntheticsAPITestResultFullCheck) SetConfig(v SyntheticsTestConfig) {
 	o.Config = v
 }
 
-func (o SyntheticsApiTestResultFullCheck) MarshalJSON() ([]byte, error) {
+func (o SyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -59,38 +59,38 @@ func (o SyntheticsApiTestResultFullCheck) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableSyntheticsApiTestResultFullCheck struct {
-	value *SyntheticsApiTestResultFullCheck
+type NullableSyntheticsAPITestResultFullCheck struct {
+	value *SyntheticsAPITestResultFullCheck
 	isSet bool
 }
 
-func (v NullableSyntheticsApiTestResultFullCheck) Get() *SyntheticsApiTestResultFullCheck {
+func (v NullableSyntheticsAPITestResultFullCheck) Get() *SyntheticsAPITestResultFullCheck {
 	return v.value
 }
 
-func (v NullableSyntheticsApiTestResultFullCheck) Set(val *SyntheticsApiTestResultFullCheck) {
+func (v NullableSyntheticsAPITestResultFullCheck) Set(val *SyntheticsAPITestResultFullCheck) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsApiTestResultFullCheck) IsSet() bool {
+func (v NullableSyntheticsAPITestResultFullCheck) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsApiTestResultFullCheck) Unset() {
+func (v NullableSyntheticsAPITestResultFullCheck) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsApiTestResultFullCheck(val *SyntheticsApiTestResultFullCheck) *NullableSyntheticsApiTestResultFullCheck {
-	return &NullableSyntheticsApiTestResultFullCheck{value: val, isSet: true}
+func NewNullableSyntheticsAPITestResultFullCheck(val *SyntheticsAPITestResultFullCheck) *NullableSyntheticsAPITestResultFullCheck {
+	return &NullableSyntheticsAPITestResultFullCheck{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsApiTestResultFullCheck) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsApiTestResultFullCheck) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsAPITestResultFullCheck) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -20,7 +20,7 @@ type HistoryServiceLevelObjectiveResponseData struct {
 	Overall *HistoryServiceLevelObjectiveOverall `json:"overall,omitempty"`
 	Series  *HistoryServiceLevelObjectiveMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
-	Thresholds *map[string]SloThreshold `json:"thresholds,omitempty"`
+	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
 	// the `to` timestamp in epoch seconds
 	ToTs *int64 `json:"to_ts,omitempty"`
 }
@@ -175,9 +175,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v HistoryServiceLev
 }
 
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SloThreshold {
+func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SLOThreshold {
 	if o == nil || o.Thresholds == nil {
-		var ret map[string]SloThreshold
+		var ret map[string]SLOThreshold
 		return ret
 	}
 	return *o.Thresholds
@@ -185,9 +185,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]Sl
 
 // GetThresholdsOk returns a tuple with the Thresholds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SloThreshold, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SLOThreshold, bool) {
 	if o == nil || o.Thresholds == nil {
-		var ret map[string]SloThreshold
+		var ret map[string]SLOThreshold
 		return ret, false
 	}
 	return *o.Thresholds, true
@@ -202,8 +202,8 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasThresholds() bool {
 	return false
 }
 
-// SetThresholds gets a reference to the given map[string]SloThreshold and assigns it to the Thresholds field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]SloThreshold) {
+// SetThresholds gets a reference to the given map[string]SLOThreshold and assigns it to the Thresholds field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]SLOThreshold) {
 	o.Thresholds = &v
 }
 

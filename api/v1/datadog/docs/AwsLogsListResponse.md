@@ -1,104 +1,104 @@
-# AwsLogsListResponse
+# AWSLogsListResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
-**Lambdas** | Pointer to [**[]AwsLogsListResponseLambdas**](AWSLogsListResponse_lambdas.md) | List of ARNs configured in your Datadog account. | [optional] 
+**Lambdas** | Pointer to [**[]AWSLogsListResponseLambdas**](AWSLogsListResponse_lambdas.md) | List of ARNs configured in your Datadog account. | [optional] 
 **Services** | Pointer to **[]string** | Array of services IDs. | [optional] 
 
 ## Methods
 
-### NewAwsLogsListResponse
+### NewAWSLogsListResponse
 
-`func NewAwsLogsListResponse() *AwsLogsListResponse`
+`func NewAWSLogsListResponse() *AWSLogsListResponse`
 
-NewAwsLogsListResponse instantiates a new AwsLogsListResponse object
+NewAWSLogsListResponse instantiates a new AWSLogsListResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAwsLogsListResponseWithDefaults
+### NewAWSLogsListResponseWithDefaults
 
-`func NewAwsLogsListResponseWithDefaults() *AwsLogsListResponse`
+`func NewAWSLogsListResponseWithDefaults() *AWSLogsListResponse`
 
-NewAwsLogsListResponseWithDefaults instantiates a new AwsLogsListResponse object
+NewAWSLogsListResponseWithDefaults instantiates a new AWSLogsListResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAccountId
 
-`func (o *AwsLogsListResponse) GetAccountId() string`
+`func (o *AWSLogsListResponse) GetAccountId() string`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *AwsLogsListResponse) GetAccountIdOk() (string, bool)`
+`func (o *AWSLogsListResponse) GetAccountIdOk() (string, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasAccountId
 
-`func (o *AwsLogsListResponse) HasAccountId() bool`
+`func (o *AWSLogsListResponse) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
 
 ### SetAccountId
 
-`func (o *AwsLogsListResponse) SetAccountId(v string)`
+`func (o *AWSLogsListResponse) SetAccountId(v string)`
 
 SetAccountId gets a reference to the given string and assigns it to the AccountId field.
 
 ### GetLambdas
 
-`func (o *AwsLogsListResponse) GetLambdas() []AwsLogsListResponseLambdas`
+`func (o *AWSLogsListResponse) GetLambdas() []AWSLogsListResponseLambdas`
 
 GetLambdas returns the Lambdas field if non-nil, zero value otherwise.
 
 ### GetLambdasOk
 
-`func (o *AwsLogsListResponse) GetLambdasOk() ([]AwsLogsListResponseLambdas, bool)`
+`func (o *AWSLogsListResponse) GetLambdasOk() ([]AWSLogsListResponseLambdas, bool)`
 
 GetLambdasOk returns a tuple with the Lambdas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasLambdas
 
-`func (o *AwsLogsListResponse) HasLambdas() bool`
+`func (o *AWSLogsListResponse) HasLambdas() bool`
 
 HasLambdas returns a boolean if a field has been set.
 
 ### SetLambdas
 
-`func (o *AwsLogsListResponse) SetLambdas(v []AwsLogsListResponseLambdas)`
+`func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsListResponseLambdas)`
 
-SetLambdas gets a reference to the given []AwsLogsListResponseLambdas and assigns it to the Lambdas field.
+SetLambdas gets a reference to the given []AWSLogsListResponseLambdas and assigns it to the Lambdas field.
 
 ### GetServices
 
-`func (o *AwsLogsListResponse) GetServices() []string`
+`func (o *AWSLogsListResponse) GetServices() []string`
 
 GetServices returns the Services field if non-nil, zero value otherwise.
 
 ### GetServicesOk
 
-`func (o *AwsLogsListResponse) GetServicesOk() ([]string, bool)`
+`func (o *AWSLogsListResponse) GetServicesOk() ([]string, bool)`
 
 GetServicesOk returns a tuple with the Services field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasServices
 
-`func (o *AwsLogsListResponse) HasServices() bool`
+`func (o *AWSLogsListResponse) HasServices() bool`
 
 HasServices returns a boolean if a field has been set.
 
 ### SetServices
 
-`func (o *AwsLogsListResponse) SetServices(v []string)`
+`func (o *AWSLogsListResponse) SetServices(v []string)`
 
 SetServices gets a reference to the given []string and assigns it to the Services field.
 

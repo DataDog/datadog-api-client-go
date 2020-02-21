@@ -1,4 +1,4 @@
-# HttpMethod
+# HTTPMethod
 
 ## Properties
 

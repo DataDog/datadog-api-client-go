@@ -898,7 +898,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 11:06:39 GMT
+      - Fri, 21 Feb 2020 10:01:12 GMT
       Last-Modified:
       - Wed, 13 Nov 2019 16:02:25 GMT
       Server:
@@ -906,11 +906,11 @@ interactions:
       Vary:
       - Accept-Encoding
       Via:
-      - 1.1 06bb36c6f8415e5c64e03df316bffb5b.cloudfront.net (CloudFront)
+      - 1.1 90515c29ffc08c36814da3b1fe9d04e8.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - SZe3bYZweGvRaPyPJD08PXuc7WtRGiJjbRsaenKMKYzrKtWjz6ffcw==
+      - Wzj-Ce23TVHYstj36elgu5uJh5Gopn80b1Kvh6rzZ82BI_l-1C-Wmg==
       X-Amz-Cf-Pop:
-      - MAD50-C1
+      - CDG53-C1
       X-Cache:
       - RefreshHit from cloudfront
     status: 200 OK

@@ -1,4 +1,4 @@
-# AwsLogsServicesRequest
+# AWSLogsServicesRequest
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAwsLogsServicesRequest
+### NewAWSLogsServicesRequest
 
-`func NewAwsLogsServicesRequest(accountId string, services []string, ) *AwsLogsServicesRequest`
+`func NewAWSLogsServicesRequest(accountId string, services []string, ) *AWSLogsServicesRequest`
 
-NewAwsLogsServicesRequest instantiates a new AwsLogsServicesRequest object
+NewAWSLogsServicesRequest instantiates a new AWSLogsServicesRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAwsLogsServicesRequestWithDefaults
+### NewAWSLogsServicesRequestWithDefaults
 
-`func NewAwsLogsServicesRequestWithDefaults() *AwsLogsServicesRequest`
+`func NewAWSLogsServicesRequestWithDefaults() *AWSLogsServicesRequest`
 
-NewAwsLogsServicesRequestWithDefaults instantiates a new AwsLogsServicesRequest object
+NewAWSLogsServicesRequestWithDefaults instantiates a new AWSLogsServicesRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAccountId
 
-`func (o *AwsLogsServicesRequest) GetAccountId() string`
+`func (o *AWSLogsServicesRequest) GetAccountId() string`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *AwsLogsServicesRequest) GetAccountIdOk() (string, bool)`
+`func (o *AWSLogsServicesRequest) GetAccountIdOk() (string, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasAccountId
 
-`func (o *AwsLogsServicesRequest) HasAccountId() bool`
+`func (o *AWSLogsServicesRequest) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
 
 ### SetAccountId
 
-`func (o *AwsLogsServicesRequest) SetAccountId(v string)`
+`func (o *AWSLogsServicesRequest) SetAccountId(v string)`
 
 SetAccountId gets a reference to the given string and assigns it to the AccountId field.
 
 ### GetServices
 
-`func (o *AwsLogsServicesRequest) GetServices() []string`
+`func (o *AWSLogsServicesRequest) GetServices() []string`
 
 GetServices returns the Services field if non-nil, zero value otherwise.
 
 ### GetServicesOk
 
-`func (o *AwsLogsServicesRequest) GetServicesOk() ([]string, bool)`
+`func (o *AWSLogsServicesRequest) GetServicesOk() ([]string, bool)`
 
 GetServicesOk returns a tuple with the Services field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasServices
 
-`func (o *AwsLogsServicesRequest) HasServices() bool`
+`func (o *AWSLogsServicesRequest) HasServices() bool`
 
 HasServices returns a boolean if a field has been set.
 
 ### SetServices
 
-`func (o *AwsLogsServicesRequest) SetServices(v []string)`
+`func (o *AWSLogsServicesRequest) SetServices(v []string)`
 
 SetServices gets a reference to the given []string and assigns it to the Services field.
 

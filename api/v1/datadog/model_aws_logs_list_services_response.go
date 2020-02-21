@@ -12,33 +12,33 @@ import (
 	"encoding/json"
 )
 
-// AwsLogsListServicesResponse struct for AwsLogsListServicesResponse
-type AwsLogsListServicesResponse struct {
+// AWSLogsListServicesResponse struct for AWSLogsListServicesResponse
+type AWSLogsListServicesResponse struct {
 	// Key value in returned object.
 	Id *string `json:"id,omitempty"`
 	// Name of service available for configuration with Datadog logs.
 	Label *string `json:"label,omitempty"`
 }
 
-// NewAwsLogsListServicesResponse instantiates a new AwsLogsListServicesResponse object
+// NewAWSLogsListServicesResponse instantiates a new AWSLogsListServicesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsLogsListServicesResponse() *AwsLogsListServicesResponse {
-	this := AwsLogsListServicesResponse{}
+func NewAWSLogsListServicesResponse() *AWSLogsListServicesResponse {
+	this := AWSLogsListServicesResponse{}
 	return &this
 }
 
-// NewAwsLogsListServicesResponseWithDefaults instantiates a new AwsLogsListServicesResponse object
+// NewAWSLogsListServicesResponseWithDefaults instantiates a new AWSLogsListServicesResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAwsLogsListServicesResponseWithDefaults() *AwsLogsListServicesResponse {
-	this := AwsLogsListServicesResponse{}
+func NewAWSLogsListServicesResponseWithDefaults() *AWSLogsListServicesResponse {
+	this := AWSLogsListServicesResponse{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *AwsLogsListServicesResponse) GetId() string {
+func (o *AWSLogsListServicesResponse) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -48,7 +48,7 @@ func (o *AwsLogsListServicesResponse) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsListServicesResponse) GetIdOk() (string, bool) {
+func (o *AWSLogsListServicesResponse) GetIdOk() (string, bool) {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret, false
@@ -57,7 +57,7 @@ func (o *AwsLogsListServicesResponse) GetIdOk() (string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *AwsLogsListServicesResponse) HasId() bool {
+func (o *AWSLogsListServicesResponse) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -66,12 +66,12 @@ func (o *AwsLogsListServicesResponse) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *AwsLogsListServicesResponse) SetId(v string) {
+func (o *AWSLogsListServicesResponse) SetId(v string) {
 	o.Id = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
-func (o *AwsLogsListServicesResponse) GetLabel() string {
+func (o *AWSLogsListServicesResponse) GetLabel() string {
 	if o == nil || o.Label == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *AwsLogsListServicesResponse) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsListServicesResponse) GetLabelOk() (string, bool) {
+func (o *AWSLogsListServicesResponse) GetLabelOk() (string, bool) {
 	if o == nil || o.Label == nil {
 		var ret string
 		return ret, false
@@ -90,7 +90,7 @@ func (o *AwsLogsListServicesResponse) GetLabelOk() (string, bool) {
 }
 
 // HasLabel returns a boolean if a field has been set.
-func (o *AwsLogsListServicesResponse) HasLabel() bool {
+func (o *AWSLogsListServicesResponse) HasLabel() bool {
 	if o != nil && o.Label != nil {
 		return true
 	}
@@ -99,11 +99,11 @@ func (o *AwsLogsListServicesResponse) HasLabel() bool {
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *AwsLogsListServicesResponse) SetLabel(v string) {
+func (o *AWSLogsListServicesResponse) SetLabel(v string) {
 	o.Label = &v
 }
 
-func (o AwsLogsListServicesResponse) MarshalJSON() ([]byte, error) {
+func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -115,38 +115,38 @@ func (o AwsLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAwsLogsListServicesResponse struct {
-	value *AwsLogsListServicesResponse
+type NullableAWSLogsListServicesResponse struct {
+	value *AWSLogsListServicesResponse
 	isSet bool
 }
 
-func (v NullableAwsLogsListServicesResponse) Get() *AwsLogsListServicesResponse {
+func (v NullableAWSLogsListServicesResponse) Get() *AWSLogsListServicesResponse {
 	return v.value
 }
 
-func (v NullableAwsLogsListServicesResponse) Set(val *AwsLogsListServicesResponse) {
+func (v NullableAWSLogsListServicesResponse) Set(val *AWSLogsListServicesResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAwsLogsListServicesResponse) IsSet() bool {
+func (v NullableAWSLogsListServicesResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAwsLogsListServicesResponse) Unset() {
+func (v NullableAWSLogsListServicesResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAwsLogsListServicesResponse(val *AwsLogsListServicesResponse) *NullableAwsLogsListServicesResponse {
-	return &NullableAwsLogsListServicesResponse{value: val, isSet: true}
+func NewNullableAWSLogsListServicesResponse(val *AWSLogsListServicesResponse) *NullableAWSLogsListServicesResponse {
+	return &NullableAWSLogsListServicesResponse{value: val, isSet: true}
 }
 
-func (v NullableAwsLogsListServicesResponse) MarshalJSON() ([]byte, error) {
+func (v NullableAWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAwsLogsListServicesResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableAWSLogsListServicesResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

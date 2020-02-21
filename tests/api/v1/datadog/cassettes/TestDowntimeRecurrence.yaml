@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"once a year","recurrence":{"period":1,"type":"years"},"scope":["*"],"start":1582121400,"timezone":"Etc/UTC"}
+      {"message":"once a year","recurrence":{"period":1,"type":"years"},"scope":["*"],"start":1582305232,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -15,8 +15,8 @@ interactions:
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"recurrence":{"until_date":null,"until_occurrences":null,"week_days":null,"type":"years","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582121400,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"once
-      a year","downtime_type":0,"id":741984777,"updater_id":null}'
+    body: '{"recurrence":{"until_date":null,"until_occurrences":null,"week_days":null,"type":"years","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582305232,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"once
+      a year","downtime_type":0,"id":744187430,"updater_id":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -27,13 +27,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 19 Feb 2020 14:10:00 GMT
+      - Fri, 21 Feb 2020 17:13:52 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:00 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:52 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - KHJbOoqp3I4BOBzIFnc/Ois3eg3Rjmudy0YalRpnXQEDXDoppykpDMDaJPIufi9t
+      - kqXz3OvR7iajEJOdRFWpzJtcDHRumYwGfjdF12Vd65Xt1uV9T6lEO/K0lkxmcRvl
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -58,7 +58,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/downtime/741984777
+    url: https://api.datadoghq.com/api/v1/downtime/744187430
     method: DELETE
   response:
     body: ""
@@ -74,22 +74,22 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Wed, 19 Feb 2020 14:10:02 GMT
+      - Fri, 21 Feb 2020 17:13:52 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:02 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:52 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - PKDIrz8Hcluof9oNzY3q1BouPTowe6nlZ4slm6KLsMEc/9DaK1hteKVCh6mza/IQ
+      - XsUcj00kgZUn78/yrMgBc2B4U9QizwFFNtN2OKmtTvmSRTdL165j4Ltg6xvjCzDU
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -97,7 +97,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"message":"invalid type hours","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1582121400,"timezone":"Etc/UTC"}
+      {"message":"invalid type hours","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1582305232,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -122,7 +122,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:02 GMT
+      - Fri, 21 Feb 2020 17:13:52 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -132,7 +132,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -140,7 +140,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"message":"invalid weekdays","recurrence":{"period":1,"type":"weeks","week_days":["mon","tue"]},"scope":["*"],"start":1582121400,"timezone":"Etc/UTC"}
+      {"message":"invalid weekdays","recurrence":{"period":1,"type":"weeks","week_days":["mon","tue"]},"scope":["*"],"start":1582305232,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -166,7 +166,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:02 GMT
+      - Fri, 21 Feb 2020 17:13:53 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -176,7 +176,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -184,7 +184,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"message":"until date","recurrence":{"period":1,"type":"weeks","until_date":1583935800,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1582121400,"timezone":"Etc/UTC"}
+      {"message":"until date","recurrence":{"period":1,"type":"weeks","until_date":1584119632,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1582305232,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -196,8 +196,8 @@ interactions:
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"recurrence":{"until_date":1583935800,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582121400,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"until
-      date","downtime_type":0,"id":741984798,"updater_id":null}'
+    body: '{"recurrence":{"until_date":1584119632,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582305232,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"until
+      date","downtime_type":0,"id":744187434,"updater_id":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -208,13 +208,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 19 Feb 2020 14:10:02 GMT
+      - Fri, 21 Feb 2020 17:13:53 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:02 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:53 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -223,9 +223,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - WyM4veckZw3QTGGZ+Ro8psXMR12RERTyuAWc4KNrn9Mfk0tQy+xf5Ofi04GlB+uh
+      - mGJe6qmS66N9ddKWdHwHEzQK9VHuaMNr7+EsVTKliCkGq+ayJZmadUyCSwID4him
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -239,7 +239,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/downtime/741984798
+    url: https://api.datadoghq.com/api/v1/downtime/744187434
     method: DELETE
   response:
     body: ""
@@ -255,22 +255,22 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Wed, 19 Feb 2020 14:10:03 GMT
+      - Fri, 21 Feb 2020 17:13:53 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:03 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:53 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - LOVPYRkvxiVgJlSU7tTR5QW5I3IByFfoP5oRWZk6jukYFQiYGeCZXWoo6PiPBzrK
+      - e8t0cvW5uVKXk1zUsTcAcDpqv28dgy+lCs/R2sCfbKW6stomFiq2a4ijzxRdPBn5
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -278,7 +278,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"message":"until occurrences","recurrence":{"period":1,"type":"weeks","until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1582121400,"timezone":"Etc/UTC"}
+      {"message":"until occurrences","recurrence":{"period":1,"type":"weeks","until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1582305232,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -290,8 +290,8 @@ interactions:
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"recurrence":{"until_date":null,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582121400,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"until
-      occurrences","downtime_type":0,"id":741984801,"updater_id":null}'
+    body: '{"recurrence":{"until_date":null,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582305232,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"until
+      occurrences","downtime_type":0,"id":744187455,"updater_id":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -302,13 +302,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 19 Feb 2020 14:10:03 GMT
+      - Fri, 21 Feb 2020 17:13:53 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:03 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:53 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -317,9 +317,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - wNaVyRyNliLxKeX4pqFHOJTBG1dRCwo1/ihrnAf0GXtGNGahc1XK8Xzj/ssA3R20
+      - svhoihUM58m7WJ4Z4lY5tmaXf/MnplHzAbMByuVznFW8yf3JIFAZgW/pCvMnq4iN
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -333,7 +333,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/downtime/741984801
+    url: https://api.datadoghq.com/api/v1/downtime/744187455
     method: DELETE
   response:
     body: ""
@@ -349,22 +349,22 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Wed, 19 Feb 2020 14:10:03 GMT
+      - Fri, 21 Feb 2020 17:13:53 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:03 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:53 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - mIWJPPM06xs5rSGFgggpdD5UbOnt6ntntAO8/8YDsVuXnSmp/k0aZ5dEUtAKB7Td
+      - oQ/oy4ezTZ+/WzL4afBMlDjLd5w62e5H15hF5BJChw1Gte+Sq8B8tB7i6vlTiLL0
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -372,7 +372,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"message":"until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1583935800,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1582121400,"timezone":"Etc/UTC"}
+      {"message":"until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1584119632,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1582305232,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -397,7 +397,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:03 GMT
+      - Fri, 21 Feb 2020 17:13:53 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -407,7 +407,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2200256"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

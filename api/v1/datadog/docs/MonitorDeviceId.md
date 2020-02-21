@@ -1,4 +1,4 @@
-# MonitorDeviceId
+# MonitorDeviceID
 
 ## Properties
 

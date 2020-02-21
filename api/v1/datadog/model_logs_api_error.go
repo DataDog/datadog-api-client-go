@@ -12,35 +12,35 @@ import (
 	"encoding/json"
 )
 
-// LogsApiError Error returned by the Logs API
-type LogsApiError struct {
+// LogsAPIError Error returned by the Logs API
+type LogsAPIError struct {
 	// Code identifying the error
 	Code *string `json:"code,omitempty"`
 	// Additional error details
-	Details *[]LogsApiError `json:"details,omitempty"`
+	Details *[]LogsAPIError `json:"details,omitempty"`
 	// Error message
 	Message *string `json:"message,omitempty"`
 }
 
-// NewLogsApiError instantiates a new LogsApiError object
+// NewLogsAPIError instantiates a new LogsAPIError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsApiError() *LogsApiError {
-	this := LogsApiError{}
+func NewLogsAPIError() *LogsAPIError {
+	this := LogsAPIError{}
 	return &this
 }
 
-// NewLogsApiErrorWithDefaults instantiates a new LogsApiError object
+// NewLogsAPIErrorWithDefaults instantiates a new LogsAPIError object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLogsApiErrorWithDefaults() *LogsApiError {
-	this := LogsApiError{}
+func NewLogsAPIErrorWithDefaults() *LogsAPIError {
+	this := LogsAPIError{}
 	return &this
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *LogsApiError) GetCode() string {
+func (o *LogsAPIError) GetCode() string {
 	if o == nil || o.Code == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *LogsApiError) GetCode() string {
 
 // GetCodeOk returns a tuple with the Code field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsApiError) GetCodeOk() (string, bool) {
+func (o *LogsAPIError) GetCodeOk() (string, bool) {
 	if o == nil || o.Code == nil {
 		var ret string
 		return ret, false
@@ -59,7 +59,7 @@ func (o *LogsApiError) GetCodeOk() (string, bool) {
 }
 
 // HasCode returns a boolean if a field has been set.
-func (o *LogsApiError) HasCode() bool {
+func (o *LogsAPIError) HasCode() bool {
 	if o != nil && o.Code != nil {
 		return true
 	}
@@ -68,14 +68,14 @@ func (o *LogsApiError) HasCode() bool {
 }
 
 // SetCode gets a reference to the given string and assigns it to the Code field.
-func (o *LogsApiError) SetCode(v string) {
+func (o *LogsAPIError) SetCode(v string) {
 	o.Code = &v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
-func (o *LogsApiError) GetDetails() []LogsApiError {
+func (o *LogsAPIError) GetDetails() []LogsAPIError {
 	if o == nil || o.Details == nil {
-		var ret []LogsApiError
+		var ret []LogsAPIError
 		return ret
 	}
 	return *o.Details
@@ -83,16 +83,16 @@ func (o *LogsApiError) GetDetails() []LogsApiError {
 
 // GetDetailsOk returns a tuple with the Details field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsApiError) GetDetailsOk() ([]LogsApiError, bool) {
+func (o *LogsAPIError) GetDetailsOk() ([]LogsAPIError, bool) {
 	if o == nil || o.Details == nil {
-		var ret []LogsApiError
+		var ret []LogsAPIError
 		return ret, false
 	}
 	return *o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
-func (o *LogsApiError) HasDetails() bool {
+func (o *LogsAPIError) HasDetails() bool {
 	if o != nil && o.Details != nil {
 		return true
 	}
@@ -100,13 +100,13 @@ func (o *LogsApiError) HasDetails() bool {
 	return false
 }
 
-// SetDetails gets a reference to the given []LogsApiError and assigns it to the Details field.
-func (o *LogsApiError) SetDetails(v []LogsApiError) {
+// SetDetails gets a reference to the given []LogsAPIError and assigns it to the Details field.
+func (o *LogsAPIError) SetDetails(v []LogsAPIError) {
 	o.Details = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *LogsApiError) GetMessage() string {
+func (o *LogsAPIError) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret
@@ -116,7 +116,7 @@ func (o *LogsApiError) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsApiError) GetMessageOk() (string, bool) {
+func (o *LogsAPIError) GetMessageOk() (string, bool) {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret, false
@@ -125,7 +125,7 @@ func (o *LogsApiError) GetMessageOk() (string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *LogsApiError) HasMessage() bool {
+func (o *LogsAPIError) HasMessage() bool {
 	if o != nil && o.Message != nil {
 		return true
 	}
@@ -134,11 +134,11 @@ func (o *LogsApiError) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *LogsApiError) SetMessage(v string) {
+func (o *LogsAPIError) SetMessage(v string) {
 	o.Message = &v
 }
 
-func (o LogsApiError) MarshalJSON() ([]byte, error) {
+func (o LogsAPIError) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Code != nil {
@@ -153,38 +153,38 @@ func (o LogsApiError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableLogsApiError struct {
-	value *LogsApiError
+type NullableLogsAPIError struct {
+	value *LogsAPIError
 	isSet bool
 }
 
-func (v NullableLogsApiError) Get() *LogsApiError {
+func (v NullableLogsAPIError) Get() *LogsAPIError {
 	return v.value
 }
 
-func (v NullableLogsApiError) Set(val *LogsApiError) {
+func (v NullableLogsAPIError) Set(val *LogsAPIError) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogsApiError) IsSet() bool {
+func (v NullableLogsAPIError) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsApiError) Unset() {
+func (v NullableLogsAPIError) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogsApiError(val *LogsApiError) *NullableLogsApiError {
-	return &NullableLogsApiError{value: val, isSet: true}
+func NewNullableLogsAPIError(val *LogsAPIError) *NullableLogsAPIError {
+	return &NullableLogsAPIError{value: val, isSet: true}
 }
 
-func (v NullableLogsApiError) MarshalJSON() ([]byte, error) {
+func (v NullableLogsAPIError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogsApiError) UnmarshalJSON(src []byte) error {
+func (v *NullableLogsAPIError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

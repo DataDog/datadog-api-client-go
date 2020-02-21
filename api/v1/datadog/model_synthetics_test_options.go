@@ -15,7 +15,7 @@ import (
 // SyntheticsTestOptions struct for SyntheticsTestOptions
 type SyntheticsTestOptions struct {
 	AcceptSelfSigned  *bool                       `json:"accept_self_signed,omitempty"`
-	DeviceIds         *[]SyntheticsDeviceId       `json:"device_ids,omitempty"`
+	DeviceIds         *[]SyntheticsDeviceID       `json:"device_ids,omitempty"`
 	FollowRedirects   *bool                       `json:"follow_redirects,omitempty"`
 	MinLocationFailed *int64                      `json:"min_location_failed,omitempty"`
 	Retry             *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
@@ -73,9 +73,9 @@ func (o *SyntheticsTestOptions) SetAcceptSelfSigned(v bool) {
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
-func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceId {
+func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceID {
 	if o == nil || o.DeviceIds == nil {
-		var ret []SyntheticsDeviceId
+		var ret []SyntheticsDeviceID
 		return ret
 	}
 	return *o.DeviceIds
@@ -83,9 +83,9 @@ func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceId {
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetDeviceIdsOk() ([]SyntheticsDeviceId, bool) {
+func (o *SyntheticsTestOptions) GetDeviceIdsOk() ([]SyntheticsDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
-		var ret []SyntheticsDeviceId
+		var ret []SyntheticsDeviceID
 		return ret, false
 	}
 	return *o.DeviceIds, true
@@ -100,8 +100,8 @@ func (o *SyntheticsTestOptions) HasDeviceIds() bool {
 	return false
 }
 
-// SetDeviceIds gets a reference to the given []SyntheticsDeviceId and assigns it to the DeviceIds field.
-func (o *SyntheticsTestOptions) SetDeviceIds(v []SyntheticsDeviceId) {
+// SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
+func (o *SyntheticsTestOptions) SetDeviceIds(v []SyntheticsDeviceID) {
 	o.DeviceIds = &v
 }
 

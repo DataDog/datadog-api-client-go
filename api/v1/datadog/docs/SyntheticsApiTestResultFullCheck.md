@@ -1,4 +1,4 @@
-# SyntheticsApiTestResultFullCheck
+# SyntheticsAPITestResultFullCheck
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSyntheticsApiTestResultFullCheck
+### NewSyntheticsAPITestResultFullCheck
 
-`func NewSyntheticsApiTestResultFullCheck(config SyntheticsTestConfig, ) *SyntheticsApiTestResultFullCheck`
+`func NewSyntheticsAPITestResultFullCheck(config SyntheticsTestConfig, ) *SyntheticsAPITestResultFullCheck`
 
-NewSyntheticsApiTestResultFullCheck instantiates a new SyntheticsApiTestResultFullCheck object
+NewSyntheticsAPITestResultFullCheck instantiates a new SyntheticsAPITestResultFullCheck object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSyntheticsApiTestResultFullCheckWithDefaults
+### NewSyntheticsAPITestResultFullCheckWithDefaults
 
-`func NewSyntheticsApiTestResultFullCheckWithDefaults() *SyntheticsApiTestResultFullCheck`
+`func NewSyntheticsAPITestResultFullCheckWithDefaults() *SyntheticsAPITestResultFullCheck`
 
-NewSyntheticsApiTestResultFullCheckWithDefaults instantiates a new SyntheticsApiTestResultFullCheck object
+NewSyntheticsAPITestResultFullCheckWithDefaults instantiates a new SyntheticsAPITestResultFullCheck object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetConfig
 
-`func (o *SyntheticsApiTestResultFullCheck) GetConfig() SyntheticsTestConfig`
+`func (o *SyntheticsAPITestResultFullCheck) GetConfig() SyntheticsTestConfig`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *SyntheticsApiTestResultFullCheck) GetConfigOk() (SyntheticsTestConfig, bool)`
+`func (o *SyntheticsAPITestResultFullCheck) GetConfigOk() (SyntheticsTestConfig, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasConfig
 
-`func (o *SyntheticsApiTestResultFullCheck) HasConfig() bool`
+`func (o *SyntheticsAPITestResultFullCheck) HasConfig() bool`
 
 HasConfig returns a boolean if a field has been set.
 
 ### SetConfig
 
-`func (o *SyntheticsApiTestResultFullCheck) SetConfig(v SyntheticsTestConfig)`
+`func (o *SyntheticsAPITestResultFullCheck) SetConfig(v SyntheticsTestConfig)`
 
 SetConfig gets a reference to the given SyntheticsTestConfig and assigns it to the Config field.
 

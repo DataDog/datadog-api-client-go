@@ -12,57 +12,57 @@ import (
 	"encoding/json"
 )
 
-// HttpMethod the model 'HttpMethod'
-type HttpMethod string
+// HTTPMethod the model 'HTTPMethod'
+type HTTPMethod string
 
 // List of HTTPMethod
 const (
-	HTTPMETHOD_GET     HttpMethod = "GET"
-	HTTPMETHOD_POST    HttpMethod = "POST"
-	HTTPMETHOD_PATCH   HttpMethod = "PATCH"
-	HTTPMETHOD_PUT     HttpMethod = "PUT"
-	HTTPMETHOD_DELETE  HttpMethod = "DELETE"
-	HTTPMETHOD_HEAD    HttpMethod = "HEAD"
-	HTTPMETHOD_OPTIONS HttpMethod = "OPTIONS"
+	HTTPMETHOD_GET     HTTPMethod = "GET"
+	HTTPMETHOD_POST    HTTPMethod = "POST"
+	HTTPMETHOD_PATCH   HTTPMethod = "PATCH"
+	HTTPMETHOD_PUT     HTTPMethod = "PUT"
+	HTTPMETHOD_DELETE  HTTPMethod = "DELETE"
+	HTTPMETHOD_HEAD    HTTPMethod = "HEAD"
+	HTTPMETHOD_OPTIONS HTTPMethod = "OPTIONS"
 )
 
 // Ptr returns reference to HTTPMethod value
-func (v HttpMethod) Ptr() *HttpMethod {
+func (v HTTPMethod) Ptr() *HTTPMethod {
 	return &v
 }
 
-type NullableHttpMethod struct {
-	value *HttpMethod
+type NullableHTTPMethod struct {
+	value *HTTPMethod
 	isSet bool
 }
 
-func (v NullableHttpMethod) Get() *HttpMethod {
+func (v NullableHTTPMethod) Get() *HTTPMethod {
 	return v.value
 }
 
-func (v NullableHttpMethod) Set(val *HttpMethod) {
+func (v NullableHTTPMethod) Set(val *HTTPMethod) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHttpMethod) IsSet() bool {
+func (v NullableHTTPMethod) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHttpMethod) Unset() {
+func (v NullableHTTPMethod) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHttpMethod(val *HttpMethod) *NullableHttpMethod {
-	return &NullableHttpMethod{value: val, isSet: true}
+func NewNullableHTTPMethod(val *HTTPMethod) *NullableHTTPMethod {
+	return &NullableHTTPMethod{value: val, isSet: true}
 }
 
-func (v NullableHttpMethod) MarshalJSON() ([]byte, error) {
+func (v NullableHTTPMethod) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHttpMethod) UnmarshalJSON(src []byte) error {
+func (v *NullableHTTPMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

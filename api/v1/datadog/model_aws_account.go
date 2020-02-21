@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// AwsAccount struct for AwsAccount
-type AwsAccount struct {
+// AWSAccount struct for AWSAccount
+type AWSAccount struct {
 	AccessKeyId                   *string          `json:"access_key_id,omitempty"`
 	AccountId                     *string          `json:"account_id,omitempty"`
 	AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
@@ -22,25 +22,25 @@ type AwsAccount struct {
 	RoleName                      *string          `json:"role_name,omitempty"`
 }
 
-// NewAwsAccount instantiates a new AwsAccount object
+// NewAWSAccount instantiates a new AWSAccount object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsAccount() *AwsAccount {
-	this := AwsAccount{}
+func NewAWSAccount() *AWSAccount {
+	this := AWSAccount{}
 	return &this
 }
 
-// NewAwsAccountWithDefaults instantiates a new AwsAccount object
+// NewAWSAccountWithDefaults instantiates a new AWSAccount object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAwsAccountWithDefaults() *AwsAccount {
-	this := AwsAccount{}
+func NewAWSAccountWithDefaults() *AWSAccount {
+	this := AWSAccount{}
 	return &this
 }
 
 // GetAccessKeyId returns the AccessKeyId field value if set, zero value otherwise.
-func (o *AwsAccount) GetAccessKeyId() string {
+func (o *AWSAccount) GetAccessKeyId() string {
 	if o == nil || o.AccessKeyId == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *AwsAccount) GetAccessKeyId() string {
 
 // GetAccessKeyIdOk returns a tuple with the AccessKeyId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsAccount) GetAccessKeyIdOk() (string, bool) {
+func (o *AWSAccount) GetAccessKeyIdOk() (string, bool) {
 	if o == nil || o.AccessKeyId == nil {
 		var ret string
 		return ret, false
@@ -59,7 +59,7 @@ func (o *AwsAccount) GetAccessKeyIdOk() (string, bool) {
 }
 
 // HasAccessKeyId returns a boolean if a field has been set.
-func (o *AwsAccount) HasAccessKeyId() bool {
+func (o *AWSAccount) HasAccessKeyId() bool {
 	if o != nil && o.AccessKeyId != nil {
 		return true
 	}
@@ -68,12 +68,12 @@ func (o *AwsAccount) HasAccessKeyId() bool {
 }
 
 // SetAccessKeyId gets a reference to the given string and assigns it to the AccessKeyId field.
-func (o *AwsAccount) SetAccessKeyId(v string) {
+func (o *AWSAccount) SetAccessKeyId(v string) {
 	o.AccessKeyId = &v
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *AwsAccount) GetAccountId() string {
+func (o *AWSAccount) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *AwsAccount) GetAccountId() string {
 
 // GetAccountIdOk returns a tuple with the AccountId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsAccount) GetAccountIdOk() (string, bool) {
+func (o *AWSAccount) GetAccountIdOk() (string, bool) {
 	if o == nil || o.AccountId == nil {
 		var ret string
 		return ret, false
@@ -92,7 +92,7 @@ func (o *AwsAccount) GetAccountIdOk() (string, bool) {
 }
 
 // HasAccountId returns a boolean if a field has been set.
-func (o *AwsAccount) HasAccountId() bool {
+func (o *AWSAccount) HasAccountId() bool {
 	if o != nil && o.AccountId != nil {
 		return true
 	}
@@ -101,12 +101,12 @@ func (o *AwsAccount) HasAccountId() bool {
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
-func (o *AwsAccount) SetAccountId(v string) {
+func (o *AWSAccount) SetAccountId(v string) {
 	o.AccountId = &v
 }
 
 // GetAccountSpecificNamespaceRules returns the AccountSpecificNamespaceRules field value if set, zero value otherwise.
-func (o *AwsAccount) GetAccountSpecificNamespaceRules() map[string]bool {
+func (o *AWSAccount) GetAccountSpecificNamespaceRules() map[string]bool {
 	if o == nil || o.AccountSpecificNamespaceRules == nil {
 		var ret map[string]bool
 		return ret
@@ -116,7 +116,7 @@ func (o *AwsAccount) GetAccountSpecificNamespaceRules() map[string]bool {
 
 // GetAccountSpecificNamespaceRulesOk returns a tuple with the AccountSpecificNamespaceRules field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsAccount) GetAccountSpecificNamespaceRulesOk() (map[string]bool, bool) {
+func (o *AWSAccount) GetAccountSpecificNamespaceRulesOk() (map[string]bool, bool) {
 	if o == nil || o.AccountSpecificNamespaceRules == nil {
 		var ret map[string]bool
 		return ret, false
@@ -125,7 +125,7 @@ func (o *AwsAccount) GetAccountSpecificNamespaceRulesOk() (map[string]bool, bool
 }
 
 // HasAccountSpecificNamespaceRules returns a boolean if a field has been set.
-func (o *AwsAccount) HasAccountSpecificNamespaceRules() bool {
+func (o *AWSAccount) HasAccountSpecificNamespaceRules() bool {
 	if o != nil && o.AccountSpecificNamespaceRules != nil {
 		return true
 	}
@@ -134,12 +134,12 @@ func (o *AwsAccount) HasAccountSpecificNamespaceRules() bool {
 }
 
 // SetAccountSpecificNamespaceRules gets a reference to the given map[string]bool and assigns it to the AccountSpecificNamespaceRules field.
-func (o *AwsAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
+func (o *AWSAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
 	o.AccountSpecificNamespaceRules = &v
 }
 
 // GetFilterTags returns the FilterTags field value if set, zero value otherwise.
-func (o *AwsAccount) GetFilterTags() []string {
+func (o *AWSAccount) GetFilterTags() []string {
 	if o == nil || o.FilterTags == nil {
 		var ret []string
 		return ret
@@ -149,7 +149,7 @@ func (o *AwsAccount) GetFilterTags() []string {
 
 // GetFilterTagsOk returns a tuple with the FilterTags field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsAccount) GetFilterTagsOk() ([]string, bool) {
+func (o *AWSAccount) GetFilterTagsOk() ([]string, bool) {
 	if o == nil || o.FilterTags == nil {
 		var ret []string
 		return ret, false
@@ -158,7 +158,7 @@ func (o *AwsAccount) GetFilterTagsOk() ([]string, bool) {
 }
 
 // HasFilterTags returns a boolean if a field has been set.
-func (o *AwsAccount) HasFilterTags() bool {
+func (o *AWSAccount) HasFilterTags() bool {
 	if o != nil && o.FilterTags != nil {
 		return true
 	}
@@ -167,12 +167,12 @@ func (o *AwsAccount) HasFilterTags() bool {
 }
 
 // SetFilterTags gets a reference to the given []string and assigns it to the FilterTags field.
-func (o *AwsAccount) SetFilterTags(v []string) {
+func (o *AWSAccount) SetFilterTags(v []string) {
 	o.FilterTags = &v
 }
 
 // GetHostTags returns the HostTags field value if set, zero value otherwise.
-func (o *AwsAccount) GetHostTags() []string {
+func (o *AWSAccount) GetHostTags() []string {
 	if o == nil || o.HostTags == nil {
 		var ret []string
 		return ret
@@ -182,7 +182,7 @@ func (o *AwsAccount) GetHostTags() []string {
 
 // GetHostTagsOk returns a tuple with the HostTags field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsAccount) GetHostTagsOk() ([]string, bool) {
+func (o *AWSAccount) GetHostTagsOk() ([]string, bool) {
 	if o == nil || o.HostTags == nil {
 		var ret []string
 		return ret, false
@@ -191,7 +191,7 @@ func (o *AwsAccount) GetHostTagsOk() ([]string, bool) {
 }
 
 // HasHostTags returns a boolean if a field has been set.
-func (o *AwsAccount) HasHostTags() bool {
+func (o *AWSAccount) HasHostTags() bool {
 	if o != nil && o.HostTags != nil {
 		return true
 	}
@@ -200,12 +200,12 @@ func (o *AwsAccount) HasHostTags() bool {
 }
 
 // SetHostTags gets a reference to the given []string and assigns it to the HostTags field.
-func (o *AwsAccount) SetHostTags(v []string) {
+func (o *AWSAccount) SetHostTags(v []string) {
 	o.HostTags = &v
 }
 
 // GetRoleName returns the RoleName field value if set, zero value otherwise.
-func (o *AwsAccount) GetRoleName() string {
+func (o *AWSAccount) GetRoleName() string {
 	if o == nil || o.RoleName == nil {
 		var ret string
 		return ret
@@ -215,7 +215,7 @@ func (o *AwsAccount) GetRoleName() string {
 
 // GetRoleNameOk returns a tuple with the RoleName field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsAccount) GetRoleNameOk() (string, bool) {
+func (o *AWSAccount) GetRoleNameOk() (string, bool) {
 	if o == nil || o.RoleName == nil {
 		var ret string
 		return ret, false
@@ -224,7 +224,7 @@ func (o *AwsAccount) GetRoleNameOk() (string, bool) {
 }
 
 // HasRoleName returns a boolean if a field has been set.
-func (o *AwsAccount) HasRoleName() bool {
+func (o *AWSAccount) HasRoleName() bool {
 	if o != nil && o.RoleName != nil {
 		return true
 	}
@@ -233,11 +233,11 @@ func (o *AwsAccount) HasRoleName() bool {
 }
 
 // SetRoleName gets a reference to the given string and assigns it to the RoleName field.
-func (o *AwsAccount) SetRoleName(v string) {
+func (o *AWSAccount) SetRoleName(v string) {
 	o.RoleName = &v
 }
 
-func (o AwsAccount) MarshalJSON() ([]byte, error) {
+func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AccessKeyId != nil {
@@ -261,38 +261,38 @@ func (o AwsAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAwsAccount struct {
-	value *AwsAccount
+type NullableAWSAccount struct {
+	value *AWSAccount
 	isSet bool
 }
 
-func (v NullableAwsAccount) Get() *AwsAccount {
+func (v NullableAWSAccount) Get() *AWSAccount {
 	return v.value
 }
 
-func (v NullableAwsAccount) Set(val *AwsAccount) {
+func (v NullableAWSAccount) Set(val *AWSAccount) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAwsAccount) IsSet() bool {
+func (v NullableAWSAccount) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAwsAccount) Unset() {
+func (v NullableAWSAccount) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAwsAccount(val *AwsAccount) *NullableAwsAccount {
-	return &NullableAwsAccount{value: val, isSet: true}
+func NewNullableAWSAccount(val *AWSAccount) *NullableAWSAccount {
+	return &NullableAWSAccount{value: val, isSet: true}
 }
 
-func (v NullableAwsAccount) MarshalJSON() ([]byte, error) {
+func (v NullableAWSAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAwsAccount) UnmarshalJSON(src []byte) error {
+func (v *NullableAWSAccount) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

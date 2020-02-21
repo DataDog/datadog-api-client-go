@@ -12,31 +12,31 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsGetApiTestLatestResultsResponse struct for SyntheticsGetApiTestLatestResultsResponse
-type SyntheticsGetApiTestLatestResultsResponse struct {
+// SyntheticsGetAPITestLatestResultsResponse struct for SyntheticsGetAPITestLatestResultsResponse
+type SyntheticsGetAPITestLatestResultsResponse struct {
 	LastTimestampFetched *int64                          `json:"last_timestamp_fetched,omitempty"`
-	Results              *[]SyntheticsApiTestResultShort `json:"results,omitempty"`
+	Results              *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
 }
 
-// NewSyntheticsGetApiTestLatestResultsResponse instantiates a new SyntheticsGetApiTestLatestResultsResponse object
+// NewSyntheticsGetAPITestLatestResultsResponse instantiates a new SyntheticsGetAPITestLatestResultsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsGetApiTestLatestResultsResponse() *SyntheticsGetApiTestLatestResultsResponse {
-	this := SyntheticsGetApiTestLatestResultsResponse{}
+func NewSyntheticsGetAPITestLatestResultsResponse() *SyntheticsGetAPITestLatestResultsResponse {
+	this := SyntheticsGetAPITestLatestResultsResponse{}
 	return &this
 }
 
-// NewSyntheticsGetApiTestLatestResultsResponseWithDefaults instantiates a new SyntheticsGetApiTestLatestResultsResponse object
+// NewSyntheticsGetAPITestLatestResultsResponseWithDefaults instantiates a new SyntheticsGetAPITestLatestResultsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsGetApiTestLatestResultsResponseWithDefaults() *SyntheticsGetApiTestLatestResultsResponse {
-	this := SyntheticsGetApiTestLatestResultsResponse{}
+func NewSyntheticsGetAPITestLatestResultsResponseWithDefaults() *SyntheticsGetAPITestLatestResultsResponse {
+	this := SyntheticsGetAPITestLatestResultsResponse{}
 	return &this
 }
 
 // GetLastTimestampFetched returns the LastTimestampFetched field value if set, zero value otherwise.
-func (o *SyntheticsGetApiTestLatestResultsResponse) GetLastTimestampFetched() int64 {
+func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetched() int64 {
 	if o == nil || o.LastTimestampFetched == nil {
 		var ret int64
 		return ret
@@ -46,7 +46,7 @@ func (o *SyntheticsGetApiTestLatestResultsResponse) GetLastTimestampFetched() in
 
 // GetLastTimestampFetchedOk returns a tuple with the LastTimestampFetched field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGetApiTestLatestResultsResponse) GetLastTimestampFetchedOk() (int64, bool) {
+func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetchedOk() (int64, bool) {
 	if o == nil || o.LastTimestampFetched == nil {
 		var ret int64
 		return ret, false
@@ -55,7 +55,7 @@ func (o *SyntheticsGetApiTestLatestResultsResponse) GetLastTimestampFetchedOk() 
 }
 
 // HasLastTimestampFetched returns a boolean if a field has been set.
-func (o *SyntheticsGetApiTestLatestResultsResponse) HasLastTimestampFetched() bool {
+func (o *SyntheticsGetAPITestLatestResultsResponse) HasLastTimestampFetched() bool {
 	if o != nil && o.LastTimestampFetched != nil {
 		return true
 	}
@@ -64,14 +64,14 @@ func (o *SyntheticsGetApiTestLatestResultsResponse) HasLastTimestampFetched() bo
 }
 
 // SetLastTimestampFetched gets a reference to the given int64 and assigns it to the LastTimestampFetched field.
-func (o *SyntheticsGetApiTestLatestResultsResponse) SetLastTimestampFetched(v int64) {
+func (o *SyntheticsGetAPITestLatestResultsResponse) SetLastTimestampFetched(v int64) {
 	o.LastTimestampFetched = &v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *SyntheticsGetApiTestLatestResultsResponse) GetResults() []SyntheticsApiTestResultShort {
+func (o *SyntheticsGetAPITestLatestResultsResponse) GetResults() []SyntheticsAPITestResultShort {
 	if o == nil || o.Results == nil {
-		var ret []SyntheticsApiTestResultShort
+		var ret []SyntheticsAPITestResultShort
 		return ret
 	}
 	return *o.Results
@@ -79,16 +79,16 @@ func (o *SyntheticsGetApiTestLatestResultsResponse) GetResults() []SyntheticsApi
 
 // GetResultsOk returns a tuple with the Results field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGetApiTestLatestResultsResponse) GetResultsOk() ([]SyntheticsApiTestResultShort, bool) {
+func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() ([]SyntheticsAPITestResultShort, bool) {
 	if o == nil || o.Results == nil {
-		var ret []SyntheticsApiTestResultShort
+		var ret []SyntheticsAPITestResultShort
 		return ret, false
 	}
 	return *o.Results, true
 }
 
 // HasResults returns a boolean if a field has been set.
-func (o *SyntheticsGetApiTestLatestResultsResponse) HasResults() bool {
+func (o *SyntheticsGetAPITestLatestResultsResponse) HasResults() bool {
 	if o != nil && o.Results != nil {
 		return true
 	}
@@ -96,12 +96,12 @@ func (o *SyntheticsGetApiTestLatestResultsResponse) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []SyntheticsApiTestResultShort and assigns it to the Results field.
-func (o *SyntheticsGetApiTestLatestResultsResponse) SetResults(v []SyntheticsApiTestResultShort) {
+// SetResults gets a reference to the given []SyntheticsAPITestResultShort and assigns it to the Results field.
+func (o *SyntheticsGetAPITestLatestResultsResponse) SetResults(v []SyntheticsAPITestResultShort) {
 	o.Results = &v
 }
 
-func (o SyntheticsGetApiTestLatestResultsResponse) MarshalJSON() ([]byte, error) {
+func (o SyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.LastTimestampFetched != nil {
@@ -113,38 +113,38 @@ func (o SyntheticsGetApiTestLatestResultsResponse) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
-type NullableSyntheticsGetApiTestLatestResultsResponse struct {
-	value *SyntheticsGetApiTestLatestResultsResponse
+type NullableSyntheticsGetAPITestLatestResultsResponse struct {
+	value *SyntheticsGetAPITestLatestResultsResponse
 	isSet bool
 }
 
-func (v NullableSyntheticsGetApiTestLatestResultsResponse) Get() *SyntheticsGetApiTestLatestResultsResponse {
+func (v NullableSyntheticsGetAPITestLatestResultsResponse) Get() *SyntheticsGetAPITestLatestResultsResponse {
 	return v.value
 }
 
-func (v NullableSyntheticsGetApiTestLatestResultsResponse) Set(val *SyntheticsGetApiTestLatestResultsResponse) {
+func (v NullableSyntheticsGetAPITestLatestResultsResponse) Set(val *SyntheticsGetAPITestLatestResultsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsGetApiTestLatestResultsResponse) IsSet() bool {
+func (v NullableSyntheticsGetAPITestLatestResultsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsGetApiTestLatestResultsResponse) Unset() {
+func (v NullableSyntheticsGetAPITestLatestResultsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsGetApiTestLatestResultsResponse(val *SyntheticsGetApiTestLatestResultsResponse) *NullableSyntheticsGetApiTestLatestResultsResponse {
-	return &NullableSyntheticsGetApiTestLatestResultsResponse{value: val, isSet: true}
+func NewNullableSyntheticsGetAPITestLatestResultsResponse(val *SyntheticsGetAPITestLatestResultsResponse) *NullableSyntheticsGetAPITestLatestResultsResponse {
+	return &NullableSyntheticsGetAPITestLatestResultsResponse{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsGetApiTestLatestResultsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsGetApiTestLatestResultsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsGetAPITestLatestResultsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

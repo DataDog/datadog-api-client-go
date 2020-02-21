@@ -1,4 +1,4 @@
-# SloThreshold
+# SLOThreshold
 
 ## Properties
 
@@ -6,151 +6,151 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Target** | Pointer to **float64** | The target value for the service level indicator within the corresponding timeframe. | 
 **TargetDisplay** | Pointer to **string** | A string representation of the target that indicates its precision (e.g. \&quot;99.9\&quot;). It uses trailing zeros to show significant decimal places (e.g. \&quot;98.00\&quot;). Always included in service level objective responses. Ignored in create/update requests. | [optional] 
-**Timeframe** | Pointer to [**SloTimeframe**](SLOTimeframe.md) |  | 
+**Timeframe** | Pointer to [**SLOTimeframe**](SLOTimeframe.md) |  | 
 **Warning** | Pointer to **float64** |  | [optional] 
 **WarningDisplay** | Pointer to **string** | A string representation of the warning target (see the description of the \&quot;target_display\&quot; field for details). Included in service level objective responses if a warning target exists. Ignored in create/update requests. | [optional] 
 
 ## Methods
 
-### NewSloThreshold
+### NewSLOThreshold
 
-`func NewSloThreshold(target float64, timeframe SloTimeframe, ) *SloThreshold`
+`func NewSLOThreshold(target float64, timeframe SLOTimeframe, ) *SLOThreshold`
 
-NewSloThreshold instantiates a new SloThreshold object
+NewSLOThreshold instantiates a new SLOThreshold object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSloThresholdWithDefaults
+### NewSLOThresholdWithDefaults
 
-`func NewSloThresholdWithDefaults() *SloThreshold`
+`func NewSLOThresholdWithDefaults() *SLOThreshold`
 
-NewSloThresholdWithDefaults instantiates a new SloThreshold object
+NewSLOThresholdWithDefaults instantiates a new SLOThreshold object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetTarget
 
-`func (o *SloThreshold) GetTarget() float64`
+`func (o *SLOThreshold) GetTarget() float64`
 
 GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *SloThreshold) GetTargetOk() (float64, bool)`
+`func (o *SLOThreshold) GetTargetOk() (float64, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasTarget
 
-`func (o *SloThreshold) HasTarget() bool`
+`func (o *SLOThreshold) HasTarget() bool`
 
 HasTarget returns a boolean if a field has been set.
 
 ### SetTarget
 
-`func (o *SloThreshold) SetTarget(v float64)`
+`func (o *SLOThreshold) SetTarget(v float64)`
 
 SetTarget gets a reference to the given float64 and assigns it to the Target field.
 
 ### GetTargetDisplay
 
-`func (o *SloThreshold) GetTargetDisplay() string`
+`func (o *SLOThreshold) GetTargetDisplay() string`
 
 GetTargetDisplay returns the TargetDisplay field if non-nil, zero value otherwise.
 
 ### GetTargetDisplayOk
 
-`func (o *SloThreshold) GetTargetDisplayOk() (string, bool)`
+`func (o *SLOThreshold) GetTargetDisplayOk() (string, bool)`
 
 GetTargetDisplayOk returns a tuple with the TargetDisplay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasTargetDisplay
 
-`func (o *SloThreshold) HasTargetDisplay() bool`
+`func (o *SLOThreshold) HasTargetDisplay() bool`
 
 HasTargetDisplay returns a boolean if a field has been set.
 
 ### SetTargetDisplay
 
-`func (o *SloThreshold) SetTargetDisplay(v string)`
+`func (o *SLOThreshold) SetTargetDisplay(v string)`
 
 SetTargetDisplay gets a reference to the given string and assigns it to the TargetDisplay field.
 
 ### GetTimeframe
 
-`func (o *SloThreshold) GetTimeframe() SloTimeframe`
+`func (o *SLOThreshold) GetTimeframe() SLOTimeframe`
 
 GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
 
 ### GetTimeframeOk
 
-`func (o *SloThreshold) GetTimeframeOk() (SloTimeframe, bool)`
+`func (o *SLOThreshold) GetTimeframeOk() (SLOTimeframe, bool)`
 
 GetTimeframeOk returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasTimeframe
 
-`func (o *SloThreshold) HasTimeframe() bool`
+`func (o *SLOThreshold) HasTimeframe() bool`
 
 HasTimeframe returns a boolean if a field has been set.
 
 ### SetTimeframe
 
-`func (o *SloThreshold) SetTimeframe(v SloTimeframe)`
+`func (o *SLOThreshold) SetTimeframe(v SLOTimeframe)`
 
-SetTimeframe gets a reference to the given SloTimeframe and assigns it to the Timeframe field.
+SetTimeframe gets a reference to the given SLOTimeframe and assigns it to the Timeframe field.
 
 ### GetWarning
 
-`func (o *SloThreshold) GetWarning() float64`
+`func (o *SLOThreshold) GetWarning() float64`
 
 GetWarning returns the Warning field if non-nil, zero value otherwise.
 
 ### GetWarningOk
 
-`func (o *SloThreshold) GetWarningOk() (float64, bool)`
+`func (o *SLOThreshold) GetWarningOk() (float64, bool)`
 
 GetWarningOk returns a tuple with the Warning field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasWarning
 
-`func (o *SloThreshold) HasWarning() bool`
+`func (o *SLOThreshold) HasWarning() bool`
 
 HasWarning returns a boolean if a field has been set.
 
 ### SetWarning
 
-`func (o *SloThreshold) SetWarning(v float64)`
+`func (o *SLOThreshold) SetWarning(v float64)`
 
 SetWarning gets a reference to the given float64 and assigns it to the Warning field.
 
 ### GetWarningDisplay
 
-`func (o *SloThreshold) GetWarningDisplay() string`
+`func (o *SLOThreshold) GetWarningDisplay() string`
 
 GetWarningDisplay returns the WarningDisplay field if non-nil, zero value otherwise.
 
 ### GetWarningDisplayOk
 
-`func (o *SloThreshold) GetWarningDisplayOk() (string, bool)`
+`func (o *SLOThreshold) GetWarningDisplayOk() (string, bool)`
 
 GetWarningDisplayOk returns a tuple with the WarningDisplay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasWarningDisplay
 
-`func (o *SloThreshold) HasWarningDisplay() bool`
+`func (o *SLOThreshold) HasWarningDisplay() bool`
 
 HasWarningDisplay returns a boolean if a field has been set.
 
 ### SetWarningDisplay
 
-`func (o *SloThreshold) SetWarningDisplay(v string)`
+`func (o *SLOThreshold) SetWarningDisplay(v string)`
 
 SetWarningDisplay gets a reference to the given string and assigns it to the WarningDisplay field.
 

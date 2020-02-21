@@ -18,7 +18,7 @@ type SyntheticsTestRequest struct {
 	Body      *string                         `json:"body,omitempty"`
 	Headers   *map[string]string              `json:"headers,omitempty"`
 	Host      *string                         `json:"host,omitempty"`
-	Method    HttpMethod                      `json:"method"`
+	Method    HTTPMethod                      `json:"method"`
 	Port      *int64                          `json:"port,omitempty"`
 	Query     *interface{}                    `json:"query,omitempty"`
 	Timeout   *float64                        `json:"timeout,omitempty"`
@@ -29,7 +29,7 @@ type SyntheticsTestRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsTestRequest(method HttpMethod, url string) *SyntheticsTestRequest {
+func NewSyntheticsTestRequest(method HTTPMethod, url string) *SyntheticsTestRequest {
 	this := SyntheticsTestRequest{}
 	this.Method = method
 	this.Url = url
@@ -177,9 +177,9 @@ func (o *SyntheticsTestRequest) SetHost(v string) {
 }
 
 // GetMethod returns the Method field value
-func (o *SyntheticsTestRequest) GetMethod() HttpMethod {
+func (o *SyntheticsTestRequest) GetMethod() HTTPMethod {
 	if o == nil {
-		var ret HttpMethod
+		var ret HTTPMethod
 		return ret
 	}
 
@@ -187,7 +187,7 @@ func (o *SyntheticsTestRequest) GetMethod() HttpMethod {
 }
 
 // SetMethod sets field value
-func (o *SyntheticsTestRequest) SetMethod(v HttpMethod) {
+func (o *SyntheticsTestRequest) SetMethod(v HTTPMethod) {
 	o.Method = v
 }
 

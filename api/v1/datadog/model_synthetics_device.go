@@ -15,7 +15,7 @@ import (
 // SyntheticsDevice struct for SyntheticsDevice
 type SyntheticsDevice struct {
 	Height   int64              `json:"height"`
-	Id       SyntheticsDeviceId `json:"id"`
+	Id       SyntheticsDeviceID `json:"id"`
 	IsMobile *bool              `json:"isMobile,omitempty"`
 	Name     string             `json:"name"`
 	Width    int64              `json:"width"`
@@ -25,7 +25,7 @@ type SyntheticsDevice struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsDevice(height int64, id SyntheticsDeviceId, name string, width int64) *SyntheticsDevice {
+func NewSyntheticsDevice(height int64, id SyntheticsDeviceID, name string, width int64) *SyntheticsDevice {
 	this := SyntheticsDevice{}
 	this.Height = height
 	this.Id = id
@@ -58,9 +58,9 @@ func (o *SyntheticsDevice) SetHeight(v int64) {
 }
 
 // GetId returns the Id field value
-func (o *SyntheticsDevice) GetId() SyntheticsDeviceId {
+func (o *SyntheticsDevice) GetId() SyntheticsDeviceID {
 	if o == nil {
-		var ret SyntheticsDeviceId
+		var ret SyntheticsDeviceID
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *SyntheticsDevice) GetId() SyntheticsDeviceId {
 }
 
 // SetId sets field value
-func (o *SyntheticsDevice) SetId(v SyntheticsDeviceId) {
+func (o *SyntheticsDevice) SetId(v SyntheticsDeviceID) {
 	o.Id = v
 }
 

@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsSslCertificateIssuer struct for SyntheticsSslCertificateIssuer
-type SyntheticsSslCertificateIssuer struct {
+// SyntheticsSSLCertificateIssuer struct for SyntheticsSSLCertificateIssuer
+type SyntheticsSSLCertificateIssuer struct {
 	C  *string `json:"C,omitempty"`
 	CN *string `json:"CN,omitempty"`
 	L  *string `json:"L,omitempty"`
@@ -22,25 +22,25 @@ type SyntheticsSslCertificateIssuer struct {
 	ST *string `json:"ST,omitempty"`
 }
 
-// NewSyntheticsSslCertificateIssuer instantiates a new SyntheticsSslCertificateIssuer object
+// NewSyntheticsSSLCertificateIssuer instantiates a new SyntheticsSSLCertificateIssuer object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsSslCertificateIssuer() *SyntheticsSslCertificateIssuer {
-	this := SyntheticsSslCertificateIssuer{}
+func NewSyntheticsSSLCertificateIssuer() *SyntheticsSSLCertificateIssuer {
+	this := SyntheticsSSLCertificateIssuer{}
 	return &this
 }
 
-// NewSyntheticsSslCertificateIssuerWithDefaults instantiates a new SyntheticsSslCertificateIssuer object
+// NewSyntheticsSSLCertificateIssuerWithDefaults instantiates a new SyntheticsSSLCertificateIssuer object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsSslCertificateIssuerWithDefaults() *SyntheticsSslCertificateIssuer {
-	this := SyntheticsSslCertificateIssuer{}
+func NewSyntheticsSSLCertificateIssuerWithDefaults() *SyntheticsSSLCertificateIssuer {
+	this := SyntheticsSSLCertificateIssuer{}
 	return &this
 }
 
 // GetC returns the C field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificateIssuer) GetC() string {
+func (o *SyntheticsSSLCertificateIssuer) GetC() string {
 	if o == nil || o.C == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *SyntheticsSslCertificateIssuer) GetC() string {
 
 // GetCOk returns a tuple with the C field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificateIssuer) GetCOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetCOk() (string, bool) {
 	if o == nil || o.C == nil {
 		var ret string
 		return ret, false
@@ -59,7 +59,7 @@ func (o *SyntheticsSslCertificateIssuer) GetCOk() (string, bool) {
 }
 
 // HasC returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificateIssuer) HasC() bool {
+func (o *SyntheticsSSLCertificateIssuer) HasC() bool {
 	if o != nil && o.C != nil {
 		return true
 	}
@@ -68,12 +68,12 @@ func (o *SyntheticsSslCertificateIssuer) HasC() bool {
 }
 
 // SetC gets a reference to the given string and assigns it to the C field.
-func (o *SyntheticsSslCertificateIssuer) SetC(v string) {
+func (o *SyntheticsSSLCertificateIssuer) SetC(v string) {
 	o.C = &v
 }
 
 // GetCN returns the CN field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificateIssuer) GetCN() string {
+func (o *SyntheticsSSLCertificateIssuer) GetCN() string {
 	if o == nil || o.CN == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *SyntheticsSslCertificateIssuer) GetCN() string {
 
 // GetCNOk returns a tuple with the CN field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificateIssuer) GetCNOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetCNOk() (string, bool) {
 	if o == nil || o.CN == nil {
 		var ret string
 		return ret, false
@@ -92,7 +92,7 @@ func (o *SyntheticsSslCertificateIssuer) GetCNOk() (string, bool) {
 }
 
 // HasCN returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificateIssuer) HasCN() bool {
+func (o *SyntheticsSSLCertificateIssuer) HasCN() bool {
 	if o != nil && o.CN != nil {
 		return true
 	}
@@ -101,12 +101,12 @@ func (o *SyntheticsSslCertificateIssuer) HasCN() bool {
 }
 
 // SetCN gets a reference to the given string and assigns it to the CN field.
-func (o *SyntheticsSslCertificateIssuer) SetCN(v string) {
+func (o *SyntheticsSSLCertificateIssuer) SetCN(v string) {
 	o.CN = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificateIssuer) GetL() string {
+func (o *SyntheticsSSLCertificateIssuer) GetL() string {
 	if o == nil || o.L == nil {
 		var ret string
 		return ret
@@ -116,7 +116,7 @@ func (o *SyntheticsSslCertificateIssuer) GetL() string {
 
 // GetLOk returns a tuple with the L field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificateIssuer) GetLOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetLOk() (string, bool) {
 	if o == nil || o.L == nil {
 		var ret string
 		return ret, false
@@ -125,7 +125,7 @@ func (o *SyntheticsSslCertificateIssuer) GetLOk() (string, bool) {
 }
 
 // HasL returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificateIssuer) HasL() bool {
+func (o *SyntheticsSSLCertificateIssuer) HasL() bool {
 	if o != nil && o.L != nil {
 		return true
 	}
@@ -134,12 +134,12 @@ func (o *SyntheticsSslCertificateIssuer) HasL() bool {
 }
 
 // SetL gets a reference to the given string and assigns it to the L field.
-func (o *SyntheticsSslCertificateIssuer) SetL(v string) {
+func (o *SyntheticsSSLCertificateIssuer) SetL(v string) {
 	o.L = &v
 }
 
 // GetO returns the O field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificateIssuer) GetO() string {
+func (o *SyntheticsSSLCertificateIssuer) GetO() string {
 	if o == nil || o.O == nil {
 		var ret string
 		return ret
@@ -149,7 +149,7 @@ func (o *SyntheticsSslCertificateIssuer) GetO() string {
 
 // GetOOk returns a tuple with the O field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificateIssuer) GetOOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetOOk() (string, bool) {
 	if o == nil || o.O == nil {
 		var ret string
 		return ret, false
@@ -158,7 +158,7 @@ func (o *SyntheticsSslCertificateIssuer) GetOOk() (string, bool) {
 }
 
 // HasO returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificateIssuer) HasO() bool {
+func (o *SyntheticsSSLCertificateIssuer) HasO() bool {
 	if o != nil && o.O != nil {
 		return true
 	}
@@ -167,12 +167,12 @@ func (o *SyntheticsSslCertificateIssuer) HasO() bool {
 }
 
 // SetO gets a reference to the given string and assigns it to the O field.
-func (o *SyntheticsSslCertificateIssuer) SetO(v string) {
+func (o *SyntheticsSSLCertificateIssuer) SetO(v string) {
 	o.O = &v
 }
 
 // GetOU returns the OU field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificateIssuer) GetOU() string {
+func (o *SyntheticsSSLCertificateIssuer) GetOU() string {
 	if o == nil || o.OU == nil {
 		var ret string
 		return ret
@@ -182,7 +182,7 @@ func (o *SyntheticsSslCertificateIssuer) GetOU() string {
 
 // GetOUOk returns a tuple with the OU field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificateIssuer) GetOUOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetOUOk() (string, bool) {
 	if o == nil || o.OU == nil {
 		var ret string
 		return ret, false
@@ -191,7 +191,7 @@ func (o *SyntheticsSslCertificateIssuer) GetOUOk() (string, bool) {
 }
 
 // HasOU returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificateIssuer) HasOU() bool {
+func (o *SyntheticsSSLCertificateIssuer) HasOU() bool {
 	if o != nil && o.OU != nil {
 		return true
 	}
@@ -200,12 +200,12 @@ func (o *SyntheticsSslCertificateIssuer) HasOU() bool {
 }
 
 // SetOU gets a reference to the given string and assigns it to the OU field.
-func (o *SyntheticsSslCertificateIssuer) SetOU(v string) {
+func (o *SyntheticsSSLCertificateIssuer) SetOU(v string) {
 	o.OU = &v
 }
 
 // GetST returns the ST field value if set, zero value otherwise.
-func (o *SyntheticsSslCertificateIssuer) GetST() string {
+func (o *SyntheticsSSLCertificateIssuer) GetST() string {
 	if o == nil || o.ST == nil {
 		var ret string
 		return ret
@@ -215,7 +215,7 @@ func (o *SyntheticsSslCertificateIssuer) GetST() string {
 
 // GetSTOk returns a tuple with the ST field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSslCertificateIssuer) GetSTOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetSTOk() (string, bool) {
 	if o == nil || o.ST == nil {
 		var ret string
 		return ret, false
@@ -224,7 +224,7 @@ func (o *SyntheticsSslCertificateIssuer) GetSTOk() (string, bool) {
 }
 
 // HasST returns a boolean if a field has been set.
-func (o *SyntheticsSslCertificateIssuer) HasST() bool {
+func (o *SyntheticsSSLCertificateIssuer) HasST() bool {
 	if o != nil && o.ST != nil {
 		return true
 	}
@@ -233,11 +233,11 @@ func (o *SyntheticsSslCertificateIssuer) HasST() bool {
 }
 
 // SetST gets a reference to the given string and assigns it to the ST field.
-func (o *SyntheticsSslCertificateIssuer) SetST(v string) {
+func (o *SyntheticsSSLCertificateIssuer) SetST(v string) {
 	o.ST = &v
 }
 
-func (o SyntheticsSslCertificateIssuer) MarshalJSON() ([]byte, error) {
+func (o SyntheticsSSLCertificateIssuer) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.C != nil {
@@ -261,38 +261,38 @@ func (o SyntheticsSslCertificateIssuer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableSyntheticsSslCertificateIssuer struct {
-	value *SyntheticsSslCertificateIssuer
+type NullableSyntheticsSSLCertificateIssuer struct {
+	value *SyntheticsSSLCertificateIssuer
 	isSet bool
 }
 
-func (v NullableSyntheticsSslCertificateIssuer) Get() *SyntheticsSslCertificateIssuer {
+func (v NullableSyntheticsSSLCertificateIssuer) Get() *SyntheticsSSLCertificateIssuer {
 	return v.value
 }
 
-func (v NullableSyntheticsSslCertificateIssuer) Set(val *SyntheticsSslCertificateIssuer) {
+func (v NullableSyntheticsSSLCertificateIssuer) Set(val *SyntheticsSSLCertificateIssuer) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsSslCertificateIssuer) IsSet() bool {
+func (v NullableSyntheticsSSLCertificateIssuer) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsSslCertificateIssuer) Unset() {
+func (v NullableSyntheticsSSLCertificateIssuer) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsSslCertificateIssuer(val *SyntheticsSslCertificateIssuer) *NullableSyntheticsSslCertificateIssuer {
-	return &NullableSyntheticsSslCertificateIssuer{value: val, isSet: true}
+func NewNullableSyntheticsSSLCertificateIssuer(val *SyntheticsSSLCertificateIssuer) *NullableSyntheticsSSLCertificateIssuer {
+	return &NullableSyntheticsSSLCertificateIssuer{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsSslCertificateIssuer) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsSSLCertificateIssuer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsSslCertificateIssuer) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsSSLCertificateIssuer) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

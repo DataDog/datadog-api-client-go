@@ -12,35 +12,35 @@ import (
 	"encoding/json"
 )
 
-// AwsLogsListResponse struct for AwsLogsListResponse
-type AwsLogsListResponse struct {
+// AWSLogsListResponse struct for AWSLogsListResponse
+type AWSLogsListResponse struct {
 	// Your AWS Account ID without dashes.
 	AccountId *string `json:"account_id,omitempty"`
 	// List of ARNs configured in your Datadog account.
-	Lambdas *[]AwsLogsListResponseLambdas `json:"lambdas,omitempty"`
+	Lambdas *[]AWSLogsListResponseLambdas `json:"lambdas,omitempty"`
 	// Array of services IDs.
 	Services *[]string `json:"services,omitempty"`
 }
 
-// NewAwsLogsListResponse instantiates a new AwsLogsListResponse object
+// NewAWSLogsListResponse instantiates a new AWSLogsListResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsLogsListResponse() *AwsLogsListResponse {
-	this := AwsLogsListResponse{}
+func NewAWSLogsListResponse() *AWSLogsListResponse {
+	this := AWSLogsListResponse{}
 	return &this
 }
 
-// NewAwsLogsListResponseWithDefaults instantiates a new AwsLogsListResponse object
+// NewAWSLogsListResponseWithDefaults instantiates a new AWSLogsListResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAwsLogsListResponseWithDefaults() *AwsLogsListResponse {
-	this := AwsLogsListResponse{}
+func NewAWSLogsListResponseWithDefaults() *AWSLogsListResponse {
+	this := AWSLogsListResponse{}
 	return &this
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *AwsLogsListResponse) GetAccountId() string {
+func (o *AWSLogsListResponse) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *AwsLogsListResponse) GetAccountId() string {
 
 // GetAccountIdOk returns a tuple with the AccountId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsListResponse) GetAccountIdOk() (string, bool) {
+func (o *AWSLogsListResponse) GetAccountIdOk() (string, bool) {
 	if o == nil || o.AccountId == nil {
 		var ret string
 		return ret, false
@@ -59,7 +59,7 @@ func (o *AwsLogsListResponse) GetAccountIdOk() (string, bool) {
 }
 
 // HasAccountId returns a boolean if a field has been set.
-func (o *AwsLogsListResponse) HasAccountId() bool {
+func (o *AWSLogsListResponse) HasAccountId() bool {
 	if o != nil && o.AccountId != nil {
 		return true
 	}
@@ -68,14 +68,14 @@ func (o *AwsLogsListResponse) HasAccountId() bool {
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
-func (o *AwsLogsListResponse) SetAccountId(v string) {
+func (o *AWSLogsListResponse) SetAccountId(v string) {
 	o.AccountId = &v
 }
 
 // GetLambdas returns the Lambdas field value if set, zero value otherwise.
-func (o *AwsLogsListResponse) GetLambdas() []AwsLogsListResponseLambdas {
+func (o *AWSLogsListResponse) GetLambdas() []AWSLogsListResponseLambdas {
 	if o == nil || o.Lambdas == nil {
-		var ret []AwsLogsListResponseLambdas
+		var ret []AWSLogsListResponseLambdas
 		return ret
 	}
 	return *o.Lambdas
@@ -83,16 +83,16 @@ func (o *AwsLogsListResponse) GetLambdas() []AwsLogsListResponseLambdas {
 
 // GetLambdasOk returns a tuple with the Lambdas field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsListResponse) GetLambdasOk() ([]AwsLogsListResponseLambdas, bool) {
+func (o *AWSLogsListResponse) GetLambdasOk() ([]AWSLogsListResponseLambdas, bool) {
 	if o == nil || o.Lambdas == nil {
-		var ret []AwsLogsListResponseLambdas
+		var ret []AWSLogsListResponseLambdas
 		return ret, false
 	}
 	return *o.Lambdas, true
 }
 
 // HasLambdas returns a boolean if a field has been set.
-func (o *AwsLogsListResponse) HasLambdas() bool {
+func (o *AWSLogsListResponse) HasLambdas() bool {
 	if o != nil && o.Lambdas != nil {
 		return true
 	}
@@ -100,13 +100,13 @@ func (o *AwsLogsListResponse) HasLambdas() bool {
 	return false
 }
 
-// SetLambdas gets a reference to the given []AwsLogsListResponseLambdas and assigns it to the Lambdas field.
-func (o *AwsLogsListResponse) SetLambdas(v []AwsLogsListResponseLambdas) {
+// SetLambdas gets a reference to the given []AWSLogsListResponseLambdas and assigns it to the Lambdas field.
+func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsListResponseLambdas) {
 	o.Lambdas = &v
 }
 
 // GetServices returns the Services field value if set, zero value otherwise.
-func (o *AwsLogsListResponse) GetServices() []string {
+func (o *AWSLogsListResponse) GetServices() []string {
 	if o == nil || o.Services == nil {
 		var ret []string
 		return ret
@@ -116,7 +116,7 @@ func (o *AwsLogsListResponse) GetServices() []string {
 
 // GetServicesOk returns a tuple with the Services field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsListResponse) GetServicesOk() ([]string, bool) {
+func (o *AWSLogsListResponse) GetServicesOk() ([]string, bool) {
 	if o == nil || o.Services == nil {
 		var ret []string
 		return ret, false
@@ -125,7 +125,7 @@ func (o *AwsLogsListResponse) GetServicesOk() ([]string, bool) {
 }
 
 // HasServices returns a boolean if a field has been set.
-func (o *AwsLogsListResponse) HasServices() bool {
+func (o *AWSLogsListResponse) HasServices() bool {
 	if o != nil && o.Services != nil {
 		return true
 	}
@@ -134,11 +134,11 @@ func (o *AwsLogsListResponse) HasServices() bool {
 }
 
 // SetServices gets a reference to the given []string and assigns it to the Services field.
-func (o *AwsLogsListResponse) SetServices(v []string) {
+func (o *AWSLogsListResponse) SetServices(v []string) {
 	o.Services = &v
 }
 
-func (o AwsLogsListResponse) MarshalJSON() ([]byte, error) {
+func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AccountId != nil {
@@ -153,38 +153,38 @@ func (o AwsLogsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAwsLogsListResponse struct {
-	value *AwsLogsListResponse
+type NullableAWSLogsListResponse struct {
+	value *AWSLogsListResponse
 	isSet bool
 }
 
-func (v NullableAwsLogsListResponse) Get() *AwsLogsListResponse {
+func (v NullableAWSLogsListResponse) Get() *AWSLogsListResponse {
 	return v.value
 }
 
-func (v NullableAwsLogsListResponse) Set(val *AwsLogsListResponse) {
+func (v NullableAWSLogsListResponse) Set(val *AWSLogsListResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAwsLogsListResponse) IsSet() bool {
+func (v NullableAWSLogsListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAwsLogsListResponse) Unset() {
+func (v NullableAWSLogsListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAwsLogsListResponse(val *AwsLogsListResponse) *NullableAwsLogsListResponse {
-	return &NullableAwsLogsListResponse{value: val, isSet: true}
+func NewNullableAWSLogsListResponse(val *AWSLogsListResponse) *NullableAWSLogsListResponse {
+	return &NullableAWSLogsListResponse{value: val, isSet: true}
 }
 
-func (v NullableAwsLogsListResponse) MarshalJSON() ([]byte, error) {
+func (v NullableAWSLogsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAwsLogsListResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableAWSLogsListResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

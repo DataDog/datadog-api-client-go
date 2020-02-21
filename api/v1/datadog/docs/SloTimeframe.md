@@ -1,4 +1,4 @@
-# SloTimeframe
+# SLOTimeframe
 
 ## Properties
 

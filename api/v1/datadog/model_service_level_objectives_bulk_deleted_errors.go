@@ -18,14 +18,14 @@ type ServiceLevelObjectivesBulkDeletedErrors struct {
 	Id string `json:"id"`
 	// The error message
 	Message   string            `json:"message"`
-	Timeframe SloErrorTimeframe `json:"timeframe"`
+	Timeframe SLOErrorTimeframe `json:"timeframe"`
 }
 
 // NewServiceLevelObjectivesBulkDeletedErrors instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe SloErrorTimeframe) *ServiceLevelObjectivesBulkDeletedErrors {
+func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe SLOErrorTimeframe) *ServiceLevelObjectivesBulkDeletedErrors {
 	this := ServiceLevelObjectivesBulkDeletedErrors{}
 	this.Id = id
 	this.Message = message
@@ -72,9 +72,9 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) SetMessage(v string) {
 }
 
 // GetTimeframe returns the Timeframe field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SloErrorTimeframe {
+func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SLOErrorTimeframe {
 	if o == nil {
-		var ret SloErrorTimeframe
+		var ret SLOErrorTimeframe
 		return ret
 	}
 
@@ -82,7 +82,7 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SloErrorTimefra
 }
 
 // SetTimeframe sets field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SloErrorTimeframe) {
+func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SLOErrorTimeframe) {
 	o.Timeframe = v
 }
 

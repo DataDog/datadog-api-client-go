@@ -1,4 +1,4 @@
-# ApiErrorResponse
+# APIErrorResponse
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewApiErrorResponse
+### NewAPIErrorResponse
 
-`func NewApiErrorResponse(errors []string, ) *ApiErrorResponse`
+`func NewAPIErrorResponse(errors []string, ) *APIErrorResponse`
 
-NewApiErrorResponse instantiates a new ApiErrorResponse object
+NewAPIErrorResponse instantiates a new APIErrorResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewApiErrorResponseWithDefaults
+### NewAPIErrorResponseWithDefaults
 
-`func NewApiErrorResponseWithDefaults() *ApiErrorResponse`
+`func NewAPIErrorResponseWithDefaults() *APIErrorResponse`
 
-NewApiErrorResponseWithDefaults instantiates a new ApiErrorResponse object
+NewAPIErrorResponseWithDefaults instantiates a new APIErrorResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *ApiErrorResponse) GetErrors() []string`
+`func (o *APIErrorResponse) GetErrors() []string`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *ApiErrorResponse) GetErrorsOk() ([]string, bool)`
+`func (o *APIErrorResponse) GetErrorsOk() ([]string, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasErrors
 
-`func (o *ApiErrorResponse) HasErrors() bool`
+`func (o *APIErrorResponse) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
 
 ### SetErrors
 
-`func (o *ApiErrorResponse) SetErrors(v []string)`
+`func (o *APIErrorResponse) SetErrors(v []string)`
 
 SetErrors gets a reference to the given []string and assigns it to the Errors field.
 

@@ -1,80 +1,80 @@
-# SyntheticsGetApiTestLatestResultsResponse
+# SyntheticsGetAPITestLatestResultsResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LastTimestampFetched** | Pointer to **int64** |  | [optional] 
-**Results** | Pointer to [**[]SyntheticsApiTestResultShort**](SyntheticsAPITestResultShort.md) |  | [optional] 
+**Results** | Pointer to [**[]SyntheticsAPITestResultShort**](SyntheticsAPITestResultShort.md) |  | [optional] 
 
 ## Methods
 
-### NewSyntheticsGetApiTestLatestResultsResponse
+### NewSyntheticsGetAPITestLatestResultsResponse
 
-`func NewSyntheticsGetApiTestLatestResultsResponse() *SyntheticsGetApiTestLatestResultsResponse`
+`func NewSyntheticsGetAPITestLatestResultsResponse() *SyntheticsGetAPITestLatestResultsResponse`
 
-NewSyntheticsGetApiTestLatestResultsResponse instantiates a new SyntheticsGetApiTestLatestResultsResponse object
+NewSyntheticsGetAPITestLatestResultsResponse instantiates a new SyntheticsGetAPITestLatestResultsResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSyntheticsGetApiTestLatestResultsResponseWithDefaults
+### NewSyntheticsGetAPITestLatestResultsResponseWithDefaults
 
-`func NewSyntheticsGetApiTestLatestResultsResponseWithDefaults() *SyntheticsGetApiTestLatestResultsResponse`
+`func NewSyntheticsGetAPITestLatestResultsResponseWithDefaults() *SyntheticsGetAPITestLatestResultsResponse`
 
-NewSyntheticsGetApiTestLatestResultsResponseWithDefaults instantiates a new SyntheticsGetApiTestLatestResultsResponse object
+NewSyntheticsGetAPITestLatestResultsResponseWithDefaults instantiates a new SyntheticsGetAPITestLatestResultsResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLastTimestampFetched
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) GetLastTimestampFetched() int64`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetched() int64`
 
 GetLastTimestampFetched returns the LastTimestampFetched field if non-nil, zero value otherwise.
 
 ### GetLastTimestampFetchedOk
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) GetLastTimestampFetchedOk() (int64, bool)`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetchedOk() (int64, bool)`
 
 GetLastTimestampFetchedOk returns a tuple with the LastTimestampFetched field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasLastTimestampFetched
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) HasLastTimestampFetched() bool`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) HasLastTimestampFetched() bool`
 
 HasLastTimestampFetched returns a boolean if a field has been set.
 
 ### SetLastTimestampFetched
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) SetLastTimestampFetched(v int64)`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) SetLastTimestampFetched(v int64)`
 
 SetLastTimestampFetched gets a reference to the given int64 and assigns it to the LastTimestampFetched field.
 
 ### GetResults
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) GetResults() []SyntheticsApiTestResultShort`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) GetResults() []SyntheticsAPITestResultShort`
 
 GetResults returns the Results field if non-nil, zero value otherwise.
 
 ### GetResultsOk
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) GetResultsOk() ([]SyntheticsApiTestResultShort, bool)`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() ([]SyntheticsAPITestResultShort, bool)`
 
 GetResultsOk returns a tuple with the Results field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasResults
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) HasResults() bool`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) HasResults() bool`
 
 HasResults returns a boolean if a field has been set.
 
 ### SetResults
 
-`func (o *SyntheticsGetApiTestLatestResultsResponse) SetResults(v []SyntheticsApiTestResultShort)`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) SetResults(v []SyntheticsAPITestResultShort)`
 
-SetResults gets a reference to the given []SyntheticsApiTestResultShort and assigns it to the Results field.
+SetResults gets a reference to the given []SyntheticsAPITestResultShort and assigns it to the Results field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

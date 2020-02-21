@@ -1,4 +1,4 @@
-# SloErrorTimeframe
+# SLOErrorTimeframe
 
 ## Properties
 

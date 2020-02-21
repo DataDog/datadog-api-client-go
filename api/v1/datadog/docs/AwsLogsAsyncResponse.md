@@ -1,78 +1,78 @@
-# AwsLogsAsyncResponse
+# AWSLogsAsyncResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to [**[]AwsLogsAsyncResponseErrors**](AWSLogsAsyncResponse_errors.md) |  | [optional] 
+**Errors** | Pointer to [**[]AWSLogsAsyncResponseErrors**](AWSLogsAsyncResponse_errors.md) |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
-### NewAwsLogsAsyncResponse
+### NewAWSLogsAsyncResponse
 
-`func NewAwsLogsAsyncResponse() *AwsLogsAsyncResponse`
+`func NewAWSLogsAsyncResponse() *AWSLogsAsyncResponse`
 
-NewAwsLogsAsyncResponse instantiates a new AwsLogsAsyncResponse object
+NewAWSLogsAsyncResponse instantiates a new AWSLogsAsyncResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAwsLogsAsyncResponseWithDefaults
+### NewAWSLogsAsyncResponseWithDefaults
 
-`func NewAwsLogsAsyncResponseWithDefaults() *AwsLogsAsyncResponse`
+`func NewAWSLogsAsyncResponseWithDefaults() *AWSLogsAsyncResponse`
 
-NewAwsLogsAsyncResponseWithDefaults instantiates a new AwsLogsAsyncResponse object
+NewAWSLogsAsyncResponseWithDefaults instantiates a new AWSLogsAsyncResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *AwsLogsAsyncResponse) GetErrors() []AwsLogsAsyncResponseErrors`
+`func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncResponseErrors`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *AwsLogsAsyncResponse) GetErrorsOk() ([]AwsLogsAsyncResponseErrors, bool)`
+`func (o *AWSLogsAsyncResponse) GetErrorsOk() ([]AWSLogsAsyncResponseErrors, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasErrors
 
-`func (o *AwsLogsAsyncResponse) HasErrors() bool`
+`func (o *AWSLogsAsyncResponse) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
 
 ### SetErrors
 
-`func (o *AwsLogsAsyncResponse) SetErrors(v []AwsLogsAsyncResponseErrors)`
+`func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncResponseErrors)`
 
-SetErrors gets a reference to the given []AwsLogsAsyncResponseErrors and assigns it to the Errors field.
+SetErrors gets a reference to the given []AWSLogsAsyncResponseErrors and assigns it to the Errors field.
 
 ### GetStatus
 
-`func (o *AwsLogsAsyncResponse) GetStatus() string`
+`func (o *AWSLogsAsyncResponse) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *AwsLogsAsyncResponse) GetStatusOk() (string, bool)`
+`func (o *AWSLogsAsyncResponse) GetStatusOk() (string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasStatus
 
-`func (o *AwsLogsAsyncResponse) HasStatus() bool`
+`func (o *AWSLogsAsyncResponse) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### SetStatus
 
-`func (o *AwsLogsAsyncResponse) SetStatus(v string)`
+`func (o *AWSLogsAsyncResponse) SetStatus(v string)`
 
 SetStatus gets a reference to the given string and assigns it to the Status field.
 

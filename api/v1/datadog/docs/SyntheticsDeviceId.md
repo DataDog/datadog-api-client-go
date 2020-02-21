@@ -1,4 +1,4 @@
-# SyntheticsDeviceId
+# SyntheticsDeviceID
 
 ## Properties
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Groups** | Pointer to [**HistoryServiceLevelObjectiveGroups**](HistoryServiceLevelObjectiveGroups.md) |  | [optional] 
 **Overall** | Pointer to [**HistoryServiceLevelObjectiveOverall**](HistoryServiceLevelObjectiveOverall.md) |  | [optional] 
 **Series** | Pointer to [**HistoryServiceLevelObjectiveMetrics**](HistoryServiceLevelObjectiveMetrics.md) |  | [optional] 
-**Thresholds** | Pointer to [**map[string]SloThreshold**](SLOThreshold.md) | mapping of string timeframe to the SLO threshold. | [optional] 
+**Thresholds** | Pointer to [**map[string]SLOThreshold**](SLOThreshold.md) | mapping of string timeframe to the SLO threshold. | [optional] 
 **ToTs** | Pointer to **int64** | the &#x60;to&#x60; timestamp in epoch seconds | [optional] 
 
 ## Methods
@@ -132,13 +132,13 @@ SetSeries gets a reference to the given HistoryServiceLevelObjectiveMetrics and 
 
 ### GetThresholds
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SloThreshold`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SLOThreshold`
 
 GetThresholds returns the Thresholds field if non-nil, zero value otherwise.
 
 ### GetThresholdsOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SloThreshold, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SLOThreshold, bool)`
 
 GetThresholdsOk returns a tuple with the Thresholds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -151,9 +151,9 @@ HasThresholds returns a boolean if a field has been set.
 
 ### SetThresholds
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]SloThreshold)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]SLOThreshold)`
 
-SetThresholds gets a reference to the given map[string]SloThreshold and assigns it to the Thresholds field.
+SetThresholds gets a reference to the given map[string]SLOThreshold and assigns it to the Thresholds field.
 
 ### GetToTs
 

@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// LogsGeoIpParser The GeoIP parser takes an IP address attribute and extracts if available the Continent, Country, Subdivision, and City information in the target attribute path.
-type LogsGeoIpParser struct {
+// LogsGeoIPParser The GeoIP parser takes an IP address attribute and extracts if available the Continent, Country, Subdivision, and City information in the target attribute path.
+type LogsGeoIPParser struct {
 	// Array of source attributes
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`
@@ -26,12 +26,12 @@ type LogsGeoIpParser struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// NewLogsGeoIpParser instantiates a new LogsGeoIpParser object
+// NewLogsGeoIPParser instantiates a new LogsGeoIPParser object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsGeoIpParser(sources []string, target string) *LogsGeoIpParser {
-	this := LogsGeoIpParser{}
+func NewLogsGeoIPParser(sources []string, target string) *LogsGeoIPParser {
+	this := LogsGeoIPParser{}
 	this.Sources = sources
 	this.Target = target
 	var type_ string = "geo-ip-parser"
@@ -41,11 +41,11 @@ func NewLogsGeoIpParser(sources []string, target string) *LogsGeoIpParser {
 	return &this
 }
 
-// NewLogsGeoIpParserWithDefaults instantiates a new LogsGeoIpParser object
+// NewLogsGeoIPParserWithDefaults instantiates a new LogsGeoIPParser object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLogsGeoIpParserWithDefaults() *LogsGeoIpParser {
-	this := LogsGeoIpParser{}
+func NewLogsGeoIPParserWithDefaults() *LogsGeoIPParser {
+	this := LogsGeoIPParser{}
 	var target string = "network.client.geoip"
 	this.Target = target
 	var type_ string = "geo-ip-parser"
@@ -56,7 +56,7 @@ func NewLogsGeoIpParserWithDefaults() *LogsGeoIpParser {
 }
 
 // GetSources returns the Sources field value
-func (o *LogsGeoIpParser) GetSources() []string {
+func (o *LogsGeoIPParser) GetSources() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -66,12 +66,12 @@ func (o *LogsGeoIpParser) GetSources() []string {
 }
 
 // SetSources sets field value
-func (o *LogsGeoIpParser) SetSources(v []string) {
+func (o *LogsGeoIPParser) SetSources(v []string) {
 	o.Sources = v
 }
 
 // GetTarget returns the Target field value
-func (o *LogsGeoIpParser) GetTarget() string {
+func (o *LogsGeoIPParser) GetTarget() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -81,12 +81,12 @@ func (o *LogsGeoIpParser) GetTarget() string {
 }
 
 // SetTarget sets field value
-func (o *LogsGeoIpParser) SetTarget(v string) {
+func (o *LogsGeoIPParser) SetTarget(v string) {
 	o.Target = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *LogsGeoIpParser) GetType() string {
+func (o *LogsGeoIPParser) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -96,7 +96,7 @@ func (o *LogsGeoIpParser) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGeoIpParser) GetTypeOk() (string, bool) {
+func (o *LogsGeoIPParser) GetTypeOk() (string, bool) {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret, false
@@ -105,7 +105,7 @@ func (o *LogsGeoIpParser) GetTypeOk() (string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *LogsGeoIpParser) HasType() bool {
+func (o *LogsGeoIPParser) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -114,12 +114,12 @@ func (o *LogsGeoIpParser) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *LogsGeoIpParser) SetType(v string) {
+func (o *LogsGeoIPParser) SetType(v string) {
 	o.Type = &v
 }
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
-func (o *LogsGeoIpParser) GetIsEnabled() bool {
+func (o *LogsGeoIPParser) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
 		var ret bool
 		return ret
@@ -129,7 +129,7 @@ func (o *LogsGeoIpParser) GetIsEnabled() bool {
 
 // GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGeoIpParser) GetIsEnabledOk() (bool, bool) {
+func (o *LogsGeoIPParser) GetIsEnabledOk() (bool, bool) {
 	if o == nil || o.IsEnabled == nil {
 		var ret bool
 		return ret, false
@@ -138,7 +138,7 @@ func (o *LogsGeoIpParser) GetIsEnabledOk() (bool, bool) {
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
-func (o *LogsGeoIpParser) HasIsEnabled() bool {
+func (o *LogsGeoIPParser) HasIsEnabled() bool {
 	if o != nil && o.IsEnabled != nil {
 		return true
 	}
@@ -147,12 +147,12 @@ func (o *LogsGeoIpParser) HasIsEnabled() bool {
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
-func (o *LogsGeoIpParser) SetIsEnabled(v bool) {
+func (o *LogsGeoIPParser) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *LogsGeoIpParser) GetName() string {
+func (o *LogsGeoIPParser) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -162,7 +162,7 @@ func (o *LogsGeoIpParser) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGeoIpParser) GetNameOk() (string, bool) {
+func (o *LogsGeoIPParser) GetNameOk() (string, bool) {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret, false
@@ -171,7 +171,7 @@ func (o *LogsGeoIpParser) GetNameOk() (string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *LogsGeoIpParser) HasName() bool {
+func (o *LogsGeoIPParser) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -180,11 +180,11 @@ func (o *LogsGeoIpParser) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *LogsGeoIpParser) SetName(v string) {
+func (o *LogsGeoIPParser) SetName(v string) {
 	o.Name = &v
 }
 
-func (o LogsGeoIpParser) MarshalJSON() ([]byte, error) {
+func (o LogsGeoIPParser) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -205,43 +205,43 @@ func (o LogsGeoIpParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-// AsLogsProcessor wraps this instance of LogsGeoIpParser in LogsProcessor
-func (s *LogsGeoIpParser) AsLogsProcessor() LogsProcessor {
+// AsLogsProcessor wraps this instance of LogsGeoIPParser in LogsProcessor
+func (s *LogsGeoIPParser) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
-type NullableLogsGeoIpParser struct {
-	value *LogsGeoIpParser
+type NullableLogsGeoIPParser struct {
+	value *LogsGeoIPParser
 	isSet bool
 }
 
-func (v NullableLogsGeoIpParser) Get() *LogsGeoIpParser {
+func (v NullableLogsGeoIPParser) Get() *LogsGeoIPParser {
 	return v.value
 }
 
-func (v NullableLogsGeoIpParser) Set(val *LogsGeoIpParser) {
+func (v NullableLogsGeoIPParser) Set(val *LogsGeoIPParser) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogsGeoIpParser) IsSet() bool {
+func (v NullableLogsGeoIPParser) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsGeoIpParser) Unset() {
+func (v NullableLogsGeoIPParser) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogsGeoIpParser(val *LogsGeoIpParser) *NullableLogsGeoIpParser {
-	return &NullableLogsGeoIpParser{value: val, isSet: true}
+func NewNullableLogsGeoIPParser(val *LogsGeoIPParser) *NullableLogsGeoIPParser {
+	return &NullableLogsGeoIPParser{value: val, isSet: true}
 }
 
-func (v NullableLogsGeoIpParser) MarshalJSON() ([]byte, error) {
+func (v NullableLogsGeoIPParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogsGeoIpParser) UnmarshalJSON(src []byte) error {
+func (v *NullableLogsGeoIPParser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

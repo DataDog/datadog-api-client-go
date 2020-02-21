@@ -1,4 +1,4 @@
-# AwsLogsListServicesResponse
+# AWSLogsListServicesResponse
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAwsLogsListServicesResponse
+### NewAWSLogsListServicesResponse
 
-`func NewAwsLogsListServicesResponse() *AwsLogsListServicesResponse`
+`func NewAWSLogsListServicesResponse() *AWSLogsListServicesResponse`
 
-NewAwsLogsListServicesResponse instantiates a new AwsLogsListServicesResponse object
+NewAWSLogsListServicesResponse instantiates a new AWSLogsListServicesResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAwsLogsListServicesResponseWithDefaults
+### NewAWSLogsListServicesResponseWithDefaults
 
-`func NewAwsLogsListServicesResponseWithDefaults() *AwsLogsListServicesResponse`
+`func NewAWSLogsListServicesResponseWithDefaults() *AWSLogsListServicesResponse`
 
-NewAwsLogsListServicesResponseWithDefaults instantiates a new AwsLogsListServicesResponse object
+NewAWSLogsListServicesResponseWithDefaults instantiates a new AWSLogsListServicesResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *AwsLogsListServicesResponse) GetId() string`
+`func (o *AWSLogsListServicesResponse) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *AwsLogsListServicesResponse) GetIdOk() (string, bool)`
+`func (o *AWSLogsListServicesResponse) GetIdOk() (string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasId
 
-`func (o *AwsLogsListServicesResponse) HasId() bool`
+`func (o *AWSLogsListServicesResponse) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### SetId
 
-`func (o *AwsLogsListServicesResponse) SetId(v string)`
+`func (o *AWSLogsListServicesResponse) SetId(v string)`
 
 SetId gets a reference to the given string and assigns it to the Id field.
 
 ### GetLabel
 
-`func (o *AwsLogsListServicesResponse) GetLabel() string`
+`func (o *AWSLogsListServicesResponse) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *AwsLogsListServicesResponse) GetLabelOk() (string, bool)`
+`func (o *AWSLogsListServicesResponse) GetLabelOk() (string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasLabel
 
-`func (o *AwsLogsListServicesResponse) HasLabel() bool`
+`func (o *AWSLogsListServicesResponse) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
 
 ### SetLabel
 
-`func (o *AwsLogsListServicesResponse) SetLabel(v string)`
+`func (o *AWSLogsListServicesResponse) SetLabel(v string)`
 
 SetLabel gets a reference to the given string and assigns it to the Label field.
 

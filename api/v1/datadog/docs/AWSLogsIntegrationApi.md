@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## AWSLogsCheckLambdaAsync
 
-> AwsLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx).Body(body).Execute()
+> AWSLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx).Body(body).Execute()
 
 Check function to see if a lambda_arn exists within an account.
 
@@ -33,11 +33,11 @@ Other parameters are passed through a pointer to a apiAWSLogsCheckLambdaAsyncReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+ **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
-[**AwsLogsAsyncResponse**](AWSLogsAsyncResponse.md)
+[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
 
 ### Authorization
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ## AWSLogsCheckServicesAsync
 
-> AwsLogsAsyncResponse AWSLogsCheckServicesAsync(ctx).Body(body).Execute()
+> AWSLogsAsyncResponse AWSLogsCheckServicesAsync(ctx).Body(body).Execute()
 
 Asynchronous check for permissions for AWS log lambda config.
 
@@ -72,11 +72,11 @@ Other parameters are passed through a pointer to a apiAWSLogsCheckServicesAsyncR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md) | AWS Logs Async Services check request body | 
+ **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | AWS Logs Async Services check request body | 
 
 ### Return type
 
-[**AwsLogsAsyncResponse**](AWSLogsAsyncResponse.md)
+[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
 
 ### Authorization
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ## AWSLogsList
 
-> []AwsLogsListResponse AWSLogsList(ctx).Execute()
+> []AWSLogsListResponse AWSLogsList(ctx).Execute()
 
 List configured AWS log integrations.
 
@@ -111,7 +111,7 @@ Other parameters are passed through a pointer to a apiAWSLogsListRequest struct 
 
 ### Return type
 
-[**[]AwsLogsListResponse**](AWSLogsListResponse.md)
+[**[]AWSLogsListResponse**](AWSLogsListResponse.md)
 
 ### Authorization
 
@@ -129,7 +129,7 @@ Other parameters are passed through a pointer to a apiAWSLogsListRequest struct 
 
 ## AWSLogsServicesList
 
-> []AwsLogsListServicesResponse AWSLogsServicesList(ctx).Execute()
+> []AWSLogsListServicesResponse AWSLogsServicesList(ctx).Execute()
 
 Get list of AWS log ready services.
 
@@ -146,7 +146,7 @@ Other parameters are passed through a pointer to a apiAWSLogsServicesListRequest
 
 ### Return type
 
-[**[]AwsLogsListServicesResponse**](AWSLogsListServicesResponse.md)
+[**[]AWSLogsListServicesResponse**](AWSLogsListServicesResponse.md)
 
 ### Authorization
 
@@ -181,7 +181,7 @@ Other parameters are passed through a pointer to a apiAddAWSLambdaARNRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+ **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -220,7 +220,7 @@ Other parameters are passed through a pointer to a apiDeleteAWSLambdaARNRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+ **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
@@ -259,7 +259,7 @@ Other parameters are passed through a pointer to a apiEnableAWSLogServicesReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md) | Enable AWS Log Services request object | 
+ **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | Enable AWS Log Services request object | 
 
 ### Return type
 

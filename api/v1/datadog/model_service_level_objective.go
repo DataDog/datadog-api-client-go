@@ -35,7 +35,7 @@ type ServiceLevelObjective struct {
 	// A list of tags (e.g. \"env:prod\") associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
-	Thresholds []SloThreshold                    `json:"thresholds"`
+	Thresholds []SLOThreshold                    `json:"thresholds"`
 	Type       ServiceLevelObjectiveType         `json:"type"`
 	TypeId     *ServiceLevelObjectiveTypeNumeric `json:"type_id,omitempty"`
 }
@@ -44,7 +44,7 @@ type ServiceLevelObjective struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjective(name string, thresholds []SloThreshold, type_ ServiceLevelObjectiveType) *ServiceLevelObjective {
+func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ ServiceLevelObjectiveType) *ServiceLevelObjective {
 	this := ServiceLevelObjective{}
 	this.Name = name
 	this.Thresholds = thresholds
@@ -406,9 +406,9 @@ func (o *ServiceLevelObjective) SetTags(v []string) {
 }
 
 // GetThresholds returns the Thresholds field value
-func (o *ServiceLevelObjective) GetThresholds() []SloThreshold {
+func (o *ServiceLevelObjective) GetThresholds() []SLOThreshold {
 	if o == nil {
-		var ret []SloThreshold
+		var ret []SLOThreshold
 		return ret
 	}
 
@@ -416,7 +416,7 @@ func (o *ServiceLevelObjective) GetThresholds() []SloThreshold {
 }
 
 // SetThresholds sets field value
-func (o *ServiceLevelObjective) SetThresholds(v []SloThreshold) {
+func (o *ServiceLevelObjective) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = v
 }
 

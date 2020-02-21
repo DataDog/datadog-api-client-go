@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Check** | Pointer to [**SyntheticsApiTestResultFullCheck**](SyntheticsAPITestResultFull_check.md) |  | [optional] 
+**Check** | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFull_check.md) |  | [optional] 
 **CheckTime** | Pointer to **float64** |  | [optional] 
 **CheckVersion** | Pointer to **int64** |  | [optional] 
 **ProbeDc** | Pointer to **string** |  | [optional] 
@@ -33,13 +33,13 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCheck
 
-`func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsApiTestResultFullCheck`
+`func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsAPITestResultFullCheck`
 
 GetCheck returns the Check field if non-nil, zero value otherwise.
 
 ### GetCheckOk
 
-`func (o *SyntheticsBrowserTestResultFull) GetCheckOk() (SyntheticsApiTestResultFullCheck, bool)`
+`func (o *SyntheticsBrowserTestResultFull) GetCheckOk() (SyntheticsAPITestResultFullCheck, bool)`
 
 GetCheckOk returns a tuple with the Check field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -52,9 +52,9 @@ HasCheck returns a boolean if a field has been set.
 
 ### SetCheck
 
-`func (o *SyntheticsBrowserTestResultFull) SetCheck(v SyntheticsApiTestResultFullCheck)`
+`func (o *SyntheticsBrowserTestResultFull) SetCheck(v SyntheticsAPITestResultFullCheck)`
 
-SetCheck gets a reference to the given SyntheticsApiTestResultFullCheck and assigns it to the Check field.
+SetCheck gets a reference to the given SyntheticsAPITestResultFullCheck and assigns it to the Check field.
 
 ### GetCheckTime
 

@@ -12,33 +12,33 @@ import (
 	"encoding/json"
 )
 
-// AwsLogsAsyncResponse struct for AwsLogsAsyncResponse
-type AwsLogsAsyncResponse struct {
-	Errors *[]AwsLogsAsyncResponseErrors `json:"errors,omitempty"`
+// AWSLogsAsyncResponse struct for AWSLogsAsyncResponse
+type AWSLogsAsyncResponse struct {
+	Errors *[]AWSLogsAsyncResponseErrors `json:"errors,omitempty"`
 	Status *string                       `json:"status,omitempty"`
 }
 
-// NewAwsLogsAsyncResponse instantiates a new AwsLogsAsyncResponse object
+// NewAWSLogsAsyncResponse instantiates a new AWSLogsAsyncResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsLogsAsyncResponse() *AwsLogsAsyncResponse {
-	this := AwsLogsAsyncResponse{}
+func NewAWSLogsAsyncResponse() *AWSLogsAsyncResponse {
+	this := AWSLogsAsyncResponse{}
 	return &this
 }
 
-// NewAwsLogsAsyncResponseWithDefaults instantiates a new AwsLogsAsyncResponse object
+// NewAWSLogsAsyncResponseWithDefaults instantiates a new AWSLogsAsyncResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAwsLogsAsyncResponseWithDefaults() *AwsLogsAsyncResponse {
-	this := AwsLogsAsyncResponse{}
+func NewAWSLogsAsyncResponseWithDefaults() *AWSLogsAsyncResponse {
+	this := AWSLogsAsyncResponse{}
 	return &this
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *AwsLogsAsyncResponse) GetErrors() []AwsLogsAsyncResponseErrors {
+func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncResponseErrors {
 	if o == nil || o.Errors == nil {
-		var ret []AwsLogsAsyncResponseErrors
+		var ret []AWSLogsAsyncResponseErrors
 		return ret
 	}
 	return *o.Errors
@@ -46,16 +46,16 @@ func (o *AwsLogsAsyncResponse) GetErrors() []AwsLogsAsyncResponseErrors {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsAsyncResponse) GetErrorsOk() ([]AwsLogsAsyncResponseErrors, bool) {
+func (o *AWSLogsAsyncResponse) GetErrorsOk() ([]AWSLogsAsyncResponseErrors, bool) {
 	if o == nil || o.Errors == nil {
-		var ret []AwsLogsAsyncResponseErrors
+		var ret []AWSLogsAsyncResponseErrors
 		return ret, false
 	}
 	return *o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
-func (o *AwsLogsAsyncResponse) HasErrors() bool {
+func (o *AWSLogsAsyncResponse) HasErrors() bool {
 	if o != nil && o.Errors != nil {
 		return true
 	}
@@ -63,13 +63,13 @@ func (o *AwsLogsAsyncResponse) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []AwsLogsAsyncResponseErrors and assigns it to the Errors field.
-func (o *AwsLogsAsyncResponse) SetErrors(v []AwsLogsAsyncResponseErrors) {
+// SetErrors gets a reference to the given []AWSLogsAsyncResponseErrors and assigns it to the Errors field.
+func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncResponseErrors) {
 	o.Errors = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *AwsLogsAsyncResponse) GetStatus() string {
+func (o *AWSLogsAsyncResponse) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *AwsLogsAsyncResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsLogsAsyncResponse) GetStatusOk() (string, bool) {
+func (o *AWSLogsAsyncResponse) GetStatusOk() (string, bool) {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret, false
@@ -88,7 +88,7 @@ func (o *AwsLogsAsyncResponse) GetStatusOk() (string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *AwsLogsAsyncResponse) HasStatus() bool {
+func (o *AWSLogsAsyncResponse) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -97,11 +97,11 @@ func (o *AwsLogsAsyncResponse) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *AwsLogsAsyncResponse) SetStatus(v string) {
+func (o *AWSLogsAsyncResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o AwsLogsAsyncResponse) MarshalJSON() ([]byte, error) {
+func (o AWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Errors != nil {
@@ -113,38 +113,38 @@ func (o AwsLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAwsLogsAsyncResponse struct {
-	value *AwsLogsAsyncResponse
+type NullableAWSLogsAsyncResponse struct {
+	value *AWSLogsAsyncResponse
 	isSet bool
 }
 
-func (v NullableAwsLogsAsyncResponse) Get() *AwsLogsAsyncResponse {
+func (v NullableAWSLogsAsyncResponse) Get() *AWSLogsAsyncResponse {
 	return v.value
 }
 
-func (v NullableAwsLogsAsyncResponse) Set(val *AwsLogsAsyncResponse) {
+func (v NullableAWSLogsAsyncResponse) Set(val *AWSLogsAsyncResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAwsLogsAsyncResponse) IsSet() bool {
+func (v NullableAWSLogsAsyncResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAwsLogsAsyncResponse) Unset() {
+func (v NullableAWSLogsAsyncResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAwsLogsAsyncResponse(val *AwsLogsAsyncResponse) *NullableAwsLogsAsyncResponse {
-	return &NullableAwsLogsAsyncResponse{value: val, isSet: true}
+func NewNullableAWSLogsAsyncResponse(val *AWSLogsAsyncResponse) *NullableAWSLogsAsyncResponse {
+	return &NullableAWSLogsAsyncResponse{value: val, isSet: true}
 }
 
-func (v NullableAwsLogsAsyncResponse) MarshalJSON() ([]byte, error) {
+func (v NullableAWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAwsLogsAsyncResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableAWSLogsAsyncResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

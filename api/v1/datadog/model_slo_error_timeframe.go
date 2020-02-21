@@ -12,54 +12,54 @@ import (
 	"encoding/json"
 )
 
-// SloErrorTimeframe The timeframe of the threshold associated with this error or \"all\" if all thresholds are affected.
-type SloErrorTimeframe string
+// SLOErrorTimeframe The timeframe of the threshold associated with this error or \"all\" if all thresholds are affected.
+type SLOErrorTimeframe string
 
 // List of SLOErrorTimeframe
 const (
-	SLOERRORTIMEFRAME_SEVEN_DAYS  SloErrorTimeframe = "7d"
-	SLOERRORTIMEFRAME_THIRTY_DAYS SloErrorTimeframe = "30d"
-	SLOERRORTIMEFRAME_NINETY_DAYS SloErrorTimeframe = "90d"
-	SLOERRORTIMEFRAME_ALL         SloErrorTimeframe = "all"
+	SLOERRORTIMEFRAME_SEVEN_DAYS  SLOErrorTimeframe = "7d"
+	SLOERRORTIMEFRAME_THIRTY_DAYS SLOErrorTimeframe = "30d"
+	SLOERRORTIMEFRAME_NINETY_DAYS SLOErrorTimeframe = "90d"
+	SLOERRORTIMEFRAME_ALL         SLOErrorTimeframe = "all"
 )
 
 // Ptr returns reference to SLOErrorTimeframe value
-func (v SloErrorTimeframe) Ptr() *SloErrorTimeframe {
+func (v SLOErrorTimeframe) Ptr() *SLOErrorTimeframe {
 	return &v
 }
 
-type NullableSloErrorTimeframe struct {
-	value *SloErrorTimeframe
+type NullableSLOErrorTimeframe struct {
+	value *SLOErrorTimeframe
 	isSet bool
 }
 
-func (v NullableSloErrorTimeframe) Get() *SloErrorTimeframe {
+func (v NullableSLOErrorTimeframe) Get() *SLOErrorTimeframe {
 	return v.value
 }
 
-func (v NullableSloErrorTimeframe) Set(val *SloErrorTimeframe) {
+func (v NullableSLOErrorTimeframe) Set(val *SLOErrorTimeframe) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSloErrorTimeframe) IsSet() bool {
+func (v NullableSLOErrorTimeframe) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSloErrorTimeframe) Unset() {
+func (v NullableSLOErrorTimeframe) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSloErrorTimeframe(val *SloErrorTimeframe) *NullableSloErrorTimeframe {
-	return &NullableSloErrorTimeframe{value: val, isSet: true}
+func NewNullableSLOErrorTimeframe(val *SLOErrorTimeframe) *NullableSLOErrorTimeframe {
+	return &NullableSLOErrorTimeframe{value: val, isSet: true}
 }
 
-func (v NullableSloErrorTimeframe) MarshalJSON() ([]byte, error) {
+func (v NullableSLOErrorTimeframe) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSloErrorTimeframe) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOErrorTimeframe) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

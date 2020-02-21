@@ -1,4 +1,4 @@
-# LogsUrlParser
+# LogsURLParser
 
 ## Properties
 
@@ -12,154 +12,154 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewLogsUrlParser
+### NewLogsURLParser
 
-`func NewLogsUrlParser(sources []string, target string, ) *LogsUrlParser`
+`func NewLogsURLParser(sources []string, target string, ) *LogsURLParser`
 
-NewLogsUrlParser instantiates a new LogsUrlParser object
+NewLogsURLParser instantiates a new LogsURLParser object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewLogsUrlParserWithDefaults
+### NewLogsURLParserWithDefaults
 
-`func NewLogsUrlParserWithDefaults() *LogsUrlParser`
+`func NewLogsURLParserWithDefaults() *LogsURLParser`
 
-NewLogsUrlParserWithDefaults instantiates a new LogsUrlParser object
+NewLogsURLParserWithDefaults instantiates a new LogsURLParser object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetSources
 
-`func (o *LogsUrlParser) GetSources() []string`
+`func (o *LogsURLParser) GetSources() []string`
 
 GetSources returns the Sources field if non-nil, zero value otherwise.
 
 ### GetSourcesOk
 
-`func (o *LogsUrlParser) GetSourcesOk() ([]string, bool)`
+`func (o *LogsURLParser) GetSourcesOk() ([]string, bool)`
 
 GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasSources
 
-`func (o *LogsUrlParser) HasSources() bool`
+`func (o *LogsURLParser) HasSources() bool`
 
 HasSources returns a boolean if a field has been set.
 
 ### SetSources
 
-`func (o *LogsUrlParser) SetSources(v []string)`
+`func (o *LogsURLParser) SetSources(v []string)`
 
 SetSources gets a reference to the given []string and assigns it to the Sources field.
 
 ### GetTarget
 
-`func (o *LogsUrlParser) GetTarget() string`
+`func (o *LogsURLParser) GetTarget() string`
 
 GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *LogsUrlParser) GetTargetOk() (string, bool)`
+`func (o *LogsURLParser) GetTargetOk() (string, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasTarget
 
-`func (o *LogsUrlParser) HasTarget() bool`
+`func (o *LogsURLParser) HasTarget() bool`
 
 HasTarget returns a boolean if a field has been set.
 
 ### SetTarget
 
-`func (o *LogsUrlParser) SetTarget(v string)`
+`func (o *LogsURLParser) SetTarget(v string)`
 
 SetTarget gets a reference to the given string and assigns it to the Target field.
 
 ### GetType
 
-`func (o *LogsUrlParser) GetType() string`
+`func (o *LogsURLParser) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsUrlParser) GetTypeOk() (string, bool)`
+`func (o *LogsURLParser) GetTypeOk() (string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasType
 
-`func (o *LogsUrlParser) HasType() bool`
+`func (o *LogsURLParser) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 
 ### SetType
 
-`func (o *LogsUrlParser) SetType(v string)`
+`func (o *LogsURLParser) SetType(v string)`
 
 SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetIsEnabled
 
-`func (o *LogsUrlParser) GetIsEnabled() bool`
+`func (o *LogsURLParser) GetIsEnabled() bool`
 
 GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
 ### GetIsEnabledOk
 
-`func (o *LogsUrlParser) GetIsEnabledOk() (bool, bool)`
+`func (o *LogsURLParser) GetIsEnabledOk() (bool, bool)`
 
 GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasIsEnabled
 
-`func (o *LogsUrlParser) HasIsEnabled() bool`
+`func (o *LogsURLParser) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
 
 ### SetIsEnabled
 
-`func (o *LogsUrlParser) SetIsEnabled(v bool)`
+`func (o *LogsURLParser) SetIsEnabled(v bool)`
 
 SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
 
 ### GetName
 
-`func (o *LogsUrlParser) GetName() string`
+`func (o *LogsURLParser) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsUrlParser) GetNameOk() (string, bool)`
+`func (o *LogsURLParser) GetNameOk() (string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasName
 
-`func (o *LogsUrlParser) HasName() bool`
+`func (o *LogsURLParser) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### SetName
 
-`func (o *LogsUrlParser) SetName(v string)`
+`func (o *LogsURLParser) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
 
 ### AsLogsProcessor
 
-`func (s *LogsUrlParser) AsLogsProcessor() LogsProcessor`
+`func (s *LogsURLParser) AsLogsProcessor() LogsProcessor`
 
-Convenience method to wrap this instance of LogsUrlParser in LogsProcessor
+Convenience method to wrap this instance of LogsURLParser in LogsProcessor
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
