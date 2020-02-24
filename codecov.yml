@@ -5,7 +5,7 @@ comment:
   require_base: no        # [yes :: must have a base report to post]
   require_head: yes       # [yes :: must have a head report to post]
   branches: null          # branch names that can post comment
-  after_n_builds: <number> #e.g., 5. The number of uploaded reports codecov will receive before posting a comment on a pull request. 
+  after_n_builds: 1 #e.g., 5. The number of uploaded reports codecov will receive before posting a comment on a pull request. 
   
 coverage:
   range: 20..100
