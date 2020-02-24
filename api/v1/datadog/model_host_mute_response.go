@@ -171,7 +171,6 @@ func (o *HostMuteResponse) SetMessage(v string) {
 }
 
 func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Action != nil {
 		toSerialize["action"] = o.Action

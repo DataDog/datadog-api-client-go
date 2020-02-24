@@ -104,7 +104,6 @@ func (o *ServiceLevelObjectivesBulkDeletedData) SetUpdated(v []string) {
 }
 
 func (o ServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Deleted != nil {
 		toSerialize["deleted"] = o.Deleted

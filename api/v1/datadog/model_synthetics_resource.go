@@ -306,7 +306,6 @@ func (o *SyntheticsResource) SetUrl(v string) {
 }
 
 func (o SyntheticsResource) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Duration != nil {
 		toSerialize["duration"] = o.Duration

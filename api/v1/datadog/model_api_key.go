@@ -170,7 +170,6 @@ func (o *ApiKey) SetName(v string) {
 }
 
 func (o ApiKey) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created

@@ -68,7 +68,6 @@ func (o *SyntheticsDeleteTestsPayload) SetPublicIds(v []string) {
 }
 
 func (o SyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.PublicIds != nil {
 		toSerialize["public_ids"] = o.PublicIds

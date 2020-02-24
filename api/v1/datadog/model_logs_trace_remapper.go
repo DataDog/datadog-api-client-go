@@ -182,7 +182,6 @@ func (o *LogsTraceRemapper) SetName(v string) {
 }
 
 func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Sources != nil {
 		toSerialize["sources"] = o.Sources

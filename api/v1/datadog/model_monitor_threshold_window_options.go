@@ -102,7 +102,6 @@ func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v NullableString) {
 }
 
 func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.RecoveryWindow.IsSet() {
 		toSerialize["recovery_window"] = o.RecoveryWindow.Get()

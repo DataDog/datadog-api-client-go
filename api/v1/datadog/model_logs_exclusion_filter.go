@@ -86,7 +86,6 @@ func (o *LogsExclusionFilter) SetSampleRate(v float64) {
 }
 
 func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query

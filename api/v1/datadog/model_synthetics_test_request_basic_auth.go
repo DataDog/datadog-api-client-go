@@ -68,7 +68,6 @@ func (o *SyntheticsTestRequestBasicAuth) SetUsername(v string) {
 }
 
 func (o SyntheticsTestRequestBasicAuth) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["password"] = o.Password

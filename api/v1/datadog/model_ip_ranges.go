@@ -342,7 +342,6 @@ func (o *IPRanges) SetWebhooks(v IPPrefixes) {
 }
 
 func (o IPRanges) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Agents != nil {
 		toSerialize["agents"] = o.Agents

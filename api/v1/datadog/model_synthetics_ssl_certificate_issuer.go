@@ -238,7 +238,6 @@ func (o *SyntheticsSSLCertificateIssuer) SetST(v string) {
 }
 
 func (o SyntheticsSSLCertificateIssuer) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.C != nil {
 		toSerialize["C"] = o.C

@@ -136,7 +136,6 @@ func (o *MonitorState) SetOverallState(v MonitorOverallStates) {
 }
 
 func (o MonitorState) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups

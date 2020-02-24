@@ -262,7 +262,6 @@ func (o *MetricMetadata) SetUnit(v string) {
 }
 
 func (o MetricMetadata) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description

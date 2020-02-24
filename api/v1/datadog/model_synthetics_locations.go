@@ -68,7 +68,6 @@ func (o *SyntheticsLocations) SetLocations(v []SyntheticsLocation) {
 }
 
 func (o SyntheticsLocations) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Locations != nil {
 		toSerialize["locations"] = o.Locations

@@ -204,7 +204,6 @@ func (o *SyntheticsBrowserTestResultShort) SetStatus(v SyntheticsTestMonitorStat
 }
 
 func (o SyntheticsBrowserTestResultShort) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.CheckTime != nil {
 		toSerialize["check_time"] = o.CheckTime

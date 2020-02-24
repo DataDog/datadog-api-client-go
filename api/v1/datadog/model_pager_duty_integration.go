@@ -172,7 +172,6 @@ func (o *PagerDutyIntegration) SetSubdomain(v string) {
 }
 
 func (o PagerDutyIntegration) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.ApiToken != nil {
 		toSerialize["api_token"] = o.ApiToken

@@ -102,7 +102,6 @@ func (o *EventResponse) SetStatus(v string) {
 }
 
 func (o EventResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Event != nil {
 		toSerialize["event"] = o.Event

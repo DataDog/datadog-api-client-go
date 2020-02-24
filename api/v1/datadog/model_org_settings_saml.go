@@ -68,7 +68,6 @@ func (o *OrgSettingsSaml) SetEnabled(v bool) {
 }
 
 func (o OrgSettingsSaml) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled

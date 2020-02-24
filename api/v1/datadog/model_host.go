@@ -510,7 +510,6 @@ func (o *Host) SetUp(v bool) {
 }
 
 func (o Host) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Aliases != nil {
 		toSerialize["aliases"] = o.Aliases

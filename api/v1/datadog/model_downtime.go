@@ -578,7 +578,6 @@ func (o *Downtime) SetUpdaterId(v int32) {
 }
 
 func (o Downtime) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Active != nil {
 		toSerialize["active"] = o.Active

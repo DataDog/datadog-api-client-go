@@ -139,7 +139,6 @@ func (o *LogsAPIError) SetMessage(v string) {
 }
 
 func (o LogsAPIError) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code

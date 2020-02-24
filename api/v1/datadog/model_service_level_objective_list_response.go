@@ -87,7 +87,6 @@ func (o *ServiceLevelObjectiveListResponse) SetErrors(v []string) {
 }
 
 func (o ServiceLevelObjectiveListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data

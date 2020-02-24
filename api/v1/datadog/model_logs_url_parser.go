@@ -185,7 +185,6 @@ func (o *LogsURLParser) SetName(v string) {
 }
 
 func (o LogsURLParser) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["sources"] = o.Sources

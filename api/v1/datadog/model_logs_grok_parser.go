@@ -219,7 +219,6 @@ func (o *LogsGrokParser) SetName(v string) {
 }
 
 func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["grok"] = o.Grok

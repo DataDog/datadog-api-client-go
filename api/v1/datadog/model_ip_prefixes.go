@@ -104,7 +104,6 @@ func (o *IPPrefixes) SetPrefixesIpv6(v []string) {
 }
 
 func (o IPPrefixes) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.PrefixesIpv4 != nil {
 		toSerialize["prefixes_ipv4"] = o.PrefixesIpv4

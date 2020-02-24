@@ -68,7 +68,6 @@ func (o *UsageLogsResponse) SetUsage(v []UsageLogsHour) {
 }
 
 func (o UsageLogsResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage

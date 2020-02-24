@@ -68,7 +68,6 @@ func (o *MetricSearchResponse) SetResults(v MetricSearchResponseResults) {
 }
 
 func (o MetricSearchResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Results != nil {
 		toSerialize["results"] = o.Results

@@ -261,7 +261,6 @@ func (o *LogsPipeline) SetType(v string) {
 }
 
 func (o LogsPipeline) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter

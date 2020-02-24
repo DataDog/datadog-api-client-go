@@ -236,7 +236,6 @@ func (o *LogsLookupProcessor) SetName(v string) {
 }
 
 func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DefaultLookup != nil {
 		toSerialize["default_lookup"] = o.DefaultLookup

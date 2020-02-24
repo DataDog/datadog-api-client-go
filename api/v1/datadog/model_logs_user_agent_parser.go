@@ -224,7 +224,6 @@ func (o *LogsUserAgentParser) SetName(v string) {
 }
 
 func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.IsEncoded != nil {
 		toSerialize["is_encoded"] = o.IsEncoded

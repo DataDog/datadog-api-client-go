@@ -102,7 +102,6 @@ func (o *Log) SetId(v string) {
 }
 
 func (o Log) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Content != nil {
 		toSerialize["content"] = o.Content

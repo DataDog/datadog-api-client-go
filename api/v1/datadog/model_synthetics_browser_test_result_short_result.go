@@ -204,7 +204,6 @@ func (o *SyntheticsBrowserTestResultShortResult) SetStepCountTotal(v int64) {
 }
 
 func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Device != nil {
 		toSerialize["device"] = o.Device

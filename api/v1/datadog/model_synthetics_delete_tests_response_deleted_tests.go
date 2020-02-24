@@ -103,7 +103,6 @@ func (o *SyntheticsDeleteTestsResponseDeletedTests) SetPublicId(v string) {
 }
 
 func (o SyntheticsDeleteTestsResponseDeletedTests) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DeletedAt != nil {
 		toSerialize["deleted_at"] = o.DeletedAt

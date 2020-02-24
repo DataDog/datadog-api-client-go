@@ -68,7 +68,6 @@ func (o *LogsAPIErrorResponse) SetError(v LogsAPIError) {
 }
 
 func (o LogsAPIErrorResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Error != nil {
 		toSerialize["error"] = o.Error

@@ -85,7 +85,6 @@ func (o *OrgCreateBody) SetSubscription(v OrgSubscription) {
 }
 
 func (o OrgCreateBody) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["billing"] = o.Billing

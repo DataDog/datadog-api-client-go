@@ -68,7 +68,6 @@ func (o *SyntheticsGetAllTestsResponse) SetTests(v []SyntheticsTestDetails) {
 }
 
 func (o SyntheticsGetAllTestsResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Tests != nil {
 		toSerialize["tests"] = o.Tests

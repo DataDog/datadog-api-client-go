@@ -68,7 +68,6 @@ func (o *ApiKeyListResponse) SetApiKeys(v []ApiKey) {
 }
 
 func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.ApiKeys != nil {
 		toSerialize["api_keys"] = o.ApiKeys

@@ -485,7 +485,6 @@ func (o *Event) SetUrl(v string) {
 }
 
 func (o Event) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AggregationKey != nil {
 		toSerialize["aggregation_key"] = o.AggregationKey

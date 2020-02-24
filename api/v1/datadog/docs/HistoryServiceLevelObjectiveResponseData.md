@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **Series** | Pointer to [**HistoryServiceLevelObjectiveMetrics**](HistoryServiceLevelObjectiveMetrics.md) |  | [optional] 
 **Thresholds** | Pointer to [**map[string]SLOThreshold**](SLOThreshold.md) | mapping of string timeframe to the SLO threshold. | [optional] 
 **ToTs** | Pointer to **int64** | the &#x60;to&#x60; timestamp in epoch seconds | [optional] 
+**Type** | Pointer to [**ServiceLevelObjectiveType**](ServiceLevelObjectiveType.md) |  | [optional] 
+**TypeId** | Pointer to [**ServiceLevelObjectiveTypeNumeric**](ServiceLevelObjectiveTypeNumeric.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +181,56 @@ HasToTs returns a boolean if a field has been set.
 `func (o *HistoryServiceLevelObjectiveResponseData) SetToTs(v int64)`
 
 SetToTs gets a reference to the given int64 and assigns it to the ToTs field.
+
+### GetType
+
+`func (o *HistoryServiceLevelObjectiveResponseData) GetType() ServiceLevelObjectiveType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (ServiceLevelObjectiveType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *HistoryServiceLevelObjectiveResponseData) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *HistoryServiceLevelObjectiveResponseData) SetType(v ServiceLevelObjectiveType)`
+
+SetType gets a reference to the given ServiceLevelObjectiveType and assigns it to the Type field.
+
+### GetTypeId
+
+`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() ServiceLevelObjectiveTypeNumeric`
+
+GetTypeId returns the TypeId field if non-nil, zero value otherwise.
+
+### GetTypeIdOk
+
+`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (ServiceLevelObjectiveTypeNumeric, bool)`
+
+GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTypeId
+
+`func (o *HistoryServiceLevelObjectiveResponseData) HasTypeId() bool`
+
+HasTypeId returns a boolean if a field has been set.
+
+### SetTypeId
+
+`func (o *HistoryServiceLevelObjectiveResponseData) SetTypeId(v ServiceLevelObjectiveTypeNumeric)`
+
+SetTypeId gets a reference to the given ServiceLevelObjectiveTypeNumeric and assigns it to the TypeId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

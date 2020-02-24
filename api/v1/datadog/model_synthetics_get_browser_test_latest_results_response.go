@@ -102,7 +102,6 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) SetResults(v []Synthetic
 }
 
 func (o SyntheticsGetBrowserTestLatestResultsResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.LastTimestampFetched != nil {
 		toSerialize["last_timestamp_fetched"] = o.LastTimestampFetched

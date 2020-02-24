@@ -68,7 +68,6 @@ func (o *AWSLogsListResponseLambdas) SetArn(v string) {
 }
 
 func (o AWSLogsListResponseLambdas) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Arn != nil {
 		toSerialize["arn"] = o.Arn

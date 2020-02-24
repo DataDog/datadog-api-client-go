@@ -909,7 +909,6 @@ func (o *UsageSummaryResponse) SetUsage(v []UsageSummaryDate) {
 }
 
 func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99pSum != nil {
 		toSerialize["agent_host_top99p_sum"] = o.AgentHostTop99pSum

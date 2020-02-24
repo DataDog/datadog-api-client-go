@@ -69,7 +69,6 @@ func (o *DashboardListDeleteResponse) SetDeletedDashboardListId(v int64) {
 }
 
 func (o DashboardListDeleteResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DeletedDashboardListId != nil {
 		toSerialize["deleted_dashboard_list_id"] = o.DeletedDashboardListId

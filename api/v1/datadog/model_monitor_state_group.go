@@ -340,7 +340,6 @@ func (o *MonitorStateGroup) SetTriggeringValue(v MonitorStateGroupValue) {
 }
 
 func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.LastDataTs != nil {
 		toSerialize["last_data_ts"] = o.LastDataTs

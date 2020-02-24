@@ -185,7 +185,6 @@ func (o *LogsGeoIPParser) SetName(v string) {
 }
 
 func (o LogsGeoIPParser) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["sources"] = o.Sources
