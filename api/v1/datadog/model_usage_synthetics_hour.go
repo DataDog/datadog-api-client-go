@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,6 +19,23 @@ type UsageSyntheticsHour struct {
 	CheckCallsCount *int64 `json:"check_calls_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
+}
+
+// NewUsageSyntheticsHour instantiates a new UsageSyntheticsHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageSyntheticsHour() *UsageSyntheticsHour {
+	this := UsageSyntheticsHour{}
+	return &this
+}
+
+// NewUsageSyntheticsHourWithDefaults instantiates a new UsageSyntheticsHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageSyntheticsHourWithDefaults() *UsageSyntheticsHour {
+	this := UsageSyntheticsHour{}
+	return &this
 }
 
 // GetCheckCallsCount returns the CheckCallsCount field value if set, zero value otherwise.
@@ -88,25 +104,50 @@ func (o *UsageSyntheticsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+func (o UsageSyntheticsHour) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.CheckCallsCount != nil {
+		toSerialize["check_calls_count"] = o.CheckCallsCount
+	}
+	if o.Hour != nil {
+		toSerialize["hour"] = o.Hour
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageSyntheticsHour struct {
-	Value        UsageSyntheticsHour
-	ExplicitNull bool
+	value *UsageSyntheticsHour
+	isSet bool
+}
+
+func (v NullableUsageSyntheticsHour) Get() *UsageSyntheticsHour {
+	return v.value
+}
+
+func (v NullableUsageSyntheticsHour) Set(val *UsageSyntheticsHour) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageSyntheticsHour) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageSyntheticsHour) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageSyntheticsHour(val *UsageSyntheticsHour) *NullableUsageSyntheticsHour {
+	return &NullableUsageSyntheticsHour{value: val, isSet: true}
 }
 
 func (v NullableUsageSyntheticsHour) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageSyntheticsHour) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

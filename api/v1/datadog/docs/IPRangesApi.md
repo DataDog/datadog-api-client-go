@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetIPRanges
 
-> IpRanges GetIPRanges(ctx).Execute()
+> IPRanges GetIPRanges(ctx).Execute()
 
 
 
@@ -27,7 +27,7 @@ Other parameters are passed through a pointer to a apiGetIPRangesRequest struct 
 
 ### Return type
 
-[**IpRanges**](IPRanges.md)
+[**IPRanges**](IPRanges.md)
 
 ### Authorization
 

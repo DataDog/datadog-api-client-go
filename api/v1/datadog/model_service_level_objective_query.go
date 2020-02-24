@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,25 @@ type ServiceLevelObjectiveQuery struct {
 	Denominator string `json:"denominator"`
 	// A Datadog metric query for good events.
 	Numerator string `json:"numerator"`
+}
+
+// NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectiveQuery(denominator string, numerator string) *ServiceLevelObjectiveQuery {
+	this := ServiceLevelObjectiveQuery{}
+	this.Denominator = denominator
+	this.Numerator = numerator
+	return &this
+}
+
+// NewServiceLevelObjectiveQueryWithDefaults instantiates a new ServiceLevelObjectiveQuery object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectiveQueryWithDefaults() *ServiceLevelObjectiveQuery {
+	this := ServiceLevelObjectiveQuery{}
+	return &this
 }
 
 // GetDenominator returns the Denominator field value
@@ -51,25 +69,50 @@ func (o *ServiceLevelObjectiveQuery) SetNumerator(v string) {
 	o.Numerator = v
 }
 
+func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["denominator"] = o.Denominator
+	}
+	if true {
+		toSerialize["numerator"] = o.Numerator
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceLevelObjectiveQuery struct {
-	Value        ServiceLevelObjectiveQuery
-	ExplicitNull bool
+	value *ServiceLevelObjectiveQuery
+	isSet bool
+}
+
+func (v NullableServiceLevelObjectiveQuery) Get() *ServiceLevelObjectiveQuery {
+	return v.value
+}
+
+func (v NullableServiceLevelObjectiveQuery) Set(val *ServiceLevelObjectiveQuery) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjectiveQuery) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjectiveQuery) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjectiveQuery(val *ServiceLevelObjectiveQuery) *NullableServiceLevelObjectiveQuery {
+	return &NullableServiceLevelObjectiveQuery{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjectiveQuery) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

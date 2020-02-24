@@ -97,7 +97,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -111,7 +111,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -137,7 +137,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -237,7 +237,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -251,7 +251,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -287,7 +287,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -297,7 +297,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -442,7 +442,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -456,7 +456,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -492,7 +492,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -597,7 +597,7 @@ func (r apiGetAllDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, er
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -611,7 +611,7 @@ func (r apiGetAllDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, er
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -647,7 +647,7 @@ func (r apiGetAllDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, er
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -747,7 +747,7 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -761,7 +761,7 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -797,7 +797,7 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -951,7 +951,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -965,7 +965,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -1001,7 +1001,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1011,7 +1011,7 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

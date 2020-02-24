@@ -5,27 +5,44 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptions_aggregation.md) |  | [optional] 
-**DeviceIds** | Pointer to **[]string** |  | [optional] 
+**DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) |  | [optional] 
 **EnableLogsSample** | Pointer to **bool** |  | [optional] 
 **EscalationMessage** | Pointer to **string** |  | [optional] 
-**EvaluationDelay** | Pointer to **int64** |  | [optional] 
+**EvaluationDelay** | Pointer to **NullableInt64** |  | [optional] 
 **IncludeTags** | Pointer to **bool** |  | [optional] 
 **Locked** | Pointer to **bool** |  | [optional] 
-**MinFailureDuration** | Pointer to **int64** |  | [optional] 
-**MinLocationFailed** | Pointer to **int64** |  | [optional] 
-**NewHostDelay** | Pointer to **int64** |  | [optional] 
-**NoDataTimeframe** | Pointer to **int64** |  | [optional] 
+**MinFailureDuration** | Pointer to **NullableInt64** |  | [optional] 
+**MinLocationFailed** | Pointer to **NullableInt64** |  | [optional] 
+**NewHostDelay** | Pointer to **NullableInt64** |  | [optional] 
+**NoDataTimeframe** | Pointer to **NullableInt64** |  | [optional] 
 **NotifyAudit** | Pointer to **bool** |  | [optional] 
 **NotifyNoData** | Pointer to **bool** |  | [optional] 
-**RenotifyInterval** | Pointer to **int64** |  | [optional] 
+**RenotifyInterval** | Pointer to **NullableInt64** |  | [optional] 
 **RequireFullWindow** | Pointer to **bool** |  | [optional] 
 **Silenced** | Pointer to **map[string]int64** |  | [optional] 
-**SyntheticsCheckId** | Pointer to **int64** |  | [optional] 
+**SyntheticsCheckId** | Pointer to **NullableInt64** |  | [optional] 
 **ThresholdWindows** | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |  | [optional] 
 **Thresholds** | Pointer to [**MonitorThresholds**](MonitorThresholds.md) |  | [optional] 
-**TimeoutH** | Pointer to **int64** |  | [optional] 
+**TimeoutH** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
+
+### NewMonitorOptions
+
+`func NewMonitorOptions() *MonitorOptions`
+
+NewMonitorOptions instantiates a new MonitorOptions object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMonitorOptionsWithDefaults
+
+`func NewMonitorOptionsWithDefaults() *MonitorOptions`
+
+NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetAggregation
 
@@ -54,13 +71,13 @@ SetAggregation gets a reference to the given MonitorOptionsAggregation and assig
 
 ### GetDeviceIds
 
-`func (o *MonitorOptions) GetDeviceIds() []string`
+`func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID`
 
 GetDeviceIds returns the DeviceIds field if non-nil, zero value otherwise.
 
 ### GetDeviceIdsOk
 
-`func (o *MonitorOptions) GetDeviceIdsOk() ([]string, bool)`
+`func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceID, bool)`
 
 GetDeviceIdsOk returns a tuple with the DeviceIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -73,9 +90,9 @@ HasDeviceIds returns a boolean if a field has been set.
 
 ### SetDeviceIds
 
-`func (o *MonitorOptions) SetDeviceIds(v []string)`
+`func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceID)`
 
-SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
+SetDeviceIds gets a reference to the given []MonitorDeviceID and assigns it to the DeviceIds field.
 
 ### GetEnableLogsSample
 
@@ -129,13 +146,13 @@ SetEscalationMessage gets a reference to the given string and assigns it to the 
 
 ### GetEvaluationDelay
 
-`func (o *MonitorOptions) GetEvaluationDelay() int64`
+`func (o *MonitorOptions) GetEvaluationDelay() NullableInt64`
 
 GetEvaluationDelay returns the EvaluationDelay field if non-nil, zero value otherwise.
 
 ### GetEvaluationDelayOk
 
-`func (o *MonitorOptions) GetEvaluationDelayOk() (int64, bool)`
+`func (o *MonitorOptions) GetEvaluationDelayOk() (NullableInt64, bool)`
 
 GetEvaluationDelayOk returns a tuple with the EvaluationDelay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -148,10 +165,17 @@ HasEvaluationDelay returns a boolean if a field has been set.
 
 ### SetEvaluationDelay
 
-`func (o *MonitorOptions) SetEvaluationDelay(v int64)`
+`func (o *MonitorOptions) SetEvaluationDelay(v NullableInt64)`
 
-SetEvaluationDelay gets a reference to the given int64 and assigns it to the EvaluationDelay field.
+SetEvaluationDelay gets a reference to the given NullableInt64 and assigns it to the EvaluationDelay field.
 
+### SetEvaluationDelayExplicitNull
+
+`func (o *MonitorOptions) SetEvaluationDelayExplicitNull(b bool)`
+
+SetEvaluationDelayExplicitNull (un)sets EvaluationDelay to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The EvaluationDelay value is set to nil even if false is passed
 ### GetIncludeTags
 
 `func (o *MonitorOptions) GetIncludeTags() bool`
@@ -204,13 +228,13 @@ SetLocked gets a reference to the given bool and assigns it to the Locked field.
 
 ### GetMinFailureDuration
 
-`func (o *MonitorOptions) GetMinFailureDuration() int64`
+`func (o *MonitorOptions) GetMinFailureDuration() NullableInt64`
 
 GetMinFailureDuration returns the MinFailureDuration field if non-nil, zero value otherwise.
 
 ### GetMinFailureDurationOk
 
-`func (o *MonitorOptions) GetMinFailureDurationOk() (int64, bool)`
+`func (o *MonitorOptions) GetMinFailureDurationOk() (NullableInt64, bool)`
 
 GetMinFailureDurationOk returns a tuple with the MinFailureDuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -223,19 +247,26 @@ HasMinFailureDuration returns a boolean if a field has been set.
 
 ### SetMinFailureDuration
 
-`func (o *MonitorOptions) SetMinFailureDuration(v int64)`
+`func (o *MonitorOptions) SetMinFailureDuration(v NullableInt64)`
 
-SetMinFailureDuration gets a reference to the given int64 and assigns it to the MinFailureDuration field.
+SetMinFailureDuration gets a reference to the given NullableInt64 and assigns it to the MinFailureDuration field.
 
+### SetMinFailureDurationExplicitNull
+
+`func (o *MonitorOptions) SetMinFailureDurationExplicitNull(b bool)`
+
+SetMinFailureDurationExplicitNull (un)sets MinFailureDuration to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The MinFailureDuration value is set to nil even if false is passed
 ### GetMinLocationFailed
 
-`func (o *MonitorOptions) GetMinLocationFailed() int64`
+`func (o *MonitorOptions) GetMinLocationFailed() NullableInt64`
 
 GetMinLocationFailed returns the MinLocationFailed field if non-nil, zero value otherwise.
 
 ### GetMinLocationFailedOk
 
-`func (o *MonitorOptions) GetMinLocationFailedOk() (int64, bool)`
+`func (o *MonitorOptions) GetMinLocationFailedOk() (NullableInt64, bool)`
 
 GetMinLocationFailedOk returns a tuple with the MinLocationFailed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -248,19 +279,26 @@ HasMinLocationFailed returns a boolean if a field has been set.
 
 ### SetMinLocationFailed
 
-`func (o *MonitorOptions) SetMinLocationFailed(v int64)`
+`func (o *MonitorOptions) SetMinLocationFailed(v NullableInt64)`
 
-SetMinLocationFailed gets a reference to the given int64 and assigns it to the MinLocationFailed field.
+SetMinLocationFailed gets a reference to the given NullableInt64 and assigns it to the MinLocationFailed field.
 
+### SetMinLocationFailedExplicitNull
+
+`func (o *MonitorOptions) SetMinLocationFailedExplicitNull(b bool)`
+
+SetMinLocationFailedExplicitNull (un)sets MinLocationFailed to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The MinLocationFailed value is set to nil even if false is passed
 ### GetNewHostDelay
 
-`func (o *MonitorOptions) GetNewHostDelay() int64`
+`func (o *MonitorOptions) GetNewHostDelay() NullableInt64`
 
 GetNewHostDelay returns the NewHostDelay field if non-nil, zero value otherwise.
 
 ### GetNewHostDelayOk
 
-`func (o *MonitorOptions) GetNewHostDelayOk() (int64, bool)`
+`func (o *MonitorOptions) GetNewHostDelayOk() (NullableInt64, bool)`
 
 GetNewHostDelayOk returns a tuple with the NewHostDelay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -273,19 +311,26 @@ HasNewHostDelay returns a boolean if a field has been set.
 
 ### SetNewHostDelay
 
-`func (o *MonitorOptions) SetNewHostDelay(v int64)`
+`func (o *MonitorOptions) SetNewHostDelay(v NullableInt64)`
 
-SetNewHostDelay gets a reference to the given int64 and assigns it to the NewHostDelay field.
+SetNewHostDelay gets a reference to the given NullableInt64 and assigns it to the NewHostDelay field.
 
+### SetNewHostDelayExplicitNull
+
+`func (o *MonitorOptions) SetNewHostDelayExplicitNull(b bool)`
+
+SetNewHostDelayExplicitNull (un)sets NewHostDelay to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The NewHostDelay value is set to nil even if false is passed
 ### GetNoDataTimeframe
 
-`func (o *MonitorOptions) GetNoDataTimeframe() int64`
+`func (o *MonitorOptions) GetNoDataTimeframe() NullableInt64`
 
 GetNoDataTimeframe returns the NoDataTimeframe field if non-nil, zero value otherwise.
 
 ### GetNoDataTimeframeOk
 
-`func (o *MonitorOptions) GetNoDataTimeframeOk() (int64, bool)`
+`func (o *MonitorOptions) GetNoDataTimeframeOk() (NullableInt64, bool)`
 
 GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -298,10 +343,17 @@ HasNoDataTimeframe returns a boolean if a field has been set.
 
 ### SetNoDataTimeframe
 
-`func (o *MonitorOptions) SetNoDataTimeframe(v int64)`
+`func (o *MonitorOptions) SetNoDataTimeframe(v NullableInt64)`
 
-SetNoDataTimeframe gets a reference to the given int64 and assigns it to the NoDataTimeframe field.
+SetNoDataTimeframe gets a reference to the given NullableInt64 and assigns it to the NoDataTimeframe field.
 
+### SetNoDataTimeframeExplicitNull
+
+`func (o *MonitorOptions) SetNoDataTimeframeExplicitNull(b bool)`
+
+SetNoDataTimeframeExplicitNull (un)sets NoDataTimeframe to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The NoDataTimeframe value is set to nil even if false is passed
 ### GetNotifyAudit
 
 `func (o *MonitorOptions) GetNotifyAudit() bool`
@@ -354,13 +406,13 @@ SetNotifyNoData gets a reference to the given bool and assigns it to the NotifyN
 
 ### GetRenotifyInterval
 
-`func (o *MonitorOptions) GetRenotifyInterval() int64`
+`func (o *MonitorOptions) GetRenotifyInterval() NullableInt64`
 
 GetRenotifyInterval returns the RenotifyInterval field if non-nil, zero value otherwise.
 
 ### GetRenotifyIntervalOk
 
-`func (o *MonitorOptions) GetRenotifyIntervalOk() (int64, bool)`
+`func (o *MonitorOptions) GetRenotifyIntervalOk() (NullableInt64, bool)`
 
 GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -373,10 +425,17 @@ HasRenotifyInterval returns a boolean if a field has been set.
 
 ### SetRenotifyInterval
 
-`func (o *MonitorOptions) SetRenotifyInterval(v int64)`
+`func (o *MonitorOptions) SetRenotifyInterval(v NullableInt64)`
 
-SetRenotifyInterval gets a reference to the given int64 and assigns it to the RenotifyInterval field.
+SetRenotifyInterval gets a reference to the given NullableInt64 and assigns it to the RenotifyInterval field.
 
+### SetRenotifyIntervalExplicitNull
+
+`func (o *MonitorOptions) SetRenotifyIntervalExplicitNull(b bool)`
+
+SetRenotifyIntervalExplicitNull (un)sets RenotifyInterval to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The RenotifyInterval value is set to nil even if false is passed
 ### GetRequireFullWindow
 
 `func (o *MonitorOptions) GetRequireFullWindow() bool`
@@ -429,13 +488,13 @@ SetSilenced gets a reference to the given map[string]int64 and assigns it to the
 
 ### GetSyntheticsCheckId
 
-`func (o *MonitorOptions) GetSyntheticsCheckId() int64`
+`func (o *MonitorOptions) GetSyntheticsCheckId() NullableInt64`
 
 GetSyntheticsCheckId returns the SyntheticsCheckId field if non-nil, zero value otherwise.
 
 ### GetSyntheticsCheckIdOk
 
-`func (o *MonitorOptions) GetSyntheticsCheckIdOk() (int64, bool)`
+`func (o *MonitorOptions) GetSyntheticsCheckIdOk() (NullableInt64, bool)`
 
 GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -448,10 +507,17 @@ HasSyntheticsCheckId returns a boolean if a field has been set.
 
 ### SetSyntheticsCheckId
 
-`func (o *MonitorOptions) SetSyntheticsCheckId(v int64)`
+`func (o *MonitorOptions) SetSyntheticsCheckId(v NullableInt64)`
 
-SetSyntheticsCheckId gets a reference to the given int64 and assigns it to the SyntheticsCheckId field.
+SetSyntheticsCheckId gets a reference to the given NullableInt64 and assigns it to the SyntheticsCheckId field.
 
+### SetSyntheticsCheckIdExplicitNull
+
+`func (o *MonitorOptions) SetSyntheticsCheckIdExplicitNull(b bool)`
+
+SetSyntheticsCheckIdExplicitNull (un)sets SyntheticsCheckId to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The SyntheticsCheckId value is set to nil even if false is passed
 ### GetThresholdWindows
 
 `func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions`
@@ -504,13 +570,13 @@ SetThresholds gets a reference to the given MonitorThresholds and assigns it to 
 
 ### GetTimeoutH
 
-`func (o *MonitorOptions) GetTimeoutH() int64`
+`func (o *MonitorOptions) GetTimeoutH() NullableInt64`
 
 GetTimeoutH returns the TimeoutH field if non-nil, zero value otherwise.
 
 ### GetTimeoutHOk
 
-`func (o *MonitorOptions) GetTimeoutHOk() (int64, bool)`
+`func (o *MonitorOptions) GetTimeoutHOk() (NullableInt64, bool)`
 
 GetTimeoutHOk returns a tuple with the TimeoutH field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -523,10 +589,17 @@ HasTimeoutH returns a boolean if a field has been set.
 
 ### SetTimeoutH
 
-`func (o *MonitorOptions) SetTimeoutH(v int64)`
+`func (o *MonitorOptions) SetTimeoutH(v NullableInt64)`
 
-SetTimeoutH gets a reference to the given int64 and assigns it to the TimeoutH field.
+SetTimeoutH gets a reference to the given NullableInt64 and assigns it to the TimeoutH field.
 
+### SetTimeoutHExplicitNull
+
+`func (o *MonitorOptions) SetTimeoutHExplicitNull(b bool)`
+
+SetTimeoutHExplicitNull (un)sets TimeoutH to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The TimeoutH value is set to nil even if false is passed
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

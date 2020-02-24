@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type ServiceCheck struct {
 	Status    ServiceCheckStatus `json:"status"`
 	Tags      *[]string          `json:"tags,omitempty"`
 	Timestamp *int64             `json:"timestamp,omitempty"`
+}
+
+// NewServiceCheck instantiates a new ServiceCheck object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceCheck(check string, status ServiceCheckStatus) *ServiceCheck {
+	this := ServiceCheck{}
+	this.Check = check
+	this.Status = status
+	return &this
+}
+
+// NewServiceCheckWithDefaults instantiates a new ServiceCheck object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceCheckWithDefaults() *ServiceCheck {
+	this := ServiceCheck{}
+	return &this
 }
 
 // GetCheck returns the Check field value
@@ -185,25 +203,62 @@ func (o *ServiceCheck) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
+func (o ServiceCheck) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["check"] = o.Check
+	}
+	if o.HostName != nil {
+		toSerialize["host_name"] = o.HostName
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.Timestamp != nil {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceCheck struct {
-	Value        ServiceCheck
-	ExplicitNull bool
+	value *ServiceCheck
+	isSet bool
+}
+
+func (v NullableServiceCheck) Get() *ServiceCheck {
+	return v.value
+}
+
+func (v NullableServiceCheck) Set(val *ServiceCheck) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceCheck) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceCheck) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceCheck(val *ServiceCheck) *NullableServiceCheck {
+	return &NullableServiceCheck{value: val, isSet: true}
 }
 
 func (v NullableServiceCheck) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceCheck) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,13 +9,29 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CanceledDowntimesIds struct for CanceledDowntimesIds
 type CanceledDowntimesIds struct {
 	CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
+}
+
+// NewCanceledDowntimesIds instantiates a new CanceledDowntimesIds object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCanceledDowntimesIds() *CanceledDowntimesIds {
+	this := CanceledDowntimesIds{}
+	return &this
+}
+
+// NewCanceledDowntimesIdsWithDefaults instantiates a new CanceledDowntimesIds object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCanceledDowntimesIdsWithDefaults() *CanceledDowntimesIds {
+	this := CanceledDowntimesIds{}
+	return &this
 }
 
 // GetCancelledIds returns the CancelledIds field value if set, zero value otherwise.
@@ -51,25 +67,47 @@ func (o *CanceledDowntimesIds) SetCancelledIds(v []int64) {
 	o.CancelledIds = &v
 }
 
+func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.CancelledIds != nil {
+		toSerialize["cancelled_ids"] = o.CancelledIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCanceledDowntimesIds struct {
-	Value        CanceledDowntimesIds
-	ExplicitNull bool
+	value *CanceledDowntimesIds
+	isSet bool
+}
+
+func (v NullableCanceledDowntimesIds) Get() *CanceledDowntimesIds {
+	return v.value
+}
+
+func (v NullableCanceledDowntimesIds) Set(val *CanceledDowntimesIds) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCanceledDowntimesIds) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableCanceledDowntimesIds) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCanceledDowntimesIds(val *CanceledDowntimesIds) *NullableCanceledDowntimesIds {
+	return &NullableCanceledDowntimesIds{value: val, isSet: true}
 }
 
 func (v NullableCanceledDowntimesIds) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCanceledDowntimesIds) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

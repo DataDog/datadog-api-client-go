@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -31,8 +30,24 @@ type Monitor struct {
 	Query        *string               `json:"query,omitempty"`
 	State        *MonitorState         `json:"state,omitempty"`
 	Tags         *[]string             `json:"tags,omitempty"`
-	// The type of the monitor
-	Type *string `json:"type,omitempty"`
+	Type         *MonitorType          `json:"type,omitempty"`
+}
+
+// NewMonitor instantiates a new Monitor object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitor() *Monitor {
+	this := Monitor{}
+	return &this
+}
+
+// NewMonitorWithDefaults instantiates a new Monitor object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorWithDefaults() *Monitor {
+	this := Monitor{}
+	return &this
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
@@ -465,9 +480,9 @@ func (o *Monitor) SetTags(v []string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Monitor) GetType() string {
+func (o *Monitor) GetType() MonitorType {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret MonitorType
 		return ret
 	}
 	return *o.Type
@@ -475,9 +490,9 @@ func (o *Monitor) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetTypeOk() (string, bool) {
+func (o *Monitor) GetTypeOk() (MonitorType, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret MonitorType
 		return ret, false
 	}
 	return *o.Type, true
@@ -492,30 +507,91 @@ func (o *Monitor) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Monitor) SetType(v string) {
+// SetType gets a reference to the given MonitorType and assigns it to the Type field.
+func (o *Monitor) SetType(v MonitorType) {
 	o.Type = &v
 }
 
+func (o Monitor) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
+	}
+	if o.Creator != nil {
+		toSerialize["creator"] = o.Creator
+	}
+	if o.Deleted != nil {
+		toSerialize["deleted"] = o.Deleted
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	if o.Multi != nil {
+		toSerialize["multi"] = o.Multi
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Options != nil {
+		toSerialize["options"] = o.Options
+	}
+	if o.OverallState != nil {
+		toSerialize["overall_state"] = o.OverallState
+	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitor struct {
-	Value        Monitor
-	ExplicitNull bool
+	value *Monitor
+	isSet bool
+}
+
+func (v NullableMonitor) Get() *Monitor {
+	return v.value
+}
+
+func (v NullableMonitor) Set(val *Monitor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitor) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitor(val *Monitor) *NullableMonitor {
+	return &NullableMonitor{value: val, isSet: true}
 }
 
 func (v NullableMonitor) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitor) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

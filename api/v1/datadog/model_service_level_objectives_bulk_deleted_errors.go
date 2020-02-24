@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,9 +17,28 @@ type ServiceLevelObjectivesBulkDeletedErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`
 	// The error message
-	Message string `json:"message"`
-	// The timeframe of the threshold associated with this error or \"all\" if all thresholds are affected.
-	Timeframe string `json:"timeframe"`
+	Message   string            `json:"message"`
+	Timeframe SLOErrorTimeframe `json:"timeframe"`
+}
+
+// NewServiceLevelObjectivesBulkDeletedErrors instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe SLOErrorTimeframe) *ServiceLevelObjectivesBulkDeletedErrors {
+	this := ServiceLevelObjectivesBulkDeletedErrors{}
+	this.Id = id
+	this.Message = message
+	this.Timeframe = timeframe
+	return &this
+}
+
+// NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults() *ServiceLevelObjectivesBulkDeletedErrors {
+	this := ServiceLevelObjectivesBulkDeletedErrors{}
+	return &this
 }
 
 // GetId returns the Id field value
@@ -54,9 +72,9 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) SetMessage(v string) {
 }
 
 // GetTimeframe returns the Timeframe field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() string {
+func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SLOErrorTimeframe {
 	if o == nil {
-		var ret string
+		var ret SLOErrorTimeframe
 		return ret
 	}
 
@@ -64,29 +82,57 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() string {
 }
 
 // SetTimeframe sets field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v string) {
+func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SLOErrorTimeframe) {
 	o.Timeframe = v
 }
 
+func (o ServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	if true {
+		toSerialize["timeframe"] = o.Timeframe
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceLevelObjectivesBulkDeletedErrors struct {
-	Value        ServiceLevelObjectivesBulkDeletedErrors
-	ExplicitNull bool
+	value *ServiceLevelObjectivesBulkDeletedErrors
+	isSet bool
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) Get() *ServiceLevelObjectivesBulkDeletedErrors {
+	return v.value
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) Set(val *ServiceLevelObjectivesBulkDeletedErrors) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedErrors) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjectivesBulkDeletedErrors(val *ServiceLevelObjectivesBulkDeletedErrors) *NullableServiceLevelObjectivesBulkDeletedErrors {
+	return &NullableServiceLevelObjectivesBulkDeletedErrors{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjectivesBulkDeletedErrors) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,23 @@ type OrgCreateResponse struct {
 	ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
 	Org            *Org            `json:"org,omitempty"`
 	User           *User           `json:"user,omitempty"`
+}
+
+// NewOrgCreateResponse instantiates a new OrgCreateResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgCreateResponse() *OrgCreateResponse {
+	this := OrgCreateResponse{}
+	return &this
+}
+
+// NewOrgCreateResponseWithDefaults instantiates a new OrgCreateResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgCreateResponseWithDefaults() *OrgCreateResponse {
+	this := OrgCreateResponse{}
+	return &this
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
@@ -153,25 +169,56 @@ func (o *OrgCreateResponse) SetUser(v User) {
 	o.User = &v
 }
 
+func (o OrgCreateResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.ApiKey != nil {
+		toSerialize["api_key"] = o.ApiKey
+	}
+	if o.ApplicationKey != nil {
+		toSerialize["application_key"] = o.ApplicationKey
+	}
+	if o.Org != nil {
+		toSerialize["org"] = o.Org
+	}
+	if o.User != nil {
+		toSerialize["user"] = o.User
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgCreateResponse struct {
-	Value        OrgCreateResponse
-	ExplicitNull bool
+	value *OrgCreateResponse
+	isSet bool
+}
+
+func (v NullableOrgCreateResponse) Get() *OrgCreateResponse {
+	return v.value
+}
+
+func (v NullableOrgCreateResponse) Set(val *OrgCreateResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgCreateResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgCreateResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgCreateResponse(val *OrgCreateResponse) *NullableOrgCreateResponse {
+	return &NullableOrgCreateResponse{value: val, isSet: true}
 }
 
 func (v NullableOrgCreateResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgCreateResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

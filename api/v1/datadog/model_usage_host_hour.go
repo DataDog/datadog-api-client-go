@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -30,6 +29,23 @@ type UsageHostHour struct {
 	HostCount *int64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
+}
+
+// NewUsageHostHour instantiates a new UsageHostHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageHostHour() *UsageHostHour {
+	this := UsageHostHour{}
+	return &this
+}
+
+// NewUsageHostHourWithDefaults instantiates a new UsageHostHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageHostHourWithDefaults() *UsageHostHour {
+	this := UsageHostHour{}
+	return &this
 }
 
 // GetAgentHostCount returns the AgentHostCount field value if set, zero value otherwise.
@@ -263,25 +279,65 @@ func (o *UsageHostHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+func (o UsageHostHour) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AgentHostCount != nil {
+		toSerialize["agent_host_count"] = o.AgentHostCount
+	}
+	if o.ApmHostCount != nil {
+		toSerialize["apm_host_count"] = o.ApmHostCount
+	}
+	if o.AwsHostCount != nil {
+		toSerialize["aws_host_count"] = o.AwsHostCount
+	}
+	if o.ContainerCount != nil {
+		toSerialize["container_count"] = o.ContainerCount
+	}
+	if o.GcpHostCount != nil {
+		toSerialize["gcp_host_count"] = o.GcpHostCount
+	}
+	if o.HostCount != nil {
+		toSerialize["host_count"] = o.HostCount
+	}
+	if o.Hour != nil {
+		toSerialize["hour"] = o.Hour
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageHostHour struct {
-	Value        UsageHostHour
-	ExplicitNull bool
+	value *UsageHostHour
+	isSet bool
+}
+
+func (v NullableUsageHostHour) Get() *UsageHostHour {
+	return v.value
+}
+
+func (v NullableUsageHostHour) Set(val *UsageHostHour) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageHostHour) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageHostHour) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageHostHour(val *UsageHostHour) *NullableUsageHostHour {
+	return &NullableUsageHostHour{value: val, isSet: true}
 }
 
 func (v NullableUsageHostHour) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageHostHour) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

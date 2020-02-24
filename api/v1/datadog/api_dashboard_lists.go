@@ -109,7 +109,7 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -123,7 +123,7 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -159,7 +159,7 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (r apiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -269,7 +269,7 @@ func (r apiDeleteDashboardListRequest) Execute() (DashboardListDeleteResponse, *
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -283,7 +283,7 @@ func (r apiDeleteDashboardListRequest) Execute() (DashboardListDeleteResponse, *
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -319,7 +319,7 @@ func (r apiDeleteDashboardListRequest) Execute() (DashboardListDeleteResponse, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -329,7 +329,7 @@ func (r apiDeleteDashboardListRequest) Execute() (DashboardListDeleteResponse, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -425,7 +425,7 @@ func (r apiGetAllDashboardListsRequest) Execute() (DashboardListListResponse, *_
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -439,7 +439,7 @@ func (r apiGetAllDashboardListsRequest) Execute() (DashboardListListResponse, *_
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -475,7 +475,7 @@ func (r apiGetAllDashboardListsRequest) Execute() (DashboardListListResponse, *_
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -485,7 +485,7 @@ func (r apiGetAllDashboardListsRequest) Execute() (DashboardListListResponse, *_
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -585,7 +585,7 @@ func (r apiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -599,7 +599,7 @@ func (r apiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -635,7 +635,7 @@ func (r apiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -645,7 +645,7 @@ func (r apiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -757,7 +757,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -771,7 +771,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -807,7 +807,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -817,7 +817,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -827,7 +827,7 @@ func (r apiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Respo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

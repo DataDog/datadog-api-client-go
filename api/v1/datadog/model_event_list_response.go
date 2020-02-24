@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -17,6 +16,23 @@ import (
 type EventListResponse struct {
 	Events *[]Event `json:"events,omitempty"`
 	Status *string  `json:"status,omitempty"`
+}
+
+// NewEventListResponse instantiates a new EventListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEventListResponse() *EventListResponse {
+	this := EventListResponse{}
+	return &this
+}
+
+// NewEventListResponseWithDefaults instantiates a new EventListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEventListResponseWithDefaults() *EventListResponse {
+	this := EventListResponse{}
+	return &this
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
@@ -85,25 +101,50 @@ func (o *EventListResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+func (o EventListResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Events != nil {
+		toSerialize["events"] = o.Events
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEventListResponse struct {
-	Value        EventListResponse
-	ExplicitNull bool
+	value *EventListResponse
+	isSet bool
+}
+
+func (v NullableEventListResponse) Get() *EventListResponse {
+	return v.value
+}
+
+func (v NullableEventListResponse) Set(val *EventListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEventListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableEventListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEventListResponse(val *EventListResponse) *NullableEventListResponse {
+	return &NullableEventListResponse{value: val, isSet: true}
 }
 
 func (v NullableEventListResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEventListResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,18 +9,36 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// HttpLogError struct for HttpLogError
-type HttpLogError struct {
+// HTTPLogError struct for HTTPLogError
+type HTTPLogError struct {
 	Code    int32  `json:"code"`
 	Message string `json:"message"`
 }
 
+// NewHTTPLogError instantiates a new HTTPLogError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHTTPLogError(code int32, message string) *HTTPLogError {
+	this := HTTPLogError{}
+	this.Code = code
+	this.Message = message
+	return &this
+}
+
+// NewHTTPLogErrorWithDefaults instantiates a new HTTPLogError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHTTPLogErrorWithDefaults() *HTTPLogError {
+	this := HTTPLogError{}
+	return &this
+}
+
 // GetCode returns the Code field value
-func (o *HttpLogError) GetCode() int32 {
+func (o *HTTPLogError) GetCode() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -30,12 +48,12 @@ func (o *HttpLogError) GetCode() int32 {
 }
 
 // SetCode sets field value
-func (o *HttpLogError) SetCode(v int32) {
+func (o *HTTPLogError) SetCode(v int32) {
 	o.Code = v
 }
 
 // GetMessage returns the Message field value
-func (o *HttpLogError) GetMessage() string {
+func (o *HTTPLogError) GetMessage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -45,29 +63,54 @@ func (o *HttpLogError) GetMessage() string {
 }
 
 // SetMessage sets field value
-func (o *HttpLogError) SetMessage(v string) {
+func (o *HTTPLogError) SetMessage(v string) {
 	o.Message = v
 }
 
-type NullableHttpLogError struct {
-	Value        HttpLogError
-	ExplicitNull bool
+func (o HTTPLogError) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableHttpLogError) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableHTTPLogError struct {
+	value *HTTPLogError
+	isSet bool
 }
 
-func (v *NullableHttpLogError) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableHTTPLogError) Get() *HTTPLogError {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v NullableHTTPLogError) Set(val *HTTPLogError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHTTPLogError) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHTTPLogError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHTTPLogError(val *HTTPLogError) *NullableHTTPLogError {
+	return &NullableHTTPLogError{value: val, isSet: true}
+}
+
+func (v NullableHTTPLogError) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHTTPLogError) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

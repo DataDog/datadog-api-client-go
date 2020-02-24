@@ -9,9 +9,26 @@ Name | Type | Description | Notes
 **Metric** | Pointer to **string** | The name of the timeseries | 
 **Points** | Pointer to [**[][]float64**](array.md) |  | 
 **Tags** | Pointer to **[]string** | A list of tags associated with the metric. | [optional] 
-**Type** | Pointer to **string** |  | [optional] [default to gauge]
+**Type** | Pointer to **string** |  | [optional] [default to "gauge"]
 
 ## Methods
+
+### NewSeries
+
+`func NewSeries(metric string, points [][]float64, ) *Series`
+
+NewSeries instantiates a new Series object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSeriesWithDefaults
+
+`func NewSeriesWithDefaults() *Series`
+
+NewSeriesWithDefaults instantiates a new Series object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetHost
 

@@ -9,25 +9,41 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // User struct for User
 type User struct {
-	AccessRole *string `json:"access_role,omitempty"`
-	Disabled   *bool   `json:"disabled,omitempty"`
-	Email      *string `json:"email,omitempty"`
-	Handle     *string `json:"handle,omitempty"`
-	Icon       *string `json:"icon,omitempty"`
-	Name       *string `json:"name,omitempty"`
-	Verified   *bool   `json:"verified,omitempty"`
+	AccessRole *AccessRole `json:"access_role,omitempty"`
+	Disabled   *bool       `json:"disabled,omitempty"`
+	Email      *string     `json:"email,omitempty"`
+	Handle     *string     `json:"handle,omitempty"`
+	Icon       *string     `json:"icon,omitempty"`
+	Name       *string     `json:"name,omitempty"`
+	Verified   *bool       `json:"verified,omitempty"`
+}
+
+// NewUser instantiates a new User object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUser() *User {
+	this := User{}
+	return &this
+}
+
+// NewUserWithDefaults instantiates a new User object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUserWithDefaults() *User {
+	this := User{}
+	return &this
 }
 
 // GetAccessRole returns the AccessRole field value if set, zero value otherwise.
-func (o *User) GetAccessRole() string {
+func (o *User) GetAccessRole() AccessRole {
 	if o == nil || o.AccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret
 	}
 	return *o.AccessRole
@@ -35,9 +51,9 @@ func (o *User) GetAccessRole() string {
 
 // GetAccessRoleOk returns a tuple with the AccessRole field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetAccessRoleOk() (string, bool) {
+func (o *User) GetAccessRoleOk() (AccessRole, bool) {
 	if o == nil || o.AccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret, false
 	}
 	return *o.AccessRole, true
@@ -52,8 +68,8 @@ func (o *User) HasAccessRole() bool {
 	return false
 }
 
-// SetAccessRole gets a reference to the given string and assigns it to the AccessRole field.
-func (o *User) SetAccessRole(v string) {
+// SetAccessRole gets a reference to the given AccessRole and assigns it to the AccessRole field.
+func (o *User) SetAccessRole(v AccessRole) {
 	o.AccessRole = &v
 }
 
@@ -255,25 +271,65 @@ func (o *User) SetVerified(v bool) {
 	o.Verified = &v
 }
 
+func (o User) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.AccessRole != nil {
+		toSerialize["access_role"] = o.AccessRole
+	}
+	if o.Disabled != nil {
+		toSerialize["disabled"] = o.Disabled
+	}
+	if o.Email != nil {
+		toSerialize["email"] = o.Email
+	}
+	if o.Handle != nil {
+		toSerialize["handle"] = o.Handle
+	}
+	if o.Icon != nil {
+		toSerialize["icon"] = o.Icon
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Verified != nil {
+		toSerialize["verified"] = o.Verified
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUser struct {
-	Value        User
-	ExplicitNull bool
+	value *User
+	isSet bool
+}
+
+func (v NullableUser) Get() *User {
+	return v.value
+}
+
+func (v NullableUser) Set(val *User) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUser) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUser(val *User) *NullableUser {
+	return &NullableUser{value: val, isSet: true}
 }
 
 func (v NullableUser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

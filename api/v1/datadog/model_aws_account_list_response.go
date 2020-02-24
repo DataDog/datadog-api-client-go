@@ -9,19 +9,35 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// AwsAccountListResponse struct for AwsAccountListResponse
-type AwsAccountListResponse struct {
-	Accounts *[]AwsAccount `json:"accounts,omitempty"`
+// AWSAccountListResponse struct for AWSAccountListResponse
+type AWSAccountListResponse struct {
+	Accounts *[]AWSAccount `json:"accounts,omitempty"`
+}
+
+// NewAWSAccountListResponse instantiates a new AWSAccountListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAWSAccountListResponse() *AWSAccountListResponse {
+	this := AWSAccountListResponse{}
+	return &this
+}
+
+// NewAWSAccountListResponseWithDefaults instantiates a new AWSAccountListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAWSAccountListResponseWithDefaults() *AWSAccountListResponse {
+	this := AWSAccountListResponse{}
+	return &this
 }
 
 // GetAccounts returns the Accounts field value if set, zero value otherwise.
-func (o *AwsAccountListResponse) GetAccounts() []AwsAccount {
+func (o *AWSAccountListResponse) GetAccounts() []AWSAccount {
 	if o == nil || o.Accounts == nil {
-		var ret []AwsAccount
+		var ret []AWSAccount
 		return ret
 	}
 	return *o.Accounts
@@ -29,16 +45,16 @@ func (o *AwsAccountListResponse) GetAccounts() []AwsAccount {
 
 // GetAccountsOk returns a tuple with the Accounts field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsAccountListResponse) GetAccountsOk() ([]AwsAccount, bool) {
+func (o *AWSAccountListResponse) GetAccountsOk() ([]AWSAccount, bool) {
 	if o == nil || o.Accounts == nil {
-		var ret []AwsAccount
+		var ret []AWSAccount
 		return ret, false
 	}
 	return *o.Accounts, true
 }
 
 // HasAccounts returns a boolean if a field has been set.
-func (o *AwsAccountListResponse) HasAccounts() bool {
+func (o *AWSAccountListResponse) HasAccounts() bool {
 	if o != nil && o.Accounts != nil {
 		return true
 	}
@@ -46,30 +62,52 @@ func (o *AwsAccountListResponse) HasAccounts() bool {
 	return false
 }
 
-// SetAccounts gets a reference to the given []AwsAccount and assigns it to the Accounts field.
-func (o *AwsAccountListResponse) SetAccounts(v []AwsAccount) {
+// SetAccounts gets a reference to the given []AWSAccount and assigns it to the Accounts field.
+func (o *AWSAccountListResponse) SetAccounts(v []AWSAccount) {
 	o.Accounts = &v
 }
 
-type NullableAwsAccountListResponse struct {
-	Value        AwsAccountListResponse
-	ExplicitNull bool
+func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Accounts != nil {
+		toSerialize["accounts"] = o.Accounts
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableAwsAccountListResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableAWSAccountListResponse struct {
+	value *AWSAccountListResponse
+	isSet bool
 }
 
-func (v *NullableAwsAccountListResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableAWSAccountListResponse) Get() *AWSAccountListResponse {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v NullableAWSAccountListResponse) Set(val *AWSAccountListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAWSAccountListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAWSAccountListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAWSAccountListResponse(val *AWSAccountListResponse) *NullableAWSAccountListResponse {
+	return &NullableAWSAccountListResponse{value: val, isSet: true}
+}
+
+func (v NullableAWSAccountListResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAWSAccountListResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

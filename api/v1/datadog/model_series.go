@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,13 +17,36 @@ type Series struct {
 	// The name of the host that produced the metric.
 	Host *string `json:"host,omitempty"`
 	// If the type of the metric is rate or count, define the corresponding interval.
-	Interval *NullableInt64 `json:"interval,omitempty"`
+	Interval NullableInt64 `json:"interval,omitempty"`
 	// The name of the timeseries
 	Metric string      `json:"metric"`
 	Points [][]float64 `json:"points"`
 	// A list of tags associated with the metric.
 	Tags *[]string `json:"tags,omitempty"`
 	Type *string   `json:"type,omitempty"`
+}
+
+// NewSeries instantiates a new Series object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSeries(metric string, points [][]float64) *Series {
+	this := Series{}
+	this.Metric = metric
+	this.Points = points
+	var type_ string = "gauge"
+	this.Type = &type_
+	return &this
+}
+
+// NewSeriesWithDefaults instantiates a new Series object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSeriesWithDefaults() *Series {
+	this := Series{}
+	var type_ string = "gauge"
+	this.Type = &type_
+	return &this
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
@@ -62,26 +84,26 @@ func (o *Series) SetHost(v string) {
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *Series) GetInterval() NullableInt64 {
-	if o == nil || o.Interval == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret
 	}
-	return *o.Interval
+	return o.Interval
 }
 
 // GetIntervalOk returns a tuple with the Interval field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *Series) GetIntervalOk() (NullableInt64, bool) {
-	if o == nil || o.Interval == nil {
+	if o == nil {
 		var ret NullableInt64
 		return ret, false
 	}
-	return *o.Interval, true
+	return o.Interval, o.Interval.IsSet()
 }
 
 // HasInterval returns a boolean if a field has been set.
 func (o *Series) HasInterval() bool {
-	if o != nil && o.Interval != nil {
+	if o != nil && o.Interval.IsSet() {
 		return true
 	}
 
@@ -90,7 +112,7 @@ func (o *Series) HasInterval() bool {
 
 // SetInterval gets a reference to the given NullableInt64 and assigns it to the Interval field.
 func (o *Series) SetInterval(v NullableInt64) {
-	o.Interval = &v
+	o.Interval = v
 }
 
 // GetMetric returns the Metric field value
@@ -189,25 +211,62 @@ func (o *Series) SetType(v string) {
 	o.Type = &v
 }
 
+func (o Series) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Host != nil {
+		toSerialize["host"] = o.Host
+	}
+	if o.Interval.IsSet() {
+		toSerialize["interval"] = o.Interval.Get()
+	}
+	if true {
+		toSerialize["metric"] = o.Metric
+	}
+	if true {
+		toSerialize["points"] = o.Points
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSeries struct {
-	Value        Series
-	ExplicitNull bool
+	value *Series
+	isSet bool
+}
+
+func (v NullableSeries) Get() *Series {
+	return v.value
+}
+
+func (v NullableSeries) Set(val *Series) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSeries) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSeries) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSeries(val *Series) *NullableSeries {
+	return &NullableSeries{value: val, isSet: true}
 }
 
 func (v NullableSeries) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSeries) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -17,6 +16,23 @@ import (
 type MetricsPayload struct {
 	// A list of time series to submit to Datadog
 	Series *[]Series `json:"series,omitempty"`
+}
+
+// NewMetricsPayload instantiates a new MetricsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMetricsPayload() *MetricsPayload {
+	this := MetricsPayload{}
+	return &this
+}
+
+// NewMetricsPayloadWithDefaults instantiates a new MetricsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetricsPayloadWithDefaults() *MetricsPayload {
+	this := MetricsPayload{}
+	return &this
 }
 
 // GetSeries returns the Series field value if set, zero value otherwise.
@@ -52,25 +68,47 @@ func (o *MetricsPayload) SetSeries(v []Series) {
 	o.Series = &v
 }
 
+func (o MetricsPayload) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Series != nil {
+		toSerialize["series"] = o.Series
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMetricsPayload struct {
-	Value        MetricsPayload
-	ExplicitNull bool
+	value *MetricsPayload
+	isSet bool
+}
+
+func (v NullableMetricsPayload) Get() *MetricsPayload {
+	return v.value
+}
+
+func (v NullableMetricsPayload) Set(val *MetricsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMetricsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricsPayload(val *MetricsPayload) *NullableMetricsPayload {
+	return &NullableMetricsPayload{value: val, isSet: true}
 }
 
 func (v NullableMetricsPayload) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMetricsPayload) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

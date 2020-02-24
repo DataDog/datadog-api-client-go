@@ -9,39 +9,56 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// SloTimeframe the model 'SloTimeframe'
-type SloTimeframe string
+// SLOTimeframe the model 'SLOTimeframe'
+type SLOTimeframe string
 
 // List of SLOTimeframe
 const (
-	SLOTIMEFRAME__7D  SloTimeframe = "7d"
-	SLOTIMEFRAME__30D SloTimeframe = "30d"
-	SLOTIMEFRAME__90D SloTimeframe = "90d"
+	SLOTIMEFRAME_SEVEN_DAYS  SLOTimeframe = "7d"
+	SLOTIMEFRAME_THIRTY_DAYS SLOTimeframe = "30d"
+	SLOTIMEFRAME_NINETY_DAYS SLOTimeframe = "90d"
 )
 
-type NullableSloTimeframe struct {
-	Value        SloTimeframe
-	ExplicitNull bool
+// Ptr returns reference to SLOTimeframe value
+func (v SLOTimeframe) Ptr() *SLOTimeframe {
+	return &v
 }
 
-func (v NullableSloTimeframe) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableSLOTimeframe struct {
+	value *SLOTimeframe
+	isSet bool
 }
 
-func (v *NullableSloTimeframe) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableSLOTimeframe) Get() *SLOTimeframe {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v NullableSLOTimeframe) Set(val *SLOTimeframe) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSLOTimeframe) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableSLOTimeframe) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSLOTimeframe(val *SLOTimeframe) *NullableSLOTimeframe {
+	return &NullableSLOTimeframe{value: val, isSet: true}
+}
+
+func (v NullableSLOTimeframe) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableSLOTimeframe) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

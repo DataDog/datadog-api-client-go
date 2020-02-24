@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -17,6 +16,23 @@ import (
 type HistoryServiceLevelObjectiveResponseError struct {
 	// human readable error
 	Error *string `json:"error,omitempty"`
+}
+
+// NewHistoryServiceLevelObjectiveResponseError instantiates a new HistoryServiceLevelObjectiveResponseError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveResponseError() *HistoryServiceLevelObjectiveResponseError {
+	this := HistoryServiceLevelObjectiveResponseError{}
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveResponseErrorWithDefaults instantiates a new HistoryServiceLevelObjectiveResponseError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveResponseErrorWithDefaults() *HistoryServiceLevelObjectiveResponseError {
+	this := HistoryServiceLevelObjectiveResponseError{}
+	return &this
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
@@ -52,25 +68,47 @@ func (o *HistoryServiceLevelObjectiveResponseError) SetError(v string) {
 	o.Error = &v
 }
 
+func (o HistoryServiceLevelObjectiveResponseError) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Error != nil {
+		toSerialize["error"] = o.Error
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHistoryServiceLevelObjectiveResponseError struct {
-	Value        HistoryServiceLevelObjectiveResponseError
-	ExplicitNull bool
+	value *HistoryServiceLevelObjectiveResponseError
+	isSet bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) Get() *HistoryServiceLevelObjectiveResponseError {
+	return v.value
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) Set(val *HistoryServiceLevelObjectiveResponseError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHistoryServiceLevelObjectiveResponseError(val *HistoryServiceLevelObjectiveResponseError) *NullableHistoryServiceLevelObjectiveResponseError {
+	return &NullableHistoryServiceLevelObjectiveResponseError{value: val, isSet: true}
 }
 
 func (v NullableHistoryServiceLevelObjectiveResponseError) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHistoryServiceLevelObjectiveResponseError) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

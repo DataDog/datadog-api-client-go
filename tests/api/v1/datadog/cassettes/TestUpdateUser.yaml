@@ -1,0 +1,140 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"access_role":"ro","email":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","handle":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","name":"TestUpdateUser-1582305295080841000"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/user
+    method: POST
+  response:
+    body: '{"user":{"disabled":false,"handle":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","name":"TestUpdateUser-1582305295080841000","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/f5d9926e94b62ebd306e282c11e50a65?s=48&d=retro"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Feb 2020 17:14:55 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:55 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - mIWJPPM06xs5rSGFgggpdD5UbOnt6ntntAO8/8YDsVuXnSmp/k0aZ5dEUtAKB7Td
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"access_role":"st","disabled":true,"name":"test update user"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/user/testupdateuser-1582305295080841000%40integration-tests-accnt-for-sdk-ci.com
+    method: PUT
+  response:
+    body: '{"user":{"disabled":true,"handle":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","name":"test
+      update user","title":null,"is_admin":false,"role":null,"access_role":"st","verified":false,"email":"testupdateuser-1582305295080841000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/f5d9926e94b62ebd306e282c11e50a65?s=48&d=retro"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Feb 2020 17:14:56 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:55 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - gVnECQ7ifaEfJ6BNPsXSglLjlU41ay4U8jXHC6V3+oC4U6gHkBb20H5zrSJj1zee
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - applcation/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/user/testupdateuser-1582305295080841000%40integration-tests-accnt-for-sdk-ci.com
+    method: DELETE
+  response:
+    body: '{"errors": ["User is already disabled"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "40"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Feb 2020 17:14:56 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 400 Bad Request
+    code: 400
+    duration: ""

@@ -4,22 +4,39 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **int64** | Creation timestamp (unix time in seconds) Always included in service level objective responses. | [optional] 
+**CreatedAt** | Pointer to **int64** | Creation timestamp (unix time in seconds) Always included in service level objective responses. | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Description** | Pointer to **NullableString** | A user-defined description of the service level objective. Always included in service level objective responses (but may be null). Optional in create/update requests. | [optional] 
 **Groups** | Pointer to **[]string** | A list of (up to 20) monitor groups (e.g. [\&quot;env:prod,role:mysql\&quot;]) that narrows the scope of a monitor service level objective. Included in service level objective responses if it is nonempty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the \&quot;monitor_ids\&quot; field is one. | [optional] 
 **Id** | Pointer to **string** | A unique identifier for the service level objective object. Always included in service level objective responses. Required for update requests. | [optional] 
-**ModifiedAt** | Pointer to **int64** | Modification timestamp (unix time in seconds) Always included in service level objective responses. | [optional] 
+**ModifiedAt** | Pointer to **int64** | Modification timestamp (unix time in seconds) Always included in service level objective responses. | [optional] [readonly] 
 **MonitorIds** | Pointer to **[]int64** | A list of monitor ids that defines the scope of a monitor service level objective. Required if type is \&quot;monitor\&quot;. | [optional] 
 **MonitorTags** | Pointer to **[]string** | The union of monitor tags for all monitors referenced by the \&quot;monitor_ids\&quot; field. Always included in service level objective responses for monitor service level objectives (but may be empty). Ignored in create/update requests. Does not affect which monitors are included in the service level objective (that is determined entirely by the monitor_ids field). | [optional] 
 **Name** | Pointer to **string** | The name of the service level objective object. | 
 **Query** | Pointer to [**ServiceLevelObjectiveQuery**](ServiceLevelObjective_query.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags (e.g. \&quot;env:prod\&quot;) associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests. | [optional] 
-**Thresholds** | Pointer to [**[]SloThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
-**Type** | Pointer to **string** | The type of the service level objective. | 
-**TypeId** | Pointer to **int32** | A numeric representation of the type of the service level objective (0 for monitor, 1 for metric). Always included in service level objective responses. Ignored in create/update requests. | [optional] 
+**Thresholds** | Pointer to [**[]SLOThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
+**Type** | Pointer to [**ServiceLevelObjectiveType**](ServiceLevelObjectiveType.md) |  | 
+**TypeId** | Pointer to [**ServiceLevelObjectiveTypeNumeric**](ServiceLevelObjectiveTypeNumeric.md) |  | [optional] 
 
 ## Methods
+
+### NewServiceLevelObjective
+
+`func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ ServiceLevelObjectiveType, ) *ServiceLevelObjective`
+
+NewServiceLevelObjective instantiates a new ServiceLevelObjective object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServiceLevelObjectiveWithDefaults
+
+`func NewServiceLevelObjectiveWithDefaults() *ServiceLevelObjective`
+
+NewServiceLevelObjectiveWithDefaults instantiates a new ServiceLevelObjective object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetCreatedAt
 
@@ -305,13 +322,13 @@ SetTags gets a reference to the given []string and assigns it to the Tags field.
 
 ### GetThresholds
 
-`func (o *ServiceLevelObjective) GetThresholds() []SloThreshold`
+`func (o *ServiceLevelObjective) GetThresholds() []SLOThreshold`
 
 GetThresholds returns the Thresholds field if non-nil, zero value otherwise.
 
 ### GetThresholdsOk
 
-`func (o *ServiceLevelObjective) GetThresholdsOk() ([]SloThreshold, bool)`
+`func (o *ServiceLevelObjective) GetThresholdsOk() ([]SLOThreshold, bool)`
 
 GetThresholdsOk returns a tuple with the Thresholds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -324,19 +341,19 @@ HasThresholds returns a boolean if a field has been set.
 
 ### SetThresholds
 
-`func (o *ServiceLevelObjective) SetThresholds(v []SloThreshold)`
+`func (o *ServiceLevelObjective) SetThresholds(v []SLOThreshold)`
 
-SetThresholds gets a reference to the given []SloThreshold and assigns it to the Thresholds field.
+SetThresholds gets a reference to the given []SLOThreshold and assigns it to the Thresholds field.
 
 ### GetType
 
-`func (o *ServiceLevelObjective) GetType() string`
+`func (o *ServiceLevelObjective) GetType() ServiceLevelObjectiveType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ServiceLevelObjective) GetTypeOk() (string, bool)`
+`func (o *ServiceLevelObjective) GetTypeOk() (ServiceLevelObjectiveType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -349,19 +366,19 @@ HasType returns a boolean if a field has been set.
 
 ### SetType
 
-`func (o *ServiceLevelObjective) SetType(v string)`
+`func (o *ServiceLevelObjective) SetType(v ServiceLevelObjectiveType)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType gets a reference to the given ServiceLevelObjectiveType and assigns it to the Type field.
 
 ### GetTypeId
 
-`func (o *ServiceLevelObjective) GetTypeId() int32`
+`func (o *ServiceLevelObjective) GetTypeId() ServiceLevelObjectiveTypeNumeric`
 
 GetTypeId returns the TypeId field if non-nil, zero value otherwise.
 
 ### GetTypeIdOk
 
-`func (o *ServiceLevelObjective) GetTypeIdOk() (int32, bool)`
+`func (o *ServiceLevelObjective) GetTypeIdOk() (ServiceLevelObjectiveTypeNumeric, bool)`
 
 GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -374,9 +391,9 @@ HasTypeId returns a boolean if a field has been set.
 
 ### SetTypeId
 
-`func (o *ServiceLevelObjective) SetTypeId(v int32)`
+`func (o *ServiceLevelObjective) SetTypeId(v ServiceLevelObjectiveTypeNumeric)`
 
-SetTypeId gets a reference to the given int32 and assigns it to the TypeId field.
+SetTypeId gets a reference to the given ServiceLevelObjectiveTypeNumeric and assigns it to the TypeId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

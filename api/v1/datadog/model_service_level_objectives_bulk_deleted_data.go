@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,23 @@ type ServiceLevelObjectivesBulkDeletedData struct {
 	Deleted *[]string `json:"deleted,omitempty"`
 	// An array of service level objective object IDs that indicates which objects that were modified (objects for which at least one threshold was deleted, but that were not completely deleted).
 	Updated *[]string `json:"updated,omitempty"`
+}
+
+// NewServiceLevelObjectivesBulkDeletedData instantiates a new ServiceLevelObjectivesBulkDeletedData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjectivesBulkDeletedData() *ServiceLevelObjectivesBulkDeletedData {
+	this := ServiceLevelObjectivesBulkDeletedData{}
+	return &this
+}
+
+// NewServiceLevelObjectivesBulkDeletedDataWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectivesBulkDeletedDataWithDefaults() *ServiceLevelObjectivesBulkDeletedData {
+	this := ServiceLevelObjectivesBulkDeletedData{}
+	return &this
 }
 
 // GetDeleted returns the Deleted field value if set, zero value otherwise.
@@ -87,25 +103,50 @@ func (o *ServiceLevelObjectivesBulkDeletedData) SetUpdated(v []string) {
 	o.Updated = &v
 }
 
+func (o ServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Deleted != nil {
+		toSerialize["deleted"] = o.Deleted
+	}
+	if o.Updated != nil {
+		toSerialize["updated"] = o.Updated
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceLevelObjectivesBulkDeletedData struct {
-	Value        ServiceLevelObjectivesBulkDeletedData
-	ExplicitNull bool
+	value *ServiceLevelObjectivesBulkDeletedData
+	isSet bool
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) Get() *ServiceLevelObjectivesBulkDeletedData {
+	return v.value
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) Set(val *ServiceLevelObjectivesBulkDeletedData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjectivesBulkDeletedData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjectivesBulkDeletedData(val *ServiceLevelObjectivesBulkDeletedData) *NullableServiceLevelObjectivesBulkDeletedData {
+	return &NullableServiceLevelObjectivesBulkDeletedData{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjectivesBulkDeletedData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -34,7 +34,7 @@ Other parameters are passed through a pointer to a apiBulkPartialDeleteSLOReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**map[string][]SloTimeframe**](array.md) | Thresholds by service level objective object ID | 
+ **body** | [**map[string][]SLOTimeframe**](array.md) | Thresholds by service level objective object ID | 
 
 ### Return type
 

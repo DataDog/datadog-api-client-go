@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -17,6 +16,23 @@ import (
 type DashboardListDeleteResponse struct {
 	// ID of the deleted dashboard list
 	DeletedDashboardListId *int64 `json:"deleted_dashboard_list_id,omitempty"`
+}
+
+// NewDashboardListDeleteResponse instantiates a new DashboardListDeleteResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDashboardListDeleteResponse() *DashboardListDeleteResponse {
+	this := DashboardListDeleteResponse{}
+	return &this
+}
+
+// NewDashboardListDeleteResponseWithDefaults instantiates a new DashboardListDeleteResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDashboardListDeleteResponseWithDefaults() *DashboardListDeleteResponse {
+	this := DashboardListDeleteResponse{}
+	return &this
 }
 
 // GetDeletedDashboardListId returns the DeletedDashboardListId field value if set, zero value otherwise.
@@ -52,25 +68,47 @@ func (o *DashboardListDeleteResponse) SetDeletedDashboardListId(v int64) {
 	o.DeletedDashboardListId = &v
 }
 
+func (o DashboardListDeleteResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.DeletedDashboardListId != nil {
+		toSerialize["deleted_dashboard_list_id"] = o.DeletedDashboardListId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDashboardListDeleteResponse struct {
-	Value        DashboardListDeleteResponse
-	ExplicitNull bool
+	value *DashboardListDeleteResponse
+	isSet bool
+}
+
+func (v NullableDashboardListDeleteResponse) Get() *DashboardListDeleteResponse {
+	return v.value
+}
+
+func (v NullableDashboardListDeleteResponse) Set(val *DashboardListDeleteResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDashboardListDeleteResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableDashboardListDeleteResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDashboardListDeleteResponse(val *DashboardListDeleteResponse) *NullableDashboardListDeleteResponse {
+	return &NullableDashboardListDeleteResponse{value: val, isSet: true}
 }
 
 func (v NullableDashboardListDeleteResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDashboardListDeleteResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -31,6 +30,24 @@ type DashboardList struct {
 	Name string `json:"name"`
 	// The type of dashboard list
 	Type *string `json:"type,omitempty"`
+}
+
+// NewDashboardList instantiates a new DashboardList object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDashboardList(name string) *DashboardList {
+	this := DashboardList{}
+	this.Name = name
+	return &this
+}
+
+// NewDashboardListWithDefaults instantiates a new DashboardList object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDashboardListWithDefaults() *DashboardList {
+	this := DashboardList{}
+	return &this
 }
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
@@ -279,25 +296,68 @@ func (o *DashboardList) SetType(v string) {
 	o.Type = &v
 }
 
+func (o DashboardList) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Author != nil {
+		toSerialize["author"] = o.Author
+	}
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
+	}
+	if o.DashboardCount != nil {
+		toSerialize["dashboard_count"] = o.DashboardCount
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.IsFavorite != nil {
+		toSerialize["is_favorite"] = o.IsFavorite
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDashboardList struct {
-	Value        DashboardList
-	ExplicitNull bool
+	value *DashboardList
+	isSet bool
+}
+
+func (v NullableDashboardList) Get() *DashboardList {
+	return v.value
+}
+
+func (v NullableDashboardList) Set(val *DashboardList) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDashboardList) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableDashboardList) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDashboardList(val *DashboardList) *NullableDashboardList {
+	return &NullableDashboardList{value: val, isSet: true}
 }
 
 func (v NullableDashboardList) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDashboardList) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

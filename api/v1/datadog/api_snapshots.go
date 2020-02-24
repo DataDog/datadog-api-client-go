@@ -166,7 +166,7 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -180,7 +180,7 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -216,7 +216,7 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

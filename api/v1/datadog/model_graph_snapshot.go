@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ type GraphSnapshot struct {
 	GraphDef    *string `json:"graph_def,omitempty"`
 	MetricQuery *string `json:"metric_query,omitempty"`
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
+}
+
+// NewGraphSnapshot instantiates a new GraphSnapshot object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGraphSnapshot() *GraphSnapshot {
+	this := GraphSnapshot{}
+	return &this
+}
+
+// NewGraphSnapshotWithDefaults instantiates a new GraphSnapshot object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGraphSnapshotWithDefaults() *GraphSnapshot {
+	this := GraphSnapshot{}
+	return &this
 }
 
 // GetGraphDef returns the GraphDef field value if set, zero value otherwise.
@@ -119,25 +135,53 @@ func (o *GraphSnapshot) SetSnapshotUrl(v string) {
 	o.SnapshotUrl = &v
 }
 
+func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.GraphDef != nil {
+		toSerialize["graph_def"] = o.GraphDef
+	}
+	if o.MetricQuery != nil {
+		toSerialize["metric_query"] = o.MetricQuery
+	}
+	if o.SnapshotUrl != nil {
+		toSerialize["snapshot_url"] = o.SnapshotUrl
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGraphSnapshot struct {
-	Value        GraphSnapshot
-	ExplicitNull bool
+	value *GraphSnapshot
+	isSet bool
+}
+
+func (v NullableGraphSnapshot) Get() *GraphSnapshot {
+	return v.value
+}
+
+func (v NullableGraphSnapshot) Set(val *GraphSnapshot) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGraphSnapshot) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableGraphSnapshot) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGraphSnapshot(val *GraphSnapshot) *NullableGraphSnapshot {
+	return &NullableGraphSnapshot{value: val, isSet: true}
 }
 
 func (v NullableGraphSnapshot) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGraphSnapshot) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

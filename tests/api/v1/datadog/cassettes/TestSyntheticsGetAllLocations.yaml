@@ -1,0 +1,61 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/synthetics/locations
+    method: GET
+  response:
+    body: '{"locations":[{"is_active":true,"region":"Asia Pacific","display_name":"Tokyo
+      (AWS)","id":4,"name":"aws:ap-northeast-1"},{"is_active":true,"region":"Asia
+      Pacific","display_name":"Seoul (AWS)","id":30016,"name":"aws:ap-northeast-2"},{"is_active":true,"region":"Asia
+      Pacific","display_name":"Mumbai (AWS)","id":30014,"name":"aws:ap-south-1"},{"is_active":true,"region":"Asia
+      Pacific","display_name":"Singapore (AWS)","id":30015,"name":"aws:ap-southeast-1"},{"is_active":true,"region":"Asia
+      Pacific","display_name":"Sydney (AWS)","id":30004,"name":"aws:ap-southeast-2"},{"is_active":true,"region":"Americas","display_name":"Canada
+      Central (AWS)","id":30003,"name":"aws:ca-central-1"},{"is_active":true,"region":"Europe","display_name":"Frankfurt
+      (AWS)","id":3,"name":"aws:eu-central-1"},{"is_active":true,"region":"Europe","display_name":"Ireland
+      (AWS)","id":30017,"name":"aws:eu-west-1"},{"is_active":true,"region":"Europe","display_name":"London
+      (AWS)","id":2,"name":"aws:eu-west-2"},{"is_active":true,"region":"Americas","display_name":"S\u00e3o
+      Paulo (AWS)","id":30018,"name":"aws:sa-east-1"},{"is_active":true,"region":"Americas","display_name":"Ohio
+      (AWS)","id":30005,"name":"aws:us-east-2"},{"is_active":true,"region":"Americas","display_name":"N.
+      California (AWS)","id":30019,"name":"aws:us-west-1"},{"is_active":true,"region":"Americas","display_name":"Oregon
+      (AWS)","id":1,"name":"aws:us-west-2"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Feb 2020 17:14:52 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:52 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 3OCRM/4FZbkllI4iloi1acHDABD1SJi2aj2fysEPLLsOVOk5Ki6mi6IOsVG7JIay
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""

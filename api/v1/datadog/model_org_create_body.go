@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,26 @@ type OrgCreateBody struct {
 	Billing      OrgBilling      `json:"billing"`
 	Name         string          `json:"name"`
 	Subscription OrgSubscription `json:"subscription"`
+}
+
+// NewOrgCreateBody instantiates a new OrgCreateBody object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgCreateBody(billing OrgBilling, name string, subscription OrgSubscription) *OrgCreateBody {
+	this := OrgCreateBody{}
+	this.Billing = billing
+	this.Name = name
+	this.Subscription = subscription
+	return &this
+}
+
+// NewOrgCreateBodyWithDefaults instantiates a new OrgCreateBody object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgCreateBodyWithDefaults() *OrgCreateBody {
+	this := OrgCreateBody{}
+	return &this
 }
 
 // GetBilling returns the Billing field value
@@ -65,25 +84,53 @@ func (o *OrgCreateBody) SetSubscription(v OrgSubscription) {
 	o.Subscription = v
 }
 
+func (o OrgCreateBody) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["billing"] = o.Billing
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["subscription"] = o.Subscription
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgCreateBody struct {
-	Value        OrgCreateBody
-	ExplicitNull bool
+	value *OrgCreateBody
+	isSet bool
+}
+
+func (v NullableOrgCreateBody) Get() *OrgCreateBody {
+	return v.value
+}
+
+func (v NullableOrgCreateBody) Set(val *OrgCreateBody) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgCreateBody) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgCreateBody) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgCreateBody(val *OrgCreateBody) *NullableOrgCreateBody {
+	return &NullableOrgCreateBody{value: val, isSet: true}
 }
 
 func (v NullableOrgCreateBody) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgCreateBody) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

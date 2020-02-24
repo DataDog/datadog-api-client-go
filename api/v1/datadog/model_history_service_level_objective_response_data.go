@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,9 +20,26 @@ type HistoryServiceLevelObjectiveResponseData struct {
 	Overall *HistoryServiceLevelObjectiveOverall `json:"overall,omitempty"`
 	Series  *HistoryServiceLevelObjectiveMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
-	Thresholds *map[string]SloThreshold `json:"thresholds,omitempty"`
+	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
 	// the `to` timestamp in epoch seconds
 	ToTs *int64 `json:"to_ts,omitempty"`
+}
+
+// NewHistoryServiceLevelObjectiveResponseData instantiates a new HistoryServiceLevelObjectiveResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHistoryServiceLevelObjectiveResponseData() *HistoryServiceLevelObjectiveResponseData {
+	this := HistoryServiceLevelObjectiveResponseData{}
+	return &this
+}
+
+// NewHistoryServiceLevelObjectiveResponseDataWithDefaults instantiates a new HistoryServiceLevelObjectiveResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHistoryServiceLevelObjectiveResponseDataWithDefaults() *HistoryServiceLevelObjectiveResponseData {
+	this := HistoryServiceLevelObjectiveResponseData{}
+	return &this
 }
 
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
@@ -159,9 +175,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v HistoryServiceLev
 }
 
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SloThreshold {
+func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SLOThreshold {
 	if o == nil || o.Thresholds == nil {
-		var ret map[string]SloThreshold
+		var ret map[string]SLOThreshold
 		return ret
 	}
 	return *o.Thresholds
@@ -169,9 +185,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]Sl
 
 // GetThresholdsOk returns a tuple with the Thresholds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SloThreshold, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SLOThreshold, bool) {
 	if o == nil || o.Thresholds == nil {
-		var ret map[string]SloThreshold
+		var ret map[string]SLOThreshold
 		return ret, false
 	}
 	return *o.Thresholds, true
@@ -186,8 +202,8 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasThresholds() bool {
 	return false
 }
 
-// SetThresholds gets a reference to the given map[string]SloThreshold and assigns it to the Thresholds field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]SloThreshold) {
+// SetThresholds gets a reference to the given map[string]SLOThreshold and assigns it to the Thresholds field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]SLOThreshold) {
 	o.Thresholds = &v
 }
 
@@ -224,25 +240,62 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
+func (o HistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.FromTs != nil {
+		toSerialize["from_ts"] = o.FromTs
+	}
+	if o.Groups != nil {
+		toSerialize["groups"] = o.Groups
+	}
+	if o.Overall != nil {
+		toSerialize["overall"] = o.Overall
+	}
+	if o.Series != nil {
+		toSerialize["series"] = o.Series
+	}
+	if o.Thresholds != nil {
+		toSerialize["thresholds"] = o.Thresholds
+	}
+	if o.ToTs != nil {
+		toSerialize["to_ts"] = o.ToTs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHistoryServiceLevelObjectiveResponseData struct {
-	Value        HistoryServiceLevelObjectiveResponseData
-	ExplicitNull bool
+	value *HistoryServiceLevelObjectiveResponseData
+	isSet bool
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) Get() *HistoryServiceLevelObjectiveResponseData {
+	return v.value
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) Set(val *HistoryServiceLevelObjectiveResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHistoryServiceLevelObjectiveResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHistoryServiceLevelObjectiveResponseData(val *HistoryServiceLevelObjectiveResponseData) *NullableHistoryServiceLevelObjectiveResponseData {
+	return &NullableHistoryServiceLevelObjectiveResponseData{value: val, isSet: true}
 }
 
 func (v NullableHistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHistoryServiceLevelObjectiveResponseData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

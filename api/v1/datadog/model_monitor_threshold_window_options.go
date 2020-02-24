@@ -9,101 +9,142 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MonitorThresholdWindowOptions struct for MonitorThresholdWindowOptions
 type MonitorThresholdWindowOptions struct {
-	RecoveryWindow *string `json:"recovery_window,omitempty"`
-	TriggerWindow  *string `json:"trigger_window,omitempty"`
+	RecoveryWindow NullableString `json:"recovery_window,omitempty"`
+	TriggerWindow  NullableString `json:"trigger_window,omitempty"`
+}
+
+// NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorThresholdWindowOptions() *MonitorThresholdWindowOptions {
+	this := MonitorThresholdWindowOptions{}
+	return &this
+}
+
+// NewMonitorThresholdWindowOptionsWithDefaults instantiates a new MonitorThresholdWindowOptions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorThresholdWindowOptionsWithDefaults() *MonitorThresholdWindowOptions {
+	this := MonitorThresholdWindowOptions{}
+	return &this
 }
 
 // GetRecoveryWindow returns the RecoveryWindow field value if set, zero value otherwise.
-func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
-	if o == nil || o.RecoveryWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() NullableString {
+	if o == nil {
+		var ret NullableString
 		return ret
 	}
-	return *o.RecoveryWindow
+	return o.RecoveryWindow
 }
 
 // GetRecoveryWindowOk returns a tuple with the RecoveryWindow field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (string, bool) {
-	if o == nil || o.RecoveryWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (NullableString, bool) {
+	if o == nil {
+		var ret NullableString
 		return ret, false
 	}
-	return *o.RecoveryWindow, true
+	return o.RecoveryWindow, o.RecoveryWindow.IsSet()
 }
 
 // HasRecoveryWindow returns a boolean if a field has been set.
 func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
-	if o != nil && o.RecoveryWindow != nil {
+	if o != nil && o.RecoveryWindow.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRecoveryWindow gets a reference to the given string and assigns it to the RecoveryWindow field.
-func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string) {
-	o.RecoveryWindow = &v
+// SetRecoveryWindow gets a reference to the given NullableString and assigns it to the RecoveryWindow field.
+func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v NullableString) {
+	o.RecoveryWindow = v
 }
 
 // GetTriggerWindow returns the TriggerWindow field value if set, zero value otherwise.
-func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
-	if o == nil || o.TriggerWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetTriggerWindow() NullableString {
+	if o == nil {
+		var ret NullableString
 		return ret
 	}
-	return *o.TriggerWindow
+	return o.TriggerWindow
 }
 
 // GetTriggerWindowOk returns a tuple with the TriggerWindow field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (string, bool) {
-	if o == nil || o.TriggerWindow == nil {
-		var ret string
+func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (NullableString, bool) {
+	if o == nil {
+		var ret NullableString
 		return ret, false
 	}
-	return *o.TriggerWindow, true
+	return o.TriggerWindow, o.TriggerWindow.IsSet()
 }
 
 // HasTriggerWindow returns a boolean if a field has been set.
 func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
-	if o != nil && o.TriggerWindow != nil {
+	if o != nil && o.TriggerWindow.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTriggerWindow gets a reference to the given string and assigns it to the TriggerWindow field.
-func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
-	o.TriggerWindow = &v
+// SetTriggerWindow gets a reference to the given NullableString and assigns it to the TriggerWindow field.
+func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v NullableString) {
+	o.TriggerWindow = v
+}
+
+func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.RecoveryWindow.IsSet() {
+		toSerialize["recovery_window"] = o.RecoveryWindow.Get()
+	}
+	if o.TriggerWindow.IsSet() {
+		toSerialize["trigger_window"] = o.TriggerWindow.Get()
+	}
+	return json.Marshal(toSerialize)
 }
 
 type NullableMonitorThresholdWindowOptions struct {
-	Value        MonitorThresholdWindowOptions
-	ExplicitNull bool
+	value *MonitorThresholdWindowOptions
+	isSet bool
+}
+
+func (v NullableMonitorThresholdWindowOptions) Get() *MonitorThresholdWindowOptions {
+	return v.value
+}
+
+func (v NullableMonitorThresholdWindowOptions) Set(val *MonitorThresholdWindowOptions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorThresholdWindowOptions) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorThresholdWindowOptions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorThresholdWindowOptions(val *MonitorThresholdWindowOptions) *NullableMonitorThresholdWindowOptions {
+	return &NullableMonitorThresholdWindowOptions{value: val, isSet: true}
 }
 
 func (v NullableMonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorThresholdWindowOptions) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

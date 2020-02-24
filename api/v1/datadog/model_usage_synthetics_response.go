@@ -9,13 +9,29 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // UsageSyntheticsResponse struct for UsageSyntheticsResponse
 type UsageSyntheticsResponse struct {
 	Usage *[]UsageSyntheticsHour `json:"usage,omitempty"`
+}
+
+// NewUsageSyntheticsResponse instantiates a new UsageSyntheticsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageSyntheticsResponse() *UsageSyntheticsResponse {
+	this := UsageSyntheticsResponse{}
+	return &this
+}
+
+// NewUsageSyntheticsResponseWithDefaults instantiates a new UsageSyntheticsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageSyntheticsResponseWithDefaults() *UsageSyntheticsResponse {
+	this := UsageSyntheticsResponse{}
+	return &this
 }
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
@@ -51,25 +67,47 @@ func (o *UsageSyntheticsResponse) SetUsage(v []UsageSyntheticsHour) {
 	o.Usage = &v
 }
 
+func (o UsageSyntheticsResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Usage != nil {
+		toSerialize["usage"] = o.Usage
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageSyntheticsResponse struct {
-	Value        UsageSyntheticsResponse
-	ExplicitNull bool
+	value *UsageSyntheticsResponse
+	isSet bool
+}
+
+func (v NullableUsageSyntheticsResponse) Get() *UsageSyntheticsResponse {
+	return v.value
+}
+
+func (v NullableUsageSyntheticsResponse) Set(val *UsageSyntheticsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageSyntheticsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageSyntheticsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageSyntheticsResponse(val *UsageSyntheticsResponse) *NullableUsageSyntheticsResponse {
+	return &NullableUsageSyntheticsResponse{value: val, isSet: true}
 }
 
 func (v NullableUsageSyntheticsResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageSyntheticsResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

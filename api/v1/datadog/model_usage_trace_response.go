@@ -9,13 +9,29 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // UsageTraceResponse struct for UsageTraceResponse
 type UsageTraceResponse struct {
 	Usage *[]UsageTraceHour `json:"usage,omitempty"`
+}
+
+// NewUsageTraceResponse instantiates a new UsageTraceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageTraceResponse() *UsageTraceResponse {
+	this := UsageTraceResponse{}
+	return &this
+}
+
+// NewUsageTraceResponseWithDefaults instantiates a new UsageTraceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageTraceResponseWithDefaults() *UsageTraceResponse {
+	this := UsageTraceResponse{}
+	return &this
 }
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
@@ -51,25 +67,47 @@ func (o *UsageTraceResponse) SetUsage(v []UsageTraceHour) {
 	o.Usage = &v
 }
 
+func (o UsageTraceResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Usage != nil {
+		toSerialize["usage"] = o.Usage
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageTraceResponse struct {
-	Value        UsageTraceResponse
-	ExplicitNull bool
+	value *UsageTraceResponse
+	isSet bool
+}
+
+func (v NullableUsageTraceResponse) Get() *UsageTraceResponse {
+	return v.value
+}
+
+func (v NullableUsageTraceResponse) Set(val *UsageTraceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageTraceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageTraceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageTraceResponse(val *UsageTraceResponse) *NullableUsageTraceResponse {
+	return &NullableUsageTraceResponse{value: val, isSet: true}
 }
 
 func (v NullableUsageTraceResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageTraceResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

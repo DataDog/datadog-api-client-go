@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -29,6 +28,23 @@ type Host struct {
 	Sources          *[]string            `json:"sources,omitempty"`
 	TagsBySource     *map[string][]string `json:"tags_by_source,omitempty"`
 	Up               *bool                `json:"up,omitempty"`
+}
+
+// NewHost instantiates a new Host object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHost() *Host {
+	this := Host{}
+	return &this
+}
+
+// NewHostWithDefaults instantiates a new Host object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHostWithDefaults() *Host {
+	this := Host{}
+	return &this
 }
 
 // GetAliases returns the Aliases field value if set, zero value otherwise.
@@ -493,25 +509,86 @@ func (o *Host) SetUp(v bool) {
 	o.Up = &v
 }
 
+func (o Host) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Aliases != nil {
+		toSerialize["aliases"] = o.Aliases
+	}
+	if o.Apps != nil {
+		toSerialize["apps"] = o.Apps
+	}
+	if o.AwsName != nil {
+		toSerialize["aws_name"] = o.AwsName
+	}
+	if o.HostName != nil {
+		toSerialize["host_name"] = o.HostName
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.IsMuted != nil {
+		toSerialize["is_muted"] = o.IsMuted
+	}
+	if o.LastReportedTime != nil {
+		toSerialize["last_reported_time"] = o.LastReportedTime
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	if o.Metrics != nil {
+		toSerialize["metrics"] = o.Metrics
+	}
+	if o.MuteTimeout != nil {
+		toSerialize["mute_timeout"] = o.MuteTimeout
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Sources != nil {
+		toSerialize["sources"] = o.Sources
+	}
+	if o.TagsBySource != nil {
+		toSerialize["tags_by_source"] = o.TagsBySource
+	}
+	if o.Up != nil {
+		toSerialize["up"] = o.Up
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHost struct {
-	Value        Host
-	ExplicitNull bool
+	value *Host
+	isSet bool
+}
+
+func (v NullableHost) Get() *Host {
+	return v.value
+}
+
+func (v NullableHost) Set(val *Host) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHost) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHost) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHost(val *Host) *NullableHost {
+	return &NullableHost{value: val, isSet: true}
 }
 
 func (v NullableHost) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHost) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

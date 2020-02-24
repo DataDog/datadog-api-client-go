@@ -26,10 +26,10 @@ type AWSIntegrationApiService service
 type apiCreateAWSAccountRequest struct {
 	ctx        _context.Context
 	apiService *AWSIntegrationApiService
-	body       *AwsAccount
+	body       *AWSAccount
 }
 
-func (r apiCreateAWSAccountRequest) Body(body AwsAccount) apiCreateAWSAccountRequest {
+func (r apiCreateAWSAccountRequest) Body(body AWSAccount) apiCreateAWSAccountRequest {
 	r.body = &body
 	return r
 }
@@ -75,16 +75,16 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context) apiCre
 
 /*
 Execute executes the request
- @return AwsAccountCreateResponse
+ @return AWSAccountCreateResponse
 */
-func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_nethttp.Response, error) {
+func (r apiCreateAWSAccountRequest) Execute() (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  AwsAccountCreateResponse
+		localVarReturnValue  AWSAccountCreateResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSAccount")
@@ -131,7 +131,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -145,7 +145,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -171,7 +171,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v AwsAccountCreateResponse
+			var v AWSAccountCreateResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +181,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -191,7 +191,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -217,10 +217,10 @@ func (r apiCreateAWSAccountRequest) Execute() (AwsAccountCreateResponse, *_netht
 type apiDeleteAWSAccountRequest struct {
 	ctx        _context.Context
 	apiService *AWSIntegrationApiService
-	body       *AwsAccount
+	body       *AWSAccount
 }
 
-func (r apiDeleteAWSAccountRequest) Body(body AwsAccount) apiDeleteAWSAccountRequest {
+func (r apiDeleteAWSAccountRequest) Body(body AWSAccount) apiDeleteAWSAccountRequest {
 	r.body = &body
 	return r
 }
@@ -303,7 +303,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -317,7 +317,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -353,7 +353,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -363,7 +363,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -389,10 +389,10 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 type apiGenerateNewAWSExternalIDRequest struct {
 	ctx        _context.Context
 	apiService *AWSIntegrationApiService
-	body       *AwsAccount
+	body       *AWSAccount
 }
 
-func (r apiGenerateNewAWSExternalIDRequest) Body(body AwsAccount) apiGenerateNewAWSExternalIDRequest {
+func (r apiGenerateNewAWSExternalIDRequest) Body(body AWSAccount) apiGenerateNewAWSExternalIDRequest {
 	r.body = &body
 	return r
 }
@@ -419,16 +419,16 @@ func (a *AWSIntegrationApiService) GenerateNewAWSExternalID(ctx _context.Context
 
 /*
 Execute executes the request
- @return AwsAccountCreateResponse
+ @return AWSAccountCreateResponse
 */
-func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse, *_nethttp.Response, error) {
+func (r apiGenerateNewAWSExternalIDRequest) Execute() (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  AwsAccountCreateResponse
+		localVarReturnValue  AWSAccountCreateResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.GenerateNewAWSExternalID")
@@ -475,7 +475,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -489,7 +489,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -515,7 +515,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v AwsAccountCreateResponse
+			var v AWSAccountCreateResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -525,7 +525,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -535,7 +535,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Execute() (AwsAccountCreateResponse,
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -606,16 +606,16 @@ func (a *AWSIntegrationApiService) GetAllAWSAccounts(ctx _context.Context) apiGe
 
 /*
 Execute executes the request
- @return AwsAccountListResponse
+ @return AWSAccountListResponse
 */
-func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethttp.Response, error) {
+func (r apiGetAllAWSAccountsRequest) Execute() (AWSAccountListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  AwsAccountListResponse
+		localVarReturnValue  AWSAccountListResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.GetAllAWSAccounts")
@@ -665,7 +665,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -679,7 +679,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -705,7 +705,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v AwsAccountListResponse
+			var v AWSAccountListResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -715,7 +715,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -725,7 +725,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -735,7 +735,7 @@ func (r apiGetAllAWSAccountsRequest) Execute() (AwsAccountListResponse, *_nethtt
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error404
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -829,7 +829,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -843,7 +843,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -879,7 +879,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -889,7 +889,7 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -915,13 +915,13 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 type apiUpdateAWSAccountRequest struct {
 	ctx         _context.Context
 	apiService  *AWSIntegrationApiService
-	body        *AwsAccount
+	body        *AWSAccount
 	accountId   *string
 	roleName    *string
 	accessKeyId *string
 }
 
-func (r apiUpdateAWSAccountRequest) Body(body AwsAccount) apiUpdateAWSAccountRequest {
+func (r apiUpdateAWSAccountRequest) Body(body AWSAccount) apiUpdateAWSAccountRequest {
 	r.body = &body
 	return r
 }
@@ -1057,7 +1057,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("api_key", key)
+				localVarHeaderParams["DD-API-KEY"] = key
 			}
 		}
 	}
@@ -1071,7 +1071,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 				} else {
 					key = auth.Key
 				}
-				localVarQueryParams.Add("application_key", key)
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
 			}
 		}
 	}
@@ -1107,7 +1107,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error400
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1117,7 +1117,7 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error403
+			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,23 @@ type Org struct {
 	PublicId     *string          `json:"public_id,omitempty"`
 	Settings     *OrgSettings     `json:"settings,omitempty"`
 	Subscription *OrgSubscription `json:"subscription,omitempty"`
+}
+
+// NewOrg instantiates a new Org object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrg() *Org {
+	this := Org{}
+	return &this
+}
+
+// NewOrgWithDefaults instantiates a new Org object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgWithDefaults() *Org {
+	this := Org{}
+	return &this
 }
 
 // GetBilling returns the Billing field value if set, zero value otherwise.
@@ -255,25 +271,65 @@ func (o *Org) SetSubscription(v OrgSubscription) {
 	o.Subscription = &v
 }
 
+func (o Org) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Billing != nil {
+		toSerialize["billing"] = o.Billing
+	}
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
+	if o.Settings != nil {
+		toSerialize["settings"] = o.Settings
+	}
+	if o.Subscription != nil {
+		toSerialize["subscription"] = o.Subscription
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrg struct {
-	Value        Org
-	ExplicitNull bool
+	value *Org
+	isSet bool
+}
+
+func (v NullableOrg) Get() *Org {
+	return v.value
+}
+
+func (v NullableOrg) Set(val *Org) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrg) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrg) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrg(val *Org) *NullableOrg {
+	return &NullableOrg{value: val, isSet: true}
 }
 
 func (v NullableOrg) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrg) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

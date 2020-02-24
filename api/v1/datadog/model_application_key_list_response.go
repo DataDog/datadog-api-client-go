@@ -9,13 +9,29 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ApplicationKeyListResponse struct for ApplicationKeyListResponse
 type ApplicationKeyListResponse struct {
 	ApplicationKeys *[]ApplicationKey `json:"application_keys,omitempty"`
+}
+
+// NewApplicationKeyListResponse instantiates a new ApplicationKeyListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationKeyListResponse() *ApplicationKeyListResponse {
+	this := ApplicationKeyListResponse{}
+	return &this
+}
+
+// NewApplicationKeyListResponseWithDefaults instantiates a new ApplicationKeyListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationKeyListResponseWithDefaults() *ApplicationKeyListResponse {
+	this := ApplicationKeyListResponse{}
+	return &this
 }
 
 // GetApplicationKeys returns the ApplicationKeys field value if set, zero value otherwise.
@@ -51,25 +67,47 @@ func (o *ApplicationKeyListResponse) SetApplicationKeys(v []ApplicationKey) {
 	o.ApplicationKeys = &v
 }
 
+func (o ApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.ApplicationKeys != nil {
+		toSerialize["application_keys"] = o.ApplicationKeys
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationKeyListResponse struct {
-	Value        ApplicationKeyListResponse
-	ExplicitNull bool
+	value *ApplicationKeyListResponse
+	isSet bool
+}
+
+func (v NullableApplicationKeyListResponse) Get() *ApplicationKeyListResponse {
+	return v.value
+}
+
+func (v NullableApplicationKeyListResponse) Set(val *ApplicationKeyListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationKeyListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableApplicationKeyListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationKeyListResponse(val *ApplicationKeyListResponse) *NullableApplicationKeyListResponse {
+	return &NullableApplicationKeyListResponse{value: val, isSet: true}
 }
 
 func (v NullableApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationKeyListResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -17,6 +16,23 @@ import (
 type OrgSettingsSamlAutocreateUsersDomains struct {
 	Domains *[]string `json:"domains,omitempty"`
 	Enabled *bool     `json:"enabled,omitempty"`
+}
+
+// NewOrgSettingsSamlAutocreateUsersDomains instantiates a new OrgSettingsSamlAutocreateUsersDomains object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgSettingsSamlAutocreateUsersDomains() *OrgSettingsSamlAutocreateUsersDomains {
+	this := OrgSettingsSamlAutocreateUsersDomains{}
+	return &this
+}
+
+// NewOrgSettingsSamlAutocreateUsersDomainsWithDefaults instantiates a new OrgSettingsSamlAutocreateUsersDomains object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgSettingsSamlAutocreateUsersDomainsWithDefaults() *OrgSettingsSamlAutocreateUsersDomains {
+	this := OrgSettingsSamlAutocreateUsersDomains{}
+	return &this
 }
 
 // GetDomains returns the Domains field value if set, zero value otherwise.
@@ -85,25 +101,50 @@ func (o *OrgSettingsSamlAutocreateUsersDomains) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+func (o OrgSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Domains != nil {
+		toSerialize["domains"] = o.Domains
+	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgSettingsSamlAutocreateUsersDomains struct {
-	Value        OrgSettingsSamlAutocreateUsersDomains
-	ExplicitNull bool
+	value *OrgSettingsSamlAutocreateUsersDomains
+	isSet bool
+}
+
+func (v NullableOrgSettingsSamlAutocreateUsersDomains) Get() *OrgSettingsSamlAutocreateUsersDomains {
+	return v.value
+}
+
+func (v NullableOrgSettingsSamlAutocreateUsersDomains) Set(val *OrgSettingsSamlAutocreateUsersDomains) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgSettingsSamlAutocreateUsersDomains) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgSettingsSamlAutocreateUsersDomains) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgSettingsSamlAutocreateUsersDomains(val *OrgSettingsSamlAutocreateUsersDomains) *NullableOrgSettingsSamlAutocreateUsersDomains {
+	return &NullableOrgSettingsSamlAutocreateUsersDomains{value: val, isSet: true}
 }
 
 func (v NullableOrgSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgSettingsSamlAutocreateUsersDomains) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

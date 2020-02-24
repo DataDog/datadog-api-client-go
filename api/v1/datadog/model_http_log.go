@@ -9,20 +9,36 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// HttpLog struct for HttpLog
-type HttpLog struct {
+// HTTPLog struct for HTTPLog
+type HTTPLog struct {
 	Ddsource *string `json:"ddsource,omitempty"`
 	Ddtags   *string `json:"ddtags,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
 	Message  *string `json:"message,omitempty"`
 }
 
+// NewHTTPLog instantiates a new HTTPLog object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHTTPLog() *HTTPLog {
+	this := HTTPLog{}
+	return &this
+}
+
+// NewHTTPLogWithDefaults instantiates a new HTTPLog object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHTTPLogWithDefaults() *HTTPLog {
+	this := HTTPLog{}
+	return &this
+}
+
 // GetDdsource returns the Ddsource field value if set, zero value otherwise.
-func (o *HttpLog) GetDdsource() string {
+func (o *HTTPLog) GetDdsource() string {
 	if o == nil || o.Ddsource == nil {
 		var ret string
 		return ret
@@ -32,7 +48,7 @@ func (o *HttpLog) GetDdsource() string {
 
 // GetDdsourceOk returns a tuple with the Ddsource field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HttpLog) GetDdsourceOk() (string, bool) {
+func (o *HTTPLog) GetDdsourceOk() (string, bool) {
 	if o == nil || o.Ddsource == nil {
 		var ret string
 		return ret, false
@@ -41,7 +57,7 @@ func (o *HttpLog) GetDdsourceOk() (string, bool) {
 }
 
 // HasDdsource returns a boolean if a field has been set.
-func (o *HttpLog) HasDdsource() bool {
+func (o *HTTPLog) HasDdsource() bool {
 	if o != nil && o.Ddsource != nil {
 		return true
 	}
@@ -50,12 +66,12 @@ func (o *HttpLog) HasDdsource() bool {
 }
 
 // SetDdsource gets a reference to the given string and assigns it to the Ddsource field.
-func (o *HttpLog) SetDdsource(v string) {
+func (o *HTTPLog) SetDdsource(v string) {
 	o.Ddsource = &v
 }
 
 // GetDdtags returns the Ddtags field value if set, zero value otherwise.
-func (o *HttpLog) GetDdtags() string {
+func (o *HTTPLog) GetDdtags() string {
 	if o == nil || o.Ddtags == nil {
 		var ret string
 		return ret
@@ -65,7 +81,7 @@ func (o *HttpLog) GetDdtags() string {
 
 // GetDdtagsOk returns a tuple with the Ddtags field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HttpLog) GetDdtagsOk() (string, bool) {
+func (o *HTTPLog) GetDdtagsOk() (string, bool) {
 	if o == nil || o.Ddtags == nil {
 		var ret string
 		return ret, false
@@ -74,7 +90,7 @@ func (o *HttpLog) GetDdtagsOk() (string, bool) {
 }
 
 // HasDdtags returns a boolean if a field has been set.
-func (o *HttpLog) HasDdtags() bool {
+func (o *HTTPLog) HasDdtags() bool {
 	if o != nil && o.Ddtags != nil {
 		return true
 	}
@@ -83,12 +99,12 @@ func (o *HttpLog) HasDdtags() bool {
 }
 
 // SetDdtags gets a reference to the given string and assigns it to the Ddtags field.
-func (o *HttpLog) SetDdtags(v string) {
+func (o *HTTPLog) SetDdtags(v string) {
 	o.Ddtags = &v
 }
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
-func (o *HttpLog) GetHostname() string {
+func (o *HTTPLog) GetHostname() string {
 	if o == nil || o.Hostname == nil {
 		var ret string
 		return ret
@@ -98,7 +114,7 @@ func (o *HttpLog) GetHostname() string {
 
 // GetHostnameOk returns a tuple with the Hostname field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HttpLog) GetHostnameOk() (string, bool) {
+func (o *HTTPLog) GetHostnameOk() (string, bool) {
 	if o == nil || o.Hostname == nil {
 		var ret string
 		return ret, false
@@ -107,7 +123,7 @@ func (o *HttpLog) GetHostnameOk() (string, bool) {
 }
 
 // HasHostname returns a boolean if a field has been set.
-func (o *HttpLog) HasHostname() bool {
+func (o *HTTPLog) HasHostname() bool {
 	if o != nil && o.Hostname != nil {
 		return true
 	}
@@ -116,12 +132,12 @@ func (o *HttpLog) HasHostname() bool {
 }
 
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
-func (o *HttpLog) SetHostname(v string) {
+func (o *HTTPLog) SetHostname(v string) {
 	o.Hostname = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *HttpLog) GetMessage() string {
+func (o *HTTPLog) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret
@@ -131,7 +147,7 @@ func (o *HttpLog) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HttpLog) GetMessageOk() (string, bool) {
+func (o *HTTPLog) GetMessageOk() (string, bool) {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret, false
@@ -140,7 +156,7 @@ func (o *HttpLog) GetMessageOk() (string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *HttpLog) HasMessage() bool {
+func (o *HTTPLog) HasMessage() bool {
 	if o != nil && o.Message != nil {
 		return true
 	}
@@ -149,29 +165,60 @@ func (o *HttpLog) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *HttpLog) SetMessage(v string) {
+func (o *HTTPLog) SetMessage(v string) {
 	o.Message = &v
 }
 
-type NullableHttpLog struct {
-	Value        HttpLog
-	ExplicitNull bool
+func (o HTTPLog) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Ddsource != nil {
+		toSerialize["ddsource"] = o.Ddsource
+	}
+	if o.Ddtags != nil {
+		toSerialize["ddtags"] = o.Ddtags
+	}
+	if o.Hostname != nil {
+		toSerialize["hostname"] = o.Hostname
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableHttpLog) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableHTTPLog struct {
+	value *HTTPLog
+	isSet bool
 }
 
-func (v *NullableHttpLog) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableHTTPLog) Get() *HTTPLog {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v NullableHTTPLog) Set(val *HTTPLog) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHTTPLog) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHTTPLog) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHTTPLog(val *HTTPLog) *NullableHTTPLog {
+	return &NullableHTTPLog{value: val, isSet: true}
+}
+
+func (v NullableHTTPLog) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHTTPLog) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

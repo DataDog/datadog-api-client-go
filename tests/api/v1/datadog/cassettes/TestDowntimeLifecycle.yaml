@@ -1,0 +1,442 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"message":"Testing downtime from Go client","recurrence":{"period":1,"type":"weeks","until_date":1584119627,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1582305227,"timezone":"Etc/UTC"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/downtime
+    method: POST
+  response:
+    body: '{"recurrence":{"until_date":1584119627,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582305227,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"Testing
+      downtime from Go client","downtime_type":0,"id":744187331,"updater_id":null}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 21 Feb 2020 17:13:47 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:47 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - QaEGvF++JqTbTiFomKhE21Fdnra2zinKOaCEqOgwcd7OtJatRLgvovBbCNyGqcpO
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"message":"updated message"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/downtime/744187331
+    method: PUT
+  response:
+    body: '{"recurrence":{"until_date":1584119627,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582305227,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"updated
+      message","downtime_type":0,"id":744187331,"updater_id":1379811}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 21 Feb 2020 17:13:48 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:47 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - RbevWUvO2oQYYDnX/G1lndTh/kTt+ebFIvajU6/3Ivb5c6aUQf49/uD1ICaXyx52
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/downtime/744187331
+    method: GET
+  response:
+    body: '{"recurrence":{"until_date":1584119627,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582305227,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"updated
+      message","downtime_type":0,"id":744187331,"updater_id":1379811}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 21 Feb 2020 17:13:48 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - Z91NUpPIZnIQ9h7lBFWBkEPGVUEsn4/i71imPPwrChu4RPI5uNM5HGuodISK1HBR
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/downtime
+    method: GET
+  response:
+    body: '[{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582279093,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279093,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743906182,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582279094,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279093,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743906183,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582279094,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279093,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":743906184,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582279095,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279094,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743906201,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582279095,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279094,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743906202,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582279095,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279095,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":743906206,"updater_id":1379826},{"recurrence":null,"end":1582279245,"monitor_tags":["*"],"canceled":1582279196,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279196,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582279185"],"message":"muting
+      for java tests","downtime_type":1,"id":743907050,"updater_id":null},{"recurrence":null,"end":1582279305,"monitor_tags":["*"],"canceled":1582279196,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582279196,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582279185"],"message":"muting
+      for test - updating","downtime_type":1,"id":743907051,"updater_id":1379826},{"recurrence":null,"end":1582280106,"monitor_tags":["*"],"canceled":1582280077,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280077,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582280046"],"message":"muting
+      for java tests","downtime_type":1,"id":743916724,"updater_id":null},{"recurrence":null,"end":1582280166,"monitor_tags":["*"],"canceled":1582280077,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280077,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582280046"],"message":"muting
+      for test - updating","downtime_type":1,"id":743916726,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280079,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280079,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743916729,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280079,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280079,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743916730,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280080,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280079,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":743916731,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280082,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280081,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743916733,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280083,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280081,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743916734,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280083,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280081,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":743916735,"updater_id":1379811},{"recurrence":null,"end":1582280681,"monitor_tags":["*"],"canceled":1582280642,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280642,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582280621"],"message":"muting
+      for java tests","downtime_type":1,"id":743922251,"updater_id":null},{"recurrence":null,"end":1582280741,"monitor_tags":["*"],"canceled":1582280642,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280642,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582280621"],"message":"muting
+      for test - updating","downtime_type":1,"id":743922252,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280643,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280642,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743922267,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280643,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280642,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743922269,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280643,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280643,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":743922270,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280645,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280645,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743922282,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280646,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280645,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743922283,"updater_id":1379811},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582280647,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582280645,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":743922284,"updater_id":1379811},{"recurrence":null,"end":1582286543,"monitor_tags":["*"],"canceled":1582282945,"monitor_id":15954934,"org_id":321813,"disabled":true,"start":1582282943,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["*"],"message":null,"downtime_type":0,"id":743944441,"updater_id":1445416},{"recurrence":null,"end":1582286545,"monitor_tags":["*"],"canceled":1582282947,"monitor_id":15954935,"org_id":321813,"disabled":true,"start":1582282945,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["*"],"message":null,"downtime_type":0,"id":743944442,"updater_id":1445416},{"recurrence":null,"end":1582286547,"monitor_tags":["*"],"canceled":1582282949,"monitor_id":15954936,"org_id":321813,"disabled":true,"start":1582282947,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["*"],"message":null,"downtime_type":0,"id":743944446,"updater_id":1445416},{"recurrence":null,"end":1582342950,"monitor_tags":["*"],"canceled":1582282950,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582282949,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["test_tag:2"],"message":"Doing
+      some testing on staging.","downtime_type":2,"id":743944448,"updater_id":1445416},{"recurrence":null,"end":1582283950,"monitor_tags":["*"],"canceled":1582282951,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582282950,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["test:integration_one"],"message":null,"downtime_type":2,"id":743944449,"updater_id":1445416},{"recurrence":null,"end":1582342951,"monitor_tags":["*"],"canceled":1582282951,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582282950,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["test:integration_one"],"message":null,"downtime_type":2,"id":743944450,"updater_id":1445416},{"recurrence":null,"end":1582402951,"monitor_tags":["*"],"canceled":1582282951,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582282950,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["test:integration_two"],"message":null,"downtime_type":2,"id":743944451,"updater_id":1445416},{"recurrence":null,"end":1582286551,"monitor_tags":["*"],"canceled":1582282982,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582282982,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:my.test.host1582286551"],"message":"Muting
+      this host for a test.","downtime_type":1,"id":743944730,"updater_id":null},{"recurrence":null,"end":1582287451,"monitor_tags":["*"],"canceled":1582282983,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582282982,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:my.test.host1582286551"],"message":null,"downtime_type":1,"id":743944734,"updater_id":1445416},{"recurrence":null,"end":1582343195,"monitor_tags":["*"],"canceled":1582283197,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283195,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:staging"],"message":"Doing
+      some testing on staging.","downtime_type":2,"id":743946519,"updater_id":1445416},{"recurrence":null,"end":1582286774,"monitor_tags":["*"],"canceled":1582283195,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283195,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:my.test.host39c0a07d5fa26da271e407696446d103"],"message":"Muting
+      this host for a test.","downtime_type":1,"id":743946492,"updater_id":null},{"recurrence":null,"end":1582287674,"monitor_tags":["*"],"canceled":1582283195,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283195,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:my.test.host39c0a07d5fa26da271e407696446d103"],"message":null,"downtime_type":1,"id":743946518,"updater_id":1445416},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283198,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283198,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:staging"],"message":null,"downtime_type":2,"id":743946539,"updater_id":1445416},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283207,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283207,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["*"],"message":null,"downtime_type":0,"id":743946561,"updater_id":null},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283209,"monitor_id":15954994,"org_id":321813,"disabled":true,"start":1582283207,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["*"],"message":null,"downtime_type":0,"id":743946562,"updater_id":1445416},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283209,"monitor_id":15954995,"org_id":321813,"disabled":true,"start":1582283208,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:foo"],"message":null,"downtime_type":1,"id":743946581,"updater_id":1445416},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283214,"monitor_id":15954996,"org_id":321813,"disabled":true,"start":1582283214,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["*"],"message":null,"downtime_type":0,"id":743946591,"updater_id":1445416},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283214,"monitor_id":15954996,"org_id":321813,"disabled":true,"start":1582283214,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:abcd1235"],"message":null,"downtime_type":1,"id":743946592,"updater_id":1445416},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283214,"monitor_id":15954996,"org_id":321813,"disabled":true,"start":1582283214,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:abcd1234"],"message":null,"downtime_type":1,"id":743946593,"updater_id":1445416},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283216,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283216,"creator_id":1445416,"parent_id":null,"timezone":"UTC","active":false,"scope":["*"],"message":null,"downtime_type":0,"id":743946595,"updater_id":null},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283770,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283769,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743952314,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283770,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283770,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743952316,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283770,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283770,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":743952317,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283771,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283771,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":743952323,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283771,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283771,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":743952324,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582283771,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283771,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":743952325,"updater_id":1379826},{"recurrence":null,"end":1582283913,"monitor_tags":["*"],"canceled":1582283884,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283884,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582283853"],"message":"muting
+      for java tests","downtime_type":1,"id":743953444,"updater_id":null},{"recurrence":null,"end":1582283973,"monitor_tags":["*"],"canceled":1582283884,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582283884,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582283853"],"message":"muting
+      for test - updating","downtime_type":1,"id":743953445,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582299997,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582299996,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744122519,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582299997,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582299996,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744122525,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582299998,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582299997,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744122526,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300000,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300000,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744122577,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300000,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300000,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744122578,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300000,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300000,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744122579,"updater_id":1379826},{"recurrence":null,"end":1582300157,"monitor_tags":["*"],"canceled":1582300117,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300117,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582300097"],"message":"muting
+      for java tests","downtime_type":1,"id":744123823,"updater_id":null},{"recurrence":null,"end":1582300217,"monitor_tags":["*"],"canceled":1582300118,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300117,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582300097"],"message":"muting
+      for test - updating","downtime_type":1,"id":744123824,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300938,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300938,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744133790,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300938,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300938,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744133797,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300938,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300938,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744133799,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300939,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300939,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744133803,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300939,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300939,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744133804,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582300940,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582300939,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744133805,"updater_id":1379826},{"recurrence":null,"end":1582301088,"monitor_tags":["*"],"canceled":1582301049,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301049,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582301028"],"message":"muting
+      for java tests","downtime_type":1,"id":744134885,"updater_id":null},{"recurrence":null,"end":1582301148,"monitor_tags":["*"],"canceled":1582301049,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301049,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582301028"],"message":"muting
+      for test - updating","downtime_type":1,"id":744134886,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582301476,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301476,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744139845,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582301476,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301476,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744139846,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582301476,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301476,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744139847,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582301478,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301477,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744139850,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582301479,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301477,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744139851,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582301479,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301477,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744139852,"updater_id":1379826},{"recurrence":null,"end":1582301616,"monitor_tags":["*"],"canceled":1582301576,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301576,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582301556"],"message":"muting
+      for java tests","downtime_type":1,"id":744141478,"updater_id":null},{"recurrence":null,"end":1582301676,"monitor_tags":["*"],"canceled":1582301577,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582301576,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582301556"],"message":"muting
+      for test - updating","downtime_type":1,"id":744141479,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302018,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302018,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744146432,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302018,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302018,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744146433,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302019,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302018,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744146434,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302020,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302020,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744146451,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302020,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302020,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744146454,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302020,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302020,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744146455,"updater_id":1379826},{"recurrence":null,"end":1582302175,"monitor_tags":["*"],"canceled":1582302136,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302136,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582302115"],"message":"muting
+      for java tests","downtime_type":1,"id":744147935,"updater_id":null},{"recurrence":null,"end":1582302235,"monitor_tags":["*"],"canceled":1582302136,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302136,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["host:java-client-test-host-1582302115"],"message":"muting
+      for test - updating","downtime_type":1,"id":744147960,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302584,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302584,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744153248,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302584,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302584,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744153249,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302584,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302584,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744153250,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302585,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302585,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744153253,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302585,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302585,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744153254,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582302586,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582302585,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744153255,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582303721,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582303720,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744167607,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582303721,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582303720,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744167608,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582303721,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582303720,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744167609,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582303722,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582303721,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744167616,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582303722,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582303722,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744167617,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582303722,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582303722,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744167618,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304363,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304362,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744174556,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304363,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304362,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744174557,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304363,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304362,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744174561,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304365,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304364,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744174575,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304365,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304364,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744174576,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304365,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304364,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744174577,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304978,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304978,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744183491,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304978,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304978,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744183492,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304978,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304978,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744183494,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304979,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304979,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744183497,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304979,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304979,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744183498,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582304979,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582304979,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744183502,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582305204,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582305203,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744186911,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582305204,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582305203,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744186914,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582305204,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582305203,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"3Prod
+      downtime","downtime_type":2,"id":744186916,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582305206,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582305205,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"1Prod
+      downtime","downtime_type":2,"id":744186971,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582305206,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582305206,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"2Prod
+      downtime","downtime_type":2,"id":744186980,"updater_id":1379826},{"recurrence":null,"end":null,"monitor_tags":["*"],"canceled":1582305206,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582305206,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:stage"],"message":"3Prod
+      downtime","downtime_type":2,"id":744186981,"updater_id":1379826},{"recurrence":{"until_date":1584119627,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1582305227,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"updated
+      message","downtime_type":0,"id":744187331,"updater_id":1379811},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582279094,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582479094,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":743906194,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582280080,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582480080,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":743916732,"updater_id":1379811},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582280644,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582480643,"creator_id":1379811,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":743922272,"updater_id":1379811},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582283770,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582483770,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":743952322,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582300000,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582499998,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744122536,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582300939,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582500938,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744133801,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582301477,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582501476,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744139848,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582302020,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582502019,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744146446,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582302585,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582502584,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744153251,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582303721,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582503721,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744167610,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582304364,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582504363,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744174570,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582304979,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582504978,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744183496,"updater_id":1379826},{"recurrence":{"until_date":null,"until_occurrences":10,"week_days":["Mon","Tue"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582305205,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582505204,"creator_id":1379826,"parent_id":null,"timezone":"UTC","active":false,"scope":["env:prod"],"message":"New
+      message","downtime_type":2,"id":744186960,"updater_id":1379826}]'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Feb 2020 17:13:48 GMT
+      Dd-Pool:
+      - dogweb
+      Etag:
+      - W/"60b6cf05651c7f6ccc29be7aec6253b3"
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - mGJe6qmS66N9ddKWdHwHEzQK9VHuaMNr7+EsVTKliCkGq+ayJZmadUyCSwID4him
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/downtime/744187331
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Fri, 21 Feb 2020 17:13:48 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - JbIYRXbRMsAVaKGy+d2H1ud8Z295ghodOPi6eELPzhmBKrZI3+dlseyrUY1cqOAd
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/downtime/744187331
+    method: GET
+  response:
+    body: '{"recurrence":{"until_date":1584119627,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"canceled":1582305228,"monitor_id":null,"org_id":321813,"disabled":true,"start":1582305227,"creator_id":1379811,"parent_id":null,"timezone":"Etc/UTC","active":false,"scope":["*"],"message":"updated
+      message","downtime_type":0,"id":744187331,"updater_id":1379811}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 21 Feb 2020 17:13:48 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - gCSZ7BDMU1GjNFaR6hO6ZgwcgG3iOVugDLAlbR+YVBEuMFHhC330JIFkvjLveHm3
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/downtime/744187331
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Fri, 21 Feb 2020 17:13:49 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - cYNsy3QDuOaYo2clO/PharSNtCykS9KtUfiNevH3xDbHJlRyddWkNpuDhMgHWZ43
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""

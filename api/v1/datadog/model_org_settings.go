@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -17,7 +16,7 @@ import (
 type OrgSettings struct {
 	PrivateWidgetShare         *bool                                  `json:"private_widget_share,omitempty"`
 	Saml                       *OrgSettingsSaml                       `json:"saml,omitempty"`
-	SamlAutocreateAccessRole   *string                                `json:"saml_autocreate_access_role,omitempty"`
+	SamlAutocreateAccessRole   *AccessRole                            `json:"saml_autocreate_access_role,omitempty"`
 	SamlAutocreateUsersDomains *OrgSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
 	SamlCanBeEnabled           *bool                                  `json:"saml_can_be_enabled,omitempty"`
 	SamlIdpEndpoint            *string                                `json:"saml_idp_endpoint,omitempty"`
@@ -25,6 +24,23 @@ type OrgSettings struct {
 	SamlIdpMetadataUploaded    *bool                                  `json:"saml_idp_metadata_uploaded,omitempty"`
 	SamlLoginUrl               *string                                `json:"saml_login_url,omitempty"`
 	SamlStrictMode             *OrgSettingsSaml                       `json:"saml_strict_mode,omitempty"`
+}
+
+// NewOrgSettings instantiates a new OrgSettings object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgSettings() *OrgSettings {
+	this := OrgSettings{}
+	return &this
+}
+
+// NewOrgSettingsWithDefaults instantiates a new OrgSettings object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgSettingsWithDefaults() *OrgSettings {
+	this := OrgSettings{}
+	return &this
 }
 
 // GetPrivateWidgetShare returns the PrivateWidgetShare field value if set, zero value otherwise.
@@ -94,9 +110,9 @@ func (o *OrgSettings) SetSaml(v OrgSettingsSaml) {
 }
 
 // GetSamlAutocreateAccessRole returns the SamlAutocreateAccessRole field value if set, zero value otherwise.
-func (o *OrgSettings) GetSamlAutocreateAccessRole() string {
+func (o *OrgSettings) GetSamlAutocreateAccessRole() AccessRole {
 	if o == nil || o.SamlAutocreateAccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret
 	}
 	return *o.SamlAutocreateAccessRole
@@ -104,9 +120,9 @@ func (o *OrgSettings) GetSamlAutocreateAccessRole() string {
 
 // GetSamlAutocreateAccessRoleOk returns a tuple with the SamlAutocreateAccessRole field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (string, bool) {
+func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (AccessRole, bool) {
 	if o == nil || o.SamlAutocreateAccessRole == nil {
-		var ret string
+		var ret AccessRole
 		return ret, false
 	}
 	return *o.SamlAutocreateAccessRole, true
@@ -121,8 +137,8 @@ func (o *OrgSettings) HasSamlAutocreateAccessRole() bool {
 	return false
 }
 
-// SetSamlAutocreateAccessRole gets a reference to the given string and assigns it to the SamlAutocreateAccessRole field.
-func (o *OrgSettings) SetSamlAutocreateAccessRole(v string) {
+// SetSamlAutocreateAccessRole gets a reference to the given AccessRole and assigns it to the SamlAutocreateAccessRole field.
+func (o *OrgSettings) SetSamlAutocreateAccessRole(v AccessRole) {
 	o.SamlAutocreateAccessRole = &v
 }
 
@@ -357,25 +373,74 @@ func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSaml) {
 	o.SamlStrictMode = &v
 }
 
+func (o OrgSettings) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.PrivateWidgetShare != nil {
+		toSerialize["private_widget_share"] = o.PrivateWidgetShare
+	}
+	if o.Saml != nil {
+		toSerialize["saml"] = o.Saml
+	}
+	if o.SamlAutocreateAccessRole != nil {
+		toSerialize["saml_autocreate_access_role"] = o.SamlAutocreateAccessRole
+	}
+	if o.SamlAutocreateUsersDomains != nil {
+		toSerialize["saml_autocreate_users_domains"] = o.SamlAutocreateUsersDomains
+	}
+	if o.SamlCanBeEnabled != nil {
+		toSerialize["saml_can_be_enabled"] = o.SamlCanBeEnabled
+	}
+	if o.SamlIdpEndpoint != nil {
+		toSerialize["saml_idp_endpoint"] = o.SamlIdpEndpoint
+	}
+	if o.SamlIdpInitiatedLogin != nil {
+		toSerialize["saml_idp_initiated_login"] = o.SamlIdpInitiatedLogin
+	}
+	if o.SamlIdpMetadataUploaded != nil {
+		toSerialize["saml_idp_metadata_uploaded"] = o.SamlIdpMetadataUploaded
+	}
+	if o.SamlLoginUrl != nil {
+		toSerialize["saml_login_url"] = o.SamlLoginUrl
+	}
+	if o.SamlStrictMode != nil {
+		toSerialize["saml_strict_mode"] = o.SamlStrictMode
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgSettings struct {
-	Value        OrgSettings
-	ExplicitNull bool
+	value *OrgSettings
+	isSet bool
+}
+
+func (v NullableOrgSettings) Get() *OrgSettings {
+	return v.value
+}
+
+func (v NullableOrgSettings) Set(val *OrgSettings) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgSettings) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgSettings) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgSettings(val *OrgSettings) *NullableOrgSettings {
+	return &NullableOrgSettings{value: val, isSet: true}
 }
 
 func (v NullableOrgSettings) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgSettings) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

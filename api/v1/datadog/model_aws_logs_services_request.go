@@ -9,20 +9,38 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// AwsLogsServicesRequest struct for AwsLogsServicesRequest
-type AwsLogsServicesRequest struct {
+// AWSLogsServicesRequest struct for AWSLogsServicesRequest
+type AWSLogsServicesRequest struct {
 	// Your AWS Account ID without dashes.
 	AccountId string `json:"account_id"`
 	// Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
 	Services []string `json:"services"`
 }
 
+// NewAWSLogsServicesRequest instantiates a new AWSLogsServicesRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAWSLogsServicesRequest(accountId string, services []string) *AWSLogsServicesRequest {
+	this := AWSLogsServicesRequest{}
+	this.AccountId = accountId
+	this.Services = services
+	return &this
+}
+
+// NewAWSLogsServicesRequestWithDefaults instantiates a new AWSLogsServicesRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAWSLogsServicesRequestWithDefaults() *AWSLogsServicesRequest {
+	this := AWSLogsServicesRequest{}
+	return &this
+}
+
 // GetAccountId returns the AccountId field value
-func (o *AwsLogsServicesRequest) GetAccountId() string {
+func (o *AWSLogsServicesRequest) GetAccountId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -32,12 +50,12 @@ func (o *AwsLogsServicesRequest) GetAccountId() string {
 }
 
 // SetAccountId sets field value
-func (o *AwsLogsServicesRequest) SetAccountId(v string) {
+func (o *AWSLogsServicesRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
 
 // GetServices returns the Services field value
-func (o *AwsLogsServicesRequest) GetServices() []string {
+func (o *AWSLogsServicesRequest) GetServices() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -47,29 +65,54 @@ func (o *AwsLogsServicesRequest) GetServices() []string {
 }
 
 // SetServices sets field value
-func (o *AwsLogsServicesRequest) SetServices(v []string) {
+func (o *AWSLogsServicesRequest) SetServices(v []string) {
 	o.Services = v
 }
 
-type NullableAwsLogsServicesRequest struct {
-	Value        AwsLogsServicesRequest
-	ExplicitNull bool
+func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["account_id"] = o.AccountId
+	}
+	if true {
+		toSerialize["services"] = o.Services
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableAwsLogsServicesRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableAWSLogsServicesRequest struct {
+	value *AWSLogsServicesRequest
+	isSet bool
 }
 
-func (v *NullableAwsLogsServicesRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableAWSLogsServicesRequest) Get() *AWSLogsServicesRequest {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v NullableAWSLogsServicesRequest) Set(val *AWSLogsServicesRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAWSLogsServicesRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAWSLogsServicesRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAWSLogsServicesRequest(val *AWSLogsServicesRequest) *NullableAWSLogsServicesRequest {
+	return &NullableAWSLogsServicesRequest{value: val, isSet: true}
+}
+
+func (v NullableAWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAWSLogsServicesRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

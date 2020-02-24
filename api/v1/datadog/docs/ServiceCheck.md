@@ -13,6 +13,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewServiceCheck
+
+`func NewServiceCheck(check string, status ServiceCheckStatus, ) *ServiceCheck`
+
+NewServiceCheck instantiates a new ServiceCheck object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServiceCheckWithDefaults
+
+`func NewServiceCheckWithDefaults() *ServiceCheck`
+
+NewServiceCheckWithDefaults instantiates a new ServiceCheck object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCheck
 
 `func (o *ServiceCheck) GetCheck() string`

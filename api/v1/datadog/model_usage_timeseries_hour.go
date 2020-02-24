@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,6 +19,23 @@ type UsageTimeseriesHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of distinct custom metrics.
 	NumCustomTimeseries *int64 `json:"num_custom_timeseries,omitempty"`
+}
+
+// NewUsageTimeseriesHour instantiates a new UsageTimeseriesHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageTimeseriesHour() *UsageTimeseriesHour {
+	this := UsageTimeseriesHour{}
+	return &this
+}
+
+// NewUsageTimeseriesHourWithDefaults instantiates a new UsageTimeseriesHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageTimeseriesHourWithDefaults() *UsageTimeseriesHour {
+	this := UsageTimeseriesHour{}
+	return &this
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -88,25 +104,50 @@ func (o *UsageTimeseriesHour) SetNumCustomTimeseries(v int64) {
 	o.NumCustomTimeseries = &v
 }
 
+func (o UsageTimeseriesHour) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Hour != nil {
+		toSerialize["hour"] = o.Hour
+	}
+	if o.NumCustomTimeseries != nil {
+		toSerialize["num_custom_timeseries"] = o.NumCustomTimeseries
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageTimeseriesHour struct {
-	Value        UsageTimeseriesHour
-	ExplicitNull bool
+	value *UsageTimeseriesHour
+	isSet bool
+}
+
+func (v NullableUsageTimeseriesHour) Get() *UsageTimeseriesHour {
+	return v.value
+}
+
+func (v NullableUsageTimeseriesHour) Set(val *UsageTimeseriesHour) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageTimeseriesHour) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageTimeseriesHour) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageTimeseriesHour(val *UsageTimeseriesHour) *NullableUsageTimeseriesHour {
+	return &NullableUsageTimeseriesHour{value: val, isSet: true}
 }
 
 func (v NullableUsageTimeseriesHour) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageTimeseriesHour) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

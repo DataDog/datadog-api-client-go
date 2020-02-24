@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewUsageTimeseriesHour
+
+`func NewUsageTimeseriesHour() *UsageTimeseriesHour`
+
+NewUsageTimeseriesHour instantiates a new UsageTimeseriesHour object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewUsageTimeseriesHourWithDefaults
+
+`func NewUsageTimeseriesHourWithDefaults() *UsageTimeseriesHour`
+
+NewUsageTimeseriesHourWithDefaults instantiates a new UsageTimeseriesHour object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetHour
 
 `func (o *UsageTimeseriesHour) GetHour() time.Time`

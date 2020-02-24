@@ -9,13 +9,30 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CancelDowntimesByScopeRequest struct for CancelDowntimesByScopeRequest
 type CancelDowntimesByScopeRequest struct {
 	Scope string `json:"scope"`
+}
+
+// NewCancelDowntimesByScopeRequest instantiates a new CancelDowntimesByScopeRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCancelDowntimesByScopeRequest(scope string) *CancelDowntimesByScopeRequest {
+	this := CancelDowntimesByScopeRequest{}
+	this.Scope = scope
+	return &this
+}
+
+// NewCancelDowntimesByScopeRequestWithDefaults instantiates a new CancelDowntimesByScopeRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCancelDowntimesByScopeRequestWithDefaults() *CancelDowntimesByScopeRequest {
+	this := CancelDowntimesByScopeRequest{}
+	return &this
 }
 
 // GetScope returns the Scope field value
@@ -33,25 +50,47 @@ func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
 	o.Scope = v
 }
 
+func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["scope"] = o.Scope
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCancelDowntimesByScopeRequest struct {
-	Value        CancelDowntimesByScopeRequest
-	ExplicitNull bool
+	value *CancelDowntimesByScopeRequest
+	isSet bool
+}
+
+func (v NullableCancelDowntimesByScopeRequest) Get() *CancelDowntimesByScopeRequest {
+	return v.value
+}
+
+func (v NullableCancelDowntimesByScopeRequest) Set(val *CancelDowntimesByScopeRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCancelDowntimesByScopeRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableCancelDowntimesByScopeRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCancelDowntimesByScopeRequest(val *CancelDowntimesByScopeRequest) *NullableCancelDowntimesByScopeRequest {
+	return &NullableCancelDowntimesByScopeRequest{value: val, isSet: true}
 }
 
 func (v NullableCancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCancelDowntimesByScopeRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

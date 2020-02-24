@@ -9,32 +9,48 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MonitorOptions struct for MonitorOptions
 type MonitorOptions struct {
 	Aggregation        *MonitorOptionsAggregation     `json:"aggregation,omitempty"`
-	DeviceIds          *[]string                      `json:"device_ids,omitempty"`
+	DeviceIds          *[]MonitorDeviceID             `json:"device_ids,omitempty"`
 	EnableLogsSample   *bool                          `json:"enable_logs_sample,omitempty"`
 	EscalationMessage  *string                        `json:"escalation_message,omitempty"`
-	EvaluationDelay    *int64                         `json:"evaluation_delay,omitempty"`
+	EvaluationDelay    NullableInt64                  `json:"evaluation_delay,omitempty"`
 	IncludeTags        *bool                          `json:"include_tags,omitempty"`
 	Locked             *bool                          `json:"locked,omitempty"`
-	MinFailureDuration *int64                         `json:"min_failure_duration,omitempty"`
-	MinLocationFailed  *int64                         `json:"min_location_failed,omitempty"`
-	NewHostDelay       *int64                         `json:"new_host_delay,omitempty"`
-	NoDataTimeframe    *int64                         `json:"no_data_timeframe,omitempty"`
+	MinFailureDuration NullableInt64                  `json:"min_failure_duration,omitempty"`
+	MinLocationFailed  NullableInt64                  `json:"min_location_failed,omitempty"`
+	NewHostDelay       NullableInt64                  `json:"new_host_delay,omitempty"`
+	NoDataTimeframe    NullableInt64                  `json:"no_data_timeframe,omitempty"`
 	NotifyAudit        *bool                          `json:"notify_audit,omitempty"`
 	NotifyNoData       *bool                          `json:"notify_no_data,omitempty"`
-	RenotifyInterval   *int64                         `json:"renotify_interval,omitempty"`
+	RenotifyInterval   NullableInt64                  `json:"renotify_interval,omitempty"`
 	RequireFullWindow  *bool                          `json:"require_full_window,omitempty"`
 	Silenced           *map[string]int64              `json:"silenced,omitempty"`
-	SyntheticsCheckId  *int64                         `json:"synthetics_check_id,omitempty"`
+	SyntheticsCheckId  NullableInt64                  `json:"synthetics_check_id,omitempty"`
 	ThresholdWindows   *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
 	Thresholds         *MonitorThresholds             `json:"thresholds,omitempty"`
-	TimeoutH           *int64                         `json:"timeout_h,omitempty"`
+	TimeoutH           NullableInt64                  `json:"timeout_h,omitempty"`
+}
+
+// NewMonitorOptions instantiates a new MonitorOptions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorOptions() *MonitorOptions {
+	this := MonitorOptions{}
+	return &this
+}
+
+// NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorOptionsWithDefaults() *MonitorOptions {
+	this := MonitorOptions{}
+	return &this
 }
 
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
@@ -71,9 +87,9 @@ func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation) {
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
-func (o *MonitorOptions) GetDeviceIds() []string {
+func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID {
 	if o == nil || o.DeviceIds == nil {
-		var ret []string
+		var ret []MonitorDeviceID
 		return ret
 	}
 	return *o.DeviceIds
@@ -81,9 +97,9 @@ func (o *MonitorOptions) GetDeviceIds() []string {
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetDeviceIdsOk() ([]string, bool) {
+func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
-		var ret []string
+		var ret []MonitorDeviceID
 		return ret, false
 	}
 	return *o.DeviceIds, true
@@ -98,8 +114,8 @@ func (o *MonitorOptions) HasDeviceIds() bool {
 	return false
 }
 
-// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
-func (o *MonitorOptions) SetDeviceIds(v []string) {
+// SetDeviceIds gets a reference to the given []MonitorDeviceID and assigns it to the DeviceIds field.
+func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceID) {
 	o.DeviceIds = &v
 }
 
@@ -170,36 +186,36 @@ func (o *MonitorOptions) SetEscalationMessage(v string) {
 }
 
 // GetEvaluationDelay returns the EvaluationDelay field value if set, zero value otherwise.
-func (o *MonitorOptions) GetEvaluationDelay() int64 {
-	if o == nil || o.EvaluationDelay == nil {
-		var ret int64
+func (o *MonitorOptions) GetEvaluationDelay() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.EvaluationDelay
+	return o.EvaluationDelay
 }
 
 // GetEvaluationDelayOk returns a tuple with the EvaluationDelay field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetEvaluationDelayOk() (int64, bool) {
-	if o == nil || o.EvaluationDelay == nil {
-		var ret int64
+func (o *MonitorOptions) GetEvaluationDelayOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.EvaluationDelay, true
+	return o.EvaluationDelay, o.EvaluationDelay.IsSet()
 }
 
 // HasEvaluationDelay returns a boolean if a field has been set.
 func (o *MonitorOptions) HasEvaluationDelay() bool {
-	if o != nil && o.EvaluationDelay != nil {
+	if o != nil && o.EvaluationDelay.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEvaluationDelay gets a reference to the given int64 and assigns it to the EvaluationDelay field.
-func (o *MonitorOptions) SetEvaluationDelay(v int64) {
-	o.EvaluationDelay = &v
+// SetEvaluationDelay gets a reference to the given NullableInt64 and assigns it to the EvaluationDelay field.
+func (o *MonitorOptions) SetEvaluationDelay(v NullableInt64) {
+	o.EvaluationDelay = v
 }
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
@@ -269,135 +285,135 @@ func (o *MonitorOptions) SetLocked(v bool) {
 }
 
 // GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.
-func (o *MonitorOptions) GetMinFailureDuration() int64 {
-	if o == nil || o.MinFailureDuration == nil {
-		var ret int64
+func (o *MonitorOptions) GetMinFailureDuration() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.MinFailureDuration
+	return o.MinFailureDuration
 }
 
 // GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetMinFailureDurationOk() (int64, bool) {
-	if o == nil || o.MinFailureDuration == nil {
-		var ret int64
+func (o *MonitorOptions) GetMinFailureDurationOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.MinFailureDuration, true
+	return o.MinFailureDuration, o.MinFailureDuration.IsSet()
 }
 
 // HasMinFailureDuration returns a boolean if a field has been set.
 func (o *MonitorOptions) HasMinFailureDuration() bool {
-	if o != nil && o.MinFailureDuration != nil {
+	if o != nil && o.MinFailureDuration.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMinFailureDuration gets a reference to the given int64 and assigns it to the MinFailureDuration field.
-func (o *MonitorOptions) SetMinFailureDuration(v int64) {
-	o.MinFailureDuration = &v
+// SetMinFailureDuration gets a reference to the given NullableInt64 and assigns it to the MinFailureDuration field.
+func (o *MonitorOptions) SetMinFailureDuration(v NullableInt64) {
+	o.MinFailureDuration = v
 }
 
 // GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise.
-func (o *MonitorOptions) GetMinLocationFailed() int64 {
-	if o == nil || o.MinLocationFailed == nil {
-		var ret int64
+func (o *MonitorOptions) GetMinLocationFailed() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.MinLocationFailed
+	return o.MinLocationFailed
 }
 
 // GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetMinLocationFailedOk() (int64, bool) {
-	if o == nil || o.MinLocationFailed == nil {
-		var ret int64
+func (o *MonitorOptions) GetMinLocationFailedOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.MinLocationFailed, true
+	return o.MinLocationFailed, o.MinLocationFailed.IsSet()
 }
 
 // HasMinLocationFailed returns a boolean if a field has been set.
 func (o *MonitorOptions) HasMinLocationFailed() bool {
-	if o != nil && o.MinLocationFailed != nil {
+	if o != nil && o.MinLocationFailed.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMinLocationFailed gets a reference to the given int64 and assigns it to the MinLocationFailed field.
-func (o *MonitorOptions) SetMinLocationFailed(v int64) {
-	o.MinLocationFailed = &v
+// SetMinLocationFailed gets a reference to the given NullableInt64 and assigns it to the MinLocationFailed field.
+func (o *MonitorOptions) SetMinLocationFailed(v NullableInt64) {
+	o.MinLocationFailed = v
 }
 
 // GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise.
-func (o *MonitorOptions) GetNewHostDelay() int64 {
-	if o == nil || o.NewHostDelay == nil {
-		var ret int64
+func (o *MonitorOptions) GetNewHostDelay() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.NewHostDelay
+	return o.NewHostDelay
 }
 
 // GetNewHostDelayOk returns a tuple with the NewHostDelay field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetNewHostDelayOk() (int64, bool) {
-	if o == nil || o.NewHostDelay == nil {
-		var ret int64
+func (o *MonitorOptions) GetNewHostDelayOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.NewHostDelay, true
+	return o.NewHostDelay, o.NewHostDelay.IsSet()
 }
 
 // HasNewHostDelay returns a boolean if a field has been set.
 func (o *MonitorOptions) HasNewHostDelay() bool {
-	if o != nil && o.NewHostDelay != nil {
+	if o != nil && o.NewHostDelay.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetNewHostDelay gets a reference to the given int64 and assigns it to the NewHostDelay field.
-func (o *MonitorOptions) SetNewHostDelay(v int64) {
-	o.NewHostDelay = &v
+// SetNewHostDelay gets a reference to the given NullableInt64 and assigns it to the NewHostDelay field.
+func (o *MonitorOptions) SetNewHostDelay(v NullableInt64) {
+	o.NewHostDelay = v
 }
 
 // GetNoDataTimeframe returns the NoDataTimeframe field value if set, zero value otherwise.
-func (o *MonitorOptions) GetNoDataTimeframe() int64 {
-	if o == nil || o.NoDataTimeframe == nil {
-		var ret int64
+func (o *MonitorOptions) GetNoDataTimeframe() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.NoDataTimeframe
+	return o.NoDataTimeframe
 }
 
 // GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetNoDataTimeframeOk() (int64, bool) {
-	if o == nil || o.NoDataTimeframe == nil {
-		var ret int64
+func (o *MonitorOptions) GetNoDataTimeframeOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.NoDataTimeframe, true
+	return o.NoDataTimeframe, o.NoDataTimeframe.IsSet()
 }
 
 // HasNoDataTimeframe returns a boolean if a field has been set.
 func (o *MonitorOptions) HasNoDataTimeframe() bool {
-	if o != nil && o.NoDataTimeframe != nil {
+	if o != nil && o.NoDataTimeframe.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetNoDataTimeframe gets a reference to the given int64 and assigns it to the NoDataTimeframe field.
-func (o *MonitorOptions) SetNoDataTimeframe(v int64) {
-	o.NoDataTimeframe = &v
+// SetNoDataTimeframe gets a reference to the given NullableInt64 and assigns it to the NoDataTimeframe field.
+func (o *MonitorOptions) SetNoDataTimeframe(v NullableInt64) {
+	o.NoDataTimeframe = v
 }
 
 // GetNotifyAudit returns the NotifyAudit field value if set, zero value otherwise.
@@ -467,36 +483,36 @@ func (o *MonitorOptions) SetNotifyNoData(v bool) {
 }
 
 // GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise.
-func (o *MonitorOptions) GetRenotifyInterval() int64 {
-	if o == nil || o.RenotifyInterval == nil {
-		var ret int64
+func (o *MonitorOptions) GetRenotifyInterval() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.RenotifyInterval
+	return o.RenotifyInterval
 }
 
 // GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetRenotifyIntervalOk() (int64, bool) {
-	if o == nil || o.RenotifyInterval == nil {
-		var ret int64
+func (o *MonitorOptions) GetRenotifyIntervalOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.RenotifyInterval, true
+	return o.RenotifyInterval, o.RenotifyInterval.IsSet()
 }
 
 // HasRenotifyInterval returns a boolean if a field has been set.
 func (o *MonitorOptions) HasRenotifyInterval() bool {
-	if o != nil && o.RenotifyInterval != nil {
+	if o != nil && o.RenotifyInterval.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRenotifyInterval gets a reference to the given int64 and assigns it to the RenotifyInterval field.
-func (o *MonitorOptions) SetRenotifyInterval(v int64) {
-	o.RenotifyInterval = &v
+// SetRenotifyInterval gets a reference to the given NullableInt64 and assigns it to the RenotifyInterval field.
+func (o *MonitorOptions) SetRenotifyInterval(v NullableInt64) {
+	o.RenotifyInterval = v
 }
 
 // GetRequireFullWindow returns the RequireFullWindow field value if set, zero value otherwise.
@@ -566,36 +582,36 @@ func (o *MonitorOptions) SetSilenced(v map[string]int64) {
 }
 
 // GetSyntheticsCheckId returns the SyntheticsCheckId field value if set, zero value otherwise.
-func (o *MonitorOptions) GetSyntheticsCheckId() int64 {
-	if o == nil || o.SyntheticsCheckId == nil {
-		var ret int64
+func (o *MonitorOptions) GetSyntheticsCheckId() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.SyntheticsCheckId
+	return o.SyntheticsCheckId
 }
 
 // GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetSyntheticsCheckIdOk() (int64, bool) {
-	if o == nil || o.SyntheticsCheckId == nil {
-		var ret int64
+func (o *MonitorOptions) GetSyntheticsCheckIdOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.SyntheticsCheckId, true
+	return o.SyntheticsCheckId, o.SyntheticsCheckId.IsSet()
 }
 
 // HasSyntheticsCheckId returns a boolean if a field has been set.
 func (o *MonitorOptions) HasSyntheticsCheckId() bool {
-	if o != nil && o.SyntheticsCheckId != nil {
+	if o != nil && o.SyntheticsCheckId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSyntheticsCheckId gets a reference to the given int64 and assigns it to the SyntheticsCheckId field.
-func (o *MonitorOptions) SetSyntheticsCheckId(v int64) {
-	o.SyntheticsCheckId = &v
+// SetSyntheticsCheckId gets a reference to the given NullableInt64 and assigns it to the SyntheticsCheckId field.
+func (o *MonitorOptions) SetSyntheticsCheckId(v NullableInt64) {
+	o.SyntheticsCheckId = v
 }
 
 // GetThresholdWindows returns the ThresholdWindows field value if set, zero value otherwise.
@@ -665,57 +681,136 @@ func (o *MonitorOptions) SetThresholds(v MonitorThresholds) {
 }
 
 // GetTimeoutH returns the TimeoutH field value if set, zero value otherwise.
-func (o *MonitorOptions) GetTimeoutH() int64 {
-	if o == nil || o.TimeoutH == nil {
-		var ret int64
+func (o *MonitorOptions) GetTimeoutH() NullableInt64 {
+	if o == nil {
+		var ret NullableInt64
 		return ret
 	}
-	return *o.TimeoutH
+	return o.TimeoutH
 }
 
 // GetTimeoutHOk returns a tuple with the TimeoutH field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetTimeoutHOk() (int64, bool) {
-	if o == nil || o.TimeoutH == nil {
-		var ret int64
+func (o *MonitorOptions) GetTimeoutHOk() (NullableInt64, bool) {
+	if o == nil {
+		var ret NullableInt64
 		return ret, false
 	}
-	return *o.TimeoutH, true
+	return o.TimeoutH, o.TimeoutH.IsSet()
 }
 
 // HasTimeoutH returns a boolean if a field has been set.
 func (o *MonitorOptions) HasTimeoutH() bool {
-	if o != nil && o.TimeoutH != nil {
+	if o != nil && o.TimeoutH.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeoutH gets a reference to the given int64 and assigns it to the TimeoutH field.
-func (o *MonitorOptions) SetTimeoutH(v int64) {
-	o.TimeoutH = &v
+// SetTimeoutH gets a reference to the given NullableInt64 and assigns it to the TimeoutH field.
+func (o *MonitorOptions) SetTimeoutH(v NullableInt64) {
+	o.TimeoutH = v
+}
+
+func (o MonitorOptions) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Aggregation != nil {
+		toSerialize["aggregation"] = o.Aggregation
+	}
+	if o.DeviceIds != nil {
+		toSerialize["device_ids"] = o.DeviceIds
+	}
+	if o.EnableLogsSample != nil {
+		toSerialize["enable_logs_sample"] = o.EnableLogsSample
+	}
+	if o.EscalationMessage != nil {
+		toSerialize["escalation_message"] = o.EscalationMessage
+	}
+	if o.EvaluationDelay.IsSet() {
+		toSerialize["evaluation_delay"] = o.EvaluationDelay.Get()
+	}
+	if o.IncludeTags != nil {
+		toSerialize["include_tags"] = o.IncludeTags
+	}
+	if o.Locked != nil {
+		toSerialize["locked"] = o.Locked
+	}
+	if o.MinFailureDuration.IsSet() {
+		toSerialize["min_failure_duration"] = o.MinFailureDuration.Get()
+	}
+	if o.MinLocationFailed.IsSet() {
+		toSerialize["min_location_failed"] = o.MinLocationFailed.Get()
+	}
+	if o.NewHostDelay.IsSet() {
+		toSerialize["new_host_delay"] = o.NewHostDelay.Get()
+	}
+	if o.NoDataTimeframe.IsSet() {
+		toSerialize["no_data_timeframe"] = o.NoDataTimeframe.Get()
+	}
+	if o.NotifyAudit != nil {
+		toSerialize["notify_audit"] = o.NotifyAudit
+	}
+	if o.NotifyNoData != nil {
+		toSerialize["notify_no_data"] = o.NotifyNoData
+	}
+	if o.RenotifyInterval.IsSet() {
+		toSerialize["renotify_interval"] = o.RenotifyInterval.Get()
+	}
+	if o.RequireFullWindow != nil {
+		toSerialize["require_full_window"] = o.RequireFullWindow
+	}
+	if o.Silenced != nil {
+		toSerialize["silenced"] = o.Silenced
+	}
+	if o.SyntheticsCheckId.IsSet() {
+		toSerialize["synthetics_check_id"] = o.SyntheticsCheckId.Get()
+	}
+	if o.ThresholdWindows != nil {
+		toSerialize["threshold_windows"] = o.ThresholdWindows
+	}
+	if o.Thresholds != nil {
+		toSerialize["thresholds"] = o.Thresholds
+	}
+	if o.TimeoutH.IsSet() {
+		toSerialize["timeout_h"] = o.TimeoutH.Get()
+	}
+	return json.Marshal(toSerialize)
 }
 
 type NullableMonitorOptions struct {
-	Value        MonitorOptions
-	ExplicitNull bool
+	value *MonitorOptions
+	isSet bool
+}
+
+func (v NullableMonitorOptions) Get() *MonitorOptions {
+	return v.value
+}
+
+func (v NullableMonitorOptions) Set(val *MonitorOptions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorOptions) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorOptions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorOptions(val *MonitorOptions) *NullableMonitorOptions {
+	return &NullableMonitorOptions{value: val, isSet: true}
 }
 
 func (v NullableMonitorOptions) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorOptions) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

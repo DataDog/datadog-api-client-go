@@ -66,7 +66,11 @@ type APIClient struct {
 
 	KeysApi *KeysApiService
 
-	LogsHTTPIntakeApi *LogsHTTPIntakeApiService
+	LogsApi *LogsApiService
+
+	LogsIndexesApi *LogsIndexesApiService
+
+	LogsPipelinesApi *LogsPipelinesApiService
 
 	MetricsApi *MetricsApiService
 
@@ -74,11 +78,15 @@ type APIClient struct {
 
 	OrgsApi *OrgsApiService
 
+	PagerDutyIntegrationApi *PagerDutyIntegrationApiService
+
 	SLOApi *SLOApiService
 
 	ServiceChecksApi *ServiceChecksApiService
 
 	SnapshotsApi *SnapshotsApiService
+
+	SyntheticsApi *SyntheticsApiService
 
 	TagsApi *TagsApiService
 
@@ -113,13 +121,17 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.HostsApi = (*HostsApiService)(&c.common)
 	c.IPRangesApi = (*IPRangesApiService)(&c.common)
 	c.KeysApi = (*KeysApiService)(&c.common)
-	c.LogsHTTPIntakeApi = (*LogsHTTPIntakeApiService)(&c.common)
+	c.LogsApi = (*LogsApiService)(&c.common)
+	c.LogsIndexesApi = (*LogsIndexesApiService)(&c.common)
+	c.LogsPipelinesApi = (*LogsPipelinesApiService)(&c.common)
 	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.MonitorsApi = (*MonitorsApiService)(&c.common)
 	c.OrgsApi = (*OrgsApiService)(&c.common)
+	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
 	c.SLOApi = (*SLOApiService)(&c.common)
 	c.ServiceChecksApi = (*ServiceChecksApiService)(&c.common)
 	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
+	c.SyntheticsApi = (*SyntheticsApiService)(&c.common)
 	c.TagsApi = (*TagsApiService)(&c.common)
 	c.UsageApi = (*UsageApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
@@ -402,7 +414,6 @@ func (c *APIClient) prepareRequest(
 	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
-
 	return localVarRequest, nil
 }
 

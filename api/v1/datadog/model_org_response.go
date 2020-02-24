@@ -9,13 +9,29 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // OrgResponse struct for OrgResponse
 type OrgResponse struct {
 	Org *Org `json:"org,omitempty"`
+}
+
+// NewOrgResponse instantiates a new OrgResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrgResponse() *OrgResponse {
+	this := OrgResponse{}
+	return &this
+}
+
+// NewOrgResponseWithDefaults instantiates a new OrgResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrgResponseWithDefaults() *OrgResponse {
+	this := OrgResponse{}
+	return &this
 }
 
 // GetOrg returns the Org field value if set, zero value otherwise.
@@ -51,25 +67,47 @@ func (o *OrgResponse) SetOrg(v Org) {
 	o.Org = &v
 }
 
+func (o OrgResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Org != nil {
+		toSerialize["org"] = o.Org
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOrgResponse struct {
-	Value        OrgResponse
-	ExplicitNull bool
+	value *OrgResponse
+	isSet bool
+}
+
+func (v NullableOrgResponse) Get() *OrgResponse {
+	return v.value
+}
+
+func (v NullableOrgResponse) Set(val *OrgResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrgResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableOrgResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrgResponse(val *OrgResponse) *NullableOrgResponse {
+	return &NullableOrgResponse{value: val, isSet: true}
 }
 
 func (v NullableOrgResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOrgResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,7 @@ type ServiceLevelObjective struct {
 	CreatedAt *int64   `json:"created_at,omitempty"`
 	Creator   *Creator `json:"creator,omitempty"`
 	// A user-defined description of the service level objective. Always included in service level objective responses (but may be null). Optional in create/update requests.
-	Description *NullableString `json:"description,omitempty"`
+	Description NullableString `json:"description,omitempty"`
 	// A list of (up to 20) monitor groups (e.g. [\"env:prod,role:mysql\"]) that narrows the scope of a monitor service level objective. Included in service level objective responses if it is nonempty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the \"monitor_ids\" field is one.
 	Groups *[]string `json:"groups,omitempty"`
 	// A unique identifier for the service level objective object. Always included in service level objective responses. Required for update requests.
@@ -36,11 +35,29 @@ type ServiceLevelObjective struct {
 	// A list of tags (e.g. \"env:prod\") associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
-	Thresholds []SloThreshold `json:"thresholds"`
-	// The type of the service level objective.
-	Type string `json:"type"`
-	// A numeric representation of the type of the service level objective (0 for monitor, 1 for metric). Always included in service level objective responses. Ignored in create/update requests.
-	TypeId *int32 `json:"type_id,omitempty"`
+	Thresholds []SLOThreshold                    `json:"thresholds"`
+	Type       ServiceLevelObjectiveType         `json:"type"`
+	TypeId     *ServiceLevelObjectiveTypeNumeric `json:"type_id,omitempty"`
+}
+
+// NewServiceLevelObjective instantiates a new ServiceLevelObjective object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ ServiceLevelObjectiveType) *ServiceLevelObjective {
+	this := ServiceLevelObjective{}
+	this.Name = name
+	this.Thresholds = thresholds
+	this.Type = type_
+	return &this
+}
+
+// NewServiceLevelObjectiveWithDefaults instantiates a new ServiceLevelObjective object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceLevelObjectiveWithDefaults() *ServiceLevelObjective {
+	this := ServiceLevelObjective{}
+	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -111,26 +128,26 @@ func (o *ServiceLevelObjective) SetCreator(v Creator) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ServiceLevelObjective) GetDescription() NullableString {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		var ret NullableString
 		return ret
 	}
-	return *o.Description
+	return o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjective) GetDescriptionOk() (NullableString, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		var ret NullableString
 		return ret, false
 	}
-	return *o.Description, true
+	return o.Description, o.Description.IsSet()
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
@@ -139,7 +156,7 @@ func (o *ServiceLevelObjective) HasDescription() bool {
 
 // SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 func (o *ServiceLevelObjective) SetDescription(v NullableString) {
-	o.Description = &v
+	o.Description = v
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
@@ -389,9 +406,9 @@ func (o *ServiceLevelObjective) SetTags(v []string) {
 }
 
 // GetThresholds returns the Thresholds field value
-func (o *ServiceLevelObjective) GetThresholds() []SloThreshold {
+func (o *ServiceLevelObjective) GetThresholds() []SLOThreshold {
 	if o == nil {
-		var ret []SloThreshold
+		var ret []SLOThreshold
 		return ret
 	}
 
@@ -399,14 +416,14 @@ func (o *ServiceLevelObjective) GetThresholds() []SloThreshold {
 }
 
 // SetThresholds sets field value
-func (o *ServiceLevelObjective) SetThresholds(v []SloThreshold) {
+func (o *ServiceLevelObjective) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = v
 }
 
 // GetType returns the Type field value
-func (o *ServiceLevelObjective) GetType() string {
+func (o *ServiceLevelObjective) GetType() ServiceLevelObjectiveType {
 	if o == nil {
-		var ret string
+		var ret ServiceLevelObjectiveType
 		return ret
 	}
 
@@ -414,14 +431,14 @@ func (o *ServiceLevelObjective) GetType() string {
 }
 
 // SetType sets field value
-func (o *ServiceLevelObjective) SetType(v string) {
+func (o *ServiceLevelObjective) SetType(v ServiceLevelObjectiveType) {
 	o.Type = v
 }
 
 // GetTypeId returns the TypeId field value if set, zero value otherwise.
-func (o *ServiceLevelObjective) GetTypeId() int32 {
+func (o *ServiceLevelObjective) GetTypeId() ServiceLevelObjectiveTypeNumeric {
 	if o == nil || o.TypeId == nil {
-		var ret int32
+		var ret ServiceLevelObjectiveTypeNumeric
 		return ret
 	}
 	return *o.TypeId
@@ -429,9 +446,9 @@ func (o *ServiceLevelObjective) GetTypeId() int32 {
 
 // GetTypeIdOk returns a tuple with the TypeId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjective) GetTypeIdOk() (int32, bool) {
+func (o *ServiceLevelObjective) GetTypeIdOk() (ServiceLevelObjectiveTypeNumeric, bool) {
 	if o == nil || o.TypeId == nil {
-		var ret int32
+		var ret ServiceLevelObjectiveTypeNumeric
 		return ret, false
 	}
 	return *o.TypeId, true
@@ -446,30 +463,91 @@ func (o *ServiceLevelObjective) HasTypeId() bool {
 	return false
 }
 
-// SetTypeId gets a reference to the given int32 and assigns it to the TypeId field.
-func (o *ServiceLevelObjective) SetTypeId(v int32) {
+// SetTypeId gets a reference to the given ServiceLevelObjectiveTypeNumeric and assigns it to the TypeId field.
+func (o *ServiceLevelObjective) SetTypeId(v ServiceLevelObjectiveTypeNumeric) {
 	o.TypeId = &v
 }
 
+func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Creator != nil {
+		toSerialize["creator"] = o.Creator
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if o.Groups != nil {
+		toSerialize["groups"] = o.Groups
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
+	}
+	if o.MonitorIds != nil {
+		toSerialize["monitor_ids"] = o.MonitorIds
+	}
+	if o.MonitorTags != nil {
+		toSerialize["monitor_tags"] = o.MonitorTags
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if true {
+		toSerialize["thresholds"] = o.Thresholds
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.TypeId != nil {
+		toSerialize["type_id"] = o.TypeId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableServiceLevelObjective struct {
-	Value        ServiceLevelObjective
-	ExplicitNull bool
+	value *ServiceLevelObjective
+	isSet bool
+}
+
+func (v NullableServiceLevelObjective) Get() *ServiceLevelObjective {
+	return v.value
+}
+
+func (v NullableServiceLevelObjective) Set(val *ServiceLevelObjective) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceLevelObjective) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableServiceLevelObjective) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceLevelObjective(val *ServiceLevelObjective) *NullableServiceLevelObjective {
+	return &NullableServiceLevelObjective{value: val, isSet: true}
 }
 
 func (v NullableServiceLevelObjective) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableServiceLevelObjective) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,20 +9,38 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// AwsAccountAndLambdaRequest struct for AwsAccountAndLambdaRequest
-type AwsAccountAndLambdaRequest struct {
+// AWSAccountAndLambdaRequest struct for AWSAccountAndLambdaRequest
+type AWSAccountAndLambdaRequest struct {
 	// Your AWS Account ID without dashes.
 	AccountId string `json:"account_id"`
 	// ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
 	LambdaArn string `json:"lambda_arn"`
 }
 
+// NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAWSAccountAndLambdaRequest(accountId string, lambdaArn string) *AWSAccountAndLambdaRequest {
+	this := AWSAccountAndLambdaRequest{}
+	this.AccountId = accountId
+	this.LambdaArn = lambdaArn
+	return &this
+}
+
+// NewAWSAccountAndLambdaRequestWithDefaults instantiates a new AWSAccountAndLambdaRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAWSAccountAndLambdaRequestWithDefaults() *AWSAccountAndLambdaRequest {
+	this := AWSAccountAndLambdaRequest{}
+	return &this
+}
+
 // GetAccountId returns the AccountId field value
-func (o *AwsAccountAndLambdaRequest) GetAccountId() string {
+func (o *AWSAccountAndLambdaRequest) GetAccountId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -32,12 +50,12 @@ func (o *AwsAccountAndLambdaRequest) GetAccountId() string {
 }
 
 // SetAccountId sets field value
-func (o *AwsAccountAndLambdaRequest) SetAccountId(v string) {
+func (o *AWSAccountAndLambdaRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
 
 // GetLambdaArn returns the LambdaArn field value
-func (o *AwsAccountAndLambdaRequest) GetLambdaArn() string {
+func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -47,29 +65,54 @@ func (o *AwsAccountAndLambdaRequest) GetLambdaArn() string {
 }
 
 // SetLambdaArn sets field value
-func (o *AwsAccountAndLambdaRequest) SetLambdaArn(v string) {
+func (o *AWSAccountAndLambdaRequest) SetLambdaArn(v string) {
 	o.LambdaArn = v
 }
 
-type NullableAwsAccountAndLambdaRequest struct {
-	Value        AwsAccountAndLambdaRequest
-	ExplicitNull bool
+func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["account_id"] = o.AccountId
+	}
+	if true {
+		toSerialize["lambda_arn"] = o.LambdaArn
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableAwsAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableAWSAccountAndLambdaRequest struct {
+	value *AWSAccountAndLambdaRequest
+	isSet bool
 }
 
-func (v *NullableAwsAccountAndLambdaRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableAWSAccountAndLambdaRequest) Get() *AWSAccountAndLambdaRequest {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v NullableAWSAccountAndLambdaRequest) Set(val *AWSAccountAndLambdaRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAWSAccountAndLambdaRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableAWSAccountAndLambdaRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAWSAccountAndLambdaRequest(val *AWSAccountAndLambdaRequest) *NullableAWSAccountAndLambdaRequest {
+	return &NullableAWSAccountAndLambdaRequest{value: val, isSet: true}
+}
+
+func (v NullableAWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAWSAccountAndLambdaRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

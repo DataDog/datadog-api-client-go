@@ -1,0 +1,44 @@
+{
+    "indexes": [
+        {
+            "name": "main",
+            "filter": {
+                "query": ""
+            },
+            "num_retention_days": 15,
+            "daily_limit": 200000000,
+            "is_rate_limited": false,
+            "exclusion_filters": []
+        },
+        {
+            "name": "test-multi-1",
+            "filter": {
+                "query": ""
+            },
+            "num_retention_days": 15,
+            "daily_limit": null,
+            "is_rate_limited": false,
+            "exclusion_filters": []
+        },
+        {
+            "name": "test-multi-2",
+            "filter": {
+                "query": ""
+            },
+            "num_retention_days": 15,
+            "daily_limit": null,
+            "is_rate_limited": false,
+            "exclusion_filters": []
+        },
+        {
+            "name": "test-multi-3",
+            "filter": {
+                "query": ""
+            },
+            "num_retention_days": 15,
+            "daily_limit": null,
+            "is_rate_limited": false,
+            "exclusion_filters": []
+        }
+    ]
+}

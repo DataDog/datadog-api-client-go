@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ type HostMetrics struct {
 	Cpu    *float64 `json:"cpu,omitempty"`
 	Iowait *float64 `json:"iowait,omitempty"`
 	Load   *float64 `json:"load,omitempty"`
+}
+
+// NewHostMetrics instantiates a new HostMetrics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHostMetrics() *HostMetrics {
+	this := HostMetrics{}
+	return &this
+}
+
+// NewHostMetricsWithDefaults instantiates a new HostMetrics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHostMetricsWithDefaults() *HostMetrics {
+	this := HostMetrics{}
+	return &this
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
@@ -119,25 +135,53 @@ func (o *HostMetrics) SetLoad(v float64) {
 	o.Load = &v
 }
 
+func (o HostMetrics) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Cpu != nil {
+		toSerialize["cpu"] = o.Cpu
+	}
+	if o.Iowait != nil {
+		toSerialize["iowait"] = o.Iowait
+	}
+	if o.Load != nil {
+		toSerialize["load"] = o.Load
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHostMetrics struct {
-	Value        HostMetrics
-	ExplicitNull bool
+	value *HostMetrics
+	isSet bool
+}
+
+func (v NullableHostMetrics) Get() *HostMetrics {
+	return v.value
+}
+
+func (v NullableHostMetrics) Set(val *HostMetrics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHostMetrics) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableHostMetrics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHostMetrics(val *HostMetrics) *NullableHostMetrics {
+	return &NullableHostMetrics{value: val, isSet: true}
 }
 
 func (v NullableHostMetrics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHostMetrics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

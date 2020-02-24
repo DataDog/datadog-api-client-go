@@ -9,13 +9,29 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MetricSearchResponse struct for MetricSearchResponse
 type MetricSearchResponse struct {
 	Results *MetricSearchResponseResults `json:"results,omitempty"`
+}
+
+// NewMetricSearchResponse instantiates a new MetricSearchResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMetricSearchResponse() *MetricSearchResponse {
+	this := MetricSearchResponse{}
+	return &this
+}
+
+// NewMetricSearchResponseWithDefaults instantiates a new MetricSearchResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetricSearchResponseWithDefaults() *MetricSearchResponse {
+	this := MetricSearchResponse{}
+	return &this
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
@@ -51,25 +67,47 @@ func (o *MetricSearchResponse) SetResults(v MetricSearchResponseResults) {
 	o.Results = &v
 }
 
+func (o MetricSearchResponse) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Results != nil {
+		toSerialize["results"] = o.Results
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMetricSearchResponse struct {
-	Value        MetricSearchResponse
-	ExplicitNull bool
+	value *MetricSearchResponse
+	isSet bool
+}
+
+func (v NullableMetricSearchResponse) Get() *MetricSearchResponse {
+	return v.value
+}
+
+func (v NullableMetricSearchResponse) Set(val *MetricSearchResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricSearchResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMetricSearchResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricSearchResponse(val *MetricSearchResponse) *NullableMetricSearchResponse {
+	return &NullableMetricSearchResponse{value: val, isSet: true}
 }
 
 func (v NullableMetricSearchResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMetricSearchResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,18 +9,34 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MonitorThresholds struct for MonitorThresholds
 type MonitorThresholds struct {
-	Critical         *float64 `json:"critical,omitempty"`
-	CriticalRecovery *float64 `json:"critical_recovery,omitempty"`
-	Ok               *float64 `json:"ok,omitempty"`
-	Unknown          *float64 `json:"unknown,omitempty"`
-	Warning          *float64 `json:"warning,omitempty"`
-	WarningRecovery  *float64 `json:"warning_recovery,omitempty"`
+	Critical         *float64        `json:"critical,omitempty"`
+	CriticalRecovery NullableFloat64 `json:"critical_recovery,omitempty"`
+	Ok               NullableFloat64 `json:"ok,omitempty"`
+	Unknown          NullableFloat64 `json:"unknown,omitempty"`
+	Warning          NullableFloat64 `json:"warning,omitempty"`
+	WarningRecovery  NullableFloat64 `json:"warning_recovery,omitempty"`
+}
+
+// NewMonitorThresholds instantiates a new MonitorThresholds object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorThresholds() *MonitorThresholds {
+	this := MonitorThresholds{}
+	return &this
+}
+
+// NewMonitorThresholdsWithDefaults instantiates a new MonitorThresholds object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorThresholdsWithDefaults() *MonitorThresholds {
+	this := MonitorThresholds{}
+	return &this
 }
 
 // GetCritical returns the Critical field value if set, zero value otherwise.
@@ -57,189 +73,226 @@ func (o *MonitorThresholds) SetCritical(v float64) {
 }
 
 // GetCriticalRecovery returns the CriticalRecovery field value if set, zero value otherwise.
-func (o *MonitorThresholds) GetCriticalRecovery() float64 {
-	if o == nil || o.CriticalRecovery == nil {
-		var ret float64
+func (o *MonitorThresholds) GetCriticalRecovery() NullableFloat64 {
+	if o == nil {
+		var ret NullableFloat64
 		return ret
 	}
-	return *o.CriticalRecovery
+	return o.CriticalRecovery
 }
 
 // GetCriticalRecoveryOk returns a tuple with the CriticalRecovery field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetCriticalRecoveryOk() (float64, bool) {
-	if o == nil || o.CriticalRecovery == nil {
-		var ret float64
+func (o *MonitorThresholds) GetCriticalRecoveryOk() (NullableFloat64, bool) {
+	if o == nil {
+		var ret NullableFloat64
 		return ret, false
 	}
-	return *o.CriticalRecovery, true
+	return o.CriticalRecovery, o.CriticalRecovery.IsSet()
 }
 
 // HasCriticalRecovery returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasCriticalRecovery() bool {
-	if o != nil && o.CriticalRecovery != nil {
+	if o != nil && o.CriticalRecovery.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCriticalRecovery gets a reference to the given float64 and assigns it to the CriticalRecovery field.
-func (o *MonitorThresholds) SetCriticalRecovery(v float64) {
-	o.CriticalRecovery = &v
+// SetCriticalRecovery gets a reference to the given NullableFloat64 and assigns it to the CriticalRecovery field.
+func (o *MonitorThresholds) SetCriticalRecovery(v NullableFloat64) {
+	o.CriticalRecovery = v
 }
 
 // GetOk returns the Ok field value if set, zero value otherwise.
-func (o *MonitorThresholds) GetOk() float64 {
-	if o == nil || o.Ok == nil {
-		var ret float64
+func (o *MonitorThresholds) GetOk() NullableFloat64 {
+	if o == nil {
+		var ret NullableFloat64
 		return ret
 	}
-	return *o.Ok
+	return o.Ok
 }
 
 // GetOkOk returns a tuple with the Ok field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetOkOk() (float64, bool) {
-	if o == nil || o.Ok == nil {
-		var ret float64
+func (o *MonitorThresholds) GetOkOk() (NullableFloat64, bool) {
+	if o == nil {
+		var ret NullableFloat64
 		return ret, false
 	}
-	return *o.Ok, true
+	return o.Ok, o.Ok.IsSet()
 }
 
 // HasOk returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasOk() bool {
-	if o != nil && o.Ok != nil {
+	if o != nil && o.Ok.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOk gets a reference to the given float64 and assigns it to the Ok field.
-func (o *MonitorThresholds) SetOk(v float64) {
-	o.Ok = &v
+// SetOk gets a reference to the given NullableFloat64 and assigns it to the Ok field.
+func (o *MonitorThresholds) SetOk(v NullableFloat64) {
+	o.Ok = v
 }
 
 // GetUnknown returns the Unknown field value if set, zero value otherwise.
-func (o *MonitorThresholds) GetUnknown() float64 {
-	if o == nil || o.Unknown == nil {
-		var ret float64
+func (o *MonitorThresholds) GetUnknown() NullableFloat64 {
+	if o == nil {
+		var ret NullableFloat64
 		return ret
 	}
-	return *o.Unknown
+	return o.Unknown
 }
 
 // GetUnknownOk returns a tuple with the Unknown field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetUnknownOk() (float64, bool) {
-	if o == nil || o.Unknown == nil {
-		var ret float64
+func (o *MonitorThresholds) GetUnknownOk() (NullableFloat64, bool) {
+	if o == nil {
+		var ret NullableFloat64
 		return ret, false
 	}
-	return *o.Unknown, true
+	return o.Unknown, o.Unknown.IsSet()
 }
 
 // HasUnknown returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasUnknown() bool {
-	if o != nil && o.Unknown != nil {
+	if o != nil && o.Unknown.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUnknown gets a reference to the given float64 and assigns it to the Unknown field.
-func (o *MonitorThresholds) SetUnknown(v float64) {
-	o.Unknown = &v
+// SetUnknown gets a reference to the given NullableFloat64 and assigns it to the Unknown field.
+func (o *MonitorThresholds) SetUnknown(v NullableFloat64) {
+	o.Unknown = v
 }
 
 // GetWarning returns the Warning field value if set, zero value otherwise.
-func (o *MonitorThresholds) GetWarning() float64 {
-	if o == nil || o.Warning == nil {
-		var ret float64
+func (o *MonitorThresholds) GetWarning() NullableFloat64 {
+	if o == nil {
+		var ret NullableFloat64
 		return ret
 	}
-	return *o.Warning
+	return o.Warning
 }
 
 // GetWarningOk returns a tuple with the Warning field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetWarningOk() (float64, bool) {
-	if o == nil || o.Warning == nil {
-		var ret float64
+func (o *MonitorThresholds) GetWarningOk() (NullableFloat64, bool) {
+	if o == nil {
+		var ret NullableFloat64
 		return ret, false
 	}
-	return *o.Warning, true
+	return o.Warning, o.Warning.IsSet()
 }
 
 // HasWarning returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasWarning() bool {
-	if o != nil && o.Warning != nil {
+	if o != nil && o.Warning.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWarning gets a reference to the given float64 and assigns it to the Warning field.
-func (o *MonitorThresholds) SetWarning(v float64) {
-	o.Warning = &v
+// SetWarning gets a reference to the given NullableFloat64 and assigns it to the Warning field.
+func (o *MonitorThresholds) SetWarning(v NullableFloat64) {
+	o.Warning = v
 }
 
 // GetWarningRecovery returns the WarningRecovery field value if set, zero value otherwise.
-func (o *MonitorThresholds) GetWarningRecovery() float64 {
-	if o == nil || o.WarningRecovery == nil {
-		var ret float64
+func (o *MonitorThresholds) GetWarningRecovery() NullableFloat64 {
+	if o == nil {
+		var ret NullableFloat64
 		return ret
 	}
-	return *o.WarningRecovery
+	return o.WarningRecovery
 }
 
 // GetWarningRecoveryOk returns a tuple with the WarningRecovery field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholds) GetWarningRecoveryOk() (float64, bool) {
-	if o == nil || o.WarningRecovery == nil {
-		var ret float64
+func (o *MonitorThresholds) GetWarningRecoveryOk() (NullableFloat64, bool) {
+	if o == nil {
+		var ret NullableFloat64
 		return ret, false
 	}
-	return *o.WarningRecovery, true
+	return o.WarningRecovery, o.WarningRecovery.IsSet()
 }
 
 // HasWarningRecovery returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasWarningRecovery() bool {
-	if o != nil && o.WarningRecovery != nil {
+	if o != nil && o.WarningRecovery.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWarningRecovery gets a reference to the given float64 and assigns it to the WarningRecovery field.
-func (o *MonitorThresholds) SetWarningRecovery(v float64) {
-	o.WarningRecovery = &v
+// SetWarningRecovery gets a reference to the given NullableFloat64 and assigns it to the WarningRecovery field.
+func (o *MonitorThresholds) SetWarningRecovery(v NullableFloat64) {
+	o.WarningRecovery = v
+}
+
+func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Critical != nil {
+		toSerialize["critical"] = o.Critical
+	}
+	if o.CriticalRecovery.IsSet() {
+		toSerialize["critical_recovery"] = o.CriticalRecovery.Get()
+	}
+	if o.Ok.IsSet() {
+		toSerialize["ok"] = o.Ok.Get()
+	}
+	if o.Unknown.IsSet() {
+		toSerialize["unknown"] = o.Unknown.Get()
+	}
+	if o.Warning.IsSet() {
+		toSerialize["warning"] = o.Warning.Get()
+	}
+	if o.WarningRecovery.IsSet() {
+		toSerialize["warning_recovery"] = o.WarningRecovery.Get()
+	}
+	return json.Marshal(toSerialize)
 }
 
 type NullableMonitorThresholds struct {
-	Value        MonitorThresholds
-	ExplicitNull bool
+	value *MonitorThresholds
+	isSet bool
+}
+
+func (v NullableMonitorThresholds) Get() *MonitorThresholds {
+	return v.value
+}
+
+func (v NullableMonitorThresholds) Set(val *MonitorThresholds) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorThresholds) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorThresholds) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorThresholds(val *MonitorThresholds) *NullableMonitorThresholds {
+	return &NullableMonitorThresholds{value: val, isSet: true}
 }
 
 func (v NullableMonitorThresholds) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorThresholds) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

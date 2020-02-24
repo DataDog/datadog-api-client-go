@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,6 +19,23 @@ type UsageTraceHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of Analyzed Spans indexed.
 	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+}
+
+// NewUsageTraceHour instantiates a new UsageTraceHour object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUsageTraceHour() *UsageTraceHour {
+	this := UsageTraceHour{}
+	return &this
+}
+
+// NewUsageTraceHourWithDefaults instantiates a new UsageTraceHour object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUsageTraceHourWithDefaults() *UsageTraceHour {
+	this := UsageTraceHour{}
+	return &this
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -88,25 +104,50 @@ func (o *UsageTraceHour) SetIndexedEventsCount(v int64) {
 	o.IndexedEventsCount = &v
 }
 
+func (o UsageTraceHour) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.Hour != nil {
+		toSerialize["hour"] = o.Hour
+	}
+	if o.IndexedEventsCount != nil {
+		toSerialize["indexed_events_count"] = o.IndexedEventsCount
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUsageTraceHour struct {
-	Value        UsageTraceHour
-	ExplicitNull bool
+	value *UsageTraceHour
+	isSet bool
+}
+
+func (v NullableUsageTraceHour) Get() *UsageTraceHour {
+	return v.value
+}
+
+func (v NullableUsageTraceHour) Set(val *UsageTraceHour) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUsageTraceHour) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableUsageTraceHour) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUsageTraceHour(val *UsageTraceHour) *NullableUsageTraceHour {
+	return &NullableUsageTraceHour{value: val, isSet: true}
 }
 
 func (v NullableUsageTraceHour) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUsageTraceHour) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

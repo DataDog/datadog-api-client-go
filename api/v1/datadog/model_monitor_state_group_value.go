@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -20,6 +19,23 @@ type MonitorStateGroupValue struct {
 	Right  *float64 `json:"right,omitempty"`
 	ToTs   *int64   `json:"to_ts,omitempty"`
 	Value  *float64 `json:"value,omitempty"`
+}
+
+// NewMonitorStateGroupValue instantiates a new MonitorStateGroupValue object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMonitorStateGroupValue() *MonitorStateGroupValue {
+	this := MonitorStateGroupValue{}
+	return &this
+}
+
+// NewMonitorStateGroupValueWithDefaults instantiates a new MonitorStateGroupValue object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMonitorStateGroupValueWithDefaults() *MonitorStateGroupValue {
+	this := MonitorStateGroupValue{}
+	return &this
 }
 
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
@@ -187,25 +203,59 @@ func (o *MonitorStateGroupValue) SetValue(v float64) {
 	o.Value = &v
 }
 
+func (o MonitorStateGroupValue) MarshalJSON() ([]byte, error) {
+	//TODO: serialize parents?
+	toSerialize := map[string]interface{}{}
+	if o.FromTs != nil {
+		toSerialize["from_ts"] = o.FromTs
+	}
+	if o.Left != nil {
+		toSerialize["left"] = o.Left
+	}
+	if o.Right != nil {
+		toSerialize["right"] = o.Right
+	}
+	if o.ToTs != nil {
+		toSerialize["to_ts"] = o.ToTs
+	}
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMonitorStateGroupValue struct {
-	Value        MonitorStateGroupValue
-	ExplicitNull bool
+	value *MonitorStateGroupValue
+	isSet bool
+}
+
+func (v NullableMonitorStateGroupValue) Get() *MonitorStateGroupValue {
+	return v.value
+}
+
+func (v NullableMonitorStateGroupValue) Set(val *MonitorStateGroupValue) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMonitorStateGroupValue) IsSet() bool {
+	return v.isSet
+}
+
+func (v NullableMonitorStateGroupValue) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMonitorStateGroupValue(val *MonitorStateGroupValue) *NullableMonitorStateGroupValue {
+	return &NullableMonitorStateGroupValue{value: val, isSet: true}
 }
 
 func (v NullableMonitorStateGroupValue) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMonitorStateGroupValue) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
