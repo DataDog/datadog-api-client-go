@@ -662,6 +662,23 @@ func TestDashboardLifecycle(t *testing.T) {
 
 		// Template Variables
 		assert.Equal(t, dashboard.GetTemplateVariables()[0], response.GetTemplateVariables()[0])
+
+		for index, checkWidget := range response.GetWidgets() {
+			assert.True(t, checkWidget.GetId() > 0)
+			checkWidget.Id = nil
+			checkWidgetDefinition := checkWidget.GetDefinition().WidgetDefinitionInterface
+			if checkWidgetDefinition.GetType() == "group" {
+				def, ok := checkWidgetDefinition.(*datadog.GroupWidgetDefinition)
+				if !ok {
+					t.Fatal("Cast fail for GroupWidgetDefinition")
+				}
+				for index := range def.GetWidgets() {
+					def.Widgets[index].Id = nil
+				}
+			}
+			assert.Equal(t, dashboard.GetWidgets()[index], checkWidget)
+		}
+
 	}
 
 	assertDashboardDefinition(dashboard, createdDashboard)
@@ -700,25 +717,6 @@ func TestDashboardLifecycle(t *testing.T) {
 	assert.Equal(t, getFreeDashboard, createdFreeDashboard)
 
 	assertDashboardDefinition(freeDashboard, createdFreeDashboard)
-
-	for _, checkWidget := range getFreeDashboard.GetWidgets() {
-		assert.True(t, checkWidget.GetId() > 0)
-		checkWidget.Id = nil
-		checkWidgetDefinition := checkWidget.GetDefinition().WidgetDefinitionInterface
-		if checkWidgetDefinition.GetType() == "group" {
-			def, ok := checkWidgetDefinition.(*datadog.GroupWidgetDefinition)
-			if !ok {
-				t.Fatal("Cast fail for GroupWidgetDefinition")
-			}
-			for _, subWidget := range def.GetWidgets() {
-				subWidget.Id = nil
-			}
-		}
-	}
-	for _, checkWidget := range getFreeDashboard.GetWidgets() {
-		assert.True(t, checkWidget.GetId() > 0)
-		checkWidget.Id = nil
-	}
 
 	// Update the dashboard and set all nullable fields to null
 	dashboard.SetDescription(datadog.NullableString{})
