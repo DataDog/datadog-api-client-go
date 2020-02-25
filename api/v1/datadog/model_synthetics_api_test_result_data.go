@@ -374,7 +374,6 @@ func (o *SyntheticsAPITestResultData) SetTimings(v SyntheticsTiming) {
 }
 
 func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Cert != nil {
 		toSerialize["cert"] = o.Cert

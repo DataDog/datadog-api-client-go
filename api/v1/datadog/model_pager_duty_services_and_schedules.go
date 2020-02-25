@@ -104,7 +104,6 @@ func (o *PagerDutyServicesAndSchedules) SetServices(v []PagerDutyService) {
 }
 
 func (o PagerDutyServicesAndSchedules) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Schedules != nil {
 		toSerialize["schedules"] = o.Schedules

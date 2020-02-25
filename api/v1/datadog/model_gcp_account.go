@@ -488,7 +488,6 @@ func (o *GCPAccount) SetType(v string) {
 }
 
 func (o GCPAccount) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AuthProviderX509CertUrl != nil {
 		toSerialize["auth_provider_x509_cert_url"] = o.AuthProviderX509CertUrl

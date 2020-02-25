@@ -340,7 +340,6 @@ func (o *SyntheticsTiming) SetWait(v float64) {
 }
 
 func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Dns != nil {
 		toSerialize["dns"] = o.Dns

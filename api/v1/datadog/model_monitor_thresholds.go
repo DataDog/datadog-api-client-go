@@ -238,7 +238,6 @@ func (o *MonitorThresholds) SetWarningRecovery(v NullableFloat64) {
 }
 
 func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Critical != nil {
 		toSerialize["critical"] = o.Critical

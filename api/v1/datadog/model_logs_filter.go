@@ -69,7 +69,6 @@ func (o *LogsFilter) SetQuery(v string) {
 }
 
 func (o LogsFilter) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query

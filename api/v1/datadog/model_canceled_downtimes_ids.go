@@ -68,7 +68,6 @@ func (o *CanceledDowntimesIds) SetCancelledIds(v []int64) {
 }
 
 func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.CancelledIds != nil {
 		toSerialize["cancelled_ids"] = o.CancelledIds

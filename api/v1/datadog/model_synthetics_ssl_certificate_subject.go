@@ -272,7 +272,6 @@ func (o *SyntheticsSSLCertificateSubject) SetAltName(v string) {
 }
 
 func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.C != nil {
 		toSerialize["C"] = o.C

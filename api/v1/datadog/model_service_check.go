@@ -204,7 +204,6 @@ func (o *ServiceCheck) SetTimestamp(v int64) {
 }
 
 func (o ServiceCheck) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["check"] = o.Check

@@ -102,7 +102,6 @@ func (o *OrgSettingsSamlAutocreateUsersDomains) SetEnabled(v bool) {
 }
 
 func (o OrgSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Domains != nil {
 		toSerialize["domains"] = o.Domains

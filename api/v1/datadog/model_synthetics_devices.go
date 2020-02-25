@@ -68,7 +68,6 @@ func (o *SyntheticsDevices) SetDevices(v []SyntheticsDevice) {
 }
 
 func (o SyntheticsDevices) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Devices != nil {
 		toSerialize["devices"] = o.Devices

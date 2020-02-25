@@ -70,7 +70,6 @@ func (o *AWSLogsServicesRequest) SetServices(v []string) {
 }
 
 func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["account_id"] = o.AccountId

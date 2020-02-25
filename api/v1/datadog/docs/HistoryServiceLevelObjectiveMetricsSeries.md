@@ -4,17 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int64** | Count of submitted metrics | [optional] 
-**Metadata** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeriesMetadata**](HistoryServiceLevelObjectiveMetricsSeries_metadata.md) |  | [optional] 
-**Sum** | Pointer to **float64** | Total Sum of the query | [optional] 
-**Times** | Pointer to **[]int64** | The query timestamps in epoch seconds | [optional] 
-**Values** | Pointer to **[]float64** | The query values | [optional] 
+**Count** | Pointer to **int64** | Count of submitted metrics | 
+**Metadata** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeriesMetadata**](HistoryServiceLevelObjectiveMetricsSeries_metadata.md) |  | 
+**Sum** | Pointer to **float64** | Total Sum of the query | 
+**Values** | Pointer to **[]float64** | The query values | 
 
 ## Methods
 
 ### NewHistoryServiceLevelObjectiveMetricsSeries
 
-`func NewHistoryServiceLevelObjectiveMetricsSeries() *HistoryServiceLevelObjectiveMetricsSeries`
+`func NewHistoryServiceLevelObjectiveMetricsSeries(count int64, metadata HistoryServiceLevelObjectiveMetricsSeriesMetadata, sum float64, values []float64, ) *HistoryServiceLevelObjectiveMetricsSeries`
 
 NewHistoryServiceLevelObjectiveMetricsSeries instantiates a new HistoryServiceLevelObjectiveMetricsSeries object
 This constructor will assign default values to properties that have it defined,
@@ -103,31 +102,6 @@ HasSum returns a boolean if a field has been set.
 `func (o *HistoryServiceLevelObjectiveMetricsSeries) SetSum(v float64)`
 
 SetSum gets a reference to the given float64 and assigns it to the Sum field.
-
-### GetTimes
-
-`func (o *HistoryServiceLevelObjectiveMetricsSeries) GetTimes() []int64`
-
-GetTimes returns the Times field if non-nil, zero value otherwise.
-
-### GetTimesOk
-
-`func (o *HistoryServiceLevelObjectiveMetricsSeries) GetTimesOk() ([]int64, bool)`
-
-GetTimesOk returns a tuple with the Times field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTimes
-
-`func (o *HistoryServiceLevelObjectiveMetricsSeries) HasTimes() bool`
-
-HasTimes returns a boolean if a field has been set.
-
-### SetTimes
-
-`func (o *HistoryServiceLevelObjectiveMetricsSeries) SetTimes(v []int64)`
-
-SetTimes gets a reference to the given []int64 and assigns it to the Times field.
 
 ### GetValues
 

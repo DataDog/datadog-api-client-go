@@ -173,7 +173,6 @@ func (o *UsageTopAvgMetricsHour) SetMetricName(v string) {
 }
 
 func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AvgMetricHour != nil {
 		toSerialize["avg_metric_hour"] = o.AvgMetricHour

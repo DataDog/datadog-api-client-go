@@ -91,7 +91,6 @@ func (o *LogsGrokParserRules) SetSupportRules(v string) {
 }
 
 func (o LogsGrokParserRules) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["match_rules"] = o.MatchRules

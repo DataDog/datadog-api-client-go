@@ -136,7 +136,6 @@ func (o *HostMetrics) SetLoad(v float64) {
 }
 
 func (o HostMetrics) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Cpu != nil {
 		toSerialize["cpu"] = o.Cpu

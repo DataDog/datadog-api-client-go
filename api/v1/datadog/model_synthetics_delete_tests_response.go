@@ -68,7 +68,6 @@ func (o *SyntheticsDeleteTestsResponse) SetDeletedTests(v []SyntheticsDeleteTest
 }
 
 func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DeletedTests != nil {
 		toSerialize["deleted_tests"] = o.DeletedTests

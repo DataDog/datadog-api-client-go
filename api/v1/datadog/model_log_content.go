@@ -239,7 +239,6 @@ func (o *LogContent) SetTimestamp(v time.Time) {
 }
 
 func (o LogContent) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes

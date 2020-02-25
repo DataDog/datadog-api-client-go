@@ -86,7 +86,6 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponse) SetErrors(v map[string]str
 }
 
 func (o CheckCanDeleteServiceLevelObjectiveResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data

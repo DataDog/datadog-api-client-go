@@ -272,7 +272,6 @@ func (o *Org) SetSubscription(v OrgSubscription) {
 }
 
 func (o Org) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Billing != nil {
 		toSerialize["billing"] = o.Billing

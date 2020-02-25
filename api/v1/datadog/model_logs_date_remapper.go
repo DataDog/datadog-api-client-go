@@ -165,7 +165,6 @@ func (o *LogsDateRemapper) SetName(v string) {
 }
 
 func (o LogsDateRemapper) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["sources"] = o.Sources

@@ -208,7 +208,6 @@ func (o *LogsListRequest) SetTime(v LogsListRequestTime) {
 }
 
 func (o LogsListRequest) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Index != nil {
 		toSerialize["index"] = o.Index

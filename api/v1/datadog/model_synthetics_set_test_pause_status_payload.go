@@ -68,7 +68,6 @@ func (o *SyntheticsSetTestPauseStatusPayload) SetNewStatus(v SyntheticsTestPause
 }
 
 func (o SyntheticsSetTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.NewStatus != nil {
 		toSerialize["new_status"] = o.NewStatus

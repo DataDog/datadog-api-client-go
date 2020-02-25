@@ -578,7 +578,6 @@ func (o *SyntheticsTestDetails) SetType(v SyntheticsTestDetailsType) {
 }
 
 func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Config != nil {
 		toSerialize["config"] = o.Config

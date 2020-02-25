@@ -68,7 +68,6 @@ func (o *OrgSubscription) SetType(v string) {
 }
 
 func (o OrgSubscription) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

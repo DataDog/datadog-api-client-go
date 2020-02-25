@@ -513,7 +513,6 @@ func (o *Monitor) SetType(v MonitorType) {
 }
 
 func (o Monitor) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created

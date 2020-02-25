@@ -244,7 +244,6 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetUnit(v string) {
 }
 
 func (o HistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Aggr != nil {
 		toSerialize["aggr"] = o.Aggr

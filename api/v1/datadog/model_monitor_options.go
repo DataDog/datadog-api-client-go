@@ -714,7 +714,6 @@ func (o *MonitorOptions) SetTimeoutH(v NullableInt64) {
 }
 
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation

@@ -51,7 +51,6 @@ func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
 }
 
 func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["scope"] = o.Scope

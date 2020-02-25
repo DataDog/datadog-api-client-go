@@ -102,7 +102,6 @@ func (o *AWSLogsAsyncResponseErrors) SetMessage(v string) {
 }
 
 func (o AWSLogsAsyncResponseErrors) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code

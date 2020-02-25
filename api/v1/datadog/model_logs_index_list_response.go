@@ -68,7 +68,6 @@ func (o *LogsIndexListResponse) SetIndexes(v []LogsIndex) {
 }
 
 func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes

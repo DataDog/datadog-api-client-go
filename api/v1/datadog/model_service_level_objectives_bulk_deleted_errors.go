@@ -87,7 +87,6 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SLOErrorTimefra
 }
 
 func (o ServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id

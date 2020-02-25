@@ -68,7 +68,6 @@ func (o *AWSAccountCreateResponse) SetExternalId(v string) {
 }
 
 func (o AWSAccountCreateResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.ExternalId != nil {
 		toSerialize["external_id"] = o.ExternalId

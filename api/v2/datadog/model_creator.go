@@ -136,7 +136,6 @@ func (o *Creator) SetName(v string) {
 }
 
 func (o Creator) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Email != nil {
 		toSerialize["email"] = o.Email

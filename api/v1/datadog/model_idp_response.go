@@ -51,7 +51,6 @@ func (o *IdpResponse) SetMessage(v string) {
 }
 
 func (o IdpResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["message"] = o.Message

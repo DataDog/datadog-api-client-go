@@ -209,7 +209,6 @@ func (o *MetricsQueryResponseUnit) SetShortName(v string) {
 }
 
 func (o MetricsQueryResponseUnit) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Family != nil {
 		toSerialize["family"] = o.Family

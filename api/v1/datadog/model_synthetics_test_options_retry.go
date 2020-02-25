@@ -102,7 +102,6 @@ func (o *SyntheticsTestOptionsRetry) SetInterval(v float64) {
 }
 
 func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Count != nil {
 		toSerialize["count"] = o.Count

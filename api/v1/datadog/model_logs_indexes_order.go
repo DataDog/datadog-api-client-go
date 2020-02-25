@@ -52,7 +52,6 @@ func (o *LogsIndexesOrder) SetIndexNames(v []string) {
 }
 
 func (o LogsIndexesOrder) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["index_names"] = o.IndexNames

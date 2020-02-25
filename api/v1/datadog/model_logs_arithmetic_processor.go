@@ -222,7 +222,6 @@ func (o *LogsArithmeticProcessor) SetName(v string) {
 }
 
 func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["expression"] = o.Expression
