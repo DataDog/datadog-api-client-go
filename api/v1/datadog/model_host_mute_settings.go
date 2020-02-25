@@ -139,7 +139,6 @@ func (o *HostMuteSettings) SetOverride(v bool) {
 }
 
 func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.End != nil {
 		toSerialize["end"] = o.End

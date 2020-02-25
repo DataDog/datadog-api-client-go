@@ -137,7 +137,6 @@ func (o *LogsListResponse) SetStatus(v string) {
 }
 
 func (o LogsListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Logs != nil {
 		toSerialize["logs"] = o.Logs

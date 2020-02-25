@@ -104,7 +104,6 @@ func (o *MetricsListResponse) SetMetrics(v []string) {
 }
 
 func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.From != nil {
 		toSerialize["from"] = o.From

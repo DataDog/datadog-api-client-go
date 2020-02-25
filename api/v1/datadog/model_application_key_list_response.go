@@ -68,7 +68,6 @@ func (o *ApplicationKeyListResponse) SetApplicationKeys(v []ApplicationKey) {
 }
 
 func (o ApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.ApplicationKeys != nil {
 		toSerialize["application_keys"] = o.ApplicationKeys

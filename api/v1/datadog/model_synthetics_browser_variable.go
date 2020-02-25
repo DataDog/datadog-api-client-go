@@ -170,7 +170,6 @@ func (o *SyntheticsBrowserVariable) SetType(v SyntheticsBrowserVariableType) {
 }
 
 func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Example != nil {
 		toSerialize["example"] = o.Example

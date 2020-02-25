@@ -4,19 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Denominator** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeries**](HistoryServiceLevelObjectiveMetricsSeries.md) |  | [optional] 
-**Interval** | Pointer to **int64** | The aggregated query interval for the series data. It&#39;s implicit based on the query time window. | [optional] 
+**Denominator** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeries**](HistoryServiceLevelObjectiveMetricsSeries.md) |  | 
+**Interval** | Pointer to **int64** | The aggregated query interval for the series data. It&#39;s implicit based on the query time window. | 
 **Message** | Pointer to **string** | Optional message if there are specific query issues/warnings. | [optional] 
-**Numerator** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeries**](HistoryServiceLevelObjectiveMetricsSeries.md) |  | [optional] 
-**Query** | Pointer to **string** | The combined numerator &amp;&amp; denominator query CSV. | [optional] 
-**ResType** | Pointer to **string** | The series result type. This mimics &#x60;batch_query&#x60; response type | [optional] 
-**RespVersion** | Pointer to **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type | [optional] 
+**Numerator** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeries**](HistoryServiceLevelObjectiveMetricsSeries.md) |  | 
+**Query** | Pointer to **string** | The combined numerator &amp;&amp; denominator query CSV. | 
+**ResType** | Pointer to **string** | The series result type. This mimics &#x60;batch_query&#x60; response type | 
+**RespVersion** | Pointer to **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type | 
+**Times** | Pointer to **[]float64** | The query timestamps in epoch milliseconds | 
 
 ## Methods
 
 ### NewHistoryServiceLevelObjectiveMetrics
 
-`func NewHistoryServiceLevelObjectiveMetrics() *HistoryServiceLevelObjectiveMetrics`
+`func NewHistoryServiceLevelObjectiveMetrics(denominator HistoryServiceLevelObjectiveMetricsSeries, interval int64, numerator HistoryServiceLevelObjectiveMetricsSeries, query string, resType string, respVersion int64, times []float64, ) *HistoryServiceLevelObjectiveMetrics`
 
 NewHistoryServiceLevelObjectiveMetrics instantiates a new HistoryServiceLevelObjectiveMetrics object
 This constructor will assign default values to properties that have it defined,
@@ -205,6 +206,31 @@ HasRespVersion returns a boolean if a field has been set.
 `func (o *HistoryServiceLevelObjectiveMetrics) SetRespVersion(v int64)`
 
 SetRespVersion gets a reference to the given int64 and assigns it to the RespVersion field.
+
+### GetTimes
+
+`func (o *HistoryServiceLevelObjectiveMetrics) GetTimes() []float64`
+
+GetTimes returns the Times field if non-nil, zero value otherwise.
+
+### GetTimesOk
+
+`func (o *HistoryServiceLevelObjectiveMetrics) GetTimesOk() ([]float64, bool)`
+
+GetTimesOk returns a tuple with the Times field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTimes
+
+`func (o *HistoryServiceLevelObjectiveMetrics) HasTimes() bool`
+
+HasTimes returns a boolean if a field has been set.
+
+### SetTimes
+
+`func (o *HistoryServiceLevelObjectiveMetrics) SetTimes(v []float64)`
+
+SetTimes gets a reference to the given []float64 and assigns it to the Times field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -136,7 +136,6 @@ func (o *MonitorOptionsAggregation) SetType(v string) {
 }
 
 func (o MonitorOptionsAggregation) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy

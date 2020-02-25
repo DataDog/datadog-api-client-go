@@ -68,7 +68,6 @@ func (o *OrgResponse) SetOrg(v Org) {
 }
 
 func (o OrgResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Org != nil {
 		toSerialize["org"] = o.Org

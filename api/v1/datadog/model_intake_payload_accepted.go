@@ -68,7 +68,6 @@ func (o *IntakePayloadAccepted) SetStatus(v string) {
 }
 
 func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status

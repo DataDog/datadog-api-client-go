@@ -51,7 +51,6 @@ func (o *APIErrorResponse) SetErrors(v []string) {
 }
 
 func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["errors"] = o.Errors

@@ -14,26 +14,35 @@ import (
 
 // HistoryServiceLevelObjectiveMetrics A `metric` based SLO history response.
 type HistoryServiceLevelObjectiveMetrics struct {
-	Denominator *HistoryServiceLevelObjectiveMetricsSeries `json:"denominator,omitempty"`
+	Denominator HistoryServiceLevelObjectiveMetricsSeries `json:"denominator"`
 	// The aggregated query interval for the series data. It's implicit based on the query time window.
-	Interval *int64 `json:"interval,omitempty"`
+	Interval int64 `json:"interval"`
 	// Optional message if there are specific query issues/warnings.
-	Message   *string                                    `json:"message,omitempty"`
-	Numerator *HistoryServiceLevelObjectiveMetricsSeries `json:"numerator,omitempty"`
+	Message   *string                                   `json:"message,omitempty"`
+	Numerator HistoryServiceLevelObjectiveMetricsSeries `json:"numerator"`
 	// The combined numerator && denominator query CSV.
-	Query *string `json:"query,omitempty"`
+	Query string `json:"query"`
 	// The series result type. This mimics `batch_query` response type
-	ResType *string `json:"res_type,omitempty"`
+	ResType string `json:"res_type"`
 	// The series response version type. This mimics `batch_query` response type
-	RespVersion *int64 `json:"resp_version,omitempty"`
+	RespVersion int64 `json:"resp_version"`
+	// The query timestamps in epoch milliseconds
+	Times []float64 `json:"times"`
 }
 
 // NewHistoryServiceLevelObjectiveMetrics instantiates a new HistoryServiceLevelObjectiveMetrics object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHistoryServiceLevelObjectiveMetrics() *HistoryServiceLevelObjectiveMetrics {
+func NewHistoryServiceLevelObjectiveMetrics(denominator HistoryServiceLevelObjectiveMetricsSeries, interval int64, numerator HistoryServiceLevelObjectiveMetricsSeries, query string, resType string, respVersion int64, times []float64) *HistoryServiceLevelObjectiveMetrics {
 	this := HistoryServiceLevelObjectiveMetrics{}
+	this.Denominator = denominator
+	this.Interval = interval
+	this.Numerator = numerator
+	this.Query = query
+	this.ResType = resType
+	this.RespVersion = respVersion
+	this.Times = times
 	return &this
 }
 
@@ -45,70 +54,34 @@ func NewHistoryServiceLevelObjectiveMetricsWithDefaults() *HistoryServiceLevelOb
 	return &this
 }
 
-// GetDenominator returns the Denominator field value if set, zero value otherwise.
+// GetDenominator returns the Denominator field value
 func (o *HistoryServiceLevelObjectiveMetrics) GetDenominator() HistoryServiceLevelObjectiveMetricsSeries {
-	if o == nil || o.Denominator == nil {
+	if o == nil {
 		var ret HistoryServiceLevelObjectiveMetricsSeries
 		return ret
 	}
-	return *o.Denominator
+
+	return o.Denominator
 }
 
-// GetDenominatorOk returns a tuple with the Denominator field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetDenominatorOk() (HistoryServiceLevelObjectiveMetricsSeries, bool) {
-	if o == nil || o.Denominator == nil {
-		var ret HistoryServiceLevelObjectiveMetricsSeries
-		return ret, false
-	}
-	return *o.Denominator, true
-}
-
-// HasDenominator returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) HasDenominator() bool {
-	if o != nil && o.Denominator != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDenominator gets a reference to the given HistoryServiceLevelObjectiveMetricsSeries and assigns it to the Denominator field.
+// SetDenominator sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetDenominator(v HistoryServiceLevelObjectiveMetricsSeries) {
-	o.Denominator = &v
+	o.Denominator = v
 }
 
-// GetInterval returns the Interval field value if set, zero value otherwise.
+// GetInterval returns the Interval field value
 func (o *HistoryServiceLevelObjectiveMetrics) GetInterval() int64 {
-	if o == nil || o.Interval == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Interval
+
+	return o.Interval
 }
 
-// GetIntervalOk returns a tuple with the Interval field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetIntervalOk() (int64, bool) {
-	if o == nil || o.Interval == nil {
-		var ret int64
-		return ret, false
-	}
-	return *o.Interval, true
-}
-
-// HasInterval returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInterval gets a reference to the given int64 and assigns it to the Interval field.
+// SetInterval sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetInterval(v int64) {
-	o.Interval = &v
+	o.Interval = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -144,161 +117,106 @@ func (o *HistoryServiceLevelObjectiveMetrics) SetMessage(v string) {
 	o.Message = &v
 }
 
-// GetNumerator returns the Numerator field value if set, zero value otherwise.
+// GetNumerator returns the Numerator field value
 func (o *HistoryServiceLevelObjectiveMetrics) GetNumerator() HistoryServiceLevelObjectiveMetricsSeries {
-	if o == nil || o.Numerator == nil {
+	if o == nil {
 		var ret HistoryServiceLevelObjectiveMetricsSeries
 		return ret
 	}
-	return *o.Numerator
+
+	return o.Numerator
 }
 
-// GetNumeratorOk returns a tuple with the Numerator field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetNumeratorOk() (HistoryServiceLevelObjectiveMetricsSeries, bool) {
-	if o == nil || o.Numerator == nil {
-		var ret HistoryServiceLevelObjectiveMetricsSeries
-		return ret, false
-	}
-	return *o.Numerator, true
-}
-
-// HasNumerator returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) HasNumerator() bool {
-	if o != nil && o.Numerator != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNumerator gets a reference to the given HistoryServiceLevelObjectiveMetricsSeries and assigns it to the Numerator field.
+// SetNumerator sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetNumerator(v HistoryServiceLevelObjectiveMetricsSeries) {
-	o.Numerator = &v
+	o.Numerator = v
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise.
+// GetQuery returns the Query field value
 func (o *HistoryServiceLevelObjectiveMetrics) GetQuery() string {
-	if o == nil || o.Query == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Query
+
+	return o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetQueryOk() (string, bool) {
-	if o == nil || o.Query == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Query, true
-}
-
-// HasQuery returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetQuery gets a reference to the given string and assigns it to the Query field.
+// SetQuery sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetQuery(v string) {
-	o.Query = &v
+	o.Query = v
 }
 
-// GetResType returns the ResType field value if set, zero value otherwise.
+// GetResType returns the ResType field value
 func (o *HistoryServiceLevelObjectiveMetrics) GetResType() string {
-	if o == nil || o.ResType == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ResType
+
+	return o.ResType
 }
 
-// GetResTypeOk returns a tuple with the ResType field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetResTypeOk() (string, bool) {
-	if o == nil || o.ResType == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.ResType, true
-}
-
-// HasResType returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) HasResType() bool {
-	if o != nil && o.ResType != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetResType gets a reference to the given string and assigns it to the ResType field.
+// SetResType sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetResType(v string) {
-	o.ResType = &v
+	o.ResType = v
 }
 
-// GetRespVersion returns the RespVersion field value if set, zero value otherwise.
+// GetRespVersion returns the RespVersion field value
 func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersion() int64 {
-	if o == nil || o.RespVersion == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.RespVersion
+
+	return o.RespVersion
 }
 
-// GetRespVersionOk returns a tuple with the RespVersion field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersionOk() (int64, bool) {
-	if o == nil || o.RespVersion == nil {
-		var ret int64
-		return ret, false
-	}
-	return *o.RespVersion, true
-}
-
-// HasRespVersion returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) HasRespVersion() bool {
-	if o != nil && o.RespVersion != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRespVersion gets a reference to the given int64 and assigns it to the RespVersion field.
+// SetRespVersion sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetRespVersion(v int64) {
-	o.RespVersion = &v
+	o.RespVersion = v
+}
+
+// GetTimes returns the Times field value
+func (o *HistoryServiceLevelObjectiveMetrics) GetTimes() []float64 {
+	if o == nil {
+		var ret []float64
+		return ret
+	}
+
+	return o.Times
+}
+
+// SetTimes sets field value
+func (o *HistoryServiceLevelObjectiveMetrics) SetTimes(v []float64) {
+	o.Times = v
 }
 
 func (o HistoryServiceLevelObjectiveMetrics) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
-	if o.Denominator != nil {
+	if true {
 		toSerialize["denominator"] = o.Denominator
 	}
-	if o.Interval != nil {
+	if true {
 		toSerialize["interval"] = o.Interval
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
-	if o.Numerator != nil {
+	if true {
 		toSerialize["numerator"] = o.Numerator
 	}
-	if o.Query != nil {
+	if true {
 		toSerialize["query"] = o.Query
 	}
-	if o.ResType != nil {
+	if true {
 		toSerialize["res_type"] = o.ResType
 	}
-	if o.RespVersion != nil {
+	if true {
 		toSerialize["resp_version"] = o.RespVersion
+	}
+	if true {
+		toSerialize["times"] = o.Times
 	}
 	return json.Marshal(toSerialize)
 }

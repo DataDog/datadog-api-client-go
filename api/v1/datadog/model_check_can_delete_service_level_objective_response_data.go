@@ -69,7 +69,6 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponseData) SetOk(v []string) {
 }
 
 func (o CheckCanDeleteServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Ok != nil {
 		toSerialize["ok"] = o.Ok

@@ -272,7 +272,6 @@ func (o *User) SetVerified(v bool) {
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AccessRole != nil {
 		toSerialize["access_role"] = o.AccessRole

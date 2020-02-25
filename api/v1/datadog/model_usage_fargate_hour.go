@@ -105,7 +105,6 @@ func (o *UsageFargateHour) SetTasksCount(v int64) {
 }
 
 func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour

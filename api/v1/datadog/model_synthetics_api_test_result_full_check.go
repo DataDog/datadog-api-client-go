@@ -51,7 +51,6 @@ func (o *SyntheticsAPITestResultFullCheck) SetConfig(v SyntheticsTestConfig) {
 }
 
 func (o SyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["config"] = o.Config

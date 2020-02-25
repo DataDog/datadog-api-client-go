@@ -103,7 +103,6 @@ func (o *LogsCategoryProcessorCategories) SetName(v string) {
 }
 
 func (o LogsCategoryProcessorCategories) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter

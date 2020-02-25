@@ -105,7 +105,6 @@ func (o *UsageTraceHour) SetIndexedEventsCount(v int64) {
 }
 
 func (o UsageTraceHour) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour

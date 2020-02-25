@@ -53,7 +53,6 @@ func (o *IdpFormData) SetIdpFile(v *os.File) {
 }
 
 func (o IdpFormData) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["idp_file"] = o.IdpFile

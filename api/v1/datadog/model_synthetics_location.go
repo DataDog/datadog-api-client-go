@@ -204,7 +204,6 @@ func (o *SyntheticsLocation) SetRegion(v string) {
 }
 
 func (o SyntheticsLocation) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName

@@ -339,7 +339,6 @@ func (o *LogsRemapper) SetName(v string) {
 }
 
 func (o LogsRemapper) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.OverrideOnConflict != nil {
 		toSerialize["override_on_conflict"] = o.OverrideOnConflict

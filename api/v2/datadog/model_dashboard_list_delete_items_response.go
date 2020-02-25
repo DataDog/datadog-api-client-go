@@ -69,7 +69,6 @@ func (o *DashboardListDeleteItemsResponse) SetDeletedDashboardsFromList(v []Dash
 }
 
 func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DeletedDashboardsFromList != nil {
 		toSerialize["deleted_dashboards_from_list"] = o.DeletedDashboardsFromList

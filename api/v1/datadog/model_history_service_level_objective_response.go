@@ -86,7 +86,6 @@ func (o *HistoryServiceLevelObjectiveResponse) SetErrors(v []HistoryServiceLevel
 }
 
 func (o HistoryServiceLevelObjectiveResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data

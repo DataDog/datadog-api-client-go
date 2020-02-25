@@ -70,7 +70,6 @@ func (o *AWSAccountAndLambdaRequest) SetLambdaArn(v string) {
 }
 
 func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["account_id"] = o.AccountId

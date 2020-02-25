@@ -136,7 +136,6 @@ func (o *SyntheticsDevice) SetWidth(v int64) {
 }
 
 func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["height"] = o.Height

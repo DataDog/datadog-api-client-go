@@ -469,7 +469,6 @@ func (o *ServiceLevelObjective) SetTypeId(v ServiceLevelObjectiveTypeNumeric) {
 }
 
 func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt

@@ -119,7 +119,6 @@ func (o *SyntheticsBrowserError) SetType(v SyntheticsBrowserErrorType) {
 }
 
 func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["description"] = o.Description

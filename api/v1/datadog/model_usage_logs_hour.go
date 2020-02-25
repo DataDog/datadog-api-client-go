@@ -140,7 +140,6 @@ func (o *UsageLogsHour) SetIngestedEventsBytes(v int64) {
 }
 
 func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour

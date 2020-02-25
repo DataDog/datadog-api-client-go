@@ -52,7 +52,6 @@ func (o *LogsPipelinesOrder) SetPipelineIds(v []string) {
 }
 
 func (o LogsPipelinesOrder) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["pipeline_ids"] = o.PipelineIds

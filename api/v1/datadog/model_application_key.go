@@ -136,7 +136,6 @@ func (o *ApplicationKey) SetOwner(v string) {
 }
 
 func (o ApplicationKey) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Hash != nil {
 		toSerialize["hash"] = o.Hash

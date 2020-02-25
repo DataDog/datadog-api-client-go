@@ -238,7 +238,6 @@ func (o *AWSAccount) SetRoleName(v string) {
 }
 
 func (o AWSAccount) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AccessKeyId != nil {
 		toSerialize["access_key_id"] = o.AccessKeyId

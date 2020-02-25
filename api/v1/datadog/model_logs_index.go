@@ -226,7 +226,6 @@ func (o *LogsIndex) SetNumRetentionDays(v int64) {
 }
 
 func (o LogsIndex) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DailyLimit != nil {
 		toSerialize["daily_limit"] = o.DailyLimit

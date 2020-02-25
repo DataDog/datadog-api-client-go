@@ -68,7 +68,6 @@ func (o *UserDisableResponse) SetMessage(v string) {
 }
 
 func (o UserDisableResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message

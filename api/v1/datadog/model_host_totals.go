@@ -102,7 +102,6 @@ func (o *HostTotals) SetTotalUp(v int64) {
 }
 
 func (o HostTotals) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.TotalActive != nil {
 		toSerialize["total_active"] = o.TotalActive

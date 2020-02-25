@@ -136,7 +136,6 @@ func (o *GraphSnapshot) SetSnapshotUrl(v string) {
 }
 
 func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.GraphDef != nil {
 		toSerialize["graph_def"] = o.GraphDef

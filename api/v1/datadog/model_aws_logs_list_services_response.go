@@ -104,7 +104,6 @@ func (o *AWSLogsListServicesResponse) SetLabel(v string) {
 }
 
 func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id

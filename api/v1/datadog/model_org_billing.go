@@ -68,7 +68,6 @@ func (o *OrgBilling) SetType(v string) {
 }
 
 func (o OrgBilling) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

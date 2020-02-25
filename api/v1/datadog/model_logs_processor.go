@@ -18,7 +18,7 @@ type LogsProcessor struct {
 	LogsProcessorInterface interface{ GetType() string }
 }
 
-func (s *LogsProcessor) MarshalJSON() ([]byte, error) {
+func (s LogsProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(s.LogsProcessorInterface)
 }
 

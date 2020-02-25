@@ -68,7 +68,6 @@ func (o *HostMeta) SetNixV(v []string) {
 }
 
 func (o HostMeta) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.NixV != nil {
 		toSerialize["nixV"] = o.NixV

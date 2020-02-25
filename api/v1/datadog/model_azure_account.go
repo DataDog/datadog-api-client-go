@@ -278,7 +278,6 @@ func (o *AzureAccount) SetTenantName(v string) {
 }
 
 func (o AzureAccount) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.ClientId != nil {
 		toSerialize["client_id"] = o.ClientId

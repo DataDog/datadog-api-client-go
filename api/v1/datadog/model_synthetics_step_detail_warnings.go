@@ -68,7 +68,6 @@ func (o *SyntheticsStepDetailWarnings) SetType(v SyntheticsWarningType) {
 }
 
 func (o SyntheticsStepDetailWarnings) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["message"] = o.Message

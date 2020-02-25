@@ -22,7 +22,9 @@ type HistoryServiceLevelObjectiveResponseData struct {
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
 	// the `to` timestamp in epoch seconds
-	ToTs *int64 `json:"to_ts,omitempty"`
+	ToTs   *int64                            `json:"to_ts,omitempty"`
+	Type   *ServiceLevelObjectiveType        `json:"type,omitempty"`
+	TypeId *ServiceLevelObjectiveTypeNumeric `json:"type_id,omitempty"`
 }
 
 // NewHistoryServiceLevelObjectiveResponseData instantiates a new HistoryServiceLevelObjectiveResponseData object
@@ -240,8 +242,73 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *HistoryServiceLevelObjectiveResponseData) GetType() ServiceLevelObjectiveType {
+	if o == nil || o.Type == nil {
+		var ret ServiceLevelObjectiveType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (ServiceLevelObjectiveType, bool) {
+	if o == nil || o.Type == nil {
+		var ret ServiceLevelObjectiveType
+		return ret, false
+	}
+	return *o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *HistoryServiceLevelObjectiveResponseData) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given ServiceLevelObjectiveType and assigns it to the Type field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetType(v ServiceLevelObjectiveType) {
+	o.Type = &v
+}
+
+// GetTypeId returns the TypeId field value if set, zero value otherwise.
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() ServiceLevelObjectiveTypeNumeric {
+	if o == nil || o.TypeId == nil {
+		var ret ServiceLevelObjectiveTypeNumeric
+		return ret
+	}
+	return *o.TypeId
+}
+
+// GetTypeIdOk returns a tuple with the TypeId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (ServiceLevelObjectiveTypeNumeric, bool) {
+	if o == nil || o.TypeId == nil {
+		var ret ServiceLevelObjectiveTypeNumeric
+		return ret, false
+	}
+	return *o.TypeId, true
+}
+
+// HasTypeId returns a boolean if a field has been set.
+func (o *HistoryServiceLevelObjectiveResponseData) HasTypeId() bool {
+	if o != nil && o.TypeId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTypeId gets a reference to the given ServiceLevelObjectiveTypeNumeric and assigns it to the TypeId field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetTypeId(v ServiceLevelObjectiveTypeNumeric) {
+	o.TypeId = &v
+}
+
 func (o HistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.FromTs != nil {
 		toSerialize["from_ts"] = o.FromTs
@@ -260,6 +327,12 @@ func (o HistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) 
 	}
 	if o.ToTs != nil {
 		toSerialize["to_ts"] = o.ToTs
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.TypeId != nil {
+		toSerialize["type_id"] = o.TypeId
 	}
 	return json.Marshal(toSerialize)
 }

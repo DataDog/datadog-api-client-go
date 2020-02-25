@@ -136,7 +136,6 @@ func (o *SyntheticsAssertion) SetType(v SyntheticsAssertionType) {
 }
 
 func (o SyntheticsAssertion) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["operator"] = o.Operator

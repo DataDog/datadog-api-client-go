@@ -612,7 +612,6 @@ func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarnings) {
 }
 
 func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.BrowserErrors != nil {
 		toSerialize["browserErrors"] = o.BrowserErrors

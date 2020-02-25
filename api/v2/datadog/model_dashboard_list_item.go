@@ -419,7 +419,6 @@ func (o *DashboardListItem) SetUrl(v string) {
 }
 
 func (o DashboardListItem) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Author != nil {
 		toSerialize["author"] = o.Author

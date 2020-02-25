@@ -69,7 +69,6 @@ func (o *DeletedMonitor) SetDeletedMonitorId(v int64) {
 }
 
 func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DeletedMonitorId != nil {
 		toSerialize["deleted_monitor_id"] = o.DeletedMonitorId
