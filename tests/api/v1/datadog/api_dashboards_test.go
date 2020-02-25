@@ -788,7 +788,7 @@ func TestDashboardGetAll(t *testing.T) {
 		t.Fatalf("Error getting all dashboards: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.True(t, len(getAllResponse.GetDashboards()) >= 0)
+	assert.True(t, len(getAllResponse.GetDashboards()) >= 1)
 }
 
 func deleteDashboard(dashboardID string) {
