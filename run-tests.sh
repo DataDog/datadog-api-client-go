@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 set -e
 golint ./...
-go test -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
+go test -coverpkg=github.com/DataDog/datadog-api-client-go/api/v1/datadog -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
