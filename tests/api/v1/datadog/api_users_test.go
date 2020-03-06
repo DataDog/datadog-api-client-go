@@ -124,6 +124,23 @@ func TestDisableUser(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 }
 
+
+func TestListUsers(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Assert User Created with proper fields
+	userListResponse, httpresp, err := TESTAPICLIENT.UsersApi.GetAllUsers(TESTAUTH).Execute()
+	if err != nil {
+		t.Fatalf("Error listing Users. Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+	// Just assert the user list isn't empty and contains a user object
+	assert.Assert(t, len(userListResponse.GetUsers()) > 0)
+	assert.Assert(t, userListResponse.GetUsers()[0].GetName() != "")
+}
+
 func disableUser(userID string) {
 	_, httpresp, err := TESTAPICLIENT.UsersApi.DisableUser(TESTAUTH, userID).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
