@@ -1,0 +1,226 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"customer_impact_end":"2020-04-28T23:41:10.873558-04:00","customer_impact_scope":"none","customer_impact_start":"2020-04-28T23:41:10.873558-04:00","customer_impacted":true,"detected":"2020-04-28T23:41:10.873558-04:00","state":"unknown","title":"Test-Incident"},"type":"incidents"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents
+    method: POST
+  response:
+    body: '{"data":{"type":"incidents","id":"aed772e049315b87af67ec3eb46620ea","attributes":{"public_id":101,"title":"Test-Incident","resolved":null,"customer_impact_scope":"none","customer_impact_start":"2020-04-29T03:41:10.873558+00:00","customer_impact_end":"2020-04-29T03:41:10.873558+00:00","customer_impacted":true,"last_modified_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"created":"2020-04-29T03:41:11.105740+00:00","modified":"2020-04-29T03:41:11.105740+00:00","commander":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"state":"unknown","detected":"2020-04-29T03:41:10.873558+00:00","created_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "1456"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:41:11 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:41:11 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"created":"2020-04-29T03:41:11.10574Z","customer_impact_end":"2020-04-29T03:41:10.873558Z","customer_impact_scope":"none","customer_impact_start":"2020-04-29T03:41:10.873558Z","customer_impacted":true,"detected":"2020-04-29T03:41:10.873558Z","modified":"2020-04-29T03:41:11.10574Z","public_id":101,"resolved":null,"state":"unknown","time_to_detect":0,"time_to_internal_response":0,"time_to_repair":0,"title":"Test-Incident-Updated"},"id":"aed772e049315b87af67ec3eb46620ea","relationships":{},"type":"incidents"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - PatchIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents/aed772e049315b87af67ec3eb46620ea
+    method: PATCH
+  response:
+    body: '{"data":{"type":"incidents","id":"aed772e049315b87af67ec3eb46620ea","attributes":{"public_id":101,"title":"Test-Incident-Updated","resolved":null,"customer_impact_scope":"none","customer_impact_start":"2020-04-29T03:41:10.873558+00:00","customer_impact_end":"2020-04-29T03:41:10.873558+00:00","customer_impacted":true,"last_modified_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"created":"2020-04-29T03:41:11.105740+00:00","modified":"2020-04-29T03:41:11.220754+00:00","commander":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"state":"unknown","detected":"2020-04-29T03:41:10.873558+00:00","created_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:41:11 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:41:11 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents/aed772e049315b87af67ec3eb46620ea
+    method: GET
+  response:
+    body: '{"data":{"type":"incidents","id":"aed772e049315b87af67ec3eb46620ea","attributes":{"public_id":101,"title":"Test-Incident-Updated","resolved":null,"customer_impact_scope":"none","customer_impact_start":"2020-04-29T03:41:10.873558+00:00","customer_impact_end":"2020-04-29T03:41:10.873558+00:00","customer_impacted":true,"created":"2020-04-29T03:41:11.105740+00:00","modified":"2020-04-29T03:41:11.220754+00:00","state":"unknown","detected":"2020-04-29T03:41:10.873558+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:41:11 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:41:11 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetIncidents
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents
+    method: GET
+  response:
+    body: '{"meta":{"pagination":{"number":0,"next_number":1000,"size":1000}},"data":[{"type":"incidents","id":"0883d0586afc5fec8d933db73e59565b","attributes":{"public_id":1,"title":"High
+      latency","resolved":null,"customer_impact_scope":null,"customer_impact_start":null,"customer_impact_end":"2020-04-22T19:54:12.401000+00:00","customer_impacted":false,"created":"2020-04-21T15:34:08.627205+00:00","modified":"2020-04-24T16:06:18.864869+00:00","state":"state","detected":"2020-04-14T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":762852,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"a1fe5d493d5b57c18915d614784a5fd1","attributes":{"public_id":2,"title":"Indexer
+      is down","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:12.153274+00:00","modified":"2020-04-21T15:34:12.153274+00:00","state":"state","detected":"2020-04-15T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"5005e7fad18956ec925900cb0ef8471a","attributes":{"public_id":3,"title":"High
+      request rates","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:15.630914+00:00","modified":"2020-04-21T15:34:15.630914+00:00","state":"state","detected":"2020-04-16T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"c5b7d963c07e59f590f6a914630ed171","attributes":{"public_id":4,"title":"Org
+      2 is delayed metrics","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:19.091416+00:00","modified":"2020-04-21T15:34:19.091416+00:00","state":"state","detected":"2020-04-17T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"8e4dd9a910815554844ac4c3a81cf34e","attributes":{"public_id":5,"title":"Some
+      data is missing","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:22.583174+00:00","modified":"2020-04-21T15:34:22.583174+00:00","state":"state","detected":"2020-04-18T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"f534e33ff9bd5d8781f3570c51633a5e","attributes":{"public_id":6,"title":"Some
+      data is missing","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:26.062270+00:00","modified":"2020-04-21T15:34:26.062270+00:00","state":"state","detected":"2020-04-19T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"758a74bc6ce25ae9b839c45fc1515cad","attributes":{"public_id":7,"title":"COVID
+      Tests Delayed","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:29.531990+00:00","modified":"2020-04-21T15:34:29.531990+00:00","state":"state","detected":"2020-04-19T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"4b5239bf563e5e7398c7e4d135b84bb0","attributes":{"public_id":8,"title":"TestIncident1","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:33.017537+00:00","modified":"2020-04-21T15:34:33.017537+00:00","state":"state","detected":"2020-04-12T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"b979a91b922856f98e27bc5210f399f5","attributes":{"public_id":9,"title":"TestIncident2","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:36.520355+00:00","modified":"2020-04-21T15:34:36.520355+00:00","state":"state","detected":"2020-04-12T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"2dafeffa79185a599ed5dbaca5934ee2","attributes":{"public_id":10,"title":"TestIncident3","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:39.999314+00:00","modified":"2020-04-21T15:34:39.999314+00:00","state":"state","detected":"2020-04-12T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"cbbe8cb470b354f6bcc5406cc38dd813","attributes":{"public_id":11,"title":"TestIncident4","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:43.439310+00:00","modified":"2020-04-21T15:34:43.439310+00:00","state":"state","detected":"2020-04-12T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"d8a1d454076a5a91bc81f6313959bf9b","attributes":{"public_id":12,"title":"TestIncident5","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:46.903017+00:00","modified":"2020-04-21T15:34:46.903017+00:00","state":"state","detected":"2020-04-12T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"a4cc1d9ad8a355668cd94c73189f904f","attributes":{"public_id":13,"title":"TestIncident6","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:50.388879+00:00","modified":"2020-04-21T15:34:50.388879+00:00","state":"state","detected":"2020-03-22T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"837579cb4ae857029fe48b894f5b91e6","attributes":{"public_id":14,"title":"TestIncident7","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:53.879801+00:00","modified":"2020-04-21T15:34:53.879801+00:00","state":"state","detected":"2020-03-23T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"dd4abd39249e57bf984c14ba030dbb4e","attributes":{"public_id":15,"title":"TestIncident8","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:34:57.335214+00:00","modified":"2020-04-21T15:34:57.335214+00:00","state":"state","detected":"2020-03-24T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"a0ba4153e8e05fe0bae0253ef3531df3","attributes":{"public_id":16,"title":"TestIncident9","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:35:00.892735+00:00","modified":"2020-04-21T15:35:00.892735+00:00","state":"state","detected":"2020-03-25T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"398b8e355a12549dbd96db0415192f78","attributes":{"public_id":17,"title":"TestIncident10","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:35:04.665519+00:00","modified":"2020-04-21T15:35:04.665519+00:00","state":"state","detected":"2020-03-26T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"160c8c2d385b54d4b131051cddbb1580","attributes":{"public_id":18,"title":"Slack
+      is down","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:35:08.116083+00:00","modified":"2020-04-21T15:35:08.116083+00:00","state":"state","detected":"2020-03-26T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"22381971bde0545b850f78c45fd0c8f6","attributes":{"public_id":19,"title":"Pager
+      Duty is down","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:35:11.607253+00:00","modified":"2020-04-21T15:35:11.607253+00:00","state":"state","detected":"2020-03-26T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}},{"type":"incidents","id":"bb53cba743e755ff82f4bfa81ff81f8d","attributes":{"public_id":20,"title":"Earth
+      is closed","resolved":null,"customer_impact_scope":"none","customer_impact_start":null,"customer_impact_end":null,"customer_impacted":true,"created":"2020-04-21T15:35:15.131654+00:00","modified":"2020-04-21T15:35:15.131654+00:00","state":"state","detected":"2020-03-26T00:00:00+00:00","creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:41:11 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:41:11 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents/aed772e049315b87af67ec3eb46620ea
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Wed, 29 Apr 2020 03:41:11 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:41:11 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""

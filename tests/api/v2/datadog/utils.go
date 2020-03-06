@@ -9,9 +9,11 @@ package test
 import (
 	"context"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -52,6 +54,7 @@ func WithTestAuth(ctx context.Context) context.Context {
 // NewConfiguration return configuration with known options.
 func NewConfiguration() *datadog.Configuration {
 	config := datadog.NewConfiguration()
+	config.Host = os.Getenv("DD_TEST_HOST")
 	config.Debug = os.Getenv("DEBUG") == "true"
 	return config
 }
@@ -107,4 +110,21 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 		r.Stop()
 		finish()
 	}
+}
+
+const charset = "abcdefghijklmnopqrstuvwxyz" +
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+var seededRand = rand.New(rand.NewSource(time.Now().UnixNano()))
+
+func StringWithCharset(length int, charset string) string {
+	b := make([]byte, length)
+	for i := range b {
+		b[i] = charset[seededRand.Intn(len(charset))]
+	}
+	return string(b)
+}
+
+func RandomString(length int) string {
+	return StringWithCharset(length, charset)
 }

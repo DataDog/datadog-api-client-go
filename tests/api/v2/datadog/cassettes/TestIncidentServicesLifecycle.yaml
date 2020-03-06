@@ -1,0 +1,291 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"customer_impacted":false,"state":"unknown","title":"Test-Incident"},"type":"incidents"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents
+    method: POST
+  response:
+    body: '{"data":{"type":"incidents","id":"7b3263b70a8e55c48a7f32f4602c62fe","attributes":{"public_id":98,"title":"Test-Incident","resolved":null,"customer_impact_scope":null,"customer_impact_start":null,"customer_impact_end":null,"customer_impacted":false,"last_modified_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"created":"2020-04-29T03:40:38.130632+00:00","modified":"2020-04-29T03:40:38.130632+00:00","commander":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"state":"unknown","detected":null,"created_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"uuid":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","handle":"charlie.monzillo@datadoghq.com","email":"charlie.monzillo@datadoghq.com","name":"Charlie
+      Monzillo"}}},"creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0},"relationships":{"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "1364"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:40:38 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:40:38 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"name":"createTestService-hja72uJZuHE1GSkP"},"type":"services"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateService
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/services
+    method: POST
+  response:
+    body: '{"included":[{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","attributes":{"name":"Charlie
+      Monzillo","handle":"charlie.monzillo@datadoghq.com","created_at":"2020-01-01T23:49:56.489549+00:00","email":"charlie.monzillo@datadoghq.com","icon":"https://secure.gravatar.com/avatar/c4d201d883e8364745de9d89b4b9dced?s=48&d=retro","title":null,"verified":true,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"bd4276fd-000e-11ea-a34b-3f3c8bba65b8"}}}}],"data":{"type":"services","id":"2201451f342c5142b17a52bfc9701e6a","attributes":{"name":"createTestService-hja72uJZuHE1GSkP","created":"2020-04-29T03:40:39.075867+00:00","modified":"2020-04-29T03:40:39.075867+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8"}},"created_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "928"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:40:39 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:40:39 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"created":"2020-04-29T03:40:39.075867Z","modified":"2020-04-29T03:40:39.075867Z","name":"createTestService-hja72uJZuHE1GSkP"},"id":"2201451f342c5142b17a52bfc9701e6a","relationships":{"created_by":{"data":{"id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","type":"users"}},"last_modified_by":{"data":{"id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8","type":"users"}}},"type":"services"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - AddServiceToIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents/7b3263b70a8e55c48a7f32f4602c62fe/relationships/services
+    method: POST
+  response:
+    body: '{"data":[{"type":"services","id":"2201451f342c5142b17a52bfc9701e6a","attributes":{"name":"createTestService-hja72uJZuHE1GSkP","created":"2020-04-29T03:40:39.075867+00:00","modified":"2020-04-29T03:40:39.075867+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8"}},"created_by":{"data":{"type":"users","id":"69f941ce-2cf1-11ea-ad29-43978bf0f3a8"}}}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "410"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:40:39 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:40:39 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetServicesForIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents/7b3263b70a8e55c48a7f32f4602c62fe/relationships/services
+    method: GET
+  response:
+    body: '{"meta":{"pagination":{"number":0,"next_number":1000,"size":1000}},"data":[{"type":"services","id":"2201451f342c5142b17a52bfc9701e6a","attributes":{"name":"createTestService-hja72uJZuHE1GSkP","created":"2020-04-29T03:40:39.075867+00:00","modified":"2020-04-29T03:40:39.075867+00:00"}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Apr 2020 03:40:39 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:40:39 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - RemoveServiceFromIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents/7b3263b70a8e55c48a7f32f4602c62fe/relationships/services/2201451f342c5142b17a52bfc9701e6a
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Wed, 29 Apr 2020 03:40:39 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:40:39 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteService
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/services/2201451f342c5142b17a52bfc9701e6a
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Wed, 29 Apr 2020 03:40:39 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:40:39 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14.2; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v2/incidents/7b3263b70a8e55c48a7f32f4602c62fe
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Wed, 29 Apr 2020 03:40:39 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 03:40:39 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2445362"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""

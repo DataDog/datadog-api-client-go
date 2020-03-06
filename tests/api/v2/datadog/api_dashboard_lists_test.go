@@ -12,7 +12,6 @@ import (
 	"os"
 	"testing"
 
-	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
@@ -26,14 +25,14 @@ const (
 var (
 	dashboardListID int64
 	testAuthV1      context.Context
-	testAPIClientV1 *datadogV1.APIClient
+	testAPIClientV1 *datadog.APIClient
 )
 
 func initializeClientV1(ctx context.Context) {
 	testAuthV1 = context.WithValue(
 		context.Background(),
-		datadogV1.ContextAPIKeys,
-		map[string]datadogV1.APIKey{
+		datadog.ContextAPIKeys,
+		map[string]datadog.APIKey{
 			"apiKeyAuth": {
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
 			},
@@ -42,19 +41,19 @@ func initializeClientV1(ctx context.Context) {
 			},
 		},
 	)
-	config := datadogV1.NewConfiguration()
+	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
 	config.HTTPClient = Client(ctx).GetConfig().HTTPClient
-	testAPIClientV1 = datadogV1.NewAPIClient(config)
+	testAPIClientV1 = datadog.NewAPIClient(config)
 }
 
 func createDashboardList(ctx context.Context) error {
 	initializeClientV1(ctx)
 	res, httpresp, err := testAPIClientV1.DashboardListsApi.CreateDashboardList(testAuthV1).
-		Body(datadogV1.DashboardList{Name: fmt.Sprintf("go-client-test-v2-%d", tests.ClockFromContext(ctx).Now().Unix())}).
+		Body(datadog.DashboardList{Name: fmt.Sprintf("go-client-test-v2-%d", tests.ClockFromContext(ctx).Now().Unix())}).
 		Execute()
 	if err != nil || httpresp.StatusCode != 200 {
-		return fmt.Errorf("error creating dashboard list: %v", err.(datadogV1.GenericOpenAPIError).Body())
+		return fmt.Errorf("error creating dashboard list: %v", err.(datadog.GenericOpenAPIError).Body())
 	}
 	dashboardListID = res.GetId()
 	return nil
