@@ -21,8 +21,10 @@ func TestGetGraphSnapshot(t *testing.T) {
 	end := start + 24*60*60
 	graphDef := `{"requests": [{"q": "system.load.1{*}"}]}`
 	metricQuery := "system.load.1{*}"
+	eventQuery := "successful builds"
 
-	snapshot, httpresp, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).Start(start).End(end).Execute()
+	// Try to create a snapshot with a metric_query (and an optional event_query)
+	snapshot, httpresp, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).Start(start).End(end).EventQuery(eventQuery).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Snapshot: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -31,6 +33,16 @@ func TestGetGraphSnapshot(t *testing.T) {
 	assert.Equal(t, snapshot.GetGraphDef(), graphDef)
 	assert.Equal(t, snapshot.GetMetricQuery(), metricQuery)
 	assert.Assert(t, snapshot.GetSnapshotUrl() != "")
+
+	// Try to create a snapshot with a graph_def
+	snapshot, httpresp, err = TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).GraphDef(graphDef).Start(start).End(end).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Snapshot: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, snapshot.GetGraphDef(), graphDef)
+	assert.Assert(t, snapshot.GetSnapshotUrl() != "")
 }
 
 func TestGetGraphSnapshotRequiredParams(t *testing.T) {
@@ -38,9 +50,7 @@ func TestGetGraphSnapshotRequiredParams(t *testing.T) {
 	var end int64 = 2
 	metricQuery := "query"
 
-	_, _, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).Start(start).End(end).Execute()
-	assert.ErrorContains(t, err, "metricQuery is required")
-	_, _, err = TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).End(end).Execute()
+	_, _, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).End(end).Execute()
 	assert.ErrorContains(t, err, "start is required")
 	_, _, err = TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).Start(start).Execute()
 	assert.ErrorContains(t, err, "end is required")
