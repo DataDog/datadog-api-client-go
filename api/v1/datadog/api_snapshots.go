@@ -26,17 +26,12 @@ type SnapshotsApiService service
 type apiGetGraphSnapshotRequest struct {
 	ctx         _context.Context
 	apiService  *SnapshotsApiService
-	metricQuery *string
 	start       *int64
 	end         *int64
+	metricQuery *string
 	eventQuery  *string
 	graphDef    *string
 	title       *string
-}
-
-func (r apiGetGraphSnapshotRequest) MetricQuery(metricQuery string) apiGetGraphSnapshotRequest {
-	r.metricQuery = &metricQuery
-	return r
 }
 
 func (r apiGetGraphSnapshotRequest) Start(start int64) apiGetGraphSnapshotRequest {
@@ -46,6 +41,11 @@ func (r apiGetGraphSnapshotRequest) Start(start int64) apiGetGraphSnapshotReques
 
 func (r apiGetGraphSnapshotRequest) End(end int64) apiGetGraphSnapshotRequest {
 	r.end = &end
+	return r
+}
+
+func (r apiGetGraphSnapshotRequest) MetricQuery(metricQuery string) apiGetGraphSnapshotRequest {
+	r.metricQuery = &metricQuery
 	return r
 }
 
@@ -69,7 +69,7 @@ GetGraphSnapshot Take graph snapshots
 ### Overview
 Take graph snapshots
 ### Arguments
-* **`metric_query`** [*required*]: The metric query.
+* **`metric_query`** [*optional*]: The metric query. One of metric_query or graph_def is required
 * **`start`** [*required*]: The POSIX timestamp of the start of the query.
 * **`end`** [*required*]: The POSIX timestamp of the end of the query.
 * **`event_query`** [*optional*, *default* = **None**]: A query that adds event bands to the graph.
@@ -115,10 +115,6 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.metricQuery == nil {
-		return localVarReturnValue, nil, reportError("metricQuery is required and must be specified")
-	}
-
 	if r.start == nil {
 		return localVarReturnValue, nil, reportError("start is required and must be specified")
 	}
@@ -127,7 +123,9 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 		return localVarReturnValue, nil, reportError("end is required and must be specified")
 	}
 
-	localVarQueryParams.Add("metric_query", parameterToString(*r.metricQuery, ""))
+	if r.metricQuery != nil {
+		localVarQueryParams.Add("metric_query", parameterToString(*r.metricQuery, ""))
+	}
 	localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	localVarQueryParams.Add("end", parameterToString(*r.end, ""))
 	if r.eventQuery != nil {
