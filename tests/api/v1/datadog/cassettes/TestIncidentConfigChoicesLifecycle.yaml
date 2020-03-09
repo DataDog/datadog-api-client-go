@@ -1,0 +1,243 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-ConfigField-Gen-1","table_id":0,"type":1},"type":"field"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/incidents/config/fields
+    method: POST
+  response:
+    body: '{"data":{"type":"field","id":"1480","attributes":{"name":"Test-ConfigField-Gen-1","default_choice_id":null,"table_id":0,"type":1,"created":"2020-03-09T16:29:25.724881+00:00","modified":"2020-03-09T16:29:25.724881+00:00","deleted":null},"relationships":{"created_by":{"data":{"type":"users","id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5"}},"last_modified_by":{"data":{"type":"users","id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "427"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2020 16:29:30 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - gunicorn/19.7.1
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Mon, 16-Mar-2020 16:29:25 GMT;
+        HttpOnly
+      X-Dd-Version:
+      - "35.2248986"
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Choice-Name","value":"Test-Choice-Value"},"type":"choice"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/incidents/config/fields/1480/relationships/choices
+    method: POST
+  response:
+    body: '{"data":{"type":"choice","id":"6814","attributes":{"name":"Test-Choice-Name","value":"Test-Choice-Value","user_defined_field_id":"1480","created":"2020-03-09T16:29:30.818176+00:00","modified":"2020-03-09T16:29:30.818176+00:00","deleted":null},"relationships":{"created_by":{"data":{"type":"users","id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5"}},"last_modified_by":{"data":{"type":"users","id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "434"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2020 16:29:35 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - gunicorn/19.7.1
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Mon, 16-Mar-2020 16:29:30 GMT;
+        HttpOnly
+      X-Dd-Version:
+      - "35.2248986"
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"created":"2020-03-09T16:29:30.818176Z","modified":"2020-03-09T16:29:30.818176Z","name":"Test-ConfigField-Updated","user_defined_field_id":"1480","value":"Test-ConfigField-Updated"},"id":"6814","relationships":{"created_by":{"data":{"id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5","type":"users"}},"last_modified_by":{"data":{"id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5","type":"users"}}},"type":"choice"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/incidents/config/fields/1480/relationships/choices/6814
+    method: PATCH
+  response:
+    body: '{"data":{"type":"choice","id":"6814","attributes":{"name":"Test-ConfigField-Updated","value":"Test-ConfigField-Updated","user_defined_field_id":"1480","created":"2020-03-09T16:29:30.818176+00:00","modified":"2020-03-09T16:29:35.909416+00:00","deleted":null},"relationships":{"created_by":{"data":{"type":"users","id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5"}},"last_modified_by":{"data":{"type":"users","id":"22974ab2-5f8f-11ea-94dc-67a00592a7c5"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "449"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2020 16:29:40 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - gunicorn/19.7.1
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Mon, 16-Mar-2020 16:29:35 GMT;
+        HttpOnly
+      X-Dd-Version:
+      - "35.2248986"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/incidents/config/fields/1480/relationships/choices/6814
+    method: GET
+  response:
+    body: '{"data":{"type":"choice","id":"6814","attributes":{"name":"Test-ConfigField-Updated","value":"Test-ConfigField-Updated","user_defined_field_id":"1480","created":"2020-03-09T16:29:30.818176+00:00","modified":"2020-03-09T16:29:35.909416+00:00","deleted":null},"relationships":{"created_by":{"data":{"type":"users","id":"7"}},"last_modified_by":{"data":{"type":"users","id":"7"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "379"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2020 16:29:41 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - gunicorn/19.7.1
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Mon, 16-Mar-2020 16:29:40 GMT;
+        HttpOnly
+      X-Dd-Version:
+      - "35.2248986"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/incidents/config/fields/1480/relationships/choices
+    method: GET
+  response:
+    body: '{"meta":{"pagination":{"limit":1000,"next_offset":1000,"offset":0}},"data":[{"type":"choice","id":"6814","attributes":{"name":"Test-ConfigField-Updated","value":"Test-ConfigField-Updated","user_defined_field_id":"1480","created":"2020-03-09T16:29:30.818176+00:00","modified":"2020-03-09T16:29:35.909416+00:00","deleted":null},"relationships":{"created_by":{"data":{"type":"users","id":null}},"last_modified_by":{"data":{"type":"users","id":null}}}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "450"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2020 16:29:41 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - gunicorn/19.7.1
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Mon, 16-Mar-2020 16:29:41 GMT;
+        HttpOnly
+      X-Dd-Version:
+      - "35.2248986"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/incidents/config/fields/1480/relationships/choices/6814
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Mon, 09 Mar 2020 16:29:46 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - gunicorn/19.7.1
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Mon, 16-Mar-2020 16:29:41 GMT;
+        HttpOnly
+      X-Dd-Version:
+      - "35.2248986"
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/incidents/config/fields/1480
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Mon, 09 Mar 2020 16:29:51 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - gunicorn/19.7.1
+      Set-Cookie:
+      - DD-PSHARD=0; Max-Age=604800; Path=/; expires=Mon, 16-Mar-2020 16:29:46 GMT;
+        HttpOnly
+      X-Dd-Version:
+      - "35.2248986"
+    status: 204 No Content
+    code: 204
+    duration: ""
