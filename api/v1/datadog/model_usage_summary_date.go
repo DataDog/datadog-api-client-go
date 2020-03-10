@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // UsageSummaryDate struct for UsageSummaryDate
@@ -33,7 +34,7 @@ type UsageSummaryDate struct {
 	// Shows the average number of distinct custom metrics over all hours in the current date for all orgs.
 	CustomTsAvg *int64 `json:"custom_ts_avg,omitempty"`
 	// The date for the usage.
-	Date *string `json:"date,omitempty"`
+	Date *time.Time `json:"date,omitempty"`
 	// Shows the high watermark of all Fargate tasks over all hours in the current date for all orgs.
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the average of all Fargate tasks over all hours in the current date for all orgs.
@@ -374,9 +375,9 @@ func (o *UsageSummaryDate) SetCustomTsAvg(v int64) {
 }
 
 // GetDate returns the Date field value if set, zero value otherwise.
-func (o *UsageSummaryDate) GetDate() string {
+func (o *UsageSummaryDate) GetDate() time.Time {
 	if o == nil || o.Date == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.Date
@@ -384,9 +385,9 @@ func (o *UsageSummaryDate) GetDate() string {
 
 // GetDateOk returns a tuple with the Date field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryDate) GetDateOk() (string, bool) {
+func (o *UsageSummaryDate) GetDateOk() (time.Time, bool) {
 	if o == nil || o.Date == nil {
-		var ret string
+		var ret time.Time
 		return ret, false
 	}
 	return *o.Date, true
@@ -401,8 +402,8 @@ func (o *UsageSummaryDate) HasDate() bool {
 	return false
 }
 
-// SetDate gets a reference to the given string and assigns it to the Date field.
-func (o *UsageSummaryDate) SetDate(v string) {
+// SetDate gets a reference to the given time.Time and assigns it to the Date field.
+func (o *UsageSummaryDate) SetDate(v time.Time) {
 	o.Date = &v
 }
 

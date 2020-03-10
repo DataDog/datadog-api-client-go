@@ -36,7 +36,7 @@ type UsageSummaryResponse struct {
 	// Shows the average number of distinct custom metrics over all hours in the current month(s) for all orgs.
 	CustomTsSum *int64 `json:"custom_ts_sum,omitempty"`
 	// Shows the last date of usage in the current month(s) for all orgs.
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate *time.Time `json:"end_date,omitempty"`
 	// Shows the average of all Fargate tasks over all hours in the current month(s) for all orgs.
 	FargateTasksCountAvgSum *int64 `json:"fargate_tasks_count_avg_sum,omitempty"`
 	// Shows the high watermark of all Fargate tasks over all hours in the current month(s) for all orgs.
@@ -56,7 +56,7 @@ type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all orgs.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
 	// Shows the first date of usage in the current month(s) for all orgs.
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate *time.Time `json:"start_date,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all orgs.
 	SyntheticsBrowserCheckCallsCountAggSum *int64 `json:"synthetics_browser_check_calls_count_agg_sum,omitempty"`
 	// Shows the sum of all Synthetic API tests over all hours in the current month(s) for all orgs.
@@ -414,9 +414,9 @@ func (o *UsageSummaryResponse) SetCustomTsSum(v int64) {
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *UsageSummaryResponse) GetEndDate() string {
+func (o *UsageSummaryResponse) GetEndDate() time.Time {
 	if o == nil || o.EndDate == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.EndDate
@@ -424,9 +424,9 @@ func (o *UsageSummaryResponse) GetEndDate() string {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetEndDateOk() (string, bool) {
+func (o *UsageSummaryResponse) GetEndDateOk() (time.Time, bool) {
 	if o == nil || o.EndDate == nil {
-		var ret string
+		var ret time.Time
 		return ret, false
 	}
 	return *o.EndDate, true
@@ -441,8 +441,8 @@ func (o *UsageSummaryResponse) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
-func (o *UsageSummaryResponse) SetEndDate(v string) {
+// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
+func (o *UsageSummaryResponse) SetEndDate(v time.Time) {
 	o.EndDate = &v
 }
 
@@ -744,9 +744,9 @@ func (o *UsageSummaryResponse) SetNpmHostTop99pSum(v int64) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *UsageSummaryResponse) GetStartDate() string {
+func (o *UsageSummaryResponse) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.StartDate
@@ -754,9 +754,9 @@ func (o *UsageSummaryResponse) GetStartDate() string {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetStartDateOk() (string, bool) {
+func (o *UsageSummaryResponse) GetStartDateOk() (time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret string
+		var ret time.Time
 		return ret, false
 	}
 	return *o.StartDate, true
@@ -771,8 +771,8 @@ func (o *UsageSummaryResponse) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
-func (o *UsageSummaryResponse) SetStartDate(v string) {
+// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+func (o *UsageSummaryResponse) SetStartDate(v time.Time) {
 	o.StartDate = &v
 }
 

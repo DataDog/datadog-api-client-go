@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for all orgs. | [optional] 
 **ContainerHwm** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current date for all orgs. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for all orgs. | [optional] 
-**Date** | Pointer to **string** | The date for the usage. | [optional] 
+**Date** | Pointer to [**time.Time**](time.Time.md) | The date for the usage. | [optional] 
 **FargateTasksCountAvg** | Pointer to **int64** | Shows the high watermark of all Fargate tasks over all hours in the current date for all orgs. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current date for all orgs. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for all orgs. | [optional] 
@@ -273,13 +273,13 @@ SetCustomTsAvg gets a reference to the given int64 and assigns it to the CustomT
 
 ### GetDate
 
-`func (o *UsageSummaryDate) GetDate() string`
+`func (o *UsageSummaryDate) GetDate() time.Time`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *UsageSummaryDate) GetDateOk() (string, bool)`
+`func (o *UsageSummaryDate) GetDateOk() (time.Time, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -292,9 +292,9 @@ HasDate returns a boolean if a field has been set.
 
 ### SetDate
 
-`func (o *UsageSummaryDate) SetDate(v string)`
+`func (o *UsageSummaryDate) SetDate(v time.Time)`
 
-SetDate gets a reference to the given string and assigns it to the Date field.
+SetDate gets a reference to the given time.Time and assigns it to the Date field.
 
 ### GetFargateTasksCountAvg
 

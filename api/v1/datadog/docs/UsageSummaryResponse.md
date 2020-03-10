@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **ContainerAvgSum** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current month(s) for all orgs. | [optional] 
 **ContainerHwmSum** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current month(s) for all orgs. | [optional] 
 **CustomTsSum** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current month(s) for all orgs. | [optional] 
-**EndDate** | Pointer to **string** | Shows the last date of usage in the current month(s) for all orgs. | [optional] 
+**EndDate** | Pointer to [**time.Time**](time.Time.md) | Shows the last date of usage in the current month(s) for all orgs. | [optional] 
 **FargateTasksCountAvgSum** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current month(s) for all orgs. | [optional] 
 **FargateTasksCountHwmSum** | Pointer to **int64** | Shows the high watermark of all Fargate tasks over all hours in the current month(s) for all orgs. | [optional] 
 **GcpHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current month(s) for all orgs. | [optional] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current month(s) for all orgs for which all usages were calculated. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current month(s) for all orgs. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all orgs. | [optional] 
-**StartDate** | Pointer to **string** | Shows the first date of usage in the current month(s) for all orgs. | [optional] 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all orgs. | [optional] 
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all orgs. | [optional] 
 **SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current month(s) for all orgs. | [optional] 
 **TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current month(s) for all orgs. | [optional] 
@@ -301,13 +301,13 @@ SetCustomTsSum gets a reference to the given int64 and assigns it to the CustomT
 
 ### GetEndDate
 
-`func (o *UsageSummaryResponse) GetEndDate() string`
+`func (o *UsageSummaryResponse) GetEndDate() time.Time`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *UsageSummaryResponse) GetEndDateOk() (string, bool)`
+`func (o *UsageSummaryResponse) GetEndDateOk() (time.Time, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -320,9 +320,9 @@ HasEndDate returns a boolean if a field has been set.
 
 ### SetEndDate
 
-`func (o *UsageSummaryResponse) SetEndDate(v string)`
+`func (o *UsageSummaryResponse) SetEndDate(v time.Time)`
 
-SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
 
 ### GetFargateTasksCountAvgSum
 
@@ -551,13 +551,13 @@ SetNpmHostTop99pSum gets a reference to the given int64 and assigns it to the Np
 
 ### GetStartDate
 
-`func (o *UsageSummaryResponse) GetStartDate() string`
+`func (o *UsageSummaryResponse) GetStartDate() time.Time`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *UsageSummaryResponse) GetStartDateOk() (string, bool)`
+`func (o *UsageSummaryResponse) GetStartDateOk() (time.Time, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -570,9 +570,9 @@ HasStartDate returns a boolean if a field has been set.
 
 ### SetStartDate
 
-`func (o *UsageSummaryResponse) SetStartDate(v string)`
+`func (o *UsageSummaryResponse) SetStartDate(v time.Time)`
 
-SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 
 ### GetSyntheticsBrowserCheckCallsCountAggSum
 
