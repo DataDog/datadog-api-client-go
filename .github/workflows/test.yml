@@ -24,7 +24,5 @@ jobs:
       uses: actions/checkout@v2
     - name: Install dependencies
       run: ./get-test-deps.sh
-    - name: Lint
-      run: golint ./...
     - name: Test
       run: go test -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
