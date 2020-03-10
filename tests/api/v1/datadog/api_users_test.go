@@ -126,6 +126,10 @@ func TestDisableUser(t *testing.T) {
 
 
 func TestListUsers(t *testing.T) {
+	if !tests.IsRecording() {
+		t.Skip("This test case does not support reply from recording")
+	}
+
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
