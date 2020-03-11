@@ -26,7 +26,8 @@ jobs:
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
         RECORD: "true"
     - script: |
-        bash <(curl -s https://codecov.io/bash) -F integration
+        bash <(curl -s https://codecov.io/bash) -F integration -v
+ 
       displayName: Upload to codecov.io
       env:
         CODECOV_TOKEN: $(codecovToken)
