@@ -70,7 +70,6 @@ func (o *PagerDutyService) SetServiceName(v string) {
 }
 
 func (o PagerDutyService) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["service_key"] = o.ServiceKey

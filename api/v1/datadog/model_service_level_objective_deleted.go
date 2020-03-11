@@ -52,7 +52,6 @@ func (o *ServiceLevelObjectiveDeleted) SetData(v []string) {
 }
 
 func (o ServiceLevelObjectiveDeleted) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data

@@ -87,7 +87,6 @@ func (o *DashboardListItems) SetTotal(v int64) {
 }
 
 func (o DashboardListItems) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["dashboards"] = o.Dashboards

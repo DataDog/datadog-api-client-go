@@ -68,7 +68,6 @@ func (o *UsageSyntheticsResponse) SetUsage(v []UsageSyntheticsHour) {
 }
 
 func (o UsageSyntheticsResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage

@@ -105,7 +105,6 @@ func (o *UsageSyntheticsHour) SetHour(v time.Time) {
 }
 
 func (o UsageSyntheticsHour) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.CheckCallsCount != nil {
 		toSerialize["check_calls_count"] = o.CheckCallsCount

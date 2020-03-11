@@ -69,7 +69,6 @@ func (o *DashboardListListResponse) SetDashboardLists(v []DashboardList) {
 }
 
 func (o DashboardListListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.DashboardLists != nil {
 		toSerialize["dashboard_lists"] = o.DashboardLists

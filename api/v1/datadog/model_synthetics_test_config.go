@@ -102,7 +102,6 @@ func (o *SyntheticsTestConfig) SetVariables(v []SyntheticsBrowserVariable) {
 }
 
 func (o SyntheticsTestConfig) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["assertions"] = o.Assertions

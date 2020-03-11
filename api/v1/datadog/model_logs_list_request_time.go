@@ -106,7 +106,6 @@ func (o *LogsListRequestTime) SetTo(v time.Time) {
 }
 
 func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["from"] = o.From

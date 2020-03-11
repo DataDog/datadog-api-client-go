@@ -374,7 +374,6 @@ func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSaml) {
 }
 
 func (o OrgSettings) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.PrivateWidgetShare != nil {
 		toSerialize["private_widget_share"] = o.PrivateWidgetShare

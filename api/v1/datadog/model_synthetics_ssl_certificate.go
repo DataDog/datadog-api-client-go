@@ -443,7 +443,6 @@ func (o *SyntheticsSSLCertificate) SetValidTo(v time.Time) {
 }
 
 func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Cipher != nil {
 		toSerialize["cipher"] = o.Cipher

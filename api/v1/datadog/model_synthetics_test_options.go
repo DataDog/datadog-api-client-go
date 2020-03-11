@@ -238,7 +238,6 @@ func (o *SyntheticsTestOptions) SetTickEvery(v SyntheticsTickInterval) {
 }
 
 func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AcceptSelfSigned != nil {
 		toSerialize["accept_self_signed"] = o.AcceptSelfSigned

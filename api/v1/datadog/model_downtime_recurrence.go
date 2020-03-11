@@ -204,7 +204,6 @@ func (o *DowntimeRecurrence) SetWeekDays(v []string) {
 }
 
 func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Period != nil {
 		toSerialize["period"] = o.Period

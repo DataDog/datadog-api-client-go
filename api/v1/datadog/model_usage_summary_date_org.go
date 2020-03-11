@@ -838,7 +838,6 @@ func (o *UsageSummaryDateOrg) SetTraceSearchIndexedEventsCountSum(v int64) {
 }
 
 func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99p != nil {
 		toSerialize["agent_host_top99p"] = o.AgentHostTop99p

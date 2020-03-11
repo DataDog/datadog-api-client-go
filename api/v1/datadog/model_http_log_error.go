@@ -68,7 +68,6 @@ func (o *HTTPLogError) SetMessage(v string) {
 }
 
 func (o HTTPLogError) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["code"] = o.Code

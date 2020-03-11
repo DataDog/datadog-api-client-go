@@ -419,7 +419,6 @@ func (o *MetricsQueryResponseSeries) SetUnit(v []MetricsQueryResponseUnit) {
 }
 
 func (o MetricsQueryResponseSeries) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Aggr != nil {
 		toSerialize["aggr"] = o.Aggr

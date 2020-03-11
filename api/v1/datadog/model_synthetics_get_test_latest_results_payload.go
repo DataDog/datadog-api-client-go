@@ -102,7 +102,6 @@ func (o *SyntheticsGetTestLatestResultsPayload) SetToTs(v float64) {
 }
 
 func (o SyntheticsGetTestLatestResultsPayload) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["from_ts"] = o.FromTs

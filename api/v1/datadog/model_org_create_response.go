@@ -170,7 +170,6 @@ func (o *OrgCreateResponse) SetUser(v User) {
 }
 
 func (o OrgCreateResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.ApiKey != nil {
 		toSerialize["api_key"] = o.ApiKey

@@ -244,7 +244,6 @@ func (o *HistoryServiceLevelObjectiveOverall) SetUptime(v float64) {
 }
 
 func (o HistoryServiceLevelObjectiveOverall) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.History != nil {
 		toSerialize["history"] = o.History

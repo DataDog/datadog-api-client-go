@@ -222,7 +222,6 @@ func (o *LogsStringBuilderProcessor) SetName(v string) {
 }
 
 func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.IsReplaceMissing != nil {
 		toSerialize["is_replace_missing"] = o.IsReplaceMissing

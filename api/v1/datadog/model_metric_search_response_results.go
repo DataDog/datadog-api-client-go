@@ -69,7 +69,6 @@ func (o *MetricSearchResponseResults) SetMetrics(v []string) {
 }
 
 func (o MetricSearchResponseResults) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Metrics != nil {
 		toSerialize["metrics"] = o.Metrics

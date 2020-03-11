@@ -212,7 +212,6 @@ func (o *Series) SetType(v string) {
 }
 
 func (o Series) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Host != nil {
 		toSerialize["host"] = o.Host

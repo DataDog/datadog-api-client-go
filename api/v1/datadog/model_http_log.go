@@ -170,7 +170,6 @@ func (o *HTTPLog) SetMessage(v string) {
 }
 
 func (o HTTPLog) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Ddsource != nil {
 		toSerialize["ddsource"] = o.Ddsource

@@ -119,7 +119,6 @@ func (o *LogsExclusion) SetName(v string) {
 }
 
 func (o LogsExclusion) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter

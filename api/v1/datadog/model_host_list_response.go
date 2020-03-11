@@ -136,7 +136,6 @@ func (o *HostListResponse) SetTotalReturned(v int64) {
 }
 
 func (o HostListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.HostList != nil {
 		toSerialize["host_list"] = o.HostList

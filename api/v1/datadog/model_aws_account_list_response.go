@@ -68,7 +68,6 @@ func (o *AWSAccountListResponse) SetAccounts(v []AWSAccount) {
 }
 
 func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Accounts != nil {
 		toSerialize["accounts"] = o.Accounts

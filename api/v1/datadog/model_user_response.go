@@ -68,7 +68,6 @@ func (o *UserResponse) SetUser(v User) {
 }
 
 func (o UserResponse) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.User != nil {
 		toSerialize["user"] = o.User

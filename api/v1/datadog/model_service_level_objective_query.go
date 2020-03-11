@@ -70,7 +70,6 @@ func (o *ServiceLevelObjectiveQuery) SetNumerator(v string) {
 }
 
 func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["denominator"] = o.Denominator

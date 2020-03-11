@@ -204,7 +204,6 @@ func (o *MonitorStateGroupValue) SetValue(v float64) {
 }
 
 func (o MonitorStateGroupValue) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.FromTs != nil {
 		toSerialize["from_ts"] = o.FromTs

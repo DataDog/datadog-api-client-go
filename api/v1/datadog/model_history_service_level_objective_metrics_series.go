@@ -15,22 +15,24 @@ import (
 // HistoryServiceLevelObjectiveMetricsSeries A representation of `metric` based SLO time series for the provided queries. This is the same response type from `batch_query` endpoint.
 type HistoryServiceLevelObjectiveMetricsSeries struct {
 	// Count of submitted metrics
-	Count    *int64                                             `json:"count,omitempty"`
-	Metadata *HistoryServiceLevelObjectiveMetricsSeriesMetadata `json:"metadata,omitempty"`
+	Count    int64                                             `json:"count"`
+	Metadata HistoryServiceLevelObjectiveMetricsSeriesMetadata `json:"metadata"`
 	// Total Sum of the query
-	Sum *float64 `json:"sum,omitempty"`
-	// The query timestamps in epoch seconds
-	Times *[]int64 `json:"times,omitempty"`
+	Sum float64 `json:"sum"`
 	// The query values
-	Values *[]float64 `json:"values,omitempty"`
+	Values []float64 `json:"values"`
 }
 
 // NewHistoryServiceLevelObjectiveMetricsSeries instantiates a new HistoryServiceLevelObjectiveMetricsSeries object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHistoryServiceLevelObjectiveMetricsSeries() *HistoryServiceLevelObjectiveMetricsSeries {
+func NewHistoryServiceLevelObjectiveMetricsSeries(count int64, metadata HistoryServiceLevelObjectiveMetricsSeriesMetadata, sum float64, values []float64) *HistoryServiceLevelObjectiveMetricsSeries {
 	this := HistoryServiceLevelObjectiveMetricsSeries{}
+	this.Count = count
+	this.Metadata = metadata
+	this.Sum = sum
+	this.Values = values
 	return &this
 }
 
@@ -42,187 +44,78 @@ func NewHistoryServiceLevelObjectiveMetricsSeriesWithDefaults() *HistoryServiceL
 	return &this
 }
 
-// GetCount returns the Count field value if set, zero value otherwise.
+// GetCount returns the Count field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCount() int64 {
-	if o == nil || o.Count == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Count
+
+	return o.Count
 }
 
-// GetCountOk returns a tuple with the Count field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCountOk() (int64, bool) {
-	if o == nil || o.Count == nil {
-		var ret int64
-		return ret, false
-	}
-	return *o.Count, true
-}
-
-// HasCount returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) HasCount() bool {
-	if o != nil && o.Count != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCount gets a reference to the given int64 and assigns it to the Count field.
+// SetCount sets field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) SetCount(v int64) {
-	o.Count = &v
+	o.Count = v
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise.
+// GetMetadata returns the Metadata field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetMetadata() HistoryServiceLevelObjectiveMetricsSeriesMetadata {
-	if o == nil || o.Metadata == nil {
+	if o == nil {
 		var ret HistoryServiceLevelObjectiveMetricsSeriesMetadata
 		return ret
 	}
-	return *o.Metadata
+
+	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) GetMetadataOk() (HistoryServiceLevelObjectiveMetricsSeriesMetadata, bool) {
-	if o == nil || o.Metadata == nil {
-		var ret HistoryServiceLevelObjectiveMetricsSeriesMetadata
-		return ret, false
-	}
-	return *o.Metadata, true
-}
-
-// HasMetadata returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given HistoryServiceLevelObjectiveMetricsSeriesMetadata and assigns it to the Metadata field.
+// SetMetadata sets field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) SetMetadata(v HistoryServiceLevelObjectiveMetricsSeriesMetadata) {
-	o.Metadata = &v
+	o.Metadata = v
 }
 
-// GetSum returns the Sum field value if set, zero value otherwise.
+// GetSum returns the Sum field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetSum() float64 {
-	if o == nil || o.Sum == nil {
+	if o == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Sum
+
+	return o.Sum
 }
 
-// GetSumOk returns a tuple with the Sum field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) GetSumOk() (float64, bool) {
-	if o == nil || o.Sum == nil {
-		var ret float64
-		return ret, false
-	}
-	return *o.Sum, true
-}
-
-// HasSum returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) HasSum() bool {
-	if o != nil && o.Sum != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSum gets a reference to the given float64 and assigns it to the Sum field.
+// SetSum sets field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) SetSum(v float64) {
-	o.Sum = &v
+	o.Sum = v
 }
 
-// GetTimes returns the Times field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) GetTimes() []int64 {
-	if o == nil || o.Times == nil {
-		var ret []int64
-		return ret
-	}
-	return *o.Times
-}
-
-// GetTimesOk returns a tuple with the Times field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) GetTimesOk() ([]int64, bool) {
-	if o == nil || o.Times == nil {
-		var ret []int64
-		return ret, false
-	}
-	return *o.Times, true
-}
-
-// HasTimes returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) HasTimes() bool {
-	if o != nil && o.Times != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTimes gets a reference to the given []int64 and assigns it to the Times field.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) SetTimes(v []int64) {
-	o.Times = &v
-}
-
-// GetValues returns the Values field value if set, zero value otherwise.
+// GetValues returns the Values field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) GetValues() []float64 {
-	if o == nil || o.Values == nil {
+	if o == nil {
 		var ret []float64
 		return ret
 	}
-	return *o.Values
+
+	return o.Values
 }
 
-// GetValuesOk returns a tuple with the Values field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) GetValuesOk() ([]float64, bool) {
-	if o == nil || o.Values == nil {
-		var ret []float64
-		return ret, false
-	}
-	return *o.Values, true
-}
-
-// HasValues returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeries) HasValues() bool {
-	if o != nil && o.Values != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetValues gets a reference to the given []float64 and assigns it to the Values field.
+// SetValues sets field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) SetValues(v []float64) {
-	o.Values = &v
+	o.Values = v
 }
 
 func (o HistoryServiceLevelObjectiveMetricsSeries) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
-	if o.Count != nil {
+	if true {
 		toSerialize["count"] = o.Count
 	}
-	if o.Metadata != nil {
+	if true {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if o.Sum != nil {
+	if true {
 		toSerialize["sum"] = o.Sum
 	}
-	if o.Times != nil {
-		toSerialize["times"] = o.Times
-	}
-	if o.Values != nil {
+	if true {
 		toSerialize["values"] = o.Values
 	}
 	return json.Marshal(toSerialize)

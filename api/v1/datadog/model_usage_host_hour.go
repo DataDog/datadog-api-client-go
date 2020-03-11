@@ -280,7 +280,6 @@ func (o *UsageHostHour) SetHour(v time.Time) {
 }
 
 func (o UsageHostHour) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostCount != nil {
 		toSerialize["agent_host_count"] = o.AgentHostCount

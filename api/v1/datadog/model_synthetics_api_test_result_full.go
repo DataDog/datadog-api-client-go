@@ -272,7 +272,6 @@ func (o *SyntheticsAPITestResultFull) SetStatus(v SyntheticsTestMonitorStatus) {
 }
 
 func (o SyntheticsAPITestResultFull) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Check != nil {
 		toSerialize["check"] = o.Check

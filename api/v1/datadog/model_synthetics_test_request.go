@@ -306,7 +306,6 @@ func (o *SyntheticsTestRequest) SetUrl(v string) {
 }
 
 func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.BasicAuth != nil {
 		toSerialize["basicAuth"] = o.BasicAuth

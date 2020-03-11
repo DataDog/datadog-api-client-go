@@ -408,7 +408,6 @@ func (o *SyntheticsBrowserTestResultData) SetTimeToInteractive(v float64) {
 }
 
 func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.BrowserType != nil {
 		toSerialize["browserType"] = o.BrowserType

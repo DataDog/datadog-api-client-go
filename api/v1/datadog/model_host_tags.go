@@ -102,7 +102,6 @@ func (o *HostTags) SetTags(v []string) {
 }
 
 func (o HostTags) MarshalJSON() ([]byte, error) {
-	//TODO: serialize parents?
 	toSerialize := map[string]interface{}{}
 	if o.Host != nil {
 		toSerialize["host"] = o.Host
