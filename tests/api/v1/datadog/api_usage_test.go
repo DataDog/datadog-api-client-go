@@ -135,9 +135,9 @@ func TestUsageTrace(t *testing.T) {
 func TestUsageSummary(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer teardownTest(t)
-	defer gock.Off()
 
-	startMonth, endMonth := getStartEndMonth()
+	startMonth := time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC)
+	endMonth := time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC)
 	includeOrgDetails := true
 
 	fixturePath, err := filepath.Abs("fixtures/usage/usage_summary.json")
@@ -157,6 +157,7 @@ func TestUsageSummary(t *testing.T) {
 		ParamPresent("start_month").
 		Reply(200).
 		JSON(data)
+	defer gock.Off()
 
 	var expected datadog.UsageSummaryResponse
 	json.Unmarshal([]byte(data), &expected)
@@ -167,15 +168,15 @@ func TestUsageSummary(t *testing.T) {
 		t.Errorf("Failed to get Usage Summary: %v", err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, usage.GetStartDate().String(), time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC).String())
-	assert.Equal(t, usage.GetEndDate().String(), time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC).String())
+	assert.DeepEqual(t, usage.GetStartDate(), time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC))
+	assert.DeepEqual(t, usage.GetEndDate(), time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC))
 	assert.Equal(t, usage.GetApmHostTop99pSum(), int64(1))
 	assert.Equal(t, usage.GetInfraHostTop99pSum(), int64(2))
 	assert.Equal(t, usage.GetContainerHwmSum(), int64(1))
 	assert.Equal(t, usage.GetCustomTsSum(), int64(4))
 
 	var usageItem = usage.GetUsage()[0]
-	assert.Equal(t, usageItem.GetDate().String(),  time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC).String())
+	assert.DeepEqual(t, usageItem.GetDate(),  time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC))
 	assert.Equal(t, usageItem.GetAgentHostTop99p(),  int64(1))
 	assert.Equal(t, usageItem.GetApmHostTop99p(),  int64(2))
 	assert.Equal(t, usageItem.GetAwsHostTop99p(),  int64(3))
