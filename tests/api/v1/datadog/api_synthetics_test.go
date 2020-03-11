@@ -9,6 +9,7 @@ package test
 import (
 	"encoding/json"
 	"fmt"
+	"gopkg.in/h2non/gock.v1"
 	"io/ioutil"
 	"log"
 	"path/filepath"
@@ -170,16 +171,6 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 		t.Fatalf("Failed deserializing Synthetics API test recent response: %v", err)
 	}
 
-	// Get a specific API test result
-	// Again, using a mock response to just test deserialization
-	var singleResult datadog.SyntheticsAPITestResultFull
-	fixturePath, _ = filepath.Abs("fixtures/synthetics/api_test_single_result.json")
-	data, _ = ioutil.ReadFile(fixturePath)
-	err = json.Unmarshal(data, &singleResult)
-	if err != nil {
-		t.Fatalf("Failed deserializing Synthetics API test single response: %v", err)
-	}
-
 	// Delete API test
 	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.DeleteTests(TESTAUTH).
 		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
@@ -272,16 +263,6 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 		t.Fatalf("Failed deserializing Synthetics browser test recent response: %v", err)
 	}
 
-	// Get a specific Browser test result
-	// Again, using a mock response to just test deserialization
-	var singleResult datadog.SyntheticsBrowserTestResultFull
-	fixturePath, _ = filepath.Abs("fixtures/synthetics/browser_test_single_result.json")
-	data, _ = ioutil.ReadFile(fixturePath)
-	err = json.Unmarshal(data, &singleResult)
-	if err != nil {
-		t.Fatalf("Failed deserializing Synthetics browser test single response: %v", err)
-	}
-
 	// Delete Browser test
 	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.DeleteTests(TESTAUTH).
 		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
@@ -289,6 +270,70 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.Error(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
+}
+
+func TestSyntheticsGetBrowserTestResult(t *testing.T) {
+	teardownUnitTest := setupUnitTest(t)
+	defer gock.Off()
+	defer teardownUnitTest(t)
+
+	// Test that the get browser result test data can be properly unmarshalled and takes the expected elements in the path
+	var singleResult datadog.SyntheticsBrowserTestResultFull
+	fixturePath, _ := filepath.Abs("fixtures/synthetics/browser_test_single_result.json")
+	data, _ := ioutil.ReadFile(fixturePath)
+	err := json.Unmarshal(data, &singleResult)
+	if err != nil {
+		t.Fatalf("Failed deserializing Synthetics browser test single response: %v", err)
+	}
+
+	gock.New("https://api.datadoghq.com/api/v1").
+		Get("/synthetics/tests/browser/test-synthetics-id/results/test-result-id").
+		Reply(200).
+		JSON(data)
+
+	unitAPI := TESTAPICLIENT.SyntheticsApi
+	browserResp, httpresp, err := unitAPI.GetBrowserTestResult(TESTAUTH, "test-synthetics-id", "test-result-id").Execute()
+	if err != nil {
+		t.Errorf("Failed to get synthetics browser test result: %v", err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, browserResp.GetResultId(), "5140738909114888212")
+	assert.Equal(t, browserResp.GetStatus(), datadog.SYNTHETICSTESTMONITORSTATUS_UNTRIGGERED)
+	assert.Equal(t, browserResp.GetCheckTime(), float64(1579711893111))
+	assert.Equal(t, browserResp.GetCheckVersion(), int64(5))
+}
+
+func TestSyntheticsGetApiTestResult(t *testing.T) {
+	teardownUnitTest := setupUnitTest(t)
+	defer gock.Off()
+	defer teardownUnitTest(t)
+
+	// Test that the get api result test data can be properly unmarshalled and takes the expected elements in the path
+	var singleResult datadog.SyntheticsAPITestResultFull
+	fixturePath, _ := filepath.Abs("fixtures/synthetics/api_test_single_result.json")
+	data, _ := ioutil.ReadFile(fixturePath)
+	err := json.Unmarshal(data, &singleResult)
+	if err != nil {
+		t.Fatalf("Failed deserializing Synthetics API test single response: %v", err)
+	}
+
+	gock.New("https://api.datadoghq.com/api/v1").
+		Get("/synthetics/tests/test-synthetics-id/results/test-result-id").
+		Reply(200).
+		JSON(data)
+
+	unitAPI := TESTAPICLIENT.SyntheticsApi
+	apiResp, httpresp, err := unitAPI.GetAPITestResult(TESTAUTH, "test-synthetics-id", "test-result-id").Execute()
+	if err != nil {
+		t.Errorf("Failed to get synthetics api test result: %v", err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, apiResp.GetStatus(), datadog.SYNTHETICSTESTMONITORSTATUS_TRIGGERED)
+	assert.Equal(t, apiResp.GetCheckTime(), float64(1580204310361))
+	assert.Equal(t, apiResp.GetCheckVersion(), int64(2))
+	assert.Equal(t, apiResp.GetResultId(), "7761116396307201795")
+	apiResult := apiResp.GetResult()
+	assert.Equal(t, apiResult.GetEventType(), datadog.SYNTHETICSTESTPROCESSSTATUS_FINISHED)
 }
 
 func TestSyntheticsMultipleTestsOperations(t *testing.T) {
