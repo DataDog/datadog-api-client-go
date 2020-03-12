@@ -11,7 +11,18 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+	"runtime"
+	"strings"
 )
+
+// Replace runtime placeholders.
+// It supports {runtime}, {os}, {arch}.
+func ReplaceRuntimePlaceholders(s string) string {
+	r := strings.Replace(s, "{runtime}", runtime.Version(), -1)
+	r = strings.Replace(r, "{os}", runtime.GOOS, -1)
+	r = strings.Replace(r, "{arch}", runtime.GOARCH, -1)
+	return r
+}
 
 // PtrBool is a helper routine that returns a pointer to given integer value.
 func PtrBool(v bool) *bool { return &v }

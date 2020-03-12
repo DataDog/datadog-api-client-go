@@ -99,7 +99,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "DataDog/0.1.0/go-experimental",
+		UserAgent:     ReplaceRuntimePlaceholders("datadog-api-client-go/0.1.0 ({runtime}; {os}/{arch})"),
 		Debug:         false,
 		Servers: ServerConfigurations{
 			{
