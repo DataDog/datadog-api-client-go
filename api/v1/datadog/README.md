@@ -73,11 +73,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AWSIntegrationApi* | [**CreateAWSAccount**](docs/AWSIntegrationApi.md#createawsaccount) | **Post** /api/v1/integration/aws | Create an AWS Account
-*AWSIntegrationApi* | [**DeleteAWSAccount**](docs/AWSIntegrationApi.md#deleteawsaccount) | **Delete** /api/v1/integration/aws | Delete an AWS Account
+*AWSIntegrationApi* | [**CreateAWSAccount**](docs/AWSIntegrationApi.md#createawsaccount) | **Post** /api/v1/integration/aws | Create an AWS Integration
+*AWSIntegrationApi* | [**DeleteAWSAccount**](docs/AWSIntegrationApi.md#deleteawsaccount) | **Delete** /api/v1/integration/aws | Delete an AWS Integration
 *AWSIntegrationApi* | [**GenerateNewAWSExternalID**](docs/AWSIntegrationApi.md#generatenewawsexternalid) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
 *AWSIntegrationApi* | [**GetAllAWSAccounts**](docs/AWSIntegrationApi.md#getallawsaccounts) | **Get** /api/v1/integration/aws | Get Installed AWS Accounts
-*AWSIntegrationApi* | [**ListAvailableAWSNamespaces**](docs/AWSIntegrationApi.md#listavailableawsnamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List available namespaces.
+*AWSIntegrationApi* | [**ListAvailableAWSNamespaces**](docs/AWSIntegrationApi.md#listavailableawsnamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List Available Namespaces
 *AWSIntegrationApi* | [**UpdateAWSAccount**](docs/AWSIntegrationApi.md#updateawsaccount) | **Put** /api/v1/integration/aws | Update an AWS Account
 *AWSLogsIntegrationApi* | [**AWSLogsCheckLambdaAsync**](docs/AWSLogsIntegrationApi.md#awslogschecklambdaasync) | **Post** /api/v1/integration/aws/logs/check_async | Check function to see if a lambda_arn exists within an account.
 *AWSLogsIntegrationApi* | [**AWSLogsCheckServicesAsync**](docs/AWSLogsIntegrationApi.md#awslogscheckservicesasync) | **Post** /api/v1/integration/aws/logs/services_async | Asynchronous check for permissions for AWS log lambda config.
