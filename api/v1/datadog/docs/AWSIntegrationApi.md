@@ -4,11 +4,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS Account
-[**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS Account
+[**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS Integration
+[**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS Integration
 [**GenerateNewAWSExternalID**](AWSIntegrationApi.md#GenerateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
 [**GetAllAWSAccounts**](AWSIntegrationApi.md#GetAllAWSAccounts) | **Get** /api/v1/integration/aws | Get Installed AWS Accounts
-[**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List available namespaces.
+[**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List Available Namespaces
 [**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS Account
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > AWSAccountCreateResponse CreateAWSAccount(ctx).Body(body).Execute()
 
-Create an AWS Account
+Create an AWS Integration
 
 
 
@@ -32,7 +32,7 @@ Other parameters are passed through a pointer to a apiCreateAWSAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
+ **body** | [**AWSAccount**](AWSAccount.md) | AWS Request Object | 
 
 ### Return type
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteAWSAccount(ctx).Body(body).Execute()
 
-Delete an AWS Account
+Delete an AWS Integration
 
 
 
@@ -110,7 +110,7 @@ Other parameters are passed through a pointer to a apiGenerateNewAWSExternalIDRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccount**](AWSAccount.md) | Generate New AWS External ID request object | 
+ **body** | [**AWSAccount**](AWSAccount.md) | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation). | 
 
 ### Return type
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 > []string ListAvailableAWSNamespaces(ctx).Execute()
 
-List available namespaces.
+List Available Namespaces
 
 
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
  **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
  **accountId** | **string** | Only return AWS accounts that matches this account_id. | 
  **roleName** | **string** | Only return AWS accounts that matches this role_name. *It is required if account_id is specified.* | 
- **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. *It required if none of the other two options are specified.* | 
+ **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. *It is required if none of the other two options are specified.* | 
 
 ### Return type
 

@@ -35,34 +35,10 @@ func (r apiCreateAWSAccountRequest) Body(body AWSAccount) apiCreateAWSAccountReq
 }
 
 /*
-CreateAWSAccount Create an AWS Account
-### Overview
-Create the AWS Account with the provided values
-### Arguments
-* **`account_id`** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS
-  integration to learn more about your AWS account ID.
-
-* **`role_name`** [*required*]: Your Datadog role delegation name. For more information about you
-  AWS account Role name, see the Datadog AWS integration configuration info.
-
-* **`access_key_id`** [*optional*, *default* = **None**]: If your AWS account is a GovCloud or
-  China account, enter the corresponding Access Key ID.
-
-* **`filter_tags`** [*optional*, *default* = **None**]: The array of EC2 tags (in the form key:value)
-  defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?
-  (for single characters) and * (for multiple characters) can also be used. Only hosts that match one
-  of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given
-  tag can also be excluded by adding ! before the tag.
-  e.x. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,
-  see the AWS tagging documentation
-
-* **`host_tags`** [*optional*, *default* = **None**]: Array of tags (in the form key:value) to add
-  to all hosts and metrics reporting through this integration.
-
-* **`account_specific_namespace_rules`** [*optional*, *default* = **None**]: An object (in the form
-  {"namespace1":true/false, "namespace2":true/false}) that enables or disables metric collection for
-  specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
-  /v1/integration/aws/available_namespace_rules endpoint.
+CreateAWSAccount Create an AWS Integration
+Create a Datadog-Amazon Web Services integration.
+Using the `POST` method updates your integration configuration
+by adding your new configuration to the existing one in your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateAWSAccountRequest
 */
@@ -226,15 +202,8 @@ func (r apiDeleteAWSAccountRequest) Body(body AWSAccount) apiDeleteAWSAccountReq
 }
 
 /*
-DeleteAWSAccount Delete an AWS Account
-### Overview
-Delete the AWS Account matching the specified account_id and role_name parameters
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Delete the AWS account that
-  matches this account_id.
-
-* **`role_name`** [*required*, *default* = **None**]: Delete the AWS account that
-  matches this role_name.
+DeleteAWSAccount Delete an AWS Integration
+Delete a Datadog-AWS integration matching the specified account_id and role_name parameters.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiDeleteAWSAccountRequest
 */
@@ -399,14 +368,7 @@ func (r apiGenerateNewAWSExternalIDRequest) Body(body AWSAccount) apiGenerateNew
 
 /*
 GenerateNewAWSExternalID Generate New External ID
-###Overview
-Generate new AWS external ID for a specific integrated account
-### Arguments
-* **`account_id`** [*required*]: Generate new external ID for the AWS account that
-  matches this account_id.
-
-* **`role_name`** [*required*]: Generate new external ID for the AWS account that
-  matches this role_name.
+Generate a new AWS external ID for a given AWS account ID and role name pair.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGenerateNewAWSExternalIDRequest
 */
@@ -583,17 +545,7 @@ func (r apiGetAllAWSAccountsRequest) AccessKeyId(accessKeyId string) apiGetAllAW
 
 /*
 GetAllAWSAccounts Get Installed AWS Accounts
-### Overview
-Get All Installed AWS Accounts
-### Arguments
-* **`account_id`** [*optional*, *default* = **None**]: Only return AWS accounts that
-  matches this account_id.
-
-* **`role_name`** [*optional*, *default* = **None**]: Only return AWS accounts that
-  matches this role_name.
-
-* **`access_key_id`** [*optional*, *default* = **None**]: Only return AWS accounts that
-  matches this access_key_id.
+List all Datadog-AWS integrations available in your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllAWSAccountsRequest
 */
@@ -764,9 +716,8 @@ type apiListAvailableAWSNamespacesRequest struct {
 }
 
 /*
-ListAvailableAWSNamespaces List available namespaces.
-### Overview
-List all namespace rules for a given Datadog-AWS integration.
+ListAvailableAWSNamespaces List Available Namespaces
+List all namespace rules for a given Datadog-AWS integration. This endpoint takes no arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListAvailableAWSNamespacesRequest
 */
@@ -943,43 +894,7 @@ func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWS
 
 /*
 UpdateAWSAccount Update an AWS Account
-### Overview
-Update the AWS Account based on the provided values
-### Arguments
-* **`account_id`** [*required if role_name is specified*, *default* = **None**]: Only return AWS accounts that
-  matches this account_id.
-
-* **`role_name`** [*required if account_id is specified*, *default* = **None**]: Only return AWS accounts that
-  matches this role_name.
-
-* **`access_key_id`** [*required if none of the other two options are specified*, *default* = **None**]: Only return AWS accounts that
-  matches this access_key_id.
-
-### Payload
-* **`account_id`** [*required*]: Your AWS Account ID without dashes. Consult the Datadog AWS
-  integration to learn more about your AWS account ID.
-
-* **`role_name`** [*required*]: Your Datadog role delegation name. For more information about you
-  AWS account Role name, see the Datadog AWS integration configuration info.
-
-* **`access_key_id`** [*optional*, *default* = **None**]: If your AWS account is a GovCloud or
-  China account, enter the corresponding Access Key ID.
-
-* **`filter_tags`** [*optional*, *default* = **None**]: The array of EC2 tags (in the form key:value)
-  defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ?
-  (for single characters) and * (for multiple characters) can also be used. Only hosts that match one
-  of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given
-  tag can also be excluded by adding ! before the tag.
-  e.g. env:production,instance-type:c1.*,!region:us-east-1 For more information on EC2 tagging,
-  see the AWS tagging documentation.
-
-* **`host_tags`** [*optional*, *default* = **None**]: Array of tags (in the form key:value) to add
-  to all hosts and metrics reporting through this integration.
-
-* **`account_specific_namespace_rules`** [*optional*, *default* = **None**]: An object (in the form
-  {"namespace1":true/false, "namespace2":true/false}) that enables or disables metric collection for
-  specific AWS namespaces for this AWS account only. A list of namespaces can be found at the
-  /v1/integration/aws/available_namespace_rules endpoint.
+Update a Datadog-Amazon Web Services integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateAWSAccountRequest
 */
