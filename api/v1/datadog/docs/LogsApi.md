@@ -5,7 +5,7 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
-[**SendLog**](LogsApi.md#SendLog) | **Post** /v1/input | 
+[**SendLog**](LogsApi.md#SendLog) | **Post** /v1/input | Send logs
 
 
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 > interface{} SendLog(ctx).Body(body).Execute()
 
-
+Send logs
 
 
 

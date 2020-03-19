@@ -35,8 +35,8 @@ func (r apiCreateGCPIntegrationRequest) Body(body GCPAccount) apiCreateGCPIntegr
 }
 
 /*
-CreateGCPIntegration Add a GCP integration to your Datadog account.
-### Overview
+CreateGCPIntegration Create a GCP integration
+
 Create a Datadog-GCP integration.
 ### Arguments
 * **`type`** [*required*, *default* = **None**]: The value for service_account found in your JSON service account key.
@@ -214,8 +214,8 @@ func (r apiDeleteGCPIntegrationRequest) Body(body GCPAccount) apiDeleteGCPIntegr
 }
 
 /*
-DeleteGCPIntegration Delete a GCP Integration from your Datadog account.
-### Overview
+DeleteGCPIntegration Delete a GCP integration
+
 Delete a given Datadog-GCP integration.
 ### Arguments
 * **`project_id`** [*required*, *default* = **None**]: Your Google Cloud project ID to be deleted.
@@ -377,8 +377,8 @@ type apiListGCPIntegrationRequest struct {
 }
 
 /*
-ListGCPIntegration List configured GCP integrations.
-### Overview
+ListGCPIntegration List all GCP integrations
+
 List all Datadog-GCP integrations configured in your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListGCPIntegrationRequest
@@ -537,8 +537,8 @@ func (r apiUpdateGCPIntegrationRequest) Body(body GCPAccount) apiUpdateGCPIntegr
 }
 
 /*
-UpdateGCPIntegration Update a GCP integration in your Datadog account.
-### Overview
+UpdateGCPIntegration Update a GCP integration
+
 Update a Datadog-GCP integrations host_filters and/or automute. Requires a project_id and client_email, however these fields cannot be updated. If you need to update these fields please delete and use the create (POST) endpoint. The unspecified fields will keep their original values.
 ### Arguments
 * **`project_id`** [*required*, *default* = **None**]: Your Google Cloud project ID associated with the integration to be updated.

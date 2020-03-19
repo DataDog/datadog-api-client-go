@@ -36,7 +36,7 @@ func (r apiCreateLogsPipelineRequest) Body(body LogsPipeline) apiCreateLogsPipel
 }
 
 /*
-CreateLogsPipeline Create a pipeline in your organization.
+CreateLogsPipeline Create a Pipeline
 ## Overview
 Create a Pipeline in your organization.
 ## Arguments
@@ -212,7 +212,7 @@ type apiDeleteLogsPipelineRequest struct {
 }
 
 /*
-DeleteLogsPipeline Delete a given pipeline from your organization.
+DeleteLogsPipeline Delete a Pipeline
 ## Overview
 Delete a given pipeline from your organization.
 ## Arguments
@@ -351,7 +351,7 @@ type apiGetAllLogsPipelinesRequest struct {
 }
 
 /*
-GetAllLogsPipelines Get all pipelines from your organization.
+GetAllLogsPipelines Get all Pipeline
 ## Overview
 Get all pipelines from your organization.
 ## Arguments
@@ -498,7 +498,7 @@ type apiGetLogsPipelineRequest struct {
 }
 
 /*
-GetLogsPipeline Get a specific pipeline from your organization.
+GetLogsPipeline Get a Pipeline
 ## Overview
 Get a specific pipeline from your organization.
 ## Arguments
@@ -657,8 +657,8 @@ type apiGetLogsPipelineOrderRequest struct {
 }
 
 /*
-GetLogsPipelineOrder Get the current order of your pipelines.
-## Overview
+GetLogsPipelineOrder Get Pipeline Order
+
 Get the current order of your pipelines.
 ## Arguments
 This endpoint takes no JSON arguments.
@@ -810,7 +810,7 @@ func (r apiUpdateLogsPipelineRequest) Body(body LogsPipeline) apiUpdateLogsPipel
 }
 
 /*
-UpdateLogsPipeline Update a pipeline in your organization.
+UpdateLogsPipeline Update a Pipeline
 ## Overview
 Update a given pipeline configuration to change it’s processors or their order.
 ## Arguments
@@ -995,7 +995,7 @@ func (r apiUpdateLogsPipelineOrderRequest) Body(body LogsPipelinesOrder) apiUpda
 }
 
 /*
-UpdateLogsPipelineOrder Update the order of your pipelines.
+UpdateLogsPipelineOrder Update Pipeline Order
 ## Overview
 Update the order of your pipelines. Since logs are processed sequentially, reordering a pipeline may change the structure and content of the data processed by other pipelines and their processors.
 **Note**: Using the PUT method updates your pipeline order by replacing your current order with the new one sent to your Datadog organization.
