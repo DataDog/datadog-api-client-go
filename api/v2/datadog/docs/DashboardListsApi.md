@@ -4,10 +4,10 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddDashboardListItems**](DashboardListsApi.md#AddDashboardListItems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add dashboards to an existing dashboard list.
-[**DeleteDashboardListItems**](DashboardListsApi.md#DeleteDashboardListItems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete dashboards from an existing dashboard list.
-[**GetDashboardListItems**](DashboardListsApi.md#GetDashboardListItems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Fetch the dashboard list&#39;s dashboard definitions.
-[**UpdateDashboardListItems**](DashboardListsApi.md#UpdateDashboardListItems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update dashboards of an existing dashboard list.
+[**AddDashboardListItems**](DashboardListsApi.md#AddDashboardListItems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
+[**DeleteDashboardListItems**](DashboardListsApi.md#DeleteDashboardListItems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete Items from a Dashboard List
+[**GetDashboardListItems**](DashboardListsApi.md#GetDashboardListItems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
+[**UpdateDashboardListItems**](DashboardListsApi.md#UpdateDashboardListItems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update Items of a Dashboard List
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > DashboardListAddItemsResponse AddDashboardListItems(ctx, dashboardListId).Body(body).Execute()
 
-Add dashboards to an existing dashboard list.
+Add Items to a Dashboard List
 
 
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 > DashboardListDeleteItemsResponse DeleteDashboardListItems(ctx, dashboardListId).Body(body).Execute()
 
-Delete dashboards from an existing dashboard list.
+Delete Items from a Dashboard List
 
 
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 > DashboardListItems GetDashboardListItems(ctx, dashboardListId).Execute()
 
-Fetch the dashboard list's dashboard definitions.
+Get a Dashboard List
 
 
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 > DashboardListItems UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
 
-Update dashboards of an existing dashboard list.
+Update Items of a Dashboard List
 
 
 
@@ -156,7 +156,7 @@ Update dashboards of an existing dashboard list.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardListId** | **int64** | ID of the dashboard list to update items from | 
+**dashboardListId** | **int64** | ID of the dashboard list to update items from. | 
 
 ### Other Parameters
 
@@ -166,7 +166,7 @@ Other parameters are passed through a pointer to a apiUpdateDashboardListItemsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardListItems**](DashboardListItems.md) | New dashboards of the dashboard list | 
+ **body** | [**DashboardListItems**](DashboardListItems.md) | New dashboards of the dashboard list. | 
 
 ### Return type
 

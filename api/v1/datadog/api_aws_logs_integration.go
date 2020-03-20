@@ -35,16 +35,12 @@ func (r apiAWSLogsCheckLambdaAsyncRequest) Body(body AWSAccountAndLambdaRequest)
 }
 
 /*
-AWSLogsCheckLambdaAsync Check function to see if a lambda_arn exists within an account.
-### Overview
-Check function to see if a lambda_arn exists within an account. This sends a job on our side if it does not exist, then immediately returns the status of that job. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
+AWSLogsCheckLambdaAsync Check that an AWS Lambda Function exists
+Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
 - Returns a status of 'created' when it's checking if the Lambda exists in the account.
 - Returns a status of 'waiting' while checking.
 - Returns a status of 'checked and ok' if the Lambda exists.
 - Returns a status of 'error' if the Lambda does not exist.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Lambda to be checked.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiAWSLogsCheckLambdaAsyncRequest
 */
@@ -208,16 +204,14 @@ func (r apiAWSLogsCheckServicesAsyncRequest) Body(body AWSLogsServicesRequest) a
 }
 
 /*
-AWSLogsCheckServicesAsync Asynchronous check for permissions for AWS log lambda config.
-### Overview
-Test if permissions are present to add log-forwarding triggers for the given services + AWS account. Input is the same as for EnableAWSLogServices. Done async, so can be repeatedly polled in a non-blocking fashion until the async request completes
-- Returns a status of 'created' when it's checking if the permissions exists in the AWS account.
+AWSLogsCheckServicesAsync Check permissions for Log Services
+Test if permissions are present to add log-forwarding triggers for the given services + AWS account. Input is the same as for EnableAWSLogServices. Done async, so can be repeatedly polled in a non-blocking fashion until the async request completes.
+- Returns a status of 'created' when it's checking if the permissions exists
+  in the AWS account.
+
 - Returns a status of 'waiting' while checking.
 - Returns a status of 'checked and ok' if the Lambda exists.
 - Returns a status of 'error' if the Lambda does not exist.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`services`** [*required*, *default* = **None**]: Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiAWSLogsCheckServicesAsyncRequest
 */
@@ -375,8 +369,7 @@ type apiAWSLogsListRequest struct {
 }
 
 /*
-AWSLogsList List configured AWS log integrations.
-### Overview
+AWSLogsList List all AWS Logs Integrations
 List all Datadog-AWS Logs integrations configured in your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiAWSLogsListRequest
@@ -529,8 +522,7 @@ type apiAWSLogsServicesListRequest struct {
 }
 
 /*
-AWSLogsServicesList Get list of AWS log ready services.
-### Overview
+AWSLogsServicesList Get list of AWS log ready services
 Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiAWSLogsServicesListRequest
@@ -689,12 +681,8 @@ func (r apiAddAWSLambdaARNRequest) Body(body AWSAccountAndLambdaRequest) apiAddA
 }
 
 /*
-AddAWSLambdaARN Add a AWS Lambda ARN to your Datadog account.
-### Overview
+AddAWSLambdaARN Add AWS Log Lambda ARN
 Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiAddAWSLambdaARNRequest
 */
@@ -858,12 +846,8 @@ func (r apiDeleteAWSLambdaARNRequest) Body(body AWSAccountAndLambdaRequest) apiD
 }
 
 /*
-DeleteAWSLambdaARN Delete a AWS Lambda ARN from your Datadog account.
-### Overview
-Delete a Lambda ARN of a Lambda created for the Datadog-AWS log collection in your Datadog account.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`lambda_arn`** [*required*, *default* = **None**]: ARN of the Lambda to be deleted.
+DeleteAWSLambdaARN Delete an AWS Logs integration
+Delete a Datadog-AWS logs configuration by removing the specific Lambda ARN associated with a given AWS account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiDeleteAWSLambdaARNRequest
 */
@@ -1027,12 +1011,8 @@ func (r apiEnableAWSLogServicesRequest) Body(body AWSLogsServicesRequest) apiEna
 }
 
 /*
-EnableAWSLogServices Enable Automatic Log collection for your AWS services.
-### Overview
+EnableAWSLogServices Enable an AWS Logs integration
 Enable automatic log collection for a list of services. This should be run after running 'AddAWSLambdaARN' to save the config.
-### Arguments
-* **`account_id`** [*required*, *default* = **None**]: Your AWS Account ID without dashes.
-* **`services`** [*required*, *default* = **None**]: Array of services IDs set to enable automatic log collection. Discover the list of available services with the Get list of AWS log ready services API endpoint
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiEnableAWSLogServicesRequest
 */

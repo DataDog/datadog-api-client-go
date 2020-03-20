@@ -4,10 +4,10 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAllHosts**](HostsApi.md#GetAllHosts) | **Get** /api/v1/hosts | Get all hosts for your organization
-[**GetHostTotals**](HostsApi.md#GetHostTotals) | **Get** /api/v1/hosts/totals | Get total number of active hosts in your Datadog Account
-[**MuteHost**](HostsApi.md#MuteHost) | **Post** /api/v1/host/{host_name}/mute | Mute a Host
-[**UnmuteHost**](HostsApi.md#UnmuteHost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a Host
+[**GetAllHosts**](HostsApi.md#GetAllHosts) | **Get** /api/v1/hosts | Search for hosts
+[**GetHostTotals**](HostsApi.md#GetHostTotals) | **Get** /api/v1/hosts/totals | Host totals
+[**MuteHost**](HostsApi.md#MuteHost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
+[**UnmuteHost**](HostsApi.md#UnmuteHost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a host
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > HostListResponse GetAllHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
 
-Get all hosts for your organization
+Search for hosts
 
 
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 > HostTotals GetHostTotals(ctx).From(from).Execute()
 
-Get total number of active hosts in your Datadog Account
+Host totals
 
 
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 > HostMuteResponse MuteHost(ctx, hostName).Body(body).Execute()
 
-Mute a Host
+Mute a host
 
 
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 > HostMuteResponse UnmuteHost(ctx, hostName).Execute()
 
-Unmute a Host
+Unmute a host
 
 
 
@@ -152,7 +152,7 @@ Unmute a Host
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**hostName** | **string** | Name of the host to unmute | 
+**hostName** | **string** | Name of the host to unmute. | 
 
 ### Other Parameters
 

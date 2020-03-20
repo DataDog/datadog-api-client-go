@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateEvent**](EventsApi.md#CreateEvent) | **Post** /api/v1/events | Post an event
 [**GetEvent**](EventsApi.md#GetEvent) | **Get** /api/v1/events/{event_id} | Get an event
-[**ListEvents**](EventsApi.md#ListEvents) | **Get** /api/v1/events | Query the event stream.
+[**ListEvents**](EventsApi.md#ListEvents) | **Get** /api/v1/events | Query the event stream
 
 
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 > EventListResponse ListEvents(ctx).Start(start).End(end).Priority(priority).Sources(sources).Tags(tags).Unaggregated(unaggregated).Execute()
 
-Query the event stream.
+Query the event stream
 
 
 

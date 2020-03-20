@@ -43,12 +43,8 @@ func (r apiGetUsageFargateRequest) EndHr(endHr time.Time) apiGetUsageFargateRequ
 }
 
 /*
-GetUsageFargate Get hourly usage for fargate.
-### Overview
+GetUsageFargate Get hourly usage for Fargate
 Get hourly usage for [fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
-### Arguments
-* **`start_hr`** [*required*] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour
-* **`end_hr`** [*optional*, *default* = **1d+start_hr**] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageFargateRequest
 */
@@ -230,12 +226,8 @@ func (r apiGetUsageHostsRequest) EndHr(endHr time.Time) apiGetUsageHostsRequest 
 }
 
 /*
-GetUsageHosts Get hourly usage for hosts and containers.
-### Overview
+GetUsageHosts Get hourly usage for hosts and containers
 Get hourly usage for hosts and containers.
-### Arguments
-* **`start_hr`** [*required*] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour
-* **`end_hr`** [*optional*, *default* = **1d+start_hr**] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageHostsRequest
 */
@@ -417,12 +409,8 @@ func (r apiGetUsageLogsRequest) EndHr(endHr time.Time) apiGetUsageLogsRequest {
 }
 
 /*
-GetUsageLogs Get hourly usage for logs.
-### Overview
+GetUsageLogs Get hourly usage for Logs
 Get hourly usage for logs.
-### Arguments
-* **`start_hr`** [*required*] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour
-* **`end_hr`** [*optional*, *default* = **1d+start_hr**] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageLogsRequest
 */
@@ -610,13 +598,8 @@ func (r apiGetUsageSummaryRequest) IncludeOrgDetails(includeOrgDetails bool) api
 }
 
 /*
-GetUsageSummary Get usage across your multi-org account.
-### Overview
+GetUsageSummary Get usage across your multi-org account
 Get usage across your multi-org account.
-### Arguments
-* **`start_month`** [*required*] Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning in this month. Maximum of 15 months ago.
-* **`end_month`** [*optional*, *default* = **current_month-3d**] Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage ending this month.
-* **`include_org_details`** [*optional*, *default* = **true**] Include usage summaries for each sub-org.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageSummaryRequest
 */
@@ -801,12 +784,8 @@ func (r apiGetUsageSyntheticsRequest) EndHr(endHr time.Time) apiGetUsageSyntheti
 }
 
 /*
-GetUsageSynthetics Get hourly usage for synthetics.
-### Overview
+GetUsageSynthetics Get hourly usage for Synthetics
 Get hourly usage for [synthetics](https://docs.datadoghq.com/synthetics/).
-### Arguments
-* **`start_hr`** [*required*] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour
-* **`end_hr`** [*optional*, *default* = **1d+start_hr**] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageSyntheticsRequest
 */
@@ -988,12 +967,8 @@ func (r apiGetUsageTimeseriesRequest) EndHr(endHr time.Time) apiGetUsageTimeseri
 }
 
 /*
-GetUsageTimeseries Get hourly usage for custom metrics.
-### Overview
+GetUsageTimeseries Get hourly usage for custom metrics
 Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).
-### Arguments
-* **`start_hr`** [*required*] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour
-* **`end_hr`** [*optional*, *default* = **1d+start_hr**] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageTimeseriesRequest
 */
@@ -1175,12 +1150,8 @@ func (r apiGetUsageTopAvgMetricsRequest) Names(names []string) apiGetUsageTopAvg
 }
 
 /*
-GetUsageTopAvgMetrics Get top custom metrics by hourly average.
-### Overview
+GetUsageTopAvgMetrics Get top 500 custom metrics by hourly average
 Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average.
-### Arguments
-* **`month`** [*required*] Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour.
-* **`names`** [*optional*, *default* = **None**] Comma-separated list of metric names.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageTopAvgMetricsRequest
 */
@@ -1370,12 +1341,8 @@ func (r apiGetUsageTraceRequest) EndHr(endHr time.Time) apiGetUsageTraceRequest 
 }
 
 /*
-GetUsageTrace Get hourly usage for trace search.
-### Overview
+GetUsageTrace Get hourly usage for Trace Search
 Get hourly usage for trace search.
-### Arguments
-* **`start_hr`** [*required*] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour
-* **`end_hr`** [*optional*, *default* = **1d+start_hr**] Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageTraceRequest
 */

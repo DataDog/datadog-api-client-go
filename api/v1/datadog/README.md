@@ -76,21 +76,21 @@ Class | Method | HTTP request | Description
 *AWSIntegrationApi* | [**CreateAWSAccount**](docs/AWSIntegrationApi.md#createawsaccount) | **Post** /api/v1/integration/aws | Create an AWS Integration
 *AWSIntegrationApi* | [**DeleteAWSAccount**](docs/AWSIntegrationApi.md#deleteawsaccount) | **Delete** /api/v1/integration/aws | Delete an AWS Integration
 *AWSIntegrationApi* | [**GenerateNewAWSExternalID**](docs/AWSIntegrationApi.md#generatenewawsexternalid) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
-*AWSIntegrationApi* | [**GetAllAWSAccounts**](docs/AWSIntegrationApi.md#getallawsaccounts) | **Get** /api/v1/integration/aws | Get Installed AWS Accounts
-*AWSIntegrationApi* | [**ListAvailableAWSNamespaces**](docs/AWSIntegrationApi.md#listavailableawsnamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List Available Namespaces
-*AWSIntegrationApi* | [**UpdateAWSAccount**](docs/AWSIntegrationApi.md#updateawsaccount) | **Put** /api/v1/integration/aws | Update an AWS Account
-*AWSLogsIntegrationApi* | [**AWSLogsCheckLambdaAsync**](docs/AWSLogsIntegrationApi.md#awslogschecklambdaasync) | **Post** /api/v1/integration/aws/logs/check_async | Check function to see if a lambda_arn exists within an account.
-*AWSLogsIntegrationApi* | [**AWSLogsCheckServicesAsync**](docs/AWSLogsIntegrationApi.md#awslogscheckservicesasync) | **Post** /api/v1/integration/aws/logs/services_async | Asynchronous check for permissions for AWS log lambda config.
-*AWSLogsIntegrationApi* | [**AWSLogsList**](docs/AWSLogsIntegrationApi.md#awslogslist) | **Get** /api/v1/integration/aws/logs | List configured AWS log integrations.
-*AWSLogsIntegrationApi* | [**AWSLogsServicesList**](docs/AWSLogsIntegrationApi.md#awslogsserviceslist) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services.
-*AWSLogsIntegrationApi* | [**AddAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#addawslambdaarn) | **Post** /api/v1/integration/aws/logs | Add a AWS Lambda ARN to your Datadog account.
-*AWSLogsIntegrationApi* | [**DeleteAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#deleteawslambdaarn) | **Delete** /api/v1/integration/aws/logs | Delete a AWS Lambda ARN from your Datadog account.
-*AWSLogsIntegrationApi* | [**EnableAWSLogServices**](docs/AWSLogsIntegrationApi.md#enableawslogservices) | **Post** /api/v1/integration/aws/logs/services | Enable Automatic Log collection for your AWS services.
-*AzureIntegrationApi* | [**AzureUpdateHostFilters**](docs/AzureIntegrationApi.md#azureupdatehostfilters) | **Post** /api/v1/integration/azure/host_filters | Update the defined list of host filters for a given Datadog-Azure integration.
-*AzureIntegrationApi* | [**CreateAzureIntegration**](docs/AzureIntegrationApi.md#createazureintegration) | **Post** /api/v1/integration/azure | Add a Azure integration to your Datadog account.
-*AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure Integration from your Datadog account.
-*AzureIntegrationApi* | [**ListAzureIntegration**](docs/AzureIntegrationApi.md#listazureintegration) | **Get** /api/v1/integration/azure | List configured Azure integrations.
-*AzureIntegrationApi* | [**UpdateAzureIntegration**](docs/AzureIntegrationApi.md#updateazureintegration) | **Put** /api/v1/integration/azure | Update an Azure integration to your Datadog account.
+*AWSIntegrationApi* | [**GetAllAWSAccounts**](docs/AWSIntegrationApi.md#getallawsaccounts) | **Get** /api/v1/integration/aws | List all AWS Integrations
+*AWSIntegrationApi* | [**ListAvailableAWSNamespaces**](docs/AWSIntegrationApi.md#listavailableawsnamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
+*AWSIntegrationApi* | [**UpdateAWSAccount**](docs/AWSIntegrationApi.md#updateawsaccount) | **Put** /api/v1/integration/aws | Update an AWS Integration
+*AWSLogsIntegrationApi* | [**AWSLogsCheckLambdaAsync**](docs/AWSLogsIntegrationApi.md#awslogschecklambdaasync) | **Post** /api/v1/integration/aws/logs/check_async | Check that an AWS Lambda Function exists
+*AWSLogsIntegrationApi* | [**AWSLogsCheckServicesAsync**](docs/AWSLogsIntegrationApi.md#awslogscheckservicesasync) | **Post** /api/v1/integration/aws/logs/services_async | Check permissions for Log Services
+*AWSLogsIntegrationApi* | [**AWSLogsList**](docs/AWSLogsIntegrationApi.md#awslogslist) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
+*AWSLogsIntegrationApi* | [**AWSLogsServicesList**](docs/AWSLogsIntegrationApi.md#awslogsserviceslist) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
+*AWSLogsIntegrationApi* | [**AddAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#addawslambdaarn) | **Post** /api/v1/integration/aws/logs | Add AWS Log Lambda ARN
+*AWSLogsIntegrationApi* | [**DeleteAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#deleteawslambdaarn) | **Delete** /api/v1/integration/aws/logs | Delete an AWS Logs integration
+*AWSLogsIntegrationApi* | [**EnableAWSLogServices**](docs/AWSLogsIntegrationApi.md#enableawslogservices) | **Post** /api/v1/integration/aws/logs/services | Enable an AWS Logs integration
+*AzureIntegrationApi* | [**AzureUpdateHostFilters**](docs/AzureIntegrationApi.md#azureupdatehostfilters) | **Post** /api/v1/integration/azure/host_filters | Update Azure integration host filters
+*AzureIntegrationApi* | [**CreateAzureIntegration**](docs/AzureIntegrationApi.md#createazureintegration) | **Post** /api/v1/integration/azure | Create an Azure integration
+*AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure integration
+*AzureIntegrationApi* | [**ListAzureIntegration**](docs/AzureIntegrationApi.md#listazureintegration) | **Get** /api/v1/integration/azure | List all Azure integrations
+*AzureIntegrationApi* | [**UpdateAzureIntegration**](docs/AzureIntegrationApi.md#updateazureintegration) | **Put** /api/v1/integration/azure | Update an Azure integration
 *DashboardListsApi* | [**CreateDashboardList**](docs/DashboardListsApi.md#createdashboardlist) | **Post** /api/v1/dashboard/lists/manual | Create a dashboard list
 *DashboardListsApi* | [**DeleteDashboardList**](docs/DashboardListsApi.md#deletedashboardlist) | **Delete** /api/v1/dashboard/lists/manual/{list_id} | Delete a dashboard list
 *DashboardListsApi* | [**GetAllDashboardLists**](docs/DashboardListsApi.md#getalldashboardlists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
@@ -109,68 +109,68 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
 *EventsApi* | [**CreateEvent**](docs/EventsApi.md#createevent) | **Post** /api/v1/events | Post an event
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /api/v1/events/{event_id} | Get an event
-*EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream.
-*GCPIntegrationApi* | [**CreateGCPIntegration**](docs/GCPIntegrationApi.md#creategcpintegration) | **Post** /api/v1/integration/gcp | Add a GCP integration to your Datadog account.
-*GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP Integration from your Datadog account.
-*GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List configured GCP integrations.
-*GCPIntegrationApi* | [**UpdateGCPIntegration**](docs/GCPIntegrationApi.md#updategcpintegration) | **Put** /api/v1/integration/gcp | Update a GCP integration in your Datadog account.
-*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Get all hosts for your organization
-*HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Get total number of active hosts in your Datadog Account
-*HostsApi* | [**MuteHost**](docs/HostsApi.md#mutehost) | **Post** /api/v1/host/{host_name}/mute | Mute a Host
-*HostsApi* | [**UnmuteHost**](docs/HostsApi.md#unmutehost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a Host
-*IPRangesApi* | [**GetIPRanges**](docs/IPRangesApi.md#getipranges) | **Get** / | 
-*KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key with a given name.
-*KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key with a given name.
-*KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete a given API key.
-*KeysApi* | [**DeleteApplicationKey**](docs/KeysApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete a given application key.
-*KeysApi* | [**EditAPIKey**](docs/KeysApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key name.
-*KeysApi* | [**EditApplicationKey**](docs/KeysApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key name.
-*KeysApi* | [**GetAPIKey**](docs/KeysApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get a given API key.
-*KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys available for your account.
-*KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys available for your account.
-*KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get a given application key.
+*EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream
+*GCPIntegrationApi* | [**CreateGCPIntegration**](docs/GCPIntegrationApi.md#creategcpintegration) | **Post** /api/v1/integration/gcp | Create a GCP integration
+*GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP integration
+*GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List all GCP integrations
+*GCPIntegrationApi* | [**UpdateGCPIntegration**](docs/GCPIntegrationApi.md#updategcpintegration) | **Put** /api/v1/integration/gcp | Update a GCP integration
+*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Search for hosts
+*HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Host totals
+*HostsApi* | [**MuteHost**](docs/HostsApi.md#mutehost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
+*HostsApi* | [**UnmuteHost**](docs/HostsApi.md#unmutehost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a host
+*IPRangesApi* | [**GetIPRanges**](docs/IPRangesApi.md#getipranges) | **Get** / | List IP Ranges
+*KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key
+*KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key
+*KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete an API key
+*KeysApi* | [**DeleteApplicationKey**](docs/KeysApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete an application key
+*KeysApi* | [**EditAPIKey**](docs/KeysApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
+*KeysApi* | [**EditApplicationKey**](docs/KeysApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
+*KeysApi* | [**GetAPIKey**](docs/KeysApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get an API key
+*KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys
+*KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
+*KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get an application key
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
-*LogsApi* | [**SendLog**](docs/LogsApi.md#sendlog) | **Post** /v1/input | 
-*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | This endpoint returns an array of the LogIndex objects of your organization.
-*LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | This endpoint returns an Index identified by its name.
-*LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get the current order of your log indexes.
-*LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | This endpoint updates an Index identified by its name.
-*LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update the order of your log indexes.
-*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline in your organization.
-*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a given pipeline from your organization.
-*LogsPipelinesApi* | [**GetAllLogsPipelines**](docs/LogsPipelinesApi.md#getalllogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all pipelines from your organization.
-*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a specific pipeline from your organization.
-*LogsPipelinesApi* | [**GetLogsPipelineOrder**](docs/LogsPipelinesApi.md#getlogspipelineorder) | **Get** /api/v1/logs/config/pipeline-order | Get the current order of your pipelines.
-*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline in your organization.
-*LogsPipelinesApi* | [**UpdateLogsPipelineOrder**](docs/LogsPipelinesApi.md#updatelogspipelineorder) | **Put** /api/v1/logs/config/pipeline-order | Update the order of your pipelines.
+*LogsApi* | [**SendLog**](docs/LogsApi.md#sendlog) | **Post** /v1/input | Send logs
+*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | Get all Indexes
+*LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
+*LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get Indexes Order
+*LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | Update an Index
+*LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update Indexes Order
+*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a Pipeline
+*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a Pipeline
+*LogsPipelinesApi* | [**GetAllLogsPipelines**](docs/LogsPipelinesApi.md#getalllogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
+*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a Pipeline
+*LogsPipelinesApi* | [**GetLogsPipelineOrder**](docs/LogsPipelinesApi.md#getlogspipelineorder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
+*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a Pipeline
+*LogsPipelinesApi* | [**UpdateLogsPipelineOrder**](docs/LogsPipelinesApi.md#updatelogspipelineorder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
 *MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
 *MetricsApi* | [**GetMetricMetadata**](docs/MetricsApi.md#getmetricmetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
 *MetricsApi* | [**QueryMetrics**](docs/MetricsApi.md#querymetrics) | **Get** /api/v1/query | Query timeseries points
 *MetricsApi* | [**SearchMetrics**](docs/MetricsApi.md#searchmetrics) | **Get** /api/v1/search | Search metrics
 *MetricsApi* | [**SubmitMetrics**](docs/MetricsApi.md#submitmetrics) | **Post** /api/v1/series | Submit metrics
-*MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a new Monitor
-*MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
-*MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
-*MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get details about the specified monitor.
-*MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get details about the specified monitor.
-*MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | 
-*OrgsApi* | [**CreateChildOrg**](docs/OrgsApi.md#createchildorg) | **Post** /api/v1/org | Create child-organization.
-*OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get the organization
-*OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update the organization
+*MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a monitor
+*MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
+*MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
+*MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get all monitor details
+*MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
+*MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
+*OrgsApi* | [**CreateChildOrg**](docs/OrgsApi.md#createchildorg) | **Post** /api/v1/org | Create child-organization
+*OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get organization
+*OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update organization
 *OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *PagerDutyIntegrationApi* | [**CreatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#createpagerdutyintegration) | **Put** /api/v1/integration/pagerduty | Create a PagerDuty integration
 *PagerDutyIntegrationApi* | [**DeletePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegration) | **Delete** /api/v1/integration/pagerduty | Delete a PagerDuty integration
 *PagerDutyIntegrationApi* | [**GetPagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegration) | **Get** /api/v1/integration/pagerduty | Get a PagerDuty integration
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegration) | **Post** /api/v1/integration/pagerduty | Add new services and schedules
-*SLOApi* | [**BulkPartialDeleteSLO**](docs/SLOApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Delete (or partially delete) multiple service level objective objects.
-*SLOApi* | [**CheckCanDeleteSLO**](docs/SLOApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted.
-*SLOApi* | [**CreateSLO**](docs/SLOApi.md#createslo) | **Post** /api/v1/slo | Create a service level objective object.
-*SLOApi* | [**DeleteSLO**](docs/SLOApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete the specified service level objective object.
-*SLOApi* | [**EditSLO**](docs/SLOApi.md#editslo) | **Put** /api/v1/slo/{slo_id} | Edit the specified service level objective
-*SLOApi* | [**GetSLO**](docs/SLOApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a service level objective object
-*SLOApi* | [**GetSLOs**](docs/SLOApi.md#getslos) | **Get** /api/v1/slo | Get multiple service level objective objects by their IDs.
-*SLOApi* | [**HistoryForSLO**](docs/SLOApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get the history of the service level objective.
+*SLOApi* | [**BulkPartialDeleteSLO**](docs/SLOApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
+*SLOApi* | [**CheckCanDeleteSLO**](docs/SLOApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
+*SLOApi* | [**CreateSLO**](docs/SLOApi.md#createslo) | **Post** /api/v1/slo | Create a SLO object
+*SLOApi* | [**DeleteSLO**](docs/SLOApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
+*SLOApi* | [**EditSLO**](docs/SLOApi.md#editslo) | **Put** /api/v1/slo/{slo_id} | Edit a SLO
+*SLOApi* | [**GetSLO**](docs/SLOApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
+*SLOApi* | [**GetSLOs**](docs/SLOApi.md#getslos) | **Get** /api/v1/slo | Search SLOs
+*SLOApi* | [**HistoryForSLO**](docs/SLOApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
 *ServiceChecksApi* | [**SubmitServiceCheck**](docs/ServiceChecksApi.md#submitservicecheck) | **Post** /api/v1/check_run | Submit a Service Check
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateTest**](docs/SyntheticsApi.md#createtest) | **Post** /api/v1/synthetics/tests | Create or clone test
@@ -186,18 +186,18 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**SetTestPauseStatus**](docs/SyntheticsApi.md#settestpausestatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
 *SyntheticsApi* | [**UpdateTest**](docs/SyntheticsApi.md#updatetest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
 *TagsApi* | [**AddToHostTags**](docs/TagsApi.md#addtohosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
-*TagsApi* | [**GetAllHostTags**](docs/TagsApi.md#getallhosttags) | **Get** /api/v1/tags/hosts | Get a mapping of tags to hosts for your whole infrastrucutre
-*TagsApi* | [**GetHostTags**](docs/TagsApi.md#gethosttags) | **Get** /api/v1/tags/hosts/{host_name} | Get list of tags for a specific hosts
-*TagsApi* | [**RemoveHostTags**](docs/TagsApi.md#removehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove Host Tags
-*TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update a tags on a host
-*UsageApi* | [**GetUsageFargate**](docs/UsageApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for fargate.
-*UsageApi* | [**GetUsageHosts**](docs/UsageApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers.
-*UsageApi* | [**GetUsageLogs**](docs/UsageApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for logs.
-*UsageApi* | [**GetUsageSummary**](docs/UsageApi.md#getusagesummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account.
-*UsageApi* | [**GetUsageSynthetics**](docs/UsageApi.md#getusagesynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for synthetics.
-*UsageApi* | [**GetUsageTimeseries**](docs/UsageApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics.
-*UsageApi* | [**GetUsageTopAvgMetrics**](docs/UsageApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top custom metrics by hourly average.
-*UsageApi* | [**GetUsageTrace**](docs/UsageApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for trace search.
+*TagsApi* | [**GetAllHostTags**](docs/TagsApi.md#getallhosttags) | **Get** /api/v1/tags/hosts | Get Tags
+*TagsApi* | [**GetHostTags**](docs/TagsApi.md#gethosttags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
+*TagsApi* | [**RemoveHostTags**](docs/TagsApi.md#removehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
+*TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
+*UsageApi* | [**GetUsageFargate**](docs/UsageApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
+*UsageApi* | [**GetUsageHosts**](docs/UsageApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
+*UsageApi* | [**GetUsageLogs**](docs/UsageApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
+*UsageApi* | [**GetUsageSummary**](docs/UsageApi.md#getusagesummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account
+*UsageApi* | [**GetUsageSynthetics**](docs/UsageApi.md#getusagesynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for Synthetics
+*UsageApi* | [**GetUsageTimeseries**](docs/UsageApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
+*UsageApi* | [**GetUsageTopAvgMetrics**](docs/UsageApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top 500 custom metrics by hourly average
+*UsageApi* | [**GetUsageTrace**](docs/UsageApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable user
 *UsersApi* | [**GetAllUsers**](docs/UsersApi.md#getallusers) | **Get** /api/v1/user | Get all users

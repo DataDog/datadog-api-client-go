@@ -44,11 +44,7 @@ func (r apiAddToHostTagsRequest) Source(source string) apiAddToHostTagsRequest {
 
 /*
 AddToHostTags Add tags to a host
-### Add Tags to Host
-
- * **`tags`** [*required*]: A list of tags to apply to the host.
-
- * **`source`** [*optional*, *default*= **users**]: The source of the tags (e.g. chef, puppet).
+This endpoint allows you to add new tags to a host, optionally specifying where these tags come from.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName This endpoint allows you to add new tags to a host, optionally specifying where the tags came from.
 @return apiAddToHostTagsRequest
@@ -218,9 +214,8 @@ func (r apiGetAllHostTagsRequest) Source(source string) apiGetAllHostTagsRequest
 }
 
 /*
-GetAllHostTags Get a mapping of tags to hosts for your whole infrastrucutre
-### Get Tags
-* **`source`** [*optional*, *default*= **users**]: The source of the tags (e.g. chef, puppet).
+GetAllHostTags Get Tags
+Return a mapping of tags to hosts for your whole infrastructure.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllHostTagsRequest
 */
@@ -382,10 +377,8 @@ func (r apiGetHostTagsRequest) Source(source string) apiGetHostTagsRequest {
 }
 
 /*
-GetHostTags Get list of tags for a specific hosts
-### Get Host Tags
-
- * **`source`** [*optional*, *default*= **users**]: The source of the tags (e.g. chef, puppet).
+GetHostTags Get host tags
+Return the list of tags that apply to a given host.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName When specified, filters list of tags to those tags with the specified source.
 @return apiGetHostTagsRequest
@@ -550,10 +543,8 @@ func (r apiRemoveHostTagsRequest) Source(source string) apiRemoveHostTagsRequest
 }
 
 /*
-RemoveHostTags Remove Host Tags
-### Remove Host Tags
-
- * **`source`** [*optional*, *default*= **users**]: The source of the tags (e.g. chef, puppet).
+RemoveHostTags Remove host tags
+This endpoint allows you to remove all user-assigned tags for a single host.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName This endpoint allows you to remove all user-assigned tags for a single host.
 @return apiRemoveHostTagsRequest
@@ -704,12 +695,8 @@ func (r apiUpdateHostTagsRequest) Source(source string) apiUpdateHostTagsRequest
 }
 
 /*
-UpdateHostTags Update a tags on a host
-### Update Host Tags
-
- * **`tags`** [*required*]: A list of tags to apply to the host.
-
- * **`source`** [*optional*, *default*= **users**]: The source of the tags (e.g. chef, puppet).
+UpdateHostTags Update host tags
+This endpoint allows you to update/replace all tags in an integration source with those supplied in the request.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName This endpoint allows you to update/replace all in an integration source with those supplied in the request.
 @return apiUpdateHostTagsRequest

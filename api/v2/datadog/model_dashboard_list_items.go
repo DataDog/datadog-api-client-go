@@ -14,9 +14,9 @@ import (
 
 // DashboardListItems struct for DashboardListItems
 type DashboardListItems struct {
-	// List of dashboards in the dashboard list
+	// List of dashboards in the dashboard list.
 	Dashboards []DashboardListItem `json:"dashboards"`
-	// Number of dashboards in the dashboard list
+	// Number of dashboards in the dashboard list.
 	Total *int64 `json:"total,omitempty"`
 }
 

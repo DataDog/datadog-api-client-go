@@ -406,8 +406,8 @@ func (r apiListEventsRequest) Unaggregated(unaggregated bool) apiListEventsReque
 }
 
 /*
-ListEvents Query the event stream.
-### Overview
+ListEvents Query the event stream
+
 The event stream can be queried and filtered by time, priority, sources and tags.
 Note: if the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
 ### Arguments
