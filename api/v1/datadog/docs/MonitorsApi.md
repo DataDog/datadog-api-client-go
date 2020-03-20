@@ -4,12 +4,12 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a new Monitor
-[**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
-[**EditMonitor**](MonitorsApi.md#EditMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
-[**GetAllMonitors**](MonitorsApi.md#GetAllMonitors) | **Get** /api/v1/monitor | Get details about the specified monitor.
-[**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get details about the specified monitor.
-[**ValidateMonitor**](MonitorsApi.md#ValidateMonitor) | **Post** /api/v1/monitor/validate | 
+[**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a monitor
+[**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
+[**EditMonitor**](MonitorsApi.md#EditMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
+[**GetAllMonitors**](MonitorsApi.md#GetAllMonitors) | **Get** /api/v1/monitor | Get all monitor details
+[**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
+[**ValidateMonitor**](MonitorsApi.md#ValidateMonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
 
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > Monitor CreateMonitor(ctx).Body(body).Execute()
 
-Create a new Monitor
+Create a monitor
 
 
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 > DeletedMonitor DeleteMonitor(ctx, monitorId).Execute()
 
-Delete the specified monitor.
+Delete a monitor
 
 
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 > Monitor EditMonitor(ctx, monitorId).Body(body).Execute()
 
-Edit the specified monitor
+Edit a monitor
 
 
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 > []Monitor GetAllMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).Execute()
 
-Get details about the specified monitor.
+Get all monitor details
 
 
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 > Monitor GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
 
-Get details about the specified monitor.
+Get a monitor's details
 
 
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 > Monitor ValidateMonitor(ctx).Body(body).Execute()
 
-
+Validate a monitor
 
 
 

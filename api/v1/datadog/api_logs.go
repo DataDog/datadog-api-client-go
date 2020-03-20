@@ -247,7 +247,7 @@ func (r apiSendLogRequest) Body(body HTTPLog) apiSendLogRequest {
 }
 
 /*
-SendLog Method for SendLog
+SendLog Send logs
 Send logs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiSendLogRequest

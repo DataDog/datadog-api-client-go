@@ -7,9 +7,9 @@ Method | HTTP request | Description
 [**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS Integration
 [**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS Integration
 [**GenerateNewAWSExternalID**](AWSIntegrationApi.md#GenerateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
-[**GetAllAWSAccounts**](AWSIntegrationApi.md#GetAllAWSAccounts) | **Get** /api/v1/integration/aws | Get Installed AWS Accounts
-[**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List Available Namespaces
-[**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS Account
+[**GetAllAWSAccounts**](AWSIntegrationApi.md#GetAllAWSAccounts) | **Get** /api/v1/integration/aws | List all AWS Integrations
+[**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
+[**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS Integration
 
 
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 > AWSAccountListResponse GetAllAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
-Get Installed AWS Accounts
+List all AWS Integrations
 
 
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 > []string ListAvailableAWSNamespaces(ctx).Execute()
 
-List Available Namespaces
+List namespace rules
 
 
 
@@ -210,7 +210,7 @@ Other parameters are passed through a pointer to a apiListAvailableAWSNamespaces
 
 > interface{} UpdateAWSAccount(ctx).Body(body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
-Update an AWS Account
+Update an AWS Integration
 
 
 

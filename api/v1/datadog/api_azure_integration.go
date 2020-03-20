@@ -35,8 +35,8 @@ func (r apiAzureUpdateHostFiltersRequest) Body(body AzureAccount) apiAzureUpdate
 }
 
 /*
-AzureUpdateHostFilters Update the defined list of host filters for a given Datadog-Azure integration.
-### Overview
+AzureUpdateHostFilters Update Azure integration host filters
+
 Update the defined list of host filters for a given Datadog-Azure integration.
 ### Arguments
 * **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
@@ -205,7 +205,7 @@ func (r apiCreateAzureIntegrationRequest) Body(body AzureAccount) apiCreateAzure
 }
 
 /*
-CreateAzureIntegration Add a Azure integration to your Datadog account.
+CreateAzureIntegration Create an Azure integration
 ### Overview
 Create a Datadog-Azure integration.
 ### Arguments
@@ -376,8 +376,8 @@ func (r apiDeleteAzureIntegrationRequest) Body(body AzureAccount) apiDeleteAzure
 }
 
 /*
-DeleteAzureIntegration Delete an Azure Integration from your Datadog account.
-### Overview
+DeleteAzureIntegration Delete an Azure integration
+
 Delete a given Datadog-Azure integration.
 ### Arguments
 * **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
@@ -539,7 +539,7 @@ type apiListAzureIntegrationRequest struct {
 }
 
 /*
-ListAzureIntegration List configured Azure integrations.
+ListAzureIntegration List all Azure integrations
 ### Overview
 List all Datadog-Azure integrations configured in your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -699,7 +699,7 @@ func (r apiUpdateAzureIntegrationRequest) Body(body AzureAccount) apiUpdateAzure
 }
 
 /*
-UpdateAzureIntegration Update an Azure integration to your Datadog account.
+UpdateAzureIntegration Update an Azure integration
 ### Overview
 Update an Datadog-Azure integration. Requires an existing tenant_name and client_id. Any other fields supplied will overwrite existing values. To overwrite tenant_name or client_id, use new_tenant_name and new_client_id. To leave a field unchanged, do not supply that field in the payload.
 ### Arguments
