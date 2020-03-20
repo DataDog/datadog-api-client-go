@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 set -e
 echo "Ensuring all dependencies are present in LICENSE-3rdparty.csv ..."
-ALL_DEPS=(`cat go.sum | awk '{print $1}' | uniq | sort | sed "s|^\(.*\)|go.sum,\1,|"`)
+ALL_DEPS=`cat go.sum | awk '{print $1}' | uniq | sort | sed "s|^\(.*\)|go.sum,\1,|"`
 DEPS_NOT_FOUND=""
-for one_dep in "${ALL_DEPS[@]}"; do
+for one_dep in `echo $ALL_DEPS`; do
     set +e
     cat LICENSE-3rdparty.csv | grep "$one_dep" > /dev/null 2>&1
     if [ $? -ne 0 ]; then
-        DEPS_NOT_FOUND="${DEPS_NOT_FOUND}\n${one_dep}<LICENSE>"
+        DEPS_NOT_FOUND="${DEPS_NOT_FOUND}\n${one_dep}<LICENSE>,<COPYRIGHT>"
     fi
     set -e
 done
