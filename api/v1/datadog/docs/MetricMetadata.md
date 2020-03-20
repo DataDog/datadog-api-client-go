@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **PerUnit** | Pointer to **string** | Per unit of the metric such as &#x60;second&#x60; in &#x60;bytes per second&#x60; | [optional] 
 **ShortName** | Pointer to **string** | A more human-readable and abbreviated version of the metric name | [optional] 
 **StatsdInterval** | Pointer to **int64** | Statsd flush interval of the metric in seconds if applicable | [optional] 
-**Type** | Pointer to **string** | Metric type such as &#x60;gauge&#x60; or &#x60;rate&#x60; | 
+**Type** | Pointer to **string** | Metric type such as &#x60;gauge&#x60; or &#x60;rate&#x60; | [optional] 
 **Unit** | Pointer to **string** | Primary unit of the metric such as &#x60;byte&#x60; or &#x60;operation&#x60; | [optional] 
 
 ## Methods
 
 ### NewMetricMetadata
 
-`func NewMetricMetadata(type_ string, ) *MetricMetadata`
+`func NewMetricMetadata() *MetricMetadata`
 
 NewMetricMetadata instantiates a new MetricMetadata object
 This constructor will assign default values to properties that have it defined,

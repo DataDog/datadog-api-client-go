@@ -25,7 +25,7 @@ type MetricMetadata struct {
 	// Statsd flush interval of the metric in seconds if applicable
 	StatsdInterval *int64 `json:"statsd_interval,omitempty"`
 	// Metric type such as `gauge` or `rate`
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 	// Primary unit of the metric such as `byte` or `operation`
 	Unit *string `json:"unit,omitempty"`
 }
@@ -34,9 +34,8 @@ type MetricMetadata struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetricMetadata(type_ string) *MetricMetadata {
+func NewMetricMetadata() *MetricMetadata {
 	this := MetricMetadata{}
-	this.Type = type_
 	return &this
 }
 
@@ -213,19 +212,37 @@ func (o *MetricMetadata) SetStatsdInterval(v int64) {
 	o.StatsdInterval = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricMetadata) GetType() string {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// SetType sets field value
+// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricMetadata) GetTypeOk() (string, bool) {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *MetricMetadata) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *MetricMetadata) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
@@ -278,7 +295,7 @@ func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 	if o.StatsdInterval != nil {
 		toSerialize["statsd_interval"] = o.StatsdInterval
 	}
-	if true {
+	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
 	if o.Unit != nil {
