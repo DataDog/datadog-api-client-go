@@ -30,11 +30,8 @@ type apiGetAllLogIndexesRequest struct {
 }
 
 /*
-GetAllLogIndexes This endpoint returns an array of the LogIndex objects of your organization.
-## Overview
-Get all log indexes of your organization.
-### Arguments
-This endpoint takes no JSON arguments.
+GetAllLogIndexes Get all Indexes
+This endpoint returns an array of the `LogIndex` objects of your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllLogIndexesRequest
 */
@@ -177,7 +174,7 @@ type apiGetLogsIndexRequest struct {
 }
 
 /*
-GetLogsIndex This endpoint returns an Index identified by its name.
+GetLogsIndex Get an index
 ## Overview
 Get one log index from your organization.
 ### Arguments
@@ -336,7 +333,7 @@ type apiGetLogsIndexOrderRequest struct {
 }
 
 /*
-GetLogsIndexOrder Get the current order of your log indexes.
+GetLogsIndexOrder Get Indexes Order
 ## Overview
 Get the current order of your log indexes.
 ### Arguments
@@ -489,7 +486,7 @@ func (r apiUpdateLogsIndexRequest) Body(body LogsIndex) apiUpdateLogsIndexReques
 }
 
 /*
-UpdateLogsIndex This endpoint updates an Index identified by its name.
+UpdateLogsIndex Update an Index
 ## Overview
 It returns the Index object passed in the request body when the request is successful.
 **Note:** Using the PUT method updates your index’s configuration by **replacing** your current configuration with the new one sent to your Datadog organization.
@@ -685,7 +682,7 @@ func (r apiUpdateLogsIndexOrderRequest) Body(body LogsIndexesOrder) apiUpdateLog
 }
 
 /*
-UpdateLogsIndexOrder Update the order of your log indexes.
+UpdateLogsIndexOrder Update Indexes Order
 ## Overview
 This endpoint updates the index order of your organization. It returns the index order object passed in the request body when the request is successful.
 ### Arguments

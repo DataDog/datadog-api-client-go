@@ -4,13 +4,13 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AWSLogsCheckLambdaAsync**](AWSLogsIntegrationApi.md#AWSLogsCheckLambdaAsync) | **Post** /api/v1/integration/aws/logs/check_async | Check function to see if a lambda_arn exists within an account.
-[**AWSLogsCheckServicesAsync**](AWSLogsIntegrationApi.md#AWSLogsCheckServicesAsync) | **Post** /api/v1/integration/aws/logs/services_async | Asynchronous check for permissions for AWS log lambda config.
-[**AWSLogsList**](AWSLogsIntegrationApi.md#AWSLogsList) | **Get** /api/v1/integration/aws/logs | List configured AWS log integrations.
-[**AWSLogsServicesList**](AWSLogsIntegrationApi.md#AWSLogsServicesList) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services.
-[**AddAWSLambdaARN**](AWSLogsIntegrationApi.md#AddAWSLambdaARN) | **Post** /api/v1/integration/aws/logs | Add a AWS Lambda ARN to your Datadog account.
-[**DeleteAWSLambdaARN**](AWSLogsIntegrationApi.md#DeleteAWSLambdaARN) | **Delete** /api/v1/integration/aws/logs | Delete a AWS Lambda ARN from your Datadog account.
-[**EnableAWSLogServices**](AWSLogsIntegrationApi.md#EnableAWSLogServices) | **Post** /api/v1/integration/aws/logs/services | Enable Automatic Log collection for your AWS services.
+[**AWSLogsCheckLambdaAsync**](AWSLogsIntegrationApi.md#AWSLogsCheckLambdaAsync) | **Post** /api/v1/integration/aws/logs/check_async | Check that an AWS Lambda Function exists
+[**AWSLogsCheckServicesAsync**](AWSLogsIntegrationApi.md#AWSLogsCheckServicesAsync) | **Post** /api/v1/integration/aws/logs/services_async | Check permissions for Log Services
+[**AWSLogsList**](AWSLogsIntegrationApi.md#AWSLogsList) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
+[**AWSLogsServicesList**](AWSLogsIntegrationApi.md#AWSLogsServicesList) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
+[**AddAWSLambdaARN**](AWSLogsIntegrationApi.md#AddAWSLambdaARN) | **Post** /api/v1/integration/aws/logs | Add AWS Log Lambda ARN
+[**DeleteAWSLambdaARN**](AWSLogsIntegrationApi.md#DeleteAWSLambdaARN) | **Delete** /api/v1/integration/aws/logs | Delete an AWS Logs integration
+[**EnableAWSLogServices**](AWSLogsIntegrationApi.md#EnableAWSLogServices) | **Post** /api/v1/integration/aws/logs/services | Enable an AWS Logs integration
 
 
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 > AWSLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx).Body(body).Execute()
 
-Check function to see if a lambda_arn exists within an account.
+Check that an AWS Lambda Function exists
 
 
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 > AWSLogsAsyncResponse AWSLogsCheckServicesAsync(ctx).Body(body).Execute()
 
-Asynchronous check for permissions for AWS log lambda config.
+Check permissions for Log Services
 
 
 
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiAWSLogsCheckServicesAsyncR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | AWS Logs Async Services check request body | 
+ **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | AWS Logs Async Services check request body. | 
 
 ### Return type
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 > []AWSLogsListResponse AWSLogsList(ctx).Execute()
 
-List configured AWS log integrations.
+List all AWS Logs Integrations
 
 
 
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiAWSLogsListRequest struct 
 
 > []AWSLogsListServicesResponse AWSLogsServicesList(ctx).Execute()
 
-Get list of AWS log ready services.
+Get list of AWS log ready services
 
 
 
@@ -166,7 +166,7 @@ Other parameters are passed through a pointer to a apiAWSLogsServicesListRequest
 
 > interface{} AddAWSLambdaARN(ctx).Body(body).Execute()
 
-Add a AWS Lambda ARN to your Datadog account.
+Add AWS Log Lambda ARN
 
 
 
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteAWSLambdaARN(ctx).Body(body).Execute()
 
-Delete a AWS Lambda ARN from your Datadog account.
+Delete an AWS Logs integration
 
 
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 > interface{} EnableAWSLogServices(ctx).Body(body).Execute()
 
-Enable Automatic Log collection for your AWS services.
+Enable an AWS Logs integration
 
 
 

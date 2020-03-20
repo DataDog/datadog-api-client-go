@@ -4,13 +4,13 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateLogsPipeline**](LogsPipelinesApi.md#CreateLogsPipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline in your organization.
-[**DeleteLogsPipeline**](LogsPipelinesApi.md#DeleteLogsPipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a given pipeline from your organization.
-[**GetAllLogsPipelines**](LogsPipelinesApi.md#GetAllLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all pipelines from your organization.
-[**GetLogsPipeline**](LogsPipelinesApi.md#GetLogsPipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a specific pipeline from your organization.
-[**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get the current order of your pipelines.
-[**UpdateLogsPipeline**](LogsPipelinesApi.md#UpdateLogsPipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline in your organization.
-[**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update the order of your pipelines.
+[**CreateLogsPipeline**](LogsPipelinesApi.md#CreateLogsPipeline) | **Post** /api/v1/logs/config/pipelines | Create a Pipeline
+[**DeleteLogsPipeline**](LogsPipelinesApi.md#DeleteLogsPipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a Pipeline
+[**GetAllLogsPipelines**](LogsPipelinesApi.md#GetAllLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
+[**GetLogsPipeline**](LogsPipelinesApi.md#GetLogsPipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a Pipeline
+[**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
+[**UpdateLogsPipeline**](LogsPipelinesApi.md#UpdateLogsPipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a Pipeline
+[**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
 
 
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 > LogsPipeline CreateLogsPipeline(ctx).Body(body).Execute()
 
-Create a pipeline in your organization.
+Create a Pipeline
 
 
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 > DeleteLogsPipeline(ctx, pipelineId).Execute()
 
-Delete a given pipeline from your organization.
+Delete a Pipeline
 
 
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 > []LogsPipeline GetAllLogsPipelines(ctx).Execute()
 
-Get all pipelines from your organization.
+Get all Pipeline
 
 
 
@@ -135,7 +135,7 @@ Other parameters are passed through a pointer to a apiGetAllLogsPipelinesRequest
 
 > LogsPipeline GetLogsPipeline(ctx, pipelineId).Execute()
 
-Get a specific pipeline from your organization.
+Get a Pipeline
 
 
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 > LogsPipelinesOrder GetLogsPipelineOrder(ctx).Execute()
 
-Get the current order of your pipelines.
+Get Pipeline Order
 
 
 
@@ -213,7 +213,7 @@ Other parameters are passed through a pointer to a apiGetLogsPipelineOrderReques
 
 > LogsPipeline UpdateLogsPipeline(ctx, pipelineId).Body(body).Execute()
 
-Update a pipeline in your organization.
+Update a Pipeline
 
 
 
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 > LogsPipelinesOrder UpdateLogsPipelineOrder(ctx).Body(body).Execute()
 
-Update the order of your pipelines.
+Update Pipeline Order
 
 
 

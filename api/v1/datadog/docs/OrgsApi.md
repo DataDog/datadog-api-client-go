@@ -4,9 +4,9 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateChildOrg**](OrgsApi.md#CreateChildOrg) | **Post** /api/v1/org | Create child-organization.
-[**GetOrg**](OrgsApi.md#GetOrg) | **Get** /api/v1/org | Get the organization
-[**UpdateOrg**](OrgsApi.md#UpdateOrg) | **Put** /api/v1/org/{public_id} | Update the organization
+[**CreateChildOrg**](OrgsApi.md#CreateChildOrg) | **Post** /api/v1/org | Create child-organization
+[**GetOrg**](OrgsApi.md#GetOrg) | **Get** /api/v1/org | Get organization
+[**UpdateOrg**](OrgsApi.md#UpdateOrg) | **Put** /api/v1/org/{public_id} | Update organization
 [**UploadIdPForOrg**](OrgsApi.md#UploadIdPForOrg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > OrgCreateResponse CreateChildOrg(ctx).Body(body).Execute()
 
-Create child-organization.
+Create child-organization
 
 
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 > OrgListResponse GetOrg(ctx).Execute()
 
-Get the organization
+Get organization
 
 
 
@@ -89,7 +89,7 @@ Other parameters are passed through a pointer to a apiGetOrgRequest struct via t
 
 > OrgResponse UpdateOrg(ctx, publicId).Body(body).Execute()
 
-Update the organization
+Update organization
 
 
 

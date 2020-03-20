@@ -4,7 +4,7 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetIPRanges**](IPRangesApi.md#GetIPRanges) | **Get** / | 
+[**GetIPRanges**](IPRangesApi.md#GetIPRanges) | **Get** / | List IP Ranges
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > IPRanges GetIPRanges(ctx).Execute()
 
-
+List IP Ranges
 
 
 
