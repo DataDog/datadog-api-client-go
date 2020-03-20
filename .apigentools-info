@@ -1,8 +1,8 @@
 {
     "additional_stamps": [],
-    "apigentools_version": "0.10.1.dev8",
+    "apigentools_version": "0.10.1.dev16",
     "codegen_version": "4.3.0-SNAPSHOT",
     "info_version": "1",
-    "image": "datadog/apigentools:git-aae80a7",
-    "spec_repo_commit": "d29bf80"
+    "image": "datadog/apigentools:git-2687e89",
+    "spec_repo_commit": "72bd7a1"
 }

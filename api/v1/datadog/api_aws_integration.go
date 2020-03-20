@@ -544,7 +544,7 @@ func (r apiGetAllAWSAccountsRequest) AccessKeyId(accessKeyId string) apiGetAllAW
 }
 
 /*
-GetAllAWSAccounts Get Installed AWS Accounts
+GetAllAWSAccounts List all AWS Integrations
 List all Datadog-AWS integrations available in your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllAWSAccountsRequest
@@ -716,7 +716,7 @@ type apiListAvailableAWSNamespacesRequest struct {
 }
 
 /*
-ListAvailableAWSNamespaces List Available Namespaces
+ListAvailableAWSNamespaces List namespace rules
 List all namespace rules for a given Datadog-AWS integration. This endpoint takes no arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListAvailableAWSNamespacesRequest
@@ -893,7 +893,7 @@ func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWS
 }
 
 /*
-UpdateAWSAccount Update an AWS Account
+UpdateAWSAccount Update an AWS Integration
 Update a Datadog-Amazon Web Services integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateAWSAccountRequest

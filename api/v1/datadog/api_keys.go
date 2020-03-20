@@ -36,11 +36,8 @@ func (r apiCreateAPIKeyRequest) Body(body ApiKey) apiCreateAPIKeyRequest {
 }
 
 /*
-CreateAPIKey Create an API key with a given name.
-## Overview
-Creates an API key
-### ARGUMENTS
-* **`name`** [*required*]: Name of your API key.
+CreateAPIKey Create an API key
+Create an API key with a given name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateAPIKeyRequest
 */
@@ -210,11 +207,8 @@ func (r apiCreateApplicationKeyRequest) Body(body ApplicationKey) apiCreateAppli
 }
 
 /*
-CreateApplicationKey Create an application key with a given name.
-## Overview
+CreateApplicationKey Create an application key
 Create an application key with a given name.
-### ARGUMENTS
-* **`name`** [*required*]: Name of your application key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateApplicationKeyRequest
 */
@@ -379,11 +373,8 @@ type apiDeleteAPIKeyRequest struct {
 }
 
 /*
-DeleteAPIKey Delete a given API key.
-## Overview
+DeleteAPIKey Delete an API key
 Delete a given API key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific API key you are working with
 @return apiDeleteAPIKeyRequest
@@ -549,11 +540,8 @@ type apiDeleteApplicationKeyRequest struct {
 }
 
 /*
-DeleteApplicationKey Delete a given application key.
-## Overview
+DeleteApplicationKey Delete an application key
 Delete a given application key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific APP key you are working with
 @return apiDeleteApplicationKeyRequest
@@ -725,11 +713,8 @@ func (r apiEditAPIKeyRequest) Body(body ApiKey) apiEditAPIKeyRequest {
 }
 
 /*
-EditAPIKey Edit an API key name.
-## Overview
+EditAPIKey Edit an API key
 Edit an API key name.
-### ARGUMENTS
-* **`name`** [*required*]: Name of your API key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific API key you are working with
 @return apiEditAPIKeyRequest
@@ -903,11 +888,8 @@ func (r apiEditApplicationKeyRequest) Body(body ApplicationKey) apiEditApplicati
 }
 
 /*
-EditApplicationKey Edit an application key name.
-## Overview
+EditApplicationKey Edit an application key
 Edit an application key name.
-### ARGUMENTS
-* **`name`** [*required*]: Name of your application key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific APP key you are working with
 @return apiEditApplicationKeyRequest
@@ -1075,13 +1057,10 @@ type apiGetAPIKeyRequest struct {
 }
 
 /*
-GetAPIKey Get a given API key.
-## Overview
+GetAPIKey Get an API key
 Get a given API key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param key The specific API key you are working with
+ * @param key The specific API key you are working with.
 @return apiGetAPIKeyRequest
 */
 func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) apiGetAPIKeyRequest {
@@ -1244,11 +1223,8 @@ type apiGetAllAPIKeysRequest struct {
 }
 
 /*
-GetAllAPIKeys Get all API keys available for your account.
-## Overview
+GetAllAPIKeys Get all API keys
 Get all API keys available for your account.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllAPIKeysRequest
 */
@@ -1400,11 +1376,8 @@ type apiGetAllApplicationKeysRequest struct {
 }
 
 /*
-GetAllApplicationKeys Get all application keys available for your account.
-## Overview
+GetAllApplicationKeys Get all application keys
 Get all application keys available for your account.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllApplicationKeysRequest
 */
@@ -1557,11 +1530,8 @@ type apiGetApplicationKeyRequest struct {
 }
 
 /*
-GetApplicationKey Get a given application key.
-## Overview
+GetApplicationKey Get an application key
 Get a given application key.
-### ARGUMENTS
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific APP key you are working with
 @return apiGetApplicationKeyRequest

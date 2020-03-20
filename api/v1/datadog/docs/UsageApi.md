@@ -4,14 +4,14 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetUsageFargate**](UsageApi.md#GetUsageFargate) | **Get** /api/v1/usage/fargate | Get hourly usage for fargate.
-[**GetUsageHosts**](UsageApi.md#GetUsageHosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers.
-[**GetUsageLogs**](UsageApi.md#GetUsageLogs) | **Get** /api/v1/usage/logs | Get hourly usage for logs.
-[**GetUsageSummary**](UsageApi.md#GetUsageSummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account.
-[**GetUsageSynthetics**](UsageApi.md#GetUsageSynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for synthetics.
-[**GetUsageTimeseries**](UsageApi.md#GetUsageTimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics.
-[**GetUsageTopAvgMetrics**](UsageApi.md#GetUsageTopAvgMetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top custom metrics by hourly average.
-[**GetUsageTrace**](UsageApi.md#GetUsageTrace) | **Get** /api/v1/usage/traces | Get hourly usage for trace search.
+[**GetUsageFargate**](UsageApi.md#GetUsageFargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
+[**GetUsageHosts**](UsageApi.md#GetUsageHosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
+[**GetUsageLogs**](UsageApi.md#GetUsageLogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
+[**GetUsageSummary**](UsageApi.md#GetUsageSummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account
+[**GetUsageSynthetics**](UsageApi.md#GetUsageSynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for Synthetics
+[**GetUsageTimeseries**](UsageApi.md#GetUsageTimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
+[**GetUsageTopAvgMetrics**](UsageApi.md#GetUsageTopAvgMetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top 500 custom metrics by hourly average
+[**GetUsageTrace**](UsageApi.md#GetUsageTrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 
 
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 > UsageFargateResponse GetUsageFargate(ctx).StartHr(startHr).EndHr(endHr).Execute()
 
-Get hourly usage for fargate.
+Get hourly usage for Fargate
 
 
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 > UsageHostsResponse GetUsageHosts(ctx).StartHr(startHr).EndHr(endHr).Execute()
 
-Get hourly usage for hosts and containers.
+Get hourly usage for hosts and containers
 
 
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 > UsageLogsResponse GetUsageLogs(ctx).StartHr(startHr).EndHr(endHr).Execute()
 
-Get hourly usage for logs.
+Get hourly usage for Logs
 
 
 
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 > UsageSummaryResponse GetUsageSummary(ctx).StartMonth(startMonth).EndMonth(endMonth).IncludeOrgDetails(includeOrgDetails).Execute()
 
-Get usage across your multi-org account.
+Get usage across your multi-org account
 
 
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 
 > UsageSyntheticsResponse GetUsageSynthetics(ctx).StartHr(startHr).EndHr(endHr).Execute()
 
-Get hourly usage for synthetics.
+Get hourly usage for Synthetics
 
 
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 > UsageTimeseriesResponse GetUsageTimeseries(ctx).StartHr(startHr).EndHr(endHr).Execute()
 
-Get hourly usage for custom metrics.
+Get hourly usage for custom metrics
 
 
 
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 
 > UsageTopAvgMetricsResponse GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Execute()
 
-Get top custom metrics by hourly average.
+Get top 500 custom metrics by hourly average
 
 
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 > UsageTraceResponse GetUsageTrace(ctx).StartHr(startHr).EndHr(endHr).Execute()
 
-Get hourly usage for trace search.
+Get hourly usage for Trace Search
 
 
 
