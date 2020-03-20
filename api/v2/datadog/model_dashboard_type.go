@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// DashboardType Type of the dashboard
+// DashboardType The type of the dashboard.
 type DashboardType string
 
 // List of DashboardType

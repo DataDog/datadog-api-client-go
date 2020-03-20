@@ -4,11 +4,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AzureUpdateHostFilters**](AzureIntegrationApi.md#AzureUpdateHostFilters) | **Post** /api/v1/integration/azure/host_filters | Update the defined list of host filters for a given Datadog-Azure integration.
-[**CreateAzureIntegration**](AzureIntegrationApi.md#CreateAzureIntegration) | **Post** /api/v1/integration/azure | Add a Azure integration to your Datadog account.
-[**DeleteAzureIntegration**](AzureIntegrationApi.md#DeleteAzureIntegration) | **Delete** /api/v1/integration/azure | Delete an Azure Integration from your Datadog account.
-[**ListAzureIntegration**](AzureIntegrationApi.md#ListAzureIntegration) | **Get** /api/v1/integration/azure | List configured Azure integrations.
-[**UpdateAzureIntegration**](AzureIntegrationApi.md#UpdateAzureIntegration) | **Put** /api/v1/integration/azure | Update an Azure integration to your Datadog account.
+[**AzureUpdateHostFilters**](AzureIntegrationApi.md#AzureUpdateHostFilters) | **Post** /api/v1/integration/azure/host_filters | Update Azure integration host filters
+[**CreateAzureIntegration**](AzureIntegrationApi.md#CreateAzureIntegration) | **Post** /api/v1/integration/azure | Create an Azure integration
+[**DeleteAzureIntegration**](AzureIntegrationApi.md#DeleteAzureIntegration) | **Delete** /api/v1/integration/azure | Delete an Azure integration
+[**ListAzureIntegration**](AzureIntegrationApi.md#ListAzureIntegration) | **Get** /api/v1/integration/azure | List all Azure integrations
+[**UpdateAzureIntegration**](AzureIntegrationApi.md#UpdateAzureIntegration) | **Put** /api/v1/integration/azure | Update an Azure integration
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > interface{} AzureUpdateHostFilters(ctx).Body(body).Execute()
 
-Update the defined list of host filters for a given Datadog-Azure integration.
+Update Azure integration host filters
 
 
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 > interface{} CreateAzureIntegration(ctx).Body(body).Execute()
 
-Add a Azure integration to your Datadog account.
+Create an Azure integration
 
 
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteAzureIntegration(ctx).Body(body).Execute()
 
-Delete an Azure Integration from your Datadog account.
+Delete an Azure integration
 
 
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 > []AzureAccount ListAzureIntegration(ctx).Execute()
 
-List configured Azure integrations.
+List all Azure integrations
 
 
 
@@ -168,7 +168,7 @@ Other parameters are passed through a pointer to a apiListAzureIntegrationReques
 
 > interface{} UpdateAzureIntegration(ctx).Body(body).Execute()
 
-Update an Azure integration to your Datadog account.
+Update an Azure integration
 
 
 

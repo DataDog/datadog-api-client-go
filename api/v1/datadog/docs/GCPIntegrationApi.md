@@ -4,10 +4,10 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateGCPIntegration**](GCPIntegrationApi.md#CreateGCPIntegration) | **Post** /api/v1/integration/gcp | Add a GCP integration to your Datadog account.
-[**DeleteGCPIntegration**](GCPIntegrationApi.md#DeleteGCPIntegration) | **Delete** /api/v1/integration/gcp | Delete a GCP Integration from your Datadog account.
-[**ListGCPIntegration**](GCPIntegrationApi.md#ListGCPIntegration) | **Get** /api/v1/integration/gcp | List configured GCP integrations.
-[**UpdateGCPIntegration**](GCPIntegrationApi.md#UpdateGCPIntegration) | **Put** /api/v1/integration/gcp | Update a GCP integration in your Datadog account.
+[**CreateGCPIntegration**](GCPIntegrationApi.md#CreateGCPIntegration) | **Post** /api/v1/integration/gcp | Create a GCP integration
+[**DeleteGCPIntegration**](GCPIntegrationApi.md#DeleteGCPIntegration) | **Delete** /api/v1/integration/gcp | Delete a GCP integration
+[**ListGCPIntegration**](GCPIntegrationApi.md#ListGCPIntegration) | **Get** /api/v1/integration/gcp | List all GCP integrations
+[**UpdateGCPIntegration**](GCPIntegrationApi.md#UpdateGCPIntegration) | **Put** /api/v1/integration/gcp | Update a GCP integration
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > interface{} CreateGCPIntegration(ctx).Body(body).Execute()
 
-Add a GCP integration to your Datadog account.
+Create a GCP integration
 
 
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteGCPIntegration(ctx).Body(body).Execute()
 
-Delete a GCP Integration from your Datadog account.
+Delete a GCP integration
 
 
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 > []GCPAccount ListGCPIntegration(ctx).Execute()
 
-List configured GCP integrations.
+List all GCP integrations
 
 
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiListGCPIntegrationRequest 
 
 > interface{} UpdateGCPIntegration(ctx).Body(body).Execute()
 
-Update a GCP integration in your Datadog account.
+Update a GCP integration
 
 
 
