@@ -225,7 +225,7 @@ func TestMetrics(t *testing.T) {
 		Unit:           datadog.PtrString("byte"),
 		ShortName:      datadog.PtrString("short_name"),
 		StatsdInterval: datadog.PtrInt64(20),
-		Type:           "count",
+		Type:           datadog.PtrString("count"),
 	}
 
 	metadata, httpresp, err = api.EditMetricMetadata(TESTAUTH, testMetric).Body(newMetadata).Execute()
