@@ -217,7 +217,7 @@ func TestMetrics(t *testing.T) {
 	assert.Nil(t, metadata.Unit)
 	assert.Nil(t, metadata.ShortName)
 	assert.Nil(t, metadata.StatsdInterval)
-	assert.Equal(t, "", metadata.Type)
+	assert.Nil(t, metadata.Type)
 
 	newMetadata := datadog.MetricMetadata{
 		Description:    datadog.PtrString("description"),
