@@ -36,7 +36,7 @@ func (r apiCreateMonitorRequest) Body(body Monitor) apiCreateMonitorRequest {
 }
 
 /*
-CreateMonitor Create a new Monitor
+CreateMonitor Create a monitor
 ### Overview
 Create a monitor using the specified options
 ### Arguments
@@ -189,7 +189,7 @@ type apiDeleteMonitorRequest struct {
 }
 
 /*
-DeleteMonitor Delete the specified monitor.
+DeleteMonitor Delete a monitor
 ### Overview
 Delete the specified monitor
 ### Arguments
@@ -365,7 +365,7 @@ func (r apiEditMonitorRequest) Body(body Monitor) apiEditMonitorRequest {
 }
 
 /*
-EditMonitor Edit the specified monitor
+EditMonitor Edit a monitor
 ### Overview
 Edit the specified monitor.
 ### Arguments
@@ -570,7 +570,7 @@ func (r apiGetAllMonitorsRequest) WithDowntimes(withDowntimes bool) apiGetAllMon
 }
 
 /*
-GetAllMonitors Get details about the specified monitor.
+GetAllMonitors Get all monitor details
 ### Overview
 Get details about the specified monitor from your organization.
 ### Arguments
@@ -742,7 +742,7 @@ func (r apiGetMonitorRequest) GroupStates(groupStates string) apiGetMonitorReque
 }
 
 /*
-GetMonitor Get details about the specified monitor.
+GetMonitor Get a monitor's details
 ### Overview
 Get details about the specified monitor from your organization.
 ### Arguments
@@ -911,11 +911,11 @@ func (r apiValidateMonitorRequest) Body(body Monitor) apiValidateMonitorRequest 
 }
 
 /*
-ValidateMonitor Method for ValidateMonitor
+ValidateMonitor Validate a monitor
 ### Overview
 Validate the monitor provided in the request
 ### Arguments
-* **`Monitor`** [*required*] The Monitor Object to validate summary: Validate the provided monitor
+* **`Monitor`** [*required*] The Monitor Object to validate
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiValidateMonitorRequest
 */

@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessKeyId** | Pointer to **string** |  | [optional] 
-**AccountId** | Pointer to **string** |  | [optional] 
-**AccountSpecificNamespaceRules** | Pointer to **map[string]bool** |  | [optional] 
-**FilterTags** | Pointer to **[]string** |  | [optional] 
-**HostTags** | Pointer to **[]string** |  | [optional] 
-**RoleName** | Pointer to **string** |  | [optional] 
+**AccessKeyId** | Pointer to **string** | Your AWS access key ID. Only required if your AWS account is a GovCloud or China account. | [optional] 
+**AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
+**AccountSpecificNamespaceRules** | Pointer to **map[string]bool** | An object (in the form {\&quot;namespace1\&quot;:true/false, \&quot;namespace2\&quot;:true/false}) that enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the /v1/integration/aws/available_namespace_rules endpoint. | [optional] 
+**FilterTags** | Pointer to **[]string** | The array of EC2 tags (in the form key:value) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ? (for single characters) and * (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding ! before the tag. For example, &#x60;env:production,instance-type:c1.*,!region:us-east-1&#x60; | [optional] 
+**HostTags** | Pointer to **[]string** | Array of tags (in the form key:value) to add to all hosts and metrics reporting through this integration. | [optional] 
+**RoleName** | Pointer to **string** | Your Datadog role delegation name. | [optional] 
+**SecretAccessKey** | Pointer to **string** | Your AWS secret access key. Only required if your AWS account is a GovCloud or China account. | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ HasRoleName returns a boolean if a field has been set.
 `func (o *AWSAccount) SetRoleName(v string)`
 
 SetRoleName gets a reference to the given string and assigns it to the RoleName field.
+
+### GetSecretAccessKey
+
+`func (o *AWSAccount) GetSecretAccessKey() string`
+
+GetSecretAccessKey returns the SecretAccessKey field if non-nil, zero value otherwise.
+
+### GetSecretAccessKeyOk
+
+`func (o *AWSAccount) GetSecretAccessKeyOk() (string, bool)`
+
+GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSecretAccessKey
+
+`func (o *AWSAccount) HasSecretAccessKey() bool`
+
+HasSecretAccessKey returns a boolean if a field has been set.
+
+### SetSecretAccessKey
+
+`func (o *AWSAccount) SetSecretAccessKey(v string)`
+
+SetSecretAccessKey gets a reference to the given string and assigns it to the SecretAccessKey field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,14 +12,22 @@ import (
 	"encoding/json"
 )
 
-// AWSAccount struct for AWSAccount
+// AWSAccount Returns the AWS account associated with this integration.
 type AWSAccount struct {
-	AccessKeyId                   *string          `json:"access_key_id,omitempty"`
-	AccountId                     *string          `json:"account_id,omitempty"`
+	// Your AWS access key ID. Only required if your AWS account is a GovCloud or China account.
+	AccessKeyId *string `json:"access_key_id,omitempty"`
+	// Your AWS Account ID without dashes.
+	AccountId *string `json:"account_id,omitempty"`
+	// An object (in the form {\"namespace1\":true/false, \"namespace2\":true/false}) that enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the /v1/integration/aws/available_namespace_rules endpoint.
 	AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
-	FilterTags                    *[]string        `json:"filter_tags,omitempty"`
-	HostTags                      *[]string        `json:"host_tags,omitempty"`
-	RoleName                      *string          `json:"role_name,omitempty"`
+	// The array of EC2 tags (in the form key:value) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ? (for single characters) and * (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding ! before the tag. For example, `env:production,instance-type:c1.*,!region:us-east-1`
+	FilterTags *[]string `json:"filter_tags,omitempty"`
+	// Array of tags (in the form key:value) to add to all hosts and metrics reporting through this integration.
+	HostTags *[]string `json:"host_tags,omitempty"`
+	// Your Datadog role delegation name.
+	RoleName *string `json:"role_name,omitempty"`
+	// Your AWS secret access key. Only required if your AWS account is a GovCloud or China account.
+	SecretAccessKey *string `json:"secret_access_key,omitempty"`
 }
 
 // NewAWSAccount instantiates a new AWSAccount object
@@ -237,6 +245,39 @@ func (o *AWSAccount) SetRoleName(v string) {
 	o.RoleName = &v
 }
 
+// GetSecretAccessKey returns the SecretAccessKey field value if set, zero value otherwise.
+func (o *AWSAccount) GetSecretAccessKey() string {
+	if o == nil || o.SecretAccessKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.SecretAccessKey
+}
+
+// GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSAccount) GetSecretAccessKeyOk() (string, bool) {
+	if o == nil || o.SecretAccessKey == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.SecretAccessKey, true
+}
+
+// HasSecretAccessKey returns a boolean if a field has been set.
+func (o *AWSAccount) HasSecretAccessKey() bool {
+	if o != nil && o.SecretAccessKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSecretAccessKey gets a reference to the given string and assigns it to the SecretAccessKey field.
+func (o *AWSAccount) SetSecretAccessKey(v string) {
+	o.SecretAccessKey = &v
+}
+
 func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AccessKeyId != nil {
@@ -256,6 +297,9 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	}
 	if o.RoleName != nil {
 		toSerialize["role_name"] = o.RoleName
+	}
+	if o.SecretAccessKey != nil {
+		toSerialize["secret_access_key"] = o.SecretAccessKey
 	}
 	return json.Marshal(toSerialize)
 }

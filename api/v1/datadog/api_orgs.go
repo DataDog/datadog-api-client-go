@@ -37,14 +37,9 @@ func (r apiCreateChildOrgRequest) Body(body OrgCreateBody) apiCreateChildOrgRequ
 }
 
 /*
-CreateChildOrg Create child-organization.
-## Overview
+CreateChildOrg Create child-organization
+You can create, edit, and manage organizations.
 This endpoint requires the [multi-org account](https://docs.datadoghq.com/account_management/multi_organization/) feature and must be enabled by [contacting support](https://docs.datadoghq.com/help/).
-### ARGUMENTS
-* **`name`** [*required*]: The name of the new child-organization, limited to 32 characters.
-* **`subscription`** [*required*]: A JSON array of subscription type. Types available are **trial**, **free**, and **pro**.
-* **`billing`** [*required*]: A JSON array of billing type. Note that only **parent_billing** is supported.
-
 Once a new child-organization is created, you can interact with it by using the **org.public_id**, **api_key.key**, and **application_key.hash** provided in the response.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateChildOrgRequest
@@ -203,9 +198,8 @@ type apiGetOrgRequest struct {
 }
 
 /*
-GetOrg Get the organization
-## Overview
-Gets information about your organization
+GetOrg Get organization
+Get information about your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetOrgRequest
 */
@@ -364,21 +358,8 @@ func (r apiUpdateOrgRequest) Body(body Org) apiUpdateOrgRequest {
 }
 
 /*
-UpdateOrg Update the organization
-## Overview
-Updates the organization
-### ARGUMENTS
-* **`name`** [*optional*]: The organization name.
-
-* **`settings`** [*optional*]: A JSON array of settings. Settings include:
-
-  * **`saml`**: Set the boolean property **enabled** to enable or disable single sign on with SAML. See the [SAML documentation](https://docs.datadoghq.com/account_management/saml) for more information about all SAML settings.
-
-  * **`saml_idp_initiated_login`**: has one property **enabled** (boolean).
-
-  * **`saml_strict_mode`**: has one property **enabled** (boolean).
-
-  * **`saml_autocreate_users_domains`**: has two properties: **enabled** (boolean) and **domains** which is a list of domains without the @ symbol.
+UpdateOrg Update organization
+Updates the organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public_id of the org you are operating with
 @return apiUpdateOrgRequest
@@ -543,20 +524,9 @@ func (r apiUploadIdPForOrgRequest) IdpFile(idpFile *os.File) apiUploadIdPForOrgR
 
 /*
 UploadIdPForOrg Upload IdP metadata
-## Overview
 There are a couple of options for updating the Identity Provider (IdP) metadata from your SAML IdP.
 * **Multipart Form-Data**: Post the IdP metadata file using a form post.
-### Multipart Form-Data
-#### Headers
-* **`Content-Type: multipart/form-data`**
-#### Arguments
-* **`public_id`** [*required*]: The public id of the org you want to update metadata for.
-### MultiPart Form Data Body
-* The encoded data for the IDP settings to upload
-#### Headers
-* **`Content-Type: multipart/form-data`**
-#### Arguments
-* The body must contain the contents of your IdP metadata XML file.
+* **XML Body:** Post the IdP metadata file as the body of the request.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public_id of the org you are operating with
 @return apiUploadIdPForOrgRequest
