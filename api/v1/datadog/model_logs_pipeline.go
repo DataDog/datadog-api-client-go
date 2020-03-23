@@ -12,20 +12,20 @@ import (
 	"encoding/json"
 )
 
-// LogsPipeline Definition of a logs pipeline
+// LogsPipeline Pipelines and processors operate on incoming logs, parsing and transforming them into structured attributes for easier querying.  **Note**: These endpoints are only available for admin users. Make sure to use an application key created by an admin.
 type LogsPipeline struct {
 	Filter *LogsFilter `json:"filter,omitempty"`
-	// ID of the pipeline
+	// ID of the pipeline.
 	Id *string `json:"id,omitempty"`
-	// Whether or not the pipeline is enabled
+	// Whether or not the pipeline is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Whether or not the pipeline can be edited
+	// Whether or not the pipeline can be edited.
 	IsReadOnly *bool `json:"is_read_only,omitempty"`
-	// Name of the pipeline
+	// Name of the pipeline.
 	Name string `json:"name"`
-	// Ordered list of processors in this pipeline
+	// Ordered list of processors in this pipeline.
 	Processors *[]LogsProcessor `json:"processors,omitempty"`
-	// Type of pipeline
+	// Type of pipeline.
 	Type *string `json:"type,omitempty"`
 }
 

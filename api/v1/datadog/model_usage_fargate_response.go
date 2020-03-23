@@ -14,6 +14,7 @@ import (
 
 // UsageFargateResponse struct for UsageFargateResponse
 type UsageFargateResponse struct {
+	// TODO.
 	Usage *[]UsageFargateHour `json:"usage,omitempty"`
 }
 

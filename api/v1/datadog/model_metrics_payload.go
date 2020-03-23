@@ -14,7 +14,7 @@ import (
 
 // MetricsPayload struct for MetricsPayload
 type MetricsPayload struct {
-	// A list of time series to submit to Datadog
+	// A list of time series to submit to Datadog.
 	Series *[]Series `json:"series,omitempty"`
 }
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PrivateWidgetShare** | Pointer to **bool** |  | [optional] 
+**PrivateWidgetShare** | Pointer to **bool** | TODO. | [optional] 
 **Saml** | Pointer to [**OrgSettingsSaml**](Org_settings_saml.md) |  | [optional] 
 **SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] 
 **SamlAutocreateUsersDomains** | Pointer to [**OrgSettingsSamlAutocreateUsersDomains**](Org_settings_saml_autocreate_users_domains.md) |  | [optional] 
-**SamlCanBeEnabled** | Pointer to **bool** |  | [optional] 
-**SamlIdpEndpoint** | Pointer to **string** |  | [optional] 
-**SamlIdpInitiatedLogin** | Pointer to [**OrgSettingsSaml**](Org_settings_saml.md) |  | [optional] 
-**SamlIdpMetadataUploaded** | Pointer to **bool** |  | [optional] 
-**SamlLoginUrl** | Pointer to **string** |  | [optional] 
-**SamlStrictMode** | Pointer to [**OrgSettingsSaml**](Org_settings_saml.md) |  | [optional] 
+**SamlCanBeEnabled** | Pointer to **bool** | TODO. | [optional] 
+**SamlIdpEndpoint** | Pointer to **string** | TODO. | [optional] 
+**SamlIdpInitiatedLogin** | Pointer to [**OrgSettingsSamlIdpInitiatedLogin**](Org_settings_saml_idp_initiated_login.md) |  | [optional] 
+**SamlIdpMetadataUploaded** | Pointer to **bool** | TODO. | [optional] 
+**SamlLoginUrl** | Pointer to **string** | TODO. | [optional] 
+**SamlStrictMode** | Pointer to [**OrgSettingsSamlIdpInitiatedLogin**](Org_settings_saml_idp_initiated_login.md) |  | [optional] 
 
 ## Methods
 
@@ -186,13 +186,13 @@ SetSamlIdpEndpoint gets a reference to the given string and assigns it to the Sa
 
 ### GetSamlIdpInitiatedLogin
 
-`func (o *OrgSettings) GetSamlIdpInitiatedLogin() OrgSettingsSaml`
+`func (o *OrgSettings) GetSamlIdpInitiatedLogin() OrgSettingsSamlIdpInitiatedLogin`
 
 GetSamlIdpInitiatedLogin returns the SamlIdpInitiatedLogin field if non-nil, zero value otherwise.
 
 ### GetSamlIdpInitiatedLoginOk
 
-`func (o *OrgSettings) GetSamlIdpInitiatedLoginOk() (OrgSettingsSaml, bool)`
+`func (o *OrgSettings) GetSamlIdpInitiatedLoginOk() (OrgSettingsSamlIdpInitiatedLogin, bool)`
 
 GetSamlIdpInitiatedLoginOk returns a tuple with the SamlIdpInitiatedLogin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -205,9 +205,9 @@ HasSamlIdpInitiatedLogin returns a boolean if a field has been set.
 
 ### SetSamlIdpInitiatedLogin
 
-`func (o *OrgSettings) SetSamlIdpInitiatedLogin(v OrgSettingsSaml)`
+`func (o *OrgSettings) SetSamlIdpInitiatedLogin(v OrgSettingsSamlIdpInitiatedLogin)`
 
-SetSamlIdpInitiatedLogin gets a reference to the given OrgSettingsSaml and assigns it to the SamlIdpInitiatedLogin field.
+SetSamlIdpInitiatedLogin gets a reference to the given OrgSettingsSamlIdpInitiatedLogin and assigns it to the SamlIdpInitiatedLogin field.
 
 ### GetSamlIdpMetadataUploaded
 
@@ -261,13 +261,13 @@ SetSamlLoginUrl gets a reference to the given string and assigns it to the SamlL
 
 ### GetSamlStrictMode
 
-`func (o *OrgSettings) GetSamlStrictMode() OrgSettingsSaml`
+`func (o *OrgSettings) GetSamlStrictMode() OrgSettingsSamlIdpInitiatedLogin`
 
 GetSamlStrictMode returns the SamlStrictMode field if non-nil, zero value otherwise.
 
 ### GetSamlStrictModeOk
 
-`func (o *OrgSettings) GetSamlStrictModeOk() (OrgSettingsSaml, bool)`
+`func (o *OrgSettings) GetSamlStrictModeOk() (OrgSettingsSamlIdpInitiatedLogin, bool)`
 
 GetSamlStrictModeOk returns a tuple with the SamlStrictMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -280,9 +280,9 @@ HasSamlStrictMode returns a boolean if a field has been set.
 
 ### SetSamlStrictMode
 
-`func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSaml)`
+`func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSamlIdpInitiatedLogin)`
 
-SetSamlStrictMode gets a reference to the given OrgSettingsSaml and assigns it to the SamlStrictMode field.
+SetSamlStrictMode gets a reference to the given OrgSettingsSamlIdpInitiatedLogin and assigns it to the SamlStrictMode field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

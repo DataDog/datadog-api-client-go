@@ -5,9 +5,9 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddDashboardListItems**](DashboardListsApi.md#AddDashboardListItems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
-[**DeleteDashboardListItems**](DashboardListsApi.md#DeleteDashboardListItems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete Items from a Dashboard List
+[**DeleteDashboardListItems**](DashboardListsApi.md#DeleteDashboardListItems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
 [**GetDashboardListItems**](DashboardListsApi.md#GetDashboardListItems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
-[**UpdateDashboardListItems**](DashboardListsApi.md#UpdateDashboardListItems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update Items of a Dashboard List
+[**UpdateDashboardListItems**](DashboardListsApi.md#UpdateDashboardListItems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update items of a dashboard list
 
 
 
@@ -25,7 +25,7 @@ Add Items to a Dashboard List
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardListId** | **int64** | ID of the dashboard list to add items to | 
+**dashboardListId** | **int64** | ID of the dashboard list to add items to. | 
 
 ### Other Parameters
 
@@ -35,7 +35,7 @@ Other parameters are passed through a pointer to a apiAddDashboardListItemsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardListItems**](DashboardListItems.md) | Dashboards to add to the dashboard list | 
+ **body** | [**DashboardListItems**](DashboardListItems.md) | Dashboards to add to the dashboard list. | 
 
 ### Return type
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 > DashboardListDeleteItemsResponse DeleteDashboardListItems(ctx, dashboardListId).Body(body).Execute()
 
-Delete Items from a Dashboard List
+Delete items from a dashboard list
 
 
 
@@ -69,7 +69,7 @@ Delete Items from a Dashboard List
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardListId** | **int64** | ID of the dashboard list to delete items from | 
+**dashboardListId** | **int64** | ID of the dashboard list to delete items from. | 
 
 ### Other Parameters
 
@@ -79,7 +79,7 @@ Other parameters are passed through a pointer to a apiDeleteDashboardListItemsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardListItems**](DashboardListItems.md) | Dashboards to delete from the dashboard list | 
+ **body** | [**DashboardListItems**](DashboardListItems.md) | Dashboards to delete from the dashboard list. | 
 
 ### Return type
 
@@ -113,7 +113,7 @@ Get a Dashboard List
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardListId** | **int64** | ID of the dashboard list to get items from | 
+**dashboardListId** | **int64** | ID of the dashboard list to get items from. | 
 
 ### Other Parameters
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 > DashboardListItems UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
 
-Update Items of a Dashboard List
+Update items of a dashboard list
 
 
 

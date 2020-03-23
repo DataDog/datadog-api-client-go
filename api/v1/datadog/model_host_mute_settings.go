@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HostMuteSettings struct for HostMuteSettings
+// HostMuteSettings TODO.
 type HostMuteSettings struct {
 	// POSIX timestamp in seconds when the host is unmuted. If omitted, the host remains muted until explicitly unmuted.
 	End *int64 `json:"end,omitempty"`

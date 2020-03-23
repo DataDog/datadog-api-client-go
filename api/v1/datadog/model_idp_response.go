@@ -14,6 +14,7 @@ import (
 
 // IdpResponse struct for IdpResponse
 type IdpResponse struct {
+	// TODO.
 	Message string `json:"message"`
 }
 

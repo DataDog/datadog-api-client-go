@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MatchRules** | Pointer to **string** | List of match rules for the grok parser, separated by a new line | 
-**SupportRules** | Pointer to **string** | List of support rules for the grok parser, separated by a new line | [optional] [default to ""]
+**MatchRules** | Pointer to **string** | List of match rules for the grok parser, separated by a new line. | 
+**SupportRules** | Pointer to **string** | List of support rules for the grok parser, separated by a new line. | [optional] [default to ""]
 
 ## Methods
 

@@ -14,7 +14,7 @@ import (
 
 // DashboardListAddItemsResponse struct for DashboardListAddItemsResponse
 type DashboardListAddItemsResponse struct {
-	// List of dashboards added to the dashboard list
+	// List of dashboards added to the dashboard list.
 	AddedDashboardsToList *[]DashboardListItem `json:"added_dashboards_to_list,omitempty"`
 }
 

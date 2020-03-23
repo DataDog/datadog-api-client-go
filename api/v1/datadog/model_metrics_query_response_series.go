@@ -14,27 +14,27 @@ import (
 
 // MetricsQueryResponseSeries struct for MetricsQueryResponseSeries
 type MetricsQueryResponseSeries struct {
-	// Aggregation type
+	// Aggregation type.
 	Aggr *string `json:"aggr,omitempty"`
-	// Display name of the metric
+	// Display name of the metric.
 	DisplayName *string `json:"display_name,omitempty"`
-	// End of the time window, milliseconds since Unix epoch
+	// End of the time window, milliseconds since Unix epoch.
 	End *int64 `json:"end,omitempty"`
-	// Metric expression
+	// Metric expression.
 	Expression *string `json:"expression,omitempty"`
-	// Number of seconds between data samples
+	// Number of seconds between data samples.
 	Interval *int64 `json:"interval,omitempty"`
-	// Number of data samples
+	// Number of data samples.
 	Length *int64 `json:"length,omitempty"`
-	// Metric name
+	// Metric name.
 	Metric *string `json:"metric,omitempty"`
-	// List of points of the time series
+	// List of points of the time series.
 	Pointlist *[][]float64 `json:"pointlist,omitempty"`
-	// Metric scope, comma separated list of tags
+	// Metric scope, comma separated list of tags.
 	Scope *string `json:"scope,omitempty"`
-	// Start of the time window, milliseconds since Unix epoch
+	// Start of the time window, milliseconds since Unix epoch.
 	Start *int64 `json:"start,omitempty"`
-	// Detailed information about the metric unit. First element describes the \"primary unit\" (e.g. `bytes` in `bytes per second`), second describes the \"per unit\" (e.g. `second` in `bytes per second`)
+	// Detailed information about the metric unit. First element describes the \"primary unit\" (for example, `bytes` in `bytes per second`), second describes the \"per unit\" (for example, `second` in `bytes per second`).
 	Unit *[]MetricsQueryResponseUnit `json:"unit,omitempty"`
 }
 

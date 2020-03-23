@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// DeletedMonitor Response from the DeleteMonitor call
+// DeletedMonitor Response from the `DeleteMonitor` call.
 type DeletedMonitor struct {
-	// ID of the deleted monitor
+	// ID of the deleted monitor.
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
 }
 

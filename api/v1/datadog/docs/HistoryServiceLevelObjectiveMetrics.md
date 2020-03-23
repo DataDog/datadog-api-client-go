@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | Optional message if there are specific query issues/warnings. | [optional] 
 **Numerator** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeries**](HistoryServiceLevelObjectiveMetricsSeries.md) |  | 
 **Query** | Pointer to **string** | The combined numerator &amp;&amp; denominator query CSV. | 
-**ResType** | Pointer to **string** | The series result type. This mimics &#x60;batch_query&#x60; response type | 
-**RespVersion** | Pointer to **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type | 
+**ResType** | Pointer to **string** | The series result type. This mimics &#x60;batch_query&#x60; response type. | 
+**RespVersion** | Pointer to **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type. | 
 **Times** | Pointer to **[]float64** | The query timestamps in epoch milliseconds | 
 
 ## Methods

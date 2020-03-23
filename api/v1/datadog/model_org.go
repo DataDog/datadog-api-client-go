@@ -12,12 +12,16 @@ import (
 	"encoding/json"
 )
 
-// Org struct for Org
+// Org Create, edit, and manage organizations.
 type Org struct {
-	Billing      *OrgBilling      `json:"billing,omitempty"`
-	Created      *string          `json:"created,omitempty"`
-	Description  *string          `json:"description,omitempty"`
-	Name         *string          `json:"name,omitempty"`
+	Billing *OrgBilling `json:"billing,omitempty"`
+	// TODO.
+	Created *string `json:"created,omitempty"`
+	// Description of the organization.
+	Description *string `json:"description,omitempty"`
+	// The name of the new child-organization, limited to 32 characters.
+	Name *string `json:"name,omitempty"`
+	// The public_id of the org you are operating within.
 	PublicId     *string          `json:"public_id,omitempty"`
 	Settings     *OrgSettings     `json:"settings,omitempty"`
 	Subscription *OrgSubscription `json:"subscription,omitempty"`

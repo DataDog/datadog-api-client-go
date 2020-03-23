@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorDeviceID the model 'MonitorDeviceID'
+// MonitorDeviceID TODO.
 type MonitorDeviceID string
 
 // List of MonitorDeviceID

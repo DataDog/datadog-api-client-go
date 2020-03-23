@@ -14,12 +14,14 @@ import (
 
 // PagerDutyIntegration New Datadog-PagerDuty integration.
 type PagerDutyIntegration struct {
+	// Your PagerDuty API token.
 	ApiToken *string `json:"api_token,omitempty"`
 	// The array of your schedule URLs.
 	Schedules *[]string `json:"schedules,omitempty"`
 	// The array of PagerDuty service objects.
-	Services  *[]PagerDutyService `json:"services,omitempty"`
-	Subdomain *string             `json:"subdomain,omitempty"`
+	Services *[]PagerDutyService `json:"services,omitempty"`
+	// Your PagerDuty subdomain.
+	Subdomain *string `json:"subdomain,omitempty"`
 }
 
 // NewPagerDutyIntegration instantiates a new PagerDutyIntegration object

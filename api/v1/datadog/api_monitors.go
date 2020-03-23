@@ -37,10 +37,7 @@ func (r apiCreateMonitorRequest) Body(body Monitor) apiCreateMonitorRequest {
 
 /*
 CreateMonitor Create a monitor
-### Overview
-Create a monitor using the specified options
-### Arguments
-* **`Monitor`** [*required*] The Monitor Object to create
+Create a monitor using the specified options.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateMonitorRequest
 */
@@ -190,12 +187,9 @@ type apiDeleteMonitorRequest struct {
 
 /*
 DeleteMonitor Delete a monitor
-### Overview
 Delete the specified monitor
-### Arguments
-* **`monitor_id`** [*required*]: The id of the monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param monitorId The id of the monitor
+ * @param monitorId The ID of the monitor.
 @return apiDeleteMonitorRequest
 */
 func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64) apiDeleteMonitorRequest {
@@ -366,12 +360,9 @@ func (r apiEditMonitorRequest) Body(body Monitor) apiEditMonitorRequest {
 
 /*
 EditMonitor Edit a monitor
-### Overview
 Edit the specified monitor.
-### Arguments
-* **`monitor_id`** [*required*]: The id of the monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param monitorId The id of the monitor
+ * @param monitorId The id of the monitor.
 @return apiEditMonitorRequest
 */
 func (a *MonitorsApiService) EditMonitor(ctx _context.Context, monitorId int64) apiEditMonitorRequest {
@@ -570,15 +561,8 @@ func (r apiGetAllMonitorsRequest) WithDowntimes(withDowntimes bool) apiGetAllMon
 }
 
 /*
-GetAllMonitors Get all monitor details
-### Overview
+GetAllMonitors Get all monitor details.
 Get details about the specified monitor from your organization.
-### Arguments
-* **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
-* **`name`** [*optional* *default*==**None**] A string to filter monitors by name
-* **`tags`** [*optional* *default*==**None**] A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0
-* **`monitor_tags`** [*optional* *default*==**None**] A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app)
-* **`with_downtimes`** [*optional* *default*==**true**] If this argument is set to true, then the returned data includes all current downtimes for each monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllMonitorsRequest
 */
@@ -743,11 +727,7 @@ func (r apiGetMonitorRequest) GroupStates(groupStates string) apiGetMonitorReque
 
 /*
 GetMonitor Get a monitor's details
-### Overview
 Get details about the specified monitor from your organization.
-### Arguments
-* **`monitor_id`** [*required*]: The id of the monitor.
-* **`group_states`** [*optional* *default*=**None**] If this argument is set, the returned data includes additional information (if available) regarding the specified group states, including the last notification timestamp, last resolution timestamp and details about the last time the monitor was triggered. The argument should include a string list indicating what, if any, group states to include. Choose one or more from all, alert, warn, or no data. Example 'alert,warn'
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param monitorId The id of the monitor
 @return apiGetMonitorRequest
@@ -912,10 +892,7 @@ func (r apiValidateMonitorRequest) Body(body Monitor) apiValidateMonitorRequest 
 
 /*
 ValidateMonitor Validate a monitor
-### Overview
-Validate the monitor provided in the request
-### Arguments
-* **`Monitor`** [*required*] The Monitor Object to validate
+Validate the monitor provided in the request.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiValidateMonitorRequest
 */

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Billing** | Pointer to [**OrgBilling**](Org_billing.md) |  | 
-**Name** | Pointer to **string** |  | 
+**Name** | Pointer to **string** | The name of the new child-organization, limited to 32 characters. | 
 **Subscription** | Pointer to [**OrgSubscription**](Org_subscription.md) |  | 
 
 ## Methods

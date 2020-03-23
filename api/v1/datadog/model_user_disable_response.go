@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UserDisableResponse struct for UserDisableResponse
+// UserDisableResponse TODO.
 type UserDisableResponse struct {
 	Message *string `json:"message,omitempty"`
 }

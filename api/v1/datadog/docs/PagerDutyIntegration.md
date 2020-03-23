@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiToken** | Pointer to **string** |  | [optional] 
+**ApiToken** | Pointer to **string** | Your PagerDuty API token. | [optional] 
 **Schedules** | Pointer to **[]string** | The array of your schedule URLs. | [optional] 
 **Services** | Pointer to [**[]PagerDutyService**](PagerDutyService.md) | The array of PagerDuty service objects. | [optional] 
-**Subdomain** | Pointer to **string** |  | [optional] 
+**Subdomain** | Pointer to **string** | Your PagerDuty subdomain. | [optional] 
 
 ## Methods
 

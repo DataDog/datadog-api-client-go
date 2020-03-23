@@ -14,12 +14,12 @@ import (
 
 // HistoryServiceLevelObjectiveMetricsSeries A representation of `metric` based SLO time series for the provided queries. This is the same response type from `batch_query` endpoint.
 type HistoryServiceLevelObjectiveMetricsSeries struct {
-	// Count of submitted metrics
+	// Count of submitted metrics.
 	Count    int64                                             `json:"count"`
 	Metadata HistoryServiceLevelObjectiveMetricsSeriesMetadata `json:"metadata"`
-	// Total Sum of the query
+	// Total Sum of the query.
 	Sum float64 `json:"sum"`
-	// The query values
+	// The query values.
 	Values []float64 `json:"values"`
 }
 

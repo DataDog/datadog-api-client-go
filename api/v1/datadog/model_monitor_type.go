@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorType The type of the monitor
+// MonitorType The type of the monitor.
 type MonitorType string
 
 // List of MonitorType

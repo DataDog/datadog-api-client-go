@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedMonitorId** | Pointer to **int64** | ID of the deleted monitor | [optional] 
+**DeletedMonitorId** | Pointer to **int64** | ID of the deleted monitor. | [optional] 
 
 ## Methods
 

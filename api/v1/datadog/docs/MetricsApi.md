@@ -27,7 +27,7 @@ Edit metric metadata
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | Name of the metric for which to edit metadata | 
+**metricName** | **string** | Name of the metric for which to edit metadata. | 
 
 ### Other Parameters
 
@@ -37,7 +37,7 @@ Other parameters are passed through a pointer to a apiEditMetricMetadataRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**MetricMetadata**](MetricMetadata.md) | New metadata | 
+ **body** | [**MetricMetadata**](MetricMetadata.md) | New metadata. | 
 
 ### Return type
 
@@ -111,7 +111,7 @@ Get metric metadata
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | Name of the metric for which to get metadata | 
+**metricName** | **string** | Name of the metric for which to get metadata. | 
 
 ### Other Parameters
 
@@ -159,8 +159,8 @@ Other parameters are passed through a pointer to a apiQueryMetricsRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Start of the queried time period, seconds since the Unix epoch | 
- **to** | **int64** | End of the queried time period, seconds since the Unix epoch | 
+ **from** | **int64** | Start of the queried time period, seconds since the Unix epoch. | 
+ **to** | **int64** | End of the queried time period, seconds since the Unix epoch. | 
  **query** | **string** | Query string | 
 
 ### Return type
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiSearchMetricsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60; | 
+ **q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
 
 ### Return type
 

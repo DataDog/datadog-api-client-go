@@ -15,12 +15,18 @@ import (
 
 // LogContent struct for LogContent
 type LogContent struct {
+	// TODO.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	Host       *string                 `json:"host,omitempty"`
-	Message    *string                 `json:"message,omitempty"`
-	Service    *string                 `json:"service,omitempty"`
-	Tags       *[]interface{}          `json:"tags,omitempty"`
-	Timestamp  *time.Time              `json:"timestamp,omitempty"`
+	// Name of the machine from where the logs are being sent.
+	Host *string `json:"host,omitempty"`
+	// TODO.
+	Message *string `json:"message,omitempty"`
+	// TODO.
+	Service *string `json:"service,omitempty"`
+	// TODO.
+	Tags *[]interface{} `json:"tags,omitempty"`
+	// TODO.
+	Timestamp *time.Time `json:"timestamp,omitempty"`
 }
 
 // NewLogContent instantiates a new LogContent object

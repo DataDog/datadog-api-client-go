@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UserListResponse struct for UserListResponse
+// UserListResponse TODO.
 type UserListResponse struct {
+	// TODO.
 	Users *[]User `json:"users,omitempty"`
 }
 

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// LogsAPIErrorResponse Response returned by the Logs API when errors occur
+// LogsAPIErrorResponse Response returned by the Logs API when errors occur.
 type LogsAPIErrorResponse struct {
 	Error *LogsAPIError `json:"error,omitempty"`
 }

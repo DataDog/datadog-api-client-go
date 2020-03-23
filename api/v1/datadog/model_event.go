@@ -17,7 +17,7 @@ type Event struct {
 	// An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.
 	AggregationKey *string         `json:"aggregation_key,omitempty"`
 	AlertType      *EventAlertType `json:"alert_type,omitempty"`
-	// POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 1 year, 24 days (389 days)
+	// POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 1 year, 24 days (389 days).
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A list of device names to post the event with.
 	DeviceName *[]string `json:"device_name,omitempty"`
@@ -28,13 +28,13 @@ type Event struct {
 	Priority *EventPriority `json:"priority,omitempty"`
 	// ID of the parent event. Must be sent as an integer (i.e. no quotes).
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
-	// The type of event being posted. Options: nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, ... [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value)
+	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`
 	// A list of tags to apply to the event.
 	Tags *[]string `json:"tags,omitempty"`
-	// The body of the event. Limited to 4000 characters. The text supports markdown. Use msg_text with the Datadog Ruby library
+	// The body of the event. Limited to 4000 characters. The text supports markdown. Use `msg_text` with the Datadog Ruby library.
 	Text string `json:"text"`
-	// The event title. Limited to 100 characters. Use msg_title with the Datadog Ruby library.
+	// The event title. Limited to 100 characters. Use `msg_title` with the Datadog Ruby library.
 	Title string  `json:"title"`
 	Url   *string `json:"url,omitempty"`
 }

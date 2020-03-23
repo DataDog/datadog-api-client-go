@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hash** | Pointer to **string** |  | [optional] [readonly] 
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | Name of your application key. | [optional] 
 **Owner** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods

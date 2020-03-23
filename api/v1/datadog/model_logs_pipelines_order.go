@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// LogsPipelinesOrder Object containing the ordered list of pipeline IDs
+// LogsPipelinesOrder Object containing the ordered list of pipeline IDs.
 type LogsPipelinesOrder struct {
-	// Ordered Array of <PIPELINE_ID> strings, the order of pipeline IDs in the array define the overall Pipelines order for Datadog.
+	// Ordered Array of `<PIPELINE_ID>` strings, the order of pipeline IDs in the array define the overall Pipelines order for Datadog.
 	PipelineIds []string `json:"pipeline_ids"`
 }
 

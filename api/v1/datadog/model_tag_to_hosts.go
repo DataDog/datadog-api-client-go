@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// TagToHosts In this object, the key is the tag, the value is a list of host names that are reporting that tag
+// TagToHosts In this object, the key is the tag, the value is a list of host names that are reporting that tag.
 type TagToHosts struct {
+	// A list of tags to apply to the host.
 	Tags *map[string][]string `json:"tags,omitempty"`
 }
 

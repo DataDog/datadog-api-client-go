@@ -14,7 +14,7 @@ import (
 
 // LogsIndex struct for LogsIndex
 type LogsIndex struct {
-	// The number of log-events you can send in this index per day before you are rate-limited.
+	// The number of log events you can send in this index per day before you are rate-limited.
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
 	// An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
@@ -23,7 +23,7 @@ type LogsIndex struct {
 	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
 	// The name of the index.
 	Name *string `json:"name,omitempty"`
-	// The number of days before logs are deleted from this index
+	// The number of days before logs are deleted from this index.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 }
 

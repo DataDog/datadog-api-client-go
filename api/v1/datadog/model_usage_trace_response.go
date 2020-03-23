@@ -14,6 +14,7 @@ import (
 
 // UsageTraceResponse struct for UsageTraceResponse
 type UsageTraceResponse struct {
+	// TODO.
 	Usage *[]UsageTraceHour `json:"usage,omitempty"`
 }
 

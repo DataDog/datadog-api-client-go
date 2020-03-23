@@ -12,30 +12,30 @@ import (
 	"encoding/json"
 )
 
-// OrgSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML. See the SAML documentation for more information about all SAML settings.
-type OrgSettingsSaml struct {
+// OrgSettingsSamlIdpInitiatedLogin Has one property enabled (boolean).
+type OrgSettingsSamlIdpInitiatedLogin struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-// NewOrgSettingsSaml instantiates a new OrgSettingsSaml object
+// NewOrgSettingsSamlIdpInitiatedLogin instantiates a new OrgSettingsSamlIdpInitiatedLogin object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgSettingsSaml() *OrgSettingsSaml {
-	this := OrgSettingsSaml{}
+func NewOrgSettingsSamlIdpInitiatedLogin() *OrgSettingsSamlIdpInitiatedLogin {
+	this := OrgSettingsSamlIdpInitiatedLogin{}
 	return &this
 }
 
-// NewOrgSettingsSamlWithDefaults instantiates a new OrgSettingsSaml object
+// NewOrgSettingsSamlIdpInitiatedLoginWithDefaults instantiates a new OrgSettingsSamlIdpInitiatedLogin object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgSettingsSamlWithDefaults() *OrgSettingsSaml {
-	this := OrgSettingsSaml{}
+func NewOrgSettingsSamlIdpInitiatedLoginWithDefaults() *OrgSettingsSamlIdpInitiatedLogin {
+	this := OrgSettingsSamlIdpInitiatedLogin{}
 	return &this
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *OrgSettingsSaml) GetEnabled() bool {
+func (o *OrgSettingsSamlIdpInitiatedLogin) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
 		var ret bool
 		return ret
@@ -45,7 +45,7 @@ func (o *OrgSettingsSaml) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettingsSaml) GetEnabledOk() (bool, bool) {
+func (o *OrgSettingsSamlIdpInitiatedLogin) GetEnabledOk() (bool, bool) {
 	if o == nil || o.Enabled == nil {
 		var ret bool
 		return ret, false
@@ -54,7 +54,7 @@ func (o *OrgSettingsSaml) GetEnabledOk() (bool, bool) {
 }
 
 // HasEnabled returns a boolean if a field has been set.
-func (o *OrgSettingsSaml) HasEnabled() bool {
+func (o *OrgSettingsSamlIdpInitiatedLogin) HasEnabled() bool {
 	if o != nil && o.Enabled != nil {
 		return true
 	}
@@ -63,11 +63,11 @@ func (o *OrgSettingsSaml) HasEnabled() bool {
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *OrgSettingsSaml) SetEnabled(v bool) {
+func (o *OrgSettingsSamlIdpInitiatedLogin) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-func (o OrgSettingsSaml) MarshalJSON() ([]byte, error) {
+func (o OrgSettingsSamlIdpInitiatedLogin) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
@@ -75,38 +75,38 @@ func (o OrgSettingsSaml) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgSettingsSaml struct {
-	value *OrgSettingsSaml
+type NullableOrgSettingsSamlIdpInitiatedLogin struct {
+	value *OrgSettingsSamlIdpInitiatedLogin
 	isSet bool
 }
 
-func (v NullableOrgSettingsSaml) Get() *OrgSettingsSaml {
+func (v NullableOrgSettingsSamlIdpInitiatedLogin) Get() *OrgSettingsSamlIdpInitiatedLogin {
 	return v.value
 }
 
-func (v NullableOrgSettingsSaml) Set(val *OrgSettingsSaml) {
+func (v NullableOrgSettingsSamlIdpInitiatedLogin) Set(val *OrgSettingsSamlIdpInitiatedLogin) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgSettingsSaml) IsSet() bool {
+func (v NullableOrgSettingsSamlIdpInitiatedLogin) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgSettingsSaml) Unset() {
+func (v NullableOrgSettingsSamlIdpInitiatedLogin) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgSettingsSaml(val *OrgSettingsSaml) *NullableOrgSettingsSaml {
-	return &NullableOrgSettingsSaml{value: val, isSet: true}
+func NewNullableOrgSettingsSamlIdpInitiatedLogin(val *OrgSettingsSamlIdpInitiatedLogin) *NullableOrgSettingsSamlIdpInitiatedLogin {
+	return &NullableOrgSettingsSamlIdpInitiatedLogin{value: val, isSet: true}
 }
 
-func (v NullableOrgSettingsSaml) MarshalJSON() ([]byte, error) {
+func (v NullableOrgSettingsSamlIdpInitiatedLogin) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgSettingsSaml) UnmarshalJSON(src []byte) error {
+func (v *NullableOrgSettingsSamlIdpInitiatedLogin) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

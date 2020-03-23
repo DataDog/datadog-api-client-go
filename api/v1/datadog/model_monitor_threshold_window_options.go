@@ -12,10 +12,12 @@ import (
 	"encoding/json"
 )
 
-// MonitorThresholdWindowOptions struct for MonitorThresholdWindowOptions
+// MonitorThresholdWindowOptions TODO.
 type MonitorThresholdWindowOptions struct {
+	// Describes how long an anomalous metric must be normal before the alert recovers.
 	RecoveryWindow NullableString `json:"recovery_window,omitempty"`
-	TriggerWindow  NullableString `json:"trigger_window,omitempty"`
+	// Describes how long a metric must be anomalous before an alert triggers.
+	TriggerWindow NullableString `json:"trigger_window,omitempty"`
 }
 
 // NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](interface{}.md) |  | [optional] 
-**Host** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**Service** | Pointer to **string** |  | [optional] 
-**Tags** | Pointer to [**[]interface{}**](interface{}.md) |  | [optional] 
-**Timestamp** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](interface{}.md) | TODO. | [optional] 
+**Host** | Pointer to **string** | Name of the machine from where the logs are being sent. | [optional] 
+**Message** | Pointer to **string** | TODO. | [optional] 
+**Service** | Pointer to **string** | TODO. | [optional] 
+**Tags** | Pointer to [**[]interface{}**](interface{}.md) | TODO. | [optional] 
+**Timestamp** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
 
 ## Methods
 

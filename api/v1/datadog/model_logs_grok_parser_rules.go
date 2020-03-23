@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// LogsGrokParserRules Set of rules for the grok parser
+// LogsGrokParserRules Set of rules for the grok parser.
 type LogsGrokParserRules struct {
-	// List of match rules for the grok parser, separated by a new line
+	// List of match rules for the grok parser, separated by a new line.
 	MatchRules string `json:"match_rules"`
-	// List of support rules for the grok parser, separated by a new line
+	// List of support rules for the grok parser, separated by a new line.
 	SupportRules *string `json:"support_rules,omitempty"`
 }
 

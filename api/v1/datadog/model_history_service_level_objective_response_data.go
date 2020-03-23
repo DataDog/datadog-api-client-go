@@ -12,16 +12,16 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveResponseData struct for HistoryServiceLevelObjectiveResponseData
+// HistoryServiceLevelObjectiveResponseData An array of service level objective objects.
 type HistoryServiceLevelObjectiveResponseData struct {
-	// the `from` timestamp in epoch seconds
+	// The `from` timestamp in epoch seconds.
 	FromTs  *int64                               `json:"from_ts,omitempty"`
 	Groups  *HistoryServiceLevelObjectiveGroups  `json:"groups,omitempty"`
 	Overall *HistoryServiceLevelObjectiveOverall `json:"overall,omitempty"`
 	Series  *HistoryServiceLevelObjectiveMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
-	// the `to` timestamp in epoch seconds
+	// The `to` timestamp in epoch seconds.
 	ToTs   *int64                            `json:"to_ts,omitempty"`
 	Type   *ServiceLevelObjectiveType        `json:"type,omitempty"`
 	TypeId *ServiceLevelObjectiveTypeNumeric `json:"type_id,omitempty"`

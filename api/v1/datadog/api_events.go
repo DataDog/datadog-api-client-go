@@ -37,47 +37,8 @@ func (r apiCreateEventRequest) Body(body Event) apiCreateEventRequest {
 
 /*
 CreateEvent Post an event
-### Overview
-This endpoint allows you to post events to the stream. Tag them, set priority and event aggregate them with other events.
-### Arguments
-* **`title`** [*required*]:
-    The event title. *Limited to 100 characters.*
-    Use `msg_title` with [the Datadog Ruby library][1].
-
-* **`text`** [*required*]:
-    The body of the event. *Limited to 4000 characters.*
-    The text supports [markdown][2].
-    Use `msg_text` with [the Datadog Ruby library][1]
-
-* **`date_happened`** [*optional*, *default* = **now**]:
-    POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). *Limited to events no older than 1 year, 24 days (389 days)*
-
-* **`priority`** [*optional*, *default* = **normal**]:
-    The priority of the event: **normal** or **low**.
-
-* **`host`** [*optional*, *default*=**None**]:
-    Host name to associate with the event. Any tags associated with the host are also applied to this event.
-
-* **`tags`** [*optional*, *default*=**None**]:
-    A list of tags to apply to the event.
-
-* **`alert_type`** [*optional*, *default* = **info**]:
-    If it's an alert event, set its type between: **error**, **warning**, **info**, and **success**.
-
-* **`aggregation_key`** [*optional*, *default*=**None**]:
-    An arbitrary string to use for aggregation. *Limited to 100 characters.*
-    If you specify a key, all events using that key are grouped together in the Event Stream.
-
-* **`source_type_name`** [*optional*, *default*=**None**]:
-    The type of event being posted.
-    Options: **nagios**, **hudson**, **jenkins**, **my_apps**, **chef**, **puppet**, **git**, **bitbucket**...
-    [Complete list of source attribute values][3]
-
-* **`related_event_id`** [*optional*, *default*=**None**]:
-    ID of the parent event. Must be sent as an integer (i.e. no quotes).
-
-* **`device_name`** [*optional*, *default*=**None**]:
-    A list of device names to post the event with.
+This endpoint allows you to post events to the stream.
+Tag them, set priority and event aggregate them with other events.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateEventRequest
 */
@@ -213,11 +174,12 @@ type apiGetEventRequest struct {
 
 /*
 GetEvent Get an event
-### Overview
 This endpoint allows you to query for event details.
-Note: if the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
+
+Note: if the event you’re querying contains markdown formatting of any kind,
+you may see characters such as %,\,n in your output.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param eventId The id of the event
+ * @param eventId The id of the event.
 @return apiGetEventRequest
 */
 func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) apiGetEventRequest {
@@ -406,29 +368,10 @@ func (r apiListEventsRequest) Unaggregated(unaggregated bool) apiListEventsReque
 }
 
 /*
-ListEvents Query the event stream
-
+ListEvents Query the event stream.
 The event stream can be queried and filtered by time, priority, sources and tags.
-Note: if the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
-### Arguments
-* **`start`** [*required*]:
-    POSIX timestamp.
 
-* **`end`** [*required*]:
-    POSIX timestamp.
-
-* **`priority`** [*optional*, *default*=**None**]:
-    Priority of your events: **low** or **normal**.
-
-* **`sources`** [*optional*, *default*=**None**]:
-    A comma separated string of sources.
-
-* **`tags`** [*optional*, *default*=**None**]:
-    A comma separated string of tags. To use a negative tag filter, prefix your tag with `-`.
-    See the Event Stream documentation to learn more.
-
-* **`unaggregated`** [*optional*, *default*=*false*]:
-    Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won't be available in the output.
+**Note**: If the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListEventsRequest
 */

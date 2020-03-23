@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageFargateHour**](UsageFargateHour.md) |  | [optional] 
+**Usage** | Pointer to [**[]UsageFargateHour**](UsageFargateHour.md) | TODO. | [optional] 
 
 ## Methods
 

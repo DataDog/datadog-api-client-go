@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **Api** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
 **Apm** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
 **Logs** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
-**Modified** | Pointer to **string** | Date when last updated, in the form &#x60;YYYY-MM-DD-hh-mm-ss&#x60; | [optional] 
+**Modified** | Pointer to **string** | Date when last updated, in the form &#x60;YYYY-MM-DD-hh-mm-ss&#x60;. | [optional] 
 **Process** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
 **Synthetics** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
-**Version** | Pointer to **int64** | Version of the IP list | [optional] 
+**Version** | Pointer to **int64** | Version of the IP list. | [optional] 
 **Webhooks** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
 
 ## Methods

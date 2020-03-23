@@ -18,11 +18,11 @@ type MetricsQueryResponseUnit struct {
 	Family *string `json:"family,omitempty"`
 	// Unit name
 	Name *string `json:"name,omitempty"`
-	// Plural form of the unit name
+	// Plural form of the unit name.
 	Plural *string `json:"plural,omitempty"`
 	// Factor for scaling between units of the same family.
 	ScaleFactor *float64 `json:"scale_factor,omitempty"`
-	// Abbreviation of the unit
+	// Abbreviation of the unit.
 	ShortName *string `json:"short_name,omitempty"`
 }
 

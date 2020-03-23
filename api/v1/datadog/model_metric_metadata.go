@@ -14,19 +14,19 @@ import (
 
 // MetricMetadata struct for MetricMetadata
 type MetricMetadata struct {
-	// Metric description
+	// Metric description.
 	Description *string `json:"description,omitempty"`
-	// Name of the integration that sent the metric if applicable
+	// Name of the integration that sent the metric if applicable.
 	Integration *string `json:"integration,omitempty"`
-	// Per unit of the metric such as `second` in `bytes per second`
+	// Per unit of the metric such as `second` in `bytes per second`.
 	PerUnit *string `json:"per_unit,omitempty"`
-	// A more human-readable and abbreviated version of the metric name
+	// A more human-readable and abbreviated version of the metric name.
 	ShortName *string `json:"short_name,omitempty"`
-	// Statsd flush interval of the metric in seconds if applicable
+	// Statsd flush interval of the metric in seconds if applicable.
 	StatsdInterval *int64 `json:"statsd_interval,omitempty"`
-	// Metric type such as `gauge` or `rate`
+	// Metric type such as `gauge` or `rate`.
 	Type *string `json:"type,omitempty"`
-	// Primary unit of the metric such as `byte` or `operation`
+	// Primary unit of the metric such as `byte` or `operation`.
 	Unit *string `json:"unit,omitempty"`
 }
 

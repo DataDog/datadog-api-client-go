@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastDataTs** | Pointer to **int64** |  | [optional] 
-**LastNodataTs** | Pointer to **int64** |  | [optional] 
-**LastNotifiedTs** | Pointer to **int64** |  | [optional] 
-**LastResolvedTs** | Pointer to **int64** |  | [optional] 
-**LastTriggeredTs** | Pointer to **int64** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**LastDataTs** | Pointer to **int64** | TODO. | [optional] 
+**LastNodataTs** | Pointer to **int64** | TODO. | [optional] 
+**LastNotifiedTs** | Pointer to **int64** | TODO. | [optional] 
+**LastResolvedTs** | Pointer to **int64** | TODO. | [optional] 
+**LastTriggeredTs** | Pointer to **int64** | TODO. | [optional] 
+**Message** | Pointer to **string** | A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same ‘@username’ notation as events. | [optional] 
+**Name** | Pointer to **string** | The name of the monitor. | [optional] 
 **Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 **TriggeringValue** | Pointer to [**MonitorStateGroupValue**](MonitorStateGroupValue.md) |  | [optional] 
 

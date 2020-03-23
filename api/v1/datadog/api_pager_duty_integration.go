@@ -36,9 +36,9 @@ func (r apiCreatePagerDutyIntegrationRequest) Body(body PagerDutyIntegration) ap
 
 /*
 CreatePagerDutyIntegration Create a PagerDuty integration
-### Overview
 Create a new Datadog-PagerDuty integration.
-**Note:** All arguments are required when creating (PUT) a new PagerDuty configuration.
+
+**Note:** All arguments are required when creating (`PUT`) a new PagerDuty configuration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreatePagerDutyIntegrationRequest
 */
@@ -177,7 +177,6 @@ type apiDeletePagerDutyIntegrationRequest struct {
 
 /*
 DeletePagerDutyIntegration Delete a PagerDuty integration
-### Overview
 Delete the Datadog-PagerDuty integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiDeletePagerDutyIntegrationRequest
@@ -301,7 +300,6 @@ type apiGetPagerDutyIntegrationRequest struct {
 
 /*
 GetPagerDutyIntegration Get a PagerDuty integration
-### Overview
 Get all information about your Datadog-PagerDuty integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetPagerDutyIntegrationRequest
@@ -471,7 +469,6 @@ func (r apiUpdatePagerDutyIntegrationRequest) Body(body PagerDutyServicesAndSche
 
 /*
 UpdatePagerDutyIntegration Add new services and schedules
-### Overview
 Add new services and schedules to your Datadog-PagerDuty integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdatePagerDutyIntegrationRequest

@@ -107,7 +107,7 @@ func NewConfiguration() *Configuration {
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"site": ServerVariable{
-						Description:  "The regional site for our customers.",
+						Description:  "The regional site for a Datadog customer.",
 						DefaultValue: "datadoghq.com",
 						EnumValues: []string{
 							"datadoghq.com",

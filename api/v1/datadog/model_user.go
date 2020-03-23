@@ -12,15 +12,21 @@ import (
 	"encoding/json"
 )
 
-// User struct for User
+// User Create, edit, and disable users.
 type User struct {
 	AccessRole *AccessRole `json:"access_role,omitempty"`
-	Disabled   *bool       `json:"disabled,omitempty"`
-	Email      *string     `json:"email,omitempty"`
-	Handle     *string     `json:"handle,omitempty"`
-	Icon       *string     `json:"icon,omitempty"`
-	Name       *string     `json:"name,omitempty"`
-	Verified   *bool       `json:"verified,omitempty"`
+	// The new disabled status of the user.
+	Disabled *bool `json:"disabled,omitempty"`
+	// The new email of the user.
+	Email *string `json:"email,omitempty"`
+	// The user handle, must be a valid email.
+	Handle *string `json:"handle,omitempty"`
+	// TODO.
+	Icon *string `json:"icon,omitempty"`
+	// The name of the user.
+	Name *string `json:"name,omitempty"`
+	// TODO.
+	Verified *bool `json:"verified,omitempty"`
 }
 
 // NewUser instantiates a new User object

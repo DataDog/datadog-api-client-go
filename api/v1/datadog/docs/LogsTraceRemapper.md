@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sources** | Pointer to **[]string** | Array of source attributes | [optional] [default to ["dd.trace_id"]]
-**Type** | Pointer to **string** | Type of processor | [optional] [readonly] [default to "trace-id-remapper"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor | [optional] 
+**Sources** | Pointer to **[]string** | Array of source attributes. | [optional] [default to ["dd.trace_id"]]
+**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "trace-id-remapper"]
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 
 ## Methods
 

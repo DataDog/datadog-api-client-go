@@ -12,17 +12,17 @@ import (
 	"encoding/json"
 )
 
-// LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log matching a provided search query. Use categories to create groups for an analytical view (for example, URL groups, machine groups, environments, and response time buckets). **Note**: - The syntax of the query is the one of Logs Explorer search bar. The query can be done on any log attribute or tag, whether it is a facet or not. Wildcards can also be used inside your query. - Once the log has matched one of the Processor queries, it stops. Make sure they are properly ordered in case a log could match several queries. - The names of the categories must be unique. - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
+// LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log matching a provided search query. Use categories to create groups for an analytical view. For example, URL groups, machine groups, environments, and response time buckets.  **Notes**:  - The syntax of the query is the one of Logs Explorer search bar.   The query can be done on any log attribute or tag, whether it is a facet or not.   Wildcards can also be used inside your query. - Once the log has matched one of the Processor queries, it stops.   Make sure they are properly ordered in case a log could match several queries. - The names of the categories must be unique. - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
 type LogsCategoryProcessor struct {
-	// Array of filters to match or not a log and their corresponding `name` to assign a custom value to the log.
+	// Array of filters to match or not a log and their corresponding `name`to assign a custom value to the log.
 	Categories []LogsCategoryProcessorCategories `json:"categories"`
 	// Name of the target attribute which value is defined by the matching category.
 	Target string `json:"target"`
-	// Type of processor
+	// Type of processor.
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 

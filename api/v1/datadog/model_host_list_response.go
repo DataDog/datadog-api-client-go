@@ -12,11 +12,14 @@ import (
 	"encoding/json"
 )
 
-// HostListResponse struct for HostListResponse
+// HostListResponse TODO.
 type HostListResponse struct {
-	HostList      *[]Host `json:"host_list,omitempty"`
-	TotalMatching *int64  `json:"total_matching,omitempty"`
-	TotalReturned *int64  `json:"total_returned,omitempty"`
+	// TODO.
+	HostList *[]Host `json:"host_list,omitempty"`
+	// TODO.
+	TotalMatching *int64 `json:"total_matching,omitempty"`
+	// TODO.
+	TotalReturned *int64 `json:"total_returned,omitempty"`
 }
 
 // NewHostListResponse instantiates a new HostListResponse object

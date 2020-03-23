@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// Creator Creator of the object
+// Creator Creator of the object.
 type Creator struct {
 	Email  *string `json:"email,omitempty"`
 	Handle *string `json:"handle,omitempty"`

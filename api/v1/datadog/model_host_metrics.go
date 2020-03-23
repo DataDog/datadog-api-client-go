@@ -12,11 +12,14 @@ import (
 	"encoding/json"
 )
 
-// HostMetrics struct for HostMetrics
+// HostMetrics TODO.
 type HostMetrics struct {
-	Cpu    *float64 `json:"cpu,omitempty"`
+	// TODO.
+	Cpu *float64 `json:"cpu,omitempty"`
+	// TODO.
 	Iowait *float64 `json:"iowait,omitempty"`
-	Load   *float64 `json:"load,omitempty"`
+	// TODO.
+	Load *float64 `json:"load,omitempty"`
 }
 
 // NewHostMetrics instantiates a new HostMetrics object

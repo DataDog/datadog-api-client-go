@@ -6,17 +6,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AggregationKey** | Pointer to **string** | An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream. | [optional] 
 **AlertType** | Pointer to [**EventAlertType**](EventAlertType.md) |  | [optional] 
-**DateHappened** | Pointer to **int64** | POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 1 year, 24 days (389 days) | [optional] 
+**DateHappened** | Pointer to **int64** | POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 1 year, 24 days (389 days). | [optional] 
 **DeviceName** | Pointer to **[]string** | A list of device names to post the event with. | [optional] 
 **Host** | Pointer to **string** | Host name to associate with the event. Any tags associated with the host are also applied to this event. | [optional] 
 **Id** | Pointer to **int64** |  | [optional] [readonly] 
 **Payload** | Pointer to **string** |  | [optional] [readonly] 
 **Priority** | Pointer to [**EventPriority**](EventPriority.md) |  | [optional] 
 **RelatedEventId** | Pointer to **int64** | ID of the parent event. Must be sent as an integer (i.e. no quotes). | [optional] 
-**SourceTypeName** | Pointer to **string** | The type of event being posted. Options: nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, ... [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | [optional] 
+**SourceTypeName** | Pointer to **string** | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags to apply to the event. | [optional] 
-**Text** | Pointer to **string** | The body of the event. Limited to 4000 characters. The text supports markdown. Use msg_text with the Datadog Ruby library | 
-**Title** | Pointer to **string** | The event title. Limited to 100 characters. Use msg_title with the Datadog Ruby library. | 
+**Text** | Pointer to **string** | The body of the event. Limited to 4000 characters. The text supports markdown. Use &#x60;msg_text&#x60; with the Datadog Ruby library. | 
+**Title** | Pointer to **string** | The event title. Limited to 100 characters. Use &#x60;msg_title&#x60; with the Datadog Ruby library. | 
 **Url** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods
