@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **AccessKeyId** | Pointer to **string** | Your AWS access key ID. Only required if your AWS account is a GovCloud or China account. | [optional] 
 **AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
 **AccountSpecificNamespaceRules** | Pointer to **map[string]bool** | An object (in the form {\&quot;namespace1\&quot;:true/false, \&quot;namespace2\&quot;:true/false}) that enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the /v1/integration/aws/available_namespace_rules endpoint. | [optional] 
-**ExcludedRegions** | Pointer to **[]string** | An array of AWS regions to exclude from metrics collection. | [optional] 
 **FilterTags** | Pointer to **[]string** | The array of EC2 tags (in the form key:value) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ? (for single characters) and * (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding ! before the tag. For example, &#x60;env:production,instance-type:c1.*,!region:us-east-1&#x60; | [optional] 
 **HostTags** | Pointer to **[]string** | Array of tags (in the form key:value) to add to all hosts and metrics reporting through this integration. | [optional] 
 **RoleName** | Pointer to **string** | Your Datadog role delegation name. | [optional] 
@@ -106,31 +105,6 @@ HasAccountSpecificNamespaceRules returns a boolean if a field has been set.
 `func (o *AWSAccount) SetAccountSpecificNamespaceRules(v map[string]bool)`
 
 SetAccountSpecificNamespaceRules gets a reference to the given map[string]bool and assigns it to the AccountSpecificNamespaceRules field.
-
-### GetExcludedRegions
-
-`func (o *AWSAccount) GetExcludedRegions() []string`
-
-GetExcludedRegions returns the ExcludedRegions field if non-nil, zero value otherwise.
-
-### GetExcludedRegionsOk
-
-`func (o *AWSAccount) GetExcludedRegionsOk() ([]string, bool)`
-
-GetExcludedRegionsOk returns a tuple with the ExcludedRegions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExcludedRegions
-
-`func (o *AWSAccount) HasExcludedRegions() bool`
-
-HasExcludedRegions returns a boolean if a field has been set.
-
-### SetExcludedRegions
-
-`func (o *AWSAccount) SetExcludedRegions(v []string)`
-
-SetExcludedRegions gets a reference to the given []string and assigns it to the ExcludedRegions field.
 
 ### GetFilterTags
 
