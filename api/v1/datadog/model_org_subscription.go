@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// OrgSubscription struct for OrgSubscription
+// OrgSubscription A JSON array of subscription type. Types available are `trial`, `free`, and `pro`.
 type OrgSubscription struct {
 	Type *string `json:"type,omitempty"`
 }

@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] 
-**Disabled** | Pointer to **bool** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**Handle** | Pointer to **string** |  | [optional] 
-**Icon** | Pointer to **string** |  | [optional] [readonly] 
-**Name** | Pointer to **string** |  | [optional] 
-**Verified** | Pointer to **bool** |  | [optional] [readonly] 
+**Disabled** | Pointer to **bool** | The new disabled status of the user. | [optional] 
+**Email** | Pointer to **string** | The new email of the user. | [optional] 
+**Handle** | Pointer to **string** | The user handle, must be a valid email. | [optional] 
+**Icon** | Pointer to **string** | TODO. | [optional] [readonly] 
+**Name** | Pointer to **string** | The name of the user. | [optional] 
+**Verified** | Pointer to **bool** | TODO. | [optional] [readonly] 
 
 ## Methods
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HostList** | Pointer to [**[]Host**](Host.md) |  | [optional] 
-**TotalMatching** | Pointer to **int64** |  | [optional] 
-**TotalReturned** | Pointer to **int64** |  | [optional] 
+**HostList** | Pointer to [**[]Host**](Host.md) | TODO. | [optional] 
+**TotalMatching** | Pointer to **int64** | TODO. | [optional] 
+**TotalReturned** | Pointer to **int64** | TODO. | [optional] 
 
 ## Methods
 

@@ -12,28 +12,44 @@ import (
 	"encoding/json"
 )
 
-// MonitorOptions struct for MonitorOptions
+// MonitorOptions TODO.
 type MonitorOptions struct {
-	Aggregation        *MonitorOptionsAggregation     `json:"aggregation,omitempty"`
-	DeviceIds          *[]MonitorDeviceID             `json:"device_ids,omitempty"`
-	EnableLogsSample   *bool                          `json:"enable_logs_sample,omitempty"`
-	EscalationMessage  *string                        `json:"escalation_message,omitempty"`
-	EvaluationDelay    NullableInt64                  `json:"evaluation_delay,omitempty"`
-	IncludeTags        *bool                          `json:"include_tags,omitempty"`
-	Locked             *bool                          `json:"locked,omitempty"`
-	MinFailureDuration NullableInt64                  `json:"min_failure_duration,omitempty"`
-	MinLocationFailed  NullableInt64                  `json:"min_location_failed,omitempty"`
-	NewHostDelay       NullableInt64                  `json:"new_host_delay,omitempty"`
-	NoDataTimeframe    NullableInt64                  `json:"no_data_timeframe,omitempty"`
-	NotifyAudit        *bool                          `json:"notify_audit,omitempty"`
-	NotifyNoData       *bool                          `json:"notify_no_data,omitempty"`
-	RenotifyInterval   NullableInt64                  `json:"renotify_interval,omitempty"`
-	RequireFullWindow  *bool                          `json:"require_full_window,omitempty"`
-	Silenced           *map[string]int64              `json:"silenced,omitempty"`
-	SyntheticsCheckId  NullableInt64                  `json:"synthetics_check_id,omitempty"`
-	ThresholdWindows   *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
-	Thresholds         *MonitorThresholds             `json:"thresholds,omitempty"`
-	TimeoutH           NullableInt64                  `json:"timeout_h,omitempty"`
+	Aggregation *MonitorOptionsAggregation `json:"aggregation,omitempty"`
+	// TODO.
+	DeviceIds *[]MonitorDeviceID `json:"device_ids,omitempty"`
+	// TODO.
+	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
+	// A message to include with a re-notification. Supports the ‘@username’ notification we allow elsewhere. Not applicable if `renotify_interval` is None.
+	EscalationMessage *string `json:"escalation_message,omitempty"`
+	// Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to 300 (5min), the timeframe is set to last_5m and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation.
+	EvaluationDelay NullableInt64 `json:"evaluation_delay,omitempty"`
+	// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.  **Examples** - If `True`, `[Triggered on {host:h1}] Monitor Title` - If `False`, `[Triggered] Monitor Title`
+	IncludeTags *bool `json:"include_tags,omitempty"`
+	Locked      *bool `json:"locked,omitempty"`
+	// How long the test should be in failure before alerting (integer, number of seconds, max 7200).
+	MinFailureDuration NullableInt64 `json:"min_failure_duration,omitempty"`
+	// The minimum number of locations in failure at the same time during at least one moment in the `min_failure_duration` period (`min_location_failed` and `min_failure_duration` are part of the advanced alerting rules - integer, >= 1).
+	MinLocationFailed NullableInt64 `json:"min_location_failed,omitempty"`
+	// Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer.
+	NewHostDelay NullableInt64 `json:"new_host_delay,omitempty"`
+	// The number of minutes before a monitor notifies after data stops reporting. Datadog recommends at least 2x the monitor timeframe for metric alerts or 2 minutes for service checks. If omitted, 2x the evaluation timeframe is used for metric alerts, and 24 hours is used for service checks.
+	NoDataTimeframe NullableInt64 `json:"no_data_timeframe,omitempty"`
+	// A Boolean indicating whether tagged users is notified on changes to this monitor.
+	NotifyAudit *bool `json:"notify_audit,omitempty"`
+	// A Boolean indicating whether this monitor notifies when data stops reporting.
+	NotifyNoData *bool `json:"notify_no_data,omitempty"`
+	// The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved.
+	RenotifyInterval NullableInt64 `json:"renotify_interval,omitempty"`
+	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to `false` for sparse metrics, otherwise some evaluations are skipped. For “on average” “at all times” and “in total” aggregation, default is true. `False` otherwise.
+	RequireFullWindow *bool `json:"require_full_window,omitempty"`
+	// TODO.
+	Silenced *map[string]int64 `json:"silenced,omitempty"`
+	// TODO.
+	SyntheticsCheckId NullableInt64                  `json:"synthetics_check_id,omitempty"`
+	ThresholdWindows  *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
+	Thresholds        *MonitorThresholds             `json:"thresholds,omitempty"`
+	// The number of hours of the monitor not reporting data before it automatically resolves from a triggered state.
+	TimeoutH NullableInt64 `json:"timeout_h,omitempty"`
 }
 
 // NewMonitorOptions instantiates a new MonitorOptions object
@@ -42,6 +58,22 @@ type MonitorOptions struct {
 // will change when the set of required properties is changed
 func NewMonitorOptions() *MonitorOptions {
 	this := MonitorOptions{}
+	var escalationMessage string = "none"
+	this.EscalationMessage = &escalationMessage
+	var includeTags bool = true
+	this.IncludeTags = &includeTags
+	var minFailureDuration int64 = 0
+	this.MinFailureDuration = *NewNullableInt64(&minFailureDuration)
+	var minLocationFailed int64 = 1
+	this.MinLocationFailed = *NewNullableInt64(&minLocationFailed)
+	var newHostDelay int64 = 300
+	this.NewHostDelay = *NewNullableInt64(&newHostDelay)
+	var notifyAudit bool = false
+	this.NotifyAudit = &notifyAudit
+	var notifyNoData bool = false
+	this.NotifyNoData = &notifyNoData
+	var requireFullWindow bool = true
+	this.RequireFullWindow = &requireFullWindow
 	return &this
 }
 
@@ -50,6 +82,22 @@ func NewMonitorOptions() *MonitorOptions {
 // but it doesn't guarantee that properties required by API are set
 func NewMonitorOptionsWithDefaults() *MonitorOptions {
 	this := MonitorOptions{}
+	var escalationMessage string = "none"
+	this.EscalationMessage = &escalationMessage
+	var includeTags bool = true
+	this.IncludeTags = &includeTags
+	var minFailureDuration int64 = 0
+	this.MinFailureDuration = *NewNullableInt64(&minFailureDuration)
+	var minLocationFailed int64 = 1
+	this.MinLocationFailed = *NewNullableInt64(&minLocationFailed)
+	var newHostDelay int64 = 300
+	this.NewHostDelay = *NewNullableInt64(&newHostDelay)
+	var notifyAudit bool = false
+	this.NotifyAudit = &notifyAudit
+	var notifyNoData bool = false
+	this.NotifyNoData = &notifyNoData
+	var requireFullWindow bool = true
+	this.RequireFullWindow = &requireFullWindow
 	return &this
 }
 

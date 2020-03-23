@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HostTotals struct for HostTotals
+// HostTotals TODO.
 type HostTotals struct {
 	TotalActive *int64 `json:"total_active,omitempty"`
 	TotalUp     *int64 `json:"total_up,omitempty"`

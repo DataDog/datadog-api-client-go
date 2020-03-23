@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **IsReplaceMissing** | Pointer to **bool** | If &#x60;true&#x60;, it replaces all missing attributes of expression by &#x60;0&#x60;, &#x60;false&#x60; skip the operation if an attribute is missing. | [optional] [default to false]
 **Target** | Pointer to **string** | Name of the attribute that contains the result of the arithmetic operation. | 
 **Type** | Pointer to **string** | Type of processor | [optional] [readonly] [default to "arithmetic-processor"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor | [optional] 
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 
 ## Methods
 

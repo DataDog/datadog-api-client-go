@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HostMeta struct for HostMeta
+// HostMeta TODO.
 type HostMeta struct {
 	NixV *[]string `json:"nixV,omitempty"`
 }

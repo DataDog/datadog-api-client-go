@@ -109,14 +109,14 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
 *EventsApi* | [**CreateEvent**](docs/EventsApi.md#createevent) | **Post** /api/v1/events | Post an event
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /api/v1/events/{event_id} | Get an event
-*EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream
+*EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream.
 *GCPIntegrationApi* | [**CreateGCPIntegration**](docs/GCPIntegrationApi.md#creategcpintegration) | **Post** /api/v1/integration/gcp | Create a GCP integration
 *GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP integration
 *GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List all GCP integrations
 *GCPIntegrationApi* | [**UpdateGCPIntegration**](docs/GCPIntegrationApi.md#updategcpintegration) | **Put** /api/v1/integration/gcp | Update a GCP integration
-*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Search for hosts
-*HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Host totals
-*HostsApi* | [**MuteHost**](docs/HostsApi.md#mutehost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
+*HostsApi* | [**ApiV1HostHostNameMutePost**](docs/HostsApi.md#apiv1hosthostnamemutepost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
+*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Get all hosts for your organization
+*HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Get the total number of active hosts
 *HostsApi* | [**UnmuteHost**](docs/HostsApi.md#unmutehost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a host
 *IPRangesApi* | [**GetIPRanges**](docs/IPRangesApi.md#getipranges) | **Get** / | List IP Ranges
 *KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key
@@ -125,23 +125,23 @@ Class | Method | HTTP request | Description
 *KeysApi* | [**DeleteApplicationKey**](docs/KeysApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete an application key
 *KeysApi* | [**EditAPIKey**](docs/KeysApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
 *KeysApi* | [**EditApplicationKey**](docs/KeysApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
-*KeysApi* | [**GetAPIKey**](docs/KeysApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get an API key
+*KeysApi* | [**GetAPIKey**](docs/KeysApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get API key
 *KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys
 *KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
 *KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get an application key
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
 *LogsApi* | [**SendLog**](docs/LogsApi.md#sendlog) | **Post** /v1/input | Send logs
-*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | Get all Indexes
+*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
-*LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get Indexes Order
-*LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | Update an Index
-*LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update Indexes Order
-*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a Pipeline
-*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a Pipeline
+*LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
+*LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | Update an index
+*LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update indexes order
+*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline
+*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline
 *LogsPipelinesApi* | [**GetAllLogsPipelines**](docs/LogsPipelinesApi.md#getalllogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
-*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a Pipeline
+*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a pipeline
 *LogsPipelinesApi* | [**GetLogsPipelineOrder**](docs/LogsPipelinesApi.md#getlogspipelineorder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
-*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a Pipeline
+*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline
 *LogsPipelinesApi* | [**UpdateLogsPipelineOrder**](docs/LogsPipelinesApi.md#updatelogspipelineorder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
 *MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
@@ -152,12 +152,12 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
 *MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
-*MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get all monitor details
+*MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get all monitor details.
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
-*OrgsApi* | [**CreateChildOrg**](docs/OrgsApi.md#createchildorg) | **Post** /api/v1/org | Create child-organization
-*OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get organization
-*OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update organization
+*OrgsApi* | [**CreateChildOrg**](docs/OrgsApi.md#createchildorg) | **Post** /api/v1/org | Create a child organization
+*OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get organization information
+*OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update your organization
 *OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *PagerDutyIntegrationApi* | [**CreatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#createpagerdutyintegration) | **Put** /api/v1/integration/pagerduty | Create a PagerDuty integration
 *PagerDutyIntegrationApi* | [**DeletePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegration) | **Delete** /api/v1/integration/pagerduty | Delete a PagerDuty integration
@@ -365,6 +365,7 @@ Class | Method | HTTP request | Description
  - [OrgSettings](docs/OrgSettings.md)
  - [OrgSettingsSaml](docs/OrgSettingsSaml.md)
  - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
+ - [OrgSettingsSamlIdpInitiatedLogin](docs/OrgSettingsSamlIdpInitiatedLogin.md)
  - [OrgSubscription](docs/OrgSubscription.md)
  - [PagerDutyIntegration](docs/PagerDutyIntegration.md)
  - [PagerDutyService](docs/PagerDutyService.md)

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ddsource** | Pointer to **string** |  | [optional] 
-**Ddtags** | Pointer to **string** |  | [optional] 
-**Hostname** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
+**Ddsource** | Pointer to **string** | TODO. | [optional] 
+**Ddtags** | Pointer to **string** | TODO. | [optional] 
+**Hostname** | Pointer to **string** | TODO. | [optional] 
+**Message** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

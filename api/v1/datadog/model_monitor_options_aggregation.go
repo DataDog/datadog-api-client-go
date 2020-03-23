@@ -12,11 +12,12 @@ import (
 	"encoding/json"
 )
 
-// MonitorOptionsAggregation struct for MonitorOptionsAggregation
+// MonitorOptionsAggregation TODO.
 type MonitorOptionsAggregation struct {
 	GroupBy *string `json:"group_by,omitempty"`
-	Metric  *string `json:"metric,omitempty"`
-	Type    *string `json:"type,omitempty"`
+	// TODO.
+	Metric *string `json:"metric,omitempty"`
+	Type   *string `json:"type,omitempty"`
 }
 
 // NewMonitorOptionsAggregation instantiates a new MonitorOptionsAggregation object

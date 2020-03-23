@@ -14,20 +14,32 @@ import (
 
 // Host struct for Host
 type Host struct {
-	Aliases          *[]string            `json:"aliases,omitempty"`
-	Apps             *[]string            `json:"apps,omitempty"`
-	AwsName          *string              `json:"aws_name,omitempty"`
-	HostName         *string              `json:"host_name,omitempty"`
-	Id               *int64               `json:"id,omitempty"`
-	IsMuted          *bool                `json:"is_muted,omitempty"`
-	LastReportedTime *int64               `json:"last_reported_time,omitempty"`
-	Meta             *HostMeta            `json:"meta,omitempty"`
-	Metrics          *HostMetrics         `json:"metrics,omitempty"`
-	MuteTimeout      *int64               `json:"mute_timeout,omitempty"`
-	Name             *string              `json:"name,omitempty"`
-	Sources          *[]string            `json:"sources,omitempty"`
-	TagsBySource     *map[string][]string `json:"tags_by_source,omitempty"`
-	Up               *bool                `json:"up,omitempty"`
+	// TODO.
+	Aliases *[]string `json:"aliases,omitempty"`
+	// TODO.
+	Apps *[]string `json:"apps,omitempty"`
+	// TODO.
+	AwsName *string `json:"aws_name,omitempty"`
+	// The host name.
+	HostName *string `json:"host_name,omitempty"`
+	// TODO.
+	Id *int64 `json:"id,omitempty"`
+	// If a host is muted or unmuted.
+	IsMuted *bool `json:"is_muted,omitempty"`
+	// TODO.
+	LastReportedTime *int64       `json:"last_reported_time,omitempty"`
+	Meta             *HostMeta    `json:"meta,omitempty"`
+	Metrics          *HostMetrics `json:"metrics,omitempty"`
+	// TODO.
+	MuteTimeout *int64 `json:"mute_timeout,omitempty"`
+	// The host name.
+	Name *string `json:"name,omitempty"`
+	// TODO.
+	Sources *[]string `json:"sources,omitempty"`
+	// TODO.
+	TagsBySource *map[string][]string `json:"tags_by_source,omitempty"`
+	// TODO.
+	Up *bool `json:"up,omitempty"`
 }
 
 // NewHost instantiates a new Host object

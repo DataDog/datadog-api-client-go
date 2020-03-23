@@ -12,9 +12,11 @@ import (
 	"encoding/json"
 )
 
-// HTTPLogError struct for HTTPLogError
+// HTTPLogError TODO.
 type HTTPLogError struct {
-	Code    int32  `json:"code"`
+	// TODO.
+	Code int32 `json:"code"`
+	// TODO.
 	Message string `json:"message"`
 }
 

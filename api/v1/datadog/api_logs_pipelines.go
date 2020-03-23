@@ -36,14 +36,8 @@ func (r apiCreateLogsPipelineRequest) Body(body LogsPipeline) apiCreateLogsPipel
 }
 
 /*
-CreateLogsPipeline Create a Pipeline
-## Overview
+CreateLogsPipeline Create a pipeline
 Create a Pipeline in your organization.
-## Arguments
-- **`name`** [*required*]: Your pipeline name.
-- **`is_enabled`** [*optional*, default=`False`]: Boolean value to enable your pipeline.
-- **`filter.query`** [*optional*]: Defines your pipeline filter. Only logs that match the filter criteria are processed by this pipeline.
-- **`processors`** [*optional*]: Ordered array of processors or nested pipelines.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateLogsPipelineRequest
 */
@@ -212,13 +206,11 @@ type apiDeleteLogsPipelineRequest struct {
 }
 
 /*
-DeleteLogsPipeline Delete a Pipeline
-## Overview
+DeleteLogsPipeline Delete a pipeline
 Delete a given pipeline from your organization.
-## Arguments
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param pipelineId ID of the pipeline to delete
+ * @param pipelineId ID of the pipeline to delete.
 @return apiDeleteLogsPipelineRequest
 */
 func (a *LogsPipelinesApiService) DeleteLogsPipeline(ctx _context.Context, pipelineId string) apiDeleteLogsPipelineRequest {
@@ -352,9 +344,7 @@ type apiGetAllLogsPipelinesRequest struct {
 
 /*
 GetAllLogsPipelines Get all Pipeline
-## Overview
 Get all pipelines from your organization.
-## Arguments
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllLogsPipelinesRequest
@@ -498,13 +488,11 @@ type apiGetLogsPipelineRequest struct {
 }
 
 /*
-GetLogsPipeline Get a Pipeline
-## Overview
+GetLogsPipeline Get a pipeline
 Get a specific pipeline from your organization.
-## Arguments
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param pipelineId ID of the pipeline to get
+ * @param pipelineId ID of the pipeline to get.
 @return apiGetLogsPipelineRequest
 */
 func (a *LogsPipelinesApiService) GetLogsPipeline(ctx _context.Context, pipelineId string) apiGetLogsPipelineRequest {
@@ -658,9 +646,7 @@ type apiGetLogsPipelineOrderRequest struct {
 
 /*
 GetLogsPipelineOrder Get Pipeline Order
-
 Get the current order of your pipelines.
-## Arguments
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetLogsPipelineOrderRequest
@@ -810,17 +796,13 @@ func (r apiUpdateLogsPipelineRequest) Body(body LogsPipeline) apiUpdateLogsPipel
 }
 
 /*
-UpdateLogsPipeline Update a Pipeline
-## Overview
+UpdateLogsPipeline Update a pipeline
 Update a given pipeline configuration to change it’s processors or their order.
-## Arguments
-**Note**: Using this method updates your pipeline configuration by **replacing** your current configuration with the new one sent to your Datadog organization.
-- **`name`** [*required*]: Your pipeline name.
-- **`is_enabled`** [*optional*, default=`False`]: Boolean value to enable your pipeline.
-- **`filter.query`** [*optional*]: Defines your pipeline filter. Only logs that match the filter criteria are processed by this pipeline.
-- **`processors`** [*optional*]: Ordered array of processors or nested pipelines.
+
+**Note**: Using this method updates your pipeline configuration by **replacing**
+your current configuration with the new one sent to your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param pipelineId ID of the pipeline to delete
+ * @param pipelineId ID of the pipeline to delete.
 @return apiUpdateLogsPipelineRequest
 */
 func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipelineId string) apiUpdateLogsPipelineRequest {
@@ -996,11 +978,11 @@ func (r apiUpdateLogsPipelineOrderRequest) Body(body LogsPipelinesOrder) apiUpda
 
 /*
 UpdateLogsPipelineOrder Update Pipeline Order
-## Overview
-Update the order of your pipelines. Since logs are processed sequentially, reordering a pipeline may change the structure and content of the data processed by other pipelines and their processors.
-**Note**: Using the PUT method updates your pipeline order by replacing your current order with the new one sent to your Datadog organization.
-## Arguments
-- **`pipeline_ids`** [*required*]: Ordered Array of <PIPELINE_ID> strings, the order of pipeline IDs in the array define the overall Pipelines order for Datadog.
+Update the order of your pipelines. Since logs are processed sequentially, reordering a pipeline may change
+the structure and content of the data processed by other pipelines and their processors.
+
+**Note**: Using the `PUT` method updates your pipeline order by replacing your current order
+with the new one sent to your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateLogsPipelineOrderRequest
 */

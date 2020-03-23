@@ -12,13 +12,18 @@ import (
 	"encoding/json"
 )
 
-// MonitorStateGroupValue struct for MonitorStateGroupValue
+// MonitorStateGroupValue TODO.
 type MonitorStateGroupValue struct {
-	FromTs *int64   `json:"from_ts,omitempty"`
-	Left   *float64 `json:"left,omitempty"`
-	Right  *float64 `json:"right,omitempty"`
-	ToTs   *int64   `json:"to_ts,omitempty"`
-	Value  *float64 `json:"value,omitempty"`
+	// TODO.
+	FromTs *int64 `json:"from_ts,omitempty"`
+	// TODO.
+	Left *float64 `json:"left,omitempty"`
+	// TODO.
+	Right *float64 `json:"right,omitempty"`
+	// TODO.
+	ToTs *int64 `json:"to_ts,omitempty"`
+	// TODO.
+	Value *float64 `json:"value,omitempty"`
 }
 
 // NewMonitorStateGroupValue instantiates a new MonitorStateGroupValue object

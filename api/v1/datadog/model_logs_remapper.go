@@ -14,23 +14,23 @@ import (
 
 // LogsRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag. Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice). Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
 type LogsRemapper struct {
-	// Override or not the target element if already set
+	// Override or not the target element if already set,
 	OverrideOnConflict *bool `json:"override_on_conflict,omitempty"`
-	// Remove or preserve the remapped source element
+	// Remove or preserve the remapped source element.
 	PreserveSource *bool `json:"preserve_source,omitempty"`
-	// Defines if the sources are from log `attribute` or `tag`
+	// Defines if the sources are from log `attribute` or `tag`.
 	SourceType *string `json:"source_type,omitempty"`
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Final attribute or tag name to remap the sources to.
 	Target string `json:"target"`
-	// Defines if the sources are from log `attribute` or `tag`
+	// Defines if the sources are from log `attribute` or `tag`.
 	TargetType *string `json:"target_type,omitempty"`
-	// Type of processor
+	// Type of processor.
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 

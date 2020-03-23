@@ -22,9 +22,9 @@ type HistoryServiceLevelObjectiveMetrics struct {
 	Numerator HistoryServiceLevelObjectiveMetricsSeries `json:"numerator"`
 	// The combined numerator && denominator query CSV.
 	Query string `json:"query"`
-	// The series result type. This mimics `batch_query` response type
+	// The series result type. This mimics `batch_query` response type.
 	ResType string `json:"res_type"`
-	// The series response version type. This mimics `batch_query` response type
+	// The series response version type. This mimics `batch_query` response type.
 	RespVersion int64 `json:"resp_version"`
 	// The query timestamps in epoch milliseconds
 	Times []float64 `json:"times"`

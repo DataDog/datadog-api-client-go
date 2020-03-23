@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
 **Target** | Pointer to **string** | The name of the attribute that contains the result of the template. | 
 **Template** | Pointer to **string** | A formula with one or more attributes and raw text. | 
-**Type** | Pointer to **string** | Type of processor | [optional] [readonly] [default to "string-builder-processor"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor | [optional] 
+**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "string-builder-processor"]
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 
 ## Methods
 

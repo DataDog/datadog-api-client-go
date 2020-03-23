@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Author** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Created** | Pointer to [**time.Time**](time.Time.md) | Date of creation of the dashboard | [optional] [readonly] 
-**Icon** | Pointer to **string** | URL to the icon of the dashboard | [optional] [readonly] 
-**Id** | Pointer to **string** | ID of the dashboard | 
-**IsFavorite** | Pointer to **bool** | Whether or not the dashboard is in the favorites | [optional] [readonly] 
-**IsReadOnly** | Pointer to **bool** | Whether or not the dashboard is read only | [optional] [readonly] 
-**IsShared** | Pointer to **bool** | Whether the dashboard is publicly shared or not | [optional] [readonly] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | Date of last edition of the dashboard | [optional] [readonly] 
-**Popularity** | Pointer to **int32** | Popularity of the dashboard | [optional] [readonly] 
-**Title** | Pointer to **string** | Title of the dashboard | [optional] [readonly] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | Date of creation of the dashboard. | [optional] [readonly] 
+**Icon** | Pointer to **string** | URL to the icon of the dashboard. | [optional] [readonly] 
+**Id** | Pointer to **string** | ID of the dashboard. | 
+**IsFavorite** | Pointer to **bool** | Whether or not the dashboard is in the favorites. | [optional] [readonly] 
+**IsReadOnly** | Pointer to **bool** | Whether or not the dashboard is read only. | [optional] [readonly] 
+**IsShared** | Pointer to **bool** | Whether the dashboard is publicly shared or not. | [optional] [readonly] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | Date of last edition of the dashboard. | [optional] [readonly] 
+**Popularity** | Pointer to **int32** | Popularity of the dashboard. | [optional] [readonly] 
+**Title** | Pointer to **string** | Title of the dashboard. | [optional] [readonly] 
 **Type** | Pointer to [**DashboardType**](DashboardType.md) |  | 
-**Url** | Pointer to **string** | URL path to the dashboard | [optional] [readonly] 
+**Url** | Pointer to **string** | URL path to the dashboard. | [optional] [readonly] 
 
 ## Methods
 

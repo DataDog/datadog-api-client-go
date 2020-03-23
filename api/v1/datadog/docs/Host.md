@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aliases** | Pointer to **[]string** |  | [optional] 
-**Apps** | Pointer to **[]string** |  | [optional] 
-**AwsName** | Pointer to **string** |  | [optional] 
-**HostName** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**IsMuted** | Pointer to **bool** |  | [optional] 
-**LastReportedTime** | Pointer to **int64** |  | [optional] 
+**Aliases** | Pointer to **[]string** | TODO. | [optional] 
+**Apps** | Pointer to **[]string** | TODO. | [optional] 
+**AwsName** | Pointer to **string** | TODO. | [optional] 
+**HostName** | Pointer to **string** | The host name. | [optional] 
+**Id** | Pointer to **int64** | TODO. | [optional] 
+**IsMuted** | Pointer to **bool** | If a host is muted or unmuted. | [optional] 
+**LastReportedTime** | Pointer to **int64** | TODO. | [optional] 
 **Meta** | Pointer to [**HostMeta**](Host_meta.md) |  | [optional] 
 **Metrics** | Pointer to [**HostMetrics**](Host_metrics.md) |  | [optional] 
-**MuteTimeout** | Pointer to **int64** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Sources** | Pointer to **[]string** |  | [optional] 
-**TagsBySource** | Pointer to [**map[string][]string**](array.md) |  | [optional] 
-**Up** | Pointer to **bool** |  | [optional] 
+**MuteTimeout** | Pointer to **int64** | TODO. | [optional] 
+**Name** | Pointer to **string** | The host name. | [optional] 
+**Sources** | Pointer to **[]string** | TODO. | [optional] 
+**TagsBySource** | Pointer to [**map[string][]string**](array.md) | TODO. | [optional] 
+**Up** | Pointer to **bool** | TODO. | [optional] 
 
 ## Methods
 

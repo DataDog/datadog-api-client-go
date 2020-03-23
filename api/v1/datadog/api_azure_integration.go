@@ -36,12 +36,7 @@ func (r apiAzureUpdateHostFiltersRequest) Body(body AzureAccount) apiAzureUpdate
 
 /*
 AzureUpdateHostFilters Update Azure integration host filters
-
 Update the defined list of host filters for a given Datadog-Azure integration.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
-* **`host_filters`** [*required*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiAzureUpdateHostFiltersRequest
 */
@@ -206,13 +201,13 @@ func (r apiCreateAzureIntegrationRequest) Body(body AzureAccount) apiCreateAzure
 
 /*
 CreateAzureIntegration Create an Azure integration
-### Overview
 Create a Datadog-Azure integration.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
-* **`client_secret`** [*required*, *default* = **None**]: Your Azure web application secret key.
-* **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+
+Using the `POST` method updates your integration configuration by adding your new
+configuration to the existing one in your Datadog organization.
+
+Using the `PUT` method updates your integration configuration by replacing your
+current configuration with the new one sent to your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateAzureIntegrationRequest
 */
@@ -377,11 +372,7 @@ func (r apiDeleteAzureIntegrationRequest) Body(body AzureAccount) apiDeleteAzure
 
 /*
 DeleteAzureIntegration Delete an Azure integration
-
-Delete a given Datadog-Azure integration.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your Azure web application ID.
+Delete a given Datadog-Azure integration from your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiDeleteAzureIntegrationRequest
 */
@@ -540,7 +531,6 @@ type apiListAzureIntegrationRequest struct {
 
 /*
 ListAzureIntegration List all Azure integrations
-### Overview
 List all Datadog-Azure integrations configured in your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListAzureIntegrationRequest
@@ -700,15 +690,9 @@ func (r apiUpdateAzureIntegrationRequest) Body(body AzureAccount) apiUpdateAzure
 
 /*
 UpdateAzureIntegration Update an Azure integration
-### Overview
-Update an Datadog-Azure integration. Requires an existing tenant_name and client_id. Any other fields supplied will overwrite existing values. To overwrite tenant_name or client_id, use new_tenant_name and new_client_id. To leave a field unchanged, do not supply that field in the payload.
-### Arguments
-* **`tenant_name`** [*required*, *default* = **None**]: Your existing Azure Active Directory ID.
-* **`new_tenant_name`** [*optional*, *default* = **None**]: Your new Azure Active Directory ID.
-* **`client_id`** [*required*, *default* = **None**]: Your existing Azure web application ID.
-* **`new_client_id`** [*optional*, *default* = **None**]: Your new Azure web application ID.
-* **`client_secret`** [*optional*, *default* = **None**]: Your Azure web application secret key.
-* **`host_filters`** [*optional*, *default* = **None**]: Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
+Update a Datadog-Azure integration. Requires an existing `tenant_name` and `client_id`.
+Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`,
+use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateAzureIntegrationRequest
 */

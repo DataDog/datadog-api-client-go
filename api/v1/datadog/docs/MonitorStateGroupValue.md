@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FromTs** | Pointer to **int64** |  | [optional] 
-**Left** | Pointer to **float64** |  | [optional] 
-**Right** | Pointer to **float64** |  | [optional] 
-**ToTs** | Pointer to **int64** |  | [optional] 
-**Value** | Pointer to **float64** |  | [optional] 
+**FromTs** | Pointer to **int64** | TODO. | [optional] 
+**Left** | Pointer to **float64** | TODO. | [optional] 
+**Right** | Pointer to **float64** | TODO. | [optional] 
+**ToTs** | Pointer to **int64** | TODO. | [optional] 
+**Value** | Pointer to **float64** | TODO. | [optional] 
 
 ## Methods
 

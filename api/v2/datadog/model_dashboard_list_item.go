@@ -16,26 +16,26 @@ import (
 // DashboardListItem struct for DashboardListItem
 type DashboardListItem struct {
 	Author *Creator `json:"author,omitempty"`
-	// Date of creation of the dashboard
+	// Date of creation of the dashboard.
 	Created *time.Time `json:"created,omitempty"`
-	// URL to the icon of the dashboard
+	// URL to the icon of the dashboard.
 	Icon *string `json:"icon,omitempty"`
-	// ID of the dashboard
+	// ID of the dashboard.
 	Id string `json:"id"`
-	// Whether or not the dashboard is in the favorites
+	// Whether or not the dashboard is in the favorites.
 	IsFavorite *bool `json:"is_favorite,omitempty"`
-	// Whether or not the dashboard is read only
+	// Whether or not the dashboard is read only.
 	IsReadOnly *bool `json:"is_read_only,omitempty"`
-	// Whether the dashboard is publicly shared or not
+	// Whether the dashboard is publicly shared or not.
 	IsShared *bool `json:"is_shared,omitempty"`
-	// Date of last edition of the dashboard
+	// Date of last edition of the dashboard.
 	Modified *time.Time `json:"modified,omitempty"`
-	// Popularity of the dashboard
+	// Popularity of the dashboard.
 	Popularity *int32 `json:"popularity,omitempty"`
-	// Title of the dashboard
+	// Title of the dashboard.
 	Title *string       `json:"title,omitempty"`
 	Type  DashboardType `json:"type"`
-	// URL path to the dashboard
+	// URL path to the dashboard.
 	Url *string `json:"url,omitempty"`
 }
 

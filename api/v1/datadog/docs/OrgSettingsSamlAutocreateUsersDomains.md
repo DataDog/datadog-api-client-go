@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Domains** | Pointer to **[]string** |  | [optional] 
-**Enabled** | Pointer to **bool** |  | [optional] 
+**Domains** | Pointer to **[]string** | TODO. | [optional] 
+**Enabled** | Pointer to **bool** | TODO. | [optional] 
 
 ## Methods
 

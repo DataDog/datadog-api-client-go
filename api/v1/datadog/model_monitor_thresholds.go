@@ -12,14 +12,20 @@ import (
 	"encoding/json"
 )
 
-// MonitorThresholds struct for MonitorThresholds
+// MonitorThresholds TODO.
 type MonitorThresholds struct {
-	Critical         *float64        `json:"critical,omitempty"`
+	// TODO.
+	Critical *float64 `json:"critical,omitempty"`
+	// TODO.
 	CriticalRecovery NullableFloat64 `json:"critical_recovery,omitempty"`
-	Ok               NullableFloat64 `json:"ok,omitempty"`
-	Unknown          NullableFloat64 `json:"unknown,omitempty"`
-	Warning          NullableFloat64 `json:"warning,omitempty"`
-	WarningRecovery  NullableFloat64 `json:"warning_recovery,omitempty"`
+	// TODO.
+	Ok NullableFloat64 `json:"ok,omitempty"`
+	// TODO.
+	Unknown NullableFloat64 `json:"unknown,omitempty"`
+	// TODO.
+	Warning NullableFloat64 `json:"warning,omitempty"`
+	// TODO.
+	WarningRecovery NullableFloat64 `json:"warning_recovery,omitempty"`
 }
 
 // NewMonitorThresholds instantiates a new MonitorThresholds object

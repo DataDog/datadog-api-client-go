@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageSyntheticsHour**](UsageSyntheticsHour.md) |  | [optional] 
+**Usage** | Pointer to [**[]UsageSyntheticsHour**](UsageSyntheticsHour.md) | TODO. | [optional] 
 
 ## Methods
 

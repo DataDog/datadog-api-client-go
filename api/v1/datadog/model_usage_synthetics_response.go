@@ -14,6 +14,7 @@ import (
 
 // UsageSyntheticsResponse struct for UsageSyntheticsResponse
 type UsageSyntheticsResponse struct {
+	// TODO.
 	Usage *[]UsageSyntheticsHour `json:"usage,omitempty"`
 }
 

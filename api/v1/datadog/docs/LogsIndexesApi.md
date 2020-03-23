@@ -4,11 +4,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAllLogIndexes**](LogsIndexesApi.md#GetAllLogIndexes) | **Get** /api/v1/logs/config/indexes | Get all Indexes
+[**GetAllLogIndexes**](LogsIndexesApi.md#GetAllLogIndexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 [**GetLogsIndex**](LogsIndexesApi.md#GetLogsIndex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
-[**GetLogsIndexOrder**](LogsIndexesApi.md#GetLogsIndexOrder) | **Get** /api/v1/logs/config/index-order | Get Indexes Order
-[**UpdateLogsIndex**](LogsIndexesApi.md#UpdateLogsIndex) | **Put** /api/v1/logs/config/indexes/{name} | Update an Index
-[**UpdateLogsIndexOrder**](LogsIndexesApi.md#UpdateLogsIndexOrder) | **Put** /api/v1/logs/config/index-order | Update Indexes Order
+[**GetLogsIndexOrder**](LogsIndexesApi.md#GetLogsIndexOrder) | **Get** /api/v1/logs/config/index-order | Get indexes order
+[**UpdateLogsIndex**](LogsIndexesApi.md#UpdateLogsIndex) | **Put** /api/v1/logs/config/indexes/{name} | Update an index
+[**UpdateLogsIndexOrder**](LogsIndexesApi.md#UpdateLogsIndexOrder) | **Put** /api/v1/logs/config/index-order | Update indexes order
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > LogsIndexListResponse GetAllLogIndexes(ctx).Execute()
 
-Get all Indexes
+Get all indexes
 
 
 
@@ -61,7 +61,7 @@ Get an index
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | Name of the log index | 
+**name** | **string** | Name of the log index. | 
 
 ### Other Parameters
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 > LogsIndexesOrder GetLogsIndexOrder(ctx).Execute()
 
-Get Indexes Order
+Get indexes order
 
 
 
@@ -129,7 +129,7 @@ Other parameters are passed through a pointer to a apiGetLogsIndexOrderRequest s
 
 > LogsIndex UpdateLogsIndex(ctx, name).Body(body).Execute()
 
-Update an Index
+Update an index
 
 
 
@@ -139,7 +139,7 @@ Update an Index
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | Name of the log index | 
+**name** | **string** | Name of the log index. | 
 
 ### Other Parameters
 
@@ -149,7 +149,7 @@ Other parameters are passed through a pointer to a apiUpdateLogsIndexRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new LogsIndex | 
+ **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new LogsIndex. | 
 
 ### Return type
 
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 
 > LogsIndexesOrder UpdateLogsIndexOrder(ctx).Body(body).Execute()
 
-Update Indexes Order
+Update indexes order
 
 
 

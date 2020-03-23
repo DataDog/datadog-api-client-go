@@ -12,9 +12,11 @@ import (
 	"encoding/json"
 )
 
-// HostTags struct for HostTags
+// HostTags TODO.
 type HostTags struct {
-	Host *string   `json:"host,omitempty"`
+	// TODO.
+	Host *string `json:"host,omitempty"`
+	// A list of tags to apply to the host.
 	Tags *[]string `json:"tags,omitempty"`
 }
 

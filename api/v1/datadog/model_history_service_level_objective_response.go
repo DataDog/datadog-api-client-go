@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveResponse struct for HistoryServiceLevelObjectiveResponse
+// HistoryServiceLevelObjectiveResponse TODO.
 type HistoryServiceLevelObjectiveResponse struct {
 	Data HistoryServiceLevelObjectiveResponseData `json:"data"`
 	// A list of errors while querying the history data for the service level obective.

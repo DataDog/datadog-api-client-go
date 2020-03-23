@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Series** | Pointer to [**[]Series**](Series.md) | A list of time series to submit to Datadog | [optional] 
+**Series** | Pointer to [**[]Series**](Series.md) | A list of time series to submit to Datadog. | [optional] 
 
 ## Methods
 

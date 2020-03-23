@@ -143,7 +143,7 @@ Get user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | [**string**](.md) | The id of the user | 
+**userHandle** | [**string**](.md) | The ID of the user. | 
 
 ### Other Parameters
 
@@ -186,7 +186,7 @@ Update user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | [**string**](.md) | The id of the user | 
+**userHandle** | [**string**](.md) | The ID of the user. | 
 
 ### Other Parameters
 
@@ -196,7 +196,7 @@ Other parameters are passed through a pointer to a apiUpdateUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**User**](User.md) | Description of the update | 
+ **body** | [**User**](User.md) | Description of the update. | 
 
 ### Return type
 

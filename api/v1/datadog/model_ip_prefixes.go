@@ -14,9 +14,9 @@ import (
 
 // IPPrefixes struct for IPPrefixes
 type IPPrefixes struct {
-	// List of IPv4 prefixes
+	// List of IPv4 prefixes.
 	PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
-	// List of IPv6 prefixes
+	// List of IPv6 prefixes.
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 }
 

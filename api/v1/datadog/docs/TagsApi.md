@@ -76,7 +76,7 @@ Other parameters are passed through a pointer to a apiGetAllHostTagsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **source** | **string** | When specified, filters host list to those tags with the specified source | 
+ **source** | **string** | When specified, filters host list to those tags with the specified source. | 
 
 ### Return type
 
@@ -164,7 +164,7 @@ Other parameters are passed through a pointer to a apiRemoveHostTagsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | 
+ **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
 
 ### Return type
 

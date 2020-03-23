@@ -34,7 +34,7 @@ Other parameters are passed through a pointer to a apiBulkPartialDeleteSLOReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**map[string][]SLOTimeframe**](array.md) | Thresholds by service level objective object ID | 
+ **body** | [**map[string][]SLOTimeframe**](array.md) | Thresholds by service level objective object ID. | 
 
 ### Return type
 
@@ -112,7 +112,7 @@ Other parameters are passed through a pointer to a apiCreateSLORequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | Service level objective request object | 
+ **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | Service level objective request object. | 
 
 ### Return type
 
@@ -146,7 +146,7 @@ Delete a SLO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The id of the service level objective | 
+**sloId** | **string** | The id of the service level objective. | 
 
 ### Other Parameters
 
@@ -189,7 +189,7 @@ Edit a SLO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The ID of the service level objective object | 
+**sloId** | **string** | The ID of the service level objective object. | 
 
 ### Other Parameters
 
@@ -233,7 +233,7 @@ Get a SLO's details
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The ID of the service level objective object | 
+**sloId** | **string** | The ID of the service level objective object. | 
 
 ### Other Parameters
 
@@ -281,7 +281,7 @@ Other parameters are passed through a pointer to a apiGetSLOsRequest struct via 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **string** | A comma separated list of the IDs of the service level objectives objects (e.g. \&quot;id1,id2,id3\&quot;). | 
+ **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. For example, \&quot;id1,id2,id3\&quot;. | 
 
 ### Return type
 
@@ -315,7 +315,7 @@ Get an SLO's history
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The ID of the service level objective object | 
+**sloId** | **string** | The ID of the service level objective object. | 
 
 ### Other Parameters
 
@@ -325,8 +325,8 @@ Other parameters are passed through a pointer to a apiHistoryForSLORequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fromTs** | **string** | The &#x60;from&#x60; timestamp for the query window in epoch seconds | 
- **toTs** | **string** | The &#x60;to&#x60; timestamp for the query window in epoch seconds | 
+ **fromTs** | **string** | The &#x60;from&#x60; timestamp for the query window in epoch seconds. | 
+ **toTs** | **string** | The &#x60;to&#x60; timestamp for the query window in epoch seconds. | 
 
 ### Return type
 

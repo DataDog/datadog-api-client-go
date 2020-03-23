@@ -38,7 +38,10 @@ func (r apiBulkPartialDeleteSLORequest) Body(body map[string][]SLOTimeframe) api
 /*
 BulkPartialDeleteSLO Bulk Delete SLO Timeframes
 Delete (or partially delete) multiple service level objective objects.
-This endpoint facilitates deletion of one or more thresholds for one or more service level objective objects. If all thresholds are deleted, the service level objective object is deleted as well.
+
+This endpoint facilitates deletion of one or more thresholds for one or more
+service level objective objects. If all thresholds are deleted, the service level
+objective object is deleted as well.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiBulkPartialDeleteSLORequest
 */
@@ -213,7 +216,8 @@ func (r apiCheckCanDeleteSLORequest) Ids(ids string) apiCheckCanDeleteSLORequest
 
 /*
 CheckCanDeleteSLO Check if SLOs can be safely deleted
-Check if an SLO can be safely deleted without disrupting dashboardsfor example.
+Check if an SLO can be safely deleted without disrupting
+dashboardsfor example.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCheckCanDeleteSLORequest
 */
@@ -558,9 +562,11 @@ type apiDeleteSLORequest struct {
 /*
 DeleteSLO Delete a SLO
 Permanently delete the specified service level objective object.
-If an SLO is used in a dashboard, the `DELETE /v1/slo/` endpoint returns a 409 conflict error because the SLO is referenced in a dashboard.
+
+If an SLO is used in a dashboard, the `DELETE /v1/slo/` endpoint returns
+a 409 conflict error because the SLO is referenced in a dashboard.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The id of the service level objective
+ * @param sloId The id of the service level objective.
 @return apiDeleteSLORequest
 */
 func (a *SLOApiService) DeleteSLO(ctx _context.Context, sloId string) apiDeleteSLORequest {
@@ -741,12 +747,9 @@ func (r apiEditSLORequest) Body(body ServiceLevelObjective) apiEditSLORequest {
 
 /*
 EditSLO Edit a SLO
-### Overview
 Edit the specified service level objective object.
-### Arguments
-* **`slo_id`** [*required*]: The ID of the service level objective object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The ID of the service level objective object
+ * @param sloId The ID of the service level objective object.
 @return apiEditSLORequest
 */
 func (a *SLOApiService) EditSLO(ctx _context.Context, sloId string) apiEditSLORequest {
@@ -927,12 +930,9 @@ type apiGetSLORequest struct {
 
 /*
 GetSLO Get a SLO's details
-### Overview
 Get a service level objective object.
-### Arguments
-* **`slo_id`** [*required*]: The ID of the service level objective object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The ID of the service level objective object
+ * @param sloId The ID of the service level objective object.
 @return apiGetSLORequest
 */
 func (a *SLOApiService) GetSLO(ctx _context.Context, sloId string) apiGetSLORequest {
@@ -1112,11 +1112,7 @@ func (r apiGetSLOsRequest) Ids(ids string) apiGetSLOsRequest {
 
 /*
 GetSLOs Search SLOs
-### Overview
 Get multiple service level objective objects by their IDs.
-### Arguments
-* **`ids`** [*required*]: A comma separated list of the IDs of the service level
-  objectives objects (e.g. "id1,id2,id3").
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetSLOsRequest
 */
@@ -1298,10 +1294,15 @@ func (r apiHistoryForSLORequest) ToTs(toTs string) apiHistoryForSLORequest {
 /*
 HistoryForSLO Get an SLO's history
 Get a specific SLO’s history, regardless of its SLO type.
-The detailed history data is structured according to the source data type. For example, metric data is included for event SLOs that use the metric source, and monitor SLO types include the monitor transition history.
-**Note:** There are different response formats for event based and time based SLOs. Examples of both are shown.
+
+The detailed history data is structured according to the source data type.
+For example, metric data is included for event SLOs that use
+the metric source, and monitor SLO types include the monitor transition history.
+
+**Note:** There are different response formats for event based and time based SLOs.
+Examples of both are shown.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The ID of the service level objective object
+ * @param sloId The ID of the service level objective object.
 @return apiHistoryForSLORequest
 */
 func (a *SLOApiService) HistoryForSLO(ctx _context.Context, sloId string) apiHistoryForSLORequest {

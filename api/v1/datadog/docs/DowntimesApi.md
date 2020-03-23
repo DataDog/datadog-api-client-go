@@ -27,7 +27,7 @@ Cancel a downtime
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**downtimeId** | **int64** | ID of the downtime to cancel | 
+**downtimeId** | **int64** | ID of the downtime to cancel. | 
 
 ### Other Parameters
 
@@ -75,7 +75,7 @@ Other parameters are passed through a pointer to a apiCancelDowntimesByScopeRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for | 
+ **body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for. | 
 
 ### Return type
 
@@ -187,7 +187,7 @@ Get a downtime
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**downtimeId** | **int64** | ID of the downtime to fetch | 
+**downtimeId** | **int64** | ID of the downtime to fetch. | 
 
 ### Other Parameters
 
@@ -230,7 +230,7 @@ Update a downtime
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**downtimeId** | **int64** | ID of the downtime to update | 
+**downtimeId** | **int64** | ID of the downtime to update. | 
 
 ### Other Parameters
 
@@ -240,7 +240,7 @@ Other parameters are passed through a pointer to a apiUpdateDowntimeRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Downtime**](Downtime.md) | Downtime request object | 
+ **body** | [**Downtime**](Downtime.md) | Downtime request object. | 
 
 ### Return type
 

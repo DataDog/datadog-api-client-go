@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OverrideOnConflict** | Pointer to **bool** | Override or not the target element if already set | [optional] [default to false]
-**PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element | [optional] [default to false]
-**SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60; | [optional] [default to "attribute"]
+**OverrideOnConflict** | Pointer to **bool** | Override or not the target element if already set, | [optional] [default to false]
+**PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]
+**SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **Sources** | Pointer to **[]string** | Array of source attributes. | 
 **Target** | Pointer to **string** | Final attribute or tag name to remap the sources to. | 
-**TargetType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60; | [optional] [default to "attribute"]
-**Type** | Pointer to **string** | Type of processor | [optional] [readonly] [default to "attribute-remapper"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor | [optional] 
+**TargetType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
+**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "attribute-remapper"]
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 
 ## Methods
 

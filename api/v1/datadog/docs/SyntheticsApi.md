@@ -38,8 +38,8 @@ Other parameters are passed through a pointer to a apiCreateTestRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | Details of the test to create | 
- **fromTestId** | **string** | Public id of the test to clone, undefined if the test is created ex nihilo | 
+ **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | Details of the test to create. | 
+ **fromTestId** | **string** | Public id of the test to clone, undefined if the test is created ex nihilo. | 
 
 ### Return type
 
@@ -112,7 +112,7 @@ Get test latest results (as summaries)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test for which to search results for | 
+**publicId** | **string** | The public id of the test for which to search results for. | 
 
 ### Other Parameters
 
@@ -122,7 +122,7 @@ Other parameters are passed through a pointer to a apiGetAPITestLatestResultsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsGetTestLatestResultsPayload**](SyntheticsGetTestLatestResultsPayload.md) | Pause/live status to set the given Synthetics test to | 
+ **body** | [**SyntheticsGetTestLatestResultsPayload**](SyntheticsGetTestLatestResultsPayload.md) | Pause/live status to set the given Synthetics test to. | 
 
 ### Return type
 
@@ -156,8 +156,8 @@ Get test result (API)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the API test to which the target result belongs | 
-**resultId** | **string** | The id of the result to get | 
+**publicId** | **string** | The public id of the API test to which the target result belongs. | 
+**resultId** | **string** | The id of the result to get. | 
 
 ### Other Parameters
 
@@ -276,7 +276,7 @@ Other parameters are passed through a pointer to a apiGetAllTestsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkType** | **string** | api or browser to filter the list by type, undefined to get the unfiltered list | 
+ **checkType** | **string** | API or browser to filter the list by type, undefined to get the unfiltered list. | 
 
 ### Return type
 
@@ -310,7 +310,7 @@ Get test latest results (as summaries)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the browser test for which to search results for | 
+**publicId** | **string** | The public id of the browser test for which to search results for. | 
 
 ### Other Parameters
 
@@ -320,7 +320,7 @@ Other parameters are passed through a pointer to a apiGetBrowserTestLatestResult
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsGetTestLatestResultsPayload**](SyntheticsGetTestLatestResultsPayload.md) | Pause/live status to set the given Synthetics test to | 
+ **body** | [**SyntheticsGetTestLatestResultsPayload**](SyntheticsGetTestLatestResultsPayload.md) | Pause/live status to set the given Synthetics test to. | 
 
 ### Return type
 
@@ -354,8 +354,8 @@ Get test result (browser)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the browser test to which the target result belongs | 
-**resultId** | **string** | The id of the result to get | 
+**publicId** | **string** | The public id of the browser test to which the target result belongs. | 
+**resultId** | **string** | The id of the result to get. | 
 
 ### Other Parameters
 
@@ -399,7 +399,7 @@ Get test
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test to get details from | 
+**publicId** | **string** | The public id of the test to get details from. | 
 
 ### Other Parameters
 
@@ -486,7 +486,7 @@ Update test
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test to get details from | 
+**publicId** | **string** | The public id of the test to get details from. | 
 
 ### Other Parameters
 
@@ -496,7 +496,7 @@ Other parameters are passed through a pointer to a apiUpdateTestRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | New test details to be saved | 
+ **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | New test details to be saved. | 
 
 ### Return type
 

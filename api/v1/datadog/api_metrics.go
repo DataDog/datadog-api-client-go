@@ -40,7 +40,7 @@ func (r apiEditMetricMetadataRequest) Body(body MetricMetadata) apiEditMetricMet
 EditMetricMetadata Edit metric metadata
 Edit metadata of a specific metric.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName Name of the metric for which to edit metadata
+ * @param metricName Name of the metric for which to edit metadata.
 @return apiEditMetricMetadataRequest
 */
 func (a *MetricsApiService) EditMetricMetadata(ctx _context.Context, metricName string) apiEditMetricMetadataRequest {
@@ -356,7 +356,7 @@ type apiGetMetricMetadataRequest struct {
 GetMetricMetadata Get metric metadata
 Get metadata about a specific metric.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName Name of the metric for which to get metadata
+ * @param metricName Name of the metric for which to get metadata.
 @return apiGetMetricMetadataRequest
 */
 func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName string) apiGetMetricMetadataRequest {
@@ -846,10 +846,17 @@ func (r apiSubmitMetricsRequest) Body(body MetricsPayload) apiSubmitMetricsReque
 
 /*
 SubmitMetrics Submit metrics
-The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards. The limit for compressed payloads is 3.2 megabytes (3200000), and 62 megabytes (62914560) for decompressed payloads.
-# Overhead:
-If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect:
-64 bits for the timestamp 64 bits for the value 20 bytes for the metric names 50 bytes for the timeseries The full payload is approximately ~ 100 bytes. However, with the DogStatsD API, compression is applied, which reduces the payload size.
+The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
+The limit for compressed payloads is 3.2 megabytes (3200000), and 62 megabytes (62914560) for decompressed payloads.
+
+If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect
+
+- 64 bits for the timestamp
+- 64 bits for the value
+- 20 bytes for the metric names
+- 50 bytes for the timeseries
+- The full payload is approximately ~ 100 bytes. However, with the DogStatsD API,
+compression is applied, which reduces the payload size.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiSubmitMetricsRequest
 */

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cpu** | Pointer to **float64** |  | [optional] 
-**Iowait** | Pointer to **float64** |  | [optional] 
-**Load** | Pointer to **float64** |  | [optional] 
+**Cpu** | Pointer to **float64** | TODO. | [optional] 
+**Iowait** | Pointer to **float64** | TODO. | [optional] 
+**Load** | Pointer to **float64** | TODO. | [optional] 
 
 ## Methods
 

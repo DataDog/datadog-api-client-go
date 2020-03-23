@@ -37,10 +37,17 @@ func (r apiCreateChildOrgRequest) Body(body OrgCreateBody) apiCreateChildOrgRequ
 }
 
 /*
-CreateChildOrg Create child-organization
+CreateChildOrg Create a child organization
 You can create, edit, and manage organizations.
-This endpoint requires the [multi-org account](https://docs.datadoghq.com/account_management/multi_organization/) feature and must be enabled by [contacting support](https://docs.datadoghq.com/help/).
-Once a new child-organization is created, you can interact with it by using the **org.public_id**, **api_key.key**, and **application_key.hash** provided in the response.
+
+This endpoint requires the
+[multi-org account](https://docs.datadoghq.com/account_management/multi_organization/)
+feature and must be enabled by
+[contacting support](https://docs.datadoghq.com/help/).
+
+Once a new child organization is created, you can interact with it
+by using the `org.public_id`, `pi_key.key`, and
+**application_key.hash** provided in the response.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateChildOrgRequest
 */
@@ -198,7 +205,7 @@ type apiGetOrgRequest struct {
 }
 
 /*
-GetOrg Get organization
+GetOrg Get organization information
 Get information about your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetOrgRequest
@@ -358,10 +365,10 @@ func (r apiUpdateOrgRequest) Body(body Org) apiUpdateOrgRequest {
 }
 
 /*
-UpdateOrg Update organization
-Updates the organization.
+UpdateOrg Update your organization
+Update your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public_id of the org you are operating with
+ * @param publicId The public_id of the org you are operating within.
 @return apiUpdateOrgRequest
 */
 func (a *OrgsApiService) UpdateOrg(ctx _context.Context, publicId string) apiUpdateOrgRequest {
@@ -524,8 +531,11 @@ func (r apiUploadIdPForOrgRequest) IdpFile(idpFile *os.File) apiUploadIdPForOrgR
 
 /*
 UploadIdPForOrg Upload IdP metadata
-There are a couple of options for updating the Identity Provider (IdP) metadata from your SAML IdP.
+There are a couple of options for updating the Identity Provider (IdP)
+metadata from your SAML IdP.
+
 * **Multipart Form-Data**: Post the IdP metadata file using a form post.
+
 * **XML Body:** Post the IdP metadata file as the body of the request.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public_id of the org you are operating with

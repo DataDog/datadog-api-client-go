@@ -18,10 +18,10 @@ type LogsListRequest struct {
 	Index *string `json:"index,omitempty"`
 	// Number of logs return in the response.
 	Limit *int32 `json:"limit,omitempty"`
-	// The search query - following the Log search syntax.
+	// The search query - following the log search syntax.
 	Query string    `json:"query"`
 	Sort  *LogsSort `json:"sort,omitempty"`
-	// Hash identifier of the first log to return in the list, available in a log `id` attribute. This parameter is used for the pagination feature. **Note**: this parameter is ignored if the corresponding log is out of the scope of the specified time window.
+	// Hash identifier of the first log to return in the list, available in a log `id` attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window.
 	StartAt *string             `json:"startAt,omitempty"`
 	Time    LogsListRequestTime `json:"time"`
 }

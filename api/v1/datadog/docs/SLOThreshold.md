@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Target** | Pointer to **float64** | The target value for the service level indicator within the corresponding timeframe. | 
-**TargetDisplay** | Pointer to **string** | A string representation of the target that indicates its precision (e.g. \&quot;99.9\&quot;). It uses trailing zeros to show significant decimal places (e.g. \&quot;98.00\&quot;). Always included in service level objective responses. Ignored in create/update requests. | [optional] 
+**TargetDisplay** | Pointer to **string** | A string representation of the target that indicates its precision (e.g. \&quot;99.9\&quot;). It uses trailing zeros to show significant decimal places (e.g. \&quot;98.00\&quot;).  Always included in service level objective responses. Ignored in create/update requests. | [optional] 
 **Timeframe** | Pointer to [**SLOTimeframe**](SLOTimeframe.md) |  | 
 **Warning** | Pointer to **float64** |  | [optional] 
-**WarningDisplay** | Pointer to **string** | A string representation of the warning target (see the description of the \&quot;target_display\&quot; field for details). Included in service level objective responses if a warning target exists. Ignored in create/update requests. | [optional] 
+**WarningDisplay** | Pointer to **string** | A string representation of the warning target (see the description of the \&quot;target_display\&quot; field for details).  Included in service level objective responses if a warning target exists. Ignored in create/update requests. | [optional] 
 
 ## Methods
 

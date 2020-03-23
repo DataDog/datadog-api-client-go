@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// Series struct for Series
+// Series TODO.
 type Series struct {
 	// The name of the host that produced the metric.
 	Host *string `json:"host,omitempty"`
 	// If the type of the metric is rate or count, define the corresponding interval.
 	Interval NullableInt64 `json:"interval,omitempty"`
-	// The name of the timeseries
+	// The name of the timeseries.
 	Metric string      `json:"metric"`
 	Points [][]float64 `json:"points"`
 	// A list of tags associated with the metric.

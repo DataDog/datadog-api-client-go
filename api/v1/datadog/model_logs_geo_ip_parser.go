@@ -14,15 +14,15 @@ import (
 
 // LogsGeoIPParser The GeoIP parser takes an IP address attribute and extracts if available the Continent, Country, Subdivision, and City information in the target attribute path.
 type LogsGeoIPParser struct {
-	// Array of source attributes
+	// Array of source attributes.
 	Sources []string `json:"sources"`
-	// Name of the parent attribute that contains all the extracted details from the `sources`
+	// Name of the parent attribute that contains all the extracted details from the `sources`.
 	Target string `json:"target"`
-	// Type of processor
+	// Type of processor.
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 

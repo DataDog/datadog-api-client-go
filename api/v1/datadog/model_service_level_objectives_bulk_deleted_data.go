@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectivesBulkDeletedData struct for ServiceLevelObjectivesBulkDeletedData
+// ServiceLevelObjectivesBulkDeletedData An array of service level objective objects.
 type ServiceLevelObjectivesBulkDeletedData struct {
 	// An array of service level objective object IDs that indicates which objects that were completely deleted.
 	Deleted *[]string `json:"deleted,omitempty"`

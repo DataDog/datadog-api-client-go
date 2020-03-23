@@ -14,7 +14,7 @@ import (
 
 // LogsFilter Filter for logs.
 type LogsFilter struct {
-	// The filter query
+	// The filter query.
 	Query *string `json:"query,omitempty"`
 }
 

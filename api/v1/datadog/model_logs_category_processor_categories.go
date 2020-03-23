@@ -15,7 +15,7 @@ import (
 // LogsCategoryProcessorCategories struct for LogsCategoryProcessorCategories
 type LogsCategoryProcessorCategories struct {
 	Filter *LogsFilter `json:"filter,omitempty"`
-	// Value to assign to the target attribute
+	// Value to assign to the target attribute.
 	Name *string `json:"name,omitempty"`
 }
 

@@ -15,15 +15,15 @@ import (
 // LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/processing/parsing/#advanced-settings). For more information, see the [parsing section](https://docs.datadoghq.com/logs/processing/parsing).
 type LogsGrokParser struct {
 	Grok LogsGrokParserRules `json:"grok"`
-	// List of sample logs to test this grok parser
+	// List of sample logs to test this grok parser.
 	Samples *[]string `json:"samples,omitempty"`
-	// Name of the log attribute to parse
+	// Name of the log attribute to parse.
 	Source string `json:"source"`
-	// Type of processor
+	// Type of processor.
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 

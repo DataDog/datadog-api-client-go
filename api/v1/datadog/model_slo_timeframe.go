@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOTimeframe the model 'SLOTimeframe'
+// SLOTimeframe TODO.
 type SLOTimeframe string
 
 // List of SLOTimeframe

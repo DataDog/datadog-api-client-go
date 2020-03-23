@@ -14,7 +14,8 @@ import (
 
 // OrgCreateBody struct for OrgCreateBody
 type OrgCreateBody struct {
-	Billing      OrgBilling      `json:"billing"`
+	Billing OrgBilling `json:"billing"`
+	// The name of the new child-organization, limited to 32 characters.
 	Name         string          `json:"name"`
 	Subscription OrgSubscription `json:"subscription"`
 }

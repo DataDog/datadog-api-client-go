@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Index** | Pointer to **string** | For multi-index organizations, the log index in which the request is performed. | [optional] 
 **Limit** | Pointer to **int32** | Number of logs return in the response. | [optional] 
-**Query** | Pointer to **string** | The search query - following the Log search syntax. | 
+**Query** | Pointer to **string** | The search query - following the log search syntax. | 
 **Sort** | Pointer to [**LogsSort**](LogsSort.md) |  | [optional] 
-**StartAt** | Pointer to **string** | Hash identifier of the first log to return in the list, available in a log &#x60;id&#x60; attribute. This parameter is used for the pagination feature. **Note**: this parameter is ignored if the corresponding log is out of the scope of the specified time window. | [optional] 
+**StartAt** | Pointer to **string** | Hash identifier of the first log to return in the list, available in a log &#x60;id&#x60; attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window. | [optional] 
 **Time** | Pointer to [**LogsListRequestTime**](LogsListRequest_time.md) |  | 
 
 ## Methods

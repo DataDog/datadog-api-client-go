@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ApiKeyListResponse struct for ApiKeyListResponse
+// ApiKeyListResponse TODO.
 type ApiKeyListResponse struct {
 	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
 }

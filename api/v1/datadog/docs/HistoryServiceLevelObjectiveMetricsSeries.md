@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int64** | Count of submitted metrics | 
+**Count** | Pointer to **int64** | Count of submitted metrics. | 
 **Metadata** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeriesMetadata**](HistoryServiceLevelObjectiveMetricsSeries_metadata.md) |  | 
-**Sum** | Pointer to **float64** | Total Sum of the query | 
-**Values** | Pointer to **[]float64** | The query values | 
+**Sum** | Pointer to **float64** | Total Sum of the query. | 
+**Values** | Pointer to **[]float64** | The query values. | 
 
 ## Methods
 
