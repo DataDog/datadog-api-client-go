@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiAzureUpdateHostFiltersRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integrations host filters. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters. | 
 
 ### Return type
 
@@ -70,7 +70,7 @@ Other parameters are passed through a pointer to a apiCreateAzureIntegrationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account. | 
 
 ### Return type
 

@@ -14,9 +14,9 @@ import (
 
 // MetricsListResponse struct for MetricsListResponse
 type MetricsListResponse struct {
-	// Time when the metrics where active, seconds since the Unix epoch.
+	// Time when the metrics were active, seconds since the Unix epoch.
 	From *string `json:"from,omitempty"`
-	// List of metric names
+	// List of metric names.
 	Metrics *[]string `json:"metrics,omitempty"`
 }
 

@@ -12,14 +12,21 @@ import (
 	"encoding/json"
 )
 
-// MonitorStateGroup struct for MonitorStateGroup
+// MonitorStateGroup TODO.
 type MonitorStateGroup struct {
-	LastDataTs      *int64                  `json:"last_data_ts,omitempty"`
-	LastNodataTs    *int64                  `json:"last_nodata_ts,omitempty"`
-	LastNotifiedTs  *int64                  `json:"last_notified_ts,omitempty"`
-	LastResolvedTs  *int64                  `json:"last_resolved_ts,omitempty"`
-	LastTriggeredTs *int64                  `json:"last_triggered_ts,omitempty"`
-	Message         *string                 `json:"message,omitempty"`
+	// TODO.
+	LastDataTs *int64 `json:"last_data_ts,omitempty"`
+	// TODO.
+	LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
+	// TODO.
+	LastNotifiedTs *int64 `json:"last_notified_ts,omitempty"`
+	// TODO.
+	LastResolvedTs *int64 `json:"last_resolved_ts,omitempty"`
+	// TODO.
+	LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`
+	// A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same ‘@username’ notation as events.
+	Message *string `json:"message,omitempty"`
+	// The name of the monitor.
 	Name            *string                 `json:"name,omitempty"`
 	Status          *MonitorOverallStates   `json:"status,omitempty"`
 	TriggeringValue *MonitorStateGroupValue `json:"triggering_value,omitempty"`

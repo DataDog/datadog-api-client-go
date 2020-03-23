@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveGroups A `monitor` based SLO history for either `groups` or `monitors` depending on the type of `monitor` SLO. Ex. `single-monitor` these represent `groups`     vs `multi-monitor` which represents individual monitor's overall history
+// HistoryServiceLevelObjectiveGroups A `monitor` based SLO history for either `groups` or `monitors` depending on the type of `monitor` SLO.  For example, `single-monitor` these represent `groups` vs `multi-monitor` which represents individual monitor's overall history.
 type HistoryServiceLevelObjectiveGroups struct {
 	// For `monitor` based SLOs, this includes the aggregated history uptime time series.
 	History *[][]float64 `json:"history,omitempty"`
-	// For single-monitor `monitor` based SLOs this is the `monitor group` name For multi-monitor `monitor` based SLOs this is the `monitor` name
+	// For single-monitor `monitor` based SLOs this is the `monitor group` name. For multi-monitor `monitor` based SLOs this is the `monitor` name.
 	Name *string `json:"name,omitempty"`
 	// A mapping of threshold `timeframe` to number of accurate decimals, regardless of the from && to timestamp.
 	Precision *map[string]float64 `json:"precision,omitempty"`

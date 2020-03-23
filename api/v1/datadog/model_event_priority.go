@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// EventPriority The priority of the event: normal or low.
+// EventPriority The priority of the event. For example, `normal` or `low`.
 type EventPriority string
 
 // List of EventPriority

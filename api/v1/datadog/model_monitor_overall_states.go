@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorOverallStates the model 'MonitorOverallStates'
+// MonitorOverallStates TODO.
 type MonitorOverallStates string
 
 // List of MonitorOverallStates

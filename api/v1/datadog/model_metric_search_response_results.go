@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// MetricSearchResponseResults Search result
+// MetricSearchResponseResults Search result.
 type MetricSearchResponseResults struct {
-	// List of metrics that match the search query
+	// List of metrics that match the search query.
 	Metrics *[]string `json:"metrics,omitempty"`
 }
 

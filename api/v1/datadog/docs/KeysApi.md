@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**DeleteApplicationKey**](KeysApi.md#DeleteApplicationKey) | **Delete** /api/v1/application_key/{key} | Delete an application key
 [**EditAPIKey**](KeysApi.md#EditAPIKey) | **Put** /api/v1/api_key/{key} | Edit an API key
 [**EditApplicationKey**](KeysApi.md#EditApplicationKey) | **Put** /api/v1/application_key/{key} | Edit an application key
-[**GetAPIKey**](KeysApi.md#GetAPIKey) | **Get** /api/v1/api_key/{key} | Get an API key
+[**GetAPIKey**](KeysApi.md#GetAPIKey) | **Get** /api/v1/api_key/{key} | Get API key
 [**GetAllAPIKeys**](KeysApi.md#GetAllAPIKeys) | **Get** /api/v1/api_key | Get all API keys
 [**GetAllApplicationKeys**](KeysApi.md#GetAllApplicationKeys) | **Get** /api/v1/application_key | Get all application keys
 [**GetApplicationKey**](KeysApi.md#GetApplicationKey) | **Get** /api/v1/application_key/{key} | Get an application key
@@ -109,7 +109,7 @@ Delete an API key
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific API key you are working with | 
+**key** | **string** | The specific API key you are working with. | 
 
 ### Other Parameters
 
@@ -152,7 +152,7 @@ Delete an application key
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific APP key you are working with | 
+**key** | **string** | The specific APP key you are working with. | 
 
 ### Other Parameters
 
@@ -195,7 +195,7 @@ Edit an API key
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific API key you are working with | 
+**key** | **string** | The specific API key you are working with. | 
 
 ### Other Parameters
 
@@ -239,7 +239,7 @@ Edit an application key
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific APP key you are working with | 
+**key** | **string** | The specific APP key you are working with. | 
 
 ### Other Parameters
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 > ApiKeyResponse GetAPIKey(ctx, key).Execute()
 
-Get an API key
+Get API key
 
 
 
@@ -396,7 +396,7 @@ Get an application key
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific APP key you are working with | 
+**key** | **string** | The specific APP key you are working with. | 
 
 ### Other Parameters
 

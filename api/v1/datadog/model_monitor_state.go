@@ -12,11 +12,13 @@ import (
 	"encoding/json"
 )
 
-// MonitorState struct for MonitorState
+// MonitorState TODO.
 type MonitorState struct {
-	Groups       *map[string]MonitorStateGroup `json:"groups,omitempty"`
-	MonitorId    *int64                        `json:"monitor_id,omitempty"`
-	OverallState *MonitorOverallStates         `json:"overall_state,omitempty"`
+	// TODO.
+	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
+	// A single monitor identification.
+	MonitorId    *int64                `json:"monitor_id,omitempty"`
+	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 }
 
 // NewMonitorState instantiates a new MonitorState object

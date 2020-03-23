@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Groups** | Pointer to [**map[string]MonitorStateGroup**](MonitorStateGroup.md) |  | [optional] 
-**MonitorId** | Pointer to **int64** |  | [optional] 
+**Groups** | Pointer to [**map[string]MonitorStateGroup**](MonitorStateGroup.md) | TODO. | [optional] 
+**MonitorId** | Pointer to **int64** | A single monitor identification. | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 
 ## Methods

@@ -18,11 +18,11 @@ type IPRanges struct {
 	Api    *IPPrefixes `json:"api,omitempty"`
 	Apm    *IPPrefixes `json:"apm,omitempty"`
 	Logs   *IPPrefixes `json:"logs,omitempty"`
-	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`
+	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
 	Modified   *string     `json:"modified,omitempty"`
 	Process    *IPPrefixes `json:"process,omitempty"`
 	Synthetics *IPPrefixes `json:"synthetics,omitempty"`
-	// Version of the IP list
+	// Version of the IP list.
 	Version  *int64      `json:"version,omitempty"`
 	Webhooks *IPPrefixes `json:"webhooks,omitempty"`
 }

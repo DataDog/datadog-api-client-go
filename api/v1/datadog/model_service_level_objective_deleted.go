@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectiveDeleted struct for ServiceLevelObjectiveDeleted
+// ServiceLevelObjectiveDeleted TODO.
 type ServiceLevelObjectiveDeleted struct {
 	// An array containing the ID of the deleted service level objective object.
 	Data []string `json:"data"`

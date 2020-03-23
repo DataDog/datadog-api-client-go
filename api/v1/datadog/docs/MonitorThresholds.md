@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Critical** | Pointer to **float64** |  | [optional] 
-**CriticalRecovery** | Pointer to **NullableFloat64** |  | [optional] 
-**Ok** | Pointer to **NullableFloat64** |  | [optional] 
-**Unknown** | Pointer to **NullableFloat64** |  | [optional] 
-**Warning** | Pointer to **NullableFloat64** |  | [optional] 
-**WarningRecovery** | Pointer to **NullableFloat64** |  | [optional] 
+**Critical** | Pointer to **float64** | TODO. | [optional] 
+**CriticalRecovery** | Pointer to **NullableFloat64** | TODO. | [optional] 
+**Ok** | Pointer to **NullableFloat64** | TODO. | [optional] 
+**Unknown** | Pointer to **NullableFloat64** | TODO. | [optional] 
+**Warning** | Pointer to **NullableFloat64** | TODO. | [optional] 
+**WarningRecovery** | Pointer to **NullableFloat64** | TODO. | [optional] 
 
 ## Methods
 

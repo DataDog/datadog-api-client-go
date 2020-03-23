@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PrefixesIpv4** | Pointer to **[]string** | List of IPv4 prefixes | [optional] 
-**PrefixesIpv6** | Pointer to **[]string** | List of IPv6 prefixes | [optional] 
+**PrefixesIpv4** | Pointer to **[]string** | List of IPv4 prefixes. | [optional] 
+**PrefixesIpv6** | Pointer to **[]string** | List of IPv6 prefixes. | [optional] 
 
 ## Methods
 

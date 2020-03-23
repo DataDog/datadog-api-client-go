@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// LogsProcessor Definition of a logs processor
+// LogsProcessor Definition of a logs processor.
 type LogsProcessor struct {
 	LogsProcessorInterface interface{ GetType() string }
 }

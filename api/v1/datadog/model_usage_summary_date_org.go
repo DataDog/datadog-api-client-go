@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UsageSummaryDateOrg struct for UsageSummaryDateOrg
+// UsageSummaryDateOrg TODO.
 type UsageSummaryDateOrg struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current date for the given org.
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`

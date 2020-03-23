@@ -12,18 +12,23 @@ import (
 	"encoding/json"
 )
 
-// OrgSettings struct for OrgSettings
+// OrgSettings A JSON array of settings.
 type OrgSettings struct {
+	// TODO.
 	PrivateWidgetShare         *bool                                  `json:"private_widget_share,omitempty"`
 	Saml                       *OrgSettingsSaml                       `json:"saml,omitempty"`
 	SamlAutocreateAccessRole   *AccessRole                            `json:"saml_autocreate_access_role,omitempty"`
 	SamlAutocreateUsersDomains *OrgSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
-	SamlCanBeEnabled           *bool                                  `json:"saml_can_be_enabled,omitempty"`
-	SamlIdpEndpoint            *string                                `json:"saml_idp_endpoint,omitempty"`
-	SamlIdpInitiatedLogin      *OrgSettingsSaml                       `json:"saml_idp_initiated_login,omitempty"`
-	SamlIdpMetadataUploaded    *bool                                  `json:"saml_idp_metadata_uploaded,omitempty"`
-	SamlLoginUrl               *string                                `json:"saml_login_url,omitempty"`
-	SamlStrictMode             *OrgSettingsSaml                       `json:"saml_strict_mode,omitempty"`
+	// TODO.
+	SamlCanBeEnabled *bool `json:"saml_can_be_enabled,omitempty"`
+	// TODO.
+	SamlIdpEndpoint       *string                           `json:"saml_idp_endpoint,omitempty"`
+	SamlIdpInitiatedLogin *OrgSettingsSamlIdpInitiatedLogin `json:"saml_idp_initiated_login,omitempty"`
+	// TODO.
+	SamlIdpMetadataUploaded *bool `json:"saml_idp_metadata_uploaded,omitempty"`
+	// TODO.
+	SamlLoginUrl   *string                           `json:"saml_login_url,omitempty"`
+	SamlStrictMode *OrgSettingsSamlIdpInitiatedLogin `json:"saml_strict_mode,omitempty"`
 }
 
 // NewOrgSettings instantiates a new OrgSettings object
@@ -242,9 +247,9 @@ func (o *OrgSettings) SetSamlIdpEndpoint(v string) {
 }
 
 // GetSamlIdpInitiatedLogin returns the SamlIdpInitiatedLogin field value if set, zero value otherwise.
-func (o *OrgSettings) GetSamlIdpInitiatedLogin() OrgSettingsSaml {
+func (o *OrgSettings) GetSamlIdpInitiatedLogin() OrgSettingsSamlIdpInitiatedLogin {
 	if o == nil || o.SamlIdpInitiatedLogin == nil {
-		var ret OrgSettingsSaml
+		var ret OrgSettingsSamlIdpInitiatedLogin
 		return ret
 	}
 	return *o.SamlIdpInitiatedLogin
@@ -252,9 +257,9 @@ func (o *OrgSettings) GetSamlIdpInitiatedLogin() OrgSettingsSaml {
 
 // GetSamlIdpInitiatedLoginOk returns a tuple with the SamlIdpInitiatedLogin field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlIdpInitiatedLoginOk() (OrgSettingsSaml, bool) {
+func (o *OrgSettings) GetSamlIdpInitiatedLoginOk() (OrgSettingsSamlIdpInitiatedLogin, bool) {
 	if o == nil || o.SamlIdpInitiatedLogin == nil {
-		var ret OrgSettingsSaml
+		var ret OrgSettingsSamlIdpInitiatedLogin
 		return ret, false
 	}
 	return *o.SamlIdpInitiatedLogin, true
@@ -269,8 +274,8 @@ func (o *OrgSettings) HasSamlIdpInitiatedLogin() bool {
 	return false
 }
 
-// SetSamlIdpInitiatedLogin gets a reference to the given OrgSettingsSaml and assigns it to the SamlIdpInitiatedLogin field.
-func (o *OrgSettings) SetSamlIdpInitiatedLogin(v OrgSettingsSaml) {
+// SetSamlIdpInitiatedLogin gets a reference to the given OrgSettingsSamlIdpInitiatedLogin and assigns it to the SamlIdpInitiatedLogin field.
+func (o *OrgSettings) SetSamlIdpInitiatedLogin(v OrgSettingsSamlIdpInitiatedLogin) {
 	o.SamlIdpInitiatedLogin = &v
 }
 
@@ -341,9 +346,9 @@ func (o *OrgSettings) SetSamlLoginUrl(v string) {
 }
 
 // GetSamlStrictMode returns the SamlStrictMode field value if set, zero value otherwise.
-func (o *OrgSettings) GetSamlStrictMode() OrgSettingsSaml {
+func (o *OrgSettings) GetSamlStrictMode() OrgSettingsSamlIdpInitiatedLogin {
 	if o == nil || o.SamlStrictMode == nil {
-		var ret OrgSettingsSaml
+		var ret OrgSettingsSamlIdpInitiatedLogin
 		return ret
 	}
 	return *o.SamlStrictMode
@@ -351,9 +356,9 @@ func (o *OrgSettings) GetSamlStrictMode() OrgSettingsSaml {
 
 // GetSamlStrictModeOk returns a tuple with the SamlStrictMode field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlStrictModeOk() (OrgSettingsSaml, bool) {
+func (o *OrgSettings) GetSamlStrictModeOk() (OrgSettingsSamlIdpInitiatedLogin, bool) {
 	if o == nil || o.SamlStrictMode == nil {
-		var ret OrgSettingsSaml
+		var ret OrgSettingsSamlIdpInitiatedLogin
 		return ret, false
 	}
 	return *o.SamlStrictMode, true
@@ -368,8 +373,8 @@ func (o *OrgSettings) HasSamlStrictMode() bool {
 	return false
 }
 
-// SetSamlStrictMode gets a reference to the given OrgSettingsSaml and assigns it to the SamlStrictMode field.
-func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSaml) {
+// SetSamlStrictMode gets a reference to the given OrgSettingsSamlIdpInitiatedLogin and assigns it to the SamlStrictMode field.
+func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSamlIdpInitiatedLogin) {
 	o.SamlStrictMode = &v
 }
 

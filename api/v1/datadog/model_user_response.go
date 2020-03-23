@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UserResponse struct for UserResponse
+// UserResponse TODO.
 type UserResponse struct {
 	User *User `json:"user,omitempty"`
 }

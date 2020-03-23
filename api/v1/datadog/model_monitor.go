@@ -15,22 +15,28 @@ import (
 
 // Monitor struct for Monitor
 type Monitor struct {
+	// TODO.
 	Created *time.Time `json:"created,omitempty"`
 	Creator *Creator   `json:"creator,omitempty"`
+	// TODO.
 	Deleted *time.Time `json:"deleted,omitempty"`
-	// ID of this monitor
+	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this monitor.
-	Message      *string               `json:"message,omitempty"`
-	Modified     *time.Time            `json:"modified,omitempty"`
-	Multi        *bool                 `json:"multi,omitempty"`
+	Message *string `json:"message,omitempty"`
+	// TODO.
+	Modified *time.Time `json:"modified,omitempty"`
+	// TODO.
+	Multi *bool `json:"multi,omitempty"`
+	// TODO.
 	Name         *string               `json:"name,omitempty"`
 	Options      *MonitorOptions       `json:"options,omitempty"`
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 	Query        *string               `json:"query,omitempty"`
 	State        *MonitorState         `json:"state,omitempty"`
-	Tags         *[]string             `json:"tags,omitempty"`
-	Type         *MonitorType          `json:"type,omitempty"`
+	// TODO.
+	Tags *[]string    `json:"tags,omitempty"`
+	Type *MonitorType `json:"type,omitempty"`
 }
 
 // NewMonitor instantiates a new Monitor object

@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | Pointer to **bool** |  | [optional] [readonly] 
-**Canceled** | Pointer to **NullableInt64** |  | [optional] [readonly] 
-**CreatorId** | Pointer to **int32** |  | [optional] [readonly] 
-**Disabled** | Pointer to **bool** |  | [optional] 
-**DowntimeType** | Pointer to **int32** |  | [optional] [readonly] 
-**End** | Pointer to **NullableInt64** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] [readonly] 
-**Message** | Pointer to **string** |  | [optional] 
-**MonitorId** | Pointer to **NullableInt64** |  | [optional] 
-**MonitorTags** | Pointer to **[]string** |  | [optional] 
-**ParentId** | Pointer to **NullableInt64** |  | [optional] 
+**Active** | Pointer to **bool** | If a scheduled downtime currently exists. | [optional] [readonly] 
+**Canceled** | Pointer to **NullableInt64** | If a scheduled downtime is cancelled. | [optional] [readonly] 
+**CreatorId** | Pointer to **int32** | TODO. | [optional] [readonly] 
+**Disabled** | Pointer to **bool** | If a downtime has been disabled. | [optional] 
+**DowntimeType** | Pointer to **int32** | TODO. | [optional] [readonly] 
+**End** | Pointer to **NullableInt64** | POSIX timestamp to end the downtime. If not provided, the downtime is in effect indefinitely until you cancel it. | [optional] 
+**Id** | Pointer to **int64** | TODO. | [optional] [readonly] 
+**Message** | Pointer to **string** | A message to include with notifications for this downtime. Email notifications can be sent to specific users by using the same ‘@username’ notation as events. | [optional] 
+**MonitorId** | Pointer to **NullableInt64** | A single monitor to which the downtime applies. If not provided, the downtime applies to all monitors. | [optional] 
+**MonitorTags** | Pointer to **[]string** | A comma-separated list of monitor tags. For example, tags that are applied directly to monitors, not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies. The resulting downtime applies to monitors that match ALL provided monitor tags. For example, &#x60;service:postgres&#x60; **AND** &#x60;team:frontend&#x60;. | [optional] 
+**ParentId** | Pointer to **NullableInt64** | TODO. | [optional] 
 **Recurrence** | Pointer to [**NullableDowntimeRecurrence**](DowntimeRecurrence.md) |  | [optional] 
-**Scope** | Pointer to **[]string** |  | [optional] 
-**Start** | Pointer to **int64** |  | [optional] 
-**Timezone** | Pointer to **string** |  | [optional] 
-**UpdaterId** | Pointer to **int32** |  | [optional] [readonly] 
+**Scope** | Pointer to **[]string** | The scope(s) to which the downtime applies. For example, &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list like &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (&#x60;env:dev&#x60; **AND** &#x60;env:prod&#x60;). | [optional] 
+**Start** | Pointer to **int64** | POSIX timestamp to start the downtime. If not provided, the downtime starts the moment it is created. | [optional] 
+**Timezone** | Pointer to **string** | The timezone for the downtime. | [optional] 
+**UpdaterId** | Pointer to **int32** | TODO. | [optional] [readonly] 
 
 ## Methods
 

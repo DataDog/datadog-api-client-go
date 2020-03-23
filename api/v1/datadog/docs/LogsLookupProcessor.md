@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **LookupTable** | Pointer to **[]string** | Mapping table of values for the source attribute and their associated target attribute values, formatted as &#x60;[\&quot;source_key1,target_value1\&quot;, \&quot;source_key2,target_value2\&quot;]&#x60; | 
 **Source** | Pointer to **string** | Source attribute used to perform the lookup. | 
 **Target** | Pointer to **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
-**Type** | Pointer to **string** | Type of processor | [optional] [readonly] [default to "lookup-processor"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor | [optional] 
+**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "lookup-processor"]
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 
 ## Methods
 

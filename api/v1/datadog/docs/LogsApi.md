@@ -67,7 +67,7 @@ Other parameters are passed through a pointer to a apiSendLogRequest struct via 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**HTTPLog**](HTTPLog.md) | Log to send (JSON format) | 
+ **body** | [**HTTPLog**](HTTPLog.md) | Log to send (JSON format). | 
 
 ### Return type
 

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Deleted** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
-**Id** | Pointer to **int64** | ID of this monitor | [optional] [readonly] 
+**Deleted** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
+**Id** | Pointer to **int64** | ID of this monitor. | [optional] [readonly] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
-**Multi** | Pointer to **bool** |  | [optional] [readonly] 
-**Name** | Pointer to **string** |  | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
+**Multi** | Pointer to **bool** | TODO. | [optional] [readonly] 
+**Name** | Pointer to **string** | TODO. | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 **Query** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
+**Tags** | Pointer to **[]string** | TODO. | [optional] 
 **Type** | Pointer to [**MonitorType**](MonitorType.md) |  | [optional] 
 
 ## Methods

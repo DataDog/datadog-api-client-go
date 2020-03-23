@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aggr** | Pointer to **string** | Aggregation type | [optional] [readonly] 
-**DisplayName** | Pointer to **string** | Display name of the metric | [optional] [readonly] 
-**End** | Pointer to **int64** | End of the time window, milliseconds since Unix epoch | [optional] [readonly] 
-**Expression** | Pointer to **string** | Metric expression | [optional] [readonly] 
-**Interval** | Pointer to **int64** | Number of seconds between data samples | [optional] [readonly] 
-**Length** | Pointer to **int64** | Number of data samples | [optional] [readonly] 
-**Metric** | Pointer to **string** | Metric name | [optional] [readonly] 
-**Pointlist** | Pointer to [**[][]float64**](array.md) | List of points of the time series | [optional] [readonly] 
-**Scope** | Pointer to **string** | Metric scope, comma separated list of tags | [optional] [readonly] 
-**Start** | Pointer to **int64** | Start of the time window, milliseconds since Unix epoch | [optional] [readonly] 
-**Unit** | Pointer to [**[]MetricsQueryResponseUnit**](MetricsQueryResponse_unit.md) | Detailed information about the metric unit. First element describes the \&quot;primary unit\&quot; (e.g. &#x60;bytes&#x60; in &#x60;bytes per second&#x60;), second describes the \&quot;per unit\&quot; (e.g. &#x60;second&#x60; in &#x60;bytes per second&#x60;) | [optional] [readonly] 
+**Aggr** | Pointer to **string** | Aggregation type. | [optional] [readonly] 
+**DisplayName** | Pointer to **string** | Display name of the metric. | [optional] [readonly] 
+**End** | Pointer to **int64** | End of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
+**Expression** | Pointer to **string** | Metric expression. | [optional] [readonly] 
+**Interval** | Pointer to **int64** | Number of seconds between data samples. | [optional] [readonly] 
+**Length** | Pointer to **int64** | Number of data samples. | [optional] [readonly] 
+**Metric** | Pointer to **string** | Metric name. | [optional] [readonly] 
+**Pointlist** | Pointer to [**[][]float64**](array.md) | List of points of the time series. | [optional] [readonly] 
+**Scope** | Pointer to **string** | Metric scope, comma separated list of tags. | [optional] [readonly] 
+**Start** | Pointer to **int64** | Start of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
+**Unit** | Pointer to [**[]MetricsQueryResponseUnit**](MetricsQueryResponse_unit.md) | Detailed information about the metric unit. First element describes the \&quot;primary unit\&quot; (for example, &#x60;bytes&#x60; in &#x60;bytes per second&#x60;), second describes the \&quot;per unit\&quot; (for example, &#x60;second&#x60; in &#x60;bytes per second&#x60;). | [optional] [readonly] 
 
 ## Methods
 

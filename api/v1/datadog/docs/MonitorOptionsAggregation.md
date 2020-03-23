@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **GroupBy** | Pointer to **string** |  | [optional] 
-**Metric** | Pointer to **string** |  | [optional] 
+**Metric** | Pointer to **string** | TODO. | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 
 ## Methods

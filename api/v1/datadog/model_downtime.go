@@ -12,24 +12,39 @@ import (
 	"encoding/json"
 )
 
-// Downtime struct for Downtime
+// Downtime Downtiming gives you greater control over monitor notifications by allowing you to globally exclude scopes from alerting. Downtime settings, which can be scheduled with start and end times, prevent all alerting related to specified Datadog tags.
 type Downtime struct {
-	Active       *bool                      `json:"active,omitempty"`
-	Canceled     NullableInt64              `json:"canceled,omitempty"`
-	CreatorId    *int32                     `json:"creator_id,omitempty"`
-	Disabled     *bool                      `json:"disabled,omitempty"`
-	DowntimeType *int32                     `json:"downtime_type,omitempty"`
-	End          NullableInt64              `json:"end,omitempty"`
-	Id           *int64                     `json:"id,omitempty"`
-	Message      *string                    `json:"message,omitempty"`
-	MonitorId    NullableInt64              `json:"monitor_id,omitempty"`
-	MonitorTags  *[]string                  `json:"monitor_tags,omitempty"`
-	ParentId     NullableInt64              `json:"parent_id,omitempty"`
-	Recurrence   NullableDowntimeRecurrence `json:"recurrence,omitempty"`
-	Scope        *[]string                  `json:"scope,omitempty"`
-	Start        *int64                     `json:"start,omitempty"`
-	Timezone     *string                    `json:"timezone,omitempty"`
-	UpdaterId    *int32                     `json:"updater_id,omitempty"`
+	// If a scheduled downtime currently exists.
+	Active *bool `json:"active,omitempty"`
+	// If a scheduled downtime is cancelled.
+	Canceled NullableInt64 `json:"canceled,omitempty"`
+	// TODO.
+	CreatorId *int32 `json:"creator_id,omitempty"`
+	// If a downtime has been disabled.
+	Disabled *bool `json:"disabled,omitempty"`
+	// TODO.
+	DowntimeType *int32 `json:"downtime_type,omitempty"`
+	// POSIX timestamp to end the downtime. If not provided, the downtime is in effect indefinitely until you cancel it.
+	End NullableInt64 `json:"end,omitempty"`
+	// TODO.
+	Id *int64 `json:"id,omitempty"`
+	// A message to include with notifications for this downtime. Email notifications can be sent to specific users by using the same ‘@username’ notation as events.
+	Message *string `json:"message,omitempty"`
+	// A single monitor to which the downtime applies. If not provided, the downtime applies to all monitors.
+	MonitorId NullableInt64 `json:"monitor_id,omitempty"`
+	// A comma-separated list of monitor tags. For example, tags that are applied directly to monitors, not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies. The resulting downtime applies to monitors that match ALL provided monitor tags. For example, `service:postgres` **AND** `team:frontend`.
+	MonitorTags *[]string `json:"monitor_tags,omitempty"`
+	// TODO.
+	ParentId   NullableInt64              `json:"parent_id,omitempty"`
+	Recurrence NullableDowntimeRecurrence `json:"recurrence,omitempty"`
+	// The scope(s) to which the downtime applies. For example, `host:app2`. Provide multiple scopes as a comma-separated list like `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
+	Scope *[]string `json:"scope,omitempty"`
+	// POSIX timestamp to start the downtime. If not provided, the downtime starts the moment it is created.
+	Start *int64 `json:"start,omitempty"`
+	// The timezone for the downtime.
+	Timezone *string `json:"timezone,omitempty"`
+	// TODO.
+	UpdaterId *int32 `json:"updater_id,omitempty"`
 }
 
 // NewDowntime instantiates a new Downtime object

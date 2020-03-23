@@ -4,8 +4,8 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAllHosts**](HostsApi.md#GetAllHosts) | **Get** /api/v1/hosts | Search for hosts
-[**GetHostTotals**](HostsApi.md#GetHostTotals) | **Get** /api/v1/hosts/totals | Host totals
+[**GetAllHosts**](HostsApi.md#GetAllHosts) | **Get** /api/v1/hosts | Get all hosts for your organization
+[**GetHostTotals**](HostsApi.md#GetHostTotals) | **Get** /api/v1/hosts/totals | Get the total number of active hosts
 [**MuteHost**](HostsApi.md#MuteHost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
 [**UnmuteHost**](HostsApi.md#UnmuteHost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a host
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > HostListResponse GetAllHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
 
-Search for hosts
+Get all hosts for your organization
 
 
 
@@ -30,12 +30,12 @@ Other parameters are passed through a pointer to a apiGetAllHostsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **string** | String to filter search results | 
- **sortField** | **string** | Sort hosts by this field | 
- **sortDir** | **string** | Direction of sort | 
- **start** | **int64** | Host result to start search from | 
- **count** | **int64** | Number of hosts to return | 
- **from** | **int64** | Number of seconds from which you want to search your hosts | 
+ **filter** | **string** | String to filter search results. | 
+ **sortField** | **string** | Sort hosts by this field. | 
+ **sortDir** | **string** | Direction of sort. Options include &#x60;asc&#x60; and &#x60;desc&#x60;. | 
+ **start** | **int64** | Host result to start search from. | 
+ **count** | **int64** | Number of hosts to return. Max 1000. | 
+ **from** | **int64** | Number of seconds since UNIX epoch from which you want to search your hosts. | 
 
 ### Return type
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 > HostTotals GetHostTotals(ctx).From(from).Execute()
 
-Host totals
+Get the total number of active hosts
 
 
 
@@ -74,7 +74,7 @@ Other parameters are passed through a pointer to a apiGetHostTotalsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Number of seconds from which you want to get total number of active hosts | 
+ **from** | **int64** | Number of seconds from which you want to get total number of active hosts. | 
 
 ### Return type
 
@@ -108,7 +108,7 @@ Mute a host
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**hostName** | **string** | Name of the host to mute | 
+**hostName** | **string** | Name of the host to mute. | 
 
 ### Other Parameters
 
@@ -118,7 +118,7 @@ Other parameters are passed through a pointer to a apiMuteHostRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**HostMuteSettings**](HostMuteSettings.md) | Mute a host | 
+ **body** | [**HostMuteSettings**](HostMuteSettings.md) | Mute a host. | 
 
 ### Return type
 

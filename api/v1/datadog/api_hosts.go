@@ -66,8 +66,10 @@ func (r apiGetAllHostsRequest) From(from int64) apiGetAllHostsRequest {
 }
 
 /*
-GetAllHosts Search for hosts
-This endpoint allows searching for hosts by name, alias, or tag. Hosts live within the past 3 hours are included. Results are paginated with a max of 1000 results at a time.
+GetAllHosts Get all hosts for your organization
+This endpoint allows searching for hosts by name, alias, or tag.
+Hosts live within the past 3 hours are included.
+Results are paginated with a max of 1000 results at a time.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllHostsRequest
 */
@@ -243,8 +245,9 @@ func (r apiGetHostTotalsRequest) From(from int64) apiGetHostTotalsRequest {
 }
 
 /*
-GetHostTotals Host totals
-This endpoint returns the total number of active and up hosts in your Datadog account. Active means the host has reported in the past hour, and up means it has reported in the past two hours.
+GetHostTotals Get the total number of active hosts
+This endpoint returns the total number of active and up hosts in your Datadog account.
+Active means the host has reported in the past hour, and up means it has reported in the past two hours.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetHostTotalsRequest
 */
@@ -399,7 +402,7 @@ func (r apiMuteHostRequest) Body(body HostMuteSettings) apiMuteHostRequest {
 MuteHost Mute a host
 Mute a host.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param hostName Name of the host to mute
+ * @param hostName Name of the host to mute.
 @return apiMuteHostRequest
 */
 func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string) apiMuteHostRequest {
@@ -546,7 +549,7 @@ type apiUnmuteHostRequest struct {
 
 /*
 UnmuteHost Unmute a host
-Unmute a Host.
+Unmutes a host. This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName Name of the host to unmute.
 @return apiUnmuteHostRequest

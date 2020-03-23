@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | Pointer to **string** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
+**Host** | Pointer to **string** | TODO. | [optional] 
+**Tags** | Pointer to **[]string** | A list of tags to apply to the host. | [optional] 
 
 ## Methods
 

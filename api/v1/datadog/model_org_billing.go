@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// OrgBilling struct for OrgBilling
+// OrgBilling A JSON array of billing type. Note that only `parent_billing` is supported.
 type OrgBilling struct {
 	Type *string `json:"type,omitempty"`
 }

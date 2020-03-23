@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// EventAlertType If it is an alert event, set its type between: error, warning, info, and success.
+// EventAlertType If an alert event is enabled, set its type. For example, `error`, `warning`, `info`, and `success`.
 type EventAlertType string
 
 // List of EventAlertType

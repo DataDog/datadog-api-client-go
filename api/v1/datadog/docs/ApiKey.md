@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to **string** |  | [optional] [readonly] 
-**CreatedBy** | Pointer to **string** |  | [optional] [readonly] 
-**Key** | Pointer to **string** |  | [optional] [readonly] 
-**Name** | Pointer to **string** |  | [optional] 
+**Created** | Pointer to **string** | TODO. | [optional] [readonly] 
+**CreatedBy** | Pointer to **string** | TODO. | [optional] [readonly] 
+**Key** | Pointer to **string** | TODO. | [optional] [readonly] 
+**Name** | Pointer to **string** | Name of your application key. | [optional] 
 
 ## Methods
 

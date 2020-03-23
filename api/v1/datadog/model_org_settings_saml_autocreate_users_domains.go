@@ -12,10 +12,12 @@ import (
 	"encoding/json"
 )
 
-// OrgSettingsSamlAutocreateUsersDomains struct for OrgSettingsSamlAutocreateUsersDomains
+// OrgSettingsSamlAutocreateUsersDomains Has two properties, `enabled` (boolean) and `domains`, which is a list of domains without the @ symbol.
 type OrgSettingsSamlAutocreateUsersDomains struct {
+	// TODO.
 	Domains *[]string `json:"domains,omitempty"`
-	Enabled *bool     `json:"enabled,omitempty"`
+	// TODO.
+	Enabled *bool `json:"enabled,omitempty"`
 }
 
 // NewOrgSettingsSamlAutocreateUsersDomains instantiates a new OrgSettingsSamlAutocreateUsersDomains object

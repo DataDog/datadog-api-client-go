@@ -14,23 +14,23 @@ import (
 
 // MetricsQueryResponse struct for MetricsQueryResponse
 type MetricsQueryResponse struct {
-	// Message indicating the errors if status is not `ok`
+	// Message indicating the errors if status is not `ok`.
 	Error *string `json:"error,omitempty"`
-	// Start of requested time window, milliseconds since Unix epoch
+	// Start of requested time window, milliseconds since Unix epoch.
 	FromDate *int64 `json:"from_date,omitempty"`
-	// List of tag keys on which to group
+	// List of tag keys on which to group.
 	GroupBy *[]string `json:"group_by,omitempty"`
-	// Message indicating `success` if status is `ok`
+	// Message indicating `success` if status is `ok`.
 	Message *string `json:"message,omitempty"`
 	// Query string
 	Query *string `json:"query,omitempty"`
-	// Type of response
+	// Type of response.
 	ResType *string `json:"res_type,omitempty"`
-	// List of timeseries queried
+	// List of timeseries queried.
 	Series *[]MetricsQueryResponseSeries `json:"series,omitempty"`
-	// Status of the query
+	// Status of the query.
 	Status *string `json:"status,omitempty"`
-	// End of requested time window, milliseconds since Unix epoch
+	// End of requested time window, milliseconds since Unix epoch.
 	ToDate *int64 `json:"to_date,omitempty"`
 }
 

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// OrgListResponse struct for OrgListResponse
+// OrgListResponse TODO.
 type OrgListResponse struct {
 	Orgs *[]Org `json:"orgs,omitempty"`
 }

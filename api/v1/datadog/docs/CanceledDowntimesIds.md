@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CancelledIds** | Pointer to **[]int64** |  | [optional] 
+**CancelledIds** | Pointer to **[]int64** | TODO. | [optional] 
 
 ## Methods
 

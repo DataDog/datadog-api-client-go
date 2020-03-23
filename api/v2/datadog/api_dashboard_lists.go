@@ -40,7 +40,7 @@ func (r apiAddDashboardListItemsRequest) Body(body DashboardListItems) apiAddDas
 AddDashboardListItems Add Items to a Dashboard List
 Add dashboards to an existing dashboard list.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardListId ID of the dashboard list to add items to
+ * @param dashboardListId ID of the dashboard list to add items to.
 @return apiAddDashboardListItemsRequest
 */
 func (a *DashboardListsApiService) AddDashboardListItems(ctx _context.Context, dashboardListId int64) apiAddDashboardListItemsRequest {
@@ -216,10 +216,10 @@ func (r apiDeleteDashboardListItemsRequest) Body(body DashboardListItems) apiDel
 }
 
 /*
-DeleteDashboardListItems Delete Items from a Dashboard List
+DeleteDashboardListItems Delete items from a dashboard list
 Delete dashboards from an existing dashboard list.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardListId ID of the dashboard list to delete items from
+ * @param dashboardListId ID of the dashboard list to delete items from.
 @return apiDeleteDashboardListItemsRequest
 */
 func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64) apiDeleteDashboardListItemsRequest {
@@ -392,7 +392,7 @@ type apiGetDashboardListItemsRequest struct {
 GetDashboardListItems Get a Dashboard List
 Fetch the dashboard list’s dashboard definitions.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardListId ID of the dashboard list to get items from
+ * @param dashboardListId ID of the dashboard list to get items from.
 @return apiGetDashboardListItemsRequest
 */
 func (a *DashboardListsApiService) GetDashboardListItems(ctx _context.Context, dashboardListId int64) apiGetDashboardListItemsRequest {
@@ -552,7 +552,7 @@ func (r apiUpdateDashboardListItemsRequest) Body(body DashboardListItems) apiUpd
 }
 
 /*
-UpdateDashboardListItems Update Items of a Dashboard List
+UpdateDashboardListItems Update items of a dashboard list
 Update dashboards of an existing dashboard list.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param dashboardListId ID of the dashboard list to update items from.

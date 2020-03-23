@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddedDashboardsToList** | Pointer to [**[]DashboardListItem**](DashboardListItem.md) | List of dashboards added to the dashboard list | [optional] 
+**AddedDashboardsToList** | Pointer to [**[]DashboardListItem**](DashboardListItem.md) | List of dashboards added to the dashboard list. | [optional] 
 
 ## Methods
 

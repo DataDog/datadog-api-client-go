@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | Pointer to **string** |  | [optional] 
+**Action** | Pointer to **string** | TODO. | [optional] 
 **End** | Pointer to **int64** | POSIX timestamp in seconds when the host is unmuted. | [optional] 
-**Hostname** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
+**Hostname** | Pointer to **string** | The host name. | [optional] 
+**Message** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

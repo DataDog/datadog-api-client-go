@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedDashboardsFromList** | Pointer to [**[]DashboardListItem**](DashboardListItem.md) | List of dashboards deleted from the dashboard list | [optional] 
+**DeletedDashboardsFromList** | Pointer to [**[]DashboardListItem**](DashboardListItem.md) | List of dashboards deleted from the dashboard list. | [optional] 
 
 ## Methods
 

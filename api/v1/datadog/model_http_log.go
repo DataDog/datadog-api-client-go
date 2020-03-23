@@ -14,10 +14,14 @@ import (
 
 // HTTPLog struct for HTTPLog
 type HTTPLog struct {
+	// TODO.
 	Ddsource *string `json:"ddsource,omitempty"`
-	Ddtags   *string `json:"ddtags,omitempty"`
+	// TODO.
+	Ddtags *string `json:"ddtags,omitempty"`
+	// TODO.
 	Hostname *string `json:"hostname,omitempty"`
-	Message  *string `json:"message,omitempty"`
+	// TODO.
+	Message *string `json:"message,omitempty"`
 }
 
 // NewHTTPLog instantiates a new HTTPLog object

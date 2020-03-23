@@ -14,6 +14,7 @@ import (
 
 // CanceledDowntimesIds struct for CanceledDowntimesIds
 type CanceledDowntimesIds struct {
+	// TODO.
 	CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
 }
 

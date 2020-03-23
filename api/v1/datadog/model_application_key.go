@@ -12,9 +12,10 @@ import (
 	"encoding/json"
 )
 
-// ApplicationKey struct for ApplicationKey
+// ApplicationKey TODO.
 type ApplicationKey struct {
-	Hash  *string `json:"hash,omitempty"`
+	Hash *string `json:"hash,omitempty"`
+	// Name of your application key.
 	Name  *string `json:"name,omitempty"`
 	Owner *string `json:"owner,omitempty"`
 }

@@ -14,7 +14,7 @@ import (
 
 // LogsIndexesOrder Object containing the ordered list of log index names.
 type LogsIndexesOrder struct {
-	// Array of strings identifying by their name(s) the index(es) of your organisation. Logs are tested against the query filter of each index one by one, following the order of the array. Logs are eventually stored in the first matching index.
+	// Array of strings identifying by their name(s) the index(es) of your organization. Logs are tested against the query filter of each index one by one, following the order of the array. Logs are eventually stored in the first matching index.
 	IndexNames []string `json:"index_names"`
 }
 

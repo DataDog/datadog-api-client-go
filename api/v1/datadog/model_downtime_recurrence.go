@@ -12,13 +12,18 @@ import (
 	"encoding/json"
 )
 
-// DowntimeRecurrence struct for DowntimeRecurrence
+// DowntimeRecurrence An object defining the recurrence of the downtime.
 type DowntimeRecurrence struct {
-	Period           *int32        `json:"period,omitempty"`
-	Type             *string       `json:"type,omitempty"`
-	UntilDate        NullableInt64 `json:"until_date,omitempty"`
+	// How often to repeat as an integer. For example, to repeat every 3 days, select a type of `days` and a period of `3`.
+	Period *int32 `json:"period,omitempty"`
+	// The type of recurrence. Choose from `days`, `weeks`, `months`, `years`.
+	Type *string `json:"type,omitempty"`
+	// The date at which the recurrence should end as a POSIX timestmap. `until_occurences` and `until_date` are mutually exclusive.
+	UntilDate NullableInt64 `json:"until_date,omitempty"`
+	// How many times the downtime is rescheduled. `until_occurences` and `until_date` are mutually exclusive.
 	UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
-	WeekDays         *[]string     `json:"week_days,omitempty"`
+	// A list of week days to repeat on. Choose from `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. Only applicable when type is weeks. First letter must be capitalized.
+	WeekDays *[]string `json:"week_days,omitempty"`
 }
 
 // NewDowntimeRecurrence instantiates a new DowntimeRecurrence object

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Host** | Pointer to **string** | The name of the host that produced the metric. | [optional] 
 **Interval** | Pointer to **NullableInt64** | If the type of the metric is rate or count, define the corresponding interval. | [optional] 
-**Metric** | Pointer to **string** | The name of the timeseries | 
+**Metric** | Pointer to **string** | The name of the timeseries. | 
 **Points** | Pointer to [**[][]float64**](array.md) |  | 
 **Tags** | Pointer to **[]string** | A list of tags associated with the metric. | [optional] 
 **Type** | Pointer to **string** |  | [optional] [default to "gauge"]

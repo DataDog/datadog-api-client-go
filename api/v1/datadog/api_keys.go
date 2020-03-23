@@ -37,7 +37,7 @@ func (r apiCreateAPIKeyRequest) Body(body ApiKey) apiCreateAPIKeyRequest {
 
 /*
 CreateAPIKey Create an API key
-Create an API key with a given name.
+Creates an API key with a given name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateAPIKeyRequest
 */
@@ -376,7 +376,7 @@ type apiDeleteAPIKeyRequest struct {
 DeleteAPIKey Delete an API key
 Delete a given API key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param key The specific API key you are working with
+ * @param key The specific API key you are working with.
 @return apiDeleteAPIKeyRequest
 */
 func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) apiDeleteAPIKeyRequest {
@@ -543,7 +543,7 @@ type apiDeleteApplicationKeyRequest struct {
 DeleteApplicationKey Delete an application key
 Delete a given application key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param key The specific APP key you are working with
+ * @param key The specific APP key you are working with.
 @return apiDeleteApplicationKeyRequest
 */
 func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) apiDeleteApplicationKeyRequest {
@@ -716,7 +716,7 @@ func (r apiEditAPIKeyRequest) Body(body ApiKey) apiEditAPIKeyRequest {
 EditAPIKey Edit an API key
 Edit an API key name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param key The specific API key you are working with
+ * @param key The specific API key you are working with.
 @return apiEditAPIKeyRequest
 */
 func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string) apiEditAPIKeyRequest {
@@ -891,7 +891,7 @@ func (r apiEditApplicationKeyRequest) Body(body ApplicationKey) apiEditApplicati
 EditApplicationKey Edit an application key
 Edit an application key name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param key The specific APP key you are working with
+ * @param key The specific APP key you are working with.
 @return apiEditApplicationKeyRequest
 */
 func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string) apiEditApplicationKeyRequest {
@@ -1057,7 +1057,7 @@ type apiGetAPIKeyRequest struct {
 }
 
 /*
-GetAPIKey Get an API key
+GetAPIKey Get API key
 Get a given API key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param key The specific API key you are working with.
@@ -1377,7 +1377,7 @@ type apiGetAllApplicationKeysRequest struct {
 
 /*
 GetAllApplicationKeys Get all application keys
-Get all application keys available for your account.
+Get all application keys available for your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllApplicationKeysRequest
 */
@@ -1533,7 +1533,7 @@ type apiGetApplicationKeyRequest struct {
 GetApplicationKey Get an application key
 Get a given application key.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param key The specific APP key you are working with
+ * @param key The specific APP key you are working with.
 @return apiGetApplicationKeyRequest
 */
 func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) apiGetApplicationKeyRequest {

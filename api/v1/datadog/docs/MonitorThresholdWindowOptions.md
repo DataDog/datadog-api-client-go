@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RecoveryWindow** | Pointer to **NullableString** |  | [optional] 
-**TriggerWindow** | Pointer to **NullableString** |  | [optional] 
+**RecoveryWindow** | Pointer to **NullableString** | Describes how long an anomalous metric must be normal before the alert recovers. | [optional] 
+**TriggerWindow** | Pointer to **NullableString** | Describes how long a metric must be anomalous before an alert triggers. | [optional] 
 
 ## Methods
 
