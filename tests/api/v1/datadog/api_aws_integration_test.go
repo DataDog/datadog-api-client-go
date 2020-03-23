@@ -26,6 +26,7 @@ func generateUniqueAWSAccount() datadog.AWSAccount {
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
 		HostTags:                      &[]string{"filter:one", "filtertwo"},
+		ExcludedRegions:               &[]string{"us-east-1", "us-west-1"},
 	}
 }
 
@@ -66,6 +67,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	// Golang doesn't have an equality operator defined for slices
 	assert.Equal(t, reflect.DeepEqual(awsAcct.GetHostTags(), testAWSAccount.GetHostTags()), true)
 	assert.Equal(t, reflect.DeepEqual(awsAcct.GetFilterTags(), testAWSAccount.GetFilterTags()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetExcludedRegions(), testAWSAccount.GetExcludedRegions()), true)
 	assert.Equal(t, reflect.DeepEqual(awsAcct.GetAccountSpecificNamespaceRules(), testAWSAccount.GetAccountSpecificNamespaceRules()), true)
 }
 
