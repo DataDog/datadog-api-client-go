@@ -26,6 +26,7 @@ func generateUniqueAWSAccount() datadog.AWSAccount {
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
 		HostTags:                      &[]string{"filter:one", "filtertwo"},
+		ExcludedRegions:               &[]string{"us-east-1", "us-west-1"},
 	}
 }
 
