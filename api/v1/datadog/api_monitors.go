@@ -561,7 +561,7 @@ func (r apiGetAllMonitorsRequest) WithDowntimes(withDowntimes bool) apiGetAllMon
 }
 
 /*
-GetAllMonitors Get all monitor details.
+GetAllMonitors Get all monitor details
 Get details about the specified monitor from your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllMonitorsRequest

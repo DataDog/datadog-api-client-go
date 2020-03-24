@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a monitor
 [**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
 [**EditMonitor**](MonitorsApi.md#EditMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
-[**GetAllMonitors**](MonitorsApi.md#GetAllMonitors) | **Get** /api/v1/monitor | Get all monitor details.
+[**GetAllMonitors**](MonitorsApi.md#GetAllMonitors) | **Get** /api/v1/monitor | Get all monitor details
 [**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
 [**ValidateMonitor**](MonitorsApi.md#ValidateMonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 > []Monitor GetAllMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).Execute()
 
-Get all monitor details.
+Get all monitor details
 
 
 
