@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageTopAvgMetricsHour**](UsageTopAvgMetricsHour.md) |  | [optional] 
+**Usage** | Pointer to [**[]UsageTopAvgMetricsHour**](UsageTopAvgMetricsHour.md) | TODO. | [optional] 
 
 ## Methods
 
