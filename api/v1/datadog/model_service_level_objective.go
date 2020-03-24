@@ -21,7 +21,7 @@ type ServiceLevelObjective struct {
 	Description NullableString `json:"description,omitempty"`
 	// A list of (up to 20) monitor groups (e.g. [\"env:prod,role:mysql\"]) that narrows the scope of a monitor service level objective.  Included in service level objective responses if it is nonempty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the \"monitor_ids\" field is one.
 	Groups *[]string `json:"groups,omitempty"`
-	// A unique identifier for the service level objective object.  Always included in service level objective responses. Required for update requests.
+	// A unique identifier for the service level objective object.  Always included in service level objective responses.
 	Id *string `json:"id,omitempty"`
 	// Modification timestamp (unix time in seconds)  Always included in service level objective responses.
 	ModifiedAt *int64 `json:"modified_at,omitempty"`
