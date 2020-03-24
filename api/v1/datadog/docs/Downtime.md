@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **Scope** | Pointer to **[]string** | The scope(s) to which the downtime applies. For example, &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list like &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (&#x60;env:dev&#x60; **AND** &#x60;env:prod&#x60;). | [optional] 
 **Start** | Pointer to **int64** | POSIX timestamp to start the downtime. If not provided, the downtime starts the moment it is created. | [optional] 
 **Timezone** | Pointer to **string** | The timezone for the downtime. | [optional] 
-**UpdaterId** | Pointer to **int32** | TODO. | [optional] [readonly] 
+**UpdaterId** | Pointer to **NullableInt32** | TODO. | [optional] [readonly] 
 
 ## Methods
 
@@ -452,13 +452,13 @@ SetTimezone gets a reference to the given string and assigns it to the Timezone 
 
 ### GetUpdaterId
 
-`func (o *Downtime) GetUpdaterId() int32`
+`func (o *Downtime) GetUpdaterId() NullableInt32`
 
 GetUpdaterId returns the UpdaterId field if non-nil, zero value otherwise.
 
 ### GetUpdaterIdOk
 
-`func (o *Downtime) GetUpdaterIdOk() (int32, bool)`
+`func (o *Downtime) GetUpdaterIdOk() (NullableInt32, bool)`
 
 GetUpdaterIdOk returns a tuple with the UpdaterId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -471,10 +471,17 @@ HasUpdaterId returns a boolean if a field has been set.
 
 ### SetUpdaterId
 
-`func (o *Downtime) SetUpdaterId(v int32)`
+`func (o *Downtime) SetUpdaterId(v NullableInt32)`
 
-SetUpdaterId gets a reference to the given int32 and assigns it to the UpdaterId field.
+SetUpdaterId gets a reference to the given NullableInt32 and assigns it to the UpdaterId field.
 
+### SetUpdaterIdExplicitNull
+
+`func (o *Downtime) SetUpdaterIdExplicitNull(b bool)`
+
+SetUpdaterIdExplicitNull (un)sets UpdaterId to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The UpdaterId value is set to nil even if false is passed
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

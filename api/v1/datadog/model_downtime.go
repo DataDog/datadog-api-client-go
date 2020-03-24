@@ -44,7 +44,7 @@ type Downtime struct {
 	// The timezone for the downtime.
 	Timezone *string `json:"timezone,omitempty"`
 	// TODO.
-	UpdaterId *int32 `json:"updater_id,omitempty"`
+	UpdaterId NullableInt32 `json:"updater_id,omitempty"`
 }
 
 // NewDowntime instantiates a new Downtime object
@@ -560,36 +560,36 @@ func (o *Downtime) SetTimezone(v string) {
 }
 
 // GetUpdaterId returns the UpdaterId field value if set, zero value otherwise.
-func (o *Downtime) GetUpdaterId() int32 {
-	if o == nil || o.UpdaterId == nil {
-		var ret int32
+func (o *Downtime) GetUpdaterId() NullableInt32 {
+	if o == nil {
+		var ret NullableInt32
 		return ret
 	}
-	return *o.UpdaterId
+	return o.UpdaterId
 }
 
 // GetUpdaterIdOk returns a tuple with the UpdaterId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Downtime) GetUpdaterIdOk() (int32, bool) {
-	if o == nil || o.UpdaterId == nil {
-		var ret int32
+func (o *Downtime) GetUpdaterIdOk() (NullableInt32, bool) {
+	if o == nil {
+		var ret NullableInt32
 		return ret, false
 	}
-	return *o.UpdaterId, true
+	return o.UpdaterId, o.UpdaterId.IsSet()
 }
 
 // HasUpdaterId returns a boolean if a field has been set.
 func (o *Downtime) HasUpdaterId() bool {
-	if o != nil && o.UpdaterId != nil {
+	if o != nil && o.UpdaterId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUpdaterId gets a reference to the given int32 and assigns it to the UpdaterId field.
-func (o *Downtime) SetUpdaterId(v int32) {
-	o.UpdaterId = &v
+// SetUpdaterId gets a reference to the given NullableInt32 and assigns it to the UpdaterId field.
+func (o *Downtime) SetUpdaterId(v NullableInt32) {
+	o.UpdaterId = v
 }
 
 func (o Downtime) MarshalJSON() ([]byte, error) {
@@ -639,8 +639,8 @@ func (o Downtime) MarshalJSON() ([]byte, error) {
 	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
 	}
-	if o.UpdaterId != nil {
-		toSerialize["updater_id"] = o.UpdaterId
+	if o.UpdaterId.IsSet() {
+		toSerialize["updater_id"] = o.UpdaterId.Get()
 	}
 	return json.Marshal(toSerialize)
 }

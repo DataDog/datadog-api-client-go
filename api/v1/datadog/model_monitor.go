@@ -19,7 +19,7 @@ type Monitor struct {
 	Created *time.Time `json:"created,omitempty"`
 	Creator *Creator   `json:"creator,omitempty"`
 	// TODO.
-	Deleted *time.Time `json:"deleted,omitempty"`
+	Deleted NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this monitor.
@@ -123,36 +123,36 @@ func (o *Monitor) SetCreator(v Creator) {
 }
 
 // GetDeleted returns the Deleted field value if set, zero value otherwise.
-func (o *Monitor) GetDeleted() time.Time {
-	if o == nil || o.Deleted == nil {
-		var ret time.Time
+func (o *Monitor) GetDeleted() NullableTime {
+	if o == nil {
+		var ret NullableTime
 		return ret
 	}
-	return *o.Deleted
+	return o.Deleted
 }
 
 // GetDeletedOk returns a tuple with the Deleted field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetDeletedOk() (time.Time, bool) {
-	if o == nil || o.Deleted == nil {
-		var ret time.Time
+func (o *Monitor) GetDeletedOk() (NullableTime, bool) {
+	if o == nil {
+		var ret NullableTime
 		return ret, false
 	}
-	return *o.Deleted, true
+	return o.Deleted, o.Deleted.IsSet()
 }
 
 // HasDeleted returns a boolean if a field has been set.
 func (o *Monitor) HasDeleted() bool {
-	if o != nil && o.Deleted != nil {
+	if o != nil && o.Deleted.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDeleted gets a reference to the given time.Time and assigns it to the Deleted field.
-func (o *Monitor) SetDeleted(v time.Time) {
-	o.Deleted = &v
+// SetDeleted gets a reference to the given NullableTime and assigns it to the Deleted field.
+func (o *Monitor) SetDeleted(v NullableTime) {
+	o.Deleted = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -526,8 +526,8 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	if o.Creator != nil {
 		toSerialize["creator"] = o.Creator
 	}
-	if o.Deleted != nil {
-		toSerialize["deleted"] = o.Deleted
+	if o.Deleted.IsSet() {
+		toSerialize["deleted"] = o.Deleted.Get()
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
