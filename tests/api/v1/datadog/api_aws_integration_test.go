@@ -37,6 +37,15 @@ var TESTUPDATEAWSACC = datadog.AWSAccount{
 	HostTags:                      &[]string{"filter:foo", "bar"},
 }
 
+var TESTUPDATEAWSACCWITHEXCLUDEDREGION = datadog.AWSAccount{
+	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRoleUpdated"),
+	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": false},
+	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
+	HostTags:                      &[]string{"filter:foo", "bar"},
+	ExcludedRegions:               &[]string{"us-east-1", "us-west-1"},
+
+}
+
 func TestCreateAWSAccount(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
@@ -82,10 +91,10 @@ func TestUpdateAWSAccount(t *testing.T) {
 	retryCreateAccount(t, testAWSAccount)
 	defer retryDeleteAccount(t, testAWSAccount)
 
-	retryUpdateAccount(t, TESTUPDATEAWSACC, testAWSAccount.GetAccountId(), testAWSAccount.GetRoleName())
+	retryUpdateAccount(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION, testAWSAccount.GetAccountId(), testAWSAccount.GetRoleName())
 	UPDATEDAWSACCT := datadog.AWSAccount{
 		AccountId: testAWSAccount.AccountId,
-		RoleName:  TESTUPDATEAWSACC.RoleName,
+		RoleName:  TESTUPDATEAWSACCWITHEXCLUDEDREGION.RoleName,
 	}
 	defer retryDeleteAccount(t, UPDATEDAWSACCT)
 
@@ -104,11 +113,12 @@ func TestUpdateAWSAccount(t *testing.T) {
 
 	awsAcct := awsAccounts[0]
 	// Test fields were updated
-	assert.Equal(t, awsAcct.GetRoleName(), TESTUPDATEAWSACC.GetRoleName())
+	assert.Equal(t, awsAcct.GetRoleName(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetRoleName())
 	// Golang doesn't have an equality operator defined for slices
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetHostTags(), TESTUPDATEAWSACC.GetHostTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetFilterTags(), TESTUPDATEAWSACC.GetFilterTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetAccountSpecificNamespaceRules(), TESTUPDATEAWSACC.GetAccountSpecificNamespaceRules()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetHostTags(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetHostTags()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetFilterTags(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetFilterTags()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetExcludedRegions(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetExcludedRegions()), true)
+	assert.Equal(t, reflect.DeepEqual(awsAcct.GetAccountSpecificNamespaceRules(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetAccountSpecificNamespaceRules()), true)
 }
 
 func TestDisableAWSAcct(t *testing.T) {
