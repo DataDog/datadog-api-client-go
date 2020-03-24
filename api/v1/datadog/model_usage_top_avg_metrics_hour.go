@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UsageTopAvgMetricsHour struct for UsageTopAvgMetricsHour
+// UsageTopAvgMetricsHour TODO.
 type UsageTopAvgMetricsHour struct {
 	// Average number of timeseries per hour in which the metric occurs.
 	AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
