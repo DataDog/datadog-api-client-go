@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// AccessRole the model 'AccessRole'
+// AccessRole The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user).
 type AccessRole string
 
 // List of AccessRole

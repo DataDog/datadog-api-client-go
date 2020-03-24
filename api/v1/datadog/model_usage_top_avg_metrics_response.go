@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UsageTopAvgMetricsResponse struct for UsageTopAvgMetricsResponse
+// UsageTopAvgMetricsResponse TODO.
 type UsageTopAvgMetricsResponse struct {
+	// TODO.
 	Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
 }
 
