@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrivateWidgetShare** | Pointer to **bool** | TODO. | [optional] 
 **Saml** | Pointer to [**OrgSettingsSaml**](Org_settings_saml.md) |  | [optional] 
-**SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] 
+**SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to "st"]
 **SamlAutocreateUsersDomains** | Pointer to [**OrgSettingsSamlAutocreateUsersDomains**](Org_settings_saml_autocreate_users_domains.md) |  | [optional] 
 **SamlCanBeEnabled** | Pointer to **bool** | TODO. | [optional] 
 **SamlIdpEndpoint** | Pointer to **string** | TODO. | [optional] 
