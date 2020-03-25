@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Created** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Deleted** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
+**Deleted** | Pointer to [**NullableTime**](time.Time.md) | TODO. | [optional] [readonly] 
 **Id** | Pointer to **int64** | ID of this monitor. | [optional] [readonly] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
@@ -90,13 +90,13 @@ SetCreator gets a reference to the given Creator and assigns it to the Creator f
 
 ### GetDeleted
 
-`func (o *Monitor) GetDeleted() time.Time`
+`func (o *Monitor) GetDeleted() NullableTime`
 
 GetDeleted returns the Deleted field if non-nil, zero value otherwise.
 
 ### GetDeletedOk
 
-`func (o *Monitor) GetDeletedOk() (time.Time, bool)`
+`func (o *Monitor) GetDeletedOk() (NullableTime, bool)`
 
 GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -109,10 +109,17 @@ HasDeleted returns a boolean if a field has been set.
 
 ### SetDeleted
 
-`func (o *Monitor) SetDeleted(v time.Time)`
+`func (o *Monitor) SetDeleted(v NullableTime)`
 
-SetDeleted gets a reference to the given time.Time and assigns it to the Deleted field.
+SetDeleted gets a reference to the given NullableTime and assigns it to the Deleted field.
 
+### SetDeletedExplicitNull
+
+`func (o *Monitor) SetDeletedExplicitNull(b bool)`
+
+SetDeletedExplicitNull (un)sets Deleted to be considered as explicit "null" value
+when serializing to JSON (pass true as argument to set this, false to unset)
+The Deleted value is set to nil even if false is passed
 ### GetId
 
 `func (o *Monitor) GetId() int64`
