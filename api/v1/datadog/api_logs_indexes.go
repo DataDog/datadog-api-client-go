@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -56,6 +58,12 @@ func (r apiGetAllLogIndexesRequest) Execute() (LogsIndexListResponse, *_nethttp.
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndexListResponse
 	)
+	operationId := "GetAllLogIndexes"
+	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetAllLogIndexes")
 	if err != nil {
@@ -202,6 +210,12 @@ func (r apiGetLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, error)
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
+	operationId := "GetLogsIndex"
+	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndex")
 	if err != nil {
@@ -514,6 +528,12 @@ func (r apiUpdateLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, err
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
+	operationId := "UpdateLogsIndex"
+	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndex")
 	if err != nil {
