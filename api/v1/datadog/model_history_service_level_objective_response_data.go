@@ -16,8 +16,8 @@ import (
 type HistoryServiceLevelObjectiveResponseData struct {
 	// The `from` timestamp in epoch seconds.
 	FromTs  *int64                               `json:"from_ts,omitempty"`
-	Groups  *HistoryServiceLevelObjectiveGroups  `json:"groups,omitempty"`
-	Overall *HistoryServiceLevelObjectiveOverall `json:"overall,omitempty"`
+	Groups  *HistoryServiceLevelObjectiveSLIData `json:"groups,omitempty"`
+	Overall *HistoryServiceLevelObjectiveSLIData `json:"overall,omitempty"`
 	Series  *HistoryServiceLevelObjectiveMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
@@ -78,9 +78,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetFromTs(v int64) {
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLevelObjectiveGroups {
+func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLevelObjectiveSLIData {
 	if o == nil || o.Groups == nil {
-		var ret HistoryServiceLevelObjectiveGroups
+		var ret HistoryServiceLevelObjectiveSLIData
 		return ret
 	}
 	return *o.Groups
@@ -88,9 +88,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLev
 
 // GetGroupsOk returns a tuple with the Groups field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (HistoryServiceLevelObjectiveGroups, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (HistoryServiceLevelObjectiveSLIData, bool) {
 	if o == nil || o.Groups == nil {
-		var ret HistoryServiceLevelObjectiveGroups
+		var ret HistoryServiceLevelObjectiveSLIData
 		return ret, false
 	}
 	return *o.Groups, true
@@ -105,15 +105,15 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasGroups() bool {
 	return false
 }
 
-// SetGroups gets a reference to the given HistoryServiceLevelObjectiveGroups and assigns it to the Groups field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v HistoryServiceLevelObjectiveGroups) {
+// SetGroups gets a reference to the given HistoryServiceLevelObjectiveSLIData and assigns it to the Groups field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v HistoryServiceLevelObjectiveSLIData) {
 	o.Groups = &v
 }
 
 // GetOverall returns the Overall field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLevelObjectiveOverall {
+func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLevelObjectiveSLIData {
 	if o == nil || o.Overall == nil {
-		var ret HistoryServiceLevelObjectiveOverall
+		var ret HistoryServiceLevelObjectiveSLIData
 		return ret
 	}
 	return *o.Overall
@@ -121,9 +121,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLe
 
 // GetOverallOk returns a tuple with the Overall field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (HistoryServiceLevelObjectiveOverall, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (HistoryServiceLevelObjectiveSLIData, bool) {
 	if o == nil || o.Overall == nil {
-		var ret HistoryServiceLevelObjectiveOverall
+		var ret HistoryServiceLevelObjectiveSLIData
 		return ret, false
 	}
 	return *o.Overall, true
@@ -138,8 +138,8 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasOverall() bool {
 	return false
 }
 
-// SetOverall gets a reference to the given HistoryServiceLevelObjectiveOverall and assigns it to the Overall field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v HistoryServiceLevelObjectiveOverall) {
+// SetOverall gets a reference to the given HistoryServiceLevelObjectiveSLIData and assigns it to the Overall field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v HistoryServiceLevelObjectiveSLIData) {
 	o.Overall = &v
 }
 

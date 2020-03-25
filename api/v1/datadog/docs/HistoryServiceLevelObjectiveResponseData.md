@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromTs** | Pointer to **int64** | The &#x60;from&#x60; timestamp in epoch seconds. | [optional] 
-**Groups** | Pointer to [**HistoryServiceLevelObjectiveGroups**](HistoryServiceLevelObjectiveGroups.md) |  | [optional] 
-**Overall** | Pointer to [**HistoryServiceLevelObjectiveOverall**](HistoryServiceLevelObjectiveOverall.md) |  | [optional] 
+**Groups** | Pointer to [**HistoryServiceLevelObjectiveSLIData**](HistoryServiceLevelObjectiveSLIData.md) |  | [optional] 
+**Overall** | Pointer to [**HistoryServiceLevelObjectiveSLIData**](HistoryServiceLevelObjectiveSLIData.md) |  | [optional] 
 **Series** | Pointer to [**HistoryServiceLevelObjectiveMetrics**](HistoryServiceLevelObjectiveMetrics.md) |  | [optional] 
 **Thresholds** | Pointer to [**map[string]SLOThreshold**](SLOThreshold.md) | mapping of string timeframe to the SLO threshold. | [optional] 
 **ToTs** | Pointer to **int64** | The &#x60;to&#x60; timestamp in epoch seconds. | [optional] 
@@ -59,13 +59,13 @@ SetFromTs gets a reference to the given int64 and assigns it to the FromTs field
 
 ### GetGroups
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLevelObjectiveGroups`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLevelObjectiveSLIData`
 
 GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### GetGroupsOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (HistoryServiceLevelObjectiveGroups, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (HistoryServiceLevelObjectiveSLIData, bool)`
 
 GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -78,19 +78,19 @@ HasGroups returns a boolean if a field has been set.
 
 ### SetGroups
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v HistoryServiceLevelObjectiveGroups)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v HistoryServiceLevelObjectiveSLIData)`
 
-SetGroups gets a reference to the given HistoryServiceLevelObjectiveGroups and assigns it to the Groups field.
+SetGroups gets a reference to the given HistoryServiceLevelObjectiveSLIData and assigns it to the Groups field.
 
 ### GetOverall
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLevelObjectiveOverall`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLevelObjectiveSLIData`
 
 GetOverall returns the Overall field if non-nil, zero value otherwise.
 
 ### GetOverallOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (HistoryServiceLevelObjectiveOverall, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (HistoryServiceLevelObjectiveSLIData, bool)`
 
 GetOverallOk returns a tuple with the Overall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -103,9 +103,9 @@ HasOverall returns a boolean if a field has been set.
 
 ### SetOverall
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v HistoryServiceLevelObjectiveOverall)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v HistoryServiceLevelObjectiveSLIData)`
 
-SetOverall gets a reference to the given HistoryServiceLevelObjectiveOverall and assigns it to the Overall field.
+SetOverall gets a reference to the given HistoryServiceLevelObjectiveSLIData and assigns it to the Overall field.
 
 ### GetSeries
 
