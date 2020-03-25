@@ -20,6 +20,8 @@ type AWSAccount struct {
 	AccountId *string `json:"account_id,omitempty"`
 	// An object (in the form {\"namespace1\":true/false, \"namespace2\":true/false}) that enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the /v1/integration/aws/available_namespace_rules endpoint.
 	AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+	// An array of AWS regions to exclude from metrics collection.
+	ExcludedRegions *[]string `json:"excluded_regions,omitempty"`
 	// The array of EC2 tags (in the form key:value) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ? (for single characters) and * (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding ! before the tag. For example, `env:production,instance-type:c1.*,!region:us-east-1`
 	FilterTags *[]string `json:"filter_tags,omitempty"`
 	// Array of tags (in the form key:value) to add to all hosts and metrics reporting through this integration.
@@ -144,6 +146,39 @@ func (o *AWSAccount) HasAccountSpecificNamespaceRules() bool {
 // SetAccountSpecificNamespaceRules gets a reference to the given map[string]bool and assigns it to the AccountSpecificNamespaceRules field.
 func (o *AWSAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
 	o.AccountSpecificNamespaceRules = &v
+}
+
+// GetExcludedRegions returns the ExcludedRegions field value if set, zero value otherwise.
+func (o *AWSAccount) GetExcludedRegions() []string {
+	if o == nil || o.ExcludedRegions == nil {
+		var ret []string
+		return ret
+	}
+	return *o.ExcludedRegions
+}
+
+// GetExcludedRegionsOk returns a tuple with the ExcludedRegions field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSAccount) GetExcludedRegionsOk() ([]string, bool) {
+	if o == nil || o.ExcludedRegions == nil {
+		var ret []string
+		return ret, false
+	}
+	return *o.ExcludedRegions, true
+}
+
+// HasExcludedRegions returns a boolean if a field has been set.
+func (o *AWSAccount) HasExcludedRegions() bool {
+	if o != nil && o.ExcludedRegions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedRegions gets a reference to the given []string and assigns it to the ExcludedRegions field.
+func (o *AWSAccount) SetExcludedRegions(v []string) {
+	o.ExcludedRegions = &v
 }
 
 // GetFilterTags returns the FilterTags field value if set, zero value otherwise.
@@ -288,6 +323,9 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	}
 	if o.AccountSpecificNamespaceRules != nil {
 		toSerialize["account_specific_namespace_rules"] = o.AccountSpecificNamespaceRules
+	}
+	if o.ExcludedRegions != nil {
+		toSerialize["excluded_regions"] = o.ExcludedRegions
 	}
 	if o.FilterTags != nil {
 		toSerialize["filter_tags"] = o.FilterTags
