@@ -100,7 +100,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	// Add single service object to the PagerDuty Integration
 	serviceBody := datadog.PagerDutyService{
 		ServiceKey: "deadbeef",
-		ServiceName: "test_java_2",
+		ServiceName: "test_go_2",
 	}
 	serviceNameResponse, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(TESTAUTH).Body(serviceBody).Execute()
 	assert.NilError(t, err)
@@ -108,27 +108,27 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	assert.Equal(t, serviceBody.GetServiceName(), serviceNameResponse.GetServiceName())
 
 	// Get created Service object
-	serviceName, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(TESTAUTH, "test_java_2").Execute()
+	serviceName, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(TESTAUTH, "test_go_2").Execute()
 	assert.NilError(t, err)
 	assert.Equal(t, serviceBody.GetServiceName(), serviceName.GetServiceName())
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// Get previously added service item
-	serviceName, httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(TESTAUTH, "test_java").Execute()
+	serviceName, httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(TESTAUTH, "test_go").Execute()
 	assert.NilError(t, err)
-	assert.Equal(t, "test_java", serviceName.GetServiceName())
+	assert.Equal(t, "test_go", serviceName.GetServiceName())
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// Update service object
 	serviceKey := datadog.PagerDutyServiceKey{
 		ServiceKey: "newkey",
 	}
-	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(TESTAUTH, "test_java_2").Body(serviceKey).Execute()
+	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(TESTAUTH, "test_go_2").Body(serviceKey).Execute()
 	assert.NilError(t, err)
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// Delete Service Object
-	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(TESTAUTH, "test_java").Execute()
+	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(TESTAUTH, "test_go").Execute()
 	assert.NilError(t, err)
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -139,7 +139,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	assert.Equal(t, 1, len(pagerDuty.GetSchedules()))
 	assert.Equal(t, servicesAndSchedules.GetSchedules()[0], pagerDuty.GetSchedules()[0])
 	assert.Equal(t, 1, len(pagerDuty.GetServices()))
-	assert.Equal(t, "test_java_2", pagerDuty.GetServices()[0].GetServiceName())
+	assert.Equal(t, "test_go_2", pagerDuty.GetServices()[0].GetServiceName())
 	assert.Equal(t, "*****", pagerDuty.GetServices()[0].GetServiceKey())
 
 	// Delete Pager Duty Integration
