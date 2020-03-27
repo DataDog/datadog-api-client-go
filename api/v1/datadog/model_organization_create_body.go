@@ -12,38 +12,38 @@ import (
 	"encoding/json"
 )
 
-// OrgCreateBody struct for OrgCreateBody
-type OrgCreateBody struct {
-	Billing OrgBilling `json:"billing"`
+// OrganizationCreateBody struct for OrganizationCreateBody
+type OrganizationCreateBody struct {
+	Billing OrganizationBilling `json:"billing"`
 	// The name of the new child-organization, limited to 32 characters.
-	Name         string          `json:"name"`
-	Subscription OrgSubscription `json:"subscription"`
+	Name         string                   `json:"name"`
+	Subscription OrganizationSubscription `json:"subscription"`
 }
 
-// NewOrgCreateBody instantiates a new OrgCreateBody object
+// NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgCreateBody(billing OrgBilling, name string, subscription OrgSubscription) *OrgCreateBody {
-	this := OrgCreateBody{}
+func NewOrganizationCreateBody(billing OrganizationBilling, name string, subscription OrganizationSubscription) *OrganizationCreateBody {
+	this := OrganizationCreateBody{}
 	this.Billing = billing
 	this.Name = name
 	this.Subscription = subscription
 	return &this
 }
 
-// NewOrgCreateBodyWithDefaults instantiates a new OrgCreateBody object
+// NewOrganizationCreateBodyWithDefaults instantiates a new OrganizationCreateBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgCreateBodyWithDefaults() *OrgCreateBody {
-	this := OrgCreateBody{}
+func NewOrganizationCreateBodyWithDefaults() *OrganizationCreateBody {
+	this := OrganizationCreateBody{}
 	return &this
 }
 
 // GetBilling returns the Billing field value
-func (o *OrgCreateBody) GetBilling() OrgBilling {
+func (o *OrganizationCreateBody) GetBilling() OrganizationBilling {
 	if o == nil {
-		var ret OrgBilling
+		var ret OrganizationBilling
 		return ret
 	}
 
@@ -52,7 +52,7 @@ func (o *OrgCreateBody) GetBilling() OrgBilling {
 
 // GetBillingOk returns a tuple with the Billing field value
 // and a boolean to check if the value has been set.
-func (o *OrgCreateBody) GetBillingOk() (*OrgBilling, bool) {
+func (o *OrganizationCreateBody) GetBillingOk() (*OrganizationBilling, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -60,12 +60,12 @@ func (o *OrgCreateBody) GetBillingOk() (*OrgBilling, bool) {
 }
 
 // SetBilling sets field value
-func (o *OrgCreateBody) SetBilling(v OrgBilling) {
+func (o *OrganizationCreateBody) SetBilling(v OrganizationBilling) {
 	o.Billing = v
 }
 
 // GetName returns the Name field value
-func (o *OrgCreateBody) GetName() string {
+func (o *OrganizationCreateBody) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -76,7 +76,7 @@ func (o *OrgCreateBody) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *OrgCreateBody) GetNameOk() (*string, bool) {
+func (o *OrganizationCreateBody) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,14 +84,14 @@ func (o *OrgCreateBody) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *OrgCreateBody) SetName(v string) {
+func (o *OrganizationCreateBody) SetName(v string) {
 	o.Name = v
 }
 
 // GetSubscription returns the Subscription field value
-func (o *OrgCreateBody) GetSubscription() OrgSubscription {
+func (o *OrganizationCreateBody) GetSubscription() OrganizationSubscription {
 	if o == nil {
-		var ret OrgSubscription
+		var ret OrganizationSubscription
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *OrgCreateBody) GetSubscription() OrgSubscription {
 
 // GetSubscriptionOk returns a tuple with the Subscription field value
 // and a boolean to check if the value has been set.
-func (o *OrgCreateBody) GetSubscriptionOk() (*OrgSubscription, bool) {
+func (o *OrganizationCreateBody) GetSubscriptionOk() (*OrganizationSubscription, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,11 +108,11 @@ func (o *OrgCreateBody) GetSubscriptionOk() (*OrgSubscription, bool) {
 }
 
 // SetSubscription sets field value
-func (o *OrgCreateBody) SetSubscription(v OrgSubscription) {
+func (o *OrganizationCreateBody) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = v
 }
 
-func (o OrgCreateBody) MarshalJSON() ([]byte, error) {
+func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["billing"] = o.Billing
@@ -126,38 +126,38 @@ func (o OrgCreateBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgCreateBody struct {
-	value *OrgCreateBody
+type NullableOrganizationCreateBody struct {
+	value *OrganizationCreateBody
 	isSet bool
 }
 
-func (v NullableOrgCreateBody) Get() *OrgCreateBody {
+func (v NullableOrganizationCreateBody) Get() *OrganizationCreateBody {
 	return v.value
 }
 
-func (v *NullableOrgCreateBody) Set(val *OrgCreateBody) {
+func (v *NullableOrganizationCreateBody) Set(val *OrganizationCreateBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgCreateBody) IsSet() bool {
+func (v NullableOrganizationCreateBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrgCreateBody) Unset() {
+func (v *NullableOrganizationCreateBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgCreateBody(val *OrgCreateBody) *NullableOrgCreateBody {
-	return &NullableOrgCreateBody{value: val, isSet: true}
+func NewNullableOrganizationCreateBody(val *OrganizationCreateBody) *NullableOrganizationCreateBody {
+	return &NullableOrganizationCreateBody{value: val, isSet: true}
 }
 
-func (v NullableOrgCreateBody) MarshalJSON() ([]byte, error) {
+func (v NullableOrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgCreateBody) UnmarshalJSON(src []byte) error {
+func (v *NullableOrganizationCreateBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -22,12 +22,12 @@ var (
 	_ _context.Context
 )
 
-// UsageApiService UsageApi service
-type UsageApiService service
+// UsageMeteringApiService UsageMeteringApi service
+type UsageMeteringApiService service
 
 type apiGetUsageFargateRequest struct {
 	ctx        _context.Context
-	apiService *UsageApiService
+	apiService *UsageMeteringApiService
 	startHr    *time.Time
 	endHr      *time.Time
 }
@@ -48,7 +48,7 @@ Get hourly usage for [fargate](https://docs.datadoghq.com/integrations/ecs_farga
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageFargateRequest
 */
-func (a *UsageApiService) GetUsageFargate(ctx _context.Context) apiGetUsageFargateRequest {
+func (a *UsageMeteringApiService) GetUsageFargate(ctx _context.Context) apiGetUsageFargateRequest {
 	return apiGetUsageFargateRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -69,7 +69,7 @@ func (r apiGetUsageFargateRequest) Execute() (UsageFargateResponse, *_nethttp.Re
 		localVarReturnValue  UsageFargateResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageFargate")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageFargate")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -210,7 +210,7 @@ func (r apiGetUsageFargateRequest) Execute() (UsageFargateResponse, *_nethttp.Re
 
 type apiGetUsageHostsRequest struct {
 	ctx        _context.Context
-	apiService *UsageApiService
+	apiService *UsageMeteringApiService
 	startHr    *time.Time
 	endHr      *time.Time
 }
@@ -231,7 +231,7 @@ Get hourly usage for hosts and containers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageHostsRequest
 */
-func (a *UsageApiService) GetUsageHosts(ctx _context.Context) apiGetUsageHostsRequest {
+func (a *UsageMeteringApiService) GetUsageHosts(ctx _context.Context) apiGetUsageHostsRequest {
 	return apiGetUsageHostsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -252,7 +252,7 @@ func (r apiGetUsageHostsRequest) Execute() (UsageHostsResponse, *_nethttp.Respon
 		localVarReturnValue  UsageHostsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageHosts")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageHosts")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -393,7 +393,7 @@ func (r apiGetUsageHostsRequest) Execute() (UsageHostsResponse, *_nethttp.Respon
 
 type apiGetUsageLogsRequest struct {
 	ctx        _context.Context
-	apiService *UsageApiService
+	apiService *UsageMeteringApiService
 	startHr    *time.Time
 	endHr      *time.Time
 }
@@ -414,7 +414,7 @@ Get hourly usage for logs.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageLogsRequest
 */
-func (a *UsageApiService) GetUsageLogs(ctx _context.Context) apiGetUsageLogsRequest {
+func (a *UsageMeteringApiService) GetUsageLogs(ctx _context.Context) apiGetUsageLogsRequest {
 	return apiGetUsageLogsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -435,7 +435,7 @@ func (r apiGetUsageLogsRequest) Execute() (UsageLogsResponse, *_nethttp.Response
 		localVarReturnValue  UsageLogsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageLogs")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogs")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -576,7 +576,7 @@ func (r apiGetUsageLogsRequest) Execute() (UsageLogsResponse, *_nethttp.Response
 
 type apiGetUsageSummaryRequest struct {
 	ctx               _context.Context
-	apiService        *UsageApiService
+	apiService        *UsageMeteringApiService
 	startMonth        *time.Time
 	endMonth          *time.Time
 	includeOrgDetails *bool
@@ -603,7 +603,7 @@ Get usage across your multi-org account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageSummaryRequest
 */
-func (a *UsageApiService) GetUsageSummary(ctx _context.Context) apiGetUsageSummaryRequest {
+func (a *UsageMeteringApiService) GetUsageSummary(ctx _context.Context) apiGetUsageSummaryRequest {
 	return apiGetUsageSummaryRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -624,7 +624,7 @@ func (r apiGetUsageSummaryRequest) Execute() (UsageSummaryResponse, *_nethttp.Re
 		localVarReturnValue  UsageSummaryResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageSummary")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSummary")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -768,7 +768,7 @@ func (r apiGetUsageSummaryRequest) Execute() (UsageSummaryResponse, *_nethttp.Re
 
 type apiGetUsageSyntheticsRequest struct {
 	ctx        _context.Context
-	apiService *UsageApiService
+	apiService *UsageMeteringApiService
 	startHr    *time.Time
 	endHr      *time.Time
 }
@@ -789,7 +789,7 @@ Get hourly usage for [synthetics](https://docs.datadoghq.com/synthetics/).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageSyntheticsRequest
 */
-func (a *UsageApiService) GetUsageSynthetics(ctx _context.Context) apiGetUsageSyntheticsRequest {
+func (a *UsageMeteringApiService) GetUsageSynthetics(ctx _context.Context) apiGetUsageSyntheticsRequest {
 	return apiGetUsageSyntheticsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -810,7 +810,7 @@ func (r apiGetUsageSyntheticsRequest) Execute() (UsageSyntheticsResponse, *_neth
 		localVarReturnValue  UsageSyntheticsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageSynthetics")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSynthetics")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -951,7 +951,7 @@ func (r apiGetUsageSyntheticsRequest) Execute() (UsageSyntheticsResponse, *_neth
 
 type apiGetUsageTimeseriesRequest struct {
 	ctx        _context.Context
-	apiService *UsageApiService
+	apiService *UsageMeteringApiService
 	startHr    *time.Time
 	endHr      *time.Time
 }
@@ -972,7 +972,7 @@ Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metr
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageTimeseriesRequest
 */
-func (a *UsageApiService) GetUsageTimeseries(ctx _context.Context) apiGetUsageTimeseriesRequest {
+func (a *UsageMeteringApiService) GetUsageTimeseries(ctx _context.Context) apiGetUsageTimeseriesRequest {
 	return apiGetUsageTimeseriesRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -993,7 +993,7 @@ func (r apiGetUsageTimeseriesRequest) Execute() (UsageTimeseriesResponse, *_neth
 		localVarReturnValue  UsageTimeseriesResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageTimeseries")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTimeseries")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1134,7 +1134,7 @@ func (r apiGetUsageTimeseriesRequest) Execute() (UsageTimeseriesResponse, *_neth
 
 type apiGetUsageTopAvgMetricsRequest struct {
 	ctx        _context.Context
-	apiService *UsageApiService
+	apiService *UsageMeteringApiService
 	month      *time.Time
 	names      *[]string
 }
@@ -1155,7 +1155,7 @@ Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_me
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageTopAvgMetricsRequest
 */
-func (a *UsageApiService) GetUsageTopAvgMetrics(ctx _context.Context) apiGetUsageTopAvgMetricsRequest {
+func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context) apiGetUsageTopAvgMetricsRequest {
 	return apiGetUsageTopAvgMetricsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1176,7 +1176,7 @@ func (r apiGetUsageTopAvgMetricsRequest) Execute() (UsageTopAvgMetricsResponse, 
 		localVarReturnValue  UsageTopAvgMetricsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageTopAvgMetrics")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTopAvgMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1325,7 +1325,7 @@ func (r apiGetUsageTopAvgMetricsRequest) Execute() (UsageTopAvgMetricsResponse, 
 
 type apiGetUsageTraceRequest struct {
 	ctx        _context.Context
-	apiService *UsageApiService
+	apiService *UsageMeteringApiService
 	startHr    *time.Time
 	endHr      *time.Time
 }
@@ -1346,7 +1346,7 @@ Get hourly usage for trace search.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageTraceRequest
 */
-func (a *UsageApiService) GetUsageTrace(ctx _context.Context) apiGetUsageTraceRequest {
+func (a *UsageMeteringApiService) GetUsageTrace(ctx _context.Context) apiGetUsageTraceRequest {
 	return apiGetUsageTraceRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1367,7 +1367,7 @@ func (r apiGetUsageTraceRequest) Execute() (UsageTraceResponse, *_nethttp.Respon
 		localVarReturnValue  UsageTraceResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageApiService.GetUsageTrace")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTrace")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

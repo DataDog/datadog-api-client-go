@@ -12,30 +12,30 @@ import (
 	"encoding/json"
 )
 
-// OrgSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML. See the SAML documentation for more information about all SAML settings.
-type OrgSettingsSaml struct {
+// OrganizationSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML. See the SAML documentation for more information about all SAML settings.
+type OrganizationSettingsSaml struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-// NewOrgSettingsSaml instantiates a new OrgSettingsSaml object
+// NewOrganizationSettingsSaml instantiates a new OrganizationSettingsSaml object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgSettingsSaml() *OrgSettingsSaml {
-	this := OrgSettingsSaml{}
+func NewOrganizationSettingsSaml() *OrganizationSettingsSaml {
+	this := OrganizationSettingsSaml{}
 	return &this
 }
 
-// NewOrgSettingsSamlWithDefaults instantiates a new OrgSettingsSaml object
+// NewOrganizationSettingsSamlWithDefaults instantiates a new OrganizationSettingsSaml object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgSettingsSamlWithDefaults() *OrgSettingsSaml {
-	this := OrgSettingsSaml{}
+func NewOrganizationSettingsSamlWithDefaults() *OrganizationSettingsSaml {
+	this := OrganizationSettingsSaml{}
 	return &this
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *OrgSettingsSaml) GetEnabled() bool {
+func (o *OrganizationSettingsSaml) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
 		var ret bool
 		return ret
@@ -45,7 +45,7 @@ func (o *OrgSettingsSaml) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettingsSaml) GetEnabledOk() (*bool, bool) {
+func (o *OrganizationSettingsSaml) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
 		return nil, false
 	}
@@ -53,7 +53,7 @@ func (o *OrgSettingsSaml) GetEnabledOk() (*bool, bool) {
 }
 
 // HasEnabled returns a boolean if a field has been set.
-func (o *OrgSettingsSaml) HasEnabled() bool {
+func (o *OrganizationSettingsSaml) HasEnabled() bool {
 	if o != nil && o.Enabled != nil {
 		return true
 	}
@@ -62,11 +62,11 @@ func (o *OrgSettingsSaml) HasEnabled() bool {
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *OrgSettingsSaml) SetEnabled(v bool) {
+func (o *OrganizationSettingsSaml) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-func (o OrgSettingsSaml) MarshalJSON() ([]byte, error) {
+func (o OrganizationSettingsSaml) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
@@ -74,38 +74,38 @@ func (o OrgSettingsSaml) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgSettingsSaml struct {
-	value *OrgSettingsSaml
+type NullableOrganizationSettingsSaml struct {
+	value *OrganizationSettingsSaml
 	isSet bool
 }
 
-func (v NullableOrgSettingsSaml) Get() *OrgSettingsSaml {
+func (v NullableOrganizationSettingsSaml) Get() *OrganizationSettingsSaml {
 	return v.value
 }
 
-func (v *NullableOrgSettingsSaml) Set(val *OrgSettingsSaml) {
+func (v *NullableOrganizationSettingsSaml) Set(val *OrganizationSettingsSaml) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgSettingsSaml) IsSet() bool {
+func (v NullableOrganizationSettingsSaml) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrgSettingsSaml) Unset() {
+func (v *NullableOrganizationSettingsSaml) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgSettingsSaml(val *OrgSettingsSaml) *NullableOrgSettingsSaml {
-	return &NullableOrgSettingsSaml{value: val, isSet: true}
+func NewNullableOrganizationSettingsSaml(val *OrganizationSettingsSaml) *NullableOrganizationSettingsSaml {
+	return &NullableOrganizationSettingsSaml{value: val, isSet: true}
 }
 
-func (v NullableOrgSettingsSaml) MarshalJSON() ([]byte, error) {
+func (v NullableOrganizationSettingsSaml) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgSettingsSaml) UnmarshalJSON(src []byte) error {
+func (v *NullableOrganizationSettingsSaml) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

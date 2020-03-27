@@ -1,19 +1,19 @@
-# \KeysApi
+# \KeyManagementApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAPIKey**](KeysApi.md#CreateAPIKey) | **Post** /api/v1/api_key | Create an API key
-[**CreateApplicationKey**](KeysApi.md#CreateApplicationKey) | **Post** /api/v1/application_key | Create an application key
-[**DeleteAPIKey**](KeysApi.md#DeleteAPIKey) | **Delete** /api/v1/api_key/{key} | Delete an API key
-[**DeleteApplicationKey**](KeysApi.md#DeleteApplicationKey) | **Delete** /api/v1/application_key/{key} | Delete an application key
-[**EditAPIKey**](KeysApi.md#EditAPIKey) | **Put** /api/v1/api_key/{key} | Edit an API key
-[**EditApplicationKey**](KeysApi.md#EditApplicationKey) | **Put** /api/v1/application_key/{key} | Edit an application key
-[**GetAPIKey**](KeysApi.md#GetAPIKey) | **Get** /api/v1/api_key/{key} | Get API key
-[**GetAllAPIKeys**](KeysApi.md#GetAllAPIKeys) | **Get** /api/v1/api_key | Get all API keys
-[**GetAllApplicationKeys**](KeysApi.md#GetAllApplicationKeys) | **Get** /api/v1/application_key | Get all application keys
-[**GetApplicationKey**](KeysApi.md#GetApplicationKey) | **Get** /api/v1/application_key/{key} | Get an application key
+[**CreateAPIKey**](KeyManagementApi.md#CreateAPIKey) | **Post** /api/v1/api_key | Create an API key
+[**CreateApplicationKey**](KeyManagementApi.md#CreateApplicationKey) | **Post** /api/v1/application_key | Create an application key
+[**DeleteAPIKey**](KeyManagementApi.md#DeleteAPIKey) | **Delete** /api/v1/api_key/{key} | Delete an API key
+[**DeleteApplicationKey**](KeyManagementApi.md#DeleteApplicationKey) | **Delete** /api/v1/application_key/{key} | Delete an application key
+[**EditAPIKey**](KeyManagementApi.md#EditAPIKey) | **Put** /api/v1/api_key/{key} | Edit an API key
+[**EditApplicationKey**](KeyManagementApi.md#EditApplicationKey) | **Put** /api/v1/application_key/{key} | Edit an application key
+[**GetAPIKey**](KeyManagementApi.md#GetAPIKey) | **Get** /api/v1/api_key/{key} | Get API key
+[**GetAllAPIKeys**](KeyManagementApi.md#GetAllAPIKeys) | **Get** /api/v1/api_key | Get all API keys
+[**GetAllApplicationKeys**](KeyManagementApi.md#GetAllApplicationKeys) | **Get** /api/v1/application_key | Get all application keys
+[**GetApplicationKey**](KeyManagementApi.md#GetApplicationKey) | **Get** /api/v1/application_key/{key} | Get an application key
 
 
 

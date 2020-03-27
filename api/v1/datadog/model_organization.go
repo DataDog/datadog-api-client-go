@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// Org Create, edit, and manage organizations.
-type Org struct {
-	Billing *OrgBilling `json:"billing,omitempty"`
+// Organization Create, edit, and manage organizations.
+type Organization struct {
+	Billing *OrganizationBilling `json:"billing,omitempty"`
 	// Date of the organization creation.
 	Created *string `json:"created,omitempty"`
 	// Description of the organization.
@@ -22,32 +22,32 @@ type Org struct {
 	// The name of the new child-organization, limited to 32 characters.
 	Name *string `json:"name,omitempty"`
 	// The public_id of the org you are operating within.
-	PublicId     *string          `json:"public_id,omitempty"`
-	Settings     *OrgSettings     `json:"settings,omitempty"`
-	Subscription *OrgSubscription `json:"subscription,omitempty"`
+	PublicId     *string                   `json:"public_id,omitempty"`
+	Settings     *OrganizationSettings     `json:"settings,omitempty"`
+	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 }
 
-// NewOrg instantiates a new Org object
+// NewOrganization instantiates a new Organization object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrg() *Org {
-	this := Org{}
+func NewOrganization() *Organization {
+	this := Organization{}
 	return &this
 }
 
-// NewOrgWithDefaults instantiates a new Org object
+// NewOrganizationWithDefaults instantiates a new Organization object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgWithDefaults() *Org {
-	this := Org{}
+func NewOrganizationWithDefaults() *Organization {
+	this := Organization{}
 	return &this
 }
 
 // GetBilling returns the Billing field value if set, zero value otherwise.
-func (o *Org) GetBilling() OrgBilling {
+func (o *Organization) GetBilling() OrganizationBilling {
 	if o == nil || o.Billing == nil {
-		var ret OrgBilling
+		var ret OrganizationBilling
 		return ret
 	}
 	return *o.Billing
@@ -55,7 +55,7 @@ func (o *Org) GetBilling() OrgBilling {
 
 // GetBillingOk returns a tuple with the Billing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetBillingOk() (*OrgBilling, bool) {
+func (o *Organization) GetBillingOk() (*OrganizationBilling, bool) {
 	if o == nil || o.Billing == nil {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *Org) GetBillingOk() (*OrgBilling, bool) {
 }
 
 // HasBilling returns a boolean if a field has been set.
-func (o *Org) HasBilling() bool {
+func (o *Organization) HasBilling() bool {
 	if o != nil && o.Billing != nil {
 		return true
 	}
@@ -71,13 +71,13 @@ func (o *Org) HasBilling() bool {
 	return false
 }
 
-// SetBilling gets a reference to the given OrgBilling and assigns it to the Billing field.
-func (o *Org) SetBilling(v OrgBilling) {
+// SetBilling gets a reference to the given OrganizationBilling and assigns it to the Billing field.
+func (o *Organization) SetBilling(v OrganizationBilling) {
 	o.Billing = &v
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
-func (o *Org) GetCreated() string {
+func (o *Organization) GetCreated() string {
 	if o == nil || o.Created == nil {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *Org) GetCreated() string {
 
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetCreatedOk() (*string, bool) {
+func (o *Organization) GetCreatedOk() (*string, bool) {
 	if o == nil || o.Created == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *Org) GetCreatedOk() (*string, bool) {
 }
 
 // HasCreated returns a boolean if a field has been set.
-func (o *Org) HasCreated() bool {
+func (o *Organization) HasCreated() bool {
 	if o != nil && o.Created != nil {
 		return true
 	}
@@ -104,12 +104,12 @@ func (o *Org) HasCreated() bool {
 }
 
 // SetCreated gets a reference to the given string and assigns it to the Created field.
-func (o *Org) SetCreated(v string) {
+func (o *Organization) SetCreated(v string) {
 	o.Created = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Org) GetDescription() string {
+func (o *Organization) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -119,7 +119,7 @@ func (o *Org) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetDescriptionOk() (*string, bool) {
+func (o *Organization) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *Org) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *Org) HasDescription() bool {
+func (o *Organization) HasDescription() bool {
 	if o != nil && o.Description != nil {
 		return true
 	}
@@ -136,12 +136,12 @@ func (o *Org) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Org) SetDescription(v string) {
+func (o *Organization) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Org) GetName() string {
+func (o *Organization) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -151,7 +151,7 @@ func (o *Org) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetNameOk() (*string, bool) {
+func (o *Organization) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -159,7 +159,7 @@ func (o *Org) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *Org) HasName() bool {
+func (o *Organization) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -168,12 +168,12 @@ func (o *Org) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Org) SetName(v string) {
+func (o *Organization) SetName(v string) {
 	o.Name = &v
 }
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
-func (o *Org) GetPublicId() string {
+func (o *Organization) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
 		var ret string
 		return ret
@@ -183,7 +183,7 @@ func (o *Org) GetPublicId() string {
 
 // GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetPublicIdOk() (*string, bool) {
+func (o *Organization) GetPublicIdOk() (*string, bool) {
 	if o == nil || o.PublicId == nil {
 		return nil, false
 	}
@@ -191,7 +191,7 @@ func (o *Org) GetPublicIdOk() (*string, bool) {
 }
 
 // HasPublicId returns a boolean if a field has been set.
-func (o *Org) HasPublicId() bool {
+func (o *Organization) HasPublicId() bool {
 	if o != nil && o.PublicId != nil {
 		return true
 	}
@@ -200,14 +200,14 @@ func (o *Org) HasPublicId() bool {
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
-func (o *Org) SetPublicId(v string) {
+func (o *Organization) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
-func (o *Org) GetSettings() OrgSettings {
+func (o *Organization) GetSettings() OrganizationSettings {
 	if o == nil || o.Settings == nil {
-		var ret OrgSettings
+		var ret OrganizationSettings
 		return ret
 	}
 	return *o.Settings
@@ -215,7 +215,7 @@ func (o *Org) GetSettings() OrgSettings {
 
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetSettingsOk() (*OrgSettings, bool) {
+func (o *Organization) GetSettingsOk() (*OrganizationSettings, bool) {
 	if o == nil || o.Settings == nil {
 		return nil, false
 	}
@@ -223,7 +223,7 @@ func (o *Org) GetSettingsOk() (*OrgSettings, bool) {
 }
 
 // HasSettings returns a boolean if a field has been set.
-func (o *Org) HasSettings() bool {
+func (o *Organization) HasSettings() bool {
 	if o != nil && o.Settings != nil {
 		return true
 	}
@@ -231,15 +231,15 @@ func (o *Org) HasSettings() bool {
 	return false
 }
 
-// SetSettings gets a reference to the given OrgSettings and assigns it to the Settings field.
-func (o *Org) SetSettings(v OrgSettings) {
+// SetSettings gets a reference to the given OrganizationSettings and assigns it to the Settings field.
+func (o *Organization) SetSettings(v OrganizationSettings) {
 	o.Settings = &v
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
-func (o *Org) GetSubscription() OrgSubscription {
+func (o *Organization) GetSubscription() OrganizationSubscription {
 	if o == nil || o.Subscription == nil {
-		var ret OrgSubscription
+		var ret OrganizationSubscription
 		return ret
 	}
 	return *o.Subscription
@@ -247,7 +247,7 @@ func (o *Org) GetSubscription() OrgSubscription {
 
 // GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetSubscriptionOk() (*OrgSubscription, bool) {
+func (o *Organization) GetSubscriptionOk() (*OrganizationSubscription, bool) {
 	if o == nil || o.Subscription == nil {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *Org) GetSubscriptionOk() (*OrgSubscription, bool) {
 }
 
 // HasSubscription returns a boolean if a field has been set.
-func (o *Org) HasSubscription() bool {
+func (o *Organization) HasSubscription() bool {
 	if o != nil && o.Subscription != nil {
 		return true
 	}
@@ -263,12 +263,12 @@ func (o *Org) HasSubscription() bool {
 	return false
 }
 
-// SetSubscription gets a reference to the given OrgSubscription and assigns it to the Subscription field.
-func (o *Org) SetSubscription(v OrgSubscription) {
+// SetSubscription gets a reference to the given OrganizationSubscription and assigns it to the Subscription field.
+func (o *Organization) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = &v
 }
 
-func (o Org) MarshalJSON() ([]byte, error) {
+func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Billing != nil {
 		toSerialize["billing"] = o.Billing
@@ -294,38 +294,38 @@ func (o Org) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrg struct {
-	value *Org
+type NullableOrganization struct {
+	value *Organization
 	isSet bool
 }
 
-func (v NullableOrg) Get() *Org {
+func (v NullableOrganization) Get() *Organization {
 	return v.value
 }
 
-func (v *NullableOrg) Set(val *Org) {
+func (v *NullableOrganization) Set(val *Organization) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrg) IsSet() bool {
+func (v NullableOrganization) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrg) Unset() {
+func (v *NullableOrganization) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrg(val *Org) *NullableOrg {
-	return &NullableOrg{value: val, isSet: true}
+func NewNullableOrganization(val *Organization) *NullableOrganization {
+	return &NullableOrganization{value: val, isSet: true}
 }
 
-func (v NullableOrg) MarshalJSON() ([]byte, error) {
+func (v NullableOrganization) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrg) UnmarshalJSON(src []byte) error {
+func (v *NullableOrganization) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

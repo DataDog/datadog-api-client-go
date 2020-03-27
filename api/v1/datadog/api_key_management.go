@@ -21,12 +21,12 @@ var (
 	_ _context.Context
 )
 
-// KeysApiService KeysApi service
-type KeysApiService service
+// KeyManagementApiService KeyManagementApi service
+type KeyManagementApiService service
 
 type apiCreateAPIKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	body       *ApiKey
 }
 
@@ -41,7 +41,7 @@ Creates an API key with a given name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateAPIKeyRequest
 */
-func (a *KeysApiService) CreateAPIKey(ctx _context.Context) apiCreateAPIKeyRequest {
+func (a *KeyManagementApiService) CreateAPIKey(ctx _context.Context) apiCreateAPIKeyRequest {
 	return apiCreateAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -62,7 +62,7 @@ func (r apiCreateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 		localVarReturnValue  ApiKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.CreateAPIKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.CreateAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -197,7 +197,7 @@ func (r apiCreateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 
 type apiCreateApplicationKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	body       *ApplicationKey
 }
 
@@ -212,7 +212,7 @@ Create an application key with a given name.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateApplicationKeyRequest
 */
-func (a *KeysApiService) CreateApplicationKey(ctx _context.Context) apiCreateApplicationKeyRequest {
+func (a *KeyManagementApiService) CreateApplicationKey(ctx _context.Context) apiCreateApplicationKeyRequest {
 	return apiCreateApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -233,7 +233,7 @@ func (r apiCreateApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 		localVarReturnValue  ApplicationKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.CreateApplicationKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.CreateApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -368,7 +368,7 @@ func (r apiCreateApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 
 type apiDeleteAPIKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	key        string
 }
 
@@ -379,7 +379,7 @@ Delete a given API key.
  * @param key The specific API key you are working with.
 @return apiDeleteAPIKeyRequest
 */
-func (a *KeysApiService) DeleteAPIKey(ctx _context.Context, key string) apiDeleteAPIKeyRequest {
+func (a *KeyManagementApiService) DeleteAPIKey(ctx _context.Context, key string) apiDeleteAPIKeyRequest {
 	return apiDeleteAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -401,7 +401,7 @@ func (r apiDeleteAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 		localVarReturnValue  ApiKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.DeleteAPIKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.DeleteAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -535,7 +535,7 @@ func (r apiDeleteAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 
 type apiDeleteApplicationKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	key        string
 }
 
@@ -546,7 +546,7 @@ Delete a given application key.
  * @param key The specific APP key you are working with.
 @return apiDeleteApplicationKeyRequest
 */
-func (a *KeysApiService) DeleteApplicationKey(ctx _context.Context, key string) apiDeleteApplicationKeyRequest {
+func (a *KeyManagementApiService) DeleteApplicationKey(ctx _context.Context, key string) apiDeleteApplicationKeyRequest {
 	return apiDeleteApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -568,7 +568,7 @@ func (r apiDeleteApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 		localVarReturnValue  ApplicationKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.DeleteApplicationKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.DeleteApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -702,7 +702,7 @@ func (r apiDeleteApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 
 type apiEditAPIKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	key        string
 	body       *ApiKey
 }
@@ -719,7 +719,7 @@ Edit an API key name.
  * @param key The specific API key you are working with.
 @return apiEditAPIKeyRequest
 */
-func (a *KeysApiService) EditAPIKey(ctx _context.Context, key string) apiEditAPIKeyRequest {
+func (a *KeyManagementApiService) EditAPIKey(ctx _context.Context, key string) apiEditAPIKeyRequest {
 	return apiEditAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -741,7 +741,7 @@ func (r apiEditAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, err
 		localVarReturnValue  ApiKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.EditAPIKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.EditAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -877,7 +877,7 @@ func (r apiEditAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, err
 
 type apiEditApplicationKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	key        string
 	body       *ApplicationKey
 }
@@ -894,7 +894,7 @@ Edit an application key name.
  * @param key The specific APP key you are working with.
 @return apiEditApplicationKeyRequest
 */
-func (a *KeysApiService) EditApplicationKey(ctx _context.Context, key string) apiEditApplicationKeyRequest {
+func (a *KeyManagementApiService) EditApplicationKey(ctx _context.Context, key string) apiEditApplicationKeyRequest {
 	return apiEditApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -916,7 +916,7 @@ func (r apiEditApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_netht
 		localVarReturnValue  ApplicationKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.EditApplicationKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.EditApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1052,7 +1052,7 @@ func (r apiEditApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_netht
 
 type apiGetAPIKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	key        string
 }
 
@@ -1063,7 +1063,7 @@ Get a given API key.
  * @param key The specific API key you are working with.
 @return apiGetAPIKeyRequest
 */
-func (a *KeysApiService) GetAPIKey(ctx _context.Context, key string) apiGetAPIKeyRequest {
+func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, key string) apiGetAPIKeyRequest {
 	return apiGetAPIKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1085,7 +1085,7 @@ func (r apiGetAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, erro
 		localVarReturnValue  ApiKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.GetAPIKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1219,7 +1219,7 @@ func (r apiGetAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, erro
 
 type apiGetAllAPIKeysRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 }
 
 /*
@@ -1228,7 +1228,7 @@ Get all API keys available for your account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllAPIKeysRequest
 */
-func (a *KeysApiService) GetAllAPIKeys(ctx _context.Context) apiGetAllAPIKeysRequest {
+func (a *KeyManagementApiService) GetAllAPIKeys(ctx _context.Context) apiGetAllAPIKeysRequest {
 	return apiGetAllAPIKeysRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1249,7 +1249,7 @@ func (r apiGetAllAPIKeysRequest) Execute() (ApiKeyListResponse, *_nethttp.Respon
 		localVarReturnValue  ApiKeyListResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.GetAllAPIKeys")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetAllAPIKeys")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1372,7 +1372,7 @@ func (r apiGetAllAPIKeysRequest) Execute() (ApiKeyListResponse, *_nethttp.Respon
 
 type apiGetAllApplicationKeysRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 }
 
 /*
@@ -1381,7 +1381,7 @@ Get all application keys available for your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllApplicationKeysRequest
 */
-func (a *KeysApiService) GetAllApplicationKeys(ctx _context.Context) apiGetAllApplicationKeysRequest {
+func (a *KeyManagementApiService) GetAllApplicationKeys(ctx _context.Context) apiGetAllApplicationKeysRequest {
 	return apiGetAllApplicationKeysRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1402,7 +1402,7 @@ func (r apiGetAllApplicationKeysRequest) Execute() (ApplicationKeyListResponse, 
 		localVarReturnValue  ApplicationKeyListResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.GetAllApplicationKeys")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetAllApplicationKeys")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1525,7 +1525,7 @@ func (r apiGetAllApplicationKeysRequest) Execute() (ApplicationKeyListResponse, 
 
 type apiGetApplicationKeyRequest struct {
 	ctx        _context.Context
-	apiService *KeysApiService
+	apiService *KeyManagementApiService
 	key        string
 }
 
@@ -1536,7 +1536,7 @@ Get a given application key.
  * @param key The specific APP key you are working with.
 @return apiGetApplicationKeyRequest
 */
-func (a *KeysApiService) GetApplicationKey(ctx _context.Context, key string) apiGetApplicationKeyRequest {
+func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, key string) apiGetApplicationKeyRequest {
 	return apiGetApplicationKeyRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -1558,7 +1558,7 @@ func (r apiGetApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_nethtt
 		localVarReturnValue  ApplicationKeyResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeysApiService.GetApplicationKey")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

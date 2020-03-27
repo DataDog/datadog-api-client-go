@@ -1,4 +1,4 @@
-# OrgBilling
+# OrganizationSubscription
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewOrgBilling
+### NewOrganizationSubscription
 
-`func NewOrgBilling() *OrgBilling`
+`func NewOrganizationSubscription() *OrganizationSubscription`
 
-NewOrgBilling instantiates a new OrgBilling object
+NewOrganizationSubscription instantiates a new OrganizationSubscription object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrgBillingWithDefaults
+### NewOrganizationSubscriptionWithDefaults
 
-`func NewOrgBillingWithDefaults() *OrgBilling`
+`func NewOrganizationSubscriptionWithDefaults() *OrganizationSubscription`
 
-NewOrgBillingWithDefaults instantiates a new OrgBilling object
+NewOrganizationSubscriptionWithDefaults instantiates a new OrganizationSubscription object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *OrgBilling) GetType() string`
+`func (o *OrganizationSubscription) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *OrgBilling) GetTypeOk() (*string, bool)`
+`func (o *OrganizationSubscription) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *OrgBilling) SetType(v string)`
+`func (o *OrganizationSubscription) SetType(v string)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *OrgBilling) HasType() bool`
+`func (o *OrganizationSubscription) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 

@@ -1,19 +1,19 @@
-# \OrgsApi
+# \OrganizationsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateChildOrg**](OrgsApi.md#CreateChildOrg) | **Post** /api/v1/org | Create a child organization
-[**GetOrg**](OrgsApi.md#GetOrg) | **Get** /api/v1/org | Get organization information
-[**UpdateOrg**](OrgsApi.md#UpdateOrg) | **Put** /api/v1/org/{public_id} | Update your organization
-[**UploadIdPForOrg**](OrgsApi.md#UploadIdPForOrg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
+[**CreateChildOrg**](OrganizationsApi.md#CreateChildOrg) | **Post** /api/v1/org | Create a child organization
+[**GetOrg**](OrganizationsApi.md#GetOrg) | **Get** /api/v1/org | Get organization information
+[**UpdateOrg**](OrganizationsApi.md#UpdateOrg) | **Put** /api/v1/org/{public_id} | Update your organization
+[**UploadIdPForOrg**](OrganizationsApi.md#UploadIdPForOrg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 
 
 
 ## CreateChildOrg
 
-> OrgCreateResponse CreateChildOrg(ctx).Body(body).Execute()
+> OrganizationCreateResponse CreateChildOrg(ctx).Body(body).Execute()
 
 Create a child organization
 
@@ -30,11 +30,11 @@ Other parameters are passed through a pointer to a apiCreateChildOrgRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OrgCreateBody**](OrgCreateBody.md) | Org object that needs to be created | 
+ **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Org object that needs to be created | 
 
 ### Return type
 
-[**OrgCreateResponse**](OrgCreateResponse.md)
+[**OrganizationCreateResponse**](OrganizationCreateResponse.md)
 
 ### Authorization
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ## GetOrg
 
-> OrgListResponse GetOrg(ctx).Execute()
+> OrganizationListResponse GetOrg(ctx).Execute()
 
 Get organization information
 
@@ -69,7 +69,7 @@ Other parameters are passed through a pointer to a apiGetOrgRequest struct via t
 
 ### Return type
 
-[**OrgListResponse**](OrgListResponse.md)
+[**OrganizationListResponse**](OrganizationListResponse.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Other parameters are passed through a pointer to a apiGetOrgRequest struct via t
 
 ## UpdateOrg
 
-> OrgResponse UpdateOrg(ctx, publicId).Body(body).Execute()
+> OrganizationResponse UpdateOrg(ctx, publicId).Body(body).Execute()
 
 Update your organization
 
@@ -109,11 +109,11 @@ Other parameters are passed through a pointer to a apiUpdateOrgRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Org**](Org.md) |  | 
+ **body** | [**Organization**](Organization.md) |  | 
 
 ### Return type
 
-[**OrgResponse**](OrgResponse.md)
+[**OrganizationResponse**](OrganizationResponse.md)
 
 ### Authorization
 
