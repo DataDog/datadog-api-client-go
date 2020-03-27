@@ -39,7 +39,7 @@ func TestUsageFargate(t *testing.T) {
 	defer teardownTest(t)
 
 	startHr, endHr := getStartEndHr()
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageFargate(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageFargate(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Fargate: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -53,7 +53,7 @@ func TestUsageHosts(t *testing.T) {
 	defer teardownTest(t)
 
 	startHr, endHr := getStartEndHr()
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageHosts(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageHosts(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -67,7 +67,7 @@ func TestUsageLogs(t *testing.T) {
 	defer teardownTest(t)
 
 	startHr, endHr := getStartEndHr()
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageLogs(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageLogs(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -81,7 +81,7 @@ func TestUsageSynthetics(t *testing.T) {
 	defer teardownTest(t)
 
 	startHr, endHr := getStartEndHr()
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageSynthetics(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageSynthetics(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Synthetics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -95,7 +95,7 @@ func TestUsageTimeseries(t *testing.T) {
 	defer teardownTest(t)
 
 	startHr, endHr := getStartEndHr()
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageTimeseries(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageTimeseries(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Timeseries: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -108,7 +108,7 @@ func TestUsageTopAvgMetrics(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageTopAvgMetrics(TESTAUTH).Month(TESTCLOCK.Now()).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageTopAvgMetrics(TESTAUTH).Month(TESTCLOCK.Now()).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Avg Metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -122,7 +122,7 @@ func TestUsageTrace(t *testing.T) {
 	defer teardownTest(t)
 
 	startHr, endHr := getStartEndHr()
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageTrace(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageTrace(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Trace: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -162,7 +162,7 @@ func TestUsageSummary(t *testing.T) {
 	var expected datadog.UsageSummaryResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := TESTAPICLIENT.UsageApi
+	api := TESTAPICLIENT.UsageMeteringApi
 	usage, httpresp, err := api.GetUsageSummary(TESTAUTH).StartMonth(startMonth).EndMonth(endMonth).IncludeOrgDetails(includeOrgDetails).Execute()
 	if err != nil {
 		t.Errorf("Failed to get Usage Summary: %v", err)

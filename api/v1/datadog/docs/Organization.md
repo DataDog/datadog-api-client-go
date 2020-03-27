@@ -1,208 +1,208 @@
-# Org
+# Organization
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Billing** | Pointer to [**OrgBilling**](Org_billing.md) |  | [optional] 
+**Billing** | Pointer to [**OrganizationBilling**](Organization_billing.md) |  | [optional] 
 **Created** | Pointer to **string** | Date of the organization creation. | [optional] [readonly] 
 **Description** | Pointer to **string** | Description of the organization. | [optional] 
 **Name** | Pointer to **string** | The name of the new child-organization, limited to 32 characters. | [optional] 
 **PublicId** | Pointer to **string** | The public_id of the org you are operating within. | [optional] 
-**Settings** | Pointer to [**OrgSettings**](Org_settings.md) |  | [optional] 
-**Subscription** | Pointer to [**OrgSubscription**](Org_subscription.md) |  | [optional] 
+**Settings** | Pointer to [**OrganizationSettings**](Organization_settings.md) |  | [optional] 
+**Subscription** | Pointer to [**OrganizationSubscription**](Organization_subscription.md) |  | [optional] 
 
 ## Methods
 
-### NewOrg
+### NewOrganization
 
-`func NewOrg() *Org`
+`func NewOrganization() *Organization`
 
-NewOrg instantiates a new Org object
+NewOrganization instantiates a new Organization object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrgWithDefaults
+### NewOrganizationWithDefaults
 
-`func NewOrgWithDefaults() *Org`
+`func NewOrganizationWithDefaults() *Organization`
 
-NewOrgWithDefaults instantiates a new Org object
+NewOrganizationWithDefaults instantiates a new Organization object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetBilling
 
-`func (o *Org) GetBilling() OrgBilling`
+`func (o *Organization) GetBilling() OrganizationBilling`
 
 GetBilling returns the Billing field if non-nil, zero value otherwise.
 
 ### GetBillingOk
 
-`func (o *Org) GetBillingOk() (*OrgBilling, bool)`
+`func (o *Organization) GetBillingOk() (*OrganizationBilling, bool)`
 
 GetBillingOk returns a tuple with the Billing field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBilling
 
-`func (o *Org) SetBilling(v OrgBilling)`
+`func (o *Organization) SetBilling(v OrganizationBilling)`
 
 SetBilling sets Billing field to given value.
 
 ### HasBilling
 
-`func (o *Org) HasBilling() bool`
+`func (o *Organization) HasBilling() bool`
 
 HasBilling returns a boolean if a field has been set.
 
 ### GetCreated
 
-`func (o *Org) GetCreated() string`
+`func (o *Organization) GetCreated() string`
 
 GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *Org) GetCreatedOk() (*string, bool)`
+`func (o *Organization) GetCreatedOk() (*string, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreated
 
-`func (o *Org) SetCreated(v string)`
+`func (o *Organization) SetCreated(v string)`
 
 SetCreated sets Created field to given value.
 
 ### HasCreated
 
-`func (o *Org) HasCreated() bool`
+`func (o *Organization) HasCreated() bool`
 
 HasCreated returns a boolean if a field has been set.
 
 ### GetDescription
 
-`func (o *Org) GetDescription() string`
+`func (o *Organization) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *Org) GetDescriptionOk() (*string, bool)`
+`func (o *Organization) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *Org) SetDescription(v string)`
+`func (o *Organization) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *Org) HasDescription() bool`
+`func (o *Organization) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *Org) GetName() string`
+`func (o *Organization) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *Org) GetNameOk() (*string, bool)`
+`func (o *Organization) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *Org) SetName(v string)`
+`func (o *Organization) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *Org) HasName() bool`
+`func (o *Organization) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetPublicId
 
-`func (o *Org) GetPublicId() string`
+`func (o *Organization) GetPublicId() string`
 
 GetPublicId returns the PublicId field if non-nil, zero value otherwise.
 
 ### GetPublicIdOk
 
-`func (o *Org) GetPublicIdOk() (*string, bool)`
+`func (o *Organization) GetPublicIdOk() (*string, bool)`
 
 GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPublicId
 
-`func (o *Org) SetPublicId(v string)`
+`func (o *Organization) SetPublicId(v string)`
 
 SetPublicId sets PublicId field to given value.
 
 ### HasPublicId
 
-`func (o *Org) HasPublicId() bool`
+`func (o *Organization) HasPublicId() bool`
 
 HasPublicId returns a boolean if a field has been set.
 
 ### GetSettings
 
-`func (o *Org) GetSettings() OrgSettings`
+`func (o *Organization) GetSettings() OrganizationSettings`
 
 GetSettings returns the Settings field if non-nil, zero value otherwise.
 
 ### GetSettingsOk
 
-`func (o *Org) GetSettingsOk() (*OrgSettings, bool)`
+`func (o *Organization) GetSettingsOk() (*OrganizationSettings, bool)`
 
 GetSettingsOk returns a tuple with the Settings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSettings
 
-`func (o *Org) SetSettings(v OrgSettings)`
+`func (o *Organization) SetSettings(v OrganizationSettings)`
 
 SetSettings sets Settings field to given value.
 
 ### HasSettings
 
-`func (o *Org) HasSettings() bool`
+`func (o *Organization) HasSettings() bool`
 
 HasSettings returns a boolean if a field has been set.
 
 ### GetSubscription
 
-`func (o *Org) GetSubscription() OrgSubscription`
+`func (o *Organization) GetSubscription() OrganizationSubscription`
 
 GetSubscription returns the Subscription field if non-nil, zero value otherwise.
 
 ### GetSubscriptionOk
 
-`func (o *Org) GetSubscriptionOk() (*OrgSubscription, bool)`
+`func (o *Organization) GetSubscriptionOk() (*OrganizationSubscription, bool)`
 
 GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscription
 
-`func (o *Org) SetSubscription(v OrgSubscription)`
+`func (o *Organization) SetSubscription(v OrganizationSubscription)`
 
 SetSubscription sets Subscription field to given value.
 
 ### HasSubscription
 
-`func (o *Org) HasSubscription() bool`
+`func (o *Organization) HasSubscription() bool`
 
 HasSubscription returns a boolean if a field has been set.
 

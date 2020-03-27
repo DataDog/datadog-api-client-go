@@ -1,286 +1,286 @@
-# OrgSettings
+# OrganizationSettings
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrivateWidgetShare** | Pointer to **bool** | Whether or not the organization users can share widgets outside of Datadog. | [optional] 
-**Saml** | Pointer to [**OrgSettingsSaml**](Org_settings_saml.md) |  | [optional] 
+**Saml** | Pointer to [**OrganizationSettingsSaml**](Organization_settings_saml.md) |  | [optional] 
 **SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to "st"]
-**SamlAutocreateUsersDomains** | Pointer to [**OrgSettingsSamlAutocreateUsersDomains**](Org_settings_saml_autocreate_users_domains.md) |  | [optional] 
+**SamlAutocreateUsersDomains** | Pointer to [**OrganizationSettingsSamlAutocreateUsersDomains**](Organization_settings_saml_autocreate_users_domains.md) |  | [optional] 
 **SamlCanBeEnabled** | Pointer to **bool** | Whether or not SAML can be enabled for this organization. | [optional] 
 **SamlIdpEndpoint** | Pointer to **string** | Identity provider endpoint for SAML authentication. | [optional] 
-**SamlIdpInitiatedLogin** | Pointer to [**OrgSettingsSamlIdpInitiatedLogin**](Org_settings_saml_idp_initiated_login.md) |  | [optional] 
+**SamlIdpInitiatedLogin** | Pointer to [**OrganizationSettingsSamlIdpInitiatedLogin**](Organization_settings_saml_idp_initiated_login.md) |  | [optional] 
 **SamlIdpMetadataUploaded** | Pointer to **bool** | Whether or not a SAML identity provider metadata file was provided to the Datadog organization. | [optional] 
 **SamlLoginUrl** | Pointer to **string** | URL for SAML loging. | [optional] 
-**SamlStrictMode** | Pointer to [**OrgSettingsSamlIdpInitiatedLogin**](Org_settings_saml_idp_initiated_login.md) |  | [optional] 
+**SamlStrictMode** | Pointer to [**OrganizationSettingsSamlIdpInitiatedLogin**](Organization_settings_saml_idp_initiated_login.md) |  | [optional] 
 
 ## Methods
 
-### NewOrgSettings
+### NewOrganizationSettings
 
-`func NewOrgSettings() *OrgSettings`
+`func NewOrganizationSettings() *OrganizationSettings`
 
-NewOrgSettings instantiates a new OrgSettings object
+NewOrganizationSettings instantiates a new OrganizationSettings object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrgSettingsWithDefaults
+### NewOrganizationSettingsWithDefaults
 
-`func NewOrgSettingsWithDefaults() *OrgSettings`
+`func NewOrganizationSettingsWithDefaults() *OrganizationSettings`
 
-NewOrgSettingsWithDefaults instantiates a new OrgSettings object
+NewOrganizationSettingsWithDefaults instantiates a new OrganizationSettings object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetPrivateWidgetShare
 
-`func (o *OrgSettings) GetPrivateWidgetShare() bool`
+`func (o *OrganizationSettings) GetPrivateWidgetShare() bool`
 
 GetPrivateWidgetShare returns the PrivateWidgetShare field if non-nil, zero value otherwise.
 
 ### GetPrivateWidgetShareOk
 
-`func (o *OrgSettings) GetPrivateWidgetShareOk() (*bool, bool)`
+`func (o *OrganizationSettings) GetPrivateWidgetShareOk() (*bool, bool)`
 
 GetPrivateWidgetShareOk returns a tuple with the PrivateWidgetShare field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrivateWidgetShare
 
-`func (o *OrgSettings) SetPrivateWidgetShare(v bool)`
+`func (o *OrganizationSettings) SetPrivateWidgetShare(v bool)`
 
 SetPrivateWidgetShare sets PrivateWidgetShare field to given value.
 
 ### HasPrivateWidgetShare
 
-`func (o *OrgSettings) HasPrivateWidgetShare() bool`
+`func (o *OrganizationSettings) HasPrivateWidgetShare() bool`
 
 HasPrivateWidgetShare returns a boolean if a field has been set.
 
 ### GetSaml
 
-`func (o *OrgSettings) GetSaml() OrgSettingsSaml`
+`func (o *OrganizationSettings) GetSaml() OrganizationSettingsSaml`
 
 GetSaml returns the Saml field if non-nil, zero value otherwise.
 
 ### GetSamlOk
 
-`func (o *OrgSettings) GetSamlOk() (*OrgSettingsSaml, bool)`
+`func (o *OrganizationSettings) GetSamlOk() (*OrganizationSettingsSaml, bool)`
 
 GetSamlOk returns a tuple with the Saml field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSaml
 
-`func (o *OrgSettings) SetSaml(v OrgSettingsSaml)`
+`func (o *OrganizationSettings) SetSaml(v OrganizationSettingsSaml)`
 
 SetSaml sets Saml field to given value.
 
 ### HasSaml
 
-`func (o *OrgSettings) HasSaml() bool`
+`func (o *OrganizationSettings) HasSaml() bool`
 
 HasSaml returns a boolean if a field has been set.
 
 ### GetSamlAutocreateAccessRole
 
-`func (o *OrgSettings) GetSamlAutocreateAccessRole() AccessRole`
+`func (o *OrganizationSettings) GetSamlAutocreateAccessRole() AccessRole`
 
 GetSamlAutocreateAccessRole returns the SamlAutocreateAccessRole field if non-nil, zero value otherwise.
 
 ### GetSamlAutocreateAccessRoleOk
 
-`func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (*AccessRole, bool)`
+`func (o *OrganizationSettings) GetSamlAutocreateAccessRoleOk() (*AccessRole, bool)`
 
 GetSamlAutocreateAccessRoleOk returns a tuple with the SamlAutocreateAccessRole field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlAutocreateAccessRole
 
-`func (o *OrgSettings) SetSamlAutocreateAccessRole(v AccessRole)`
+`func (o *OrganizationSettings) SetSamlAutocreateAccessRole(v AccessRole)`
 
 SetSamlAutocreateAccessRole sets SamlAutocreateAccessRole field to given value.
 
 ### HasSamlAutocreateAccessRole
 
-`func (o *OrgSettings) HasSamlAutocreateAccessRole() bool`
+`func (o *OrganizationSettings) HasSamlAutocreateAccessRole() bool`
 
 HasSamlAutocreateAccessRole returns a boolean if a field has been set.
 
 ### GetSamlAutocreateUsersDomains
 
-`func (o *OrgSettings) GetSamlAutocreateUsersDomains() OrgSettingsSamlAutocreateUsersDomains`
+`func (o *OrganizationSettings) GetSamlAutocreateUsersDomains() OrganizationSettingsSamlAutocreateUsersDomains`
 
 GetSamlAutocreateUsersDomains returns the SamlAutocreateUsersDomains field if non-nil, zero value otherwise.
 
 ### GetSamlAutocreateUsersDomainsOk
 
-`func (o *OrgSettings) GetSamlAutocreateUsersDomainsOk() (*OrgSettingsSamlAutocreateUsersDomains, bool)`
+`func (o *OrganizationSettings) GetSamlAutocreateUsersDomainsOk() (*OrganizationSettingsSamlAutocreateUsersDomains, bool)`
 
 GetSamlAutocreateUsersDomainsOk returns a tuple with the SamlAutocreateUsersDomains field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlAutocreateUsersDomains
 
-`func (o *OrgSettings) SetSamlAutocreateUsersDomains(v OrgSettingsSamlAutocreateUsersDomains)`
+`func (o *OrganizationSettings) SetSamlAutocreateUsersDomains(v OrganizationSettingsSamlAutocreateUsersDomains)`
 
 SetSamlAutocreateUsersDomains sets SamlAutocreateUsersDomains field to given value.
 
 ### HasSamlAutocreateUsersDomains
 
-`func (o *OrgSettings) HasSamlAutocreateUsersDomains() bool`
+`func (o *OrganizationSettings) HasSamlAutocreateUsersDomains() bool`
 
 HasSamlAutocreateUsersDomains returns a boolean if a field has been set.
 
 ### GetSamlCanBeEnabled
 
-`func (o *OrgSettings) GetSamlCanBeEnabled() bool`
+`func (o *OrganizationSettings) GetSamlCanBeEnabled() bool`
 
 GetSamlCanBeEnabled returns the SamlCanBeEnabled field if non-nil, zero value otherwise.
 
 ### GetSamlCanBeEnabledOk
 
-`func (o *OrgSettings) GetSamlCanBeEnabledOk() (*bool, bool)`
+`func (o *OrganizationSettings) GetSamlCanBeEnabledOk() (*bool, bool)`
 
 GetSamlCanBeEnabledOk returns a tuple with the SamlCanBeEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlCanBeEnabled
 
-`func (o *OrgSettings) SetSamlCanBeEnabled(v bool)`
+`func (o *OrganizationSettings) SetSamlCanBeEnabled(v bool)`
 
 SetSamlCanBeEnabled sets SamlCanBeEnabled field to given value.
 
 ### HasSamlCanBeEnabled
 
-`func (o *OrgSettings) HasSamlCanBeEnabled() bool`
+`func (o *OrganizationSettings) HasSamlCanBeEnabled() bool`
 
 HasSamlCanBeEnabled returns a boolean if a field has been set.
 
 ### GetSamlIdpEndpoint
 
-`func (o *OrgSettings) GetSamlIdpEndpoint() string`
+`func (o *OrganizationSettings) GetSamlIdpEndpoint() string`
 
 GetSamlIdpEndpoint returns the SamlIdpEndpoint field if non-nil, zero value otherwise.
 
 ### GetSamlIdpEndpointOk
 
-`func (o *OrgSettings) GetSamlIdpEndpointOk() (*string, bool)`
+`func (o *OrganizationSettings) GetSamlIdpEndpointOk() (*string, bool)`
 
 GetSamlIdpEndpointOk returns a tuple with the SamlIdpEndpoint field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlIdpEndpoint
 
-`func (o *OrgSettings) SetSamlIdpEndpoint(v string)`
+`func (o *OrganizationSettings) SetSamlIdpEndpoint(v string)`
 
 SetSamlIdpEndpoint sets SamlIdpEndpoint field to given value.
 
 ### HasSamlIdpEndpoint
 
-`func (o *OrgSettings) HasSamlIdpEndpoint() bool`
+`func (o *OrganizationSettings) HasSamlIdpEndpoint() bool`
 
 HasSamlIdpEndpoint returns a boolean if a field has been set.
 
 ### GetSamlIdpInitiatedLogin
 
-`func (o *OrgSettings) GetSamlIdpInitiatedLogin() OrgSettingsSamlIdpInitiatedLogin`
+`func (o *OrganizationSettings) GetSamlIdpInitiatedLogin() OrganizationSettingsSamlIdpInitiatedLogin`
 
 GetSamlIdpInitiatedLogin returns the SamlIdpInitiatedLogin field if non-nil, zero value otherwise.
 
 ### GetSamlIdpInitiatedLoginOk
 
-`func (o *OrgSettings) GetSamlIdpInitiatedLoginOk() (*OrgSettingsSamlIdpInitiatedLogin, bool)`
+`func (o *OrganizationSettings) GetSamlIdpInitiatedLoginOk() (*OrganizationSettingsSamlIdpInitiatedLogin, bool)`
 
 GetSamlIdpInitiatedLoginOk returns a tuple with the SamlIdpInitiatedLogin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlIdpInitiatedLogin
 
-`func (o *OrgSettings) SetSamlIdpInitiatedLogin(v OrgSettingsSamlIdpInitiatedLogin)`
+`func (o *OrganizationSettings) SetSamlIdpInitiatedLogin(v OrganizationSettingsSamlIdpInitiatedLogin)`
 
 SetSamlIdpInitiatedLogin sets SamlIdpInitiatedLogin field to given value.
 
 ### HasSamlIdpInitiatedLogin
 
-`func (o *OrgSettings) HasSamlIdpInitiatedLogin() bool`
+`func (o *OrganizationSettings) HasSamlIdpInitiatedLogin() bool`
 
 HasSamlIdpInitiatedLogin returns a boolean if a field has been set.
 
 ### GetSamlIdpMetadataUploaded
 
-`func (o *OrgSettings) GetSamlIdpMetadataUploaded() bool`
+`func (o *OrganizationSettings) GetSamlIdpMetadataUploaded() bool`
 
 GetSamlIdpMetadataUploaded returns the SamlIdpMetadataUploaded field if non-nil, zero value otherwise.
 
 ### GetSamlIdpMetadataUploadedOk
 
-`func (o *OrgSettings) GetSamlIdpMetadataUploadedOk() (*bool, bool)`
+`func (o *OrganizationSettings) GetSamlIdpMetadataUploadedOk() (*bool, bool)`
 
 GetSamlIdpMetadataUploadedOk returns a tuple with the SamlIdpMetadataUploaded field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlIdpMetadataUploaded
 
-`func (o *OrgSettings) SetSamlIdpMetadataUploaded(v bool)`
+`func (o *OrganizationSettings) SetSamlIdpMetadataUploaded(v bool)`
 
 SetSamlIdpMetadataUploaded sets SamlIdpMetadataUploaded field to given value.
 
 ### HasSamlIdpMetadataUploaded
 
-`func (o *OrgSettings) HasSamlIdpMetadataUploaded() bool`
+`func (o *OrganizationSettings) HasSamlIdpMetadataUploaded() bool`
 
 HasSamlIdpMetadataUploaded returns a boolean if a field has been set.
 
 ### GetSamlLoginUrl
 
-`func (o *OrgSettings) GetSamlLoginUrl() string`
+`func (o *OrganizationSettings) GetSamlLoginUrl() string`
 
 GetSamlLoginUrl returns the SamlLoginUrl field if non-nil, zero value otherwise.
 
 ### GetSamlLoginUrlOk
 
-`func (o *OrgSettings) GetSamlLoginUrlOk() (*string, bool)`
+`func (o *OrganizationSettings) GetSamlLoginUrlOk() (*string, bool)`
 
 GetSamlLoginUrlOk returns a tuple with the SamlLoginUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlLoginUrl
 
-`func (o *OrgSettings) SetSamlLoginUrl(v string)`
+`func (o *OrganizationSettings) SetSamlLoginUrl(v string)`
 
 SetSamlLoginUrl sets SamlLoginUrl field to given value.
 
 ### HasSamlLoginUrl
 
-`func (o *OrgSettings) HasSamlLoginUrl() bool`
+`func (o *OrganizationSettings) HasSamlLoginUrl() bool`
 
 HasSamlLoginUrl returns a boolean if a field has been set.
 
 ### GetSamlStrictMode
 
-`func (o *OrgSettings) GetSamlStrictMode() OrgSettingsSamlIdpInitiatedLogin`
+`func (o *OrganizationSettings) GetSamlStrictMode() OrganizationSettingsSamlIdpInitiatedLogin`
 
 GetSamlStrictMode returns the SamlStrictMode field if non-nil, zero value otherwise.
 
 ### GetSamlStrictModeOk
 
-`func (o *OrgSettings) GetSamlStrictModeOk() (*OrgSettingsSamlIdpInitiatedLogin, bool)`
+`func (o *OrganizationSettings) GetSamlStrictModeOk() (*OrganizationSettingsSamlIdpInitiatedLogin, bool)`
 
 GetSamlStrictModeOk returns a tuple with the SamlStrictMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlStrictMode
 
-`func (o *OrgSettings) SetSamlStrictMode(v OrgSettingsSamlIdpInitiatedLogin)`
+`func (o *OrganizationSettings) SetSamlStrictMode(v OrganizationSettingsSamlIdpInitiatedLogin)`
 
 SetSamlStrictMode sets SamlStrictMode field to given value.
 
 ### HasSamlStrictMode
 
-`func (o *OrgSettings) HasSamlStrictMode() bool`
+`func (o *OrganizationSettings) HasSamlStrictMode() bool`
 
 HasSamlStrictMode returns a boolean if a field has been set.
 

@@ -1,52 +1,52 @@
-# OrgListResponse
+# OrganizationListResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Orgs** | Pointer to [**[]Org**](Org.md) |  | [optional] 
+**Orgs** | Pointer to [**[]Organization**](Organization.md) |  | [optional] 
 
 ## Methods
 
-### NewOrgListResponse
+### NewOrganizationListResponse
 
-`func NewOrgListResponse() *OrgListResponse`
+`func NewOrganizationListResponse() *OrganizationListResponse`
 
-NewOrgListResponse instantiates a new OrgListResponse object
+NewOrganizationListResponse instantiates a new OrganizationListResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrgListResponseWithDefaults
+### NewOrganizationListResponseWithDefaults
 
-`func NewOrgListResponseWithDefaults() *OrgListResponse`
+`func NewOrganizationListResponseWithDefaults() *OrganizationListResponse`
 
-NewOrgListResponseWithDefaults instantiates a new OrgListResponse object
+NewOrganizationListResponseWithDefaults instantiates a new OrganizationListResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetOrgs
 
-`func (o *OrgListResponse) GetOrgs() []Org`
+`func (o *OrganizationListResponse) GetOrgs() []Organization`
 
 GetOrgs returns the Orgs field if non-nil, zero value otherwise.
 
 ### GetOrgsOk
 
-`func (o *OrgListResponse) GetOrgsOk() (*[]Org, bool)`
+`func (o *OrganizationListResponse) GetOrgsOk() (*[]Organization, bool)`
 
 GetOrgsOk returns a tuple with the Orgs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrgs
 
-`func (o *OrgListResponse) SetOrgs(v []Org)`
+`func (o *OrganizationListResponse) SetOrgs(v []Organization)`
 
 SetOrgs sets Orgs field to given value.
 
 ### HasOrgs
 
-`func (o *OrgListResponse) HasOrgs() bool`
+`func (o *OrganizationListResponse) HasOrgs() bool`
 
 HasOrgs returns a boolean if a field has been set.
 

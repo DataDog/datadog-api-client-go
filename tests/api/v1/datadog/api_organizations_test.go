@@ -24,12 +24,12 @@ func TestGetOrg(t *testing.T) {
 	defer gock.Off()
 
 	// Setup fixture data
-	var orgsFixture datadog.OrgListResponse
+	var orgsFixture datadog.OrganizationListResponse
 	json.Unmarshal(setupGock(t, "orgs/org_get.json", "get", "/org"), &orgsFixture)
 	orgFixture := orgsFixture.GetOrgs()[0]
 
 	// Get mocked request data
-	orgs, _, err := TESTAPICLIENT.OrgsApi.GetOrg(TESTAUTH).Execute()
+	orgs, _, err := TESTAPICLIENT.OrganizationsApi.GetOrg(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Failed to Get the test org %s", err)
 	}
@@ -56,17 +56,17 @@ func TestCreateOrg(t *testing.T) {
 	defer gock.Off()
 
 	// Setup fixture data
-	var orgsFixture datadog.OrgCreateResponse
+	var orgsFixture datadog.OrganizationCreateResponse
 	json.Unmarshal(setupGock(t, "orgs/org_create.json", "post", "/org"), &orgsFixture)
 	orgCreateBody := orgsFixture.GetOrg()
 
 	// Get mocked request data
-	createBody := datadog.OrgCreateBody{
+	createBody := datadog.OrganizationCreateBody{
 		Name: orgCreateBody.GetName(),
 	}
 	createBody.SetSubscription(orgCreateBody.GetSubscription())
 	createBody.SetBilling(orgCreateBody.GetBilling())
-	getOrgResp, _, err := TESTAPICLIENT.OrgsApi.CreateChildOrg(TESTAUTH).Body(createBody).Execute()
+	getOrgResp, _, err := TESTAPICLIENT.OrganizationsApi.CreateChildOrg(TESTAUTH).Body(createBody).Execute()
 	if err != nil {
 		t.Errorf("Failed to create the test org %s", err)
 	}
@@ -114,11 +114,11 @@ func TestUpdateOrg(t *testing.T) {
 	defer gock.Off()
 
 	// Setup fixture data
-	var orgsFixture datadog.OrgResponse
+	var orgsFixture datadog.OrganizationResponse
 	json.Unmarshal(setupGock(t, "orgs/org_update.json", "put", "/org"), &orgsFixture)
 
 	// Get mocked request data
-	updateOrgResp, _, err := TESTAPICLIENT.OrgsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId).Body(datadog.Org{Settings: orgsFixture.GetOrg().Settings}).Execute()
+	updateOrgResp, _, err := TESTAPICLIENT.OrganizationsApi.UpdateOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId).Body(datadog.Organization{Settings: orgsFixture.GetOrg().Settings}).Execute()
 	if err != nil {
 		t.Errorf("Failed to update the test org %s", err)
 	}
@@ -169,7 +169,7 @@ func TestUploadOrgIdpMeta(t *testing.T) {
 	// Get empty file object. This fixture doesn't exist since we don't need it to.
 	file, _ := os.Open("test_go/idp_data.xml")
 
-	idpResp, _, err := TESTAPICLIENT.OrgsApi.UploadIdPForOrg(TESTAUTH, orgPubID).IdpFile(file).Execute()
+	idpResp, _, err := TESTAPICLIENT.OrganizationsApi.UploadIdPForOrg(TESTAUTH, orgPubID).IdpFile(file).Execute()
 	if err != nil {
 		t.Fatalf("Failed to update the test org's IDP meta %s", err)
 	}

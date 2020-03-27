@@ -1,52 +1,52 @@
-# OrgResponse
+# OrganizationResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Org** | Pointer to [**Org**](Org.md) |  | [optional] 
+**Org** | Pointer to [**Organization**](Organization.md) |  | [optional] 
 
 ## Methods
 
-### NewOrgResponse
+### NewOrganizationResponse
 
-`func NewOrgResponse() *OrgResponse`
+`func NewOrganizationResponse() *OrganizationResponse`
 
-NewOrgResponse instantiates a new OrgResponse object
+NewOrganizationResponse instantiates a new OrganizationResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrgResponseWithDefaults
+### NewOrganizationResponseWithDefaults
 
-`func NewOrgResponseWithDefaults() *OrgResponse`
+`func NewOrganizationResponseWithDefaults() *OrganizationResponse`
 
-NewOrgResponseWithDefaults instantiates a new OrgResponse object
+NewOrganizationResponseWithDefaults instantiates a new OrganizationResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetOrg
 
-`func (o *OrgResponse) GetOrg() Org`
+`func (o *OrganizationResponse) GetOrg() Organization`
 
 GetOrg returns the Org field if non-nil, zero value otherwise.
 
 ### GetOrgOk
 
-`func (o *OrgResponse) GetOrgOk() (*Org, bool)`
+`func (o *OrganizationResponse) GetOrgOk() (*Organization, bool)`
 
 GetOrgOk returns a tuple with the Org field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrg
 
-`func (o *OrgResponse) SetOrg(v Org)`
+`func (o *OrganizationResponse) SetOrg(v Organization)`
 
 SetOrg sets Org field to given value.
 
 ### HasOrg
 
-`func (o *OrgResponse) HasOrg() bool`
+`func (o *OrganizationResponse) HasOrg() bool`
 
 HasOrg returns a boolean if a field has been set.
 

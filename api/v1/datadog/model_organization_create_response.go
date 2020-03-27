@@ -12,33 +12,33 @@ import (
 	"encoding/json"
 )
 
-// OrgCreateResponse struct for OrgCreateResponse
-type OrgCreateResponse struct {
+// OrganizationCreateResponse struct for OrganizationCreateResponse
+type OrganizationCreateResponse struct {
 	ApiKey         *ApiKey         `json:"api_key,omitempty"`
 	ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
-	Org            *Org            `json:"org,omitempty"`
+	Org            *Organization   `json:"org,omitempty"`
 	User           *User           `json:"user,omitempty"`
 }
 
-// NewOrgCreateResponse instantiates a new OrgCreateResponse object
+// NewOrganizationCreateResponse instantiates a new OrganizationCreateResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgCreateResponse() *OrgCreateResponse {
-	this := OrgCreateResponse{}
+func NewOrganizationCreateResponse() *OrganizationCreateResponse {
+	this := OrganizationCreateResponse{}
 	return &this
 }
 
-// NewOrgCreateResponseWithDefaults instantiates a new OrgCreateResponse object
+// NewOrganizationCreateResponseWithDefaults instantiates a new OrganizationCreateResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgCreateResponseWithDefaults() *OrgCreateResponse {
-	this := OrgCreateResponse{}
+func NewOrganizationCreateResponseWithDefaults() *OrganizationCreateResponse {
+	this := OrganizationCreateResponse{}
 	return &this
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *OrgCreateResponse) GetApiKey() ApiKey {
+func (o *OrganizationCreateResponse) GetApiKey() ApiKey {
 	if o == nil || o.ApiKey == nil {
 		var ret ApiKey
 		return ret
@@ -48,7 +48,7 @@ func (o *OrgCreateResponse) GetApiKey() ApiKey {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetApiKeyOk() (*ApiKey, bool) {
+func (o *OrganizationCreateResponse) GetApiKeyOk() (*ApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *OrgCreateResponse) GetApiKeyOk() (*ApiKey, bool) {
 }
 
 // HasApiKey returns a boolean if a field has been set.
-func (o *OrgCreateResponse) HasApiKey() bool {
+func (o *OrganizationCreateResponse) HasApiKey() bool {
 	if o != nil && o.ApiKey != nil {
 		return true
 	}
@@ -65,12 +65,12 @@ func (o *OrgCreateResponse) HasApiKey() bool {
 }
 
 // SetApiKey gets a reference to the given ApiKey and assigns it to the ApiKey field.
-func (o *OrgCreateResponse) SetApiKey(v ApiKey) {
+func (o *OrganizationCreateResponse) SetApiKey(v ApiKey) {
 	o.ApiKey = &v
 }
 
 // GetApplicationKey returns the ApplicationKey field value if set, zero value otherwise.
-func (o *OrgCreateResponse) GetApplicationKey() ApplicationKey {
+func (o *OrganizationCreateResponse) GetApplicationKey() ApplicationKey {
 	if o == nil || o.ApplicationKey == nil {
 		var ret ApplicationKey
 		return ret
@@ -80,7 +80,7 @@ func (o *OrgCreateResponse) GetApplicationKey() ApplicationKey {
 
 // GetApplicationKeyOk returns a tuple with the ApplicationKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetApplicationKeyOk() (*ApplicationKey, bool) {
+func (o *OrganizationCreateResponse) GetApplicationKeyOk() (*ApplicationKey, bool) {
 	if o == nil || o.ApplicationKey == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *OrgCreateResponse) GetApplicationKeyOk() (*ApplicationKey, bool) {
 }
 
 // HasApplicationKey returns a boolean if a field has been set.
-func (o *OrgCreateResponse) HasApplicationKey() bool {
+func (o *OrganizationCreateResponse) HasApplicationKey() bool {
 	if o != nil && o.ApplicationKey != nil {
 		return true
 	}
@@ -97,14 +97,14 @@ func (o *OrgCreateResponse) HasApplicationKey() bool {
 }
 
 // SetApplicationKey gets a reference to the given ApplicationKey and assigns it to the ApplicationKey field.
-func (o *OrgCreateResponse) SetApplicationKey(v ApplicationKey) {
+func (o *OrganizationCreateResponse) SetApplicationKey(v ApplicationKey) {
 	o.ApplicationKey = &v
 }
 
 // GetOrg returns the Org field value if set, zero value otherwise.
-func (o *OrgCreateResponse) GetOrg() Org {
+func (o *OrganizationCreateResponse) GetOrg() Organization {
 	if o == nil || o.Org == nil {
-		var ret Org
+		var ret Organization
 		return ret
 	}
 	return *o.Org
@@ -112,7 +112,7 @@ func (o *OrgCreateResponse) GetOrg() Org {
 
 // GetOrgOk returns a tuple with the Org field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetOrgOk() (*Org, bool) {
+func (o *OrganizationCreateResponse) GetOrgOk() (*Organization, bool) {
 	if o == nil || o.Org == nil {
 		return nil, false
 	}
@@ -120,7 +120,7 @@ func (o *OrgCreateResponse) GetOrgOk() (*Org, bool) {
 }
 
 // HasOrg returns a boolean if a field has been set.
-func (o *OrgCreateResponse) HasOrg() bool {
+func (o *OrganizationCreateResponse) HasOrg() bool {
 	if o != nil && o.Org != nil {
 		return true
 	}
@@ -128,13 +128,13 @@ func (o *OrgCreateResponse) HasOrg() bool {
 	return false
 }
 
-// SetOrg gets a reference to the given Org and assigns it to the Org field.
-func (o *OrgCreateResponse) SetOrg(v Org) {
+// SetOrg gets a reference to the given Organization and assigns it to the Org field.
+func (o *OrganizationCreateResponse) SetOrg(v Organization) {
 	o.Org = &v
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
-func (o *OrgCreateResponse) GetUser() User {
+func (o *OrganizationCreateResponse) GetUser() User {
 	if o == nil || o.User == nil {
 		var ret User
 		return ret
@@ -144,7 +144,7 @@ func (o *OrgCreateResponse) GetUser() User {
 
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetUserOk() (*User, bool) {
+func (o *OrganizationCreateResponse) GetUserOk() (*User, bool) {
 	if o == nil || o.User == nil {
 		return nil, false
 	}
@@ -152,7 +152,7 @@ func (o *OrgCreateResponse) GetUserOk() (*User, bool) {
 }
 
 // HasUser returns a boolean if a field has been set.
-func (o *OrgCreateResponse) HasUser() bool {
+func (o *OrganizationCreateResponse) HasUser() bool {
 	if o != nil && o.User != nil {
 		return true
 	}
@@ -161,11 +161,11 @@ func (o *OrgCreateResponse) HasUser() bool {
 }
 
 // SetUser gets a reference to the given User and assigns it to the User field.
-func (o *OrgCreateResponse) SetUser(v User) {
+func (o *OrganizationCreateResponse) SetUser(v User) {
 	o.User = &v
 }
 
-func (o OrgCreateResponse) MarshalJSON() ([]byte, error) {
+func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ApiKey != nil {
 		toSerialize["api_key"] = o.ApiKey
@@ -182,38 +182,38 @@ func (o OrgCreateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgCreateResponse struct {
-	value *OrgCreateResponse
+type NullableOrganizationCreateResponse struct {
+	value *OrganizationCreateResponse
 	isSet bool
 }
 
-func (v NullableOrgCreateResponse) Get() *OrgCreateResponse {
+func (v NullableOrganizationCreateResponse) Get() *OrganizationCreateResponse {
 	return v.value
 }
 
-func (v *NullableOrgCreateResponse) Set(val *OrgCreateResponse) {
+func (v *NullableOrganizationCreateResponse) Set(val *OrganizationCreateResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgCreateResponse) IsSet() bool {
+func (v NullableOrganizationCreateResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrgCreateResponse) Unset() {
+func (v *NullableOrganizationCreateResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgCreateResponse(val *OrgCreateResponse) *NullableOrgCreateResponse {
-	return &NullableOrgCreateResponse{value: val, isSet: true}
+func NewNullableOrganizationCreateResponse(val *OrganizationCreateResponse) *NullableOrganizationCreateResponse {
+	return &NullableOrganizationCreateResponse{value: val, isSet: true}
 }
 
-func (v NullableOrgCreateResponse) MarshalJSON() ([]byte, error) {
+func (v NullableOrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgCreateResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableOrganizationCreateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
