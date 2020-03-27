@@ -52,6 +52,8 @@ type UsageSummaryDate struct {
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all orgs.
 	NpmHostTop99p *int64                 `json:"npm_host_top99p,omitempty"`
 	Orgs          *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
+	// Shows the sum of all RUM Sessions over all hours in the current date for all orgs
+	RumSessionCountSum *int64 `json:"rum_session_count_sum,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current date for all orgs.
 	SyntheticsBrowserCheckCallsCountSum *int64 `json:"synthetics_browser_check_calls_count_sum,omitempty"`
 	// Shows the sum of all Synthetic API tests over all hours in the current date for all orgs.
@@ -685,6 +687,38 @@ func (o *UsageSummaryDate) SetOrgs(v []UsageSummaryDateOrg) {
 	o.Orgs = &v
 }
 
+// GetRumSessionCountSum returns the RumSessionCountSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetRumSessionCountSum() int64 {
+	if o == nil || o.RumSessionCountSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumSessionCountSum
+}
+
+// GetRumSessionCountSumOk returns a tuple with the RumSessionCountSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetRumSessionCountSumOk() (*int64, bool) {
+	if o == nil || o.RumSessionCountSum == nil {
+		return nil, false
+	}
+	return o.RumSessionCountSum, true
+}
+
+// HasRumSessionCountSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasRumSessionCountSum() bool {
+	if o != nil && o.RumSessionCountSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRumSessionCountSum gets a reference to the given int64 and assigns it to the RumSessionCountSum field.
+func (o *UsageSummaryDate) SetRumSessionCountSum(v int64) {
+	o.RumSessionCountSum = &v
+}
+
 // GetSyntheticsBrowserCheckCallsCountSum returns the SyntheticsBrowserCheckCallsCountSum field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetSyntheticsBrowserCheckCallsCountSum() int64 {
 	if o == nil || o.SyntheticsBrowserCheckCallsCountSum == nil {
@@ -839,6 +873,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.Orgs != nil {
 		toSerialize["orgs"] = o.Orgs
+	}
+	if o.RumSessionCountSum != nil {
+		toSerialize["rum_session_count_sum"] = o.RumSessionCountSum
 	}
 	if o.SyntheticsBrowserCheckCallsCountSum != nil {
 		toSerialize["synthetics_browser_check_calls_count_sum"] = o.SyntheticsBrowserCheckCallsCountSum

@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current month(s) for all orgs for which all usages were calculated. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current month(s) for all orgs. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all orgs. | [optional] 
+**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current month(s) for all orgs. | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all orgs. | [optional] 
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all orgs. | [optional] 
 **SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current month(s) for all orgs. | [optional] 
@@ -548,6 +549,31 @@ SetNpmHostTop99pSum sets NpmHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasNpmHostTop99pSum() bool`
 
 HasNpmHostTop99pSum returns a boolean if a field has been set.
+
+### GetRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) GetRumSessionCountAggSum() int64`
+
+GetRumSessionCountAggSum returns the RumSessionCountAggSum field if non-nil, zero value otherwise.
+
+### GetRumSessionCountAggSumOk
+
+`func (o *UsageSummaryResponse) GetRumSessionCountAggSumOk() (*int64, bool)`
+
+GetRumSessionCountAggSumOk returns a tuple with the RumSessionCountAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) SetRumSessionCountAggSum(v int64)`
+
+SetRumSessionCountAggSum sets RumSessionCountAggSum field to given value.
+
+### HasRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) HasRumSessionCountAggSum() bool`
+
+HasRumSessionCountAggSum returns a boolean if a field has been set.
 
 ### GetStartDate
 
