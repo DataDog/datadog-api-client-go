@@ -46,7 +46,7 @@ func (v NullableBool) Get() *bool {
 	return v.value
 }
 
-func (v NullableBool) Set(val *bool) {
+func (v *NullableBool) Set(val *bool) {
 	v.value = val
 	v.isSet = true
 }
@@ -55,7 +55,7 @@ func (v NullableBool) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableBool) Unset() {
+func (v *NullableBool) Unset() {
 	v.value = nil
 	v.isSet = false
 }
@@ -82,7 +82,7 @@ func (v NullableInt) Get() *int {
 	return v.value
 }
 
-func (v NullableInt) Set(val *int) {
+func (v *NullableInt) Set(val *int) {
 	v.value = val
 	v.isSet = true
 }
@@ -91,7 +91,7 @@ func (v NullableInt) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableInt) Unset() {
+func (v *NullableInt) Unset() {
 	v.value = nil
 	v.isSet = false
 }
@@ -118,7 +118,7 @@ func (v NullableInt32) Get() *int32 {
 	return v.value
 }
 
-func (v NullableInt32) Set(val *int32) {
+func (v *NullableInt32) Set(val *int32) {
 	v.value = val
 	v.isSet = true
 }
@@ -127,7 +127,7 @@ func (v NullableInt32) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableInt32) Unset() {
+func (v *NullableInt32) Unset() {
 	v.value = nil
 	v.isSet = false
 }
@@ -154,7 +154,7 @@ func (v NullableInt64) Get() *int64 {
 	return v.value
 }
 
-func (v NullableInt64) Set(val *int64) {
+func (v *NullableInt64) Set(val *int64) {
 	v.value = val
 	v.isSet = true
 }
@@ -163,7 +163,7 @@ func (v NullableInt64) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableInt64) Unset() {
+func (v *NullableInt64) Unset() {
 	v.value = nil
 	v.isSet = false
 }
@@ -190,7 +190,7 @@ func (v NullableFloat32) Get() *float32 {
 	return v.value
 }
 
-func (v NullableFloat32) Set(val *float32) {
+func (v *NullableFloat32) Set(val *float32) {
 	v.value = val
 	v.isSet = true
 }
@@ -199,7 +199,7 @@ func (v NullableFloat32) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableFloat32) Unset() {
+func (v *NullableFloat32) Unset() {
 	v.value = nil
 	v.isSet = false
 }
@@ -226,7 +226,7 @@ func (v NullableFloat64) Get() *float64 {
 	return v.value
 }
 
-func (v NullableFloat64) Set(val *float64) {
+func (v *NullableFloat64) Set(val *float64) {
 	v.value = val
 	v.isSet = true
 }
@@ -235,7 +235,7 @@ func (v NullableFloat64) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableFloat64) Unset() {
+func (v *NullableFloat64) Unset() {
 	v.value = nil
 	v.isSet = false
 }
@@ -262,7 +262,7 @@ func (v NullableString) Get() *string {
 	return v.value
 }
 
-func (v NullableString) Set(val *string) {
+func (v *NullableString) Set(val *string) {
 	v.value = val
 	v.isSet = true
 }
@@ -271,7 +271,7 @@ func (v NullableString) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableString) Unset() {
+func (v *NullableString) Unset() {
 	v.value = nil
 	v.isSet = false
 }
@@ -298,7 +298,7 @@ func (v NullableTime) Get() *time.Time {
 	return v.value
 }
 
-func (v NullableTime) Set(val *time.Time) {
+func (v *NullableTime) Set(val *time.Time) {
 	v.value = val
 	v.isSet = true
 }
@@ -307,7 +307,7 @@ func (v NullableTime) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTime) Unset() {
+func (v *NullableTime) Unset() {
 	v.value = nil
 	v.isSet = false
 }

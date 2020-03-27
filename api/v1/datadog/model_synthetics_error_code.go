@@ -40,7 +40,7 @@ func (v NullableSyntheticsErrorCode) Get() *SyntheticsErrorCode {
 	return v.value
 }
 
-func (v NullableSyntheticsErrorCode) Set(val *SyntheticsErrorCode) {
+func (v *NullableSyntheticsErrorCode) Set(val *SyntheticsErrorCode) {
 	v.value = val
 	v.isSet = true
 }
@@ -49,7 +49,7 @@ func (v NullableSyntheticsErrorCode) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsErrorCode) Unset() {
+func (v *NullableSyntheticsErrorCode) Unset() {
 	v.value = nil
 	v.isSet = false
 }

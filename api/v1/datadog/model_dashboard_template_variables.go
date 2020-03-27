@@ -37,23 +37,23 @@ func NewDashboardTemplateVariablesWithDefaults() *DashboardTemplateVariables {
 	return &this
 }
 
-// GetDefault returns the Default field value if set, zero value otherwise.
-func (o *DashboardTemplateVariables) GetDefault() NullableString {
-	if o == nil {
-		var ret NullableString
+// GetDefault returns the Default field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DashboardTemplateVariables) GetDefault() string {
+	if o == nil || o.Default.Get() == nil {
+		var ret string
 		return ret
 	}
-	return o.Default
+	return *o.Default.Get()
 }
 
-// GetDefaultOk returns a tuple with the Default field value if set, zero value otherwise
+// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardTemplateVariables) GetDefaultOk() (NullableString, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DashboardTemplateVariables) GetDefaultOk() (*string, bool) {
 	if o == nil {
-		var ret NullableString
-		return ret, false
+		return nil, false
 	}
-	return o.Default, o.Default.IsSet()
+	return o.Default.Get(), o.Default.IsSet()
 }
 
 // HasDefault returns a boolean if a field has been set.
@@ -66,8 +66,18 @@ func (o *DashboardTemplateVariables) HasDefault() bool {
 }
 
 // SetDefault gets a reference to the given NullableString and assigns it to the Default field.
-func (o *DashboardTemplateVariables) SetDefault(v NullableString) {
-	o.Default = v
+func (o *DashboardTemplateVariables) SetDefault(v string) {
+	o.Default.Set(&v)
+}
+
+// SetDefaultNil sets the value for Default to be an explicit nil
+func (o *DashboardTemplateVariables) SetDefaultNil() {
+	o.Default.Set(nil)
+}
+
+// UnsetDefault ensures that no value is present for Default, not even an explicit nil
+func (o *DashboardTemplateVariables) UnsetDefault() {
+	o.Default.Unset()
 }
 
 // GetName returns the Name field value
@@ -80,28 +90,37 @@ func (o *DashboardTemplateVariables) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *DashboardTemplateVariables) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *DashboardTemplateVariables) SetName(v string) {
 	o.Name = v
 }
 
-// GetPrefix returns the Prefix field value if set, zero value otherwise.
-func (o *DashboardTemplateVariables) GetPrefix() NullableString {
-	if o == nil {
-		var ret NullableString
+// GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DashboardTemplateVariables) GetPrefix() string {
+	if o == nil || o.Prefix.Get() == nil {
+		var ret string
 		return ret
 	}
-	return o.Prefix
+	return *o.Prefix.Get()
 }
 
-// GetPrefixOk returns a tuple with the Prefix field value if set, zero value otherwise
+// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardTemplateVariables) GetPrefixOk() (NullableString, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DashboardTemplateVariables) GetPrefixOk() (*string, bool) {
 	if o == nil {
-		var ret NullableString
-		return ret, false
+		return nil, false
 	}
-	return o.Prefix, o.Prefix.IsSet()
+	return o.Prefix.Get(), o.Prefix.IsSet()
 }
 
 // HasPrefix returns a boolean if a field has been set.
@@ -114,8 +133,18 @@ func (o *DashboardTemplateVariables) HasPrefix() bool {
 }
 
 // SetPrefix gets a reference to the given NullableString and assigns it to the Prefix field.
-func (o *DashboardTemplateVariables) SetPrefix(v NullableString) {
-	o.Prefix = v
+func (o *DashboardTemplateVariables) SetPrefix(v string) {
+	o.Prefix.Set(&v)
+}
+
+// SetPrefixNil sets the value for Prefix to be an explicit nil
+func (o *DashboardTemplateVariables) SetPrefixNil() {
+	o.Prefix.Set(nil)
+}
+
+// UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
+func (o *DashboardTemplateVariables) UnsetPrefix() {
+	o.Prefix.Unset()
 }
 
 func (o DashboardTemplateVariables) MarshalJSON() ([]byte, error) {
@@ -141,7 +170,7 @@ func (v NullableDashboardTemplateVariables) Get() *DashboardTemplateVariables {
 	return v.value
 }
 
-func (v NullableDashboardTemplateVariables) Set(val *DashboardTemplateVariables) {
+func (v *NullableDashboardTemplateVariables) Set(val *DashboardTemplateVariables) {
 	v.value = val
 	v.isSet = true
 }
@@ -150,7 +179,7 @@ func (v NullableDashboardTemplateVariables) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardTemplateVariables) Unset() {
+func (v *NullableDashboardTemplateVariables) Unset() {
 	v.value = nil
 	v.isSet = false
 }

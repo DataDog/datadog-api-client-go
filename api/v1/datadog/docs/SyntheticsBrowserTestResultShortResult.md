@@ -37,22 +37,22 @@ GetDevice returns the Device field if non-nil, zero value otherwise.
 
 ### GetDeviceOk
 
-`func (o *SyntheticsBrowserTestResultShortResult) GetDeviceOk() (SyntheticsDevice, bool)`
+`func (o *SyntheticsBrowserTestResultShortResult) GetDeviceOk() (*SyntheticsDevice, bool)`
 
 GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDevice
+
+`func (o *SyntheticsBrowserTestResultShortResult) SetDevice(v SyntheticsDevice)`
+
+SetDevice sets Device field to given value.
 
 ### HasDevice
 
 `func (o *SyntheticsBrowserTestResultShortResult) HasDevice() bool`
 
 HasDevice returns a boolean if a field has been set.
-
-### SetDevice
-
-`func (o *SyntheticsBrowserTestResultShortResult) SetDevice(v SyntheticsDevice)`
-
-SetDevice gets a reference to the given SyntheticsDevice and assigns it to the Device field.
 
 ### GetDuration
 
@@ -62,22 +62,22 @@ GetDuration returns the Duration field if non-nil, zero value otherwise.
 
 ### GetDurationOk
 
-`func (o *SyntheticsBrowserTestResultShortResult) GetDurationOk() (float64, bool)`
+`func (o *SyntheticsBrowserTestResultShortResult) GetDurationOk() (*float64, bool)`
 
 GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDuration
+
+`func (o *SyntheticsBrowserTestResultShortResult) SetDuration(v float64)`
+
+SetDuration sets Duration field to given value.
 
 ### HasDuration
 
 `func (o *SyntheticsBrowserTestResultShortResult) HasDuration() bool`
 
 HasDuration returns a boolean if a field has been set.
-
-### SetDuration
-
-`func (o *SyntheticsBrowserTestResultShortResult) SetDuration(v float64)`
-
-SetDuration gets a reference to the given float64 and assigns it to the Duration field.
 
 ### GetErrorCount
 
@@ -87,22 +87,22 @@ GetErrorCount returns the ErrorCount field if non-nil, zero value otherwise.
 
 ### GetErrorCountOk
 
-`func (o *SyntheticsBrowserTestResultShortResult) GetErrorCountOk() (int64, bool)`
+`func (o *SyntheticsBrowserTestResultShortResult) GetErrorCountOk() (*int64, bool)`
 
 GetErrorCountOk returns a tuple with the ErrorCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetErrorCount
+
+`func (o *SyntheticsBrowserTestResultShortResult) SetErrorCount(v int64)`
+
+SetErrorCount sets ErrorCount field to given value.
 
 ### HasErrorCount
 
 `func (o *SyntheticsBrowserTestResultShortResult) HasErrorCount() bool`
 
 HasErrorCount returns a boolean if a field has been set.
-
-### SetErrorCount
-
-`func (o *SyntheticsBrowserTestResultShortResult) SetErrorCount(v int64)`
-
-SetErrorCount gets a reference to the given int64 and assigns it to the ErrorCount field.
 
 ### GetStepCountCompleted
 
@@ -112,22 +112,22 @@ GetStepCountCompleted returns the StepCountCompleted field if non-nil, zero valu
 
 ### GetStepCountCompletedOk
 
-`func (o *SyntheticsBrowserTestResultShortResult) GetStepCountCompletedOk() (int64, bool)`
+`func (o *SyntheticsBrowserTestResultShortResult) GetStepCountCompletedOk() (*int64, bool)`
 
 GetStepCountCompletedOk returns a tuple with the StepCountCompleted field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStepCountCompleted
+
+`func (o *SyntheticsBrowserTestResultShortResult) SetStepCountCompleted(v int64)`
+
+SetStepCountCompleted sets StepCountCompleted field to given value.
 
 ### HasStepCountCompleted
 
 `func (o *SyntheticsBrowserTestResultShortResult) HasStepCountCompleted() bool`
 
 HasStepCountCompleted returns a boolean if a field has been set.
-
-### SetStepCountCompleted
-
-`func (o *SyntheticsBrowserTestResultShortResult) SetStepCountCompleted(v int64)`
-
-SetStepCountCompleted gets a reference to the given int64 and assigns it to the StepCountCompleted field.
 
 ### GetStepCountTotal
 
@@ -137,22 +137,22 @@ GetStepCountTotal returns the StepCountTotal field if non-nil, zero value otherw
 
 ### GetStepCountTotalOk
 
-`func (o *SyntheticsBrowserTestResultShortResult) GetStepCountTotalOk() (int64, bool)`
+`func (o *SyntheticsBrowserTestResultShortResult) GetStepCountTotalOk() (*int64, bool)`
 
 GetStepCountTotalOk returns a tuple with the StepCountTotal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStepCountTotal
+
+`func (o *SyntheticsBrowserTestResultShortResult) SetStepCountTotal(v int64)`
+
+SetStepCountTotal sets StepCountTotal field to given value.
 
 ### HasStepCountTotal
 
 `func (o *SyntheticsBrowserTestResultShortResult) HasStepCountTotal() bool`
 
 HasStepCountTotal returns a boolean if a field has been set.
-
-### SetStepCountTotal
-
-`func (o *SyntheticsBrowserTestResultShortResult) SetStepCountTotal(v int64)`
-
-SetStepCountTotal gets a reference to the given int64 and assigns it to the StepCountTotal field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

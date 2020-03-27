@@ -45,6 +45,15 @@ func (o *APIErrorResponse) GetErrors() []string {
 	return o.Errors
 }
 
+// GetErrorsOk returns a tuple with the Errors field value
+// and a boolean to check if the value has been set.
+func (o *APIErrorResponse) GetErrorsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Errors, true
+}
+
 // SetErrors sets field value
 func (o *APIErrorResponse) SetErrors(v []string) {
 	o.Errors = v
@@ -67,7 +76,7 @@ func (v NullableAPIErrorResponse) Get() *APIErrorResponse {
 	return v.value
 }
 
-func (v NullableAPIErrorResponse) Set(val *APIErrorResponse) {
+func (v *NullableAPIErrorResponse) Set(val *APIErrorResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -76,7 +85,7 @@ func (v NullableAPIErrorResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAPIErrorResponse) Unset() {
+func (v *NullableAPIErrorResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

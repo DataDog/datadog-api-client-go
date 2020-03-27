@@ -46,14 +46,13 @@ func (o *LogsListResponse) GetLogs() []Log {
 	return *o.Logs
 }
 
-// GetLogsOk returns a tuple with the Logs field value if set, zero value otherwise
+// GetLogsOk returns a tuple with the Logs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListResponse) GetLogsOk() ([]Log, bool) {
+func (o *LogsListResponse) GetLogsOk() (*[]Log, bool) {
 	if o == nil || o.Logs == nil {
-		var ret []Log
-		return ret, false
+		return nil, false
 	}
-	return *o.Logs, true
+	return o.Logs, true
 }
 
 // HasLogs returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *LogsListResponse) GetNextLogId() string {
 	return *o.NextLogId
 }
 
-// GetNextLogIdOk returns a tuple with the NextLogId field value if set, zero value otherwise
+// GetNextLogIdOk returns a tuple with the NextLogId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListResponse) GetNextLogIdOk() (string, bool) {
+func (o *LogsListResponse) GetNextLogIdOk() (*string, bool) {
 	if o == nil || o.NextLogId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NextLogId, true
+	return o.NextLogId, true
 }
 
 // HasNextLogId returns a boolean if a field has been set.
@@ -112,14 +110,13 @@ func (o *LogsListResponse) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListResponse) GetStatusOk() (string, bool) {
+func (o *LogsListResponse) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -159,7 +156,7 @@ func (v NullableLogsListResponse) Get() *LogsListResponse {
 	return v.value
 }
 
-func (v NullableLogsListResponse) Set(val *LogsListResponse) {
+func (v *NullableLogsListResponse) Set(val *LogsListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -168,7 +165,7 @@ func (v NullableLogsListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsListResponse) Unset() {
+func (v *NullableLogsListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

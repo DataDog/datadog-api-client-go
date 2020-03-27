@@ -43,14 +43,13 @@ func (o *OrgSettingsSaml) GetEnabled() bool {
 	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettingsSaml) GetEnabledOk() (bool, bool) {
+func (o *OrgSettingsSaml) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Enabled, true
+	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableOrgSettingsSaml) Get() *OrgSettingsSaml {
 	return v.value
 }
 
-func (v NullableOrgSettingsSaml) Set(val *OrgSettingsSaml) {
+func (v *NullableOrgSettingsSaml) Set(val *OrgSettingsSaml) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableOrgSettingsSaml) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgSettingsSaml) Unset() {
+func (v *NullableOrgSettingsSaml) Unset() {
 	v.value = nil
 	v.isSet = false
 }

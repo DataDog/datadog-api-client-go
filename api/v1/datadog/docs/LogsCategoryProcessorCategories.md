@@ -34,22 +34,22 @@ GetFilter returns the Filter field if non-nil, zero value otherwise.
 
 ### GetFilterOk
 
-`func (o *LogsCategoryProcessorCategories) GetFilterOk() (LogsFilter, bool)`
+`func (o *LogsCategoryProcessorCategories) GetFilterOk() (*LogsFilter, bool)`
 
 GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *LogsCategoryProcessorCategories) SetFilter(v LogsFilter)`
+
+SetFilter sets Filter field to given value.
 
 ### HasFilter
 
 `func (o *LogsCategoryProcessorCategories) HasFilter() bool`
 
 HasFilter returns a boolean if a field has been set.
-
-### SetFilter
-
-`func (o *LogsCategoryProcessorCategories) SetFilter(v LogsFilter)`
-
-SetFilter gets a reference to the given LogsFilter and assigns it to the Filter field.
 
 ### GetName
 
@@ -59,22 +59,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsCategoryProcessorCategories) GetNameOk() (string, bool)`
+`func (o *LogsCategoryProcessorCategories) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsCategoryProcessorCategories) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *LogsCategoryProcessorCategories) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *LogsCategoryProcessorCategories) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

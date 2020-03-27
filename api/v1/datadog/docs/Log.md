@@ -34,22 +34,22 @@ GetContent returns the Content field if non-nil, zero value otherwise.
 
 ### GetContentOk
 
-`func (o *Log) GetContentOk() (LogContent, bool)`
+`func (o *Log) GetContentOk() (*LogContent, bool)`
 
 GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetContent
+
+`func (o *Log) SetContent(v LogContent)`
+
+SetContent sets Content field to given value.
 
 ### HasContent
 
 `func (o *Log) HasContent() bool`
 
 HasContent returns a boolean if a field has been set.
-
-### SetContent
-
-`func (o *Log) SetContent(v LogContent)`
-
-SetContent gets a reference to the given LogContent and assigns it to the Content field.
 
 ### GetId
 
@@ -59,22 +59,22 @@ GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Log) GetIdOk() (string, bool)`
+`func (o *Log) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Log) SetId(v string)`
+
+SetId sets Id field to given value.
 
 ### HasId
 
 `func (o *Log) HasId() bool`
 
 HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *Log) SetId(v string)`
-
-SetId gets a reference to the given string and assigns it to the Id field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -43,14 +43,13 @@ func (o *WidgetTime) GetLiveSpan() WidgetLiveSpan {
 	return *o.LiveSpan
 }
 
-// GetLiveSpanOk returns a tuple with the LiveSpan field value if set, zero value otherwise
+// GetLiveSpanOk returns a tuple with the LiveSpan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetTime) GetLiveSpanOk() (WidgetLiveSpan, bool) {
+func (o *WidgetTime) GetLiveSpanOk() (*WidgetLiveSpan, bool) {
 	if o == nil || o.LiveSpan == nil {
-		var ret WidgetLiveSpan
-		return ret, false
+		return nil, false
 	}
-	return *o.LiveSpan, true
+	return o.LiveSpan, true
 }
 
 // HasLiveSpan returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableWidgetTime) Get() *WidgetTime {
 	return v.value
 }
 
-func (v NullableWidgetTime) Set(val *WidgetTime) {
+func (v *NullableWidgetTime) Set(val *WidgetTime) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableWidgetTime) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetTime) Unset() {
+func (v *NullableWidgetTime) Unset() {
 	v.value = nil
 	v.isSet = false
 }

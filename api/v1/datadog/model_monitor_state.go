@@ -44,14 +44,13 @@ func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 	return *o.Groups
 }
 
-// GetGroupsOk returns a tuple with the Groups field value if set, zero value otherwise
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorState) GetGroupsOk() (map[string]MonitorStateGroup, bool) {
+func (o *MonitorState) GetGroupsOk() (*map[string]MonitorStateGroup, bool) {
 	if o == nil || o.Groups == nil {
-		var ret map[string]MonitorStateGroup
-		return ret, false
+		return nil, false
 	}
-	return *o.Groups, true
+	return o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableMonitorState) Get() *MonitorState {
 	return v.value
 }
 
-func (v NullableMonitorState) Set(val *MonitorState) {
+func (v *NullableMonitorState) Set(val *MonitorState) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableMonitorState) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorState) Unset() {
+func (v *NullableMonitorState) Unset() {
 	v.value = nil
 	v.isSet = false
 }

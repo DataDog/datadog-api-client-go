@@ -36,7 +36,7 @@ func (v NullableMonitorDeviceID) Get() *MonitorDeviceID {
 	return v.value
 }
 
-func (v NullableMonitorDeviceID) Set(val *MonitorDeviceID) {
+func (v *NullableMonitorDeviceID) Set(val *MonitorDeviceID) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableMonitorDeviceID) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorDeviceID) Unset() {
+func (v *NullableMonitorDeviceID) Unset() {
 	v.value = nil
 	v.isSet = false
 }

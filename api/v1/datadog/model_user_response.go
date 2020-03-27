@@ -43,14 +43,13 @@ func (o *UserResponse) GetUser() User {
 	return *o.User
 }
 
-// GetUserOk returns a tuple with the User field value if set, zero value otherwise
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponse) GetUserOk() (User, bool) {
+func (o *UserResponse) GetUserOk() (*User, bool) {
 	if o == nil || o.User == nil {
-		var ret User
-		return ret, false
+		return nil, false
 	}
-	return *o.User, true
+	return o.User, true
 }
 
 // HasUser returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableUserResponse) Get() *UserResponse {
 	return v.value
 }
 
-func (v NullableUserResponse) Set(val *UserResponse) {
+func (v *NullableUserResponse) Set(val *UserResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableUserResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUserResponse) Unset() {
+func (v *NullableUserResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

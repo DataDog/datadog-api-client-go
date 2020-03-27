@@ -34,22 +34,22 @@ GetAliasName returns the AliasName field if non-nil, zero value otherwise.
 
 ### GetAliasNameOk
 
-`func (o *TimeseriesWidgetRequestMetadata) GetAliasNameOk() (string, bool)`
+`func (o *TimeseriesWidgetRequestMetadata) GetAliasNameOk() (*string, bool)`
 
 GetAliasNameOk returns a tuple with the AliasName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAliasName
+
+`func (o *TimeseriesWidgetRequestMetadata) SetAliasName(v string)`
+
+SetAliasName sets AliasName field to given value.
 
 ### HasAliasName
 
 `func (o *TimeseriesWidgetRequestMetadata) HasAliasName() bool`
 
 HasAliasName returns a boolean if a field has been set.
-
-### SetAliasName
-
-`func (o *TimeseriesWidgetRequestMetadata) SetAliasName(v string)`
-
-SetAliasName gets a reference to the given string and assigns it to the AliasName field.
 
 ### GetExpression
 
@@ -59,22 +59,17 @@ GetExpression returns the Expression field if non-nil, zero value otherwise.
 
 ### GetExpressionOk
 
-`func (o *TimeseriesWidgetRequestMetadata) GetExpressionOk() (string, bool)`
+`func (o *TimeseriesWidgetRequestMetadata) GetExpressionOk() (*string, bool)`
 
 GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasExpression
-
-`func (o *TimeseriesWidgetRequestMetadata) HasExpression() bool`
-
-HasExpression returns a boolean if a field has been set.
 
 ### SetExpression
 
 `func (o *TimeseriesWidgetRequestMetadata) SetExpression(v string)`
 
-SetExpression gets a reference to the given string and assigns it to the Expression field.
+SetExpression sets Expression field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -52,14 +52,13 @@ func (o *DowntimeRecurrence) GetPeriod() int32 {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeRecurrence) GetPeriodOk() (int32, bool) {
+func (o *DowntimeRecurrence) GetPeriodOk() (*int32, bool) {
 	if o == nil || o.Period == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -85,14 +84,13 @@ func (o *DowntimeRecurrence) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeRecurrence) GetTypeOk() (string, bool) {
+func (o *DowntimeRecurrence) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -109,23 +107,23 @@ func (o *DowntimeRecurrence) SetType(v string) {
 	o.Type = &v
 }
 
-// GetUntilDate returns the UntilDate field value if set, zero value otherwise.
-func (o *DowntimeRecurrence) GetUntilDate() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// GetUntilDate returns the UntilDate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DowntimeRecurrence) GetUntilDate() int64 {
+	if o == nil || o.UntilDate.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.UntilDate
+	return *o.UntilDate.Get()
 }
 
-// GetUntilDateOk returns a tuple with the UntilDate field value if set, zero value otherwise
+// GetUntilDateOk returns a tuple with the UntilDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeRecurrence) GetUntilDateOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DowntimeRecurrence) GetUntilDateOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.UntilDate, o.UntilDate.IsSet()
+	return o.UntilDate.Get(), o.UntilDate.IsSet()
 }
 
 // HasUntilDate returns a boolean if a field has been set.
@@ -138,27 +136,37 @@ func (o *DowntimeRecurrence) HasUntilDate() bool {
 }
 
 // SetUntilDate gets a reference to the given NullableInt64 and assigns it to the UntilDate field.
-func (o *DowntimeRecurrence) SetUntilDate(v NullableInt64) {
-	o.UntilDate = v
+func (o *DowntimeRecurrence) SetUntilDate(v int64) {
+	o.UntilDate.Set(&v)
 }
 
-// GetUntilOccurrences returns the UntilOccurrences field value if set, zero value otherwise.
-func (o *DowntimeRecurrence) GetUntilOccurrences() NullableInt32 {
-	if o == nil {
-		var ret NullableInt32
+// SetUntilDateNil sets the value for UntilDate to be an explicit nil
+func (o *DowntimeRecurrence) SetUntilDateNil() {
+	o.UntilDate.Set(nil)
+}
+
+// UnsetUntilDate ensures that no value is present for UntilDate, not even an explicit nil
+func (o *DowntimeRecurrence) UnsetUntilDate() {
+	o.UntilDate.Unset()
+}
+
+// GetUntilOccurrences returns the UntilOccurrences field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DowntimeRecurrence) GetUntilOccurrences() int32 {
+	if o == nil || o.UntilOccurrences.Get() == nil {
+		var ret int32
 		return ret
 	}
-	return o.UntilOccurrences
+	return *o.UntilOccurrences.Get()
 }
 
-// GetUntilOccurrencesOk returns a tuple with the UntilOccurrences field value if set, zero value otherwise
+// GetUntilOccurrencesOk returns a tuple with the UntilOccurrences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (NullableInt32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (*int32, bool) {
 	if o == nil {
-		var ret NullableInt32
-		return ret, false
+		return nil, false
 	}
-	return o.UntilOccurrences, o.UntilOccurrences.IsSet()
+	return o.UntilOccurrences.Get(), o.UntilOccurrences.IsSet()
 }
 
 // HasUntilOccurrences returns a boolean if a field has been set.
@@ -171,8 +179,18 @@ func (o *DowntimeRecurrence) HasUntilOccurrences() bool {
 }
 
 // SetUntilOccurrences gets a reference to the given NullableInt32 and assigns it to the UntilOccurrences field.
-func (o *DowntimeRecurrence) SetUntilOccurrences(v NullableInt32) {
-	o.UntilOccurrences = v
+func (o *DowntimeRecurrence) SetUntilOccurrences(v int32) {
+	o.UntilOccurrences.Set(&v)
+}
+
+// SetUntilOccurrencesNil sets the value for UntilOccurrences to be an explicit nil
+func (o *DowntimeRecurrence) SetUntilOccurrencesNil() {
+	o.UntilOccurrences.Set(nil)
+}
+
+// UnsetUntilOccurrences ensures that no value is present for UntilOccurrences, not even an explicit nil
+func (o *DowntimeRecurrence) UnsetUntilOccurrences() {
+	o.UntilOccurrences.Unset()
 }
 
 // GetWeekDays returns the WeekDays field value if set, zero value otherwise.
@@ -184,14 +202,13 @@ func (o *DowntimeRecurrence) GetWeekDays() []string {
 	return *o.WeekDays
 }
 
-// GetWeekDaysOk returns a tuple with the WeekDays field value if set, zero value otherwise
+// GetWeekDaysOk returns a tuple with the WeekDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeRecurrence) GetWeekDaysOk() ([]string, bool) {
+func (o *DowntimeRecurrence) GetWeekDaysOk() (*[]string, bool) {
 	if o == nil || o.WeekDays == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.WeekDays, true
+	return o.WeekDays, true
 }
 
 // HasWeekDays returns a boolean if a field has been set.
@@ -237,7 +254,7 @@ func (v NullableDowntimeRecurrence) Get() *DowntimeRecurrence {
 	return v.value
 }
 
-func (v NullableDowntimeRecurrence) Set(val *DowntimeRecurrence) {
+func (v *NullableDowntimeRecurrence) Set(val *DowntimeRecurrence) {
 	v.value = val
 	v.isSet = true
 }
@@ -246,7 +263,7 @@ func (v NullableDowntimeRecurrence) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDowntimeRecurrence) Unset() {
+func (v *NullableDowntimeRecurrence) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -43,14 +43,13 @@ func (o *LogsAPIErrorResponse) GetError() LogsAPIError {
 	return *o.Error
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, zero value otherwise
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsAPIErrorResponse) GetErrorOk() (LogsAPIError, bool) {
+func (o *LogsAPIErrorResponse) GetErrorOk() (*LogsAPIError, bool) {
 	if o == nil || o.Error == nil {
-		var ret LogsAPIError
-		return ret, false
+		return nil, false
 	}
-	return *o.Error, true
+	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableLogsAPIErrorResponse) Get() *LogsAPIErrorResponse {
 	return v.value
 }
 
-func (v NullableLogsAPIErrorResponse) Set(val *LogsAPIErrorResponse) {
+func (v *NullableLogsAPIErrorResponse) Set(val *LogsAPIErrorResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableLogsAPIErrorResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsAPIErrorResponse) Unset() {
+func (v *NullableLogsAPIErrorResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -37,23 +37,23 @@ func NewMonitorThresholdWindowOptionsWithDefaults() *MonitorThresholdWindowOptio
 	return &this
 }
 
-// GetRecoveryWindow returns the RecoveryWindow field value if set, zero value otherwise.
-func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() NullableString {
-	if o == nil {
-		var ret NullableString
+// GetRecoveryWindow returns the RecoveryWindow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
+	if o == nil || o.RecoveryWindow.Get() == nil {
+		var ret string
 		return ret
 	}
-	return o.RecoveryWindow
+	return *o.RecoveryWindow.Get()
 }
 
-// GetRecoveryWindowOk returns a tuple with the RecoveryWindow field value if set, zero value otherwise
+// GetRecoveryWindowOk returns a tuple with the RecoveryWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (NullableString, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (*string, bool) {
 	if o == nil {
-		var ret NullableString
-		return ret, false
+		return nil, false
 	}
-	return o.RecoveryWindow, o.RecoveryWindow.IsSet()
+	return o.RecoveryWindow.Get(), o.RecoveryWindow.IsSet()
 }
 
 // HasRecoveryWindow returns a boolean if a field has been set.
@@ -66,27 +66,37 @@ func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
 }
 
 // SetRecoveryWindow gets a reference to the given NullableString and assigns it to the RecoveryWindow field.
-func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v NullableString) {
-	o.RecoveryWindow = v
+func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string) {
+	o.RecoveryWindow.Set(&v)
 }
 
-// GetTriggerWindow returns the TriggerWindow field value if set, zero value otherwise.
-func (o *MonitorThresholdWindowOptions) GetTriggerWindow() NullableString {
-	if o == nil {
-		var ret NullableString
+// SetRecoveryWindowNil sets the value for RecoveryWindow to be an explicit nil
+func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil() {
+	o.RecoveryWindow.Set(nil)
+}
+
+// UnsetRecoveryWindow ensures that no value is present for RecoveryWindow, not even an explicit nil
+func (o *MonitorThresholdWindowOptions) UnsetRecoveryWindow() {
+	o.RecoveryWindow.Unset()
+}
+
+// GetTriggerWindow returns the TriggerWindow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
+	if o == nil || o.TriggerWindow.Get() == nil {
+		var ret string
 		return ret
 	}
-	return o.TriggerWindow
+	return *o.TriggerWindow.Get()
 }
 
-// GetTriggerWindowOk returns a tuple with the TriggerWindow field value if set, zero value otherwise
+// GetTriggerWindowOk returns a tuple with the TriggerWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (NullableString, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (*string, bool) {
 	if o == nil {
-		var ret NullableString
-		return ret, false
+		return nil, false
 	}
-	return o.TriggerWindow, o.TriggerWindow.IsSet()
+	return o.TriggerWindow.Get(), o.TriggerWindow.IsSet()
 }
 
 // HasTriggerWindow returns a boolean if a field has been set.
@@ -99,8 +109,18 @@ func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
 }
 
 // SetTriggerWindow gets a reference to the given NullableString and assigns it to the TriggerWindow field.
-func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v NullableString) {
-	o.TriggerWindow = v
+func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
+	o.TriggerWindow.Set(&v)
+}
+
+// SetTriggerWindowNil sets the value for TriggerWindow to be an explicit nil
+func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil() {
+	o.TriggerWindow.Set(nil)
+}
+
+// UnsetTriggerWindow ensures that no value is present for TriggerWindow, not even an explicit nil
+func (o *MonitorThresholdWindowOptions) UnsetTriggerWindow() {
+	o.TriggerWindow.Unset()
 }
 
 func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
@@ -123,7 +143,7 @@ func (v NullableMonitorThresholdWindowOptions) Get() *MonitorThresholdWindowOpti
 	return v.value
 }
 
-func (v NullableMonitorThresholdWindowOptions) Set(val *MonitorThresholdWindowOptions) {
+func (v *NullableMonitorThresholdWindowOptions) Set(val *MonitorThresholdWindowOptions) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +152,7 @@ func (v NullableMonitorThresholdWindowOptions) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorThresholdWindowOptions) Unset() {
+func (v *NullableMonitorThresholdWindowOptions) Unset() {
 	v.value = nil
 	v.isSet = false
 }

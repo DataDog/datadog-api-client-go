@@ -59,14 +59,13 @@ func (o *User) GetAccessRole() AccessRole {
 	return *o.AccessRole
 }
 
-// GetAccessRoleOk returns a tuple with the AccessRole field value if set, zero value otherwise
+// GetAccessRoleOk returns a tuple with the AccessRole field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetAccessRoleOk() (AccessRole, bool) {
+func (o *User) GetAccessRoleOk() (*AccessRole, bool) {
 	if o == nil || o.AccessRole == nil {
-		var ret AccessRole
-		return ret, false
+		return nil, false
 	}
-	return *o.AccessRole, true
+	return o.AccessRole, true
 }
 
 // HasAccessRole returns a boolean if a field has been set.
@@ -92,14 +91,13 @@ func (o *User) GetDisabled() bool {
 	return *o.Disabled
 }
 
-// GetDisabledOk returns a tuple with the Disabled field value if set, zero value otherwise
+// GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetDisabledOk() (bool, bool) {
+func (o *User) GetDisabledOk() (*bool, bool) {
 	if o == nil || o.Disabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Disabled, true
+	return o.Disabled, true
 }
 
 // HasDisabled returns a boolean if a field has been set.
@@ -125,14 +123,13 @@ func (o *User) GetEmail() string {
 	return *o.Email
 }
 
-// GetEmailOk returns a tuple with the Email field value if set, zero value otherwise
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetEmailOk() (string, bool) {
+func (o *User) GetEmailOk() (*string, bool) {
 	if o == nil || o.Email == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Email, true
+	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
@@ -158,14 +155,13 @@ func (o *User) GetHandle() string {
 	return *o.Handle
 }
 
-// GetHandleOk returns a tuple with the Handle field value if set, zero value otherwise
+// GetHandleOk returns a tuple with the Handle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetHandleOk() (string, bool) {
+func (o *User) GetHandleOk() (*string, bool) {
 	if o == nil || o.Handle == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Handle, true
+	return o.Handle, true
 }
 
 // HasHandle returns a boolean if a field has been set.
@@ -191,14 +187,13 @@ func (o *User) GetIcon() string {
 	return *o.Icon
 }
 
-// GetIconOk returns a tuple with the Icon field value if set, zero value otherwise
+// GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetIconOk() (string, bool) {
+func (o *User) GetIconOk() (*string, bool) {
 	if o == nil || o.Icon == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Icon, true
+	return o.Icon, true
 }
 
 // HasIcon returns a boolean if a field has been set.
@@ -224,14 +219,13 @@ func (o *User) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetNameOk() (string, bool) {
+func (o *User) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -257,14 +251,13 @@ func (o *User) GetVerified() bool {
 	return *o.Verified
 }
 
-// GetVerifiedOk returns a tuple with the Verified field value if set, zero value otherwise
+// GetVerifiedOk returns a tuple with the Verified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetVerifiedOk() (bool, bool) {
+func (o *User) GetVerifiedOk() (*bool, bool) {
 	if o == nil || o.Verified == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Verified, true
+	return o.Verified, true
 }
 
 // HasVerified returns a boolean if a field has been set.
@@ -316,7 +309,7 @@ func (v NullableUser) Get() *User {
 	return v.value
 }
 
-func (v NullableUser) Set(val *User) {
+func (v *NullableUser) Set(val *User) {
 	v.value = val
 	v.isSet = true
 }
@@ -325,7 +318,7 @@ func (v NullableUser) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUser) Unset() {
+func (v *NullableUser) Unset() {
 	v.value = nil
 	v.isSet = false
 }

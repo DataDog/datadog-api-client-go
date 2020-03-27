@@ -33,22 +33,22 @@ GetDeletedDashboardId returns the DeletedDashboardId field if non-nil, zero valu
 
 ### GetDeletedDashboardIdOk
 
-`func (o *DashboardDeleteResponse) GetDeletedDashboardIdOk() (string, bool)`
+`func (o *DashboardDeleteResponse) GetDeletedDashboardIdOk() (*string, bool)`
 
 GetDeletedDashboardIdOk returns a tuple with the DeletedDashboardId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDeletedDashboardId
+
+`func (o *DashboardDeleteResponse) SetDeletedDashboardId(v string)`
+
+SetDeletedDashboardId sets DeletedDashboardId field to given value.
 
 ### HasDeletedDashboardId
 
 `func (o *DashboardDeleteResponse) HasDeletedDashboardId() bool`
 
 HasDeletedDashboardId returns a boolean if a field has been set.
-
-### SetDeletedDashboardId
-
-`func (o *DashboardDeleteResponse) SetDeletedDashboardId(v string)`
-
-SetDeletedDashboardId gets a reference to the given string and assigns it to the DeletedDashboardId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

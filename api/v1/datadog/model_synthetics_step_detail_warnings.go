@@ -47,6 +47,15 @@ func (o *SyntheticsStepDetailWarnings) GetMessage() string {
 	return o.Message
 }
 
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStepDetailWarnings) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
 // SetMessage sets field value
 func (o *SyntheticsStepDetailWarnings) SetMessage(v string) {
 	o.Message = v
@@ -60,6 +69,15 @@ func (o *SyntheticsStepDetailWarnings) GetType() SyntheticsWarningType {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStepDetailWarnings) GetTypeOk() (*SyntheticsWarningType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -87,7 +105,7 @@ func (v NullableSyntheticsStepDetailWarnings) Get() *SyntheticsStepDetailWarning
 	return v.value
 }
 
-func (v NullableSyntheticsStepDetailWarnings) Set(val *SyntheticsStepDetailWarnings) {
+func (v *NullableSyntheticsStepDetailWarnings) Set(val *SyntheticsStepDetailWarnings) {
 	v.value = val
 	v.isSet = true
 }
@@ -96,7 +114,7 @@ func (v NullableSyntheticsStepDetailWarnings) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsStepDetailWarnings) Unset() {
+func (v *NullableSyntheticsStepDetailWarnings) Unset() {
 	v.value = nil
 	v.isSet = false
 }

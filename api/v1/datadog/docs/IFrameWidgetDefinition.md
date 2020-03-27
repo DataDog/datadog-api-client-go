@@ -34,22 +34,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *IFrameWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *IFrameWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *IFrameWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *IFrameWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetUrl
 
@@ -59,22 +54,17 @@ GetUrl returns the Url field if non-nil, zero value otherwise.
 
 ### GetUrlOk
 
-`func (o *IFrameWidgetDefinition) GetUrlOk() (string, bool)`
+`func (o *IFrameWidgetDefinition) GetUrlOk() (*string, bool)`
 
 GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasUrl
-
-`func (o *IFrameWidgetDefinition) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
 
 ### SetUrl
 
 `func (o *IFrameWidgetDefinition) SetUrl(v string)`
 
-SetUrl gets a reference to the given string and assigns it to the Url field.
+SetUrl sets Url field to given value.
+
 
 
 ### AsWidgetDefinition

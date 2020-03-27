@@ -35,22 +35,17 @@ GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
 
 ### GetAggregationOk
 
-`func (o *LogQueryDefinitionSort) GetAggregationOk() (string, bool)`
+`func (o *LogQueryDefinitionSort) GetAggregationOk() (*string, bool)`
 
 GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAggregation
-
-`func (o *LogQueryDefinitionSort) HasAggregation() bool`
-
-HasAggregation returns a boolean if a field has been set.
 
 ### SetAggregation
 
 `func (o *LogQueryDefinitionSort) SetAggregation(v string)`
 
-SetAggregation gets a reference to the given string and assigns it to the Aggregation field.
+SetAggregation sets Aggregation field to given value.
+
 
 ### GetFacet
 
@@ -60,22 +55,22 @@ GetFacet returns the Facet field if non-nil, zero value otherwise.
 
 ### GetFacetOk
 
-`func (o *LogQueryDefinitionSort) GetFacetOk() (string, bool)`
+`func (o *LogQueryDefinitionSort) GetFacetOk() (*string, bool)`
 
 GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFacet
+
+`func (o *LogQueryDefinitionSort) SetFacet(v string)`
+
+SetFacet sets Facet field to given value.
 
 ### HasFacet
 
 `func (o *LogQueryDefinitionSort) HasFacet() bool`
 
 HasFacet returns a boolean if a field has been set.
-
-### SetFacet
-
-`func (o *LogQueryDefinitionSort) SetFacet(v string)`
-
-SetFacet gets a reference to the given string and assigns it to the Facet field.
 
 ### GetOrder
 
@@ -85,22 +80,17 @@ GetOrder returns the Order field if non-nil, zero value otherwise.
 
 ### GetOrderOk
 
-`func (o *LogQueryDefinitionSort) GetOrderOk() (WidgetSort, bool)`
+`func (o *LogQueryDefinitionSort) GetOrderOk() (*WidgetSort, bool)`
 
 GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasOrder
-
-`func (o *LogQueryDefinitionSort) HasOrder() bool`
-
-HasOrder returns a boolean if a field has been set.
 
 ### SetOrder
 
 `func (o *LogQueryDefinitionSort) SetOrder(v WidgetSort)`
 
-SetOrder gets a reference to the given WidgetSort and assigns it to the Order field.
+SetOrder sets Order field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

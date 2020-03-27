@@ -58,14 +58,13 @@ func (o *Series) GetHost() string {
 	return *o.Host
 }
 
-// GetHostOk returns a tuple with the Host field value if set, zero value otherwise
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Series) GetHostOk() (string, bool) {
+func (o *Series) GetHostOk() (*string, bool) {
 	if o == nil || o.Host == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
@@ -82,23 +81,23 @@ func (o *Series) SetHost(v string) {
 	o.Host = &v
 }
 
-// GetInterval returns the Interval field value if set, zero value otherwise.
-func (o *Series) GetInterval() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// GetInterval returns the Interval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Series) GetInterval() int64 {
+	if o == nil || o.Interval.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.Interval
+	return *o.Interval.Get()
 }
 
-// GetIntervalOk returns a tuple with the Interval field value if set, zero value otherwise
+// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Series) GetIntervalOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Series) GetIntervalOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.Interval, o.Interval.IsSet()
+	return o.Interval.Get(), o.Interval.IsSet()
 }
 
 // HasInterval returns a boolean if a field has been set.
@@ -111,8 +110,18 @@ func (o *Series) HasInterval() bool {
 }
 
 // SetInterval gets a reference to the given NullableInt64 and assigns it to the Interval field.
-func (o *Series) SetInterval(v NullableInt64) {
-	o.Interval = v
+func (o *Series) SetInterval(v int64) {
+	o.Interval.Set(&v)
+}
+
+// SetIntervalNil sets the value for Interval to be an explicit nil
+func (o *Series) SetIntervalNil() {
+	o.Interval.Set(nil)
+}
+
+// UnsetInterval ensures that no value is present for Interval, not even an explicit nil
+func (o *Series) UnsetInterval() {
+	o.Interval.Unset()
 }
 
 // GetMetric returns the Metric field value
@@ -123,6 +132,15 @@ func (o *Series) GetMetric() string {
 	}
 
 	return o.Metric
+}
+
+// GetMetricOk returns a tuple with the Metric field value
+// and a boolean to check if the value has been set.
+func (o *Series) GetMetricOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Metric, true
 }
 
 // SetMetric sets field value
@@ -140,6 +158,15 @@ func (o *Series) GetPoints() [][]float64 {
 	return o.Points
 }
 
+// GetPointsOk returns a tuple with the Points field value
+// and a boolean to check if the value has been set.
+func (o *Series) GetPointsOk() (*[][]float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Points, true
+}
+
 // SetPoints sets field value
 func (o *Series) SetPoints(v [][]float64) {
 	o.Points = v
@@ -154,14 +181,13 @@ func (o *Series) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Series) GetTagsOk() ([]string, bool) {
+func (o *Series) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -187,14 +213,13 @@ func (o *Series) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Series) GetTypeOk() (string, bool) {
+func (o *Series) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -243,7 +268,7 @@ func (v NullableSeries) Get() *Series {
 	return v.value
 }
 
-func (v NullableSeries) Set(val *Series) {
+func (v *NullableSeries) Set(val *Series) {
 	v.value = val
 	v.isSet = true
 }
@@ -252,7 +277,7 @@ func (v NullableSeries) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSeries) Unset() {
+func (v *NullableSeries) Unset() {
 	v.value = nil
 	v.isSet = false
 }

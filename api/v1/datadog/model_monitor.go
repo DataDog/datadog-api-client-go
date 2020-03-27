@@ -65,14 +65,13 @@ func (o *Monitor) GetCreated() time.Time {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetCreatedOk() (time.Time, bool) {
+func (o *Monitor) GetCreatedOk() (*time.Time, bool) {
 	if o == nil || o.Created == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -98,14 +97,13 @@ func (o *Monitor) GetCreator() Creator {
 	return *o.Creator
 }
 
-// GetCreatorOk returns a tuple with the Creator field value if set, zero value otherwise
+// GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetCreatorOk() (Creator, bool) {
+func (o *Monitor) GetCreatorOk() (*Creator, bool) {
 	if o == nil || o.Creator == nil {
-		var ret Creator
-		return ret, false
+		return nil, false
 	}
-	return *o.Creator, true
+	return o.Creator, true
 }
 
 // HasCreator returns a boolean if a field has been set.
@@ -122,23 +120,23 @@ func (o *Monitor) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
-// GetDeleted returns the Deleted field value if set, zero value otherwise.
-func (o *Monitor) GetDeleted() NullableTime {
-	if o == nil {
-		var ret NullableTime
+// GetDeleted returns the Deleted field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Monitor) GetDeleted() time.Time {
+	if o == nil || o.Deleted.Get() == nil {
+		var ret time.Time
 		return ret
 	}
-	return o.Deleted
+	return *o.Deleted.Get()
 }
 
-// GetDeletedOk returns a tuple with the Deleted field value if set, zero value otherwise
+// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetDeletedOk() (NullableTime, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Monitor) GetDeletedOk() (*time.Time, bool) {
 	if o == nil {
-		var ret NullableTime
-		return ret, false
+		return nil, false
 	}
-	return o.Deleted, o.Deleted.IsSet()
+	return o.Deleted.Get(), o.Deleted.IsSet()
 }
 
 // HasDeleted returns a boolean if a field has been set.
@@ -151,8 +149,18 @@ func (o *Monitor) HasDeleted() bool {
 }
 
 // SetDeleted gets a reference to the given NullableTime and assigns it to the Deleted field.
-func (o *Monitor) SetDeleted(v NullableTime) {
-	o.Deleted = v
+func (o *Monitor) SetDeleted(v time.Time) {
+	o.Deleted.Set(&v)
+}
+
+// SetDeletedNil sets the value for Deleted to be an explicit nil
+func (o *Monitor) SetDeletedNil() {
+	o.Deleted.Set(nil)
+}
+
+// UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
+func (o *Monitor) UnsetDeleted() {
+	o.Deleted.Unset()
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -164,14 +172,13 @@ func (o *Monitor) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetIdOk() (int64, bool) {
+func (o *Monitor) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -197,14 +204,13 @@ func (o *Monitor) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetMessageOk() (string, bool) {
+func (o *Monitor) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -230,14 +236,13 @@ func (o *Monitor) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetModifiedOk() (time.Time, bool) {
+func (o *Monitor) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
@@ -263,14 +268,13 @@ func (o *Monitor) GetMulti() bool {
 	return *o.Multi
 }
 
-// GetMultiOk returns a tuple with the Multi field value if set, zero value otherwise
+// GetMultiOk returns a tuple with the Multi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetMultiOk() (bool, bool) {
+func (o *Monitor) GetMultiOk() (*bool, bool) {
 	if o == nil || o.Multi == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Multi, true
+	return o.Multi, true
 }
 
 // HasMulti returns a boolean if a field has been set.
@@ -296,14 +300,13 @@ func (o *Monitor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetNameOk() (string, bool) {
+func (o *Monitor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -329,14 +332,13 @@ func (o *Monitor) GetOptions() MonitorOptions {
 	return *o.Options
 }
 
-// GetOptionsOk returns a tuple with the Options field value if set, zero value otherwise
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetOptionsOk() (MonitorOptions, bool) {
+func (o *Monitor) GetOptionsOk() (*MonitorOptions, bool) {
 	if o == nil || o.Options == nil {
-		var ret MonitorOptions
-		return ret, false
+		return nil, false
 	}
-	return *o.Options, true
+	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
@@ -362,14 +364,13 @@ func (o *Monitor) GetOverallState() MonitorOverallStates {
 	return *o.OverallState
 }
 
-// GetOverallStateOk returns a tuple with the OverallState field value if set, zero value otherwise
+// GetOverallStateOk returns a tuple with the OverallState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetOverallStateOk() (MonitorOverallStates, bool) {
+func (o *Monitor) GetOverallStateOk() (*MonitorOverallStates, bool) {
 	if o == nil || o.OverallState == nil {
-		var ret MonitorOverallStates
-		return ret, false
+		return nil, false
 	}
-	return *o.OverallState, true
+	return o.OverallState, true
 }
 
 // HasOverallState returns a boolean if a field has been set.
@@ -395,14 +396,13 @@ func (o *Monitor) GetQuery() string {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetQueryOk() (string, bool) {
+func (o *Monitor) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Query, true
+	return o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -428,14 +428,13 @@ func (o *Monitor) GetState() MonitorState {
 	return *o.State
 }
 
-// GetStateOk returns a tuple with the State field value if set, zero value otherwise
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetStateOk() (MonitorState, bool) {
+func (o *Monitor) GetStateOk() (*MonitorState, bool) {
 	if o == nil || o.State == nil {
-		var ret MonitorState
-		return ret, false
+		return nil, false
 	}
-	return *o.State, true
+	return o.State, true
 }
 
 // HasState returns a boolean if a field has been set.
@@ -461,14 +460,13 @@ func (o *Monitor) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetTagsOk() ([]string, bool) {
+func (o *Monitor) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -494,14 +492,13 @@ func (o *Monitor) GetType() MonitorType {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Monitor) GetTypeOk() (MonitorType, bool) {
+func (o *Monitor) GetTypeOk() (*MonitorType, bool) {
 	if o == nil || o.Type == nil {
-		var ret MonitorType
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -574,7 +571,7 @@ func (v NullableMonitor) Get() *Monitor {
 	return v.value
 }
 
-func (v NullableMonitor) Set(val *Monitor) {
+func (v *NullableMonitor) Set(val *Monitor) {
 	v.value = val
 	v.isSet = true
 }
@@ -583,7 +580,7 @@ func (v NullableMonitor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitor) Unset() {
+func (v *NullableMonitor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

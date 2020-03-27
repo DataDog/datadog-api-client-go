@@ -50,14 +50,13 @@ func (o *ApiKey) GetCreated() string {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetCreatedOk() (string, bool) {
+func (o *ApiKey) GetCreatedOk() (*string, bool) {
 	if o == nil || o.Created == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -83,14 +82,13 @@ func (o *ApiKey) GetCreatedBy() string {
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetCreatedByOk() (string, bool) {
+func (o *ApiKey) GetCreatedByOk() (*string, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
@@ -116,14 +114,13 @@ func (o *ApiKey) GetKey() string {
 	return *o.Key
 }
 
-// GetKeyOk returns a tuple with the Key field value if set, zero value otherwise
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetKeyOk() (string, bool) {
+func (o *ApiKey) GetKeyOk() (*string, bool) {
 	if o == nil || o.Key == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Key, true
+	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
@@ -149,14 +146,13 @@ func (o *ApiKey) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetNameOk() (string, bool) {
+func (o *ApiKey) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -199,7 +195,7 @@ func (v NullableApiKey) Get() *ApiKey {
 	return v.value
 }
 
-func (v NullableApiKey) Set(val *ApiKey) {
+func (v *NullableApiKey) Set(val *ApiKey) {
 	v.value = val
 	v.isSet = true
 }
@@ -208,7 +204,7 @@ func (v NullableApiKey) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableApiKey) Unset() {
+func (v *NullableApiKey) Unset() {
 	v.value = nil
 	v.isSet = false
 }

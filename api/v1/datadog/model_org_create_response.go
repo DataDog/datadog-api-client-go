@@ -46,14 +46,13 @@ func (o *OrgCreateResponse) GetApiKey() ApiKey {
 	return *o.ApiKey
 }
 
-// GetApiKeyOk returns a tuple with the ApiKey field value if set, zero value otherwise
+// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetApiKeyOk() (ApiKey, bool) {
+func (o *OrgCreateResponse) GetApiKeyOk() (*ApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
-		var ret ApiKey
-		return ret, false
+		return nil, false
 	}
-	return *o.ApiKey, true
+	return o.ApiKey, true
 }
 
 // HasApiKey returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *OrgCreateResponse) GetApplicationKey() ApplicationKey {
 	return *o.ApplicationKey
 }
 
-// GetApplicationKeyOk returns a tuple with the ApplicationKey field value if set, zero value otherwise
+// GetApplicationKeyOk returns a tuple with the ApplicationKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetApplicationKeyOk() (ApplicationKey, bool) {
+func (o *OrgCreateResponse) GetApplicationKeyOk() (*ApplicationKey, bool) {
 	if o == nil || o.ApplicationKey == nil {
-		var ret ApplicationKey
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationKey, true
+	return o.ApplicationKey, true
 }
 
 // HasApplicationKey returns a boolean if a field has been set.
@@ -112,14 +110,13 @@ func (o *OrgCreateResponse) GetOrg() Org {
 	return *o.Org
 }
 
-// GetOrgOk returns a tuple with the Org field value if set, zero value otherwise
+// GetOrgOk returns a tuple with the Org field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetOrgOk() (Org, bool) {
+func (o *OrgCreateResponse) GetOrgOk() (*Org, bool) {
 	if o == nil || o.Org == nil {
-		var ret Org
-		return ret, false
+		return nil, false
 	}
-	return *o.Org, true
+	return o.Org, true
 }
 
 // HasOrg returns a boolean if a field has been set.
@@ -145,14 +142,13 @@ func (o *OrgCreateResponse) GetUser() User {
 	return *o.User
 }
 
-// GetUserOk returns a tuple with the User field value if set, zero value otherwise
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgCreateResponse) GetUserOk() (User, bool) {
+func (o *OrgCreateResponse) GetUserOk() (*User, bool) {
 	if o == nil || o.User == nil {
-		var ret User
-		return ret, false
+		return nil, false
 	}
-	return *o.User, true
+	return o.User, true
 }
 
 // HasUser returns a boolean if a field has been set.
@@ -195,7 +191,7 @@ func (v NullableOrgCreateResponse) Get() *OrgCreateResponse {
 	return v.value
 }
 
-func (v NullableOrgCreateResponse) Set(val *OrgCreateResponse) {
+func (v *NullableOrgCreateResponse) Set(val *OrgCreateResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -204,7 +200,7 @@ func (v NullableOrgCreateResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgCreateResponse) Unset() {
+func (v *NullableOrgCreateResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -46,14 +46,13 @@ func (o *OrgSettingsSamlAutocreateUsersDomains) GetDomains() []string {
 	return *o.Domains
 }
 
-// GetDomainsOk returns a tuple with the Domains field value if set, zero value otherwise
+// GetDomainsOk returns a tuple with the Domains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettingsSamlAutocreateUsersDomains) GetDomainsOk() ([]string, bool) {
+func (o *OrgSettingsSamlAutocreateUsersDomains) GetDomainsOk() (*[]string, bool) {
 	if o == nil || o.Domains == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Domains, true
+	return o.Domains, true
 }
 
 // HasDomains returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *OrgSettingsSamlAutocreateUsersDomains) GetEnabled() bool {
 	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettingsSamlAutocreateUsersDomains) GetEnabledOk() (bool, bool) {
+func (o *OrgSettingsSamlAutocreateUsersDomains) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Enabled, true
+	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableOrgSettingsSamlAutocreateUsersDomains) Get() *OrgSettingsSamlAut
 	return v.value
 }
 
-func (v NullableOrgSettingsSamlAutocreateUsersDomains) Set(val *OrgSettingsSamlAutocreateUsersDomains) {
+func (v *NullableOrgSettingsSamlAutocreateUsersDomains) Set(val *OrgSettingsSamlAutocreateUsersDomains) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableOrgSettingsSamlAutocreateUsersDomains) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgSettingsSamlAutocreateUsersDomains) Unset() {
+func (v *NullableOrgSettingsSamlAutocreateUsersDomains) Unset() {
 	v.value = nil
 	v.isSet = false
 }

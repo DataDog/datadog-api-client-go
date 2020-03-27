@@ -53,14 +53,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetFromTs() int64 {
 	return *o.FromTs
 }
 
-// GetFromTsOk returns a tuple with the FromTs field value if set, zero value otherwise
+// GetFromTsOk returns a tuple with the FromTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetFromTsOk() (int64, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetFromTsOk() (*int64, bool) {
 	if o == nil || o.FromTs == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.FromTs, true
+	return o.FromTs, true
 }
 
 // HasFromTs returns a boolean if a field has been set.
@@ -86,14 +85,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLev
 	return *o.Groups
 }
 
-// GetGroupsOk returns a tuple with the Groups field value if set, zero value otherwise
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (HistoryServiceLevelObjectiveSLIData, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (*HistoryServiceLevelObjectiveSLIData, bool) {
 	if o == nil || o.Groups == nil {
-		var ret HistoryServiceLevelObjectiveSLIData
-		return ret, false
+		return nil, false
 	}
-	return *o.Groups, true
+	return o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -119,14 +117,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLe
 	return *o.Overall
 }
 
-// GetOverallOk returns a tuple with the Overall field value if set, zero value otherwise
+// GetOverallOk returns a tuple with the Overall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (HistoryServiceLevelObjectiveSLIData, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (*HistoryServiceLevelObjectiveSLIData, bool) {
 	if o == nil || o.Overall == nil {
-		var ret HistoryServiceLevelObjectiveSLIData
-		return ret, false
+		return nil, false
 	}
-	return *o.Overall, true
+	return o.Overall, true
 }
 
 // HasOverall returns a boolean if a field has been set.
@@ -152,14 +149,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() HistoryServiceLev
 	return *o.Series
 }
 
-// GetSeriesOk returns a tuple with the Series field value if set, zero value otherwise
+// GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (HistoryServiceLevelObjectiveMetrics, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (*HistoryServiceLevelObjectiveMetrics, bool) {
 	if o == nil || o.Series == nil {
-		var ret HistoryServiceLevelObjectiveMetrics
-		return ret, false
+		return nil, false
 	}
-	return *o.Series, true
+	return o.Series, true
 }
 
 // HasSeries returns a boolean if a field has been set.
@@ -185,14 +181,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SL
 	return *o.Thresholds
 }
 
-// GetThresholdsOk returns a tuple with the Thresholds field value if set, zero value otherwise
+// GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (map[string]SLOThreshold, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (*map[string]SLOThreshold, bool) {
 	if o == nil || o.Thresholds == nil {
-		var ret map[string]SLOThreshold
-		return ret, false
+		return nil, false
 	}
-	return *o.Thresholds, true
+	return o.Thresholds, true
 }
 
 // HasThresholds returns a boolean if a field has been set.
@@ -218,14 +213,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetToTs() int64 {
 	return *o.ToTs
 }
 
-// GetToTsOk returns a tuple with the ToTs field value if set, zero value otherwise
+// GetToTsOk returns a tuple with the ToTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetToTsOk() (int64, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetToTsOk() (*int64, bool) {
 	if o == nil || o.ToTs == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ToTs, true
+	return o.ToTs, true
 }
 
 // HasToTs returns a boolean if a field has been set.
@@ -251,14 +245,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetType() ServiceLevelObjecti
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (ServiceLevelObjectiveType, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (*ServiceLevelObjectiveType, bool) {
 	if o == nil || o.Type == nil {
-		var ret ServiceLevelObjectiveType
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -284,14 +277,13 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() ServiceLevelObjec
 	return *o.TypeId
 }
 
-// GetTypeIdOk returns a tuple with the TypeId field value if set, zero value otherwise
+// GetTypeIdOk returns a tuple with the TypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (ServiceLevelObjectiveTypeNumeric, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (*ServiceLevelObjectiveTypeNumeric, bool) {
 	if o == nil || o.TypeId == nil {
-		var ret ServiceLevelObjectiveTypeNumeric
-		return ret, false
+		return nil, false
 	}
-	return *o.TypeId, true
+	return o.TypeId, true
 }
 
 // HasTypeId returns a boolean if a field has been set.
@@ -346,7 +338,7 @@ func (v NullableHistoryServiceLevelObjectiveResponseData) Get() *HistoryServiceL
 	return v.value
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponseData) Set(val *HistoryServiceLevelObjectiveResponseData) {
+func (v *NullableHistoryServiceLevelObjectiveResponseData) Set(val *HistoryServiceLevelObjectiveResponseData) {
 	v.value = val
 	v.isSet = true
 }
@@ -355,7 +347,7 @@ func (v NullableHistoryServiceLevelObjectiveResponseData) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponseData) Unset() {
+func (v *NullableHistoryServiceLevelObjectiveResponseData) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -37,22 +37,22 @@ GetFamily returns the Family field if non-nil, zero value otherwise.
 
 ### GetFamilyOk
 
-`func (o *MetricsQueryResponseUnit) GetFamilyOk() (string, bool)`
+`func (o *MetricsQueryResponseUnit) GetFamilyOk() (*string, bool)`
 
 GetFamilyOk returns a tuple with the Family field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFamily
+
+`func (o *MetricsQueryResponseUnit) SetFamily(v string)`
+
+SetFamily sets Family field to given value.
 
 ### HasFamily
 
 `func (o *MetricsQueryResponseUnit) HasFamily() bool`
 
 HasFamily returns a boolean if a field has been set.
-
-### SetFamily
-
-`func (o *MetricsQueryResponseUnit) SetFamily(v string)`
-
-SetFamily gets a reference to the given string and assigns it to the Family field.
 
 ### GetName
 
@@ -62,22 +62,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *MetricsQueryResponseUnit) GetNameOk() (string, bool)`
+`func (o *MetricsQueryResponseUnit) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *MetricsQueryResponseUnit) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *MetricsQueryResponseUnit) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *MetricsQueryResponseUnit) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetPlural
 
@@ -87,22 +87,22 @@ GetPlural returns the Plural field if non-nil, zero value otherwise.
 
 ### GetPluralOk
 
-`func (o *MetricsQueryResponseUnit) GetPluralOk() (string, bool)`
+`func (o *MetricsQueryResponseUnit) GetPluralOk() (*string, bool)`
 
 GetPluralOk returns a tuple with the Plural field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPlural
+
+`func (o *MetricsQueryResponseUnit) SetPlural(v string)`
+
+SetPlural sets Plural field to given value.
 
 ### HasPlural
 
 `func (o *MetricsQueryResponseUnit) HasPlural() bool`
 
 HasPlural returns a boolean if a field has been set.
-
-### SetPlural
-
-`func (o *MetricsQueryResponseUnit) SetPlural(v string)`
-
-SetPlural gets a reference to the given string and assigns it to the Plural field.
 
 ### GetScaleFactor
 
@@ -112,22 +112,22 @@ GetScaleFactor returns the ScaleFactor field if non-nil, zero value otherwise.
 
 ### GetScaleFactorOk
 
-`func (o *MetricsQueryResponseUnit) GetScaleFactorOk() (float64, bool)`
+`func (o *MetricsQueryResponseUnit) GetScaleFactorOk() (*float64, bool)`
 
 GetScaleFactorOk returns a tuple with the ScaleFactor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetScaleFactor
+
+`func (o *MetricsQueryResponseUnit) SetScaleFactor(v float64)`
+
+SetScaleFactor sets ScaleFactor field to given value.
 
 ### HasScaleFactor
 
 `func (o *MetricsQueryResponseUnit) HasScaleFactor() bool`
 
 HasScaleFactor returns a boolean if a field has been set.
-
-### SetScaleFactor
-
-`func (o *MetricsQueryResponseUnit) SetScaleFactor(v float64)`
-
-SetScaleFactor gets a reference to the given float64 and assigns it to the ScaleFactor field.
 
 ### GetShortName
 
@@ -137,22 +137,22 @@ GetShortName returns the ShortName field if non-nil, zero value otherwise.
 
 ### GetShortNameOk
 
-`func (o *MetricsQueryResponseUnit) GetShortNameOk() (string, bool)`
+`func (o *MetricsQueryResponseUnit) GetShortNameOk() (*string, bool)`
 
 GetShortNameOk returns a tuple with the ShortName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetShortName
+
+`func (o *MetricsQueryResponseUnit) SetShortName(v string)`
+
+SetShortName sets ShortName field to given value.
 
 ### HasShortName
 
 `func (o *MetricsQueryResponseUnit) HasShortName() bool`
 
 HasShortName returns a boolean if a field has been set.
-
-### SetShortName
-
-`func (o *MetricsQueryResponseUnit) SetShortName(v string)`
-
-SetShortName gets a reference to the given string and assigns it to the ShortName field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

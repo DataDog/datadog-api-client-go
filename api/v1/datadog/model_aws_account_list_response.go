@@ -43,14 +43,13 @@ func (o *AWSAccountListResponse) GetAccounts() []AWSAccount {
 	return *o.Accounts
 }
 
-// GetAccountsOk returns a tuple with the Accounts field value if set, zero value otherwise
+// GetAccountsOk returns a tuple with the Accounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccountListResponse) GetAccountsOk() ([]AWSAccount, bool) {
+func (o *AWSAccountListResponse) GetAccountsOk() (*[]AWSAccount, bool) {
 	if o == nil || o.Accounts == nil {
-		var ret []AWSAccount
-		return ret, false
+		return nil, false
 	}
-	return *o.Accounts, true
+	return o.Accounts, true
 }
 
 // HasAccounts returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableAWSAccountListResponse) Get() *AWSAccountListResponse {
 	return v.value
 }
 
-func (v NullableAWSAccountListResponse) Set(val *AWSAccountListResponse) {
+func (v *NullableAWSAccountListResponse) Set(val *AWSAccountListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableAWSAccountListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSAccountListResponse) Unset() {
+func (v *NullableAWSAccountListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

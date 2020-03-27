@@ -58,14 +58,13 @@ func (o *LogsTraceRemapper) GetSources() []string {
 	return *o.Sources
 }
 
-// GetSourcesOk returns a tuple with the Sources field value if set, zero value otherwise
+// GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsTraceRemapper) GetSourcesOk() ([]string, bool) {
+func (o *LogsTraceRemapper) GetSourcesOk() (*[]string, bool) {
 	if o == nil || o.Sources == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Sources, true
+	return o.Sources, true
 }
 
 // HasSources returns a boolean if a field has been set.
@@ -91,14 +90,13 @@ func (o *LogsTraceRemapper) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsTraceRemapper) GetTypeOk() (string, bool) {
+func (o *LogsTraceRemapper) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -124,14 +122,13 @@ func (o *LogsTraceRemapper) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsTraceRemapper) GetIsEnabledOk() (bool, bool) {
+func (o *LogsTraceRemapper) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -157,14 +154,13 @@ func (o *LogsTraceRemapper) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsTraceRemapper) GetNameOk() (string, bool) {
+func (o *LogsTraceRemapper) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -212,7 +208,7 @@ func (v NullableLogsTraceRemapper) Get() *LogsTraceRemapper {
 	return v.value
 }
 
-func (v NullableLogsTraceRemapper) Set(val *LogsTraceRemapper) {
+func (v *NullableLogsTraceRemapper) Set(val *LogsTraceRemapper) {
 	v.value = val
 	v.isSet = true
 }
@@ -221,7 +217,7 @@ func (v NullableLogsTraceRemapper) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsTraceRemapper) Unset() {
+func (v *NullableLogsTraceRemapper) Unset() {
 	v.value = nil
 	v.isSet = false
 }

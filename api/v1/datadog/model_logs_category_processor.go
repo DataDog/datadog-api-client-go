@@ -63,6 +63,15 @@ func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategorie
 	return o.Categories
 }
 
+// GetCategoriesOk returns a tuple with the Categories field value
+// and a boolean to check if the value has been set.
+func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategories, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Categories, true
+}
+
 // SetCategories sets field value
 func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategories) {
 	o.Categories = v
@@ -76,6 +85,15 @@ func (o *LogsCategoryProcessor) GetTarget() string {
 	}
 
 	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsCategoryProcessor) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
 }
 
 // SetTarget sets field value
@@ -92,14 +110,13 @@ func (o *LogsCategoryProcessor) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsCategoryProcessor) GetTypeOk() (string, bool) {
+func (o *LogsCategoryProcessor) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -125,14 +142,13 @@ func (o *LogsCategoryProcessor) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsCategoryProcessor) GetIsEnabledOk() (bool, bool) {
+func (o *LogsCategoryProcessor) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -158,14 +174,13 @@ func (o *LogsCategoryProcessor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsCategoryProcessor) GetNameOk() (string, bool) {
+func (o *LogsCategoryProcessor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -216,7 +231,7 @@ func (v NullableLogsCategoryProcessor) Get() *LogsCategoryProcessor {
 	return v.value
 }
 
-func (v NullableLogsCategoryProcessor) Set(val *LogsCategoryProcessor) {
+func (v *NullableLogsCategoryProcessor) Set(val *LogsCategoryProcessor) {
 	v.value = val
 	v.isSet = true
 }
@@ -225,7 +240,7 @@ func (v NullableLogsCategoryProcessor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsCategoryProcessor) Unset() {
+func (v *NullableLogsCategoryProcessor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

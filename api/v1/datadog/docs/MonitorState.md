@@ -33,22 +33,22 @@ GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### GetGroupsOk
 
-`func (o *MonitorState) GetGroupsOk() (map[string]MonitorStateGroup, bool)`
+`func (o *MonitorState) GetGroupsOk() (*map[string]MonitorStateGroup, bool)`
 
 GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetGroups
+
+`func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup)`
+
+SetGroups sets Groups field to given value.
 
 ### HasGroups
 
 `func (o *MonitorState) HasGroups() bool`
 
 HasGroups returns a boolean if a field has been set.
-
-### SetGroups
-
-`func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup)`
-
-SetGroups gets a reference to the given map[string]MonitorStateGroup and assigns it to the Groups field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

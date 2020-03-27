@@ -38,22 +38,22 @@ GetDailyLimit returns the DailyLimit field if non-nil, zero value otherwise.
 
 ### GetDailyLimitOk
 
-`func (o *LogsIndex) GetDailyLimitOk() (int64, bool)`
+`func (o *LogsIndex) GetDailyLimitOk() (*int64, bool)`
 
 GetDailyLimitOk returns a tuple with the DailyLimit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDailyLimit
+
+`func (o *LogsIndex) SetDailyLimit(v int64)`
+
+SetDailyLimit sets DailyLimit field to given value.
 
 ### HasDailyLimit
 
 `func (o *LogsIndex) HasDailyLimit() bool`
 
 HasDailyLimit returns a boolean if a field has been set.
-
-### SetDailyLimit
-
-`func (o *LogsIndex) SetDailyLimit(v int64)`
-
-SetDailyLimit gets a reference to the given int64 and assigns it to the DailyLimit field.
 
 ### GetExclusionFilters
 
@@ -63,22 +63,22 @@ GetExclusionFilters returns the ExclusionFilters field if non-nil, zero value ot
 
 ### GetExclusionFiltersOk
 
-`func (o *LogsIndex) GetExclusionFiltersOk() ([]LogsExclusion, bool)`
+`func (o *LogsIndex) GetExclusionFiltersOk() (*[]LogsExclusion, bool)`
 
 GetExclusionFiltersOk returns a tuple with the ExclusionFilters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetExclusionFilters
+
+`func (o *LogsIndex) SetExclusionFilters(v []LogsExclusion)`
+
+SetExclusionFilters sets ExclusionFilters field to given value.
 
 ### HasExclusionFilters
 
 `func (o *LogsIndex) HasExclusionFilters() bool`
 
 HasExclusionFilters returns a boolean if a field has been set.
-
-### SetExclusionFilters
-
-`func (o *LogsIndex) SetExclusionFilters(v []LogsExclusion)`
-
-SetExclusionFilters gets a reference to the given []LogsExclusion and assigns it to the ExclusionFilters field.
 
 ### GetFilter
 
@@ -88,22 +88,17 @@ GetFilter returns the Filter field if non-nil, zero value otherwise.
 
 ### GetFilterOk
 
-`func (o *LogsIndex) GetFilterOk() (LogsFilter, bool)`
+`func (o *LogsIndex) GetFilterOk() (*LogsFilter, bool)`
 
 GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasFilter
-
-`func (o *LogsIndex) HasFilter() bool`
-
-HasFilter returns a boolean if a field has been set.
 
 ### SetFilter
 
 `func (o *LogsIndex) SetFilter(v LogsFilter)`
 
-SetFilter gets a reference to the given LogsFilter and assigns it to the Filter field.
+SetFilter sets Filter field to given value.
+
 
 ### GetIsRateLimited
 
@@ -113,22 +108,22 @@ GetIsRateLimited returns the IsRateLimited field if non-nil, zero value otherwis
 
 ### GetIsRateLimitedOk
 
-`func (o *LogsIndex) GetIsRateLimitedOk() (bool, bool)`
+`func (o *LogsIndex) GetIsRateLimitedOk() (*bool, bool)`
 
 GetIsRateLimitedOk returns a tuple with the IsRateLimited field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsRateLimited
+
+`func (o *LogsIndex) SetIsRateLimited(v bool)`
+
+SetIsRateLimited sets IsRateLimited field to given value.
 
 ### HasIsRateLimited
 
 `func (o *LogsIndex) HasIsRateLimited() bool`
 
 HasIsRateLimited returns a boolean if a field has been set.
-
-### SetIsRateLimited
-
-`func (o *LogsIndex) SetIsRateLimited(v bool)`
-
-SetIsRateLimited gets a reference to the given bool and assigns it to the IsRateLimited field.
 
 ### GetName
 
@@ -138,22 +133,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsIndex) GetNameOk() (string, bool)`
+`func (o *LogsIndex) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsIndex) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *LogsIndex) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *LogsIndex) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetNumRetentionDays
 
@@ -163,22 +158,22 @@ GetNumRetentionDays returns the NumRetentionDays field if non-nil, zero value ot
 
 ### GetNumRetentionDaysOk
 
-`func (o *LogsIndex) GetNumRetentionDaysOk() (int64, bool)`
+`func (o *LogsIndex) GetNumRetentionDaysOk() (*int64, bool)`
 
 GetNumRetentionDaysOk returns a tuple with the NumRetentionDays field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetNumRetentionDays
+
+`func (o *LogsIndex) SetNumRetentionDays(v int64)`
+
+SetNumRetentionDays sets NumRetentionDays field to given value.
 
 ### HasNumRetentionDays
 
 `func (o *LogsIndex) HasNumRetentionDays() bool`
 
 HasNumRetentionDays returns a boolean if a field has been set.
-
-### SetNumRetentionDays
-
-`func (o *LogsIndex) SetNumRetentionDays(v int64)`
-
-SetNumRetentionDays gets a reference to the given int64 and assigns it to the NumRetentionDays field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

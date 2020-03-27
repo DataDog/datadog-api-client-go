@@ -28,16 +28,22 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRecoveryWindow
 
-`func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() NullableString`
+`func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string`
 
 GetRecoveryWindow returns the RecoveryWindow field if non-nil, zero value otherwise.
 
 ### GetRecoveryWindowOk
 
-`func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (NullableString, bool)`
+`func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (*string, bool)`
 
 GetRecoveryWindowOk returns a tuple with the RecoveryWindow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetRecoveryWindow
+
+`func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string)`
+
+SetRecoveryWindow sets RecoveryWindow field to given value.
 
 ### HasRecoveryWindow
 
@@ -45,31 +51,34 @@ and a boolean to check if the value has been set.
 
 HasRecoveryWindow returns a boolean if a field has been set.
 
-### SetRecoveryWindow
+### SetRecoveryWindowNil
 
-`func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v NullableString)`
+`func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil(b bool)`
 
-SetRecoveryWindow gets a reference to the given NullableString and assigns it to the RecoveryWindow field.
+ SetRecoveryWindowNil sets the value for RecoveryWindow to be an explicit nil
 
-### SetRecoveryWindowExplicitNull
+### UnsetRecoveryWindow
+`func (o *MonitorThresholdWindowOptions) UnsetRecoveryWindow()`
 
-`func (o *MonitorThresholdWindowOptions) SetRecoveryWindowExplicitNull(b bool)`
-
-SetRecoveryWindowExplicitNull (un)sets RecoveryWindow to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The RecoveryWindow value is set to nil even if false is passed
+UnsetRecoveryWindow ensures that no value is present for RecoveryWindow, not even an explicit nil
 ### GetTriggerWindow
 
-`func (o *MonitorThresholdWindowOptions) GetTriggerWindow() NullableString`
+`func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string`
 
 GetTriggerWindow returns the TriggerWindow field if non-nil, zero value otherwise.
 
 ### GetTriggerWindowOk
 
-`func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (NullableString, bool)`
+`func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (*string, bool)`
 
 GetTriggerWindowOk returns a tuple with the TriggerWindow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTriggerWindow
+
+`func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string)`
+
+SetTriggerWindow sets TriggerWindow field to given value.
 
 ### HasTriggerWindow
 
@@ -77,19 +86,16 @@ and a boolean to check if the value has been set.
 
 HasTriggerWindow returns a boolean if a field has been set.
 
-### SetTriggerWindow
+### SetTriggerWindowNil
 
-`func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v NullableString)`
+`func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil(b bool)`
 
-SetTriggerWindow gets a reference to the given NullableString and assigns it to the TriggerWindow field.
+ SetTriggerWindowNil sets the value for TriggerWindow to be an explicit nil
 
-### SetTriggerWindowExplicitNull
+### UnsetTriggerWindow
+`func (o *MonitorThresholdWindowOptions) UnsetTriggerWindow()`
 
-`func (o *MonitorThresholdWindowOptions) SetTriggerWindowExplicitNull(b bool)`
-
-SetTriggerWindowExplicitNull (un)sets TriggerWindow to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The TriggerWindow value is set to nil even if false is passed
+UnsetTriggerWindow ensures that no value is present for TriggerWindow, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

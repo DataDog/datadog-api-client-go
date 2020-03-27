@@ -49,14 +49,13 @@ func (o *SyntheticsBrowserVariable) GetExample() string {
 	return *o.Example
 }
 
-// GetExampleOk returns a tuple with the Example field value if set, zero value otherwise
+// GetExampleOk returns a tuple with the Example field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserVariable) GetExampleOk() (string, bool) {
+func (o *SyntheticsBrowserVariable) GetExampleOk() (*string, bool) {
 	if o == nil || o.Example == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Example, true
+	return o.Example, true
 }
 
 // HasExample returns a boolean if a field has been set.
@@ -82,14 +81,13 @@ func (o *SyntheticsBrowserVariable) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserVariable) GetIdOk() (string, bool) {
+func (o *SyntheticsBrowserVariable) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -116,6 +114,15 @@ func (o *SyntheticsBrowserVariable) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserVariable) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *SyntheticsBrowserVariable) SetName(v string) {
 	o.Name = v
@@ -130,14 +137,13 @@ func (o *SyntheticsBrowserVariable) GetPattern() string {
 	return *o.Pattern
 }
 
-// GetPatternOk returns a tuple with the Pattern field value if set, zero value otherwise
+// GetPatternOk returns a tuple with the Pattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserVariable) GetPatternOk() (string, bool) {
+func (o *SyntheticsBrowserVariable) GetPatternOk() (*string, bool) {
 	if o == nil || o.Pattern == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Pattern, true
+	return o.Pattern, true
 }
 
 // HasPattern returns a boolean if a field has been set.
@@ -162,6 +168,15 @@ func (o *SyntheticsBrowserVariable) GetType() SyntheticsBrowserVariableType {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserVariable) GetTypeOk() (*SyntheticsBrowserVariableType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -198,7 +213,7 @@ func (v NullableSyntheticsBrowserVariable) Get() *SyntheticsBrowserVariable {
 	return v.value
 }
 
-func (v NullableSyntheticsBrowserVariable) Set(val *SyntheticsBrowserVariable) {
+func (v *NullableSyntheticsBrowserVariable) Set(val *SyntheticsBrowserVariable) {
 	v.value = val
 	v.isSet = true
 }
@@ -207,7 +222,7 @@ func (v NullableSyntheticsBrowserVariable) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsBrowserVariable) Unset() {
+func (v *NullableSyntheticsBrowserVariable) Unset() {
 	v.value = nil
 	v.isSet = false
 }

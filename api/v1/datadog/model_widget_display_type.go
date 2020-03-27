@@ -36,7 +36,7 @@ func (v NullableWidgetDisplayType) Get() *WidgetDisplayType {
 	return v.value
 }
 
-func (v NullableWidgetDisplayType) Set(val *WidgetDisplayType) {
+func (v *NullableWidgetDisplayType) Set(val *WidgetDisplayType) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetDisplayType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetDisplayType) Unset() {
+func (v *NullableWidgetDisplayType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

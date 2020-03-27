@@ -53,14 +53,13 @@ func (o *MonitorStateGroup) GetLastNodataTs() int64 {
 	return *o.LastNodataTs
 }
 
-// GetLastNodataTsOk returns a tuple with the LastNodataTs field value if set, zero value otherwise
+// GetLastNodataTsOk returns a tuple with the LastNodataTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetLastNodataTsOk() (int64, bool) {
+func (o *MonitorStateGroup) GetLastNodataTsOk() (*int64, bool) {
 	if o == nil || o.LastNodataTs == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.LastNodataTs, true
+	return o.LastNodataTs, true
 }
 
 // HasLastNodataTs returns a boolean if a field has been set.
@@ -86,14 +85,13 @@ func (o *MonitorStateGroup) GetLastNotifiedTs() int64 {
 	return *o.LastNotifiedTs
 }
 
-// GetLastNotifiedTsOk returns a tuple with the LastNotifiedTs field value if set, zero value otherwise
+// GetLastNotifiedTsOk returns a tuple with the LastNotifiedTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetLastNotifiedTsOk() (int64, bool) {
+func (o *MonitorStateGroup) GetLastNotifiedTsOk() (*int64, bool) {
 	if o == nil || o.LastNotifiedTs == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.LastNotifiedTs, true
+	return o.LastNotifiedTs, true
 }
 
 // HasLastNotifiedTs returns a boolean if a field has been set.
@@ -119,14 +117,13 @@ func (o *MonitorStateGroup) GetLastResolvedTs() int64 {
 	return *o.LastResolvedTs
 }
 
-// GetLastResolvedTsOk returns a tuple with the LastResolvedTs field value if set, zero value otherwise
+// GetLastResolvedTsOk returns a tuple with the LastResolvedTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetLastResolvedTsOk() (int64, bool) {
+func (o *MonitorStateGroup) GetLastResolvedTsOk() (*int64, bool) {
 	if o == nil || o.LastResolvedTs == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.LastResolvedTs, true
+	return o.LastResolvedTs, true
 }
 
 // HasLastResolvedTs returns a boolean if a field has been set.
@@ -152,14 +149,13 @@ func (o *MonitorStateGroup) GetLastTriggeredTs() int64 {
 	return *o.LastTriggeredTs
 }
 
-// GetLastTriggeredTsOk returns a tuple with the LastTriggeredTs field value if set, zero value otherwise
+// GetLastTriggeredTsOk returns a tuple with the LastTriggeredTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetLastTriggeredTsOk() (int64, bool) {
+func (o *MonitorStateGroup) GetLastTriggeredTsOk() (*int64, bool) {
 	if o == nil || o.LastTriggeredTs == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.LastTriggeredTs, true
+	return o.LastTriggeredTs, true
 }
 
 // HasLastTriggeredTs returns a boolean if a field has been set.
@@ -185,14 +181,13 @@ func (o *MonitorStateGroup) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetNameOk() (string, bool) {
+func (o *MonitorStateGroup) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -218,14 +213,13 @@ func (o *MonitorStateGroup) GetStatus() MonitorOverallStates {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetStatusOk() (MonitorOverallStates, bool) {
+func (o *MonitorStateGroup) GetStatusOk() (*MonitorOverallStates, bool) {
 	if o == nil || o.Status == nil {
-		var ret MonitorOverallStates
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -274,7 +268,7 @@ func (v NullableMonitorStateGroup) Get() *MonitorStateGroup {
 	return v.value
 }
 
-func (v NullableMonitorStateGroup) Set(val *MonitorStateGroup) {
+func (v *NullableMonitorStateGroup) Set(val *MonitorStateGroup) {
 	v.value = val
 	v.isSet = true
 }
@@ -283,7 +277,7 @@ func (v NullableMonitorStateGroup) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorStateGroup) Unset() {
+func (v *NullableMonitorStateGroup) Unset() {
 	v.value = nil
 	v.isSet = false
 }

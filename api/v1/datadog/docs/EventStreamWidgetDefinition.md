@@ -40,22 +40,22 @@ GetEventSize returns the EventSize field if non-nil, zero value otherwise.
 
 ### GetEventSizeOk
 
-`func (o *EventStreamWidgetDefinition) GetEventSizeOk() (WidgetEventSize, bool)`
+`func (o *EventStreamWidgetDefinition) GetEventSizeOk() (*WidgetEventSize, bool)`
 
 GetEventSizeOk returns a tuple with the EventSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEventSize
+
+`func (o *EventStreamWidgetDefinition) SetEventSize(v WidgetEventSize)`
+
+SetEventSize sets EventSize field to given value.
 
 ### HasEventSize
 
 `func (o *EventStreamWidgetDefinition) HasEventSize() bool`
 
 HasEventSize returns a boolean if a field has been set.
-
-### SetEventSize
-
-`func (o *EventStreamWidgetDefinition) SetEventSize(v WidgetEventSize)`
-
-SetEventSize gets a reference to the given WidgetEventSize and assigns it to the EventSize field.
 
 ### GetQuery
 
@@ -65,22 +65,17 @@ GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *EventStreamWidgetDefinition) GetQueryOk() (string, bool)`
+`func (o *EventStreamWidgetDefinition) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasQuery
-
-`func (o *EventStreamWidgetDefinition) HasQuery() bool`
-
-HasQuery returns a boolean if a field has been set.
 
 ### SetQuery
 
 `func (o *EventStreamWidgetDefinition) SetQuery(v string)`
 
-SetQuery gets a reference to the given string and assigns it to the Query field.
+SetQuery sets Query field to given value.
+
 
 ### GetTagsExecution
 
@@ -90,22 +85,22 @@ GetTagsExecution returns the TagsExecution field if non-nil, zero value otherwis
 
 ### GetTagsExecutionOk
 
-`func (o *EventStreamWidgetDefinition) GetTagsExecutionOk() (string, bool)`
+`func (o *EventStreamWidgetDefinition) GetTagsExecutionOk() (*string, bool)`
 
 GetTagsExecutionOk returns a tuple with the TagsExecution field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTagsExecution
+
+`func (o *EventStreamWidgetDefinition) SetTagsExecution(v string)`
+
+SetTagsExecution sets TagsExecution field to given value.
 
 ### HasTagsExecution
 
 `func (o *EventStreamWidgetDefinition) HasTagsExecution() bool`
 
 HasTagsExecution returns a boolean if a field has been set.
-
-### SetTagsExecution
-
-`func (o *EventStreamWidgetDefinition) SetTagsExecution(v string)`
-
-SetTagsExecution gets a reference to the given string and assigns it to the TagsExecution field.
 
 ### GetTime
 
@@ -115,22 +110,22 @@ GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *EventStreamWidgetDefinition) GetTimeOk() (WidgetTime, bool)`
+`func (o *EventStreamWidgetDefinition) GetTimeOk() (*WidgetTime, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *EventStreamWidgetDefinition) SetTime(v WidgetTime)`
+
+SetTime sets Time field to given value.
 
 ### HasTime
 
 `func (o *EventStreamWidgetDefinition) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
-
-### SetTime
-
-`func (o *EventStreamWidgetDefinition) SetTime(v WidgetTime)`
-
-SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
 
 ### GetTitle
 
@@ -140,22 +135,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *EventStreamWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *EventStreamWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *EventStreamWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *EventStreamWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *EventStreamWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -165,22 +160,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *EventStreamWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *EventStreamWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *EventStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *EventStreamWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *EventStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -190,22 +185,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *EventStreamWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *EventStreamWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *EventStreamWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *EventStreamWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *EventStreamWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -215,22 +210,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *EventStreamWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *EventStreamWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *EventStreamWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *EventStreamWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

@@ -33,22 +33,22 @@ GetAccounts returns the Accounts field if non-nil, zero value otherwise.
 
 ### GetAccountsOk
 
-`func (o *AWSAccountListResponse) GetAccountsOk() ([]AWSAccount, bool)`
+`func (o *AWSAccountListResponse) GetAccountsOk() (*[]AWSAccount, bool)`
 
 GetAccountsOk returns a tuple with the Accounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAccounts
+
+`func (o *AWSAccountListResponse) SetAccounts(v []AWSAccount)`
+
+SetAccounts sets Accounts field to given value.
 
 ### HasAccounts
 
 `func (o *AWSAccountListResponse) HasAccounts() bool`
 
 HasAccounts returns a boolean if a field has been set.
-
-### SetAccounts
-
-`func (o *AWSAccountListResponse) SetAccounts(v []AWSAccount)`
-
-SetAccounts gets a reference to the given []AWSAccount and assigns it to the Accounts field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

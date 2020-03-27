@@ -61,14 +61,13 @@ func (o *OrgSettings) GetPrivateWidgetShare() bool {
 	return *o.PrivateWidgetShare
 }
 
-// GetPrivateWidgetShareOk returns a tuple with the PrivateWidgetShare field value if set, zero value otherwise
+// GetPrivateWidgetShareOk returns a tuple with the PrivateWidgetShare field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetPrivateWidgetShareOk() (bool, bool) {
+func (o *OrgSettings) GetPrivateWidgetShareOk() (*bool, bool) {
 	if o == nil || o.PrivateWidgetShare == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.PrivateWidgetShare, true
+	return o.PrivateWidgetShare, true
 }
 
 // HasPrivateWidgetShare returns a boolean if a field has been set.
@@ -94,14 +93,13 @@ func (o *OrgSettings) GetSaml() OrgSettingsSaml {
 	return *o.Saml
 }
 
-// GetSamlOk returns a tuple with the Saml field value if set, zero value otherwise
+// GetSamlOk returns a tuple with the Saml field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlOk() (OrgSettingsSaml, bool) {
+func (o *OrgSettings) GetSamlOk() (*OrgSettingsSaml, bool) {
 	if o == nil || o.Saml == nil {
-		var ret OrgSettingsSaml
-		return ret, false
+		return nil, false
 	}
-	return *o.Saml, true
+	return o.Saml, true
 }
 
 // HasSaml returns a boolean if a field has been set.
@@ -127,14 +125,13 @@ func (o *OrgSettings) GetSamlAutocreateAccessRole() AccessRole {
 	return *o.SamlAutocreateAccessRole
 }
 
-// GetSamlAutocreateAccessRoleOk returns a tuple with the SamlAutocreateAccessRole field value if set, zero value otherwise
+// GetSamlAutocreateAccessRoleOk returns a tuple with the SamlAutocreateAccessRole field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (AccessRole, bool) {
+func (o *OrgSettings) GetSamlAutocreateAccessRoleOk() (*AccessRole, bool) {
 	if o == nil || o.SamlAutocreateAccessRole == nil {
-		var ret AccessRole
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlAutocreateAccessRole, true
+	return o.SamlAutocreateAccessRole, true
 }
 
 // HasSamlAutocreateAccessRole returns a boolean if a field has been set.
@@ -160,14 +157,13 @@ func (o *OrgSettings) GetSamlAutocreateUsersDomains() OrgSettingsSamlAutocreateU
 	return *o.SamlAutocreateUsersDomains
 }
 
-// GetSamlAutocreateUsersDomainsOk returns a tuple with the SamlAutocreateUsersDomains field value if set, zero value otherwise
+// GetSamlAutocreateUsersDomainsOk returns a tuple with the SamlAutocreateUsersDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlAutocreateUsersDomainsOk() (OrgSettingsSamlAutocreateUsersDomains, bool) {
+func (o *OrgSettings) GetSamlAutocreateUsersDomainsOk() (*OrgSettingsSamlAutocreateUsersDomains, bool) {
 	if o == nil || o.SamlAutocreateUsersDomains == nil {
-		var ret OrgSettingsSamlAutocreateUsersDomains
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlAutocreateUsersDomains, true
+	return o.SamlAutocreateUsersDomains, true
 }
 
 // HasSamlAutocreateUsersDomains returns a boolean if a field has been set.
@@ -193,14 +189,13 @@ func (o *OrgSettings) GetSamlCanBeEnabled() bool {
 	return *o.SamlCanBeEnabled
 }
 
-// GetSamlCanBeEnabledOk returns a tuple with the SamlCanBeEnabled field value if set, zero value otherwise
+// GetSamlCanBeEnabledOk returns a tuple with the SamlCanBeEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlCanBeEnabledOk() (bool, bool) {
+func (o *OrgSettings) GetSamlCanBeEnabledOk() (*bool, bool) {
 	if o == nil || o.SamlCanBeEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlCanBeEnabled, true
+	return o.SamlCanBeEnabled, true
 }
 
 // HasSamlCanBeEnabled returns a boolean if a field has been set.
@@ -226,14 +221,13 @@ func (o *OrgSettings) GetSamlIdpEndpoint() string {
 	return *o.SamlIdpEndpoint
 }
 
-// GetSamlIdpEndpointOk returns a tuple with the SamlIdpEndpoint field value if set, zero value otherwise
+// GetSamlIdpEndpointOk returns a tuple with the SamlIdpEndpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlIdpEndpointOk() (string, bool) {
+func (o *OrgSettings) GetSamlIdpEndpointOk() (*string, bool) {
 	if o == nil || o.SamlIdpEndpoint == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlIdpEndpoint, true
+	return o.SamlIdpEndpoint, true
 }
 
 // HasSamlIdpEndpoint returns a boolean if a field has been set.
@@ -259,14 +253,13 @@ func (o *OrgSettings) GetSamlIdpInitiatedLogin() OrgSettingsSamlIdpInitiatedLogi
 	return *o.SamlIdpInitiatedLogin
 }
 
-// GetSamlIdpInitiatedLoginOk returns a tuple with the SamlIdpInitiatedLogin field value if set, zero value otherwise
+// GetSamlIdpInitiatedLoginOk returns a tuple with the SamlIdpInitiatedLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlIdpInitiatedLoginOk() (OrgSettingsSamlIdpInitiatedLogin, bool) {
+func (o *OrgSettings) GetSamlIdpInitiatedLoginOk() (*OrgSettingsSamlIdpInitiatedLogin, bool) {
 	if o == nil || o.SamlIdpInitiatedLogin == nil {
-		var ret OrgSettingsSamlIdpInitiatedLogin
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlIdpInitiatedLogin, true
+	return o.SamlIdpInitiatedLogin, true
 }
 
 // HasSamlIdpInitiatedLogin returns a boolean if a field has been set.
@@ -292,14 +285,13 @@ func (o *OrgSettings) GetSamlIdpMetadataUploaded() bool {
 	return *o.SamlIdpMetadataUploaded
 }
 
-// GetSamlIdpMetadataUploadedOk returns a tuple with the SamlIdpMetadataUploaded field value if set, zero value otherwise
+// GetSamlIdpMetadataUploadedOk returns a tuple with the SamlIdpMetadataUploaded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlIdpMetadataUploadedOk() (bool, bool) {
+func (o *OrgSettings) GetSamlIdpMetadataUploadedOk() (*bool, bool) {
 	if o == nil || o.SamlIdpMetadataUploaded == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlIdpMetadataUploaded, true
+	return o.SamlIdpMetadataUploaded, true
 }
 
 // HasSamlIdpMetadataUploaded returns a boolean if a field has been set.
@@ -325,14 +317,13 @@ func (o *OrgSettings) GetSamlLoginUrl() string {
 	return *o.SamlLoginUrl
 }
 
-// GetSamlLoginUrlOk returns a tuple with the SamlLoginUrl field value if set, zero value otherwise
+// GetSamlLoginUrlOk returns a tuple with the SamlLoginUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlLoginUrlOk() (string, bool) {
+func (o *OrgSettings) GetSamlLoginUrlOk() (*string, bool) {
 	if o == nil || o.SamlLoginUrl == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlLoginUrl, true
+	return o.SamlLoginUrl, true
 }
 
 // HasSamlLoginUrl returns a boolean if a field has been set.
@@ -358,14 +349,13 @@ func (o *OrgSettings) GetSamlStrictMode() OrgSettingsSamlIdpInitiatedLogin {
 	return *o.SamlStrictMode
 }
 
-// GetSamlStrictModeOk returns a tuple with the SamlStrictMode field value if set, zero value otherwise
+// GetSamlStrictModeOk returns a tuple with the SamlStrictMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSettings) GetSamlStrictModeOk() (OrgSettingsSamlIdpInitiatedLogin, bool) {
+func (o *OrgSettings) GetSamlStrictModeOk() (*OrgSettingsSamlIdpInitiatedLogin, bool) {
 	if o == nil || o.SamlStrictMode == nil {
-		var ret OrgSettingsSamlIdpInitiatedLogin
-		return ret, false
+		return nil, false
 	}
-	return *o.SamlStrictMode, true
+	return o.SamlStrictMode, true
 }
 
 // HasSamlStrictMode returns a boolean if a field has been set.
@@ -426,7 +416,7 @@ func (v NullableOrgSettings) Get() *OrgSettings {
 	return v.value
 }
 
-func (v NullableOrgSettings) Set(val *OrgSettings) {
+func (v *NullableOrgSettings) Set(val *OrgSettings) {
 	v.value = val
 	v.isSet = true
 }
@@ -435,7 +425,7 @@ func (v NullableOrgSettings) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgSettings) Unset() {
+func (v *NullableOrgSettings) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -44,14 +44,13 @@ func (o *DashboardListListResponse) GetDashboardLists() []DashboardList {
 	return *o.DashboardLists
 }
 
-// GetDashboardListsOk returns a tuple with the DashboardLists field value if set, zero value otherwise
+// GetDashboardListsOk returns a tuple with the DashboardLists field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardListListResponse) GetDashboardListsOk() ([]DashboardList, bool) {
+func (o *DashboardListListResponse) GetDashboardListsOk() (*[]DashboardList, bool) {
 	if o == nil || o.DashboardLists == nil {
-		var ret []DashboardList
-		return ret, false
+		return nil, false
 	}
-	return *o.DashboardLists, true
+	return o.DashboardLists, true
 }
 
 // HasDashboardLists returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableDashboardListListResponse) Get() *DashboardListListResponse {
 	return v.value
 }
 
-func (v NullableDashboardListListResponse) Set(val *DashboardListListResponse) {
+func (v *NullableDashboardListListResponse) Set(val *DashboardListListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableDashboardListListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardListListResponse) Unset() {
+func (v *NullableDashboardListListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

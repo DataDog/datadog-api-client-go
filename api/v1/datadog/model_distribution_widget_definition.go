@@ -58,14 +58,13 @@ func (o *DistributionWidgetDefinition) GetLegendSize() WidgetLegendSize {
 	return *o.LegendSize
 }
 
-// GetLegendSizeOk returns a tuple with the LegendSize field value if set, zero value otherwise
+// GetLegendSizeOk returns a tuple with the LegendSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetDefinition) GetLegendSizeOk() (WidgetLegendSize, bool) {
+func (o *DistributionWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool) {
 	if o == nil || o.LegendSize == nil {
-		var ret WidgetLegendSize
-		return ret, false
+		return nil, false
 	}
-	return *o.LegendSize, true
+	return o.LegendSize, true
 }
 
 // HasLegendSize returns a boolean if a field has been set.
@@ -92,6 +91,15 @@ func (o *DistributionWidgetDefinition) GetRequests() []DistributionWidgetRequest
 	return o.Requests
 }
 
+// GetRequestsOk returns a tuple with the Requests field value
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetDefinition) GetRequestsOk() (*[]DistributionWidgetRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Requests, true
+}
+
 // SetRequests sets field value
 func (o *DistributionWidgetDefinition) SetRequests(v []DistributionWidgetRequest) {
 	o.Requests = v
@@ -106,14 +114,13 @@ func (o *DistributionWidgetDefinition) GetShowLegend() bool {
 	return *o.ShowLegend
 }
 
-// GetShowLegendOk returns a tuple with the ShowLegend field value if set, zero value otherwise
+// GetShowLegendOk returns a tuple with the ShowLegend field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetDefinition) GetShowLegendOk() (bool, bool) {
+func (o *DistributionWidgetDefinition) GetShowLegendOk() (*bool, bool) {
 	if o == nil || o.ShowLegend == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowLegend, true
+	return o.ShowLegend, true
 }
 
 // HasShowLegend returns a boolean if a field has been set.
@@ -139,14 +146,13 @@ func (o *DistributionWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *DistributionWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -172,14 +178,13 @@ func (o *DistributionWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *DistributionWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -205,14 +210,13 @@ func (o *DistributionWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *DistributionWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -238,14 +242,13 @@ func (o *DistributionWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *DistributionWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -270,6 +273,15 @@ func (o *DistributionWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -320,7 +332,7 @@ func (v NullableDistributionWidgetDefinition) Get() *DistributionWidgetDefinitio
 	return v.value
 }
 
-func (v NullableDistributionWidgetDefinition) Set(val *DistributionWidgetDefinition) {
+func (v *NullableDistributionWidgetDefinition) Set(val *DistributionWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -329,7 +341,7 @@ func (v NullableDistributionWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDistributionWidgetDefinition) Unset() {
+func (v *NullableDistributionWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

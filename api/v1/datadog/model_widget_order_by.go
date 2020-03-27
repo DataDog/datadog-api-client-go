@@ -37,7 +37,7 @@ func (v NullableWidgetOrderBy) Get() *WidgetOrderBy {
 	return v.value
 }
 
-func (v NullableWidgetOrderBy) Set(val *WidgetOrderBy) {
+func (v *NullableWidgetOrderBy) Set(val *WidgetOrderBy) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableWidgetOrderBy) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetOrderBy) Unset() {
+func (v *NullableWidgetOrderBy) Unset() {
 	v.value = nil
 	v.isSet = false
 }

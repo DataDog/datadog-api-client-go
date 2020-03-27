@@ -34,22 +34,22 @@ GetCode returns the Code field if non-nil, zero value otherwise.
 
 ### GetCodeOk
 
-`func (o *AWSLogsAsyncResponseErrors) GetCodeOk() (string, bool)`
+`func (o *AWSLogsAsyncResponseErrors) GetCodeOk() (*string, bool)`
 
 GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *AWSLogsAsyncResponseErrors) SetCode(v string)`
+
+SetCode sets Code field to given value.
 
 ### HasCode
 
 `func (o *AWSLogsAsyncResponseErrors) HasCode() bool`
 
 HasCode returns a boolean if a field has been set.
-
-### SetCode
-
-`func (o *AWSLogsAsyncResponseErrors) SetCode(v string)`
-
-SetCode gets a reference to the given string and assigns it to the Code field.
 
 ### GetMessage
 
@@ -59,22 +59,22 @@ GetMessage returns the Message field if non-nil, zero value otherwise.
 
 ### GetMessageOk
 
-`func (o *AWSLogsAsyncResponseErrors) GetMessageOk() (string, bool)`
+`func (o *AWSLogsAsyncResponseErrors) GetMessageOk() (*string, bool)`
 
 GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMessage
+
+`func (o *AWSLogsAsyncResponseErrors) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
 
 ### HasMessage
 
 `func (o *AWSLogsAsyncResponseErrors) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
-
-### SetMessage
-
-`func (o *AWSLogsAsyncResponseErrors) SetMessage(v string)`
-
-SetMessage gets a reference to the given string and assigns it to the Message field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

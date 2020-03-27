@@ -53,14 +53,13 @@ func (o *Org) GetBilling() OrgBilling {
 	return *o.Billing
 }
 
-// GetBillingOk returns a tuple with the Billing field value if set, zero value otherwise
+// GetBillingOk returns a tuple with the Billing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetBillingOk() (OrgBilling, bool) {
+func (o *Org) GetBillingOk() (*OrgBilling, bool) {
 	if o == nil || o.Billing == nil {
-		var ret OrgBilling
-		return ret, false
+		return nil, false
 	}
-	return *o.Billing, true
+	return o.Billing, true
 }
 
 // HasBilling returns a boolean if a field has been set.
@@ -86,14 +85,13 @@ func (o *Org) GetCreated() string {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetCreatedOk() (string, bool) {
+func (o *Org) GetCreatedOk() (*string, bool) {
 	if o == nil || o.Created == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -119,14 +117,13 @@ func (o *Org) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetDescriptionOk() (string, bool) {
+func (o *Org) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -152,14 +149,13 @@ func (o *Org) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetNameOk() (string, bool) {
+func (o *Org) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -185,14 +181,13 @@ func (o *Org) GetPublicId() string {
 	return *o.PublicId
 }
 
-// GetPublicIdOk returns a tuple with the PublicId field value if set, zero value otherwise
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetPublicIdOk() (string, bool) {
+func (o *Org) GetPublicIdOk() (*string, bool) {
 	if o == nil || o.PublicId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PublicId, true
+	return o.PublicId, true
 }
 
 // HasPublicId returns a boolean if a field has been set.
@@ -218,14 +213,13 @@ func (o *Org) GetSettings() OrgSettings {
 	return *o.Settings
 }
 
-// GetSettingsOk returns a tuple with the Settings field value if set, zero value otherwise
+// GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetSettingsOk() (OrgSettings, bool) {
+func (o *Org) GetSettingsOk() (*OrgSettings, bool) {
 	if o == nil || o.Settings == nil {
-		var ret OrgSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.Settings, true
+	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
@@ -251,14 +245,13 @@ func (o *Org) GetSubscription() OrgSubscription {
 	return *o.Subscription
 }
 
-// GetSubscriptionOk returns a tuple with the Subscription field value if set, zero value otherwise
+// GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Org) GetSubscriptionOk() (OrgSubscription, bool) {
+func (o *Org) GetSubscriptionOk() (*OrgSubscription, bool) {
 	if o == nil || o.Subscription == nil {
-		var ret OrgSubscription
-		return ret, false
+		return nil, false
 	}
-	return *o.Subscription, true
+	return o.Subscription, true
 }
 
 // HasSubscription returns a boolean if a field has been set.
@@ -310,7 +303,7 @@ func (v NullableOrg) Get() *Org {
 	return v.value
 }
 
-func (v NullableOrg) Set(val *Org) {
+func (v *NullableOrg) Set(val *Org) {
 	v.value = val
 	v.isSet = true
 }
@@ -319,7 +312,7 @@ func (v NullableOrg) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrg) Unset() {
+func (v *NullableOrg) Unset() {
 	v.value = nil
 	v.isSet = false
 }

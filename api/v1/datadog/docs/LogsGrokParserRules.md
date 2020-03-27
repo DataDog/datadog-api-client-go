@@ -34,22 +34,17 @@ GetMatchRules returns the MatchRules field if non-nil, zero value otherwise.
 
 ### GetMatchRulesOk
 
-`func (o *LogsGrokParserRules) GetMatchRulesOk() (string, bool)`
+`func (o *LogsGrokParserRules) GetMatchRulesOk() (*string, bool)`
 
 GetMatchRulesOk returns a tuple with the MatchRules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasMatchRules
-
-`func (o *LogsGrokParserRules) HasMatchRules() bool`
-
-HasMatchRules returns a boolean if a field has been set.
 
 ### SetMatchRules
 
 `func (o *LogsGrokParserRules) SetMatchRules(v string)`
 
-SetMatchRules gets a reference to the given string and assigns it to the MatchRules field.
+SetMatchRules sets MatchRules field to given value.
+
 
 ### GetSupportRules
 
@@ -59,22 +54,22 @@ GetSupportRules returns the SupportRules field if non-nil, zero value otherwise.
 
 ### GetSupportRulesOk
 
-`func (o *LogsGrokParserRules) GetSupportRulesOk() (string, bool)`
+`func (o *LogsGrokParserRules) GetSupportRulesOk() (*string, bool)`
 
 GetSupportRulesOk returns a tuple with the SupportRules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSupportRules
+
+`func (o *LogsGrokParserRules) SetSupportRules(v string)`
+
+SetSupportRules sets SupportRules field to given value.
 
 ### HasSupportRules
 
 `func (o *LogsGrokParserRules) HasSupportRules() bool`
 
 HasSupportRules returns a boolean if a field has been set.
-
-### SetSupportRules
-
-`func (o *LogsGrokParserRules) SetSupportRules(v string)`
-
-SetSupportRules gets a reference to the given string and assigns it to the SupportRules field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

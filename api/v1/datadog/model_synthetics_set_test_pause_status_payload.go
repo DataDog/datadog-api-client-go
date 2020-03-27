@@ -43,14 +43,13 @@ func (o *SyntheticsSetTestPauseStatusPayload) GetNewStatus() SyntheticsTestPause
 	return *o.NewStatus
 }
 
-// GetNewStatusOk returns a tuple with the NewStatus field value if set, zero value otherwise
+// GetNewStatusOk returns a tuple with the NewStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSetTestPauseStatusPayload) GetNewStatusOk() (SyntheticsTestPauseStatus, bool) {
+func (o *SyntheticsSetTestPauseStatusPayload) GetNewStatusOk() (*SyntheticsTestPauseStatus, bool) {
 	if o == nil || o.NewStatus == nil {
-		var ret SyntheticsTestPauseStatus
-		return ret, false
+		return nil, false
 	}
-	return *o.NewStatus, true
+	return o.NewStatus, true
 }
 
 // HasNewStatus returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableSyntheticsSetTestPauseStatusPayload) Get() *SyntheticsSetTestPau
 	return v.value
 }
 
-func (v NullableSyntheticsSetTestPauseStatusPayload) Set(val *SyntheticsSetTestPauseStatusPayload) {
+func (v *NullableSyntheticsSetTestPauseStatusPayload) Set(val *SyntheticsSetTestPauseStatusPayload) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableSyntheticsSetTestPauseStatusPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsSetTestPauseStatusPayload) Unset() {
+func (v *NullableSyntheticsSetTestPauseStatusPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }

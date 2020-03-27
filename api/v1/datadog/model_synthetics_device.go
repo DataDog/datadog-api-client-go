@@ -52,6 +52,15 @@ func (o *SyntheticsDevice) GetHeight() int64 {
 	return o.Height
 }
 
+// GetHeightOk returns a tuple with the Height field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsDevice) GetHeightOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Height, true
+}
+
 // SetHeight sets field value
 func (o *SyntheticsDevice) SetHeight(v int64) {
 	o.Height = v
@@ -65,6 +74,15 @@ func (o *SyntheticsDevice) GetId() SyntheticsDeviceID {
 	}
 
 	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsDevice) GetIdOk() (*SyntheticsDeviceID, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
 }
 
 // SetId sets field value
@@ -81,14 +99,13 @@ func (o *SyntheticsDevice) GetIsMobile() bool {
 	return *o.IsMobile
 }
 
-// GetIsMobileOk returns a tuple with the IsMobile field value if set, zero value otherwise
+// GetIsMobileOk returns a tuple with the IsMobile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsDevice) GetIsMobileOk() (bool, bool) {
+func (o *SyntheticsDevice) GetIsMobileOk() (*bool, bool) {
 	if o == nil || o.IsMobile == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsMobile, true
+	return o.IsMobile, true
 }
 
 // HasIsMobile returns a boolean if a field has been set.
@@ -115,6 +132,15 @@ func (o *SyntheticsDevice) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsDevice) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *SyntheticsDevice) SetName(v string) {
 	o.Name = v
@@ -128,6 +154,15 @@ func (o *SyntheticsDevice) GetWidth() int64 {
 	}
 
 	return o.Width
+}
+
+// GetWidthOk returns a tuple with the Width field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsDevice) GetWidthOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Width, true
 }
 
 // SetWidth sets field value
@@ -164,7 +199,7 @@ func (v NullableSyntheticsDevice) Get() *SyntheticsDevice {
 	return v.value
 }
 
-func (v NullableSyntheticsDevice) Set(val *SyntheticsDevice) {
+func (v *NullableSyntheticsDevice) Set(val *SyntheticsDevice) {
 	v.value = val
 	v.isSet = true
 }
@@ -173,7 +208,7 @@ func (v NullableSyntheticsDevice) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsDevice) Unset() {
+func (v *NullableSyntheticsDevice) Unset() {
 	v.value = nil
 	v.isSet = false
 }

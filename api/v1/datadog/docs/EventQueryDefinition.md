@@ -34,22 +34,17 @@ GetSearch returns the Search field if non-nil, zero value otherwise.
 
 ### GetSearchOk
 
-`func (o *EventQueryDefinition) GetSearchOk() (string, bool)`
+`func (o *EventQueryDefinition) GetSearchOk() (*string, bool)`
 
 GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSearch
-
-`func (o *EventQueryDefinition) HasSearch() bool`
-
-HasSearch returns a boolean if a field has been set.
 
 ### SetSearch
 
 `func (o *EventQueryDefinition) SetSearch(v string)`
 
-SetSearch gets a reference to the given string and assigns it to the Search field.
+SetSearch sets Search field to given value.
+
 
 ### GetTagsExecution
 
@@ -59,22 +54,17 @@ GetTagsExecution returns the TagsExecution field if non-nil, zero value otherwis
 
 ### GetTagsExecutionOk
 
-`func (o *EventQueryDefinition) GetTagsExecutionOk() (string, bool)`
+`func (o *EventQueryDefinition) GetTagsExecutionOk() (*string, bool)`
 
 GetTagsExecutionOk returns a tuple with the TagsExecution field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTagsExecution
-
-`func (o *EventQueryDefinition) HasTagsExecution() bool`
-
-HasTagsExecution returns a boolean if a field has been set.
 
 ### SetTagsExecution
 
 `func (o *EventQueryDefinition) SetTagsExecution(v string)`
 
-SetTagsExecution gets a reference to the given string and assigns it to the TagsExecution field.
+SetTagsExecution sets TagsExecution field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

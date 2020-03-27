@@ -48,14 +48,13 @@ func (o *AWSLogsListResponse) GetAccountId() string {
 	return *o.AccountId
 }
 
-// GetAccountIdOk returns a tuple with the AccountId field value if set, zero value otherwise
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsListResponse) GetAccountIdOk() (string, bool) {
+func (o *AWSLogsListResponse) GetAccountIdOk() (*string, bool) {
 	if o == nil || o.AccountId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AccountId, true
+	return o.AccountId, true
 }
 
 // HasAccountId returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *AWSLogsListResponse) GetLambdas() []AWSLogsListResponseLambdas {
 	return *o.Lambdas
 }
 
-// GetLambdasOk returns a tuple with the Lambdas field value if set, zero value otherwise
+// GetLambdasOk returns a tuple with the Lambdas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsListResponse) GetLambdasOk() ([]AWSLogsListResponseLambdas, bool) {
+func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsListResponseLambdas, bool) {
 	if o == nil || o.Lambdas == nil {
-		var ret []AWSLogsListResponseLambdas
-		return ret, false
+		return nil, false
 	}
-	return *o.Lambdas, true
+	return o.Lambdas, true
 }
 
 // HasLambdas returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *AWSLogsListResponse) GetServices() []string {
 	return *o.Services
 }
 
-// GetServicesOk returns a tuple with the Services field value if set, zero value otherwise
+// GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsListResponse) GetServicesOk() ([]string, bool) {
+func (o *AWSLogsListResponse) GetServicesOk() (*[]string, bool) {
 	if o == nil || o.Services == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Services, true
+	return o.Services, true
 }
 
 // HasServices returns a boolean if a field has been set.
@@ -161,7 +158,7 @@ func (v NullableAWSLogsListResponse) Get() *AWSLogsListResponse {
 	return v.value
 }
 
-func (v NullableAWSLogsListResponse) Set(val *AWSLogsListResponse) {
+func (v *NullableAWSLogsListResponse) Set(val *AWSLogsListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -170,7 +167,7 @@ func (v NullableAWSLogsListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSLogsListResponse) Unset() {
+func (v *NullableAWSLogsListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

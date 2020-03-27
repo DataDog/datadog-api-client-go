@@ -35,22 +35,22 @@ GetEnd returns the End field if non-nil, zero value otherwise.
 
 ### GetEndOk
 
-`func (o *HostMuteSettings) GetEndOk() (int64, bool)`
+`func (o *HostMuteSettings) GetEndOk() (*int64, bool)`
 
 GetEndOk returns a tuple with the End field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEnd
+
+`func (o *HostMuteSettings) SetEnd(v int64)`
+
+SetEnd sets End field to given value.
 
 ### HasEnd
 
 `func (o *HostMuteSettings) HasEnd() bool`
 
 HasEnd returns a boolean if a field has been set.
-
-### SetEnd
-
-`func (o *HostMuteSettings) SetEnd(v int64)`
-
-SetEnd gets a reference to the given int64 and assigns it to the End field.
 
 ### GetMessage
 
@@ -60,22 +60,22 @@ GetMessage returns the Message field if non-nil, zero value otherwise.
 
 ### GetMessageOk
 
-`func (o *HostMuteSettings) GetMessageOk() (string, bool)`
+`func (o *HostMuteSettings) GetMessageOk() (*string, bool)`
 
 GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMessage
+
+`func (o *HostMuteSettings) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
 
 ### HasMessage
 
 `func (o *HostMuteSettings) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
-
-### SetMessage
-
-`func (o *HostMuteSettings) SetMessage(v string)`
-
-SetMessage gets a reference to the given string and assigns it to the Message field.
 
 ### GetOverride
 
@@ -85,22 +85,22 @@ GetOverride returns the Override field if non-nil, zero value otherwise.
 
 ### GetOverrideOk
 
-`func (o *HostMuteSettings) GetOverrideOk() (bool, bool)`
+`func (o *HostMuteSettings) GetOverrideOk() (*bool, bool)`
 
 GetOverrideOk returns a tuple with the Override field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetOverride
+
+`func (o *HostMuteSettings) SetOverride(v bool)`
+
+SetOverride sets Override field to given value.
 
 ### HasOverride
 
 `func (o *HostMuteSettings) HasOverride() bool`
 
 HasOverride returns a boolean if a field has been set.
-
-### SetOverride
-
-`func (o *HostMuteSettings) SetOverride(v bool)`
-
-SetOverride gets a reference to the given bool and assigns it to the Override field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

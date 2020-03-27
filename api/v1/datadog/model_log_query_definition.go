@@ -48,14 +48,13 @@ func (o *LogQueryDefinition) GetCompute() LogsQueryCompute {
 	return *o.Compute
 }
 
-// GetComputeOk returns a tuple with the Compute field value if set, zero value otherwise
+// GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinition) GetComputeOk() (LogsQueryCompute, bool) {
+func (o *LogQueryDefinition) GetComputeOk() (*LogsQueryCompute, bool) {
 	if o == nil || o.Compute == nil {
-		var ret LogsQueryCompute
-		return ret, false
+		return nil, false
 	}
-	return *o.Compute, true
+	return o.Compute, true
 }
 
 // HasCompute returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *LogQueryDefinition) GetGroupBy() []LogQueryDefinitionGroupBy {
 	return *o.GroupBy
 }
 
-// GetGroupByOk returns a tuple with the GroupBy field value if set, zero value otherwise
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinition) GetGroupByOk() ([]LogQueryDefinitionGroupBy, bool) {
+func (o *LogQueryDefinition) GetGroupByOk() (*[]LogQueryDefinitionGroupBy, bool) {
 	if o == nil || o.GroupBy == nil {
-		var ret []LogQueryDefinitionGroupBy
-		return ret, false
+		return nil, false
 	}
-	return *o.GroupBy, true
+	return o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *LogQueryDefinition) GetIndex() string {
 	return *o.Index
 }
 
-// GetIndexOk returns a tuple with the Index field value if set, zero value otherwise
+// GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinition) GetIndexOk() (string, bool) {
+func (o *LogQueryDefinition) GetIndexOk() (*string, bool) {
 	if o == nil || o.Index == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Index, true
+	return o.Index, true
 }
 
 // HasIndex returns a boolean if a field has been set.
@@ -147,14 +144,13 @@ func (o *LogQueryDefinition) GetMultiCompute() []LogsQueryCompute {
 	return *o.MultiCompute
 }
 
-// GetMultiComputeOk returns a tuple with the MultiCompute field value if set, zero value otherwise
+// GetMultiComputeOk returns a tuple with the MultiCompute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinition) GetMultiComputeOk() ([]LogsQueryCompute, bool) {
+func (o *LogQueryDefinition) GetMultiComputeOk() (*[]LogsQueryCompute, bool) {
 	if o == nil || o.MultiCompute == nil {
-		var ret []LogsQueryCompute
-		return ret, false
+		return nil, false
 	}
-	return *o.MultiCompute, true
+	return o.MultiCompute, true
 }
 
 // HasMultiCompute returns a boolean if a field has been set.
@@ -180,14 +176,13 @@ func (o *LogQueryDefinition) GetSearch() LogQueryDefinitionSearch {
 	return *o.Search
 }
 
-// GetSearchOk returns a tuple with the Search field value if set, zero value otherwise
+// GetSearchOk returns a tuple with the Search field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinition) GetSearchOk() (LogQueryDefinitionSearch, bool) {
+func (o *LogQueryDefinition) GetSearchOk() (*LogQueryDefinitionSearch, bool) {
 	if o == nil || o.Search == nil {
-		var ret LogQueryDefinitionSearch
-		return ret, false
+		return nil, false
 	}
-	return *o.Search, true
+	return o.Search, true
 }
 
 // HasSearch returns a boolean if a field has been set.
@@ -233,7 +228,7 @@ func (v NullableLogQueryDefinition) Get() *LogQueryDefinition {
 	return v.value
 }
 
-func (v NullableLogQueryDefinition) Set(val *LogQueryDefinition) {
+func (v *NullableLogQueryDefinition) Set(val *LogQueryDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -242,7 +237,7 @@ func (v NullableLogQueryDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogQueryDefinition) Unset() {
+func (v *NullableLogQueryDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -44,14 +44,13 @@ func (o *HistoryServiceLevelObjectiveResponseError) GetError() string {
 	return *o.Error
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, zero value otherwise
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseError) GetErrorOk() (string, bool) {
+func (o *HistoryServiceLevelObjectiveResponseError) GetErrorOk() (*string, bool) {
 	if o == nil || o.Error == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Error, true
+	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableHistoryServiceLevelObjectiveResponseError) Get() *HistoryService
 	return v.value
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponseError) Set(val *HistoryServiceLevelObjectiveResponseError) {
+func (v *NullableHistoryServiceLevelObjectiveResponseError) Set(val *HistoryServiceLevelObjectiveResponseError) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableHistoryServiceLevelObjectiveResponseError) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponseError) Unset() {
+func (v *NullableHistoryServiceLevelObjectiveResponseError) Unset() {
 	v.value = nil
 	v.isSet = false
 }

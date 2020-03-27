@@ -49,14 +49,13 @@ func (o *UsageLogsHour) GetHour() time.Time {
 	return *o.Hour
 }
 
-// GetHourOk returns a tuple with the Hour field value if set, zero value otherwise
+// GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageLogsHour) GetHourOk() (time.Time, bool) {
+func (o *UsageLogsHour) GetHourOk() (*time.Time, bool) {
 	if o == nil || o.Hour == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Hour, true
+	return o.Hour, true
 }
 
 // HasHour returns a boolean if a field has been set.
@@ -82,14 +81,13 @@ func (o *UsageLogsHour) GetIndexedEventsCount() int64 {
 	return *o.IndexedEventsCount
 }
 
-// GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field value if set, zero value otherwise
+// GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageLogsHour) GetIndexedEventsCountOk() (int64, bool) {
+func (o *UsageLogsHour) GetIndexedEventsCountOk() (*int64, bool) {
 	if o == nil || o.IndexedEventsCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.IndexedEventsCount, true
+	return o.IndexedEventsCount, true
 }
 
 // HasIndexedEventsCount returns a boolean if a field has been set.
@@ -115,14 +113,13 @@ func (o *UsageLogsHour) GetIngestedEventsBytes() int64 {
 	return *o.IngestedEventsBytes
 }
 
-// GetIngestedEventsBytesOk returns a tuple with the IngestedEventsBytes field value if set, zero value otherwise
+// GetIngestedEventsBytesOk returns a tuple with the IngestedEventsBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageLogsHour) GetIngestedEventsBytesOk() (int64, bool) {
+func (o *UsageLogsHour) GetIngestedEventsBytesOk() (*int64, bool) {
 	if o == nil || o.IngestedEventsBytes == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.IngestedEventsBytes, true
+	return o.IngestedEventsBytes, true
 }
 
 // HasIngestedEventsBytes returns a boolean if a field has been set.
@@ -162,7 +159,7 @@ func (v NullableUsageLogsHour) Get() *UsageLogsHour {
 	return v.value
 }
 
-func (v NullableUsageLogsHour) Set(val *UsageLogsHour) {
+func (v *NullableUsageLogsHour) Set(val *UsageLogsHour) {
 	v.value = val
 	v.isSet = true
 }
@@ -171,7 +168,7 @@ func (v NullableUsageLogsHour) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageLogsHour) Unset() {
+func (v *NullableUsageLogsHour) Unset() {
 	v.value = nil
 	v.isSet = false
 }

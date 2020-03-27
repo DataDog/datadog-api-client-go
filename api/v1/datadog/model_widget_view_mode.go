@@ -36,7 +36,7 @@ func (v NullableWidgetViewMode) Get() *WidgetViewMode {
 	return v.value
 }
 
-func (v NullableWidgetViewMode) Set(val *WidgetViewMode) {
+func (v *NullableWidgetViewMode) Set(val *WidgetViewMode) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetViewMode) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetViewMode) Unset() {
+func (v *NullableWidgetViewMode) Unset() {
 	v.value = nil
 	v.isSet = false
 }

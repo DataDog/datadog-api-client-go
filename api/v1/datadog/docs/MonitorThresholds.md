@@ -38,10 +38,16 @@ GetCritical returns the Critical field if non-nil, zero value otherwise.
 
 ### GetCriticalOk
 
-`func (o *MonitorThresholds) GetCriticalOk() (float64, bool)`
+`func (o *MonitorThresholds) GetCriticalOk() (*float64, bool)`
 
 GetCriticalOk returns a tuple with the Critical field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCritical
+
+`func (o *MonitorThresholds) SetCritical(v float64)`
+
+SetCritical sets Critical field to given value.
 
 ### HasCritical
 
@@ -49,24 +55,24 @@ and a boolean to check if the value has been set.
 
 HasCritical returns a boolean if a field has been set.
 
-### SetCritical
-
-`func (o *MonitorThresholds) SetCritical(v float64)`
-
-SetCritical gets a reference to the given float64 and assigns it to the Critical field.
-
 ### GetCriticalRecovery
 
-`func (o *MonitorThresholds) GetCriticalRecovery() NullableFloat64`
+`func (o *MonitorThresholds) GetCriticalRecovery() float64`
 
 GetCriticalRecovery returns the CriticalRecovery field if non-nil, zero value otherwise.
 
 ### GetCriticalRecoveryOk
 
-`func (o *MonitorThresholds) GetCriticalRecoveryOk() (NullableFloat64, bool)`
+`func (o *MonitorThresholds) GetCriticalRecoveryOk() (*float64, bool)`
 
 GetCriticalRecoveryOk returns a tuple with the CriticalRecovery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCriticalRecovery
+
+`func (o *MonitorThresholds) SetCriticalRecovery(v float64)`
+
+SetCriticalRecovery sets CriticalRecovery field to given value.
 
 ### HasCriticalRecovery
 
@@ -74,31 +80,34 @@ and a boolean to check if the value has been set.
 
 HasCriticalRecovery returns a boolean if a field has been set.
 
-### SetCriticalRecovery
+### SetCriticalRecoveryNil
 
-`func (o *MonitorThresholds) SetCriticalRecovery(v NullableFloat64)`
+`func (o *MonitorThresholds) SetCriticalRecoveryNil(b bool)`
 
-SetCriticalRecovery gets a reference to the given NullableFloat64 and assigns it to the CriticalRecovery field.
+ SetCriticalRecoveryNil sets the value for CriticalRecovery to be an explicit nil
 
-### SetCriticalRecoveryExplicitNull
+### UnsetCriticalRecovery
+`func (o *MonitorThresholds) UnsetCriticalRecovery()`
 
-`func (o *MonitorThresholds) SetCriticalRecoveryExplicitNull(b bool)`
-
-SetCriticalRecoveryExplicitNull (un)sets CriticalRecovery to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The CriticalRecovery value is set to nil even if false is passed
+UnsetCriticalRecovery ensures that no value is present for CriticalRecovery, not even an explicit nil
 ### GetOk
 
-`func (o *MonitorThresholds) GetOk() NullableFloat64`
+`func (o *MonitorThresholds) GetOk() float64`
 
 GetOk returns the Ok field if non-nil, zero value otherwise.
 
 ### GetOkOk
 
-`func (o *MonitorThresholds) GetOkOk() (NullableFloat64, bool)`
+`func (o *MonitorThresholds) GetOkOk() (*float64, bool)`
 
 GetOkOk returns a tuple with the Ok field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetOk
+
+`func (o *MonitorThresholds) SetOk(v float64)`
+
+SetOk sets Ok field to given value.
 
 ### HasOk
 
@@ -106,31 +115,34 @@ and a boolean to check if the value has been set.
 
 HasOk returns a boolean if a field has been set.
 
-### SetOk
+### SetOkNil
 
-`func (o *MonitorThresholds) SetOk(v NullableFloat64)`
+`func (o *MonitorThresholds) SetOkNil(b bool)`
 
-SetOk gets a reference to the given NullableFloat64 and assigns it to the Ok field.
+ SetOkNil sets the value for Ok to be an explicit nil
 
-### SetOkExplicitNull
+### UnsetOk
+`func (o *MonitorThresholds) UnsetOk()`
 
-`func (o *MonitorThresholds) SetOkExplicitNull(b bool)`
-
-SetOkExplicitNull (un)sets Ok to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Ok value is set to nil even if false is passed
+UnsetOk ensures that no value is present for Ok, not even an explicit nil
 ### GetUnknown
 
-`func (o *MonitorThresholds) GetUnknown() NullableFloat64`
+`func (o *MonitorThresholds) GetUnknown() float64`
 
 GetUnknown returns the Unknown field if non-nil, zero value otherwise.
 
 ### GetUnknownOk
 
-`func (o *MonitorThresholds) GetUnknownOk() (NullableFloat64, bool)`
+`func (o *MonitorThresholds) GetUnknownOk() (*float64, bool)`
 
 GetUnknownOk returns a tuple with the Unknown field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetUnknown
+
+`func (o *MonitorThresholds) SetUnknown(v float64)`
+
+SetUnknown sets Unknown field to given value.
 
 ### HasUnknown
 
@@ -138,31 +150,34 @@ and a boolean to check if the value has been set.
 
 HasUnknown returns a boolean if a field has been set.
 
-### SetUnknown
+### SetUnknownNil
 
-`func (o *MonitorThresholds) SetUnknown(v NullableFloat64)`
+`func (o *MonitorThresholds) SetUnknownNil(b bool)`
 
-SetUnknown gets a reference to the given NullableFloat64 and assigns it to the Unknown field.
+ SetUnknownNil sets the value for Unknown to be an explicit nil
 
-### SetUnknownExplicitNull
+### UnsetUnknown
+`func (o *MonitorThresholds) UnsetUnknown()`
 
-`func (o *MonitorThresholds) SetUnknownExplicitNull(b bool)`
-
-SetUnknownExplicitNull (un)sets Unknown to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Unknown value is set to nil even if false is passed
+UnsetUnknown ensures that no value is present for Unknown, not even an explicit nil
 ### GetWarning
 
-`func (o *MonitorThresholds) GetWarning() NullableFloat64`
+`func (o *MonitorThresholds) GetWarning() float64`
 
 GetWarning returns the Warning field if non-nil, zero value otherwise.
 
 ### GetWarningOk
 
-`func (o *MonitorThresholds) GetWarningOk() (NullableFloat64, bool)`
+`func (o *MonitorThresholds) GetWarningOk() (*float64, bool)`
 
 GetWarningOk returns a tuple with the Warning field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetWarning
+
+`func (o *MonitorThresholds) SetWarning(v float64)`
+
+SetWarning sets Warning field to given value.
 
 ### HasWarning
 
@@ -170,31 +185,34 @@ and a boolean to check if the value has been set.
 
 HasWarning returns a boolean if a field has been set.
 
-### SetWarning
+### SetWarningNil
 
-`func (o *MonitorThresholds) SetWarning(v NullableFloat64)`
+`func (o *MonitorThresholds) SetWarningNil(b bool)`
 
-SetWarning gets a reference to the given NullableFloat64 and assigns it to the Warning field.
+ SetWarningNil sets the value for Warning to be an explicit nil
 
-### SetWarningExplicitNull
+### UnsetWarning
+`func (o *MonitorThresholds) UnsetWarning()`
 
-`func (o *MonitorThresholds) SetWarningExplicitNull(b bool)`
-
-SetWarningExplicitNull (un)sets Warning to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Warning value is set to nil even if false is passed
+UnsetWarning ensures that no value is present for Warning, not even an explicit nil
 ### GetWarningRecovery
 
-`func (o *MonitorThresholds) GetWarningRecovery() NullableFloat64`
+`func (o *MonitorThresholds) GetWarningRecovery() float64`
 
 GetWarningRecovery returns the WarningRecovery field if non-nil, zero value otherwise.
 
 ### GetWarningRecoveryOk
 
-`func (o *MonitorThresholds) GetWarningRecoveryOk() (NullableFloat64, bool)`
+`func (o *MonitorThresholds) GetWarningRecoveryOk() (*float64, bool)`
 
 GetWarningRecoveryOk returns a tuple with the WarningRecovery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetWarningRecovery
+
+`func (o *MonitorThresholds) SetWarningRecovery(v float64)`
+
+SetWarningRecovery sets WarningRecovery field to given value.
 
 ### HasWarningRecovery
 
@@ -202,19 +220,16 @@ and a boolean to check if the value has been set.
 
 HasWarningRecovery returns a boolean if a field has been set.
 
-### SetWarningRecovery
+### SetWarningRecoveryNil
 
-`func (o *MonitorThresholds) SetWarningRecovery(v NullableFloat64)`
+`func (o *MonitorThresholds) SetWarningRecoveryNil(b bool)`
 
-SetWarningRecovery gets a reference to the given NullableFloat64 and assigns it to the WarningRecovery field.
+ SetWarningRecoveryNil sets the value for WarningRecovery to be an explicit nil
 
-### SetWarningRecoveryExplicitNull
+### UnsetWarningRecovery
+`func (o *MonitorThresholds) UnsetWarningRecovery()`
 
-`func (o *MonitorThresholds) SetWarningRecoveryExplicitNull(b bool)`
-
-SetWarningRecoveryExplicitNull (un)sets WarningRecovery to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The WarningRecovery value is set to nil even if false is passed
+UnsetWarningRecovery ensures that no value is present for WarningRecovery, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

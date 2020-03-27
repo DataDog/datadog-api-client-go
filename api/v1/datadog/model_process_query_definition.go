@@ -47,14 +47,13 @@ func (o *ProcessQueryDefinition) GetFilterBy() []string {
 	return *o.FilterBy
 }
 
-// GetFilterByOk returns a tuple with the FilterBy field value if set, zero value otherwise
+// GetFilterByOk returns a tuple with the FilterBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessQueryDefinition) GetFilterByOk() ([]string, bool) {
+func (o *ProcessQueryDefinition) GetFilterByOk() (*[]string, bool) {
 	if o == nil || o.FilterBy == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.FilterBy, true
+	return o.FilterBy, true
 }
 
 // HasFilterBy returns a boolean if a field has been set.
@@ -80,14 +79,13 @@ func (o *ProcessQueryDefinition) GetLimit() int64 {
 	return *o.Limit
 }
 
-// GetLimitOk returns a tuple with the Limit field value if set, zero value otherwise
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessQueryDefinition) GetLimitOk() (int64, bool) {
+func (o *ProcessQueryDefinition) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Limit, true
+	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
@@ -114,6 +112,15 @@ func (o *ProcessQueryDefinition) GetMetric() string {
 	return o.Metric
 }
 
+// GetMetricOk returns a tuple with the Metric field value
+// and a boolean to check if the value has been set.
+func (o *ProcessQueryDefinition) GetMetricOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Metric, true
+}
+
 // SetMetric sets field value
 func (o *ProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
@@ -128,14 +135,13 @@ func (o *ProcessQueryDefinition) GetSearchBy() string {
 	return *o.SearchBy
 }
 
-// GetSearchByOk returns a tuple with the SearchBy field value if set, zero value otherwise
+// GetSearchByOk returns a tuple with the SearchBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessQueryDefinition) GetSearchByOk() (string, bool) {
+func (o *ProcessQueryDefinition) GetSearchByOk() (*string, bool) {
 	if o == nil || o.SearchBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SearchBy, true
+	return o.SearchBy, true
 }
 
 // HasSearchBy returns a boolean if a field has been set.
@@ -178,7 +184,7 @@ func (v NullableProcessQueryDefinition) Get() *ProcessQueryDefinition {
 	return v.value
 }
 
-func (v NullableProcessQueryDefinition) Set(val *ProcessQueryDefinition) {
+func (v *NullableProcessQueryDefinition) Set(val *ProcessQueryDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -187,7 +193,7 @@ func (v NullableProcessQueryDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableProcessQueryDefinition) Unset() {
+func (v *NullableProcessQueryDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

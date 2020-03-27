@@ -43,14 +43,13 @@ func (o *SyntheticsGetAllTestsResponse) GetTests() []SyntheticsTestDetails {
 	return *o.Tests
 }
 
-// GetTestsOk returns a tuple with the Tests field value if set, zero value otherwise
+// GetTestsOk returns a tuple with the Tests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGetAllTestsResponse) GetTestsOk() ([]SyntheticsTestDetails, bool) {
+func (o *SyntheticsGetAllTestsResponse) GetTestsOk() (*[]SyntheticsTestDetails, bool) {
 	if o == nil || o.Tests == nil {
-		var ret []SyntheticsTestDetails
-		return ret, false
+		return nil, false
 	}
-	return *o.Tests, true
+	return o.Tests, true
 }
 
 // HasTests returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableSyntheticsGetAllTestsResponse) Get() *SyntheticsGetAllTestsRespo
 	return v.value
 }
 
-func (v NullableSyntheticsGetAllTestsResponse) Set(val *SyntheticsGetAllTestsResponse) {
+func (v *NullableSyntheticsGetAllTestsResponse) Set(val *SyntheticsGetAllTestsResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableSyntheticsGetAllTestsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsGetAllTestsResponse) Unset() {
+func (v *NullableSyntheticsGetAllTestsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

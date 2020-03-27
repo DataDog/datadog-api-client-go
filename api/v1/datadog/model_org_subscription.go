@@ -43,14 +43,13 @@ func (o *OrgSubscription) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSubscription) GetTypeOk() (string, bool) {
+func (o *OrgSubscription) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableOrgSubscription) Get() *OrgSubscription {
 	return v.value
 }
 
-func (v NullableOrgSubscription) Set(val *OrgSubscription) {
+func (v *NullableOrgSubscription) Set(val *OrgSubscription) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableOrgSubscription) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgSubscription) Unset() {
+func (v *NullableOrgSubscription) Unset() {
 	v.value = nil
 	v.isSet = false
 }

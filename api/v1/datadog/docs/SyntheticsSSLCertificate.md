@@ -44,22 +44,22 @@ GetCipher returns the Cipher field if non-nil, zero value otherwise.
 
 ### GetCipherOk
 
-`func (o *SyntheticsSSLCertificate) GetCipherOk() (string, bool)`
+`func (o *SyntheticsSSLCertificate) GetCipherOk() (*string, bool)`
 
 GetCipherOk returns a tuple with the Cipher field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCipher
+
+`func (o *SyntheticsSSLCertificate) SetCipher(v string)`
+
+SetCipher sets Cipher field to given value.
 
 ### HasCipher
 
 `func (o *SyntheticsSSLCertificate) HasCipher() bool`
 
 HasCipher returns a boolean if a field has been set.
-
-### SetCipher
-
-`func (o *SyntheticsSSLCertificate) SetCipher(v string)`
-
-SetCipher gets a reference to the given string and assigns it to the Cipher field.
 
 ### GetExponent
 
@@ -69,22 +69,22 @@ GetExponent returns the Exponent field if non-nil, zero value otherwise.
 
 ### GetExponentOk
 
-`func (o *SyntheticsSSLCertificate) GetExponentOk() (float64, bool)`
+`func (o *SyntheticsSSLCertificate) GetExponentOk() (*float64, bool)`
 
 GetExponentOk returns a tuple with the Exponent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetExponent
+
+`func (o *SyntheticsSSLCertificate) SetExponent(v float64)`
+
+SetExponent sets Exponent field to given value.
 
 ### HasExponent
 
 `func (o *SyntheticsSSLCertificate) HasExponent() bool`
 
 HasExponent returns a boolean if a field has been set.
-
-### SetExponent
-
-`func (o *SyntheticsSSLCertificate) SetExponent(v float64)`
-
-SetExponent gets a reference to the given float64 and assigns it to the Exponent field.
 
 ### GetExtKeyUsage
 
@@ -94,22 +94,22 @@ GetExtKeyUsage returns the ExtKeyUsage field if non-nil, zero value otherwise.
 
 ### GetExtKeyUsageOk
 
-`func (o *SyntheticsSSLCertificate) GetExtKeyUsageOk() ([]string, bool)`
+`func (o *SyntheticsSSLCertificate) GetExtKeyUsageOk() (*[]string, bool)`
 
 GetExtKeyUsageOk returns a tuple with the ExtKeyUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetExtKeyUsage
+
+`func (o *SyntheticsSSLCertificate) SetExtKeyUsage(v []string)`
+
+SetExtKeyUsage sets ExtKeyUsage field to given value.
 
 ### HasExtKeyUsage
 
 `func (o *SyntheticsSSLCertificate) HasExtKeyUsage() bool`
 
 HasExtKeyUsage returns a boolean if a field has been set.
-
-### SetExtKeyUsage
-
-`func (o *SyntheticsSSLCertificate) SetExtKeyUsage(v []string)`
-
-SetExtKeyUsage gets a reference to the given []string and assigns it to the ExtKeyUsage field.
 
 ### GetFingerprint
 
@@ -119,22 +119,22 @@ GetFingerprint returns the Fingerprint field if non-nil, zero value otherwise.
 
 ### GetFingerprintOk
 
-`func (o *SyntheticsSSLCertificate) GetFingerprintOk() (string, bool)`
+`func (o *SyntheticsSSLCertificate) GetFingerprintOk() (*string, bool)`
 
 GetFingerprintOk returns a tuple with the Fingerprint field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFingerprint
+
+`func (o *SyntheticsSSLCertificate) SetFingerprint(v string)`
+
+SetFingerprint sets Fingerprint field to given value.
 
 ### HasFingerprint
 
 `func (o *SyntheticsSSLCertificate) HasFingerprint() bool`
 
 HasFingerprint returns a boolean if a field has been set.
-
-### SetFingerprint
-
-`func (o *SyntheticsSSLCertificate) SetFingerprint(v string)`
-
-SetFingerprint gets a reference to the given string and assigns it to the Fingerprint field.
 
 ### GetFingerprint256
 
@@ -144,22 +144,22 @@ GetFingerprint256 returns the Fingerprint256 field if non-nil, zero value otherw
 
 ### GetFingerprint256Ok
 
-`func (o *SyntheticsSSLCertificate) GetFingerprint256Ok() (string, bool)`
+`func (o *SyntheticsSSLCertificate) GetFingerprint256Ok() (*string, bool)`
 
 GetFingerprint256Ok returns a tuple with the Fingerprint256 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFingerprint256
+
+`func (o *SyntheticsSSLCertificate) SetFingerprint256(v string)`
+
+SetFingerprint256 sets Fingerprint256 field to given value.
 
 ### HasFingerprint256
 
 `func (o *SyntheticsSSLCertificate) HasFingerprint256() bool`
 
 HasFingerprint256 returns a boolean if a field has been set.
-
-### SetFingerprint256
-
-`func (o *SyntheticsSSLCertificate) SetFingerprint256(v string)`
-
-SetFingerprint256 gets a reference to the given string and assigns it to the Fingerprint256 field.
 
 ### GetIssuer
 
@@ -169,22 +169,22 @@ GetIssuer returns the Issuer field if non-nil, zero value otherwise.
 
 ### GetIssuerOk
 
-`func (o *SyntheticsSSLCertificate) GetIssuerOk() (SyntheticsSSLCertificateIssuer, bool)`
+`func (o *SyntheticsSSLCertificate) GetIssuerOk() (*SyntheticsSSLCertificateIssuer, bool)`
 
 GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIssuer
+
+`func (o *SyntheticsSSLCertificate) SetIssuer(v SyntheticsSSLCertificateIssuer)`
+
+SetIssuer sets Issuer field to given value.
 
 ### HasIssuer
 
 `func (o *SyntheticsSSLCertificate) HasIssuer() bool`
 
 HasIssuer returns a boolean if a field has been set.
-
-### SetIssuer
-
-`func (o *SyntheticsSSLCertificate) SetIssuer(v SyntheticsSSLCertificateIssuer)`
-
-SetIssuer gets a reference to the given SyntheticsSSLCertificateIssuer and assigns it to the Issuer field.
 
 ### GetModulus
 
@@ -194,22 +194,22 @@ GetModulus returns the Modulus field if non-nil, zero value otherwise.
 
 ### GetModulusOk
 
-`func (o *SyntheticsSSLCertificate) GetModulusOk() (string, bool)`
+`func (o *SyntheticsSSLCertificate) GetModulusOk() (*string, bool)`
 
 GetModulusOk returns a tuple with the Modulus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetModulus
+
+`func (o *SyntheticsSSLCertificate) SetModulus(v string)`
+
+SetModulus sets Modulus field to given value.
 
 ### HasModulus
 
 `func (o *SyntheticsSSLCertificate) HasModulus() bool`
 
 HasModulus returns a boolean if a field has been set.
-
-### SetModulus
-
-`func (o *SyntheticsSSLCertificate) SetModulus(v string)`
-
-SetModulus gets a reference to the given string and assigns it to the Modulus field.
 
 ### GetProtocol
 
@@ -219,22 +219,22 @@ GetProtocol returns the Protocol field if non-nil, zero value otherwise.
 
 ### GetProtocolOk
 
-`func (o *SyntheticsSSLCertificate) GetProtocolOk() (string, bool)`
+`func (o *SyntheticsSSLCertificate) GetProtocolOk() (*string, bool)`
 
 GetProtocolOk returns a tuple with the Protocol field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProtocol
+
+`func (o *SyntheticsSSLCertificate) SetProtocol(v string)`
+
+SetProtocol sets Protocol field to given value.
 
 ### HasProtocol
 
 `func (o *SyntheticsSSLCertificate) HasProtocol() bool`
 
 HasProtocol returns a boolean if a field has been set.
-
-### SetProtocol
-
-`func (o *SyntheticsSSLCertificate) SetProtocol(v string)`
-
-SetProtocol gets a reference to the given string and assigns it to the Protocol field.
 
 ### GetSerialNumber
 
@@ -244,22 +244,22 @@ GetSerialNumber returns the SerialNumber field if non-nil, zero value otherwise.
 
 ### GetSerialNumberOk
 
-`func (o *SyntheticsSSLCertificate) GetSerialNumberOk() (string, bool)`
+`func (o *SyntheticsSSLCertificate) GetSerialNumberOk() (*string, bool)`
 
 GetSerialNumberOk returns a tuple with the SerialNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSerialNumber
+
+`func (o *SyntheticsSSLCertificate) SetSerialNumber(v string)`
+
+SetSerialNumber sets SerialNumber field to given value.
 
 ### HasSerialNumber
 
 `func (o *SyntheticsSSLCertificate) HasSerialNumber() bool`
 
 HasSerialNumber returns a boolean if a field has been set.
-
-### SetSerialNumber
-
-`func (o *SyntheticsSSLCertificate) SetSerialNumber(v string)`
-
-SetSerialNumber gets a reference to the given string and assigns it to the SerialNumber field.
 
 ### GetSubject
 
@@ -269,22 +269,22 @@ GetSubject returns the Subject field if non-nil, zero value otherwise.
 
 ### GetSubjectOk
 
-`func (o *SyntheticsSSLCertificate) GetSubjectOk() (SyntheticsSSLCertificateSubject, bool)`
+`func (o *SyntheticsSSLCertificate) GetSubjectOk() (*SyntheticsSSLCertificateSubject, bool)`
 
 GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSubject
+
+`func (o *SyntheticsSSLCertificate) SetSubject(v SyntheticsSSLCertificateSubject)`
+
+SetSubject sets Subject field to given value.
 
 ### HasSubject
 
 `func (o *SyntheticsSSLCertificate) HasSubject() bool`
 
 HasSubject returns a boolean if a field has been set.
-
-### SetSubject
-
-`func (o *SyntheticsSSLCertificate) SetSubject(v SyntheticsSSLCertificateSubject)`
-
-SetSubject gets a reference to the given SyntheticsSSLCertificateSubject and assigns it to the Subject field.
 
 ### GetValidFrom
 
@@ -294,22 +294,22 @@ GetValidFrom returns the ValidFrom field if non-nil, zero value otherwise.
 
 ### GetValidFromOk
 
-`func (o *SyntheticsSSLCertificate) GetValidFromOk() (time.Time, bool)`
+`func (o *SyntheticsSSLCertificate) GetValidFromOk() (*time.Time, bool)`
 
 GetValidFromOk returns a tuple with the ValidFrom field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetValidFrom
+
+`func (o *SyntheticsSSLCertificate) SetValidFrom(v time.Time)`
+
+SetValidFrom sets ValidFrom field to given value.
 
 ### HasValidFrom
 
 `func (o *SyntheticsSSLCertificate) HasValidFrom() bool`
 
 HasValidFrom returns a boolean if a field has been set.
-
-### SetValidFrom
-
-`func (o *SyntheticsSSLCertificate) SetValidFrom(v time.Time)`
-
-SetValidFrom gets a reference to the given time.Time and assigns it to the ValidFrom field.
 
 ### GetValidTo
 
@@ -319,22 +319,22 @@ GetValidTo returns the ValidTo field if non-nil, zero value otherwise.
 
 ### GetValidToOk
 
-`func (o *SyntheticsSSLCertificate) GetValidToOk() (time.Time, bool)`
+`func (o *SyntheticsSSLCertificate) GetValidToOk() (*time.Time, bool)`
 
 GetValidToOk returns a tuple with the ValidTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetValidTo
+
+`func (o *SyntheticsSSLCertificate) SetValidTo(v time.Time)`
+
+SetValidTo sets ValidTo field to given value.
 
 ### HasValidTo
 
 `func (o *SyntheticsSSLCertificate) HasValidTo() bool`
 
 HasValidTo returns a boolean if a field has been set.
-
-### SetValidTo
-
-`func (o *SyntheticsSSLCertificate) SetValidTo(v time.Time)`
-
-SetValidTo gets a reference to the given time.Time and assigns it to the ValidTo field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

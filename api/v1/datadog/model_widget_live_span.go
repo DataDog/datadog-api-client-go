@@ -48,7 +48,7 @@ func (v NullableWidgetLiveSpan) Get() *WidgetLiveSpan {
 	return v.value
 }
 
-func (v NullableWidgetLiveSpan) Set(val *WidgetLiveSpan) {
+func (v *NullableWidgetLiveSpan) Set(val *WidgetLiveSpan) {
 	v.value = val
 	v.isSet = true
 }
@@ -57,7 +57,7 @@ func (v NullableWidgetLiveSpan) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetLiveSpan) Unset() {
+func (v *NullableWidgetLiveSpan) Unset() {
 	v.value = nil
 	v.isSet = false
 }

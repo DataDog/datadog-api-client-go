@@ -45,14 +45,13 @@ func (o *DashboardTemplateVariablePreset) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardTemplateVariablePreset) GetNameOk() (string, bool) {
+func (o *DashboardTemplateVariablePreset) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -78,14 +77,13 @@ func (o *DashboardTemplateVariablePreset) GetTemplateVariables() []DashboardTemp
 	return *o.TemplateVariables
 }
 
-// GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, zero value otherwise
+// GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardTemplateVariablePreset) GetTemplateVariablesOk() ([]DashboardTemplateVariablePresetValue, bool) {
+func (o *DashboardTemplateVariablePreset) GetTemplateVariablesOk() (*[]DashboardTemplateVariablePresetValue, bool) {
 	if o == nil || o.TemplateVariables == nil {
-		var ret []DashboardTemplateVariablePresetValue
-		return ret, false
+		return nil, false
 	}
-	return *o.TemplateVariables, true
+	return o.TemplateVariables, true
 }
 
 // HasTemplateVariables returns a boolean if a field has been set.
@@ -122,7 +120,7 @@ func (v NullableDashboardTemplateVariablePreset) Get() *DashboardTemplateVariabl
 	return v.value
 }
 
-func (v NullableDashboardTemplateVariablePreset) Set(val *DashboardTemplateVariablePreset) {
+func (v *NullableDashboardTemplateVariablePreset) Set(val *DashboardTemplateVariablePreset) {
 	v.value = val
 	v.isSet = true
 }
@@ -131,7 +129,7 @@ func (v NullableDashboardTemplateVariablePreset) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardTemplateVariablePreset) Unset() {
+func (v *NullableDashboardTemplateVariablePreset) Unset() {
 	v.value = nil
 	v.isSet = false
 }

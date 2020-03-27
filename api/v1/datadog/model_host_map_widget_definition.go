@@ -65,14 +65,13 @@ func (o *HostMapWidgetDefinition) GetGroup() []string {
 	return *o.Group
 }
 
-// GetGroupOk returns a tuple with the Group field value if set, zero value otherwise
+// GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetGroupOk() ([]string, bool) {
+func (o *HostMapWidgetDefinition) GetGroupOk() (*[]string, bool) {
 	if o == nil || o.Group == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Group, true
+	return o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
@@ -98,14 +97,13 @@ func (o *HostMapWidgetDefinition) GetNoGroupHosts() bool {
 	return *o.NoGroupHosts
 }
 
-// GetNoGroupHostsOk returns a tuple with the NoGroupHosts field value if set, zero value otherwise
+// GetNoGroupHostsOk returns a tuple with the NoGroupHosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetNoGroupHostsOk() (bool, bool) {
+func (o *HostMapWidgetDefinition) GetNoGroupHostsOk() (*bool, bool) {
 	if o == nil || o.NoGroupHosts == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.NoGroupHosts, true
+	return o.NoGroupHosts, true
 }
 
 // HasNoGroupHosts returns a boolean if a field has been set.
@@ -131,14 +129,13 @@ func (o *HostMapWidgetDefinition) GetNoMetricHosts() bool {
 	return *o.NoMetricHosts
 }
 
-// GetNoMetricHostsOk returns a tuple with the NoMetricHosts field value if set, zero value otherwise
+// GetNoMetricHostsOk returns a tuple with the NoMetricHosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetNoMetricHostsOk() (bool, bool) {
+func (o *HostMapWidgetDefinition) GetNoMetricHostsOk() (*bool, bool) {
 	if o == nil || o.NoMetricHosts == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.NoMetricHosts, true
+	return o.NoMetricHosts, true
 }
 
 // HasNoMetricHosts returns a boolean if a field has been set.
@@ -164,14 +161,13 @@ func (o *HostMapWidgetDefinition) GetNodeType() WidgetNodeType {
 	return *o.NodeType
 }
 
-// GetNodeTypeOk returns a tuple with the NodeType field value if set, zero value otherwise
+// GetNodeTypeOk returns a tuple with the NodeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetNodeTypeOk() (WidgetNodeType, bool) {
+func (o *HostMapWidgetDefinition) GetNodeTypeOk() (*WidgetNodeType, bool) {
 	if o == nil || o.NodeType == nil {
-		var ret WidgetNodeType
-		return ret, false
+		return nil, false
 	}
-	return *o.NodeType, true
+	return o.NodeType, true
 }
 
 // HasNodeType returns a boolean if a field has been set.
@@ -197,14 +193,13 @@ func (o *HostMapWidgetDefinition) GetNotes() string {
 	return *o.Notes
 }
 
-// GetNotesOk returns a tuple with the Notes field value if set, zero value otherwise
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetNotesOk() (string, bool) {
+func (o *HostMapWidgetDefinition) GetNotesOk() (*string, bool) {
 	if o == nil || o.Notes == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Notes, true
+	return o.Notes, true
 }
 
 // HasNotes returns a boolean if a field has been set.
@@ -231,6 +226,15 @@ func (o *HostMapWidgetDefinition) GetRequests() HostMapWidgetDefinitionRequests 
 	return o.Requests
 }
 
+// GetRequestsOk returns a tuple with the Requests field value
+// and a boolean to check if the value has been set.
+func (o *HostMapWidgetDefinition) GetRequestsOk() (*HostMapWidgetDefinitionRequests, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Requests, true
+}
+
 // SetRequests sets field value
 func (o *HostMapWidgetDefinition) SetRequests(v HostMapWidgetDefinitionRequests) {
 	o.Requests = v
@@ -245,14 +249,13 @@ func (o *HostMapWidgetDefinition) GetScope() []string {
 	return *o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field value if set, zero value otherwise
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetScopeOk() ([]string, bool) {
+func (o *HostMapWidgetDefinition) GetScopeOk() (*[]string, bool) {
 	if o == nil || o.Scope == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Scope, true
+	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
@@ -278,14 +281,13 @@ func (o *HostMapWidgetDefinition) GetStyle() HostMapWidgetDefinitionStyle {
 	return *o.Style
 }
 
-// GetStyleOk returns a tuple with the Style field value if set, zero value otherwise
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetStyleOk() (HostMapWidgetDefinitionStyle, bool) {
+func (o *HostMapWidgetDefinition) GetStyleOk() (*HostMapWidgetDefinitionStyle, bool) {
 	if o == nil || o.Style == nil {
-		var ret HostMapWidgetDefinitionStyle
-		return ret, false
+		return nil, false
 	}
-	return *o.Style, true
+	return o.Style, true
 }
 
 // HasStyle returns a boolean if a field has been set.
@@ -311,14 +313,13 @@ func (o *HostMapWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *HostMapWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -344,14 +345,13 @@ func (o *HostMapWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *HostMapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -377,14 +377,13 @@ func (o *HostMapWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *HostMapWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -409,6 +408,15 @@ func (o *HostMapWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *HostMapWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -471,7 +479,7 @@ func (v NullableHostMapWidgetDefinition) Get() *HostMapWidgetDefinition {
 	return v.value
 }
 
-func (v NullableHostMapWidgetDefinition) Set(val *HostMapWidgetDefinition) {
+func (v *NullableHostMapWidgetDefinition) Set(val *HostMapWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -480,7 +488,7 @@ func (v NullableHostMapWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMapWidgetDefinition) Unset() {
+func (v *NullableHostMapWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -38,7 +38,7 @@ func (v NullableSyntheticsTestProcessStatus) Get() *SyntheticsTestProcessStatus 
 	return v.value
 }
 
-func (v NullableSyntheticsTestProcessStatus) Set(val *SyntheticsTestProcessStatus) {
+func (v *NullableSyntheticsTestProcessStatus) Set(val *SyntheticsTestProcessStatus) {
 	v.value = val
 	v.isSet = true
 }
@@ -47,7 +47,7 @@ func (v NullableSyntheticsTestProcessStatus) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestProcessStatus) Unset() {
+func (v *NullableSyntheticsTestProcessStatus) Unset() {
 	v.value = nil
 	v.isSet = false
 }

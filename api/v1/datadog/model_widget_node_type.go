@@ -35,7 +35,7 @@ func (v NullableWidgetNodeType) Get() *WidgetNodeType {
 	return v.value
 }
 
-func (v NullableWidgetNodeType) Set(val *WidgetNodeType) {
+func (v *NullableWidgetNodeType) Set(val *WidgetNodeType) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetNodeType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetNodeType) Unset() {
+func (v *NullableWidgetNodeType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

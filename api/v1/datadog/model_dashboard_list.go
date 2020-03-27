@@ -59,14 +59,13 @@ func (o *DashboardList) GetAuthor() Creator {
 	return *o.Author
 }
 
-// GetAuthorOk returns a tuple with the Author field value if set, zero value otherwise
+// GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetAuthorOk() (Creator, bool) {
+func (o *DashboardList) GetAuthorOk() (*Creator, bool) {
 	if o == nil || o.Author == nil {
-		var ret Creator
-		return ret, false
+		return nil, false
 	}
-	return *o.Author, true
+	return o.Author, true
 }
 
 // HasAuthor returns a boolean if a field has been set.
@@ -92,14 +91,13 @@ func (o *DashboardList) GetCreated() time.Time {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetCreatedOk() (time.Time, bool) {
+func (o *DashboardList) GetCreatedOk() (*time.Time, bool) {
 	if o == nil || o.Created == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -125,14 +123,13 @@ func (o *DashboardList) GetDashboardCount() int64 {
 	return *o.DashboardCount
 }
 
-// GetDashboardCountOk returns a tuple with the DashboardCount field value if set, zero value otherwise
+// GetDashboardCountOk returns a tuple with the DashboardCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetDashboardCountOk() (int64, bool) {
+func (o *DashboardList) GetDashboardCountOk() (*int64, bool) {
 	if o == nil || o.DashboardCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.DashboardCount, true
+	return o.DashboardCount, true
 }
 
 // HasDashboardCount returns a boolean if a field has been set.
@@ -158,14 +155,13 @@ func (o *DashboardList) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetIdOk() (int64, bool) {
+func (o *DashboardList) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -191,14 +187,13 @@ func (o *DashboardList) GetIsFavorite() bool {
 	return *o.IsFavorite
 }
 
-// GetIsFavoriteOk returns a tuple with the IsFavorite field value if set, zero value otherwise
+// GetIsFavoriteOk returns a tuple with the IsFavorite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetIsFavoriteOk() (bool, bool) {
+func (o *DashboardList) GetIsFavoriteOk() (*bool, bool) {
 	if o == nil || o.IsFavorite == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsFavorite, true
+	return o.IsFavorite, true
 }
 
 // HasIsFavorite returns a boolean if a field has been set.
@@ -224,14 +219,13 @@ func (o *DashboardList) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetModifiedOk() (time.Time, bool) {
+func (o *DashboardList) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
@@ -258,6 +252,15 @@ func (o *DashboardList) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *DashboardList) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *DashboardList) SetName(v string) {
 	o.Name = v
@@ -272,14 +275,13 @@ func (o *DashboardList) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardList) GetTypeOk() (string, bool) {
+func (o *DashboardList) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -334,7 +336,7 @@ func (v NullableDashboardList) Get() *DashboardList {
 	return v.value
 }
 
-func (v NullableDashboardList) Set(val *DashboardList) {
+func (v *NullableDashboardList) Set(val *DashboardList) {
 	v.value = val
 	v.isSet = true
 }
@@ -343,7 +345,7 @@ func (v NullableDashboardList) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardList) Unset() {
+func (v *NullableDashboardList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
