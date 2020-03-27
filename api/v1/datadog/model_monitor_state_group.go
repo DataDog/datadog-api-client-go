@@ -14,8 +14,6 @@ import (
 
 // MonitorStateGroup Monitor state for a single group.
 type MonitorStateGroup struct {
-	// Lastest data timestamp for this monitor group.
-	LastDataTs *int64 `json:"last_data_ts,omitempty"`
 	// TODO.
 	LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
 	// Timestamp of the last notification sent for this monitor group.
@@ -24,12 +22,9 @@ type MonitorStateGroup struct {
 	LastResolvedTs *int64 `json:"last_resolved_ts,omitempty"`
 	// Last timestamp the monitor group triggered.
 	LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`
-	// A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same ‘@username’ notation as events.
-	Message *string `json:"message,omitempty"`
 	// The name of the monitor.
-	Name            *string                 `json:"name,omitempty"`
-	Status          *MonitorOverallStates   `json:"status,omitempty"`
-	TriggeringValue *MonitorStateGroupValue `json:"triggering_value,omitempty"`
+	Name   *string               `json:"name,omitempty"`
+	Status *MonitorOverallStates `json:"status,omitempty"`
 }
 
 // NewMonitorStateGroup instantiates a new MonitorStateGroup object
@@ -47,39 +42,6 @@ func NewMonitorStateGroup() *MonitorStateGroup {
 func NewMonitorStateGroupWithDefaults() *MonitorStateGroup {
 	this := MonitorStateGroup{}
 	return &this
-}
-
-// GetLastDataTs returns the LastDataTs field value if set, zero value otherwise.
-func (o *MonitorStateGroup) GetLastDataTs() int64 {
-	if o == nil || o.LastDataTs == nil {
-		var ret int64
-		return ret
-	}
-	return *o.LastDataTs
-}
-
-// GetLastDataTsOk returns a tuple with the LastDataTs field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetLastDataTsOk() (int64, bool) {
-	if o == nil || o.LastDataTs == nil {
-		var ret int64
-		return ret, false
-	}
-	return *o.LastDataTs, true
-}
-
-// HasLastDataTs returns a boolean if a field has been set.
-func (o *MonitorStateGroup) HasLastDataTs() bool {
-	if o != nil && o.LastDataTs != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLastDataTs gets a reference to the given int64 and assigns it to the LastDataTs field.
-func (o *MonitorStateGroup) SetLastDataTs(v int64) {
-	o.LastDataTs = &v
 }
 
 // GetLastNodataTs returns the LastNodataTs field value if set, zero value otherwise.
@@ -214,39 +176,6 @@ func (o *MonitorStateGroup) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise.
-func (o *MonitorStateGroup) GetMessage() string {
-	if o == nil || o.Message == nil {
-		var ret string
-		return ret
-	}
-	return *o.Message
-}
-
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetMessageOk() (string, bool) {
-	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Message, true
-}
-
-// HasMessage returns a boolean if a field has been set.
-func (o *MonitorStateGroup) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *MonitorStateGroup) SetMessage(v string) {
-	o.Message = &v
-}
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetName() string {
 	if o == nil || o.Name == nil {
@@ -313,44 +242,8 @@ func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates) {
 	o.Status = &v
 }
 
-// GetTriggeringValue returns the TriggeringValue field value if set, zero value otherwise.
-func (o *MonitorStateGroup) GetTriggeringValue() MonitorStateGroupValue {
-	if o == nil || o.TriggeringValue == nil {
-		var ret MonitorStateGroupValue
-		return ret
-	}
-	return *o.TriggeringValue
-}
-
-// GetTriggeringValueOk returns a tuple with the TriggeringValue field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *MonitorStateGroup) GetTriggeringValueOk() (MonitorStateGroupValue, bool) {
-	if o == nil || o.TriggeringValue == nil {
-		var ret MonitorStateGroupValue
-		return ret, false
-	}
-	return *o.TriggeringValue, true
-}
-
-// HasTriggeringValue returns a boolean if a field has been set.
-func (o *MonitorStateGroup) HasTriggeringValue() bool {
-	if o != nil && o.TriggeringValue != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggeringValue gets a reference to the given MonitorStateGroupValue and assigns it to the TriggeringValue field.
-func (o *MonitorStateGroup) SetTriggeringValue(v MonitorStateGroupValue) {
-	o.TriggeringValue = &v
-}
-
 func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.LastDataTs != nil {
-		toSerialize["last_data_ts"] = o.LastDataTs
-	}
 	if o.LastNodataTs != nil {
 		toSerialize["last_nodata_ts"] = o.LastNodataTs
 	}
@@ -363,17 +256,11 @@ func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 	if o.LastTriggeredTs != nil {
 		toSerialize["last_triggered_ts"] = o.LastTriggeredTs
 	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
-	}
-	if o.TriggeringValue != nil {
-		toSerialize["triggering_value"] = o.TriggeringValue
 	}
 	return json.Marshal(toSerialize)
 }

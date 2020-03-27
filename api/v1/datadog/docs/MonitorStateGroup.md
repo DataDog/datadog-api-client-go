@@ -4,15 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastDataTs** | Pointer to **int64** | Lastest data timestamp for this monitor group. | [optional] 
 **LastNodataTs** | Pointer to **int64** | TODO. | [optional] 
 **LastNotifiedTs** | Pointer to **int64** | Timestamp of the last notification sent for this monitor group. | [optional] 
 **LastResolvedTs** | Pointer to **int64** | Lastest timestamp the monitor group was resolved. | [optional] 
 **LastTriggeredTs** | Pointer to **int64** | Last timestamp the monitor group triggered. | [optional] 
-**Message** | Pointer to **string** | A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same ‘@username’ notation as events. | [optional] 
 **Name** | Pointer to **string** | The name of the monitor. | [optional] 
 **Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
-**TriggeringValue** | Pointer to [**MonitorStateGroupValue**](MonitorStateGroupValue.md) |  | [optional] 
 
 ## Methods
 
@@ -32,31 +29,6 @@ will change when the set of required properties is changed
 NewMonitorStateGroupWithDefaults instantiates a new MonitorStateGroup object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetLastDataTs
-
-`func (o *MonitorStateGroup) GetLastDataTs() int64`
-
-GetLastDataTs returns the LastDataTs field if non-nil, zero value otherwise.
-
-### GetLastDataTsOk
-
-`func (o *MonitorStateGroup) GetLastDataTsOk() (int64, bool)`
-
-GetLastDataTsOk returns a tuple with the LastDataTs field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLastDataTs
-
-`func (o *MonitorStateGroup) HasLastDataTs() bool`
-
-HasLastDataTs returns a boolean if a field has been set.
-
-### SetLastDataTs
-
-`func (o *MonitorStateGroup) SetLastDataTs(v int64)`
-
-SetLastDataTs gets a reference to the given int64 and assigns it to the LastDataTs field.
 
 ### GetLastNodataTs
 
@@ -158,31 +130,6 @@ HasLastTriggeredTs returns a boolean if a field has been set.
 
 SetLastTriggeredTs gets a reference to the given int64 and assigns it to the LastTriggeredTs field.
 
-### GetMessage
-
-`func (o *MonitorStateGroup) GetMessage() string`
-
-GetMessage returns the Message field if non-nil, zero value otherwise.
-
-### GetMessageOk
-
-`func (o *MonitorStateGroup) GetMessageOk() (string, bool)`
-
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasMessage
-
-`func (o *MonitorStateGroup) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
-
-### SetMessage
-
-`func (o *MonitorStateGroup) SetMessage(v string)`
-
-SetMessage gets a reference to the given string and assigns it to the Message field.
-
 ### GetName
 
 `func (o *MonitorStateGroup) GetName() string`
@@ -232,31 +179,6 @@ HasStatus returns a boolean if a field has been set.
 `func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates)`
 
 SetStatus gets a reference to the given MonitorOverallStates and assigns it to the Status field.
-
-### GetTriggeringValue
-
-`func (o *MonitorStateGroup) GetTriggeringValue() MonitorStateGroupValue`
-
-GetTriggeringValue returns the TriggeringValue field if non-nil, zero value otherwise.
-
-### GetTriggeringValueOk
-
-`func (o *MonitorStateGroup) GetTriggeringValueOk() (MonitorStateGroupValue, bool)`
-
-GetTriggeringValueOk returns a tuple with the TriggeringValue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTriggeringValue
-
-`func (o *MonitorStateGroup) HasTriggeringValue() bool`
-
-HasTriggeringValue returns a boolean if a field has been set.
-
-### SetTriggeringValue
-
-`func (o *MonitorStateGroup) SetTriggeringValue(v MonitorStateGroupValue)`
-
-SetTriggeringValue gets a reference to the given MonitorStateGroupValue and assigns it to the TriggeringValue field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
