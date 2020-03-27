@@ -12,12 +12,14 @@ import (
 	"encoding/json"
 )
 
-// MonitorOptionsAggregation TODO.
+// MonitorOptionsAggregation Type of aggregation performed in the monitor query.
 type MonitorOptionsAggregation struct {
+	// Group to break down the monitor on.
 	GroupBy *string `json:"group_by,omitempty"`
-	// TODO.
+	// Metric name used in the monitor.
 	Metric *string `json:"metric,omitempty"`
-	Type   *string `json:"type,omitempty"`
+	// Metric type used in the monitor.
+	Type *string `json:"type,omitempty"`
 }
 
 // NewMonitorOptionsAggregation instantiates a new MonitorOptionsAggregation object

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastDataTs** | Pointer to **int64** | TODO. | [optional] 
+**LastDataTs** | Pointer to **int64** | Lastest data timestamp for this monitor group. | [optional] 
 **LastNodataTs** | Pointer to **int64** | TODO. | [optional] 
-**LastNotifiedTs** | Pointer to **int64** | TODO. | [optional] 
-**LastResolvedTs** | Pointer to **int64** | TODO. | [optional] 
-**LastTriggeredTs** | Pointer to **int64** | TODO. | [optional] 
+**LastNotifiedTs** | Pointer to **int64** | Timestamp of the last notification sent for this monitor group. | [optional] 
+**LastResolvedTs** | Pointer to **int64** | Lastest timestamp the monitor group was resolved. | [optional] 
+**LastTriggeredTs** | Pointer to **int64** | Last timestamp the monitor group triggered. | [optional] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same ‘@username’ notation as events. | [optional] 
 **Name** | Pointer to **string** | The name of the monitor. | [optional] 
 **Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the monitor creation. | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Deleted** | Pointer to [**NullableTime**](time.Time.md) | TODO. | [optional] [readonly] 
+**Deleted** | Pointer to [**NullableTime**](time.Time.md) | Whether or not the monitor is deleted. (Always &#x60;null&#x60;) | [optional] [readonly] 
 **Id** | Pointer to **int64** | ID of this monitor. | [optional] [readonly] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
-**Multi** | Pointer to **bool** | TODO. | [optional] [readonly] 
-**Name** | Pointer to **string** | TODO. | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | Last timestamp when the monitor was edited. | [optional] [readonly] 
+**Multi** | Pointer to **bool** | Whether or not the monitor is broken down on different groups. | [optional] [readonly] 
+**Name** | Pointer to **string** | The monitor name. | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 **Query** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
-**Tags** | Pointer to **[]string** | TODO. | [optional] 
+**Tags** | Pointer to **[]string** | Tags associated to your monitor. | [optional] 
 **Type** | Pointer to [**MonitorType**](MonitorType.md) |  | [optional] 
 
 ## Methods

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageTopAvgMetricsHour**](UsageTopAvgMetricsHour.md) | TODO. | [optional] 
+**Usage** | Pointer to [**[]UsageTopAvgMetricsHour**](UsageTopAvgMetricsHour.md) | Number of hourly recorded custom metrics for a given organization. | [optional] 
 
 ## Methods
 

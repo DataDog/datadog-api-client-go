@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **int32** | TODO. | 
-**Message** | Pointer to **string** | TODO. | 
+**Code** | Pointer to **int32** | Error code. | 
+**Message** | Pointer to **string** | Error message. | 
 
 ## Methods
 

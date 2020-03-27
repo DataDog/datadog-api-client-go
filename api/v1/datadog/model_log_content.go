@@ -15,17 +15,17 @@ import (
 
 // LogContent struct for LogContent
 type LogContent struct {
-	// TODO.
+	// JSON object of attributes from your log.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Name of the machine from where the logs are being sent.
 	Host *string `json:"host,omitempty"`
-	// TODO.
+	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
 	Message *string `json:"message,omitempty"`
-	// TODO.
+	// The name of the application or service generating the log events. It is used to switch from Logs to APM, so make sure you define the same value when you use both products.
 	Service *string `json:"service,omitempty"`
-	// TODO.
+	// Array of tags associated with your log.
 	Tags *[]interface{} `json:"tags,omitempty"`
-	// TODO.
+	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 }
 

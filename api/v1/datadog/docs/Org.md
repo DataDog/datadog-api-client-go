@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Billing** | Pointer to [**OrgBilling**](Org_billing.md) |  | [optional] 
-**Created** | Pointer to **string** | TODO. | [optional] [readonly] 
+**Created** | Pointer to **string** | Date of the organization creation. | [optional] [readonly] 
 **Description** | Pointer to **string** | Description of the organization. | [optional] 
 **Name** | Pointer to **string** | The name of the new child-organization, limited to 32 characters. | [optional] 
 **PublicId** | Pointer to **string** | The public_id of the org you are operating within. | [optional] 

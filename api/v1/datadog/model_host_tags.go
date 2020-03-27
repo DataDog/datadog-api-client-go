@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// HostTags TODO.
+// HostTags Set of tags to associate with your host.
 type HostTags struct {
-	// TODO.
+	// Your host name.
 	Host *string `json:"host,omitempty"`
 	// A list of tags to apply to the host.
 	Tags *[]string `json:"tags,omitempty"`

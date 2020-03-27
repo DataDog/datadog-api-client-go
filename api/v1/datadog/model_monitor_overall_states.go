@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorOverallStates TODO.
+// MonitorOverallStates The different states your monitor can be in.
 type MonitorOverallStates string
 
 // List of MonitorOverallStates

@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **Disabled** | Pointer to **bool** | The new disabled status of the user. | [optional] 
 **Email** | Pointer to **string** | The new email of the user. | [optional] 
 **Handle** | Pointer to **string** | The user handle, must be a valid email. | [optional] 
-**Icon** | Pointer to **string** | TODO. | [optional] [readonly] 
+**Icon** | Pointer to **string** | Gravatar icon associated to the user. | [optional] [readonly] 
 **Name** | Pointer to **string** | The name of the user. | [optional] 
-**Verified** | Pointer to **bool** | TODO. | [optional] [readonly] 
+**Verified** | Pointer to **bool** | Whether or not the user logged in Datadog at least once. | [optional] [readonly] 
 
 ## Methods
 

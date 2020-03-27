@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorThresholdWindowOptions TODO.
+// MonitorThresholdWindowOptions Alerting time window options.
 type MonitorThresholdWindowOptions struct {
 	// Describes how long an anomalous metric must be normal before the alert recovers.
 	RecoveryWindow NullableString `json:"recovery_window,omitempty"`

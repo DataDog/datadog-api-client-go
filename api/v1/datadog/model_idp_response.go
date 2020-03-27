@@ -14,7 +14,7 @@ import (
 
 // IdpResponse struct for IdpResponse
 type IdpResponse struct {
-	// TODO.
+	// Identity provider response.
 	Message string `json:"message"`
 }
 

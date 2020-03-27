@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageHostHour TODO.
+// UsageHostHour Number of hosts/containers recorded for each hour for a given organization.
 type UsageHostHour struct {
 	// Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent.
 	AgentHostCount *int64 `json:"agent_host_count,omitempty"`

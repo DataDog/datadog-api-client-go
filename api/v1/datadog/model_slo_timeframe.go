@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOTimeframe TODO.
+// SLOTimeframe The SLO time window options.
 type SLOTimeframe string
 
 // List of SLOTimeframe

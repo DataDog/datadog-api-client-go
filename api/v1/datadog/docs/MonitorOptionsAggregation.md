@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GroupBy** | Pointer to **string** |  | [optional] 
-**Metric** | Pointer to **string** | TODO. | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**GroupBy** | Pointer to **string** | Group to break down the monitor on. | [optional] 
+**Metric** | Pointer to **string** | Metric name used in the monitor. | [optional] 
+**Type** | Pointer to **string** | Metric type used in the monitor. | [optional] 
 
 ## Methods
 

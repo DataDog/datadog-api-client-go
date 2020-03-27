@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UserResponse TODO.
+// UserResponse A Datadog User.
 type UserResponse struct {
 	User *User `json:"user,omitempty"`
 }

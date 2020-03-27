@@ -14,7 +14,7 @@ import (
 
 // UsageSyntheticsResponse struct for UsageSyntheticsResponse
 type UsageSyntheticsResponse struct {
-	// TODO.
+	// Array with the number of hourly Synthetics test run for a given organization.
 	Usage *[]UsageSyntheticsHour `json:"usage,omitempty"`
 }
 

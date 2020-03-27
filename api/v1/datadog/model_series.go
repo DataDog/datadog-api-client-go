@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// Series TODO.
+// Series A metric to submit to Datadog. See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties).
 type Series struct {
 	// The name of the host that produced the metric.
 	Host *string `json:"host,omitempty"`

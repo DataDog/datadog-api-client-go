@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Critical** | Pointer to **float64** | TODO. | [optional] 
-**CriticalRecovery** | Pointer to **NullableFloat64** | TODO. | [optional] 
-**Ok** | Pointer to **NullableFloat64** | TODO. | [optional] 
+**Critical** | Pointer to **float64** | The monitor CRITICAL threshold. | [optional] 
+**CriticalRecovery** | Pointer to **NullableFloat64** | The monitor CRITICAL recovery threshold. | [optional] 
+**Ok** | Pointer to **NullableFloat64** | The monitor OK threshold. | [optional] 
 **Unknown** | Pointer to **NullableFloat64** | TODO. | [optional] 
-**Warning** | Pointer to **NullableFloat64** | TODO. | [optional] 
-**WarningRecovery** | Pointer to **NullableFloat64** | TODO. | [optional] 
+**Warning** | Pointer to **NullableFloat64** | The monitor WARNING threshold. | [optional] 
+**WarningRecovery** | Pointer to **NullableFloat64** | The monitor WARNING recovery threshold. | [optional] 
 
 ## Methods
 

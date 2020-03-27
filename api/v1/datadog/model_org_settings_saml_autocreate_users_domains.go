@@ -14,9 +14,9 @@ import (
 
 // OrgSettingsSamlAutocreateUsersDomains Has two properties, `enabled` (boolean) and `domains`, which is a list of domains without the @ symbol.
 type OrgSettingsSamlAutocreateUsersDomains struct {
-	// TODO.
+	// List of domains where the SAML automated user creation is enabled.
 	Domains *[]string `json:"domains,omitempty"`
-	// TODO.
+	// Whether or not the automated user creation based on SAML domain is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 }
 

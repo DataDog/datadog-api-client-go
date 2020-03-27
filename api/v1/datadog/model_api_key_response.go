@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ApiKeyResponse TODO.
+// ApiKeyResponse An API key with its associated metadata.
 type ApiKeyResponse struct {
 	ApiKey *ApiKey `json:"api_key,omitempty"`
 }

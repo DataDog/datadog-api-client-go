@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ddsource** | Pointer to **string** | TODO. | [optional] 
-**Ddtags** | Pointer to **string** | TODO. | [optional] 
-**Hostname** | Pointer to **string** | TODO. | [optional] 
-**Message** | Pointer to **string** | TODO. | [optional] 
+**Ddsource** | Pointer to **string** | The integration name associated with your log: the technology from which the log originated. When it matches an integration name, Datadog automatically installs the corresponding parsers and facets. See [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes). | [optional] 
+**Ddtags** | Pointer to **string** | Tags associated with your logs. | [optional] 
+**Hostname** | Pointer to **string** | The name of the originating host of the log. | [optional] 
+**Message** | Pointer to **string** | The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search. | [optional] 
 
 ## Methods
 

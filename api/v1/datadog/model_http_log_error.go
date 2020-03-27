@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// HTTPLogError TODO.
+// HTTPLogError Invalid query performed.
 type HTTPLogError struct {
-	// TODO.
+	// Error code.
 	Code int32 `json:"code"`
-	// TODO.
+	// Error message.
 	Message string `json:"message"`
 }
 

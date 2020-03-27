@@ -18,7 +18,7 @@ type GraphSnapshot struct {
 	GraphDef *string `json:"graph_def,omitempty"`
 	// The metric query. One of `metric_query` or `graph_def` is required.
 	MetricQuery *string `json:"metric_query,omitempty"`
-	// TODO.
+	// URL of your [graph snapshot](https://docs.datadoghq.com/metrics/explorer/#snapshot).
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
 }
 

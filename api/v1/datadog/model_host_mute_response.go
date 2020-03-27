@@ -12,15 +12,15 @@ import (
 	"encoding/json"
 )
 
-// HostMuteResponse TODO.
+// HostMuteResponse Response with the list of muted host for your organization.
 type HostMuteResponse struct {
-	// TODO.
+	// Action applied to the hosts.
 	Action *string `json:"action,omitempty"`
 	// POSIX timestamp in seconds when the host is unmuted.
 	End *int64 `json:"end,omitempty"`
 	// The host name.
 	Hostname *string `json:"hostname,omitempty"`
-	// TODO.
+	// Message associated with the Mute.
 	Message *string `json:"message,omitempty"`
 }
 

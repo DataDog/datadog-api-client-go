@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | Pointer to [**[]User**](User.md) | TODO. | [optional] 
+**Users** | Pointer to [**[]User**](User.md) | Array of users. | [optional] 
 
 ## Methods
 
