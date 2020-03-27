@@ -137,7 +137,7 @@ func TestUsageRumSessions(t *testing.T) {
 	defer teardownTest(t)
 
 	startHr, endHr := getStartEndHr()
-	usage, httpresp, err := TESTAPICLIENT.UsageApi.GetUsageRumSessions(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageRumSessions(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
