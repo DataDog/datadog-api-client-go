@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// GCPAccount TODO.
+// GCPAccount Your Google Cloud Platform Account.
 type GCPAccount struct {
 	// Should be https://www.googleapis.com/oauth2/v1/certs.
 	AuthProviderX509CertUrl *string `json:"auth_provider_x509_cert_url,omitempty"`

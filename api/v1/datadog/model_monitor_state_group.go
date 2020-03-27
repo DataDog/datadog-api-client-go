@@ -12,17 +12,17 @@ import (
 	"encoding/json"
 )
 
-// MonitorStateGroup TODO.
+// MonitorStateGroup Monitor state for a single group.
 type MonitorStateGroup struct {
-	// TODO.
+	// Lastest data timestamp for this monitor group.
 	LastDataTs *int64 `json:"last_data_ts,omitempty"`
 	// TODO.
 	LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
-	// TODO.
+	// Timestamp of the last notification sent for this monitor group.
 	LastNotifiedTs *int64 `json:"last_notified_ts,omitempty"`
-	// TODO.
+	// Lastest timestamp the monitor group was resolved.
 	LastResolvedTs *int64 `json:"last_resolved_ts,omitempty"`
-	// TODO.
+	// Last timestamp the monitor group triggered.
 	LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`
 	// A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same ‘@username’ notation as events.
 	Message *string `json:"message,omitempty"`

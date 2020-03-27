@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// HostMetrics TODO.
+// HostMetrics Host Metrics collected.
 type HostMetrics struct {
-	// TODO.
+	// The percent of CPU used (everything but idle).
 	Cpu *float64 `json:"cpu,omitempty"`
-	// TODO.
+	// The percent of CPU spent waiting on the IO (not reported for all platforms).
 	Iowait *float64 `json:"iowait,omitempty"`
-	// TODO.
+	// The system load over the last 15 minutes.
 	Load *float64 `json:"load,omitempty"`
 }
 

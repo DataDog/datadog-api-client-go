@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// OrgResponse TODO.
+// OrgResponse Response with an organization.
 type OrgResponse struct {
 	Org *Org `json:"org,omitempty"`
 }

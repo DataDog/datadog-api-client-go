@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// MonitorState TODO.
+// MonitorState Wrapper object with the different monitor states.
 type MonitorState struct {
-	// TODO.
+	// Dictionary where the keys are groups (comma separated lists of tags) and the values are the list of groups your monitor is broken down on.
 	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
 	// A single monitor identification.
 	MonitorId    *int64                `json:"monitor_id,omitempty"`

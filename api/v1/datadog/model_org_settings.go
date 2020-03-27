@@ -14,19 +14,19 @@ import (
 
 // OrgSettings A JSON array of settings.
 type OrgSettings struct {
-	// TODO.
+	// Whether or not the organization users can share widgets outside of Datadog.
 	PrivateWidgetShare         *bool                                  `json:"private_widget_share,omitempty"`
 	Saml                       *OrgSettingsSaml                       `json:"saml,omitempty"`
 	SamlAutocreateAccessRole   *AccessRole                            `json:"saml_autocreate_access_role,omitempty"`
 	SamlAutocreateUsersDomains *OrgSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
-	// TODO.
+	// Whether or not SAML can be enabled for this organization.
 	SamlCanBeEnabled *bool `json:"saml_can_be_enabled,omitempty"`
-	// TODO.
+	// Identity provider endpoint for SAML authentication.
 	SamlIdpEndpoint       *string                           `json:"saml_idp_endpoint,omitempty"`
 	SamlIdpInitiatedLogin *OrgSettingsSamlIdpInitiatedLogin `json:"saml_idp_initiated_login,omitempty"`
-	// TODO.
+	// Whether or not a SAML identity provider metadata file was provided to the Datadog organization.
 	SamlIdpMetadataUploaded *bool `json:"saml_idp_metadata_uploaded,omitempty"`
-	// TODO.
+	// URL for SAML loging.
 	SamlLoginUrl   *string                           `json:"saml_login_url,omitempty"`
 	SamlStrictMode *OrgSettingsSamlIdpInitiatedLogin `json:"saml_strict_mode,omitempty"`
 }

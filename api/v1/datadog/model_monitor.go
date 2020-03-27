@@ -15,26 +15,26 @@ import (
 
 // Monitor struct for Monitor
 type Monitor struct {
-	// TODO.
+	// Timestamp of the monitor creation.
 	Created *time.Time `json:"created,omitempty"`
 	Creator *Creator   `json:"creator,omitempty"`
-	// TODO.
+	// Whether or not the monitor is deleted. (Always `null`)
 	Deleted NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this monitor.
 	Message *string `json:"message,omitempty"`
-	// TODO.
+	// Last timestamp when the monitor was edited.
 	Modified *time.Time `json:"modified,omitempty"`
-	// TODO.
+	// Whether or not the monitor is broken down on different groups.
 	Multi *bool `json:"multi,omitempty"`
-	// TODO.
+	// The monitor name.
 	Name         *string               `json:"name,omitempty"`
 	Options      *MonitorOptions       `json:"options,omitempty"`
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 	Query        *string               `json:"query,omitempty"`
 	State        *MonitorState         `json:"state,omitempty"`
-	// TODO.
+	// Tags associated to your monitor.
 	Tags *[]string    `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`
 }

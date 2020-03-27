@@ -15,7 +15,7 @@ import (
 // Org Create, edit, and manage organizations.
 type Org struct {
 	Billing *OrgBilling `json:"billing,omitempty"`
-	// TODO.
+	// Date of the organization creation.
 	Created *string `json:"created,omitempty"`
 	// Description of the organization.
 	Description *string `json:"description,omitempty"`

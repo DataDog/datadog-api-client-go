@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UserDisableResponse TODO.
+// UserDisableResponse Array of user disabled for a given organization.
 type UserDisableResponse struct {
 	Message *string `json:"message,omitempty"`
 }

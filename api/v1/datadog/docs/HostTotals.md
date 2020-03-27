@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalActive** | Pointer to **int64** |  | [optional] 
-**TotalUp** | Pointer to **int64** |  | [optional] 
+**TotalActive** | Pointer to **int64** | Total number of active host (UP and ???) reporting to Datadog. | [optional] 
+**TotalUp** | Pointer to **int64** | Number of host that are UP and reporting to Datadog. | [optional] 
 
 ## Methods
 

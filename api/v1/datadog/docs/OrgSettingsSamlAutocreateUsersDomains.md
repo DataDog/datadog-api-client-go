@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Domains** | Pointer to **[]string** | TODO. | [optional] 
-**Enabled** | Pointer to **bool** | TODO. | [optional] 
+**Domains** | Pointer to **[]string** | List of domains where the SAML automated user creation is enabled. | [optional] 
+**Enabled** | Pointer to **bool** | Whether or not the automated user creation based on SAML domain is enabled. | [optional] 
 
 ## Methods
 
