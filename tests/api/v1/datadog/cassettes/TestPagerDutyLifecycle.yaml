@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:14:39 GMT
+      - Fri, 27 Mar 2020 16:09:27 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -35,7 +35,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2327203"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -64,20 +64,20 @@ interactions:
       Content-Type:
       - text/plain
       Date:
-      - Fri, 21 Feb 2020 17:14:39 GMT
+      - Fri, 27 Mar 2020 16:09:27 GMT
       Dd-Pool:
       - dogweb
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:39 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:27 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - cQFL4MaIw90DmTTH7z4Gqhr8PBtz47vyzddN9k7nXjUK2yrLiBjbdIgydUT8r1ut
+      - YNGrI7M9aLfuf6Npp7n/51e6xDtYCO9Rm/LB+HGbX4I6A/e7rnC+cgQxIZnsU+fj
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2327203"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -105,13 +105,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:14:40 GMT
+      - Fri, 27 Mar 2020 16:09:27 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:40 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:27 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -120,9 +120,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - RngFxOd8mVeT14auLfzsH/6kz142QLoKkYXZjfmXpXDkZ/eN6uoCM3cTScXuFEa0
+      - AVsav2jjRGvwjNvJeRUS7kJsgTlhh9y9smyL3UJVQTMAUoPyejdL0bVSnanIQLK4
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2327203"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -151,20 +151,20 @@ interactions:
       Content-Type:
       - text/plain
       Date:
-      - Fri, 21 Feb 2020 17:14:40 GMT
+      - Fri, 27 Mar 2020 16:09:28 GMT
       Dd-Pool:
       - dogweb
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:40 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:27 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 7/pC7B9bYAY6HGz006Bg+ZrYGMZFiH1gxYQ0jMSpdzevd2r/Iy3Bkt2FGvLL5qId
+      - svhoihUM58m7WJ4Z4lY5tmaXf/MnplHzAbMByuVznFW8yf3JIFAZgW/pCvMnq4iN
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2327203"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -192,13 +192,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:14:40 GMT
+      - Fri, 27 Mar 2020 16:09:28 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:40 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:28 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -207,9 +207,285 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - oiF9oLqSEnBWpAh9z89c+Ruy9xKAqrdZzQPjGsNOxlGQNWaw3sCTSoKaMkMdPunL
+      - aHo5LNOt81r33IYjVJvAW38EarOXxgJiaRes9P/xhrf7FT81LvjEnVLCvw9iPn7T
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2327203"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"service_key":"deadbeef","service_name":"test_go_2"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services
+    method: POST
+  response:
+    body: '{"service_name":"test_go_2"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "28"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2020 16:09:28 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:28 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - x4pYHtiOW9rUeREgXmH2iIgBaXVGD7x1RIZUg56H0ghPppdtz0ZBEK6nMs8tuoqc
+      X-Dd-Version:
+      - "35.2327203"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/test_go_2
+    method: GET
+  response:
+    body: '{"service_name":"test_go_2"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2020 16:09:28 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:28 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - pxuY3ZnSwE+rCP/MLubWk3EuAMlxxciIsQ2EBSRxZafCu9H4+UEVULDCm144bb3W
+      X-Dd-Version:
+      - "35.2327203"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/test_go
+    method: GET
+  response:
+    body: '{"service_name":"test_go"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2020 16:09:28 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:28 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - QiVuTM9TRDLiaWje4g847YvprBBDQ1GVAeq5tRykBN1C05YvP7tIRg0Fcue145Yp
+      X-Dd-Version:
+      - "35.2327203"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"service_key":"newkey"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/test_go_2
+    method: PUT
+  response:
+    body: '{"service_name":"test_go_2"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2020 16:09:29 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:28 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - j0VNx9cZdAj+uuO7pabHlao4Ioc5q8ovvp4Ja/NYzbHA51zSBYXNvtO+8cOYbE0B
+      X-Dd-Version:
+      - "35.2327203"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/test_go
+    method: DELETE
+  response:
+    body: "null"
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "4"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2020 16:09:29 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:29 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - FGm8mbL/ixNS/zyX94m5xaWAxszhu9w68KL0QwTbLNqYgp2ZyX2W4rsoYLDoadr+
+      X-Dd-Version:
+      - "35.2327203"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty
+    method: GET
+  response:
+    body: '{"services":[{"service_name":"test_go_2","service_key":"*****"}],"schedules":["https://_deadbeef.pagerduty.com/schedules#DEAD3F"],"subdomain":"_deadbeef","api_token":"*****"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2020 16:09:29 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:29 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - QO3HutZQjgMDp/HqClcLon+qq5lEghb3LRV+gXMIQ2Jivd1m1eEGCh0RxplUQMIV
+      X-Dd-Version:
+      - "35.2327203"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -235,11 +511,50 @@ interactions:
       Content-Type:
       - text/plain
       Date:
-      - Fri, 21 Feb 2020 17:14:40 GMT
+      - Fri, 27 Mar 2020 16:09:29 GMT
       Dd-Pool:
       - dogweb
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:40 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:29 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - A5a5htKhTUF1FdBQZRUZl4RVawKwk2RUtaZz3EDBmdXc0X6i0O7TBEBWn4bIBQ01
+      X-Dd-Version:
+      - "35.2327203"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - text/plain
+      Date:
+      - Fri, 27 Mar 2020 16:09:29 GMT
+      Dd-Pool:
+      - dogweb
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 03-Apr-2020 16:09:29 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -248,7 +563,7 @@ interactions:
       X-Dd-Debug:
       - GAK1J4mJd/EBZfEK4rqUw9OeB9GOeKgSyrXGtzNUi5zrv5sHYU56xJgA4bcbtgUA
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2327203"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
