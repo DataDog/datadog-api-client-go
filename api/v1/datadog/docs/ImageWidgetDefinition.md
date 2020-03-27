@@ -36,22 +36,22 @@ GetMargin returns the Margin field if non-nil, zero value otherwise.
 
 ### GetMarginOk
 
-`func (o *ImageWidgetDefinition) GetMarginOk() (WidgetMargin, bool)`
+`func (o *ImageWidgetDefinition) GetMarginOk() (*WidgetMargin, bool)`
 
 GetMarginOk returns a tuple with the Margin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMargin
+
+`func (o *ImageWidgetDefinition) SetMargin(v WidgetMargin)`
+
+SetMargin sets Margin field to given value.
 
 ### HasMargin
 
 `func (o *ImageWidgetDefinition) HasMargin() bool`
 
 HasMargin returns a boolean if a field has been set.
-
-### SetMargin
-
-`func (o *ImageWidgetDefinition) SetMargin(v WidgetMargin)`
-
-SetMargin gets a reference to the given WidgetMargin and assigns it to the Margin field.
 
 ### GetSizing
 
@@ -61,22 +61,22 @@ GetSizing returns the Sizing field if non-nil, zero value otherwise.
 
 ### GetSizingOk
 
-`func (o *ImageWidgetDefinition) GetSizingOk() (WidgetImageSizing, bool)`
+`func (o *ImageWidgetDefinition) GetSizingOk() (*WidgetImageSizing, bool)`
 
 GetSizingOk returns a tuple with the Sizing field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSizing
+
+`func (o *ImageWidgetDefinition) SetSizing(v WidgetImageSizing)`
+
+SetSizing sets Sizing field to given value.
 
 ### HasSizing
 
 `func (o *ImageWidgetDefinition) HasSizing() bool`
 
 HasSizing returns a boolean if a field has been set.
-
-### SetSizing
-
-`func (o *ImageWidgetDefinition) SetSizing(v WidgetImageSizing)`
-
-SetSizing gets a reference to the given WidgetImageSizing and assigns it to the Sizing field.
 
 ### GetType
 
@@ -86,22 +86,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ImageWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *ImageWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *ImageWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *ImageWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetUrl
 
@@ -111,22 +106,17 @@ GetUrl returns the Url field if non-nil, zero value otherwise.
 
 ### GetUrlOk
 
-`func (o *ImageWidgetDefinition) GetUrlOk() (string, bool)`
+`func (o *ImageWidgetDefinition) GetUrlOk() (*string, bool)`
 
 GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasUrl
-
-`func (o *ImageWidgetDefinition) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
 
 ### SetUrl
 
 `func (o *ImageWidgetDefinition) SetUrl(v string)`
 
-SetUrl gets a reference to the given string and assigns it to the Url field.
+SetUrl sets Url field to given value.
+
 
 
 ### AsWidgetDefinition

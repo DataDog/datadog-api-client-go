@@ -46,14 +46,13 @@ func (o *MetricsListResponse) GetFrom() string {
 	return *o.From
 }
 
-// GetFromOk returns a tuple with the From field value if set, zero value otherwise
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsListResponse) GetFromOk() (string, bool) {
+func (o *MetricsListResponse) GetFromOk() (*string, bool) {
 	if o == nil || o.From == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.From, true
+	return o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *MetricsListResponse) GetMetrics() []string {
 	return *o.Metrics
 }
 
-// GetMetricsOk returns a tuple with the Metrics field value if set, zero value otherwise
+// GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsListResponse) GetMetricsOk() ([]string, bool) {
+func (o *MetricsListResponse) GetMetricsOk() (*[]string, bool) {
 	if o == nil || o.Metrics == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Metrics, true
+	return o.Metrics, true
 }
 
 // HasMetrics returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableMetricsListResponse) Get() *MetricsListResponse {
 	return v.value
 }
 
-func (v NullableMetricsListResponse) Set(val *MetricsListResponse) {
+func (v *NullableMetricsListResponse) Set(val *MetricsListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableMetricsListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricsListResponse) Unset() {
+func (v *NullableMetricsListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

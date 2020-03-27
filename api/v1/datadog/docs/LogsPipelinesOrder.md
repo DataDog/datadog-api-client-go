@@ -33,22 +33,17 @@ GetPipelineIds returns the PipelineIds field if non-nil, zero value otherwise.
 
 ### GetPipelineIdsOk
 
-`func (o *LogsPipelinesOrder) GetPipelineIdsOk() ([]string, bool)`
+`func (o *LogsPipelinesOrder) GetPipelineIdsOk() (*[]string, bool)`
 
 GetPipelineIdsOk returns a tuple with the PipelineIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasPipelineIds
-
-`func (o *LogsPipelinesOrder) HasPipelineIds() bool`
-
-HasPipelineIds returns a boolean if a field has been set.
 
 ### SetPipelineIds
 
 `func (o *LogsPipelinesOrder) SetPipelineIds(v []string)`
 
-SetPipelineIds gets a reference to the given []string and assigns it to the PipelineIds field.
+SetPipelineIds sets PipelineIds field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

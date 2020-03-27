@@ -40,7 +40,7 @@ func (v NullableSyntheticsResourceType) Get() *SyntheticsResourceType {
 	return v.value
 }
 
-func (v NullableSyntheticsResourceType) Set(val *SyntheticsResourceType) {
+func (v *NullableSyntheticsResourceType) Set(val *SyntheticsResourceType) {
 	v.value = val
 	v.isSet = true
 }
@@ -49,7 +49,7 @@ func (v NullableSyntheticsResourceType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsResourceType) Unset() {
+func (v *NullableSyntheticsResourceType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

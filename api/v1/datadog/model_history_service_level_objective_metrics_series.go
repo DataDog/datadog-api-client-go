@@ -54,6 +54,15 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCount() int64 {
 	return o.Count
 }
 
+// GetCountOk returns a tuple with the Count field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetricsSeries) GetCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Count, true
+}
+
 // SetCount sets field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) SetCount(v int64) {
 	o.Count = v
@@ -67,6 +76,15 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetMetadata() HistoryService
 	}
 
 	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetricsSeries) GetMetadataOk() (*HistoryServiceLevelObjectiveMetricsSeriesMetadata, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Metadata, true
 }
 
 // SetMetadata sets field value
@@ -84,6 +102,15 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetSum() float64 {
 	return o.Sum
 }
 
+// GetSumOk returns a tuple with the Sum field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetricsSeries) GetSumOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sum, true
+}
+
 // SetSum sets field value
 func (o *HistoryServiceLevelObjectiveMetricsSeries) SetSum(v float64) {
 	o.Sum = v
@@ -97,6 +124,15 @@ func (o *HistoryServiceLevelObjectiveMetricsSeries) GetValues() []float64 {
 	}
 
 	return o.Values
+}
+
+// GetValuesOk returns a tuple with the Values field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetricsSeries) GetValuesOk() (*[]float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Values, true
 }
 
 // SetValues sets field value
@@ -130,7 +166,7 @@ func (v NullableHistoryServiceLevelObjectiveMetricsSeries) Get() *HistoryService
 	return v.value
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetricsSeries) Set(val *HistoryServiceLevelObjectiveMetricsSeries) {
+func (v *NullableHistoryServiceLevelObjectiveMetricsSeries) Set(val *HistoryServiceLevelObjectiveMetricsSeries) {
 	v.value = val
 	v.isSet = true
 }
@@ -139,7 +175,7 @@ func (v NullableHistoryServiceLevelObjectiveMetricsSeries) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetricsSeries) Unset() {
+func (v *NullableHistoryServiceLevelObjectiveMetricsSeries) Unset() {
 	v.value = nil
 	v.isSet = false
 }

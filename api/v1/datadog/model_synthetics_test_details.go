@@ -58,14 +58,13 @@ func (o *SyntheticsTestDetails) GetConfig() SyntheticsTestConfig {
 	return *o.Config
 }
 
-// GetConfigOk returns a tuple with the Config field value if set, zero value otherwise
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetConfigOk() (SyntheticsTestConfig, bool) {
+func (o *SyntheticsTestDetails) GetConfigOk() (*SyntheticsTestConfig, bool) {
 	if o == nil || o.Config == nil {
-		var ret SyntheticsTestConfig
-		return ret, false
+		return nil, false
 	}
-	return *o.Config, true
+	return o.Config, true
 }
 
 // HasConfig returns a boolean if a field has been set.
@@ -91,14 +90,13 @@ func (o *SyntheticsTestDetails) GetCreatedAt() string {
 	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, zero value otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetCreatedAtOk() (string, bool) {
+func (o *SyntheticsTestDetails) GetCreatedAtOk() (*string, bool) {
 	if o == nil || o.CreatedAt == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
@@ -124,14 +122,13 @@ func (o *SyntheticsTestDetails) GetCreatedBy() SyntheticsTestAuthor {
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetCreatedByOk() (SyntheticsTestAuthor, bool) {
+func (o *SyntheticsTestDetails) GetCreatedByOk() (*SyntheticsTestAuthor, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret SyntheticsTestAuthor
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
@@ -157,14 +154,13 @@ func (o *SyntheticsTestDetails) GetLocations() []string {
 	return *o.Locations
 }
 
-// GetLocationsOk returns a tuple with the Locations field value if set, zero value otherwise
+// GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetLocationsOk() ([]string, bool) {
+func (o *SyntheticsTestDetails) GetLocationsOk() (*[]string, bool) {
 	if o == nil || o.Locations == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Locations, true
+	return o.Locations, true
 }
 
 // HasLocations returns a boolean if a field has been set.
@@ -190,14 +186,13 @@ func (o *SyntheticsTestDetails) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetMessageOk() (string, bool) {
+func (o *SyntheticsTestDetails) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -223,14 +218,13 @@ func (o *SyntheticsTestDetails) GetModifiedAt() string {
 	return *o.ModifiedAt
 }
 
-// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, zero value otherwise
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetModifiedAtOk() (string, bool) {
+func (o *SyntheticsTestDetails) GetModifiedAtOk() (*string, bool) {
 	if o == nil || o.ModifiedAt == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedAt, true
+	return o.ModifiedAt, true
 }
 
 // HasModifiedAt returns a boolean if a field has been set.
@@ -256,14 +250,13 @@ func (o *SyntheticsTestDetails) GetModifiedBy() SyntheticsTestAuthor {
 	return *o.ModifiedBy
 }
 
-// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, zero value otherwise
+// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetModifiedByOk() (SyntheticsTestAuthor, bool) {
+func (o *SyntheticsTestDetails) GetModifiedByOk() (*SyntheticsTestAuthor, bool) {
 	if o == nil || o.ModifiedBy == nil {
-		var ret SyntheticsTestAuthor
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedBy, true
+	return o.ModifiedBy, true
 }
 
 // HasModifiedBy returns a boolean if a field has been set.
@@ -289,14 +282,13 @@ func (o *SyntheticsTestDetails) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetNameOk() (string, bool) {
+func (o *SyntheticsTestDetails) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -322,14 +314,13 @@ func (o *SyntheticsTestDetails) GetOptions() SyntheticsTestOptions {
 	return *o.Options
 }
 
-// GetOptionsOk returns a tuple with the Options field value if set, zero value otherwise
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetOptionsOk() (SyntheticsTestOptions, bool) {
+func (o *SyntheticsTestDetails) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 	if o == nil || o.Options == nil {
-		var ret SyntheticsTestOptions
-		return ret, false
+		return nil, false
 	}
-	return *o.Options, true
+	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
@@ -355,14 +346,13 @@ func (o *SyntheticsTestDetails) GetOverallState() SyntheticsTestMonitorStatus {
 	return *o.OverallState
 }
 
-// GetOverallStateOk returns a tuple with the OverallState field value if set, zero value otherwise
+// GetOverallStateOk returns a tuple with the OverallState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetOverallStateOk() (SyntheticsTestMonitorStatus, bool) {
+func (o *SyntheticsTestDetails) GetOverallStateOk() (*SyntheticsTestMonitorStatus, bool) {
 	if o == nil || o.OverallState == nil {
-		var ret SyntheticsTestMonitorStatus
-		return ret, false
+		return nil, false
 	}
-	return *o.OverallState, true
+	return o.OverallState, true
 }
 
 // HasOverallState returns a boolean if a field has been set.
@@ -388,14 +378,13 @@ func (o *SyntheticsTestDetails) GetPublicId() string {
 	return *o.PublicId
 }
 
-// GetPublicIdOk returns a tuple with the PublicId field value if set, zero value otherwise
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetPublicIdOk() (string, bool) {
+func (o *SyntheticsTestDetails) GetPublicIdOk() (*string, bool) {
 	if o == nil || o.PublicId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PublicId, true
+	return o.PublicId, true
 }
 
 // HasPublicId returns a boolean if a field has been set.
@@ -421,14 +410,13 @@ func (o *SyntheticsTestDetails) GetStatus() SyntheticsTestPauseStatus {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetStatusOk() (SyntheticsTestPauseStatus, bool) {
+func (o *SyntheticsTestDetails) GetStatusOk() (*SyntheticsTestPauseStatus, bool) {
 	if o == nil || o.Status == nil {
-		var ret SyntheticsTestPauseStatus
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -454,14 +442,13 @@ func (o *SyntheticsTestDetails) GetStepCount() int64 {
 	return *o.StepCount
 }
 
-// GetStepCountOk returns a tuple with the StepCount field value if set, zero value otherwise
+// GetStepCountOk returns a tuple with the StepCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetStepCountOk() (int64, bool) {
+func (o *SyntheticsTestDetails) GetStepCountOk() (*int64, bool) {
 	if o == nil || o.StepCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.StepCount, true
+	return o.StepCount, true
 }
 
 // HasStepCount returns a boolean if a field has been set.
@@ -487,14 +474,13 @@ func (o *SyntheticsTestDetails) GetSubtype() SyntheticsTestDetailsSubType {
 	return *o.Subtype
 }
 
-// GetSubtypeOk returns a tuple with the Subtype field value if set, zero value otherwise
+// GetSubtypeOk returns a tuple with the Subtype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetSubtypeOk() (SyntheticsTestDetailsSubType, bool) {
+func (o *SyntheticsTestDetails) GetSubtypeOk() (*SyntheticsTestDetailsSubType, bool) {
 	if o == nil || o.Subtype == nil {
-		var ret SyntheticsTestDetailsSubType
-		return ret, false
+		return nil, false
 	}
-	return *o.Subtype, true
+	return o.Subtype, true
 }
 
 // HasSubtype returns a boolean if a field has been set.
@@ -520,14 +506,13 @@ func (o *SyntheticsTestDetails) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetTagsOk() ([]string, bool) {
+func (o *SyntheticsTestDetails) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -553,14 +538,13 @@ func (o *SyntheticsTestDetails) GetType() SyntheticsTestDetailsType {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetTypeOk() (SyntheticsTestDetailsType, bool) {
+func (o *SyntheticsTestDetails) GetTypeOk() (*SyntheticsTestDetailsType, bool) {
 	if o == nil || o.Type == nil {
-		var ret SyntheticsTestDetailsType
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -639,7 +623,7 @@ func (v NullableSyntheticsTestDetails) Get() *SyntheticsTestDetails {
 	return v.value
 }
 
-func (v NullableSyntheticsTestDetails) Set(val *SyntheticsTestDetails) {
+func (v *NullableSyntheticsTestDetails) Set(val *SyntheticsTestDetails) {
 	v.value = val
 	v.isSet = true
 }
@@ -648,7 +632,7 @@ func (v NullableSyntheticsTestDetails) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestDetails) Unset() {
+func (v *NullableSyntheticsTestDetails) Unset() {
 	v.value = nil
 	v.isSet = false
 }

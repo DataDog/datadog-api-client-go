@@ -47,6 +47,15 @@ func (o *IdpFormData) GetIdpFile() *os.File {
 	return o.IdpFile
 }
 
+// GetIdpFileOk returns a tuple with the IdpFile field value
+// and a boolean to check if the value has been set.
+func (o *IdpFormData) GetIdpFileOk() (**os.File, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IdpFile, true
+}
+
 // SetIdpFile sets field value
 func (o *IdpFormData) SetIdpFile(v *os.File) {
 	o.IdpFile = v
@@ -69,7 +78,7 @@ func (v NullableIdpFormData) Get() *IdpFormData {
 	return v.value
 }
 
-func (v NullableIdpFormData) Set(val *IdpFormData) {
+func (v *NullableIdpFormData) Set(val *IdpFormData) {
 	v.value = val
 	v.isSet = true
 }
@@ -78,7 +87,7 @@ func (v NullableIdpFormData) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableIdpFormData) Unset() {
+func (v *NullableIdpFormData) Unset() {
 	v.value = nil
 	v.isSet = false
 }

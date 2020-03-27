@@ -43,14 +43,13 @@ func (o *SyntheticsDeleteTestsResponse) GetDeletedTests() []SyntheticsDeleteTest
 	return *o.DeletedTests
 }
 
-// GetDeletedTestsOk returns a tuple with the DeletedTests field value if set, zero value otherwise
+// GetDeletedTestsOk returns a tuple with the DeletedTests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsDeleteTestsResponse) GetDeletedTestsOk() ([]SyntheticsDeleteTestsResponseDeletedTests, bool) {
+func (o *SyntheticsDeleteTestsResponse) GetDeletedTestsOk() (*[]SyntheticsDeleteTestsResponseDeletedTests, bool) {
 	if o == nil || o.DeletedTests == nil {
-		var ret []SyntheticsDeleteTestsResponseDeletedTests
-		return ret, false
+		return nil, false
 	}
-	return *o.DeletedTests, true
+	return o.DeletedTests, true
 }
 
 // HasDeletedTests returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableSyntheticsDeleteTestsResponse) Get() *SyntheticsDeleteTestsRespo
 	return v.value
 }
 
-func (v NullableSyntheticsDeleteTestsResponse) Set(val *SyntheticsDeleteTestsResponse) {
+func (v *NullableSyntheticsDeleteTestsResponse) Set(val *SyntheticsDeleteTestsResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableSyntheticsDeleteTestsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsDeleteTestsResponse) Unset() {
+func (v *NullableSyntheticsDeleteTestsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

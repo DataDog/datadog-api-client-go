@@ -37,7 +37,7 @@ func (v NullableWidgetComparator) Get() *WidgetComparator {
 	return v.value
 }
 
-func (v NullableWidgetComparator) Set(val *WidgetComparator) {
+func (v *NullableWidgetComparator) Set(val *WidgetComparator) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableWidgetComparator) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetComparator) Unset() {
+func (v *NullableWidgetComparator) Unset() {
 	v.value = nil
 	v.isSet = false
 }

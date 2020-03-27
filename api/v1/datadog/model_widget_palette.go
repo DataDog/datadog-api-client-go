@@ -49,7 +49,7 @@ func (v NullableWidgetPalette) Get() *WidgetPalette {
 	return v.value
 }
 
-func (v NullableWidgetPalette) Set(val *WidgetPalette) {
+func (v *NullableWidgetPalette) Set(val *WidgetPalette) {
 	v.value = val
 	v.isSet = true
 }
@@ -58,7 +58,7 @@ func (v NullableWidgetPalette) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetPalette) Unset() {
+func (v *NullableWidgetPalette) Unset() {
 	v.value = nil
 	v.isSet = false
 }

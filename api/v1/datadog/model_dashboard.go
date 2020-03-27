@@ -69,14 +69,13 @@ func (o *Dashboard) GetAuthorHandle() string {
 	return *o.AuthorHandle
 }
 
-// GetAuthorHandleOk returns a tuple with the AuthorHandle field value if set, zero value otherwise
+// GetAuthorHandleOk returns a tuple with the AuthorHandle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetAuthorHandleOk() (string, bool) {
+func (o *Dashboard) GetAuthorHandleOk() (*string, bool) {
 	if o == nil || o.AuthorHandle == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AuthorHandle, true
+	return o.AuthorHandle, true
 }
 
 // HasAuthorHandle returns a boolean if a field has been set.
@@ -102,14 +101,13 @@ func (o *Dashboard) GetCreatedAt() time.Time {
 	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, zero value otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetCreatedAtOk() (time.Time, bool) {
+func (o *Dashboard) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
@@ -126,23 +124,23 @@ func (o *Dashboard) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Dashboard) GetDescription() NullableString {
-	if o == nil {
-		var ret NullableString
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Dashboard) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
 		return ret
 	}
-	return o.Description
+	return *o.Description.Get()
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetDescriptionOk() (NullableString, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Dashboard) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		var ret NullableString
-		return ret, false
+		return nil, false
 	}
-	return o.Description, o.Description.IsSet()
+	return o.Description.Get(), o.Description.IsSet()
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -155,8 +153,18 @@ func (o *Dashboard) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *Dashboard) SetDescription(v NullableString) {
-	o.Description = v
+func (o *Dashboard) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *Dashboard) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *Dashboard) UnsetDescription() {
+	o.Description.Unset()
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -168,14 +176,13 @@ func (o *Dashboard) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetIdOk() (string, bool) {
+func (o *Dashboard) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -201,14 +208,13 @@ func (o *Dashboard) GetIsReadOnly() bool {
 	return *o.IsReadOnly
 }
 
-// GetIsReadOnlyOk returns a tuple with the IsReadOnly field value if set, zero value otherwise
+// GetIsReadOnlyOk returns a tuple with the IsReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetIsReadOnlyOk() (bool, bool) {
+func (o *Dashboard) GetIsReadOnlyOk() (*bool, bool) {
 	if o == nil || o.IsReadOnly == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsReadOnly, true
+	return o.IsReadOnly, true
 }
 
 // HasIsReadOnly returns a boolean if a field has been set.
@@ -235,6 +241,15 @@ func (o *Dashboard) GetLayoutType() DashboardLayoutType {
 	return o.LayoutType
 }
 
+// GetLayoutTypeOk returns a tuple with the LayoutType field value
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetLayoutTypeOk() (*DashboardLayoutType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LayoutType, true
+}
+
 // SetLayoutType sets field value
 func (o *Dashboard) SetLayoutType(v DashboardLayoutType) {
 	o.LayoutType = v
@@ -249,14 +264,13 @@ func (o *Dashboard) GetModifiedAt() time.Time {
 	return *o.ModifiedAt
 }
 
-// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, zero value otherwise
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetModifiedAtOk() (time.Time, bool) {
+func (o *Dashboard) GetModifiedAtOk() (*time.Time, bool) {
 	if o == nil || o.ModifiedAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedAt, true
+	return o.ModifiedAt, true
 }
 
 // HasModifiedAt returns a boolean if a field has been set.
@@ -273,7 +287,7 @@ func (o *Dashboard) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
-// GetNotifyList returns the NotifyList field value if set, zero value otherwise.
+// GetNotifyList returns the NotifyList field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetNotifyList() []string {
 	if o == nil {
 		var ret []string
@@ -282,14 +296,14 @@ func (o *Dashboard) GetNotifyList() []string {
 	return o.NotifyList
 }
 
-// GetNotifyListOk returns a tuple with the NotifyList field value if set, zero value otherwise
+// GetNotifyListOk returns a tuple with the NotifyList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetNotifyListOk() ([]string, bool) {
-	if o == nil {
-		var ret []string
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Dashboard) GetNotifyListOk() (*[]string, bool) {
+	if o == nil || o.NotifyList == nil {
+		return nil, false
 	}
-	return o.NotifyList, o.NotifyList == nil
+	return &o.NotifyList, true
 }
 
 // HasNotifyList returns a boolean if a field has been set.
@@ -306,7 +320,7 @@ func (o *Dashboard) SetNotifyList(v []string) {
 	o.NotifyList = v
 }
 
-// GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise.
+// GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePreset {
 	if o == nil {
 		var ret []DashboardTemplateVariablePreset
@@ -315,14 +329,14 @@ func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePres
 	return o.TemplateVariablePresets
 }
 
-// GetTemplateVariablePresetsOk returns a tuple with the TemplateVariablePresets field value if set, zero value otherwise
+// GetTemplateVariablePresetsOk returns a tuple with the TemplateVariablePresets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetTemplateVariablePresetsOk() ([]DashboardTemplateVariablePreset, bool) {
-	if o == nil {
-		var ret []DashboardTemplateVariablePreset
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Dashboard) GetTemplateVariablePresetsOk() (*[]DashboardTemplateVariablePreset, bool) {
+	if o == nil || o.TemplateVariablePresets == nil {
+		return nil, false
 	}
-	return o.TemplateVariablePresets, o.TemplateVariablePresets == nil
+	return &o.TemplateVariablePresets, true
 }
 
 // HasTemplateVariablePresets returns a boolean if a field has been set.
@@ -339,7 +353,7 @@ func (o *Dashboard) SetTemplateVariablePresets(v []DashboardTemplateVariablePres
 	o.TemplateVariablePresets = v
 }
 
-// GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
+// GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariables {
 	if o == nil {
 		var ret []DashboardTemplateVariables
@@ -348,14 +362,14 @@ func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariables {
 	return o.TemplateVariables
 }
 
-// GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, zero value otherwise
+// GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetTemplateVariablesOk() ([]DashboardTemplateVariables, bool) {
-	if o == nil {
-		var ret []DashboardTemplateVariables
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Dashboard) GetTemplateVariablesOk() (*[]DashboardTemplateVariables, bool) {
+	if o == nil || o.TemplateVariables == nil {
+		return nil, false
 	}
-	return o.TemplateVariables, o.TemplateVariables == nil
+	return &o.TemplateVariables, true
 }
 
 // HasTemplateVariables returns a boolean if a field has been set.
@@ -382,6 +396,15 @@ func (o *Dashboard) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *Dashboard) SetTitle(v string) {
 	o.Title = v
@@ -396,14 +419,13 @@ func (o *Dashboard) GetUrl() string {
 	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, zero value otherwise
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetUrlOk() (string, bool) {
+func (o *Dashboard) GetUrlOk() (*string, bool) {
 	if o == nil || o.Url == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Url, true
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
@@ -428,6 +450,15 @@ func (o *Dashboard) GetWidgets() []Widget {
 	}
 
 	return o.Widgets
+}
+
+// GetWidgetsOk returns a tuple with the Widgets field value
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetWidgetsOk() (*[]Widget, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Widgets, true
 }
 
 // SetWidgets sets field value
@@ -488,7 +519,7 @@ func (v NullableDashboard) Get() *Dashboard {
 	return v.value
 }
 
-func (v NullableDashboard) Set(val *Dashboard) {
+func (v *NullableDashboard) Set(val *Dashboard) {
 	v.value = val
 	v.isSet = true
 }
@@ -497,7 +528,7 @@ func (v NullableDashboard) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboard) Unset() {
+func (v *NullableDashboard) Unset() {
 	v.value = nil
 	v.isSet = false
 }

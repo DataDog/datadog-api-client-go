@@ -59,14 +59,13 @@ func (o *LogStreamWidgetDefinition) GetColumns() []string {
 	return *o.Columns
 }
 
-// GetColumnsOk returns a tuple with the Columns field value if set, zero value otherwise
+// GetColumnsOk returns a tuple with the Columns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetColumnsOk() ([]string, bool) {
+func (o *LogStreamWidgetDefinition) GetColumnsOk() (*[]string, bool) {
 	if o == nil || o.Columns == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Columns, true
+	return o.Columns, true
 }
 
 // HasColumns returns a boolean if a field has been set.
@@ -92,14 +91,13 @@ func (o *LogStreamWidgetDefinition) GetIndexes() []string {
 	return *o.Indexes
 }
 
-// GetIndexesOk returns a tuple with the Indexes field value if set, zero value otherwise
+// GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetIndexesOk() ([]string, bool) {
+func (o *LogStreamWidgetDefinition) GetIndexesOk() (*[]string, bool) {
 	if o == nil || o.Indexes == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Indexes, true
+	return o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -125,14 +123,13 @@ func (o *LogStreamWidgetDefinition) GetQuery() string {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetQueryOk() (string, bool) {
+func (o *LogStreamWidgetDefinition) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Query, true
+	return o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -158,14 +155,13 @@ func (o *LogStreamWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *LogStreamWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -191,14 +187,13 @@ func (o *LogStreamWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *LogStreamWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -224,14 +219,13 @@ func (o *LogStreamWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *LogStreamWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -257,14 +251,13 @@ func (o *LogStreamWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *LogStreamWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -289,6 +282,15 @@ func (o *LogStreamWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LogStreamWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -339,7 +341,7 @@ func (v NullableLogStreamWidgetDefinition) Get() *LogStreamWidgetDefinition {
 	return v.value
 }
 
-func (v NullableLogStreamWidgetDefinition) Set(val *LogStreamWidgetDefinition) {
+func (v *NullableLogStreamWidgetDefinition) Set(val *LogStreamWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -348,7 +350,7 @@ func (v NullableLogStreamWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogStreamWidgetDefinition) Unset() {
+func (v *NullableLogStreamWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

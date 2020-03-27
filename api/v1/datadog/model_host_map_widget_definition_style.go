@@ -50,14 +50,13 @@ func (o *HostMapWidgetDefinitionStyle) GetFillMax() string {
 	return *o.FillMax
 }
 
-// GetFillMaxOk returns a tuple with the FillMax field value if set, zero value otherwise
+// GetFillMaxOk returns a tuple with the FillMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinitionStyle) GetFillMaxOk() (string, bool) {
+func (o *HostMapWidgetDefinitionStyle) GetFillMaxOk() (*string, bool) {
 	if o == nil || o.FillMax == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.FillMax, true
+	return o.FillMax, true
 }
 
 // HasFillMax returns a boolean if a field has been set.
@@ -83,14 +82,13 @@ func (o *HostMapWidgetDefinitionStyle) GetFillMin() string {
 	return *o.FillMin
 }
 
-// GetFillMinOk returns a tuple with the FillMin field value if set, zero value otherwise
+// GetFillMinOk returns a tuple with the FillMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinitionStyle) GetFillMinOk() (string, bool) {
+func (o *HostMapWidgetDefinitionStyle) GetFillMinOk() (*string, bool) {
 	if o == nil || o.FillMin == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.FillMin, true
+	return o.FillMin, true
 }
 
 // HasFillMin returns a boolean if a field has been set.
@@ -116,14 +114,13 @@ func (o *HostMapWidgetDefinitionStyle) GetPalette() string {
 	return *o.Palette
 }
 
-// GetPaletteOk returns a tuple with the Palette field value if set, zero value otherwise
+// GetPaletteOk returns a tuple with the Palette field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinitionStyle) GetPaletteOk() (string, bool) {
+func (o *HostMapWidgetDefinitionStyle) GetPaletteOk() (*string, bool) {
 	if o == nil || o.Palette == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Palette, true
+	return o.Palette, true
 }
 
 // HasPalette returns a boolean if a field has been set.
@@ -149,14 +146,13 @@ func (o *HostMapWidgetDefinitionStyle) GetPaletteFlip() bool {
 	return *o.PaletteFlip
 }
 
-// GetPaletteFlipOk returns a tuple with the PaletteFlip field value if set, zero value otherwise
+// GetPaletteFlipOk returns a tuple with the PaletteFlip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinitionStyle) GetPaletteFlipOk() (bool, bool) {
+func (o *HostMapWidgetDefinitionStyle) GetPaletteFlipOk() (*bool, bool) {
 	if o == nil || o.PaletteFlip == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.PaletteFlip, true
+	return o.PaletteFlip, true
 }
 
 // HasPaletteFlip returns a boolean if a field has been set.
@@ -199,7 +195,7 @@ func (v NullableHostMapWidgetDefinitionStyle) Get() *HostMapWidgetDefinitionStyl
 	return v.value
 }
 
-func (v NullableHostMapWidgetDefinitionStyle) Set(val *HostMapWidgetDefinitionStyle) {
+func (v *NullableHostMapWidgetDefinitionStyle) Set(val *HostMapWidgetDefinitionStyle) {
 	v.value = val
 	v.isSet = true
 }
@@ -208,7 +204,7 @@ func (v NullableHostMapWidgetDefinitionStyle) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMapWidgetDefinitionStyle) Unset() {
+func (v *NullableHostMapWidgetDefinitionStyle) Unset() {
 	v.value = nil
 	v.isSet = false
 }

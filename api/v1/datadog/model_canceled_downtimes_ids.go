@@ -44,14 +44,13 @@ func (o *CanceledDowntimesIds) GetCancelledIds() []int64 {
 	return *o.CancelledIds
 }
 
-// GetCancelledIdsOk returns a tuple with the CancelledIds field value if set, zero value otherwise
+// GetCancelledIdsOk returns a tuple with the CancelledIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CanceledDowntimesIds) GetCancelledIdsOk() ([]int64, bool) {
+func (o *CanceledDowntimesIds) GetCancelledIdsOk() (*[]int64, bool) {
 	if o == nil || o.CancelledIds == nil {
-		var ret []int64
-		return ret, false
+		return nil, false
 	}
-	return *o.CancelledIds, true
+	return o.CancelledIds, true
 }
 
 // HasCancelledIds returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableCanceledDowntimesIds) Get() *CanceledDowntimesIds {
 	return v.value
 }
 
-func (v NullableCanceledDowntimesIds) Set(val *CanceledDowntimesIds) {
+func (v *NullableCanceledDowntimesIds) Set(val *CanceledDowntimesIds) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableCanceledDowntimesIds) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableCanceledDowntimesIds) Unset() {
+func (v *NullableCanceledDowntimesIds) Unset() {
 	v.value = nil
 	v.isSet = false
 }

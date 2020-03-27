@@ -43,14 +43,13 @@ func (o *AWSLogsListResponseLambdas) GetArn() string {
 	return *o.Arn
 }
 
-// GetArnOk returns a tuple with the Arn field value if set, zero value otherwise
+// GetArnOk returns a tuple with the Arn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsListResponseLambdas) GetArnOk() (string, bool) {
+func (o *AWSLogsListResponseLambdas) GetArnOk() (*string, bool) {
 	if o == nil || o.Arn == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Arn, true
+	return o.Arn, true
 }
 
 // HasArn returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableAWSLogsListResponseLambdas) Get() *AWSLogsListResponseLambdas {
 	return v.value
 }
 
-func (v NullableAWSLogsListResponseLambdas) Set(val *AWSLogsListResponseLambdas) {
+func (v *NullableAWSLogsListResponseLambdas) Set(val *AWSLogsListResponseLambdas) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableAWSLogsListResponseLambdas) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSLogsListResponseLambdas) Unset() {
+func (v *NullableAWSLogsListResponseLambdas) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -35,22 +35,22 @@ GetHostList returns the HostList field if non-nil, zero value otherwise.
 
 ### GetHostListOk
 
-`func (o *HostListResponse) GetHostListOk() ([]Host, bool)`
+`func (o *HostListResponse) GetHostListOk() (*[]Host, bool)`
 
 GetHostListOk returns a tuple with the HostList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHostList
+
+`func (o *HostListResponse) SetHostList(v []Host)`
+
+SetHostList sets HostList field to given value.
 
 ### HasHostList
 
 `func (o *HostListResponse) HasHostList() bool`
 
 HasHostList returns a boolean if a field has been set.
-
-### SetHostList
-
-`func (o *HostListResponse) SetHostList(v []Host)`
-
-SetHostList gets a reference to the given []Host and assigns it to the HostList field.
 
 ### GetTotalMatching
 
@@ -60,22 +60,22 @@ GetTotalMatching returns the TotalMatching field if non-nil, zero value otherwis
 
 ### GetTotalMatchingOk
 
-`func (o *HostListResponse) GetTotalMatchingOk() (int64, bool)`
+`func (o *HostListResponse) GetTotalMatchingOk() (*int64, bool)`
 
 GetTotalMatchingOk returns a tuple with the TotalMatching field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTotalMatching
+
+`func (o *HostListResponse) SetTotalMatching(v int64)`
+
+SetTotalMatching sets TotalMatching field to given value.
 
 ### HasTotalMatching
 
 `func (o *HostListResponse) HasTotalMatching() bool`
 
 HasTotalMatching returns a boolean if a field has been set.
-
-### SetTotalMatching
-
-`func (o *HostListResponse) SetTotalMatching(v int64)`
-
-SetTotalMatching gets a reference to the given int64 and assigns it to the TotalMatching field.
 
 ### GetTotalReturned
 
@@ -85,22 +85,22 @@ GetTotalReturned returns the TotalReturned field if non-nil, zero value otherwis
 
 ### GetTotalReturnedOk
 
-`func (o *HostListResponse) GetTotalReturnedOk() (int64, bool)`
+`func (o *HostListResponse) GetTotalReturnedOk() (*int64, bool)`
 
 GetTotalReturnedOk returns a tuple with the TotalReturned field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTotalReturned
+
+`func (o *HostListResponse) SetTotalReturned(v int64)`
+
+SetTotalReturned sets TotalReturned field to given value.
 
 ### HasTotalReturned
 
 `func (o *HostListResponse) HasTotalReturned() bool`
 
 HasTotalReturned returns a boolean if a field has been set.
-
-### SetTotalReturned
-
-`func (o *HostListResponse) SetTotalReturned(v int64)`
-
-SetTotalReturned gets a reference to the given int64 and assigns it to the TotalReturned field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

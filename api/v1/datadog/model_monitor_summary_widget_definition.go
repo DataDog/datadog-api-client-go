@@ -63,14 +63,13 @@ func (o *MonitorSummaryWidgetDefinition) GetColorPreference() WidgetColorPrefere
 	return *o.ColorPreference
 }
 
-// GetColorPreferenceOk returns a tuple with the ColorPreference field value if set, zero value otherwise
+// GetColorPreferenceOk returns a tuple with the ColorPreference field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetColorPreferenceOk() (WidgetColorPreference, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetColorPreferenceOk() (*WidgetColorPreference, bool) {
 	if o == nil || o.ColorPreference == nil {
-		var ret WidgetColorPreference
-		return ret, false
+		return nil, false
 	}
-	return *o.ColorPreference, true
+	return o.ColorPreference, true
 }
 
 // HasColorPreference returns a boolean if a field has been set.
@@ -96,14 +95,13 @@ func (o *MonitorSummaryWidgetDefinition) GetDisplayFormat() WidgetMonitorSummary
 	return *o.DisplayFormat
 }
 
-// GetDisplayFormatOk returns a tuple with the DisplayFormat field value if set, zero value otherwise
+// GetDisplayFormatOk returns a tuple with the DisplayFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetDisplayFormatOk() (WidgetMonitorSummaryDisplayFormat, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetDisplayFormatOk() (*WidgetMonitorSummaryDisplayFormat, bool) {
 	if o == nil || o.DisplayFormat == nil {
-		var ret WidgetMonitorSummaryDisplayFormat
-		return ret, false
+		return nil, false
 	}
-	return *o.DisplayFormat, true
+	return o.DisplayFormat, true
 }
 
 // HasDisplayFormat returns a boolean if a field has been set.
@@ -129,14 +127,13 @@ func (o *MonitorSummaryWidgetDefinition) GetHideZeroCounts() bool {
 	return *o.HideZeroCounts
 }
 
-// GetHideZeroCountsOk returns a tuple with the HideZeroCounts field value if set, zero value otherwise
+// GetHideZeroCountsOk returns a tuple with the HideZeroCounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetHideZeroCountsOk() (bool, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetHideZeroCountsOk() (*bool, bool) {
 	if o == nil || o.HideZeroCounts == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.HideZeroCounts, true
+	return o.HideZeroCounts, true
 }
 
 // HasHideZeroCounts returns a boolean if a field has been set.
@@ -163,6 +160,15 @@ func (o *MonitorSummaryWidgetDefinition) GetQuery() string {
 	return o.Query
 }
 
+// GetQueryOk returns a tuple with the Query field value
+// and a boolean to check if the value has been set.
+func (o *MonitorSummaryWidgetDefinition) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Query, true
+}
+
 // SetQuery sets field value
 func (o *MonitorSummaryWidgetDefinition) SetQuery(v string) {
 	o.Query = v
@@ -177,14 +183,13 @@ func (o *MonitorSummaryWidgetDefinition) GetShowLastTriggered() bool {
 	return *o.ShowLastTriggered
 }
 
-// GetShowLastTriggeredOk returns a tuple with the ShowLastTriggered field value if set, zero value otherwise
+// GetShowLastTriggeredOk returns a tuple with the ShowLastTriggered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetShowLastTriggeredOk() (bool, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetShowLastTriggeredOk() (*bool, bool) {
 	if o == nil || o.ShowLastTriggered == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowLastTriggered, true
+	return o.ShowLastTriggered, true
 }
 
 // HasShowLastTriggered returns a boolean if a field has been set.
@@ -210,14 +215,13 @@ func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetSort {
 	return *o.Sort
 }
 
-// GetSortOk returns a tuple with the Sort field value if set, zero value otherwise
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetSortOk() (WidgetSort, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetSortOk() (*WidgetSort, bool) {
 	if o == nil || o.Sort == nil {
-		var ret WidgetSort
-		return ret, false
+		return nil, false
 	}
-	return *o.Sort, true
+	return o.Sort, true
 }
 
 // HasSort returns a boolean if a field has been set.
@@ -243,14 +247,13 @@ func (o *MonitorSummaryWidgetDefinition) GetSummaryType() WidgetSummaryType {
 	return *o.SummaryType
 }
 
-// GetSummaryTypeOk returns a tuple with the SummaryType field value if set, zero value otherwise
+// GetSummaryTypeOk returns a tuple with the SummaryType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetSummaryTypeOk() (WidgetSummaryType, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetSummaryTypeOk() (*WidgetSummaryType, bool) {
 	if o == nil || o.SummaryType == nil {
-		var ret WidgetSummaryType
-		return ret, false
+		return nil, false
 	}
-	return *o.SummaryType, true
+	return o.SummaryType, true
 }
 
 // HasSummaryType returns a boolean if a field has been set.
@@ -276,14 +279,13 @@ func (o *MonitorSummaryWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -309,14 +311,13 @@ func (o *MonitorSummaryWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -342,14 +343,13 @@ func (o *MonitorSummaryWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -374,6 +374,15 @@ func (o *MonitorSummaryWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -433,7 +442,7 @@ func (v NullableMonitorSummaryWidgetDefinition) Get() *MonitorSummaryWidgetDefin
 	return v.value
 }
 
-func (v NullableMonitorSummaryWidgetDefinition) Set(val *MonitorSummaryWidgetDefinition) {
+func (v *NullableMonitorSummaryWidgetDefinition) Set(val *MonitorSummaryWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -442,7 +451,7 @@ func (v NullableMonitorSummaryWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorSummaryWidgetDefinition) Unset() {
+func (v *NullableMonitorSummaryWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

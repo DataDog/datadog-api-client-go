@@ -37,7 +37,7 @@ func (v NullableWidgetCompareTo) Get() *WidgetCompareTo {
 	return v.value
 }
 
-func (v NullableWidgetCompareTo) Set(val *WidgetCompareTo) {
+func (v *NullableWidgetCompareTo) Set(val *WidgetCompareTo) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableWidgetCompareTo) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetCompareTo) Unset() {
+func (v *NullableWidgetCompareTo) Unset() {
 	v.value = nil
 	v.isSet = false
 }

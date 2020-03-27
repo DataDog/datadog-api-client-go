@@ -40,22 +40,22 @@ GetBackgroundColor returns the BackgroundColor field if non-nil, zero value othe
 
 ### GetBackgroundColorOk
 
-`func (o *NoteWidgetDefinition) GetBackgroundColorOk() (string, bool)`
+`func (o *NoteWidgetDefinition) GetBackgroundColorOk() (*string, bool)`
 
 GetBackgroundColorOk returns a tuple with the BackgroundColor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetBackgroundColor
+
+`func (o *NoteWidgetDefinition) SetBackgroundColor(v string)`
+
+SetBackgroundColor sets BackgroundColor field to given value.
 
 ### HasBackgroundColor
 
 `func (o *NoteWidgetDefinition) HasBackgroundColor() bool`
 
 HasBackgroundColor returns a boolean if a field has been set.
-
-### SetBackgroundColor
-
-`func (o *NoteWidgetDefinition) SetBackgroundColor(v string)`
-
-SetBackgroundColor gets a reference to the given string and assigns it to the BackgroundColor field.
 
 ### GetContent
 
@@ -65,22 +65,17 @@ GetContent returns the Content field if non-nil, zero value otherwise.
 
 ### GetContentOk
 
-`func (o *NoteWidgetDefinition) GetContentOk() (string, bool)`
+`func (o *NoteWidgetDefinition) GetContentOk() (*string, bool)`
 
 GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasContent
-
-`func (o *NoteWidgetDefinition) HasContent() bool`
-
-HasContent returns a boolean if a field has been set.
 
 ### SetContent
 
 `func (o *NoteWidgetDefinition) SetContent(v string)`
 
-SetContent gets a reference to the given string and assigns it to the Content field.
+SetContent sets Content field to given value.
+
 
 ### GetFontSize
 
@@ -90,22 +85,22 @@ GetFontSize returns the FontSize field if non-nil, zero value otherwise.
 
 ### GetFontSizeOk
 
-`func (o *NoteWidgetDefinition) GetFontSizeOk() (string, bool)`
+`func (o *NoteWidgetDefinition) GetFontSizeOk() (*string, bool)`
 
 GetFontSizeOk returns a tuple with the FontSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFontSize
+
+`func (o *NoteWidgetDefinition) SetFontSize(v string)`
+
+SetFontSize sets FontSize field to given value.
 
 ### HasFontSize
 
 `func (o *NoteWidgetDefinition) HasFontSize() bool`
 
 HasFontSize returns a boolean if a field has been set.
-
-### SetFontSize
-
-`func (o *NoteWidgetDefinition) SetFontSize(v string)`
-
-SetFontSize gets a reference to the given string and assigns it to the FontSize field.
 
 ### GetShowTick
 
@@ -115,22 +110,22 @@ GetShowTick returns the ShowTick field if non-nil, zero value otherwise.
 
 ### GetShowTickOk
 
-`func (o *NoteWidgetDefinition) GetShowTickOk() (bool, bool)`
+`func (o *NoteWidgetDefinition) GetShowTickOk() (*bool, bool)`
 
 GetShowTickOk returns a tuple with the ShowTick field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetShowTick
+
+`func (o *NoteWidgetDefinition) SetShowTick(v bool)`
+
+SetShowTick sets ShowTick field to given value.
 
 ### HasShowTick
 
 `func (o *NoteWidgetDefinition) HasShowTick() bool`
 
 HasShowTick returns a boolean if a field has been set.
-
-### SetShowTick
-
-`func (o *NoteWidgetDefinition) SetShowTick(v bool)`
-
-SetShowTick gets a reference to the given bool and assigns it to the ShowTick field.
 
 ### GetTextAlign
 
@@ -140,22 +135,22 @@ GetTextAlign returns the TextAlign field if non-nil, zero value otherwise.
 
 ### GetTextAlignOk
 
-`func (o *NoteWidgetDefinition) GetTextAlignOk() (WidgetTextAlign, bool)`
+`func (o *NoteWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool)`
 
 GetTextAlignOk returns a tuple with the TextAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTextAlign
+
+`func (o *NoteWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
+
+SetTextAlign sets TextAlign field to given value.
 
 ### HasTextAlign
 
 `func (o *NoteWidgetDefinition) HasTextAlign() bool`
 
 HasTextAlign returns a boolean if a field has been set.
-
-### SetTextAlign
-
-`func (o *NoteWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
-
-SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.
 
 ### GetTickEdge
 
@@ -165,22 +160,22 @@ GetTickEdge returns the TickEdge field if non-nil, zero value otherwise.
 
 ### GetTickEdgeOk
 
-`func (o *NoteWidgetDefinition) GetTickEdgeOk() (WidgetTickEdge, bool)`
+`func (o *NoteWidgetDefinition) GetTickEdgeOk() (*WidgetTickEdge, bool)`
 
 GetTickEdgeOk returns a tuple with the TickEdge field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTickEdge
+
+`func (o *NoteWidgetDefinition) SetTickEdge(v WidgetTickEdge)`
+
+SetTickEdge sets TickEdge field to given value.
 
 ### HasTickEdge
 
 `func (o *NoteWidgetDefinition) HasTickEdge() bool`
 
 HasTickEdge returns a boolean if a field has been set.
-
-### SetTickEdge
-
-`func (o *NoteWidgetDefinition) SetTickEdge(v WidgetTickEdge)`
-
-SetTickEdge gets a reference to the given WidgetTickEdge and assigns it to the TickEdge field.
 
 ### GetTickPos
 
@@ -190,22 +185,22 @@ GetTickPos returns the TickPos field if non-nil, zero value otherwise.
 
 ### GetTickPosOk
 
-`func (o *NoteWidgetDefinition) GetTickPosOk() (string, bool)`
+`func (o *NoteWidgetDefinition) GetTickPosOk() (*string, bool)`
 
 GetTickPosOk returns a tuple with the TickPos field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTickPos
+
+`func (o *NoteWidgetDefinition) SetTickPos(v string)`
+
+SetTickPos sets TickPos field to given value.
 
 ### HasTickPos
 
 `func (o *NoteWidgetDefinition) HasTickPos() bool`
 
 HasTickPos returns a boolean if a field has been set.
-
-### SetTickPos
-
-`func (o *NoteWidgetDefinition) SetTickPos(v string)`
-
-SetTickPos gets a reference to the given string and assigns it to the TickPos field.
 
 ### GetType
 
@@ -215,22 +210,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *NoteWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *NoteWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *NoteWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *NoteWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

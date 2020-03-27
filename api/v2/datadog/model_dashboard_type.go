@@ -38,7 +38,7 @@ func (v NullableDashboardType) Get() *DashboardType {
 	return v.value
 }
 
-func (v NullableDashboardType) Set(val *DashboardType) {
+func (v *NullableDashboardType) Set(val *DashboardType) {
 	v.value = val
 	v.isSet = true
 }
@@ -47,7 +47,7 @@ func (v NullableDashboardType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardType) Unset() {
+func (v *NullableDashboardType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

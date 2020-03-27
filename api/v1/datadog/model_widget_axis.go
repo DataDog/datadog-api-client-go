@@ -63,14 +63,13 @@ func (o *WidgetAxis) GetIncludeZero() bool {
 	return *o.IncludeZero
 }
 
-// GetIncludeZeroOk returns a tuple with the IncludeZero field value if set, zero value otherwise
+// GetIncludeZeroOk returns a tuple with the IncludeZero field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetAxis) GetIncludeZeroOk() (bool, bool) {
+func (o *WidgetAxis) GetIncludeZeroOk() (*bool, bool) {
 	if o == nil || o.IncludeZero == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IncludeZero, true
+	return o.IncludeZero, true
 }
 
 // HasIncludeZero returns a boolean if a field has been set.
@@ -96,14 +95,13 @@ func (o *WidgetAxis) GetLabel() string {
 	return *o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, zero value otherwise
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetAxis) GetLabelOk() (string, bool) {
+func (o *WidgetAxis) GetLabelOk() (*string, bool) {
 	if o == nil || o.Label == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Label, true
+	return o.Label, true
 }
 
 // HasLabel returns a boolean if a field has been set.
@@ -129,14 +127,13 @@ func (o *WidgetAxis) GetMax() string {
 	return *o.Max
 }
 
-// GetMaxOk returns a tuple with the Max field value if set, zero value otherwise
+// GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetAxis) GetMaxOk() (string, bool) {
+func (o *WidgetAxis) GetMaxOk() (*string, bool) {
 	if o == nil || o.Max == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Max, true
+	return o.Max, true
 }
 
 // HasMax returns a boolean if a field has been set.
@@ -162,14 +159,13 @@ func (o *WidgetAxis) GetMin() string {
 	return *o.Min
 }
 
-// GetMinOk returns a tuple with the Min field value if set, zero value otherwise
+// GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetAxis) GetMinOk() (string, bool) {
+func (o *WidgetAxis) GetMinOk() (*string, bool) {
 	if o == nil || o.Min == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Min, true
+	return o.Min, true
 }
 
 // HasMin returns a boolean if a field has been set.
@@ -195,14 +191,13 @@ func (o *WidgetAxis) GetScale() string {
 	return *o.Scale
 }
 
-// GetScaleOk returns a tuple with the Scale field value if set, zero value otherwise
+// GetScaleOk returns a tuple with the Scale field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetAxis) GetScaleOk() (string, bool) {
+func (o *WidgetAxis) GetScaleOk() (*string, bool) {
 	if o == nil || o.Scale == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Scale, true
+	return o.Scale, true
 }
 
 // HasScale returns a boolean if a field has been set.
@@ -248,7 +243,7 @@ func (v NullableWidgetAxis) Get() *WidgetAxis {
 	return v.value
 }
 
-func (v NullableWidgetAxis) Set(val *WidgetAxis) {
+func (v *NullableWidgetAxis) Set(val *WidgetAxis) {
 	v.value = val
 	v.isSet = true
 }
@@ -257,7 +252,7 @@ func (v NullableWidgetAxis) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetAxis) Unset() {
+func (v *NullableWidgetAxis) Unset() {
 	v.value = nil
 	v.isSet = false
 }

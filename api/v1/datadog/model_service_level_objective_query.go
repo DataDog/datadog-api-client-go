@@ -49,6 +49,15 @@ func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
 	return o.Denominator
 }
 
+// GetDenominatorOk returns a tuple with the Denominator field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectiveQuery) GetDenominatorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Denominator, true
+}
+
 // SetDenominator sets field value
 func (o *ServiceLevelObjectiveQuery) SetDenominator(v string) {
 	o.Denominator = v
@@ -62,6 +71,15 @@ func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
 	}
 
 	return o.Numerator
+}
+
+// GetNumeratorOk returns a tuple with the Numerator field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectiveQuery) GetNumeratorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Numerator, true
 }
 
 // SetNumerator sets field value
@@ -89,7 +107,7 @@ func (v NullableServiceLevelObjectiveQuery) Get() *ServiceLevelObjectiveQuery {
 	return v.value
 }
 
-func (v NullableServiceLevelObjectiveQuery) Set(val *ServiceLevelObjectiveQuery) {
+func (v *NullableServiceLevelObjectiveQuery) Set(val *ServiceLevelObjectiveQuery) {
 	v.value = val
 	v.isSet = true
 }
@@ -98,7 +116,7 @@ func (v NullableServiceLevelObjectiveQuery) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectiveQuery) Unset() {
+func (v *NullableServiceLevelObjectiveQuery) Unset() {
 	v.value = nil
 	v.isSet = false
 }

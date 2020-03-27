@@ -51,6 +51,15 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetId() string {
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectivesBulkDeletedErrors) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) SetId(v string) {
 	o.Id = v
@@ -66,6 +75,15 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessage() string {
 	return o.Message
 }
 
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
 // SetMessage sets field value
 func (o *ServiceLevelObjectivesBulkDeletedErrors) SetMessage(v string) {
 	o.Message = v
@@ -79,6 +97,15 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SLOErrorTimefra
 	}
 
 	return o.Timeframe
+}
+
+// GetTimeframeOk returns a tuple with the Timeframe field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframeOk() (*SLOErrorTimeframe, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timeframe, true
 }
 
 // SetTimeframe sets field value
@@ -109,7 +136,7 @@ func (v NullableServiceLevelObjectivesBulkDeletedErrors) Get() *ServiceLevelObje
 	return v.value
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedErrors) Set(val *ServiceLevelObjectivesBulkDeletedErrors) {
+func (v *NullableServiceLevelObjectivesBulkDeletedErrors) Set(val *ServiceLevelObjectivesBulkDeletedErrors) {
 	v.value = val
 	v.isSet = true
 }
@@ -118,7 +145,7 @@ func (v NullableServiceLevelObjectivesBulkDeletedErrors) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedErrors) Unset() {
+func (v *NullableServiceLevelObjectivesBulkDeletedErrors) Unset() {
 	v.value = nil
 	v.isSet = false
 }

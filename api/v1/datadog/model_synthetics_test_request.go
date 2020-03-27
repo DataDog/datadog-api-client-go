@@ -53,14 +53,13 @@ func (o *SyntheticsTestRequest) GetBasicAuth() SyntheticsTestRequestBasicAuth {
 	return *o.BasicAuth
 }
 
-// GetBasicAuthOk returns a tuple with the BasicAuth field value if set, zero value otherwise
+// GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetBasicAuthOk() (SyntheticsTestRequestBasicAuth, bool) {
+func (o *SyntheticsTestRequest) GetBasicAuthOk() (*SyntheticsTestRequestBasicAuth, bool) {
 	if o == nil || o.BasicAuth == nil {
-		var ret SyntheticsTestRequestBasicAuth
-		return ret, false
+		return nil, false
 	}
-	return *o.BasicAuth, true
+	return o.BasicAuth, true
 }
 
 // HasBasicAuth returns a boolean if a field has been set.
@@ -86,14 +85,13 @@ func (o *SyntheticsTestRequest) GetBody() string {
 	return *o.Body
 }
 
-// GetBodyOk returns a tuple with the Body field value if set, zero value otherwise
+// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetBodyOk() (string, bool) {
+func (o *SyntheticsTestRequest) GetBodyOk() (*string, bool) {
 	if o == nil || o.Body == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Body, true
+	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
@@ -119,14 +117,13 @@ func (o *SyntheticsTestRequest) GetHeaders() map[string]string {
 	return *o.Headers
 }
 
-// GetHeadersOk returns a tuple with the Headers field value if set, zero value otherwise
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetHeadersOk() (map[string]string, bool) {
+func (o *SyntheticsTestRequest) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || o.Headers == nil {
-		var ret map[string]string
-		return ret, false
+		return nil, false
 	}
-	return *o.Headers, true
+	return o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
@@ -152,14 +149,13 @@ func (o *SyntheticsTestRequest) GetHost() string {
 	return *o.Host
 }
 
-// GetHostOk returns a tuple with the Host field value if set, zero value otherwise
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetHostOk() (string, bool) {
+func (o *SyntheticsTestRequest) GetHostOk() (*string, bool) {
 	if o == nil || o.Host == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
@@ -186,6 +182,15 @@ func (o *SyntheticsTestRequest) GetMethod() HTTPMethod {
 	return o.Method
 }
 
+// GetMethodOk returns a tuple with the Method field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetMethodOk() (*HTTPMethod, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Method, true
+}
+
 // SetMethod sets field value
 func (o *SyntheticsTestRequest) SetMethod(v HTTPMethod) {
 	o.Method = v
@@ -200,14 +205,13 @@ func (o *SyntheticsTestRequest) GetPort() int64 {
 	return *o.Port
 }
 
-// GetPortOk returns a tuple with the Port field value if set, zero value otherwise
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetPortOk() (int64, bool) {
+func (o *SyntheticsTestRequest) GetPortOk() (*int64, bool) {
 	if o == nil || o.Port == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
@@ -233,14 +237,13 @@ func (o *SyntheticsTestRequest) GetQuery() interface{} {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetQueryOk() (interface{}, bool) {
+func (o *SyntheticsTestRequest) GetQueryOk() (*interface{}, bool) {
 	if o == nil || o.Query == nil {
-		var ret interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Query, true
+	return o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -266,14 +269,13 @@ func (o *SyntheticsTestRequest) GetTimeout() float64 {
 	return *o.Timeout
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, zero value otherwise
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetTimeoutOk() (float64, bool) {
+func (o *SyntheticsTestRequest) GetTimeoutOk() (*float64, bool) {
 	if o == nil || o.Timeout == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Timeout, true
+	return o.Timeout, true
 }
 
 // HasTimeout returns a boolean if a field has been set.
@@ -298,6 +300,15 @@ func (o *SyntheticsTestRequest) GetUrl() string {
 	}
 
 	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
 }
 
 // SetUrl sets field value
@@ -346,7 +357,7 @@ func (v NullableSyntheticsTestRequest) Get() *SyntheticsTestRequest {
 	return v.value
 }
 
-func (v NullableSyntheticsTestRequest) Set(val *SyntheticsTestRequest) {
+func (v *NullableSyntheticsTestRequest) Set(val *SyntheticsTestRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -355,7 +366,7 @@ func (v NullableSyntheticsTestRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestRequest) Unset() {
+func (v *NullableSyntheticsTestRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

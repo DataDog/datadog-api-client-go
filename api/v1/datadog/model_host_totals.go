@@ -46,14 +46,13 @@ func (o *HostTotals) GetTotalActive() int64 {
 	return *o.TotalActive
 }
 
-// GetTotalActiveOk returns a tuple with the TotalActive field value if set, zero value otherwise
+// GetTotalActiveOk returns a tuple with the TotalActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostTotals) GetTotalActiveOk() (int64, bool) {
+func (o *HostTotals) GetTotalActiveOk() (*int64, bool) {
 	if o == nil || o.TotalActive == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalActive, true
+	return o.TotalActive, true
 }
 
 // HasTotalActive returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *HostTotals) GetTotalUp() int64 {
 	return *o.TotalUp
 }
 
-// GetTotalUpOk returns a tuple with the TotalUp field value if set, zero value otherwise
+// GetTotalUpOk returns a tuple with the TotalUp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostTotals) GetTotalUpOk() (int64, bool) {
+func (o *HostTotals) GetTotalUpOk() (*int64, bool) {
 	if o == nil || o.TotalUp == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalUp, true
+	return o.TotalUp, true
 }
 
 // HasTotalUp returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableHostTotals) Get() *HostTotals {
 	return v.value
 }
 
-func (v NullableHostTotals) Set(val *HostTotals) {
+func (v *NullableHostTotals) Set(val *HostTotals) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableHostTotals) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostTotals) Unset() {
+func (v *NullableHostTotals) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -38,10 +38,16 @@ GetHost returns the Host field if non-nil, zero value otherwise.
 
 ### GetHostOk
 
-`func (o *Series) GetHostOk() (string, bool)`
+`func (o *Series) GetHostOk() (*string, bool)`
 
 GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHost
+
+`func (o *Series) SetHost(v string)`
+
+SetHost sets Host field to given value.
 
 ### HasHost
 
@@ -49,24 +55,24 @@ and a boolean to check if the value has been set.
 
 HasHost returns a boolean if a field has been set.
 
-### SetHost
-
-`func (o *Series) SetHost(v string)`
-
-SetHost gets a reference to the given string and assigns it to the Host field.
-
 ### GetInterval
 
-`func (o *Series) GetInterval() NullableInt64`
+`func (o *Series) GetInterval() int64`
 
 GetInterval returns the Interval field if non-nil, zero value otherwise.
 
 ### GetIntervalOk
 
-`func (o *Series) GetIntervalOk() (NullableInt64, bool)`
+`func (o *Series) GetIntervalOk() (*int64, bool)`
 
 GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetInterval
+
+`func (o *Series) SetInterval(v int64)`
+
+SetInterval sets Interval field to given value.
 
 ### HasInterval
 
@@ -74,19 +80,16 @@ and a boolean to check if the value has been set.
 
 HasInterval returns a boolean if a field has been set.
 
-### SetInterval
+### SetIntervalNil
 
-`func (o *Series) SetInterval(v NullableInt64)`
+`func (o *Series) SetIntervalNil(b bool)`
 
-SetInterval gets a reference to the given NullableInt64 and assigns it to the Interval field.
+ SetIntervalNil sets the value for Interval to be an explicit nil
 
-### SetIntervalExplicitNull
+### UnsetInterval
+`func (o *Series) UnsetInterval()`
 
-`func (o *Series) SetIntervalExplicitNull(b bool)`
-
-SetIntervalExplicitNull (un)sets Interval to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Interval value is set to nil even if false is passed
+UnsetInterval ensures that no value is present for Interval, not even an explicit nil
 ### GetMetric
 
 `func (o *Series) GetMetric() string`
@@ -95,22 +98,17 @@ GetMetric returns the Metric field if non-nil, zero value otherwise.
 
 ### GetMetricOk
 
-`func (o *Series) GetMetricOk() (string, bool)`
+`func (o *Series) GetMetricOk() (*string, bool)`
 
 GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasMetric
-
-`func (o *Series) HasMetric() bool`
-
-HasMetric returns a boolean if a field has been set.
 
 ### SetMetric
 
 `func (o *Series) SetMetric(v string)`
 
-SetMetric gets a reference to the given string and assigns it to the Metric field.
+SetMetric sets Metric field to given value.
+
 
 ### GetPoints
 
@@ -120,22 +118,17 @@ GetPoints returns the Points field if non-nil, zero value otherwise.
 
 ### GetPointsOk
 
-`func (o *Series) GetPointsOk() ([][]float64, bool)`
+`func (o *Series) GetPointsOk() (*[][]float64, bool)`
 
 GetPointsOk returns a tuple with the Points field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasPoints
-
-`func (o *Series) HasPoints() bool`
-
-HasPoints returns a boolean if a field has been set.
 
 ### SetPoints
 
 `func (o *Series) SetPoints(v [][]float64)`
 
-SetPoints gets a reference to the given [][]float64 and assigns it to the Points field.
+SetPoints sets Points field to given value.
+
 
 ### GetTags
 
@@ -145,22 +138,22 @@ GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *Series) GetTagsOk() ([]string, bool)`
+`func (o *Series) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *Series) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
 
 ### HasTags
 
 `func (o *Series) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
-
-### SetTags
-
-`func (o *Series) SetTags(v []string)`
-
-SetTags gets a reference to the given []string and assigns it to the Tags field.
 
 ### GetType
 
@@ -170,22 +163,22 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Series) GetTypeOk() (string, bool)`
+`func (o *Series) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Series) SetType(v string)`
+
+SetType sets Type field to given value.
 
 ### HasType
 
 `func (o *Series) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *Series) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

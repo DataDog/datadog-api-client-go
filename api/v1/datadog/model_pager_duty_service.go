@@ -49,6 +49,15 @@ func (o *PagerDutyService) GetServiceKey() string {
 	return o.ServiceKey
 }
 
+// GetServiceKeyOk returns a tuple with the ServiceKey field value
+// and a boolean to check if the value has been set.
+func (o *PagerDutyService) GetServiceKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ServiceKey, true
+}
+
 // SetServiceKey sets field value
 func (o *PagerDutyService) SetServiceKey(v string) {
 	o.ServiceKey = v
@@ -62,6 +71,15 @@ func (o *PagerDutyService) GetServiceName() string {
 	}
 
 	return o.ServiceName
+}
+
+// GetServiceNameOk returns a tuple with the ServiceName field value
+// and a boolean to check if the value has been set.
+func (o *PagerDutyService) GetServiceNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ServiceName, true
 }
 
 // SetServiceName sets field value
@@ -89,7 +107,7 @@ func (v NullablePagerDutyService) Get() *PagerDutyService {
 	return v.value
 }
 
-func (v NullablePagerDutyService) Set(val *PagerDutyService) {
+func (v *NullablePagerDutyService) Set(val *PagerDutyService) {
 	v.value = val
 	v.isSet = true
 }
@@ -98,7 +116,7 @@ func (v NullablePagerDutyService) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullablePagerDutyService) Unset() {
+func (v *NullablePagerDutyService) Unset() {
 	v.value = nil
 	v.isSet = false
 }

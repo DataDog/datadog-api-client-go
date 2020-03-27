@@ -49,22 +49,22 @@ GetBrowserErrors returns the BrowserErrors field if non-nil, zero value otherwis
 
 ### GetBrowserErrorsOk
 
-`func (o *SyntheticsStepDetail) GetBrowserErrorsOk() ([]SyntheticsBrowserError, bool)`
+`func (o *SyntheticsStepDetail) GetBrowserErrorsOk() (*[]SyntheticsBrowserError, bool)`
 
 GetBrowserErrorsOk returns a tuple with the BrowserErrors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetBrowserErrors
+
+`func (o *SyntheticsStepDetail) SetBrowserErrors(v []SyntheticsBrowserError)`
+
+SetBrowserErrors sets BrowserErrors field to given value.
 
 ### HasBrowserErrors
 
 `func (o *SyntheticsStepDetail) HasBrowserErrors() bool`
 
 HasBrowserErrors returns a boolean if a field has been set.
-
-### SetBrowserErrors
-
-`func (o *SyntheticsStepDetail) SetBrowserErrors(v []SyntheticsBrowserError)`
-
-SetBrowserErrors gets a reference to the given []SyntheticsBrowserError and assigns it to the BrowserErrors field.
 
 ### GetCheckType
 
@@ -74,22 +74,22 @@ GetCheckType returns the CheckType field if non-nil, zero value otherwise.
 
 ### GetCheckTypeOk
 
-`func (o *SyntheticsStepDetail) GetCheckTypeOk() (SyntheticsCheckType, bool)`
+`func (o *SyntheticsStepDetail) GetCheckTypeOk() (*SyntheticsCheckType, bool)`
 
 GetCheckTypeOk returns a tuple with the CheckType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCheckType
+
+`func (o *SyntheticsStepDetail) SetCheckType(v SyntheticsCheckType)`
+
+SetCheckType sets CheckType field to given value.
 
 ### HasCheckType
 
 `func (o *SyntheticsStepDetail) HasCheckType() bool`
 
 HasCheckType returns a boolean if a field has been set.
-
-### SetCheckType
-
-`func (o *SyntheticsStepDetail) SetCheckType(v SyntheticsCheckType)`
-
-SetCheckType gets a reference to the given SyntheticsCheckType and assigns it to the CheckType field.
 
 ### GetDescription
 
@@ -99,22 +99,22 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *SyntheticsStepDetail) GetDescriptionOk() (string, bool)`
+`func (o *SyntheticsStepDetail) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *SyntheticsStepDetail) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
 `func (o *SyntheticsStepDetail) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *SyntheticsStepDetail) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetDuration
 
@@ -124,22 +124,22 @@ GetDuration returns the Duration field if non-nil, zero value otherwise.
 
 ### GetDurationOk
 
-`func (o *SyntheticsStepDetail) GetDurationOk() (float64, bool)`
+`func (o *SyntheticsStepDetail) GetDurationOk() (*float64, bool)`
 
 GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDuration
+
+`func (o *SyntheticsStepDetail) SetDuration(v float64)`
+
+SetDuration sets Duration field to given value.
 
 ### HasDuration
 
 `func (o *SyntheticsStepDetail) HasDuration() bool`
 
 HasDuration returns a boolean if a field has been set.
-
-### SetDuration
-
-`func (o *SyntheticsStepDetail) SetDuration(v float64)`
-
-SetDuration gets a reference to the given float64 and assigns it to the Duration field.
 
 ### GetError
 
@@ -149,22 +149,22 @@ GetError returns the Error field if non-nil, zero value otherwise.
 
 ### GetErrorOk
 
-`func (o *SyntheticsStepDetail) GetErrorOk() (string, bool)`
+`func (o *SyntheticsStepDetail) GetErrorOk() (*string, bool)`
 
 GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *SyntheticsStepDetail) SetError(v string)`
+
+SetError sets Error field to given value.
 
 ### HasError
 
 `func (o *SyntheticsStepDetail) HasError() bool`
 
 HasError returns a boolean if a field has been set.
-
-### SetError
-
-`func (o *SyntheticsStepDetail) SetError(v string)`
-
-SetError gets a reference to the given string and assigns it to the Error field.
 
 ### GetPlayingTab
 
@@ -174,22 +174,22 @@ GetPlayingTab returns the PlayingTab field if non-nil, zero value otherwise.
 
 ### GetPlayingTabOk
 
-`func (o *SyntheticsStepDetail) GetPlayingTabOk() (SyntheticsPlayingTab, bool)`
+`func (o *SyntheticsStepDetail) GetPlayingTabOk() (*SyntheticsPlayingTab, bool)`
 
 GetPlayingTabOk returns a tuple with the PlayingTab field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPlayingTab
+
+`func (o *SyntheticsStepDetail) SetPlayingTab(v SyntheticsPlayingTab)`
+
+SetPlayingTab sets PlayingTab field to given value.
 
 ### HasPlayingTab
 
 `func (o *SyntheticsStepDetail) HasPlayingTab() bool`
 
 HasPlayingTab returns a boolean if a field has been set.
-
-### SetPlayingTab
-
-`func (o *SyntheticsStepDetail) SetPlayingTab(v SyntheticsPlayingTab)`
-
-SetPlayingTab gets a reference to the given SyntheticsPlayingTab and assigns it to the PlayingTab field.
 
 ### GetResources
 
@@ -199,22 +199,22 @@ GetResources returns the Resources field if non-nil, zero value otherwise.
 
 ### GetResourcesOk
 
-`func (o *SyntheticsStepDetail) GetResourcesOk() ([]SyntheticsResource, bool)`
+`func (o *SyntheticsStepDetail) GetResourcesOk() (*[]SyntheticsResource, bool)`
 
 GetResourcesOk returns a tuple with the Resources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetResources
+
+`func (o *SyntheticsStepDetail) SetResources(v []SyntheticsResource)`
+
+SetResources sets Resources field to given value.
 
 ### HasResources
 
 `func (o *SyntheticsStepDetail) HasResources() bool`
 
 HasResources returns a boolean if a field has been set.
-
-### SetResources
-
-`func (o *SyntheticsStepDetail) SetResources(v []SyntheticsResource)`
-
-SetResources gets a reference to the given []SyntheticsResource and assigns it to the Resources field.
 
 ### GetScreenshotBucketKey
 
@@ -224,22 +224,22 @@ GetScreenshotBucketKey returns the ScreenshotBucketKey field if non-nil, zero va
 
 ### GetScreenshotBucketKeyOk
 
-`func (o *SyntheticsStepDetail) GetScreenshotBucketKeyOk() (bool, bool)`
+`func (o *SyntheticsStepDetail) GetScreenshotBucketKeyOk() (*bool, bool)`
 
 GetScreenshotBucketKeyOk returns a tuple with the ScreenshotBucketKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetScreenshotBucketKey
+
+`func (o *SyntheticsStepDetail) SetScreenshotBucketKey(v bool)`
+
+SetScreenshotBucketKey sets ScreenshotBucketKey field to given value.
 
 ### HasScreenshotBucketKey
 
 `func (o *SyntheticsStepDetail) HasScreenshotBucketKey() bool`
 
 HasScreenshotBucketKey returns a boolean if a field has been set.
-
-### SetScreenshotBucketKey
-
-`func (o *SyntheticsStepDetail) SetScreenshotBucketKey(v bool)`
-
-SetScreenshotBucketKey gets a reference to the given bool and assigns it to the ScreenshotBucketKey field.
 
 ### GetSkipped
 
@@ -249,22 +249,22 @@ GetSkipped returns the Skipped field if non-nil, zero value otherwise.
 
 ### GetSkippedOk
 
-`func (o *SyntheticsStepDetail) GetSkippedOk() (bool, bool)`
+`func (o *SyntheticsStepDetail) GetSkippedOk() (*bool, bool)`
 
 GetSkippedOk returns a tuple with the Skipped field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSkipped
+
+`func (o *SyntheticsStepDetail) SetSkipped(v bool)`
+
+SetSkipped sets Skipped field to given value.
 
 ### HasSkipped
 
 `func (o *SyntheticsStepDetail) HasSkipped() bool`
 
 HasSkipped returns a boolean if a field has been set.
-
-### SetSkipped
-
-`func (o *SyntheticsStepDetail) SetSkipped(v bool)`
-
-SetSkipped gets a reference to the given bool and assigns it to the Skipped field.
 
 ### GetSnapshotBucketKey
 
@@ -274,22 +274,22 @@ GetSnapshotBucketKey returns the SnapshotBucketKey field if non-nil, zero value 
 
 ### GetSnapshotBucketKeyOk
 
-`func (o *SyntheticsStepDetail) GetSnapshotBucketKeyOk() (bool, bool)`
+`func (o *SyntheticsStepDetail) GetSnapshotBucketKeyOk() (*bool, bool)`
 
 GetSnapshotBucketKeyOk returns a tuple with the SnapshotBucketKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSnapshotBucketKey
+
+`func (o *SyntheticsStepDetail) SetSnapshotBucketKey(v bool)`
+
+SetSnapshotBucketKey sets SnapshotBucketKey field to given value.
 
 ### HasSnapshotBucketKey
 
 `func (o *SyntheticsStepDetail) HasSnapshotBucketKey() bool`
 
 HasSnapshotBucketKey returns a boolean if a field has been set.
-
-### SetSnapshotBucketKey
-
-`func (o *SyntheticsStepDetail) SetSnapshotBucketKey(v bool)`
-
-SetSnapshotBucketKey gets a reference to the given bool and assigns it to the SnapshotBucketKey field.
 
 ### GetStepId
 
@@ -299,22 +299,22 @@ GetStepId returns the StepId field if non-nil, zero value otherwise.
 
 ### GetStepIdOk
 
-`func (o *SyntheticsStepDetail) GetStepIdOk() (int64, bool)`
+`func (o *SyntheticsStepDetail) GetStepIdOk() (*int64, bool)`
 
 GetStepIdOk returns a tuple with the StepId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStepId
+
+`func (o *SyntheticsStepDetail) SetStepId(v int64)`
+
+SetStepId sets StepId field to given value.
 
 ### HasStepId
 
 `func (o *SyntheticsStepDetail) HasStepId() bool`
 
 HasStepId returns a boolean if a field has been set.
-
-### SetStepId
-
-`func (o *SyntheticsStepDetail) SetStepId(v int64)`
-
-SetStepId gets a reference to the given int64 and assigns it to the StepId field.
 
 ### GetSubTestStepDetails
 
@@ -324,22 +324,22 @@ GetSubTestStepDetails returns the SubTestStepDetails field if non-nil, zero valu
 
 ### GetSubTestStepDetailsOk
 
-`func (o *SyntheticsStepDetail) GetSubTestStepDetailsOk() ([]SyntheticsStepDetail, bool)`
+`func (o *SyntheticsStepDetail) GetSubTestStepDetailsOk() (*[]SyntheticsStepDetail, bool)`
 
 GetSubTestStepDetailsOk returns a tuple with the SubTestStepDetails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSubTestStepDetails
+
+`func (o *SyntheticsStepDetail) SetSubTestStepDetails(v []SyntheticsStepDetail)`
+
+SetSubTestStepDetails sets SubTestStepDetails field to given value.
 
 ### HasSubTestStepDetails
 
 `func (o *SyntheticsStepDetail) HasSubTestStepDetails() bool`
 
 HasSubTestStepDetails returns a boolean if a field has been set.
-
-### SetSubTestStepDetails
-
-`func (o *SyntheticsStepDetail) SetSubTestStepDetails(v []SyntheticsStepDetail)`
-
-SetSubTestStepDetails gets a reference to the given []SyntheticsStepDetail and assigns it to the SubTestStepDetails field.
 
 ### GetTimeToInteractive
 
@@ -349,22 +349,22 @@ GetTimeToInteractive returns the TimeToInteractive field if non-nil, zero value 
 
 ### GetTimeToInteractiveOk
 
-`func (o *SyntheticsStepDetail) GetTimeToInteractiveOk() (float64, bool)`
+`func (o *SyntheticsStepDetail) GetTimeToInteractiveOk() (*float64, bool)`
 
 GetTimeToInteractiveOk returns a tuple with the TimeToInteractive field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTimeToInteractive
+
+`func (o *SyntheticsStepDetail) SetTimeToInteractive(v float64)`
+
+SetTimeToInteractive sets TimeToInteractive field to given value.
 
 ### HasTimeToInteractive
 
 `func (o *SyntheticsStepDetail) HasTimeToInteractive() bool`
 
 HasTimeToInteractive returns a boolean if a field has been set.
-
-### SetTimeToInteractive
-
-`func (o *SyntheticsStepDetail) SetTimeToInteractive(v float64)`
-
-SetTimeToInteractive gets a reference to the given float64 and assigns it to the TimeToInteractive field.
 
 ### GetType
 
@@ -374,22 +374,22 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SyntheticsStepDetail) GetTypeOk() (SyntheticsStepType, bool)`
+`func (o *SyntheticsStepDetail) GetTypeOk() (*SyntheticsStepType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SyntheticsStepDetail) SetType(v SyntheticsStepType)`
+
+SetType sets Type field to given value.
 
 ### HasType
 
 `func (o *SyntheticsStepDetail) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *SyntheticsStepDetail) SetType(v SyntheticsStepType)`
-
-SetType gets a reference to the given SyntheticsStepType and assigns it to the Type field.
 
 ### GetUrl
 
@@ -399,22 +399,22 @@ GetUrl returns the Url field if non-nil, zero value otherwise.
 
 ### GetUrlOk
 
-`func (o *SyntheticsStepDetail) GetUrlOk() (string, bool)`
+`func (o *SyntheticsStepDetail) GetUrlOk() (*string, bool)`
 
 GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *SyntheticsStepDetail) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
 
 ### HasUrl
 
 `func (o *SyntheticsStepDetail) HasUrl() bool`
 
 HasUrl returns a boolean if a field has been set.
-
-### SetUrl
-
-`func (o *SyntheticsStepDetail) SetUrl(v string)`
-
-SetUrl gets a reference to the given string and assigns it to the Url field.
 
 ### GetValue
 
@@ -424,22 +424,22 @@ GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *SyntheticsStepDetail) GetValueOk() (interface{}, bool)`
+`func (o *SyntheticsStepDetail) GetValueOk() (*interface{}, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetValue
+
+`func (o *SyntheticsStepDetail) SetValue(v interface{})`
+
+SetValue sets Value field to given value.
 
 ### HasValue
 
 `func (o *SyntheticsStepDetail) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
-
-### SetValue
-
-`func (o *SyntheticsStepDetail) SetValue(v interface{})`
-
-SetValue gets a reference to the given interface{} and assigns it to the Value field.
 
 ### GetWarnings
 
@@ -449,22 +449,22 @@ GetWarnings returns the Warnings field if non-nil, zero value otherwise.
 
 ### GetWarningsOk
 
-`func (o *SyntheticsStepDetail) GetWarningsOk() ([]SyntheticsStepDetailWarnings, bool)`
+`func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarnings, bool)`
 
 GetWarningsOk returns a tuple with the Warnings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetWarnings
+
+`func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarnings)`
+
+SetWarnings sets Warnings field to given value.
 
 ### HasWarnings
 
 `func (o *SyntheticsStepDetail) HasWarnings() bool`
 
 HasWarnings returns a boolean if a field has been set.
-
-### SetWarnings
-
-`func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarnings)`
-
-SetWarnings gets a reference to the given []SyntheticsStepDetailWarnings and assigns it to the Warnings field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

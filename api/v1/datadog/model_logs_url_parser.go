@@ -65,6 +65,15 @@ func (o *LogsURLParser) GetSources() []string {
 	return o.Sources
 }
 
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *LogsURLParser) GetSourcesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
 // SetSources sets field value
 func (o *LogsURLParser) SetSources(v []string) {
 	o.Sources = v
@@ -78,6 +87,15 @@ func (o *LogsURLParser) GetTarget() string {
 	}
 
 	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsURLParser) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
 }
 
 // SetTarget sets field value
@@ -94,14 +112,13 @@ func (o *LogsURLParser) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsURLParser) GetTypeOk() (string, bool) {
+func (o *LogsURLParser) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -127,14 +144,13 @@ func (o *LogsURLParser) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsURLParser) GetIsEnabledOk() (bool, bool) {
+func (o *LogsURLParser) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -160,14 +176,13 @@ func (o *LogsURLParser) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsURLParser) GetNameOk() (string, bool) {
+func (o *LogsURLParser) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -218,7 +233,7 @@ func (v NullableLogsURLParser) Get() *LogsURLParser {
 	return v.value
 }
 
-func (v NullableLogsURLParser) Set(val *LogsURLParser) {
+func (v *NullableLogsURLParser) Set(val *LogsURLParser) {
 	v.value = val
 	v.isSet = true
 }
@@ -227,7 +242,7 @@ func (v NullableLogsURLParser) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsURLParser) Unset() {
+func (v *NullableLogsURLParser) Unset() {
 	v.value = nil
 	v.isSet = false
 }

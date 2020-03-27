@@ -160,7 +160,7 @@ func (v NullableLogsProcessor) Get() *LogsProcessor {
 	return v.value
 }
 
-func (v NullableLogsProcessor) Set(val *LogsProcessor) {
+func (v *NullableLogsProcessor) Set(val *LogsProcessor) {
 	v.value = val
 	v.isSet = true
 }
@@ -169,7 +169,7 @@ func (v NullableLogsProcessor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsProcessor) Unset() {
+func (v *NullableLogsProcessor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

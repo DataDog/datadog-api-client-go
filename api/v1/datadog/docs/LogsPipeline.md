@@ -39,22 +39,22 @@ GetFilter returns the Filter field if non-nil, zero value otherwise.
 
 ### GetFilterOk
 
-`func (o *LogsPipeline) GetFilterOk() (LogsFilter, bool)`
+`func (o *LogsPipeline) GetFilterOk() (*LogsFilter, bool)`
 
 GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *LogsPipeline) SetFilter(v LogsFilter)`
+
+SetFilter sets Filter field to given value.
 
 ### HasFilter
 
 `func (o *LogsPipeline) HasFilter() bool`
 
 HasFilter returns a boolean if a field has been set.
-
-### SetFilter
-
-`func (o *LogsPipeline) SetFilter(v LogsFilter)`
-
-SetFilter gets a reference to the given LogsFilter and assigns it to the Filter field.
 
 ### GetId
 
@@ -64,22 +64,22 @@ GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LogsPipeline) GetIdOk() (string, bool)`
+`func (o *LogsPipeline) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *LogsPipeline) SetId(v string)`
+
+SetId sets Id field to given value.
 
 ### HasId
 
 `func (o *LogsPipeline) HasId() bool`
 
 HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *LogsPipeline) SetId(v string)`
-
-SetId gets a reference to the given string and assigns it to the Id field.
 
 ### GetIsEnabled
 
@@ -89,22 +89,22 @@ GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
 ### GetIsEnabledOk
 
-`func (o *LogsPipeline) GetIsEnabledOk() (bool, bool)`
+`func (o *LogsPipeline) GetIsEnabledOk() (*bool, bool)`
 
 GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsEnabled
+
+`func (o *LogsPipeline) SetIsEnabled(v bool)`
+
+SetIsEnabled sets IsEnabled field to given value.
 
 ### HasIsEnabled
 
 `func (o *LogsPipeline) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
-
-### SetIsEnabled
-
-`func (o *LogsPipeline) SetIsEnabled(v bool)`
-
-SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
 
 ### GetIsReadOnly
 
@@ -114,22 +114,22 @@ GetIsReadOnly returns the IsReadOnly field if non-nil, zero value otherwise.
 
 ### GetIsReadOnlyOk
 
-`func (o *LogsPipeline) GetIsReadOnlyOk() (bool, bool)`
+`func (o *LogsPipeline) GetIsReadOnlyOk() (*bool, bool)`
 
 GetIsReadOnlyOk returns a tuple with the IsReadOnly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsReadOnly
+
+`func (o *LogsPipeline) SetIsReadOnly(v bool)`
+
+SetIsReadOnly sets IsReadOnly field to given value.
 
 ### HasIsReadOnly
 
 `func (o *LogsPipeline) HasIsReadOnly() bool`
 
 HasIsReadOnly returns a boolean if a field has been set.
-
-### SetIsReadOnly
-
-`func (o *LogsPipeline) SetIsReadOnly(v bool)`
-
-SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
 
 ### GetName
 
@@ -139,22 +139,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsPipeline) GetNameOk() (string, bool)`
+`func (o *LogsPipeline) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *LogsPipeline) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *LogsPipeline) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetProcessors
 
@@ -164,22 +159,22 @@ GetProcessors returns the Processors field if non-nil, zero value otherwise.
 
 ### GetProcessorsOk
 
-`func (o *LogsPipeline) GetProcessorsOk() ([]LogsProcessor, bool)`
+`func (o *LogsPipeline) GetProcessorsOk() (*[]LogsProcessor, bool)`
 
 GetProcessorsOk returns a tuple with the Processors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProcessors
+
+`func (o *LogsPipeline) SetProcessors(v []LogsProcessor)`
+
+SetProcessors sets Processors field to given value.
 
 ### HasProcessors
 
 `func (o *LogsPipeline) HasProcessors() bool`
 
 HasProcessors returns a boolean if a field has been set.
-
-### SetProcessors
-
-`func (o *LogsPipeline) SetProcessors(v []LogsProcessor)`
-
-SetProcessors gets a reference to the given []LogsProcessor and assigns it to the Processors field.
 
 ### GetType
 
@@ -189,22 +184,22 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsPipeline) GetTypeOk() (string, bool)`
+`func (o *LogsPipeline) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsPipeline) SetType(v string)`
+
+SetType sets Type field to given value.
 
 ### HasType
 
 `func (o *LogsPipeline) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *LogsPipeline) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

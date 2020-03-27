@@ -46,6 +46,15 @@ func (o *IdpResponse) GetMessage() string {
 	return o.Message
 }
 
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *IdpResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
 // SetMessage sets field value
 func (o *IdpResponse) SetMessage(v string) {
 	o.Message = v
@@ -68,7 +77,7 @@ func (v NullableIdpResponse) Get() *IdpResponse {
 	return v.value
 }
 
-func (v NullableIdpResponse) Set(val *IdpResponse) {
+func (v *NullableIdpResponse) Set(val *IdpResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -77,7 +86,7 @@ func (v NullableIdpResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableIdpResponse) Unset() {
+func (v *NullableIdpResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

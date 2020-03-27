@@ -59,14 +59,13 @@ func (o *ScatterPlotWidgetDefinition) GetColorByGroups() []string {
 	return *o.ColorByGroups
 }
 
-// GetColorByGroupsOk returns a tuple with the ColorByGroups field value if set, zero value otherwise
+// GetColorByGroupsOk returns a tuple with the ColorByGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScatterPlotWidgetDefinition) GetColorByGroupsOk() ([]string, bool) {
+func (o *ScatterPlotWidgetDefinition) GetColorByGroupsOk() (*[]string, bool) {
 	if o == nil || o.ColorByGroups == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ColorByGroups, true
+	return o.ColorByGroups, true
 }
 
 // HasColorByGroups returns a boolean if a field has been set.
@@ -93,6 +92,15 @@ func (o *ScatterPlotWidgetDefinition) GetRequests() ScatterPlotWidgetDefinitionR
 	return o.Requests
 }
 
+// GetRequestsOk returns a tuple with the Requests field value
+// and a boolean to check if the value has been set.
+func (o *ScatterPlotWidgetDefinition) GetRequestsOk() (*ScatterPlotWidgetDefinitionRequests, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Requests, true
+}
+
 // SetRequests sets field value
 func (o *ScatterPlotWidgetDefinition) SetRequests(v ScatterPlotWidgetDefinitionRequests) {
 	o.Requests = v
@@ -107,14 +115,13 @@ func (o *ScatterPlotWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScatterPlotWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *ScatterPlotWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -140,14 +147,13 @@ func (o *ScatterPlotWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScatterPlotWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *ScatterPlotWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -173,14 +179,13 @@ func (o *ScatterPlotWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScatterPlotWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *ScatterPlotWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -206,14 +211,13 @@ func (o *ScatterPlotWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScatterPlotWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *ScatterPlotWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -240,6 +244,15 @@ func (o *ScatterPlotWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *ScatterPlotWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -254,14 +267,13 @@ func (o *ScatterPlotWidgetDefinition) GetXaxis() WidgetAxis {
 	return *o.Xaxis
 }
 
-// GetXaxisOk returns a tuple with the Xaxis field value if set, zero value otherwise
+// GetXaxisOk returns a tuple with the Xaxis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScatterPlotWidgetDefinition) GetXaxisOk() (WidgetAxis, bool) {
+func (o *ScatterPlotWidgetDefinition) GetXaxisOk() (*WidgetAxis, bool) {
 	if o == nil || o.Xaxis == nil {
-		var ret WidgetAxis
-		return ret, false
+		return nil, false
 	}
-	return *o.Xaxis, true
+	return o.Xaxis, true
 }
 
 // HasXaxis returns a boolean if a field has been set.
@@ -287,14 +299,13 @@ func (o *ScatterPlotWidgetDefinition) GetYaxis() WidgetAxis {
 	return *o.Yaxis
 }
 
-// GetYaxisOk returns a tuple with the Yaxis field value if set, zero value otherwise
+// GetYaxisOk returns a tuple with the Yaxis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScatterPlotWidgetDefinition) GetYaxisOk() (WidgetAxis, bool) {
+func (o *ScatterPlotWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool) {
 	if o == nil || o.Yaxis == nil {
-		var ret WidgetAxis
-		return ret, false
+		return nil, false
 	}
-	return *o.Yaxis, true
+	return o.Yaxis, true
 }
 
 // HasYaxis returns a boolean if a field has been set.
@@ -357,7 +368,7 @@ func (v NullableScatterPlotWidgetDefinition) Get() *ScatterPlotWidgetDefinition 
 	return v.value
 }
 
-func (v NullableScatterPlotWidgetDefinition) Set(val *ScatterPlotWidgetDefinition) {
+func (v *NullableScatterPlotWidgetDefinition) Set(val *ScatterPlotWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -366,7 +377,7 @@ func (v NullableScatterPlotWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableScatterPlotWidgetDefinition) Unset() {
+func (v *NullableScatterPlotWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

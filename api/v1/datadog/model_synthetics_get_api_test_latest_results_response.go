@@ -44,14 +44,13 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetched() in
 	return *o.LastTimestampFetched
 }
 
-// GetLastTimestampFetchedOk returns a tuple with the LastTimestampFetched field value if set, zero value otherwise
+// GetLastTimestampFetchedOk returns a tuple with the LastTimestampFetched field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetchedOk() (int64, bool) {
+func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetchedOk() (*int64, bool) {
 	if o == nil || o.LastTimestampFetched == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.LastTimestampFetched, true
+	return o.LastTimestampFetched, true
 }
 
 // HasLastTimestampFetched returns a boolean if a field has been set.
@@ -77,14 +76,13 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) GetResults() []SyntheticsAPI
 	return *o.Results
 }
 
-// GetResultsOk returns a tuple with the Results field value if set, zero value otherwise
+// GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() ([]SyntheticsAPITestResultShort, bool) {
+func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() (*[]SyntheticsAPITestResultShort, bool) {
 	if o == nil || o.Results == nil {
-		var ret []SyntheticsAPITestResultShort
-		return ret, false
+		return nil, false
 	}
-	return *o.Results, true
+	return o.Results, true
 }
 
 // HasResults returns a boolean if a field has been set.
@@ -121,7 +119,7 @@ func (v NullableSyntheticsGetAPITestLatestResultsResponse) Get() *SyntheticsGetA
 	return v.value
 }
 
-func (v NullableSyntheticsGetAPITestLatestResultsResponse) Set(val *SyntheticsGetAPITestLatestResultsResponse) {
+func (v *NullableSyntheticsGetAPITestLatestResultsResponse) Set(val *SyntheticsGetAPITestLatestResultsResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -130,7 +128,7 @@ func (v NullableSyntheticsGetAPITestLatestResultsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsGetAPITestLatestResultsResponse) Unset() {
+func (v *NullableSyntheticsGetAPITestLatestResultsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

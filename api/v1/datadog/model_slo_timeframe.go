@@ -36,7 +36,7 @@ func (v NullableSLOTimeframe) Get() *SLOTimeframe {
 	return v.value
 }
 
-func (v NullableSLOTimeframe) Set(val *SLOTimeframe) {
+func (v *NullableSLOTimeframe) Set(val *SLOTimeframe) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableSLOTimeframe) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSLOTimeframe) Unset() {
+func (v *NullableSLOTimeframe) Unset() {
 	v.value = nil
 	v.isSet = false
 }

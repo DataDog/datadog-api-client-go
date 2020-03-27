@@ -49,14 +49,13 @@ func (o *HostMapRequest) GetApmQuery() LogQueryDefinition {
 	return *o.ApmQuery
 }
 
-// GetApmQueryOk returns a tuple with the ApmQuery field value if set, zero value otherwise
+// GetApmQueryOk returns a tuple with the ApmQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapRequest) GetApmQueryOk() (LogQueryDefinition, bool) {
+func (o *HostMapRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.ApmQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ApmQuery, true
+	return o.ApmQuery, true
 }
 
 // HasApmQuery returns a boolean if a field has been set.
@@ -82,14 +81,13 @@ func (o *HostMapRequest) GetEventQuery() EventQueryDefinition {
 	return *o.EventQuery
 }
 
-// GetEventQueryOk returns a tuple with the EventQuery field value if set, zero value otherwise
+// GetEventQueryOk returns a tuple with the EventQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapRequest) GetEventQueryOk() (EventQueryDefinition, bool) {
+func (o *HostMapRequest) GetEventQueryOk() (*EventQueryDefinition, bool) {
 	if o == nil || o.EventQuery == nil {
-		var ret EventQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.EventQuery, true
+	return o.EventQuery, true
 }
 
 // HasEventQuery returns a boolean if a field has been set.
@@ -115,14 +113,13 @@ func (o *HostMapRequest) GetLogQuery() LogQueryDefinition {
 	return *o.LogQuery
 }
 
-// GetLogQueryOk returns a tuple with the LogQuery field value if set, zero value otherwise
+// GetLogQueryOk returns a tuple with the LogQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapRequest) GetLogQueryOk() (LogQueryDefinition, bool) {
+func (o *HostMapRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.LogQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.LogQuery, true
+	return o.LogQuery, true
 }
 
 // HasLogQuery returns a boolean if a field has been set.
@@ -148,14 +145,13 @@ func (o *HostMapRequest) GetNetworkQuery() LogQueryDefinition {
 	return *o.NetworkQuery
 }
 
-// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, zero value otherwise
+// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapRequest) GetNetworkQueryOk() (LogQueryDefinition, bool) {
+func (o *HostMapRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.NetworkQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.NetworkQuery, true
+	return o.NetworkQuery, true
 }
 
 // HasNetworkQuery returns a boolean if a field has been set.
@@ -181,14 +177,13 @@ func (o *HostMapRequest) GetProcessQuery() ProcessQueryDefinition {
 	return *o.ProcessQuery
 }
 
-// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, zero value otherwise
+// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapRequest) GetProcessQueryOk() (ProcessQueryDefinition, bool) {
+func (o *HostMapRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool) {
 	if o == nil || o.ProcessQuery == nil {
-		var ret ProcessQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ProcessQuery, true
+	return o.ProcessQuery, true
 }
 
 // HasProcessQuery returns a boolean if a field has been set.
@@ -214,14 +209,13 @@ func (o *HostMapRequest) GetQ() string {
 	return *o.Q
 }
 
-// GetQOk returns a tuple with the Q field value if set, zero value otherwise
+// GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapRequest) GetQOk() (string, bool) {
+func (o *HostMapRequest) GetQOk() (*string, bool) {
 	if o == nil || o.Q == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Q, true
+	return o.Q, true
 }
 
 // HasQ returns a boolean if a field has been set.
@@ -247,14 +241,13 @@ func (o *HostMapRequest) GetRumQuery() LogQueryDefinition {
 	return *o.RumQuery
 }
 
-// GetRumQueryOk returns a tuple with the RumQuery field value if set, zero value otherwise
+// GetRumQueryOk returns a tuple with the RumQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapRequest) GetRumQueryOk() (LogQueryDefinition, bool) {
+func (o *HostMapRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.RumQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.RumQuery, true
+	return o.RumQuery, true
 }
 
 // HasRumQuery returns a boolean if a field has been set.
@@ -306,7 +299,7 @@ func (v NullableHostMapRequest) Get() *HostMapRequest {
 	return v.value
 }
 
-func (v NullableHostMapRequest) Set(val *HostMapRequest) {
+func (v *NullableHostMapRequest) Set(val *HostMapRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -315,7 +308,7 @@ func (v NullableHostMapRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMapRequest) Unset() {
+func (v *NullableHostMapRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

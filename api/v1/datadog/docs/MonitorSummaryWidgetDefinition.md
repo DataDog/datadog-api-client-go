@@ -43,22 +43,22 @@ GetColorPreference returns the ColorPreference field if non-nil, zero value othe
 
 ### GetColorPreferenceOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetColorPreferenceOk() (WidgetColorPreference, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetColorPreferenceOk() (*WidgetColorPreference, bool)`
 
 GetColorPreferenceOk returns a tuple with the ColorPreference field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetColorPreference
+
+`func (o *MonitorSummaryWidgetDefinition) SetColorPreference(v WidgetColorPreference)`
+
+SetColorPreference sets ColorPreference field to given value.
 
 ### HasColorPreference
 
 `func (o *MonitorSummaryWidgetDefinition) HasColorPreference() bool`
 
 HasColorPreference returns a boolean if a field has been set.
-
-### SetColorPreference
-
-`func (o *MonitorSummaryWidgetDefinition) SetColorPreference(v WidgetColorPreference)`
-
-SetColorPreference gets a reference to the given WidgetColorPreference and assigns it to the ColorPreference field.
 
 ### GetDisplayFormat
 
@@ -68,22 +68,22 @@ GetDisplayFormat returns the DisplayFormat field if non-nil, zero value otherwis
 
 ### GetDisplayFormatOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetDisplayFormatOk() (WidgetMonitorSummaryDisplayFormat, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetDisplayFormatOk() (*WidgetMonitorSummaryDisplayFormat, bool)`
 
 GetDisplayFormatOk returns a tuple with the DisplayFormat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDisplayFormat
+
+`func (o *MonitorSummaryWidgetDefinition) SetDisplayFormat(v WidgetMonitorSummaryDisplayFormat)`
+
+SetDisplayFormat sets DisplayFormat field to given value.
 
 ### HasDisplayFormat
 
 `func (o *MonitorSummaryWidgetDefinition) HasDisplayFormat() bool`
 
 HasDisplayFormat returns a boolean if a field has been set.
-
-### SetDisplayFormat
-
-`func (o *MonitorSummaryWidgetDefinition) SetDisplayFormat(v WidgetMonitorSummaryDisplayFormat)`
-
-SetDisplayFormat gets a reference to the given WidgetMonitorSummaryDisplayFormat and assigns it to the DisplayFormat field.
 
 ### GetHideZeroCounts
 
@@ -93,22 +93,22 @@ GetHideZeroCounts returns the HideZeroCounts field if non-nil, zero value otherw
 
 ### GetHideZeroCountsOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetHideZeroCountsOk() (bool, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetHideZeroCountsOk() (*bool, bool)`
 
 GetHideZeroCountsOk returns a tuple with the HideZeroCounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHideZeroCounts
+
+`func (o *MonitorSummaryWidgetDefinition) SetHideZeroCounts(v bool)`
+
+SetHideZeroCounts sets HideZeroCounts field to given value.
 
 ### HasHideZeroCounts
 
 `func (o *MonitorSummaryWidgetDefinition) HasHideZeroCounts() bool`
 
 HasHideZeroCounts returns a boolean if a field has been set.
-
-### SetHideZeroCounts
-
-`func (o *MonitorSummaryWidgetDefinition) SetHideZeroCounts(v bool)`
-
-SetHideZeroCounts gets a reference to the given bool and assigns it to the HideZeroCounts field.
 
 ### GetQuery
 
@@ -118,22 +118,17 @@ GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetQueryOk() (string, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasQuery
-
-`func (o *MonitorSummaryWidgetDefinition) HasQuery() bool`
-
-HasQuery returns a boolean if a field has been set.
 
 ### SetQuery
 
 `func (o *MonitorSummaryWidgetDefinition) SetQuery(v string)`
 
-SetQuery gets a reference to the given string and assigns it to the Query field.
+SetQuery sets Query field to given value.
+
 
 ### GetShowLastTriggered
 
@@ -143,22 +138,22 @@ GetShowLastTriggered returns the ShowLastTriggered field if non-nil, zero value 
 
 ### GetShowLastTriggeredOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetShowLastTriggeredOk() (bool, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetShowLastTriggeredOk() (*bool, bool)`
 
 GetShowLastTriggeredOk returns a tuple with the ShowLastTriggered field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetShowLastTriggered
+
+`func (o *MonitorSummaryWidgetDefinition) SetShowLastTriggered(v bool)`
+
+SetShowLastTriggered sets ShowLastTriggered field to given value.
 
 ### HasShowLastTriggered
 
 `func (o *MonitorSummaryWidgetDefinition) HasShowLastTriggered() bool`
 
 HasShowLastTriggered returns a boolean if a field has been set.
-
-### SetShowLastTriggered
-
-`func (o *MonitorSummaryWidgetDefinition) SetShowLastTriggered(v bool)`
-
-SetShowLastTriggered gets a reference to the given bool and assigns it to the ShowLastTriggered field.
 
 ### GetSort
 
@@ -168,22 +163,22 @@ GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetSortOk() (WidgetSort, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetSortOk() (*WidgetSort, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSort
+
+`func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetSort)`
+
+SetSort sets Sort field to given value.
 
 ### HasSort
 
 `func (o *MonitorSummaryWidgetDefinition) HasSort() bool`
 
 HasSort returns a boolean if a field has been set.
-
-### SetSort
-
-`func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetSort)`
-
-SetSort gets a reference to the given WidgetSort and assigns it to the Sort field.
 
 ### GetSummaryType
 
@@ -193,22 +188,22 @@ GetSummaryType returns the SummaryType field if non-nil, zero value otherwise.
 
 ### GetSummaryTypeOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetSummaryTypeOk() (WidgetSummaryType, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetSummaryTypeOk() (*WidgetSummaryType, bool)`
 
 GetSummaryTypeOk returns a tuple with the SummaryType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSummaryType
+
+`func (o *MonitorSummaryWidgetDefinition) SetSummaryType(v WidgetSummaryType)`
+
+SetSummaryType sets SummaryType field to given value.
 
 ### HasSummaryType
 
 `func (o *MonitorSummaryWidgetDefinition) HasSummaryType() bool`
 
 HasSummaryType returns a boolean if a field has been set.
-
-### SetSummaryType
-
-`func (o *MonitorSummaryWidgetDefinition) SetSummaryType(v WidgetSummaryType)`
-
-SetSummaryType gets a reference to the given WidgetSummaryType and assigns it to the SummaryType field.
 
 ### GetTitle
 
@@ -218,22 +213,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *MonitorSummaryWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *MonitorSummaryWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *MonitorSummaryWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -243,22 +238,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *MonitorSummaryWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *MonitorSummaryWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *MonitorSummaryWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -268,22 +263,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *MonitorSummaryWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *MonitorSummaryWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *MonitorSummaryWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -293,22 +288,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *MonitorSummaryWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *MonitorSummaryWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

@@ -41,22 +41,22 @@ GetColorByGroups returns the ColorByGroups field if non-nil, zero value otherwis
 
 ### GetColorByGroupsOk
 
-`func (o *ScatterPlotWidgetDefinition) GetColorByGroupsOk() ([]string, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetColorByGroupsOk() (*[]string, bool)`
 
 GetColorByGroupsOk returns a tuple with the ColorByGroups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetColorByGroups
+
+`func (o *ScatterPlotWidgetDefinition) SetColorByGroups(v []string)`
+
+SetColorByGroups sets ColorByGroups field to given value.
 
 ### HasColorByGroups
 
 `func (o *ScatterPlotWidgetDefinition) HasColorByGroups() bool`
 
 HasColorByGroups returns a boolean if a field has been set.
-
-### SetColorByGroups
-
-`func (o *ScatterPlotWidgetDefinition) SetColorByGroups(v []string)`
-
-SetColorByGroups gets a reference to the given []string and assigns it to the ColorByGroups field.
 
 ### GetRequests
 
@@ -66,22 +66,17 @@ GetRequests returns the Requests field if non-nil, zero value otherwise.
 
 ### GetRequestsOk
 
-`func (o *ScatterPlotWidgetDefinition) GetRequestsOk() (ScatterPlotWidgetDefinitionRequests, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetRequestsOk() (*ScatterPlotWidgetDefinitionRequests, bool)`
 
 GetRequestsOk returns a tuple with the Requests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasRequests
-
-`func (o *ScatterPlotWidgetDefinition) HasRequests() bool`
-
-HasRequests returns a boolean if a field has been set.
 
 ### SetRequests
 
 `func (o *ScatterPlotWidgetDefinition) SetRequests(v ScatterPlotWidgetDefinitionRequests)`
 
-SetRequests gets a reference to the given ScatterPlotWidgetDefinitionRequests and assigns it to the Requests field.
+SetRequests sets Requests field to given value.
+
 
 ### GetTime
 
@@ -91,22 +86,22 @@ GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *ScatterPlotWidgetDefinition) GetTimeOk() (WidgetTime, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetTimeOk() (*WidgetTime, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *ScatterPlotWidgetDefinition) SetTime(v WidgetTime)`
+
+SetTime sets Time field to given value.
 
 ### HasTime
 
 `func (o *ScatterPlotWidgetDefinition) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
-
-### SetTime
-
-`func (o *ScatterPlotWidgetDefinition) SetTime(v WidgetTime)`
-
-SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
 
 ### GetTitle
 
@@ -116,22 +111,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *ScatterPlotWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *ScatterPlotWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *ScatterPlotWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *ScatterPlotWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -141,22 +136,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *ScatterPlotWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *ScatterPlotWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *ScatterPlotWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *ScatterPlotWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -166,22 +161,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *ScatterPlotWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *ScatterPlotWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *ScatterPlotWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *ScatterPlotWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -191,22 +186,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ScatterPlotWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *ScatterPlotWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *ScatterPlotWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetXaxis
 
@@ -216,22 +206,22 @@ GetXaxis returns the Xaxis field if non-nil, zero value otherwise.
 
 ### GetXaxisOk
 
-`func (o *ScatterPlotWidgetDefinition) GetXaxisOk() (WidgetAxis, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetXaxisOk() (*WidgetAxis, bool)`
 
 GetXaxisOk returns a tuple with the Xaxis field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetXaxis
+
+`func (o *ScatterPlotWidgetDefinition) SetXaxis(v WidgetAxis)`
+
+SetXaxis sets Xaxis field to given value.
 
 ### HasXaxis
 
 `func (o *ScatterPlotWidgetDefinition) HasXaxis() bool`
 
 HasXaxis returns a boolean if a field has been set.
-
-### SetXaxis
-
-`func (o *ScatterPlotWidgetDefinition) SetXaxis(v WidgetAxis)`
-
-SetXaxis gets a reference to the given WidgetAxis and assigns it to the Xaxis field.
 
 ### GetYaxis
 
@@ -241,22 +231,22 @@ GetYaxis returns the Yaxis field if non-nil, zero value otherwise.
 
 ### GetYaxisOk
 
-`func (o *ScatterPlotWidgetDefinition) GetYaxisOk() (WidgetAxis, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool)`
 
 GetYaxisOk returns a tuple with the Yaxis field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetYaxis
+
+`func (o *ScatterPlotWidgetDefinition) SetYaxis(v WidgetAxis)`
+
+SetYaxis sets Yaxis field to given value.
 
 ### HasYaxis
 
 `func (o *ScatterPlotWidgetDefinition) HasYaxis() bool`
 
 HasYaxis returns a boolean if a field has been set.
-
-### SetYaxis
-
-`func (o *ScatterPlotWidgetDefinition) SetYaxis(v WidgetAxis)`
-
-SetYaxis gets a reference to the given WidgetAxis and assigns it to the Yaxis field.
 
 
 ### AsWidgetDefinition

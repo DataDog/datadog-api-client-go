@@ -35,7 +35,7 @@ func (v NullableWidgetMargin) Get() *WidgetMargin {
 	return v.value
 }
 
-func (v NullableWidgetMargin) Set(val *WidgetMargin) {
+func (v *NullableWidgetMargin) Set(val *WidgetMargin) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetMargin) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetMargin) Unset() {
+func (v *NullableWidgetMargin) Unset() {
 	v.value = nil
 	v.isSet = false
 }

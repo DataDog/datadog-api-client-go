@@ -43,14 +43,13 @@ func (o *ApplicationKeyListResponse) GetApplicationKeys() []ApplicationKey {
 	return *o.ApplicationKeys
 }
 
-// GetApplicationKeysOk returns a tuple with the ApplicationKeys field value if set, zero value otherwise
+// GetApplicationKeysOk returns a tuple with the ApplicationKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationKeyListResponse) GetApplicationKeysOk() ([]ApplicationKey, bool) {
+func (o *ApplicationKeyListResponse) GetApplicationKeysOk() (*[]ApplicationKey, bool) {
 	if o == nil || o.ApplicationKeys == nil {
-		var ret []ApplicationKey
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationKeys, true
+	return o.ApplicationKeys, true
 }
 
 // HasApplicationKeys returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableApplicationKeyListResponse) Get() *ApplicationKeyListResponse {
 	return v.value
 }
 
-func (v NullableApplicationKeyListResponse) Set(val *ApplicationKeyListResponse) {
+func (v *NullableApplicationKeyListResponse) Set(val *ApplicationKeyListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableApplicationKeyListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableApplicationKeyListResponse) Unset() {
+func (v *NullableApplicationKeyListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

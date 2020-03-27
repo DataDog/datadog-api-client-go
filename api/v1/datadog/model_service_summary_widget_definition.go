@@ -76,14 +76,13 @@ func (o *ServiceSummaryWidgetDefinition) GetDisplayFormat() WidgetServiceSummary
 	return *o.DisplayFormat
 }
 
-// GetDisplayFormatOk returns a tuple with the DisplayFormat field value if set, zero value otherwise
+// GetDisplayFormatOk returns a tuple with the DisplayFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetDisplayFormatOk() (WidgetServiceSummaryDisplayFormat, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetDisplayFormatOk() (*WidgetServiceSummaryDisplayFormat, bool) {
 	if o == nil || o.DisplayFormat == nil {
-		var ret WidgetServiceSummaryDisplayFormat
-		return ret, false
+		return nil, false
 	}
-	return *o.DisplayFormat, true
+	return o.DisplayFormat, true
 }
 
 // HasDisplayFormat returns a boolean if a field has been set.
@@ -110,6 +109,15 @@ func (o *ServiceSummaryWidgetDefinition) GetEnv() string {
 	return o.Env
 }
 
+// GetEnvOk returns a tuple with the Env field value
+// and a boolean to check if the value has been set.
+func (o *ServiceSummaryWidgetDefinition) GetEnvOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Env, true
+}
+
 // SetEnv sets field value
 func (o *ServiceSummaryWidgetDefinition) SetEnv(v string) {
 	o.Env = v
@@ -123,6 +131,15 @@ func (o *ServiceSummaryWidgetDefinition) GetService() string {
 	}
 
 	return o.Service
+}
+
+// GetServiceOk returns a tuple with the Service field value
+// and a boolean to check if the value has been set.
+func (o *ServiceSummaryWidgetDefinition) GetServiceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Service, true
 }
 
 // SetService sets field value
@@ -139,14 +156,13 @@ func (o *ServiceSummaryWidgetDefinition) GetShowBreakdown() bool {
 	return *o.ShowBreakdown
 }
 
-// GetShowBreakdownOk returns a tuple with the ShowBreakdown field value if set, zero value otherwise
+// GetShowBreakdownOk returns a tuple with the ShowBreakdown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetShowBreakdownOk() (bool, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetShowBreakdownOk() (*bool, bool) {
 	if o == nil || o.ShowBreakdown == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowBreakdown, true
+	return o.ShowBreakdown, true
 }
 
 // HasShowBreakdown returns a boolean if a field has been set.
@@ -172,14 +188,13 @@ func (o *ServiceSummaryWidgetDefinition) GetShowDistribution() bool {
 	return *o.ShowDistribution
 }
 
-// GetShowDistributionOk returns a tuple with the ShowDistribution field value if set, zero value otherwise
+// GetShowDistributionOk returns a tuple with the ShowDistribution field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetShowDistributionOk() (bool, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetShowDistributionOk() (*bool, bool) {
 	if o == nil || o.ShowDistribution == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowDistribution, true
+	return o.ShowDistribution, true
 }
 
 // HasShowDistribution returns a boolean if a field has been set.
@@ -205,14 +220,13 @@ func (o *ServiceSummaryWidgetDefinition) GetShowErrors() bool {
 	return *o.ShowErrors
 }
 
-// GetShowErrorsOk returns a tuple with the ShowErrors field value if set, zero value otherwise
+// GetShowErrorsOk returns a tuple with the ShowErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetShowErrorsOk() (bool, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetShowErrorsOk() (*bool, bool) {
 	if o == nil || o.ShowErrors == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowErrors, true
+	return o.ShowErrors, true
 }
 
 // HasShowErrors returns a boolean if a field has been set.
@@ -238,14 +252,13 @@ func (o *ServiceSummaryWidgetDefinition) GetShowHits() bool {
 	return *o.ShowHits
 }
 
-// GetShowHitsOk returns a tuple with the ShowHits field value if set, zero value otherwise
+// GetShowHitsOk returns a tuple with the ShowHits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetShowHitsOk() (bool, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetShowHitsOk() (*bool, bool) {
 	if o == nil || o.ShowHits == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowHits, true
+	return o.ShowHits, true
 }
 
 // HasShowHits returns a boolean if a field has been set.
@@ -271,14 +284,13 @@ func (o *ServiceSummaryWidgetDefinition) GetShowLatency() bool {
 	return *o.ShowLatency
 }
 
-// GetShowLatencyOk returns a tuple with the ShowLatency field value if set, zero value otherwise
+// GetShowLatencyOk returns a tuple with the ShowLatency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetShowLatencyOk() (bool, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetShowLatencyOk() (*bool, bool) {
 	if o == nil || o.ShowLatency == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowLatency, true
+	return o.ShowLatency, true
 }
 
 // HasShowLatency returns a boolean if a field has been set.
@@ -304,14 +316,13 @@ func (o *ServiceSummaryWidgetDefinition) GetShowResourceList() bool {
 	return *o.ShowResourceList
 }
 
-// GetShowResourceListOk returns a tuple with the ShowResourceList field value if set, zero value otherwise
+// GetShowResourceListOk returns a tuple with the ShowResourceList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetShowResourceListOk() (bool, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetShowResourceListOk() (*bool, bool) {
 	if o == nil || o.ShowResourceList == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowResourceList, true
+	return o.ShowResourceList, true
 }
 
 // HasShowResourceList returns a boolean if a field has been set.
@@ -337,14 +348,13 @@ func (o *ServiceSummaryWidgetDefinition) GetSizeFormat() WidgetSizeFormat {
 	return *o.SizeFormat
 }
 
-// GetSizeFormatOk returns a tuple with the SizeFormat field value if set, zero value otherwise
+// GetSizeFormatOk returns a tuple with the SizeFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetSizeFormatOk() (WidgetSizeFormat, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetSizeFormatOk() (*WidgetSizeFormat, bool) {
 	if o == nil || o.SizeFormat == nil {
-		var ret WidgetSizeFormat
-		return ret, false
+		return nil, false
 	}
-	return *o.SizeFormat, true
+	return o.SizeFormat, true
 }
 
 // HasSizeFormat returns a boolean if a field has been set.
@@ -371,6 +381,15 @@ func (o *ServiceSummaryWidgetDefinition) GetSpanName() string {
 	return o.SpanName
 }
 
+// GetSpanNameOk returns a tuple with the SpanName field value
+// and a boolean to check if the value has been set.
+func (o *ServiceSummaryWidgetDefinition) GetSpanNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SpanName, true
+}
+
 // SetSpanName sets field value
 func (o *ServiceSummaryWidgetDefinition) SetSpanName(v string) {
 	o.SpanName = v
@@ -385,14 +404,13 @@ func (o *ServiceSummaryWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -418,14 +436,13 @@ func (o *ServiceSummaryWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -451,14 +468,13 @@ func (o *ServiceSummaryWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -484,14 +500,13 @@ func (o *ServiceSummaryWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceSummaryWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *ServiceSummaryWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -516,6 +531,15 @@ func (o *ServiceSummaryWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ServiceSummaryWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -590,7 +614,7 @@ func (v NullableServiceSummaryWidgetDefinition) Get() *ServiceSummaryWidgetDefin
 	return v.value
 }
 
-func (v NullableServiceSummaryWidgetDefinition) Set(val *ServiceSummaryWidgetDefinition) {
+func (v *NullableServiceSummaryWidgetDefinition) Set(val *ServiceSummaryWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -599,7 +623,7 @@ func (v NullableServiceSummaryWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceSummaryWidgetDefinition) Unset() {
+func (v *NullableServiceSummaryWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

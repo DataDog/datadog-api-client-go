@@ -68,14 +68,13 @@ func (o *LogsStringBuilderProcessor) GetIsReplaceMissing() bool {
 	return *o.IsReplaceMissing
 }
 
-// GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field value if set, zero value otherwise
+// GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStringBuilderProcessor) GetIsReplaceMissingOk() (bool, bool) {
+func (o *LogsStringBuilderProcessor) GetIsReplaceMissingOk() (*bool, bool) {
 	if o == nil || o.IsReplaceMissing == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsReplaceMissing, true
+	return o.IsReplaceMissing, true
 }
 
 // HasIsReplaceMissing returns a boolean if a field has been set.
@@ -102,6 +101,15 @@ func (o *LogsStringBuilderProcessor) GetTarget() string {
 	return o.Target
 }
 
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsStringBuilderProcessor) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
 // SetTarget sets field value
 func (o *LogsStringBuilderProcessor) SetTarget(v string) {
 	o.Target = v
@@ -115,6 +123,15 @@ func (o *LogsStringBuilderProcessor) GetTemplate() string {
 	}
 
 	return o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value
+// and a boolean to check if the value has been set.
+func (o *LogsStringBuilderProcessor) GetTemplateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Template, true
 }
 
 // SetTemplate sets field value
@@ -131,14 +148,13 @@ func (o *LogsStringBuilderProcessor) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStringBuilderProcessor) GetTypeOk() (string, bool) {
+func (o *LogsStringBuilderProcessor) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -164,14 +180,13 @@ func (o *LogsStringBuilderProcessor) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStringBuilderProcessor) GetIsEnabledOk() (bool, bool) {
+func (o *LogsStringBuilderProcessor) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -197,14 +212,13 @@ func (o *LogsStringBuilderProcessor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStringBuilderProcessor) GetNameOk() (string, bool) {
+func (o *LogsStringBuilderProcessor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -258,7 +272,7 @@ func (v NullableLogsStringBuilderProcessor) Get() *LogsStringBuilderProcessor {
 	return v.value
 }
 
-func (v NullableLogsStringBuilderProcessor) Set(val *LogsStringBuilderProcessor) {
+func (v *NullableLogsStringBuilderProcessor) Set(val *LogsStringBuilderProcessor) {
 	v.value = val
 	v.isSet = true
 }
@@ -267,7 +281,7 @@ func (v NullableLogsStringBuilderProcessor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsStringBuilderProcessor) Unset() {
+func (v *NullableLogsStringBuilderProcessor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

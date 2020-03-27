@@ -44,14 +44,13 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOk() []string {
 	return *o.Ok
 }
 
-// GetOkOk returns a tuple with the Ok field value if set, zero value otherwise
+// GetOkOk returns a tuple with the Ok field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOkOk() ([]string, bool) {
+func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOkOk() (*[]string, bool) {
 	if o == nil || o.Ok == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Ok, true
+	return o.Ok, true
 }
 
 // HasOk returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) Get() *CheckCan
 	return v.value
 }
 
-func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) Set(val *CheckCanDeleteServiceLevelObjectiveResponseData) {
+func (v *NullableCheckCanDeleteServiceLevelObjectiveResponseData) Set(val *CheckCanDeleteServiceLevelObjectiveResponseData) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableCheckCanDeleteServiceLevelObjectiveResponseData) Unset() {
+func (v *NullableCheckCanDeleteServiceLevelObjectiveResponseData) Unset() {
 	v.value = nil
 	v.isSet = false
 }

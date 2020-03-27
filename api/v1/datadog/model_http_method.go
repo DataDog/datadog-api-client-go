@@ -40,7 +40,7 @@ func (v NullableHTTPMethod) Get() *HTTPMethod {
 	return v.value
 }
 
-func (v NullableHTTPMethod) Set(val *HTTPMethod) {
+func (v *NullableHTTPMethod) Set(val *HTTPMethod) {
 	v.value = val
 	v.isSet = true
 }
@@ -49,7 +49,7 @@ func (v NullableHTTPMethod) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHTTPMethod) Unset() {
+func (v *NullableHTTPMethod) Unset() {
 	v.value = nil
 	v.isSet = false
 }

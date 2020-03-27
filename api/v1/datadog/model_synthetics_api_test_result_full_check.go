@@ -45,6 +45,15 @@ func (o *SyntheticsAPITestResultFullCheck) GetConfig() SyntheticsTestConfig {
 	return o.Config
 }
 
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAPITestResultFullCheck) GetConfigOk() (*SyntheticsTestConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
 // SetConfig sets field value
 func (o *SyntheticsAPITestResultFullCheck) SetConfig(v SyntheticsTestConfig) {
 	o.Config = v
@@ -67,7 +76,7 @@ func (v NullableSyntheticsAPITestResultFullCheck) Get() *SyntheticsAPITestResult
 	return v.value
 }
 
-func (v NullableSyntheticsAPITestResultFullCheck) Set(val *SyntheticsAPITestResultFullCheck) {
+func (v *NullableSyntheticsAPITestResultFullCheck) Set(val *SyntheticsAPITestResultFullCheck) {
 	v.value = val
 	v.isSet = true
 }
@@ -76,7 +85,7 @@ func (v NullableSyntheticsAPITestResultFullCheck) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsAPITestResultFullCheck) Unset() {
+func (v *NullableSyntheticsAPITestResultFullCheck) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -36,22 +36,22 @@ GetDisplayType returns the DisplayType field if non-nil, zero value otherwise.
 
 ### GetDisplayTypeOk
 
-`func (o *WidgetMarker) GetDisplayTypeOk() (string, bool)`
+`func (o *WidgetMarker) GetDisplayTypeOk() (*string, bool)`
 
 GetDisplayTypeOk returns a tuple with the DisplayType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDisplayType
+
+`func (o *WidgetMarker) SetDisplayType(v string)`
+
+SetDisplayType sets DisplayType field to given value.
 
 ### HasDisplayType
 
 `func (o *WidgetMarker) HasDisplayType() bool`
 
 HasDisplayType returns a boolean if a field has been set.
-
-### SetDisplayType
-
-`func (o *WidgetMarker) SetDisplayType(v string)`
-
-SetDisplayType gets a reference to the given string and assigns it to the DisplayType field.
 
 ### GetLabel
 
@@ -61,22 +61,22 @@ GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *WidgetMarker) GetLabelOk() (string, bool)`
+`func (o *WidgetMarker) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *WidgetMarker) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
 
 ### HasLabel
 
 `func (o *WidgetMarker) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
-
-### SetLabel
-
-`func (o *WidgetMarker) SetLabel(v string)`
-
-SetLabel gets a reference to the given string and assigns it to the Label field.
 
 ### GetTime
 
@@ -86,22 +86,22 @@ GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *WidgetMarker) GetTimeOk() (string, bool)`
+`func (o *WidgetMarker) GetTimeOk() (*string, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *WidgetMarker) SetTime(v string)`
+
+SetTime sets Time field to given value.
 
 ### HasTime
 
 `func (o *WidgetMarker) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
-
-### SetTime
-
-`func (o *WidgetMarker) SetTime(v string)`
-
-SetTime gets a reference to the given string and assigns it to the Time field.
 
 ### GetValue
 
@@ -111,22 +111,17 @@ GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *WidgetMarker) GetValueOk() (string, bool)`
+`func (o *WidgetMarker) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasValue
-
-`func (o *WidgetMarker) HasValue() bool`
-
-HasValue returns a boolean if a field has been set.
 
 ### SetValue
 
 `func (o *WidgetMarker) SetValue(v string)`
 
-SetValue gets a reference to the given string and assigns it to the Value field.
+SetValue sets Value field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

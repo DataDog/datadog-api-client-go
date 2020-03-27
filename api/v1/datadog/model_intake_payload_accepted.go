@@ -43,14 +43,13 @@ func (o *IntakePayloadAccepted) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntakePayloadAccepted) GetStatusOk() (string, bool) {
+func (o *IntakePayloadAccepted) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableIntakePayloadAccepted) Get() *IntakePayloadAccepted {
 	return v.value
 }
 
-func (v NullableIntakePayloadAccepted) Set(val *IntakePayloadAccepted) {
+func (v *NullableIntakePayloadAccepted) Set(val *IntakePayloadAccepted) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableIntakePayloadAccepted) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableIntakePayloadAccepted) Unset() {
+func (v *NullableIntakePayloadAccepted) Unset() {
 	v.value = nil
 	v.isSet = false
 }

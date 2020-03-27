@@ -51,6 +51,15 @@ func (o *ServiceCheck) GetCheck() string {
 	return o.Check
 }
 
+// GetCheckOk returns a tuple with the Check field value
+// and a boolean to check if the value has been set.
+func (o *ServiceCheck) GetCheckOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Check, true
+}
+
 // SetCheck sets field value
 func (o *ServiceCheck) SetCheck(v string) {
 	o.Check = v
@@ -65,14 +74,13 @@ func (o *ServiceCheck) GetHostName() string {
 	return *o.HostName
 }
 
-// GetHostNameOk returns a tuple with the HostName field value if set, zero value otherwise
+// GetHostNameOk returns a tuple with the HostName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceCheck) GetHostNameOk() (string, bool) {
+func (o *ServiceCheck) GetHostNameOk() (*string, bool) {
 	if o == nil || o.HostName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.HostName, true
+	return o.HostName, true
 }
 
 // HasHostName returns a boolean if a field has been set.
@@ -98,14 +106,13 @@ func (o *ServiceCheck) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceCheck) GetMessageOk() (string, bool) {
+func (o *ServiceCheck) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -132,6 +139,15 @@ func (o *ServiceCheck) GetStatus() ServiceCheckStatus {
 	return o.Status
 }
 
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ServiceCheck) GetStatusOk() (*ServiceCheckStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
 // SetStatus sets field value
 func (o *ServiceCheck) SetStatus(v ServiceCheckStatus) {
 	o.Status = v
@@ -146,14 +162,13 @@ func (o *ServiceCheck) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceCheck) GetTagsOk() ([]string, bool) {
+func (o *ServiceCheck) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -179,14 +194,13 @@ func (o *ServiceCheck) GetTimestamp() int64 {
 	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value if set, zero value otherwise
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceCheck) GetTimestampOk() (int64, bool) {
+func (o *ServiceCheck) GetTimestampOk() (*int64, bool) {
 	if o == nil || o.Timestamp == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Timestamp, true
+	return o.Timestamp, true
 }
 
 // HasTimestamp returns a boolean if a field has been set.
@@ -235,7 +249,7 @@ func (v NullableServiceCheck) Get() *ServiceCheck {
 	return v.value
 }
 
-func (v NullableServiceCheck) Set(val *ServiceCheck) {
+func (v *NullableServiceCheck) Set(val *ServiceCheck) {
 	v.value = val
 	v.isSet = true
 }
@@ -244,7 +258,7 @@ func (v NullableServiceCheck) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceCheck) Unset() {
+func (v *NullableServiceCheck) Unset() {
 	v.value = nil
 	v.isSet = false
 }

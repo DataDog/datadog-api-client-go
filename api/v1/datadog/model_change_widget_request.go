@@ -57,14 +57,13 @@ func (o *ChangeWidgetRequest) GetApmQuery() LogQueryDefinition {
 	return *o.ApmQuery
 }
 
-// GetApmQueryOk returns a tuple with the ApmQuery field value if set, zero value otherwise
+// GetApmQueryOk returns a tuple with the ApmQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetApmQueryOk() (LogQueryDefinition, bool) {
+func (o *ChangeWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.ApmQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ApmQuery, true
+	return o.ApmQuery, true
 }
 
 // HasApmQuery returns a boolean if a field has been set.
@@ -90,14 +89,13 @@ func (o *ChangeWidgetRequest) GetChangeType() WidgetChangeType {
 	return *o.ChangeType
 }
 
-// GetChangeTypeOk returns a tuple with the ChangeType field value if set, zero value otherwise
+// GetChangeTypeOk returns a tuple with the ChangeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetChangeTypeOk() (WidgetChangeType, bool) {
+func (o *ChangeWidgetRequest) GetChangeTypeOk() (*WidgetChangeType, bool) {
 	if o == nil || o.ChangeType == nil {
-		var ret WidgetChangeType
-		return ret, false
+		return nil, false
 	}
-	return *o.ChangeType, true
+	return o.ChangeType, true
 }
 
 // HasChangeType returns a boolean if a field has been set.
@@ -123,14 +121,13 @@ func (o *ChangeWidgetRequest) GetCompareTo() WidgetCompareTo {
 	return *o.CompareTo
 }
 
-// GetCompareToOk returns a tuple with the CompareTo field value if set, zero value otherwise
+// GetCompareToOk returns a tuple with the CompareTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetCompareToOk() (WidgetCompareTo, bool) {
+func (o *ChangeWidgetRequest) GetCompareToOk() (*WidgetCompareTo, bool) {
 	if o == nil || o.CompareTo == nil {
-		var ret WidgetCompareTo
-		return ret, false
+		return nil, false
 	}
-	return *o.CompareTo, true
+	return o.CompareTo, true
 }
 
 // HasCompareTo returns a boolean if a field has been set.
@@ -156,14 +153,13 @@ func (o *ChangeWidgetRequest) GetEventQuery() EventQueryDefinition {
 	return *o.EventQuery
 }
 
-// GetEventQueryOk returns a tuple with the EventQuery field value if set, zero value otherwise
+// GetEventQueryOk returns a tuple with the EventQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetEventQueryOk() (EventQueryDefinition, bool) {
+func (o *ChangeWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool) {
 	if o == nil || o.EventQuery == nil {
-		var ret EventQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.EventQuery, true
+	return o.EventQuery, true
 }
 
 // HasEventQuery returns a boolean if a field has been set.
@@ -189,14 +185,13 @@ func (o *ChangeWidgetRequest) GetIncreaseGood() bool {
 	return *o.IncreaseGood
 }
 
-// GetIncreaseGoodOk returns a tuple with the IncreaseGood field value if set, zero value otherwise
+// GetIncreaseGoodOk returns a tuple with the IncreaseGood field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetIncreaseGoodOk() (bool, bool) {
+func (o *ChangeWidgetRequest) GetIncreaseGoodOk() (*bool, bool) {
 	if o == nil || o.IncreaseGood == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IncreaseGood, true
+	return o.IncreaseGood, true
 }
 
 // HasIncreaseGood returns a boolean if a field has been set.
@@ -222,14 +217,13 @@ func (o *ChangeWidgetRequest) GetLogQuery() LogQueryDefinition {
 	return *o.LogQuery
 }
 
-// GetLogQueryOk returns a tuple with the LogQuery field value if set, zero value otherwise
+// GetLogQueryOk returns a tuple with the LogQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetLogQueryOk() (LogQueryDefinition, bool) {
+func (o *ChangeWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.LogQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.LogQuery, true
+	return o.LogQuery, true
 }
 
 // HasLogQuery returns a boolean if a field has been set.
@@ -255,14 +249,13 @@ func (o *ChangeWidgetRequest) GetNetworkQuery() LogQueryDefinition {
 	return *o.NetworkQuery
 }
 
-// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, zero value otherwise
+// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetNetworkQueryOk() (LogQueryDefinition, bool) {
+func (o *ChangeWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.NetworkQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.NetworkQuery, true
+	return o.NetworkQuery, true
 }
 
 // HasNetworkQuery returns a boolean if a field has been set.
@@ -288,14 +281,13 @@ func (o *ChangeWidgetRequest) GetOrderBy() WidgetOrderBy {
 	return *o.OrderBy
 }
 
-// GetOrderByOk returns a tuple with the OrderBy field value if set, zero value otherwise
+// GetOrderByOk returns a tuple with the OrderBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetOrderByOk() (WidgetOrderBy, bool) {
+func (o *ChangeWidgetRequest) GetOrderByOk() (*WidgetOrderBy, bool) {
 	if o == nil || o.OrderBy == nil {
-		var ret WidgetOrderBy
-		return ret, false
+		return nil, false
 	}
-	return *o.OrderBy, true
+	return o.OrderBy, true
 }
 
 // HasOrderBy returns a boolean if a field has been set.
@@ -321,14 +313,13 @@ func (o *ChangeWidgetRequest) GetOrderDir() WidgetSort {
 	return *o.OrderDir
 }
 
-// GetOrderDirOk returns a tuple with the OrderDir field value if set, zero value otherwise
+// GetOrderDirOk returns a tuple with the OrderDir field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetOrderDirOk() (WidgetSort, bool) {
+func (o *ChangeWidgetRequest) GetOrderDirOk() (*WidgetSort, bool) {
 	if o == nil || o.OrderDir == nil {
-		var ret WidgetSort
-		return ret, false
+		return nil, false
 	}
-	return *o.OrderDir, true
+	return o.OrderDir, true
 }
 
 // HasOrderDir returns a boolean if a field has been set.
@@ -354,14 +345,13 @@ func (o *ChangeWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	return *o.ProcessQuery
 }
 
-// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, zero value otherwise
+// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetProcessQueryOk() (ProcessQueryDefinition, bool) {
+func (o *ChangeWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool) {
 	if o == nil || o.ProcessQuery == nil {
-		var ret ProcessQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ProcessQuery, true
+	return o.ProcessQuery, true
 }
 
 // HasProcessQuery returns a boolean if a field has been set.
@@ -387,14 +377,13 @@ func (o *ChangeWidgetRequest) GetQ() string {
 	return *o.Q
 }
 
-// GetQOk returns a tuple with the Q field value if set, zero value otherwise
+// GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetQOk() (string, bool) {
+func (o *ChangeWidgetRequest) GetQOk() (*string, bool) {
 	if o == nil || o.Q == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Q, true
+	return o.Q, true
 }
 
 // HasQ returns a boolean if a field has been set.
@@ -420,14 +409,13 @@ func (o *ChangeWidgetRequest) GetRumQuery() LogQueryDefinition {
 	return *o.RumQuery
 }
 
-// GetRumQueryOk returns a tuple with the RumQuery field value if set, zero value otherwise
+// GetRumQueryOk returns a tuple with the RumQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetRumQueryOk() (LogQueryDefinition, bool) {
+func (o *ChangeWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.RumQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.RumQuery, true
+	return o.RumQuery, true
 }
 
 // HasRumQuery returns a boolean if a field has been set.
@@ -453,14 +441,13 @@ func (o *ChangeWidgetRequest) GetShowPresent() bool {
 	return *o.ShowPresent
 }
 
-// GetShowPresentOk returns a tuple with the ShowPresent field value if set, zero value otherwise
+// GetShowPresentOk returns a tuple with the ShowPresent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetRequest) GetShowPresentOk() (bool, bool) {
+func (o *ChangeWidgetRequest) GetShowPresentOk() (*bool, bool) {
 	if o == nil || o.ShowPresent == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowPresent, true
+	return o.ShowPresent, true
 }
 
 // HasShowPresent returns a boolean if a field has been set.
@@ -530,7 +517,7 @@ func (v NullableChangeWidgetRequest) Get() *ChangeWidgetRequest {
 	return v.value
 }
 
-func (v NullableChangeWidgetRequest) Set(val *ChangeWidgetRequest) {
+func (v *NullableChangeWidgetRequest) Set(val *ChangeWidgetRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -539,7 +526,7 @@ func (v NullableChangeWidgetRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableChangeWidgetRequest) Unset() {
+func (v *NullableChangeWidgetRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -33,22 +33,22 @@ GetApplicationKeys returns the ApplicationKeys field if non-nil, zero value othe
 
 ### GetApplicationKeysOk
 
-`func (o *ApplicationKeyListResponse) GetApplicationKeysOk() ([]ApplicationKey, bool)`
+`func (o *ApplicationKeyListResponse) GetApplicationKeysOk() (*[]ApplicationKey, bool)`
 
 GetApplicationKeysOk returns a tuple with the ApplicationKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetApplicationKeys
+
+`func (o *ApplicationKeyListResponse) SetApplicationKeys(v []ApplicationKey)`
+
+SetApplicationKeys sets ApplicationKeys field to given value.
 
 ### HasApplicationKeys
 
 `func (o *ApplicationKeyListResponse) HasApplicationKeys() bool`
 
 HasApplicationKeys returns a boolean if a field has been set.
-
-### SetApplicationKeys
-
-`func (o *ApplicationKeyListResponse) SetApplicationKeys(v []ApplicationKey)`
-
-SetApplicationKeys gets a reference to the given []ApplicationKey and assigns it to the ApplicationKeys field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -43,14 +43,13 @@ func (o *DashboardSummary) GetDashboards() []DashboardSummaryDashboards {
 	return *o.Dashboards
 }
 
-// GetDashboardsOk returns a tuple with the Dashboards field value if set, zero value otherwise
+// GetDashboardsOk returns a tuple with the Dashboards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardSummary) GetDashboardsOk() ([]DashboardSummaryDashboards, bool) {
+func (o *DashboardSummary) GetDashboardsOk() (*[]DashboardSummaryDashboards, bool) {
 	if o == nil || o.Dashboards == nil {
-		var ret []DashboardSummaryDashboards
-		return ret, false
+		return nil, false
 	}
-	return *o.Dashboards, true
+	return o.Dashboards, true
 }
 
 // HasDashboards returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableDashboardSummary) Get() *DashboardSummary {
 	return v.value
 }
 
-func (v NullableDashboardSummary) Set(val *DashboardSummary) {
+func (v *NullableDashboardSummary) Set(val *DashboardSummary) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableDashboardSummary) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardSummary) Unset() {
+func (v *NullableDashboardSummary) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -92,14 +92,13 @@ func (o *UsageSummaryResponse) GetAgentHostTop99pSum() int64 {
 	return *o.AgentHostTop99pSum
 }
 
-// GetAgentHostTop99pSumOk returns a tuple with the AgentHostTop99pSum field value if set, zero value otherwise
+// GetAgentHostTop99pSumOk returns a tuple with the AgentHostTop99pSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetAgentHostTop99pSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetAgentHostTop99pSumOk() (*int64, bool) {
 	if o == nil || o.AgentHostTop99pSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AgentHostTop99pSum, true
+	return o.AgentHostTop99pSum, true
 }
 
 // HasAgentHostTop99pSum returns a boolean if a field has been set.
@@ -125,14 +124,13 @@ func (o *UsageSummaryResponse) GetApmHostTop99pSum() int64 {
 	return *o.ApmHostTop99pSum
 }
 
-// GetApmHostTop99pSumOk returns a tuple with the ApmHostTop99pSum field value if set, zero value otherwise
+// GetApmHostTop99pSumOk returns a tuple with the ApmHostTop99pSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetApmHostTop99pSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetApmHostTop99pSumOk() (*int64, bool) {
 	if o == nil || o.ApmHostTop99pSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ApmHostTop99pSum, true
+	return o.ApmHostTop99pSum, true
 }
 
 // HasApmHostTop99pSum returns a boolean if a field has been set.
@@ -158,14 +156,13 @@ func (o *UsageSummaryResponse) GetAwsHostTop99pSum() int64 {
 	return *o.AwsHostTop99pSum
 }
 
-// GetAwsHostTop99pSumOk returns a tuple with the AwsHostTop99pSum field value if set, zero value otherwise
+// GetAwsHostTop99pSumOk returns a tuple with the AwsHostTop99pSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetAwsHostTop99pSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetAwsHostTop99pSumOk() (*int64, bool) {
 	if o == nil || o.AwsHostTop99pSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AwsHostTop99pSum, true
+	return o.AwsHostTop99pSum, true
 }
 
 // HasAwsHostTop99pSum returns a boolean if a field has been set.
@@ -191,14 +188,13 @@ func (o *UsageSummaryResponse) GetAwsLambdaFuncCount() int64 {
 	return *o.AwsLambdaFuncCount
 }
 
-// GetAwsLambdaFuncCountOk returns a tuple with the AwsLambdaFuncCount field value if set, zero value otherwise
+// GetAwsLambdaFuncCountOk returns a tuple with the AwsLambdaFuncCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetAwsLambdaFuncCountOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetAwsLambdaFuncCountOk() (*int64, bool) {
 	if o == nil || o.AwsLambdaFuncCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AwsLambdaFuncCount, true
+	return o.AwsLambdaFuncCount, true
 }
 
 // HasAwsLambdaFuncCount returns a boolean if a field has been set.
@@ -224,14 +220,13 @@ func (o *UsageSummaryResponse) GetAwsLambdaInvocationsSum() int64 {
 	return *o.AwsLambdaInvocationsSum
 }
 
-// GetAwsLambdaInvocationsSumOk returns a tuple with the AwsLambdaInvocationsSum field value if set, zero value otherwise
+// GetAwsLambdaInvocationsSumOk returns a tuple with the AwsLambdaInvocationsSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetAwsLambdaInvocationsSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetAwsLambdaInvocationsSumOk() (*int64, bool) {
 	if o == nil || o.AwsLambdaInvocationsSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AwsLambdaInvocationsSum, true
+	return o.AwsLambdaInvocationsSum, true
 }
 
 // HasAwsLambdaInvocationsSum returns a boolean if a field has been set.
@@ -257,14 +252,13 @@ func (o *UsageSummaryResponse) GetAzureHostTop99pSum() int64 {
 	return *o.AzureHostTop99pSum
 }
 
-// GetAzureHostTop99pSumOk returns a tuple with the AzureHostTop99pSum field value if set, zero value otherwise
+// GetAzureHostTop99pSumOk returns a tuple with the AzureHostTop99pSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetAzureHostTop99pSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetAzureHostTop99pSumOk() (*int64, bool) {
 	if o == nil || o.AzureHostTop99pSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AzureHostTop99pSum, true
+	return o.AzureHostTop99pSum, true
 }
 
 // HasAzureHostTop99pSum returns a boolean if a field has been set.
@@ -290,14 +284,13 @@ func (o *UsageSummaryResponse) GetBillableIngestedBytesAggSum() int64 {
 	return *o.BillableIngestedBytesAggSum
 }
 
-// GetBillableIngestedBytesAggSumOk returns a tuple with the BillableIngestedBytesAggSum field value if set, zero value otherwise
+// GetBillableIngestedBytesAggSumOk returns a tuple with the BillableIngestedBytesAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetBillableIngestedBytesAggSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetBillableIngestedBytesAggSumOk() (*int64, bool) {
 	if o == nil || o.BillableIngestedBytesAggSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.BillableIngestedBytesAggSum, true
+	return o.BillableIngestedBytesAggSum, true
 }
 
 // HasBillableIngestedBytesAggSum returns a boolean if a field has been set.
@@ -323,14 +316,13 @@ func (o *UsageSummaryResponse) GetContainerAvgSum() int64 {
 	return *o.ContainerAvgSum
 }
 
-// GetContainerAvgSumOk returns a tuple with the ContainerAvgSum field value if set, zero value otherwise
+// GetContainerAvgSumOk returns a tuple with the ContainerAvgSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetContainerAvgSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetContainerAvgSumOk() (*int64, bool) {
 	if o == nil || o.ContainerAvgSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ContainerAvgSum, true
+	return o.ContainerAvgSum, true
 }
 
 // HasContainerAvgSum returns a boolean if a field has been set.
@@ -356,14 +348,13 @@ func (o *UsageSummaryResponse) GetContainerHwmSum() int64 {
 	return *o.ContainerHwmSum
 }
 
-// GetContainerHwmSumOk returns a tuple with the ContainerHwmSum field value if set, zero value otherwise
+// GetContainerHwmSumOk returns a tuple with the ContainerHwmSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetContainerHwmSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetContainerHwmSumOk() (*int64, bool) {
 	if o == nil || o.ContainerHwmSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ContainerHwmSum, true
+	return o.ContainerHwmSum, true
 }
 
 // HasContainerHwmSum returns a boolean if a field has been set.
@@ -389,14 +380,13 @@ func (o *UsageSummaryResponse) GetCustomTsSum() int64 {
 	return *o.CustomTsSum
 }
 
-// GetCustomTsSumOk returns a tuple with the CustomTsSum field value if set, zero value otherwise
+// GetCustomTsSumOk returns a tuple with the CustomTsSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetCustomTsSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetCustomTsSumOk() (*int64, bool) {
 	if o == nil || o.CustomTsSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomTsSum, true
+	return o.CustomTsSum, true
 }
 
 // HasCustomTsSum returns a boolean if a field has been set.
@@ -422,14 +412,13 @@ func (o *UsageSummaryResponse) GetEndDate() time.Time {
 	return *o.EndDate
 }
 
-// GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetEndDateOk() (time.Time, bool) {
+func (o *UsageSummaryResponse) GetEndDateOk() (*time.Time, bool) {
 	if o == nil || o.EndDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndDate, true
+	return o.EndDate, true
 }
 
 // HasEndDate returns a boolean if a field has been set.
@@ -455,14 +444,13 @@ func (o *UsageSummaryResponse) GetFargateTasksCountAvgSum() int64 {
 	return *o.FargateTasksCountAvgSum
 }
 
-// GetFargateTasksCountAvgSumOk returns a tuple with the FargateTasksCountAvgSum field value if set, zero value otherwise
+// GetFargateTasksCountAvgSumOk returns a tuple with the FargateTasksCountAvgSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetFargateTasksCountAvgSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetFargateTasksCountAvgSumOk() (*int64, bool) {
 	if o == nil || o.FargateTasksCountAvgSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.FargateTasksCountAvgSum, true
+	return o.FargateTasksCountAvgSum, true
 }
 
 // HasFargateTasksCountAvgSum returns a boolean if a field has been set.
@@ -488,14 +476,13 @@ func (o *UsageSummaryResponse) GetFargateTasksCountHwmSum() int64 {
 	return *o.FargateTasksCountHwmSum
 }
 
-// GetFargateTasksCountHwmSumOk returns a tuple with the FargateTasksCountHwmSum field value if set, zero value otherwise
+// GetFargateTasksCountHwmSumOk returns a tuple with the FargateTasksCountHwmSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetFargateTasksCountHwmSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetFargateTasksCountHwmSumOk() (*int64, bool) {
 	if o == nil || o.FargateTasksCountHwmSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.FargateTasksCountHwmSum, true
+	return o.FargateTasksCountHwmSum, true
 }
 
 // HasFargateTasksCountHwmSum returns a boolean if a field has been set.
@@ -521,14 +508,13 @@ func (o *UsageSummaryResponse) GetGcpHostTop99pSum() int64 {
 	return *o.GcpHostTop99pSum
 }
 
-// GetGcpHostTop99pSumOk returns a tuple with the GcpHostTop99pSum field value if set, zero value otherwise
+// GetGcpHostTop99pSumOk returns a tuple with the GcpHostTop99pSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetGcpHostTop99pSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetGcpHostTop99pSumOk() (*int64, bool) {
 	if o == nil || o.GcpHostTop99pSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.GcpHostTop99pSum, true
+	return o.GcpHostTop99pSum, true
 }
 
 // HasGcpHostTop99pSum returns a boolean if a field has been set.
@@ -554,14 +540,13 @@ func (o *UsageSummaryResponse) GetIndexedEventsCountAggSum() int64 {
 	return *o.IndexedEventsCountAggSum
 }
 
-// GetIndexedEventsCountAggSumOk returns a tuple with the IndexedEventsCountAggSum field value if set, zero value otherwise
+// GetIndexedEventsCountAggSumOk returns a tuple with the IndexedEventsCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetIndexedEventsCountAggSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetIndexedEventsCountAggSumOk() (*int64, bool) {
 	if o == nil || o.IndexedEventsCountAggSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.IndexedEventsCountAggSum, true
+	return o.IndexedEventsCountAggSum, true
 }
 
 // HasIndexedEventsCountAggSum returns a boolean if a field has been set.
@@ -587,14 +572,13 @@ func (o *UsageSummaryResponse) GetInfraHostTop99pSum() int64 {
 	return *o.InfraHostTop99pSum
 }
 
-// GetInfraHostTop99pSumOk returns a tuple with the InfraHostTop99pSum field value if set, zero value otherwise
+// GetInfraHostTop99pSumOk returns a tuple with the InfraHostTop99pSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetInfraHostTop99pSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetInfraHostTop99pSumOk() (*int64, bool) {
 	if o == nil || o.InfraHostTop99pSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.InfraHostTop99pSum, true
+	return o.InfraHostTop99pSum, true
 }
 
 // HasInfraHostTop99pSum returns a boolean if a field has been set.
@@ -620,14 +604,13 @@ func (o *UsageSummaryResponse) GetIngestedEventsBytesAggSum() int64 {
 	return *o.IngestedEventsBytesAggSum
 }
 
-// GetIngestedEventsBytesAggSumOk returns a tuple with the IngestedEventsBytesAggSum field value if set, zero value otherwise
+// GetIngestedEventsBytesAggSumOk returns a tuple with the IngestedEventsBytesAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetIngestedEventsBytesAggSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetIngestedEventsBytesAggSumOk() (*int64, bool) {
 	if o == nil || o.IngestedEventsBytesAggSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.IngestedEventsBytesAggSum, true
+	return o.IngestedEventsBytesAggSum, true
 }
 
 // HasIngestedEventsBytesAggSum returns a boolean if a field has been set.
@@ -653,14 +636,13 @@ func (o *UsageSummaryResponse) GetLastUpdated() time.Time {
 	return *o.LastUpdated
 }
 
-// GetLastUpdatedOk returns a tuple with the LastUpdated field value if set, zero value otherwise
+// GetLastUpdatedOk returns a tuple with the LastUpdated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetLastUpdatedOk() (time.Time, bool) {
+func (o *UsageSummaryResponse) GetLastUpdatedOk() (*time.Time, bool) {
 	if o == nil || o.LastUpdated == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LastUpdated, true
+	return o.LastUpdated, true
 }
 
 // HasLastUpdated returns a boolean if a field has been set.
@@ -686,14 +668,13 @@ func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSum() int64 {
 	return *o.NetflowIndexedEventsCountAggSum
 }
 
-// GetNetflowIndexedEventsCountAggSumOk returns a tuple with the NetflowIndexedEventsCountAggSum field value if set, zero value otherwise
+// GetNetflowIndexedEventsCountAggSumOk returns a tuple with the NetflowIndexedEventsCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSumOk() (*int64, bool) {
 	if o == nil || o.NetflowIndexedEventsCountAggSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.NetflowIndexedEventsCountAggSum, true
+	return o.NetflowIndexedEventsCountAggSum, true
 }
 
 // HasNetflowIndexedEventsCountAggSum returns a boolean if a field has been set.
@@ -719,14 +700,13 @@ func (o *UsageSummaryResponse) GetNpmHostTop99pSum() int64 {
 	return *o.NpmHostTop99pSum
 }
 
-// GetNpmHostTop99pSumOk returns a tuple with the NpmHostTop99pSum field value if set, zero value otherwise
+// GetNpmHostTop99pSumOk returns a tuple with the NpmHostTop99pSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetNpmHostTop99pSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetNpmHostTop99pSumOk() (*int64, bool) {
 	if o == nil || o.NpmHostTop99pSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.NpmHostTop99pSum, true
+	return o.NpmHostTop99pSum, true
 }
 
 // HasNpmHostTop99pSum returns a boolean if a field has been set.
@@ -752,14 +732,13 @@ func (o *UsageSummaryResponse) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetStartDateOk() (time.Time, bool) {
+func (o *UsageSummaryResponse) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -785,14 +764,13 @@ func (o *UsageSummaryResponse) GetSyntheticsBrowserCheckCallsCountAggSum() int64
 	return *o.SyntheticsBrowserCheckCallsCountAggSum
 }
 
-// GetSyntheticsBrowserCheckCallsCountAggSumOk returns a tuple with the SyntheticsBrowserCheckCallsCountAggSum field value if set, zero value otherwise
+// GetSyntheticsBrowserCheckCallsCountAggSumOk returns a tuple with the SyntheticsBrowserCheckCallsCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetSyntheticsBrowserCheckCallsCountAggSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetSyntheticsBrowserCheckCallsCountAggSumOk() (*int64, bool) {
 	if o == nil || o.SyntheticsBrowserCheckCallsCountAggSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.SyntheticsBrowserCheckCallsCountAggSum, true
+	return o.SyntheticsBrowserCheckCallsCountAggSum, true
 }
 
 // HasSyntheticsBrowserCheckCallsCountAggSum returns a boolean if a field has been set.
@@ -818,14 +796,13 @@ func (o *UsageSummaryResponse) GetSyntheticsCheckCallsCountAggSum() int64 {
 	return *o.SyntheticsCheckCallsCountAggSum
 }
 
-// GetSyntheticsCheckCallsCountAggSumOk returns a tuple with the SyntheticsCheckCallsCountAggSum field value if set, zero value otherwise
+// GetSyntheticsCheckCallsCountAggSumOk returns a tuple with the SyntheticsCheckCallsCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetSyntheticsCheckCallsCountAggSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetSyntheticsCheckCallsCountAggSumOk() (*int64, bool) {
 	if o == nil || o.SyntheticsCheckCallsCountAggSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.SyntheticsCheckCallsCountAggSum, true
+	return o.SyntheticsCheckCallsCountAggSum, true
 }
 
 // HasSyntheticsCheckCallsCountAggSum returns a boolean if a field has been set.
@@ -851,14 +828,13 @@ func (o *UsageSummaryResponse) GetTraceSearchIndexedEventsCountAggSum() int64 {
 	return *o.TraceSearchIndexedEventsCountAggSum
 }
 
-// GetTraceSearchIndexedEventsCountAggSumOk returns a tuple with the TraceSearchIndexedEventsCountAggSum field value if set, zero value otherwise
+// GetTraceSearchIndexedEventsCountAggSumOk returns a tuple with the TraceSearchIndexedEventsCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetTraceSearchIndexedEventsCountAggSumOk() (int64, bool) {
+func (o *UsageSummaryResponse) GetTraceSearchIndexedEventsCountAggSumOk() (*int64, bool) {
 	if o == nil || o.TraceSearchIndexedEventsCountAggSum == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.TraceSearchIndexedEventsCountAggSum, true
+	return o.TraceSearchIndexedEventsCountAggSum, true
 }
 
 // HasTraceSearchIndexedEventsCountAggSum returns a boolean if a field has been set.
@@ -884,14 +860,13 @@ func (o *UsageSummaryResponse) GetUsage() []UsageSummaryDate {
 	return *o.Usage
 }
 
-// GetUsageOk returns a tuple with the Usage field value if set, zero value otherwise
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetUsageOk() ([]UsageSummaryDate, bool) {
+func (o *UsageSummaryResponse) GetUsageOk() (*[]UsageSummaryDate, bool) {
 	if o == nil || o.Usage == nil {
-		var ret []UsageSummaryDate
-		return ret, false
+		return nil, false
 	}
-	return *o.Usage, true
+	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -997,7 +972,7 @@ func (v NullableUsageSummaryResponse) Get() *UsageSummaryResponse {
 	return v.value
 }
 
-func (v NullableUsageSummaryResponse) Set(val *UsageSummaryResponse) {
+func (v *NullableUsageSummaryResponse) Set(val *UsageSummaryResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -1006,7 +981,7 @@ func (v NullableUsageSummaryResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageSummaryResponse) Unset() {
+func (v *NullableUsageSummaryResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

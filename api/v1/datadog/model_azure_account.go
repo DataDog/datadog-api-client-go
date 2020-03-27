@@ -55,14 +55,13 @@ func (o *AzureAccount) GetClientId() string {
 	return *o.ClientId
 }
 
-// GetClientIdOk returns a tuple with the ClientId field value if set, zero value otherwise
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetClientIdOk() (string, bool) {
+func (o *AzureAccount) GetClientIdOk() (*string, bool) {
 	if o == nil || o.ClientId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ClientId, true
+	return o.ClientId, true
 }
 
 // HasClientId returns a boolean if a field has been set.
@@ -88,14 +87,13 @@ func (o *AzureAccount) GetClientSecret() string {
 	return *o.ClientSecret
 }
 
-// GetClientSecretOk returns a tuple with the ClientSecret field value if set, zero value otherwise
+// GetClientSecretOk returns a tuple with the ClientSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetClientSecretOk() (string, bool) {
+func (o *AzureAccount) GetClientSecretOk() (*string, bool) {
 	if o == nil || o.ClientSecret == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ClientSecret, true
+	return o.ClientSecret, true
 }
 
 // HasClientSecret returns a boolean if a field has been set.
@@ -121,14 +119,13 @@ func (o *AzureAccount) GetErrors() []string {
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetErrorsOk() ([]string, bool) {
+func (o *AzureAccount) GetErrorsOk() (*[]string, bool) {
 	if o == nil || o.Errors == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -154,14 +151,13 @@ func (o *AzureAccount) GetHostFilters() string {
 	return *o.HostFilters
 }
 
-// GetHostFiltersOk returns a tuple with the HostFilters field value if set, zero value otherwise
+// GetHostFiltersOk returns a tuple with the HostFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetHostFiltersOk() (string, bool) {
+func (o *AzureAccount) GetHostFiltersOk() (*string, bool) {
 	if o == nil || o.HostFilters == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.HostFilters, true
+	return o.HostFilters, true
 }
 
 // HasHostFilters returns a boolean if a field has been set.
@@ -187,14 +183,13 @@ func (o *AzureAccount) GetNewClientId() string {
 	return *o.NewClientId
 }
 
-// GetNewClientIdOk returns a tuple with the NewClientId field value if set, zero value otherwise
+// GetNewClientIdOk returns a tuple with the NewClientId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetNewClientIdOk() (string, bool) {
+func (o *AzureAccount) GetNewClientIdOk() (*string, bool) {
 	if o == nil || o.NewClientId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NewClientId, true
+	return o.NewClientId, true
 }
 
 // HasNewClientId returns a boolean if a field has been set.
@@ -220,14 +215,13 @@ func (o *AzureAccount) GetNewTenantName() string {
 	return *o.NewTenantName
 }
 
-// GetNewTenantNameOk returns a tuple with the NewTenantName field value if set, zero value otherwise
+// GetNewTenantNameOk returns a tuple with the NewTenantName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetNewTenantNameOk() (string, bool) {
+func (o *AzureAccount) GetNewTenantNameOk() (*string, bool) {
 	if o == nil || o.NewTenantName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NewTenantName, true
+	return o.NewTenantName, true
 }
 
 // HasNewTenantName returns a boolean if a field has been set.
@@ -253,14 +247,13 @@ func (o *AzureAccount) GetTenantName() string {
 	return *o.TenantName
 }
 
-// GetTenantNameOk returns a tuple with the TenantName field value if set, zero value otherwise
+// GetTenantNameOk returns a tuple with the TenantName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetTenantNameOk() (string, bool) {
+func (o *AzureAccount) GetTenantNameOk() (*string, bool) {
 	if o == nil || o.TenantName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TenantName, true
+	return o.TenantName, true
 }
 
 // HasTenantName returns a boolean if a field has been set.
@@ -312,7 +305,7 @@ func (v NullableAzureAccount) Get() *AzureAccount {
 	return v.value
 }
 
-func (v NullableAzureAccount) Set(val *AzureAccount) {
+func (v *NullableAzureAccount) Set(val *AzureAccount) {
 	v.value = val
 	v.isSet = true
 }
@@ -321,7 +314,7 @@ func (v NullableAzureAccount) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAzureAccount) Unset() {
+func (v *NullableAzureAccount) Unset() {
 	v.value = nil
 	v.isSet = false
 }

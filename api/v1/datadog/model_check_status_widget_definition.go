@@ -65,6 +65,15 @@ func (o *CheckStatusWidgetDefinition) GetCheck() string {
 	return o.Check
 }
 
+// GetCheckOk returns a tuple with the Check field value
+// and a boolean to check if the value has been set.
+func (o *CheckStatusWidgetDefinition) GetCheckOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Check, true
+}
+
 // SetCheck sets field value
 func (o *CheckStatusWidgetDefinition) SetCheck(v string) {
 	o.Check = v
@@ -79,14 +88,13 @@ func (o *CheckStatusWidgetDefinition) GetGroup() string {
 	return *o.Group
 }
 
-// GetGroupOk returns a tuple with the Group field value if set, zero value otherwise
+// GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckStatusWidgetDefinition) GetGroupOk() (string, bool) {
+func (o *CheckStatusWidgetDefinition) GetGroupOk() (*string, bool) {
 	if o == nil || o.Group == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Group, true
+	return o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
@@ -112,14 +120,13 @@ func (o *CheckStatusWidgetDefinition) GetGroupBy() []string {
 	return *o.GroupBy
 }
 
-// GetGroupByOk returns a tuple with the GroupBy field value if set, zero value otherwise
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckStatusWidgetDefinition) GetGroupByOk() ([]string, bool) {
+func (o *CheckStatusWidgetDefinition) GetGroupByOk() (*[]string, bool) {
 	if o == nil || o.GroupBy == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.GroupBy, true
+	return o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -146,6 +153,15 @@ func (o *CheckStatusWidgetDefinition) GetGrouping() WidgetGrouping {
 	return o.Grouping
 }
 
+// GetGroupingOk returns a tuple with the Grouping field value
+// and a boolean to check if the value has been set.
+func (o *CheckStatusWidgetDefinition) GetGroupingOk() (*WidgetGrouping, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Grouping, true
+}
+
 // SetGrouping sets field value
 func (o *CheckStatusWidgetDefinition) SetGrouping(v WidgetGrouping) {
 	o.Grouping = v
@@ -160,14 +176,13 @@ func (o *CheckStatusWidgetDefinition) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckStatusWidgetDefinition) GetTagsOk() ([]string, bool) {
+func (o *CheckStatusWidgetDefinition) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -193,14 +208,13 @@ func (o *CheckStatusWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckStatusWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *CheckStatusWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -226,14 +240,13 @@ func (o *CheckStatusWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckStatusWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *CheckStatusWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -259,14 +272,13 @@ func (o *CheckStatusWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckStatusWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *CheckStatusWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -292,14 +304,13 @@ func (o *CheckStatusWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckStatusWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *CheckStatusWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -324,6 +335,15 @@ func (o *CheckStatusWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CheckStatusWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -380,7 +400,7 @@ func (v NullableCheckStatusWidgetDefinition) Get() *CheckStatusWidgetDefinition 
 	return v.value
 }
 
-func (v NullableCheckStatusWidgetDefinition) Set(val *CheckStatusWidgetDefinition) {
+func (v *NullableCheckStatusWidgetDefinition) Set(val *CheckStatusWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -389,7 +409,7 @@ func (v NullableCheckStatusWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableCheckStatusWidgetDefinition) Unset() {
+func (v *NullableCheckStatusWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }
