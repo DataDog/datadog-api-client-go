@@ -36,22 +36,17 @@ GetSources returns the Sources field if non-nil, zero value otherwise.
 
 ### GetSourcesOk
 
-`func (o *LogsDateRemapper) GetSourcesOk() ([]string, bool)`
+`func (o *LogsDateRemapper) GetSourcesOk() (*[]string, bool)`
 
 GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSources
-
-`func (o *LogsDateRemapper) HasSources() bool`
-
-HasSources returns a boolean if a field has been set.
 
 ### SetSources
 
 `func (o *LogsDateRemapper) SetSources(v []string)`
 
-SetSources gets a reference to the given []string and assigns it to the Sources field.
+SetSources sets Sources field to given value.
+
 
 ### GetType
 
@@ -61,22 +56,22 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsDateRemapper) GetTypeOk() (string, bool)`
+`func (o *LogsDateRemapper) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsDateRemapper) SetType(v string)`
+
+SetType sets Type field to given value.
 
 ### HasType
 
 `func (o *LogsDateRemapper) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *LogsDateRemapper) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetIsEnabled
 
@@ -86,22 +81,22 @@ GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
 ### GetIsEnabledOk
 
-`func (o *LogsDateRemapper) GetIsEnabledOk() (bool, bool)`
+`func (o *LogsDateRemapper) GetIsEnabledOk() (*bool, bool)`
 
 GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsEnabled
+
+`func (o *LogsDateRemapper) SetIsEnabled(v bool)`
+
+SetIsEnabled sets IsEnabled field to given value.
 
 ### HasIsEnabled
 
 `func (o *LogsDateRemapper) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
-
-### SetIsEnabled
-
-`func (o *LogsDateRemapper) SetIsEnabled(v bool)`
-
-SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
 
 ### GetName
 
@@ -111,22 +106,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsDateRemapper) GetNameOk() (string, bool)`
+`func (o *LogsDateRemapper) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsDateRemapper) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *LogsDateRemapper) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *LogsDateRemapper) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 
 ### AsLogsProcessor

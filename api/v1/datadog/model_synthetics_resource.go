@@ -50,14 +50,13 @@ func (o *SyntheticsResource) GetDuration() float64 {
 	return *o.Duration
 }
 
-// GetDurationOk returns a tuple with the Duration field value if set, zero value otherwise
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetDurationOk() (float64, bool) {
+func (o *SyntheticsResource) GetDurationOk() (*float64, bool) {
 	if o == nil || o.Duration == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Duration, true
+	return o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
@@ -83,14 +82,13 @@ func (o *SyntheticsResource) GetMethod() string {
 	return *o.Method
 }
 
-// GetMethodOk returns a tuple with the Method field value if set, zero value otherwise
+// GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetMethodOk() (string, bool) {
+func (o *SyntheticsResource) GetMethodOk() (*string, bool) {
 	if o == nil || o.Method == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Method, true
+	return o.Method, true
 }
 
 // HasMethod returns a boolean if a field has been set.
@@ -116,14 +114,13 @@ func (o *SyntheticsResource) GetSize() int64 {
 	return *o.Size
 }
 
-// GetSizeOk returns a tuple with the Size field value if set, zero value otherwise
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetSizeOk() (int64, bool) {
+func (o *SyntheticsResource) GetSizeOk() (*int64, bool) {
 	if o == nil || o.Size == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Size, true
+	return o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
@@ -149,14 +146,13 @@ func (o *SyntheticsResource) GetStatus() int64 {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetStatusOk() (int64, bool) {
+func (o *SyntheticsResource) GetStatusOk() (*int64, bool) {
 	if o == nil || o.Status == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -182,14 +178,13 @@ func (o *SyntheticsResource) GetTimestamp() float64 {
 	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value if set, zero value otherwise
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetTimestampOk() (float64, bool) {
+func (o *SyntheticsResource) GetTimestampOk() (*float64, bool) {
 	if o == nil || o.Timestamp == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Timestamp, true
+	return o.Timestamp, true
 }
 
 // HasTimestamp returns a boolean if a field has been set.
@@ -215,14 +210,13 @@ func (o *SyntheticsResource) GetTraceId() string {
 	return *o.TraceId
 }
 
-// GetTraceIdOk returns a tuple with the TraceId field value if set, zero value otherwise
+// GetTraceIdOk returns a tuple with the TraceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetTraceIdOk() (string, bool) {
+func (o *SyntheticsResource) GetTraceIdOk() (*string, bool) {
 	if o == nil || o.TraceId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TraceId, true
+	return o.TraceId, true
 }
 
 // HasTraceId returns a boolean if a field has been set.
@@ -248,14 +242,13 @@ func (o *SyntheticsResource) GetType() SyntheticsResourceType {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetTypeOk() (SyntheticsResourceType, bool) {
+func (o *SyntheticsResource) GetTypeOk() (*SyntheticsResourceType, bool) {
 	if o == nil || o.Type == nil {
-		var ret SyntheticsResourceType
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -281,14 +274,13 @@ func (o *SyntheticsResource) GetUrl() string {
 	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, zero value otherwise
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsResource) GetUrlOk() (string, bool) {
+func (o *SyntheticsResource) GetUrlOk() (*string, bool) {
 	if o == nil || o.Url == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Url, true
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
@@ -343,7 +335,7 @@ func (v NullableSyntheticsResource) Get() *SyntheticsResource {
 	return v.value
 }
 
-func (v NullableSyntheticsResource) Set(val *SyntheticsResource) {
+func (v *NullableSyntheticsResource) Set(val *SyntheticsResource) {
 	v.value = val
 	v.isSet = true
 }
@@ -352,7 +344,7 @@ func (v NullableSyntheticsResource) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsResource) Unset() {
+func (v *NullableSyntheticsResource) Unset() {
 	v.value = nil
 	v.isSet = false
 }

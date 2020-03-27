@@ -34,22 +34,17 @@ GetMessage returns the Message field if non-nil, zero value otherwise.
 
 ### GetMessageOk
 
-`func (o *SyntheticsStepDetailWarnings) GetMessageOk() (string, bool)`
+`func (o *SyntheticsStepDetailWarnings) GetMessageOk() (*string, bool)`
 
 GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasMessage
-
-`func (o *SyntheticsStepDetailWarnings) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 ### SetMessage
 
 `func (o *SyntheticsStepDetailWarnings) SetMessage(v string)`
 
-SetMessage gets a reference to the given string and assigns it to the Message field.
+SetMessage sets Message field to given value.
+
 
 ### GetType
 
@@ -59,22 +54,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SyntheticsStepDetailWarnings) GetTypeOk() (SyntheticsWarningType, bool)`
+`func (o *SyntheticsStepDetailWarnings) GetTypeOk() (*SyntheticsWarningType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *SyntheticsStepDetailWarnings) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *SyntheticsStepDetailWarnings) SetType(v SyntheticsWarningType)`
 
-SetType gets a reference to the given SyntheticsWarningType and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

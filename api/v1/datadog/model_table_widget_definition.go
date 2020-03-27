@@ -56,6 +56,15 @@ func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
 	return o.Requests
 }
 
+// GetRequestsOk returns a tuple with the Requests field value
+// and a boolean to check if the value has been set.
+func (o *TableWidgetDefinition) GetRequestsOk() (*[]TableWidgetRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Requests, true
+}
+
 // SetRequests sets field value
 func (o *TableWidgetDefinition) SetRequests(v []TableWidgetRequest) {
 	o.Requests = v
@@ -70,14 +79,13 @@ func (o *TableWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *TableWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -103,14 +111,13 @@ func (o *TableWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *TableWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -136,14 +143,13 @@ func (o *TableWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *TableWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -169,14 +175,13 @@ func (o *TableWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *TableWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -201,6 +206,15 @@ func (o *TableWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *TableWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -245,7 +259,7 @@ func (v NullableTableWidgetDefinition) Get() *TableWidgetDefinition {
 	return v.value
 }
 
-func (v NullableTableWidgetDefinition) Set(val *TableWidgetDefinition) {
+func (v *NullableTableWidgetDefinition) Set(val *TableWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -254,7 +268,7 @@ func (v NullableTableWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTableWidgetDefinition) Unset() {
+func (v *NullableTableWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -36,22 +36,17 @@ GetOperator returns the Operator field if non-nil, zero value otherwise.
 
 ### GetOperatorOk
 
-`func (o *SyntheticsAssertion) GetOperatorOk() (SyntheticsAssertionOperator, bool)`
+`func (o *SyntheticsAssertion) GetOperatorOk() (*SyntheticsAssertionOperator, bool)`
 
 GetOperatorOk returns a tuple with the Operator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasOperator
-
-`func (o *SyntheticsAssertion) HasOperator() bool`
-
-HasOperator returns a boolean if a field has been set.
 
 ### SetOperator
 
 `func (o *SyntheticsAssertion) SetOperator(v SyntheticsAssertionOperator)`
 
-SetOperator gets a reference to the given SyntheticsAssertionOperator and assigns it to the Operator field.
+SetOperator sets Operator field to given value.
+
 
 ### GetProperty
 
@@ -61,22 +56,22 @@ GetProperty returns the Property field if non-nil, zero value otherwise.
 
 ### GetPropertyOk
 
-`func (o *SyntheticsAssertion) GetPropertyOk() (string, bool)`
+`func (o *SyntheticsAssertion) GetPropertyOk() (*string, bool)`
 
 GetPropertyOk returns a tuple with the Property field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProperty
+
+`func (o *SyntheticsAssertion) SetProperty(v string)`
+
+SetProperty sets Property field to given value.
 
 ### HasProperty
 
 `func (o *SyntheticsAssertion) HasProperty() bool`
 
 HasProperty returns a boolean if a field has been set.
-
-### SetProperty
-
-`func (o *SyntheticsAssertion) SetProperty(v string)`
-
-SetProperty gets a reference to the given string and assigns it to the Property field.
 
 ### GetTarget
 
@@ -86,22 +81,22 @@ GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *SyntheticsAssertion) GetTargetOk() (interface{}, bool)`
+`func (o *SyntheticsAssertion) GetTargetOk() (*interface{}, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTarget
+
+`func (o *SyntheticsAssertion) SetTarget(v interface{})`
+
+SetTarget sets Target field to given value.
 
 ### HasTarget
 
 `func (o *SyntheticsAssertion) HasTarget() bool`
 
 HasTarget returns a boolean if a field has been set.
-
-### SetTarget
-
-`func (o *SyntheticsAssertion) SetTarget(v interface{})`
-
-SetTarget gets a reference to the given interface{} and assigns it to the Target field.
 
 ### GetType
 
@@ -111,22 +106,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SyntheticsAssertion) GetTypeOk() (SyntheticsAssertionType, bool)`
+`func (o *SyntheticsAssertion) GetTypeOk() (*SyntheticsAssertionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *SyntheticsAssertion) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *SyntheticsAssertion) SetType(v SyntheticsAssertionType)`
 
-SetType gets a reference to the given SyntheticsAssertionType and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

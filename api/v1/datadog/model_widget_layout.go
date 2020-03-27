@@ -55,6 +55,15 @@ func (o *WidgetLayout) GetHeight() int64 {
 	return o.Height
 }
 
+// GetHeightOk returns a tuple with the Height field value
+// and a boolean to check if the value has been set.
+func (o *WidgetLayout) GetHeightOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Height, true
+}
+
 // SetHeight sets field value
 func (o *WidgetLayout) SetHeight(v int64) {
 	o.Height = v
@@ -68,6 +77,15 @@ func (o *WidgetLayout) GetWidth() int64 {
 	}
 
 	return o.Width
+}
+
+// GetWidthOk returns a tuple with the Width field value
+// and a boolean to check if the value has been set.
+func (o *WidgetLayout) GetWidthOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Width, true
 }
 
 // SetWidth sets field value
@@ -85,6 +103,15 @@ func (o *WidgetLayout) GetX() int64 {
 	return o.X
 }
 
+// GetXOk returns a tuple with the X field value
+// and a boolean to check if the value has been set.
+func (o *WidgetLayout) GetXOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.X, true
+}
+
 // SetX sets field value
 func (o *WidgetLayout) SetX(v int64) {
 	o.X = v
@@ -98,6 +125,15 @@ func (o *WidgetLayout) GetY() int64 {
 	}
 
 	return o.Y
+}
+
+// GetYOk returns a tuple with the Y field value
+// and a boolean to check if the value has been set.
+func (o *WidgetLayout) GetYOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Y, true
 }
 
 // SetY sets field value
@@ -131,7 +167,7 @@ func (v NullableWidgetLayout) Get() *WidgetLayout {
 	return v.value
 }
 
-func (v NullableWidgetLayout) Set(val *WidgetLayout) {
+func (v *NullableWidgetLayout) Set(val *WidgetLayout) {
 	v.value = val
 	v.isSet = true
 }
@@ -140,7 +176,7 @@ func (v NullableWidgetLayout) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetLayout) Unset() {
+func (v *NullableWidgetLayout) Unset() {
 	v.value = nil
 	v.isSet = false
 }

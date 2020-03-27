@@ -50,6 +50,15 @@ func (o *SyntheticsBrowserError) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserError) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *SyntheticsBrowserError) SetDescription(v string) {
 	o.Description = v
@@ -63,6 +72,15 @@ func (o *SyntheticsBrowserError) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserError) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -79,14 +97,13 @@ func (o *SyntheticsBrowserError) GetStatusCode() int64 {
 	return *o.StatusCode
 }
 
-// GetStatusCodeOk returns a tuple with the StatusCode field value if set, zero value otherwise
+// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserError) GetStatusCodeOk() (int64, bool) {
+func (o *SyntheticsBrowserError) GetStatusCodeOk() (*int64, bool) {
 	if o == nil || o.StatusCode == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.StatusCode, true
+	return o.StatusCode, true
 }
 
 // HasStatusCode returns a boolean if a field has been set.
@@ -111,6 +128,15 @@ func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserError) GetTypeOk() (*SyntheticsBrowserErrorType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -144,7 +170,7 @@ func (v NullableSyntheticsBrowserError) Get() *SyntheticsBrowserError {
 	return v.value
 }
 
-func (v NullableSyntheticsBrowserError) Set(val *SyntheticsBrowserError) {
+func (v *NullableSyntheticsBrowserError) Set(val *SyntheticsBrowserError) {
 	v.value = val
 	v.isSet = true
 }
@@ -153,7 +179,7 @@ func (v NullableSyntheticsBrowserError) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsBrowserError) Unset() {
+func (v *NullableSyntheticsBrowserError) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectiveListResponse TODO.
+// ServiceLevelObjectiveListResponse A response with one or more service level objective.
 type ServiceLevelObjectiveListResponse struct {
 	// An array of service level objective objects.
 	Data []ServiceLevelObjective `json:"data"`
@@ -48,6 +48,15 @@ func (o *ServiceLevelObjectiveListResponse) GetData() []ServiceLevelObjective {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectiveListResponse) GetDataOk() (*[]ServiceLevelObjective, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *ServiceLevelObjectiveListResponse) SetData(v []ServiceLevelObjective) {
 	o.Data = v
@@ -62,14 +71,13 @@ func (o *ServiceLevelObjectiveListResponse) GetErrors() []string {
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveListResponse) GetErrorsOk() ([]string, bool) {
+func (o *ServiceLevelObjectiveListResponse) GetErrorsOk() (*[]string, bool) {
 	if o == nil || o.Errors == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -106,7 +114,7 @@ func (v NullableServiceLevelObjectiveListResponse) Get() *ServiceLevelObjectiveL
 	return v.value
 }
 
-func (v NullableServiceLevelObjectiveListResponse) Set(val *ServiceLevelObjectiveListResponse) {
+func (v *NullableServiceLevelObjectiveListResponse) Set(val *ServiceLevelObjectiveListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -115,7 +123,7 @@ func (v NullableServiceLevelObjectiveListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectiveListResponse) Unset() {
+func (v *NullableServiceLevelObjectiveListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

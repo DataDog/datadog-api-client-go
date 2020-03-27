@@ -36,22 +36,22 @@ GetApiToken returns the ApiToken field if non-nil, zero value otherwise.
 
 ### GetApiTokenOk
 
-`func (o *PagerDutyIntegration) GetApiTokenOk() (string, bool)`
+`func (o *PagerDutyIntegration) GetApiTokenOk() (*string, bool)`
 
 GetApiTokenOk returns a tuple with the ApiToken field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetApiToken
+
+`func (o *PagerDutyIntegration) SetApiToken(v string)`
+
+SetApiToken sets ApiToken field to given value.
 
 ### HasApiToken
 
 `func (o *PagerDutyIntegration) HasApiToken() bool`
 
 HasApiToken returns a boolean if a field has been set.
-
-### SetApiToken
-
-`func (o *PagerDutyIntegration) SetApiToken(v string)`
-
-SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
 
 ### GetSchedules
 
@@ -61,22 +61,22 @@ GetSchedules returns the Schedules field if non-nil, zero value otherwise.
 
 ### GetSchedulesOk
 
-`func (o *PagerDutyIntegration) GetSchedulesOk() ([]string, bool)`
+`func (o *PagerDutyIntegration) GetSchedulesOk() (*[]string, bool)`
 
 GetSchedulesOk returns a tuple with the Schedules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSchedules
+
+`func (o *PagerDutyIntegration) SetSchedules(v []string)`
+
+SetSchedules sets Schedules field to given value.
 
 ### HasSchedules
 
 `func (o *PagerDutyIntegration) HasSchedules() bool`
 
 HasSchedules returns a boolean if a field has been set.
-
-### SetSchedules
-
-`func (o *PagerDutyIntegration) SetSchedules(v []string)`
-
-SetSchedules gets a reference to the given []string and assigns it to the Schedules field.
 
 ### GetServices
 
@@ -86,22 +86,22 @@ GetServices returns the Services field if non-nil, zero value otherwise.
 
 ### GetServicesOk
 
-`func (o *PagerDutyIntegration) GetServicesOk() ([]PagerDutyService, bool)`
+`func (o *PagerDutyIntegration) GetServicesOk() (*[]PagerDutyService, bool)`
 
 GetServicesOk returns a tuple with the Services field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetServices
+
+`func (o *PagerDutyIntegration) SetServices(v []PagerDutyService)`
+
+SetServices sets Services field to given value.
 
 ### HasServices
 
 `func (o *PagerDutyIntegration) HasServices() bool`
 
 HasServices returns a boolean if a field has been set.
-
-### SetServices
-
-`func (o *PagerDutyIntegration) SetServices(v []PagerDutyService)`
-
-SetServices gets a reference to the given []PagerDutyService and assigns it to the Services field.
 
 ### GetSubdomain
 
@@ -111,22 +111,22 @@ GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
 
 ### GetSubdomainOk
 
-`func (o *PagerDutyIntegration) GetSubdomainOk() (string, bool)`
+`func (o *PagerDutyIntegration) GetSubdomainOk() (*string, bool)`
 
 GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSubdomain
+
+`func (o *PagerDutyIntegration) SetSubdomain(v string)`
+
+SetSubdomain sets Subdomain field to given value.
 
 ### HasSubdomain
 
 `func (o *PagerDutyIntegration) HasSubdomain() bool`
 
 HasSubdomain returns a boolean if a field has been set.
-
-### SetSubdomain
-
-`func (o *PagerDutyIntegration) SetSubdomain(v string)`
-
-SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

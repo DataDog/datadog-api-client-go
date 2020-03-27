@@ -47,14 +47,13 @@ func (o *SyntheticsLocation) GetDisplayName() string {
 	return *o.DisplayName
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, zero value otherwise
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsLocation) GetDisplayNameOk() (string, bool) {
+func (o *SyntheticsLocation) GetDisplayNameOk() (*string, bool) {
 	if o == nil || o.DisplayName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DisplayName, true
+	return o.DisplayName, true
 }
 
 // HasDisplayName returns a boolean if a field has been set.
@@ -80,14 +79,13 @@ func (o *SyntheticsLocation) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsLocation) GetIdOk() (int64, bool) {
+func (o *SyntheticsLocation) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -113,14 +111,13 @@ func (o *SyntheticsLocation) GetIsActive() bool {
 	return *o.IsActive
 }
 
-// GetIsActiveOk returns a tuple with the IsActive field value if set, zero value otherwise
+// GetIsActiveOk returns a tuple with the IsActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsLocation) GetIsActiveOk() (bool, bool) {
+func (o *SyntheticsLocation) GetIsActiveOk() (*bool, bool) {
 	if o == nil || o.IsActive == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsActive, true
+	return o.IsActive, true
 }
 
 // HasIsActive returns a boolean if a field has been set.
@@ -146,14 +143,13 @@ func (o *SyntheticsLocation) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsLocation) GetNameOk() (string, bool) {
+func (o *SyntheticsLocation) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -179,14 +175,13 @@ func (o *SyntheticsLocation) GetRegion() string {
 	return *o.Region
 }
 
-// GetRegionOk returns a tuple with the Region field value if set, zero value otherwise
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsLocation) GetRegionOk() (string, bool) {
+func (o *SyntheticsLocation) GetRegionOk() (*string, bool) {
 	if o == nil || o.Region == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Region, true
+	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
@@ -232,7 +227,7 @@ func (v NullableSyntheticsLocation) Get() *SyntheticsLocation {
 	return v.value
 }
 
-func (v NullableSyntheticsLocation) Set(val *SyntheticsLocation) {
+func (v *NullableSyntheticsLocation) Set(val *SyntheticsLocation) {
 	v.value = val
 	v.isSet = true
 }
@@ -241,7 +236,7 @@ func (v NullableSyntheticsLocation) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsLocation) Unset() {
+func (v *NullableSyntheticsLocation) Unset() {
 	v.value = nil
 	v.isSet = false
 }

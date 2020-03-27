@@ -38,22 +38,22 @@ GetIndex returns the Index field if non-nil, zero value otherwise.
 
 ### GetIndexOk
 
-`func (o *LogsListRequest) GetIndexOk() (string, bool)`
+`func (o *LogsListRequest) GetIndexOk() (*string, bool)`
 
 GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIndex
+
+`func (o *LogsListRequest) SetIndex(v string)`
+
+SetIndex sets Index field to given value.
 
 ### HasIndex
 
 `func (o *LogsListRequest) HasIndex() bool`
 
 HasIndex returns a boolean if a field has been set.
-
-### SetIndex
-
-`func (o *LogsListRequest) SetIndex(v string)`
-
-SetIndex gets a reference to the given string and assigns it to the Index field.
 
 ### GetLimit
 
@@ -63,22 +63,22 @@ GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *LogsListRequest) GetLimitOk() (int32, bool)`
+`func (o *LogsListRequest) GetLimitOk() (*int32, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLimit
+
+`func (o *LogsListRequest) SetLimit(v int32)`
+
+SetLimit sets Limit field to given value.
 
 ### HasLimit
 
 `func (o *LogsListRequest) HasLimit() bool`
 
 HasLimit returns a boolean if a field has been set.
-
-### SetLimit
-
-`func (o *LogsListRequest) SetLimit(v int32)`
-
-SetLimit gets a reference to the given int32 and assigns it to the Limit field.
 
 ### GetQuery
 
@@ -88,22 +88,17 @@ GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *LogsListRequest) GetQueryOk() (string, bool)`
+`func (o *LogsListRequest) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasQuery
-
-`func (o *LogsListRequest) HasQuery() bool`
-
-HasQuery returns a boolean if a field has been set.
 
 ### SetQuery
 
 `func (o *LogsListRequest) SetQuery(v string)`
 
-SetQuery gets a reference to the given string and assigns it to the Query field.
+SetQuery sets Query field to given value.
+
 
 ### GetSort
 
@@ -113,22 +108,22 @@ GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *LogsListRequest) GetSortOk() (LogsSort, bool)`
+`func (o *LogsListRequest) GetSortOk() (*LogsSort, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSort
+
+`func (o *LogsListRequest) SetSort(v LogsSort)`
+
+SetSort sets Sort field to given value.
 
 ### HasSort
 
 `func (o *LogsListRequest) HasSort() bool`
 
 HasSort returns a boolean if a field has been set.
-
-### SetSort
-
-`func (o *LogsListRequest) SetSort(v LogsSort)`
-
-SetSort gets a reference to the given LogsSort and assigns it to the Sort field.
 
 ### GetStartAt
 
@@ -138,22 +133,22 @@ GetStartAt returns the StartAt field if non-nil, zero value otherwise.
 
 ### GetStartAtOk
 
-`func (o *LogsListRequest) GetStartAtOk() (string, bool)`
+`func (o *LogsListRequest) GetStartAtOk() (*string, bool)`
 
 GetStartAtOk returns a tuple with the StartAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStartAt
+
+`func (o *LogsListRequest) SetStartAt(v string)`
+
+SetStartAt sets StartAt field to given value.
 
 ### HasStartAt
 
 `func (o *LogsListRequest) HasStartAt() bool`
 
 HasStartAt returns a boolean if a field has been set.
-
-### SetStartAt
-
-`func (o *LogsListRequest) SetStartAt(v string)`
-
-SetStartAt gets a reference to the given string and assigns it to the StartAt field.
 
 ### GetTime
 
@@ -163,22 +158,17 @@ GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *LogsListRequest) GetTimeOk() (LogsListRequestTime, bool)`
+`func (o *LogsListRequest) GetTimeOk() (*LogsListRequestTime, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTime
-
-`func (o *LogsListRequest) HasTime() bool`
-
-HasTime returns a boolean if a field has been set.
 
 ### SetTime
 
 `func (o *LogsListRequest) SetTime(v LogsListRequestTime)`
 
-SetTime gets a reference to the given LogsListRequestTime and assigns it to the Time field.
+SetTime sets Time field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -52,6 +52,15 @@ func (o *LogsListRequestTime) GetFrom() time.Time {
 	return o.From
 }
 
+// GetFromOk returns a tuple with the From field value
+// and a boolean to check if the value has been set.
+func (o *LogsListRequestTime) GetFromOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.From, true
+}
+
 // SetFrom sets field value
 func (o *LogsListRequestTime) SetFrom(v time.Time) {
 	o.From = v
@@ -66,14 +75,13 @@ func (o *LogsListRequestTime) GetTimezone() string {
 	return *o.Timezone
 }
 
-// GetTimezoneOk returns a tuple with the Timezone field value if set, zero value otherwise
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListRequestTime) GetTimezoneOk() (string, bool) {
+func (o *LogsListRequestTime) GetTimezoneOk() (*string, bool) {
 	if o == nil || o.Timezone == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Timezone, true
+	return o.Timezone, true
 }
 
 // HasTimezone returns a boolean if a field has been set.
@@ -98,6 +106,15 @@ func (o *LogsListRequestTime) GetTo() time.Time {
 	}
 
 	return o.To
+}
+
+// GetToOk returns a tuple with the To field value
+// and a boolean to check if the value has been set.
+func (o *LogsListRequestTime) GetToOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.To, true
 }
 
 // SetTo sets field value
@@ -128,7 +145,7 @@ func (v NullableLogsListRequestTime) Get() *LogsListRequestTime {
 	return v.value
 }
 
-func (v NullableLogsListRequestTime) Set(val *LogsListRequestTime) {
+func (v *NullableLogsListRequestTime) Set(val *LogsListRequestTime) {
 	v.value = val
 	v.isSet = true
 }
@@ -137,7 +154,7 @@ func (v NullableLogsListRequestTime) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsListRequestTime) Unset() {
+func (v *NullableLogsListRequestTime) Unset() {
 	v.value = nil
 	v.isSet = false
 }

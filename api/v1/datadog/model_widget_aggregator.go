@@ -38,7 +38,7 @@ func (v NullableWidgetAggregator) Get() *WidgetAggregator {
 	return v.value
 }
 
-func (v NullableWidgetAggregator) Set(val *WidgetAggregator) {
+func (v *NullableWidgetAggregator) Set(val *WidgetAggregator) {
 	v.value = val
 	v.isSet = true
 }
@@ -47,7 +47,7 @@ func (v NullableWidgetAggregator) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetAggregator) Unset() {
+func (v *NullableWidgetAggregator) Unset() {
 	v.value = nil
 	v.isSet = false
 }

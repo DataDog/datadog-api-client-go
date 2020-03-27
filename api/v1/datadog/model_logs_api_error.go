@@ -48,14 +48,13 @@ func (o *LogsAPIError) GetCode() string {
 	return *o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, zero value otherwise
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsAPIError) GetCodeOk() (string, bool) {
+func (o *LogsAPIError) GetCodeOk() (*string, bool) {
 	if o == nil || o.Code == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Code, true
+	return o.Code, true
 }
 
 // HasCode returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *LogsAPIError) GetDetails() []LogsAPIError {
 	return *o.Details
 }
 
-// GetDetailsOk returns a tuple with the Details field value if set, zero value otherwise
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsAPIError) GetDetailsOk() ([]LogsAPIError, bool) {
+func (o *LogsAPIError) GetDetailsOk() (*[]LogsAPIError, bool) {
 	if o == nil || o.Details == nil {
-		var ret []LogsAPIError
-		return ret, false
+		return nil, false
 	}
-	return *o.Details, true
+	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *LogsAPIError) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsAPIError) GetMessageOk() (string, bool) {
+func (o *LogsAPIError) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -161,7 +158,7 @@ func (v NullableLogsAPIError) Get() *LogsAPIError {
 	return v.value
 }
 
-func (v NullableLogsAPIError) Set(val *LogsAPIError) {
+func (v *NullableLogsAPIError) Set(val *LogsAPIError) {
 	v.value = val
 	v.isSet = true
 }
@@ -170,7 +167,7 @@ func (v NullableLogsAPIError) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsAPIError) Unset() {
+func (v *NullableLogsAPIError) Unset() {
 	v.value = nil
 	v.isSet = false
 }

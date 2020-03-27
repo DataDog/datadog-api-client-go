@@ -39,22 +39,17 @@ GetAlertId returns the AlertId field if non-nil, zero value otherwise.
 
 ### GetAlertIdOk
 
-`func (o *AlertGraphWidgetDefinition) GetAlertIdOk() (string, bool)`
+`func (o *AlertGraphWidgetDefinition) GetAlertIdOk() (*string, bool)`
 
 GetAlertIdOk returns a tuple with the AlertId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAlertId
-
-`func (o *AlertGraphWidgetDefinition) HasAlertId() bool`
-
-HasAlertId returns a boolean if a field has been set.
 
 ### SetAlertId
 
 `func (o *AlertGraphWidgetDefinition) SetAlertId(v string)`
 
-SetAlertId gets a reference to the given string and assigns it to the AlertId field.
+SetAlertId sets AlertId field to given value.
+
 
 ### GetTime
 
@@ -64,22 +59,22 @@ GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *AlertGraphWidgetDefinition) GetTimeOk() (WidgetTime, bool)`
+`func (o *AlertGraphWidgetDefinition) GetTimeOk() (*WidgetTime, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *AlertGraphWidgetDefinition) SetTime(v WidgetTime)`
+
+SetTime sets Time field to given value.
 
 ### HasTime
 
 `func (o *AlertGraphWidgetDefinition) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
-
-### SetTime
-
-`func (o *AlertGraphWidgetDefinition) SetTime(v WidgetTime)`
-
-SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
 
 ### GetTitle
 
@@ -89,22 +84,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *AlertGraphWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *AlertGraphWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *AlertGraphWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *AlertGraphWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *AlertGraphWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -114,22 +109,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *AlertGraphWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *AlertGraphWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *AlertGraphWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *AlertGraphWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *AlertGraphWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -139,22 +134,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *AlertGraphWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *AlertGraphWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *AlertGraphWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *AlertGraphWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *AlertGraphWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -164,22 +159,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *AlertGraphWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *AlertGraphWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *AlertGraphWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *AlertGraphWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetVizType
 
@@ -189,22 +179,17 @@ GetVizType returns the VizType field if non-nil, zero value otherwise.
 
 ### GetVizTypeOk
 
-`func (o *AlertGraphWidgetDefinition) GetVizTypeOk() (WidgetVizType, bool)`
+`func (o *AlertGraphWidgetDefinition) GetVizTypeOk() (*WidgetVizType, bool)`
 
 GetVizTypeOk returns a tuple with the VizType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasVizType
-
-`func (o *AlertGraphWidgetDefinition) HasVizType() bool`
-
-HasVizType returns a boolean if a field has been set.
 
 ### SetVizType
 
 `func (o *AlertGraphWidgetDefinition) SetVizType(v WidgetVizType)`
 
-SetVizType gets a reference to the given WidgetVizType and assigns it to the VizType field.
+SetVizType sets VizType field to given value.
+
 
 
 ### AsWidgetDefinition

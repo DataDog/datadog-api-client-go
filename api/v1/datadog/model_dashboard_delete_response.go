@@ -44,14 +44,13 @@ func (o *DashboardDeleteResponse) GetDeletedDashboardId() string {
 	return *o.DeletedDashboardId
 }
 
-// GetDeletedDashboardIdOk returns a tuple with the DeletedDashboardId field value if set, zero value otherwise
+// GetDeletedDashboardIdOk returns a tuple with the DeletedDashboardId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardDeleteResponse) GetDeletedDashboardIdOk() (string, bool) {
+func (o *DashboardDeleteResponse) GetDeletedDashboardIdOk() (*string, bool) {
 	if o == nil || o.DeletedDashboardId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DeletedDashboardId, true
+	return o.DeletedDashboardId, true
 }
 
 // HasDeletedDashboardId returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableDashboardDeleteResponse) Get() *DashboardDeleteResponse {
 	return v.value
 }
 
-func (v NullableDashboardDeleteResponse) Set(val *DashboardDeleteResponse) {
+func (v *NullableDashboardDeleteResponse) Set(val *DashboardDeleteResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableDashboardDeleteResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardDeleteResponse) Unset() {
+func (v *NullableDashboardDeleteResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

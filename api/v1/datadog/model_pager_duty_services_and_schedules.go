@@ -46,14 +46,13 @@ func (o *PagerDutyServicesAndSchedules) GetSchedules() []string {
 	return *o.Schedules
 }
 
-// GetSchedulesOk returns a tuple with the Schedules field value if set, zero value otherwise
+// GetSchedulesOk returns a tuple with the Schedules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PagerDutyServicesAndSchedules) GetSchedulesOk() ([]string, bool) {
+func (o *PagerDutyServicesAndSchedules) GetSchedulesOk() (*[]string, bool) {
 	if o == nil || o.Schedules == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Schedules, true
+	return o.Schedules, true
 }
 
 // HasSchedules returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *PagerDutyServicesAndSchedules) GetServices() []PagerDutyService {
 	return *o.Services
 }
 
-// GetServicesOk returns a tuple with the Services field value if set, zero value otherwise
+// GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PagerDutyServicesAndSchedules) GetServicesOk() ([]PagerDutyService, bool) {
+func (o *PagerDutyServicesAndSchedules) GetServicesOk() (*[]PagerDutyService, bool) {
 	if o == nil || o.Services == nil {
-		var ret []PagerDutyService
-		return ret, false
+		return nil, false
 	}
-	return *o.Services, true
+	return o.Services, true
 }
 
 // HasServices returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullablePagerDutyServicesAndSchedules) Get() *PagerDutyServicesAndSchedu
 	return v.value
 }
 
-func (v NullablePagerDutyServicesAndSchedules) Set(val *PagerDutyServicesAndSchedules) {
+func (v *NullablePagerDutyServicesAndSchedules) Set(val *PagerDutyServicesAndSchedules) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullablePagerDutyServicesAndSchedules) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullablePagerDutyServicesAndSchedules) Unset() {
+func (v *NullablePagerDutyServicesAndSchedules) Unset() {
 	v.value = nil
 	v.isSet = false
 }

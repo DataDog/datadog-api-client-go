@@ -50,14 +50,13 @@ func (o *PagerDutyIntegration) GetApiToken() string {
 	return *o.ApiToken
 }
 
-// GetApiTokenOk returns a tuple with the ApiToken field value if set, zero value otherwise
+// GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PagerDutyIntegration) GetApiTokenOk() (string, bool) {
+func (o *PagerDutyIntegration) GetApiTokenOk() (*string, bool) {
 	if o == nil || o.ApiToken == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ApiToken, true
+	return o.ApiToken, true
 }
 
 // HasApiToken returns a boolean if a field has been set.
@@ -83,14 +82,13 @@ func (o *PagerDutyIntegration) GetSchedules() []string {
 	return *o.Schedules
 }
 
-// GetSchedulesOk returns a tuple with the Schedules field value if set, zero value otherwise
+// GetSchedulesOk returns a tuple with the Schedules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PagerDutyIntegration) GetSchedulesOk() ([]string, bool) {
+func (o *PagerDutyIntegration) GetSchedulesOk() (*[]string, bool) {
 	if o == nil || o.Schedules == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Schedules, true
+	return o.Schedules, true
 }
 
 // HasSchedules returns a boolean if a field has been set.
@@ -116,14 +114,13 @@ func (o *PagerDutyIntegration) GetServices() []PagerDutyService {
 	return *o.Services
 }
 
-// GetServicesOk returns a tuple with the Services field value if set, zero value otherwise
+// GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PagerDutyIntegration) GetServicesOk() ([]PagerDutyService, bool) {
+func (o *PagerDutyIntegration) GetServicesOk() (*[]PagerDutyService, bool) {
 	if o == nil || o.Services == nil {
-		var ret []PagerDutyService
-		return ret, false
+		return nil, false
 	}
-	return *o.Services, true
+	return o.Services, true
 }
 
 // HasServices returns a boolean if a field has been set.
@@ -149,14 +146,13 @@ func (o *PagerDutyIntegration) GetSubdomain() string {
 	return *o.Subdomain
 }
 
-// GetSubdomainOk returns a tuple with the Subdomain field value if set, zero value otherwise
+// GetSubdomainOk returns a tuple with the Subdomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PagerDutyIntegration) GetSubdomainOk() (string, bool) {
+func (o *PagerDutyIntegration) GetSubdomainOk() (*string, bool) {
 	if o == nil || o.Subdomain == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Subdomain, true
+	return o.Subdomain, true
 }
 
 // HasSubdomain returns a boolean if a field has been set.
@@ -199,7 +195,7 @@ func (v NullablePagerDutyIntegration) Get() *PagerDutyIntegration {
 	return v.value
 }
 
-func (v NullablePagerDutyIntegration) Set(val *PagerDutyIntegration) {
+func (v *NullablePagerDutyIntegration) Set(val *PagerDutyIntegration) {
 	v.value = val
 	v.isSet = true
 }
@@ -208,7 +204,7 @@ func (v NullablePagerDutyIntegration) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullablePagerDutyIntegration) Unset() {
+func (v *NullablePagerDutyIntegration) Unset() {
 	v.value = nil
 	v.isSet = false
 }

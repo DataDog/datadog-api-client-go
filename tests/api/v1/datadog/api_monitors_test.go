@@ -90,8 +90,9 @@ func TestMonitorLifecycle(t *testing.T) {
 	defer deleteMonitor(monitor.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, testMonitor.GetName(), monitor.GetName())
-	assert.True(t, monitor.GetDeleted().IsSet())
-	assert.Nil(t, monitor.GetDeleted().Get())
+	val, set := monitor.GetDeletedOk()
+	assert.True(t, set)
+	assert.Nil(t, val)
 
 	// Edit a monitor
 	updatedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.EditMonitor(TESTAUTH, monitor.GetId()).Body(testUpdateMonitor).Execute()
@@ -104,12 +105,23 @@ func TestMonitorLifecycle(t *testing.T) {
 	// Assert Explicitly null fields
 	var monitorOptions = updatedMonitor.GetOptions()
 	var monitorOptionThresholds = monitorOptions.GetThresholds()
-	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetTimeoutH())
-	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetRenotifyInterval())
-	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetNewHostDelay())
-	assert.Equal(t, *datadog.NewNullableInt64(nil), monitorOptions.GetEvaluationDelay())
+	th, ok1 := monitorOptions.GetTimeoutHOk()
+	assert.Nil(t, th)
+	assert.Equal(t, true, ok1)
+
+	rn, ok2 := monitorOptions.GetRenotifyIntervalOk()
+	assert.Nil(t, rn)
+	assert.Equal(t, true, ok2)
+
+	nhd, ok3 := monitorOptions.GetNewHostDelayOk()
+	assert.Nil(t, nhd)
+	assert.Equal(t, true, ok3)
+
+	ed, ok4 := monitorOptions.GetEvaluationDelayOk()
+	assert.Nil(t, ed)
+	assert.Equal(t, true, ok4)
 	// Warning isn't returned in the API response if its unset
-	assert.Equal(t, datadog.NullableFloat64{}, monitorOptionThresholds.GetWarning())
+	assert.Equal(t, false, monitorOptionThresholds.HasWarning())
 
 	// Check monitor existence
 	fetchedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.GetMonitor(TESTAUTH, monitor.GetId()).Execute()

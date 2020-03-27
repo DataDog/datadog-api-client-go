@@ -43,14 +43,13 @@ func (o *SyntheticsDevices) GetDevices() []SyntheticsDevice {
 	return *o.Devices
 }
 
-// GetDevicesOk returns a tuple with the Devices field value if set, zero value otherwise
+// GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsDevices) GetDevicesOk() ([]SyntheticsDevice, bool) {
+func (o *SyntheticsDevices) GetDevicesOk() (*[]SyntheticsDevice, bool) {
 	if o == nil || o.Devices == nil {
-		var ret []SyntheticsDevice
-		return ret, false
+		return nil, false
 	}
-	return *o.Devices, true
+	return o.Devices, true
 }
 
 // HasDevices returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableSyntheticsDevices) Get() *SyntheticsDevices {
 	return v.value
 }
 
-func (v NullableSyntheticsDevices) Set(val *SyntheticsDevices) {
+func (v *NullableSyntheticsDevices) Set(val *SyntheticsDevices) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableSyntheticsDevices) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsDevices) Unset() {
+func (v *NullableSyntheticsDevices) Unset() {
 	v.value = nil
 	v.isSet = false
 }

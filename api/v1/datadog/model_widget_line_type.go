@@ -36,7 +36,7 @@ func (v NullableWidgetLineType) Get() *WidgetLineType {
 	return v.value
 }
 
-func (v NullableWidgetLineType) Set(val *WidgetLineType) {
+func (v *NullableWidgetLineType) Set(val *WidgetLineType) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetLineType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetLineType) Unset() {
+func (v *NullableWidgetLineType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

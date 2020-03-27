@@ -12,12 +12,12 @@ import (
 	"encoding/json"
 )
 
-// MonitorOptions TODO.
+// MonitorOptions List of options associated with your monitor.
 type MonitorOptions struct {
 	Aggregation *MonitorOptionsAggregation `json:"aggregation,omitempty"`
-	// TODO.
+	// IDs of the device the Synthetics monitor is running on.
 	DeviceIds *[]MonitorDeviceID `json:"device_ids,omitempty"`
-	// TODO.
+	// Whether or not to send a log sample when the log monitor triggers.
 	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
 	// A message to include with a re-notification. Supports the ‘@username’ notification we allow elsewhere. Not applicable if `renotify_interval` is None.
 	EscalationMessage *string `json:"escalation_message,omitempty"`
@@ -42,9 +42,9 @@ type MonitorOptions struct {
 	RenotifyInterval NullableInt64 `json:"renotify_interval,omitempty"`
 	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to `false` for sparse metrics, otherwise some evaluations are skipped. For “on average” “at all times” and “in total” aggregation, default is true. `False` otherwise.
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
-	// TODO.
+	// Information about the downtime applied to the monitor.
 	Silenced *map[string]int64 `json:"silenced,omitempty"`
-	// TODO.
+	// ID of the corresponding Synthetic check.
 	SyntheticsCheckId NullableInt64                  `json:"synthetics_check_id,omitempty"`
 	ThresholdWindows  *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
 	Thresholds        *MonitorThresholds             `json:"thresholds,omitempty"`
@@ -110,14 +110,13 @@ func (o *MonitorOptions) GetAggregation() MonitorOptionsAggregation {
 	return *o.Aggregation
 }
 
-// GetAggregationOk returns a tuple with the Aggregation field value if set, zero value otherwise
+// GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetAggregationOk() (MonitorOptionsAggregation, bool) {
+func (o *MonitorOptions) GetAggregationOk() (*MonitorOptionsAggregation, bool) {
 	if o == nil || o.Aggregation == nil {
-		var ret MonitorOptionsAggregation
-		return ret, false
+		return nil, false
 	}
-	return *o.Aggregation, true
+	return o.Aggregation, true
 }
 
 // HasAggregation returns a boolean if a field has been set.
@@ -143,14 +142,13 @@ func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID {
 	return *o.DeviceIds
 }
 
-// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, zero value otherwise
+// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetDeviceIdsOk() ([]MonitorDeviceID, bool) {
+func (o *MonitorOptions) GetDeviceIdsOk() (*[]MonitorDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
-		var ret []MonitorDeviceID
-		return ret, false
+		return nil, false
 	}
-	return *o.DeviceIds, true
+	return o.DeviceIds, true
 }
 
 // HasDeviceIds returns a boolean if a field has been set.
@@ -176,14 +174,13 @@ func (o *MonitorOptions) GetEnableLogsSample() bool {
 	return *o.EnableLogsSample
 }
 
-// GetEnableLogsSampleOk returns a tuple with the EnableLogsSample field value if set, zero value otherwise
+// GetEnableLogsSampleOk returns a tuple with the EnableLogsSample field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetEnableLogsSampleOk() (bool, bool) {
+func (o *MonitorOptions) GetEnableLogsSampleOk() (*bool, bool) {
 	if o == nil || o.EnableLogsSample == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.EnableLogsSample, true
+	return o.EnableLogsSample, true
 }
 
 // HasEnableLogsSample returns a boolean if a field has been set.
@@ -209,14 +206,13 @@ func (o *MonitorOptions) GetEscalationMessage() string {
 	return *o.EscalationMessage
 }
 
-// GetEscalationMessageOk returns a tuple with the EscalationMessage field value if set, zero value otherwise
+// GetEscalationMessageOk returns a tuple with the EscalationMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetEscalationMessageOk() (string, bool) {
+func (o *MonitorOptions) GetEscalationMessageOk() (*string, bool) {
 	if o == nil || o.EscalationMessage == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.EscalationMessage, true
+	return o.EscalationMessage, true
 }
 
 // HasEscalationMessage returns a boolean if a field has been set.
@@ -233,23 +229,23 @@ func (o *MonitorOptions) SetEscalationMessage(v string) {
 	o.EscalationMessage = &v
 }
 
-// GetEvaluationDelay returns the EvaluationDelay field value if set, zero value otherwise.
-func (o *MonitorOptions) GetEvaluationDelay() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// GetEvaluationDelay returns the EvaluationDelay field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetEvaluationDelay() int64 {
+	if o == nil || o.EvaluationDelay.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.EvaluationDelay
+	return *o.EvaluationDelay.Get()
 }
 
-// GetEvaluationDelayOk returns a tuple with the EvaluationDelay field value if set, zero value otherwise
+// GetEvaluationDelayOk returns a tuple with the EvaluationDelay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetEvaluationDelayOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetEvaluationDelayOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.EvaluationDelay, o.EvaluationDelay.IsSet()
+	return o.EvaluationDelay.Get(), o.EvaluationDelay.IsSet()
 }
 
 // HasEvaluationDelay returns a boolean if a field has been set.
@@ -262,8 +258,18 @@ func (o *MonitorOptions) HasEvaluationDelay() bool {
 }
 
 // SetEvaluationDelay gets a reference to the given NullableInt64 and assigns it to the EvaluationDelay field.
-func (o *MonitorOptions) SetEvaluationDelay(v NullableInt64) {
-	o.EvaluationDelay = v
+func (o *MonitorOptions) SetEvaluationDelay(v int64) {
+	o.EvaluationDelay.Set(&v)
+}
+
+// SetEvaluationDelayNil sets the value for EvaluationDelay to be an explicit nil
+func (o *MonitorOptions) SetEvaluationDelayNil() {
+	o.EvaluationDelay.Set(nil)
+}
+
+// UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil
+func (o *MonitorOptions) UnsetEvaluationDelay() {
+	o.EvaluationDelay.Unset()
 }
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
@@ -275,14 +281,13 @@ func (o *MonitorOptions) GetIncludeTags() bool {
 	return *o.IncludeTags
 }
 
-// GetIncludeTagsOk returns a tuple with the IncludeTags field value if set, zero value otherwise
+// GetIncludeTagsOk returns a tuple with the IncludeTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetIncludeTagsOk() (bool, bool) {
+func (o *MonitorOptions) GetIncludeTagsOk() (*bool, bool) {
 	if o == nil || o.IncludeTags == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IncludeTags, true
+	return o.IncludeTags, true
 }
 
 // HasIncludeTags returns a boolean if a field has been set.
@@ -308,14 +313,13 @@ func (o *MonitorOptions) GetLocked() bool {
 	return *o.Locked
 }
 
-// GetLockedOk returns a tuple with the Locked field value if set, zero value otherwise
+// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetLockedOk() (bool, bool) {
+func (o *MonitorOptions) GetLockedOk() (*bool, bool) {
 	if o == nil || o.Locked == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Locked, true
+	return o.Locked, true
 }
 
 // HasLocked returns a boolean if a field has been set.
@@ -332,23 +336,23 @@ func (o *MonitorOptions) SetLocked(v bool) {
 	o.Locked = &v
 }
 
-// GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.
-func (o *MonitorOptions) GetMinFailureDuration() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetMinFailureDuration() int64 {
+	if o == nil || o.MinFailureDuration.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.MinFailureDuration
+	return *o.MinFailureDuration.Get()
 }
 
-// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, zero value otherwise
+// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetMinFailureDurationOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetMinFailureDurationOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.MinFailureDuration, o.MinFailureDuration.IsSet()
+	return o.MinFailureDuration.Get(), o.MinFailureDuration.IsSet()
 }
 
 // HasMinFailureDuration returns a boolean if a field has been set.
@@ -361,27 +365,37 @@ func (o *MonitorOptions) HasMinFailureDuration() bool {
 }
 
 // SetMinFailureDuration gets a reference to the given NullableInt64 and assigns it to the MinFailureDuration field.
-func (o *MonitorOptions) SetMinFailureDuration(v NullableInt64) {
-	o.MinFailureDuration = v
+func (o *MonitorOptions) SetMinFailureDuration(v int64) {
+	o.MinFailureDuration.Set(&v)
 }
 
-// GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise.
-func (o *MonitorOptions) GetMinLocationFailed() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// SetMinFailureDurationNil sets the value for MinFailureDuration to be an explicit nil
+func (o *MonitorOptions) SetMinFailureDurationNil() {
+	o.MinFailureDuration.Set(nil)
+}
+
+// UnsetMinFailureDuration ensures that no value is present for MinFailureDuration, not even an explicit nil
+func (o *MonitorOptions) UnsetMinFailureDuration() {
+	o.MinFailureDuration.Unset()
+}
+
+// GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetMinLocationFailed() int64 {
+	if o == nil || o.MinLocationFailed.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.MinLocationFailed
+	return *o.MinLocationFailed.Get()
 }
 
-// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, zero value otherwise
+// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetMinLocationFailedOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetMinLocationFailedOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.MinLocationFailed, o.MinLocationFailed.IsSet()
+	return o.MinLocationFailed.Get(), o.MinLocationFailed.IsSet()
 }
 
 // HasMinLocationFailed returns a boolean if a field has been set.
@@ -394,27 +408,37 @@ func (o *MonitorOptions) HasMinLocationFailed() bool {
 }
 
 // SetMinLocationFailed gets a reference to the given NullableInt64 and assigns it to the MinLocationFailed field.
-func (o *MonitorOptions) SetMinLocationFailed(v NullableInt64) {
-	o.MinLocationFailed = v
+func (o *MonitorOptions) SetMinLocationFailed(v int64) {
+	o.MinLocationFailed.Set(&v)
 }
 
-// GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise.
-func (o *MonitorOptions) GetNewHostDelay() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// SetMinLocationFailedNil sets the value for MinLocationFailed to be an explicit nil
+func (o *MonitorOptions) SetMinLocationFailedNil() {
+	o.MinLocationFailed.Set(nil)
+}
+
+// UnsetMinLocationFailed ensures that no value is present for MinLocationFailed, not even an explicit nil
+func (o *MonitorOptions) UnsetMinLocationFailed() {
+	o.MinLocationFailed.Unset()
+}
+
+// GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetNewHostDelay() int64 {
+	if o == nil || o.NewHostDelay.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.NewHostDelay
+	return *o.NewHostDelay.Get()
 }
 
-// GetNewHostDelayOk returns a tuple with the NewHostDelay field value if set, zero value otherwise
+// GetNewHostDelayOk returns a tuple with the NewHostDelay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetNewHostDelayOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetNewHostDelayOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.NewHostDelay, o.NewHostDelay.IsSet()
+	return o.NewHostDelay.Get(), o.NewHostDelay.IsSet()
 }
 
 // HasNewHostDelay returns a boolean if a field has been set.
@@ -427,27 +451,37 @@ func (o *MonitorOptions) HasNewHostDelay() bool {
 }
 
 // SetNewHostDelay gets a reference to the given NullableInt64 and assigns it to the NewHostDelay field.
-func (o *MonitorOptions) SetNewHostDelay(v NullableInt64) {
-	o.NewHostDelay = v
+func (o *MonitorOptions) SetNewHostDelay(v int64) {
+	o.NewHostDelay.Set(&v)
 }
 
-// GetNoDataTimeframe returns the NoDataTimeframe field value if set, zero value otherwise.
-func (o *MonitorOptions) GetNoDataTimeframe() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// SetNewHostDelayNil sets the value for NewHostDelay to be an explicit nil
+func (o *MonitorOptions) SetNewHostDelayNil() {
+	o.NewHostDelay.Set(nil)
+}
+
+// UnsetNewHostDelay ensures that no value is present for NewHostDelay, not even an explicit nil
+func (o *MonitorOptions) UnsetNewHostDelay() {
+	o.NewHostDelay.Unset()
+}
+
+// GetNoDataTimeframe returns the NoDataTimeframe field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetNoDataTimeframe() int64 {
+	if o == nil || o.NoDataTimeframe.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.NoDataTimeframe
+	return *o.NoDataTimeframe.Get()
 }
 
-// GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field value if set, zero value otherwise
+// GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetNoDataTimeframeOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetNoDataTimeframeOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.NoDataTimeframe, o.NoDataTimeframe.IsSet()
+	return o.NoDataTimeframe.Get(), o.NoDataTimeframe.IsSet()
 }
 
 // HasNoDataTimeframe returns a boolean if a field has been set.
@@ -460,8 +494,18 @@ func (o *MonitorOptions) HasNoDataTimeframe() bool {
 }
 
 // SetNoDataTimeframe gets a reference to the given NullableInt64 and assigns it to the NoDataTimeframe field.
-func (o *MonitorOptions) SetNoDataTimeframe(v NullableInt64) {
-	o.NoDataTimeframe = v
+func (o *MonitorOptions) SetNoDataTimeframe(v int64) {
+	o.NoDataTimeframe.Set(&v)
+}
+
+// SetNoDataTimeframeNil sets the value for NoDataTimeframe to be an explicit nil
+func (o *MonitorOptions) SetNoDataTimeframeNil() {
+	o.NoDataTimeframe.Set(nil)
+}
+
+// UnsetNoDataTimeframe ensures that no value is present for NoDataTimeframe, not even an explicit nil
+func (o *MonitorOptions) UnsetNoDataTimeframe() {
+	o.NoDataTimeframe.Unset()
 }
 
 // GetNotifyAudit returns the NotifyAudit field value if set, zero value otherwise.
@@ -473,14 +517,13 @@ func (o *MonitorOptions) GetNotifyAudit() bool {
 	return *o.NotifyAudit
 }
 
-// GetNotifyAuditOk returns a tuple with the NotifyAudit field value if set, zero value otherwise
+// GetNotifyAuditOk returns a tuple with the NotifyAudit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetNotifyAuditOk() (bool, bool) {
+func (o *MonitorOptions) GetNotifyAuditOk() (*bool, bool) {
 	if o == nil || o.NotifyAudit == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.NotifyAudit, true
+	return o.NotifyAudit, true
 }
 
 // HasNotifyAudit returns a boolean if a field has been set.
@@ -506,14 +549,13 @@ func (o *MonitorOptions) GetNotifyNoData() bool {
 	return *o.NotifyNoData
 }
 
-// GetNotifyNoDataOk returns a tuple with the NotifyNoData field value if set, zero value otherwise
+// GetNotifyNoDataOk returns a tuple with the NotifyNoData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetNotifyNoDataOk() (bool, bool) {
+func (o *MonitorOptions) GetNotifyNoDataOk() (*bool, bool) {
 	if o == nil || o.NotifyNoData == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.NotifyNoData, true
+	return o.NotifyNoData, true
 }
 
 // HasNotifyNoData returns a boolean if a field has been set.
@@ -530,23 +572,23 @@ func (o *MonitorOptions) SetNotifyNoData(v bool) {
 	o.NotifyNoData = &v
 }
 
-// GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise.
-func (o *MonitorOptions) GetRenotifyInterval() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetRenotifyInterval() int64 {
+	if o == nil || o.RenotifyInterval.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.RenotifyInterval
+	return *o.RenotifyInterval.Get()
 }
 
-// GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field value if set, zero value otherwise
+// GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetRenotifyIntervalOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetRenotifyIntervalOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.RenotifyInterval, o.RenotifyInterval.IsSet()
+	return o.RenotifyInterval.Get(), o.RenotifyInterval.IsSet()
 }
 
 // HasRenotifyInterval returns a boolean if a field has been set.
@@ -559,8 +601,18 @@ func (o *MonitorOptions) HasRenotifyInterval() bool {
 }
 
 // SetRenotifyInterval gets a reference to the given NullableInt64 and assigns it to the RenotifyInterval field.
-func (o *MonitorOptions) SetRenotifyInterval(v NullableInt64) {
-	o.RenotifyInterval = v
+func (o *MonitorOptions) SetRenotifyInterval(v int64) {
+	o.RenotifyInterval.Set(&v)
+}
+
+// SetRenotifyIntervalNil sets the value for RenotifyInterval to be an explicit nil
+func (o *MonitorOptions) SetRenotifyIntervalNil() {
+	o.RenotifyInterval.Set(nil)
+}
+
+// UnsetRenotifyInterval ensures that no value is present for RenotifyInterval, not even an explicit nil
+func (o *MonitorOptions) UnsetRenotifyInterval() {
+	o.RenotifyInterval.Unset()
 }
 
 // GetRequireFullWindow returns the RequireFullWindow field value if set, zero value otherwise.
@@ -572,14 +624,13 @@ func (o *MonitorOptions) GetRequireFullWindow() bool {
 	return *o.RequireFullWindow
 }
 
-// GetRequireFullWindowOk returns a tuple with the RequireFullWindow field value if set, zero value otherwise
+// GetRequireFullWindowOk returns a tuple with the RequireFullWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetRequireFullWindowOk() (bool, bool) {
+func (o *MonitorOptions) GetRequireFullWindowOk() (*bool, bool) {
 	if o == nil || o.RequireFullWindow == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.RequireFullWindow, true
+	return o.RequireFullWindow, true
 }
 
 // HasRequireFullWindow returns a boolean if a field has been set.
@@ -605,14 +656,13 @@ func (o *MonitorOptions) GetSilenced() map[string]int64 {
 	return *o.Silenced
 }
 
-// GetSilencedOk returns a tuple with the Silenced field value if set, zero value otherwise
+// GetSilencedOk returns a tuple with the Silenced field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetSilencedOk() (map[string]int64, bool) {
+func (o *MonitorOptions) GetSilencedOk() (*map[string]int64, bool) {
 	if o == nil || o.Silenced == nil {
-		var ret map[string]int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Silenced, true
+	return o.Silenced, true
 }
 
 // HasSilenced returns a boolean if a field has been set.
@@ -629,23 +679,23 @@ func (o *MonitorOptions) SetSilenced(v map[string]int64) {
 	o.Silenced = &v
 }
 
-// GetSyntheticsCheckId returns the SyntheticsCheckId field value if set, zero value otherwise.
-func (o *MonitorOptions) GetSyntheticsCheckId() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// GetSyntheticsCheckId returns the SyntheticsCheckId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetSyntheticsCheckId() int64 {
+	if o == nil || o.SyntheticsCheckId.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.SyntheticsCheckId
+	return *o.SyntheticsCheckId.Get()
 }
 
-// GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field value if set, zero value otherwise
+// GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetSyntheticsCheckIdOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.SyntheticsCheckId, o.SyntheticsCheckId.IsSet()
+	return o.SyntheticsCheckId.Get(), o.SyntheticsCheckId.IsSet()
 }
 
 // HasSyntheticsCheckId returns a boolean if a field has been set.
@@ -658,8 +708,18 @@ func (o *MonitorOptions) HasSyntheticsCheckId() bool {
 }
 
 // SetSyntheticsCheckId gets a reference to the given NullableInt64 and assigns it to the SyntheticsCheckId field.
-func (o *MonitorOptions) SetSyntheticsCheckId(v NullableInt64) {
-	o.SyntheticsCheckId = v
+func (o *MonitorOptions) SetSyntheticsCheckId(v int64) {
+	o.SyntheticsCheckId.Set(&v)
+}
+
+// SetSyntheticsCheckIdNil sets the value for SyntheticsCheckId to be an explicit nil
+func (o *MonitorOptions) SetSyntheticsCheckIdNil() {
+	o.SyntheticsCheckId.Set(nil)
+}
+
+// UnsetSyntheticsCheckId ensures that no value is present for SyntheticsCheckId, not even an explicit nil
+func (o *MonitorOptions) UnsetSyntheticsCheckId() {
+	o.SyntheticsCheckId.Unset()
 }
 
 // GetThresholdWindows returns the ThresholdWindows field value if set, zero value otherwise.
@@ -671,14 +731,13 @@ func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions {
 	return *o.ThresholdWindows
 }
 
-// GetThresholdWindowsOk returns a tuple with the ThresholdWindows field value if set, zero value otherwise
+// GetThresholdWindowsOk returns a tuple with the ThresholdWindows field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetThresholdWindowsOk() (MonitorThresholdWindowOptions, bool) {
+func (o *MonitorOptions) GetThresholdWindowsOk() (*MonitorThresholdWindowOptions, bool) {
 	if o == nil || o.ThresholdWindows == nil {
-		var ret MonitorThresholdWindowOptions
-		return ret, false
+		return nil, false
 	}
-	return *o.ThresholdWindows, true
+	return o.ThresholdWindows, true
 }
 
 // HasThresholdWindows returns a boolean if a field has been set.
@@ -704,14 +763,13 @@ func (o *MonitorOptions) GetThresholds() MonitorThresholds {
 	return *o.Thresholds
 }
 
-// GetThresholdsOk returns a tuple with the Thresholds field value if set, zero value otherwise
+// GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetThresholdsOk() (MonitorThresholds, bool) {
+func (o *MonitorOptions) GetThresholdsOk() (*MonitorThresholds, bool) {
 	if o == nil || o.Thresholds == nil {
-		var ret MonitorThresholds
-		return ret, false
+		return nil, false
 	}
-	return *o.Thresholds, true
+	return o.Thresholds, true
 }
 
 // HasThresholds returns a boolean if a field has been set.
@@ -728,23 +786,23 @@ func (o *MonitorOptions) SetThresholds(v MonitorThresholds) {
 	o.Thresholds = &v
 }
 
-// GetTimeoutH returns the TimeoutH field value if set, zero value otherwise.
-func (o *MonitorOptions) GetTimeoutH() NullableInt64 {
-	if o == nil {
-		var ret NullableInt64
+// GetTimeoutH returns the TimeoutH field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetTimeoutH() int64 {
+	if o == nil || o.TimeoutH.Get() == nil {
+		var ret int64
 		return ret
 	}
-	return o.TimeoutH
+	return *o.TimeoutH.Get()
 }
 
-// GetTimeoutHOk returns a tuple with the TimeoutH field value if set, zero value otherwise
+// GetTimeoutHOk returns a tuple with the TimeoutH field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptions) GetTimeoutHOk() (NullableInt64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetTimeoutHOk() (*int64, bool) {
 	if o == nil {
-		var ret NullableInt64
-		return ret, false
+		return nil, false
 	}
-	return o.TimeoutH, o.TimeoutH.IsSet()
+	return o.TimeoutH.Get(), o.TimeoutH.IsSet()
 }
 
 // HasTimeoutH returns a boolean if a field has been set.
@@ -757,8 +815,18 @@ func (o *MonitorOptions) HasTimeoutH() bool {
 }
 
 // SetTimeoutH gets a reference to the given NullableInt64 and assigns it to the TimeoutH field.
-func (o *MonitorOptions) SetTimeoutH(v NullableInt64) {
-	o.TimeoutH = v
+func (o *MonitorOptions) SetTimeoutH(v int64) {
+	o.TimeoutH.Set(&v)
+}
+
+// SetTimeoutHNil sets the value for TimeoutH to be an explicit nil
+func (o *MonitorOptions) SetTimeoutHNil() {
+	o.TimeoutH.Set(nil)
+}
+
+// UnsetTimeoutH ensures that no value is present for TimeoutH, not even an explicit nil
+func (o *MonitorOptions) UnsetTimeoutH() {
+	o.TimeoutH.Unset()
 }
 
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
@@ -835,7 +903,7 @@ func (v NullableMonitorOptions) Get() *MonitorOptions {
 	return v.value
 }
 
-func (v NullableMonitorOptions) Set(val *MonitorOptions) {
+func (v *NullableMonitorOptions) Set(val *MonitorOptions) {
 	v.value = val
 	v.isSet = true
 }
@@ -844,7 +912,7 @@ func (v NullableMonitorOptions) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorOptions) Unset() {
+func (v *NullableMonitorOptions) Unset() {
 	v.value = nil
 	v.isSet = false
 }

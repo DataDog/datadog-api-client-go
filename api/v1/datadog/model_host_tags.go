@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// HostTags TODO.
+// HostTags Set of tags to associate with your host.
 type HostTags struct {
-	// TODO.
+	// Your host name.
 	Host *string `json:"host,omitempty"`
 	// A list of tags to apply to the host.
 	Tags *[]string `json:"tags,omitempty"`
@@ -46,14 +46,13 @@ func (o *HostTags) GetHost() string {
 	return *o.Host
 }
 
-// GetHostOk returns a tuple with the Host field value if set, zero value otherwise
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostTags) GetHostOk() (string, bool) {
+func (o *HostTags) GetHostOk() (*string, bool) {
 	if o == nil || o.Host == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *HostTags) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostTags) GetTagsOk() ([]string, bool) {
+func (o *HostTags) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableHostTags) Get() *HostTags {
 	return v.value
 }
 
-func (v NullableHostTags) Set(val *HostTags) {
+func (v *NullableHostTags) Set(val *HostTags) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableHostTags) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostTags) Unset() {
+func (v *NullableHostTags) Unset() {
 	v.value = nil
 	v.isSet = false
 }

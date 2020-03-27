@@ -15,17 +15,17 @@ import (
 
 // LogContent struct for LogContent
 type LogContent struct {
-	// TODO.
+	// JSON object of attributes from your log.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Name of the machine from where the logs are being sent.
 	Host *string `json:"host,omitempty"`
-	// TODO.
+	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
 	Message *string `json:"message,omitempty"`
-	// TODO.
+	// The name of the application or service generating the log events. It is used to switch from Logs to APM, so make sure you define the same value when you use both products.
 	Service *string `json:"service,omitempty"`
-	// TODO.
+	// Array of tags associated with your log.
 	Tags *[]interface{} `json:"tags,omitempty"`
-	// TODO.
+	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 }
 
@@ -55,14 +55,13 @@ func (o *LogContent) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *LogContent) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -88,14 +87,13 @@ func (o *LogContent) GetHost() string {
 	return *o.Host
 }
 
-// GetHostOk returns a tuple with the Host field value if set, zero value otherwise
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetHostOk() (string, bool) {
+func (o *LogContent) GetHostOk() (*string, bool) {
 	if o == nil || o.Host == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
@@ -121,14 +119,13 @@ func (o *LogContent) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetMessageOk() (string, bool) {
+func (o *LogContent) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -154,14 +151,13 @@ func (o *LogContent) GetService() string {
 	return *o.Service
 }
 
-// GetServiceOk returns a tuple with the Service field value if set, zero value otherwise
+// GetServiceOk returns a tuple with the Service field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetServiceOk() (string, bool) {
+func (o *LogContent) GetServiceOk() (*string, bool) {
 	if o == nil || o.Service == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Service, true
+	return o.Service, true
 }
 
 // HasService returns a boolean if a field has been set.
@@ -187,14 +183,13 @@ func (o *LogContent) GetTags() []interface{} {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetTagsOk() ([]interface{}, bool) {
+func (o *LogContent) GetTagsOk() (*[]interface{}, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -220,14 +215,13 @@ func (o *LogContent) GetTimestamp() time.Time {
 	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value if set, zero value otherwise
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetTimestampOk() (time.Time, bool) {
+func (o *LogContent) GetTimestampOk() (*time.Time, bool) {
 	if o == nil || o.Timestamp == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Timestamp, true
+	return o.Timestamp, true
 }
 
 // HasTimestamp returns a boolean if a field has been set.
@@ -276,7 +270,7 @@ func (v NullableLogContent) Get() *LogContent {
 	return v.value
 }
 
-func (v NullableLogContent) Set(val *LogContent) {
+func (v *NullableLogContent) Set(val *LogContent) {
 	v.value = val
 	v.isSet = true
 }
@@ -285,7 +279,7 @@ func (v NullableLogContent) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogContent) Unset() {
+func (v *NullableLogContent) Unset() {
 	v.value = nil
 	v.isSet = false
 }

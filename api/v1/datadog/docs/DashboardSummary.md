@@ -33,22 +33,22 @@ GetDashboards returns the Dashboards field if non-nil, zero value otherwise.
 
 ### GetDashboardsOk
 
-`func (o *DashboardSummary) GetDashboardsOk() ([]DashboardSummaryDashboards, bool)`
+`func (o *DashboardSummary) GetDashboardsOk() (*[]DashboardSummaryDashboards, bool)`
 
 GetDashboardsOk returns a tuple with the Dashboards field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDashboards
+
+`func (o *DashboardSummary) SetDashboards(v []DashboardSummaryDashboards)`
+
+SetDashboards sets Dashboards field to given value.
 
 ### HasDashboards
 
 `func (o *DashboardSummary) HasDashboards() bool`
 
 HasDashboards returns a boolean if a field has been set.
-
-### SetDashboards
-
-`func (o *DashboardSummary) SetDashboards(v []DashboardSummaryDashboards)`
-
-SetDashboards gets a reference to the given []DashboardSummaryDashboards and assigns it to the Dashboards field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -37,7 +37,7 @@ func (v NullableSLOErrorTimeframe) Get() *SLOErrorTimeframe {
 	return v.value
 }
 
-func (v NullableSLOErrorTimeframe) Set(val *SLOErrorTimeframe) {
+func (v *NullableSLOErrorTimeframe) Set(val *SLOErrorTimeframe) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableSLOErrorTimeframe) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSLOErrorTimeframe) Unset() {
+func (v *NullableSLOErrorTimeframe) Unset() {
 	v.value = nil
 	v.isSet = false
 }

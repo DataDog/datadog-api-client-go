@@ -18,7 +18,7 @@ type GraphSnapshot struct {
 	GraphDef *string `json:"graph_def,omitempty"`
 	// The metric query. One of `metric_query` or `graph_def` is required.
 	MetricQuery *string `json:"metric_query,omitempty"`
-	// TODO.
+	// URL of your [graph snapshot](https://docs.datadoghq.com/metrics/explorer/#snapshot).
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
 }
 
@@ -48,14 +48,13 @@ func (o *GraphSnapshot) GetGraphDef() string {
 	return *o.GraphDef
 }
 
-// GetGraphDefOk returns a tuple with the GraphDef field value if set, zero value otherwise
+// GetGraphDefOk returns a tuple with the GraphDef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GraphSnapshot) GetGraphDefOk() (string, bool) {
+func (o *GraphSnapshot) GetGraphDefOk() (*string, bool) {
 	if o == nil || o.GraphDef == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.GraphDef, true
+	return o.GraphDef, true
 }
 
 // HasGraphDef returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *GraphSnapshot) GetMetricQuery() string {
 	return *o.MetricQuery
 }
 
-// GetMetricQueryOk returns a tuple with the MetricQuery field value if set, zero value otherwise
+// GetMetricQueryOk returns a tuple with the MetricQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GraphSnapshot) GetMetricQueryOk() (string, bool) {
+func (o *GraphSnapshot) GetMetricQueryOk() (*string, bool) {
 	if o == nil || o.MetricQuery == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.MetricQuery, true
+	return o.MetricQuery, true
 }
 
 // HasMetricQuery returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *GraphSnapshot) GetSnapshotUrl() string {
 	return *o.SnapshotUrl
 }
 
-// GetSnapshotUrlOk returns a tuple with the SnapshotUrl field value if set, zero value otherwise
+// GetSnapshotUrlOk returns a tuple with the SnapshotUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GraphSnapshot) GetSnapshotUrlOk() (string, bool) {
+func (o *GraphSnapshot) GetSnapshotUrlOk() (*string, bool) {
 	if o == nil || o.SnapshotUrl == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SnapshotUrl, true
+	return o.SnapshotUrl, true
 }
 
 // HasSnapshotUrl returns a boolean if a field has been set.
@@ -161,7 +158,7 @@ func (v NullableGraphSnapshot) Get() *GraphSnapshot {
 	return v.value
 }
 
-func (v NullableGraphSnapshot) Set(val *GraphSnapshot) {
+func (v *NullableGraphSnapshot) Set(val *GraphSnapshot) {
 	v.value = val
 	v.isSet = true
 }
@@ -170,7 +167,7 @@ func (v NullableGraphSnapshot) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableGraphSnapshot) Unset() {
+func (v *NullableGraphSnapshot) Unset() {
 	v.value = nil
 	v.isSet = false
 }

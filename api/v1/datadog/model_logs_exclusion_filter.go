@@ -46,14 +46,13 @@ func (o *LogsExclusionFilter) GetQuery() string {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsExclusionFilter) GetQueryOk() (string, bool) {
+func (o *LogsExclusionFilter) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Query, true
+	return o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -78,6 +77,15 @@ func (o *LogsExclusionFilter) GetSampleRate() float64 {
 	}
 
 	return o.SampleRate
+}
+
+// GetSampleRateOk returns a tuple with the SampleRate field value
+// and a boolean to check if the value has been set.
+func (o *LogsExclusionFilter) GetSampleRateOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SampleRate, true
 }
 
 // SetSampleRate sets field value
@@ -105,7 +113,7 @@ func (v NullableLogsExclusionFilter) Get() *LogsExclusionFilter {
 	return v.value
 }
 
-func (v NullableLogsExclusionFilter) Set(val *LogsExclusionFilter) {
+func (v *NullableLogsExclusionFilter) Set(val *LogsExclusionFilter) {
 	v.value = val
 	v.isSet = true
 }
@@ -114,7 +122,7 @@ func (v NullableLogsExclusionFilter) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsExclusionFilter) Unset() {
+func (v *NullableLogsExclusionFilter) Unset() {
 	v.value = nil
 	v.isSet = false
 }

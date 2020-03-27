@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// HostMetrics TODO.
+// HostMetrics Host Metrics collected.
 type HostMetrics struct {
-	// TODO.
+	// The percent of CPU used (everything but idle).
 	Cpu *float64 `json:"cpu,omitempty"`
-	// TODO.
+	// The percent of CPU spent waiting on the IO (not reported for all platforms).
 	Iowait *float64 `json:"iowait,omitempty"`
-	// TODO.
+	// The system load over the last 15 minutes.
 	Load *float64 `json:"load,omitempty"`
 }
 
@@ -48,14 +48,13 @@ func (o *HostMetrics) GetCpu() float64 {
 	return *o.Cpu
 }
 
-// GetCpuOk returns a tuple with the Cpu field value if set, zero value otherwise
+// GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMetrics) GetCpuOk() (float64, bool) {
+func (o *HostMetrics) GetCpuOk() (*float64, bool) {
 	if o == nil || o.Cpu == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Cpu, true
+	return o.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *HostMetrics) GetIowait() float64 {
 	return *o.Iowait
 }
 
-// GetIowaitOk returns a tuple with the Iowait field value if set, zero value otherwise
+// GetIowaitOk returns a tuple with the Iowait field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMetrics) GetIowaitOk() (float64, bool) {
+func (o *HostMetrics) GetIowaitOk() (*float64, bool) {
 	if o == nil || o.Iowait == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Iowait, true
+	return o.Iowait, true
 }
 
 // HasIowait returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *HostMetrics) GetLoad() float64 {
 	return *o.Load
 }
 
-// GetLoadOk returns a tuple with the Load field value if set, zero value otherwise
+// GetLoadOk returns a tuple with the Load field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMetrics) GetLoadOk() (float64, bool) {
+func (o *HostMetrics) GetLoadOk() (*float64, bool) {
 	if o == nil || o.Load == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Load, true
+	return o.Load, true
 }
 
 // HasLoad returns a boolean if a field has been set.
@@ -161,7 +158,7 @@ func (v NullableHostMetrics) Get() *HostMetrics {
 	return v.value
 }
 
-func (v NullableHostMetrics) Set(val *HostMetrics) {
+func (v *NullableHostMetrics) Set(val *HostMetrics) {
 	v.value = val
 	v.isSet = true
 }
@@ -170,7 +167,7 @@ func (v NullableHostMetrics) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMetrics) Unset() {
+func (v *NullableHostMetrics) Unset() {
 	v.value = nil
 	v.isSet = false
 }

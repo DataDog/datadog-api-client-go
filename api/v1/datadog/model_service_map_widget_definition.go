@@ -59,6 +59,15 @@ func (o *ServiceMapWidgetDefinition) GetFilters() []string {
 	return o.Filters
 }
 
+// GetFiltersOk returns a tuple with the Filters field value
+// and a boolean to check if the value has been set.
+func (o *ServiceMapWidgetDefinition) GetFiltersOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Filters, true
+}
+
 // SetFilters sets field value
 func (o *ServiceMapWidgetDefinition) SetFilters(v []string) {
 	o.Filters = v
@@ -72,6 +81,15 @@ func (o *ServiceMapWidgetDefinition) GetService() string {
 	}
 
 	return o.Service
+}
+
+// GetServiceOk returns a tuple with the Service field value
+// and a boolean to check if the value has been set.
+func (o *ServiceMapWidgetDefinition) GetServiceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Service, true
 }
 
 // SetService sets field value
@@ -88,14 +106,13 @@ func (o *ServiceMapWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceMapWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *ServiceMapWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -121,14 +138,13 @@ func (o *ServiceMapWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceMapWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *ServiceMapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -154,14 +170,13 @@ func (o *ServiceMapWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceMapWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *ServiceMapWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -186,6 +201,15 @@ func (o *ServiceMapWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ServiceMapWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -230,7 +254,7 @@ func (v NullableServiceMapWidgetDefinition) Get() *ServiceMapWidgetDefinition {
 	return v.value
 }
 
-func (v NullableServiceMapWidgetDefinition) Set(val *ServiceMapWidgetDefinition) {
+func (v *NullableServiceMapWidgetDefinition) Set(val *ServiceMapWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -239,7 +263,7 @@ func (v NullableServiceMapWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceMapWidgetDefinition) Unset() {
+func (v *NullableServiceMapWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

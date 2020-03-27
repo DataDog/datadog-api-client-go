@@ -53,14 +53,13 @@ func (o *TimeseriesWidgetRequest) GetApmQuery() LogQueryDefinition {
 	return *o.ApmQuery
 }
 
-// GetApmQueryOk returns a tuple with the ApmQuery field value if set, zero value otherwise
+// GetApmQueryOk returns a tuple with the ApmQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetApmQueryOk() (LogQueryDefinition, bool) {
+func (o *TimeseriesWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.ApmQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ApmQuery, true
+	return o.ApmQuery, true
 }
 
 // HasApmQuery returns a boolean if a field has been set.
@@ -86,14 +85,13 @@ func (o *TimeseriesWidgetRequest) GetDisplayType() WidgetDisplayType {
 	return *o.DisplayType
 }
 
-// GetDisplayTypeOk returns a tuple with the DisplayType field value if set, zero value otherwise
+// GetDisplayTypeOk returns a tuple with the DisplayType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetDisplayTypeOk() (WidgetDisplayType, bool) {
+func (o *TimeseriesWidgetRequest) GetDisplayTypeOk() (*WidgetDisplayType, bool) {
 	if o == nil || o.DisplayType == nil {
-		var ret WidgetDisplayType
-		return ret, false
+		return nil, false
 	}
-	return *o.DisplayType, true
+	return o.DisplayType, true
 }
 
 // HasDisplayType returns a boolean if a field has been set.
@@ -119,14 +117,13 @@ func (o *TimeseriesWidgetRequest) GetEventQuery() EventQueryDefinition {
 	return *o.EventQuery
 }
 
-// GetEventQueryOk returns a tuple with the EventQuery field value if set, zero value otherwise
+// GetEventQueryOk returns a tuple with the EventQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetEventQueryOk() (EventQueryDefinition, bool) {
+func (o *TimeseriesWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool) {
 	if o == nil || o.EventQuery == nil {
-		var ret EventQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.EventQuery, true
+	return o.EventQuery, true
 }
 
 // HasEventQuery returns a boolean if a field has been set.
@@ -152,14 +149,13 @@ func (o *TimeseriesWidgetRequest) GetLogQuery() LogQueryDefinition {
 	return *o.LogQuery
 }
 
-// GetLogQueryOk returns a tuple with the LogQuery field value if set, zero value otherwise
+// GetLogQueryOk returns a tuple with the LogQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetLogQueryOk() (LogQueryDefinition, bool) {
+func (o *TimeseriesWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.LogQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.LogQuery, true
+	return o.LogQuery, true
 }
 
 // HasLogQuery returns a boolean if a field has been set.
@@ -185,14 +181,13 @@ func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetRequestMetadat
 	return *o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value if set, zero value otherwise
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetMetadataOk() ([]TimeseriesWidgetRequestMetadata, bool) {
+func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetRequestMetadata, bool) {
 	if o == nil || o.Metadata == nil {
-		var ret []TimeseriesWidgetRequestMetadata
-		return ret, false
+		return nil, false
 	}
-	return *o.Metadata, true
+	return o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
@@ -218,14 +213,13 @@ func (o *TimeseriesWidgetRequest) GetNetworkQuery() LogQueryDefinition {
 	return *o.NetworkQuery
 }
 
-// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, zero value otherwise
+// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetNetworkQueryOk() (LogQueryDefinition, bool) {
+func (o *TimeseriesWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.NetworkQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.NetworkQuery, true
+	return o.NetworkQuery, true
 }
 
 // HasNetworkQuery returns a boolean if a field has been set.
@@ -251,14 +245,13 @@ func (o *TimeseriesWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	return *o.ProcessQuery
 }
 
-// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, zero value otherwise
+// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetProcessQueryOk() (ProcessQueryDefinition, bool) {
+func (o *TimeseriesWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool) {
 	if o == nil || o.ProcessQuery == nil {
-		var ret ProcessQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ProcessQuery, true
+	return o.ProcessQuery, true
 }
 
 // HasProcessQuery returns a boolean if a field has been set.
@@ -284,14 +277,13 @@ func (o *TimeseriesWidgetRequest) GetQ() string {
 	return *o.Q
 }
 
-// GetQOk returns a tuple with the Q field value if set, zero value otherwise
+// GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetQOk() (string, bool) {
+func (o *TimeseriesWidgetRequest) GetQOk() (*string, bool) {
 	if o == nil || o.Q == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Q, true
+	return o.Q, true
 }
 
 // HasQ returns a boolean if a field has been set.
@@ -317,14 +309,13 @@ func (o *TimeseriesWidgetRequest) GetRumQuery() LogQueryDefinition {
 	return *o.RumQuery
 }
 
-// GetRumQueryOk returns a tuple with the RumQuery field value if set, zero value otherwise
+// GetRumQueryOk returns a tuple with the RumQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetRumQueryOk() (LogQueryDefinition, bool) {
+func (o *TimeseriesWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.RumQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.RumQuery, true
+	return o.RumQuery, true
 }
 
 // HasRumQuery returns a boolean if a field has been set.
@@ -350,14 +341,13 @@ func (o *TimeseriesWidgetRequest) GetStyle() TimeseriesWidgetRequestStyle {
 	return *o.Style
 }
 
-// GetStyleOk returns a tuple with the Style field value if set, zero value otherwise
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetStyleOk() (TimeseriesWidgetRequestStyle, bool) {
+func (o *TimeseriesWidgetRequest) GetStyleOk() (*TimeseriesWidgetRequestStyle, bool) {
 	if o == nil || o.Style == nil {
-		var ret TimeseriesWidgetRequestStyle
-		return ret, false
+		return nil, false
 	}
-	return *o.Style, true
+	return o.Style, true
 }
 
 // HasStyle returns a boolean if a field has been set.
@@ -418,7 +408,7 @@ func (v NullableTimeseriesWidgetRequest) Get() *TimeseriesWidgetRequest {
 	return v.value
 }
 
-func (v NullableTimeseriesWidgetRequest) Set(val *TimeseriesWidgetRequest) {
+func (v *NullableTimeseriesWidgetRequest) Set(val *TimeseriesWidgetRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -427,7 +417,7 @@ func (v NullableTimeseriesWidgetRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTimeseriesWidgetRequest) Unset() {
+func (v *NullableTimeseriesWidgetRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

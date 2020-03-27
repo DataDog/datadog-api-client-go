@@ -40,7 +40,7 @@ func (v NullableWidgetTimeWindows) Get() *WidgetTimeWindows {
 	return v.value
 }
 
-func (v NullableWidgetTimeWindows) Set(val *WidgetTimeWindows) {
+func (v *NullableWidgetTimeWindows) Set(val *WidgetTimeWindows) {
 	v.value = val
 	v.isSet = true
 }
@@ -49,7 +49,7 @@ func (v NullableWidgetTimeWindows) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetTimeWindows) Unset() {
+func (v *NullableWidgetTimeWindows) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -45,14 +45,13 @@ func (o *LogsCategoryProcessorCategories) GetFilter() LogsFilter {
 	return *o.Filter
 }
 
-// GetFilterOk returns a tuple with the Filter field value if set, zero value otherwise
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsCategoryProcessorCategories) GetFilterOk() (LogsFilter, bool) {
+func (o *LogsCategoryProcessorCategories) GetFilterOk() (*LogsFilter, bool) {
 	if o == nil || o.Filter == nil {
-		var ret LogsFilter
-		return ret, false
+		return nil, false
 	}
-	return *o.Filter, true
+	return o.Filter, true
 }
 
 // HasFilter returns a boolean if a field has been set.
@@ -78,14 +77,13 @@ func (o *LogsCategoryProcessorCategories) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsCategoryProcessorCategories) GetNameOk() (string, bool) {
+func (o *LogsCategoryProcessorCategories) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -122,7 +120,7 @@ func (v NullableLogsCategoryProcessorCategories) Get() *LogsCategoryProcessorCat
 	return v.value
 }
 
-func (v NullableLogsCategoryProcessorCategories) Set(val *LogsCategoryProcessorCategories) {
+func (v *NullableLogsCategoryProcessorCategories) Set(val *LogsCategoryProcessorCategories) {
 	v.value = val
 	v.isSet = true
 }
@@ -131,7 +129,7 @@ func (v NullableLogsCategoryProcessorCategories) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsCategoryProcessorCategories) Unset() {
+func (v *NullableLogsCategoryProcessorCategories) Unset() {
 	v.value = nil
 	v.isSet = false
 }

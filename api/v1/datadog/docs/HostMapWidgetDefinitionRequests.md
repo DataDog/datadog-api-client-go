@@ -34,22 +34,22 @@ GetFill returns the Fill field if non-nil, zero value otherwise.
 
 ### GetFillOk
 
-`func (o *HostMapWidgetDefinitionRequests) GetFillOk() (HostMapRequest, bool)`
+`func (o *HostMapWidgetDefinitionRequests) GetFillOk() (*HostMapRequest, bool)`
 
 GetFillOk returns a tuple with the Fill field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFill
+
+`func (o *HostMapWidgetDefinitionRequests) SetFill(v HostMapRequest)`
+
+SetFill sets Fill field to given value.
 
 ### HasFill
 
 `func (o *HostMapWidgetDefinitionRequests) HasFill() bool`
 
 HasFill returns a boolean if a field has been set.
-
-### SetFill
-
-`func (o *HostMapWidgetDefinitionRequests) SetFill(v HostMapRequest)`
-
-SetFill gets a reference to the given HostMapRequest and assigns it to the Fill field.
 
 ### GetSize
 
@@ -59,22 +59,22 @@ GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *HostMapWidgetDefinitionRequests) GetSizeOk() (HostMapRequest, bool)`
+`func (o *HostMapWidgetDefinitionRequests) GetSizeOk() (*HostMapRequest, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSize
+
+`func (o *HostMapWidgetDefinitionRequests) SetSize(v HostMapRequest)`
+
+SetSize sets Size field to given value.
 
 ### HasSize
 
 `func (o *HostMapWidgetDefinitionRequests) HasSize() bool`
 
 HasSize returns a boolean if a field has been set.
-
-### SetSize
-
-`func (o *HostMapWidgetDefinitionRequests) SetSize(v HostMapRequest)`
-
-SetSize gets a reference to the given HostMapRequest and assigns it to the Size field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

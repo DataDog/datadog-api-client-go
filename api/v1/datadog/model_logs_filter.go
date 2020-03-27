@@ -44,14 +44,13 @@ func (o *LogsFilter) GetQuery() string {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsFilter) GetQueryOk() (string, bool) {
+func (o *LogsFilter) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Query, true
+	return o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableLogsFilter) Get() *LogsFilter {
 	return v.value
 }
 
-func (v NullableLogsFilter) Set(val *LogsFilter) {
+func (v *NullableLogsFilter) Set(val *LogsFilter) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableLogsFilter) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsFilter) Unset() {
+func (v *NullableLogsFilter) Unset() {
 	v.value = nil
 	v.isSet = false
 }

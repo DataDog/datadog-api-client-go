@@ -35,7 +35,7 @@ func (v NullableWidgetGrouping) Get() *WidgetGrouping {
 	return v.value
 }
 
-func (v NullableWidgetGrouping) Set(val *WidgetGrouping) {
+func (v *NullableWidgetGrouping) Set(val *WidgetGrouping) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetGrouping) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetGrouping) Unset() {
+func (v *NullableWidgetGrouping) Unset() {
 	v.value = nil
 	v.isSet = false
 }

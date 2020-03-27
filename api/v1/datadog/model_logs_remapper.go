@@ -86,14 +86,13 @@ func (o *LogsRemapper) GetOverrideOnConflict() bool {
 	return *o.OverrideOnConflict
 }
 
-// GetOverrideOnConflictOk returns a tuple with the OverrideOnConflict field value if set, zero value otherwise
+// GetOverrideOnConflictOk returns a tuple with the OverrideOnConflict field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetOverrideOnConflictOk() (bool, bool) {
+func (o *LogsRemapper) GetOverrideOnConflictOk() (*bool, bool) {
 	if o == nil || o.OverrideOnConflict == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.OverrideOnConflict, true
+	return o.OverrideOnConflict, true
 }
 
 // HasOverrideOnConflict returns a boolean if a field has been set.
@@ -119,14 +118,13 @@ func (o *LogsRemapper) GetPreserveSource() bool {
 	return *o.PreserveSource
 }
 
-// GetPreserveSourceOk returns a tuple with the PreserveSource field value if set, zero value otherwise
+// GetPreserveSourceOk returns a tuple with the PreserveSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetPreserveSourceOk() (bool, bool) {
+func (o *LogsRemapper) GetPreserveSourceOk() (*bool, bool) {
 	if o == nil || o.PreserveSource == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.PreserveSource, true
+	return o.PreserveSource, true
 }
 
 // HasPreserveSource returns a boolean if a field has been set.
@@ -152,14 +150,13 @@ func (o *LogsRemapper) GetSourceType() string {
 	return *o.SourceType
 }
 
-// GetSourceTypeOk returns a tuple with the SourceType field value if set, zero value otherwise
+// GetSourceTypeOk returns a tuple with the SourceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetSourceTypeOk() (string, bool) {
+func (o *LogsRemapper) GetSourceTypeOk() (*string, bool) {
 	if o == nil || o.SourceType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SourceType, true
+	return o.SourceType, true
 }
 
 // HasSourceType returns a boolean if a field has been set.
@@ -186,6 +183,15 @@ func (o *LogsRemapper) GetSources() []string {
 	return o.Sources
 }
 
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *LogsRemapper) GetSourcesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
 // SetSources sets field value
 func (o *LogsRemapper) SetSources(v []string) {
 	o.Sources = v
@@ -199,6 +205,15 @@ func (o *LogsRemapper) GetTarget() string {
 	}
 
 	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsRemapper) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
 }
 
 // SetTarget sets field value
@@ -215,14 +230,13 @@ func (o *LogsRemapper) GetTargetType() string {
 	return *o.TargetType
 }
 
-// GetTargetTypeOk returns a tuple with the TargetType field value if set, zero value otherwise
+// GetTargetTypeOk returns a tuple with the TargetType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetTargetTypeOk() (string, bool) {
+func (o *LogsRemapper) GetTargetTypeOk() (*string, bool) {
 	if o == nil || o.TargetType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TargetType, true
+	return o.TargetType, true
 }
 
 // HasTargetType returns a boolean if a field has been set.
@@ -248,14 +262,13 @@ func (o *LogsRemapper) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetTypeOk() (string, bool) {
+func (o *LogsRemapper) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -281,14 +294,13 @@ func (o *LogsRemapper) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetIsEnabledOk() (bool, bool) {
+func (o *LogsRemapper) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -314,14 +326,13 @@ func (o *LogsRemapper) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetNameOk() (string, bool) {
+func (o *LogsRemapper) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -384,7 +395,7 @@ func (v NullableLogsRemapper) Get() *LogsRemapper {
 	return v.value
 }
 
-func (v NullableLogsRemapper) Set(val *LogsRemapper) {
+func (v *NullableLogsRemapper) Set(val *LogsRemapper) {
 	v.value = val
 	v.isSet = true
 }
@@ -393,7 +404,7 @@ func (v NullableLogsRemapper) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsRemapper) Unset() {
+func (v *NullableLogsRemapper) Unset() {
 	v.value = nil
 	v.isSet = false
 }

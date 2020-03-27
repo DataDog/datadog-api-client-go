@@ -48,6 +48,15 @@ func (o *DashboardListItems) GetDashboards() []DashboardListItem {
 	return o.Dashboards
 }
 
+// GetDashboardsOk returns a tuple with the Dashboards field value
+// and a boolean to check if the value has been set.
+func (o *DashboardListItems) GetDashboardsOk() (*[]DashboardListItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Dashboards, true
+}
+
 // SetDashboards sets field value
 func (o *DashboardListItems) SetDashboards(v []DashboardListItem) {
 	o.Dashboards = v
@@ -62,14 +71,13 @@ func (o *DashboardListItems) GetTotal() int64 {
 	return *o.Total
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, zero value otherwise
+// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardListItems) GetTotalOk() (int64, bool) {
+func (o *DashboardListItems) GetTotalOk() (*int64, bool) {
 	if o == nil || o.Total == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Total, true
+	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
@@ -106,7 +114,7 @@ func (v NullableDashboardListItems) Get() *DashboardListItems {
 	return v.value
 }
 
-func (v NullableDashboardListItems) Set(val *DashboardListItems) {
+func (v *NullableDashboardListItems) Set(val *DashboardListItems) {
 	v.value = val
 	v.isSet = true
 }
@@ -115,7 +123,7 @@ func (v NullableDashboardListItems) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardListItems) Unset() {
+func (v *NullableDashboardListItems) Unset() {
 	v.value = nil
 	v.isSet = false
 }

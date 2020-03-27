@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ApiKeyResponse TODO.
+// ApiKeyResponse An API key with its associated metadata.
 type ApiKeyResponse struct {
 	ApiKey *ApiKey `json:"api_key,omitempty"`
 }
@@ -43,14 +43,13 @@ func (o *ApiKeyResponse) GetApiKey() ApiKey {
 	return *o.ApiKey
 }
 
-// GetApiKeyOk returns a tuple with the ApiKey field value if set, zero value otherwise
+// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKeyResponse) GetApiKeyOk() (ApiKey, bool) {
+func (o *ApiKeyResponse) GetApiKeyOk() (*ApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
-		var ret ApiKey
-		return ret, false
+		return nil, false
 	}
-	return *o.ApiKey, true
+	return o.ApiKey, true
 }
 
 // HasApiKey returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableApiKeyResponse) Get() *ApiKeyResponse {
 	return v.value
 }
 
-func (v NullableApiKeyResponse) Set(val *ApiKeyResponse) {
+func (v *NullableApiKeyResponse) Set(val *ApiKeyResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableApiKeyResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableApiKeyResponse) Unset() {
+func (v *NullableApiKeyResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -35,7 +35,7 @@ func (v NullableWidgetServiceSummaryDisplayFormat) Get() *WidgetServiceSummaryDi
 	return v.value
 }
 
-func (v NullableWidgetServiceSummaryDisplayFormat) Set(val *WidgetServiceSummaryDisplayFormat) {
+func (v *NullableWidgetServiceSummaryDisplayFormat) Set(val *WidgetServiceSummaryDisplayFormat) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetServiceSummaryDisplayFormat) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetServiceSummaryDisplayFormat) Unset() {
+func (v *NullableWidgetServiceSummaryDisplayFormat) Unset() {
 	v.value = nil
 	v.isSet = false
 }

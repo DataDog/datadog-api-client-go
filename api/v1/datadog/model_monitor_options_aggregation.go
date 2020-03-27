@@ -12,12 +12,14 @@ import (
 	"encoding/json"
 )
 
-// MonitorOptionsAggregation TODO.
+// MonitorOptionsAggregation Type of aggregation performed in the monitor query.
 type MonitorOptionsAggregation struct {
+	// Group to break down the monitor on.
 	GroupBy *string `json:"group_by,omitempty"`
-	// TODO.
+	// Metric name used in the monitor.
 	Metric *string `json:"metric,omitempty"`
-	Type   *string `json:"type,omitempty"`
+	// Metric type used in the monitor.
+	Type *string `json:"type,omitempty"`
 }
 
 // NewMonitorOptionsAggregation instantiates a new MonitorOptionsAggregation object
@@ -46,14 +48,13 @@ func (o *MonitorOptionsAggregation) GetGroupBy() string {
 	return *o.GroupBy
 }
 
-// GetGroupByOk returns a tuple with the GroupBy field value if set, zero value otherwise
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptionsAggregation) GetGroupByOk() (string, bool) {
+func (o *MonitorOptionsAggregation) GetGroupByOk() (*string, bool) {
 	if o == nil || o.GroupBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.GroupBy, true
+	return o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -79,14 +80,13 @@ func (o *MonitorOptionsAggregation) GetMetric() string {
 	return *o.Metric
 }
 
-// GetMetricOk returns a tuple with the Metric field value if set, zero value otherwise
+// GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptionsAggregation) GetMetricOk() (string, bool) {
+func (o *MonitorOptionsAggregation) GetMetricOk() (*string, bool) {
 	if o == nil || o.Metric == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Metric, true
+	return o.Metric, true
 }
 
 // HasMetric returns a boolean if a field has been set.
@@ -112,14 +112,13 @@ func (o *MonitorOptionsAggregation) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorOptionsAggregation) GetTypeOk() (string, bool) {
+func (o *MonitorOptionsAggregation) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -159,7 +158,7 @@ func (v NullableMonitorOptionsAggregation) Get() *MonitorOptionsAggregation {
 	return v.value
 }
 
-func (v NullableMonitorOptionsAggregation) Set(val *MonitorOptionsAggregation) {
+func (v *NullableMonitorOptionsAggregation) Set(val *MonitorOptionsAggregation) {
 	v.value = val
 	v.isSet = true
 }
@@ -168,7 +167,7 @@ func (v NullableMonitorOptionsAggregation) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorOptionsAggregation) Unset() {
+func (v *NullableMonitorOptionsAggregation) Unset() {
 	v.value = nil
 	v.isSet = false
 }

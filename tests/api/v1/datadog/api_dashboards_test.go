@@ -589,8 +589,8 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Template Variables
 	templateVariable := datadog.NewDashboardTemplateVariablesWithDefaults()
 	templateVariable.SetName("test template var")
-	templateVariable.SetPrefix(*datadog.NewNullableString(datadog.PtrString("test-go")))
-	templateVariable.SetDefault(*datadog.NewNullableString(datadog.PtrString("*")))
+	templateVariable.SetPrefix("test-go")
+	templateVariable.SetDefault("*")
 
 	// Template Variable Presets
 	dashboardTemplateVariablePreset := datadog.NewDashboardTemplateVariablePreset()
@@ -626,7 +626,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_ORDERED)
 	dashboard.SetWidgets(orderedWidgetList)
 	dashboard.SetTitle("Go Client Test ORDERED Dashboard")
-	dashboard.SetDescription(*datadog.NewNullableString(datadog.PtrString("Test dashboard for Go client")))
+	dashboard.SetDescription("Test dashboard for Go client")
 	dashboard.SetIsReadOnly(false)
 	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
 	dashboard.SetTemplateVariablePresets([]datadog.DashboardTemplateVariablePreset{*dashboardTemplateVariablePreset})
@@ -698,7 +698,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeDashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_FREE)
 	freeDashboard.SetWidgets(freeWidgetList)
 	freeDashboard.SetTitle("Go Client Test Free Dashboard")
-	freeDashboard.SetDescription(*datadog.NewNullableString(datadog.PtrString("Test Free layout dashboard for Go client")))
+	freeDashboard.SetDescription("Test Free layout dashboard for Go client")
 	freeDashboard.SetIsReadOnly(false)
 	freeDashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
 
@@ -719,7 +719,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	assertDashboardDefinition(freeDashboard, createdFreeDashboard)
 
 	// Update the dashboard and set all nullable fields to null
-	dashboard.SetDescription(datadog.NullableString{})
+	dashboard.SetDescriptionNil()
 	dashboard.SetTemplateVariables(nil)
 	dashboard.SetTemplateVariablePresets(nil)
 	dashboard.SetNotifyList(nil)
@@ -742,7 +742,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	assert.Equal(t, dashboard.GetTitle(), updateResponse.GetTitle())
-	assert.Nil(t, updateResponse.GetDescription().Get())
+	v, ok := updateResponse.GetDescriptionOk()
+	assert.Nil(t, v)
+	assert.True(t, ok)
 	assert.Nil(t, updateResponse.GetTemplateVariables())
 	assert.Nil(t, updateResponse.GetTemplateVariablePresets())
 	assert.Nil(t, updateResponse.GetNotifyList())

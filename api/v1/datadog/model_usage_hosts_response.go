@@ -43,14 +43,13 @@ func (o *UsageHostsResponse) GetUsage() []UsageHostHour {
 	return *o.Usage
 }
 
-// GetUsageOk returns a tuple with the Usage field value if set, zero value otherwise
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostsResponse) GetUsageOk() ([]UsageHostHour, bool) {
+func (o *UsageHostsResponse) GetUsageOk() (*[]UsageHostHour, bool) {
 	if o == nil || o.Usage == nil {
-		var ret []UsageHostHour
-		return ret, false
+		return nil, false
 	}
-	return *o.Usage, true
+	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableUsageHostsResponse) Get() *UsageHostsResponse {
 	return v.value
 }
 
-func (v NullableUsageHostsResponse) Set(val *UsageHostsResponse) {
+func (v *NullableUsageHostsResponse) Set(val *UsageHostsResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableUsageHostsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageHostsResponse) Unset() {
+func (v *NullableUsageHostsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

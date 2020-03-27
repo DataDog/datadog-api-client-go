@@ -49,6 +49,15 @@ func (o *AWSLogsServicesRequest) GetAccountId() string {
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *AWSLogsServicesRequest) GetAccountIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
 func (o *AWSLogsServicesRequest) SetAccountId(v string) {
 	o.AccountId = v
@@ -62,6 +71,15 @@ func (o *AWSLogsServicesRequest) GetServices() []string {
 	}
 
 	return o.Services
+}
+
+// GetServicesOk returns a tuple with the Services field value
+// and a boolean to check if the value has been set.
+func (o *AWSLogsServicesRequest) GetServicesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Services, true
 }
 
 // SetServices sets field value
@@ -89,7 +107,7 @@ func (v NullableAWSLogsServicesRequest) Get() *AWSLogsServicesRequest {
 	return v.value
 }
 
-func (v NullableAWSLogsServicesRequest) Set(val *AWSLogsServicesRequest) {
+func (v *NullableAWSLogsServicesRequest) Set(val *AWSLogsServicesRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -98,7 +116,7 @@ func (v NullableAWSLogsServicesRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSLogsServicesRequest) Unset() {
+func (v *NullableAWSLogsServicesRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -45,6 +45,15 @@ func (o *LogQueryDefinitionSearch) GetQuery() string {
 	return o.Query
 }
 
+// GetQueryOk returns a tuple with the Query field value
+// and a boolean to check if the value has been set.
+func (o *LogQueryDefinitionSearch) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Query, true
+}
+
 // SetQuery sets field value
 func (o *LogQueryDefinitionSearch) SetQuery(v string) {
 	o.Query = v
@@ -67,7 +76,7 @@ func (v NullableLogQueryDefinitionSearch) Get() *LogQueryDefinitionSearch {
 	return v.value
 }
 
-func (v NullableLogQueryDefinitionSearch) Set(val *LogQueryDefinitionSearch) {
+func (v *NullableLogQueryDefinitionSearch) Set(val *LogQueryDefinitionSearch) {
 	v.value = val
 	v.isSet = true
 }
@@ -76,7 +85,7 @@ func (v NullableLogQueryDefinitionSearch) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogQueryDefinitionSearch) Unset() {
+func (v *NullableLogQueryDefinitionSearch) Unset() {
 	v.value = nil
 	v.isSet = false
 }

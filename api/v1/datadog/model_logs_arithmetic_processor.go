@@ -69,6 +69,15 @@ func (o *LogsArithmeticProcessor) GetExpression() string {
 	return o.Expression
 }
 
+// GetExpressionOk returns a tuple with the Expression field value
+// and a boolean to check if the value has been set.
+func (o *LogsArithmeticProcessor) GetExpressionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Expression, true
+}
+
 // SetExpression sets field value
 func (o *LogsArithmeticProcessor) SetExpression(v string) {
 	o.Expression = v
@@ -83,14 +92,13 @@ func (o *LogsArithmeticProcessor) GetIsReplaceMissing() bool {
 	return *o.IsReplaceMissing
 }
 
-// GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field value if set, zero value otherwise
+// GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetIsReplaceMissingOk() (bool, bool) {
+func (o *LogsArithmeticProcessor) GetIsReplaceMissingOk() (*bool, bool) {
 	if o == nil || o.IsReplaceMissing == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsReplaceMissing, true
+	return o.IsReplaceMissing, true
 }
 
 // HasIsReplaceMissing returns a boolean if a field has been set.
@@ -117,6 +125,15 @@ func (o *LogsArithmeticProcessor) GetTarget() string {
 	return o.Target
 }
 
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsArithmeticProcessor) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
 // SetTarget sets field value
 func (o *LogsArithmeticProcessor) SetTarget(v string) {
 	o.Target = v
@@ -131,14 +148,13 @@ func (o *LogsArithmeticProcessor) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetTypeOk() (string, bool) {
+func (o *LogsArithmeticProcessor) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -164,14 +180,13 @@ func (o *LogsArithmeticProcessor) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetIsEnabledOk() (bool, bool) {
+func (o *LogsArithmeticProcessor) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -197,14 +212,13 @@ func (o *LogsArithmeticProcessor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetNameOk() (string, bool) {
+func (o *LogsArithmeticProcessor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -258,7 +272,7 @@ func (v NullableLogsArithmeticProcessor) Get() *LogsArithmeticProcessor {
 	return v.value
 }
 
-func (v NullableLogsArithmeticProcessor) Set(val *LogsArithmeticProcessor) {
+func (v *NullableLogsArithmeticProcessor) Set(val *LogsArithmeticProcessor) {
 	v.value = val
 	v.isSet = true
 }
@@ -267,7 +281,7 @@ func (v NullableLogsArithmeticProcessor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsArithmeticProcessor) Unset() {
+func (v *NullableLogsArithmeticProcessor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

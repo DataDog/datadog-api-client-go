@@ -43,8 +43,9 @@ func TestDowntimeLifecycle(t *testing.T) {
 
 	assert.Equal(t, testDowntime.GetMessage(), downtime.GetMessage())
 	assert.True(t, downtime.GetActive())
-	assert.True(t, downtime.GetUpdaterId().IsSet())
-	assert.Nil(t, downtime.GetUpdaterId().Get())
+	val, set := downtime.GetUpdaterIdOk()
+	assert.True(t, set)
+	assert.Nil(t, val)
 
 	// Edit a downtime
 	editedDowntime := datadog.Downtime{Message: datadog.PtrString("updated message")}
@@ -54,8 +55,9 @@ func TestDowntimeLifecycle(t *testing.T) {
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, editedDowntime.GetMessage(), updatedDowntime.GetMessage())
-	assert.True(t, updatedDowntime.GetUpdaterId().IsSet())
-	assert.NotNil(t, updatedDowntime.GetUpdaterId().Get())
+	val, set = updatedDowntime.GetUpdaterIdOk()
+	assert.True(t, set)
+	assert.NotNil(t, val)
 
 	// Check downtime existence
 	fetchedDowntime, httpresp, err := TESTAPICLIENT.DowntimesApi.GetDowntime(TESTAUTH, downtime.GetId()).Execute()
@@ -119,7 +121,7 @@ func TestMonitorDowntime(t *testing.T) {
 	defer cancelDowntime(downtime.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	assert.Equal(t, monitorID, *downtime.GetMonitorId().Get())
+	assert.Equal(t, monitorID, downtime.GetMonitorId())
 }
 
 func TestScopedDowntime(t *testing.T) {

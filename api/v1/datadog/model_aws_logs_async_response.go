@@ -44,14 +44,13 @@ func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncResponseErrors {
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsAsyncResponse) GetErrorsOk() ([]AWSLogsAsyncResponseErrors, bool) {
+func (o *AWSLogsAsyncResponse) GetErrorsOk() (*[]AWSLogsAsyncResponseErrors, bool) {
 	if o == nil || o.Errors == nil {
-		var ret []AWSLogsAsyncResponseErrors
-		return ret, false
+		return nil, false
 	}
-	return *o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -77,14 +76,13 @@ func (o *AWSLogsAsyncResponse) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsAsyncResponse) GetStatusOk() (string, bool) {
+func (o *AWSLogsAsyncResponse) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -121,7 +119,7 @@ func (v NullableAWSLogsAsyncResponse) Get() *AWSLogsAsyncResponse {
 	return v.value
 }
 
-func (v NullableAWSLogsAsyncResponse) Set(val *AWSLogsAsyncResponse) {
+func (v *NullableAWSLogsAsyncResponse) Set(val *AWSLogsAsyncResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -130,7 +128,7 @@ func (v NullableAWSLogsAsyncResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSLogsAsyncResponse) Unset() {
+func (v *NullableAWSLogsAsyncResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

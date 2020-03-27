@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **int32** | TODO. | 
-**Message** | Pointer to **string** | TODO. | 
+**Code** | Pointer to **int32** | Error code. | 
+**Message** | Pointer to **string** | Error message. | 
 
 ## Methods
 
@@ -34,22 +34,17 @@ GetCode returns the Code field if non-nil, zero value otherwise.
 
 ### GetCodeOk
 
-`func (o *HTTPLogError) GetCodeOk() (int32, bool)`
+`func (o *HTTPLogError) GetCodeOk() (*int32, bool)`
 
 GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCode
-
-`func (o *HTTPLogError) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
 
 ### SetCode
 
 `func (o *HTTPLogError) SetCode(v int32)`
 
-SetCode gets a reference to the given int32 and assigns it to the Code field.
+SetCode sets Code field to given value.
+
 
 ### GetMessage
 
@@ -59,22 +54,17 @@ GetMessage returns the Message field if non-nil, zero value otherwise.
 
 ### GetMessageOk
 
-`func (o *HTTPLogError) GetMessageOk() (string, bool)`
+`func (o *HTTPLogError) GetMessageOk() (*string, bool)`
 
 GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasMessage
-
-`func (o *HTTPLogError) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 ### SetMessage
 
 `func (o *HTTPLogError) SetMessage(v string)`
 
-SetMessage gets a reference to the given string and assigns it to the Message field.
+SetMessage sets Message field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

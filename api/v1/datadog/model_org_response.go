@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// OrgResponse TODO.
+// OrgResponse Response with an organization.
 type OrgResponse struct {
 	Org *Org `json:"org,omitempty"`
 }
@@ -43,14 +43,13 @@ func (o *OrgResponse) GetOrg() Org {
 	return *o.Org
 }
 
-// GetOrgOk returns a tuple with the Org field value if set, zero value otherwise
+// GetOrgOk returns a tuple with the Org field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgResponse) GetOrgOk() (Org, bool) {
+func (o *OrgResponse) GetOrgOk() (*Org, bool) {
 	if o == nil || o.Org == nil {
-		var ret Org
-		return ret, false
+		return nil, false
 	}
-	return *o.Org, true
+	return o.Org, true
 }
 
 // HasOrg returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableOrgResponse) Get() *OrgResponse {
 	return v.value
 }
 
-func (v NullableOrgResponse) Set(val *OrgResponse) {
+func (v *NullableOrgResponse) Set(val *OrgResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableOrgResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgResponse) Unset() {
+func (v *NullableOrgResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

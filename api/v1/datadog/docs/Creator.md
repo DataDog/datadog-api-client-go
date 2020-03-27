@@ -35,22 +35,22 @@ GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *Creator) GetEmailOk() (string, bool)`
+`func (o *Creator) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *Creator) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
 
 ### HasEmail
 
 `func (o *Creator) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
-
-### SetEmail
-
-`func (o *Creator) SetEmail(v string)`
-
-SetEmail gets a reference to the given string and assigns it to the Email field.
 
 ### GetHandle
 
@@ -60,22 +60,22 @@ GetHandle returns the Handle field if non-nil, zero value otherwise.
 
 ### GetHandleOk
 
-`func (o *Creator) GetHandleOk() (string, bool)`
+`func (o *Creator) GetHandleOk() (*string, bool)`
 
 GetHandleOk returns a tuple with the Handle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHandle
+
+`func (o *Creator) SetHandle(v string)`
+
+SetHandle sets Handle field to given value.
 
 ### HasHandle
 
 `func (o *Creator) HasHandle() bool`
 
 HasHandle returns a boolean if a field has been set.
-
-### SetHandle
-
-`func (o *Creator) SetHandle(v string)`
-
-SetHandle gets a reference to the given string and assigns it to the Handle field.
 
 ### GetName
 
@@ -85,22 +85,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *Creator) GetNameOk() (string, bool)`
+`func (o *Creator) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Creator) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *Creator) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *Creator) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

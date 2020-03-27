@@ -36,7 +36,7 @@ func (v NullableWidgetImageSizing) Get() *WidgetImageSizing {
 	return v.value
 }
 
-func (v NullableWidgetImageSizing) Set(val *WidgetImageSizing) {
+func (v *NullableWidgetImageSizing) Set(val *WidgetImageSizing) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetImageSizing) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetImageSizing) Unset() {
+func (v *NullableWidgetImageSizing) Unset() {
 	v.value = nil
 	v.isSet = false
 }
