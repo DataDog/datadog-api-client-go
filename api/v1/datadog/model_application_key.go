@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ApplicationKey TODO.
+// ApplicationKey An application key with its associated metadata.
 type ApplicationKey struct {
 	Hash *string `json:"hash,omitempty"`
 	// Name of your application key.

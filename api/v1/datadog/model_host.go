@@ -14,31 +14,31 @@ import (
 
 // Host struct for Host
 type Host struct {
-	// TODO.
+	// Host aliases collected by Datadog.
 	Aliases *[]string `json:"aliases,omitempty"`
-	// TODO.
+	// The Datadog integrations reporting metrics for the host.
 	Apps *[]string `json:"apps,omitempty"`
-	// TODO.
+	// AWS name of your host.
 	AwsName *string `json:"aws_name,omitempty"`
 	// The host name.
 	HostName *string `json:"host_name,omitempty"`
-	// TODO.
+	// The host ID.
 	Id *int64 `json:"id,omitempty"`
 	// If a host is muted or unmuted.
 	IsMuted *bool `json:"is_muted,omitempty"`
-	// TODO.
+	// Last time the host reported a metric data point.
 	LastReportedTime *int64       `json:"last_reported_time,omitempty"`
 	Meta             *HostMeta    `json:"meta,omitempty"`
 	Metrics          *HostMetrics `json:"metrics,omitempty"`
-	// TODO.
+	// Timeout of the mute applied to your host.
 	MuteTimeout *int64 `json:"mute_timeout,omitempty"`
 	// The host name.
 	Name *string `json:"name,omitempty"`
-	// TODO.
+	// Source or cloud provider associated with your host.
 	Sources *[]string `json:"sources,omitempty"`
-	// TODO.
+	// List of tags for each source (AWS, Datadog Agent, Chef..).
 	TagsBySource *map[string][]string `json:"tags_by_source,omitempty"`
-	// TODO.
+	// Displays UP when the expected metrics are received and displays `???` if no metrics are received.
 	Up *bool `json:"up,omitempty"`
 }
 

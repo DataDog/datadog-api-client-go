@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOThreshold TODO.
+// SLOThreshold SLO thresholds (target and optionally warning) for a single time window.
 type SLOThreshold struct {
 	// The target value for the service level indicator within the corresponding timeframe.
 	Target float64 `json:"target"`

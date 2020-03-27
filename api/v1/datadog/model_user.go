@@ -21,11 +21,11 @@ type User struct {
 	Email *string `json:"email,omitempty"`
 	// The user handle, must be a valid email.
 	Handle *string `json:"handle,omitempty"`
-	// TODO.
+	// Gravatar icon associated to the user.
 	Icon *string `json:"icon,omitempty"`
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
-	// TODO.
+	// Whether or not the user logged in Datadog at least once.
 	Verified *bool `json:"verified,omitempty"`
 }
 

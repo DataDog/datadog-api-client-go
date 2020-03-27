@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Groups** | Pointer to [**map[string]MonitorStateGroup**](MonitorStateGroup.md) | TODO. | [optional] 
+**Groups** | Pointer to [**map[string]MonitorStateGroup**](MonitorStateGroup.md) | Dictionary where the keys are groups (comma separated lists of tags) and the values are the list of groups your monitor is broken down on. | [optional] 
 **MonitorId** | Pointer to **int64** | A single monitor identification. | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 

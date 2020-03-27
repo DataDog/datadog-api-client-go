@@ -12,19 +12,19 @@ import (
 	"encoding/json"
 )
 
-// MonitorThresholds TODO.
+// MonitorThresholds List of the different monitor threshold available.
 type MonitorThresholds struct {
-	// TODO.
+	// The monitor CRITICAL threshold.
 	Critical *float64 `json:"critical,omitempty"`
-	// TODO.
+	// The monitor CRITICAL recovery threshold.
 	CriticalRecovery NullableFloat64 `json:"critical_recovery,omitempty"`
-	// TODO.
+	// The monitor OK threshold.
 	Ok NullableFloat64 `json:"ok,omitempty"`
 	// TODO.
 	Unknown NullableFloat64 `json:"unknown,omitempty"`
-	// TODO.
+	// The monitor WARNING threshold.
 	Warning NullableFloat64 `json:"warning,omitempty"`
-	// TODO.
+	// The monitor WARNING recovery threshold.
 	WarningRecovery NullableFloat64 `json:"warning_recovery,omitempty"`
 }
 

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UsageSummaryDateOrg TODO.
+// UsageSummaryDateOrg Global hourly report of all data billed by Datadog for a given organization.
 type UsageSummaryDateOrg struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current date for the given org.
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`

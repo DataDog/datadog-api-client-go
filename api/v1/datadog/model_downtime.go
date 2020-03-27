@@ -18,15 +18,15 @@ type Downtime struct {
 	Active *bool `json:"active,omitempty"`
 	// If a scheduled downtime is cancelled.
 	Canceled NullableInt64 `json:"canceled,omitempty"`
-	// TODO.
+	// User ID of the downtime creator.
 	CreatorId *int32 `json:"creator_id,omitempty"`
 	// If a downtime has been disabled.
 	Disabled *bool `json:"disabled,omitempty"`
-	// TODO.
+	// 0 for a downtime applied on `*` or all; 1 when the downtime is only scoped to hosts; 2 when the downtime is scoped to anything but hosts.
 	DowntimeType *int32 `json:"downtime_type,omitempty"`
 	// POSIX timestamp to end the downtime. If not provided, the downtime is in effect indefinitely until you cancel it.
 	End NullableInt64 `json:"end,omitempty"`
-	// TODO.
+	// The downtime ID.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this downtime. Email notifications can be sent to specific users by using the same ‘@username’ notation as events.
 	Message *string `json:"message,omitempty"`
@@ -34,7 +34,7 @@ type Downtime struct {
 	MonitorId NullableInt64 `json:"monitor_id,omitempty"`
 	// A comma-separated list of monitor tags. For example, tags that are applied directly to monitors, not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies. The resulting downtime applies to monitors that match ALL provided monitor tags. For example, `service:postgres` **AND** `team:frontend`.
 	MonitorTags *[]string `json:"monitor_tags,omitempty"`
-	// TODO.
+	// ID of the parent Downtime.
 	ParentId   NullableInt64              `json:"parent_id,omitempty"`
 	Recurrence NullableDowntimeRecurrence `json:"recurrence,omitempty"`
 	// The scope(s) to which the downtime applies. For example, `host:app2`. Provide multiple scopes as a comma-separated list like `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
@@ -43,7 +43,7 @@ type Downtime struct {
 	Start *int64 `json:"start,omitempty"`
 	// The timezone for the downtime.
 	Timezone *string `json:"timezone,omitempty"`
-	// TODO.
+	// ID of the last user that updated the downtime.
 	UpdaterId NullableInt32 `json:"updater_id,omitempty"`
 }
 

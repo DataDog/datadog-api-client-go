@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UserListResponse TODO.
+// UserListResponse Array of Datadog users for a given organization.
 type UserListResponse struct {
-	// TODO.
+	// Array of users.
 	Users *[]User `json:"users,omitempty"`
 }
 
