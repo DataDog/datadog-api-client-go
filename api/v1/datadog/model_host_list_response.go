@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// HostListResponse TODO.
+// HostListResponse Response with Host information from Datadog.
 type HostListResponse struct {
-	// TODO.
+	// Array of hosts.
 	HostList *[]Host `json:"host_list,omitempty"`
-	// TODO.
+	// Number of host matching the query.
 	TotalMatching *int64 `json:"total_matching,omitempty"`
-	// TODO.
+	// Number of host returned.
 	TotalReturned *int64 `json:"total_returned,omitempty"`
 }
 

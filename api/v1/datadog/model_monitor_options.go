@@ -12,12 +12,12 @@ import (
 	"encoding/json"
 )
 
-// MonitorOptions TODO.
+// MonitorOptions List of options associated with your monitor.
 type MonitorOptions struct {
 	Aggregation *MonitorOptionsAggregation `json:"aggregation,omitempty"`
-	// TODO.
+	// IDs of the device the Synthetics monitor is running on.
 	DeviceIds *[]MonitorDeviceID `json:"device_ids,omitempty"`
-	// TODO.
+	// Whether or not to send a log sample when the log monitor triggers.
 	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
 	// A message to include with a re-notification. Supports the ‘@username’ notification we allow elsewhere. Not applicable if `renotify_interval` is None.
 	EscalationMessage *string `json:"escalation_message,omitempty"`
@@ -42,9 +42,9 @@ type MonitorOptions struct {
 	RenotifyInterval NullableInt64 `json:"renotify_interval,omitempty"`
 	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to `false` for sparse metrics, otherwise some evaluations are skipped. For “on average” “at all times” and “in total” aggregation, default is true. `False` otherwise.
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
-	// TODO.
+	// Information about the downtime applied to the monitor.
 	Silenced *map[string]int64 `json:"silenced,omitempty"`
-	// TODO.
+	// ID of the corresponding Synthetic check.
 	SyntheticsCheckId NullableInt64                  `json:"synthetics_check_id,omitempty"`
 	ThresholdWindows  *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
 	Thresholds        *MonitorThresholds             `json:"thresholds,omitempty"`

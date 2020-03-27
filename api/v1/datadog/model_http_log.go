@@ -14,13 +14,13 @@ import (
 
 // HTTPLog struct for HTTPLog
 type HTTPLog struct {
-	// TODO.
+	// The integration name associated with your log: the technology from which the log originated. When it matches an integration name, Datadog automatically installs the corresponding parsers and facets. See [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).
 	Ddsource *string `json:"ddsource,omitempty"`
-	// TODO.
+	// Tags associated with your logs.
 	Ddtags *string `json:"ddtags,omitempty"`
-	// TODO.
+	// The name of the originating host of the log.
 	Hostname *string `json:"hostname,omitempty"`
-	// TODO.
+	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
 	Message *string `json:"message,omitempty"`
 }
 

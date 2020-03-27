@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PrivateWidgetShare** | Pointer to **bool** | TODO. | [optional] 
+**PrivateWidgetShare** | Pointer to **bool** | Whether or not the organization users can share widgets outside of Datadog. | [optional] 
 **Saml** | Pointer to [**OrgSettingsSaml**](Org_settings_saml.md) |  | [optional] 
 **SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to "st"]
 **SamlAutocreateUsersDomains** | Pointer to [**OrgSettingsSamlAutocreateUsersDomains**](Org_settings_saml_autocreate_users_domains.md) |  | [optional] 
-**SamlCanBeEnabled** | Pointer to **bool** | TODO. | [optional] 
-**SamlIdpEndpoint** | Pointer to **string** | TODO. | [optional] 
+**SamlCanBeEnabled** | Pointer to **bool** | Whether or not SAML can be enabled for this organization. | [optional] 
+**SamlIdpEndpoint** | Pointer to **string** | Identity provider endpoint for SAML authentication. | [optional] 
 **SamlIdpInitiatedLogin** | Pointer to [**OrgSettingsSamlIdpInitiatedLogin**](Org_settings_saml_idp_initiated_login.md) |  | [optional] 
-**SamlIdpMetadataUploaded** | Pointer to **bool** | TODO. | [optional] 
-**SamlLoginUrl** | Pointer to **string** | TODO. | [optional] 
+**SamlIdpMetadataUploaded** | Pointer to **bool** | Whether or not a SAML identity provider metadata file was provided to the Datadog organization. | [optional] 
+**SamlLoginUrl** | Pointer to **string** | URL for SAML loging. | [optional] 
 **SamlStrictMode** | Pointer to [**OrgSettingsSamlIdpInitiatedLogin**](Org_settings_saml_idp_initiated_login.md) |  | [optional] 
 
 ## Methods

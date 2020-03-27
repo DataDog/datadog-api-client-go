@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ApiKeyListResponse TODO.
+// ApiKeyListResponse List of API and application keys available for a given organization.
 type ApiKeyListResponse struct {
 	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
 }

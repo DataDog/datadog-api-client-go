@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorDeviceID TODO.
+// MonitorDeviceID ID of the device the Synthetics monitor is running on. Same as SyntheticsDeviceID.
 type MonitorDeviceID string
 
 // List of MonitorDeviceID

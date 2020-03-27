@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cpu** | Pointer to **float64** | TODO. | [optional] 
-**Iowait** | Pointer to **float64** | TODO. | [optional] 
-**Load** | Pointer to **float64** | TODO. | [optional] 
+**Cpu** | Pointer to **float64** | The percent of CPU used (everything but idle). | [optional] 
+**Iowait** | Pointer to **float64** | The percent of CPU spent waiting on the IO (not reported for all platforms). | [optional] 
+**Load** | Pointer to **float64** | The system load over the last 15 minutes. | [optional] 
 
 ## Methods
 

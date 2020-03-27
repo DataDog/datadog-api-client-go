@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectiveListResponse TODO.
+// ServiceLevelObjectiveListResponse A response with one or more service level objective.
 type ServiceLevelObjectiveListResponse struct {
 	// An array of service level objective objects.
 	Data []ServiceLevelObjective `json:"data"`

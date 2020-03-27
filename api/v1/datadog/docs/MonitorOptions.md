@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptions_aggregation.md) |  | [optional] 
-**DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) | TODO. | [optional] 
-**EnableLogsSample** | Pointer to **bool** | TODO. | [optional] 
+**DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) | IDs of the device the Synthetics monitor is running on. | [optional] 
+**EnableLogsSample** | Pointer to **bool** | Whether or not to send a log sample when the log monitor triggers. | [optional] 
 **EscalationMessage** | Pointer to **string** | A message to include with a re-notification. Supports the ‘@username’ notification we allow elsewhere. Not applicable if &#x60;renotify_interval&#x60; is None. | [optional] [default to "none"]
 **EvaluationDelay** | Pointer to **NullableInt64** | Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to 300 (5min), the timeframe is set to last_5m and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation. | [optional] 
 **IncludeTags** | Pointer to **bool** | A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.  **Examples** - If &#x60;True&#x60;, &#x60;[Triggered on {host:h1}] Monitor Title&#x60; - If &#x60;False&#x60;, &#x60;[Triggered] Monitor Title&#x60; | [optional] [default to true]
@@ -19,8 +19,8 @@ Name | Type | Description | Notes
 **NotifyNoData** | Pointer to **bool** | A Boolean indicating whether this monitor notifies when data stops reporting. | [optional] [default to false]
 **RenotifyInterval** | Pointer to **NullableInt64** | The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved. | [optional] 
 **RequireFullWindow** | Pointer to **bool** | A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to &#x60;false&#x60; for sparse metrics, otherwise some evaluations are skipped. For “on average” “at all times” and “in total” aggregation, default is true. &#x60;False&#x60; otherwise. | [optional] [default to true]
-**Silenced** | Pointer to **map[string]int64** | TODO. | [optional] 
-**SyntheticsCheckId** | Pointer to **NullableInt64** | TODO. | [optional] 
+**Silenced** | Pointer to **map[string]int64** | Information about the downtime applied to the monitor. | [optional] 
+**SyntheticsCheckId** | Pointer to **NullableInt64** | ID of the corresponding Synthetic check. | [optional] 
 **ThresholdWindows** | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |  | [optional] 
 **Thresholds** | Pointer to [**MonitorThresholds**](MonitorThresholds.md) |  | [optional] 
 **TimeoutH** | Pointer to **NullableInt64** | The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. | [optional] 

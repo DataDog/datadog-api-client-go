@@ -12,13 +12,10 @@ import (
 	"encoding/json"
 )
 
-// MonitorState TODO.
+// MonitorState Wrapper object with the different monitor states.
 type MonitorState struct {
-	// TODO.
+	// Dictionary where the keys are groups (comma separated lists of tags) and the values are the list of groups your monitor is broken down on.
 	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
-	// A single monitor identification.
-	MonitorId    *int64                `json:"monitor_id,omitempty"`
-	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 }
 
 // NewMonitorState instantiates a new MonitorState object
@@ -71,82 +68,10 @@ func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup) {
 	o.Groups = &v
 }
 
-// GetMonitorId returns the MonitorId field value if set, zero value otherwise.
-func (o *MonitorState) GetMonitorId() int64 {
-	if o == nil || o.MonitorId == nil {
-		var ret int64
-		return ret
-	}
-	return *o.MonitorId
-}
-
-// GetMonitorIdOk returns a tuple with the MonitorId field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *MonitorState) GetMonitorIdOk() (int64, bool) {
-	if o == nil || o.MonitorId == nil {
-		var ret int64
-		return ret, false
-	}
-	return *o.MonitorId, true
-}
-
-// HasMonitorId returns a boolean if a field has been set.
-func (o *MonitorState) HasMonitorId() bool {
-	if o != nil && o.MonitorId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
-func (o *MonitorState) SetMonitorId(v int64) {
-	o.MonitorId = &v
-}
-
-// GetOverallState returns the OverallState field value if set, zero value otherwise.
-func (o *MonitorState) GetOverallState() MonitorOverallStates {
-	if o == nil || o.OverallState == nil {
-		var ret MonitorOverallStates
-		return ret
-	}
-	return *o.OverallState
-}
-
-// GetOverallStateOk returns a tuple with the OverallState field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *MonitorState) GetOverallStateOk() (MonitorOverallStates, bool) {
-	if o == nil || o.OverallState == nil {
-		var ret MonitorOverallStates
-		return ret, false
-	}
-	return *o.OverallState, true
-}
-
-// HasOverallState returns a boolean if a field has been set.
-func (o *MonitorState) HasOverallState() bool {
-	if o != nil && o.OverallState != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOverallState gets a reference to the given MonitorOverallStates and assigns it to the OverallState field.
-func (o *MonitorState) SetOverallState(v MonitorOverallStates) {
-	o.OverallState = &v
-}
-
 func (o MonitorState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups
-	}
-	if o.MonitorId != nil {
-		toSerialize["monitor_id"] = o.MonitorId
-	}
-	if o.OverallState != nil {
-		toSerialize["overall_state"] = o.OverallState
 	}
 	return json.Marshal(toSerialize)
 }

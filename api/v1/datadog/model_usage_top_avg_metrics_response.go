@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UsageTopAvgMetricsResponse TODO.
+// UsageTopAvgMetricsResponse Response containing the number of hourly recorded custom metrics for a given organization.
 type UsageTopAvgMetricsResponse struct {
-	// TODO.
+	// Number of hourly recorded custom metrics for a given organization.
 	Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
 }
 

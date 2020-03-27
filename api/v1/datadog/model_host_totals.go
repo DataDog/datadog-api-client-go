@@ -12,10 +12,12 @@ import (
 	"encoding/json"
 )
 
-// HostTotals TODO.
+// HostTotals Total number of host currently monitored by Datadog.
 type HostTotals struct {
+	// Total number of active host (UP and ???) reporting to Datadog.
 	TotalActive *int64 `json:"total_active,omitempty"`
-	TotalUp     *int64 `json:"total_up,omitempty"`
+	// Number of host that are UP and reporting to Datadog.
+	TotalUp *int64 `json:"total_up,omitempty"`
 }
 
 // NewHostTotals instantiates a new HostTotals object

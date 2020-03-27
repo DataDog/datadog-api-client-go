@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to **string** | TODO. | [optional] [readonly] 
-**CreatedBy** | Pointer to **string** | TODO. | [optional] [readonly] 
-**Key** | Pointer to **string** | TODO. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of your application key. | [optional] 
+**Created** | Pointer to **string** | Date of creation of the API key. | [optional] [readonly] 
+**CreatedBy** | Pointer to **string** | Datadog user handle that created the API key. | [optional] [readonly] 
+**Key** | Pointer to **string** | API key. | [optional] [readonly] 
+**Name** | Pointer to **string** | Name of your API key. | [optional] 
 
 ## Methods
 
