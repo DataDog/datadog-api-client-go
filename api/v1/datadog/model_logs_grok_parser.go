@@ -66,6 +66,15 @@ func (o *LogsGrokParser) GetGrok() LogsGrokParserRules {
 	return o.Grok
 }
 
+// GetGrokOk returns a tuple with the Grok field value
+// and a boolean to check if the value has been set.
+func (o *LogsGrokParser) GetGrokOk() (*LogsGrokParserRules, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Grok, true
+}
+
 // SetGrok sets field value
 func (o *LogsGrokParser) SetGrok(v LogsGrokParserRules) {
 	o.Grok = v
@@ -80,14 +89,13 @@ func (o *LogsGrokParser) GetSamples() []string {
 	return *o.Samples
 }
 
-// GetSamplesOk returns a tuple with the Samples field value if set, zero value otherwise
+// GetSamplesOk returns a tuple with the Samples field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGrokParser) GetSamplesOk() ([]string, bool) {
+func (o *LogsGrokParser) GetSamplesOk() (*[]string, bool) {
 	if o == nil || o.Samples == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Samples, true
+	return o.Samples, true
 }
 
 // HasSamples returns a boolean if a field has been set.
@@ -114,6 +122,15 @@ func (o *LogsGrokParser) GetSource() string {
 	return o.Source
 }
 
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *LogsGrokParser) GetSourceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
 // SetSource sets field value
 func (o *LogsGrokParser) SetSource(v string) {
 	o.Source = v
@@ -128,14 +145,13 @@ func (o *LogsGrokParser) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGrokParser) GetTypeOk() (string, bool) {
+func (o *LogsGrokParser) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -161,14 +177,13 @@ func (o *LogsGrokParser) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGrokParser) GetIsEnabledOk() (bool, bool) {
+func (o *LogsGrokParser) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -194,14 +209,13 @@ func (o *LogsGrokParser) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGrokParser) GetNameOk() (string, bool) {
+func (o *LogsGrokParser) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -255,7 +269,7 @@ func (v NullableLogsGrokParser) Get() *LogsGrokParser {
 	return v.value
 }
 
-func (v NullableLogsGrokParser) Set(val *LogsGrokParser) {
+func (v *NullableLogsGrokParser) Set(val *LogsGrokParser) {
 	v.value = val
 	v.isSet = true
 }
@@ -264,7 +278,7 @@ func (v NullableLogsGrokParser) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsGrokParser) Unset() {
+func (v *NullableLogsGrokParser) Unset() {
 	v.value = nil
 	v.isSet = false
 }

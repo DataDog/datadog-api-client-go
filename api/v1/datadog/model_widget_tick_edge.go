@@ -37,7 +37,7 @@ func (v NullableWidgetTickEdge) Get() *WidgetTickEdge {
 	return v.value
 }
 
-func (v NullableWidgetTickEdge) Set(val *WidgetTickEdge) {
+func (v *NullableWidgetTickEdge) Set(val *WidgetTickEdge) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableWidgetTickEdge) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetTickEdge) Unset() {
+func (v *NullableWidgetTickEdge) Unset() {
 	v.value = nil
 	v.isSet = false
 }

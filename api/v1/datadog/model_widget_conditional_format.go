@@ -60,6 +60,15 @@ func (o *WidgetConditionalFormat) GetComparator() WidgetComparator {
 	return o.Comparator
 }
 
+// GetComparatorOk returns a tuple with the Comparator field value
+// and a boolean to check if the value has been set.
+func (o *WidgetConditionalFormat) GetComparatorOk() (*WidgetComparator, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Comparator, true
+}
+
 // SetComparator sets field value
 func (o *WidgetConditionalFormat) SetComparator(v WidgetComparator) {
 	o.Comparator = v
@@ -74,14 +83,13 @@ func (o *WidgetConditionalFormat) GetCustomBgColor() string {
 	return *o.CustomBgColor
 }
 
-// GetCustomBgColorOk returns a tuple with the CustomBgColor field value if set, zero value otherwise
+// GetCustomBgColorOk returns a tuple with the CustomBgColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetConditionalFormat) GetCustomBgColorOk() (string, bool) {
+func (o *WidgetConditionalFormat) GetCustomBgColorOk() (*string, bool) {
 	if o == nil || o.CustomBgColor == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomBgColor, true
+	return o.CustomBgColor, true
 }
 
 // HasCustomBgColor returns a boolean if a field has been set.
@@ -107,14 +115,13 @@ func (o *WidgetConditionalFormat) GetCustomFgColor() string {
 	return *o.CustomFgColor
 }
 
-// GetCustomFgColorOk returns a tuple with the CustomFgColor field value if set, zero value otherwise
+// GetCustomFgColorOk returns a tuple with the CustomFgColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetConditionalFormat) GetCustomFgColorOk() (string, bool) {
+func (o *WidgetConditionalFormat) GetCustomFgColorOk() (*string, bool) {
 	if o == nil || o.CustomFgColor == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomFgColor, true
+	return o.CustomFgColor, true
 }
 
 // HasCustomFgColor returns a boolean if a field has been set.
@@ -140,14 +147,13 @@ func (o *WidgetConditionalFormat) GetHideValue() bool {
 	return *o.HideValue
 }
 
-// GetHideValueOk returns a tuple with the HideValue field value if set, zero value otherwise
+// GetHideValueOk returns a tuple with the HideValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetConditionalFormat) GetHideValueOk() (bool, bool) {
+func (o *WidgetConditionalFormat) GetHideValueOk() (*bool, bool) {
 	if o == nil || o.HideValue == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.HideValue, true
+	return o.HideValue, true
 }
 
 // HasHideValue returns a boolean if a field has been set.
@@ -173,14 +179,13 @@ func (o *WidgetConditionalFormat) GetImageUrl() string {
 	return *o.ImageUrl
 }
 
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, zero value otherwise
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetConditionalFormat) GetImageUrlOk() (string, bool) {
+func (o *WidgetConditionalFormat) GetImageUrlOk() (*string, bool) {
 	if o == nil || o.ImageUrl == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ImageUrl, true
+	return o.ImageUrl, true
 }
 
 // HasImageUrl returns a boolean if a field has been set.
@@ -206,14 +211,13 @@ func (o *WidgetConditionalFormat) GetMetric() string {
 	return *o.Metric
 }
 
-// GetMetricOk returns a tuple with the Metric field value if set, zero value otherwise
+// GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetConditionalFormat) GetMetricOk() (string, bool) {
+func (o *WidgetConditionalFormat) GetMetricOk() (*string, bool) {
 	if o == nil || o.Metric == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Metric, true
+	return o.Metric, true
 }
 
 // HasMetric returns a boolean if a field has been set.
@@ -240,6 +244,15 @@ func (o *WidgetConditionalFormat) GetPalette() WidgetPalette {
 	return o.Palette
 }
 
+// GetPaletteOk returns a tuple with the Palette field value
+// and a boolean to check if the value has been set.
+func (o *WidgetConditionalFormat) GetPaletteOk() (*WidgetPalette, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Palette, true
+}
+
 // SetPalette sets field value
 func (o *WidgetConditionalFormat) SetPalette(v WidgetPalette) {
 	o.Palette = v
@@ -254,14 +267,13 @@ func (o *WidgetConditionalFormat) GetTimeframe() string {
 	return *o.Timeframe
 }
 
-// GetTimeframeOk returns a tuple with the Timeframe field value if set, zero value otherwise
+// GetTimeframeOk returns a tuple with the Timeframe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetConditionalFormat) GetTimeframeOk() (string, bool) {
+func (o *WidgetConditionalFormat) GetTimeframeOk() (*string, bool) {
 	if o == nil || o.Timeframe == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Timeframe, true
+	return o.Timeframe, true
 }
 
 // HasTimeframe returns a boolean if a field has been set.
@@ -286,6 +298,15 @@ func (o *WidgetConditionalFormat) GetValue() float64 {
 	}
 
 	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *WidgetConditionalFormat) GetValueOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
 }
 
 // SetValue sets field value
@@ -334,7 +355,7 @@ func (v NullableWidgetConditionalFormat) Get() *WidgetConditionalFormat {
 	return v.value
 }
 
-func (v NullableWidgetConditionalFormat) Set(val *WidgetConditionalFormat) {
+func (v *NullableWidgetConditionalFormat) Set(val *WidgetConditionalFormat) {
 	v.value = val
 	v.isSet = true
 }
@@ -343,7 +364,7 @@ func (v NullableWidgetConditionalFormat) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetConditionalFormat) Unset() {
+func (v *NullableWidgetConditionalFormat) Unset() {
 	v.value = nil
 	v.isSet = false
 }

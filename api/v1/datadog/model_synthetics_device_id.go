@@ -36,7 +36,7 @@ func (v NullableSyntheticsDeviceID) Get() *SyntheticsDeviceID {
 	return v.value
 }
 
-func (v NullableSyntheticsDeviceID) Set(val *SyntheticsDeviceID) {
+func (v *NullableSyntheticsDeviceID) Set(val *SyntheticsDeviceID) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableSyntheticsDeviceID) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsDeviceID) Unset() {
+func (v *NullableSyntheticsDeviceID) Unset() {
 	v.value = nil
 	v.isSet = false
 }

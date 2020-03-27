@@ -53,6 +53,15 @@ func (o *SLOThreshold) GetTarget() float64 {
 	return o.Target
 }
 
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *SLOThreshold) GetTargetOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
 // SetTarget sets field value
 func (o *SLOThreshold) SetTarget(v float64) {
 	o.Target = v
@@ -67,14 +76,13 @@ func (o *SLOThreshold) GetTargetDisplay() string {
 	return *o.TargetDisplay
 }
 
-// GetTargetDisplayOk returns a tuple with the TargetDisplay field value if set, zero value otherwise
+// GetTargetDisplayOk returns a tuple with the TargetDisplay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOThreshold) GetTargetDisplayOk() (string, bool) {
+func (o *SLOThreshold) GetTargetDisplayOk() (*string, bool) {
 	if o == nil || o.TargetDisplay == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TargetDisplay, true
+	return o.TargetDisplay, true
 }
 
 // HasTargetDisplay returns a boolean if a field has been set.
@@ -101,6 +109,15 @@ func (o *SLOThreshold) GetTimeframe() SLOTimeframe {
 	return o.Timeframe
 }
 
+// GetTimeframeOk returns a tuple with the Timeframe field value
+// and a boolean to check if the value has been set.
+func (o *SLOThreshold) GetTimeframeOk() (*SLOTimeframe, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timeframe, true
+}
+
 // SetTimeframe sets field value
 func (o *SLOThreshold) SetTimeframe(v SLOTimeframe) {
 	o.Timeframe = v
@@ -115,14 +132,13 @@ func (o *SLOThreshold) GetWarning() float64 {
 	return *o.Warning
 }
 
-// GetWarningOk returns a tuple with the Warning field value if set, zero value otherwise
+// GetWarningOk returns a tuple with the Warning field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOThreshold) GetWarningOk() (float64, bool) {
+func (o *SLOThreshold) GetWarningOk() (*float64, bool) {
 	if o == nil || o.Warning == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Warning, true
+	return o.Warning, true
 }
 
 // HasWarning returns a boolean if a field has been set.
@@ -148,14 +164,13 @@ func (o *SLOThreshold) GetWarningDisplay() string {
 	return *o.WarningDisplay
 }
 
-// GetWarningDisplayOk returns a tuple with the WarningDisplay field value if set, zero value otherwise
+// GetWarningDisplayOk returns a tuple with the WarningDisplay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOThreshold) GetWarningDisplayOk() (string, bool) {
+func (o *SLOThreshold) GetWarningDisplayOk() (*string, bool) {
 	if o == nil || o.WarningDisplay == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.WarningDisplay, true
+	return o.WarningDisplay, true
 }
 
 // HasWarningDisplay returns a boolean if a field has been set.
@@ -201,7 +216,7 @@ func (v NullableSLOThreshold) Get() *SLOThreshold {
 	return v.value
 }
 
-func (v NullableSLOThreshold) Set(val *SLOThreshold) {
+func (v *NullableSLOThreshold) Set(val *SLOThreshold) {
 	v.value = val
 	v.isSet = true
 }
@@ -210,7 +225,7 @@ func (v NullableSLOThreshold) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSLOThreshold) Unset() {
+func (v *NullableSLOThreshold) Unset() {
 	v.value = nil
 	v.isSet = false
 }

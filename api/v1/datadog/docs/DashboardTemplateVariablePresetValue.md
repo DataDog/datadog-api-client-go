@@ -34,22 +34,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *DashboardTemplateVariablePresetValue) GetNameOk() (string, bool)`
+`func (o *DashboardTemplateVariablePresetValue) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *DashboardTemplateVariablePresetValue) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *DashboardTemplateVariablePresetValue) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *DashboardTemplateVariablePresetValue) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetValue
 
@@ -59,22 +59,22 @@ GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *DashboardTemplateVariablePresetValue) GetValueOk() (string, bool)`
+`func (o *DashboardTemplateVariablePresetValue) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetValue
+
+`func (o *DashboardTemplateVariablePresetValue) SetValue(v string)`
+
+SetValue sets Value field to given value.
 
 ### HasValue
 
 `func (o *DashboardTemplateVariablePresetValue) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
-
-### SetValue
-
-`func (o *DashboardTemplateVariablePresetValue) SetValue(v string)`
-
-SetValue gets a reference to the given string and assigns it to the Value field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

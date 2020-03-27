@@ -39,22 +39,22 @@ GetDefaultLookup returns the DefaultLookup field if non-nil, zero value otherwis
 
 ### GetDefaultLookupOk
 
-`func (o *LogsLookupProcessor) GetDefaultLookupOk() (string, bool)`
+`func (o *LogsLookupProcessor) GetDefaultLookupOk() (*string, bool)`
 
 GetDefaultLookupOk returns a tuple with the DefaultLookup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDefaultLookup
+
+`func (o *LogsLookupProcessor) SetDefaultLookup(v string)`
+
+SetDefaultLookup sets DefaultLookup field to given value.
 
 ### HasDefaultLookup
 
 `func (o *LogsLookupProcessor) HasDefaultLookup() bool`
 
 HasDefaultLookup returns a boolean if a field has been set.
-
-### SetDefaultLookup
-
-`func (o *LogsLookupProcessor) SetDefaultLookup(v string)`
-
-SetDefaultLookup gets a reference to the given string and assigns it to the DefaultLookup field.
 
 ### GetLookupTable
 
@@ -64,22 +64,17 @@ GetLookupTable returns the LookupTable field if non-nil, zero value otherwise.
 
 ### GetLookupTableOk
 
-`func (o *LogsLookupProcessor) GetLookupTableOk() ([]string, bool)`
+`func (o *LogsLookupProcessor) GetLookupTableOk() (*[]string, bool)`
 
 GetLookupTableOk returns a tuple with the LookupTable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasLookupTable
-
-`func (o *LogsLookupProcessor) HasLookupTable() bool`
-
-HasLookupTable returns a boolean if a field has been set.
 
 ### SetLookupTable
 
 `func (o *LogsLookupProcessor) SetLookupTable(v []string)`
 
-SetLookupTable gets a reference to the given []string and assigns it to the LookupTable field.
+SetLookupTable sets LookupTable field to given value.
+
 
 ### GetSource
 
@@ -89,22 +84,17 @@ GetSource returns the Source field if non-nil, zero value otherwise.
 
 ### GetSourceOk
 
-`func (o *LogsLookupProcessor) GetSourceOk() (string, bool)`
+`func (o *LogsLookupProcessor) GetSourceOk() (*string, bool)`
 
 GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSource
-
-`func (o *LogsLookupProcessor) HasSource() bool`
-
-HasSource returns a boolean if a field has been set.
 
 ### SetSource
 
 `func (o *LogsLookupProcessor) SetSource(v string)`
 
-SetSource gets a reference to the given string and assigns it to the Source field.
+SetSource sets Source field to given value.
+
 
 ### GetTarget
 
@@ -114,22 +104,17 @@ GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *LogsLookupProcessor) GetTargetOk() (string, bool)`
+`func (o *LogsLookupProcessor) GetTargetOk() (*string, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTarget
-
-`func (o *LogsLookupProcessor) HasTarget() bool`
-
-HasTarget returns a boolean if a field has been set.
 
 ### SetTarget
 
 `func (o *LogsLookupProcessor) SetTarget(v string)`
 
-SetTarget gets a reference to the given string and assigns it to the Target field.
+SetTarget sets Target field to given value.
+
 
 ### GetType
 
@@ -139,22 +124,22 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsLookupProcessor) GetTypeOk() (string, bool)`
+`func (o *LogsLookupProcessor) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsLookupProcessor) SetType(v string)`
+
+SetType sets Type field to given value.
 
 ### HasType
 
 `func (o *LogsLookupProcessor) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *LogsLookupProcessor) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetIsEnabled
 
@@ -164,22 +149,22 @@ GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
 ### GetIsEnabledOk
 
-`func (o *LogsLookupProcessor) GetIsEnabledOk() (bool, bool)`
+`func (o *LogsLookupProcessor) GetIsEnabledOk() (*bool, bool)`
 
 GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsEnabled
+
+`func (o *LogsLookupProcessor) SetIsEnabled(v bool)`
+
+SetIsEnabled sets IsEnabled field to given value.
 
 ### HasIsEnabled
 
 `func (o *LogsLookupProcessor) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
-
-### SetIsEnabled
-
-`func (o *LogsLookupProcessor) SetIsEnabled(v bool)`
-
-SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
 
 ### GetName
 
@@ -189,22 +174,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsLookupProcessor) GetNameOk() (string, bool)`
+`func (o *LogsLookupProcessor) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsLookupProcessor) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *LogsLookupProcessor) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *LogsLookupProcessor) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 
 ### AsLogsProcessor

@@ -70,14 +70,13 @@ func (o *LogsUserAgentParser) GetIsEncoded() bool {
 	return *o.IsEncoded
 }
 
-// GetIsEncodedOk returns a tuple with the IsEncoded field value if set, zero value otherwise
+// GetIsEncodedOk returns a tuple with the IsEncoded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsUserAgentParser) GetIsEncodedOk() (bool, bool) {
+func (o *LogsUserAgentParser) GetIsEncodedOk() (*bool, bool) {
 	if o == nil || o.IsEncoded == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEncoded, true
+	return o.IsEncoded, true
 }
 
 // HasIsEncoded returns a boolean if a field has been set.
@@ -104,6 +103,15 @@ func (o *LogsUserAgentParser) GetSources() []string {
 	return o.Sources
 }
 
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *LogsUserAgentParser) GetSourcesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
 // SetSources sets field value
 func (o *LogsUserAgentParser) SetSources(v []string) {
 	o.Sources = v
@@ -117,6 +125,15 @@ func (o *LogsUserAgentParser) GetTarget() string {
 	}
 
 	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsUserAgentParser) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
 }
 
 // SetTarget sets field value
@@ -133,14 +150,13 @@ func (o *LogsUserAgentParser) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsUserAgentParser) GetTypeOk() (string, bool) {
+func (o *LogsUserAgentParser) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -166,14 +182,13 @@ func (o *LogsUserAgentParser) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsUserAgentParser) GetIsEnabledOk() (bool, bool) {
+func (o *LogsUserAgentParser) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -199,14 +214,13 @@ func (o *LogsUserAgentParser) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsUserAgentParser) GetNameOk() (string, bool) {
+func (o *LogsUserAgentParser) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -260,7 +274,7 @@ func (v NullableLogsUserAgentParser) Get() *LogsUserAgentParser {
 	return v.value
 }
 
-func (v NullableLogsUserAgentParser) Set(val *LogsUserAgentParser) {
+func (v *NullableLogsUserAgentParser) Set(val *LogsUserAgentParser) {
 	v.value = val
 	v.isSet = true
 }
@@ -269,7 +283,7 @@ func (v NullableLogsUserAgentParser) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsUserAgentParser) Unset() {
+func (v *NullableLogsUserAgentParser) Unset() {
 	v.value = nil
 	v.isSet = false
 }

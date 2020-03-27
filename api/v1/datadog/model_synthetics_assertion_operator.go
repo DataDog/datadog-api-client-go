@@ -42,7 +42,7 @@ func (v NullableSyntheticsAssertionOperator) Get() *SyntheticsAssertionOperator 
 	return v.value
 }
 
-func (v NullableSyntheticsAssertionOperator) Set(val *SyntheticsAssertionOperator) {
+func (v *NullableSyntheticsAssertionOperator) Set(val *SyntheticsAssertionOperator) {
 	v.value = val
 	v.isSet = true
 }
@@ -51,7 +51,7 @@ func (v NullableSyntheticsAssertionOperator) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsAssertionOperator) Unset() {
+func (v *NullableSyntheticsAssertionOperator) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -37,7 +37,7 @@ func (v NullableServiceCheckStatus) Get() *ServiceCheckStatus {
 	return v.value
 }
 
-func (v NullableServiceCheckStatus) Set(val *ServiceCheckStatus) {
+func (v *NullableServiceCheckStatus) Set(val *ServiceCheckStatus) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableServiceCheckStatus) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceCheckStatus) Unset() {
+func (v *NullableServiceCheckStatus) Unset() {
 	v.value = nil
 	v.isSet = false
 }

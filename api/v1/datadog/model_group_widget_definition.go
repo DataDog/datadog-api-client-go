@@ -54,6 +54,15 @@ func (o *GroupWidgetDefinition) GetLayoutType() WidgetLayoutType {
 	return o.LayoutType
 }
 
+// GetLayoutTypeOk returns a tuple with the LayoutType field value
+// and a boolean to check if the value has been set.
+func (o *GroupWidgetDefinition) GetLayoutTypeOk() (*WidgetLayoutType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LayoutType, true
+}
+
 // SetLayoutType sets field value
 func (o *GroupWidgetDefinition) SetLayoutType(v WidgetLayoutType) {
 	o.LayoutType = v
@@ -68,14 +77,13 @@ func (o *GroupWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *GroupWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -102,6 +110,15 @@ func (o *GroupWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GroupWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *GroupWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -115,6 +132,15 @@ func (o *GroupWidgetDefinition) GetWidgets() []Widget {
 	}
 
 	return o.Widgets
+}
+
+// GetWidgetsOk returns a tuple with the Widgets field value
+// and a boolean to check if the value has been set.
+func (o *GroupWidgetDefinition) GetWidgetsOk() (*[]Widget, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Widgets, true
 }
 
 // SetWidgets sets field value
@@ -153,7 +179,7 @@ func (v NullableGroupWidgetDefinition) Get() *GroupWidgetDefinition {
 	return v.value
 }
 
-func (v NullableGroupWidgetDefinition) Set(val *GroupWidgetDefinition) {
+func (v *NullableGroupWidgetDefinition) Set(val *GroupWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -162,7 +188,7 @@ func (v NullableGroupWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableGroupWidgetDefinition) Unset() {
+func (v *NullableGroupWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

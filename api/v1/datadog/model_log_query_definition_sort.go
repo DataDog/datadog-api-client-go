@@ -48,6 +48,15 @@ func (o *LogQueryDefinitionSort) GetAggregation() string {
 	return o.Aggregation
 }
 
+// GetAggregationOk returns a tuple with the Aggregation field value
+// and a boolean to check if the value has been set.
+func (o *LogQueryDefinitionSort) GetAggregationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Aggregation, true
+}
+
 // SetAggregation sets field value
 func (o *LogQueryDefinitionSort) SetAggregation(v string) {
 	o.Aggregation = v
@@ -62,14 +71,13 @@ func (o *LogQueryDefinitionSort) GetFacet() string {
 	return *o.Facet
 }
 
-// GetFacetOk returns a tuple with the Facet field value if set, zero value otherwise
+// GetFacetOk returns a tuple with the Facet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinitionSort) GetFacetOk() (string, bool) {
+func (o *LogQueryDefinitionSort) GetFacetOk() (*string, bool) {
 	if o == nil || o.Facet == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Facet, true
+	return o.Facet, true
 }
 
 // HasFacet returns a boolean if a field has been set.
@@ -94,6 +102,15 @@ func (o *LogQueryDefinitionSort) GetOrder() WidgetSort {
 	}
 
 	return o.Order
+}
+
+// GetOrderOk returns a tuple with the Order field value
+// and a boolean to check if the value has been set.
+func (o *LogQueryDefinitionSort) GetOrderOk() (*WidgetSort, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Order, true
 }
 
 // SetOrder sets field value
@@ -124,7 +141,7 @@ func (v NullableLogQueryDefinitionSort) Get() *LogQueryDefinitionSort {
 	return v.value
 }
 
-func (v NullableLogQueryDefinitionSort) Set(val *LogQueryDefinitionSort) {
+func (v *NullableLogQueryDefinitionSort) Set(val *LogQueryDefinitionSort) {
 	v.value = val
 	v.isSet = true
 }
@@ -133,7 +150,7 @@ func (v NullableLogQueryDefinitionSort) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogQueryDefinitionSort) Unset() {
+func (v *NullableLogQueryDefinitionSort) Unset() {
 	v.value = nil
 	v.isSet = false
 }

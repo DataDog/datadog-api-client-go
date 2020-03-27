@@ -57,14 +57,13 @@ func (o *UsageHostHour) GetAgentHostCount() int64 {
 	return *o.AgentHostCount
 }
 
-// GetAgentHostCountOk returns a tuple with the AgentHostCount field value if set, zero value otherwise
+// GetAgentHostCountOk returns a tuple with the AgentHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostHour) GetAgentHostCountOk() (int64, bool) {
+func (o *UsageHostHour) GetAgentHostCountOk() (*int64, bool) {
 	if o == nil || o.AgentHostCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AgentHostCount, true
+	return o.AgentHostCount, true
 }
 
 // HasAgentHostCount returns a boolean if a field has been set.
@@ -90,14 +89,13 @@ func (o *UsageHostHour) GetApmHostCount() int64 {
 	return *o.ApmHostCount
 }
 
-// GetApmHostCountOk returns a tuple with the ApmHostCount field value if set, zero value otherwise
+// GetApmHostCountOk returns a tuple with the ApmHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostHour) GetApmHostCountOk() (int64, bool) {
+func (o *UsageHostHour) GetApmHostCountOk() (*int64, bool) {
 	if o == nil || o.ApmHostCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ApmHostCount, true
+	return o.ApmHostCount, true
 }
 
 // HasApmHostCount returns a boolean if a field has been set.
@@ -123,14 +121,13 @@ func (o *UsageHostHour) GetAwsHostCount() int64 {
 	return *o.AwsHostCount
 }
 
-// GetAwsHostCountOk returns a tuple with the AwsHostCount field value if set, zero value otherwise
+// GetAwsHostCountOk returns a tuple with the AwsHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostHour) GetAwsHostCountOk() (int64, bool) {
+func (o *UsageHostHour) GetAwsHostCountOk() (*int64, bool) {
 	if o == nil || o.AwsHostCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AwsHostCount, true
+	return o.AwsHostCount, true
 }
 
 // HasAwsHostCount returns a boolean if a field has been set.
@@ -156,14 +153,13 @@ func (o *UsageHostHour) GetContainerCount() int64 {
 	return *o.ContainerCount
 }
 
-// GetContainerCountOk returns a tuple with the ContainerCount field value if set, zero value otherwise
+// GetContainerCountOk returns a tuple with the ContainerCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostHour) GetContainerCountOk() (int64, bool) {
+func (o *UsageHostHour) GetContainerCountOk() (*int64, bool) {
 	if o == nil || o.ContainerCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ContainerCount, true
+	return o.ContainerCount, true
 }
 
 // HasContainerCount returns a boolean if a field has been set.
@@ -189,14 +185,13 @@ func (o *UsageHostHour) GetGcpHostCount() int64 {
 	return *o.GcpHostCount
 }
 
-// GetGcpHostCountOk returns a tuple with the GcpHostCount field value if set, zero value otherwise
+// GetGcpHostCountOk returns a tuple with the GcpHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostHour) GetGcpHostCountOk() (int64, bool) {
+func (o *UsageHostHour) GetGcpHostCountOk() (*int64, bool) {
 	if o == nil || o.GcpHostCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.GcpHostCount, true
+	return o.GcpHostCount, true
 }
 
 // HasGcpHostCount returns a boolean if a field has been set.
@@ -222,14 +217,13 @@ func (o *UsageHostHour) GetHostCount() int64 {
 	return *o.HostCount
 }
 
-// GetHostCountOk returns a tuple with the HostCount field value if set, zero value otherwise
+// GetHostCountOk returns a tuple with the HostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostHour) GetHostCountOk() (int64, bool) {
+func (o *UsageHostHour) GetHostCountOk() (*int64, bool) {
 	if o == nil || o.HostCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.HostCount, true
+	return o.HostCount, true
 }
 
 // HasHostCount returns a boolean if a field has been set.
@@ -255,14 +249,13 @@ func (o *UsageHostHour) GetHour() time.Time {
 	return *o.Hour
 }
 
-// GetHourOk returns a tuple with the Hour field value if set, zero value otherwise
+// GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageHostHour) GetHourOk() (time.Time, bool) {
+func (o *UsageHostHour) GetHourOk() (*time.Time, bool) {
 	if o == nil || o.Hour == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Hour, true
+	return o.Hour, true
 }
 
 // HasHour returns a boolean if a field has been set.
@@ -314,7 +307,7 @@ func (v NullableUsageHostHour) Get() *UsageHostHour {
 	return v.value
 }
 
-func (v NullableUsageHostHour) Set(val *UsageHostHour) {
+func (v *NullableUsageHostHour) Set(val *UsageHostHour) {
 	v.value = val
 	v.isSet = true
 }
@@ -323,7 +316,7 @@ func (v NullableUsageHostHour) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageHostHour) Unset() {
+func (v *NullableUsageHostHour) Unset() {
 	v.value = nil
 	v.isSet = false
 }

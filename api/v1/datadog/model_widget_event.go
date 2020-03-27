@@ -47,6 +47,15 @@ func (o *WidgetEvent) GetQ() string {
 	return o.Q
 }
 
+// GetQOk returns a tuple with the Q field value
+// and a boolean to check if the value has been set.
+func (o *WidgetEvent) GetQOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Q, true
+}
+
 // SetQ sets field value
 func (o *WidgetEvent) SetQ(v string) {
 	o.Q = v
@@ -61,14 +70,13 @@ func (o *WidgetEvent) GetTagsExecution() string {
 	return *o.TagsExecution
 }
 
-// GetTagsExecutionOk returns a tuple with the TagsExecution field value if set, zero value otherwise
+// GetTagsExecutionOk returns a tuple with the TagsExecution field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetEvent) GetTagsExecutionOk() (string, bool) {
+func (o *WidgetEvent) GetTagsExecutionOk() (*string, bool) {
 	if o == nil || o.TagsExecution == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TagsExecution, true
+	return o.TagsExecution, true
 }
 
 // HasTagsExecution returns a boolean if a field has been set.
@@ -105,7 +113,7 @@ func (v NullableWidgetEvent) Get() *WidgetEvent {
 	return v.value
 }
 
-func (v NullableWidgetEvent) Set(val *WidgetEvent) {
+func (v *NullableWidgetEvent) Set(val *WidgetEvent) {
 	v.value = val
 	v.isSet = true
 }
@@ -114,7 +122,7 @@ func (v NullableWidgetEvent) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetEvent) Unset() {
+func (v *NullableWidgetEvent) Unset() {
 	v.value = nil
 	v.isSet = false
 }

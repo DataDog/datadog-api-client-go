@@ -52,14 +52,13 @@ func (o *MetricsQueryResponseUnit) GetFamily() string {
 	return *o.Family
 }
 
-// GetFamilyOk returns a tuple with the Family field value if set, zero value otherwise
+// GetFamilyOk returns a tuple with the Family field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseUnit) GetFamilyOk() (string, bool) {
+func (o *MetricsQueryResponseUnit) GetFamilyOk() (*string, bool) {
 	if o == nil || o.Family == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Family, true
+	return o.Family, true
 }
 
 // HasFamily returns a boolean if a field has been set.
@@ -85,14 +84,13 @@ func (o *MetricsQueryResponseUnit) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseUnit) GetNameOk() (string, bool) {
+func (o *MetricsQueryResponseUnit) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -118,14 +116,13 @@ func (o *MetricsQueryResponseUnit) GetPlural() string {
 	return *o.Plural
 }
 
-// GetPluralOk returns a tuple with the Plural field value if set, zero value otherwise
+// GetPluralOk returns a tuple with the Plural field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseUnit) GetPluralOk() (string, bool) {
+func (o *MetricsQueryResponseUnit) GetPluralOk() (*string, bool) {
 	if o == nil || o.Plural == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Plural, true
+	return o.Plural, true
 }
 
 // HasPlural returns a boolean if a field has been set.
@@ -151,14 +148,13 @@ func (o *MetricsQueryResponseUnit) GetScaleFactor() float64 {
 	return *o.ScaleFactor
 }
 
-// GetScaleFactorOk returns a tuple with the ScaleFactor field value if set, zero value otherwise
+// GetScaleFactorOk returns a tuple with the ScaleFactor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseUnit) GetScaleFactorOk() (float64, bool) {
+func (o *MetricsQueryResponseUnit) GetScaleFactorOk() (*float64, bool) {
 	if o == nil || o.ScaleFactor == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.ScaleFactor, true
+	return o.ScaleFactor, true
 }
 
 // HasScaleFactor returns a boolean if a field has been set.
@@ -184,14 +180,13 @@ func (o *MetricsQueryResponseUnit) GetShortName() string {
 	return *o.ShortName
 }
 
-// GetShortNameOk returns a tuple with the ShortName field value if set, zero value otherwise
+// GetShortNameOk returns a tuple with the ShortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseUnit) GetShortNameOk() (string, bool) {
+func (o *MetricsQueryResponseUnit) GetShortNameOk() (*string, bool) {
 	if o == nil || o.ShortName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ShortName, true
+	return o.ShortName, true
 }
 
 // HasShortName returns a boolean if a field has been set.
@@ -237,7 +232,7 @@ func (v NullableMetricsQueryResponseUnit) Get() *MetricsQueryResponseUnit {
 	return v.value
 }
 
-func (v NullableMetricsQueryResponseUnit) Set(val *MetricsQueryResponseUnit) {
+func (v *NullableMetricsQueryResponseUnit) Set(val *MetricsQueryResponseUnit) {
 	v.value = val
 	v.isSet = true
 }
@@ -246,7 +241,7 @@ func (v NullableMetricsQueryResponseUnit) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricsQueryResponseUnit) Unset() {
+func (v *NullableMetricsQueryResponseUnit) Unset() {
 	v.value = nil
 	v.isSet = false
 }

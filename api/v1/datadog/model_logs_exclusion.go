@@ -46,14 +46,13 @@ func (o *LogsExclusion) GetFilter() LogsExclusionFilter {
 	return *o.Filter
 }
 
-// GetFilterOk returns a tuple with the Filter field value if set, zero value otherwise
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsExclusion) GetFilterOk() (LogsExclusionFilter, bool) {
+func (o *LogsExclusion) GetFilterOk() (*LogsExclusionFilter, bool) {
 	if o == nil || o.Filter == nil {
-		var ret LogsExclusionFilter
-		return ret, false
+		return nil, false
 	}
-	return *o.Filter, true
+	return o.Filter, true
 }
 
 // HasFilter returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *LogsExclusion) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsExclusion) GetIsEnabledOk() (bool, bool) {
+func (o *LogsExclusion) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -111,6 +109,15 @@ func (o *LogsExclusion) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LogsExclusion) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -141,7 +148,7 @@ func (v NullableLogsExclusion) Get() *LogsExclusion {
 	return v.value
 }
 
-func (v NullableLogsExclusion) Set(val *LogsExclusion) {
+func (v *NullableLogsExclusion) Set(val *LogsExclusion) {
 	v.value = val
 	v.isSet = true
 }
@@ -150,7 +157,7 @@ func (v NullableLogsExclusion) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsExclusion) Unset() {
+func (v *NullableLogsExclusion) Unset() {
 	v.value = nil
 	v.isSet = false
 }

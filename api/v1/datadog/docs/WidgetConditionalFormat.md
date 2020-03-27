@@ -41,22 +41,17 @@ GetComparator returns the Comparator field if non-nil, zero value otherwise.
 
 ### GetComparatorOk
 
-`func (o *WidgetConditionalFormat) GetComparatorOk() (WidgetComparator, bool)`
+`func (o *WidgetConditionalFormat) GetComparatorOk() (*WidgetComparator, bool)`
 
 GetComparatorOk returns a tuple with the Comparator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasComparator
-
-`func (o *WidgetConditionalFormat) HasComparator() bool`
-
-HasComparator returns a boolean if a field has been set.
 
 ### SetComparator
 
 `func (o *WidgetConditionalFormat) SetComparator(v WidgetComparator)`
 
-SetComparator gets a reference to the given WidgetComparator and assigns it to the Comparator field.
+SetComparator sets Comparator field to given value.
+
 
 ### GetCustomBgColor
 
@@ -66,22 +61,22 @@ GetCustomBgColor returns the CustomBgColor field if non-nil, zero value otherwis
 
 ### GetCustomBgColorOk
 
-`func (o *WidgetConditionalFormat) GetCustomBgColorOk() (string, bool)`
+`func (o *WidgetConditionalFormat) GetCustomBgColorOk() (*string, bool)`
 
 GetCustomBgColorOk returns a tuple with the CustomBgColor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCustomBgColor
+
+`func (o *WidgetConditionalFormat) SetCustomBgColor(v string)`
+
+SetCustomBgColor sets CustomBgColor field to given value.
 
 ### HasCustomBgColor
 
 `func (o *WidgetConditionalFormat) HasCustomBgColor() bool`
 
 HasCustomBgColor returns a boolean if a field has been set.
-
-### SetCustomBgColor
-
-`func (o *WidgetConditionalFormat) SetCustomBgColor(v string)`
-
-SetCustomBgColor gets a reference to the given string and assigns it to the CustomBgColor field.
 
 ### GetCustomFgColor
 
@@ -91,22 +86,22 @@ GetCustomFgColor returns the CustomFgColor field if non-nil, zero value otherwis
 
 ### GetCustomFgColorOk
 
-`func (o *WidgetConditionalFormat) GetCustomFgColorOk() (string, bool)`
+`func (o *WidgetConditionalFormat) GetCustomFgColorOk() (*string, bool)`
 
 GetCustomFgColorOk returns a tuple with the CustomFgColor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCustomFgColor
+
+`func (o *WidgetConditionalFormat) SetCustomFgColor(v string)`
+
+SetCustomFgColor sets CustomFgColor field to given value.
 
 ### HasCustomFgColor
 
 `func (o *WidgetConditionalFormat) HasCustomFgColor() bool`
 
 HasCustomFgColor returns a boolean if a field has been set.
-
-### SetCustomFgColor
-
-`func (o *WidgetConditionalFormat) SetCustomFgColor(v string)`
-
-SetCustomFgColor gets a reference to the given string and assigns it to the CustomFgColor field.
 
 ### GetHideValue
 
@@ -116,22 +111,22 @@ GetHideValue returns the HideValue field if non-nil, zero value otherwise.
 
 ### GetHideValueOk
 
-`func (o *WidgetConditionalFormat) GetHideValueOk() (bool, bool)`
+`func (o *WidgetConditionalFormat) GetHideValueOk() (*bool, bool)`
 
 GetHideValueOk returns a tuple with the HideValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHideValue
+
+`func (o *WidgetConditionalFormat) SetHideValue(v bool)`
+
+SetHideValue sets HideValue field to given value.
 
 ### HasHideValue
 
 `func (o *WidgetConditionalFormat) HasHideValue() bool`
 
 HasHideValue returns a boolean if a field has been set.
-
-### SetHideValue
-
-`func (o *WidgetConditionalFormat) SetHideValue(v bool)`
-
-SetHideValue gets a reference to the given bool and assigns it to the HideValue field.
 
 ### GetImageUrl
 
@@ -141,22 +136,22 @@ GetImageUrl returns the ImageUrl field if non-nil, zero value otherwise.
 
 ### GetImageUrlOk
 
-`func (o *WidgetConditionalFormat) GetImageUrlOk() (string, bool)`
+`func (o *WidgetConditionalFormat) GetImageUrlOk() (*string, bool)`
 
 GetImageUrlOk returns a tuple with the ImageUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetImageUrl
+
+`func (o *WidgetConditionalFormat) SetImageUrl(v string)`
+
+SetImageUrl sets ImageUrl field to given value.
 
 ### HasImageUrl
 
 `func (o *WidgetConditionalFormat) HasImageUrl() bool`
 
 HasImageUrl returns a boolean if a field has been set.
-
-### SetImageUrl
-
-`func (o *WidgetConditionalFormat) SetImageUrl(v string)`
-
-SetImageUrl gets a reference to the given string and assigns it to the ImageUrl field.
 
 ### GetMetric
 
@@ -166,22 +161,22 @@ GetMetric returns the Metric field if non-nil, zero value otherwise.
 
 ### GetMetricOk
 
-`func (o *WidgetConditionalFormat) GetMetricOk() (string, bool)`
+`func (o *WidgetConditionalFormat) GetMetricOk() (*string, bool)`
 
 GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMetric
+
+`func (o *WidgetConditionalFormat) SetMetric(v string)`
+
+SetMetric sets Metric field to given value.
 
 ### HasMetric
 
 `func (o *WidgetConditionalFormat) HasMetric() bool`
 
 HasMetric returns a boolean if a field has been set.
-
-### SetMetric
-
-`func (o *WidgetConditionalFormat) SetMetric(v string)`
-
-SetMetric gets a reference to the given string and assigns it to the Metric field.
 
 ### GetPalette
 
@@ -191,22 +186,17 @@ GetPalette returns the Palette field if non-nil, zero value otherwise.
 
 ### GetPaletteOk
 
-`func (o *WidgetConditionalFormat) GetPaletteOk() (WidgetPalette, bool)`
+`func (o *WidgetConditionalFormat) GetPaletteOk() (*WidgetPalette, bool)`
 
 GetPaletteOk returns a tuple with the Palette field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasPalette
-
-`func (o *WidgetConditionalFormat) HasPalette() bool`
-
-HasPalette returns a boolean if a field has been set.
 
 ### SetPalette
 
 `func (o *WidgetConditionalFormat) SetPalette(v WidgetPalette)`
 
-SetPalette gets a reference to the given WidgetPalette and assigns it to the Palette field.
+SetPalette sets Palette field to given value.
+
 
 ### GetTimeframe
 
@@ -216,22 +206,22 @@ GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
 
 ### GetTimeframeOk
 
-`func (o *WidgetConditionalFormat) GetTimeframeOk() (string, bool)`
+`func (o *WidgetConditionalFormat) GetTimeframeOk() (*string, bool)`
 
 GetTimeframeOk returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTimeframe
+
+`func (o *WidgetConditionalFormat) SetTimeframe(v string)`
+
+SetTimeframe sets Timeframe field to given value.
 
 ### HasTimeframe
 
 `func (o *WidgetConditionalFormat) HasTimeframe() bool`
 
 HasTimeframe returns a boolean if a field has been set.
-
-### SetTimeframe
-
-`func (o *WidgetConditionalFormat) SetTimeframe(v string)`
-
-SetTimeframe gets a reference to the given string and assigns it to the Timeframe field.
 
 ### GetValue
 
@@ -241,22 +231,17 @@ GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *WidgetConditionalFormat) GetValueOk() (float64, bool)`
+`func (o *WidgetConditionalFormat) GetValueOk() (*float64, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasValue
-
-`func (o *WidgetConditionalFormat) HasValue() bool`
-
-HasValue returns a boolean if a field has been set.
 
 ### SetValue
 
 `func (o *WidgetConditionalFormat) SetValue(v float64)`
 
-SetValue gets a reference to the given float64 and assigns it to the Value field.
+SetValue sets Value field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -35,22 +35,17 @@ GetDefinition returns the Definition field if non-nil, zero value otherwise.
 
 ### GetDefinitionOk
 
-`func (o *Widget) GetDefinitionOk() (WidgetDefinition, bool)`
+`func (o *Widget) GetDefinitionOk() (*WidgetDefinition, bool)`
 
 GetDefinitionOk returns a tuple with the Definition field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDefinition
-
-`func (o *Widget) HasDefinition() bool`
-
-HasDefinition returns a boolean if a field has been set.
 
 ### SetDefinition
 
 `func (o *Widget) SetDefinition(v WidgetDefinition)`
 
-SetDefinition gets a reference to the given WidgetDefinition and assigns it to the Definition field.
+SetDefinition sets Definition field to given value.
+
 
 ### GetId
 
@@ -60,22 +55,22 @@ GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Widget) GetIdOk() (int64, bool)`
+`func (o *Widget) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Widget) SetId(v int64)`
+
+SetId sets Id field to given value.
 
 ### HasId
 
 `func (o *Widget) HasId() bool`
 
 HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *Widget) SetId(v int64)`
-
-SetId gets a reference to the given int64 and assigns it to the Id field.
 
 ### GetLayout
 
@@ -85,22 +80,22 @@ GetLayout returns the Layout field if non-nil, zero value otherwise.
 
 ### GetLayoutOk
 
-`func (o *Widget) GetLayoutOk() (WidgetLayout, bool)`
+`func (o *Widget) GetLayoutOk() (*WidgetLayout, bool)`
 
 GetLayoutOk returns a tuple with the Layout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLayout
+
+`func (o *Widget) SetLayout(v WidgetLayout)`
+
+SetLayout sets Layout field to given value.
 
 ### HasLayout
 
 `func (o *Widget) HasLayout() bool`
 
 HasLayout returns a boolean if a field has been set.
-
-### SetLayout
-
-`func (o *Widget) SetLayout(v WidgetLayout)`
-
-SetLayout gets a reference to the given WidgetLayout and assigns it to the Layout field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

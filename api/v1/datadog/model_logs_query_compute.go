@@ -47,6 +47,15 @@ func (o *LogsQueryCompute) GetAggregation() string {
 	return o.Aggregation
 }
 
+// GetAggregationOk returns a tuple with the Aggregation field value
+// and a boolean to check if the value has been set.
+func (o *LogsQueryCompute) GetAggregationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Aggregation, true
+}
+
 // SetAggregation sets field value
 func (o *LogsQueryCompute) SetAggregation(v string) {
 	o.Aggregation = v
@@ -61,14 +70,13 @@ func (o *LogsQueryCompute) GetFacet() string {
 	return *o.Facet
 }
 
-// GetFacetOk returns a tuple with the Facet field value if set, zero value otherwise
+// GetFacetOk returns a tuple with the Facet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsQueryCompute) GetFacetOk() (string, bool) {
+func (o *LogsQueryCompute) GetFacetOk() (*string, bool) {
 	if o == nil || o.Facet == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Facet, true
+	return o.Facet, true
 }
 
 // HasFacet returns a boolean if a field has been set.
@@ -94,14 +102,13 @@ func (o *LogsQueryCompute) GetInterval() int64 {
 	return *o.Interval
 }
 
-// GetIntervalOk returns a tuple with the Interval field value if set, zero value otherwise
+// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsQueryCompute) GetIntervalOk() (int64, bool) {
+func (o *LogsQueryCompute) GetIntervalOk() (*int64, bool) {
 	if o == nil || o.Interval == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Interval, true
+	return o.Interval, true
 }
 
 // HasInterval returns a boolean if a field has been set.
@@ -141,7 +148,7 @@ func (v NullableLogsQueryCompute) Get() *LogsQueryCompute {
 	return v.value
 }
 
-func (v NullableLogsQueryCompute) Set(val *LogsQueryCompute) {
+func (v *NullableLogsQueryCompute) Set(val *LogsQueryCompute) {
 	v.value = val
 	v.isSet = true
 }
@@ -150,7 +157,7 @@ func (v NullableLogsQueryCompute) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsQueryCompute) Unset() {
+func (v *NullableLogsQueryCompute) Unset() {
 	v.value = nil
 	v.isSet = false
 }

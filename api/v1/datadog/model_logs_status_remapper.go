@@ -60,6 +60,15 @@ func (o *LogsStatusRemapper) GetSources() []string {
 	return o.Sources
 }
 
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *LogsStatusRemapper) GetSourcesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
 // SetSources sets field value
 func (o *LogsStatusRemapper) SetSources(v []string) {
 	o.Sources = v
@@ -74,14 +83,13 @@ func (o *LogsStatusRemapper) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStatusRemapper) GetTypeOk() (string, bool) {
+func (o *LogsStatusRemapper) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -107,14 +115,13 @@ func (o *LogsStatusRemapper) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStatusRemapper) GetIsEnabledOk() (bool, bool) {
+func (o *LogsStatusRemapper) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -140,14 +147,13 @@ func (o *LogsStatusRemapper) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStatusRemapper) GetNameOk() (string, bool) {
+func (o *LogsStatusRemapper) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -195,7 +201,7 @@ func (v NullableLogsStatusRemapper) Get() *LogsStatusRemapper {
 	return v.value
 }
 
-func (v NullableLogsStatusRemapper) Set(val *LogsStatusRemapper) {
+func (v *NullableLogsStatusRemapper) Set(val *LogsStatusRemapper) {
 	v.value = val
 	v.isSet = true
 }
@@ -204,7 +210,7 @@ func (v NullableLogsStatusRemapper) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsStatusRemapper) Unset() {
+func (v *NullableLogsStatusRemapper) Unset() {
 	v.value = nil
 	v.isSet = false
 }

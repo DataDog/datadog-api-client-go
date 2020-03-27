@@ -67,14 +67,13 @@ func (o *Event) GetAggregationKey() string {
 	return *o.AggregationKey
 }
 
-// GetAggregationKeyOk returns a tuple with the AggregationKey field value if set, zero value otherwise
+// GetAggregationKeyOk returns a tuple with the AggregationKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetAggregationKeyOk() (string, bool) {
+func (o *Event) GetAggregationKeyOk() (*string, bool) {
 	if o == nil || o.AggregationKey == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AggregationKey, true
+	return o.AggregationKey, true
 }
 
 // HasAggregationKey returns a boolean if a field has been set.
@@ -100,14 +99,13 @@ func (o *Event) GetAlertType() EventAlertType {
 	return *o.AlertType
 }
 
-// GetAlertTypeOk returns a tuple with the AlertType field value if set, zero value otherwise
+// GetAlertTypeOk returns a tuple with the AlertType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetAlertTypeOk() (EventAlertType, bool) {
+func (o *Event) GetAlertTypeOk() (*EventAlertType, bool) {
 	if o == nil || o.AlertType == nil {
-		var ret EventAlertType
-		return ret, false
+		return nil, false
 	}
-	return *o.AlertType, true
+	return o.AlertType, true
 }
 
 // HasAlertType returns a boolean if a field has been set.
@@ -133,14 +131,13 @@ func (o *Event) GetDateHappened() int64 {
 	return *o.DateHappened
 }
 
-// GetDateHappenedOk returns a tuple with the DateHappened field value if set, zero value otherwise
+// GetDateHappenedOk returns a tuple with the DateHappened field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetDateHappenedOk() (int64, bool) {
+func (o *Event) GetDateHappenedOk() (*int64, bool) {
 	if o == nil || o.DateHappened == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.DateHappened, true
+	return o.DateHappened, true
 }
 
 // HasDateHappened returns a boolean if a field has been set.
@@ -166,14 +163,13 @@ func (o *Event) GetDeviceName() []string {
 	return *o.DeviceName
 }
 
-// GetDeviceNameOk returns a tuple with the DeviceName field value if set, zero value otherwise
+// GetDeviceNameOk returns a tuple with the DeviceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetDeviceNameOk() ([]string, bool) {
+func (o *Event) GetDeviceNameOk() (*[]string, bool) {
 	if o == nil || o.DeviceName == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.DeviceName, true
+	return o.DeviceName, true
 }
 
 // HasDeviceName returns a boolean if a field has been set.
@@ -199,14 +195,13 @@ func (o *Event) GetHost() string {
 	return *o.Host
 }
 
-// GetHostOk returns a tuple with the Host field value if set, zero value otherwise
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetHostOk() (string, bool) {
+func (o *Event) GetHostOk() (*string, bool) {
 	if o == nil || o.Host == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
@@ -232,14 +227,13 @@ func (o *Event) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetIdOk() (int64, bool) {
+func (o *Event) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -265,14 +259,13 @@ func (o *Event) GetPayload() string {
 	return *o.Payload
 }
 
-// GetPayloadOk returns a tuple with the Payload field value if set, zero value otherwise
+// GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetPayloadOk() (string, bool) {
+func (o *Event) GetPayloadOk() (*string, bool) {
 	if o == nil || o.Payload == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Payload, true
+	return o.Payload, true
 }
 
 // HasPayload returns a boolean if a field has been set.
@@ -298,14 +291,13 @@ func (o *Event) GetPriority() EventPriority {
 	return *o.Priority
 }
 
-// GetPriorityOk returns a tuple with the Priority field value if set, zero value otherwise
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetPriorityOk() (EventPriority, bool) {
+func (o *Event) GetPriorityOk() (*EventPriority, bool) {
 	if o == nil || o.Priority == nil {
-		var ret EventPriority
-		return ret, false
+		return nil, false
 	}
-	return *o.Priority, true
+	return o.Priority, true
 }
 
 // HasPriority returns a boolean if a field has been set.
@@ -331,14 +323,13 @@ func (o *Event) GetRelatedEventId() int64 {
 	return *o.RelatedEventId
 }
 
-// GetRelatedEventIdOk returns a tuple with the RelatedEventId field value if set, zero value otherwise
+// GetRelatedEventIdOk returns a tuple with the RelatedEventId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetRelatedEventIdOk() (int64, bool) {
+func (o *Event) GetRelatedEventIdOk() (*int64, bool) {
 	if o == nil || o.RelatedEventId == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.RelatedEventId, true
+	return o.RelatedEventId, true
 }
 
 // HasRelatedEventId returns a boolean if a field has been set.
@@ -364,14 +355,13 @@ func (o *Event) GetSourceTypeName() string {
 	return *o.SourceTypeName
 }
 
-// GetSourceTypeNameOk returns a tuple with the SourceTypeName field value if set, zero value otherwise
+// GetSourceTypeNameOk returns a tuple with the SourceTypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetSourceTypeNameOk() (string, bool) {
+func (o *Event) GetSourceTypeNameOk() (*string, bool) {
 	if o == nil || o.SourceTypeName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SourceTypeName, true
+	return o.SourceTypeName, true
 }
 
 // HasSourceTypeName returns a boolean if a field has been set.
@@ -397,14 +387,13 @@ func (o *Event) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetTagsOk() ([]string, bool) {
+func (o *Event) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -431,6 +420,15 @@ func (o *Event) GetText() string {
 	return o.Text
 }
 
+// GetTextOk returns a tuple with the Text field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetTextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Text, true
+}
+
 // SetText sets field value
 func (o *Event) SetText(v string) {
 	o.Text = v
@@ -444,6 +442,15 @@ func (o *Event) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -460,14 +467,13 @@ func (o *Event) GetUrl() string {
 	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, zero value otherwise
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetUrlOk() (string, bool) {
+func (o *Event) GetUrlOk() (*string, bool) {
 	if o == nil || o.Url == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Url, true
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
@@ -540,7 +546,7 @@ func (v NullableEvent) Get() *Event {
 	return v.value
 }
 
-func (v NullableEvent) Set(val *Event) {
+func (v *NullableEvent) Set(val *Event) {
 	v.value = val
 	v.isSet = true
 }
@@ -549,7 +555,7 @@ func (v NullableEvent) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableEvent) Unset() {
+func (v *NullableEvent) Unset() {
 	v.value = nil
 	v.isSet = false
 }

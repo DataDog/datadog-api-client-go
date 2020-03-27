@@ -50,6 +50,15 @@ func (o *OrgCreateBody) GetBilling() OrgBilling {
 	return o.Billing
 }
 
+// GetBillingOk returns a tuple with the Billing field value
+// and a boolean to check if the value has been set.
+func (o *OrgCreateBody) GetBillingOk() (*OrgBilling, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Billing, true
+}
+
 // SetBilling sets field value
 func (o *OrgCreateBody) SetBilling(v OrgBilling) {
 	o.Billing = v
@@ -65,6 +74,15 @@ func (o *OrgCreateBody) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *OrgCreateBody) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *OrgCreateBody) SetName(v string) {
 	o.Name = v
@@ -78,6 +96,15 @@ func (o *OrgCreateBody) GetSubscription() OrgSubscription {
 	}
 
 	return o.Subscription
+}
+
+// GetSubscriptionOk returns a tuple with the Subscription field value
+// and a boolean to check if the value has been set.
+func (o *OrgCreateBody) GetSubscriptionOk() (*OrgSubscription, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Subscription, true
 }
 
 // SetSubscription sets field value
@@ -108,7 +135,7 @@ func (v NullableOrgCreateBody) Get() *OrgCreateBody {
 	return v.value
 }
 
-func (v NullableOrgCreateBody) Set(val *OrgCreateBody) {
+func (v *NullableOrgCreateBody) Set(val *OrgCreateBody) {
 	v.value = val
 	v.isSet = true
 }
@@ -117,7 +144,7 @@ func (v NullableOrgCreateBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableOrgCreateBody) Unset() {
+func (v *NullableOrgCreateBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }

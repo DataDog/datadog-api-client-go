@@ -44,14 +44,13 @@ func (o *UsageFargateResponse) GetUsage() []UsageFargateHour {
 	return *o.Usage
 }
 
-// GetUsageOk returns a tuple with the Usage field value if set, zero value otherwise
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageFargateResponse) GetUsageOk() ([]UsageFargateHour, bool) {
+func (o *UsageFargateResponse) GetUsageOk() (*[]UsageFargateHour, bool) {
 	if o == nil || o.Usage == nil {
-		var ret []UsageFargateHour
-		return ret, false
+		return nil, false
 	}
-	return *o.Usage, true
+	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableUsageFargateResponse) Get() *UsageFargateResponse {
 	return v.value
 }
 
-func (v NullableUsageFargateResponse) Set(val *UsageFargateResponse) {
+func (v *NullableUsageFargateResponse) Set(val *UsageFargateResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableUsageFargateResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageFargateResponse) Unset() {
+func (v *NullableUsageFargateResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

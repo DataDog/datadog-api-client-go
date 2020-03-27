@@ -46,14 +46,13 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetDeleted() []string {
 	return *o.Deleted
 }
 
-// GetDeletedOk returns a tuple with the Deleted field value if set, zero value otherwise
+// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedData) GetDeletedOk() ([]string, bool) {
+func (o *ServiceLevelObjectivesBulkDeletedData) GetDeletedOk() (*[]string, bool) {
 	if o == nil || o.Deleted == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Deleted, true
+	return o.Deleted, true
 }
 
 // HasDeleted returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdated() []string {
 	return *o.Updated
 }
 
-// GetUpdatedOk returns a tuple with the Updated field value if set, zero value otherwise
+// GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdatedOk() ([]string, bool) {
+func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdatedOk() (*[]string, bool) {
 	if o == nil || o.Updated == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Updated, true
+	return o.Updated, true
 }
 
 // HasUpdated returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableServiceLevelObjectivesBulkDeletedData) Get() *ServiceLevelObject
 	return v.value
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedData) Set(val *ServiceLevelObjectivesBulkDeletedData) {
+func (v *NullableServiceLevelObjectivesBulkDeletedData) Set(val *ServiceLevelObjectivesBulkDeletedData) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableServiceLevelObjectivesBulkDeletedData) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedData) Unset() {
+func (v *NullableServiceLevelObjectivesBulkDeletedData) Unset() {
 	v.value = nil
 	v.isSet = false
 }

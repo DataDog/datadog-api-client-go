@@ -46,14 +46,13 @@ func (o *IPPrefixes) GetPrefixesIpv4() []string {
 	return *o.PrefixesIpv4
 }
 
-// GetPrefixesIpv4Ok returns a tuple with the PrefixesIpv4 field value if set, zero value otherwise
+// GetPrefixesIpv4Ok returns a tuple with the PrefixesIpv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPrefixes) GetPrefixesIpv4Ok() ([]string, bool) {
+func (o *IPPrefixes) GetPrefixesIpv4Ok() (*[]string, bool) {
 	if o == nil || o.PrefixesIpv4 == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.PrefixesIpv4, true
+	return o.PrefixesIpv4, true
 }
 
 // HasPrefixesIpv4 returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *IPPrefixes) GetPrefixesIpv6() []string {
 	return *o.PrefixesIpv6
 }
 
-// GetPrefixesIpv6Ok returns a tuple with the PrefixesIpv6 field value if set, zero value otherwise
+// GetPrefixesIpv6Ok returns a tuple with the PrefixesIpv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPrefixes) GetPrefixesIpv6Ok() ([]string, bool) {
+func (o *IPPrefixes) GetPrefixesIpv6Ok() (*[]string, bool) {
 	if o == nil || o.PrefixesIpv6 == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.PrefixesIpv6, true
+	return o.PrefixesIpv6, true
 }
 
 // HasPrefixesIpv6 returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableIPPrefixes) Get() *IPPrefixes {
 	return v.value
 }
 
-func (v NullableIPPrefixes) Set(val *IPPrefixes) {
+func (v *NullableIPPrefixes) Set(val *IPPrefixes) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableIPPrefixes) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableIPPrefixes) Unset() {
+func (v *NullableIPPrefixes) Unset() {
 	v.value = nil
 	v.isSet = false
 }

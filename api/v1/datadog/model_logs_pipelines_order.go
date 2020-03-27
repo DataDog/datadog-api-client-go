@@ -46,6 +46,15 @@ func (o *LogsPipelinesOrder) GetPipelineIds() []string {
 	return o.PipelineIds
 }
 
+// GetPipelineIdsOk returns a tuple with the PipelineIds field value
+// and a boolean to check if the value has been set.
+func (o *LogsPipelinesOrder) GetPipelineIdsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PipelineIds, true
+}
+
 // SetPipelineIds sets field value
 func (o *LogsPipelinesOrder) SetPipelineIds(v []string) {
 	o.PipelineIds = v
@@ -68,7 +77,7 @@ func (v NullableLogsPipelinesOrder) Get() *LogsPipelinesOrder {
 	return v.value
 }
 
-func (v NullableLogsPipelinesOrder) Set(val *LogsPipelinesOrder) {
+func (v *NullableLogsPipelinesOrder) Set(val *LogsPipelinesOrder) {
 	v.value = val
 	v.isSet = true
 }
@@ -77,7 +86,7 @@ func (v NullableLogsPipelinesOrder) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsPipelinesOrder) Unset() {
+func (v *NullableLogsPipelinesOrder) Unset() {
 	v.value = nil
 	v.isSet = false
 }

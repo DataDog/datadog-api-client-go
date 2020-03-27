@@ -59,6 +59,15 @@ func (o *EventTimelineWidgetDefinition) GetQuery() string {
 	return o.Query
 }
 
+// GetQueryOk returns a tuple with the Query field value
+// and a boolean to check if the value has been set.
+func (o *EventTimelineWidgetDefinition) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Query, true
+}
+
 // SetQuery sets field value
 func (o *EventTimelineWidgetDefinition) SetQuery(v string) {
 	o.Query = v
@@ -73,14 +82,13 @@ func (o *EventTimelineWidgetDefinition) GetTagsExecution() string {
 	return *o.TagsExecution
 }
 
-// GetTagsExecutionOk returns a tuple with the TagsExecution field value if set, zero value otherwise
+// GetTagsExecutionOk returns a tuple with the TagsExecution field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventTimelineWidgetDefinition) GetTagsExecutionOk() (string, bool) {
+func (o *EventTimelineWidgetDefinition) GetTagsExecutionOk() (*string, bool) {
 	if o == nil || o.TagsExecution == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TagsExecution, true
+	return o.TagsExecution, true
 }
 
 // HasTagsExecution returns a boolean if a field has been set.
@@ -106,14 +114,13 @@ func (o *EventTimelineWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventTimelineWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *EventTimelineWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -139,14 +146,13 @@ func (o *EventTimelineWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventTimelineWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *EventTimelineWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -172,14 +178,13 @@ func (o *EventTimelineWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventTimelineWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *EventTimelineWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -205,14 +210,13 @@ func (o *EventTimelineWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventTimelineWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *EventTimelineWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -237,6 +241,15 @@ func (o *EventTimelineWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *EventTimelineWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -284,7 +297,7 @@ func (v NullableEventTimelineWidgetDefinition) Get() *EventTimelineWidgetDefinit
 	return v.value
 }
 
-func (v NullableEventTimelineWidgetDefinition) Set(val *EventTimelineWidgetDefinition) {
+func (v *NullableEventTimelineWidgetDefinition) Set(val *EventTimelineWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -293,7 +306,7 @@ func (v NullableEventTimelineWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableEventTimelineWidgetDefinition) Unset() {
+func (v *NullableEventTimelineWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

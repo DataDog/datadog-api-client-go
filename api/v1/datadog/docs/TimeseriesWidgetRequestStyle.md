@@ -35,22 +35,22 @@ GetLineType returns the LineType field if non-nil, zero value otherwise.
 
 ### GetLineTypeOk
 
-`func (o *TimeseriesWidgetRequestStyle) GetLineTypeOk() (WidgetLineType, bool)`
+`func (o *TimeseriesWidgetRequestStyle) GetLineTypeOk() (*WidgetLineType, bool)`
 
 GetLineTypeOk returns a tuple with the LineType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLineType
+
+`func (o *TimeseriesWidgetRequestStyle) SetLineType(v WidgetLineType)`
+
+SetLineType sets LineType field to given value.
 
 ### HasLineType
 
 `func (o *TimeseriesWidgetRequestStyle) HasLineType() bool`
 
 HasLineType returns a boolean if a field has been set.
-
-### SetLineType
-
-`func (o *TimeseriesWidgetRequestStyle) SetLineType(v WidgetLineType)`
-
-SetLineType gets a reference to the given WidgetLineType and assigns it to the LineType field.
 
 ### GetLineWidth
 
@@ -60,22 +60,22 @@ GetLineWidth returns the LineWidth field if non-nil, zero value otherwise.
 
 ### GetLineWidthOk
 
-`func (o *TimeseriesWidgetRequestStyle) GetLineWidthOk() (WidgetLineWidth, bool)`
+`func (o *TimeseriesWidgetRequestStyle) GetLineWidthOk() (*WidgetLineWidth, bool)`
 
 GetLineWidthOk returns a tuple with the LineWidth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLineWidth
+
+`func (o *TimeseriesWidgetRequestStyle) SetLineWidth(v WidgetLineWidth)`
+
+SetLineWidth sets LineWidth field to given value.
 
 ### HasLineWidth
 
 `func (o *TimeseriesWidgetRequestStyle) HasLineWidth() bool`
 
 HasLineWidth returns a boolean if a field has been set.
-
-### SetLineWidth
-
-`func (o *TimeseriesWidgetRequestStyle) SetLineWidth(v WidgetLineWidth)`
-
-SetLineWidth gets a reference to the given WidgetLineWidth and assigns it to the LineWidth field.
 
 ### GetPalette
 
@@ -85,22 +85,22 @@ GetPalette returns the Palette field if non-nil, zero value otherwise.
 
 ### GetPaletteOk
 
-`func (o *TimeseriesWidgetRequestStyle) GetPaletteOk() (string, bool)`
+`func (o *TimeseriesWidgetRequestStyle) GetPaletteOk() (*string, bool)`
 
 GetPaletteOk returns a tuple with the Palette field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPalette
+
+`func (o *TimeseriesWidgetRequestStyle) SetPalette(v string)`
+
+SetPalette sets Palette field to given value.
 
 ### HasPalette
 
 `func (o *TimeseriesWidgetRequestStyle) HasPalette() bool`
 
 HasPalette returns a boolean if a field has been set.
-
-### SetPalette
-
-`func (o *TimeseriesWidgetRequestStyle) SetPalette(v string)`
-
-SetPalette gets a reference to the given string and assigns it to the Palette field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

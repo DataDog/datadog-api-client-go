@@ -36,7 +36,7 @@ func (v NullableWidgetTextAlign) Get() *WidgetTextAlign {
 	return v.value
 }
 
-func (v NullableWidgetTextAlign) Set(val *WidgetTextAlign) {
+func (v *NullableWidgetTextAlign) Set(val *WidgetTextAlign) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetTextAlign) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetTextAlign) Unset() {
+func (v *NullableWidgetTextAlign) Unset() {
 	v.value = nil
 	v.isSet = false
 }

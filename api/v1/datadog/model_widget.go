@@ -48,6 +48,15 @@ func (o *Widget) GetDefinition() WidgetDefinition {
 	return o.Definition
 }
 
+// GetDefinitionOk returns a tuple with the Definition field value
+// and a boolean to check if the value has been set.
+func (o *Widget) GetDefinitionOk() (*WidgetDefinition, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Definition, true
+}
+
 // SetDefinition sets field value
 func (o *Widget) SetDefinition(v WidgetDefinition) {
 	o.Definition = v
@@ -62,14 +71,13 @@ func (o *Widget) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Widget) GetIdOk() (int64, bool) {
+func (o *Widget) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -95,14 +103,13 @@ func (o *Widget) GetLayout() WidgetLayout {
 	return *o.Layout
 }
 
-// GetLayoutOk returns a tuple with the Layout field value if set, zero value otherwise
+// GetLayoutOk returns a tuple with the Layout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Widget) GetLayoutOk() (WidgetLayout, bool) {
+func (o *Widget) GetLayoutOk() (*WidgetLayout, bool) {
 	if o == nil || o.Layout == nil {
-		var ret WidgetLayout
-		return ret, false
+		return nil, false
 	}
-	return *o.Layout, true
+	return o.Layout, true
 }
 
 // HasLayout returns a boolean if a field has been set.
@@ -142,7 +149,7 @@ func (v NullableWidget) Get() *Widget {
 	return v.value
 }
 
-func (v NullableWidget) Set(val *Widget) {
+func (v *NullableWidget) Set(val *Widget) {
 	v.value = val
 	v.isSet = true
 }
@@ -151,7 +158,7 @@ func (v NullableWidget) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidget) Unset() {
+func (v *NullableWidget) Unset() {
 	v.value = nil
 	v.isSet = false
 }

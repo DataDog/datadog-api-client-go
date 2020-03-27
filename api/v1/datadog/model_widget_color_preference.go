@@ -35,7 +35,7 @@ func (v NullableWidgetColorPreference) Get() *WidgetColorPreference {
 	return v.value
 }
 
-func (v NullableWidgetColorPreference) Set(val *WidgetColorPreference) {
+func (v *NullableWidgetColorPreference) Set(val *WidgetColorPreference) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetColorPreference) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetColorPreference) Unset() {
+func (v *NullableWidgetColorPreference) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -56,14 +56,13 @@ func (o *TableWidgetRequest) GetAggregator() WidgetAggregator {
 	return *o.Aggregator
 }
 
-// GetAggregatorOk returns a tuple with the Aggregator field value if set, zero value otherwise
+// GetAggregatorOk returns a tuple with the Aggregator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetAggregatorOk() (WidgetAggregator, bool) {
+func (o *TableWidgetRequest) GetAggregatorOk() (*WidgetAggregator, bool) {
 	if o == nil || o.Aggregator == nil {
-		var ret WidgetAggregator
-		return ret, false
+		return nil, false
 	}
-	return *o.Aggregator, true
+	return o.Aggregator, true
 }
 
 // HasAggregator returns a boolean if a field has been set.
@@ -89,14 +88,13 @@ func (o *TableWidgetRequest) GetAlias() string {
 	return *o.Alias
 }
 
-// GetAliasOk returns a tuple with the Alias field value if set, zero value otherwise
+// GetAliasOk returns a tuple with the Alias field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetAliasOk() (string, bool) {
+func (o *TableWidgetRequest) GetAliasOk() (*string, bool) {
 	if o == nil || o.Alias == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Alias, true
+	return o.Alias, true
 }
 
 // HasAlias returns a boolean if a field has been set.
@@ -122,14 +120,13 @@ func (o *TableWidgetRequest) GetApmQuery() LogQueryDefinition {
 	return *o.ApmQuery
 }
 
-// GetApmQueryOk returns a tuple with the ApmQuery field value if set, zero value otherwise
+// GetApmQueryOk returns a tuple with the ApmQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetApmQueryOk() (LogQueryDefinition, bool) {
+func (o *TableWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.ApmQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ApmQuery, true
+	return o.ApmQuery, true
 }
 
 // HasApmQuery returns a boolean if a field has been set.
@@ -155,14 +152,13 @@ func (o *TableWidgetRequest) GetConditionalFormats() []WidgetConditionalFormat {
 	return *o.ConditionalFormats
 }
 
-// GetConditionalFormatsOk returns a tuple with the ConditionalFormats field value if set, zero value otherwise
+// GetConditionalFormatsOk returns a tuple with the ConditionalFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetConditionalFormatsOk() ([]WidgetConditionalFormat, bool) {
+func (o *TableWidgetRequest) GetConditionalFormatsOk() (*[]WidgetConditionalFormat, bool) {
 	if o == nil || o.ConditionalFormats == nil {
-		var ret []WidgetConditionalFormat
-		return ret, false
+		return nil, false
 	}
-	return *o.ConditionalFormats, true
+	return o.ConditionalFormats, true
 }
 
 // HasConditionalFormats returns a boolean if a field has been set.
@@ -188,14 +184,13 @@ func (o *TableWidgetRequest) GetEventQuery() EventQueryDefinition {
 	return *o.EventQuery
 }
 
-// GetEventQueryOk returns a tuple with the EventQuery field value if set, zero value otherwise
+// GetEventQueryOk returns a tuple with the EventQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetEventQueryOk() (EventQueryDefinition, bool) {
+func (o *TableWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool) {
 	if o == nil || o.EventQuery == nil {
-		var ret EventQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.EventQuery, true
+	return o.EventQuery, true
 }
 
 // HasEventQuery returns a boolean if a field has been set.
@@ -221,14 +216,13 @@ func (o *TableWidgetRequest) GetLimit() int64 {
 	return *o.Limit
 }
 
-// GetLimitOk returns a tuple with the Limit field value if set, zero value otherwise
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetLimitOk() (int64, bool) {
+func (o *TableWidgetRequest) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Limit, true
+	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
@@ -254,14 +248,13 @@ func (o *TableWidgetRequest) GetLogQuery() LogQueryDefinition {
 	return *o.LogQuery
 }
 
-// GetLogQueryOk returns a tuple with the LogQuery field value if set, zero value otherwise
+// GetLogQueryOk returns a tuple with the LogQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetLogQueryOk() (LogQueryDefinition, bool) {
+func (o *TableWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.LogQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.LogQuery, true
+	return o.LogQuery, true
 }
 
 // HasLogQuery returns a boolean if a field has been set.
@@ -287,14 +280,13 @@ func (o *TableWidgetRequest) GetNetworkQuery() LogQueryDefinition {
 	return *o.NetworkQuery
 }
 
-// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, zero value otherwise
+// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetNetworkQueryOk() (LogQueryDefinition, bool) {
+func (o *TableWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.NetworkQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.NetworkQuery, true
+	return o.NetworkQuery, true
 }
 
 // HasNetworkQuery returns a boolean if a field has been set.
@@ -320,14 +312,13 @@ func (o *TableWidgetRequest) GetOrder() WidgetSort {
 	return *o.Order
 }
 
-// GetOrderOk returns a tuple with the Order field value if set, zero value otherwise
+// GetOrderOk returns a tuple with the Order field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetOrderOk() (WidgetSort, bool) {
+func (o *TableWidgetRequest) GetOrderOk() (*WidgetSort, bool) {
 	if o == nil || o.Order == nil {
-		var ret WidgetSort
-		return ret, false
+		return nil, false
 	}
-	return *o.Order, true
+	return o.Order, true
 }
 
 // HasOrder returns a boolean if a field has been set.
@@ -353,14 +344,13 @@ func (o *TableWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	return *o.ProcessQuery
 }
 
-// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, zero value otherwise
+// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetProcessQueryOk() (ProcessQueryDefinition, bool) {
+func (o *TableWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool) {
 	if o == nil || o.ProcessQuery == nil {
-		var ret ProcessQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ProcessQuery, true
+	return o.ProcessQuery, true
 }
 
 // HasProcessQuery returns a boolean if a field has been set.
@@ -386,14 +376,13 @@ func (o *TableWidgetRequest) GetQ() string {
 	return *o.Q
 }
 
-// GetQOk returns a tuple with the Q field value if set, zero value otherwise
+// GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetQOk() (string, bool) {
+func (o *TableWidgetRequest) GetQOk() (*string, bool) {
 	if o == nil || o.Q == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Q, true
+	return o.Q, true
 }
 
 // HasQ returns a boolean if a field has been set.
@@ -419,14 +408,13 @@ func (o *TableWidgetRequest) GetRumQuery() LogQueryDefinition {
 	return *o.RumQuery
 }
 
-// GetRumQueryOk returns a tuple with the RumQuery field value if set, zero value otherwise
+// GetRumQueryOk returns a tuple with the RumQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetRumQueryOk() (LogQueryDefinition, bool) {
+func (o *TableWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.RumQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.RumQuery, true
+	return o.RumQuery, true
 }
 
 // HasRumQuery returns a boolean if a field has been set.
@@ -493,7 +481,7 @@ func (v NullableTableWidgetRequest) Get() *TableWidgetRequest {
 	return v.value
 }
 
-func (v NullableTableWidgetRequest) Set(val *TableWidgetRequest) {
+func (v *NullableTableWidgetRequest) Set(val *TableWidgetRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -502,7 +490,7 @@ func (v NullableTableWidgetRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTableWidgetRequest) Unset() {
+func (v *NullableTableWidgetRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
