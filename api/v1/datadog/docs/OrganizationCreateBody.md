@@ -1,88 +1,88 @@
-# OrgCreateBody
+# OrganizationCreateBody
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Billing** | Pointer to [**OrgBilling**](Org_billing.md) |  | 
+**Billing** | Pointer to [**OrganizationBilling**](Organization_billing.md) |  | 
 **Name** | Pointer to **string** | The name of the new child-organization, limited to 32 characters. | 
-**Subscription** | Pointer to [**OrgSubscription**](Org_subscription.md) |  | 
+**Subscription** | Pointer to [**OrganizationSubscription**](Organization_subscription.md) |  | 
 
 ## Methods
 
-### NewOrgCreateBody
+### NewOrganizationCreateBody
 
-`func NewOrgCreateBody(billing OrgBilling, name string, subscription OrgSubscription, ) *OrgCreateBody`
+`func NewOrganizationCreateBody(billing OrganizationBilling, name string, subscription OrganizationSubscription, ) *OrganizationCreateBody`
 
-NewOrgCreateBody instantiates a new OrgCreateBody object
+NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrgCreateBodyWithDefaults
+### NewOrganizationCreateBodyWithDefaults
 
-`func NewOrgCreateBodyWithDefaults() *OrgCreateBody`
+`func NewOrganizationCreateBodyWithDefaults() *OrganizationCreateBody`
 
-NewOrgCreateBodyWithDefaults instantiates a new OrgCreateBody object
+NewOrganizationCreateBodyWithDefaults instantiates a new OrganizationCreateBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetBilling
 
-`func (o *OrgCreateBody) GetBilling() OrgBilling`
+`func (o *OrganizationCreateBody) GetBilling() OrganizationBilling`
 
 GetBilling returns the Billing field if non-nil, zero value otherwise.
 
 ### GetBillingOk
 
-`func (o *OrgCreateBody) GetBillingOk() (*OrgBilling, bool)`
+`func (o *OrganizationCreateBody) GetBillingOk() (*OrganizationBilling, bool)`
 
 GetBillingOk returns a tuple with the Billing field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBilling
 
-`func (o *OrgCreateBody) SetBilling(v OrgBilling)`
+`func (o *OrganizationCreateBody) SetBilling(v OrganizationBilling)`
 
 SetBilling sets Billing field to given value.
 
 
 ### GetName
 
-`func (o *OrgCreateBody) GetName() string`
+`func (o *OrganizationCreateBody) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *OrgCreateBody) GetNameOk() (*string, bool)`
+`func (o *OrganizationCreateBody) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *OrgCreateBody) SetName(v string)`
+`func (o *OrganizationCreateBody) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetSubscription
 
-`func (o *OrgCreateBody) GetSubscription() OrgSubscription`
+`func (o *OrganizationCreateBody) GetSubscription() OrganizationSubscription`
 
 GetSubscription returns the Subscription field if non-nil, zero value otherwise.
 
 ### GetSubscriptionOk
 
-`func (o *OrgCreateBody) GetSubscriptionOk() (*OrgSubscription, bool)`
+`func (o *OrganizationCreateBody) GetSubscriptionOk() (*OrganizationSubscription, bool)`
 
 GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscription
 
-`func (o *OrgCreateBody) SetSubscription(v OrgSubscription)`
+`func (o *OrganizationCreateBody) SetSubscription(v OrganizationSubscription)`
 
 SetSubscription sets Subscription field to given value.
 

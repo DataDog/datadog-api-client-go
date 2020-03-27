@@ -12,30 +12,30 @@ import (
 	"encoding/json"
 )
 
-// OrgSubscription A JSON array of subscription type. Types available are `trial`, `free`, and `pro`.
-type OrgSubscription struct {
+// OrganizationSubscription A JSON array of subscription type. Types available are `trial`, `free`, and `pro`.
+type OrganizationSubscription struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// NewOrgSubscription instantiates a new OrgSubscription object
+// NewOrganizationSubscription instantiates a new OrganizationSubscription object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgSubscription() *OrgSubscription {
-	this := OrgSubscription{}
+func NewOrganizationSubscription() *OrganizationSubscription {
+	this := OrganizationSubscription{}
 	return &this
 }
 
-// NewOrgSubscriptionWithDefaults instantiates a new OrgSubscription object
+// NewOrganizationSubscriptionWithDefaults instantiates a new OrganizationSubscription object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgSubscriptionWithDefaults() *OrgSubscription {
-	this := OrgSubscription{}
+func NewOrganizationSubscriptionWithDefaults() *OrganizationSubscription {
+	this := OrganizationSubscription{}
 	return &this
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *OrgSubscription) GetType() string {
+func (o *OrganizationSubscription) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -45,7 +45,7 @@ func (o *OrgSubscription) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSubscription) GetTypeOk() (*string, bool) {
+func (o *OrganizationSubscription) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -53,7 +53,7 @@ func (o *OrgSubscription) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *OrgSubscription) HasType() bool {
+func (o *OrganizationSubscription) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -62,11 +62,11 @@ func (o *OrgSubscription) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *OrgSubscription) SetType(v string) {
+func (o *OrganizationSubscription) SetType(v string) {
 	o.Type = &v
 }
 
-func (o OrgSubscription) MarshalJSON() ([]byte, error) {
+func (o OrganizationSubscription) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
@@ -74,38 +74,38 @@ func (o OrgSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgSubscription struct {
-	value *OrgSubscription
+type NullableOrganizationSubscription struct {
+	value *OrganizationSubscription
 	isSet bool
 }
 
-func (v NullableOrgSubscription) Get() *OrgSubscription {
+func (v NullableOrganizationSubscription) Get() *OrganizationSubscription {
 	return v.value
 }
 
-func (v *NullableOrgSubscription) Set(val *OrgSubscription) {
+func (v *NullableOrganizationSubscription) Set(val *OrganizationSubscription) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgSubscription) IsSet() bool {
+func (v NullableOrganizationSubscription) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrgSubscription) Unset() {
+func (v *NullableOrganizationSubscription) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgSubscription(val *OrgSubscription) *NullableOrgSubscription {
-	return &NullableOrgSubscription{value: val, isSet: true}
+func NewNullableOrganizationSubscription(val *OrganizationSubscription) *NullableOrganizationSubscription {
+	return &NullableOrganizationSubscription{value: val, isSet: true}
 }
 
-func (v NullableOrgSubscription) MarshalJSON() ([]byte, error) {
+func (v NullableOrganizationSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgSubscription) UnmarshalJSON(src []byte) error {
+func (v *NullableOrganizationSubscription) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

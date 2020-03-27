@@ -12,32 +12,32 @@ import (
 	"encoding/json"
 )
 
-// OrgResponse Response with an organization.
-type OrgResponse struct {
-	Org *Org `json:"org,omitempty"`
+// OrganizationResponse Response with an organization.
+type OrganizationResponse struct {
+	Org *Organization `json:"org,omitempty"`
 }
 
-// NewOrgResponse instantiates a new OrgResponse object
+// NewOrganizationResponse instantiates a new OrganizationResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgResponse() *OrgResponse {
-	this := OrgResponse{}
+func NewOrganizationResponse() *OrganizationResponse {
+	this := OrganizationResponse{}
 	return &this
 }
 
-// NewOrgResponseWithDefaults instantiates a new OrgResponse object
+// NewOrganizationResponseWithDefaults instantiates a new OrganizationResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgResponseWithDefaults() *OrgResponse {
-	this := OrgResponse{}
+func NewOrganizationResponseWithDefaults() *OrganizationResponse {
+	this := OrganizationResponse{}
 	return &this
 }
 
 // GetOrg returns the Org field value if set, zero value otherwise.
-func (o *OrgResponse) GetOrg() Org {
+func (o *OrganizationResponse) GetOrg() Organization {
 	if o == nil || o.Org == nil {
-		var ret Org
+		var ret Organization
 		return ret
 	}
 	return *o.Org
@@ -45,7 +45,7 @@ func (o *OrgResponse) GetOrg() Org {
 
 // GetOrgOk returns a tuple with the Org field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgResponse) GetOrgOk() (*Org, bool) {
+func (o *OrganizationResponse) GetOrgOk() (*Organization, bool) {
 	if o == nil || o.Org == nil {
 		return nil, false
 	}
@@ -53,7 +53,7 @@ func (o *OrgResponse) GetOrgOk() (*Org, bool) {
 }
 
 // HasOrg returns a boolean if a field has been set.
-func (o *OrgResponse) HasOrg() bool {
+func (o *OrganizationResponse) HasOrg() bool {
 	if o != nil && o.Org != nil {
 		return true
 	}
@@ -61,12 +61,12 @@ func (o *OrgResponse) HasOrg() bool {
 	return false
 }
 
-// SetOrg gets a reference to the given Org and assigns it to the Org field.
-func (o *OrgResponse) SetOrg(v Org) {
+// SetOrg gets a reference to the given Organization and assigns it to the Org field.
+func (o *OrganizationResponse) SetOrg(v Organization) {
 	o.Org = &v
 }
 
-func (o OrgResponse) MarshalJSON() ([]byte, error) {
+func (o OrganizationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Org != nil {
 		toSerialize["org"] = o.Org
@@ -74,38 +74,38 @@ func (o OrgResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgResponse struct {
-	value *OrgResponse
+type NullableOrganizationResponse struct {
+	value *OrganizationResponse
 	isSet bool
 }
 
-func (v NullableOrgResponse) Get() *OrgResponse {
+func (v NullableOrganizationResponse) Get() *OrganizationResponse {
 	return v.value
 }
 
-func (v *NullableOrgResponse) Set(val *OrgResponse) {
+func (v *NullableOrganizationResponse) Set(val *OrganizationResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgResponse) IsSet() bool {
+func (v NullableOrganizationResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrgResponse) Unset() {
+func (v *NullableOrganizationResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgResponse(val *OrgResponse) *NullableOrgResponse {
-	return &NullableOrgResponse{value: val, isSet: true}
+func NewNullableOrganizationResponse(val *OrganizationResponse) *NullableOrganizationResponse {
+	return &NullableOrganizationResponse{value: val, isSet: true}
 }
 
-func (v NullableOrgResponse) MarshalJSON() ([]byte, error) {
+func (v NullableOrganizationResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableOrganizationResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

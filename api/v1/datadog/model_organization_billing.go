@@ -12,30 +12,30 @@ import (
 	"encoding/json"
 )
 
-// OrgBilling A JSON array of billing type. Note that only `parent_billing` is supported.
-type OrgBilling struct {
+// OrganizationBilling A JSON array of billing type. Note that only `parent_billing` is supported.
+type OrganizationBilling struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// NewOrgBilling instantiates a new OrgBilling object
+// NewOrganizationBilling instantiates a new OrganizationBilling object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgBilling() *OrgBilling {
-	this := OrgBilling{}
+func NewOrganizationBilling() *OrganizationBilling {
+	this := OrganizationBilling{}
 	return &this
 }
 
-// NewOrgBillingWithDefaults instantiates a new OrgBilling object
+// NewOrganizationBillingWithDefaults instantiates a new OrganizationBilling object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgBillingWithDefaults() *OrgBilling {
-	this := OrgBilling{}
+func NewOrganizationBillingWithDefaults() *OrganizationBilling {
+	this := OrganizationBilling{}
 	return &this
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *OrgBilling) GetType() string {
+func (o *OrganizationBilling) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -45,7 +45,7 @@ func (o *OrgBilling) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgBilling) GetTypeOk() (*string, bool) {
+func (o *OrganizationBilling) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -53,7 +53,7 @@ func (o *OrgBilling) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *OrgBilling) HasType() bool {
+func (o *OrganizationBilling) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -62,11 +62,11 @@ func (o *OrgBilling) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *OrgBilling) SetType(v string) {
+func (o *OrganizationBilling) SetType(v string) {
 	o.Type = &v
 }
 
-func (o OrgBilling) MarshalJSON() ([]byte, error) {
+func (o OrganizationBilling) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
@@ -74,38 +74,38 @@ func (o OrgBilling) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgBilling struct {
-	value *OrgBilling
+type NullableOrganizationBilling struct {
+	value *OrganizationBilling
 	isSet bool
 }
 
-func (v NullableOrgBilling) Get() *OrgBilling {
+func (v NullableOrganizationBilling) Get() *OrganizationBilling {
 	return v.value
 }
 
-func (v *NullableOrgBilling) Set(val *OrgBilling) {
+func (v *NullableOrganizationBilling) Set(val *OrganizationBilling) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgBilling) IsSet() bool {
+func (v NullableOrganizationBilling) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrgBilling) Unset() {
+func (v *NullableOrganizationBilling) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgBilling(val *OrgBilling) *NullableOrgBilling {
-	return &NullableOrgBilling{value: val, isSet: true}
+func NewNullableOrganizationBilling(val *OrganizationBilling) *NullableOrganizationBilling {
+	return &NullableOrganizationBilling{value: val, isSet: true}
 }
 
-func (v NullableOrgBilling) MarshalJSON() ([]byte, error) {
+func (v NullableOrganizationBilling) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgBilling) UnmarshalJSON(src []byte) error {
+func (v *NullableOrganizationBilling) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

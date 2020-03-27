@@ -34,7 +34,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Create API Key
 	// ----------------------------------
 	testAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	apiKeyData, httpresp, err := TESTAPICLIENT.KeysApi.CreateAPIKey(TESTAUTH).Body(datadog.ApiKey{Name: &testAPIKeyName}).Execute()
+	apiKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateAPIKey(TESTAUTH).Body(datadog.ApiKey{Name: &testAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -56,7 +56,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Get API Key
 	// ----------------------------------
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.GetAPIKey(TESTAUTH, createAPIKeyValue).Execute()
+	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.GetAPIKey(TESTAUTH, createAPIKeyValue).Execute()
 	if err != nil {
 		t.Errorf("Error getting api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -76,7 +76,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Get All API Keys
 	// ----------------------------------
-	respListData, httpresp, err := TESTAPICLIENT.KeysApi.GetAllAPIKeys(TESTAUTH).Execute()
+	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAllAPIKeys(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error getting all api keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -90,7 +90,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Edit API Key
 	// ----------------------------------
 	newAPIKeyName := fmt.Sprintf("new-%s", testAPIKeyName)
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditAPIKey(TESTAUTH, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
+	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.EditAPIKey(TESTAUTH, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -110,7 +110,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Delete API Key
 	// ----------------------------------
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeysApi.DeleteAPIKey(TESTAUTH, createAPIKeyValue).Execute()
+	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(TESTAUTH, createAPIKeyValue).Execute()
 	if err != nil {
 		t.Errorf("Error deleting api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -145,7 +145,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Create Application Key
 	// ----------------------------------
 	testAppKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	appKeyData, httpresp, err := TESTAPICLIENT.KeysApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAppKeyName}).Execute()
+	appKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAppKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -165,7 +165,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Get Application Key
 	// ----------------------------------
-	appKeyData, httpresp, err = TESTAPICLIENT.KeysApi.GetApplicationKey(TESTAUTH, createAppKeyHash).Execute()
+	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.GetApplicationKey(TESTAUTH, createAppKeyHash).Execute()
 	if err != nil {
 		t.Errorf("Error getting app key %v: Response %s: %v", createAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -183,7 +183,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Get All Application Keys
 	// ----------------------------------
-	respListData, httpresp, err := TESTAPICLIENT.KeysApi.GetAllApplicationKeys(TESTAUTH).Execute()
+	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAllApplicationKeys(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error getting all app keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -197,7 +197,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Edit Application Key
 	// ----------------------------------
 	newAppKeyName := fmt.Sprintf("New %s", testAppKeyName)
-	appKeyData, httpresp, err = TESTAPICLIENT.KeysApi.EditApplicationKey(TESTAUTH, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
+	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.EditApplicationKey(TESTAUTH, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -215,7 +215,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Delete Application Key
 	// ----------------------------------
-	appKeyData, httpresp, err = TESTAPICLIENT.KeysApi.DeleteApplicationKey(TESTAUTH, createAppKeyHash).Execute()
+	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.DeleteApplicationKey(TESTAUTH, createAppKeyHash).Execute()
 	if err != nil {
 		t.Errorf("Error deleting app key %v: Response %s: %v", createAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -233,14 +233,14 @@ func TestApplicationKeyFunctions(t *testing.T) {
 }
 
 func deleteAPIKey(apiKeyValue string) {
-	_, httpresp, err := TESTAPICLIENT.KeysApi.DeleteAPIKey(TESTAUTH, apiKeyValue).Execute()
+	_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(TESTAUTH, apiKeyValue).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue[len(apiKeyValue)-4:], httpresp.StatusCode)
 	}
 }
 
 func deleteAppKey(appKeyHash string) {
-	_, httpresp, err := TESTAPICLIENT.KeysApi.DeleteApplicationKey(TESTAUTH, appKeyHash).Execute()
+	_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteApplicationKey(TESTAUTH, appKeyHash).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)
 	}
