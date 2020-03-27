@@ -349,7 +349,6 @@ Class | Method | HTTP request | Description
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
  - [MonitorState](docs/MonitorState.md)
  - [MonitorStateGroup](docs/MonitorStateGroup.md)
- - [MonitorStateGroupValue](docs/MonitorStateGroupValue.md)
  - [MonitorSummaryWidgetDefinition](docs/MonitorSummaryWidgetDefinition.md)
  - [MonitorThresholdWindowOptions](docs/MonitorThresholdWindowOptions.md)
  - [MonitorThresholds](docs/MonitorThresholds.md)
