@@ -8,12 +8,9 @@ package test
 
 import (
 	"fmt"
-	"sync/atomic"
-	"testing"
-	"time"
-
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestTeamsLifecycle(t *testing.T) {
@@ -83,14 +80,11 @@ func TestTeamsLifecycle(t *testing.T) {
 
 }
 
-var teamNameCounter int64 = time.Now().UnixNano()
-
 func createTestTeam(t *testing.T) datadog.Team {
-	atomic.AddInt64(&teamNameCounter, 1)
 	testTeamData := datadog.NewTeam()
 	testTeamData.SetType("teams")
 	testTeamData.SetAttributes(*datadog.NewTeamAttributesWithDefaults())
-	testTeamData.Attributes.SetName(fmt.Sprintf("Test-Team-%d", teamNameCounter))
+	testTeamData.Attributes.SetName(fmt.Sprintf("TestTeam%s", generateUniqueString(32)))
 	// Create Team
 	teamRsp, httpresp, err := TESTAPICLIENT.TeamsApi.CreateTeam(TESTAUTH).Body(*datadog.NewTeamPayload(*testTeamData)).Execute()
 	if err != nil {

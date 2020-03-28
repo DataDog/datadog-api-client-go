@@ -8,9 +8,7 @@ package test
 
 import (
 	"fmt"
-	"sync/atomic"
 	"testing"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
@@ -84,14 +82,11 @@ func TestServicesLifecycle(t *testing.T) {
 
 }
 
-var serviceNameCounter int64 = time.Now().UnixNano()
-
 func createTestService(t *testing.T) datadog.Service {
-	atomic.AddInt64(&serviceNameCounter, 1)
 	testServiceData := datadog.NewService()
 	testServiceData.SetType("services")
 	testServiceData.SetAttributes(*datadog.NewServiceAttributesWithDefaults())
-	testServiceData.Attributes.SetName(fmt.Sprintf("Test-Service-%d", serviceNameCounter))
+	testServiceData.Attributes.SetName(fmt.Sprintf("TestService%s", generateUniqueString(32)))
 	// Create Service
 	serviceRsp, httpresp, err := TESTAPICLIENT.ServicesApi.CreateService(TESTAUTH).Body(*datadog.NewServicePayload(*testServiceData)).Execute()
 	if err != nil {

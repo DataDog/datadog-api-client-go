@@ -8,8 +8,9 @@ package test
 
 import (
 	"fmt"
-	"sync/atomic"
+	"math/rand"
 	"testing"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
@@ -184,17 +185,27 @@ func TestIncidentConfigChoicesLifecycle(t *testing.T) {
 
 }
 
-var configFieldCounter uint32 = 0
-var configFieldChoiceCounter uint32 = 0
+const incidentsCharSet = "abcdefghijklmnopqrstuvwxyz" +
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+var seededRand = rand.New(
+	rand.NewSource(time.Now().UnixNano()))
+
+func generateUniqueString(length int) string {
+	b := make([]byte, length)
+	for i := range b {
+		b[i] = incidentsCharSet[seededRand.Intn(len(incidentsCharSet))]
+	}
+	return string(b)
+}
 
 func createIncidentConfigField(t *testing.T) datadog.IncidentConfigField {
-	atomic.AddUint32(&configFieldCounter, 1)
 	testIncidentConfigFieldData := datadog.NewIncidentConfigFieldWithDefaults()
 	testIncidentConfigFieldData.SetType("field")
 	testIncidentConfigFieldData.SetAttributes(*datadog.NewIncidentConfigFieldAttributesWithDefaults())
 	testIncidentConfigFieldData.Attributes.SetType(datadog.INCIDENTCONFIGFIELDTYPE_DROPDOWN)
 	testIncidentConfigFieldData.Attributes.SetTableId(datadog.INCIDENTCONFIGFIELDTABLE_INCIDENT)
-	testIncidentConfigFieldData.Attributes.SetName(fmt.Sprintf("Test-ConfigField-Gen-%d", configFieldCounter))
+	testIncidentConfigFieldData.Attributes.SetName(fmt.Sprintf("TestConfigField%s", generateUniqueString(32)))
 
 	// Create IncidentConfig
 	incidentConfigRsp, httpresp, err := TESTAPICLIENT.IncidentsConfigApi.CreateIncidentConfigField(TESTAUTH).
@@ -220,13 +231,12 @@ func deleteIncidentConfigField(t *testing.T, id string) {
 }
 
 func createIncidentConfigFieldChoice(t *testing.T, fieldID string) datadog.IncidentConfigFieldChoice {
-	atomic.AddUint32(&configFieldChoiceCounter, 1)
 	testIncidentConfigFieldChoiceData := datadog.NewIncidentConfigFieldChoiceWithDefaults()
 	testIncidentConfigFieldChoiceData.SetType("choice")
 	testIncidentConfigFieldChoiceData.SetAttributes(*datadog.NewIncidentConfigFieldChoiceAttributesWithDefaults())
 	testIncidentConfigFieldChoiceData.Attributes.
-		SetName(fmt.Sprintf("Test-ConfigField-Gen-%d", configFieldChoiceCounter))
-	testIncidentConfigFieldChoiceData.Attributes.SetValue("Test-Choice-Value")
+		SetName(fmt.Sprintf("TestConfigFieldChoice%s", generateUniqueString(32)))
+	testIncidentConfigFieldChoiceData.Attributes.SetValue("TestConfigChoiceValue")
 
 	incidentConfigFieldChoiceRsp, httpresp, err := TESTAPICLIENT.IncidentsConfigApi.
 		CreateIncidentConfigFieldChoice(TESTAUTH, fieldID).
