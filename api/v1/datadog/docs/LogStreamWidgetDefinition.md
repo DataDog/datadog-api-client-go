@@ -40,22 +40,22 @@ GetColumns returns the Columns field if non-nil, zero value otherwise.
 
 ### GetColumnsOk
 
-`func (o *LogStreamWidgetDefinition) GetColumnsOk() ([]string, bool)`
+`func (o *LogStreamWidgetDefinition) GetColumnsOk() (*[]string, bool)`
 
 GetColumnsOk returns a tuple with the Columns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetColumns
+
+`func (o *LogStreamWidgetDefinition) SetColumns(v []string)`
+
+SetColumns sets Columns field to given value.
 
 ### HasColumns
 
 `func (o *LogStreamWidgetDefinition) HasColumns() bool`
 
 HasColumns returns a boolean if a field has been set.
-
-### SetColumns
-
-`func (o *LogStreamWidgetDefinition) SetColumns(v []string)`
-
-SetColumns gets a reference to the given []string and assigns it to the Columns field.
 
 ### GetIndexes
 
@@ -65,22 +65,22 @@ GetIndexes returns the Indexes field if non-nil, zero value otherwise.
 
 ### GetIndexesOk
 
-`func (o *LogStreamWidgetDefinition) GetIndexesOk() ([]string, bool)`
+`func (o *LogStreamWidgetDefinition) GetIndexesOk() (*[]string, bool)`
 
 GetIndexesOk returns a tuple with the Indexes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIndexes
+
+`func (o *LogStreamWidgetDefinition) SetIndexes(v []string)`
+
+SetIndexes sets Indexes field to given value.
 
 ### HasIndexes
 
 `func (o *LogStreamWidgetDefinition) HasIndexes() bool`
 
 HasIndexes returns a boolean if a field has been set.
-
-### SetIndexes
-
-`func (o *LogStreamWidgetDefinition) SetIndexes(v []string)`
-
-SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
 
 ### GetQuery
 
@@ -90,22 +90,22 @@ GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *LogStreamWidgetDefinition) GetQueryOk() (string, bool)`
+`func (o *LogStreamWidgetDefinition) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *LogStreamWidgetDefinition) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
 
 ### HasQuery
 
 `func (o *LogStreamWidgetDefinition) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
-
-### SetQuery
-
-`func (o *LogStreamWidgetDefinition) SetQuery(v string)`
-
-SetQuery gets a reference to the given string and assigns it to the Query field.
 
 ### GetTime
 
@@ -115,22 +115,22 @@ GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *LogStreamWidgetDefinition) GetTimeOk() (WidgetTime, bool)`
+`func (o *LogStreamWidgetDefinition) GetTimeOk() (*WidgetTime, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *LogStreamWidgetDefinition) SetTime(v WidgetTime)`
+
+SetTime sets Time field to given value.
 
 ### HasTime
 
 `func (o *LogStreamWidgetDefinition) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
-
-### SetTime
-
-`func (o *LogStreamWidgetDefinition) SetTime(v WidgetTime)`
-
-SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
 
 ### GetTitle
 
@@ -140,22 +140,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *LogStreamWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *LogStreamWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *LogStreamWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *LogStreamWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *LogStreamWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -165,22 +165,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *LogStreamWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *LogStreamWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *LogStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *LogStreamWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *LogStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -190,22 +190,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *LogStreamWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *LogStreamWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *LogStreamWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *LogStreamWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *LogStreamWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -215,22 +215,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogStreamWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *LogStreamWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *LogStreamWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *LogStreamWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

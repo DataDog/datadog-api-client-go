@@ -43,14 +43,13 @@ func (o *SyntheticsLocations) GetLocations() []SyntheticsLocation {
 	return *o.Locations
 }
 
-// GetLocationsOk returns a tuple with the Locations field value if set, zero value otherwise
+// GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsLocations) GetLocationsOk() ([]SyntheticsLocation, bool) {
+func (o *SyntheticsLocations) GetLocationsOk() (*[]SyntheticsLocation, bool) {
 	if o == nil || o.Locations == nil {
-		var ret []SyntheticsLocation
-		return ret, false
+		return nil, false
 	}
-	return *o.Locations, true
+	return o.Locations, true
 }
 
 // HasLocations returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableSyntheticsLocations) Get() *SyntheticsLocations {
 	return v.value
 }
 
-func (v NullableSyntheticsLocations) Set(val *SyntheticsLocations) {
+func (v *NullableSyntheticsLocations) Set(val *SyntheticsLocations) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableSyntheticsLocations) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsLocations) Unset() {
+func (v *NullableSyntheticsLocations) Unset() {
 	v.value = nil
 	v.isSet = false
 }

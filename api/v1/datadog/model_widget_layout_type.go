@@ -34,7 +34,7 @@ func (v NullableWidgetLayoutType) Get() *WidgetLayoutType {
 	return v.value
 }
 
-func (v NullableWidgetLayoutType) Set(val *WidgetLayoutType) {
+func (v *NullableWidgetLayoutType) Set(val *WidgetLayoutType) {
 	v.value = val
 	v.isSet = true
 }
@@ -43,7 +43,7 @@ func (v NullableWidgetLayoutType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetLayoutType) Unset() {
+func (v *NullableWidgetLayoutType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

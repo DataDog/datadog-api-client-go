@@ -45,14 +45,13 @@ func (o *SyntheticsDeleteTestsResponseDeletedTests) GetDeletedAt() time.Time {
 	return *o.DeletedAt
 }
 
-// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, zero value otherwise
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsDeleteTestsResponseDeletedTests) GetDeletedAtOk() (time.Time, bool) {
+func (o *SyntheticsDeleteTestsResponseDeletedTests) GetDeletedAtOk() (*time.Time, bool) {
 	if o == nil || o.DeletedAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.DeletedAt, true
+	return o.DeletedAt, true
 }
 
 // HasDeletedAt returns a boolean if a field has been set.
@@ -78,14 +77,13 @@ func (o *SyntheticsDeleteTestsResponseDeletedTests) GetPublicId() string {
 	return *o.PublicId
 }
 
-// GetPublicIdOk returns a tuple with the PublicId field value if set, zero value otherwise
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsDeleteTestsResponseDeletedTests) GetPublicIdOk() (string, bool) {
+func (o *SyntheticsDeleteTestsResponseDeletedTests) GetPublicIdOk() (*string, bool) {
 	if o == nil || o.PublicId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PublicId, true
+	return o.PublicId, true
 }
 
 // HasPublicId returns a boolean if a field has been set.
@@ -122,7 +120,7 @@ func (v NullableSyntheticsDeleteTestsResponseDeletedTests) Get() *SyntheticsDele
 	return v.value
 }
 
-func (v NullableSyntheticsDeleteTestsResponseDeletedTests) Set(val *SyntheticsDeleteTestsResponseDeletedTests) {
+func (v *NullableSyntheticsDeleteTestsResponseDeletedTests) Set(val *SyntheticsDeleteTestsResponseDeletedTests) {
 	v.value = val
 	v.isSet = true
 }
@@ -131,7 +129,7 @@ func (v NullableSyntheticsDeleteTestsResponseDeletedTests) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsDeleteTestsResponseDeletedTests) Unset() {
+func (v *NullableSyntheticsDeleteTestsResponseDeletedTests) Unset() {
 	v.value = nil
 	v.isSet = false
 }

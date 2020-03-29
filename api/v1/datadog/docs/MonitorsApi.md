@@ -32,7 +32,7 @@ Other parameters are passed through a pointer to a apiCreateMonitorRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Monitor**](Monitor.md) | Monitor request object | 
+ **body** | [**Monitor**](Monitor.md) | Monitor request object. | 
 
 ### Return type
 
@@ -66,7 +66,7 @@ Delete a monitor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The id of the monitor | 
+**monitorId** | **int64** | The ID of the monitor. | 
 
 ### Other Parameters
 
@@ -109,7 +109,7 @@ Edit a monitor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The id of the monitor | 
+**monitorId** | **int64** | The id of the monitor. | 
 
 ### Other Parameters
 
@@ -119,7 +119,7 @@ Other parameters are passed through a pointer to a apiEditMonitorRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Monitor**](Monitor.md) | Monitor request object | 
+ **body** | [**Monitor**](Monitor.md) | Monitor request object. | 
 
 ### Return type
 
@@ -160,8 +160,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
  **name** | **string** | A string to filter monitors by name. | 
- **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0. | 
- **monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app). | 
+ **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope. For example, &#x60;host:host0&#x60;. | 
+ **monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, &#x60;service:my-app&#x60;. | 
  **withDowntimes** | **bool** | If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
 
 ### Return type

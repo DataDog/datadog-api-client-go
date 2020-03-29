@@ -52,7 +52,7 @@ func (v NullableSyntheticsStepType) Get() *SyntheticsStepType {
 	return v.value
 }
 
-func (v NullableSyntheticsStepType) Set(val *SyntheticsStepType) {
+func (v *NullableSyntheticsStepType) Set(val *SyntheticsStepType) {
 	v.value = val
 	v.isSet = true
 }
@@ -61,7 +61,7 @@ func (v NullableSyntheticsStepType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsStepType) Unset() {
+func (v *NullableSyntheticsStepType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

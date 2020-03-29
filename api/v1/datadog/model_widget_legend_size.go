@@ -38,7 +38,7 @@ func (v NullableWidgetLegendSize) Get() *WidgetLegendSize {
 	return v.value
 }
 
-func (v NullableWidgetLegendSize) Set(val *WidgetLegendSize) {
+func (v *NullableWidgetLegendSize) Set(val *WidgetLegendSize) {
 	v.value = val
 	v.isSet = true
 }
@@ -47,7 +47,7 @@ func (v NullableWidgetLegendSize) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetLegendSize) Unset() {
+func (v *NullableWidgetLegendSize) Unset() {
 	v.value = nil
 	v.isSet = false
 }

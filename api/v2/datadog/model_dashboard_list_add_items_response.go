@@ -14,7 +14,7 @@ import (
 
 // DashboardListAddItemsResponse struct for DashboardListAddItemsResponse
 type DashboardListAddItemsResponse struct {
-	// List of dashboards added to the dashboard list
+	// List of dashboards added to the dashboard list.
 	AddedDashboardsToList *[]DashboardListItem `json:"added_dashboards_to_list,omitempty"`
 }
 
@@ -44,14 +44,13 @@ func (o *DashboardListAddItemsResponse) GetAddedDashboardsToList() []DashboardLi
 	return *o.AddedDashboardsToList
 }
 
-// GetAddedDashboardsToListOk returns a tuple with the AddedDashboardsToList field value if set, zero value otherwise
+// GetAddedDashboardsToListOk returns a tuple with the AddedDashboardsToList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardListAddItemsResponse) GetAddedDashboardsToListOk() ([]DashboardListItem, bool) {
+func (o *DashboardListAddItemsResponse) GetAddedDashboardsToListOk() (*[]DashboardListItem, bool) {
 	if o == nil || o.AddedDashboardsToList == nil {
-		var ret []DashboardListItem
-		return ret, false
+		return nil, false
 	}
-	return *o.AddedDashboardsToList, true
+	return o.AddedDashboardsToList, true
 }
 
 // HasAddedDashboardsToList returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableDashboardListAddItemsResponse) Get() *DashboardListAddItemsRespo
 	return v.value
 }
 
-func (v NullableDashboardListAddItemsResponse) Set(val *DashboardListAddItemsResponse) {
+func (v *NullableDashboardListAddItemsResponse) Set(val *DashboardListAddItemsResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableDashboardListAddItemsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardListAddItemsResponse) Unset() {
+func (v *NullableDashboardListAddItemsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -33,22 +33,22 @@ GetPalette returns the Palette field if non-nil, zero value otherwise.
 
 ### GetPaletteOk
 
-`func (o *WidgetStyle) GetPaletteOk() (string, bool)`
+`func (o *WidgetStyle) GetPaletteOk() (*string, bool)`
 
 GetPaletteOk returns a tuple with the Palette field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPalette
+
+`func (o *WidgetStyle) SetPalette(v string)`
+
+SetPalette sets Palette field to given value.
 
 ### HasPalette
 
 `func (o *WidgetStyle) HasPalette() bool`
 
 HasPalette returns a boolean if a field has been set.
-
-### SetPalette
-
-`func (o *WidgetStyle) SetPalette(v string)`
-
-SetPalette gets a reference to the given string and assigns it to the Palette field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

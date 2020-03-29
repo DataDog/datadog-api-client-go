@@ -43,14 +43,13 @@ func (o *MetricSearchResponse) GetResults() MetricSearchResponseResults {
 	return *o.Results
 }
 
-// GetResultsOk returns a tuple with the Results field value if set, zero value otherwise
+// GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricSearchResponse) GetResultsOk() (MetricSearchResponseResults, bool) {
+func (o *MetricSearchResponse) GetResultsOk() (*MetricSearchResponseResults, bool) {
 	if o == nil || o.Results == nil {
-		var ret MetricSearchResponseResults
-		return ret, false
+		return nil, false
 	}
-	return *o.Results, true
+	return o.Results, true
 }
 
 // HasResults returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableMetricSearchResponse) Get() *MetricSearchResponse {
 	return v.value
 }
 
-func (v NullableMetricSearchResponse) Set(val *MetricSearchResponse) {
+func (v *NullableMetricSearchResponse) Set(val *MetricSearchResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableMetricSearchResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricSearchResponse) Unset() {
+func (v *NullableMetricSearchResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

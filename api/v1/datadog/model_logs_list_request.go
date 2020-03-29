@@ -18,10 +18,10 @@ type LogsListRequest struct {
 	Index *string `json:"index,omitempty"`
 	// Number of logs return in the response.
 	Limit *int32 `json:"limit,omitempty"`
-	// The search query - following the Log search syntax.
+	// The search query - following the log search syntax.
 	Query string    `json:"query"`
 	Sort  *LogsSort `json:"sort,omitempty"`
-	// Hash identifier of the first log to return in the list, available in a log `id` attribute. This parameter is used for the pagination feature. **Note**: this parameter is ignored if the corresponding log is out of the scope of the specified time window.
+	// Hash identifier of the first log to return in the list, available in a log `id` attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window.
 	StartAt *string             `json:"startAt,omitempty"`
 	Time    LogsListRequestTime `json:"time"`
 }
@@ -54,14 +54,13 @@ func (o *LogsListRequest) GetIndex() string {
 	return *o.Index
 }
 
-// GetIndexOk returns a tuple with the Index field value if set, zero value otherwise
+// GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListRequest) GetIndexOk() (string, bool) {
+func (o *LogsListRequest) GetIndexOk() (*string, bool) {
 	if o == nil || o.Index == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Index, true
+	return o.Index, true
 }
 
 // HasIndex returns a boolean if a field has been set.
@@ -87,14 +86,13 @@ func (o *LogsListRequest) GetLimit() int32 {
 	return *o.Limit
 }
 
-// GetLimitOk returns a tuple with the Limit field value if set, zero value otherwise
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListRequest) GetLimitOk() (int32, bool) {
+func (o *LogsListRequest) GetLimitOk() (*int32, bool) {
 	if o == nil || o.Limit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Limit, true
+	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
@@ -121,6 +119,15 @@ func (o *LogsListRequest) GetQuery() string {
 	return o.Query
 }
 
+// GetQueryOk returns a tuple with the Query field value
+// and a boolean to check if the value has been set.
+func (o *LogsListRequest) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Query, true
+}
+
 // SetQuery sets field value
 func (o *LogsListRequest) SetQuery(v string) {
 	o.Query = v
@@ -135,14 +142,13 @@ func (o *LogsListRequest) GetSort() LogsSort {
 	return *o.Sort
 }
 
-// GetSortOk returns a tuple with the Sort field value if set, zero value otherwise
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListRequest) GetSortOk() (LogsSort, bool) {
+func (o *LogsListRequest) GetSortOk() (*LogsSort, bool) {
 	if o == nil || o.Sort == nil {
-		var ret LogsSort
-		return ret, false
+		return nil, false
 	}
-	return *o.Sort, true
+	return o.Sort, true
 }
 
 // HasSort returns a boolean if a field has been set.
@@ -168,14 +174,13 @@ func (o *LogsListRequest) GetStartAt() string {
 	return *o.StartAt
 }
 
-// GetStartAtOk returns a tuple with the StartAt field value if set, zero value otherwise
+// GetStartAtOk returns a tuple with the StartAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsListRequest) GetStartAtOk() (string, bool) {
+func (o *LogsListRequest) GetStartAtOk() (*string, bool) {
 	if o == nil || o.StartAt == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.StartAt, true
+	return o.StartAt, true
 }
 
 // HasStartAt returns a boolean if a field has been set.
@@ -200,6 +205,15 @@ func (o *LogsListRequest) GetTime() LogsListRequestTime {
 	}
 
 	return o.Time
+}
+
+// GetTimeOk returns a tuple with the Time field value
+// and a boolean to check if the value has been set.
+func (o *LogsListRequest) GetTimeOk() (*LogsListRequestTime, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Time, true
 }
 
 // SetTime sets field value
@@ -239,7 +253,7 @@ func (v NullableLogsListRequest) Get() *LogsListRequest {
 	return v.value
 }
 
-func (v NullableLogsListRequest) Set(val *LogsListRequest) {
+func (v *NullableLogsListRequest) Set(val *LogsListRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -248,7 +262,7 @@ func (v NullableLogsListRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsListRequest) Unset() {
+func (v *NullableLogsListRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

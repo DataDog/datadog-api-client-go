@@ -36,8 +36,8 @@ func (r apiSubmitServiceCheckRequest) Body(body []ServiceCheck) apiSubmitService
 
 /*
 SubmitServiceCheck Submit a Service Check
-### Overview
 Submit a list of Service Checks.
+
 **Note**: valid API key is required.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiSubmitServiceCheckRequest

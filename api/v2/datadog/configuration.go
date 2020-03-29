@@ -11,6 +11,7 @@ package datadog
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -85,14 +86,15 @@ type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host             string            `json:"host,omitempty"`
-	Scheme           string            `json:"scheme,omitempty"`
-	DefaultHeader    map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent        string            `json:"userAgent,omitempty"`
-	Debug            bool              `json:"debug,omitempty"`
-	Servers          ServerConfigurations
-	OperationServers map[string]ServerConfigurations
-	HTTPClient       *http.Client
+	Host               string            `json:"host,omitempty"`
+	Scheme             string            `json:"scheme,omitempty"`
+	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent          string            `json:"userAgent,omitempty"`
+	Debug              bool              `json:"debug,omitempty"`
+	Servers            ServerConfigurations
+	OperationServers   map[string]ServerConfigurations
+	HTTPClient         *http.Client
+	unstableOperations map[string]bool
 }
 
 // NewConfiguration returns a new Configuration object
@@ -135,7 +137,8 @@ func NewConfiguration() *Configuration {
 				},
 			},
 		},
-		OperationServers: map[string]ServerConfigurations{},
+		OperationServers:   map[string]ServerConfigurations{},
+		unstableOperations: map[string]bool{},
 	}
 	return cfg
 }
@@ -252,4 +255,44 @@ func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint strin
 	}
 
 	return sc.URL(index, variables)
+}
+
+// GetUnstableOperations returns a slice with all unstable operation Ids
+func (c *Configuration) GetUnstableOperations() []string {
+	ids := make([]string, len(c.unstableOperations))
+	for id := range c.unstableOperations {
+		ids = append(ids, id)
+	}
+	return ids
+}
+
+// SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false)
+// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. "CreateFoo"
+// Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise
+func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool {
+	if _, ok := c.unstableOperations[operation]; ok {
+		c.unstableOperations[operation] = enabled
+		return true
+	}
+	log.Printf("WARNING: '%s' is not an unstable operation, can't enable/disable", operation)
+	return false
+}
+
+// IsUnstableOperation determines whether an operation is an unstable operation.
+// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. "CreateFoo"
+func (c *Configuration) IsUnstableOperation(operation string) bool {
+	_, present := c.unstableOperations[operation]
+	return present
+}
+
+// IsUnstableOperationEnabled determines whether an unstable operation is enabled.
+// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. "CreateFoo"
+// Returns true if the operation is unstable and it is enabled, false otherwise
+func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
+	if enabled, present := c.unstableOperations[operation]; present {
+		return enabled
+	} else {
+		log.Printf("WARNING: '%s' is not an unstable operation, is always enabled", operation)
+	}
+	return false
 }

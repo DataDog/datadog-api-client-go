@@ -14,7 +14,7 @@ import (
 
 // MetricsPayload struct for MetricsPayload
 type MetricsPayload struct {
-	// A list of time series to submit to Datadog
+	// A list of time series to submit to Datadog.
 	Series *[]Series `json:"series,omitempty"`
 }
 
@@ -44,14 +44,13 @@ func (o *MetricsPayload) GetSeries() []Series {
 	return *o.Series
 }
 
-// GetSeriesOk returns a tuple with the Series field value if set, zero value otherwise
+// GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsPayload) GetSeriesOk() ([]Series, bool) {
+func (o *MetricsPayload) GetSeriesOk() (*[]Series, bool) {
 	if o == nil || o.Series == nil {
-		var ret []Series
-		return ret, false
+		return nil, false
 	}
-	return *o.Series, true
+	return o.Series, true
 }
 
 // HasSeries returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableMetricsPayload) Get() *MetricsPayload {
 	return v.value
 }
 
-func (v NullableMetricsPayload) Set(val *MetricsPayload) {
+func (v *NullableMetricsPayload) Set(val *MetricsPayload) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableMetricsPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricsPayload) Unset() {
+func (v *NullableMetricsPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }

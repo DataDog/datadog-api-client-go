@@ -50,14 +50,13 @@ func (o *WidgetMarker) GetDisplayType() string {
 	return *o.DisplayType
 }
 
-// GetDisplayTypeOk returns a tuple with the DisplayType field value if set, zero value otherwise
+// GetDisplayTypeOk returns a tuple with the DisplayType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetMarker) GetDisplayTypeOk() (string, bool) {
+func (o *WidgetMarker) GetDisplayTypeOk() (*string, bool) {
 	if o == nil || o.DisplayType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DisplayType, true
+	return o.DisplayType, true
 }
 
 // HasDisplayType returns a boolean if a field has been set.
@@ -83,14 +82,13 @@ func (o *WidgetMarker) GetLabel() string {
 	return *o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, zero value otherwise
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetMarker) GetLabelOk() (string, bool) {
+func (o *WidgetMarker) GetLabelOk() (*string, bool) {
 	if o == nil || o.Label == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Label, true
+	return o.Label, true
 }
 
 // HasLabel returns a boolean if a field has been set.
@@ -116,14 +114,13 @@ func (o *WidgetMarker) GetTime() string {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetMarker) GetTimeOk() (string, bool) {
+func (o *WidgetMarker) GetTimeOk() (*string, bool) {
 	if o == nil || o.Time == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -148,6 +145,15 @@ func (o *WidgetMarker) GetValue() string {
 	}
 
 	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *WidgetMarker) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
 }
 
 // SetValue sets field value
@@ -181,7 +187,7 @@ func (v NullableWidgetMarker) Get() *WidgetMarker {
 	return v.value
 }
 
-func (v NullableWidgetMarker) Set(val *WidgetMarker) {
+func (v *NullableWidgetMarker) Set(val *WidgetMarker) {
 	v.value = val
 	v.isSet = true
 }
@@ -190,7 +196,7 @@ func (v NullableWidgetMarker) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetMarker) Unset() {
+func (v *NullableWidgetMarker) Unset() {
 	v.value = nil
 	v.isSet = false
 }

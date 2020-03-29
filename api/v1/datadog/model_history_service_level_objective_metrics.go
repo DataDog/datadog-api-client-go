@@ -22,9 +22,9 @@ type HistoryServiceLevelObjectiveMetrics struct {
 	Numerator HistoryServiceLevelObjectiveMetricsSeries `json:"numerator"`
 	// The combined numerator && denominator query CSV.
 	Query string `json:"query"`
-	// The series result type. This mimics `batch_query` response type
+	// The series result type. This mimics `batch_query` response type.
 	ResType string `json:"res_type"`
-	// The series response version type. This mimics `batch_query` response type
+	// The series response version type. This mimics `batch_query` response type.
 	RespVersion int64 `json:"resp_version"`
 	// The query timestamps in epoch milliseconds
 	Times []float64 `json:"times"`
@@ -64,6 +64,15 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetDenominator() HistoryServiceLev
 	return o.Denominator
 }
 
+// GetDenominatorOk returns a tuple with the Denominator field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetrics) GetDenominatorOk() (*HistoryServiceLevelObjectiveMetricsSeries, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Denominator, true
+}
+
 // SetDenominator sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetDenominator(v HistoryServiceLevelObjectiveMetricsSeries) {
 	o.Denominator = v
@@ -77,6 +86,15 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetInterval() int64 {
 	}
 
 	return o.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetrics) GetIntervalOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Interval, true
 }
 
 // SetInterval sets field value
@@ -93,14 +111,13 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetMessageOk() (string, bool) {
+func (o *HistoryServiceLevelObjectiveMetrics) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -127,6 +144,15 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetNumerator() HistoryServiceLevel
 	return o.Numerator
 }
 
+// GetNumeratorOk returns a tuple with the Numerator field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetrics) GetNumeratorOk() (*HistoryServiceLevelObjectiveMetricsSeries, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Numerator, true
+}
+
 // SetNumerator sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetNumerator(v HistoryServiceLevelObjectiveMetricsSeries) {
 	o.Numerator = v
@@ -140,6 +166,15 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetQuery() string {
 	}
 
 	return o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetrics) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Query, true
 }
 
 // SetQuery sets field value
@@ -157,6 +192,15 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetResType() string {
 	return o.ResType
 }
 
+// GetResTypeOk returns a tuple with the ResType field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetrics) GetResTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ResType, true
+}
+
 // SetResType sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetResType(v string) {
 	o.ResType = v
@@ -172,6 +216,15 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersion() int64 {
 	return o.RespVersion
 }
 
+// GetRespVersionOk returns a tuple with the RespVersion field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RespVersion, true
+}
+
 // SetRespVersion sets field value
 func (o *HistoryServiceLevelObjectiveMetrics) SetRespVersion(v int64) {
 	o.RespVersion = v
@@ -185,6 +238,15 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetTimes() []float64 {
 	}
 
 	return o.Times
+}
+
+// GetTimesOk returns a tuple with the Times field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveMetrics) GetTimesOk() (*[]float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Times, true
 }
 
 // SetTimes sets field value
@@ -230,7 +292,7 @@ func (v NullableHistoryServiceLevelObjectiveMetrics) Get() *HistoryServiceLevelO
 	return v.value
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetrics) Set(val *HistoryServiceLevelObjectiveMetrics) {
+func (v *NullableHistoryServiceLevelObjectiveMetrics) Set(val *HistoryServiceLevelObjectiveMetrics) {
 	v.value = val
 	v.isSet = true
 }
@@ -239,7 +301,7 @@ func (v NullableHistoryServiceLevelObjectiveMetrics) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetrics) Unset() {
+func (v *NullableHistoryServiceLevelObjectiveMetrics) Unset() {
 	v.value = nil
 	v.isSet = false
 }

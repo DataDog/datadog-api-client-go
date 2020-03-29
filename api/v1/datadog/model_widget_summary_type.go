@@ -36,7 +36,7 @@ func (v NullableWidgetSummaryType) Get() *WidgetSummaryType {
 	return v.value
 }
 
-func (v NullableWidgetSummaryType) Set(val *WidgetSummaryType) {
+func (v *NullableWidgetSummaryType) Set(val *WidgetSummaryType) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetSummaryType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetSummaryType) Unset() {
+func (v *NullableWidgetSummaryType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

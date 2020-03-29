@@ -49,6 +49,15 @@ func (o *AWSAccountAndLambdaRequest) GetAccountId() string {
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *AWSAccountAndLambdaRequest) GetAccountIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
 func (o *AWSAccountAndLambdaRequest) SetAccountId(v string) {
 	o.AccountId = v
@@ -62,6 +71,15 @@ func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string {
 	}
 
 	return o.LambdaArn
+}
+
+// GetLambdaArnOk returns a tuple with the LambdaArn field value
+// and a boolean to check if the value has been set.
+func (o *AWSAccountAndLambdaRequest) GetLambdaArnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LambdaArn, true
 }
 
 // SetLambdaArn sets field value
@@ -89,7 +107,7 @@ func (v NullableAWSAccountAndLambdaRequest) Get() *AWSAccountAndLambdaRequest {
 	return v.value
 }
 
-func (v NullableAWSAccountAndLambdaRequest) Set(val *AWSAccountAndLambdaRequest) {
+func (v *NullableAWSAccountAndLambdaRequest) Set(val *AWSAccountAndLambdaRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -98,7 +116,7 @@ func (v NullableAWSAccountAndLambdaRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSAccountAndLambdaRequest) Unset() {
+func (v *NullableAWSAccountAndLambdaRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

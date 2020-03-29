@@ -63,7 +63,7 @@ Get an event
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **int64** | The id of the event | 
+**eventId** | **int64** | The id of the event. | 
 
 ### Other Parameters
 
@@ -113,9 +113,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int64** | POSIX timestamp. | 
  **end** | **int64** | POSIX timestamp. | 
- **priority** | [**EventPriority**](.md) | Priority of your events: **low** or **normal**. | 
+ **priority** | [**EventPriority**](.md) | Priority of your events, either &#x60;low&#x60; or &#x60;normal&#x60;. | 
  **sources** | **string** | A comma separated string of sources. | 
- **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0. | 
+ **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. | 
  **unaggregated** | **bool** | Set unaggregated to &#x60;true&#x60; to return all events within the specified [&#x60;start&#x60;,&#x60;end&#x60;] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won&#39;t be available in the output. | 
 
 ### Return type

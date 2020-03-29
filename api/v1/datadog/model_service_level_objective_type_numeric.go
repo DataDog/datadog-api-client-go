@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectiveTypeNumeric A numeric representation of the type of the service level objective (0 for monitor, 1 for metric). Always included in service level objective responses. Ignored in create/update requests.
+// ServiceLevelObjectiveTypeNumeric A numeric representation of the type of the service level objective (0 for monitor, 1 for metric).  Always included in service level objective responses. Ignored in create/update requests.
 type ServiceLevelObjectiveTypeNumeric int32
 
 // List of ServiceLevelObjectiveTypeNumeric
@@ -35,7 +35,7 @@ func (v NullableServiceLevelObjectiveTypeNumeric) Get() *ServiceLevelObjectiveTy
 	return v.value
 }
 
-func (v NullableServiceLevelObjectiveTypeNumeric) Set(val *ServiceLevelObjectiveTypeNumeric) {
+func (v *NullableServiceLevelObjectiveTypeNumeric) Set(val *ServiceLevelObjectiveTypeNumeric) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableServiceLevelObjectiveTypeNumeric) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectiveTypeNumeric) Unset() {
+func (v *NullableServiceLevelObjectiveTypeNumeric) Unset() {
 	v.value = nil
 	v.isSet = false
 }

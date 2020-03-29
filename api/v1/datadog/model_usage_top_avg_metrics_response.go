@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UsageTopAvgMetricsResponse struct for UsageTopAvgMetricsResponse
+// UsageTopAvgMetricsResponse Response containing the number of hourly recorded custom metrics for a given organization.
 type UsageTopAvgMetricsResponse struct {
+	// Number of hourly recorded custom metrics for a given organization.
 	Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
 }
 
@@ -43,14 +44,13 @@ func (o *UsageTopAvgMetricsResponse) GetUsage() []UsageTopAvgMetricsHour {
 	return *o.Usage
 }
 
-// GetUsageOk returns a tuple with the Usage field value if set, zero value otherwise
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTopAvgMetricsResponse) GetUsageOk() ([]UsageTopAvgMetricsHour, bool) {
+func (o *UsageTopAvgMetricsResponse) GetUsageOk() (*[]UsageTopAvgMetricsHour, bool) {
 	if o == nil || o.Usage == nil {
-		var ret []UsageTopAvgMetricsHour
-		return ret, false
+		return nil, false
 	}
-	return *o.Usage, true
+	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -84,7 +84,7 @@ func (v NullableUsageTopAvgMetricsResponse) Get() *UsageTopAvgMetricsResponse {
 	return v.value
 }
 
-func (v NullableUsageTopAvgMetricsResponse) Set(val *UsageTopAvgMetricsResponse) {
+func (v *NullableUsageTopAvgMetricsResponse) Set(val *UsageTopAvgMetricsResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +93,7 @@ func (v NullableUsageTopAvgMetricsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageTopAvgMetricsResponse) Unset() {
+func (v *NullableUsageTopAvgMetricsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

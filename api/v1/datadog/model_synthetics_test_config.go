@@ -48,6 +48,15 @@ func (o *SyntheticsTestConfig) GetAssertions() []SyntheticsAssertion {
 	return o.Assertions
 }
 
+// GetAssertionsOk returns a tuple with the Assertions field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestConfig) GetAssertionsOk() (*[]SyntheticsAssertion, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Assertions, true
+}
+
 // SetAssertions sets field value
 func (o *SyntheticsTestConfig) SetAssertions(v []SyntheticsAssertion) {
 	o.Assertions = v
@@ -61,6 +70,15 @@ func (o *SyntheticsTestConfig) GetRequest() SyntheticsTestRequest {
 	}
 
 	return o.Request
+}
+
+// GetRequestOk returns a tuple with the Request field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestConfig) GetRequestOk() (*SyntheticsTestRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Request, true
 }
 
 // SetRequest sets field value
@@ -77,14 +95,13 @@ func (o *SyntheticsTestConfig) GetVariables() []SyntheticsBrowserVariable {
 	return *o.Variables
 }
 
-// GetVariablesOk returns a tuple with the Variables field value if set, zero value otherwise
+// GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestConfig) GetVariablesOk() ([]SyntheticsBrowserVariable, bool) {
+func (o *SyntheticsTestConfig) GetVariablesOk() (*[]SyntheticsBrowserVariable, bool) {
 	if o == nil || o.Variables == nil {
-		var ret []SyntheticsBrowserVariable
-		return ret, false
+		return nil, false
 	}
-	return *o.Variables, true
+	return o.Variables, true
 }
 
 // HasVariables returns a boolean if a field has been set.
@@ -124,7 +141,7 @@ func (v NullableSyntheticsTestConfig) Get() *SyntheticsTestConfig {
 	return v.value
 }
 
-func (v NullableSyntheticsTestConfig) Set(val *SyntheticsTestConfig) {
+func (v *NullableSyntheticsTestConfig) Set(val *SyntheticsTestConfig) {
 	v.value = val
 	v.isSet = true
 }
@@ -133,7 +150,7 @@ func (v NullableSyntheticsTestConfig) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestConfig) Unset() {
+func (v *NullableSyntheticsTestConfig) Unset() {
 	v.value = nil
 	v.isSet = false
 }

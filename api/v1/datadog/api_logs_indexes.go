@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -30,7 +32,8 @@ type apiGetAllLogIndexesRequest struct {
 }
 
 /*
-GetAllLogIndexes Get all Indexes
+GetAllLogIndexes Get all indexes
+The Index object describes the configuration of a log index.
 This endpoint returns an array of the `LogIndex` objects of your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllLogIndexesRequest
@@ -55,6 +58,12 @@ func (r apiGetAllLogIndexesRequest) Execute() (LogsIndexListResponse, *_nethttp.
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndexListResponse
 	)
+	operationId := "GetAllLogIndexes"
+	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetAllLogIndexes")
 	if err != nil {
@@ -175,12 +184,9 @@ type apiGetLogsIndexRequest struct {
 
 /*
 GetLogsIndex Get an index
-## Overview
-Get one log index from your organization.
-### Arguments
-This endpoint takes no JSON arguments.
+Get one log index from your organization. This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param name Name of the log index
+ * @param name Name of the log index.
 @return apiGetLogsIndexRequest
 */
 func (a *LogsIndexesApiService) GetLogsIndex(ctx _context.Context, name string) apiGetLogsIndexRequest {
@@ -204,6 +210,12 @@ func (r apiGetLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, error)
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
+	operationId := "GetLogsIndex"
+	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndex")
 	if err != nil {
@@ -333,11 +345,11 @@ type apiGetLogsIndexOrderRequest struct {
 }
 
 /*
-GetLogsIndexOrder Get Indexes Order
-## Overview
-Get the current order of your log indexes.
-### Arguments
-This endpoint takes no JSON arguments.
+GetLogsIndexOrder Get indexes order
+Get the current order of your log indexes. This endpoint takes no JSON arguments.
+
+**Note**: This endpoint is in public beta.
+If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetLogsIndexOrderRequest
 */
@@ -486,32 +498,13 @@ func (r apiUpdateLogsIndexRequest) Body(body LogsIndex) apiUpdateLogsIndexReques
 }
 
 /*
-UpdateLogsIndex Update an Index
-## Overview
+UpdateLogsIndex Update an index
 It returns the Index object passed in the request body when the request is successful.
-**Note:** Using the PUT method updates your index’s configuration by **replacing** your current configuration with the new one sent to your Datadog organization.
-### Arguments
-* **`filter.query`**  [*required*]:
-    Only logs matching the filter criteria will be considered for this index. The search query follows the [Log search syntax][1]
 
-* **`exclusion_filters`** An array of `ExclusionFilter` objects (see hereafter). The logs are tested against the query of each `ExclusionFilter`, following the order of the array. Only the first matching active `ExclusionFilter` matters, others (if any) are ignored. The `ExclusionFilter` object describes the configuration of an [exclusion filter][2]. It has the following attributes:
-
-  * **`name`** [*required*]:
-    The name of the exclusion filter
-
-  * **`is_enabled`**  [*optional*, *default*=**False**]:
-    A boolean stating if the exclusion is active.
-
-  * **`filter.query`** [*optional*]:
-    Only logs matching the filter criteria AND the query of the parent index will be considered for this exclusion filter. The search query follows the [Log search syntax][1]
-
-  * **`filter.sample_rate`** [*required*]:
-    The fraction of logs excluded by the exclusion filter, when active. The sampling is uniform.
-
-[1]: /logs/explorer/search
-[2]: /logs/indexes/#exclusion-filters
+Using the `PUT` method updates your index’s configuration by **replacing**
+your current configuration with the new one sent to your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param name Name of the log index
+ * @param name Name of the log index.
 @return apiUpdateLogsIndexRequest
 */
 func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name string) apiUpdateLogsIndexRequest {
@@ -535,6 +528,12 @@ func (r apiUpdateLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, err
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
+	operationId := "UpdateLogsIndex"
+	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndex")
 	if err != nil {
@@ -682,11 +681,12 @@ func (r apiUpdateLogsIndexOrderRequest) Body(body LogsIndexesOrder) apiUpdateLog
 }
 
 /*
-UpdateLogsIndexOrder Update Indexes Order
-## Overview
-This endpoint updates the index order of your organization. It returns the index order object passed in the request body when the request is successful.
-### Arguments
-- **`index_names`** [*required*]: Array of strings identifying by their name(s) the index(es) of your organisation. Logs are tested against the query filter of each index one by one, following the order of the array. Logs are eventually stored in the first matching index.
+UpdateLogsIndexOrder Update indexes order
+This endpoint updates the index order of your organization.
+It returns the index order object passed in the request body when the request is successful.
+
+**Note**: This endpoint is in public beta.
+If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateLogsIndexOrderRequest
 */

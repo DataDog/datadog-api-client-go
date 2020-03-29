@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HostMeta struct for HostMeta
+// HostMeta Metadata associated with your host.
 type HostMeta struct {
 	NixV *[]string `json:"nixV,omitempty"`
 }
@@ -43,14 +43,13 @@ func (o *HostMeta) GetNixV() []string {
 	return *o.NixV
 }
 
-// GetNixVOk returns a tuple with the NixV field value if set, zero value otherwise
+// GetNixVOk returns a tuple with the NixV field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMeta) GetNixVOk() ([]string, bool) {
+func (o *HostMeta) GetNixVOk() (*[]string, bool) {
 	if o == nil || o.NixV == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.NixV, true
+	return o.NixV, true
 }
 
 // HasNixV returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableHostMeta) Get() *HostMeta {
 	return v.value
 }
 
-func (v NullableHostMeta) Set(val *HostMeta) {
+func (v *NullableHostMeta) Set(val *HostMeta) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableHostMeta) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMeta) Unset() {
+func (v *NullableHostMeta) Unset() {
 	v.value = nil
 	v.isSet = false
 }

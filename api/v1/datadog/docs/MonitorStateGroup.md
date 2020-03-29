@@ -4,15 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastDataTs** | Pointer to **int64** |  | [optional] 
-**LastNodataTs** | Pointer to **int64** |  | [optional] 
-**LastNotifiedTs** | Pointer to **int64** |  | [optional] 
-**LastResolvedTs** | Pointer to **int64** |  | [optional] 
-**LastTriggeredTs** | Pointer to **int64** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**LastNodataTs** | Pointer to **int64** | TODO. | [optional] 
+**LastNotifiedTs** | Pointer to **int64** | Timestamp of the last notification sent for this monitor group. | [optional] 
+**LastResolvedTs** | Pointer to **int64** | Lastest timestamp the monitor group was resolved. | [optional] 
+**LastTriggeredTs** | Pointer to **int64** | Last timestamp the monitor group triggered. | [optional] 
+**Name** | Pointer to **string** | The name of the monitor. | [optional] 
 **Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
-**TriggeringValue** | Pointer to [**MonitorStateGroupValue**](MonitorStateGroupValue.md) |  | [optional] 
 
 ## Methods
 
@@ -33,31 +30,6 @@ NewMonitorStateGroupWithDefaults instantiates a new MonitorStateGroup object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLastDataTs
-
-`func (o *MonitorStateGroup) GetLastDataTs() int64`
-
-GetLastDataTs returns the LastDataTs field if non-nil, zero value otherwise.
-
-### GetLastDataTsOk
-
-`func (o *MonitorStateGroup) GetLastDataTsOk() (int64, bool)`
-
-GetLastDataTsOk returns a tuple with the LastDataTs field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLastDataTs
-
-`func (o *MonitorStateGroup) HasLastDataTs() bool`
-
-HasLastDataTs returns a boolean if a field has been set.
-
-### SetLastDataTs
-
-`func (o *MonitorStateGroup) SetLastDataTs(v int64)`
-
-SetLastDataTs gets a reference to the given int64 and assigns it to the LastDataTs field.
-
 ### GetLastNodataTs
 
 `func (o *MonitorStateGroup) GetLastNodataTs() int64`
@@ -66,22 +38,22 @@ GetLastNodataTs returns the LastNodataTs field if non-nil, zero value otherwise.
 
 ### GetLastNodataTsOk
 
-`func (o *MonitorStateGroup) GetLastNodataTsOk() (int64, bool)`
+`func (o *MonitorStateGroup) GetLastNodataTsOk() (*int64, bool)`
 
 GetLastNodataTsOk returns a tuple with the LastNodataTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLastNodataTs
+
+`func (o *MonitorStateGroup) SetLastNodataTs(v int64)`
+
+SetLastNodataTs sets LastNodataTs field to given value.
 
 ### HasLastNodataTs
 
 `func (o *MonitorStateGroup) HasLastNodataTs() bool`
 
 HasLastNodataTs returns a boolean if a field has been set.
-
-### SetLastNodataTs
-
-`func (o *MonitorStateGroup) SetLastNodataTs(v int64)`
-
-SetLastNodataTs gets a reference to the given int64 and assigns it to the LastNodataTs field.
 
 ### GetLastNotifiedTs
 
@@ -91,22 +63,22 @@ GetLastNotifiedTs returns the LastNotifiedTs field if non-nil, zero value otherw
 
 ### GetLastNotifiedTsOk
 
-`func (o *MonitorStateGroup) GetLastNotifiedTsOk() (int64, bool)`
+`func (o *MonitorStateGroup) GetLastNotifiedTsOk() (*int64, bool)`
 
 GetLastNotifiedTsOk returns a tuple with the LastNotifiedTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLastNotifiedTs
+
+`func (o *MonitorStateGroup) SetLastNotifiedTs(v int64)`
+
+SetLastNotifiedTs sets LastNotifiedTs field to given value.
 
 ### HasLastNotifiedTs
 
 `func (o *MonitorStateGroup) HasLastNotifiedTs() bool`
 
 HasLastNotifiedTs returns a boolean if a field has been set.
-
-### SetLastNotifiedTs
-
-`func (o *MonitorStateGroup) SetLastNotifiedTs(v int64)`
-
-SetLastNotifiedTs gets a reference to the given int64 and assigns it to the LastNotifiedTs field.
 
 ### GetLastResolvedTs
 
@@ -116,22 +88,22 @@ GetLastResolvedTs returns the LastResolvedTs field if non-nil, zero value otherw
 
 ### GetLastResolvedTsOk
 
-`func (o *MonitorStateGroup) GetLastResolvedTsOk() (int64, bool)`
+`func (o *MonitorStateGroup) GetLastResolvedTsOk() (*int64, bool)`
 
 GetLastResolvedTsOk returns a tuple with the LastResolvedTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLastResolvedTs
+
+`func (o *MonitorStateGroup) SetLastResolvedTs(v int64)`
+
+SetLastResolvedTs sets LastResolvedTs field to given value.
 
 ### HasLastResolvedTs
 
 `func (o *MonitorStateGroup) HasLastResolvedTs() bool`
 
 HasLastResolvedTs returns a boolean if a field has been set.
-
-### SetLastResolvedTs
-
-`func (o *MonitorStateGroup) SetLastResolvedTs(v int64)`
-
-SetLastResolvedTs gets a reference to the given int64 and assigns it to the LastResolvedTs field.
 
 ### GetLastTriggeredTs
 
@@ -141,47 +113,22 @@ GetLastTriggeredTs returns the LastTriggeredTs field if non-nil, zero value othe
 
 ### GetLastTriggeredTsOk
 
-`func (o *MonitorStateGroup) GetLastTriggeredTsOk() (int64, bool)`
+`func (o *MonitorStateGroup) GetLastTriggeredTsOk() (*int64, bool)`
 
 GetLastTriggeredTsOk returns a tuple with the LastTriggeredTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLastTriggeredTs
+
+`func (o *MonitorStateGroup) SetLastTriggeredTs(v int64)`
+
+SetLastTriggeredTs sets LastTriggeredTs field to given value.
 
 ### HasLastTriggeredTs
 
 `func (o *MonitorStateGroup) HasLastTriggeredTs() bool`
 
 HasLastTriggeredTs returns a boolean if a field has been set.
-
-### SetLastTriggeredTs
-
-`func (o *MonitorStateGroup) SetLastTriggeredTs(v int64)`
-
-SetLastTriggeredTs gets a reference to the given int64 and assigns it to the LastTriggeredTs field.
-
-### GetMessage
-
-`func (o *MonitorStateGroup) GetMessage() string`
-
-GetMessage returns the Message field if non-nil, zero value otherwise.
-
-### GetMessageOk
-
-`func (o *MonitorStateGroup) GetMessageOk() (string, bool)`
-
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasMessage
-
-`func (o *MonitorStateGroup) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
-
-### SetMessage
-
-`func (o *MonitorStateGroup) SetMessage(v string)`
-
-SetMessage gets a reference to the given string and assigns it to the Message field.
 
 ### GetName
 
@@ -191,22 +138,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *MonitorStateGroup) GetNameOk() (string, bool)`
+`func (o *MonitorStateGroup) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *MonitorStateGroup) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *MonitorStateGroup) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *MonitorStateGroup) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetStatus
 
@@ -216,47 +163,22 @@ GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *MonitorStateGroup) GetStatusOk() (MonitorOverallStates, bool)`
+`func (o *MonitorStateGroup) GetStatusOk() (*MonitorOverallStates, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates)`
+
+SetStatus sets Status field to given value.
 
 ### HasStatus
 
 `func (o *MonitorStateGroup) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
-
-### SetStatus
-
-`func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates)`
-
-SetStatus gets a reference to the given MonitorOverallStates and assigns it to the Status field.
-
-### GetTriggeringValue
-
-`func (o *MonitorStateGroup) GetTriggeringValue() MonitorStateGroupValue`
-
-GetTriggeringValue returns the TriggeringValue field if non-nil, zero value otherwise.
-
-### GetTriggeringValueOk
-
-`func (o *MonitorStateGroup) GetTriggeringValueOk() (MonitorStateGroupValue, bool)`
-
-GetTriggeringValueOk returns a tuple with the TriggeringValue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTriggeringValue
-
-`func (o *MonitorStateGroup) HasTriggeringValue() bool`
-
-HasTriggeringValue returns a boolean if a field has been set.
-
-### SetTriggeringValue
-
-`func (o *MonitorStateGroup) SetTriggeringValue(v MonitorStateGroupValue)`
-
-SetTriggeringValue gets a reference to the given MonitorStateGroupValue and assigns it to the TriggeringValue field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

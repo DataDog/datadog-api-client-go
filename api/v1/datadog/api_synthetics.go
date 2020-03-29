@@ -43,11 +43,7 @@ func (r apiCreateTestRequest) FromTestId(fromTestId string) apiCreateTestRequest
 
 /*
 CreateTest Create or clone test
-### Overview
-Create (or clone) a Synthetics test
-### Arguments
-* **`from_test_id`** The public id of the test to clone, undefined if the test is created ex nihilo
-* **`test`** [*required*] The details of the test to create
+Create (or clone) a Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateTestRequest
 */
@@ -225,10 +221,7 @@ func (r apiDeleteTestsRequest) Body(body SyntheticsDeleteTestsPayload) apiDelete
 
 /*
 DeleteTests Delete multiple tests
-### Overview
 Delete multiple Synthetics tests by id
-### Arguments
-* **`public_ids`** [*required*] The public id list of the Synthetics tests to delete
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiDeleteTestsRequest
 */
@@ -394,15 +387,9 @@ func (r apiGetAPITestLatestResultsRequest) Body(body SyntheticsGetTestLatestResu
 
 /*
 GetAPITestLatestResults Get test latest results (as summaries)
-### Overview
-Get the latest results (as summaries) from a given API Synthetics test
-### Arguments
-* **`public_id`** [*required*] The public id of the test to get results from
-* **`from_ts`** [*required*] The timestamp for the start of the time frame in which to search for results
-* **`to_ts`** [*required*] The timestamp for the end of the time frame in which to search for results
-* **`probe_dc`** [*required*] The list of locations for which to search for results
+Get the latest results (as summaries) from a given API Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public id of the test for which to search results for
+ * @param publicId The public id of the test for which to search results for.
 @return apiGetAPITestLatestResultsRequest
 */
 func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, publicId string) apiGetAPITestLatestResultsRequest {
@@ -554,14 +541,10 @@ type apiGetAPITestResultRequest struct {
 
 /*
 GetAPITestResult Get test result (API)
-### Overview
-Get a specific full result from a given (API) Synthetics test
-### Arguments
-* **`public_id`** [*required*] The public id of the API test to get the result from
-* **`result_id`** [*required*] The id of the result to get
+Get a specific full result from a given (API) Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public id of the API test to which the target result belongs
- * @param resultId The id of the result to get
+ * @param publicId The public id of the API test to which the target result belongs.
+ * @param resultId The id of the result to get.
 @return apiGetAPITestResultRequest
 */
 func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId string, resultId string) apiGetAPITestResultRequest {
@@ -707,10 +690,7 @@ type apiGetAllDevicesRequest struct {
 
 /*
 GetAllDevices Get all devices
-### Overview
-Get the list of devices available for Synthetics browser tests
-### Arguments
-No arguments required
+Get the list of devices available for Synthetics browser tests.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllDevicesRequest
 */
@@ -843,10 +823,7 @@ type apiGetAllLocationsRequest struct {
 
 /*
 GetAllLocations Get all locations (public and private)
-### Overview
-Get the list of public and private locations available for Synthetics tests
-### Arguments
-No arguments required
+Get the list of public and private locations available for Synthetics tests. No arguments required
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllLocationsRequest
 */
@@ -985,10 +962,7 @@ func (r apiGetAllTestsRequest) CheckType(checkType string) apiGetAllTestsRequest
 
 /*
 GetAllTests Get all test
-### Overview
-Get the list of all Synthetics tests (can be filtered by type)
-### Arguments
-* **`check_type`** The type to filter on (api or browser to filter the list by type, undefined to get the unfiltered list)
+Get the list of all Synthetics tests (can be filtered by type).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllTestsRequest
 */
@@ -1141,15 +1115,9 @@ func (r apiGetBrowserTestLatestResultsRequest) Body(body SyntheticsGetTestLatest
 
 /*
 GetBrowserTestLatestResults Get test latest results (as summaries)
-### Overview
-Get the latest results (as summaries) from a given browser Synthetics test
-### Arguments
-* **`public_id`** [*required*] The public id of the test to get results from
-* **`from_ts`** [*required*] The timestamp for the start of the time frame in which to search for results
-* **`to_ts`** [*required*] The timestamp for the end of the time frame in which to search for results
-* **`probe_dc`** [*required*] The list of locations for which to search for results
+Get the latest results (as summaries) from a given browser Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public id of the browser test for which to search results for
+ * @param publicId The public id of the browser test for which to search results for.
 @return apiGetBrowserTestLatestResultsRequest
 */
 func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context, publicId string) apiGetBrowserTestLatestResultsRequest {
@@ -1301,14 +1269,10 @@ type apiGetBrowserTestResultRequest struct {
 
 /*
 GetBrowserTestResult Get test result (browser)
-### Overview
-Get a specific full result from a given (browser) Synthetics test
-### Arguments
-* **`public_id`** [*required*] The public id of the browser test to get the result from
-* **`result_id`** [*required*] The id of the result to get
+Get a specific full result from a given (browser) Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public id of the browser test to which the target result belongs
- * @param resultId The id of the result to get
+ * @param publicId The public id of the browser test to which the target result belongs.
+ * @param resultId The id of the result to get.
 @return apiGetBrowserTestResultRequest
 */
 func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) apiGetBrowserTestResultRequest {
@@ -1455,12 +1419,9 @@ type apiGetTestRequest struct {
 
 /*
 GetTest Get test
-### Overview
-Get the details of a specific Synthetics test
-### Arguments
-* **`public_id`** [*required*] The public id of the test to get details from
+Get the details of a specific Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public id of the test to get details from
+ * @param publicId The public id of the test to get details from.
 @return apiGetTestRequest
 */
 func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) apiGetTestRequest {
@@ -1611,11 +1572,7 @@ func (r apiSetTestPauseStatusRequest) Body(body SyntheticsSetTestPauseStatusPayl
 
 /*
 SetTestPauseStatus Change test pause/live status
-### Overview
-Change pause/live status of a given Synthetics test
-### Arguments
-* **`public_id`** [*required*] The public id of the Synthetics test to update
-* **`new_status`** [*required*] The pause/live status to set the given Synthetics test to
+Change pause/live status of a given Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public id of the Synthetics test to update
 @return apiSetTestPauseStatusRequest
@@ -1784,13 +1741,9 @@ func (r apiUpdateTestRequest) Body(body SyntheticsTestDetails) apiUpdateTestRequ
 
 /*
 UpdateTest Update test
-### Overview
-Update the details of a specific Synthetics test
-### Arguments
-* **`public_id`** [*required*] The public id of the test to update
-* **`test`** [*required*] The new test details to be saved
+Update the details of a specific Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public id of the test to get details from
+ * @param publicId The public id of the test to get details from.
 @return apiUpdateTestRequest
 */
 func (a *SyntheticsApiService) UpdateTest(ctx _context.Context, publicId string) apiUpdateTestRequest {

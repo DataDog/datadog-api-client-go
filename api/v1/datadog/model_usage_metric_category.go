@@ -35,7 +35,7 @@ func (v NullableUsageMetricCategory) Get() *UsageMetricCategory {
 	return v.value
 }
 
-func (v NullableUsageMetricCategory) Set(val *UsageMetricCategory) {
+func (v *NullableUsageMetricCategory) Set(val *UsageMetricCategory) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableUsageMetricCategory) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageMetricCategory) Unset() {
+func (v *NullableUsageMetricCategory) Unset() {
 	v.value = nil
 	v.isSet = false
 }

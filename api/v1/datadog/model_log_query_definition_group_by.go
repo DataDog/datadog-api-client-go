@@ -47,6 +47,15 @@ func (o *LogQueryDefinitionGroupBy) GetFacet() string {
 	return o.Facet
 }
 
+// GetFacetOk returns a tuple with the Facet field value
+// and a boolean to check if the value has been set.
+func (o *LogQueryDefinitionGroupBy) GetFacetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Facet, true
+}
+
 // SetFacet sets field value
 func (o *LogQueryDefinitionGroupBy) SetFacet(v string) {
 	o.Facet = v
@@ -61,14 +70,13 @@ func (o *LogQueryDefinitionGroupBy) GetLimit() int64 {
 	return *o.Limit
 }
 
-// GetLimitOk returns a tuple with the Limit field value if set, zero value otherwise
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinitionGroupBy) GetLimitOk() (int64, bool) {
+func (o *LogQueryDefinitionGroupBy) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Limit, true
+	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
@@ -94,14 +102,13 @@ func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionSort {
 	return *o.Sort
 }
 
-// GetSortOk returns a tuple with the Sort field value if set, zero value otherwise
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinitionGroupBy) GetSortOk() (LogQueryDefinitionSort, bool) {
+func (o *LogQueryDefinitionGroupBy) GetSortOk() (*LogQueryDefinitionSort, bool) {
 	if o == nil || o.Sort == nil {
-		var ret LogQueryDefinitionSort
-		return ret, false
+		return nil, false
 	}
-	return *o.Sort, true
+	return o.Sort, true
 }
 
 // HasSort returns a boolean if a field has been set.
@@ -141,7 +148,7 @@ func (v NullableLogQueryDefinitionGroupBy) Get() *LogQueryDefinitionGroupBy {
 	return v.value
 }
 
-func (v NullableLogQueryDefinitionGroupBy) Set(val *LogQueryDefinitionGroupBy) {
+func (v *NullableLogQueryDefinitionGroupBy) Set(val *LogQueryDefinitionGroupBy) {
 	v.value = val
 	v.isSet = true
 }
@@ -150,7 +157,7 @@ func (v NullableLogQueryDefinitionGroupBy) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogQueryDefinitionGroupBy) Unset() {
+func (v *NullableLogQueryDefinitionGroupBy) Unset() {
 	v.value = nil
 	v.isSet = false
 }

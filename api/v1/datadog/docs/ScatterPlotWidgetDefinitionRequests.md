@@ -34,22 +34,17 @@ GetX returns the X field if non-nil, zero value otherwise.
 
 ### GetXOk
 
-`func (o *ScatterPlotWidgetDefinitionRequests) GetXOk() (ScatterPlotRequest, bool)`
+`func (o *ScatterPlotWidgetDefinitionRequests) GetXOk() (*ScatterPlotRequest, bool)`
 
 GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasX
-
-`func (o *ScatterPlotWidgetDefinitionRequests) HasX() bool`
-
-HasX returns a boolean if a field has been set.
 
 ### SetX
 
 `func (o *ScatterPlotWidgetDefinitionRequests) SetX(v ScatterPlotRequest)`
 
-SetX gets a reference to the given ScatterPlotRequest and assigns it to the X field.
+SetX sets X field to given value.
+
 
 ### GetY
 
@@ -59,22 +54,17 @@ GetY returns the Y field if non-nil, zero value otherwise.
 
 ### GetYOk
 
-`func (o *ScatterPlotWidgetDefinitionRequests) GetYOk() (ScatterPlotRequest, bool)`
+`func (o *ScatterPlotWidgetDefinitionRequests) GetYOk() (*ScatterPlotRequest, bool)`
 
 GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasY
-
-`func (o *ScatterPlotWidgetDefinitionRequests) HasY() bool`
-
-HasY returns a boolean if a field has been set.
 
 ### SetY
 
 `func (o *ScatterPlotWidgetDefinitionRequests) SetY(v ScatterPlotRequest)`
 
-SetY gets a reference to the given ScatterPlotRequest and assigns it to the Y field.
+SetY sets Y field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

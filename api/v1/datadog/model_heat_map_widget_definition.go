@@ -60,14 +60,13 @@ func (o *HeatMapWidgetDefinition) GetEvents() []WidgetEvent {
 	return *o.Events
 }
 
-// GetEventsOk returns a tuple with the Events field value if set, zero value otherwise
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetEventsOk() ([]WidgetEvent, bool) {
+func (o *HeatMapWidgetDefinition) GetEventsOk() (*[]WidgetEvent, bool) {
 	if o == nil || o.Events == nil {
-		var ret []WidgetEvent
-		return ret, false
+		return nil, false
 	}
-	return *o.Events, true
+	return o.Events, true
 }
 
 // HasEvents returns a boolean if a field has been set.
@@ -93,14 +92,13 @@ func (o *HeatMapWidgetDefinition) GetLegendSize() WidgetLegendSize {
 	return *o.LegendSize
 }
 
-// GetLegendSizeOk returns a tuple with the LegendSize field value if set, zero value otherwise
+// GetLegendSizeOk returns a tuple with the LegendSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (WidgetLegendSize, bool) {
+func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool) {
 	if o == nil || o.LegendSize == nil {
-		var ret WidgetLegendSize
-		return ret, false
+		return nil, false
 	}
-	return *o.LegendSize, true
+	return o.LegendSize, true
 }
 
 // HasLegendSize returns a boolean if a field has been set.
@@ -127,6 +125,15 @@ func (o *HeatMapWidgetDefinition) GetRequests() []HeatMapWidgetRequest {
 	return o.Requests
 }
 
+// GetRequestsOk returns a tuple with the Requests field value
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetDefinition) GetRequestsOk() (*[]HeatMapWidgetRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Requests, true
+}
+
 // SetRequests sets field value
 func (o *HeatMapWidgetDefinition) SetRequests(v []HeatMapWidgetRequest) {
 	o.Requests = v
@@ -141,14 +148,13 @@ func (o *HeatMapWidgetDefinition) GetShowLegend() bool {
 	return *o.ShowLegend
 }
 
-// GetShowLegendOk returns a tuple with the ShowLegend field value if set, zero value otherwise
+// GetShowLegendOk returns a tuple with the ShowLegend field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetShowLegendOk() (bool, bool) {
+func (o *HeatMapWidgetDefinition) GetShowLegendOk() (*bool, bool) {
 	if o == nil || o.ShowLegend == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowLegend, true
+	return o.ShowLegend, true
 }
 
 // HasShowLegend returns a boolean if a field has been set.
@@ -174,14 +180,13 @@ func (o *HeatMapWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *HeatMapWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -207,14 +212,13 @@ func (o *HeatMapWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *HeatMapWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -240,14 +244,13 @@ func (o *HeatMapWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *HeatMapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -273,14 +276,13 @@ func (o *HeatMapWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *HeatMapWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -307,6 +309,15 @@ func (o *HeatMapWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *HeatMapWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -321,14 +332,13 @@ func (o *HeatMapWidgetDefinition) GetYaxis() WidgetAxis {
 	return *o.Yaxis
 }
 
-// GetYaxisOk returns a tuple with the Yaxis field value if set, zero value otherwise
+// GetYaxisOk returns a tuple with the Yaxis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetYaxisOk() (WidgetAxis, bool) {
+func (o *HeatMapWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool) {
 	if o == nil || o.Yaxis == nil {
-		var ret WidgetAxis
-		return ret, false
+		return nil, false
 	}
-	return *o.Yaxis, true
+	return o.Yaxis, true
 }
 
 // HasYaxis returns a boolean if a field has been set.
@@ -394,7 +404,7 @@ func (v NullableHeatMapWidgetDefinition) Get() *HeatMapWidgetDefinition {
 	return v.value
 }
 
-func (v NullableHeatMapWidgetDefinition) Set(val *HeatMapWidgetDefinition) {
+func (v *NullableHeatMapWidgetDefinition) Set(val *HeatMapWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -403,7 +413,7 @@ func (v NullableHeatMapWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHeatMapWidgetDefinition) Unset() {
+func (v *NullableHeatMapWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

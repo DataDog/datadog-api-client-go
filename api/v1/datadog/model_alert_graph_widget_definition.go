@@ -59,6 +59,15 @@ func (o *AlertGraphWidgetDefinition) GetAlertId() string {
 	return o.AlertId
 }
 
+// GetAlertIdOk returns a tuple with the AlertId field value
+// and a boolean to check if the value has been set.
+func (o *AlertGraphWidgetDefinition) GetAlertIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AlertId, true
+}
+
 // SetAlertId sets field value
 func (o *AlertGraphWidgetDefinition) SetAlertId(v string) {
 	o.AlertId = v
@@ -73,14 +82,13 @@ func (o *AlertGraphWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertGraphWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *AlertGraphWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -106,14 +114,13 @@ func (o *AlertGraphWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertGraphWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *AlertGraphWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -139,14 +146,13 @@ func (o *AlertGraphWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertGraphWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *AlertGraphWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -172,14 +178,13 @@ func (o *AlertGraphWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertGraphWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *AlertGraphWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -206,6 +211,15 @@ func (o *AlertGraphWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *AlertGraphWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *AlertGraphWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -219,6 +233,15 @@ func (o *AlertGraphWidgetDefinition) GetVizType() WidgetVizType {
 	}
 
 	return o.VizType
+}
+
+// GetVizTypeOk returns a tuple with the VizType field value
+// and a boolean to check if the value has been set.
+func (o *AlertGraphWidgetDefinition) GetVizTypeOk() (*WidgetVizType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VizType, true
 }
 
 // SetVizType sets field value
@@ -266,7 +289,7 @@ func (v NullableAlertGraphWidgetDefinition) Get() *AlertGraphWidgetDefinition {
 	return v.value
 }
 
-func (v NullableAlertGraphWidgetDefinition) Set(val *AlertGraphWidgetDefinition) {
+func (v *NullableAlertGraphWidgetDefinition) Set(val *AlertGraphWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -275,7 +298,7 @@ func (v NullableAlertGraphWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAlertGraphWidgetDefinition) Unset() {
+func (v *NullableAlertGraphWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

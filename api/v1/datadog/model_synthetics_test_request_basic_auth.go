@@ -47,6 +47,15 @@ func (o *SyntheticsTestRequestBasicAuth) GetPassword() string {
 	return o.Password
 }
 
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequestBasicAuth) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
+}
+
 // SetPassword sets field value
 func (o *SyntheticsTestRequestBasicAuth) SetPassword(v string) {
 	o.Password = v
@@ -60,6 +69,15 @@ func (o *SyntheticsTestRequestBasicAuth) GetUsername() string {
 	}
 
 	return o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequestBasicAuth) GetUsernameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Username, true
 }
 
 // SetUsername sets field value
@@ -87,7 +105,7 @@ func (v NullableSyntheticsTestRequestBasicAuth) Get() *SyntheticsTestRequestBasi
 	return v.value
 }
 
-func (v NullableSyntheticsTestRequestBasicAuth) Set(val *SyntheticsTestRequestBasicAuth) {
+func (v *NullableSyntheticsTestRequestBasicAuth) Set(val *SyntheticsTestRequestBasicAuth) {
 	v.value = val
 	v.isSet = true
 }
@@ -96,7 +114,7 @@ func (v NullableSyntheticsTestRequestBasicAuth) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestRequestBasicAuth) Unset() {
+func (v *NullableSyntheticsTestRequestBasicAuth) Unset() {
 	v.value = nil
 	v.isSet = false
 }

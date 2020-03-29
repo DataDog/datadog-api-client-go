@@ -48,14 +48,13 @@ func (o *SyntheticsTestOptions) GetAcceptSelfSigned() bool {
 	return *o.AcceptSelfSigned
 }
 
-// GetAcceptSelfSignedOk returns a tuple with the AcceptSelfSigned field value if set, zero value otherwise
+// GetAcceptSelfSignedOk returns a tuple with the AcceptSelfSigned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetAcceptSelfSignedOk() (bool, bool) {
+func (o *SyntheticsTestOptions) GetAcceptSelfSignedOk() (*bool, bool) {
 	if o == nil || o.AcceptSelfSigned == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.AcceptSelfSigned, true
+	return o.AcceptSelfSigned, true
 }
 
 // HasAcceptSelfSigned returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceID {
 	return *o.DeviceIds
 }
 
-// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, zero value otherwise
+// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetDeviceIdsOk() ([]SyntheticsDeviceID, bool) {
+func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
-		var ret []SyntheticsDeviceID
-		return ret, false
+		return nil, false
 	}
-	return *o.DeviceIds, true
+	return o.DeviceIds, true
 }
 
 // HasDeviceIds returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *SyntheticsTestOptions) GetFollowRedirects() bool {
 	return *o.FollowRedirects
 }
 
-// GetFollowRedirectsOk returns a tuple with the FollowRedirects field value if set, zero value otherwise
+// GetFollowRedirectsOk returns a tuple with the FollowRedirects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetFollowRedirectsOk() (bool, bool) {
+func (o *SyntheticsTestOptions) GetFollowRedirectsOk() (*bool, bool) {
 	if o == nil || o.FollowRedirects == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.FollowRedirects, true
+	return o.FollowRedirects, true
 }
 
 // HasFollowRedirects returns a boolean if a field has been set.
@@ -147,14 +144,13 @@ func (o *SyntheticsTestOptions) GetMinLocationFailed() int64 {
 	return *o.MinLocationFailed
 }
 
-// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, zero value otherwise
+// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetMinLocationFailedOk() (int64, bool) {
+func (o *SyntheticsTestOptions) GetMinLocationFailedOk() (*int64, bool) {
 	if o == nil || o.MinLocationFailed == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.MinLocationFailed, true
+	return o.MinLocationFailed, true
 }
 
 // HasMinLocationFailed returns a boolean if a field has been set.
@@ -180,14 +176,13 @@ func (o *SyntheticsTestOptions) GetRetry() SyntheticsTestOptionsRetry {
 	return *o.Retry
 }
 
-// GetRetryOk returns a tuple with the Retry field value if set, zero value otherwise
+// GetRetryOk returns a tuple with the Retry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetRetryOk() (SyntheticsTestOptionsRetry, bool) {
+func (o *SyntheticsTestOptions) GetRetryOk() (*SyntheticsTestOptionsRetry, bool) {
 	if o == nil || o.Retry == nil {
-		var ret SyntheticsTestOptionsRetry
-		return ret, false
+		return nil, false
 	}
-	return *o.Retry, true
+	return o.Retry, true
 }
 
 // HasRetry returns a boolean if a field has been set.
@@ -213,14 +208,13 @@ func (o *SyntheticsTestOptions) GetTickEvery() SyntheticsTickInterval {
 	return *o.TickEvery
 }
 
-// GetTickEveryOk returns a tuple with the TickEvery field value if set, zero value otherwise
+// GetTickEveryOk returns a tuple with the TickEvery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetTickEveryOk() (SyntheticsTickInterval, bool) {
+func (o *SyntheticsTestOptions) GetTickEveryOk() (*SyntheticsTickInterval, bool) {
 	if o == nil || o.TickEvery == nil {
-		var ret SyntheticsTickInterval
-		return ret, false
+		return nil, false
 	}
-	return *o.TickEvery, true
+	return o.TickEvery, true
 }
 
 // HasTickEvery returns a boolean if a field has been set.
@@ -269,7 +263,7 @@ func (v NullableSyntheticsTestOptions) Get() *SyntheticsTestOptions {
 	return v.value
 }
 
-func (v NullableSyntheticsTestOptions) Set(val *SyntheticsTestOptions) {
+func (v *NullableSyntheticsTestOptions) Set(val *SyntheticsTestOptions) {
 	v.value = val
 	v.isSet = true
 }
@@ -278,7 +272,7 @@ func (v NullableSyntheticsTestOptions) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestOptions) Unset() {
+func (v *NullableSyntheticsTestOptions) Unset() {
 	v.value = nil
 	v.isSet = false
 }

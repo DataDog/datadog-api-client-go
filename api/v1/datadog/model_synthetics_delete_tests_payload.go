@@ -43,14 +43,13 @@ func (o *SyntheticsDeleteTestsPayload) GetPublicIds() []string {
 	return *o.PublicIds
 }
 
-// GetPublicIdsOk returns a tuple with the PublicIds field value if set, zero value otherwise
+// GetPublicIdsOk returns a tuple with the PublicIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsDeleteTestsPayload) GetPublicIdsOk() ([]string, bool) {
+func (o *SyntheticsDeleteTestsPayload) GetPublicIdsOk() (*[]string, bool) {
 	if o == nil || o.PublicIds == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.PublicIds, true
+	return o.PublicIds, true
 }
 
 // HasPublicIds returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableSyntheticsDeleteTestsPayload) Get() *SyntheticsDeleteTestsPayloa
 	return v.value
 }
 
-func (v NullableSyntheticsDeleteTestsPayload) Set(val *SyntheticsDeleteTestsPayload) {
+func (v *NullableSyntheticsDeleteTestsPayload) Set(val *SyntheticsDeleteTestsPayload) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableSyntheticsDeleteTestsPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsDeleteTestsPayload) Unset() {
+func (v *NullableSyntheticsDeleteTestsPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }

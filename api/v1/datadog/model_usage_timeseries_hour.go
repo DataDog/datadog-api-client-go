@@ -47,14 +47,13 @@ func (o *UsageTimeseriesHour) GetHour() time.Time {
 	return *o.Hour
 }
 
-// GetHourOk returns a tuple with the Hour field value if set, zero value otherwise
+// GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTimeseriesHour) GetHourOk() (time.Time, bool) {
+func (o *UsageTimeseriesHour) GetHourOk() (*time.Time, bool) {
 	if o == nil || o.Hour == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Hour, true
+	return o.Hour, true
 }
 
 // HasHour returns a boolean if a field has been set.
@@ -80,14 +79,13 @@ func (o *UsageTimeseriesHour) GetNumCustomTimeseries() int64 {
 	return *o.NumCustomTimeseries
 }
 
-// GetNumCustomTimeseriesOk returns a tuple with the NumCustomTimeseries field value if set, zero value otherwise
+// GetNumCustomTimeseriesOk returns a tuple with the NumCustomTimeseries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTimeseriesHour) GetNumCustomTimeseriesOk() (int64, bool) {
+func (o *UsageTimeseriesHour) GetNumCustomTimeseriesOk() (*int64, bool) {
 	if o == nil || o.NumCustomTimeseries == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.NumCustomTimeseries, true
+	return o.NumCustomTimeseries, true
 }
 
 // HasNumCustomTimeseries returns a boolean if a field has been set.
@@ -124,7 +122,7 @@ func (v NullableUsageTimeseriesHour) Get() *UsageTimeseriesHour {
 	return v.value
 }
 
-func (v NullableUsageTimeseriesHour) Set(val *UsageTimeseriesHour) {
+func (v *NullableUsageTimeseriesHour) Set(val *UsageTimeseriesHour) {
 	v.value = val
 	v.isSet = true
 }
@@ -133,7 +131,7 @@ func (v NullableUsageTimeseriesHour) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageTimeseriesHour) Unset() {
+func (v *NullableUsageTimeseriesHour) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -14,27 +14,27 @@ import (
 
 // MetricsQueryResponseSeries struct for MetricsQueryResponseSeries
 type MetricsQueryResponseSeries struct {
-	// Aggregation type
+	// Aggregation type.
 	Aggr *string `json:"aggr,omitempty"`
-	// Display name of the metric
+	// Display name of the metric.
 	DisplayName *string `json:"display_name,omitempty"`
-	// End of the time window, milliseconds since Unix epoch
+	// End of the time window, milliseconds since Unix epoch.
 	End *int64 `json:"end,omitempty"`
-	// Metric expression
+	// Metric expression.
 	Expression *string `json:"expression,omitempty"`
-	// Number of seconds between data samples
+	// Number of seconds between data samples.
 	Interval *int64 `json:"interval,omitempty"`
-	// Number of data samples
+	// Number of data samples.
 	Length *int64 `json:"length,omitempty"`
-	// Metric name
+	// Metric name.
 	Metric *string `json:"metric,omitempty"`
-	// List of points of the time series
+	// List of points of the time series.
 	Pointlist *[][]float64 `json:"pointlist,omitempty"`
-	// Metric scope, comma separated list of tags
+	// Metric scope, comma separated list of tags.
 	Scope *string `json:"scope,omitempty"`
-	// Start of the time window, milliseconds since Unix epoch
+	// Start of the time window, milliseconds since Unix epoch.
 	Start *int64 `json:"start,omitempty"`
-	// Detailed information about the metric unit. First element describes the \"primary unit\" (e.g. `bytes` in `bytes per second`), second describes the \"per unit\" (e.g. `second` in `bytes per second`)
+	// Detailed information about the metric unit. First element describes the \"primary unit\" (for example, `bytes` in `bytes per second`), second describes the \"per unit\" (for example, `second` in `bytes per second`).
 	Unit *[]MetricsQueryResponseUnit `json:"unit,omitempty"`
 }
 
@@ -64,14 +64,13 @@ func (o *MetricsQueryResponseSeries) GetAggr() string {
 	return *o.Aggr
 }
 
-// GetAggrOk returns a tuple with the Aggr field value if set, zero value otherwise
+// GetAggrOk returns a tuple with the Aggr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetAggrOk() (string, bool) {
+func (o *MetricsQueryResponseSeries) GetAggrOk() (*string, bool) {
 	if o == nil || o.Aggr == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Aggr, true
+	return o.Aggr, true
 }
 
 // HasAggr returns a boolean if a field has been set.
@@ -97,14 +96,13 @@ func (o *MetricsQueryResponseSeries) GetDisplayName() string {
 	return *o.DisplayName
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, zero value otherwise
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetDisplayNameOk() (string, bool) {
+func (o *MetricsQueryResponseSeries) GetDisplayNameOk() (*string, bool) {
 	if o == nil || o.DisplayName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DisplayName, true
+	return o.DisplayName, true
 }
 
 // HasDisplayName returns a boolean if a field has been set.
@@ -130,14 +128,13 @@ func (o *MetricsQueryResponseSeries) GetEnd() int64 {
 	return *o.End
 }
 
-// GetEndOk returns a tuple with the End field value if set, zero value otherwise
+// GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetEndOk() (int64, bool) {
+func (o *MetricsQueryResponseSeries) GetEndOk() (*int64, bool) {
 	if o == nil || o.End == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.End, true
+	return o.End, true
 }
 
 // HasEnd returns a boolean if a field has been set.
@@ -163,14 +160,13 @@ func (o *MetricsQueryResponseSeries) GetExpression() string {
 	return *o.Expression
 }
 
-// GetExpressionOk returns a tuple with the Expression field value if set, zero value otherwise
+// GetExpressionOk returns a tuple with the Expression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetExpressionOk() (string, bool) {
+func (o *MetricsQueryResponseSeries) GetExpressionOk() (*string, bool) {
 	if o == nil || o.Expression == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Expression, true
+	return o.Expression, true
 }
 
 // HasExpression returns a boolean if a field has been set.
@@ -196,14 +192,13 @@ func (o *MetricsQueryResponseSeries) GetInterval() int64 {
 	return *o.Interval
 }
 
-// GetIntervalOk returns a tuple with the Interval field value if set, zero value otherwise
+// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetIntervalOk() (int64, bool) {
+func (o *MetricsQueryResponseSeries) GetIntervalOk() (*int64, bool) {
 	if o == nil || o.Interval == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Interval, true
+	return o.Interval, true
 }
 
 // HasInterval returns a boolean if a field has been set.
@@ -229,14 +224,13 @@ func (o *MetricsQueryResponseSeries) GetLength() int64 {
 	return *o.Length
 }
 
-// GetLengthOk returns a tuple with the Length field value if set, zero value otherwise
+// GetLengthOk returns a tuple with the Length field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetLengthOk() (int64, bool) {
+func (o *MetricsQueryResponseSeries) GetLengthOk() (*int64, bool) {
 	if o == nil || o.Length == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Length, true
+	return o.Length, true
 }
 
 // HasLength returns a boolean if a field has been set.
@@ -262,14 +256,13 @@ func (o *MetricsQueryResponseSeries) GetMetric() string {
 	return *o.Metric
 }
 
-// GetMetricOk returns a tuple with the Metric field value if set, zero value otherwise
+// GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetMetricOk() (string, bool) {
+func (o *MetricsQueryResponseSeries) GetMetricOk() (*string, bool) {
 	if o == nil || o.Metric == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Metric, true
+	return o.Metric, true
 }
 
 // HasMetric returns a boolean if a field has been set.
@@ -295,14 +288,13 @@ func (o *MetricsQueryResponseSeries) GetPointlist() [][]float64 {
 	return *o.Pointlist
 }
 
-// GetPointlistOk returns a tuple with the Pointlist field value if set, zero value otherwise
+// GetPointlistOk returns a tuple with the Pointlist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetPointlistOk() ([][]float64, bool) {
+func (o *MetricsQueryResponseSeries) GetPointlistOk() (*[][]float64, bool) {
 	if o == nil || o.Pointlist == nil {
-		var ret [][]float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Pointlist, true
+	return o.Pointlist, true
 }
 
 // HasPointlist returns a boolean if a field has been set.
@@ -328,14 +320,13 @@ func (o *MetricsQueryResponseSeries) GetScope() string {
 	return *o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field value if set, zero value otherwise
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetScopeOk() (string, bool) {
+func (o *MetricsQueryResponseSeries) GetScopeOk() (*string, bool) {
 	if o == nil || o.Scope == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Scope, true
+	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
@@ -361,14 +352,13 @@ func (o *MetricsQueryResponseSeries) GetStart() int64 {
 	return *o.Start
 }
 
-// GetStartOk returns a tuple with the Start field value if set, zero value otherwise
+// GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetStartOk() (int64, bool) {
+func (o *MetricsQueryResponseSeries) GetStartOk() (*int64, bool) {
 	if o == nil || o.Start == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Start, true
+	return o.Start, true
 }
 
 // HasStart returns a boolean if a field has been set.
@@ -394,14 +384,13 @@ func (o *MetricsQueryResponseSeries) GetUnit() []MetricsQueryResponseUnit {
 	return *o.Unit
 }
 
-// GetUnitOk returns a tuple with the Unit field value if set, zero value otherwise
+// GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponseSeries) GetUnitOk() ([]MetricsQueryResponseUnit, bool) {
+func (o *MetricsQueryResponseSeries) GetUnitOk() (*[]MetricsQueryResponseUnit, bool) {
 	if o == nil || o.Unit == nil {
-		var ret []MetricsQueryResponseUnit
-		return ret, false
+		return nil, false
 	}
-	return *o.Unit, true
+	return o.Unit, true
 }
 
 // HasUnit returns a boolean if a field has been set.
@@ -465,7 +454,7 @@ func (v NullableMetricsQueryResponseSeries) Get() *MetricsQueryResponseSeries {
 	return v.value
 }
 
-func (v NullableMetricsQueryResponseSeries) Set(val *MetricsQueryResponseSeries) {
+func (v *NullableMetricsQueryResponseSeries) Set(val *MetricsQueryResponseSeries) {
 	v.value = val
 	v.isSet = true
 }
@@ -474,7 +463,7 @@ func (v NullableMetricsQueryResponseSeries) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricsQueryResponseSeries) Unset() {
+func (v *NullableMetricsQueryResponseSeries) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -44,14 +44,13 @@ func (o *HostMapWidgetDefinitionRequests) GetFill() HostMapRequest {
 	return *o.Fill
 }
 
-// GetFillOk returns a tuple with the Fill field value if set, zero value otherwise
+// GetFillOk returns a tuple with the Fill field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinitionRequests) GetFillOk() (HostMapRequest, bool) {
+func (o *HostMapWidgetDefinitionRequests) GetFillOk() (*HostMapRequest, bool) {
 	if o == nil || o.Fill == nil {
-		var ret HostMapRequest
-		return ret, false
+		return nil, false
 	}
-	return *o.Fill, true
+	return o.Fill, true
 }
 
 // HasFill returns a boolean if a field has been set.
@@ -77,14 +76,13 @@ func (o *HostMapWidgetDefinitionRequests) GetSize() HostMapRequest {
 	return *o.Size
 }
 
-// GetSizeOk returns a tuple with the Size field value if set, zero value otherwise
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinitionRequests) GetSizeOk() (HostMapRequest, bool) {
+func (o *HostMapWidgetDefinitionRequests) GetSizeOk() (*HostMapRequest, bool) {
 	if o == nil || o.Size == nil {
-		var ret HostMapRequest
-		return ret, false
+		return nil, false
 	}
-	return *o.Size, true
+	return o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
@@ -121,7 +119,7 @@ func (v NullableHostMapWidgetDefinitionRequests) Get() *HostMapWidgetDefinitionR
 	return v.value
 }
 
-func (v NullableHostMapWidgetDefinitionRequests) Set(val *HostMapWidgetDefinitionRequests) {
+func (v *NullableHostMapWidgetDefinitionRequests) Set(val *HostMapWidgetDefinitionRequests) {
 	v.value = val
 	v.isSet = true
 }
@@ -130,7 +128,7 @@ func (v NullableHostMapWidgetDefinitionRequests) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMapWidgetDefinitionRequests) Unset() {
+func (v *NullableHostMapWidgetDefinitionRequests) Unset() {
 	v.value = nil
 	v.isSet = false
 }

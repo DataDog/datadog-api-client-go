@@ -39,22 +39,22 @@ GetAgentHostCount returns the AgentHostCount field if non-nil, zero value otherw
 
 ### GetAgentHostCountOk
 
-`func (o *UsageHostHour) GetAgentHostCountOk() (int64, bool)`
+`func (o *UsageHostHour) GetAgentHostCountOk() (*int64, bool)`
 
 GetAgentHostCountOk returns a tuple with the AgentHostCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAgentHostCount
+
+`func (o *UsageHostHour) SetAgentHostCount(v int64)`
+
+SetAgentHostCount sets AgentHostCount field to given value.
 
 ### HasAgentHostCount
 
 `func (o *UsageHostHour) HasAgentHostCount() bool`
 
 HasAgentHostCount returns a boolean if a field has been set.
-
-### SetAgentHostCount
-
-`func (o *UsageHostHour) SetAgentHostCount(v int64)`
-
-SetAgentHostCount gets a reference to the given int64 and assigns it to the AgentHostCount field.
 
 ### GetApmHostCount
 
@@ -64,22 +64,22 @@ GetApmHostCount returns the ApmHostCount field if non-nil, zero value otherwise.
 
 ### GetApmHostCountOk
 
-`func (o *UsageHostHour) GetApmHostCountOk() (int64, bool)`
+`func (o *UsageHostHour) GetApmHostCountOk() (*int64, bool)`
 
 GetApmHostCountOk returns a tuple with the ApmHostCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetApmHostCount
+
+`func (o *UsageHostHour) SetApmHostCount(v int64)`
+
+SetApmHostCount sets ApmHostCount field to given value.
 
 ### HasApmHostCount
 
 `func (o *UsageHostHour) HasApmHostCount() bool`
 
 HasApmHostCount returns a boolean if a field has been set.
-
-### SetApmHostCount
-
-`func (o *UsageHostHour) SetApmHostCount(v int64)`
-
-SetApmHostCount gets a reference to the given int64 and assigns it to the ApmHostCount field.
 
 ### GetAwsHostCount
 
@@ -89,22 +89,22 @@ GetAwsHostCount returns the AwsHostCount field if non-nil, zero value otherwise.
 
 ### GetAwsHostCountOk
 
-`func (o *UsageHostHour) GetAwsHostCountOk() (int64, bool)`
+`func (o *UsageHostHour) GetAwsHostCountOk() (*int64, bool)`
 
 GetAwsHostCountOk returns a tuple with the AwsHostCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAwsHostCount
+
+`func (o *UsageHostHour) SetAwsHostCount(v int64)`
+
+SetAwsHostCount sets AwsHostCount field to given value.
 
 ### HasAwsHostCount
 
 `func (o *UsageHostHour) HasAwsHostCount() bool`
 
 HasAwsHostCount returns a boolean if a field has been set.
-
-### SetAwsHostCount
-
-`func (o *UsageHostHour) SetAwsHostCount(v int64)`
-
-SetAwsHostCount gets a reference to the given int64 and assigns it to the AwsHostCount field.
 
 ### GetContainerCount
 
@@ -114,22 +114,22 @@ GetContainerCount returns the ContainerCount field if non-nil, zero value otherw
 
 ### GetContainerCountOk
 
-`func (o *UsageHostHour) GetContainerCountOk() (int64, bool)`
+`func (o *UsageHostHour) GetContainerCountOk() (*int64, bool)`
 
 GetContainerCountOk returns a tuple with the ContainerCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetContainerCount
+
+`func (o *UsageHostHour) SetContainerCount(v int64)`
+
+SetContainerCount sets ContainerCount field to given value.
 
 ### HasContainerCount
 
 `func (o *UsageHostHour) HasContainerCount() bool`
 
 HasContainerCount returns a boolean if a field has been set.
-
-### SetContainerCount
-
-`func (o *UsageHostHour) SetContainerCount(v int64)`
-
-SetContainerCount gets a reference to the given int64 and assigns it to the ContainerCount field.
 
 ### GetGcpHostCount
 
@@ -139,22 +139,22 @@ GetGcpHostCount returns the GcpHostCount field if non-nil, zero value otherwise.
 
 ### GetGcpHostCountOk
 
-`func (o *UsageHostHour) GetGcpHostCountOk() (int64, bool)`
+`func (o *UsageHostHour) GetGcpHostCountOk() (*int64, bool)`
 
 GetGcpHostCountOk returns a tuple with the GcpHostCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetGcpHostCount
+
+`func (o *UsageHostHour) SetGcpHostCount(v int64)`
+
+SetGcpHostCount sets GcpHostCount field to given value.
 
 ### HasGcpHostCount
 
 `func (o *UsageHostHour) HasGcpHostCount() bool`
 
 HasGcpHostCount returns a boolean if a field has been set.
-
-### SetGcpHostCount
-
-`func (o *UsageHostHour) SetGcpHostCount(v int64)`
-
-SetGcpHostCount gets a reference to the given int64 and assigns it to the GcpHostCount field.
 
 ### GetHostCount
 
@@ -164,22 +164,22 @@ GetHostCount returns the HostCount field if non-nil, zero value otherwise.
 
 ### GetHostCountOk
 
-`func (o *UsageHostHour) GetHostCountOk() (int64, bool)`
+`func (o *UsageHostHour) GetHostCountOk() (*int64, bool)`
 
 GetHostCountOk returns a tuple with the HostCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHostCount
+
+`func (o *UsageHostHour) SetHostCount(v int64)`
+
+SetHostCount sets HostCount field to given value.
 
 ### HasHostCount
 
 `func (o *UsageHostHour) HasHostCount() bool`
 
 HasHostCount returns a boolean if a field has been set.
-
-### SetHostCount
-
-`func (o *UsageHostHour) SetHostCount(v int64)`
-
-SetHostCount gets a reference to the given int64 and assigns it to the HostCount field.
 
 ### GetHour
 
@@ -189,22 +189,22 @@ GetHour returns the Hour field if non-nil, zero value otherwise.
 
 ### GetHourOk
 
-`func (o *UsageHostHour) GetHourOk() (time.Time, bool)`
+`func (o *UsageHostHour) GetHourOk() (*time.Time, bool)`
 
 GetHourOk returns a tuple with the Hour field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHour
+
+`func (o *UsageHostHour) SetHour(v time.Time)`
+
+SetHour sets Hour field to given value.
 
 ### HasHour
 
 `func (o *UsageHostHour) HasHour() bool`
 
 HasHour returns a boolean if a field has been set.
-
-### SetHour
-
-`func (o *UsageHostHour) SetHour(v time.Time)`
-
-SetHour gets a reference to the given time.Time and assigns it to the Hour field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

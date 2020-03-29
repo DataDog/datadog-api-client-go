@@ -46,14 +46,13 @@ func (o *SyntheticsTestAuthor) GetEmail() string {
 	return *o.Email
 }
 
-// GetEmailOk returns a tuple with the Email field value if set, zero value otherwise
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestAuthor) GetEmailOk() (string, bool) {
+func (o *SyntheticsTestAuthor) GetEmailOk() (*string, bool) {
 	if o == nil || o.Email == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Email, true
+	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *SyntheticsTestAuthor) GetHandle() string {
 	return *o.Handle
 }
 
-// GetHandleOk returns a tuple with the Handle field value if set, zero value otherwise
+// GetHandleOk returns a tuple with the Handle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestAuthor) GetHandleOk() (string, bool) {
+func (o *SyntheticsTestAuthor) GetHandleOk() (*string, bool) {
 	if o == nil || o.Handle == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Handle, true
+	return o.Handle, true
 }
 
 // HasHandle returns a boolean if a field has been set.
@@ -112,14 +110,13 @@ func (o *SyntheticsTestAuthor) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestAuthor) GetIdOk() (int64, bool) {
+func (o *SyntheticsTestAuthor) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -145,14 +142,13 @@ func (o *SyntheticsTestAuthor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestAuthor) GetNameOk() (string, bool) {
+func (o *SyntheticsTestAuthor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -195,7 +191,7 @@ func (v NullableSyntheticsTestAuthor) Get() *SyntheticsTestAuthor {
 	return v.value
 }
 
-func (v NullableSyntheticsTestAuthor) Set(val *SyntheticsTestAuthor) {
+func (v *NullableSyntheticsTestAuthor) Set(val *SyntheticsTestAuthor) {
 	v.value = val
 	v.isSet = true
 }
@@ -204,7 +200,7 @@ func (v NullableSyntheticsTestAuthor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestAuthor) Unset() {
+func (v *NullableSyntheticsTestAuthor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

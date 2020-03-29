@@ -37,10 +37,7 @@ func (r apiCreateDashboardListRequest) Body(body DashboardList) apiCreateDashboa
 
 /*
 CreateDashboardList Create a dashboard list
-### Overview
 Create an empty dashboard list.
-### Arguments
-* **name** [*required*]: The name of the dashboard list.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateDashboardListRequest
 */
@@ -200,10 +197,7 @@ type apiDeleteDashboardListRequest struct {
 
 /*
 DeleteDashboardList Delete a dashboard list
-### Overview
 Delete a dashboard list.
-### Arguments
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param listId ID of the dashboard list to delete
 @return apiDeleteDashboardListRequest
@@ -359,10 +353,7 @@ type apiGetAllDashboardListsRequest struct {
 
 /*
 GetAllDashboardLists Get all dashboard lists
-### Overview
 Fetch all of your existing dashboard list definitions.
-### Arguments
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllDashboardListsRequest
 */
@@ -516,10 +507,7 @@ type apiGetDashboardListRequest struct {
 
 /*
 GetDashboardList Get a dashboard list
-### Overview
 Fetch an existing dashboard list's definition.
-### Arguments
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param listId ID of the dashboard list to fetch
 @return apiGetDashboardListRequest
@@ -682,10 +670,7 @@ func (r apiUpdateDashboardListRequest) Body(body DashboardList) apiUpdateDashboa
 
 /*
 UpdateDashboardList Update a dashboard list
-### Overview
 Update the name of a dashboard list.
-### Arguments
-* **name** [*required*]: The name of the dashboard list.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param listId ID of the dashboard list to update
 @return apiUpdateDashboardListRequest

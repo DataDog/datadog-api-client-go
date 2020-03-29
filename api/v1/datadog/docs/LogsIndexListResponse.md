@@ -33,22 +33,22 @@ GetIndexes returns the Indexes field if non-nil, zero value otherwise.
 
 ### GetIndexesOk
 
-`func (o *LogsIndexListResponse) GetIndexesOk() ([]LogsIndex, bool)`
+`func (o *LogsIndexListResponse) GetIndexesOk() (*[]LogsIndex, bool)`
 
 GetIndexesOk returns a tuple with the Indexes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIndexes
+
+`func (o *LogsIndexListResponse) SetIndexes(v []LogsIndex)`
+
+SetIndexes sets Indexes field to given value.
 
 ### HasIndexes
 
 `func (o *LogsIndexListResponse) HasIndexes() bool`
 
 HasIndexes returns a boolean if a field has been set.
-
-### SetIndexes
-
-`func (o *LogsIndexListResponse) SetIndexes(v []LogsIndex)`
-
-SetIndexes gets a reference to the given []LogsIndex and assigns it to the Indexes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

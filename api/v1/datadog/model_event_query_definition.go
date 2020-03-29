@@ -48,6 +48,15 @@ func (o *EventQueryDefinition) GetSearch() string {
 	return o.Search
 }
 
+// GetSearchOk returns a tuple with the Search field value
+// and a boolean to check if the value has been set.
+func (o *EventQueryDefinition) GetSearchOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Search, true
+}
+
 // SetSearch sets field value
 func (o *EventQueryDefinition) SetSearch(v string) {
 	o.Search = v
@@ -61,6 +70,15 @@ func (o *EventQueryDefinition) GetTagsExecution() string {
 	}
 
 	return o.TagsExecution
+}
+
+// GetTagsExecutionOk returns a tuple with the TagsExecution field value
+// and a boolean to check if the value has been set.
+func (o *EventQueryDefinition) GetTagsExecutionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TagsExecution, true
 }
 
 // SetTagsExecution sets field value
@@ -88,7 +106,7 @@ func (v NullableEventQueryDefinition) Get() *EventQueryDefinition {
 	return v.value
 }
 
-func (v NullableEventQueryDefinition) Set(val *EventQueryDefinition) {
+func (v *NullableEventQueryDefinition) Set(val *EventQueryDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -97,7 +115,7 @@ func (v NullableEventQueryDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableEventQueryDefinition) Unset() {
+func (v *NullableEventQueryDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

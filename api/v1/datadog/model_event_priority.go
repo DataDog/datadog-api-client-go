@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// EventPriority The priority of the event: normal or low.
+// EventPriority The priority of the event. For example, `normal` or `low`.
 type EventPriority string
 
 // List of EventPriority
@@ -35,7 +35,7 @@ func (v NullableEventPriority) Get() *EventPriority {
 	return v.value
 }
 
-func (v NullableEventPriority) Set(val *EventPriority) {
+func (v *NullableEventPriority) Set(val *EventPriority) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableEventPriority) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableEventPriority) Unset() {
+func (v *NullableEventPriority) Unset() {
 	v.value = nil
 	v.isSet = false
 }

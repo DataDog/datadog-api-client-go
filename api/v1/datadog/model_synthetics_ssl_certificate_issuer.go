@@ -48,14 +48,13 @@ func (o *SyntheticsSSLCertificateIssuer) GetC() string {
 	return *o.C
 }
 
-// GetCOk returns a tuple with the C field value if set, zero value otherwise
+// GetCOk returns a tuple with the C field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateIssuer) GetCOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetCOk() (*string, bool) {
 	if o == nil || o.C == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.C, true
+	return o.C, true
 }
 
 // HasC returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *SyntheticsSSLCertificateIssuer) GetCN() string {
 	return *o.CN
 }
 
-// GetCNOk returns a tuple with the CN field value if set, zero value otherwise
+// GetCNOk returns a tuple with the CN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateIssuer) GetCNOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetCNOk() (*string, bool) {
 	if o == nil || o.CN == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CN, true
+	return o.CN, true
 }
 
 // HasCN returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *SyntheticsSSLCertificateIssuer) GetL() string {
 	return *o.L
 }
 
-// GetLOk returns a tuple with the L field value if set, zero value otherwise
+// GetLOk returns a tuple with the L field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateIssuer) GetLOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetLOk() (*string, bool) {
 	if o == nil || o.L == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.L, true
+	return o.L, true
 }
 
 // HasL returns a boolean if a field has been set.
@@ -147,14 +144,13 @@ func (o *SyntheticsSSLCertificateIssuer) GetO() string {
 	return *o.O
 }
 
-// GetOOk returns a tuple with the O field value if set, zero value otherwise
+// GetOOk returns a tuple with the O field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateIssuer) GetOOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetOOk() (*string, bool) {
 	if o == nil || o.O == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.O, true
+	return o.O, true
 }
 
 // HasO returns a boolean if a field has been set.
@@ -180,14 +176,13 @@ func (o *SyntheticsSSLCertificateIssuer) GetOU() string {
 	return *o.OU
 }
 
-// GetOUOk returns a tuple with the OU field value if set, zero value otherwise
+// GetOUOk returns a tuple with the OU field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateIssuer) GetOUOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetOUOk() (*string, bool) {
 	if o == nil || o.OU == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.OU, true
+	return o.OU, true
 }
 
 // HasOU returns a boolean if a field has been set.
@@ -213,14 +208,13 @@ func (o *SyntheticsSSLCertificateIssuer) GetST() string {
 	return *o.ST
 }
 
-// GetSTOk returns a tuple with the ST field value if set, zero value otherwise
+// GetSTOk returns a tuple with the ST field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateIssuer) GetSTOk() (string, bool) {
+func (o *SyntheticsSSLCertificateIssuer) GetSTOk() (*string, bool) {
 	if o == nil || o.ST == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ST, true
+	return o.ST, true
 }
 
 // HasST returns a boolean if a field has been set.
@@ -269,7 +263,7 @@ func (v NullableSyntheticsSSLCertificateIssuer) Get() *SyntheticsSSLCertificateI
 	return v.value
 }
 
-func (v NullableSyntheticsSSLCertificateIssuer) Set(val *SyntheticsSSLCertificateIssuer) {
+func (v *NullableSyntheticsSSLCertificateIssuer) Set(val *SyntheticsSSLCertificateIssuer) {
 	v.value = val
 	v.isSet = true
 }
@@ -278,7 +272,7 @@ func (v NullableSyntheticsSSLCertificateIssuer) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsSSLCertificateIssuer) Unset() {
+func (v *NullableSyntheticsSSLCertificateIssuer) Unset() {
 	v.value = nil
 	v.isSet = false
 }

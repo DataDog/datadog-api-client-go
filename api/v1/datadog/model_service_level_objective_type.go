@@ -35,7 +35,7 @@ func (v NullableServiceLevelObjectiveType) Get() *ServiceLevelObjectiveType {
 	return v.value
 }
 
-func (v NullableServiceLevelObjectiveType) Set(val *ServiceLevelObjectiveType) {
+func (v *NullableServiceLevelObjectiveType) Set(val *ServiceLevelObjectiveType) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableServiceLevelObjectiveType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectiveType) Unset() {
+func (v *NullableServiceLevelObjectiveType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -35,7 +35,7 @@ func (v NullableWidgetEventSize) Get() *WidgetEventSize {
 	return v.value
 }
 
-func (v NullableWidgetEventSize) Set(val *WidgetEventSize) {
+func (v *NullableWidgetEventSize) Set(val *WidgetEventSize) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetEventSize) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetEventSize) Unset() {
+func (v *NullableWidgetEventSize) Unset() {
 	v.value = nil
 	v.isSet = false
 }

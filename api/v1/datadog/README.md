@@ -114,34 +114,34 @@ Class | Method | HTTP request | Description
 *GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP integration
 *GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List all GCP integrations
 *GCPIntegrationApi* | [**UpdateGCPIntegration**](docs/GCPIntegrationApi.md#updategcpintegration) | **Put** /api/v1/integration/gcp | Update a GCP integration
-*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Search for hosts
-*HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Host totals
+*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Get all hosts for your organization
+*HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Get the total number of active hosts
 *HostsApi* | [**MuteHost**](docs/HostsApi.md#mutehost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
 *HostsApi* | [**UnmuteHost**](docs/HostsApi.md#unmutehost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a host
 *IPRangesApi* | [**GetIPRanges**](docs/IPRangesApi.md#getipranges) | **Get** / | List IP Ranges
-*KeysApi* | [**CreateAPIKey**](docs/KeysApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key
-*KeysApi* | [**CreateApplicationKey**](docs/KeysApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key
-*KeysApi* | [**DeleteAPIKey**](docs/KeysApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete an API key
-*KeysApi* | [**DeleteApplicationKey**](docs/KeysApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete an application key
-*KeysApi* | [**EditAPIKey**](docs/KeysApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
-*KeysApi* | [**EditApplicationKey**](docs/KeysApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
-*KeysApi* | [**GetAPIKey**](docs/KeysApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get an API key
-*KeysApi* | [**GetAllAPIKeys**](docs/KeysApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys
-*KeysApi* | [**GetAllApplicationKeys**](docs/KeysApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
-*KeysApi* | [**GetApplicationKey**](docs/KeysApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get an application key
+*KeyManagementApi* | [**CreateAPIKey**](docs/KeyManagementApi.md#createapikey) | **Post** /api/v1/api_key | Create an API key
+*KeyManagementApi* | [**CreateApplicationKey**](docs/KeyManagementApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key
+*KeyManagementApi* | [**DeleteAPIKey**](docs/KeyManagementApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete an API key
+*KeyManagementApi* | [**DeleteApplicationKey**](docs/KeyManagementApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete an application key
+*KeyManagementApi* | [**EditAPIKey**](docs/KeyManagementApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
+*KeyManagementApi* | [**EditApplicationKey**](docs/KeyManagementApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
+*KeyManagementApi* | [**GetAPIKey**](docs/KeyManagementApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get API key
+*KeyManagementApi* | [**GetAllAPIKeys**](docs/KeyManagementApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys
+*KeyManagementApi* | [**GetAllApplicationKeys**](docs/KeyManagementApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
+*KeyManagementApi* | [**GetApplicationKey**](docs/KeyManagementApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get an application key
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
 *LogsApi* | [**SendLog**](docs/LogsApi.md#sendlog) | **Post** /v1/input | Send logs
-*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | Get all Indexes
+*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
-*LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get Indexes Order
-*LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | Update an Index
-*LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update Indexes Order
-*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a Pipeline
-*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a Pipeline
+*LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
+*LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | Update an index
+*LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update indexes order
+*LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline
+*LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline
 *LogsPipelinesApi* | [**GetAllLogsPipelines**](docs/LogsPipelinesApi.md#getalllogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
-*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a Pipeline
+*LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a pipeline
 *LogsPipelinesApi* | [**GetLogsPipelineOrder**](docs/LogsPipelinesApi.md#getlogspipelineorder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
-*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a Pipeline
+*LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline
 *LogsPipelinesApi* | [**UpdateLogsPipelineOrder**](docs/LogsPipelinesApi.md#updatelogspipelineorder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
 *MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
@@ -155,10 +155,10 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get all monitor details
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
-*OrgsApi* | [**CreateChildOrg**](docs/OrgsApi.md#createchildorg) | **Post** /api/v1/org | Create child-organization
-*OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /api/v1/org | Get organization
-*OrgsApi* | [**UpdateOrg**](docs/OrgsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update organization
-*OrgsApi* | [**UploadIdPForOrg**](docs/OrgsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
+*OrganizationsApi* | [**CreateChildOrg**](docs/OrganizationsApi.md#createchildorg) | **Post** /api/v1/org | Create a child organization
+*OrganizationsApi* | [**GetOrg**](docs/OrganizationsApi.md#getorg) | **Get** /api/v1/org | Get organization information
+*OrganizationsApi* | [**UpdateOrg**](docs/OrganizationsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update your organization
+*OrganizationsApi* | [**UploadIdPForOrg**](docs/OrganizationsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *PagerDutyIntegrationApi* | [**CreatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#createpagerdutyintegration) | **Put** /api/v1/integration/pagerduty | Create a PagerDuty integration
 *PagerDutyIntegrationApi* | [**DeletePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegration) | **Delete** /api/v1/integration/pagerduty | Delete a PagerDuty integration
 *PagerDutyIntegrationApi* | [**GetPagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegration) | **Get** /api/v1/integration/pagerduty | Get a PagerDuty integration
@@ -190,14 +190,15 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**GetHostTags**](docs/TagsApi.md#gethosttags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
 *TagsApi* | [**RemoveHostTags**](docs/TagsApi.md#removehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
 *TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
-*UsageApi* | [**GetUsageFargate**](docs/UsageApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
-*UsageApi* | [**GetUsageHosts**](docs/UsageApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
-*UsageApi* | [**GetUsageLogs**](docs/UsageApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
-*UsageApi* | [**GetUsageSummary**](docs/UsageApi.md#getusagesummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account
-*UsageApi* | [**GetUsageSynthetics**](docs/UsageApi.md#getusagesynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for Synthetics
-*UsageApi* | [**GetUsageTimeseries**](docs/UsageApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
-*UsageApi* | [**GetUsageTopAvgMetrics**](docs/UsageApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top 500 custom metrics by hourly average
-*UsageApi* | [**GetUsageTrace**](docs/UsageApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
+*UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
+*UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
+*UsageMeteringApi* | [**GetUsageLogs**](docs/UsageMeteringApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
+*UsageMeteringApi* | [**GetUsageRumSessions**](docs/UsageMeteringApi.md#getusagerumsessions) | **Get** /api/v1/usage/rum_sessions | Get hourly usage for RUM Sessions
+*UsageMeteringApi* | [**GetUsageSummary**](docs/UsageMeteringApi.md#getusagesummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account
+*UsageMeteringApi* | [**GetUsageSynthetics**](docs/UsageMeteringApi.md#getusagesynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for Synthetics
+*UsageMeteringApi* | [**GetUsageTimeseries**](docs/UsageMeteringApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
+*UsageMeteringApi* | [**GetUsageTopAvgMetrics**](docs/UsageMeteringApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top 500 custom metrics by hourly average
+*UsageMeteringApi* | [**GetUsageTrace**](docs/UsageMeteringApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable user
 *UsersApi* | [**GetAllUsers**](docs/UsersApi.md#getallusers) | **Get** /api/v1/user | Get all users
@@ -269,14 +270,13 @@ Class | Method | HTTP request | Description
  - [HTTPMethod](docs/HTTPMethod.md)
  - [HeatMapWidgetDefinition](docs/HeatMapWidgetDefinition.md)
  - [HeatMapWidgetRequest](docs/HeatMapWidgetRequest.md)
- - [HistoryServiceLevelObjectiveGroups](docs/HistoryServiceLevelObjectiveGroups.md)
  - [HistoryServiceLevelObjectiveMetrics](docs/HistoryServiceLevelObjectiveMetrics.md)
  - [HistoryServiceLevelObjectiveMetricsSeries](docs/HistoryServiceLevelObjectiveMetricsSeries.md)
  - [HistoryServiceLevelObjectiveMetricsSeriesMetadata](docs/HistoryServiceLevelObjectiveMetricsSeriesMetadata.md)
- - [HistoryServiceLevelObjectiveOverall](docs/HistoryServiceLevelObjectiveOverall.md)
  - [HistoryServiceLevelObjectiveResponse](docs/HistoryServiceLevelObjectiveResponse.md)
  - [HistoryServiceLevelObjectiveResponseData](docs/HistoryServiceLevelObjectiveResponseData.md)
  - [HistoryServiceLevelObjectiveResponseError](docs/HistoryServiceLevelObjectiveResponseError.md)
+ - [HistoryServiceLevelObjectiveSLIData](docs/HistoryServiceLevelObjectiveSLIData.md)
  - [Host](docs/Host.md)
  - [HostListResponse](docs/HostListResponse.md)
  - [HostMapRequest](docs/HostMapRequest.md)
@@ -350,22 +350,22 @@ Class | Method | HTTP request | Description
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
  - [MonitorState](docs/MonitorState.md)
  - [MonitorStateGroup](docs/MonitorStateGroup.md)
- - [MonitorStateGroupValue](docs/MonitorStateGroupValue.md)
  - [MonitorSummaryWidgetDefinition](docs/MonitorSummaryWidgetDefinition.md)
  - [MonitorThresholdWindowOptions](docs/MonitorThresholdWindowOptions.md)
  - [MonitorThresholds](docs/MonitorThresholds.md)
  - [MonitorType](docs/MonitorType.md)
  - [NoteWidgetDefinition](docs/NoteWidgetDefinition.md)
- - [Org](docs/Org.md)
- - [OrgBilling](docs/OrgBilling.md)
- - [OrgCreateBody](docs/OrgCreateBody.md)
- - [OrgCreateResponse](docs/OrgCreateResponse.md)
- - [OrgListResponse](docs/OrgListResponse.md)
- - [OrgResponse](docs/OrgResponse.md)
- - [OrgSettings](docs/OrgSettings.md)
- - [OrgSettingsSaml](docs/OrgSettingsSaml.md)
- - [OrgSettingsSamlAutocreateUsersDomains](docs/OrgSettingsSamlAutocreateUsersDomains.md)
- - [OrgSubscription](docs/OrgSubscription.md)
+ - [Organization](docs/Organization.md)
+ - [OrganizationBilling](docs/OrganizationBilling.md)
+ - [OrganizationCreateBody](docs/OrganizationCreateBody.md)
+ - [OrganizationCreateResponse](docs/OrganizationCreateResponse.md)
+ - [OrganizationListResponse](docs/OrganizationListResponse.md)
+ - [OrganizationResponse](docs/OrganizationResponse.md)
+ - [OrganizationSettings](docs/OrganizationSettings.md)
+ - [OrganizationSettingsSaml](docs/OrganizationSettingsSaml.md)
+ - [OrganizationSettingsSamlAutocreateUsersDomains](docs/OrganizationSettingsSamlAutocreateUsersDomains.md)
+ - [OrganizationSettingsSamlIdpInitiatedLogin](docs/OrganizationSettingsSamlIdpInitiatedLogin.md)
+ - [OrganizationSubscription](docs/OrganizationSubscription.md)
  - [PagerDutyIntegration](docs/PagerDutyIntegration.md)
  - [PagerDutyService](docs/PagerDutyService.md)
  - [PagerDutyServicesAndSchedules](docs/PagerDutyServicesAndSchedules.md)
@@ -465,6 +465,8 @@ Class | Method | HTTP request | Description
  - [UsageLogsHour](docs/UsageLogsHour.md)
  - [UsageLogsResponse](docs/UsageLogsResponse.md)
  - [UsageMetricCategory](docs/UsageMetricCategory.md)
+ - [UsageRumSessionsHour](docs/UsageRumSessionsHour.md)
+ - [UsageRumSessionsResponse](docs/UsageRumSessionsResponse.md)
  - [UsageSummaryDate](docs/UsageSummaryDate.md)
  - [UsageSummaryDateOrg](docs/UsageSummaryDateOrg.md)
  - [UsageSummaryResponse](docs/UsageSummaryResponse.md)

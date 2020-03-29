@@ -14,10 +14,14 @@ import (
 
 // HTTPLog struct for HTTPLog
 type HTTPLog struct {
+	// The integration name associated with your log: the technology from which the log originated. When it matches an integration name, Datadog automatically installs the corresponding parsers and facets. See [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).
 	Ddsource *string `json:"ddsource,omitempty"`
-	Ddtags   *string `json:"ddtags,omitempty"`
+	// Tags associated with your logs.
+	Ddtags *string `json:"ddtags,omitempty"`
+	// The name of the originating host of the log.
 	Hostname *string `json:"hostname,omitempty"`
-	Message  *string `json:"message,omitempty"`
+	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
+	Message *string `json:"message,omitempty"`
 }
 
 // NewHTTPLog instantiates a new HTTPLog object
@@ -46,14 +50,13 @@ func (o *HTTPLog) GetDdsource() string {
 	return *o.Ddsource
 }
 
-// GetDdsourceOk returns a tuple with the Ddsource field value if set, zero value otherwise
+// GetDdsourceOk returns a tuple with the Ddsource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPLog) GetDdsourceOk() (string, bool) {
+func (o *HTTPLog) GetDdsourceOk() (*string, bool) {
 	if o == nil || o.Ddsource == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Ddsource, true
+	return o.Ddsource, true
 }
 
 // HasDdsource returns a boolean if a field has been set.
@@ -79,14 +82,13 @@ func (o *HTTPLog) GetDdtags() string {
 	return *o.Ddtags
 }
 
-// GetDdtagsOk returns a tuple with the Ddtags field value if set, zero value otherwise
+// GetDdtagsOk returns a tuple with the Ddtags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPLog) GetDdtagsOk() (string, bool) {
+func (o *HTTPLog) GetDdtagsOk() (*string, bool) {
 	if o == nil || o.Ddtags == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Ddtags, true
+	return o.Ddtags, true
 }
 
 // HasDdtags returns a boolean if a field has been set.
@@ -112,14 +114,13 @@ func (o *HTTPLog) GetHostname() string {
 	return *o.Hostname
 }
 
-// GetHostnameOk returns a tuple with the Hostname field value if set, zero value otherwise
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPLog) GetHostnameOk() (string, bool) {
+func (o *HTTPLog) GetHostnameOk() (*string, bool) {
 	if o == nil || o.Hostname == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Hostname, true
+	return o.Hostname, true
 }
 
 // HasHostname returns a boolean if a field has been set.
@@ -145,14 +146,13 @@ func (o *HTTPLog) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPLog) GetMessageOk() (string, bool) {
+func (o *HTTPLog) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -195,7 +195,7 @@ func (v NullableHTTPLog) Get() *HTTPLog {
 	return v.value
 }
 
-func (v NullableHTTPLog) Set(val *HTTPLog) {
+func (v *NullableHTTPLog) Set(val *HTTPLog) {
 	v.value = val
 	v.isSet = true
 }
@@ -204,7 +204,7 @@ func (v NullableHTTPLog) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHTTPLog) Unset() {
+func (v *NullableHTTPLog) Unset() {
 	v.value = nil
 	v.isSet = false
 }

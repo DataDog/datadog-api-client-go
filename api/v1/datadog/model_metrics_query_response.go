@@ -14,23 +14,23 @@ import (
 
 // MetricsQueryResponse struct for MetricsQueryResponse
 type MetricsQueryResponse struct {
-	// Message indicating the errors if status is not `ok`
+	// Message indicating the errors if status is not `ok`.
 	Error *string `json:"error,omitempty"`
-	// Start of requested time window, milliseconds since Unix epoch
+	// Start of requested time window, milliseconds since Unix epoch.
 	FromDate *int64 `json:"from_date,omitempty"`
-	// List of tag keys on which to group
+	// List of tag keys on which to group.
 	GroupBy *[]string `json:"group_by,omitempty"`
-	// Message indicating `success` if status is `ok`
+	// Message indicating `success` if status is `ok`.
 	Message *string `json:"message,omitempty"`
 	// Query string
 	Query *string `json:"query,omitempty"`
-	// Type of response
+	// Type of response.
 	ResType *string `json:"res_type,omitempty"`
-	// List of timeseries queried
+	// List of timeseries queried.
 	Series *[]MetricsQueryResponseSeries `json:"series,omitempty"`
-	// Status of the query
+	// Status of the query.
 	Status *string `json:"status,omitempty"`
-	// End of requested time window, milliseconds since Unix epoch
+	// End of requested time window, milliseconds since Unix epoch.
 	ToDate *int64 `json:"to_date,omitempty"`
 }
 
@@ -60,14 +60,13 @@ func (o *MetricsQueryResponse) GetError() string {
 	return *o.Error
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, zero value otherwise
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetErrorOk() (string, bool) {
+func (o *MetricsQueryResponse) GetErrorOk() (*string, bool) {
 	if o == nil || o.Error == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Error, true
+	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
@@ -93,14 +92,13 @@ func (o *MetricsQueryResponse) GetFromDate() int64 {
 	return *o.FromDate
 }
 
-// GetFromDateOk returns a tuple with the FromDate field value if set, zero value otherwise
+// GetFromDateOk returns a tuple with the FromDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetFromDateOk() (int64, bool) {
+func (o *MetricsQueryResponse) GetFromDateOk() (*int64, bool) {
 	if o == nil || o.FromDate == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.FromDate, true
+	return o.FromDate, true
 }
 
 // HasFromDate returns a boolean if a field has been set.
@@ -126,14 +124,13 @@ func (o *MetricsQueryResponse) GetGroupBy() []string {
 	return *o.GroupBy
 }
 
-// GetGroupByOk returns a tuple with the GroupBy field value if set, zero value otherwise
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetGroupByOk() ([]string, bool) {
+func (o *MetricsQueryResponse) GetGroupByOk() (*[]string, bool) {
 	if o == nil || o.GroupBy == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.GroupBy, true
+	return o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -159,14 +156,13 @@ func (o *MetricsQueryResponse) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetMessageOk() (string, bool) {
+func (o *MetricsQueryResponse) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -192,14 +188,13 @@ func (o *MetricsQueryResponse) GetQuery() string {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetQueryOk() (string, bool) {
+func (o *MetricsQueryResponse) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Query, true
+	return o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -225,14 +220,13 @@ func (o *MetricsQueryResponse) GetResType() string {
 	return *o.ResType
 }
 
-// GetResTypeOk returns a tuple with the ResType field value if set, zero value otherwise
+// GetResTypeOk returns a tuple with the ResType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetResTypeOk() (string, bool) {
+func (o *MetricsQueryResponse) GetResTypeOk() (*string, bool) {
 	if o == nil || o.ResType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ResType, true
+	return o.ResType, true
 }
 
 // HasResType returns a boolean if a field has been set.
@@ -258,14 +252,13 @@ func (o *MetricsQueryResponse) GetSeries() []MetricsQueryResponseSeries {
 	return *o.Series
 }
 
-// GetSeriesOk returns a tuple with the Series field value if set, zero value otherwise
+// GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetSeriesOk() ([]MetricsQueryResponseSeries, bool) {
+func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryResponseSeries, bool) {
 	if o == nil || o.Series == nil {
-		var ret []MetricsQueryResponseSeries
-		return ret, false
+		return nil, false
 	}
-	return *o.Series, true
+	return o.Series, true
 }
 
 // HasSeries returns a boolean if a field has been set.
@@ -291,14 +284,13 @@ func (o *MetricsQueryResponse) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetStatusOk() (string, bool) {
+func (o *MetricsQueryResponse) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -324,14 +316,13 @@ func (o *MetricsQueryResponse) GetToDate() int64 {
 	return *o.ToDate
 }
 
-// GetToDateOk returns a tuple with the ToDate field value if set, zero value otherwise
+// GetToDateOk returns a tuple with the ToDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetToDateOk() (int64, bool) {
+func (o *MetricsQueryResponse) GetToDateOk() (*int64, bool) {
 	if o == nil || o.ToDate == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ToDate, true
+	return o.ToDate, true
 }
 
 // HasToDate returns a boolean if a field has been set.
@@ -389,7 +380,7 @@ func (v NullableMetricsQueryResponse) Get() *MetricsQueryResponse {
 	return v.value
 }
 
-func (v NullableMetricsQueryResponse) Set(val *MetricsQueryResponse) {
+func (v *NullableMetricsQueryResponse) Set(val *MetricsQueryResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -398,7 +389,7 @@ func (v NullableMetricsQueryResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricsQueryResponse) Unset() {
+func (v *NullableMetricsQueryResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

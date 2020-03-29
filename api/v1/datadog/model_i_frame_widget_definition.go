@@ -51,6 +51,15 @@ func (o *IFrameWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *IFrameWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *IFrameWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -64,6 +73,15 @@ func (o *IFrameWidgetDefinition) GetUrl() string {
 	}
 
 	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *IFrameWidgetDefinition) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
 }
 
 // SetUrl sets field value
@@ -96,7 +114,7 @@ func (v NullableIFrameWidgetDefinition) Get() *IFrameWidgetDefinition {
 	return v.value
 }
 
-func (v NullableIFrameWidgetDefinition) Set(val *IFrameWidgetDefinition) {
+func (v *NullableIFrameWidgetDefinition) Set(val *IFrameWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -105,7 +123,7 @@ func (v NullableIFrameWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableIFrameWidgetDefinition) Unset() {
+func (v *NullableIFrameWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

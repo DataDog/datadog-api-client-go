@@ -18,10 +18,24 @@ import (
 	is "gotest.tools/assert/cmp"
 )
 
+func enableLogsIndexesUnstableOperations() {
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetLogsIndex", true)
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetAllLogIndexes", true)
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", true)
+}
+
+func disableLogsIndexesUnstableOperations() {
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetLogsIndex", false)
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetAllLogIndexes", false)
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", false)
+}
+
 func TestGetAllLogsIndexes(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer gock.Off()
 	defer teardownTest(t)
+    enableLogsIndexesUnstableOperations()
+    defer disableLogsIndexesUnstableOperations()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-indexes.json")
 	if err != nil {
@@ -45,6 +59,8 @@ func TestGetLogsIndex(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer gock.Off()
 	defer teardownTest(t)
+    enableLogsIndexesUnstableOperations()
+    defer disableLogsIndexesUnstableOperations()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {
@@ -102,6 +118,8 @@ func TestUpdateLogsIndex(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer gock.Off()
 	defer teardownTest(t)
+    enableLogsIndexesUnstableOperations()
+    defer disableLogsIndexesUnstableOperations()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {

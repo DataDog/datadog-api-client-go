@@ -36,7 +36,7 @@ func (v NullableSyntheticsTestMonitorStatus) Get() *SyntheticsTestMonitorStatus 
 	return v.value
 }
 
-func (v NullableSyntheticsTestMonitorStatus) Set(val *SyntheticsTestMonitorStatus) {
+func (v *NullableSyntheticsTestMonitorStatus) Set(val *SyntheticsTestMonitorStatus) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableSyntheticsTestMonitorStatus) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestMonitorStatus) Unset() {
+func (v *NullableSyntheticsTestMonitorStatus) Unset() {
 	v.value = nil
 	v.isSet = false
 }

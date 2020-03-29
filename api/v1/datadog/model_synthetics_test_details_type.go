@@ -35,7 +35,7 @@ func (v NullableSyntheticsTestDetailsType) Get() *SyntheticsTestDetailsType {
 	return v.value
 }
 
-func (v NullableSyntheticsTestDetailsType) Set(val *SyntheticsTestDetailsType) {
+func (v *NullableSyntheticsTestDetailsType) Set(val *SyntheticsTestDetailsType) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableSyntheticsTestDetailsType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestDetailsType) Unset() {
+func (v *NullableSyntheticsTestDetailsType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

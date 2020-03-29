@@ -52,14 +52,13 @@ func (o *SyntheticsAPITestResultData) GetCert() SyntheticsSSLCertificate {
 	return *o.Cert
 }
 
-// GetCertOk returns a tuple with the Cert field value if set, zero value otherwise
+// GetCertOk returns a tuple with the Cert field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetCertOk() (SyntheticsSSLCertificate, bool) {
+func (o *SyntheticsAPITestResultData) GetCertOk() (*SyntheticsSSLCertificate, bool) {
 	if o == nil || o.Cert == nil {
-		var ret SyntheticsSSLCertificate
-		return ret, false
+		return nil, false
 	}
-	return *o.Cert, true
+	return o.Cert, true
 }
 
 // HasCert returns a boolean if a field has been set.
@@ -85,14 +84,13 @@ func (o *SyntheticsAPITestResultData) GetErrorCode() SyntheticsErrorCode {
 	return *o.ErrorCode
 }
 
-// GetErrorCodeOk returns a tuple with the ErrorCode field value if set, zero value otherwise
+// GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetErrorCodeOk() (SyntheticsErrorCode, bool) {
+func (o *SyntheticsAPITestResultData) GetErrorCodeOk() (*SyntheticsErrorCode, bool) {
 	if o == nil || o.ErrorCode == nil {
-		var ret SyntheticsErrorCode
-		return ret, false
+		return nil, false
 	}
-	return *o.ErrorCode, true
+	return o.ErrorCode, true
 }
 
 // HasErrorCode returns a boolean if a field has been set.
@@ -118,14 +116,13 @@ func (o *SyntheticsAPITestResultData) GetErrorMessage() string {
 	return *o.ErrorMessage
 }
 
-// GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, zero value otherwise
+// GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetErrorMessageOk() (string, bool) {
+func (o *SyntheticsAPITestResultData) GetErrorMessageOk() (*string, bool) {
 	if o == nil || o.ErrorMessage == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ErrorMessage, true
+	return o.ErrorMessage, true
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
@@ -151,14 +148,13 @@ func (o *SyntheticsAPITestResultData) GetEventType() SyntheticsTestProcessStatus
 	return *o.EventType
 }
 
-// GetEventTypeOk returns a tuple with the EventType field value if set, zero value otherwise
+// GetEventTypeOk returns a tuple with the EventType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetEventTypeOk() (SyntheticsTestProcessStatus, bool) {
+func (o *SyntheticsAPITestResultData) GetEventTypeOk() (*SyntheticsTestProcessStatus, bool) {
 	if o == nil || o.EventType == nil {
-		var ret SyntheticsTestProcessStatus
-		return ret, false
+		return nil, false
 	}
-	return *o.EventType, true
+	return o.EventType, true
 }
 
 // HasEventType returns a boolean if a field has been set.
@@ -184,14 +180,13 @@ func (o *SyntheticsAPITestResultData) GetHttpStatusCode() int64 {
 	return *o.HttpStatusCode
 }
 
-// GetHttpStatusCodeOk returns a tuple with the HttpStatusCode field value if set, zero value otherwise
+// GetHttpStatusCodeOk returns a tuple with the HttpStatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetHttpStatusCodeOk() (int64, bool) {
+func (o *SyntheticsAPITestResultData) GetHttpStatusCodeOk() (*int64, bool) {
 	if o == nil || o.HttpStatusCode == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.HttpStatusCode, true
+	return o.HttpStatusCode, true
 }
 
 // HasHttpStatusCode returns a boolean if a field has been set.
@@ -217,14 +212,13 @@ func (o *SyntheticsAPITestResultData) GetRequestHeaders() map[string]interface{}
 	return *o.RequestHeaders
 }
 
-// GetRequestHeadersOk returns a tuple with the RequestHeaders field value if set, zero value otherwise
+// GetRequestHeadersOk returns a tuple with the RequestHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetRequestHeadersOk() (map[string]interface{}, bool) {
+func (o *SyntheticsAPITestResultData) GetRequestHeadersOk() (*map[string]interface{}, bool) {
 	if o == nil || o.RequestHeaders == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.RequestHeaders, true
+	return o.RequestHeaders, true
 }
 
 // HasRequestHeaders returns a boolean if a field has been set.
@@ -250,14 +244,13 @@ func (o *SyntheticsAPITestResultData) GetResponseBody() string {
 	return *o.ResponseBody
 }
 
-// GetResponseBodyOk returns a tuple with the ResponseBody field value if set, zero value otherwise
+// GetResponseBodyOk returns a tuple with the ResponseBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetResponseBodyOk() (string, bool) {
+func (o *SyntheticsAPITestResultData) GetResponseBodyOk() (*string, bool) {
 	if o == nil || o.ResponseBody == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ResponseBody, true
+	return o.ResponseBody, true
 }
 
 // HasResponseBody returns a boolean if a field has been set.
@@ -283,14 +276,13 @@ func (o *SyntheticsAPITestResultData) GetResponseHeaders() map[string]interface{
 	return *o.ResponseHeaders
 }
 
-// GetResponseHeadersOk returns a tuple with the ResponseHeaders field value if set, zero value otherwise
+// GetResponseHeadersOk returns a tuple with the ResponseHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetResponseHeadersOk() (map[string]interface{}, bool) {
+func (o *SyntheticsAPITestResultData) GetResponseHeadersOk() (*map[string]interface{}, bool) {
 	if o == nil || o.ResponseHeaders == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.ResponseHeaders, true
+	return o.ResponseHeaders, true
 }
 
 // HasResponseHeaders returns a boolean if a field has been set.
@@ -316,14 +308,13 @@ func (o *SyntheticsAPITestResultData) GetResponseSize() int64 {
 	return *o.ResponseSize
 }
 
-// GetResponseSizeOk returns a tuple with the ResponseSize field value if set, zero value otherwise
+// GetResponseSizeOk returns a tuple with the ResponseSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetResponseSizeOk() (int64, bool) {
+func (o *SyntheticsAPITestResultData) GetResponseSizeOk() (*int64, bool) {
 	if o == nil || o.ResponseSize == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.ResponseSize, true
+	return o.ResponseSize, true
 }
 
 // HasResponseSize returns a boolean if a field has been set.
@@ -349,14 +340,13 @@ func (o *SyntheticsAPITestResultData) GetTimings() SyntheticsTiming {
 	return *o.Timings
 }
 
-// GetTimingsOk returns a tuple with the Timings field value if set, zero value otherwise
+// GetTimingsOk returns a tuple with the Timings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetTimingsOk() (SyntheticsTiming, bool) {
+func (o *SyntheticsAPITestResultData) GetTimingsOk() (*SyntheticsTiming, bool) {
 	if o == nil || o.Timings == nil {
-		var ret SyntheticsTiming
-		return ret, false
+		return nil, false
 	}
-	return *o.Timings, true
+	return o.Timings, true
 }
 
 // HasTimings returns a boolean if a field has been set.
@@ -417,7 +407,7 @@ func (v NullableSyntheticsAPITestResultData) Get() *SyntheticsAPITestResultData 
 	return v.value
 }
 
-func (v NullableSyntheticsAPITestResultData) Set(val *SyntheticsAPITestResultData) {
+func (v *NullableSyntheticsAPITestResultData) Set(val *SyntheticsAPITestResultData) {
 	v.value = val
 	v.isSet = true
 }
@@ -426,7 +416,7 @@ func (v NullableSyntheticsAPITestResultData) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsAPITestResultData) Unset() {
+func (v *NullableSyntheticsAPITestResultData) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -55,14 +55,13 @@ func (o *SyntheticsSSLCertificate) GetCipher() string {
 	return *o.Cipher
 }
 
-// GetCipherOk returns a tuple with the Cipher field value if set, zero value otherwise
+// GetCipherOk returns a tuple with the Cipher field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetCipherOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetCipherOk() (*string, bool) {
 	if o == nil || o.Cipher == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Cipher, true
+	return o.Cipher, true
 }
 
 // HasCipher returns a boolean if a field has been set.
@@ -88,14 +87,13 @@ func (o *SyntheticsSSLCertificate) GetExponent() float64 {
 	return *o.Exponent
 }
 
-// GetExponentOk returns a tuple with the Exponent field value if set, zero value otherwise
+// GetExponentOk returns a tuple with the Exponent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetExponentOk() (float64, bool) {
+func (o *SyntheticsSSLCertificate) GetExponentOk() (*float64, bool) {
 	if o == nil || o.Exponent == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Exponent, true
+	return o.Exponent, true
 }
 
 // HasExponent returns a boolean if a field has been set.
@@ -121,14 +119,13 @@ func (o *SyntheticsSSLCertificate) GetExtKeyUsage() []string {
 	return *o.ExtKeyUsage
 }
 
-// GetExtKeyUsageOk returns a tuple with the ExtKeyUsage field value if set, zero value otherwise
+// GetExtKeyUsageOk returns a tuple with the ExtKeyUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetExtKeyUsageOk() ([]string, bool) {
+func (o *SyntheticsSSLCertificate) GetExtKeyUsageOk() (*[]string, bool) {
 	if o == nil || o.ExtKeyUsage == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ExtKeyUsage, true
+	return o.ExtKeyUsage, true
 }
 
 // HasExtKeyUsage returns a boolean if a field has been set.
@@ -154,14 +151,13 @@ func (o *SyntheticsSSLCertificate) GetFingerprint() string {
 	return *o.Fingerprint
 }
 
-// GetFingerprintOk returns a tuple with the Fingerprint field value if set, zero value otherwise
+// GetFingerprintOk returns a tuple with the Fingerprint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetFingerprintOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetFingerprintOk() (*string, bool) {
 	if o == nil || o.Fingerprint == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Fingerprint, true
+	return o.Fingerprint, true
 }
 
 // HasFingerprint returns a boolean if a field has been set.
@@ -187,14 +183,13 @@ func (o *SyntheticsSSLCertificate) GetFingerprint256() string {
 	return *o.Fingerprint256
 }
 
-// GetFingerprint256Ok returns a tuple with the Fingerprint256 field value if set, zero value otherwise
+// GetFingerprint256Ok returns a tuple with the Fingerprint256 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetFingerprint256Ok() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetFingerprint256Ok() (*string, bool) {
 	if o == nil || o.Fingerprint256 == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Fingerprint256, true
+	return o.Fingerprint256, true
 }
 
 // HasFingerprint256 returns a boolean if a field has been set.
@@ -220,14 +215,13 @@ func (o *SyntheticsSSLCertificate) GetIssuer() SyntheticsSSLCertificateIssuer {
 	return *o.Issuer
 }
 
-// GetIssuerOk returns a tuple with the Issuer field value if set, zero value otherwise
+// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetIssuerOk() (SyntheticsSSLCertificateIssuer, bool) {
+func (o *SyntheticsSSLCertificate) GetIssuerOk() (*SyntheticsSSLCertificateIssuer, bool) {
 	if o == nil || o.Issuer == nil {
-		var ret SyntheticsSSLCertificateIssuer
-		return ret, false
+		return nil, false
 	}
-	return *o.Issuer, true
+	return o.Issuer, true
 }
 
 // HasIssuer returns a boolean if a field has been set.
@@ -253,14 +247,13 @@ func (o *SyntheticsSSLCertificate) GetModulus() string {
 	return *o.Modulus
 }
 
-// GetModulusOk returns a tuple with the Modulus field value if set, zero value otherwise
+// GetModulusOk returns a tuple with the Modulus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetModulusOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetModulusOk() (*string, bool) {
 	if o == nil || o.Modulus == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Modulus, true
+	return o.Modulus, true
 }
 
 // HasModulus returns a boolean if a field has been set.
@@ -286,14 +279,13 @@ func (o *SyntheticsSSLCertificate) GetProtocol() string {
 	return *o.Protocol
 }
 
-// GetProtocolOk returns a tuple with the Protocol field value if set, zero value otherwise
+// GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetProtocolOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetProtocolOk() (*string, bool) {
 	if o == nil || o.Protocol == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Protocol, true
+	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
@@ -319,14 +311,13 @@ func (o *SyntheticsSSLCertificate) GetSerialNumber() string {
 	return *o.SerialNumber
 }
 
-// GetSerialNumberOk returns a tuple with the SerialNumber field value if set, zero value otherwise
+// GetSerialNumberOk returns a tuple with the SerialNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetSerialNumberOk() (string, bool) {
+func (o *SyntheticsSSLCertificate) GetSerialNumberOk() (*string, bool) {
 	if o == nil || o.SerialNumber == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SerialNumber, true
+	return o.SerialNumber, true
 }
 
 // HasSerialNumber returns a boolean if a field has been set.
@@ -352,14 +343,13 @@ func (o *SyntheticsSSLCertificate) GetSubject() SyntheticsSSLCertificateSubject 
 	return *o.Subject
 }
 
-// GetSubjectOk returns a tuple with the Subject field value if set, zero value otherwise
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetSubjectOk() (SyntheticsSSLCertificateSubject, bool) {
+func (o *SyntheticsSSLCertificate) GetSubjectOk() (*SyntheticsSSLCertificateSubject, bool) {
 	if o == nil || o.Subject == nil {
-		var ret SyntheticsSSLCertificateSubject
-		return ret, false
+		return nil, false
 	}
-	return *o.Subject, true
+	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
@@ -385,14 +375,13 @@ func (o *SyntheticsSSLCertificate) GetValidFrom() time.Time {
 	return *o.ValidFrom
 }
 
-// GetValidFromOk returns a tuple with the ValidFrom field value if set, zero value otherwise
+// GetValidFromOk returns a tuple with the ValidFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetValidFromOk() (time.Time, bool) {
+func (o *SyntheticsSSLCertificate) GetValidFromOk() (*time.Time, bool) {
 	if o == nil || o.ValidFrom == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ValidFrom, true
+	return o.ValidFrom, true
 }
 
 // HasValidFrom returns a boolean if a field has been set.
@@ -418,14 +407,13 @@ func (o *SyntheticsSSLCertificate) GetValidTo() time.Time {
 	return *o.ValidTo
 }
 
-// GetValidToOk returns a tuple with the ValidTo field value if set, zero value otherwise
+// GetValidToOk returns a tuple with the ValidTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificate) GetValidToOk() (time.Time, bool) {
+func (o *SyntheticsSSLCertificate) GetValidToOk() (*time.Time, bool) {
 	if o == nil || o.ValidTo == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ValidTo, true
+	return o.ValidTo, true
 }
 
 // HasValidTo returns a boolean if a field has been set.
@@ -492,7 +480,7 @@ func (v NullableSyntheticsSSLCertificate) Get() *SyntheticsSSLCertificate {
 	return v.value
 }
 
-func (v NullableSyntheticsSSLCertificate) Set(val *SyntheticsSSLCertificate) {
+func (v *NullableSyntheticsSSLCertificate) Set(val *SyntheticsSSLCertificate) {
 	v.value = val
 	v.isSet = true
 }
@@ -501,7 +489,7 @@ func (v NullableSyntheticsSSLCertificate) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsSSLCertificate) Unset() {
+func (v *NullableSyntheticsSSLCertificate) Unset() {
 	v.value = nil
 	v.isSet = false
 }

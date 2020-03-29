@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// AccessRole the model 'AccessRole'
+// AccessRole The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user).
 type AccessRole string
 
 // List of AccessRole
@@ -36,7 +36,7 @@ func (v NullableAccessRole) Get() *AccessRole {
 	return v.value
 }
 
-func (v NullableAccessRole) Set(val *AccessRole) {
+func (v *NullableAccessRole) Set(val *AccessRole) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableAccessRole) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAccessRole) Unset() {
+func (v *NullableAccessRole) Unset() {
 	v.value = nil
 	v.isSet = false
 }

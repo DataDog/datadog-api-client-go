@@ -38,7 +38,7 @@ func (v NullableSyntheticsPlayingTab) Get() *SyntheticsPlayingTab {
 	return v.value
 }
 
-func (v NullableSyntheticsPlayingTab) Set(val *SyntheticsPlayingTab) {
+func (v *NullableSyntheticsPlayingTab) Set(val *SyntheticsPlayingTab) {
 	v.value = val
 	v.isSet = true
 }
@@ -47,7 +47,7 @@ func (v NullableSyntheticsPlayingTab) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsPlayingTab) Unset() {
+func (v *NullableSyntheticsPlayingTab) Unset() {
 	v.value = nil
 	v.isSet = false
 }

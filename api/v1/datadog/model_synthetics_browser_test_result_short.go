@@ -47,14 +47,13 @@ func (o *SyntheticsBrowserTestResultShort) GetCheckTime() float64 {
 	return *o.CheckTime
 }
 
-// GetCheckTimeOk returns a tuple with the CheckTime field value if set, zero value otherwise
+// GetCheckTimeOk returns a tuple with the CheckTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserTestResultShort) GetCheckTimeOk() (float64, bool) {
+func (o *SyntheticsBrowserTestResultShort) GetCheckTimeOk() (*float64, bool) {
 	if o == nil || o.CheckTime == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.CheckTime, true
+	return o.CheckTime, true
 }
 
 // HasCheckTime returns a boolean if a field has been set.
@@ -80,14 +79,13 @@ func (o *SyntheticsBrowserTestResultShort) GetProbeDc() string {
 	return *o.ProbeDc
 }
 
-// GetProbeDcOk returns a tuple with the ProbeDc field value if set, zero value otherwise
+// GetProbeDcOk returns a tuple with the ProbeDc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserTestResultShort) GetProbeDcOk() (string, bool) {
+func (o *SyntheticsBrowserTestResultShort) GetProbeDcOk() (*string, bool) {
 	if o == nil || o.ProbeDc == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProbeDc, true
+	return o.ProbeDc, true
 }
 
 // HasProbeDc returns a boolean if a field has been set.
@@ -113,14 +111,13 @@ func (o *SyntheticsBrowserTestResultShort) GetResult() SyntheticsBrowserTestResu
 	return *o.Result
 }
 
-// GetResultOk returns a tuple with the Result field value if set, zero value otherwise
+// GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserTestResultShort) GetResultOk() (SyntheticsBrowserTestResultShortResult, bool) {
+func (o *SyntheticsBrowserTestResultShort) GetResultOk() (*SyntheticsBrowserTestResultShortResult, bool) {
 	if o == nil || o.Result == nil {
-		var ret SyntheticsBrowserTestResultShortResult
-		return ret, false
+		return nil, false
 	}
-	return *o.Result, true
+	return o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
@@ -146,14 +143,13 @@ func (o *SyntheticsBrowserTestResultShort) GetResultId() string {
 	return *o.ResultId
 }
 
-// GetResultIdOk returns a tuple with the ResultId field value if set, zero value otherwise
+// GetResultIdOk returns a tuple with the ResultId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserTestResultShort) GetResultIdOk() (string, bool) {
+func (o *SyntheticsBrowserTestResultShort) GetResultIdOk() (*string, bool) {
 	if o == nil || o.ResultId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ResultId, true
+	return o.ResultId, true
 }
 
 // HasResultId returns a boolean if a field has been set.
@@ -179,14 +175,13 @@ func (o *SyntheticsBrowserTestResultShort) GetStatus() SyntheticsTestMonitorStat
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserTestResultShort) GetStatusOk() (SyntheticsTestMonitorStatus, bool) {
+func (o *SyntheticsBrowserTestResultShort) GetStatusOk() (*SyntheticsTestMonitorStatus, bool) {
 	if o == nil || o.Status == nil {
-		var ret SyntheticsTestMonitorStatus
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -232,7 +227,7 @@ func (v NullableSyntheticsBrowserTestResultShort) Get() *SyntheticsBrowserTestRe
 	return v.value
 }
 
-func (v NullableSyntheticsBrowserTestResultShort) Set(val *SyntheticsBrowserTestResultShort) {
+func (v *NullableSyntheticsBrowserTestResultShort) Set(val *SyntheticsBrowserTestResultShort) {
 	v.value = val
 	v.isSet = true
 }
@@ -241,7 +236,7 @@ func (v NullableSyntheticsBrowserTestResultShort) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsBrowserTestResultShort) Unset() {
+func (v *NullableSyntheticsBrowserTestResultShort) Unset() {
 	v.value = nil
 	v.isSet = false
 }

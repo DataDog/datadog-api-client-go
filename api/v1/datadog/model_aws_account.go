@@ -20,6 +20,8 @@ type AWSAccount struct {
 	AccountId *string `json:"account_id,omitempty"`
 	// An object (in the form {\"namespace1\":true/false, \"namespace2\":true/false}) that enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the /v1/integration/aws/available_namespace_rules endpoint.
 	AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+	// An array of AWS regions to exclude from metrics collection.
+	ExcludedRegions *[]string `json:"excluded_regions,omitempty"`
 	// The array of EC2 tags (in the form key:value) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as ? (for single characters) and * (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding ! before the tag. For example, `env:production,instance-type:c1.*,!region:us-east-1`
 	FilterTags *[]string `json:"filter_tags,omitempty"`
 	// Array of tags (in the form key:value) to add to all hosts and metrics reporting through this integration.
@@ -56,14 +58,13 @@ func (o *AWSAccount) GetAccessKeyId() string {
 	return *o.AccessKeyId
 }
 
-// GetAccessKeyIdOk returns a tuple with the AccessKeyId field value if set, zero value otherwise
+// GetAccessKeyIdOk returns a tuple with the AccessKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccount) GetAccessKeyIdOk() (string, bool) {
+func (o *AWSAccount) GetAccessKeyIdOk() (*string, bool) {
 	if o == nil || o.AccessKeyId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AccessKeyId, true
+	return o.AccessKeyId, true
 }
 
 // HasAccessKeyId returns a boolean if a field has been set.
@@ -89,14 +90,13 @@ func (o *AWSAccount) GetAccountId() string {
 	return *o.AccountId
 }
 
-// GetAccountIdOk returns a tuple with the AccountId field value if set, zero value otherwise
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccount) GetAccountIdOk() (string, bool) {
+func (o *AWSAccount) GetAccountIdOk() (*string, bool) {
 	if o == nil || o.AccountId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AccountId, true
+	return o.AccountId, true
 }
 
 // HasAccountId returns a boolean if a field has been set.
@@ -122,14 +122,13 @@ func (o *AWSAccount) GetAccountSpecificNamespaceRules() map[string]bool {
 	return *o.AccountSpecificNamespaceRules
 }
 
-// GetAccountSpecificNamespaceRulesOk returns a tuple with the AccountSpecificNamespaceRules field value if set, zero value otherwise
+// GetAccountSpecificNamespaceRulesOk returns a tuple with the AccountSpecificNamespaceRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccount) GetAccountSpecificNamespaceRulesOk() (map[string]bool, bool) {
+func (o *AWSAccount) GetAccountSpecificNamespaceRulesOk() (*map[string]bool, bool) {
 	if o == nil || o.AccountSpecificNamespaceRules == nil {
-		var ret map[string]bool
-		return ret, false
+		return nil, false
 	}
-	return *o.AccountSpecificNamespaceRules, true
+	return o.AccountSpecificNamespaceRules, true
 }
 
 // HasAccountSpecificNamespaceRules returns a boolean if a field has been set.
@@ -146,6 +145,38 @@ func (o *AWSAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
 	o.AccountSpecificNamespaceRules = &v
 }
 
+// GetExcludedRegions returns the ExcludedRegions field value if set, zero value otherwise.
+func (o *AWSAccount) GetExcludedRegions() []string {
+	if o == nil || o.ExcludedRegions == nil {
+		var ret []string
+		return ret
+	}
+	return *o.ExcludedRegions
+}
+
+// GetExcludedRegionsOk returns a tuple with the ExcludedRegions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSAccount) GetExcludedRegionsOk() (*[]string, bool) {
+	if o == nil || o.ExcludedRegions == nil {
+		return nil, false
+	}
+	return o.ExcludedRegions, true
+}
+
+// HasExcludedRegions returns a boolean if a field has been set.
+func (o *AWSAccount) HasExcludedRegions() bool {
+	if o != nil && o.ExcludedRegions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedRegions gets a reference to the given []string and assigns it to the ExcludedRegions field.
+func (o *AWSAccount) SetExcludedRegions(v []string) {
+	o.ExcludedRegions = &v
+}
+
 // GetFilterTags returns the FilterTags field value if set, zero value otherwise.
 func (o *AWSAccount) GetFilterTags() []string {
 	if o == nil || o.FilterTags == nil {
@@ -155,14 +186,13 @@ func (o *AWSAccount) GetFilterTags() []string {
 	return *o.FilterTags
 }
 
-// GetFilterTagsOk returns a tuple with the FilterTags field value if set, zero value otherwise
+// GetFilterTagsOk returns a tuple with the FilterTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccount) GetFilterTagsOk() ([]string, bool) {
+func (o *AWSAccount) GetFilterTagsOk() (*[]string, bool) {
 	if o == nil || o.FilterTags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.FilterTags, true
+	return o.FilterTags, true
 }
 
 // HasFilterTags returns a boolean if a field has been set.
@@ -188,14 +218,13 @@ func (o *AWSAccount) GetHostTags() []string {
 	return *o.HostTags
 }
 
-// GetHostTagsOk returns a tuple with the HostTags field value if set, zero value otherwise
+// GetHostTagsOk returns a tuple with the HostTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccount) GetHostTagsOk() ([]string, bool) {
+func (o *AWSAccount) GetHostTagsOk() (*[]string, bool) {
 	if o == nil || o.HostTags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.HostTags, true
+	return o.HostTags, true
 }
 
 // HasHostTags returns a boolean if a field has been set.
@@ -221,14 +250,13 @@ func (o *AWSAccount) GetRoleName() string {
 	return *o.RoleName
 }
 
-// GetRoleNameOk returns a tuple with the RoleName field value if set, zero value otherwise
+// GetRoleNameOk returns a tuple with the RoleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccount) GetRoleNameOk() (string, bool) {
+func (o *AWSAccount) GetRoleNameOk() (*string, bool) {
 	if o == nil || o.RoleName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RoleName, true
+	return o.RoleName, true
 }
 
 // HasRoleName returns a boolean if a field has been set.
@@ -254,14 +282,13 @@ func (o *AWSAccount) GetSecretAccessKey() string {
 	return *o.SecretAccessKey
 }
 
-// GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field value if set, zero value otherwise
+// GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccount) GetSecretAccessKeyOk() (string, bool) {
+func (o *AWSAccount) GetSecretAccessKeyOk() (*string, bool) {
 	if o == nil || o.SecretAccessKey == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SecretAccessKey, true
+	return o.SecretAccessKey, true
 }
 
 // HasSecretAccessKey returns a boolean if a field has been set.
@@ -289,6 +316,9 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	if o.AccountSpecificNamespaceRules != nil {
 		toSerialize["account_specific_namespace_rules"] = o.AccountSpecificNamespaceRules
 	}
+	if o.ExcludedRegions != nil {
+		toSerialize["excluded_regions"] = o.ExcludedRegions
+	}
 	if o.FilterTags != nil {
 		toSerialize["filter_tags"] = o.FilterTags
 	}
@@ -313,7 +343,7 @@ func (v NullableAWSAccount) Get() *AWSAccount {
 	return v.value
 }
 
-func (v NullableAWSAccount) Set(val *AWSAccount) {
+func (v *NullableAWSAccount) Set(val *AWSAccount) {
 	v.value = val
 	v.isSet = true
 }
@@ -322,7 +352,7 @@ func (v NullableAWSAccount) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSAccount) Unset() {
+func (v *NullableAWSAccount) Unset() {
 	v.value = nil
 	v.isSet = false
 }

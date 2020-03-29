@@ -35,7 +35,7 @@ func (v NullableWidgetSort) Get() *WidgetSort {
 	return v.value
 }
 
-func (v NullableWidgetSort) Set(val *WidgetSort) {
+func (v *NullableWidgetSort) Set(val *WidgetSort) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetSort) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetSort) Unset() {
+func (v *NullableWidgetSort) Unset() {
 	v.value = nil
 	v.isSet = false
 }

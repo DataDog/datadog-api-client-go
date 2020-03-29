@@ -43,14 +43,13 @@ func (o *AWSAccountCreateResponse) GetExternalId() string {
 	return *o.ExternalId
 }
 
-// GetExternalIdOk returns a tuple with the ExternalId field value if set, zero value otherwise
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccountCreateResponse) GetExternalIdOk() (string, bool) {
+func (o *AWSAccountCreateResponse) GetExternalIdOk() (*string, bool) {
 	if o == nil || o.ExternalId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ExternalId, true
+	return o.ExternalId, true
 }
 
 // HasExternalId returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableAWSAccountCreateResponse) Get() *AWSAccountCreateResponse {
 	return v.value
 }
 
-func (v NullableAWSAccountCreateResponse) Set(val *AWSAccountCreateResponse) {
+func (v *NullableAWSAccountCreateResponse) Set(val *AWSAccountCreateResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableAWSAccountCreateResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSAccountCreateResponse) Unset() {
+func (v *NullableAWSAccountCreateResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

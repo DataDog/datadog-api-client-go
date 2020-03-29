@@ -35,7 +35,7 @@ func (v NullableDashboardLayoutType) Get() *DashboardLayoutType {
 	return v.value
 }
 
-func (v NullableDashboardLayoutType) Set(val *DashboardLayoutType) {
+func (v *NullableDashboardLayoutType) Set(val *DashboardLayoutType) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableDashboardLayoutType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardLayoutType) Unset() {
+func (v *NullableDashboardLayoutType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

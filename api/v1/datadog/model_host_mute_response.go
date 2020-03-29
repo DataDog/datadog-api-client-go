@@ -12,13 +12,16 @@ import (
 	"encoding/json"
 )
 
-// HostMuteResponse struct for HostMuteResponse
+// HostMuteResponse Response with the list of muted host for your organization.
 type HostMuteResponse struct {
+	// Action applied to the hosts.
 	Action *string `json:"action,omitempty"`
 	// POSIX timestamp in seconds when the host is unmuted.
-	End      *int64  `json:"end,omitempty"`
+	End *int64 `json:"end,omitempty"`
+	// The host name.
 	Hostname *string `json:"hostname,omitempty"`
-	Message  *string `json:"message,omitempty"`
+	// Message associated with the Mute.
+	Message *string `json:"message,omitempty"`
 }
 
 // NewHostMuteResponse instantiates a new HostMuteResponse object
@@ -47,14 +50,13 @@ func (o *HostMuteResponse) GetAction() string {
 	return *o.Action
 }
 
-// GetActionOk returns a tuple with the Action field value if set, zero value otherwise
+// GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMuteResponse) GetActionOk() (string, bool) {
+func (o *HostMuteResponse) GetActionOk() (*string, bool) {
 	if o == nil || o.Action == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Action, true
+	return o.Action, true
 }
 
 // HasAction returns a boolean if a field has been set.
@@ -80,14 +82,13 @@ func (o *HostMuteResponse) GetEnd() int64 {
 	return *o.End
 }
 
-// GetEndOk returns a tuple with the End field value if set, zero value otherwise
+// GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMuteResponse) GetEndOk() (int64, bool) {
+func (o *HostMuteResponse) GetEndOk() (*int64, bool) {
 	if o == nil || o.End == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.End, true
+	return o.End, true
 }
 
 // HasEnd returns a boolean if a field has been set.
@@ -113,14 +114,13 @@ func (o *HostMuteResponse) GetHostname() string {
 	return *o.Hostname
 }
 
-// GetHostnameOk returns a tuple with the Hostname field value if set, zero value otherwise
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMuteResponse) GetHostnameOk() (string, bool) {
+func (o *HostMuteResponse) GetHostnameOk() (*string, bool) {
 	if o == nil || o.Hostname == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Hostname, true
+	return o.Hostname, true
 }
 
 // HasHostname returns a boolean if a field has been set.
@@ -146,14 +146,13 @@ func (o *HostMuteResponse) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMuteResponse) GetMessageOk() (string, bool) {
+func (o *HostMuteResponse) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -196,7 +195,7 @@ func (v NullableHostMuteResponse) Get() *HostMuteResponse {
 	return v.value
 }
 
-func (v NullableHostMuteResponse) Set(val *HostMuteResponse) {
+func (v *NullableHostMuteResponse) Set(val *HostMuteResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -205,7 +204,7 @@ func (v NullableHostMuteResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMuteResponse) Unset() {
+func (v *NullableHostMuteResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

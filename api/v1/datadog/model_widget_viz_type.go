@@ -35,7 +35,7 @@ func (v NullableWidgetVizType) Get() *WidgetVizType {
 	return v.value
 }
 
-func (v NullableWidgetVizType) Set(val *WidgetVizType) {
+func (v *NullableWidgetVizType) Set(val *WidgetVizType) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetVizType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetVizType) Unset() {
+func (v *NullableWidgetVizType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

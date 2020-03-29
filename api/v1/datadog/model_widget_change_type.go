@@ -35,7 +35,7 @@ func (v NullableWidgetChangeType) Get() *WidgetChangeType {
 	return v.value
 }
 
-func (v NullableWidgetChangeType) Set(val *WidgetChangeType) {
+func (v *NullableWidgetChangeType) Set(val *WidgetChangeType) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableWidgetChangeType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetChangeType) Unset() {
+func (v *NullableWidgetChangeType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

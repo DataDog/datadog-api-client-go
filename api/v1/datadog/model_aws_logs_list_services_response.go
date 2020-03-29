@@ -46,14 +46,13 @@ func (o *AWSLogsListServicesResponse) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsListServicesResponse) GetIdOk() (string, bool) {
+func (o *AWSLogsListServicesResponse) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *AWSLogsListServicesResponse) GetLabel() string {
 	return *o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, zero value otherwise
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsListServicesResponse) GetLabelOk() (string, bool) {
+func (o *AWSLogsListServicesResponse) GetLabelOk() (*string, bool) {
 	if o == nil || o.Label == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Label, true
+	return o.Label, true
 }
 
 // HasLabel returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableAWSLogsListServicesResponse) Get() *AWSLogsListServicesResponse 
 	return v.value
 }
 
-func (v NullableAWSLogsListServicesResponse) Set(val *AWSLogsListServicesResponse) {
+func (v *NullableAWSLogsListServicesResponse) Set(val *AWSLogsListServicesResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableAWSLogsListServicesResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAWSLogsListServicesResponse) Unset() {
+func (v *NullableAWSLogsListServicesResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -52,14 +52,13 @@ func (o *ImageWidgetDefinition) GetMargin() WidgetMargin {
 	return *o.Margin
 }
 
-// GetMarginOk returns a tuple with the Margin field value if set, zero value otherwise
+// GetMarginOk returns a tuple with the Margin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageWidgetDefinition) GetMarginOk() (WidgetMargin, bool) {
+func (o *ImageWidgetDefinition) GetMarginOk() (*WidgetMargin, bool) {
 	if o == nil || o.Margin == nil {
-		var ret WidgetMargin
-		return ret, false
+		return nil, false
 	}
-	return *o.Margin, true
+	return o.Margin, true
 }
 
 // HasMargin returns a boolean if a field has been set.
@@ -85,14 +84,13 @@ func (o *ImageWidgetDefinition) GetSizing() WidgetImageSizing {
 	return *o.Sizing
 }
 
-// GetSizingOk returns a tuple with the Sizing field value if set, zero value otherwise
+// GetSizingOk returns a tuple with the Sizing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageWidgetDefinition) GetSizingOk() (WidgetImageSizing, bool) {
+func (o *ImageWidgetDefinition) GetSizingOk() (*WidgetImageSizing, bool) {
 	if o == nil || o.Sizing == nil {
-		var ret WidgetImageSizing
-		return ret, false
+		return nil, false
 	}
-	return *o.Sizing, true
+	return o.Sizing, true
 }
 
 // HasSizing returns a boolean if a field has been set.
@@ -119,6 +117,15 @@ func (o *ImageWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ImageWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *ImageWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -132,6 +139,15 @@ func (o *ImageWidgetDefinition) GetUrl() string {
 	}
 
 	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *ImageWidgetDefinition) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
 }
 
 // SetUrl sets field value
@@ -170,7 +186,7 @@ func (v NullableImageWidgetDefinition) Get() *ImageWidgetDefinition {
 	return v.value
 }
 
-func (v NullableImageWidgetDefinition) Set(val *ImageWidgetDefinition) {
+func (v *NullableImageWidgetDefinition) Set(val *ImageWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -179,7 +195,7 @@ func (v NullableImageWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableImageWidgetDefinition) Unset() {
+func (v *NullableImageWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

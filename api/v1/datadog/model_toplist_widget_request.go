@@ -51,14 +51,13 @@ func (o *ToplistWidgetRequest) GetApmQuery() LogQueryDefinition {
 	return *o.ApmQuery
 }
 
-// GetApmQueryOk returns a tuple with the ApmQuery field value if set, zero value otherwise
+// GetApmQueryOk returns a tuple with the ApmQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetApmQueryOk() (LogQueryDefinition, bool) {
+func (o *ToplistWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.ApmQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ApmQuery, true
+	return o.ApmQuery, true
 }
 
 // HasApmQuery returns a boolean if a field has been set.
@@ -84,14 +83,13 @@ func (o *ToplistWidgetRequest) GetConditionalFormats() []WidgetConditionalFormat
 	return *o.ConditionalFormats
 }
 
-// GetConditionalFormatsOk returns a tuple with the ConditionalFormats field value if set, zero value otherwise
+// GetConditionalFormatsOk returns a tuple with the ConditionalFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetConditionalFormatsOk() ([]WidgetConditionalFormat, bool) {
+func (o *ToplistWidgetRequest) GetConditionalFormatsOk() (*[]WidgetConditionalFormat, bool) {
 	if o == nil || o.ConditionalFormats == nil {
-		var ret []WidgetConditionalFormat
-		return ret, false
+		return nil, false
 	}
-	return *o.ConditionalFormats, true
+	return o.ConditionalFormats, true
 }
 
 // HasConditionalFormats returns a boolean if a field has been set.
@@ -117,14 +115,13 @@ func (o *ToplistWidgetRequest) GetEventQuery() EventQueryDefinition {
 	return *o.EventQuery
 }
 
-// GetEventQueryOk returns a tuple with the EventQuery field value if set, zero value otherwise
+// GetEventQueryOk returns a tuple with the EventQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetEventQueryOk() (EventQueryDefinition, bool) {
+func (o *ToplistWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool) {
 	if o == nil || o.EventQuery == nil {
-		var ret EventQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.EventQuery, true
+	return o.EventQuery, true
 }
 
 // HasEventQuery returns a boolean if a field has been set.
@@ -150,14 +147,13 @@ func (o *ToplistWidgetRequest) GetLogQuery() LogQueryDefinition {
 	return *o.LogQuery
 }
 
-// GetLogQueryOk returns a tuple with the LogQuery field value if set, zero value otherwise
+// GetLogQueryOk returns a tuple with the LogQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetLogQueryOk() (LogQueryDefinition, bool) {
+func (o *ToplistWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.LogQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.LogQuery, true
+	return o.LogQuery, true
 }
 
 // HasLogQuery returns a boolean if a field has been set.
@@ -183,14 +179,13 @@ func (o *ToplistWidgetRequest) GetNetworkQuery() LogQueryDefinition {
 	return *o.NetworkQuery
 }
 
-// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, zero value otherwise
+// GetNetworkQueryOk returns a tuple with the NetworkQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetNetworkQueryOk() (LogQueryDefinition, bool) {
+func (o *ToplistWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.NetworkQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.NetworkQuery, true
+	return o.NetworkQuery, true
 }
 
 // HasNetworkQuery returns a boolean if a field has been set.
@@ -216,14 +211,13 @@ func (o *ToplistWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	return *o.ProcessQuery
 }
 
-// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, zero value otherwise
+// GetProcessQueryOk returns a tuple with the ProcessQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetProcessQueryOk() (ProcessQueryDefinition, bool) {
+func (o *ToplistWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool) {
 	if o == nil || o.ProcessQuery == nil {
-		var ret ProcessQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.ProcessQuery, true
+	return o.ProcessQuery, true
 }
 
 // HasProcessQuery returns a boolean if a field has been set.
@@ -249,14 +243,13 @@ func (o *ToplistWidgetRequest) GetQ() string {
 	return *o.Q
 }
 
-// GetQOk returns a tuple with the Q field value if set, zero value otherwise
+// GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetQOk() (string, bool) {
+func (o *ToplistWidgetRequest) GetQOk() (*string, bool) {
 	if o == nil || o.Q == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Q, true
+	return o.Q, true
 }
 
 // HasQ returns a boolean if a field has been set.
@@ -282,14 +275,13 @@ func (o *ToplistWidgetRequest) GetRumQuery() LogQueryDefinition {
 	return *o.RumQuery
 }
 
-// GetRumQueryOk returns a tuple with the RumQuery field value if set, zero value otherwise
+// GetRumQueryOk returns a tuple with the RumQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetRumQueryOk() (LogQueryDefinition, bool) {
+func (o *ToplistWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.RumQuery == nil {
-		var ret LogQueryDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.RumQuery, true
+	return o.RumQuery, true
 }
 
 // HasRumQuery returns a boolean if a field has been set.
@@ -315,14 +307,13 @@ func (o *ToplistWidgetRequest) GetStyle() TimeseriesWidgetRequestStyle {
 	return *o.Style
 }
 
-// GetStyleOk returns a tuple with the Style field value if set, zero value otherwise
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ToplistWidgetRequest) GetStyleOk() (TimeseriesWidgetRequestStyle, bool) {
+func (o *ToplistWidgetRequest) GetStyleOk() (*TimeseriesWidgetRequestStyle, bool) {
 	if o == nil || o.Style == nil {
-		var ret TimeseriesWidgetRequestStyle
-		return ret, false
+		return nil, false
 	}
-	return *o.Style, true
+	return o.Style, true
 }
 
 // HasStyle returns a boolean if a field has been set.
@@ -380,7 +371,7 @@ func (v NullableToplistWidgetRequest) Get() *ToplistWidgetRequest {
 	return v.value
 }
 
-func (v NullableToplistWidgetRequest) Set(val *ToplistWidgetRequest) {
+func (v *NullableToplistWidgetRequest) Set(val *ToplistWidgetRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -389,7 +380,7 @@ func (v NullableToplistWidgetRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableToplistWidgetRequest) Unset() {
+func (v *NullableToplistWidgetRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

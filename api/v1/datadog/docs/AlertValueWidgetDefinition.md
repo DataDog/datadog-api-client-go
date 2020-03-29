@@ -40,22 +40,17 @@ GetAlertId returns the AlertId field if non-nil, zero value otherwise.
 
 ### GetAlertIdOk
 
-`func (o *AlertValueWidgetDefinition) GetAlertIdOk() (string, bool)`
+`func (o *AlertValueWidgetDefinition) GetAlertIdOk() (*string, bool)`
 
 GetAlertIdOk returns a tuple with the AlertId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAlertId
-
-`func (o *AlertValueWidgetDefinition) HasAlertId() bool`
-
-HasAlertId returns a boolean if a field has been set.
 
 ### SetAlertId
 
 `func (o *AlertValueWidgetDefinition) SetAlertId(v string)`
 
-SetAlertId gets a reference to the given string and assigns it to the AlertId field.
+SetAlertId sets AlertId field to given value.
+
 
 ### GetPrecision
 
@@ -65,22 +60,22 @@ GetPrecision returns the Precision field if non-nil, zero value otherwise.
 
 ### GetPrecisionOk
 
-`func (o *AlertValueWidgetDefinition) GetPrecisionOk() (int64, bool)`
+`func (o *AlertValueWidgetDefinition) GetPrecisionOk() (*int64, bool)`
 
 GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPrecision
+
+`func (o *AlertValueWidgetDefinition) SetPrecision(v int64)`
+
+SetPrecision sets Precision field to given value.
 
 ### HasPrecision
 
 `func (o *AlertValueWidgetDefinition) HasPrecision() bool`
 
 HasPrecision returns a boolean if a field has been set.
-
-### SetPrecision
-
-`func (o *AlertValueWidgetDefinition) SetPrecision(v int64)`
-
-SetPrecision gets a reference to the given int64 and assigns it to the Precision field.
 
 ### GetTextAlign
 
@@ -90,22 +85,22 @@ GetTextAlign returns the TextAlign field if non-nil, zero value otherwise.
 
 ### GetTextAlignOk
 
-`func (o *AlertValueWidgetDefinition) GetTextAlignOk() (WidgetTextAlign, bool)`
+`func (o *AlertValueWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool)`
 
 GetTextAlignOk returns a tuple with the TextAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTextAlign
+
+`func (o *AlertValueWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
+
+SetTextAlign sets TextAlign field to given value.
 
 ### HasTextAlign
 
 `func (o *AlertValueWidgetDefinition) HasTextAlign() bool`
 
 HasTextAlign returns a boolean if a field has been set.
-
-### SetTextAlign
-
-`func (o *AlertValueWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
-
-SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.
 
 ### GetTitle
 
@@ -115,22 +110,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *AlertValueWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *AlertValueWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *AlertValueWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *AlertValueWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *AlertValueWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -140,22 +135,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *AlertValueWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *AlertValueWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *AlertValueWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *AlertValueWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *AlertValueWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -165,22 +160,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *AlertValueWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *AlertValueWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *AlertValueWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *AlertValueWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *AlertValueWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -190,22 +185,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *AlertValueWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *AlertValueWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *AlertValueWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *AlertValueWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetUnit
 
@@ -215,22 +205,22 @@ GetUnit returns the Unit field if non-nil, zero value otherwise.
 
 ### GetUnitOk
 
-`func (o *AlertValueWidgetDefinition) GetUnitOk() (string, bool)`
+`func (o *AlertValueWidgetDefinition) GetUnitOk() (*string, bool)`
 
 GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetUnit
+
+`func (o *AlertValueWidgetDefinition) SetUnit(v string)`
+
+SetUnit sets Unit field to given value.
 
 ### HasUnit
 
 `func (o *AlertValueWidgetDefinition) HasUnit() bool`
 
 HasUnit returns a boolean if a field has been set.
-
-### SetUnit
-
-`func (o *AlertValueWidgetDefinition) SetUnit(v string)`
-
-SetUnit gets a reference to the given string and assigns it to the Unit field.
 
 
 ### AsWidgetDefinition

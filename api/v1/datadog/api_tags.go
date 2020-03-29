@@ -44,7 +44,8 @@ func (r apiAddToHostTagsRequest) Source(source string) apiAddToHostTagsRequest {
 
 /*
 AddToHostTags Add tags to a host
-This endpoint allows you to add new tags to a host, optionally specifying where these tags come from.
+This endpoint allows you to add new tags to a host,
+optionally specifying where these tags come from.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName This endpoint allows you to add new tags to a host, optionally specifying where the tags came from.
 @return apiAddToHostTagsRequest
@@ -544,7 +545,8 @@ func (r apiRemoveHostTagsRequest) Source(source string) apiRemoveHostTagsRequest
 
 /*
 RemoveHostTags Remove host tags
-This endpoint allows you to remove all user-assigned tags for a single host.
+This endpoint allows you to remove all user-assigned tags
+for a single host.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName This endpoint allows you to remove all user-assigned tags for a single host.
 @return apiRemoveHostTagsRequest
@@ -696,7 +698,8 @@ func (r apiUpdateHostTagsRequest) Source(source string) apiUpdateHostTagsRequest
 
 /*
 UpdateHostTags Update host tags
-This endpoint allows you to update/replace all tags in an integration source with those supplied in the request.
+This endpoint allows you to update/replace all tags in
+an integration source with those supplied in the request.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostName This endpoint allows you to update/replace all in an integration source with those supplied in the request.
 @return apiUpdateHostTagsRequest

@@ -35,22 +35,17 @@ GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
 
 ### GetAggregationOk
 
-`func (o *LogsQueryCompute) GetAggregationOk() (string, bool)`
+`func (o *LogsQueryCompute) GetAggregationOk() (*string, bool)`
 
 GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAggregation
-
-`func (o *LogsQueryCompute) HasAggregation() bool`
-
-HasAggregation returns a boolean if a field has been set.
 
 ### SetAggregation
 
 `func (o *LogsQueryCompute) SetAggregation(v string)`
 
-SetAggregation gets a reference to the given string and assigns it to the Aggregation field.
+SetAggregation sets Aggregation field to given value.
+
 
 ### GetFacet
 
@@ -60,22 +55,22 @@ GetFacet returns the Facet field if non-nil, zero value otherwise.
 
 ### GetFacetOk
 
-`func (o *LogsQueryCompute) GetFacetOk() (string, bool)`
+`func (o *LogsQueryCompute) GetFacetOk() (*string, bool)`
 
 GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFacet
+
+`func (o *LogsQueryCompute) SetFacet(v string)`
+
+SetFacet sets Facet field to given value.
 
 ### HasFacet
 
 `func (o *LogsQueryCompute) HasFacet() bool`
 
 HasFacet returns a boolean if a field has been set.
-
-### SetFacet
-
-`func (o *LogsQueryCompute) SetFacet(v string)`
-
-SetFacet gets a reference to the given string and assigns it to the Facet field.
 
 ### GetInterval
 
@@ -85,22 +80,22 @@ GetInterval returns the Interval field if non-nil, zero value otherwise.
 
 ### GetIntervalOk
 
-`func (o *LogsQueryCompute) GetIntervalOk() (int64, bool)`
+`func (o *LogsQueryCompute) GetIntervalOk() (*int64, bool)`
 
 GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetInterval
+
+`func (o *LogsQueryCompute) SetInterval(v int64)`
+
+SetInterval sets Interval field to given value.
 
 ### HasInterval
 
 `func (o *LogsQueryCompute) HasInterval() bool`
 
 HasInterval returns a boolean if a field has been set.
-
-### SetInterval
-
-`func (o *LogsQueryCompute) SetInterval(v int64)`
-
-SetInterval gets a reference to the given int64 and assigns it to the Interval field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

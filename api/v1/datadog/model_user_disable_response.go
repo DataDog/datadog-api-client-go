@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UserDisableResponse struct for UserDisableResponse
+// UserDisableResponse Array of user disabled for a given organization.
 type UserDisableResponse struct {
 	Message *string `json:"message,omitempty"`
 }
@@ -43,14 +43,13 @@ func (o *UserDisableResponse) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserDisableResponse) GetMessageOk() (string, bool) {
+func (o *UserDisableResponse) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableUserDisableResponse) Get() *UserDisableResponse {
 	return v.value
 }
 
-func (v NullableUserDisableResponse) Set(val *UserDisableResponse) {
+func (v *NullableUserDisableResponse) Set(val *UserDisableResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableUserDisableResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUserDisableResponse) Unset() {
+func (v *NullableUserDisableResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

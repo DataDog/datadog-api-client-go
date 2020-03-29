@@ -12,9 +12,11 @@ import (
 	"encoding/json"
 )
 
-// HTTPLogError struct for HTTPLogError
+// HTTPLogError Invalid query performed.
 type HTTPLogError struct {
-	Code    int32  `json:"code"`
+	// Error code.
+	Code int32 `json:"code"`
+	// Error message.
 	Message string `json:"message"`
 }
 
@@ -47,6 +49,15 @@ func (o *HTTPLogError) GetCode() int32 {
 	return o.Code
 }
 
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *HTTPLogError) GetCodeOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
 // SetCode sets field value
 func (o *HTTPLogError) SetCode(v int32) {
 	o.Code = v
@@ -60,6 +71,15 @@ func (o *HTTPLogError) GetMessage() string {
 	}
 
 	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *HTTPLogError) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Message, true
 }
 
 // SetMessage sets field value
@@ -87,7 +107,7 @@ func (v NullableHTTPLogError) Get() *HTTPLogError {
 	return v.value
 }
 
-func (v NullableHTTPLogError) Set(val *HTTPLogError) {
+func (v *NullableHTTPLogError) Set(val *HTTPLogError) {
 	v.value = val
 	v.isSet = true
 }
@@ -96,7 +116,7 @@ func (v NullableHTTPLogError) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHTTPLogError) Unset() {
+func (v *NullableHTTPLogError) Unset() {
 	v.value = nil
 	v.isSet = false
 }
