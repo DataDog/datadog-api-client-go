@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for the given org. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for the given org. | [optional] 
 **PublicId** | Pointer to **string** | The organization public id. | [optional] 
+**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current date for the given org. | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for the given org. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for the given org. | [optional] 
 **TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current date for the given org. | [optional] 
@@ -546,6 +547,31 @@ SetPublicId sets PublicId field to given value.
 `func (o *UsageSummaryDateOrg) HasPublicId() bool`
 
 HasPublicId returns a boolean if a field has been set.
+
+### GetRumSessionCountSum
+
+`func (o *UsageSummaryDateOrg) GetRumSessionCountSum() int64`
+
+GetRumSessionCountSum returns the RumSessionCountSum field if non-nil, zero value otherwise.
+
+### GetRumSessionCountSumOk
+
+`func (o *UsageSummaryDateOrg) GetRumSessionCountSumOk() (*int64, bool)`
+
+GetRumSessionCountSumOk returns a tuple with the RumSessionCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRumSessionCountSum
+
+`func (o *UsageSummaryDateOrg) SetRumSessionCountSum(v int64)`
+
+SetRumSessionCountSum sets RumSessionCountSum field to given value.
+
+### HasRumSessionCountSum
+
+`func (o *UsageSummaryDateOrg) HasRumSessionCountSum() bool`
+
+HasRumSessionCountSum returns a boolean if a field has been set.
 
 ### GetSyntheticsBrowserCheckCallsCountSum
 

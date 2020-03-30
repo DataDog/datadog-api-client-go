@@ -216,6 +216,20 @@ func TestUsageNetworkFlows(t *testing.T) {
 	assert.Equal(t, usage.HasUsage(), true)
 }
 
+func TestUsageRumSessions(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageRumSessions(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
 // This test needs multi-org token so make it a unit test
 func TestUsageSummary(t *testing.T) {
 	teardownTest := setupUnitTest(t)
@@ -259,6 +273,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(t, usage.GetInfraHostTop99pSum(), int64(2))
 	assert.Equal(t, usage.GetContainerHwmSum(), int64(1))
 	assert.Equal(t, usage.GetCustomTsSum(), int64(4))
+	assert.Equal(t, usage.GetRumSessionCountAggSum(), int64(5))
 
 	var usageItem = usage.GetUsage()[0]
 	assert.DeepEqual(t, usageItem.GetDate(), time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC))
@@ -269,6 +284,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(t, usageItem.GetCustomTsAvg(), int64(6))
 	assert.Equal(t, usageItem.GetGcpHostTop99p(), int64(7))
 	assert.Equal(t, usageItem.GetInfraHostTop99p(), int64(8))
+	assert.Equal(t, usageItem.GetRumSessionCountSum(), int64(9))
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal(t, usageOrgItem.GetId(), "1b")
@@ -280,4 +296,5 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(t, usageOrgItem.GetCustomTsAvg(), int64(6))
 	assert.Equal(t, usageOrgItem.GetGcpHostTop99p(), int64(7))
 	assert.Equal(t, usageOrgItem.GetInfraHostTop99p(), int64(8))
+	assert.Equal(t, usageOrgItem.GetRumSessionCountSum(), int64(9))
 }

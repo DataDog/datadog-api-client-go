@@ -55,6 +55,8 @@ type UsageSummaryResponse struct {
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all orgs.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
+	// Shows the sum of all RUM Sessions over all hours in the current month(s) for all orgs.
+	RumSessionCountAggSum *int64 `json:"rum_session_count_agg_sum,omitempty"`
 	// Shows the first date of usage in the current month(s) for all orgs.
 	StartDate *time.Time `json:"start_date,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all orgs.
@@ -723,6 +725,38 @@ func (o *UsageSummaryResponse) SetNpmHostTop99pSum(v int64) {
 	o.NpmHostTop99pSum = &v
 }
 
+// GetRumSessionCountAggSum returns the RumSessionCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumSessionCountAggSum() int64 {
+	if o == nil || o.RumSessionCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumSessionCountAggSum
+}
+
+// GetRumSessionCountAggSumOk returns a tuple with the RumSessionCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumSessionCountAggSumOk() (*int64, bool) {
+	if o == nil || o.RumSessionCountAggSum == nil {
+		return nil, false
+	}
+	return o.RumSessionCountAggSum, true
+}
+
+// HasRumSessionCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumSessionCountAggSum() bool {
+	if o != nil && o.RumSessionCountAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRumSessionCountAggSum gets a reference to the given int64 and assigns it to the RumSessionCountAggSum field.
+func (o *UsageSummaryResponse) SetRumSessionCountAggSum(v int64) {
+	o.RumSessionCountAggSum = &v
+}
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
@@ -944,6 +978,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.NpmHostTop99pSum != nil {
 		toSerialize["npm_host_top99p_sum"] = o.NpmHostTop99pSum
+	}
+	if o.RumSessionCountAggSum != nil {
+		toSerialize["rum_session_count_agg_sum"] = o.RumSessionCountAggSum
 	}
 	if o.StartDate != nil {
 		toSerialize["start_date"] = o.StartDate
