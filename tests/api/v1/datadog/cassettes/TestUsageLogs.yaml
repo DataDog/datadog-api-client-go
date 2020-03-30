@@ -9,38 +9,34 @@ interactions:
       - application/json;datetime-format=rfc3339
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/usage/logs?end_hr=2020-01-13T00%3A00%3A00Z&start_hr=2020-01-12T00%3A00%3A00Z
+    url: https://api.datadoghq.com/api/v1/usage/logs?end_hr=2020-02-13T00%3A00%3A00Z&start_hr=2020-02-12T00%3A00%3A00Z
     method: GET
   response:
-    body: '{"usage":[{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T00:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T01:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T02:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T03:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T04:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T05:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T06:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T07:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T08:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T09:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T10:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T11:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T12:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T13:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T14:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T15:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T16:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T17:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T18:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T19:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T20:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T21:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T22:00:00+00:00"},{"billable_ingested_bytes":0,"ingested_events_bytes":0,"indexed_events_count":0,"hour":"2020-01-12T23:00:00+00:00"}]}'
+    body: '{"usage":[{"billable_ingested_bytes":1813873284156,"ingested_events_bytes":1813873284156,"indexed_events_count":505039426,"hour":"2020-02-12T00:00:00+00:00"},{"billable_ingested_bytes":1803696703850,"ingested_events_bytes":1803696703850,"indexed_events_count":496857002,"hour":"2020-02-12T01:00:00+00:00"},{"billable_ingested_bytes":1762260352450,"ingested_events_bytes":1762260352450,"indexed_events_count":473455546,"hour":"2020-02-12T02:00:00+00:00"},{"billable_ingested_bytes":1757399409368,"ingested_events_bytes":1757399409368,"indexed_events_count":471080318,"hour":"2020-02-12T03:00:00+00:00"},{"billable_ingested_bytes":1799989516183,"ingested_events_bytes":1799989516183,"indexed_events_count":467564682,"hour":"2020-02-12T04:00:00+00:00"},{"billable_ingested_bytes":1829857702640,"ingested_events_bytes":1829857702640,"indexed_events_count":478955877,"hour":"2020-02-12T05:00:00+00:00"},{"billable_ingested_bytes":1837945225365,"ingested_events_bytes":1837945225365,"indexed_events_count":482705389,"hour":"2020-02-12T06:00:00+00:00"},{"billable_ingested_bytes":1890745245267,"ingested_events_bytes":1890745245267,"indexed_events_count":478021051,"hour":"2020-02-12T07:00:00+00:00"},{"billable_ingested_bytes":1922628007920,"ingested_events_bytes":1922628007920,"indexed_events_count":496775529,"hour":"2020-02-12T08:00:00+00:00"},{"billable_ingested_bytes":1939274330776,"ingested_events_bytes":1939274330776,"indexed_events_count":502804785,"hour":"2020-02-12T09:00:00+00:00"},{"billable_ingested_bytes":1935593577958,"ingested_events_bytes":1935593577958,"indexed_events_count":509110602,"hour":"2020-02-12T10:00:00+00:00"},{"billable_ingested_bytes":1883702958033,"ingested_events_bytes":1883702958033,"indexed_events_count":492205979,"hour":"2020-02-12T11:00:00+00:00"},{"billable_ingested_bytes":1931734978992,"ingested_events_bytes":1931734978992,"indexed_events_count":500613213,"hour":"2020-02-12T12:00:00+00:00"},{"billable_ingested_bytes":1940329457903,"ingested_events_bytes":1940329457903,"indexed_events_count":511696677,"hour":"2020-02-12T13:00:00+00:00"},{"billable_ingested_bytes":2063423208005,"ingested_events_bytes":2063423208005,"indexed_events_count":594595757,"hour":"2020-02-12T14:00:00+00:00"},{"billable_ingested_bytes":2065080298412,"ingested_events_bytes":2065080298412,"indexed_events_count":611864303,"hour":"2020-02-12T15:00:00+00:00"},{"billable_ingested_bytes":1983377603930,"ingested_events_bytes":1983377603930,"indexed_events_count":609676951,"hour":"2020-02-12T16:00:00+00:00"},{"billable_ingested_bytes":1951509133384,"ingested_events_bytes":1951509133384,"indexed_events_count":590289967,"hour":"2020-02-12T17:00:00+00:00"},{"billable_ingested_bytes":1946012483820,"ingested_events_bytes":1946012483820,"indexed_events_count":590687492,"hour":"2020-02-12T18:00:00+00:00"},{"billable_ingested_bytes":1988259252122,"ingested_events_bytes":1988259252122,"indexed_events_count":611119590,"hour":"2020-02-12T19:00:00+00:00"},{"billable_ingested_bytes":2079564488641,"ingested_events_bytes":2079564488641,"indexed_events_count":596149978,"hour":"2020-02-12T20:00:00+00:00"},{"billable_ingested_bytes":2069778580985,"ingested_events_bytes":2069778580985,"indexed_events_count":592159147,"hour":"2020-02-12T21:00:00+00:00"},{"billable_ingested_bytes":2016000705243,"ingested_events_bytes":2016000705243,"indexed_events_count":569508149,"hour":"2020-02-12T22:00:00+00:00"},{"billable_ingested_bytes":2094019273479,"ingested_events_bytes":2094019273479,"indexed_events_count":564677506,"hour":"2020-02-12T23:00:00+00:00"}]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "3563"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:14:52 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 30 Mar 2020 21:01:46 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:52 GMT;
+      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Mon, 06-Apr-2020 21:01:46 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - vwiIwb5QepaQFIQrmPfIwwVWkQ/z0inFQwNEDjqDDy4v3CsF5qbv9dnyfb7UGzLf
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2336355"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -48,9 +44,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "183"
+      - "198"
       X-Ratelimit-Reset:
-      - "2708"
+      - "3494"
     status: 200 OK
     code: 200
     duration: ""

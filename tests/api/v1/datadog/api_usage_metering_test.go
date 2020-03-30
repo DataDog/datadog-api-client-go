@@ -8,10 +8,11 @@ package test
 
 import (
 	"encoding/json"
-	"gopkg.in/h2non/gock.v1"
 	"io/ioutil"
 	"path/filepath"
 	"strconv"
+
+	"gopkg.in/h2non/gock.v1"
 
 	"testing"
 	"time"
@@ -90,6 +91,34 @@ func TestUsageSynthetics(t *testing.T) {
 	assert.Equal(t, usage.HasUsage(), true)
 }
 
+func TestUsageSyntheticsAPI(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageSyntheticsAPI(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Synthetics API: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageSyntheticsBrowser(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageSyntheticsBrowser(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Synthetics Browser: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
 func TestUsageTimeseries(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
@@ -125,6 +154,62 @@ func TestUsageTrace(t *testing.T) {
 	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageTrace(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Trace: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageLogsByIndex(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageLogsByIndex(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Logs by Index: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageLambda(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageLambda(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Lambda: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageNetworkHosts(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageNetworkHosts(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Network Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageNetworkFlows(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageNetworkFlows(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Network Flows: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
@@ -176,23 +261,23 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(t, usage.GetCustomTsSum(), int64(4))
 
 	var usageItem = usage.GetUsage()[0]
-	assert.DeepEqual(t, usageItem.GetDate(),  time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC))
-	assert.Equal(t, usageItem.GetAgentHostTop99p(),  int64(1))
-	assert.Equal(t, usageItem.GetApmHostTop99p(),  int64(2))
-	assert.Equal(t, usageItem.GetAwsHostTop99p(),  int64(3))
-	assert.Equal(t, usageItem.GetContainerHwm(),  int64(5))
-	assert.Equal(t, usageItem.GetCustomTsAvg(),  int64(6))
-	assert.Equal(t, usageItem.GetGcpHostTop99p(),  int64(7))
-	assert.Equal(t, usageItem.GetInfraHostTop99p(),  int64(8))
+	assert.DeepEqual(t, usageItem.GetDate(), time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC))
+	assert.Equal(t, usageItem.GetAgentHostTop99p(), int64(1))
+	assert.Equal(t, usageItem.GetApmHostTop99p(), int64(2))
+	assert.Equal(t, usageItem.GetAwsHostTop99p(), int64(3))
+	assert.Equal(t, usageItem.GetContainerHwm(), int64(5))
+	assert.Equal(t, usageItem.GetCustomTsAvg(), int64(6))
+	assert.Equal(t, usageItem.GetGcpHostTop99p(), int64(7))
+	assert.Equal(t, usageItem.GetInfraHostTop99p(), int64(8))
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal(t, usageOrgItem.GetId(), "1b")
 	assert.Equal(t, usageOrgItem.GetName(), "datadog")
-	assert.Equal(t, usageOrgItem.GetAgentHostTop99p(),  int64(1))
-	assert.Equal(t, usageOrgItem.GetApmHostTop99p(),  int64(2))
-	assert.Equal(t, usageOrgItem.GetAwsHostTop99p(),  int64(3))
-	assert.Equal(t, usageOrgItem.GetContainerHwm(),  int64(5))
-	assert.Equal(t, usageOrgItem.GetCustomTsAvg(),  int64(6))
-	assert.Equal(t, usageOrgItem.GetGcpHostTop99p(),  int64(7))
-	assert.Equal(t, usageOrgItem.GetInfraHostTop99p(),  int64(8))
+	assert.Equal(t, usageOrgItem.GetAgentHostTop99p(), int64(1))
+	assert.Equal(t, usageOrgItem.GetApmHostTop99p(), int64(2))
+	assert.Equal(t, usageOrgItem.GetAwsHostTop99p(), int64(3))
+	assert.Equal(t, usageOrgItem.GetContainerHwm(), int64(5))
+	assert.Equal(t, usageOrgItem.GetCustomTsAvg(), int64(6))
+	assert.Equal(t, usageOrgItem.GetGcpHostTop99p(), int64(7))
+	assert.Equal(t, usageOrgItem.GetInfraHostTop99p(), int64(8))
 }
