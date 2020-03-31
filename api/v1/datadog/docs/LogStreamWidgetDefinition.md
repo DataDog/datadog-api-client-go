@@ -6,7 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Columns** | Pointer to **[]string** | Which columns to display on the widget | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. | [optional] 
+**MessageDisplay** | Pointer to [**WidgetMessageDisplay**](WidgetMessageDisplay.md) |  | [optional] 
 **Query** | Pointer to **string** | Query to filter the log stream with | [optional] 
+**ShowDateColumn** | Pointer to **bool** | Whether to show the date column or not | [optional] 
+**ShowMessageColumn** | Pointer to **bool** | Whether to show the message column or not | [optional] 
+**Sort** | Pointer to [**WidgetFieldSort**](WidgetFieldSort.md) |  | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
@@ -82,6 +86,31 @@ SetIndexes sets Indexes field to given value.
 
 HasIndexes returns a boolean if a field has been set.
 
+### GetMessageDisplay
+
+`func (o *LogStreamWidgetDefinition) GetMessageDisplay() WidgetMessageDisplay`
+
+GetMessageDisplay returns the MessageDisplay field if non-nil, zero value otherwise.
+
+### GetMessageDisplayOk
+
+`func (o *LogStreamWidgetDefinition) GetMessageDisplayOk() (*WidgetMessageDisplay, bool)`
+
+GetMessageDisplayOk returns a tuple with the MessageDisplay field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessageDisplay
+
+`func (o *LogStreamWidgetDefinition) SetMessageDisplay(v WidgetMessageDisplay)`
+
+SetMessageDisplay sets MessageDisplay field to given value.
+
+### HasMessageDisplay
+
+`func (o *LogStreamWidgetDefinition) HasMessageDisplay() bool`
+
+HasMessageDisplay returns a boolean if a field has been set.
+
 ### GetQuery
 
 `func (o *LogStreamWidgetDefinition) GetQuery() string`
@@ -106,6 +135,81 @@ SetQuery sets Query field to given value.
 `func (o *LogStreamWidgetDefinition) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
+
+### GetShowDateColumn
+
+`func (o *LogStreamWidgetDefinition) GetShowDateColumn() bool`
+
+GetShowDateColumn returns the ShowDateColumn field if non-nil, zero value otherwise.
+
+### GetShowDateColumnOk
+
+`func (o *LogStreamWidgetDefinition) GetShowDateColumnOk() (*bool, bool)`
+
+GetShowDateColumnOk returns a tuple with the ShowDateColumn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShowDateColumn
+
+`func (o *LogStreamWidgetDefinition) SetShowDateColumn(v bool)`
+
+SetShowDateColumn sets ShowDateColumn field to given value.
+
+### HasShowDateColumn
+
+`func (o *LogStreamWidgetDefinition) HasShowDateColumn() bool`
+
+HasShowDateColumn returns a boolean if a field has been set.
+
+### GetShowMessageColumn
+
+`func (o *LogStreamWidgetDefinition) GetShowMessageColumn() bool`
+
+GetShowMessageColumn returns the ShowMessageColumn field if non-nil, zero value otherwise.
+
+### GetShowMessageColumnOk
+
+`func (o *LogStreamWidgetDefinition) GetShowMessageColumnOk() (*bool, bool)`
+
+GetShowMessageColumnOk returns a tuple with the ShowMessageColumn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShowMessageColumn
+
+`func (o *LogStreamWidgetDefinition) SetShowMessageColumn(v bool)`
+
+SetShowMessageColumn sets ShowMessageColumn field to given value.
+
+### HasShowMessageColumn
+
+`func (o *LogStreamWidgetDefinition) HasShowMessageColumn() bool`
+
+HasShowMessageColumn returns a boolean if a field has been set.
+
+### GetSort
+
+`func (o *LogStreamWidgetDefinition) GetSort() WidgetFieldSort`
+
+GetSort returns the Sort field if non-nil, zero value otherwise.
+
+### GetSortOk
+
+`func (o *LogStreamWidgetDefinition) GetSortOk() (*WidgetFieldSort, bool)`
+
+GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSort
+
+`func (o *LogStreamWidgetDefinition) SetSort(v WidgetFieldSort)`
+
+SetSort sets Sort field to given value.
+
+### HasSort
+
+`func (o *LogStreamWidgetDefinition) HasSort() bool`
+
+HasSort returns a boolean if a field has been set.
 
 ### GetTime
 
