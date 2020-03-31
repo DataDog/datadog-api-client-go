@@ -22,7 +22,6 @@ func TestIncidentTodosLifecycle(t *testing.T) {
 	defer deleteTestIncident(t, INCIDENT.GetId())
 
 	time := TESTCLOCK.Now()
-	formattedClock := *datadog.NewNullableTime(&time)
 	testIncidentTodoData := datadog.NewIncidentTodoWithDefaults()
 	testIncidentTodoData.SetType("incident_todos")
 	testIncidentTodoData.SetAttributes(*datadog.NewIncidentTodoAttributesWithDefaults())
@@ -53,9 +52,9 @@ func TestIncidentTodosLifecycle(t *testing.T) {
 
 	assert.Equal(t, incidentTodo.GetType(), testIncidentTodoData.GetType())
 	assert.Equal(t, incidentTodoAttrs.GetContent(), testIncidentTodoData.Attributes.GetContent())
-	assert.Nil(t, incidentTodoAttrs.GetCompleted().Get())
+
 	// Edit IncidentTodo
-	incidentTodo.Attributes.SetCompleted(formattedClock)
+	incidentTodo.Attributes.SetCompleted(time)
 	incidentTodoUpdatedRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.
 		PatchIncidentTodo(TESTAUTH, INCIDENT.GetId(), incidentTodo.GetId()).
 		Body(*datadog.NewIncidentTodoPayload(incidentTodo)).Execute()
@@ -66,7 +65,6 @@ func TestIncidentTodosLifecycle(t *testing.T) {
 	incidentTodoUpdated := incidentTodoUpdatedRsp.GetData()
 	incidentTodoAttrsUpdated := incidentTodoUpdated.GetAttributes()
 	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.NotNil(t, incidentTodoAttrsUpdated.GetCompleted().Get())
 
 	// Get IncidentTodo
 	incidentTodoGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.

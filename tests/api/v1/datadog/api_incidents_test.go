@@ -19,7 +19,6 @@ func TestIncidentsLifecycle(t *testing.T) {
 	defer teardownTest(t)
 
 	time := TESTCLOCK.Now()
-	formattedClock := *datadog.NewNullableTime(&time)
 	testIncidentData := datadog.NewIncidentWithDefaults()
 	testIncidentData.SetType("incidents")
 	testIncidentData.SetAttributes(*datadog.NewIncidentAttributesWithDefaults())
@@ -27,9 +26,9 @@ func TestIncidentsLifecycle(t *testing.T) {
 	testIncidentData.Attributes.SetState("unkown")
 	testIncidentData.Attributes.SetCustomerImpacted(false)
 	testIncidentData.Attributes.SetCustomerImpactScope("none")
-	testIncidentData.Attributes.SetCustomerImpactStart(formattedClock)
-	testIncidentData.Attributes.SetCustomerImpactEnd(formattedClock)
-	testIncidentData.Attributes.SetDetected(formattedClock)
+	testIncidentData.Attributes.SetCustomerImpactStart(time)
+	testIncidentData.Attributes.SetCustomerImpactEnd(time)
+	testIncidentData.Attributes.SetDetected(time)
 
 	// Create Incident
 	incidentRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.CreateIncident(TESTAUTH).Body(*datadog.NewIncidentPayload(*testIncidentData)).Execute()
