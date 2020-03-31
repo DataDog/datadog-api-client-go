@@ -7,6 +7,7 @@
 package test
 
 import (
+	"encoding/json"
 	"testing"
 	"time"
 
@@ -28,24 +29,27 @@ var testEvent = datadog.Event{
 	SourceTypeName: datadog.PtrString("datadog-api-client-go"),
 }
 
+type createEventResponse struct {
+	Event datadog.Event `json:"event"`
+}
+
 func TestEventLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
 	// Create event
-	eventResponse, httpresp, err := TESTAPICLIENT.EventsApi.CreateEvent(TESTAUTH).Body(testEvent).Execute()
+	marshalledEvent, _ := json.Marshal(testEvent)
+	httpresp, respBody, err := sendRequest("POST", "/api/v1/events", marshalledEvent)
 	if err != nil {
-		t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, err.(datadog.GenericOpenAPIError).Body(), err)
+        t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, string(respBody), err)
 	}
-	// defer deleteEvent(eventResponse.GetEvent().GetId())
 	assert.Equal(t, httpresp.StatusCode, 202)
-
-	event := eventResponse.GetEvent()
-	status := eventResponse.GetStatus()
-	assert.Equal(t, status, "ok")
-	assert.Equal(t, event.GetTitle(), testEvent.GetTitle())
-	assert.Equal(t, event.GetText(), testEvent.GetText())
-	assert.Assert(t, event.GetUrl() != "")
+	var unmarshaledBody createEventResponse
+	err = json.Unmarshal(respBody, &unmarshaledBody)
+	if err != nil {
+		t.Fatalf("Failed unmarshalling event from response: %s", err)
+	}
+	event := unmarshaledBody.Event
 
 	var fetchedEventResponse datadog.EventResponse
 
@@ -61,9 +65,9 @@ func TestEventLifecycle(t *testing.T) {
 
 	fetchedEvent := fetchedEventResponse.GetEvent()
 	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Equal(t, event.GetTitle(), fetchedEvent.GetTitle())
-	assert.Equal(t, event.GetText(), fetchedEvent.GetText())
-	// not the same!!! assert.Equal(t, event.GetUrl(), fetchedEvent.GetUrl())
+	assert.Equal(t, testEvent.GetTitle(), fetchedEvent.GetTitle())
+	assert.Equal(t, testEvent.GetText(), fetchedEvent.GetText())
+	// not the same!!! assert.Equal(t, testEvent.GetUrl(), fetchedEvent.GetUrl())
 	assert.Assert(t, fetchedEvent.GetUrl() != "")
 
 	// Find our event in the full list
