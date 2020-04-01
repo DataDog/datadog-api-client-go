@@ -155,18 +155,6 @@ tags:
     For more information on creating SLOs, see the  Configuring Service Level Objectives
     [info](https://docs.datadoghq.com/monitors/service_level_objectives/#configuration).
   name: SLO
-- description: |-
-    Submit Service Check.
-    [Read more about Service Check monitors.][1]
-    [Read more about Process Check monitors.][2]
-    [Read more about Network Check monitors.][3]
-    [Read more about Custom Check monitors.][4]
-
-    [1]: https://docs.datadoghq.com/monitors/monitor_types/host/?tab=checkalert
-    [2]: https://docs.datadoghq.com/monitors/monitor_types/process_check/?tab=checkalert
-    [3]: https://docs.datadoghq.com/monitors/monitor_types/network/?tab=checkalert
-    [4]: https://docs.datadoghq.com/monitors/monitor_types/custom_check/?tab=checkalert
-  name: Service Checks
 - description: Take graph snapshots using the API.
   name: Snapshots
 - description: |-
@@ -611,57 +599,6 @@ paths:
       summary: Edit an application key
       tags:
       - Key Management
-      x-codegen-request-body-name: body
-  /api/v1/check_run:
-    post:
-      description: |-
-        Submit a list of Service Checks.
-
-        **Note**: valid API key is required.
-      operationId: SubmitServiceCheck
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ServiceChecks'
-        description: Service Check body
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IntakePayloadAccepted'
-          description: Payload accepted
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Bad Request
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Authentication Error
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Request timeout
-        "413":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Payload too large
-      security:
-      - apiKeyAuthQuery: []
-      summary: Submit a Service Check
-      tags:
-      - Service Checks
       x-codegen-request-body-name: body
   /api/v1/dashboard:
     get:
@@ -1314,37 +1251,6 @@ paths:
       summary: Query the event stream
       tags:
       - Events
-    post:
-      description: |-
-        This endpoint allows you to post events to the stream.
-        Tag them, set priority and event aggregate them with other events.
-      operationId: CreateEvent
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Event'
-        description: Event request object
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Bad Request
-      security:
-      - apiKeyAuthQuery: []
-      summary: Post an event
-      tags:
-      - Events
-      x-codegen-request-body-name: body
   /api/v1/events/{event_id}:
     get:
       description: |-
@@ -3664,64 +3570,6 @@ paths:
       summary: Search metrics
       tags:
       - Metrics
-  /api/v1/series:
-    post:
-      description: |-
-        The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
-        The limit for compressed payloads is 3.2 megabytes (3200000), and 62 megabytes (62914560) for decompressed payloads.
-
-        If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect
-
-        - 64 bits for the timestamp
-        - 64 bits for the value
-        - 20 bytes for the metric names
-        - 50 bytes for the timeseries
-        - The full payload is approximately ~ 100 bytes. However, with the DogStatsD API,
-        compression is applied, which reduces the payload size.
-      operationId: SubmitMetrics
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MetricsPayload'
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IntakePayloadAccepted'
-          description: Payload accepted
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Bad Request
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Authentication error
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Request timeout
-        "413":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Payload too large
-      security:
-      - apiKeyAuthQuery: []
-      summary: Submit metrics
-      tags:
-      - Metrics
-      x-codegen-request-body-name: body
   /api/v1/slo:
     get:
       description: Get multiple service level objective objects by their IDs.
@@ -5436,68 +5284,6 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
-  /v1/input:
-    post:
-      description: |-
-        Send your logs to your Datadog platform over HTTP. Limits per HTTP request are as follows.
-        - Maximum content size per payload is 5MB.
-        - Maximum size for a single log is 256kB.
-        - Maximum array size if sending multiple logs in an array is 500 entries.
-
-        Any log exceeding 256KB is accepted and truncated by datadog
-        - For a single log request, the API truncates the log at 256KB and returns a 2xx.
-        - For a multi-logs request, the API processes all logs,
-        truncates only logs larger than 256KB, and returns a 2xx.
-
-        **Note**: If you are in the Datadog EU site (`app.datadoghq.eu`),
-        the HTTP log endpoint is `http-intake.logs.datadoghq.eu`.
-      operationId: SendLog
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/HTTPLog'
-        description: Log to send (JSON format).
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Response from server (always 200 empty JSON).
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPLogError'
-          description: unexpected error
-      security:
-      - apiKeyAuth: []
-      servers:
-      - url: https://{subdomain}.{site}
-        variables:
-          site:
-            default: datadoghq.com
-            description: The regional site for our customers.
-            enum:
-            - datadoghq.com
-            - datadoghq.eu
-          subdomain:
-            default: http-intake.logs
-            description: The subdomain where the API is deployed.
-      - url: '{protocol}://{name}'
-        variables:
-          name:
-            default: http-intake.logs.datadoghq.com
-            description: Full site DNS name.
-          protocol:
-            default: https
-            description: The protocol for accessing the API.
-      summary: Send logs
-      tags:
-      - Logs
-      x-codegen-request-body-name: body
 components:
   callbacks: {}
   examples: {}
@@ -7088,53 +6874,6 @@ components:
       - type
       - widgets
       type: object
-    HTTPLog:
-      example:
-        hostname: i-012345678
-        ddtags: env:staging,service:payment
-        message: 2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World
-        ddsource: nginx
-      properties:
-        ddsource:
-          description: |-
-            The integration name associated with your log: the technology from which the log originated.
-            When it matches an integration name, Datadog automatically installs the corresponding parsers and facets.
-            See [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).
-          example: nginx
-          type: string
-        ddtags:
-          description: Tags associated with your logs.
-          example: env:staging,service:payment
-          type: string
-        hostname:
-          description: The name of the originating host of the log.
-          example: i-012345678
-          type: string
-        message:
-          description: |-
-            The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes)
-            of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry.
-            That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
-          example: 2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World
-          type: string
-      required:
-      - name
-      type: object
-    HTTPLogError:
-      description: Invalid query performed.
-      properties:
-        code:
-          description: Error code.
-          format: int32
-          maximum: 2147483647
-          type: integer
-        message:
-          description: Error message.
-          type: string
-      required:
-      - code
-      - message
-      type: object
     HTTPMethod:
       enum:
       - GET
@@ -7971,14 +7710,6 @@ components:
       required:
       - type
       - url
-      type: object
-    IntakePayloadAccepted:
-      example:
-        status: ok
-      properties:
-        status:
-          example: ok
-          type: string
       type: object
     Log:
       example:
@@ -8987,40 +8718,6 @@ components:
           description: List of metric names.
           items:
             type: string
-          type: array
-      type: object
-    MetricsPayload:
-      example:
-        series:
-        - metric: system.load.1
-          host: host
-          interval: 0
-          type: gauge
-          points:
-          - - 1575317847
-            - 0.5
-          - - 1575317847
-            - 0.5
-          tags:
-          - tags
-          - tags
-        - metric: system.load.1
-          host: host
-          interval: 0
-          type: gauge
-          points:
-          - - 1575317847
-            - 0.5
-          - - 1575317847
-            - 0.5
-          tags:
-          - tags
-          - tags
-      properties:
-        series:
-          description: A list of time series to submit to Datadog.
-          items:
-            $ref: '#/components/schemas/Series'
           type: array
       type: object
     MetricsQueryResponse:
@@ -10189,103 +9886,6 @@ components:
       - requests
       - type
       type: object
-    Series:
-      description: |-
-        A metric to submit to Datadog.
-        See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties).
-      example:
-        metric: system.load.1
-        host: host
-        interval: 0
-        type: gauge
-        points:
-        - - 1575317847
-          - 0.5
-        - - 1575317847
-          - 0.5
-        tags:
-        - tags
-        - tags
-      properties:
-        host:
-          description: The name of the host that produced the metric.
-          type: string
-        interval:
-          description: If the type of the metric is rate or count, define the corresponding
-            interval.
-          format: int64
-          nullable: true
-          type: integer
-        metric:
-          description: The name of the timeseries.
-          example: system.load.1
-          type: string
-        points:
-          items:
-            $ref: '#/components/schemas/Point'
-          type: array
-        tags:
-          description: A list of tags associated with the metric.
-          items:
-            type: string
-          type: array
-        type:
-          default: gauge
-          type: string
-      required:
-      - metric
-      - points
-      type: object
-    ServiceCheck:
-      example:
-        check: app.ok
-        message: app is running
-        host_name: app.host1
-        status: 0
-        tags:
-        - tags
-        - tags
-        timestamp: 0
-      properties:
-        check:
-          example: app.ok
-          type: string
-        host_name:
-          example: app.host1
-          type: string
-        message:
-          example: app is running
-          type: string
-        status:
-          $ref: '#/components/schemas/ServiceCheckStatus'
-        tags:
-          items:
-            type: string
-          type: array
-        timestamp:
-          format: int64
-          type: integer
-      required:
-      - check
-      - status
-      type: object
-    ServiceCheckStatus:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      example: 0
-      type: integer
-      x-enum-varnames:
-      - OK
-      - WARNING
-      - CRITICAL
-      - UNKNOWN
-    ServiceChecks:
-      items:
-        $ref: '#/components/schemas/ServiceCheck'
-      type: array
     ServiceLevelObjective:
       description: |-
         A service level objective object includes a service level indicator, thresholds

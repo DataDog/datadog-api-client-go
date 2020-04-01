@@ -10,25 +10,6 @@ import (
 	"gotest.tools/assert"
 )
 
-func TestLogHTTPIntake(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
-
-	httpLog := datadog.HTTPLog{
-		Ddsource: datadog.PtrString("source"),
-		Ddtags:   datadog.PtrString("go,test,intake"),
-		Hostname: datadog.PtrString("datadog-api-client-go-test"),
-		Message:  datadog.PtrString("testing message"),
-	}
-
-	// Create log entry
-	_, httpresp, err := TESTAPICLIENT.LogsApi.SendLog(TESTAUTH).Body(httpLog).Execute()
-	if err != nil {
-		t.Fatalf("Error creating log: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
-}
-
 func TestLogsList(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
@@ -39,28 +20,28 @@ func TestLogsList(t *testing.T) {
 	message := fmt.Sprintf("test-log-list-%d", nanoNow)
 	hostname := fmt.Sprintf("datadog-api-client-go-test-%d", nanoNow)
 
-	httpLog := datadog.HTTPLog{
-		Ddsource: &source,
-		Ddtags:   datadog.PtrString("go,test,list"),
-		Hostname: &hostname,
-		Message:  datadog.PtrString(fmt.Sprintf(`{"timestamp": %d, "message": "%s"}`, (now.Unix()-1)*1000, message)),
-	}
-
 	// Create log entry
-	_, httpresp, err := TESTAPICLIENT.LogsApi.SendLog(TESTAUTH).Body(httpLog).Execute()
+	httpLog := fmt.Sprintf(
+		`{"ddsource": "%s", "ddtags": "go,test,list", "hostname": "%s", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
+		source, hostname, (now.Unix()-1)*1000, message,
+	)
+	httpresp, respBody, err := sendRequest("POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
 	if err != nil {
-		t.Fatalf("Error creating log: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating log: Response %s: %v", respBody, err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	time.Sleep(time.Duration(500) * time.Microsecond)
 
 	secondMessage := fmt.Sprintf("second-test-log-list-%d", nanoNow)
-	httpLog.SetMessage(fmt.Sprintf(`{"timestamp": %d, "message": "%s"}`, (now.Unix())*1000, secondMessage))
+	httpLog = fmt.Sprintf(
+		`{"ddsource": "%s", "ddtags": "go,test,list", "hostname": "%s", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
+		source, hostname, (now.Unix())*1000, secondMessage,
+	)
 
 	// Create second log entry
-	_, httpresp, err = TESTAPICLIENT.LogsApi.SendLog(TESTAUTH).Body(httpLog).Execute()
+	httpresp, respBody, err = sendRequest("POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
 	if err != nil {
-		t.Fatalf("Error creating log: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating log: Response %s: %v", respBody, err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 

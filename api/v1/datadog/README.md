@@ -107,7 +107,6 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**GetAllDowntimes**](docs/DowntimesApi.md#getalldowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**GetDowntime**](docs/DowntimesApi.md#getdowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
-*EventsApi* | [**CreateEvent**](docs/EventsApi.md#createevent) | **Post** /api/v1/events | Post an event
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /api/v1/events/{event_id} | Get an event
 *EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream
 *GCPIntegrationApi* | [**CreateGCPIntegration**](docs/GCPIntegrationApi.md#creategcpintegration) | **Post** /api/v1/integration/gcp | Create a GCP integration
@@ -130,7 +129,6 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**GetAllApplicationKeys**](docs/KeyManagementApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
 *KeyManagementApi* | [**GetApplicationKey**](docs/KeyManagementApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get an application key
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
-*LogsApi* | [**SendLog**](docs/LogsApi.md#sendlog) | **Post** /v1/input | Send logs
 *LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
@@ -148,7 +146,6 @@ Class | Method | HTTP request | Description
 *MetricsApi* | [**GetMetricMetadata**](docs/MetricsApi.md#getmetricmetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
 *MetricsApi* | [**QueryMetrics**](docs/MetricsApi.md#querymetrics) | **Get** /api/v1/query | Query timeseries points
 *MetricsApi* | [**SearchMetrics**](docs/MetricsApi.md#searchmetrics) | **Get** /api/v1/search | Search metrics
-*MetricsApi* | [**SubmitMetrics**](docs/MetricsApi.md#submitmetrics) | **Post** /api/v1/series | Submit metrics
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
 *MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
@@ -171,7 +168,6 @@ Class | Method | HTTP request | Description
 *SLOApi* | [**GetSLO**](docs/SLOApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
 *SLOApi* | [**GetSLOs**](docs/SLOApi.md#getslos) | **Get** /api/v1/slo | Search SLOs
 *SLOApi* | [**HistoryForSLO**](docs/SLOApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-*ServiceChecksApi* | [**SubmitServiceCheck**](docs/ServiceChecksApi.md#submitservicecheck) | **Post** /api/v1/check_run | Submit a Service Check
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateTest**](docs/SyntheticsApi.md#createtest) | **Post** /api/v1/synthetics/tests | Create or clone test
 *SyntheticsApi* | [**DeleteTests**](docs/SyntheticsApi.md#deletetests) | **Post** /api/v1/synthetics/tests/delete | Delete multiple tests
@@ -265,8 +261,6 @@ Class | Method | HTTP request | Description
  - [GCPAccount](docs/GCPAccount.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
  - [GroupWidgetDefinition](docs/GroupWidgetDefinition.md)
- - [HTTPLog](docs/HTTPLog.md)
- - [HTTPLogError](docs/HTTPLogError.md)
  - [HTTPMethod](docs/HTTPMethod.md)
  - [HeatMapWidgetDefinition](docs/HeatMapWidgetDefinition.md)
  - [HeatMapWidgetRequest](docs/HeatMapWidgetRequest.md)
@@ -295,7 +289,6 @@ Class | Method | HTTP request | Description
  - [IdpFormData](docs/IdpFormData.md)
  - [IdpResponse](docs/IdpResponse.md)
  - [ImageWidgetDefinition](docs/ImageWidgetDefinition.md)
- - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
  - [Log](docs/Log.md)
  - [LogContent](docs/LogContent.md)
  - [LogQueryDefinition](docs/LogQueryDefinition.md)
@@ -339,7 +332,6 @@ Class | Method | HTTP request | Description
  - [MetricSearchResponse](docs/MetricSearchResponse.md)
  - [MetricSearchResponseResults](docs/MetricSearchResponseResults.md)
  - [MetricsListResponse](docs/MetricsListResponse.md)
- - [MetricsPayload](docs/MetricsPayload.md)
  - [MetricsQueryResponse](docs/MetricsQueryResponse.md)
  - [MetricsQueryResponseSeries](docs/MetricsQueryResponseSeries.md)
  - [MetricsQueryResponseUnit](docs/MetricsQueryResponseUnit.md)
@@ -379,9 +371,6 @@ Class | Method | HTTP request | Description
  - [ScatterPlotRequest](docs/ScatterPlotRequest.md)
  - [ScatterPlotWidgetDefinition](docs/ScatterPlotWidgetDefinition.md)
  - [ScatterPlotWidgetDefinitionRequests](docs/ScatterPlotWidgetDefinitionRequests.md)
- - [Series](docs/Series.md)
- - [ServiceCheck](docs/ServiceCheck.md)
- - [ServiceCheckStatus](docs/ServiceCheckStatus.md)
  - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
  - [ServiceLevelObjectiveDeleted](docs/ServiceLevelObjectiveDeleted.md)
  - [ServiceLevelObjectiveListResponse](docs/ServiceLevelObjectiveListResponse.md)

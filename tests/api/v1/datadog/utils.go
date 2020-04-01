@@ -7,6 +7,7 @@
 package test
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"io/ioutil"
@@ -65,6 +66,33 @@ func removeURLSecrets(u *url.URL) *url.URL {
 	query.Del("application_key")
 	u.RawQuery = query.Encode()
 	return u
+}
+
+func sendRequest(method, url string, payload []byte) (*http.Response, []byte, error) {
+	baseURL := ""
+	if !strings.HasPrefix(url, "https://") {
+        var err error
+		baseURL, err = TESTAPICLIENT.GetConfig().ServerURLWithContext(TESTAUTH, "")
+		if err != nil {
+			return nil, []byte{}, fmt.Errorf("Failed to get base URL for Datadog API: %s", err.Error())
+		}
+	}
+
+	request, err := http.NewRequest(method, baseURL + url, bytes.NewBuffer(payload))
+	if err != nil {
+		return nil, []byte{}, fmt.Errorf("Failed to create request for Datadog API: %s", err.Error())
+	}
+	keys := TESTAUTH.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey)
+	request.Header.Add("DD-API-KEY", keys["apiKeyAuth"].Key)
+	request.Header.Add("DD-APPLICATION-KEY", keys["appKeyAuth"].Key)
+	request.Header.Set("Content-Type", "application/json")
+
+	resp, respErr := TESTAPICLIENT.GetConfig().HTTPClient.Do(request)
+	body, rerr := ioutil.ReadAll(resp.Body)
+	if rerr != nil {
+		respErr = fmt.Errorf("Failed reading response body: %s", rerr.Error())
+	}
+	return resp, body, respErr
 }
 
 func setupTest(t *testing.T) func(t *testing.T) {
