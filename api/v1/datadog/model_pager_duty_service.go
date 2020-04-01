@@ -14,9 +14,9 @@ import (
 
 // PagerDutyService Configure your Datadog-PagerDuty integration directly through the Datadog API. For more informations, see the [PagerDuty integration page](https://docs.datadoghq.com/integrations/pagerduty/).
 type PagerDutyService struct {
-	// Your Service name associated service key in Pagerduty.
+	// Your Service key in PagerDuty.
 	ServiceKey string `json:"service_key"`
-	// Your Service name in PagerDuty.
+	// Your Service name associated service key in PagerDuty.
 	ServiceName string `json:"service_name"`
 }
 
