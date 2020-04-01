@@ -41,7 +41,7 @@ func TestEventLifecycle(t *testing.T) {
 	marshalledEvent, _ := json.Marshal(testEvent)
 	httpresp, respBody, err := sendRequest("POST", "/api/v1/events", marshalledEvent)
 	if err != nil {
-        t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, string(respBody), err)
+		t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, string(respBody), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 202)
 	var unmarshaledBody createEventResponse
