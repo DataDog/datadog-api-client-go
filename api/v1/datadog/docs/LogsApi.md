@@ -5,7 +5,6 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
-[**SendLog**](LogsApi.md#SendLog) | **Post** /v1/input | Send logs
 
 
 
@@ -37,45 +36,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SendLog
-
-> interface{} SendLog(ctx).Body(body).Execute()
-
-Send logs
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSendLogRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**HTTPLog**](HTTPLog.md) | Log to send (JSON format). | 
-
-### Return type
-
-**interface{}**
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

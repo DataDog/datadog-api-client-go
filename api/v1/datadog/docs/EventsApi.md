@@ -4,49 +4,9 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateEvent**](EventsApi.md#CreateEvent) | **Post** /api/v1/events | Post an event
 [**GetEvent**](EventsApi.md#GetEvent) | **Get** /api/v1/events/{event_id} | Get an event
 [**ListEvents**](EventsApi.md#ListEvents) | **Get** /api/v1/events | Query the event stream
 
-
-
-## CreateEvent
-
-> EventResponse CreateEvent(ctx).Body(body).Execute()
-
-Post an event
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateEventRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**Event**](Event.md) | Event request object | 
-
-### Return type
-
-[**EventResponse**](EventResponse.md)
-
-### Authorization
-
-[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## GetEvent
