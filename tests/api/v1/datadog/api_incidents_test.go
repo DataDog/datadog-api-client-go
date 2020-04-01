@@ -170,7 +170,7 @@ func TestIncidentsLifecycle(t *testing.T) {
 }
 
 func createTestIncident(t *testing.T) datadog.Incident {
-	testIncidentData := datadog.Incident()
+	testIncidentData := datadog.NewIncident()
 	testIncidentData.SetType("incidents")
 	testIncidentData.SetAttributes(*datadog.NewIncidentAttributesWithDefaults())
 	testIncidentData.Attributes.SetTitle("Test-Incident")
