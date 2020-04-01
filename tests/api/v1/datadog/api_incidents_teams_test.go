@@ -21,17 +21,17 @@ func TestIncidentTeamsLifecycle(t *testing.T) {
 	SetUnstableIncidentsAPIs(true)
 	defer SetUnstableIncidentsAPIs(false)
 
-	INCIDENT := createTestIncident(t)
-	defer deleteTestIncident(t, INCIDENT.GetId())
-	TEAM_1 := createTestTeam(t)
-	defer deleteTestTeam(t, TEAM_1.GetId())
+	incident := createTestIncident(t)
+	defer deleteTestIncident(t, incident.GetId())
+	team1 := createTestTeam(t)
+	defer deleteTestTeam(t, team1.GetId())
 
 	// Create IncidentTeam
-	incidentTeamRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.AddTeamToIncident(TESTAUTH, INCIDENT.GetId()).
-		Body(*datadog.NewTeamPayload(TEAM_1)).Execute()
+	incidentTeamRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.AddTeamToIncident(TESTAUTH, incident.GetId()).
+		Body(*datadog.NewTeamPayload(team1)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
-		t.Fatalf("Error adding team to incident %v: Response %s: %v", TEAM_1, err.Error(), bStr)
+		t.Fatalf("Error adding team to incident %v: Response %s: %v", team1, err.Error(), bStr)
 	}
 	assert.Equal(t, httpresp.StatusCode, 201)
 
@@ -40,30 +40,30 @@ func TestIncidentTeamsLifecycle(t *testing.T) {
 	defer func(test_client *datadog.APIClient, incidentTeam datadog.Team) {
 		//Delete IncidentTeam
 		httpresp, err := test_client.IncidentsApi.
-			RemoveTeamFromIncident(TESTAUTH, INCIDENT.GetId(), incidentTeam.GetId()).Execute()
+			RemoveTeamFromIncident(TESTAUTH, incident.GetId(), incidentTeam.GetId()).Execute()
 		if err != nil {
 			bStr := err.(datadog.GenericOpenAPIError).Model()
 			t.Fatalf("Error removeing team for incident %v: Response %s: %v", incidentTeam, err.Error(), bStr)
 		}
 		assert.Equal(t, httpresp.StatusCode, 204)
-	}(TESTAPICLIENT, TEAM_1)
+	}(TESTAPICLIENT, team1)
 
 	assert.True(t, len(incidentTeamRsp.GetData()) >= 1)
 	assert.NotNil(t, incidentTeamRsp.GetData()[0].GetId())
-	assert.Equal(t, incidentTeamRsp.GetData()[0].GetType(), TEAM_1.GetType())
-	assert.Equal(t, incidentTeamRsp.GetData()[0].GetAttributes().Name, TEAM_1.GetAttributes().Name)
+	assert.Equal(t, incidentTeamRsp.GetData()[0].GetType(), team1.GetType())
+	assert.Equal(t, incidentTeamRsp.GetData()[0].GetAttributes().Name, team1.GetAttributes().Name)
 
 	// Get IncidentTeams
-	incidentTeamsGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.GetTeamsForIncident(TESTAUTH, INCIDENT.GetId()).
+	incidentTeamsGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.GetTeamsForIncident(TESTAUTH, incident.GetId()).
 		Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
-		t.Fatalf("Error getting Teams for Incident %v: Response %s: %v", TEAM_1, err.Error(), bStr)
+		t.Fatalf("Error getting Teams for Incident %v: Response %s: %v", team1, err.Error(), bStr)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.True(t, len(incidentTeamsGetResp.GetData()) >= 1)
 	assert.NotNil(t, incidentTeamRsp.GetData()[0].GetId())
-	assert.Equal(t, incidentTeamRsp.GetData()[0].GetType(), TEAM_1.GetType())
-	assert.Equal(t, incidentTeamRsp.GetData()[0].GetAttributes().Name, TEAM_1.GetAttributes().Name)
+	assert.Equal(t, incidentTeamRsp.GetData()[0].GetType(), team1.GetType())
+	assert.Equal(t, incidentTeamRsp.GetData()[0].GetAttributes().Name, team1.GetAttributes().Name)
 
 }

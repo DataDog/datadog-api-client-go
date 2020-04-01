@@ -25,10 +25,10 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 	defer deleteTestIncident(t, incident.GetId())
 	field := createIncidentConfigField(t)
 	defer deleteIncidentConfigField(t, field.GetId())
-	CHOICE_1 := createIncidentConfigFieldChoice(t, field.GetId())
-	defer deleteIncidentConfigFieldChoice(t, field.GetId(), CHOICE_1.GetId())
-	CHOICE_2 := createIncidentConfigFieldChoice(t, field.GetId())
-	defer deleteIncidentConfigFieldChoice(t, field.GetId(), CHOICE_2.GetId())
+	choice1 := createIncidentConfigFieldChoice(t, field.GetId())
+	defer deleteIncidentConfigFieldChoice(t, field.GetId(), choice1.GetId())
+	choice2 := createIncidentConfigFieldChoice(t, field.GetId())
+	defer deleteIncidentConfigFieldChoice(t, field.GetId(), choice2.GetId())
 
 	testIncidentSelectionData := datadog.NewIncidentSelectionWithDefaults()
 	testIncidentSelectionData.SetType("selections")
@@ -38,7 +38,7 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 	testIncidentSelectionData.Relationships.SetField(*datadog.NewIncidentSelectionRelationshipsFieldWithDefaults())
 	testIncidentSelectionData.Relationships.Field.SetData(field)
 	testIncidentSelectionData.Relationships.SetChoice(*datadog.NewIncidentSelectionRelationshipsChoiceWithDefaults())
-	testIncidentSelectionData.Relationships.Choice.SetData(CHOICE_1)
+	testIncidentSelectionData.Relationships.Choice.SetData(choice1)
 
 	// Create IncidentSelection
 	incidentSelectionRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.CreateIncidentSelection(TESTAUTH, incident.GetId()).
@@ -66,11 +66,11 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 
 	assert.Equal(t, incidentSelection.GetType(), testIncidentSelectionData.GetType())
 	assert.Equal(t, incidentSelectionAttrs.GetObjectId(), incident.GetId())
-	assert.Equal(t, incidentSelectionRelationships.Choice.Data.GetId(), CHOICE_1.GetId())
+	assert.Equal(t, incidentSelectionRelationships.Choice.Data.GetId(), choice1.GetId())
 	assert.Equal(t, incidentSelectionRelationships.Field.Data.GetId(), field.GetId())
 
 	// Edit IncidentSelection
-	incidentSelection.Relationships.Choice.SetData(CHOICE_2)
+	incidentSelection.Relationships.Choice.SetData(choice2)
 	incidentSelectionUpdatedRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.
 		PatchIncidentSelection(TESTAUTH, incident.GetId(), incidentSelection.GetId()).
 		Body(*datadog.NewIncidentSelectionPayload(incidentSelection)).Execute()
@@ -83,7 +83,7 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 	incidentSelectionRelationshipsUpdated := incidentSelectionUpdated.GetRelationships()
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.Equal(t, incidentSelectionAttrsUpdated.GetObjectId(), incident.GetId())
-	assert.Equal(t, incidentSelectionRelationshipsUpdated.Choice.Data.GetId(), CHOICE_2.GetId())
+	assert.Equal(t, incidentSelectionRelationshipsUpdated.Choice.Data.GetId(), choice2.GetId())
 	assert.Equal(t, incidentSelectionRelationshipsUpdated.Field.Data.GetId(), field.GetId())
 
 	// Get IncidentSelections

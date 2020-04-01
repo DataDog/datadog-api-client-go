@@ -23,15 +23,15 @@ func TestIncidentServicesLifecycle(t *testing.T) {
 
 	incident := createTestIncident(t)
 	defer deleteTestIncident(t, incident.GetId())
-	service_1 := createTestService(t)
-	defer deleteTestService(t, service_1.GetId())
+	service1 := createTestService(t)
+	defer deleteTestService(t, service1.GetId())
 
 	// Create IncidentService
 	incidentServiceRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.AddServiceToIncident(TESTAUTH, incident.GetId()).
-		Body(*datadog.NewServicePayload(service_1)).Execute()
+		Body(*datadog.NewServicePayload(service1)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
-		t.Fatalf("Error adding service to incident %v: Response %s: %v", service_1, err.Error(), bStr)
+		t.Fatalf("Error adding service to incident %v: Response %s: %v", service1, err.Error(), bStr)
 	}
 	assert.Equal(t, httpresp.StatusCode, 201)
 
@@ -46,24 +46,24 @@ func TestIncidentServicesLifecycle(t *testing.T) {
 			t.Fatalf("Error removeing service for incident %v: Response %s: %v", incidentService, err.Error(), bStr)
 		}
 		assert.Equal(t, httpresp.StatusCode, 204)
-	}(TESTAPICLIENT, service_1)
+	}(TESTAPICLIENT, service1)
 
 	assert.True(t, len(incidentServiceRsp.GetData()) >= 1)
 	assert.NotNil(t, incidentServiceRsp.GetData()[0].GetId())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), service_1.GetType())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, service_1.GetAttributes().Name)
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), service1.GetType())
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, service1.GetAttributes().Name)
 
 	// Get IncidentServices
 	incidentServicesGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.GetServicesForIncident(TESTAUTH, incident.GetId()).
 		Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
-		t.Fatalf("Error getting Services for Incident %v: Response %s: %v", service_1, err.Error(), bStr)
+		t.Fatalf("Error getting Services for Incident %v: Response %s: %v", service1, err.Error(), bStr)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.True(t, len(incidentServicesGetResp.GetData()) >= 1)
 	assert.NotNil(t, incidentServiceRsp.GetData()[0].GetId())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), service_1.GetType())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, service_1.GetAttributes().Name)
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), service1.GetType())
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, service1.GetAttributes().Name)
 
 }

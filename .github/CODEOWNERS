@@ -11,13 +11,13 @@ LICENSE                 @DataDog/baklava @DataDog/integrations-tools-and-librari
 NOTICE                  @DataDog/baklava @DataDog/integrations-tools-and-libraries
 LICENSE-3rdparty.csv    @DataDog/baklava @DataDog/integrations-tools-and-libraries
 
-spec/v1/incidents_config.yaml       @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/incidents_notes.yaml        @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/incidents_postmortem.yaml   @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/incidents_selections.yaml   @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/incidents_services.yaml     @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/incidents_teams.yaml        @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/incidents_todos.yaml        @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/incidents.yaml              @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/services.yaml               @DataDog/integrations-tools-and-libraries @DataDog/incident-app
-spec/v1/teams.yaml                  @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents_config.yaml     @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents_notes.yaml      @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents_postmortem.yaml @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents_selections.yaml @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents_services.yaml   @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents_teams.yaml      @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents_todos.yaml      @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/incidents.yaml            @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/services.yaml             @DataDog/integrations-tools-and-libraries @DataDog/incident-app
+spec/v1/teams.yaml                @DataDog/integrations-tools-and-libraries @DataDog/incident-app
