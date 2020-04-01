@@ -172,40 +172,6 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"LogsApiService.SendLog": {
-				{
-					URL:         "https://{subdomain}.{site}",
-					Description: "No description provided",
-					Variables: map[string]ServerVariable{
-						"site": ServerVariable{
-							Description:  "The regional site for our customers.",
-							DefaultValue: "datadoghq.com",
-							EnumValues: []string{
-								"datadoghq.com",
-								"datadoghq.eu",
-							},
-						},
-						"subdomain": ServerVariable{
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "http-intake.logs",
-						},
-					},
-				},
-				{
-					URL:         "{protocol}://{name}",
-					Description: "No description provided",
-					Variables: map[string]ServerVariable{
-						"name": ServerVariable{
-							Description:  "Full site DNS name.",
-							DefaultValue: "http-intake.logs.datadoghq.com",
-						},
-						"protocol": ServerVariable{
-							Description:  "The protocol for accessing the API.",
-							DefaultValue: "https",
-						},
-					},
-				},
-			},
 		},
 		unstableOperations: map[string]bool{
 			"GetAllLogIndexes": false,

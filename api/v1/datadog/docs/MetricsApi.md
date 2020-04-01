@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**GetMetricMetadata**](MetricsApi.md#GetMetricMetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
 [**QueryMetrics**](MetricsApi.md#QueryMetrics) | **Get** /api/v1/query | Query timeseries points
 [**SearchMetrics**](MetricsApi.md#SearchMetrics) | **Get** /api/v1/search | Search metrics
-[**SubmitMetrics**](MetricsApi.md#SubmitMetrics) | **Post** /api/v1/series | Submit metrics
 
 
 
@@ -213,45 +212,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SubmitMetrics
-
-> IntakePayloadAccepted SubmitMetrics(ctx).Body(body).Execute()
-
-Submit metrics
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubmitMetricsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**MetricsPayload**](MetricsPayload.md) |  | 
-
-### Return type
-
-[**IntakePayloadAccepted**](IntakePayloadAccepted.md)
-
-### Authorization
-
-[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -259,6 +259,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	logStreamWidgetDefinition.SetTitleSize("16")
 	logStreamWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_RIGHT)
 	logStreamWidgetDefinition.SetTime(datadog.WidgetTime{LiveSpan: datadog.WIDGETLIVESPAN_PAST_TWO_DAYS.Ptr()})
+	logStreamWidgetDefinition.SetMessageDisplay(datadog.WIDGETMESSAGEDISPLAY_EXPANDED_LARGE)
+	logStreamWidgetDefinition.SetShowDateColumn(true)
+	logStreamWidgetDefinition.SetShowMessageColumn(true)
+	logStreamWidgetDefinition.SetSort(datadog.WidgetFieldSort{Column: "Route", Order: datadog.WIDGETSORT_ASCENDING})
 
 	logStreamWidget := datadog.NewWidget(logStreamWidgetDefinition.AsWidgetDefinition())
 	logStreamWidget.SetLayout(*widgetLayout)
@@ -639,7 +643,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard.SetIsReadOnly(false)
 	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
 	dashboard.SetTemplateVariablePresets([]datadog.DashboardTemplateVariablePreset{*dashboardTemplateVariablePreset})
-	dashboard.SetNotifyList([]string{"test@example.com"})
+	dashboard.SetNotifyList([]string{"test@datadoghq.com"})
 
 	createdDashboard, httpresp, err := TESTAPICLIENT.DashboardsApi.CreateDashboard(TESTAUTH).Body(*dashboard).Execute()
 	if err != nil {

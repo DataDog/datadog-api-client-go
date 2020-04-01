@@ -1,4 +1,4 @@
-# ServiceCheckStatus
+# WidgetMessageDisplay
 
 ## Properties
 

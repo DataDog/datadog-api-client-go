@@ -28,19 +28,16 @@ func TestTags(t *testing.T) {
 	hostname := fmt.Sprintf("go-client-test-host-%d", now)
 
 	// create host by sending a metric
-	metricsPayload := datadog.MetricsPayload{
-		Series: &[]datadog.Series{{
-			Host:   &hostname,
-			Metric: "go.client.test.metric",
-			Points: [][]float64{{float64(now), 0}},
-		}},
-	}
-	r, httpresp, err := TESTAPICLIENT.MetricsApi.SubmitMetrics(TESTAUTH).Body(metricsPayload).Execute()
+	metricsPayload := fmt.Sprintf(
+		`{"series": [{"host": "%s", "metric": "go.client.test.metric", "points": [[%f, 0]]}]}`,
+		hostname, float64(now),
+	)
+	httpresp, respBody, err := sendRequest("POST", "/api/v1/series", []byte(metricsPayload))
 	if err != nil {
-		t.Fatalf("Error submitting metric: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error submitting metric: Response %s: %v", string(respBody), err)
 	}
 	assert.Equal(t, 202, httpresp.StatusCode)
-	assert.Equal(t, "ok", r.GetStatus())
+	assert.Equal(t, `{"status": "ok"}`, string(respBody))
 
 	// wait for host to appear
 	err = tests.Retry(10*time.Second, 10, func() bool {
