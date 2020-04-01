@@ -157,9 +157,13 @@ Class | Method | HTTP request | Description
 *OrganizationsApi* | [**UpdateOrg**](docs/OrganizationsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update your organization
 *OrganizationsApi* | [**UploadIdPForOrg**](docs/OrganizationsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *PagerDutyIntegrationApi* | [**CreatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#createpagerdutyintegration) | **Put** /api/v1/integration/pagerduty | Create a PagerDuty integration
+*PagerDutyIntegrationApi* | [**CreatePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#createpagerdutyintegrationservice) | **Post** /api/v1/integration/pagerduty/configuration/services | Create a new service object
 *PagerDutyIntegrationApi* | [**DeletePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegration) | **Delete** /api/v1/integration/pagerduty | Delete a PagerDuty integration
+*PagerDutyIntegrationApi* | [**DeletePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegrationservice) | **Delete** /api/v1/integration/pagerduty/configuration/services/{service_name} | Delete a single service object
 *PagerDutyIntegrationApi* | [**GetPagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegration) | **Get** /api/v1/integration/pagerduty | Get a PagerDuty integration
+*PagerDutyIntegrationApi* | [**GetPagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegrationservice) | **Get** /api/v1/integration/pagerduty/configuration/services/{service_name} | Get a single service object
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegration) | **Post** /api/v1/integration/pagerduty | Add new services and schedules
+*PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegrationservice) | **Put** /api/v1/integration/pagerduty/configuration/services/{service_name} | Update a single service object
 *SLOApi* | [**BulkPartialDeleteSLO**](docs/SLOApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *SLOApi* | [**CheckCanDeleteSLO**](docs/SLOApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
 *SLOApi* | [**CreateSLO**](docs/SLOApi.md#createslo) | **Post** /api/v1/slo | Create a SLO object
@@ -360,6 +364,8 @@ Class | Method | HTTP request | Description
  - [OrganizationSubscription](docs/OrganizationSubscription.md)
  - [PagerDutyIntegration](docs/PagerDutyIntegration.md)
  - [PagerDutyService](docs/PagerDutyService.md)
+ - [PagerDutyServiceKey](docs/PagerDutyServiceKey.md)
+ - [PagerDutyServiceName](docs/PagerDutyServiceName.md)
  - [PagerDutyServicesAndSchedules](docs/PagerDutyServicesAndSchedules.md)
  - [ProcessQueryDefinition](docs/ProcessQueryDefinition.md)
  - [QueryValueWidgetDefinition](docs/QueryValueWidgetDefinition.md)
