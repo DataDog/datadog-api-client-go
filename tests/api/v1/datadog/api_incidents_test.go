@@ -14,9 +14,83 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
+func SetUnstableIncidentsAPIs(enable bool) {
+
+	operations := []string{
+		// Incident Config Field
+		"CreateIncidentConfigField",
+		"PatchIncidentConfigField",
+		"DeleteIncidentConfigField",
+		"GetIncidentConfigField",
+		"GetIncidentConfigFields",
+		// Incident Config Choices
+		"CreateIncidentConfigFieldChoice",
+		"PatchIncidentConfigFieldChoice",
+		"DeleteIncidentConfigFieldChoice",
+		"GetIncidentConfigFieldChoice",
+		"GetIncidentConfigFieldChoices",
+		// Incident Notes
+		"CreateIncidentNote",
+		"PatchIncidentNote",
+		"DeleteIncidentNote",
+		"GetIncidentNote",
+		"GetIncidentNotes",
+		// Incident Postmortems
+		"CreateIncidentPostmortem",
+		"PatchIncidentPostmortem",
+		"DeleteIncidentPostmortem",
+		"GetIncidentPostmortem",
+		"GetIncidentPostmortems",
+		// Incident Selections
+		"CreateIncidentSelection",
+		"PatchIncidentSelection",
+		"DeleteIncidentSelection",
+		"GetIncidentSelections",
+		// Incident Services
+		"AddServiceToIncident",
+		"RemoveServiceFromIncident",
+		"GetServicesForIncident",
+		// Incident Teams
+		"AddTeamToIncident",
+		"RemoveTeamFromIncident",
+		"GetTeamsForIncident",
+		// Incidents
+		"CreateIncident",
+		"PatchIncident",
+		"DeleteIncident",
+		"GetIncident",
+		"GetIncidents",
+		// Incident Todos
+		"CreateIncidentTodo",
+		"PatchIncidentTodo",
+		"DeleteIncidentTodo",
+		"GetIncidentTodo",
+		"GetIncidentTodos",
+		// Services
+		"CreateService",
+		"PatchService",
+		"DeleteService",
+		"GetService",
+		"GetServices",
+		// Teams
+		"CreateTeam",
+		"PatchTeam",
+		"DeleteTeam",
+		"GetTeam",
+		"GetTeams",
+	}
+	for _, op := range operations {
+		TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled(op, enable)
+	}
+
+}
+
 func TestIncidentsLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
+
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
 
 	time := TESTCLOCK.Now()
 	testIncidentData := datadog.NewIncidentWithDefaults()

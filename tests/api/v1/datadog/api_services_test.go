@@ -18,6 +18,9 @@ func TestServicesLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
+
 	testServiceData := datadog.Service{
 		Attributes: &datadog.ServiceAttributes{
 			Name: datadog.PtrString("Test-Service"),

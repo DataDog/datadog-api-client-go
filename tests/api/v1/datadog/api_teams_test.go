@@ -8,14 +8,18 @@ package test
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestTeamsLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
+
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
 
 	testTeamData := datadog.NewTeam()
 	testTeamData.SetType("teams")

@@ -20,6 +20,9 @@ func TestIncidentConfigFieldsLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
+
 	testIncidentConfigFieldData := datadog.NewIncidentConfigFieldWithDefaults()
 	testIncidentConfigFieldData.SetType("field")
 	testIncidentConfigFieldData.SetAttributes(*datadog.NewIncidentConfigFieldAttributesWithDefaults())
@@ -101,6 +104,9 @@ func TestIncidentConfigFieldsLifecycle(t *testing.T) {
 func TestIncidentConfigChoicesLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
+
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
 
 	FIELD := createIncidentConfigField(t)
 	defer deleteIncidentConfigField(t, FIELD.GetId())

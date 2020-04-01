@@ -18,27 +18,30 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	INCIDENT := createTestIncident(t)
-	defer deleteTestIncident(t, INCIDENT.GetId())
-	FIELD := createIncidentConfigField(t)
-	defer deleteIncidentConfigField(t, FIELD.GetId())
-	CHOICE_1 := createIncidentConfigFieldChoice(t, FIELD.GetId())
-	defer deleteIncidentConfigFieldChoice(t, FIELD.GetId(), CHOICE_1.GetId())
-	CHOICE_2 := createIncidentConfigFieldChoice(t, FIELD.GetId())
-	defer deleteIncidentConfigFieldChoice(t, FIELD.GetId(), CHOICE_2.GetId())
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
+
+	incident := createTestIncident(t)
+	defer deleteTestIncident(t, incident.GetId())
+	field := createIncidentConfigField(t)
+	defer deleteIncidentConfigField(t, field.GetId())
+	CHOICE_1 := createIncidentConfigFieldChoice(t, field.GetId())
+	defer deleteIncidentConfigFieldChoice(t, field.GetId(), CHOICE_1.GetId())
+	CHOICE_2 := createIncidentConfigFieldChoice(t, field.GetId())
+	defer deleteIncidentConfigFieldChoice(t, field.GetId(), CHOICE_2.GetId())
 
 	testIncidentSelectionData := datadog.NewIncidentSelectionWithDefaults()
 	testIncidentSelectionData.SetType("selections")
 	testIncidentSelectionData.SetAttributes(*datadog.NewIncidentSelectionAttributesWithDefaults())
 	testIncidentSelectionData.SetRelationships(*datadog.NewIncidentSelectionRelationshipsWithDefaults())
-	testIncidentSelectionData.Attributes.SetObjectId(INCIDENT.GetId())
+	testIncidentSelectionData.Attributes.SetObjectId(incident.GetId())
 	testIncidentSelectionData.Relationships.SetField(*datadog.NewIncidentSelectionRelationshipsFieldWithDefaults())
-	testIncidentSelectionData.Relationships.Field.SetData(FIELD)
+	testIncidentSelectionData.Relationships.Field.SetData(field)
 	testIncidentSelectionData.Relationships.SetChoice(*datadog.NewIncidentSelectionRelationshipsChoiceWithDefaults())
 	testIncidentSelectionData.Relationships.Choice.SetData(CHOICE_1)
 
 	// Create IncidentSelection
-	incidentSelectionRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.CreateIncidentSelection(TESTAUTH, INCIDENT.GetId()).
+	incidentSelectionRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.CreateIncidentSelection(TESTAUTH, incident.GetId()).
 		Body(*datadog.NewIncidentSelectionPayload(*testIncidentSelectionData)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
@@ -53,7 +56,7 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 	// get requests fail
 	defer func(test_client *datadog.APIClient, incidentSelection datadog.IncidentSelection) {
 		//Delete IncidentSelection
-		httpresp, err := test_client.IncidentsApi.DeleteIncidentSelection(TESTAUTH, INCIDENT.GetId(), incidentSelection.GetId()).Execute()
+		httpresp, err := test_client.IncidentsApi.DeleteIncidentSelection(TESTAUTH, incident.GetId(), incidentSelection.GetId()).Execute()
 		if err != nil {
 			bStr := err.(datadog.GenericOpenAPIError).Model()
 			t.Fatalf("Error deleting IncidentSelection %v: Response %s: %v", incidentSelection, err.Error(), bStr)
@@ -62,14 +65,14 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 	}(TESTAPICLIENT, incidentSelection)
 
 	assert.Equal(t, incidentSelection.GetType(), testIncidentSelectionData.GetType())
-	assert.Equal(t, incidentSelectionAttrs.GetObjectId(), INCIDENT.GetId())
+	assert.Equal(t, incidentSelectionAttrs.GetObjectId(), incident.GetId())
 	assert.Equal(t, incidentSelectionRelationships.Choice.Data.GetId(), CHOICE_1.GetId())
-	assert.Equal(t, incidentSelectionRelationships.Field.Data.GetId(), FIELD.GetId())
+	assert.Equal(t, incidentSelectionRelationships.Field.Data.GetId(), field.GetId())
 
 	// Edit IncidentSelection
 	incidentSelection.Relationships.Choice.SetData(CHOICE_2)
 	incidentSelectionUpdatedRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.
-		PatchIncidentSelection(TESTAUTH, INCIDENT.GetId(), incidentSelection.GetId()).
+		PatchIncidentSelection(TESTAUTH, incident.GetId(), incidentSelection.GetId()).
 		Body(*datadog.NewIncidentSelectionPayload(incidentSelection)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
@@ -79,12 +82,12 @@ func TestIncidentSelectionsLifecycle(t *testing.T) {
 	incidentSelectionAttrsUpdated := incidentSelectionUpdated.GetAttributes()
 	incidentSelectionRelationshipsUpdated := incidentSelectionUpdated.GetRelationships()
 	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Equal(t, incidentSelectionAttrsUpdated.GetObjectId(), INCIDENT.GetId())
+	assert.Equal(t, incidentSelectionAttrsUpdated.GetObjectId(), incident.GetId())
 	assert.Equal(t, incidentSelectionRelationshipsUpdated.Choice.Data.GetId(), CHOICE_2.GetId())
-	assert.Equal(t, incidentSelectionRelationshipsUpdated.Field.Data.GetId(), FIELD.GetId())
+	assert.Equal(t, incidentSelectionRelationshipsUpdated.Field.Data.GetId(), field.GetId())
 
 	// Get IncidentSelections
-	incidentSelectionsGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.GetIncidentSelections(TESTAUTH, INCIDENT.GetId()).
+	incidentSelectionsGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.GetIncidentSelections(TESTAUTH, incident.GetId()).
 		Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()

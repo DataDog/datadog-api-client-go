@@ -18,17 +18,20 @@ func TestIncidentServicesLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	INCIDENT := createTestIncident(t)
-	defer deleteTestIncident(t, INCIDENT.GetId())
-	SERVICE_1 := createTestService(t)
-	defer deleteTestService(t, SERVICE_1.GetId())
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
+
+	incident := createTestIncident(t)
+	defer deleteTestIncident(t, incident.GetId())
+	service_1 := createTestService(t)
+	defer deleteTestService(t, service_1.GetId())
 
 	// Create IncidentService
-	incidentServiceRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.AddServiceToIncident(TESTAUTH, INCIDENT.GetId()).
-		Body(*datadog.NewServicePayload(SERVICE_1)).Execute()
+	incidentServiceRsp, httpresp, err := TESTAPICLIENT.IncidentsApi.AddServiceToIncident(TESTAUTH, incident.GetId()).
+		Body(*datadog.NewServicePayload(service_1)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
-		t.Fatalf("Error adding service to incident %v: Response %s: %v", SERVICE_1, err.Error(), bStr)
+		t.Fatalf("Error adding service to incident %v: Response %s: %v", service_1, err.Error(), bStr)
 	}
 	assert.Equal(t, httpresp.StatusCode, 201)
 
@@ -37,30 +40,30 @@ func TestIncidentServicesLifecycle(t *testing.T) {
 	defer func(test_client *datadog.APIClient, incidentService datadog.Service) {
 		//Delete IncidentService
 		httpresp, err := test_client.IncidentsApi.
-			RemoveServiceFromIncident(TESTAUTH, INCIDENT.GetId(), incidentService.GetId()).Execute()
+			RemoveServiceFromIncident(TESTAUTH, incident.GetId(), incidentService.GetId()).Execute()
 		if err != nil {
 			bStr := err.(datadog.GenericOpenAPIError).Model()
 			t.Fatalf("Error removeing service for incident %v: Response %s: %v", incidentService, err.Error(), bStr)
 		}
 		assert.Equal(t, httpresp.StatusCode, 204)
-	}(TESTAPICLIENT, SERVICE_1)
+	}(TESTAPICLIENT, service_1)
 
 	assert.True(t, len(incidentServiceRsp.GetData()) >= 1)
 	assert.NotNil(t, incidentServiceRsp.GetData()[0].GetId())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), SERVICE_1.GetType())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, SERVICE_1.GetAttributes().Name)
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), service_1.GetType())
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, service_1.GetAttributes().Name)
 
 	// Get IncidentServices
-	incidentServicesGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.GetServicesForIncident(TESTAUTH, INCIDENT.GetId()).
+	incidentServicesGetResp, httpresp, err := TESTAPICLIENT.IncidentsApi.GetServicesForIncident(TESTAUTH, incident.GetId()).
 		Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
-		t.Fatalf("Error getting Services for Incident %v: Response %s: %v", SERVICE_1, err.Error(), bStr)
+		t.Fatalf("Error getting Services for Incident %v: Response %s: %v", service_1, err.Error(), bStr)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	assert.True(t, len(incidentServicesGetResp.GetData()) >= 1)
 	assert.NotNil(t, incidentServiceRsp.GetData()[0].GetId())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), SERVICE_1.GetType())
-	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, SERVICE_1.GetAttributes().Name)
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetType(), service_1.GetType())
+	assert.Equal(t, incidentServiceRsp.GetData()[0].GetAttributes().Name, service_1.GetAttributes().Name)
 
 }

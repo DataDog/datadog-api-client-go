@@ -18,6 +18,9 @@ func TestIncidentTodosLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
+	SetUnstableIncidentsAPIs(true)
+	defer SetUnstableIncidentsAPIs(false)
+
 	INCIDENT := createTestIncident(t)
 	defer deleteTestIncident(t, INCIDENT.GetId())
 
