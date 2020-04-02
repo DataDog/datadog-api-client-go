@@ -14,7 +14,7 @@ import (
 
 // UsageRumSessionsResponse Response containing the number of RUM Sessions for each hour for a given organization.
 type UsageRumSessionsResponse struct {
-	// TODO.
+	// Get hourly usage for RUM Sessions.
 	Usage *[]UsageRumSessionsHour `json:"usage,omitempty"`
 }
 

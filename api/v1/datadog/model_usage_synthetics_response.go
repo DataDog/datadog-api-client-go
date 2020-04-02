@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UsageSyntheticsResponse struct for UsageSyntheticsResponse
+// UsageSyntheticsResponse Response containing the number of Synthetics API tests run for each hour for a given organization.
 type UsageSyntheticsResponse struct {
 	// Array with the number of hourly Synthetics test run for a given organization.
 	Usage *[]UsageSyntheticsHour `json:"usage,omitempty"`

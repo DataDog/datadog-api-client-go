@@ -17,7 +17,11 @@ import (
 type UsageTimeseriesHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
-	// Contains the number of distinct custom metrics.
+	// Contains the number of custom metrics that are inputs for aggregations (metric configured is custom).
+	NumCustomInputTimeseries *int64 `json:"num_custom_input_timeseries,omitempty"`
+	// Contains the number of custom metrics that are outputs for aggregations (metric configured is custom).
+	NumCustomOutputTimeseries *int64 `json:"num_custom_output_timeseries,omitempty"`
+	// Contains the number of non-aggregation custom metrics.
 	NumCustomTimeseries *int64 `json:"num_custom_timeseries,omitempty"`
 }
 
@@ -70,6 +74,70 @@ func (o *UsageTimeseriesHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+// GetNumCustomInputTimeseries returns the NumCustomInputTimeseries field value if set, zero value otherwise.
+func (o *UsageTimeseriesHour) GetNumCustomInputTimeseries() int64 {
+	if o == nil || o.NumCustomInputTimeseries == nil {
+		var ret int64
+		return ret
+	}
+	return *o.NumCustomInputTimeseries
+}
+
+// GetNumCustomInputTimeseriesOk returns a tuple with the NumCustomInputTimeseries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageTimeseriesHour) GetNumCustomInputTimeseriesOk() (*int64, bool) {
+	if o == nil || o.NumCustomInputTimeseries == nil {
+		return nil, false
+	}
+	return o.NumCustomInputTimeseries, true
+}
+
+// HasNumCustomInputTimeseries returns a boolean if a field has been set.
+func (o *UsageTimeseriesHour) HasNumCustomInputTimeseries() bool {
+	if o != nil && o.NumCustomInputTimeseries != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNumCustomInputTimeseries gets a reference to the given int64 and assigns it to the NumCustomInputTimeseries field.
+func (o *UsageTimeseriesHour) SetNumCustomInputTimeseries(v int64) {
+	o.NumCustomInputTimeseries = &v
+}
+
+// GetNumCustomOutputTimeseries returns the NumCustomOutputTimeseries field value if set, zero value otherwise.
+func (o *UsageTimeseriesHour) GetNumCustomOutputTimeseries() int64 {
+	if o == nil || o.NumCustomOutputTimeseries == nil {
+		var ret int64
+		return ret
+	}
+	return *o.NumCustomOutputTimeseries
+}
+
+// GetNumCustomOutputTimeseriesOk returns a tuple with the NumCustomOutputTimeseries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageTimeseriesHour) GetNumCustomOutputTimeseriesOk() (*int64, bool) {
+	if o == nil || o.NumCustomOutputTimeseries == nil {
+		return nil, false
+	}
+	return o.NumCustomOutputTimeseries, true
+}
+
+// HasNumCustomOutputTimeseries returns a boolean if a field has been set.
+func (o *UsageTimeseriesHour) HasNumCustomOutputTimeseries() bool {
+	if o != nil && o.NumCustomOutputTimeseries != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNumCustomOutputTimeseries gets a reference to the given int64 and assigns it to the NumCustomOutputTimeseries field.
+func (o *UsageTimeseriesHour) SetNumCustomOutputTimeseries(v int64) {
+	o.NumCustomOutputTimeseries = &v
+}
+
 // GetNumCustomTimeseries returns the NumCustomTimeseries field value if set, zero value otherwise.
 func (o *UsageTimeseriesHour) GetNumCustomTimeseries() int64 {
 	if o == nil || o.NumCustomTimeseries == nil {
@@ -106,6 +174,12 @@ func (o UsageTimeseriesHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
+	}
+	if o.NumCustomInputTimeseries != nil {
+		toSerialize["num_custom_input_timeseries"] = o.NumCustomInputTimeseries
+	}
+	if o.NumCustomOutputTimeseries != nil {
+		toSerialize["num_custom_output_timeseries"] = o.NumCustomOutputTimeseries
 	}
 	if o.NumCustomTimeseries != nil {
 		toSerialize["num_custom_timeseries"] = o.NumCustomTimeseries

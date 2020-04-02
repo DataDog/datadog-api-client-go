@@ -15,6 +15,8 @@ import (
 
 // UsageLogsHour struct for UsageLogsHour
 type UsageLogsHour struct {
+	// Contains the number of billable log bytes ingested.
+	BillableIngestedBytes *int64 `json:"billable_ingested_bytes,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of log events indexed.
@@ -38,6 +40,38 @@ func NewUsageLogsHour() *UsageLogsHour {
 func NewUsageLogsHourWithDefaults() *UsageLogsHour {
 	this := UsageLogsHour{}
 	return &this
+}
+
+// GetBillableIngestedBytes returns the BillableIngestedBytes field value if set, zero value otherwise.
+func (o *UsageLogsHour) GetBillableIngestedBytes() int64 {
+	if o == nil || o.BillableIngestedBytes == nil {
+		var ret int64
+		return ret
+	}
+	return *o.BillableIngestedBytes
+}
+
+// GetBillableIngestedBytesOk returns a tuple with the BillableIngestedBytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageLogsHour) GetBillableIngestedBytesOk() (*int64, bool) {
+	if o == nil || o.BillableIngestedBytes == nil {
+		return nil, false
+	}
+	return o.BillableIngestedBytes, true
+}
+
+// HasBillableIngestedBytes returns a boolean if a field has been set.
+func (o *UsageLogsHour) HasBillableIngestedBytes() bool {
+	if o != nil && o.BillableIngestedBytes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBillableIngestedBytes gets a reference to the given int64 and assigns it to the BillableIngestedBytes field.
+func (o *UsageLogsHour) SetBillableIngestedBytes(v int64) {
+	o.BillableIngestedBytes = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -138,6 +172,9 @@ func (o *UsageLogsHour) SetIngestedEventsBytes(v int64) {
 
 func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.BillableIngestedBytes != nil {
+		toSerialize["billable_ingested_bytes"] = o.BillableIngestedBytes
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
