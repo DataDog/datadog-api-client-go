@@ -13,33 +13,33 @@ import (
 	"time"
 )
 
-// UsageSyntheticsHour Number of Synthetics API tests run for each hour for a given organization.
-type UsageSyntheticsHour struct {
+// UsageSyntheticsAPIHour Number of Synthetics API tests run for each hour for a given organization.
+type UsageSyntheticsAPIHour struct {
 	// Contains the number of Synthetics API tests run.
 	CheckCallsCount *int64 `json:"check_calls_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 }
 
-// NewUsageSyntheticsHour instantiates a new UsageSyntheticsHour object
+// NewUsageSyntheticsAPIHour instantiates a new UsageSyntheticsAPIHour object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsageSyntheticsHour() *UsageSyntheticsHour {
-	this := UsageSyntheticsHour{}
+func NewUsageSyntheticsAPIHour() *UsageSyntheticsAPIHour {
+	this := UsageSyntheticsAPIHour{}
 	return &this
 }
 
-// NewUsageSyntheticsHourWithDefaults instantiates a new UsageSyntheticsHour object
+// NewUsageSyntheticsAPIHourWithDefaults instantiates a new UsageSyntheticsAPIHour object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUsageSyntheticsHourWithDefaults() *UsageSyntheticsHour {
-	this := UsageSyntheticsHour{}
+func NewUsageSyntheticsAPIHourWithDefaults() *UsageSyntheticsAPIHour {
+	this := UsageSyntheticsAPIHour{}
 	return &this
 }
 
 // GetCheckCallsCount returns the CheckCallsCount field value if set, zero value otherwise.
-func (o *UsageSyntheticsHour) GetCheckCallsCount() int64 {
+func (o *UsageSyntheticsAPIHour) GetCheckCallsCount() int64 {
 	if o == nil || o.CheckCallsCount == nil {
 		var ret int64
 		return ret
@@ -49,7 +49,7 @@ func (o *UsageSyntheticsHour) GetCheckCallsCount() int64 {
 
 // GetCheckCallsCountOk returns a tuple with the CheckCallsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSyntheticsHour) GetCheckCallsCountOk() (*int64, bool) {
+func (o *UsageSyntheticsAPIHour) GetCheckCallsCountOk() (*int64, bool) {
 	if o == nil || o.CheckCallsCount == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *UsageSyntheticsHour) GetCheckCallsCountOk() (*int64, bool) {
 }
 
 // HasCheckCallsCount returns a boolean if a field has been set.
-func (o *UsageSyntheticsHour) HasCheckCallsCount() bool {
+func (o *UsageSyntheticsAPIHour) HasCheckCallsCount() bool {
 	if o != nil && o.CheckCallsCount != nil {
 		return true
 	}
@@ -66,12 +66,12 @@ func (o *UsageSyntheticsHour) HasCheckCallsCount() bool {
 }
 
 // SetCheckCallsCount gets a reference to the given int64 and assigns it to the CheckCallsCount field.
-func (o *UsageSyntheticsHour) SetCheckCallsCount(v int64) {
+func (o *UsageSyntheticsAPIHour) SetCheckCallsCount(v int64) {
 	o.CheckCallsCount = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
-func (o *UsageSyntheticsHour) GetHour() time.Time {
+func (o *UsageSyntheticsAPIHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
 		var ret time.Time
 		return ret
@@ -81,7 +81,7 @@ func (o *UsageSyntheticsHour) GetHour() time.Time {
 
 // GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSyntheticsHour) GetHourOk() (*time.Time, bool) {
+func (o *UsageSyntheticsAPIHour) GetHourOk() (*time.Time, bool) {
 	if o == nil || o.Hour == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *UsageSyntheticsHour) GetHourOk() (*time.Time, bool) {
 }
 
 // HasHour returns a boolean if a field has been set.
-func (o *UsageSyntheticsHour) HasHour() bool {
+func (o *UsageSyntheticsAPIHour) HasHour() bool {
 	if o != nil && o.Hour != nil {
 		return true
 	}
@@ -98,11 +98,11 @@ func (o *UsageSyntheticsHour) HasHour() bool {
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
-func (o *UsageSyntheticsHour) SetHour(v time.Time) {
+func (o *UsageSyntheticsAPIHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-func (o UsageSyntheticsHour) MarshalJSON() ([]byte, error) {
+func (o UsageSyntheticsAPIHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CheckCallsCount != nil {
 		toSerialize["check_calls_count"] = o.CheckCallsCount
@@ -113,38 +113,38 @@ func (o UsageSyntheticsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUsageSyntheticsHour struct {
-	value *UsageSyntheticsHour
+type NullableUsageSyntheticsAPIHour struct {
+	value *UsageSyntheticsAPIHour
 	isSet bool
 }
 
-func (v NullableUsageSyntheticsHour) Get() *UsageSyntheticsHour {
+func (v NullableUsageSyntheticsAPIHour) Get() *UsageSyntheticsAPIHour {
 	return v.value
 }
 
-func (v *NullableUsageSyntheticsHour) Set(val *UsageSyntheticsHour) {
+func (v *NullableUsageSyntheticsAPIHour) Set(val *UsageSyntheticsAPIHour) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUsageSyntheticsHour) IsSet() bool {
+func (v NullableUsageSyntheticsAPIHour) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUsageSyntheticsHour) Unset() {
+func (v *NullableUsageSyntheticsAPIHour) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUsageSyntheticsHour(val *UsageSyntheticsHour) *NullableUsageSyntheticsHour {
-	return &NullableUsageSyntheticsHour{value: val, isSet: true}
+func NewNullableUsageSyntheticsAPIHour(val *UsageSyntheticsAPIHour) *NullableUsageSyntheticsAPIHour {
+	return &NullableUsageSyntheticsAPIHour{value: val, isSet: true}
 }
 
-func (v NullableUsageSyntheticsHour) MarshalJSON() ([]byte, error) {
+func (v NullableUsageSyntheticsAPIHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUsageSyntheticsHour) UnmarshalJSON(src []byte) error {
+func (v *NullableUsageSyntheticsAPIHour) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

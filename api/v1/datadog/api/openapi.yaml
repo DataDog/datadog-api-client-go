@@ -4746,6 +4746,59 @@ paths:
       tags:
       - Tags
       x-codegen-request-body-name: body
+  /api/v1/usage/aws_lambda:
+    get:
+      description: Get hourly usage for lambda.
+      operationId: GetUsageLambda
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage beginning at this hour'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage ending BEFORE this hour'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageLambdaResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for Lambda
+      tags:
+      - Usage Metering
   /api/v1/usage/fargate:
     get:
       description: Get hourly usage for [fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
@@ -4905,6 +4958,175 @@ paths:
       summary: Get hourly usage for Logs
       tags:
       - Usage Metering
+  /api/v1/usage/logs_by_index:
+    get:
+      description: Get hourly usage for logs by index.
+      operationId: GetUsageLogsByIndex
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage beginning at this hour'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage ending BEFORE this hour'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Comma-separated list of log index names.
+        explode: true
+        in: query
+        name: index_name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageLogsByIndexResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for Logs by Index
+      tags:
+      - Usage Metering
+  /api/v1/usage/network_flows:
+    get:
+      description: Get hourly usage for network flows.
+      operationId: GetUsageNetworkFlows
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage beginning at this hour'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage ending BEFORE this hour'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageNetworkFlowsResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for Network Flows
+      tags:
+      - Usage Metering
+  /api/v1/usage/network_hosts:
+    get:
+      description: Get hourly usage for network hosts.
+      operationId: GetUsageNetworkHosts
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage beginning at this hour'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage ending BEFORE this hour'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageNetworkHostsResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for Network Hosts
+      tags:
+      - Usage Metering
   /api/v1/usage/rum_sessions:
     get:
       description: Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/)
@@ -5022,7 +5244,8 @@ paths:
       - Usage Metering
   /api/v1/usage/synthetics:
     get:
-      description: Get hourly usage for [synthetics](https://docs.datadoghq.com/synthetics/).
+      deprecated: true
+      description: Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
       operationId: GetUsageSynthetics
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
@@ -5070,7 +5293,113 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
-      summary: Get hourly usage for Synthetics
+      summary: Get hourly usage for Synthetics API Checks
+      tags:
+      - Usage Metering
+  /api/v1/usage/synthetics_api:
+    get:
+      description: Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
+      operationId: GetUsageSyntheticsAPI
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage beginning at this hour'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage ending BEFORE this hour'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageSyntheticsAPIResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for Synthetics API Checks
+      tags:
+      - Usage Metering
+  /api/v1/usage/synthetics_browser:
+    get:
+      description: Get hourly usage for synthetics browser checks.
+      operationId: GetUsageSyntheticsBrowser
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage beginning at this hour'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
+          for usage ending BEFORE this hour'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageSyntheticsBrowserResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for Synthetics Browser Checks
       tags:
       - Usage Metering
   /api/v1/usage/timeseries:
@@ -12343,18 +12672,26 @@ components:
     UsageHostHour:
       description: Number of hosts/containers recorded for each hour for a given organization.
       example:
-        apm_host_count: 6
+        apm_host_count: 1
         hour: 2000-01-23T04:56:07.000+00:00
         agent_host_count: 0
-        aws_host_count: 1
-        host_count: 2
-        gcp_host_count: 5
-        container_count: 5
+        aws_host_count: 5
+        host_count: 9
+        azure_host_count: 5
+        alibaba_host_count: 6
+        gcp_host_count: 7
+        container_count: 2
       properties:
         agent_host_count:
           description: |-
             Contains the total number of infrastructure hosts reporting
             during a given hour that were running the Datadog Agent.
+          format: int64
+          type: integer
+        alibaba_host_count:
+          description: |-
+            Contains the total number of hosts that reported via Alibaba integration
+            (and were NOT running the Datadog).
           format: int64
           type: integer
         apm_host_count:
@@ -12366,8 +12703,13 @@ components:
         aws_host_count:
           description: |-
             Contains the total number of hosts that reported via the AWS integration
-            (and were NOT running the Datadog Agent). When AWS or GCP hosts are also running the Datadog Agent,
-            they are counted as Agent hosts, NOT as AWS or GCP.
+            (and were NOT running the Datadog Agent).
+          format: int64
+          type: integer
+        azure_host_count:
+          description: |-
+            Contains the total number of hosts that reported via Azure integration
+            (and were NOT running the Datadog Agent).
           format: int64
           type: integer
         container_count:
@@ -12395,32 +12737,132 @@ components:
     UsageHostsResponse:
       example:
         usage:
-        - apm_host_count: 6
+        - apm_host_count: 1
           hour: 2000-01-23T04:56:07.000+00:00
           agent_host_count: 0
-          aws_host_count: 1
-          host_count: 2
-          gcp_host_count: 5
-          container_count: 5
-        - apm_host_count: 6
+          aws_host_count: 5
+          host_count: 9
+          azure_host_count: 5
+          alibaba_host_count: 6
+          gcp_host_count: 7
+          container_count: 2
+        - apm_host_count: 1
           hour: 2000-01-23T04:56:07.000+00:00
           agent_host_count: 0
-          aws_host_count: 1
-          host_count: 2
-          gcp_host_count: 5
-          container_count: 5
+          aws_host_count: 5
+          host_count: 9
+          azure_host_count: 5
+          alibaba_host_count: 6
+          gcp_host_count: 7
+          container_count: 2
       properties:
         usage:
           items:
             $ref: '#/components/schemas/UsageHostHour'
           type: array
       type: object
+    UsageLambdaHour:
+      description: |-
+        Number of lambda functions and sum of the invocations of all lambda functions
+        for each hour for a given organization.
+      example:
+        func_count: 0
+        hour: 2000-01-23T04:56:07.000+00:00
+        invocations_sum: 6
+      properties:
+        func_count:
+          description: Contains the number of different functions for each region
+            and AWS account.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        invocations_sum:
+          description: Contains the sum of invocations of all functions.
+          format: int64
+          type: integer
+      type: object
+    UsageLambdaResponse:
+      description: |-
+        Reponse containing the umber of lambda functions and sum of the invocations of all lambda functions
+        for each hour for a given organization.
+      example:
+        usage:
+        - func_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+          invocations_sum: 6
+        - func_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+          invocations_sum: 6
+      properties:
+        usage:
+          description: Get hourly usage for Lambda.
+          items:
+            $ref: '#/components/schemas/UsageLambdaHour'
+          type: array
+      type: object
+    UsageLogsByIndexHour:
+      description: Number of indexed logs for each hour and index for a given organization.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        event_count: 0
+        index_id: index_id
+        index_name: index_name
+        retention: 6
+      properties:
+        event_count:
+          description: The total number of indexed logs for the queried hour.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        index_id:
+          description: The index ID for this usage.
+          type: string
+        index_name:
+          description: The user specified name for this index ID.
+          type: string
+        retention:
+          description: The retention period (in days) for this index ID.
+          format: int64
+          type: integer
+      type: object
+    UsageLogsByIndexResponse:
+      description: Response containing the number of indexed logs for each hour and
+        index for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          event_count: 0
+          index_id: index_id
+          index_name: index_name
+          retention: 6
+        - hour: 2000-01-23T04:56:07.000+00:00
+          event_count: 0
+          index_id: index_id
+          index_name: index_name
+          retention: 6
+      properties:
+        usage:
+          items:
+            $ref: '#/components/schemas/UsageLogsByIndexHour'
+          type: array
+      type: object
     UsageLogsHour:
       example:
-        indexed_events_count: 0
+        indexed_events_count: 6
         hour: 2000-01-23T04:56:07.000+00:00
-        ingested_events_bytes: 6
+        billable_ingested_bytes: 0
+        ingested_events_bytes: 1
       properties:
+        billable_ingested_bytes:
+          description: Contains the number of billable log bytes ingested.
+          format: int64
+          type: integer
         hour:
           description: The hour for the usage.
           format: date-time
@@ -12437,12 +12879,14 @@ components:
     UsageLogsResponse:
       example:
         usage:
-        - indexed_events_count: 0
+        - indexed_events_count: 6
           hour: 2000-01-23T04:56:07.000+00:00
-          ingested_events_bytes: 6
-        - indexed_events_count: 0
+          billable_ingested_bytes: 0
+          ingested_events_bytes: 1
+        - indexed_events_count: 6
           hour: 2000-01-23T04:56:07.000+00:00
-          ingested_events_bytes: 6
+          billable_ingested_bytes: 0
+          ingested_events_bytes: 1
       properties:
         usage:
           items:
@@ -12458,6 +12902,68 @@ components:
       x-enum-varnames:
       - STANDARD
       - CUSTOM
+    UsageNetworkFlowsHour:
+      description: Number of netflow events indexed for each hour for a given organization.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        indexed_event_count: 0
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        indexed_event_count:
+          description: Contains the number of netflow events indexed.
+          format: int64
+          type: integer
+      type: object
+    UsageNetworkFlowsResponse:
+      description: Response containing the number of netflow events indexed for each
+        hour for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          indexed_event_count: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          indexed_event_count: 0
+      properties:
+        usage:
+          description: Get hourly usage for Network Flows.
+          items:
+            $ref: '#/components/schemas/UsageNetworkFlowsHour'
+          type: array
+      type: object
+    UsageNetworkHostsHour:
+      description: Number of active NPM hosts for each hour for a given organization.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        host_count: 0
+      properties:
+        host_count:
+          description: Contains the number of active NPM hosts.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+      type: object
+    UsageNetworkHostsResponse:
+      description: Response containting the number of active NPM hosts for each hour
+        for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          host_count: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          host_count: 0
+      properties:
+        usage:
+          description: Get hourly usage for NPM hosts.
+          items:
+            $ref: '#/components/schemas/UsageNetworkHostsHour'
+          type: array
+      type: object
     UsageRumSessionsHour:
       description: Number of RUM Sessions recorded for each hour for a given organization.
       example:
@@ -12484,7 +12990,7 @@ components:
           session_count: 0
       properties:
         usage:
-          description: TODO.
+          description: Get hourly usage for RUM Sessions.
           items:
             $ref: '#/components/schemas/UsageRumSessionsHour'
           type: array
@@ -13120,7 +13626,71 @@ components:
             $ref: '#/components/schemas/UsageSummaryDate'
           type: array
       type: object
+    UsageSyntheticsAPIHour:
+      description: Number of Synthetics API tests run for each hour for a given organization.
+      example:
+        check_calls_count: 0
+        hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        check_calls_count:
+          description: Contains the number of Synthetics API tests run.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+      type: object
+    UsageSyntheticsAPIResponse:
+      description: Response containing the number of Synthetics API tests run for
+        each hour for a given organization.
+      example:
+        usage:
+        - check_calls_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+        - check_calls_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        usage:
+          description: Get hourly usage for Synthetics API tests.
+          items:
+            $ref: '#/components/schemas/UsageSyntheticsAPIHour'
+          type: array
+      type: object
+    UsageSyntheticsBrowserHour:
+      description: Number of Synthetics Browser tests run for each hour for a given
+        organization.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        browser_check_calls_count: 0
+      properties:
+        browser_check_calls_count:
+          description: Contains the number of Synthetics Browser tests run.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+      type: object
+    UsageSyntheticsBrowserResponse:
+      description: Response containing the number of Synthetics Browser tests run
+        for each hour for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          browser_check_calls_count: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          browser_check_calls_count: 0
+      properties:
+        usage:
+          description: Get hourly usage for Synthetics Browser tests.
+          items:
+            $ref: '#/components/schemas/UsageSyntheticsBrowserHour'
+          type: array
+      type: object
     UsageSyntheticsHour:
+      description: Number of Synthetics API tests run for each hour for a given organization.
       example:
         check_calls_count: 0
         hour: 2000-01-23T04:56:07.000+00:00
@@ -13135,6 +13705,8 @@ components:
           type: string
       type: object
     UsageSyntheticsResponse:
+      description: Response containing the number of Synthetics API tests run for
+        each hour for a given organization.
       example:
         usage:
         - check_calls_count: 0
@@ -13151,25 +13723,41 @@ components:
       type: object
     UsageTimeseriesHour:
       example:
+        num_custom_input_timeseries: 0
         hour: 2000-01-23T04:56:07.000+00:00
-        num_custom_timeseries: 0
+        num_custom_timeseries: 1
+        num_custom_output_timeseries: 6
       properties:
         hour:
           description: The hour for the usage.
           format: date-time
           type: string
+        num_custom_input_timeseries:
+          description: Contains the number of custom metrics that are inputs for aggregations
+            (metric configured is custom).
+          format: int64
+          type: integer
+        num_custom_output_timeseries:
+          description: Contains the number of custom metrics that are outputs for
+            aggregations (metric configured is custom).
+          format: int64
+          type: integer
         num_custom_timeseries:
-          description: Contains the number of distinct custom metrics.
+          description: Contains the number of non-aggregation custom metrics.
           format: int64
           type: integer
       type: object
     UsageTimeseriesResponse:
       example:
         usage:
-        - hour: 2000-01-23T04:56:07.000+00:00
-          num_custom_timeseries: 0
-        - hour: 2000-01-23T04:56:07.000+00:00
-          num_custom_timeseries: 0
+        - num_custom_input_timeseries: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+          num_custom_timeseries: 1
+          num_custom_output_timeseries: 6
+        - num_custom_input_timeseries: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+          num_custom_timeseries: 1
+          num_custom_output_timeseries: 6
       properties:
         usage:
           items:

@@ -1,52 +1,52 @@
-# UsageRumSessionsResponse
+# UsageLogsByIndexResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageRumSessionsHour**](UsageRumSessionsHour.md) | Get hourly usage for RUM Sessions. | [optional] 
+**Usage** | Pointer to [**[]UsageLogsByIndexHour**](UsageLogsByIndexHour.md) |  | [optional] 
 
 ## Methods
 
-### NewUsageRumSessionsResponse
+### NewUsageLogsByIndexResponse
 
-`func NewUsageRumSessionsResponse() *UsageRumSessionsResponse`
+`func NewUsageLogsByIndexResponse() *UsageLogsByIndexResponse`
 
-NewUsageRumSessionsResponse instantiates a new UsageRumSessionsResponse object
+NewUsageLogsByIndexResponse instantiates a new UsageLogsByIndexResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUsageRumSessionsResponseWithDefaults
+### NewUsageLogsByIndexResponseWithDefaults
 
-`func NewUsageRumSessionsResponseWithDefaults() *UsageRumSessionsResponse`
+`func NewUsageLogsByIndexResponseWithDefaults() *UsageLogsByIndexResponse`
 
-NewUsageRumSessionsResponseWithDefaults instantiates a new UsageRumSessionsResponse object
+NewUsageLogsByIndexResponseWithDefaults instantiates a new UsageLogsByIndexResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetUsage
 
-`func (o *UsageRumSessionsResponse) GetUsage() []UsageRumSessionsHour`
+`func (o *UsageLogsByIndexResponse) GetUsage() []UsageLogsByIndexHour`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *UsageRumSessionsResponse) GetUsageOk() (*[]UsageRumSessionsHour, bool)`
+`func (o *UsageLogsByIndexResponse) GetUsageOk() (*[]UsageLogsByIndexHour, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *UsageRumSessionsResponse) SetUsage(v []UsageRumSessionsHour)`
+`func (o *UsageLogsByIndexResponse) SetUsage(v []UsageLogsByIndexHour)`
 
 SetUsage sets Usage field to given value.
 
 ### HasUsage
 
-`func (o *UsageRumSessionsResponse) HasUsage() bool`
+`func (o *UsageLogsByIndexResponse) HasUsage() bool`
 
 HasUsage returns a boolean if a field has been set.
 

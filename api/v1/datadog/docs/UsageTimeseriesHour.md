@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
-**NumCustomTimeseries** | Pointer to **int64** | Contains the number of distinct custom metrics. | [optional] 
+**NumCustomInputTimeseries** | Pointer to **int64** | Contains the number of custom metrics that are inputs for aggregations (metric configured is custom). | [optional] 
+**NumCustomOutputTimeseries** | Pointer to **int64** | Contains the number of custom metrics that are outputs for aggregations (metric configured is custom). | [optional] 
+**NumCustomTimeseries** | Pointer to **int64** | Contains the number of non-aggregation custom metrics. | [optional] 
 
 ## Methods
 
@@ -50,6 +52,56 @@ SetHour sets Hour field to given value.
 `func (o *UsageTimeseriesHour) HasHour() bool`
 
 HasHour returns a boolean if a field has been set.
+
+### GetNumCustomInputTimeseries
+
+`func (o *UsageTimeseriesHour) GetNumCustomInputTimeseries() int64`
+
+GetNumCustomInputTimeseries returns the NumCustomInputTimeseries field if non-nil, zero value otherwise.
+
+### GetNumCustomInputTimeseriesOk
+
+`func (o *UsageTimeseriesHour) GetNumCustomInputTimeseriesOk() (*int64, bool)`
+
+GetNumCustomInputTimeseriesOk returns a tuple with the NumCustomInputTimeseries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumCustomInputTimeseries
+
+`func (o *UsageTimeseriesHour) SetNumCustomInputTimeseries(v int64)`
+
+SetNumCustomInputTimeseries sets NumCustomInputTimeseries field to given value.
+
+### HasNumCustomInputTimeseries
+
+`func (o *UsageTimeseriesHour) HasNumCustomInputTimeseries() bool`
+
+HasNumCustomInputTimeseries returns a boolean if a field has been set.
+
+### GetNumCustomOutputTimeseries
+
+`func (o *UsageTimeseriesHour) GetNumCustomOutputTimeseries() int64`
+
+GetNumCustomOutputTimeseries returns the NumCustomOutputTimeseries field if non-nil, zero value otherwise.
+
+### GetNumCustomOutputTimeseriesOk
+
+`func (o *UsageTimeseriesHour) GetNumCustomOutputTimeseriesOk() (*int64, bool)`
+
+GetNumCustomOutputTimeseriesOk returns a tuple with the NumCustomOutputTimeseries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumCustomOutputTimeseries
+
+`func (o *UsageTimeseriesHour) SetNumCustomOutputTimeseries(v int64)`
+
+SetNumCustomOutputTimeseries sets NumCustomOutputTimeseries field to given value.
+
+### HasNumCustomOutputTimeseries
+
+`func (o *UsageTimeseriesHour) HasNumCustomOutputTimeseries() bool`
+
+HasNumCustomOutputTimeseries returns a boolean if a field has been set.
 
 ### GetNumCustomTimeseries
 

@@ -1,0 +1,52 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/usage/network_hosts?end_hr=2020-02-13T00%3A00%3A00Z&start_hr=2020-02-12T00%3A00%3A00Z
+    method: GET
+  response:
+    body: '{"usage":[{"host_count":18975,"hour":"2020-02-12T00:00:00+00:00"},{"host_count":19034,"hour":"2020-02-12T01:00:00+00:00"},{"host_count":19048,"hour":"2020-02-12T02:00:00+00:00"},{"host_count":19002,"hour":"2020-02-12T03:00:00+00:00"},{"host_count":18984,"hour":"2020-02-12T04:00:00+00:00"},{"host_count":18907,"hour":"2020-02-12T05:00:00+00:00"},{"host_count":18985,"hour":"2020-02-12T06:00:00+00:00"},{"host_count":18961,"hour":"2020-02-12T07:00:00+00:00"},{"host_count":18994,"hour":"2020-02-12T08:00:00+00:00"},{"host_count":18952,"hour":"2020-02-12T09:00:00+00:00"},{"host_count":19016,"hour":"2020-02-12T10:00:00+00:00"},{"host_count":18996,"hour":"2020-02-12T11:00:00+00:00"},{"host_count":19027,"hour":"2020-02-12T12:00:00+00:00"},{"host_count":18905,"hour":"2020-02-12T13:00:00+00:00"},{"host_count":19002,"hour":"2020-02-12T14:00:00+00:00"},{"host_count":19105,"hour":"2020-02-12T15:00:00+00:00"},{"host_count":19055,"hour":"2020-02-12T16:00:00+00:00"},{"host_count":19085,"hour":"2020-02-12T17:00:00+00:00"},{"host_count":19030,"hour":"2020-02-12T18:00:00+00:00"},{"host_count":19343,"hour":"2020-02-12T19:00:00+00:00"},{"host_count":19428,"hour":"2020-02-12T20:00:00+00:00"},{"host_count":19522,"hour":"2020-02-12T21:00:00+00:00"},{"host_count":19133,"hour":"2020-02-12T22:00:00+00:00"},{"host_count":19050,"hour":"2020-02-12T23:00:00+00:00"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "1355"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 30 Mar 2020 20:58:16 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Mon, 06-Apr-2020 20:58:16 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2336355"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "200"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "74"
+      X-Ratelimit-Reset:
+      - "104"
+    status: 200 OK
+    code: 200
+    duration: ""

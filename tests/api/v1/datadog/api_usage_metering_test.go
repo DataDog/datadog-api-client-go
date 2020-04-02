@@ -91,6 +91,34 @@ func TestUsageSynthetics(t *testing.T) {
 	assert.Equal(t, usage.HasUsage(), true)
 }
 
+func TestUsageSyntheticsAPI(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageSyntheticsAPI(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Synthetics API: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageSyntheticsBrowser(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageSyntheticsBrowser(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Synthetics Browser: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
 func TestUsageTimeseries(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
@@ -126,6 +154,62 @@ func TestUsageTrace(t *testing.T) {
 	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageTrace(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Trace: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageLogsByIndex(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageLogsByIndex(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Logs by Index: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageLambda(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageLambda(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Lambda: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageNetworkHosts(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageNetworkHosts(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Network Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 200)
+
+	assert.Equal(t, usage.HasUsage(), true)
+}
+
+func TestUsageNetworkFlows(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	startHr, endHr := getStartEndHr()
+	usage, httpresp, err := TESTAPICLIENT.UsageMeteringApi.GetUsageNetworkFlows(TESTAUTH).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Network Flows: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
