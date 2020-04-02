@@ -5,8 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostCount** | Pointer to **int64** | Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent. | [optional] 
+**AlibabaHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog). | [optional] 
 **ApmHostCount** | Pointer to **int64** | Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods). | [optional] 
-**AwsHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent). When AWS or GCP hosts are also running the Datadog Agent, they are counted as Agent hosts, NOT as AWS or GCP. | [optional] 
+**AwsHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent). | [optional] 
+**AzureHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent). | [optional] 
 **ContainerCount** | Pointer to **int64** | Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of &#x60;agent_host_count&#x60;, &#x60;aws_host_count&#x60;, and &#x60;gcp_host_count&#x60;. | [optional] 
 **GcpHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent). | [optional] 
 **HostCount** | Pointer to **int64** | Shows the total number of containers reporting via the Docker integration during the hour. | [optional] 
@@ -55,6 +57,31 @@ SetAgentHostCount sets AgentHostCount field to given value.
 `func (o *UsageHostHour) HasAgentHostCount() bool`
 
 HasAgentHostCount returns a boolean if a field has been set.
+
+### GetAlibabaHostCount
+
+`func (o *UsageHostHour) GetAlibabaHostCount() int64`
+
+GetAlibabaHostCount returns the AlibabaHostCount field if non-nil, zero value otherwise.
+
+### GetAlibabaHostCountOk
+
+`func (o *UsageHostHour) GetAlibabaHostCountOk() (*int64, bool)`
+
+GetAlibabaHostCountOk returns a tuple with the AlibabaHostCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlibabaHostCount
+
+`func (o *UsageHostHour) SetAlibabaHostCount(v int64)`
+
+SetAlibabaHostCount sets AlibabaHostCount field to given value.
+
+### HasAlibabaHostCount
+
+`func (o *UsageHostHour) HasAlibabaHostCount() bool`
+
+HasAlibabaHostCount returns a boolean if a field has been set.
 
 ### GetApmHostCount
 
@@ -105,6 +132,31 @@ SetAwsHostCount sets AwsHostCount field to given value.
 `func (o *UsageHostHour) HasAwsHostCount() bool`
 
 HasAwsHostCount returns a boolean if a field has been set.
+
+### GetAzureHostCount
+
+`func (o *UsageHostHour) GetAzureHostCount() int64`
+
+GetAzureHostCount returns the AzureHostCount field if non-nil, zero value otherwise.
+
+### GetAzureHostCountOk
+
+`func (o *UsageHostHour) GetAzureHostCountOk() (*int64, bool)`
+
+GetAzureHostCountOk returns a tuple with the AzureHostCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureHostCount
+
+`func (o *UsageHostHour) SetAzureHostCount(v int64)`
+
+SetAzureHostCount sets AzureHostCount field to given value.
+
+### HasAzureHostCount
+
+`func (o *UsageHostHour) HasAzureHostCount() bool`
+
+HasAzureHostCount returns a boolean if a field has been set.
 
 ### GetContainerCount
 

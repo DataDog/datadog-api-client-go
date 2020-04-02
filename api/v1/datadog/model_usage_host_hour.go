@@ -17,10 +17,14 @@ import (
 type UsageHostHour struct {
 	// Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent.
 	AgentHostCount *int64 `json:"agent_host_count,omitempty"`
+	// Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog).
+	AlibabaHostCount *int64 `json:"alibaba_host_count,omitempty"`
 	// Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods).
 	ApmHostCount *int64 `json:"apm_host_count,omitempty"`
-	// Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent). When AWS or GCP hosts are also running the Datadog Agent, they are counted as Agent hosts, NOT as AWS or GCP.
+	// Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent).
 	AwsHostCount *int64 `json:"aws_host_count,omitempty"`
+	// Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent).
+	AzureHostCount *int64 `json:"azure_host_count,omitempty"`
 	// Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of `agent_host_count`, `aws_host_count`, and `gcp_host_count`.
 	ContainerCount *int64 `json:"container_count,omitempty"`
 	// Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent).
@@ -78,6 +82,38 @@ func (o *UsageHostHour) HasAgentHostCount() bool {
 // SetAgentHostCount gets a reference to the given int64 and assigns it to the AgentHostCount field.
 func (o *UsageHostHour) SetAgentHostCount(v int64) {
 	o.AgentHostCount = &v
+}
+
+// GetAlibabaHostCount returns the AlibabaHostCount field value if set, zero value otherwise.
+func (o *UsageHostHour) GetAlibabaHostCount() int64 {
+	if o == nil || o.AlibabaHostCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AlibabaHostCount
+}
+
+// GetAlibabaHostCountOk returns a tuple with the AlibabaHostCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetAlibabaHostCountOk() (*int64, bool) {
+	if o == nil || o.AlibabaHostCount == nil {
+		return nil, false
+	}
+	return o.AlibabaHostCount, true
+}
+
+// HasAlibabaHostCount returns a boolean if a field has been set.
+func (o *UsageHostHour) HasAlibabaHostCount() bool {
+	if o != nil && o.AlibabaHostCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAlibabaHostCount gets a reference to the given int64 and assigns it to the AlibabaHostCount field.
+func (o *UsageHostHour) SetAlibabaHostCount(v int64) {
+	o.AlibabaHostCount = &v
 }
 
 // GetApmHostCount returns the ApmHostCount field value if set, zero value otherwise.
@@ -142,6 +178,38 @@ func (o *UsageHostHour) HasAwsHostCount() bool {
 // SetAwsHostCount gets a reference to the given int64 and assigns it to the AwsHostCount field.
 func (o *UsageHostHour) SetAwsHostCount(v int64) {
 	o.AwsHostCount = &v
+}
+
+// GetAzureHostCount returns the AzureHostCount field value if set, zero value otherwise.
+func (o *UsageHostHour) GetAzureHostCount() int64 {
+	if o == nil || o.AzureHostCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AzureHostCount
+}
+
+// GetAzureHostCountOk returns a tuple with the AzureHostCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetAzureHostCountOk() (*int64, bool) {
+	if o == nil || o.AzureHostCount == nil {
+		return nil, false
+	}
+	return o.AzureHostCount, true
+}
+
+// HasAzureHostCount returns a boolean if a field has been set.
+func (o *UsageHostHour) HasAzureHostCount() bool {
+	if o != nil && o.AzureHostCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAzureHostCount gets a reference to the given int64 and assigns it to the AzureHostCount field.
+func (o *UsageHostHour) SetAzureHostCount(v int64) {
+	o.AzureHostCount = &v
 }
 
 // GetContainerCount returns the ContainerCount field value if set, zero value otherwise.
@@ -277,11 +345,17 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	if o.AgentHostCount != nil {
 		toSerialize["agent_host_count"] = o.AgentHostCount
 	}
+	if o.AlibabaHostCount != nil {
+		toSerialize["alibaba_host_count"] = o.AlibabaHostCount
+	}
 	if o.ApmHostCount != nil {
 		toSerialize["apm_host_count"] = o.ApmHostCount
 	}
 	if o.AwsHostCount != nil {
 		toSerialize["aws_host_count"] = o.AwsHostCount
+	}
+	if o.AzureHostCount != nil {
+		toSerialize["azure_host_count"] = o.AzureHostCount
 	}
 	if o.ContainerCount != nil {
 		toSerialize["container_count"] = o.ContainerCount
