@@ -79,13 +79,13 @@ Class | Method | HTTP request | Description
 *AWSIntegrationApi* | [**GetAllAWSAccounts**](docs/AWSIntegrationApi.md#getallawsaccounts) | **Get** /api/v1/integration/aws | List all AWS Integrations
 *AWSIntegrationApi* | [**ListAvailableAWSNamespaces**](docs/AWSIntegrationApi.md#listavailableawsnamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
 *AWSIntegrationApi* | [**UpdateAWSAccount**](docs/AWSIntegrationApi.md#updateawsaccount) | **Put** /api/v1/integration/aws | Update an AWS Integration
-*AWSLogsIntegrationApi* | [**AWSLogsCheckLambdaAsync**](docs/AWSLogsIntegrationApi.md#awslogschecklambdaasync) | **Post** /api/v1/integration/aws/logs/check_async | Check that an AWS Lambda Function exists
-*AWSLogsIntegrationApi* | [**AWSLogsCheckServicesAsync**](docs/AWSLogsIntegrationApi.md#awslogscheckservicesasync) | **Post** /api/v1/integration/aws/logs/services_async | Check permissions for Log Services
-*AWSLogsIntegrationApi* | [**AWSLogsList**](docs/AWSLogsIntegrationApi.md#awslogslist) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
-*AWSLogsIntegrationApi* | [**AWSLogsServicesList**](docs/AWSLogsIntegrationApi.md#awslogsserviceslist) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
 *AWSLogsIntegrationApi* | [**AddAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#addawslambdaarn) | **Post** /api/v1/integration/aws/logs | Add AWS Log Lambda ARN
+*AWSLogsIntegrationApi* | [**CheckAWSLogsLambdaAsync**](docs/AWSLogsIntegrationApi.md#checkawslogslambdaasync) | **Post** /api/v1/integration/aws/logs/check_async | Check that an AWS Lambda Function exists
+*AWSLogsIntegrationApi* | [**CheckAWSLogsServicesAsync**](docs/AWSLogsIntegrationApi.md#checkawslogsservicesasync) | **Post** /api/v1/integration/aws/logs/services_async | Check permissions for Log Services
 *AWSLogsIntegrationApi* | [**DeleteAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#deleteawslambdaarn) | **Delete** /api/v1/integration/aws/logs | Delete an AWS Logs integration
 *AWSLogsIntegrationApi* | [**EnableAWSLogServices**](docs/AWSLogsIntegrationApi.md#enableawslogservices) | **Post** /api/v1/integration/aws/logs/services | Enable an AWS Logs integration
+*AWSLogsIntegrationApi* | [**GetAllAWSLogsIntegrations**](docs/AWSLogsIntegrationApi.md#getallawslogsintegrations) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
+*AWSLogsIntegrationApi* | [**GetAllAWSLogsServices**](docs/AWSLogsIntegrationApi.md#getallawslogsservices) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
 *AzureIntegrationApi* | [**AzureUpdateHostFilters**](docs/AzureIntegrationApi.md#azureupdatehostfilters) | **Post** /api/v1/integration/azure/host_filters | Update Azure integration host filters
 *AzureIntegrationApi* | [**CreateAzureIntegration**](docs/AzureIntegrationApi.md#createazureintegration) | **Post** /api/v1/integration/azure | Create an Azure integration
 *AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure integration
