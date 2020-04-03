@@ -1846,7 +1846,7 @@ paths:
     get:
       description: List all Datadog-AWS Logs integrations configured in your Datadog
         account.
-      operationId: AWSLogsList
+      operationId: GetAllAWSLogsIntegrations
       responses:
         "200":
           content:
@@ -1923,7 +1923,7 @@ paths:
         - Returns a status of 'waiting' while checking.
         - Returns a status of 'checked and ok' if the Lambda exists.
         - Returns a status of 'error' if the Lambda does not exist.
-      operationId: AWSLogsCheckLambdaAsync
+      operationId: CheckAWSLogsLambdaAsync
       requestBody:
         content:
           application/json:
@@ -1959,7 +1959,7 @@ paths:
       description: Get the list of current AWS services that Datadog offers automatic
         log collection. Use returned service IDs with the services parameter for the
         Enable an AWS service log collection API endpoint.
-      operationId: AWSLogsServicesList
+      operationId: GetAllAWSLogsServices
       responses:
         "200":
           content:
@@ -2041,7 +2041,7 @@ paths:
         - Returns a status of 'waiting' while checking.
         - Returns a status of 'checked and ok' if the Lambda exists.
         - Returns a status of 'error' if the Lambda does not exist.
-      operationId: AWSLogsCheckServicesAsync
+      operationId: CheckAWSLogsServicesAsync
       requestBody:
         content:
           application/json:
