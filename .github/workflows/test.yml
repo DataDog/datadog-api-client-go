@@ -15,12 +15,12 @@ jobs:
     if: github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/pr/')
     steps:
     - name: Install Go
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v2-beta
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Install gogetsum
+      run: go get gotest.tools/gotestsum
     - name: Test
-      run: |
-        go get gotest.tools/gotestsum
-        gotestsum --format testname -- -coverpkg="github.com/DataDog/datadog-api-client-go/api/v1/datadog","github.com/DataDog/datadog-api-client-go/api/v2/datadog" -coverprofile="coverage.txt" -covermode=atomic -v $(go list ./...)
+      run: gotestsum --format testname -- -coverpkg="github.com/DataDog/datadog-api-client-go/api/v1/datadog","github.com/DataDog/datadog-api-client-go/api/v2/datadog" -coverprofile="coverage.txt" -covermode=atomic -v $(go list ./...)
