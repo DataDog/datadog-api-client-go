@@ -180,57 +180,75 @@ func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	// 400 Bad Request
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
 
-	// 403 Forbidden
-	_, httpresp, err = TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(context.Background()).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 403, httpresp.StatusCode)
-	apiError, ok = err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func TestAWSIntegrationCreateErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	// 400 Bad Request
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(TESTAUTH).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
 
-	// 403 Forbidden
-	_, httpresp, err = TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(context.Background()).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 403, httpresp.StatusCode)
-	apiError, ok = err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func TestAWSIntegrationDeleteErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	// 400 Bad Request
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(TESTAUTH).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
 
-	// 403 Forbidden
-	_, httpresp, err = TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(context.Background()).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 403, httpresp.StatusCode)
-	apiError, ok = err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func TestAWSIntegrationGetAll403Error(t *testing.T) {
@@ -249,7 +267,7 @@ func TestAWSIntegrationGetAll400Error(t *testing.T) {
 	teardownTest := setupUnitTest(t)
 	defer teardownTest(t)
 
-	res, err := tests.ReadFixture("fixtures/aws/get_all_400.json")
+	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
@@ -282,19 +300,25 @@ func TestAWSIntegrationUpdateErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	// 400 Bad Request
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(TESTAUTH).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
 
-	// 403 Forbidden
-	_, httpresp, err = TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(context.Background()).Body(datadog.AWSAccount{}).Execute()
-	assert.Equal(t, 403, httpresp.StatusCode)
-	apiError, ok = err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func retryDeleteAccount(t *testing.T, awsAccount datadog.AWSAccount) {
