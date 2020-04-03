@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BillableIngestedBytes** | Pointer to **int64** | Contains the number of billable log bytes ingested. | [optional] 
 **Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
 **IndexedEventsCount** | Pointer to **int64** | Contains the number of log events indexed. | [optional] 
 **IngestedEventsBytes** | Pointer to **int64** | Contains the number of log bytes ingested. | [optional] 
@@ -27,6 +28,31 @@ NewUsageLogsHourWithDefaults instantiates a new UsageLogsHour object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetBillableIngestedBytes
+
+`func (o *UsageLogsHour) GetBillableIngestedBytes() int64`
+
+GetBillableIngestedBytes returns the BillableIngestedBytes field if non-nil, zero value otherwise.
+
+### GetBillableIngestedBytesOk
+
+`func (o *UsageLogsHour) GetBillableIngestedBytesOk() (*int64, bool)`
+
+GetBillableIngestedBytesOk returns a tuple with the BillableIngestedBytes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillableIngestedBytes
+
+`func (o *UsageLogsHour) SetBillableIngestedBytes(v int64)`
+
+SetBillableIngestedBytes sets BillableIngestedBytes field to given value.
+
+### HasBillableIngestedBytes
+
+`func (o *UsageLogsHour) HasBillableIngestedBytes() bool`
+
+HasBillableIngestedBytes returns a boolean if a field has been set.
+
 ### GetHour
 
 `func (o *UsageLogsHour) GetHour() time.Time`
@@ -35,22 +61,22 @@ GetHour returns the Hour field if non-nil, zero value otherwise.
 
 ### GetHourOk
 
-`func (o *UsageLogsHour) GetHourOk() (time.Time, bool)`
+`func (o *UsageLogsHour) GetHourOk() (*time.Time, bool)`
 
 GetHourOk returns a tuple with the Hour field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHour
+
+`func (o *UsageLogsHour) SetHour(v time.Time)`
+
+SetHour sets Hour field to given value.
 
 ### HasHour
 
 `func (o *UsageLogsHour) HasHour() bool`
 
 HasHour returns a boolean if a field has been set.
-
-### SetHour
-
-`func (o *UsageLogsHour) SetHour(v time.Time)`
-
-SetHour gets a reference to the given time.Time and assigns it to the Hour field.
 
 ### GetIndexedEventsCount
 
@@ -60,22 +86,22 @@ GetIndexedEventsCount returns the IndexedEventsCount field if non-nil, zero valu
 
 ### GetIndexedEventsCountOk
 
-`func (o *UsageLogsHour) GetIndexedEventsCountOk() (int64, bool)`
+`func (o *UsageLogsHour) GetIndexedEventsCountOk() (*int64, bool)`
 
 GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIndexedEventsCount
+
+`func (o *UsageLogsHour) SetIndexedEventsCount(v int64)`
+
+SetIndexedEventsCount sets IndexedEventsCount field to given value.
 
 ### HasIndexedEventsCount
 
 `func (o *UsageLogsHour) HasIndexedEventsCount() bool`
 
 HasIndexedEventsCount returns a boolean if a field has been set.
-
-### SetIndexedEventsCount
-
-`func (o *UsageLogsHour) SetIndexedEventsCount(v int64)`
-
-SetIndexedEventsCount gets a reference to the given int64 and assigns it to the IndexedEventsCount field.
 
 ### GetIngestedEventsBytes
 
@@ -85,22 +111,22 @@ GetIngestedEventsBytes returns the IngestedEventsBytes field if non-nil, zero va
 
 ### GetIngestedEventsBytesOk
 
-`func (o *UsageLogsHour) GetIngestedEventsBytesOk() (int64, bool)`
+`func (o *UsageLogsHour) GetIngestedEventsBytesOk() (*int64, bool)`
 
 GetIngestedEventsBytesOk returns a tuple with the IngestedEventsBytes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIngestedEventsBytes
+
+`func (o *UsageLogsHour) SetIngestedEventsBytes(v int64)`
+
+SetIngestedEventsBytes sets IngestedEventsBytes field to given value.
 
 ### HasIngestedEventsBytes
 
 `func (o *UsageLogsHour) HasIngestedEventsBytes() bool`
 
 HasIngestedEventsBytes returns a boolean if a field has been set.
-
-### SetIngestedEventsBytes
-
-`func (o *UsageLogsHour) SetIngestedEventsBytes(v int64)`
-
-SetIngestedEventsBytes gets a reference to the given int64 and assigns it to the IngestedEventsBytes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

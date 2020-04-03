@@ -46,14 +46,13 @@ func (o *DashboardTemplateVariablePresetValue) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardTemplateVariablePresetValue) GetNameOk() (string, bool) {
+func (o *DashboardTemplateVariablePresetValue) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *DashboardTemplateVariablePresetValue) GetValue() string {
 	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value if set, zero value otherwise
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardTemplateVariablePresetValue) GetValueOk() (string, bool) {
+func (o *DashboardTemplateVariablePresetValue) GetValueOk() (*string, bool) {
 	if o == nil || o.Value == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -123,7 +121,7 @@ func (v NullableDashboardTemplateVariablePresetValue) Get() *DashboardTemplateVa
 	return v.value
 }
 
-func (v NullableDashboardTemplateVariablePresetValue) Set(val *DashboardTemplateVariablePresetValue) {
+func (v *NullableDashboardTemplateVariablePresetValue) Set(val *DashboardTemplateVariablePresetValue) {
 	v.value = val
 	v.isSet = true
 }
@@ -132,7 +130,7 @@ func (v NullableDashboardTemplateVariablePresetValue) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDashboardTemplateVariablePresetValue) Unset() {
+func (v *NullableDashboardTemplateVariablePresetValue) Unset() {
 	v.value = nil
 	v.isSet = false
 }

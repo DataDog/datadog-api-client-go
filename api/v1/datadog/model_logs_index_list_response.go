@@ -43,14 +43,13 @@ func (o *LogsIndexListResponse) GetIndexes() []LogsIndex {
 	return *o.Indexes
 }
 
-// GetIndexesOk returns a tuple with the Indexes field value if set, zero value otherwise
+// GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndexListResponse) GetIndexesOk() ([]LogsIndex, bool) {
+func (o *LogsIndexListResponse) GetIndexesOk() (*[]LogsIndex, bool) {
 	if o == nil || o.Indexes == nil {
-		var ret []LogsIndex
-		return ret, false
+		return nil, false
 	}
-	return *o.Indexes, true
+	return o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableLogsIndexListResponse) Get() *LogsIndexListResponse {
 	return v.value
 }
 
-func (v NullableLogsIndexListResponse) Set(val *LogsIndexListResponse) {
+func (v *NullableLogsIndexListResponse) Set(val *LogsIndexListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableLogsIndexListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsIndexListResponse) Unset() {
+func (v *NullableLogsIndexListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

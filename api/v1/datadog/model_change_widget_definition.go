@@ -56,6 +56,15 @@ func (o *ChangeWidgetDefinition) GetRequests() []ChangeWidgetRequest {
 	return o.Requests
 }
 
+// GetRequestsOk returns a tuple with the Requests field value
+// and a boolean to check if the value has been set.
+func (o *ChangeWidgetDefinition) GetRequestsOk() (*[]ChangeWidgetRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Requests, true
+}
+
 // SetRequests sets field value
 func (o *ChangeWidgetDefinition) SetRequests(v []ChangeWidgetRequest) {
 	o.Requests = v
@@ -70,14 +79,13 @@ func (o *ChangeWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *ChangeWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -103,14 +111,13 @@ func (o *ChangeWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *ChangeWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -136,14 +143,13 @@ func (o *ChangeWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *ChangeWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -169,14 +175,13 @@ func (o *ChangeWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *ChangeWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -201,6 +206,15 @@ func (o *ChangeWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ChangeWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -245,7 +259,7 @@ func (v NullableChangeWidgetDefinition) Get() *ChangeWidgetDefinition {
 	return v.value
 }
 
-func (v NullableChangeWidgetDefinition) Set(val *ChangeWidgetDefinition) {
+func (v *NullableChangeWidgetDefinition) Set(val *ChangeWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -254,7 +268,7 @@ func (v NullableChangeWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableChangeWidgetDefinition) Unset() {
+func (v *NullableChangeWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

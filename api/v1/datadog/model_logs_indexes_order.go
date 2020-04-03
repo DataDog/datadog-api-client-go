@@ -14,7 +14,7 @@ import (
 
 // LogsIndexesOrder Object containing the ordered list of log index names.
 type LogsIndexesOrder struct {
-	// Array of strings identifying by their name(s) the index(es) of your organisation. Logs are tested against the query filter of each index one by one, following the order of the array. Logs are eventually stored in the first matching index.
+	// Array of strings identifying by their name(s) the index(es) of your organization. Logs are tested against the query filter of each index one by one, following the order of the array. Logs are eventually stored in the first matching index.
 	IndexNames []string `json:"index_names"`
 }
 
@@ -46,6 +46,15 @@ func (o *LogsIndexesOrder) GetIndexNames() []string {
 	return o.IndexNames
 }
 
+// GetIndexNamesOk returns a tuple with the IndexNames field value
+// and a boolean to check if the value has been set.
+func (o *LogsIndexesOrder) GetIndexNamesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IndexNames, true
+}
+
 // SetIndexNames sets field value
 func (o *LogsIndexesOrder) SetIndexNames(v []string) {
 	o.IndexNames = v
@@ -68,7 +77,7 @@ func (v NullableLogsIndexesOrder) Get() *LogsIndexesOrder {
 	return v.value
 }
 
-func (v NullableLogsIndexesOrder) Set(val *LogsIndexesOrder) {
+func (v *NullableLogsIndexesOrder) Set(val *LogsIndexesOrder) {
 	v.value = val
 	v.isSet = true
 }
@@ -77,7 +86,7 @@ func (v NullableLogsIndexesOrder) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsIndexesOrder) Unset() {
+func (v *NullableLogsIndexesOrder) Unset() {
 	v.value = nil
 	v.isSet = false
 }

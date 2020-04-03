@@ -31,7 +31,7 @@ Name | Type | Description  | Notes
  **end** | **int64** | The POSIX timestamp of the end of the query. | 
  **metricQuery** | **string** | The metric query. | 
  **eventQuery** | **string** | A query that adds event bands to the graph. | 
- **graphDef** | **string** | A JSON document defining the graph. graph_def can be used instead of metric_query. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URLEncoded. | 
+ **graphDef** | **string** | A JSON document defining the graph. &#x60;graph_def&#x60; can be used instead of &#x60;metric_query&#x60;. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URLEncoded. | 
  **title** | **string** | A title for the graph. If no title is specified, the graph doesn’t have a title. | 
 
 ### Return type

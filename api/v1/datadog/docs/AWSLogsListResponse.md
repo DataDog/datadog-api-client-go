@@ -35,22 +35,22 @@ GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *AWSLogsListResponse) GetAccountIdOk() (string, bool)`
+`func (o *AWSLogsListResponse) GetAccountIdOk() (*string, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAccountId
+
+`func (o *AWSLogsListResponse) SetAccountId(v string)`
+
+SetAccountId sets AccountId field to given value.
 
 ### HasAccountId
 
 `func (o *AWSLogsListResponse) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
-
-### SetAccountId
-
-`func (o *AWSLogsListResponse) SetAccountId(v string)`
-
-SetAccountId gets a reference to the given string and assigns it to the AccountId field.
 
 ### GetLambdas
 
@@ -60,22 +60,22 @@ GetLambdas returns the Lambdas field if non-nil, zero value otherwise.
 
 ### GetLambdasOk
 
-`func (o *AWSLogsListResponse) GetLambdasOk() ([]AWSLogsListResponseLambdas, bool)`
+`func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsListResponseLambdas, bool)`
 
 GetLambdasOk returns a tuple with the Lambdas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLambdas
+
+`func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsListResponseLambdas)`
+
+SetLambdas sets Lambdas field to given value.
 
 ### HasLambdas
 
 `func (o *AWSLogsListResponse) HasLambdas() bool`
 
 HasLambdas returns a boolean if a field has been set.
-
-### SetLambdas
-
-`func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsListResponseLambdas)`
-
-SetLambdas gets a reference to the given []AWSLogsListResponseLambdas and assigns it to the Lambdas field.
 
 ### GetServices
 
@@ -85,22 +85,22 @@ GetServices returns the Services field if non-nil, zero value otherwise.
 
 ### GetServicesOk
 
-`func (o *AWSLogsListResponse) GetServicesOk() ([]string, bool)`
+`func (o *AWSLogsListResponse) GetServicesOk() (*[]string, bool)`
 
 GetServicesOk returns a tuple with the Services field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetServices
+
+`func (o *AWSLogsListResponse) SetServices(v []string)`
+
+SetServices sets Services field to given value.
 
 ### HasServices
 
 `func (o *AWSLogsListResponse) HasServices() bool`
 
 HasServices returns a boolean if a field has been set.
-
-### SetServices
-
-`func (o *AWSLogsListResponse) SetServices(v []string)`
-
-SetServices gets a reference to the given []string and assigns it to the Services field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

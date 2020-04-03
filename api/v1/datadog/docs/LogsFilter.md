@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Query** | Pointer to **string** | The filter query | [optional] 
+**Query** | Pointer to **string** | The filter query. | [optional] 
 
 ## Methods
 
@@ -33,22 +33,22 @@ GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *LogsFilter) GetQueryOk() (string, bool)`
+`func (o *LogsFilter) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *LogsFilter) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
 
 ### HasQuery
 
 `func (o *LogsFilter) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
-
-### SetQuery
-
-`func (o *LogsFilter) SetQuery(v string)`
-
-SetQuery gets a reference to the given string and assigns it to the Query field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

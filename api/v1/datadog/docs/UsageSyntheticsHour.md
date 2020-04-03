@@ -34,22 +34,22 @@ GetCheckCallsCount returns the CheckCallsCount field if non-nil, zero value othe
 
 ### GetCheckCallsCountOk
 
-`func (o *UsageSyntheticsHour) GetCheckCallsCountOk() (int64, bool)`
+`func (o *UsageSyntheticsHour) GetCheckCallsCountOk() (*int64, bool)`
 
 GetCheckCallsCountOk returns a tuple with the CheckCallsCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCheckCallsCount
+
+`func (o *UsageSyntheticsHour) SetCheckCallsCount(v int64)`
+
+SetCheckCallsCount sets CheckCallsCount field to given value.
 
 ### HasCheckCallsCount
 
 `func (o *UsageSyntheticsHour) HasCheckCallsCount() bool`
 
 HasCheckCallsCount returns a boolean if a field has been set.
-
-### SetCheckCallsCount
-
-`func (o *UsageSyntheticsHour) SetCheckCallsCount(v int64)`
-
-SetCheckCallsCount gets a reference to the given int64 and assigns it to the CheckCallsCount field.
 
 ### GetHour
 
@@ -59,22 +59,22 @@ GetHour returns the Hour field if non-nil, zero value otherwise.
 
 ### GetHourOk
 
-`func (o *UsageSyntheticsHour) GetHourOk() (time.Time, bool)`
+`func (o *UsageSyntheticsHour) GetHourOk() (*time.Time, bool)`
 
 GetHourOk returns a tuple with the Hour field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHour
+
+`func (o *UsageSyntheticsHour) SetHour(v time.Time)`
+
+SetHour sets Hour field to given value.
 
 ### HasHour
 
 `func (o *UsageSyntheticsHour) HasHour() bool`
 
 HasHour returns a boolean if a field has been set.
-
-### SetHour
-
-`func (o *UsageSyntheticsHour) SetHour(v time.Time)`
-
-SetHour gets a reference to the given time.Time and assigns it to the Hour field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

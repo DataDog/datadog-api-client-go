@@ -12,15 +12,15 @@ import (
 	"encoding/json"
 )
 
-// LogsStatusRemapper Use this Processor if you want to assign some attributes as the official status. Each incoming status value is mapped as follows:    - Integers from 0 to 7 map to the Syslog severity standards    - Strings beginning with emerg or f (case-insensitive) map to emerg (0)    - Strings beginning with a (case-insensitive) map to alert (1)    - Strings beginning with c (case-insensitive) map to critical (2)    - Strings beginning with err (case-insensitive) map to error (3)    - Strings beginning with w (case-insensitive) map to warning (4)    - Strings beginning with n (case-insensitive) map to notice (5)    - Strings beginning with i (case-insensitive) map to info (6)    - Strings beginning with d, trace or verbose (case-insensitive) map to debug (7)    - Strings beginning with o or matching OK or Success (case-insensitive) map to OK    - All others map to info (6)    **Note:** If multiple log status remapper processors can be applied to a given log, only the first one (according to the pipelines order) is taken into account.
+// LogsStatusRemapper Use this Processor if you want to assign some attributes as the official status.  Each incoming status value is mapped as follows.    - Integers from 0 to 7 map to the Syslog severity standards   - Strings beginning with emerg or f (case-insensitive) map to emerg (0)   - Strings beginning with a (case-insensitive) map to alert (1)   - Strings beginning with c (case-insensitive) map to critical (2)   - Strings beginning with err (case-insensitive) map to error (3)   - Strings beginning with w (case-insensitive) map to warning (4)   - Strings beginning with n (case-insensitive) map to notice (5)   - Strings beginning with i (case-insensitive) map to info (6)   - Strings beginning with d, trace or verbose (case-insensitive) map to debug (7)   - Strings beginning with o or matching OK or Success (case-insensitive) map to OK   - All others map to info (6)    **Note:** If multiple log status remapper processors can be applied to a given log,   only the first one (according to the pipelines order) is taken into account.
 type LogsStatusRemapper struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
-	// Type of processor
+	// Type of processor.
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -60,6 +60,15 @@ func (o *LogsStatusRemapper) GetSources() []string {
 	return o.Sources
 }
 
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *LogsStatusRemapper) GetSourcesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
 // SetSources sets field value
 func (o *LogsStatusRemapper) SetSources(v []string) {
 	o.Sources = v
@@ -74,14 +83,13 @@ func (o *LogsStatusRemapper) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStatusRemapper) GetTypeOk() (string, bool) {
+func (o *LogsStatusRemapper) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -107,14 +115,13 @@ func (o *LogsStatusRemapper) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStatusRemapper) GetIsEnabledOk() (bool, bool) {
+func (o *LogsStatusRemapper) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -140,14 +147,13 @@ func (o *LogsStatusRemapper) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsStatusRemapper) GetNameOk() (string, bool) {
+func (o *LogsStatusRemapper) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -195,7 +201,7 @@ func (v NullableLogsStatusRemapper) Get() *LogsStatusRemapper {
 	return v.value
 }
 
-func (v NullableLogsStatusRemapper) Set(val *LogsStatusRemapper) {
+func (v *NullableLogsStatusRemapper) Set(val *LogsStatusRemapper) {
 	v.value = val
 	v.isSet = true
 }
@@ -204,7 +210,7 @@ func (v NullableLogsStatusRemapper) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsStatusRemapper) Unset() {
+func (v *NullableLogsStatusRemapper) Unset() {
 	v.value = nil
 	v.isSet = false
 }

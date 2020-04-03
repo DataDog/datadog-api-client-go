@@ -61,6 +61,15 @@ func (o *AlertValueWidgetDefinition) GetAlertId() string {
 	return o.AlertId
 }
 
+// GetAlertIdOk returns a tuple with the AlertId field value
+// and a boolean to check if the value has been set.
+func (o *AlertValueWidgetDefinition) GetAlertIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AlertId, true
+}
+
 // SetAlertId sets field value
 func (o *AlertValueWidgetDefinition) SetAlertId(v string) {
 	o.AlertId = v
@@ -75,14 +84,13 @@ func (o *AlertValueWidgetDefinition) GetPrecision() int64 {
 	return *o.Precision
 }
 
-// GetPrecisionOk returns a tuple with the Precision field value if set, zero value otherwise
+// GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertValueWidgetDefinition) GetPrecisionOk() (int64, bool) {
+func (o *AlertValueWidgetDefinition) GetPrecisionOk() (*int64, bool) {
 	if o == nil || o.Precision == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Precision, true
+	return o.Precision, true
 }
 
 // HasPrecision returns a boolean if a field has been set.
@@ -108,14 +116,13 @@ func (o *AlertValueWidgetDefinition) GetTextAlign() WidgetTextAlign {
 	return *o.TextAlign
 }
 
-// GetTextAlignOk returns a tuple with the TextAlign field value if set, zero value otherwise
+// GetTextAlignOk returns a tuple with the TextAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertValueWidgetDefinition) GetTextAlignOk() (WidgetTextAlign, bool) {
+func (o *AlertValueWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TextAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TextAlign, true
+	return o.TextAlign, true
 }
 
 // HasTextAlign returns a boolean if a field has been set.
@@ -141,14 +148,13 @@ func (o *AlertValueWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertValueWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *AlertValueWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -174,14 +180,13 @@ func (o *AlertValueWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertValueWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *AlertValueWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -207,14 +212,13 @@ func (o *AlertValueWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertValueWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *AlertValueWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -241,6 +245,15 @@ func (o *AlertValueWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *AlertValueWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *AlertValueWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -255,14 +268,13 @@ func (o *AlertValueWidgetDefinition) GetUnit() string {
 	return *o.Unit
 }
 
-// GetUnitOk returns a tuple with the Unit field value if set, zero value otherwise
+// GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertValueWidgetDefinition) GetUnitOk() (string, bool) {
+func (o *AlertValueWidgetDefinition) GetUnitOk() (*string, bool) {
 	if o == nil || o.Unit == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Unit, true
+	return o.Unit, true
 }
 
 // HasUnit returns a boolean if a field has been set.
@@ -322,7 +334,7 @@ func (v NullableAlertValueWidgetDefinition) Get() *AlertValueWidgetDefinition {
 	return v.value
 }
 
-func (v NullableAlertValueWidgetDefinition) Set(val *AlertValueWidgetDefinition) {
+func (v *NullableAlertValueWidgetDefinition) Set(val *AlertValueWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -331,7 +343,7 @@ func (v NullableAlertValueWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableAlertValueWidgetDefinition) Unset() {
+func (v *NullableAlertValueWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

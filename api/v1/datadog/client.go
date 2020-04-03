@@ -66,7 +66,7 @@ type APIClient struct {
 
 	IPRangesApi *IPRangesApiService
 
-	KeysApi *KeysApiService
+	KeyManagementApi *KeyManagementApiService
 
 	LogsApi *LogsApiService
 
@@ -78,13 +78,11 @@ type APIClient struct {
 
 	MonitorsApi *MonitorsApiService
 
-	OrgsApi *OrgsApiService
+	OrganizationsApi *OrganizationsApiService
 
 	PagerDutyIntegrationApi *PagerDutyIntegrationApiService
 
 	SLOApi *SLOApiService
-
-	ServiceChecksApi *ServiceChecksApiService
 
 	SnapshotsApi *SnapshotsApiService
 
@@ -92,7 +90,7 @@ type APIClient struct {
 
 	TagsApi *TagsApiService
 
-	UsageApi *UsageApiService
+	UsageMeteringApi *UsageMeteringApiService
 
 	UsersApi *UsersApiService
 }
@@ -123,20 +121,19 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.GCPIntegrationApi = (*GCPIntegrationApiService)(&c.common)
 	c.HostsApi = (*HostsApiService)(&c.common)
 	c.IPRangesApi = (*IPRangesApiService)(&c.common)
-	c.KeysApi = (*KeysApiService)(&c.common)
+	c.KeyManagementApi = (*KeyManagementApiService)(&c.common)
 	c.LogsApi = (*LogsApiService)(&c.common)
 	c.LogsIndexesApi = (*LogsIndexesApiService)(&c.common)
 	c.LogsPipelinesApi = (*LogsPipelinesApiService)(&c.common)
 	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.MonitorsApi = (*MonitorsApiService)(&c.common)
-	c.OrgsApi = (*OrgsApiService)(&c.common)
+	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
 	c.SLOApi = (*SLOApiService)(&c.common)
-	c.ServiceChecksApi = (*ServiceChecksApiService)(&c.common)
 	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
 	c.SyntheticsApi = (*SyntheticsApiService)(&c.common)
 	c.TagsApi = (*TagsApiService)(&c.common)
-	c.UsageApi = (*UsageApiService)(&c.common)
+	c.UsageMeteringApi = (*UsageMeteringApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c

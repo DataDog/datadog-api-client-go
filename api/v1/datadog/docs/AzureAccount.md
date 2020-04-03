@@ -39,22 +39,22 @@ GetClientId returns the ClientId field if non-nil, zero value otherwise.
 
 ### GetClientIdOk
 
-`func (o *AzureAccount) GetClientIdOk() (string, bool)`
+`func (o *AzureAccount) GetClientIdOk() (*string, bool)`
 
 GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetClientId
+
+`func (o *AzureAccount) SetClientId(v string)`
+
+SetClientId sets ClientId field to given value.
 
 ### HasClientId
 
 `func (o *AzureAccount) HasClientId() bool`
 
 HasClientId returns a boolean if a field has been set.
-
-### SetClientId
-
-`func (o *AzureAccount) SetClientId(v string)`
-
-SetClientId gets a reference to the given string and assigns it to the ClientId field.
 
 ### GetClientSecret
 
@@ -64,22 +64,22 @@ GetClientSecret returns the ClientSecret field if non-nil, zero value otherwise.
 
 ### GetClientSecretOk
 
-`func (o *AzureAccount) GetClientSecretOk() (string, bool)`
+`func (o *AzureAccount) GetClientSecretOk() (*string, bool)`
 
 GetClientSecretOk returns a tuple with the ClientSecret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetClientSecret
+
+`func (o *AzureAccount) SetClientSecret(v string)`
+
+SetClientSecret sets ClientSecret field to given value.
 
 ### HasClientSecret
 
 `func (o *AzureAccount) HasClientSecret() bool`
 
 HasClientSecret returns a boolean if a field has been set.
-
-### SetClientSecret
-
-`func (o *AzureAccount) SetClientSecret(v string)`
-
-SetClientSecret gets a reference to the given string and assigns it to the ClientSecret field.
 
 ### GetErrors
 
@@ -89,22 +89,22 @@ GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *AzureAccount) GetErrorsOk() ([]string, bool)`
+`func (o *AzureAccount) GetErrorsOk() (*[]string, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetErrors
+
+`func (o *AzureAccount) SetErrors(v []string)`
+
+SetErrors sets Errors field to given value.
 
 ### HasErrors
 
 `func (o *AzureAccount) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
-
-### SetErrors
-
-`func (o *AzureAccount) SetErrors(v []string)`
-
-SetErrors gets a reference to the given []string and assigns it to the Errors field.
 
 ### GetHostFilters
 
@@ -114,22 +114,22 @@ GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
 
 ### GetHostFiltersOk
 
-`func (o *AzureAccount) GetHostFiltersOk() (string, bool)`
+`func (o *AzureAccount) GetHostFiltersOk() (*string, bool)`
 
 GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHostFilters
+
+`func (o *AzureAccount) SetHostFilters(v string)`
+
+SetHostFilters sets HostFilters field to given value.
 
 ### HasHostFilters
 
 `func (o *AzureAccount) HasHostFilters() bool`
 
 HasHostFilters returns a boolean if a field has been set.
-
-### SetHostFilters
-
-`func (o *AzureAccount) SetHostFilters(v string)`
-
-SetHostFilters gets a reference to the given string and assigns it to the HostFilters field.
 
 ### GetNewClientId
 
@@ -139,22 +139,22 @@ GetNewClientId returns the NewClientId field if non-nil, zero value otherwise.
 
 ### GetNewClientIdOk
 
-`func (o *AzureAccount) GetNewClientIdOk() (string, bool)`
+`func (o *AzureAccount) GetNewClientIdOk() (*string, bool)`
 
 GetNewClientIdOk returns a tuple with the NewClientId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetNewClientId
+
+`func (o *AzureAccount) SetNewClientId(v string)`
+
+SetNewClientId sets NewClientId field to given value.
 
 ### HasNewClientId
 
 `func (o *AzureAccount) HasNewClientId() bool`
 
 HasNewClientId returns a boolean if a field has been set.
-
-### SetNewClientId
-
-`func (o *AzureAccount) SetNewClientId(v string)`
-
-SetNewClientId gets a reference to the given string and assigns it to the NewClientId field.
 
 ### GetNewTenantName
 
@@ -164,22 +164,22 @@ GetNewTenantName returns the NewTenantName field if non-nil, zero value otherwis
 
 ### GetNewTenantNameOk
 
-`func (o *AzureAccount) GetNewTenantNameOk() (string, bool)`
+`func (o *AzureAccount) GetNewTenantNameOk() (*string, bool)`
 
 GetNewTenantNameOk returns a tuple with the NewTenantName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetNewTenantName
+
+`func (o *AzureAccount) SetNewTenantName(v string)`
+
+SetNewTenantName sets NewTenantName field to given value.
 
 ### HasNewTenantName
 
 `func (o *AzureAccount) HasNewTenantName() bool`
 
 HasNewTenantName returns a boolean if a field has been set.
-
-### SetNewTenantName
-
-`func (o *AzureAccount) SetNewTenantName(v string)`
-
-SetNewTenantName gets a reference to the given string and assigns it to the NewTenantName field.
 
 ### GetTenantName
 
@@ -189,22 +189,22 @@ GetTenantName returns the TenantName field if non-nil, zero value otherwise.
 
 ### GetTenantNameOk
 
-`func (o *AzureAccount) GetTenantNameOk() (string, bool)`
+`func (o *AzureAccount) GetTenantNameOk() (*string, bool)`
 
 GetTenantNameOk returns a tuple with the TenantName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTenantName
+
+`func (o *AzureAccount) SetTenantName(v string)`
+
+SetTenantName sets TenantName field to given value.
 
 ### HasTenantName
 
 `func (o *AzureAccount) HasTenantName() bool`
 
 HasTenantName returns a boolean if a field has been set.
-
-### SetTenantName
-
-`func (o *AzureAccount) SetTenantName(v string)`
-
-SetTenantName gets a reference to the given string and assigns it to the TenantName field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

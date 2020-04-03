@@ -37,22 +37,22 @@ GetIncludeZero returns the IncludeZero field if non-nil, zero value otherwise.
 
 ### GetIncludeZeroOk
 
-`func (o *WidgetAxis) GetIncludeZeroOk() (bool, bool)`
+`func (o *WidgetAxis) GetIncludeZeroOk() (*bool, bool)`
 
 GetIncludeZeroOk returns a tuple with the IncludeZero field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIncludeZero
+
+`func (o *WidgetAxis) SetIncludeZero(v bool)`
+
+SetIncludeZero sets IncludeZero field to given value.
 
 ### HasIncludeZero
 
 `func (o *WidgetAxis) HasIncludeZero() bool`
 
 HasIncludeZero returns a boolean if a field has been set.
-
-### SetIncludeZero
-
-`func (o *WidgetAxis) SetIncludeZero(v bool)`
-
-SetIncludeZero gets a reference to the given bool and assigns it to the IncludeZero field.
 
 ### GetLabel
 
@@ -62,22 +62,22 @@ GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *WidgetAxis) GetLabelOk() (string, bool)`
+`func (o *WidgetAxis) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *WidgetAxis) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
 
 ### HasLabel
 
 `func (o *WidgetAxis) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
-
-### SetLabel
-
-`func (o *WidgetAxis) SetLabel(v string)`
-
-SetLabel gets a reference to the given string and assigns it to the Label field.
 
 ### GetMax
 
@@ -87,22 +87,22 @@ GetMax returns the Max field if non-nil, zero value otherwise.
 
 ### GetMaxOk
 
-`func (o *WidgetAxis) GetMaxOk() (string, bool)`
+`func (o *WidgetAxis) GetMaxOk() (*string, bool)`
 
 GetMaxOk returns a tuple with the Max field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMax
+
+`func (o *WidgetAxis) SetMax(v string)`
+
+SetMax sets Max field to given value.
 
 ### HasMax
 
 `func (o *WidgetAxis) HasMax() bool`
 
 HasMax returns a boolean if a field has been set.
-
-### SetMax
-
-`func (o *WidgetAxis) SetMax(v string)`
-
-SetMax gets a reference to the given string and assigns it to the Max field.
 
 ### GetMin
 
@@ -112,22 +112,22 @@ GetMin returns the Min field if non-nil, zero value otherwise.
 
 ### GetMinOk
 
-`func (o *WidgetAxis) GetMinOk() (string, bool)`
+`func (o *WidgetAxis) GetMinOk() (*string, bool)`
 
 GetMinOk returns a tuple with the Min field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMin
+
+`func (o *WidgetAxis) SetMin(v string)`
+
+SetMin sets Min field to given value.
 
 ### HasMin
 
 `func (o *WidgetAxis) HasMin() bool`
 
 HasMin returns a boolean if a field has been set.
-
-### SetMin
-
-`func (o *WidgetAxis) SetMin(v string)`
-
-SetMin gets a reference to the given string and assigns it to the Min field.
 
 ### GetScale
 
@@ -137,22 +137,22 @@ GetScale returns the Scale field if non-nil, zero value otherwise.
 
 ### GetScaleOk
 
-`func (o *WidgetAxis) GetScaleOk() (string, bool)`
+`func (o *WidgetAxis) GetScaleOk() (*string, bool)`
 
 GetScaleOk returns a tuple with the Scale field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetScale
+
+`func (o *WidgetAxis) SetScale(v string)`
+
+SetScale sets Scale field to given value.
 
 ### HasScale
 
 `func (o *WidgetAxis) HasScale() bool`
 
 HasScale returns a boolean if a field has been set.
-
-### SetScale
-
-`func (o *WidgetAxis) SetScale(v string)`
-
-SetScale gets a reference to the given string and assigns it to the Scale field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

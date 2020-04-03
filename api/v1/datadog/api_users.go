@@ -37,21 +37,10 @@ func (r apiCreateUserRequest) Body(body User) apiCreateUserRequest {
 
 /*
 CreateUser Create user
-### Overview
 Create a user for your organization.
-### Arguments
-* **`handle`** [*required*]: The user handle, must be a valid email.
-* **`name`** [*optional*, *default*=**None**]: The name of the user.
-* **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
 
-  *  **st** (standard user),
-
-  *  **adm** (admin user),
-
-  *  **ro** (read-only user).
-
-  **Note**: users can be created with admin access role
-     only with application keys belonging to administrators.
+**Note**: users can be created with admin access role
+only with application keys belonging to administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateUserRequest
 */
@@ -211,12 +200,10 @@ type apiDisableUserRequest struct {
 
 /*
 DisableUser Disable user
-### Overview
 Delete a user from an organization.
 
-**Note**: This endpoint can only be used with application keys belonging to administrators.
-### Arguments
-* **`id`** [*required*]: The handle of the user.
+**Note**: This endpoint can only be used with application keys belonging to
+administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The handle of the user
 @return apiDisableUserRequest
@@ -372,10 +359,7 @@ type apiGetAllUsersRequest struct {
 
 /*
 GetAllUsers Get all users
-### Overview
 Get all users for your organization.
-### Arguments
-This endpoint takes no JSON argument.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllUsersRequest
 */
@@ -529,12 +513,9 @@ type apiGetUserRequest struct {
 
 /*
 GetUser Get user
-### Overview
 Get a user details.
-### Arguments
-* **`user_handle`** [*required*]: The handle of the user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userHandle The id of the user
+ * @param userHandle The ID of the user.
 @return apiGetUserRequest
 */
 func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) apiGetUserRequest {
@@ -695,24 +676,11 @@ func (r apiUpdateUserRequest) Body(body User) apiUpdateUserRequest {
 
 /*
 UpdateUser Update user
-### Overview
 Update a user informations.
 
 **Note**: It can only be used with application keys belonging to administrators.
-### Arguments
-* **`id`** [*required*]: The handle of the user.
-* **`name`** [*optional*, *default*=**None**]: The new name of the user.
-* **`email`** [*optional*, *default*=**None**]: The new email of the user.
-* **`disabled`** [*optional*, *default*=**None**]: The new disabled status of the user.
-* **`access_role`** [*optional*, *default*=**st**]: The access role of the user. Choose from:
-
-  *  **st** (standard user)
-
-  *  **adm** (admin user)
-
-  *  **ro** (read-only user)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userHandle The id of the user
+ * @param userHandle The ID of the user.
 @return apiUpdateUserRequest
 */
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string) apiUpdateUserRequest {

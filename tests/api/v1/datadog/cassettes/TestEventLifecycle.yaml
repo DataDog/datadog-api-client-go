@@ -2,21 +2,15 @@
 version: 1
 interactions:
 - request:
-    body: |
-      {"priority":"normal","source_type_name":"datadog-api-client-go","tags":["test","client:go"],"text":"example text","title":"test event from go client"}
+    body: '{"priority":"normal","source_type_name":"datadog-api-client-go","tags":["test","client:go"],"text":"example
+      text","title":"test event from go client"}'
     form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
+    headers: {}
     url: https://api.datadoghq.com/api/v1/events
     method: POST
   response:
-    body: '{"status":"ok","event":{"id":5332781346049403662,"title":"test event from
-      go client","text":"example text","date_happened":1582121403,"handle":null,"priority":"normal","related_event_id":null,"tags":["test","client:go"],"url":"https://app.datadoghq.com/event/event?id=5332781346049403662"}}'
+    body: '{"status":"ok","event":{"id":5392096511175887101,"title":"test event from
+      go client","text":"example text","date_happened":1585656863,"handle":null,"priority":"normal","related_event_id":null,"tags":["test","client:go"],"url":"https://app.datadoghq.com/event/event?id=5392096511175887101"}}'
     headers:
       Connection:
       - keep-alive
@@ -27,7 +21,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:03 GMT
+      - Tue, 31 Mar 2020 12:14:23 GMT
       Dd-Pool:
       - propjoe
       Strict-Transport-Security:
@@ -47,7 +41,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5332781346049403662
+    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -61,7 +55,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:04 GMT
+      - Tue, 31 Mar 2020 12:14:25 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
@@ -73,7 +67,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2338533"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -87,7 +81,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5332781346049403662
+    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -101,7 +95,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:09 GMT
+      - Tue, 31 Mar 2020 12:14:31 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
@@ -113,7 +107,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2338533"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -127,7 +121,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5332781346049403662
+    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -141,7 +135,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:14 GMT
+      - Tue, 31 Mar 2020 12:14:36 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
@@ -153,7 +147,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2338533"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -167,10 +161,12 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5332781346049403662
+    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
     method: GET
   response:
-    body: '{"errors": ["No event matches that event_id."]}'
+    body: '{"event":{"date_happened":1585656863,"alert_type":"info","resource":"/api/v1/events/5392096511175887101","title":"test
+      event from go client","url":"/event/event?id=5392096511175887101","text":"example
+      text","tags":["client:go","test"],"device_name":null,"priority":"normal","host":null,"id":5392096511175887101}}'
     headers:
       Cache-Control:
       - no-cache
@@ -181,55 +177,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:19 GMT
-      Dd-Pool:
-      - dogweb_events
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.2189722"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 404 Not Found
-    code: 404
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5332781346049403662
-    method: GET
-  response:
-    body: '{"event":{"date_happened":1582121403,"alert_type":"info","resource":"/api/v1/events/5332781346049403662","title":"test
-      event from go client","url":"/event/event?id=5332781346049403662","text":"example
-      text","tags":["client:go","test"],"device_name":null,"priority":"normal","host":null,"id":5332781346049403662}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 19 Feb 2020 14:10:25 GMT
+      - Tue, 31 Mar 2020 12:14:41 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:25 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Tue, 07-Apr-2020 12:14:41 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -238,9 +192,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - KPtz/M5QZsh8TUlBKvtLnmLrmJbks++Ouu/uhjeBY1riZ6WDk2mw46z2dAis4UrL
+      - JmURFv3QT6gKRDSrfK4zcwdS9yrmaSKXEiqT0M3mIuybXnIAJULvb1NuwEtOiZfR
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2338533"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -254,13 +208,13 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events?end=1582121413&priority=normal&sources=datadog-api-client-go&start=1582121393&tags=test%2Cclient%3Ago&unaggregated=true
+    url: https://api.datadoghq.com/api/v1/events?end=1585656873&priority=normal&sources=datadog-api-client-go&start=1585656853&tags=test%2Cclient%3Ago&unaggregated=true
     method: GET
   response:
-    body: '{"events":[{"date_happened":1582121403,"alert_type":"info","is_aggregate":false,"title":"test
-      event from go client","url":"/event/event?id=5332781346049403662","text":"example
+    body: '{"events":[{"date_happened":1585656863,"alert_type":"info","is_aggregate":false,"title":"test
+      event from go client","url":"/event/event?id=5392096511175887101","text":"example
       text","tags":["client:go","test"],"comments":[],"device_name":null,"priority":"normal","source":"My
-      Apps","host":null,"resource":"/api/v1/events/5332781346049403662","id":5332781346049403662}]}'
+      Apps","host":null,"resource":"/api/v1/events/5392096511175887101","id":5392096511175887101}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -271,13 +225,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Feb 2020 14:10:25 GMT
+      - Tue, 31 Mar 2020 12:14:41 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Feb-2020 14:10:25 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Tue, 07-Apr-2020 12:14:41 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -286,9 +240,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - cP94/MUNJlkd22yIuwhhnlRTtTM8gAGAbI+ErVugsJe0FRQZf13joB7+xy9gsc+Z
+      - 4gUJbYgxcQ+p2ofawO9+IERpoKwOhs/G1IiKposiUPGB8X8RcTlvyCAUL6+ZWfKr
       X-Dd-Version:
-      - "35.2189722"
+      - "35.2338533"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

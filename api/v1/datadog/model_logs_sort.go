@@ -35,7 +35,7 @@ func (v NullableLogsSort) Get() *LogsSort {
 	return v.value
 }
 
-func (v NullableLogsSort) Set(val *LogsSort) {
+func (v *NullableLogsSort) Set(val *LogsSort) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableLogsSort) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsSort) Unset() {
+func (v *NullableLogsSort) Unset() {
 	v.value = nil
 	v.isSet = false
 }

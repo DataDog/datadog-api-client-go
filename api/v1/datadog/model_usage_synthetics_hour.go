@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageSyntheticsHour struct for UsageSyntheticsHour
+// UsageSyntheticsHour Number of Synthetics API tests run for each hour for a given organization.
 type UsageSyntheticsHour struct {
 	// Contains the number of Synthetics API tests run.
 	CheckCallsCount *int64 `json:"check_calls_count,omitempty"`
@@ -47,14 +47,13 @@ func (o *UsageSyntheticsHour) GetCheckCallsCount() int64 {
 	return *o.CheckCallsCount
 }
 
-// GetCheckCallsCountOk returns a tuple with the CheckCallsCount field value if set, zero value otherwise
+// GetCheckCallsCountOk returns a tuple with the CheckCallsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSyntheticsHour) GetCheckCallsCountOk() (int64, bool) {
+func (o *UsageSyntheticsHour) GetCheckCallsCountOk() (*int64, bool) {
 	if o == nil || o.CheckCallsCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.CheckCallsCount, true
+	return o.CheckCallsCount, true
 }
 
 // HasCheckCallsCount returns a boolean if a field has been set.
@@ -80,14 +79,13 @@ func (o *UsageSyntheticsHour) GetHour() time.Time {
 	return *o.Hour
 }
 
-// GetHourOk returns a tuple with the Hour field value if set, zero value otherwise
+// GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSyntheticsHour) GetHourOk() (time.Time, bool) {
+func (o *UsageSyntheticsHour) GetHourOk() (*time.Time, bool) {
 	if o == nil || o.Hour == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Hour, true
+	return o.Hour, true
 }
 
 // HasHour returns a boolean if a field has been set.
@@ -124,7 +122,7 @@ func (v NullableUsageSyntheticsHour) Get() *UsageSyntheticsHour {
 	return v.value
 }
 
-func (v NullableUsageSyntheticsHour) Set(val *UsageSyntheticsHour) {
+func (v *NullableUsageSyntheticsHour) Set(val *UsageSyntheticsHour) {
 	v.value = val
 	v.isSet = true
 }
@@ -133,7 +131,7 @@ func (v NullableUsageSyntheticsHour) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageSyntheticsHour) Unset() {
+func (v *NullableUsageSyntheticsHour) Unset() {
 	v.value = nil
 	v.isSet = false
 }

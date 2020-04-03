@@ -46,14 +46,13 @@ func (o *TimeseriesWidgetRequestStyle) GetLineType() WidgetLineType {
 	return *o.LineType
 }
 
-// GetLineTypeOk returns a tuple with the LineType field value if set, zero value otherwise
+// GetLineTypeOk returns a tuple with the LineType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequestStyle) GetLineTypeOk() (WidgetLineType, bool) {
+func (o *TimeseriesWidgetRequestStyle) GetLineTypeOk() (*WidgetLineType, bool) {
 	if o == nil || o.LineType == nil {
-		var ret WidgetLineType
-		return ret, false
+		return nil, false
 	}
-	return *o.LineType, true
+	return o.LineType, true
 }
 
 // HasLineType returns a boolean if a field has been set.
@@ -79,14 +78,13 @@ func (o *TimeseriesWidgetRequestStyle) GetLineWidth() WidgetLineWidth {
 	return *o.LineWidth
 }
 
-// GetLineWidthOk returns a tuple with the LineWidth field value if set, zero value otherwise
+// GetLineWidthOk returns a tuple with the LineWidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequestStyle) GetLineWidthOk() (WidgetLineWidth, bool) {
+func (o *TimeseriesWidgetRequestStyle) GetLineWidthOk() (*WidgetLineWidth, bool) {
 	if o == nil || o.LineWidth == nil {
-		var ret WidgetLineWidth
-		return ret, false
+		return nil, false
 	}
-	return *o.LineWidth, true
+	return o.LineWidth, true
 }
 
 // HasLineWidth returns a boolean if a field has been set.
@@ -112,14 +110,13 @@ func (o *TimeseriesWidgetRequestStyle) GetPalette() string {
 	return *o.Palette
 }
 
-// GetPaletteOk returns a tuple with the Palette field value if set, zero value otherwise
+// GetPaletteOk returns a tuple with the Palette field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequestStyle) GetPaletteOk() (string, bool) {
+func (o *TimeseriesWidgetRequestStyle) GetPaletteOk() (*string, bool) {
 	if o == nil || o.Palette == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Palette, true
+	return o.Palette, true
 }
 
 // HasPalette returns a boolean if a field has been set.
@@ -159,7 +156,7 @@ func (v NullableTimeseriesWidgetRequestStyle) Get() *TimeseriesWidgetRequestStyl
 	return v.value
 }
 
-func (v NullableTimeseriesWidgetRequestStyle) Set(val *TimeseriesWidgetRequestStyle) {
+func (v *NullableTimeseriesWidgetRequestStyle) Set(val *TimeseriesWidgetRequestStyle) {
 	v.value = val
 	v.isSet = true
 }
@@ -168,7 +165,7 @@ func (v NullableTimeseriesWidgetRequestStyle) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTimeseriesWidgetRequestStyle) Unset() {
+func (v *NullableTimeseriesWidgetRequestStyle) Unset() {
 	v.value = nil
 	v.isSet = false
 }

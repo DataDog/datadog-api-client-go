@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// DeletedMonitor Response from the DeleteMonitor call
+// DeletedMonitor Response from the `DeleteMonitor` call.
 type DeletedMonitor struct {
-	// ID of the deleted monitor
+	// ID of the deleted monitor.
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
 }
 
@@ -44,14 +44,13 @@ func (o *DeletedMonitor) GetDeletedMonitorId() int64 {
 	return *o.DeletedMonitorId
 }
 
-// GetDeletedMonitorIdOk returns a tuple with the DeletedMonitorId field value if set, zero value otherwise
+// GetDeletedMonitorIdOk returns a tuple with the DeletedMonitorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeletedMonitor) GetDeletedMonitorIdOk() (int64, bool) {
+func (o *DeletedMonitor) GetDeletedMonitorIdOk() (*int64, bool) {
 	if o == nil || o.DeletedMonitorId == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.DeletedMonitorId, true
+	return o.DeletedMonitorId, true
 }
 
 // HasDeletedMonitorId returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableDeletedMonitor) Get() *DeletedMonitor {
 	return v.value
 }
 
-func (v NullableDeletedMonitor) Set(val *DeletedMonitor) {
+func (v *NullableDeletedMonitor) Set(val *DeletedMonitor) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableDeletedMonitor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableDeletedMonitor) Unset() {
+func (v *NullableDeletedMonitor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

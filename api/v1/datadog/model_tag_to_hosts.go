@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// TagToHosts In this object, the key is the tag, the value is a list of host names that are reporting that tag
+// TagToHosts In this object, the key is the tag, the value is a list of host names that are reporting that tag.
 type TagToHosts struct {
+	// A list of tags to apply to the host.
 	Tags *map[string][]string `json:"tags,omitempty"`
 }
 
@@ -43,14 +44,13 @@ func (o *TagToHosts) GetTags() map[string][]string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TagToHosts) GetTagsOk() (map[string][]string, bool) {
+func (o *TagToHosts) GetTagsOk() (*map[string][]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret map[string][]string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -84,7 +84,7 @@ func (v NullableTagToHosts) Get() *TagToHosts {
 	return v.value
 }
 
-func (v NullableTagToHosts) Set(val *TagToHosts) {
+func (v *NullableTagToHosts) Set(val *TagToHosts) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +93,7 @@ func (v NullableTagToHosts) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTagToHosts) Unset() {
+func (v *NullableTagToHosts) Unset() {
 	v.value = nil
 	v.isSet = false
 }

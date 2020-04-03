@@ -14,20 +14,32 @@ import (
 
 // Host struct for Host
 type Host struct {
-	Aliases          *[]string            `json:"aliases,omitempty"`
-	Apps             *[]string            `json:"apps,omitempty"`
-	AwsName          *string              `json:"aws_name,omitempty"`
-	HostName         *string              `json:"host_name,omitempty"`
-	Id               *int64               `json:"id,omitempty"`
-	IsMuted          *bool                `json:"is_muted,omitempty"`
-	LastReportedTime *int64               `json:"last_reported_time,omitempty"`
-	Meta             *HostMeta            `json:"meta,omitempty"`
-	Metrics          *HostMetrics         `json:"metrics,omitempty"`
-	MuteTimeout      *int64               `json:"mute_timeout,omitempty"`
-	Name             *string              `json:"name,omitempty"`
-	Sources          *[]string            `json:"sources,omitempty"`
-	TagsBySource     *map[string][]string `json:"tags_by_source,omitempty"`
-	Up               *bool                `json:"up,omitempty"`
+	// Host aliases collected by Datadog.
+	Aliases *[]string `json:"aliases,omitempty"`
+	// The Datadog integrations reporting metrics for the host.
+	Apps *[]string `json:"apps,omitempty"`
+	// AWS name of your host.
+	AwsName *string `json:"aws_name,omitempty"`
+	// The host name.
+	HostName *string `json:"host_name,omitempty"`
+	// The host ID.
+	Id *int64 `json:"id,omitempty"`
+	// If a host is muted or unmuted.
+	IsMuted *bool `json:"is_muted,omitempty"`
+	// Last time the host reported a metric data point.
+	LastReportedTime *int64       `json:"last_reported_time,omitempty"`
+	Meta             *HostMeta    `json:"meta,omitempty"`
+	Metrics          *HostMetrics `json:"metrics,omitempty"`
+	// Timeout of the mute applied to your host.
+	MuteTimeout *int64 `json:"mute_timeout,omitempty"`
+	// The host name.
+	Name *string `json:"name,omitempty"`
+	// Source or cloud provider associated with your host.
+	Sources *[]string `json:"sources,omitempty"`
+	// List of tags for each source (AWS, Datadog Agent, Chef..).
+	TagsBySource *map[string][]string `json:"tags_by_source,omitempty"`
+	// Displays UP when the expected metrics are received and displays `???` if no metrics are received.
+	Up *bool `json:"up,omitempty"`
 }
 
 // NewHost instantiates a new Host object
@@ -56,14 +68,13 @@ func (o *Host) GetAliases() []string {
 	return *o.Aliases
 }
 
-// GetAliasesOk returns a tuple with the Aliases field value if set, zero value otherwise
+// GetAliasesOk returns a tuple with the Aliases field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetAliasesOk() ([]string, bool) {
+func (o *Host) GetAliasesOk() (*[]string, bool) {
 	if o == nil || o.Aliases == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Aliases, true
+	return o.Aliases, true
 }
 
 // HasAliases returns a boolean if a field has been set.
@@ -89,14 +100,13 @@ func (o *Host) GetApps() []string {
 	return *o.Apps
 }
 
-// GetAppsOk returns a tuple with the Apps field value if set, zero value otherwise
+// GetAppsOk returns a tuple with the Apps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetAppsOk() ([]string, bool) {
+func (o *Host) GetAppsOk() (*[]string, bool) {
 	if o == nil || o.Apps == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Apps, true
+	return o.Apps, true
 }
 
 // HasApps returns a boolean if a field has been set.
@@ -122,14 +132,13 @@ func (o *Host) GetAwsName() string {
 	return *o.AwsName
 }
 
-// GetAwsNameOk returns a tuple with the AwsName field value if set, zero value otherwise
+// GetAwsNameOk returns a tuple with the AwsName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetAwsNameOk() (string, bool) {
+func (o *Host) GetAwsNameOk() (*string, bool) {
 	if o == nil || o.AwsName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AwsName, true
+	return o.AwsName, true
 }
 
 // HasAwsName returns a boolean if a field has been set.
@@ -155,14 +164,13 @@ func (o *Host) GetHostName() string {
 	return *o.HostName
 }
 
-// GetHostNameOk returns a tuple with the HostName field value if set, zero value otherwise
+// GetHostNameOk returns a tuple with the HostName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetHostNameOk() (string, bool) {
+func (o *Host) GetHostNameOk() (*string, bool) {
 	if o == nil || o.HostName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.HostName, true
+	return o.HostName, true
 }
 
 // HasHostName returns a boolean if a field has been set.
@@ -188,14 +196,13 @@ func (o *Host) GetId() int64 {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetIdOk() (int64, bool) {
+func (o *Host) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -221,14 +228,13 @@ func (o *Host) GetIsMuted() bool {
 	return *o.IsMuted
 }
 
-// GetIsMutedOk returns a tuple with the IsMuted field value if set, zero value otherwise
+// GetIsMutedOk returns a tuple with the IsMuted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetIsMutedOk() (bool, bool) {
+func (o *Host) GetIsMutedOk() (*bool, bool) {
 	if o == nil || o.IsMuted == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsMuted, true
+	return o.IsMuted, true
 }
 
 // HasIsMuted returns a boolean if a field has been set.
@@ -254,14 +260,13 @@ func (o *Host) GetLastReportedTime() int64 {
 	return *o.LastReportedTime
 }
 
-// GetLastReportedTimeOk returns a tuple with the LastReportedTime field value if set, zero value otherwise
+// GetLastReportedTimeOk returns a tuple with the LastReportedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetLastReportedTimeOk() (int64, bool) {
+func (o *Host) GetLastReportedTimeOk() (*int64, bool) {
 	if o == nil || o.LastReportedTime == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.LastReportedTime, true
+	return o.LastReportedTime, true
 }
 
 // HasLastReportedTime returns a boolean if a field has been set.
@@ -287,14 +292,13 @@ func (o *Host) GetMeta() HostMeta {
 	return *o.Meta
 }
 
-// GetMetaOk returns a tuple with the Meta field value if set, zero value otherwise
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetMetaOk() (HostMeta, bool) {
+func (o *Host) GetMetaOk() (*HostMeta, bool) {
 	if o == nil || o.Meta == nil {
-		var ret HostMeta
-		return ret, false
+		return nil, false
 	}
-	return *o.Meta, true
+	return o.Meta, true
 }
 
 // HasMeta returns a boolean if a field has been set.
@@ -320,14 +324,13 @@ func (o *Host) GetMetrics() HostMetrics {
 	return *o.Metrics
 }
 
-// GetMetricsOk returns a tuple with the Metrics field value if set, zero value otherwise
+// GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetMetricsOk() (HostMetrics, bool) {
+func (o *Host) GetMetricsOk() (*HostMetrics, bool) {
 	if o == nil || o.Metrics == nil {
-		var ret HostMetrics
-		return ret, false
+		return nil, false
 	}
-	return *o.Metrics, true
+	return o.Metrics, true
 }
 
 // HasMetrics returns a boolean if a field has been set.
@@ -353,14 +356,13 @@ func (o *Host) GetMuteTimeout() int64 {
 	return *o.MuteTimeout
 }
 
-// GetMuteTimeoutOk returns a tuple with the MuteTimeout field value if set, zero value otherwise
+// GetMuteTimeoutOk returns a tuple with the MuteTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetMuteTimeoutOk() (int64, bool) {
+func (o *Host) GetMuteTimeoutOk() (*int64, bool) {
 	if o == nil || o.MuteTimeout == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.MuteTimeout, true
+	return o.MuteTimeout, true
 }
 
 // HasMuteTimeout returns a boolean if a field has been set.
@@ -386,14 +388,13 @@ func (o *Host) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetNameOk() (string, bool) {
+func (o *Host) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -419,14 +420,13 @@ func (o *Host) GetSources() []string {
 	return *o.Sources
 }
 
-// GetSourcesOk returns a tuple with the Sources field value if set, zero value otherwise
+// GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetSourcesOk() ([]string, bool) {
+func (o *Host) GetSourcesOk() (*[]string, bool) {
 	if o == nil || o.Sources == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Sources, true
+	return o.Sources, true
 }
 
 // HasSources returns a boolean if a field has been set.
@@ -452,14 +452,13 @@ func (o *Host) GetTagsBySource() map[string][]string {
 	return *o.TagsBySource
 }
 
-// GetTagsBySourceOk returns a tuple with the TagsBySource field value if set, zero value otherwise
+// GetTagsBySourceOk returns a tuple with the TagsBySource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetTagsBySourceOk() (map[string][]string, bool) {
+func (o *Host) GetTagsBySourceOk() (*map[string][]string, bool) {
 	if o == nil || o.TagsBySource == nil {
-		var ret map[string][]string
-		return ret, false
+		return nil, false
 	}
-	return *o.TagsBySource, true
+	return o.TagsBySource, true
 }
 
 // HasTagsBySource returns a boolean if a field has been set.
@@ -485,14 +484,13 @@ func (o *Host) GetUp() bool {
 	return *o.Up
 }
 
-// GetUpOk returns a tuple with the Up field value if set, zero value otherwise
+// GetUpOk returns a tuple with the Up field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetUpOk() (bool, bool) {
+func (o *Host) GetUpOk() (*bool, bool) {
 	if o == nil || o.Up == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Up, true
+	return o.Up, true
 }
 
 // HasUp returns a boolean if a field has been set.
@@ -565,7 +563,7 @@ func (v NullableHost) Get() *Host {
 	return v.value
 }
 
-func (v NullableHost) Set(val *Host) {
+func (v *NullableHost) Set(val *Host) {
 	v.value = val
 	v.isSet = true
 }
@@ -574,7 +572,7 @@ func (v NullableHost) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHost) Unset() {
+func (v *NullableHost) Unset() {
 	v.value = nil
 	v.isSet = false
 }

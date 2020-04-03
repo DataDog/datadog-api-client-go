@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedDashboardsFromList** | Pointer to [**[]DashboardListItem**](DashboardListItem.md) | List of dashboards deleted from the dashboard list | [optional] 
+**DeletedDashboardsFromList** | Pointer to [**[]DashboardListItem**](DashboardListItem.md) | List of dashboards deleted from the dashboard list. | [optional] 
 
 ## Methods
 
@@ -33,22 +33,22 @@ GetDeletedDashboardsFromList returns the DeletedDashboardsFromList field if non-
 
 ### GetDeletedDashboardsFromListOk
 
-`func (o *DashboardListDeleteItemsResponse) GetDeletedDashboardsFromListOk() ([]DashboardListItem, bool)`
+`func (o *DashboardListDeleteItemsResponse) GetDeletedDashboardsFromListOk() (*[]DashboardListItem, bool)`
 
 GetDeletedDashboardsFromListOk returns a tuple with the DeletedDashboardsFromList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDeletedDashboardsFromList
+
+`func (o *DashboardListDeleteItemsResponse) SetDeletedDashboardsFromList(v []DashboardListItem)`
+
+SetDeletedDashboardsFromList sets DeletedDashboardsFromList field to given value.
 
 ### HasDeletedDashboardsFromList
 
 `func (o *DashboardListDeleteItemsResponse) HasDeletedDashboardsFromList() bool`
 
 HasDeletedDashboardsFromList returns a boolean if a field has been set.
-
-### SetDeletedDashboardsFromList
-
-`func (o *DashboardListDeleteItemsResponse) SetDeletedDashboardsFromList(v []DashboardListItem)`
-
-SetDeletedDashboardsFromList gets a reference to the given []DashboardListItem and assigns it to the DeletedDashboardsFromList field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorType The type of the monitor
+// MonitorType The type of the monitor.
 type MonitorType string
 
 // List of MonitorType
@@ -42,7 +42,7 @@ func (v NullableMonitorType) Get() *MonitorType {
 	return v.value
 }
 
-func (v NullableMonitorType) Set(val *MonitorType) {
+func (v *NullableMonitorType) Set(val *MonitorType) {
 	v.value = val
 	v.isSet = true
 }
@@ -51,7 +51,7 @@ func (v NullableMonitorType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorType) Unset() {
+func (v *NullableMonitorType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

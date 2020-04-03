@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] 
-**Disabled** | Pointer to **bool** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**Handle** | Pointer to **string** |  | [optional] 
-**Icon** | Pointer to **string** |  | [optional] [readonly] 
-**Name** | Pointer to **string** |  | [optional] 
-**Verified** | Pointer to **bool** |  | [optional] [readonly] 
+**AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to "st"]
+**Disabled** | Pointer to **bool** | The new disabled status of the user. | [optional] 
+**Email** | Pointer to **string** | The new email of the user. | [optional] 
+**Handle** | Pointer to **string** | The user handle, must be a valid email. | [optional] 
+**Icon** | Pointer to **string** | Gravatar icon associated to the user. | [optional] [readonly] 
+**Name** | Pointer to **string** | The name of the user. | [optional] 
+**Verified** | Pointer to **bool** | Whether or not the user logged in Datadog at least once. | [optional] [readonly] 
 
 ## Methods
 
@@ -39,22 +39,22 @@ GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
 
 ### GetAccessRoleOk
 
-`func (o *User) GetAccessRoleOk() (AccessRole, bool)`
+`func (o *User) GetAccessRoleOk() (*AccessRole, bool)`
 
 GetAccessRoleOk returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAccessRole
+
+`func (o *User) SetAccessRole(v AccessRole)`
+
+SetAccessRole sets AccessRole field to given value.
 
 ### HasAccessRole
 
 `func (o *User) HasAccessRole() bool`
 
 HasAccessRole returns a boolean if a field has been set.
-
-### SetAccessRole
-
-`func (o *User) SetAccessRole(v AccessRole)`
-
-SetAccessRole gets a reference to the given AccessRole and assigns it to the AccessRole field.
 
 ### GetDisabled
 
@@ -64,22 +64,22 @@ GetDisabled returns the Disabled field if non-nil, zero value otherwise.
 
 ### GetDisabledOk
 
-`func (o *User) GetDisabledOk() (bool, bool)`
+`func (o *User) GetDisabledOk() (*bool, bool)`
 
 GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDisabled
+
+`func (o *User) SetDisabled(v bool)`
+
+SetDisabled sets Disabled field to given value.
 
 ### HasDisabled
 
 `func (o *User) HasDisabled() bool`
 
 HasDisabled returns a boolean if a field has been set.
-
-### SetDisabled
-
-`func (o *User) SetDisabled(v bool)`
-
-SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
 
 ### GetEmail
 
@@ -89,22 +89,22 @@ GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *User) GetEmailOk() (string, bool)`
+`func (o *User) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *User) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
 
 ### HasEmail
 
 `func (o *User) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
-
-### SetEmail
-
-`func (o *User) SetEmail(v string)`
-
-SetEmail gets a reference to the given string and assigns it to the Email field.
 
 ### GetHandle
 
@@ -114,22 +114,22 @@ GetHandle returns the Handle field if non-nil, zero value otherwise.
 
 ### GetHandleOk
 
-`func (o *User) GetHandleOk() (string, bool)`
+`func (o *User) GetHandleOk() (*string, bool)`
 
 GetHandleOk returns a tuple with the Handle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHandle
+
+`func (o *User) SetHandle(v string)`
+
+SetHandle sets Handle field to given value.
 
 ### HasHandle
 
 `func (o *User) HasHandle() bool`
 
 HasHandle returns a boolean if a field has been set.
-
-### SetHandle
-
-`func (o *User) SetHandle(v string)`
-
-SetHandle gets a reference to the given string and assigns it to the Handle field.
 
 ### GetIcon
 
@@ -139,22 +139,22 @@ GetIcon returns the Icon field if non-nil, zero value otherwise.
 
 ### GetIconOk
 
-`func (o *User) GetIconOk() (string, bool)`
+`func (o *User) GetIconOk() (*string, bool)`
 
 GetIconOk returns a tuple with the Icon field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIcon
+
+`func (o *User) SetIcon(v string)`
+
+SetIcon sets Icon field to given value.
 
 ### HasIcon
 
 `func (o *User) HasIcon() bool`
 
 HasIcon returns a boolean if a field has been set.
-
-### SetIcon
-
-`func (o *User) SetIcon(v string)`
-
-SetIcon gets a reference to the given string and assigns it to the Icon field.
 
 ### GetName
 
@@ -164,22 +164,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *User) GetNameOk() (string, bool)`
+`func (o *User) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *User) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *User) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *User) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetVerified
 
@@ -189,22 +189,22 @@ GetVerified returns the Verified field if non-nil, zero value otherwise.
 
 ### GetVerifiedOk
 
-`func (o *User) GetVerifiedOk() (bool, bool)`
+`func (o *User) GetVerifiedOk() (*bool, bool)`
 
 GetVerifiedOk returns a tuple with the Verified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetVerified
+
+`func (o *User) SetVerified(v bool)`
+
+SetVerified sets Verified field to given value.
 
 ### HasVerified
 
 `func (o *User) HasVerified() bool`
 
 HasVerified returns a boolean if a field has been set.
-
-### SetVerified
-
-`func (o *User) SetVerified(v bool)`
-
-SetVerified gets a reference to the given bool and assigns it to the Verified field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

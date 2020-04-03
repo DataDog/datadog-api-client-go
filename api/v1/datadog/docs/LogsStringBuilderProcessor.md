@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
 **Target** | Pointer to **string** | The name of the attribute that contains the result of the template. | 
 **Template** | Pointer to **string** | A formula with one or more attributes and raw text. | 
-**Type** | Pointer to **string** | Type of processor | [optional] [readonly] [default to "string-builder-processor"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor | [optional] 
+**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "string-builder-processor"]
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 
 ## Methods
 
@@ -38,22 +38,22 @@ GetIsReplaceMissing returns the IsReplaceMissing field if non-nil, zero value ot
 
 ### GetIsReplaceMissingOk
 
-`func (o *LogsStringBuilderProcessor) GetIsReplaceMissingOk() (bool, bool)`
+`func (o *LogsStringBuilderProcessor) GetIsReplaceMissingOk() (*bool, bool)`
 
 GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsReplaceMissing
+
+`func (o *LogsStringBuilderProcessor) SetIsReplaceMissing(v bool)`
+
+SetIsReplaceMissing sets IsReplaceMissing field to given value.
 
 ### HasIsReplaceMissing
 
 `func (o *LogsStringBuilderProcessor) HasIsReplaceMissing() bool`
 
 HasIsReplaceMissing returns a boolean if a field has been set.
-
-### SetIsReplaceMissing
-
-`func (o *LogsStringBuilderProcessor) SetIsReplaceMissing(v bool)`
-
-SetIsReplaceMissing gets a reference to the given bool and assigns it to the IsReplaceMissing field.
 
 ### GetTarget
 
@@ -63,22 +63,17 @@ GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *LogsStringBuilderProcessor) GetTargetOk() (string, bool)`
+`func (o *LogsStringBuilderProcessor) GetTargetOk() (*string, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTarget
-
-`func (o *LogsStringBuilderProcessor) HasTarget() bool`
-
-HasTarget returns a boolean if a field has been set.
 
 ### SetTarget
 
 `func (o *LogsStringBuilderProcessor) SetTarget(v string)`
 
-SetTarget gets a reference to the given string and assigns it to the Target field.
+SetTarget sets Target field to given value.
+
 
 ### GetTemplate
 
@@ -88,22 +83,17 @@ GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *LogsStringBuilderProcessor) GetTemplateOk() (string, bool)`
+`func (o *LogsStringBuilderProcessor) GetTemplateOk() (*string, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTemplate
-
-`func (o *LogsStringBuilderProcessor) HasTemplate() bool`
-
-HasTemplate returns a boolean if a field has been set.
 
 ### SetTemplate
 
 `func (o *LogsStringBuilderProcessor) SetTemplate(v string)`
 
-SetTemplate gets a reference to the given string and assigns it to the Template field.
+SetTemplate sets Template field to given value.
+
 
 ### GetType
 
@@ -113,22 +103,22 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsStringBuilderProcessor) GetTypeOk() (string, bool)`
+`func (o *LogsStringBuilderProcessor) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsStringBuilderProcessor) SetType(v string)`
+
+SetType sets Type field to given value.
 
 ### HasType
 
 `func (o *LogsStringBuilderProcessor) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *LogsStringBuilderProcessor) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetIsEnabled
 
@@ -138,22 +128,22 @@ GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
 ### GetIsEnabledOk
 
-`func (o *LogsStringBuilderProcessor) GetIsEnabledOk() (bool, bool)`
+`func (o *LogsStringBuilderProcessor) GetIsEnabledOk() (*bool, bool)`
 
 GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsEnabled
+
+`func (o *LogsStringBuilderProcessor) SetIsEnabled(v bool)`
+
+SetIsEnabled sets IsEnabled field to given value.
 
 ### HasIsEnabled
 
 `func (o *LogsStringBuilderProcessor) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
-
-### SetIsEnabled
-
-`func (o *LogsStringBuilderProcessor) SetIsEnabled(v bool)`
-
-SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
 
 ### GetName
 
@@ -163,22 +153,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsStringBuilderProcessor) GetNameOk() (string, bool)`
+`func (o *LogsStringBuilderProcessor) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsStringBuilderProcessor) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *LogsStringBuilderProcessor) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *LogsStringBuilderProcessor) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 
 ### AsLogsProcessor

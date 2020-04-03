@@ -48,6 +48,15 @@ func (o *SyntheticsGetTestLatestResultsPayload) GetFromTs() float64 {
 	return o.FromTs
 }
 
+// GetFromTsOk returns a tuple with the FromTs field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsGetTestLatestResultsPayload) GetFromTsOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FromTs, true
+}
+
 // SetFromTs sets field value
 func (o *SyntheticsGetTestLatestResultsPayload) SetFromTs(v float64) {
 	o.FromTs = v
@@ -62,14 +71,13 @@ func (o *SyntheticsGetTestLatestResultsPayload) GetProbeDc() []string {
 	return *o.ProbeDc
 }
 
-// GetProbeDcOk returns a tuple with the ProbeDc field value if set, zero value otherwise
+// GetProbeDcOk returns a tuple with the ProbeDc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGetTestLatestResultsPayload) GetProbeDcOk() ([]string, bool) {
+func (o *SyntheticsGetTestLatestResultsPayload) GetProbeDcOk() (*[]string, bool) {
 	if o == nil || o.ProbeDc == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProbeDc, true
+	return o.ProbeDc, true
 }
 
 // HasProbeDc returns a boolean if a field has been set.
@@ -94,6 +102,15 @@ func (o *SyntheticsGetTestLatestResultsPayload) GetToTs() float64 {
 	}
 
 	return o.ToTs
+}
+
+// GetToTsOk returns a tuple with the ToTs field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsGetTestLatestResultsPayload) GetToTsOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ToTs, true
 }
 
 // SetToTs sets field value
@@ -124,7 +141,7 @@ func (v NullableSyntheticsGetTestLatestResultsPayload) Get() *SyntheticsGetTestL
 	return v.value
 }
 
-func (v NullableSyntheticsGetTestLatestResultsPayload) Set(val *SyntheticsGetTestLatestResultsPayload) {
+func (v *NullableSyntheticsGetTestLatestResultsPayload) Set(val *SyntheticsGetTestLatestResultsPayload) {
 	v.value = val
 	v.isSet = true
 }
@@ -133,7 +150,7 @@ func (v NullableSyntheticsGetTestLatestResultsPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsGetTestLatestResultsPayload) Unset() {
+func (v *NullableSyntheticsGetTestLatestResultsPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }

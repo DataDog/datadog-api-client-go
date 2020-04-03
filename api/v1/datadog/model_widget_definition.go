@@ -240,7 +240,7 @@ func (v NullableWidgetDefinition) Get() *WidgetDefinition {
 	return v.value
 }
 
-func (v NullableWidgetDefinition) Set(val *WidgetDefinition) {
+func (v *NullableWidgetDefinition) Set(val *WidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -249,7 +249,7 @@ func (v NullableWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetDefinition) Unset() {
+func (v *NullableWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

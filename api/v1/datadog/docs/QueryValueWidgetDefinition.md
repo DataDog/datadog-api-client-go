@@ -42,22 +42,22 @@ GetAutoscale returns the Autoscale field if non-nil, zero value otherwise.
 
 ### GetAutoscaleOk
 
-`func (o *QueryValueWidgetDefinition) GetAutoscaleOk() (bool, bool)`
+`func (o *QueryValueWidgetDefinition) GetAutoscaleOk() (*bool, bool)`
 
 GetAutoscaleOk returns a tuple with the Autoscale field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAutoscale
+
+`func (o *QueryValueWidgetDefinition) SetAutoscale(v bool)`
+
+SetAutoscale sets Autoscale field to given value.
 
 ### HasAutoscale
 
 `func (o *QueryValueWidgetDefinition) HasAutoscale() bool`
 
 HasAutoscale returns a boolean if a field has been set.
-
-### SetAutoscale
-
-`func (o *QueryValueWidgetDefinition) SetAutoscale(v bool)`
-
-SetAutoscale gets a reference to the given bool and assigns it to the Autoscale field.
 
 ### GetCustomUnit
 
@@ -67,22 +67,22 @@ GetCustomUnit returns the CustomUnit field if non-nil, zero value otherwise.
 
 ### GetCustomUnitOk
 
-`func (o *QueryValueWidgetDefinition) GetCustomUnitOk() (string, bool)`
+`func (o *QueryValueWidgetDefinition) GetCustomUnitOk() (*string, bool)`
 
 GetCustomUnitOk returns a tuple with the CustomUnit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCustomUnit
+
+`func (o *QueryValueWidgetDefinition) SetCustomUnit(v string)`
+
+SetCustomUnit sets CustomUnit field to given value.
 
 ### HasCustomUnit
 
 `func (o *QueryValueWidgetDefinition) HasCustomUnit() bool`
 
 HasCustomUnit returns a boolean if a field has been set.
-
-### SetCustomUnit
-
-`func (o *QueryValueWidgetDefinition) SetCustomUnit(v string)`
-
-SetCustomUnit gets a reference to the given string and assigns it to the CustomUnit field.
 
 ### GetPrecision
 
@@ -92,22 +92,22 @@ GetPrecision returns the Precision field if non-nil, zero value otherwise.
 
 ### GetPrecisionOk
 
-`func (o *QueryValueWidgetDefinition) GetPrecisionOk() (int64, bool)`
+`func (o *QueryValueWidgetDefinition) GetPrecisionOk() (*int64, bool)`
 
 GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPrecision
+
+`func (o *QueryValueWidgetDefinition) SetPrecision(v int64)`
+
+SetPrecision sets Precision field to given value.
 
 ### HasPrecision
 
 `func (o *QueryValueWidgetDefinition) HasPrecision() bool`
 
 HasPrecision returns a boolean if a field has been set.
-
-### SetPrecision
-
-`func (o *QueryValueWidgetDefinition) SetPrecision(v int64)`
-
-SetPrecision gets a reference to the given int64 and assigns it to the Precision field.
 
 ### GetRequests
 
@@ -117,22 +117,17 @@ GetRequests returns the Requests field if non-nil, zero value otherwise.
 
 ### GetRequestsOk
 
-`func (o *QueryValueWidgetDefinition) GetRequestsOk() ([]QueryValueWidgetRequest, bool)`
+`func (o *QueryValueWidgetDefinition) GetRequestsOk() (*[]QueryValueWidgetRequest, bool)`
 
 GetRequestsOk returns a tuple with the Requests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasRequests
-
-`func (o *QueryValueWidgetDefinition) HasRequests() bool`
-
-HasRequests returns a boolean if a field has been set.
 
 ### SetRequests
 
 `func (o *QueryValueWidgetDefinition) SetRequests(v []QueryValueWidgetRequest)`
 
-SetRequests gets a reference to the given []QueryValueWidgetRequest and assigns it to the Requests field.
+SetRequests sets Requests field to given value.
+
 
 ### GetTextAlign
 
@@ -142,22 +137,22 @@ GetTextAlign returns the TextAlign field if non-nil, zero value otherwise.
 
 ### GetTextAlignOk
 
-`func (o *QueryValueWidgetDefinition) GetTextAlignOk() (WidgetTextAlign, bool)`
+`func (o *QueryValueWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool)`
 
 GetTextAlignOk returns a tuple with the TextAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTextAlign
+
+`func (o *QueryValueWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
+
+SetTextAlign sets TextAlign field to given value.
 
 ### HasTextAlign
 
 `func (o *QueryValueWidgetDefinition) HasTextAlign() bool`
 
 HasTextAlign returns a boolean if a field has been set.
-
-### SetTextAlign
-
-`func (o *QueryValueWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
-
-SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.
 
 ### GetTime
 
@@ -167,22 +162,22 @@ GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *QueryValueWidgetDefinition) GetTimeOk() (WidgetTime, bool)`
+`func (o *QueryValueWidgetDefinition) GetTimeOk() (*WidgetTime, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *QueryValueWidgetDefinition) SetTime(v WidgetTime)`
+
+SetTime sets Time field to given value.
 
 ### HasTime
 
 `func (o *QueryValueWidgetDefinition) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
-
-### SetTime
-
-`func (o *QueryValueWidgetDefinition) SetTime(v WidgetTime)`
-
-SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
 
 ### GetTitle
 
@@ -192,22 +187,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *QueryValueWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *QueryValueWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *QueryValueWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *QueryValueWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *QueryValueWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -217,22 +212,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *QueryValueWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *QueryValueWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *QueryValueWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *QueryValueWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *QueryValueWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -242,22 +237,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *QueryValueWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *QueryValueWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *QueryValueWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *QueryValueWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *QueryValueWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -267,22 +262,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *QueryValueWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *QueryValueWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *QueryValueWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *QueryValueWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

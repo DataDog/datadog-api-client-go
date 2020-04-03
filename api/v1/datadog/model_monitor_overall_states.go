@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorOverallStates the model 'MonitorOverallStates'
+// MonitorOverallStates The different states your monitor can be in.
 type MonitorOverallStates string
 
 // List of MonitorOverallStates
@@ -40,7 +40,7 @@ func (v NullableMonitorOverallStates) Get() *MonitorOverallStates {
 	return v.value
 }
 
-func (v NullableMonitorOverallStates) Set(val *MonitorOverallStates) {
+func (v *NullableMonitorOverallStates) Set(val *MonitorOverallStates) {
 	v.value = val
 	v.isSet = true
 }
@@ -49,7 +49,7 @@ func (v NullableMonitorOverallStates) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMonitorOverallStates) Unset() {
+func (v *NullableMonitorOverallStates) Unset() {
 	v.value = nil
 	v.isSet = false
 }

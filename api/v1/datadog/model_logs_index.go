@@ -14,7 +14,7 @@ import (
 
 // LogsIndex struct for LogsIndex
 type LogsIndex struct {
-	// The number of log-events you can send in this index per day before you are rate-limited.
+	// The number of log events you can send in this index per day before you are rate-limited.
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
 	// An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
@@ -23,7 +23,7 @@ type LogsIndex struct {
 	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
 	// The name of the index.
 	Name *string `json:"name,omitempty"`
-	// The number of days before logs are deleted from this index
+	// The number of days before logs are deleted from this index.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 }
 
@@ -54,14 +54,13 @@ func (o *LogsIndex) GetDailyLimit() int64 {
 	return *o.DailyLimit
 }
 
-// GetDailyLimitOk returns a tuple with the DailyLimit field value if set, zero value otherwise
+// GetDailyLimitOk returns a tuple with the DailyLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetDailyLimitOk() (int64, bool) {
+func (o *LogsIndex) GetDailyLimitOk() (*int64, bool) {
 	if o == nil || o.DailyLimit == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.DailyLimit, true
+	return o.DailyLimit, true
 }
 
 // HasDailyLimit returns a boolean if a field has been set.
@@ -87,14 +86,13 @@ func (o *LogsIndex) GetExclusionFilters() []LogsExclusion {
 	return *o.ExclusionFilters
 }
 
-// GetExclusionFiltersOk returns a tuple with the ExclusionFilters field value if set, zero value otherwise
+// GetExclusionFiltersOk returns a tuple with the ExclusionFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetExclusionFiltersOk() ([]LogsExclusion, bool) {
+func (o *LogsIndex) GetExclusionFiltersOk() (*[]LogsExclusion, bool) {
 	if o == nil || o.ExclusionFilters == nil {
-		var ret []LogsExclusion
-		return ret, false
+		return nil, false
 	}
-	return *o.ExclusionFilters, true
+	return o.ExclusionFilters, true
 }
 
 // HasExclusionFilters returns a boolean if a field has been set.
@@ -121,6 +119,15 @@ func (o *LogsIndex) GetFilter() LogsFilter {
 	return o.Filter
 }
 
+// GetFilterOk returns a tuple with the Filter field value
+// and a boolean to check if the value has been set.
+func (o *LogsIndex) GetFilterOk() (*LogsFilter, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Filter, true
+}
+
 // SetFilter sets field value
 func (o *LogsIndex) SetFilter(v LogsFilter) {
 	o.Filter = v
@@ -135,14 +142,13 @@ func (o *LogsIndex) GetIsRateLimited() bool {
 	return *o.IsRateLimited
 }
 
-// GetIsRateLimitedOk returns a tuple with the IsRateLimited field value if set, zero value otherwise
+// GetIsRateLimitedOk returns a tuple with the IsRateLimited field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetIsRateLimitedOk() (bool, bool) {
+func (o *LogsIndex) GetIsRateLimitedOk() (*bool, bool) {
 	if o == nil || o.IsRateLimited == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsRateLimited, true
+	return o.IsRateLimited, true
 }
 
 // HasIsRateLimited returns a boolean if a field has been set.
@@ -168,14 +174,13 @@ func (o *LogsIndex) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetNameOk() (string, bool) {
+func (o *LogsIndex) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -201,14 +206,13 @@ func (o *LogsIndex) GetNumRetentionDays() int64 {
 	return *o.NumRetentionDays
 }
 
-// GetNumRetentionDaysOk returns a tuple with the NumRetentionDays field value if set, zero value otherwise
+// GetNumRetentionDaysOk returns a tuple with the NumRetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetNumRetentionDaysOk() (int64, bool) {
+func (o *LogsIndex) GetNumRetentionDaysOk() (*int64, bool) {
 	if o == nil || o.NumRetentionDays == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.NumRetentionDays, true
+	return o.NumRetentionDays, true
 }
 
 // HasNumRetentionDays returns a boolean if a field has been set.
@@ -257,7 +261,7 @@ func (v NullableLogsIndex) Get() *LogsIndex {
 	return v.value
 }
 
-func (v NullableLogsIndex) Set(val *LogsIndex) {
+func (v *NullableLogsIndex) Set(val *LogsIndex) {
 	v.value = val
 	v.isSet = true
 }
@@ -266,7 +270,7 @@ func (v NullableLogsIndex) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsIndex) Unset() {
+func (v *NullableLogsIndex) Unset() {
 	v.value = nil
 	v.isSet = false
 }

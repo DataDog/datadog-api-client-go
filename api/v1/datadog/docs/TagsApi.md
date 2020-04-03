@@ -5,10 +5,10 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddToHostTags**](TagsApi.md#AddToHostTags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
-[**GetAllHostTags**](TagsApi.md#GetAllHostTags) | **Get** /api/v1/tags/hosts | Get a mapping of tags to hosts for your whole infrastrucutre
-[**GetHostTags**](TagsApi.md#GetHostTags) | **Get** /api/v1/tags/hosts/{host_name} | Get list of tags for a specific hosts
-[**RemoveHostTags**](TagsApi.md#RemoveHostTags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove Host Tags
-[**UpdateHostTags**](TagsApi.md#UpdateHostTags) | **Put** /api/v1/tags/hosts/{host_name} | Update a tags on a host
+[**GetAllHostTags**](TagsApi.md#GetAllHostTags) | **Get** /api/v1/tags/hosts | Get Tags
+[**GetHostTags**](TagsApi.md#GetHostTags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
+[**RemoveHostTags**](TagsApi.md#RemoveHostTags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
+[**UpdateHostTags**](TagsApi.md#UpdateHostTags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
 
 
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 > TagToHosts GetAllHostTags(ctx).Source(source).Execute()
 
-Get a mapping of tags to hosts for your whole infrastrucutre
+Get Tags
 
 
 
@@ -76,7 +76,7 @@ Other parameters are passed through a pointer to a apiGetAllHostTagsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **source** | **string** | When specified, filters host list to those tags with the specified source | 
+ **source** | **string** | When specified, filters host list to those tags with the specified source. | 
 
 ### Return type
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 > HostTags GetHostTags(ctx, hostName).Source(source).Execute()
 
-Get list of tags for a specific hosts
+Get host tags
 
 
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 > RemoveHostTags(ctx, hostName).Source(source).Execute()
 
-Remove Host Tags
+Remove host tags
 
 
 
@@ -164,7 +164,7 @@ Other parameters are passed through a pointer to a apiRemoveHostTagsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | 
+ **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
 
 ### Return type
 
@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 
 > HostTags UpdateHostTags(ctx, hostName).Body(body).Source(source).Execute()
 
-Update a tags on a host
+Update host tags
 
 
 

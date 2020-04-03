@@ -61,14 +61,13 @@ func (o *TimeseriesWidgetDefinition) GetEvents() []WidgetEvent {
 	return *o.Events
 }
 
-// GetEventsOk returns a tuple with the Events field value if set, zero value otherwise
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetEventsOk() ([]WidgetEvent, bool) {
+func (o *TimeseriesWidgetDefinition) GetEventsOk() (*[]WidgetEvent, bool) {
 	if o == nil || o.Events == nil {
-		var ret []WidgetEvent
-		return ret, false
+		return nil, false
 	}
-	return *o.Events, true
+	return o.Events, true
 }
 
 // HasEvents returns a boolean if a field has been set.
@@ -94,14 +93,13 @@ func (o *TimeseriesWidgetDefinition) GetLegendSize() WidgetLegendSize {
 	return *o.LegendSize
 }
 
-// GetLegendSizeOk returns a tuple with the LegendSize field value if set, zero value otherwise
+// GetLegendSizeOk returns a tuple with the LegendSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (WidgetLegendSize, bool) {
+func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool) {
 	if o == nil || o.LegendSize == nil {
-		var ret WidgetLegendSize
-		return ret, false
+		return nil, false
 	}
-	return *o.LegendSize, true
+	return o.LegendSize, true
 }
 
 // HasLegendSize returns a boolean if a field has been set.
@@ -127,14 +125,13 @@ func (o *TimeseriesWidgetDefinition) GetMarkers() []WidgetMarker {
 	return *o.Markers
 }
 
-// GetMarkersOk returns a tuple with the Markers field value if set, zero value otherwise
+// GetMarkersOk returns a tuple with the Markers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetMarkersOk() ([]WidgetMarker, bool) {
+func (o *TimeseriesWidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool) {
 	if o == nil || o.Markers == nil {
-		var ret []WidgetMarker
-		return ret, false
+		return nil, false
 	}
-	return *o.Markers, true
+	return o.Markers, true
 }
 
 // HasMarkers returns a boolean if a field has been set.
@@ -161,6 +158,15 @@ func (o *TimeseriesWidgetDefinition) GetRequests() []TimeseriesWidgetRequest {
 	return o.Requests
 }
 
+// GetRequestsOk returns a tuple with the Requests field value
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetDefinition) GetRequestsOk() (*[]TimeseriesWidgetRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Requests, true
+}
+
 // SetRequests sets field value
 func (o *TimeseriesWidgetDefinition) SetRequests(v []TimeseriesWidgetRequest) {
 	o.Requests = v
@@ -175,14 +181,13 @@ func (o *TimeseriesWidgetDefinition) GetShowLegend() bool {
 	return *o.ShowLegend
 }
 
-// GetShowLegendOk returns a tuple with the ShowLegend field value if set, zero value otherwise
+// GetShowLegendOk returns a tuple with the ShowLegend field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetShowLegendOk() (bool, bool) {
+func (o *TimeseriesWidgetDefinition) GetShowLegendOk() (*bool, bool) {
 	if o == nil || o.ShowLegend == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowLegend, true
+	return o.ShowLegend, true
 }
 
 // HasShowLegend returns a boolean if a field has been set.
@@ -208,14 +213,13 @@ func (o *TimeseriesWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *TimeseriesWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -241,14 +245,13 @@ func (o *TimeseriesWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *TimeseriesWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -274,14 +277,13 @@ func (o *TimeseriesWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *TimeseriesWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -307,14 +309,13 @@ func (o *TimeseriesWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *TimeseriesWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -341,6 +342,15 @@ func (o *TimeseriesWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *TimeseriesWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -355,14 +365,13 @@ func (o *TimeseriesWidgetDefinition) GetYaxis() WidgetAxis {
 	return *o.Yaxis
 }
 
-// GetYaxisOk returns a tuple with the Yaxis field value if set, zero value otherwise
+// GetYaxisOk returns a tuple with the Yaxis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetYaxisOk() (WidgetAxis, bool) {
+func (o *TimeseriesWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool) {
 	if o == nil || o.Yaxis == nil {
-		var ret WidgetAxis
-		return ret, false
+		return nil, false
 	}
-	return *o.Yaxis, true
+	return o.Yaxis, true
 }
 
 // HasYaxis returns a boolean if a field has been set.
@@ -431,7 +440,7 @@ func (v NullableTimeseriesWidgetDefinition) Get() *TimeseriesWidgetDefinition {
 	return v.value
 }
 
-func (v NullableTimeseriesWidgetDefinition) Set(val *TimeseriesWidgetDefinition) {
+func (v *NullableTimeseriesWidgetDefinition) Set(val *TimeseriesWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -440,7 +449,7 @@ func (v NullableTimeseriesWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTimeseriesWidgetDefinition) Unset() {
+func (v *NullableTimeseriesWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

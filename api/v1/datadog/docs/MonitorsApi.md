@@ -4,12 +4,12 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a new Monitor
-[**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete the specified monitor.
-[**EditMonitor**](MonitorsApi.md#EditMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit the specified monitor
-[**GetAllMonitors**](MonitorsApi.md#GetAllMonitors) | **Get** /api/v1/monitor | Get details about the specified monitor.
-[**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get details about the specified monitor.
-[**ValidateMonitor**](MonitorsApi.md#ValidateMonitor) | **Post** /api/v1/monitor/validate | 
+[**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a monitor
+[**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
+[**EditMonitor**](MonitorsApi.md#EditMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
+[**GetAllMonitors**](MonitorsApi.md#GetAllMonitors) | **Get** /api/v1/monitor | Get all monitor details
+[**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
+[**ValidateMonitor**](MonitorsApi.md#ValidateMonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
 
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > Monitor CreateMonitor(ctx).Body(body).Execute()
 
-Create a new Monitor
+Create a monitor
 
 
 
@@ -32,7 +32,7 @@ Other parameters are passed through a pointer to a apiCreateMonitorRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Monitor**](Monitor.md) | Monitor request object | 
+ **body** | [**Monitor**](Monitor.md) | Monitor request object. | 
 
 ### Return type
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 > DeletedMonitor DeleteMonitor(ctx, monitorId).Execute()
 
-Delete the specified monitor.
+Delete a monitor
 
 
 
@@ -66,7 +66,7 @@ Delete the specified monitor.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The id of the monitor | 
+**monitorId** | **int64** | The ID of the monitor. | 
 
 ### Other Parameters
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 > Monitor EditMonitor(ctx, monitorId).Body(body).Execute()
 
-Edit the specified monitor
+Edit a monitor
 
 
 
@@ -109,7 +109,7 @@ Edit the specified monitor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The id of the monitor | 
+**monitorId** | **int64** | The id of the monitor. | 
 
 ### Other Parameters
 
@@ -119,7 +119,7 @@ Other parameters are passed through a pointer to a apiEditMonitorRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Monitor**](Monitor.md) | Monitor request object | 
+ **body** | [**Monitor**](Monitor.md) | Monitor request object. | 
 
 ### Return type
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 > []Monitor GetAllMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).Execute()
 
-Get details about the specified monitor.
+Get all monitor details
 
 
 
@@ -160,8 +160,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
  **name** | **string** | A string to filter monitors by name. | 
- **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope, e.g. host:host0. | 
- **monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended (e.g. service:my-app). | 
+ **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope. For example, &#x60;host:host0&#x60;. | 
+ **monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, &#x60;service:my-app&#x60;. | 
  **withDowntimes** | **bool** | If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
 
 ### Return type
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 > Monitor GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
 
-Get details about the specified monitor.
+Get a monitor's details
 
 
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 > Monitor ValidateMonitor(ctx).Body(body).Execute()
 
-
+Validate a monitor
 
 
 

@@ -14,6 +14,7 @@ import (
 
 // UsageTraceResponse struct for UsageTraceResponse
 type UsageTraceResponse struct {
+	// Array with the number of hourly traces indexed for a given organization.
 	Usage *[]UsageTraceHour `json:"usage,omitempty"`
 }
 
@@ -43,14 +44,13 @@ func (o *UsageTraceResponse) GetUsage() []UsageTraceHour {
 	return *o.Usage
 }
 
-// GetUsageOk returns a tuple with the Usage field value if set, zero value otherwise
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTraceResponse) GetUsageOk() ([]UsageTraceHour, bool) {
+func (o *UsageTraceResponse) GetUsageOk() (*[]UsageTraceHour, bool) {
 	if o == nil || o.Usage == nil {
-		var ret []UsageTraceHour
-		return ret, false
+		return nil, false
 	}
-	return *o.Usage, true
+	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -84,7 +84,7 @@ func (v NullableUsageTraceResponse) Get() *UsageTraceResponse {
 	return v.value
 }
 
-func (v NullableUsageTraceResponse) Set(val *UsageTraceResponse) {
+func (v *NullableUsageTraceResponse) Set(val *UsageTraceResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +93,7 @@ func (v NullableUsageTraceResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageTraceResponse) Unset() {
+func (v *NullableUsageTraceResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

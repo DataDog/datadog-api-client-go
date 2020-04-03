@@ -14,6 +14,7 @@ import (
 
 // CancelDowntimesByScopeRequest struct for CancelDowntimesByScopeRequest
 type CancelDowntimesByScopeRequest struct {
+	// The scope(s) to which the downtime applies. For example, `host:app2`. Provide multiple scopes as a comma-separated list like `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
 	Scope string `json:"scope"`
 }
 
@@ -45,6 +46,15 @@ func (o *CancelDowntimesByScopeRequest) GetScope() string {
 	return o.Scope
 }
 
+// GetScopeOk returns a tuple with the Scope field value
+// and a boolean to check if the value has been set.
+func (o *CancelDowntimesByScopeRequest) GetScopeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Scope, true
+}
+
 // SetScope sets field value
 func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
 	o.Scope = v
@@ -67,7 +77,7 @@ func (v NullableCancelDowntimesByScopeRequest) Get() *CancelDowntimesByScopeRequ
 	return v.value
 }
 
-func (v NullableCancelDowntimesByScopeRequest) Set(val *CancelDowntimesByScopeRequest) {
+func (v *NullableCancelDowntimesByScopeRequest) Set(val *CancelDowntimesByScopeRequest) {
 	v.value = val
 	v.isSet = true
 }
@@ -76,7 +86,7 @@ func (v NullableCancelDowntimesByScopeRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableCancelDowntimesByScopeRequest) Unset() {
+func (v *NullableCancelDowntimesByScopeRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }

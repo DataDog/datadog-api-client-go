@@ -44,14 +44,13 @@ func (o *WidgetStyle) GetPalette() string {
 	return *o.Palette
 }
 
-// GetPaletteOk returns a tuple with the Palette field value if set, zero value otherwise
+// GetPaletteOk returns a tuple with the Palette field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetStyle) GetPaletteOk() (string, bool) {
+func (o *WidgetStyle) GetPaletteOk() (*string, bool) {
 	if o == nil || o.Palette == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Palette, true
+	return o.Palette, true
 }
 
 // HasPalette returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableWidgetStyle) Get() *WidgetStyle {
 	return v.value
 }
 
-func (v NullableWidgetStyle) Set(val *WidgetStyle) {
+func (v *NullableWidgetStyle) Set(val *WidgetStyle) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableWidgetStyle) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetStyle) Unset() {
+func (v *NullableWidgetStyle) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -14,19 +14,19 @@ import (
 
 // MetricMetadata struct for MetricMetadata
 type MetricMetadata struct {
-	// Metric description
+	// Metric description.
 	Description *string `json:"description,omitempty"`
-	// Name of the integration that sent the metric if applicable
+	// Name of the integration that sent the metric if applicable.
 	Integration *string `json:"integration,omitempty"`
-	// Per unit of the metric such as `second` in `bytes per second`
+	// Per unit of the metric such as `second` in `bytes per second`.
 	PerUnit *string `json:"per_unit,omitempty"`
-	// A more human-readable and abbreviated version of the metric name
+	// A more human-readable and abbreviated version of the metric name.
 	ShortName *string `json:"short_name,omitempty"`
-	// Statsd flush interval of the metric in seconds if applicable
+	// Statsd flush interval of the metric in seconds if applicable.
 	StatsdInterval *int64 `json:"statsd_interval,omitempty"`
-	// Metric type such as `gauge` or `rate`
-	Type string `json:"type"`
-	// Primary unit of the metric such as `byte` or `operation`
+	// Metric type such as `gauge` or `rate`.
+	Type *string `json:"type,omitempty"`
+	// Primary unit of the metric such as `byte` or `operation`.
 	Unit *string `json:"unit,omitempty"`
 }
 
@@ -34,9 +34,8 @@ type MetricMetadata struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetricMetadata(type_ string) *MetricMetadata {
+func NewMetricMetadata() *MetricMetadata {
 	this := MetricMetadata{}
-	this.Type = type_
 	return &this
 }
 
@@ -57,14 +56,13 @@ func (o *MetricMetadata) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricMetadata) GetDescriptionOk() (string, bool) {
+func (o *MetricMetadata) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -90,14 +88,13 @@ func (o *MetricMetadata) GetIntegration() string {
 	return *o.Integration
 }
 
-// GetIntegrationOk returns a tuple with the Integration field value if set, zero value otherwise
+// GetIntegrationOk returns a tuple with the Integration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricMetadata) GetIntegrationOk() (string, bool) {
+func (o *MetricMetadata) GetIntegrationOk() (*string, bool) {
 	if o == nil || o.Integration == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Integration, true
+	return o.Integration, true
 }
 
 // HasIntegration returns a boolean if a field has been set.
@@ -123,14 +120,13 @@ func (o *MetricMetadata) GetPerUnit() string {
 	return *o.PerUnit
 }
 
-// GetPerUnitOk returns a tuple with the PerUnit field value if set, zero value otherwise
+// GetPerUnitOk returns a tuple with the PerUnit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricMetadata) GetPerUnitOk() (string, bool) {
+func (o *MetricMetadata) GetPerUnitOk() (*string, bool) {
 	if o == nil || o.PerUnit == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PerUnit, true
+	return o.PerUnit, true
 }
 
 // HasPerUnit returns a boolean if a field has been set.
@@ -156,14 +152,13 @@ func (o *MetricMetadata) GetShortName() string {
 	return *o.ShortName
 }
 
-// GetShortNameOk returns a tuple with the ShortName field value if set, zero value otherwise
+// GetShortNameOk returns a tuple with the ShortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricMetadata) GetShortNameOk() (string, bool) {
+func (o *MetricMetadata) GetShortNameOk() (*string, bool) {
 	if o == nil || o.ShortName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ShortName, true
+	return o.ShortName, true
 }
 
 // HasShortName returns a boolean if a field has been set.
@@ -189,14 +184,13 @@ func (o *MetricMetadata) GetStatsdInterval() int64 {
 	return *o.StatsdInterval
 }
 
-// GetStatsdIntervalOk returns a tuple with the StatsdInterval field value if set, zero value otherwise
+// GetStatsdIntervalOk returns a tuple with the StatsdInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricMetadata) GetStatsdIntervalOk() (int64, bool) {
+func (o *MetricMetadata) GetStatsdIntervalOk() (*int64, bool) {
 	if o == nil || o.StatsdInterval == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.StatsdInterval, true
+	return o.StatsdInterval, true
 }
 
 // HasStatsdInterval returns a boolean if a field has been set.
@@ -213,19 +207,36 @@ func (o *MetricMetadata) SetStatsdInterval(v int64) {
 	o.StatsdInterval = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricMetadata) GetType() string {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// SetType sets field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricMetadata) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *MetricMetadata) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *MetricMetadata) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
@@ -237,14 +248,13 @@ func (o *MetricMetadata) GetUnit() string {
 	return *o.Unit
 }
 
-// GetUnitOk returns a tuple with the Unit field value if set, zero value otherwise
+// GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricMetadata) GetUnitOk() (string, bool) {
+func (o *MetricMetadata) GetUnitOk() (*string, bool) {
 	if o == nil || o.Unit == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Unit, true
+	return o.Unit, true
 }
 
 // HasUnit returns a boolean if a field has been set.
@@ -278,7 +288,7 @@ func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 	if o.StatsdInterval != nil {
 		toSerialize["statsd_interval"] = o.StatsdInterval
 	}
-	if true {
+	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
 	if o.Unit != nil {
@@ -296,7 +306,7 @@ func (v NullableMetricMetadata) Get() *MetricMetadata {
 	return v.value
 }
 
-func (v NullableMetricMetadata) Set(val *MetricMetadata) {
+func (v *NullableMetricMetadata) Set(val *MetricMetadata) {
 	v.value = val
 	v.isSet = true
 }
@@ -305,7 +315,7 @@ func (v NullableMetricMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricMetadata) Unset() {
+func (v *NullableMetricMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }

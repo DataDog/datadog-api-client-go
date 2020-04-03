@@ -49,6 +49,15 @@ func (o *SyntheticsAssertion) GetOperator() SyntheticsAssertionOperator {
 	return o.Operator
 }
 
+// GetOperatorOk returns a tuple with the Operator field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAssertion) GetOperatorOk() (*SyntheticsAssertionOperator, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Operator, true
+}
+
 // SetOperator sets field value
 func (o *SyntheticsAssertion) SetOperator(v SyntheticsAssertionOperator) {
 	o.Operator = v
@@ -63,14 +72,13 @@ func (o *SyntheticsAssertion) GetProperty() string {
 	return *o.Property
 }
 
-// GetPropertyOk returns a tuple with the Property field value if set, zero value otherwise
+// GetPropertyOk returns a tuple with the Property field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAssertion) GetPropertyOk() (string, bool) {
+func (o *SyntheticsAssertion) GetPropertyOk() (*string, bool) {
 	if o == nil || o.Property == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Property, true
+	return o.Property, true
 }
 
 // HasProperty returns a boolean if a field has been set.
@@ -96,14 +104,13 @@ func (o *SyntheticsAssertion) GetTarget() interface{} {
 	return *o.Target
 }
 
-// GetTargetOk returns a tuple with the Target field value if set, zero value otherwise
+// GetTargetOk returns a tuple with the Target field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAssertion) GetTargetOk() (interface{}, bool) {
+func (o *SyntheticsAssertion) GetTargetOk() (*interface{}, bool) {
 	if o == nil || o.Target == nil {
-		var ret interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Target, true
+	return o.Target, true
 }
 
 // HasTarget returns a boolean if a field has been set.
@@ -128,6 +135,15 @@ func (o *SyntheticsAssertion) GetType() SyntheticsAssertionType {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAssertion) GetTypeOk() (*SyntheticsAssertionType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -161,7 +177,7 @@ func (v NullableSyntheticsAssertion) Get() *SyntheticsAssertion {
 	return v.value
 }
 
-func (v NullableSyntheticsAssertion) Set(val *SyntheticsAssertion) {
+func (v *NullableSyntheticsAssertion) Set(val *SyntheticsAssertion) {
 	v.value = val
 	v.isSet = true
 }
@@ -170,7 +186,7 @@ func (v NullableSyntheticsAssertion) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsAssertion) Unset() {
+func (v *NullableSyntheticsAssertion) Unset() {
 	v.value = nil
 	v.isSet = false
 }

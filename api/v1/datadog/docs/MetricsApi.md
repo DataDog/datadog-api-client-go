@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**GetMetricMetadata**](MetricsApi.md#GetMetricMetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
 [**QueryMetrics**](MetricsApi.md#QueryMetrics) | **Get** /api/v1/query | Query timeseries points
 [**SearchMetrics**](MetricsApi.md#SearchMetrics) | **Get** /api/v1/search | Search metrics
-[**SubmitMetrics**](MetricsApi.md#SubmitMetrics) | **Post** /api/v1/series | Submit metrics
 
 
 
@@ -27,7 +26,7 @@ Edit metric metadata
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | Name of the metric for which to edit metadata | 
+**metricName** | **string** | Name of the metric for which to edit metadata. | 
 
 ### Other Parameters
 
@@ -37,7 +36,7 @@ Other parameters are passed through a pointer to a apiEditMetricMetadataRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**MetricMetadata**](MetricMetadata.md) | New metadata | 
+ **body** | [**MetricMetadata**](MetricMetadata.md) | New metadata. | 
 
 ### Return type
 
@@ -111,7 +110,7 @@ Get metric metadata
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | Name of the metric for which to get metadata | 
+**metricName** | **string** | Name of the metric for which to get metadata. | 
 
 ### Other Parameters
 
@@ -159,8 +158,8 @@ Other parameters are passed through a pointer to a apiQueryMetricsRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Start of the queried time period, seconds since the Unix epoch | 
- **to** | **int64** | End of the queried time period, seconds since the Unix epoch | 
+ **from** | **int64** | Start of the queried time period, seconds since the Unix epoch. | 
+ **to** | **int64** | End of the queried time period, seconds since the Unix epoch. | 
  **query** | **string** | Query string | 
 
 ### Return type
@@ -200,7 +199,7 @@ Other parameters are passed through a pointer to a apiSearchMetricsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60; | 
+ **q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
 
 ### Return type
 
@@ -213,45 +212,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SubmitMetrics
-
-> IntakePayloadAccepted SubmitMetrics(ctx).Body(body).Execute()
-
-Submit metrics
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubmitMetricsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**MetricsPayload**](MetricsPayload.md) |  | 
-
-### Return type
-
-[**IntakePayloadAccepted**](IntakePayloadAccepted.md)
-
-### Authorization
-
-[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

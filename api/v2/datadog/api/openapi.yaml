@@ -1,0 +1,472 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@datadoghq.com
+    name: Datadog Support
+    url: https://www.datadoghq.com/support/
+  description: Collection of all Datadog Public endpoints.
+  title: Datadog API Collection
+  version: "1.0"
+servers:
+- url: https://{subdomain}.{site}
+  variables:
+    site:
+      default: datadoghq.com
+      description: The regional site for our customers.
+      enum:
+      - datadoghq.com
+      - datadoghq.eu
+    subdomain:
+      default: api
+      description: The subdomain where the API is deployed.
+- url: '{protocol}://{name}'
+  variables:
+    name:
+      default: api.datadoghq.com
+      description: Full site DNS name.
+    protocol:
+      default: https
+      description: The protocol for accessing the API.
+security:
+- apiKeyAuth: []
+  appKeyAuth: []
+tags:
+- description: |-
+    [Interact with your dashboard lists](https://docs.datadoghq.com/monitors/downtimes)
+    through the API to make it easier to organize, find, and share all of your dashboards
+    with your team and organization.
+  name: DashboardLists
+paths:
+  /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards:
+    delete:
+      description: Delete dashboards from an existing dashboard list.
+      operationId: DeleteDashboardListItems
+      parameters:
+      - description: ID of the dashboard list to delete items from.
+        explode: false
+        in: path
+        name: dashboard_list_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DashboardListItems'
+        description: Dashboards to delete from the dashboard list.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardListDeleteItemsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Delete items from a dashboard list
+      tags:
+      - DashboardLists
+      x-codegen-request-body-name: body
+    get:
+      description: Fetch the dashboard list’s dashboard definitions.
+      operationId: GetDashboardListItems
+      parameters:
+      - description: ID of the dashboard list to get items from.
+        explode: false
+        in: path
+        name: dashboard_list_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardListItems'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Get a Dashboard List
+      tags:
+      - DashboardLists
+    post:
+      description: Add dashboards to an existing dashboard list.
+      operationId: AddDashboardListItems
+      parameters:
+      - description: ID of the dashboard list to add items to.
+        explode: false
+        in: path
+        name: dashboard_list_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DashboardListItems'
+        description: Dashboards to add to the dashboard list.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardListAddItemsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Add Items to a Dashboard List
+      tags:
+      - DashboardLists
+      x-codegen-request-body-name: body
+    put:
+      description: Update dashboards of an existing dashboard list.
+      operationId: UpdateDashboardListItems
+      parameters:
+      - description: ID of the dashboard list to update items from.
+        explode: false
+        in: path
+        name: dashboard_list_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DashboardListItems'
+        description: New dashboards of the dashboard list.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardListItems'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Update items of a dashboard list
+      tags:
+      - DashboardLists
+      x-codegen-request-body-name: body
+components:
+  callbacks: {}
+  examples: {}
+  headers: {}
+  links: {}
+  parameters: {}
+  requestBodies: {}
+  responses: {}
+  schemas:
+    APIErrorResponse:
+      properties:
+        errors:
+          items:
+            example: Bad Request
+            type: string
+          type: array
+      required:
+      - errors
+      type: object
+    Creator:
+      description: Creator of the object
+      example:
+        name: name
+        handle: handle
+        email: email
+      properties:
+        email:
+          type: string
+        handle:
+          type: string
+        name:
+          type: string
+      type: object
+    DashboardListAddItemsResponse:
+      example:
+        added_dashboards_to_list:
+        - is_favorite: true
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          is_shared: true
+          popularity: 0
+          icon: icon
+          modified: 2000-01-23T04:56:07.000+00:00
+          is_read_only: true
+          id: id
+          title: title
+          url: url
+        - is_favorite: true
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          is_shared: true
+          popularity: 0
+          icon: icon
+          modified: 2000-01-23T04:56:07.000+00:00
+          is_read_only: true
+          id: id
+          title: title
+          url: url
+      properties:
+        added_dashboards_to_list:
+          description: List of dashboards added to the dashboard list.
+          items:
+            $ref: '#/components/schemas/DashboardListItem'
+          type: array
+      type: object
+    DashboardListDeleteItemsResponse:
+      example:
+        deleted_dashboards_from_list:
+        - is_favorite: true
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          is_shared: true
+          popularity: 0
+          icon: icon
+          modified: 2000-01-23T04:56:07.000+00:00
+          is_read_only: true
+          id: id
+          title: title
+          url: url
+        - is_favorite: true
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          is_shared: true
+          popularity: 0
+          icon: icon
+          modified: 2000-01-23T04:56:07.000+00:00
+          is_read_only: true
+          id: id
+          title: title
+          url: url
+      properties:
+        deleted_dashboards_from_list:
+          description: List of dashboards deleted from the dashboard list.
+          items:
+            $ref: '#/components/schemas/DashboardListItem'
+          type: array
+      type: object
+    DashboardListItem:
+      example:
+        is_favorite: true
+        author:
+          name: name
+          handle: handle
+          email: email
+        created: 2000-01-23T04:56:07.000+00:00
+        is_shared: true
+        popularity: 0
+        icon: icon
+        modified: 2000-01-23T04:56:07.000+00:00
+        is_read_only: true
+        id: id
+        title: title
+        url: url
+      properties:
+        author:
+          $ref: '#/components/schemas/Creator'
+        created:
+          description: Date of creation of the dashboard.
+          format: date-time
+          readOnly: true
+          type: string
+        icon:
+          description: URL to the icon of the dashboard.
+          readOnly: true
+          type: string
+        id:
+          description: ID of the dashboard.
+          type: string
+        is_favorite:
+          description: Whether or not the dashboard is in the favorites.
+          readOnly: true
+          type: boolean
+        is_read_only:
+          description: Whether or not the dashboard is read only.
+          readOnly: true
+          type: boolean
+        is_shared:
+          description: Whether the dashboard is publicly shared or not.
+          readOnly: true
+          type: boolean
+        modified:
+          description: Date of last edition of the dashboard.
+          format: date-time
+          readOnly: true
+          type: string
+        popularity:
+          description: Popularity of the dashboard.
+          format: int32
+          maximum: 5
+          readOnly: true
+          type: integer
+        title:
+          description: Title of the dashboard.
+          readOnly: true
+          type: string
+        type:
+          $ref: '#/components/schemas/DashboardType'
+        url:
+          description: URL path to the dashboard.
+          readOnly: true
+          type: string
+      required:
+      - id
+      - type
+      type: object
+    DashboardListItems:
+      example:
+        total: 6
+        dashboards:
+        - is_favorite: true
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          is_shared: true
+          popularity: 0
+          icon: icon
+          modified: 2000-01-23T04:56:07.000+00:00
+          is_read_only: true
+          id: id
+          title: title
+          url: url
+        - is_favorite: true
+          author:
+            name: name
+            handle: handle
+            email: email
+          created: 2000-01-23T04:56:07.000+00:00
+          is_shared: true
+          popularity: 0
+          icon: icon
+          modified: 2000-01-23T04:56:07.000+00:00
+          is_read_only: true
+          id: id
+          title: title
+          url: url
+      properties:
+        dashboards:
+          description: List of dashboards in the dashboard list.
+          items:
+            $ref: '#/components/schemas/DashboardListItem'
+          type: array
+        total:
+          description: Number of dashboards in the dashboard list.
+          format: int64
+          readOnly: true
+          type: integer
+      required:
+      - dashboards
+      type: object
+    DashboardType:
+      description: The type of the dashboard.
+      enum:
+      - custom_timeboard
+      - custom_screenboard
+      - integration_screenboard
+      - integration_timeboard
+      - host_timeboard
+      type: string
+      x-enum-varnames:
+      - CUSTOM_TIMEBOARD
+      - CUSTOM_SCREENBOARD
+      - INTEGRATION_SCREENBOARD
+      - INTEGRATION_TIMEBOARD
+      - HOST_TIMEBOARD
+  securitySchemes:
+    apiKeyAuth:
+      description: API Key
+      in: header
+      name: DD-API-KEY
+      type: apiKey
+    appKeyAuth:
+      description: APP Key
+      in: header
+      name: DD-APPLICATION-KEY
+      type: apiKey
+x-group-parameters: true

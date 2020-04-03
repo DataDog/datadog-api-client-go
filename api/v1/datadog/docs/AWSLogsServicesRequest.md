@@ -34,22 +34,17 @@ GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *AWSLogsServicesRequest) GetAccountIdOk() (string, bool)`
+`func (o *AWSLogsServicesRequest) GetAccountIdOk() (*string, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAccountId
-
-`func (o *AWSLogsServicesRequest) HasAccountId() bool`
-
-HasAccountId returns a boolean if a field has been set.
 
 ### SetAccountId
 
 `func (o *AWSLogsServicesRequest) SetAccountId(v string)`
 
-SetAccountId gets a reference to the given string and assigns it to the AccountId field.
+SetAccountId sets AccountId field to given value.
+
 
 ### GetServices
 
@@ -59,22 +54,17 @@ GetServices returns the Services field if non-nil, zero value otherwise.
 
 ### GetServicesOk
 
-`func (o *AWSLogsServicesRequest) GetServicesOk() ([]string, bool)`
+`func (o *AWSLogsServicesRequest) GetServicesOk() (*[]string, bool)`
 
 GetServicesOk returns a tuple with the Services field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasServices
-
-`func (o *AWSLogsServicesRequest) HasServices() bool`
-
-HasServices returns a boolean if a field has been set.
 
 ### SetServices
 
 `func (o *AWSLogsServicesRequest) SetServices(v []string)`
 
-SetServices gets a reference to the given []string and assigns it to the Services field.
+SetServices sets Services field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

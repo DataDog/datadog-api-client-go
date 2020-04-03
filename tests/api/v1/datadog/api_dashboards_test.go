@@ -20,6 +20,15 @@ func TestDashboardLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
+    // create SLO for referencing in SLO widget (we're borrowing these from api_slo_test.go)
+    sloResp, httpresp, err := TESTAPICLIENT.SLOApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
+    if err != nil {
+        t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testMonitorSLO, err.Error(), err)
+    }
+    slo := sloResp.GetData()[0]
+    defer deleteSLOIfExists(slo.GetId())
+    assert.Equal(t, httpresp.StatusCode, 200)
+
 	widgetTime := datadog.NewWidgetTimeWithDefaults()
 	widgetTime.SetLiveSpan(datadog.WIDGETLIVESPAN_PAST_FIFTEEN_MINUTES)
 
@@ -250,6 +259,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	logStreamWidgetDefinition.SetTitleSize("16")
 	logStreamWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_RIGHT)
 	logStreamWidgetDefinition.SetTime(datadog.WidgetTime{LiveSpan: datadog.WIDGETLIVESPAN_PAST_TWO_DAYS.Ptr()})
+	logStreamWidgetDefinition.SetMessageDisplay(datadog.WIDGETMESSAGEDISPLAY_EXPANDED_LARGE)
+	logStreamWidgetDefinition.SetShowDateColumn(true)
+	logStreamWidgetDefinition.SetShowMessageColumn(true)
+	logStreamWidgetDefinition.SetSort(datadog.WidgetFieldSort{Column: "Route", Order: datadog.WIDGETSORT_ASCENDING})
 
 	logStreamWidget := datadog.NewWidget(logStreamWidgetDefinition.AsWidgetDefinition())
 	logStreamWidget.SetLayout(*widgetLayout)
@@ -334,7 +347,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	sloWidgetDefinition.SetTitle("Test SLO Widget")
 	sloWidgetDefinition.SetTitleSize("16")
 	sloWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
-	sloWidgetDefinition.SetSloId("1234L")
+	sloWidgetDefinition.SetSloId(slo.GetId())
 	sloWidgetDefinition.SetShowErrorBudget(true)
 	sloWidgetDefinition.SetViewMode(datadog.WIDGETVIEWMODE_BOTH)
 	sloWidgetDefinition.SetTimeWindows([]datadog.WidgetTimeWindows{
@@ -589,8 +602,8 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Template Variables
 	templateVariable := datadog.NewDashboardTemplateVariablesWithDefaults()
 	templateVariable.SetName("test template var")
-	templateVariable.SetPrefix(*datadog.NewNullableString(datadog.PtrString("test-go")))
-	templateVariable.SetDefault(*datadog.NewNullableString(datadog.PtrString("*")))
+	templateVariable.SetPrefix("test-go")
+	templateVariable.SetDefault("*")
 
 	// Template Variable Presets
 	dashboardTemplateVariablePreset := datadog.NewDashboardTemplateVariablePreset()
@@ -626,11 +639,11 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_ORDERED)
 	dashboard.SetWidgets(orderedWidgetList)
 	dashboard.SetTitle("Go Client Test ORDERED Dashboard")
-	dashboard.SetDescription(*datadog.NewNullableString(datadog.PtrString("Test dashboard for Go client")))
+	dashboard.SetDescription("Test dashboard for Go client")
 	dashboard.SetIsReadOnly(false)
 	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
 	dashboard.SetTemplateVariablePresets([]datadog.DashboardTemplateVariablePreset{*dashboardTemplateVariablePreset})
-	dashboard.SetNotifyList([]string{"test@example.com"})
+	dashboard.SetNotifyList([]string{"test@datadoghq.com"})
 
 	createdDashboard, httpresp, err := TESTAPICLIENT.DashboardsApi.CreateDashboard(TESTAUTH).Body(*dashboard).Execute()
 	if err != nil {
@@ -698,7 +711,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeDashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_FREE)
 	freeDashboard.SetWidgets(freeWidgetList)
 	freeDashboard.SetTitle("Go Client Test Free Dashboard")
-	freeDashboard.SetDescription(*datadog.NewNullableString(datadog.PtrString("Test Free layout dashboard for Go client")))
+	freeDashboard.SetDescription("Test Free layout dashboard for Go client")
 	freeDashboard.SetIsReadOnly(false)
 	freeDashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
 
@@ -719,7 +732,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	assertDashboardDefinition(freeDashboard, createdFreeDashboard)
 
 	// Update the dashboard and set all nullable fields to null
-	dashboard.SetDescription(datadog.NullableString{})
+	dashboard.SetDescriptionNil()
 	dashboard.SetTemplateVariables(nil)
 	dashboard.SetTemplateVariablePresets(nil)
 	dashboard.SetNotifyList(nil)
@@ -742,7 +755,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	assert.Equal(t, dashboard.GetTitle(), updateResponse.GetTitle())
-	assert.Nil(t, updateResponse.GetDescription().Get())
+	v, ok := updateResponse.GetDescriptionOk()
+	assert.Nil(t, v)
+	assert.True(t, ok)
 	assert.Nil(t, updateResponse.GetTemplateVariables())
 	assert.Nil(t, updateResponse.GetTemplateVariablePresets())
 	assert.Nil(t, updateResponse.GetNotifyList())

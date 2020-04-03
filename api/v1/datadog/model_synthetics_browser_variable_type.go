@@ -37,7 +37,7 @@ func (v NullableSyntheticsBrowserVariableType) Get() *SyntheticsBrowserVariableT
 	return v.value
 }
 
-func (v NullableSyntheticsBrowserVariableType) Set(val *SyntheticsBrowserVariableType) {
+func (v *NullableSyntheticsBrowserVariableType) Set(val *SyntheticsBrowserVariableType) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableSyntheticsBrowserVariableType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsBrowserVariableType) Unset() {
+func (v *NullableSyntheticsBrowserVariableType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

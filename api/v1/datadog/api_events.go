@@ -24,187 +24,6 @@ var (
 // EventsApiService EventsApi service
 type EventsApiService service
 
-type apiCreateEventRequest struct {
-	ctx        _context.Context
-	apiService *EventsApiService
-	body       *Event
-}
-
-func (r apiCreateEventRequest) Body(body Event) apiCreateEventRequest {
-	r.body = &body
-	return r
-}
-
-/*
-CreateEvent Post an event
-### Overview
-This endpoint allows you to post events to the stream. Tag them, set priority and event aggregate them with other events.
-### Arguments
-* **`title`** [*required*]:
-    The event title. *Limited to 100 characters.*
-    Use `msg_title` with [the Datadog Ruby library][1].
-
-* **`text`** [*required*]:
-    The body of the event. *Limited to 4000 characters.*
-    The text supports [markdown][2].
-    Use `msg_text` with [the Datadog Ruby library][1]
-
-* **`date_happened`** [*optional*, *default* = **now**]:
-    POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). *Limited to events no older than 1 year, 24 days (389 days)*
-
-* **`priority`** [*optional*, *default* = **normal**]:
-    The priority of the event: **normal** or **low**.
-
-* **`host`** [*optional*, *default*=**None**]:
-    Host name to associate with the event. Any tags associated with the host are also applied to this event.
-
-* **`tags`** [*optional*, *default*=**None**]:
-    A list of tags to apply to the event.
-
-* **`alert_type`** [*optional*, *default* = **info**]:
-    If it's an alert event, set its type between: **error**, **warning**, **info**, and **success**.
-
-* **`aggregation_key`** [*optional*, *default*=**None**]:
-    An arbitrary string to use for aggregation. *Limited to 100 characters.*
-    If you specify a key, all events using that key are grouped together in the Event Stream.
-
-* **`source_type_name`** [*optional*, *default*=**None**]:
-    The type of event being posted.
-    Options: **nagios**, **hudson**, **jenkins**, **my_apps**, **chef**, **puppet**, **git**, **bitbucket**...
-    [Complete list of source attribute values][3]
-
-* **`related_event_id`** [*optional*, *default*=**None**]:
-    ID of the parent event. Must be sent as an integer (i.e. no quotes).
-
-* **`device_name`** [*optional*, *default*=**None**]:
-    A list of device names to post the event with.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateEventRequest
-*/
-func (a *EventsApiService) CreateEvent(ctx _context.Context) apiCreateEventRequest {
-	return apiCreateEventRequest{
-		apiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
-Execute executes the request
- @return EventResponse
-*/
-func (r apiCreateEventRequest) Execute() (EventResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EventResponse
-	)
-
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.CreateEvent")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/events"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["apiKeyAuth"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarQueryParams.Add("api_key", key)
-			}
-		}
-	}
-	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 202 {
-			var v EventResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type apiGetEventRequest struct {
 	ctx        _context.Context
 	apiService *EventsApiService
@@ -213,11 +32,12 @@ type apiGetEventRequest struct {
 
 /*
 GetEvent Get an event
-### Overview
 This endpoint allows you to query for event details.
-Note: if the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
+
+Note: if the event you’re querying contains markdown formatting of any kind,
+you may see characters such as %,\,n in your output.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param eventId The id of the event
+ * @param eventId The id of the event.
 @return apiGetEventRequest
 */
 func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) apiGetEventRequest {
@@ -406,29 +226,10 @@ func (r apiListEventsRequest) Unaggregated(unaggregated bool) apiListEventsReque
 }
 
 /*
-ListEvents Query the event stream.
-### Overview
+ListEvents Query the event stream
 The event stream can be queried and filtered by time, priority, sources and tags.
-Note: if the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
-### Arguments
-* **`start`** [*required*]:
-    POSIX timestamp.
 
-* **`end`** [*required*]:
-    POSIX timestamp.
-
-* **`priority`** [*optional*, *default*=**None**]:
-    Priority of your events: **low** or **normal**.
-
-* **`sources`** [*optional*, *default*=**None**]:
-    A comma separated string of sources.
-
-* **`tags`** [*optional*, *default*=**None**]:
-    A comma separated string of tags. To use a negative tag filter, prefix your tag with `-`.
-    See the Event Stream documentation to learn more.
-
-* **`unaggregated`** [*optional*, *default*=*false*]:
-    Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won't be available in the output.
+**Note**: If the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListEventsRequest
 */

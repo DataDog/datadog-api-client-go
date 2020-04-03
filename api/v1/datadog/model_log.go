@@ -44,14 +44,13 @@ func (o *Log) GetContent() LogContent {
 	return *o.Content
 }
 
-// GetContentOk returns a tuple with the Content field value if set, zero value otherwise
+// GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Log) GetContentOk() (LogContent, bool) {
+func (o *Log) GetContentOk() (*LogContent, bool) {
 	if o == nil || o.Content == nil {
-		var ret LogContent
-		return ret, false
+		return nil, false
 	}
-	return *o.Content, true
+	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
@@ -77,14 +76,13 @@ func (o *Log) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Log) GetIdOk() (string, bool) {
+func (o *Log) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -121,7 +119,7 @@ func (v NullableLog) Get() *Log {
 	return v.value
 }
 
-func (v NullableLog) Set(val *Log) {
+func (v *NullableLog) Set(val *Log) {
 	v.value = val
 	v.isSet = true
 }
@@ -130,7 +128,7 @@ func (v NullableLog) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLog) Unset() {
+func (v *NullableLog) Unset() {
 	v.value = nil
 	v.isSet = false
 }

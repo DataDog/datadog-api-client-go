@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UserListResponse struct for UserListResponse
+// UserListResponse Array of Datadog users for a given organization.
 type UserListResponse struct {
+	// Array of users.
 	Users *[]User `json:"users,omitempty"`
 }
 
@@ -43,14 +44,13 @@ func (o *UserListResponse) GetUsers() []User {
 	return *o.Users
 }
 
-// GetUsersOk returns a tuple with the Users field value if set, zero value otherwise
+// GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserListResponse) GetUsersOk() ([]User, bool) {
+func (o *UserListResponse) GetUsersOk() (*[]User, bool) {
 	if o == nil || o.Users == nil {
-		var ret []User
-		return ret, false
+		return nil, false
 	}
-	return *o.Users, true
+	return o.Users, true
 }
 
 // HasUsers returns a boolean if a field has been set.
@@ -84,7 +84,7 @@ func (v NullableUserListResponse) Get() *UserListResponse {
 	return v.value
 }
 
-func (v NullableUserListResponse) Set(val *UserListResponse) {
+func (v *NullableUserListResponse) Set(val *UserListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +93,7 @@ func (v NullableUserListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUserListResponse) Unset() {
+func (v *NullableUserListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

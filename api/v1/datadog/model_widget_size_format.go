@@ -36,7 +36,7 @@ func (v NullableWidgetSizeFormat) Get() *WidgetSizeFormat {
 	return v.value
 }
 
-func (v NullableWidgetSizeFormat) Set(val *WidgetSizeFormat) {
+func (v *NullableWidgetSizeFormat) Set(val *WidgetSizeFormat) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetSizeFormat) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetSizeFormat) Unset() {
+func (v *NullableWidgetSizeFormat) Unset() {
 	v.value = nil
 	v.isSet = false
 }

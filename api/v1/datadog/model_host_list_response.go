@@ -12,11 +12,14 @@ import (
 	"encoding/json"
 )
 
-// HostListResponse struct for HostListResponse
+// HostListResponse Response with Host information from Datadog.
 type HostListResponse struct {
-	HostList      *[]Host `json:"host_list,omitempty"`
-	TotalMatching *int64  `json:"total_matching,omitempty"`
-	TotalReturned *int64  `json:"total_returned,omitempty"`
+	// Array of hosts.
+	HostList *[]Host `json:"host_list,omitempty"`
+	// Number of host matching the query.
+	TotalMatching *int64 `json:"total_matching,omitempty"`
+	// Number of host returned.
+	TotalReturned *int64 `json:"total_returned,omitempty"`
 }
 
 // NewHostListResponse instantiates a new HostListResponse object
@@ -45,14 +48,13 @@ func (o *HostListResponse) GetHostList() []Host {
 	return *o.HostList
 }
 
-// GetHostListOk returns a tuple with the HostList field value if set, zero value otherwise
+// GetHostListOk returns a tuple with the HostList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostListResponse) GetHostListOk() ([]Host, bool) {
+func (o *HostListResponse) GetHostListOk() (*[]Host, bool) {
 	if o == nil || o.HostList == nil {
-		var ret []Host
-		return ret, false
+		return nil, false
 	}
-	return *o.HostList, true
+	return o.HostList, true
 }
 
 // HasHostList returns a boolean if a field has been set.
@@ -78,14 +80,13 @@ func (o *HostListResponse) GetTotalMatching() int64 {
 	return *o.TotalMatching
 }
 
-// GetTotalMatchingOk returns a tuple with the TotalMatching field value if set, zero value otherwise
+// GetTotalMatchingOk returns a tuple with the TotalMatching field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostListResponse) GetTotalMatchingOk() (int64, bool) {
+func (o *HostListResponse) GetTotalMatchingOk() (*int64, bool) {
 	if o == nil || o.TotalMatching == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalMatching, true
+	return o.TotalMatching, true
 }
 
 // HasTotalMatching returns a boolean if a field has been set.
@@ -111,14 +112,13 @@ func (o *HostListResponse) GetTotalReturned() int64 {
 	return *o.TotalReturned
 }
 
-// GetTotalReturnedOk returns a tuple with the TotalReturned field value if set, zero value otherwise
+// GetTotalReturnedOk returns a tuple with the TotalReturned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostListResponse) GetTotalReturnedOk() (int64, bool) {
+func (o *HostListResponse) GetTotalReturnedOk() (*int64, bool) {
 	if o == nil || o.TotalReturned == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalReturned, true
+	return o.TotalReturned, true
 }
 
 // HasTotalReturned returns a boolean if a field has been set.
@@ -158,7 +158,7 @@ func (v NullableHostListResponse) Get() *HostListResponse {
 	return v.value
 }
 
-func (v NullableHostListResponse) Set(val *HostListResponse) {
+func (v *NullableHostListResponse) Set(val *HostListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -167,7 +167,7 @@ func (v NullableHostListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostListResponse) Unset() {
+func (v *NullableHostListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

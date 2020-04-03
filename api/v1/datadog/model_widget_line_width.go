@@ -36,7 +36,7 @@ func (v NullableWidgetLineWidth) Get() *WidgetLineWidth {
 	return v.value
 }
 
-func (v NullableWidgetLineWidth) Set(val *WidgetLineWidth) {
+func (v *NullableWidgetLineWidth) Set(val *WidgetLineWidth) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetLineWidth) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetLineWidth) Unset() {
+func (v *NullableWidgetLineWidth) Unset() {
 	v.value = nil
 	v.isSet = false
 }

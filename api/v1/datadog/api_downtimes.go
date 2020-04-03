@@ -32,9 +32,9 @@ type apiCancelDowntimeRequest struct {
 
 /*
 CancelDowntime Cancel a downtime
-Cancel a Downtime
+Cancel a downtime.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param downtimeId ID of the downtime to cancel
+ * @param downtimeId ID of the downtime to cancel.
 @return apiCancelDowntimeRequest
 */
 func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) apiCancelDowntimeRequest {
@@ -164,11 +164,7 @@ func (r apiCancelDowntimesByScopeRequest) Body(body CancelDowntimesByScopeReques
 
 /*
 CancelDowntimesByScope Cancel downtimes by scope
-### Overview
-DELETE all Downtimes that match the scope of X
-### Arguments
-* **`scope`** [*required*]: Cancel all downtimes with the given scope(s),
-  e.g.: `env:prod`, `role:db,role:db-slave`
+Delete all downtimes that match the scope of `X`.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCancelDowntimesByScopeRequest
 */
@@ -333,47 +329,7 @@ func (r apiCreateDowntimeRequest) Body(body Downtime) apiCreateDowntimeRequest {
 
 /*
 CreateDowntime Schedule a downtime
-* **`scope`** [*required*]: The scope(s) to which the downtime applies, e.g. `host:app2`.
-  Provide multiple scopes as a comma-separated list, e.g. `env:dev,env:prod`. The
-  resulting downtime applies to sources that matches ALL provided scopes (i.e.
-  `env:dev` **AND** `env:prod`), NOT any of them.
-
-* **`monitor_tags`** [*optional*, *default*=**no monitor tag filter**]: A comma-separated
-  list of monitor tags, i.e. tags that are applied directly to monitors, *not* tags
-  that are used in monitor queries (which are filtered by the `scope` parameter), to
-  which the downtime applies. The resulting downtime applies to monitors that match
-  ALL provided monitor tags (i.e. `service:postgres` **AND** `team:frontend`), NOT any of them.
-
-* **`monitor_id`** [*optional*, *default*=**None**]: A single monitor to which the downtime
-  applies. If not provided, the downtime applies to all monitors.
-
-* **`start`** [*optional*, *default*=**None**]: POSIX timestamp to start the downtime.
-  If not provided, the downtime starts the moment it is created.
-
-* **`end`** [*optional*, *default*=**None**]: POSIX timestamp to end the downtime.
-  If not provided, the downtime is in effect indefinitely (i.e. until you cancel it).
-
-* **`message`** [*optional*, *default*=**None**]: A message to include with notifications
-  for this downtime. Email notifications can be sent to specific users by using
-   the same '@username' notation as events
-
-* **`timezone`** [*optional*, *default* = **UTC**]: The timezone for the downtime.
-* **`recurrence`** [*optional*, *default*=**None**]: An object defining the recurrence of the
-  downtime with a variety of parameters:
-
-  * **`type`** the type of recurrence. Choose from: `days`, `weeks`, `months`, `years`.
-
-  * **`period`** how often to repeat as an integer. For example to repeat every 3 days,
-    select a type of `days` and a period of `3`.
-
-  * **`week_days`** (optional) a list of week days to repeat on. Choose from: `Mon`,
-    `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. Only applicable when `type` is `weeks`.
-    **First letter must be capitalized.**
-  * **`until_occurrences`** (optional) how many times the downtime is rescheduled.
-    **`until_occurrences` and `until_date`** are mutually exclusive
-
-  * **`until_date`** (optional) the date at which the recurrence should end
-    as a POSIX timestmap. **`until_occurrences` and `until_date`** are mutually exclusive
+Schedule a downtime.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateDowntimeRequest
 */
@@ -528,10 +484,7 @@ func (r apiGetAllDowntimesRequest) CurrentOnly(currentOnly bool) apiGetAllDownti
 
 /*
 GetAllDowntimes Get all downtimes
-### Overview
-Get All Scheduled Downtimes
-### Arguments
-* **`current_only`** [*optional*, *default* = **False**]: Only return downtimes that are active when the request is made.
+Get all scheduled downtimes.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllDowntimesRequest
 */
@@ -678,12 +631,9 @@ type apiGetDowntimeRequest struct {
 
 /*
 GetDowntime Get a downtime
-### Overview
-Get Downtime Detail by downtime_id
-### Arguments
-This endpoint takes no JSON arguments."
+Get downtime detail by `downtime_id`.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param downtimeId ID of the downtime to fetch
+ * @param downtimeId ID of the downtime to fetch.
 @return apiGetDowntimeRequest
 */
 func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) apiGetDowntimeRequest {
@@ -834,54 +784,9 @@ func (r apiUpdateDowntimeRequest) Body(body Downtime) apiUpdateDowntimeRequest {
 
 /*
 UpdateDowntime Update a downtime
-### Overview
-Update a single Downtime by downtime_id.
-### Arguments
-* **`id`** [*required*]: The integer id of the downtime to be updated
-* **`scope`** [*required*]: The scope to which the downtime applies, e.g. 'host:app2'.
-  Provide multiple scopes as a comma-separated list, e.g. 'env:dev,env:prod'.
-  The resulting downtime applies to sources that matches ALL provided scopes
-  (i.e. env:dev AND env:prod), NOT any of them.
-
-* **`monitor_tags`** [*optional*, *default*=**no monitor tag filter**]: A comma-separated
-  list of monitor tags, i.e. tags that are applied directly to monitors, *not* tags that
-  are used in monitor queries (which are filtered by the `scope` parameter), to which
-  the downtime applies. The resulting downtime applies to monitors that match ALL provided
-  monitor tags (i.e. `service:postgres` **AND** `team:frontend`), NOT any of them.
-
-* **`monitor_id`** [*optional*, *default*=**None**]: A single monitor to which the downtime
-  applies. If not provided, the downtime applies to all monitors.
-
-* **`start`** [*optional*, *default* = **original start**]: POSIX timestamp to start
-  the downtime.
-
-* **`end`** [*optional*, *default* = **original end**]: POSIX timestamp to end the downtime.
-  If not provided, the downtime is in effect indefinitely (i.e. until you cancel it).
-
-* **`message`** [*required*, *default* = **original message**]: A message to include with
-  notifications for this downtime. Email notifications can be sent to specific users by
-  using the same '@username' notation as events
-
-* **`timezone`** [*optional*, default = **original timezone** ]: The timezone for the downtime.
-* **`recurrence`** [*optional*, *default* = **original recurrence**]: An object defining the
-  recurrence of the downtime with a variety of parameters:
-
-    * **`type`** the type of recurrence. Choose from: `days`, `weeks`, `months`, `years`.
-
-    * **`period`** how often to repeat as an integer. For example to repeat every 3 days,
-      select a type of `days` and a period of `3`.
-
-    * **`week_days`** (optional) a list of week days to repeat on. Choose from: `Mon`, `Tue`,
-      `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. Only applicable when `type` is `weeks`.
-      **First letter must be capitalized.**
-
-    * **`until_occurrences`** (optional) how many times the downtime is rescheduled.
-      **`until_occurrences` and `until_date`** are mutually exclusive
-
-    * **`until_date`** (optional) the date at which the recurrence should end as a POSIX
-      timestmap. **`until_occurrences` and `until_date`** are mutually exclusive
+Update a single downtime by `downtime_id`.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param downtimeId ID of the downtime to update
+ * @param downtimeId ID of the downtime to update.
 @return apiUpdateDowntimeRequest
 */
 func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64) apiUpdateDowntimeRequest {

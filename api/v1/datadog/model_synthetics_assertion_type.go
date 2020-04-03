@@ -39,7 +39,7 @@ func (v NullableSyntheticsAssertionType) Get() *SyntheticsAssertionType {
 	return v.value
 }
 
-func (v NullableSyntheticsAssertionType) Set(val *SyntheticsAssertionType) {
+func (v *NullableSyntheticsAssertionType) Set(val *SyntheticsAssertionType) {
 	v.value = val
 	v.isSet = true
 }
@@ -48,7 +48,7 @@ func (v NullableSyntheticsAssertionType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsAssertionType) Unset() {
+func (v *NullableSyntheticsAssertionType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

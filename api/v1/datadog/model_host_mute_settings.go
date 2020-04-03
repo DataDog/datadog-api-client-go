@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HostMuteSettings struct for HostMuteSettings
+// HostMuteSettings Combination of settings to mute a host.
 type HostMuteSettings struct {
 	// POSIX timestamp in seconds when the host is unmuted. If omitted, the host remains muted until explicitly unmuted.
 	End *int64 `json:"end,omitempty"`
@@ -48,14 +48,13 @@ func (o *HostMuteSettings) GetEnd() int64 {
 	return *o.End
 }
 
-// GetEndOk returns a tuple with the End field value if set, zero value otherwise
+// GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMuteSettings) GetEndOk() (int64, bool) {
+func (o *HostMuteSettings) GetEndOk() (*int64, bool) {
 	if o == nil || o.End == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.End, true
+	return o.End, true
 }
 
 // HasEnd returns a boolean if a field has been set.
@@ -81,14 +80,13 @@ func (o *HostMuteSettings) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMuteSettings) GetMessageOk() (string, bool) {
+func (o *HostMuteSettings) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -114,14 +112,13 @@ func (o *HostMuteSettings) GetOverride() bool {
 	return *o.Override
 }
 
-// GetOverrideOk returns a tuple with the Override field value if set, zero value otherwise
+// GetOverrideOk returns a tuple with the Override field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMuteSettings) GetOverrideOk() (bool, bool) {
+func (o *HostMuteSettings) GetOverrideOk() (*bool, bool) {
 	if o == nil || o.Override == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Override, true
+	return o.Override, true
 }
 
 // HasOverride returns a boolean if a field has been set.
@@ -161,7 +158,7 @@ func (v NullableHostMuteSettings) Get() *HostMuteSettings {
 	return v.value
 }
 
-func (v NullableHostMuteSettings) Set(val *HostMuteSettings) {
+func (v *NullableHostMuteSettings) Set(val *HostMuteSettings) {
 	v.value = val
 	v.isSet = true
 }
@@ -170,7 +167,7 @@ func (v NullableHostMuteSettings) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHostMuteSettings) Unset() {
+func (v *NullableHostMuteSettings) Unset() {
 	v.value = nil
 	v.isSet = false
 }
