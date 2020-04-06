@@ -23,4 +23,4 @@ jobs:
     - name: Install gogetsum
       run: go get gotest.tools/gotestsum
     - name: Test
-      run: gotestsum --format testname -- -coverpkg="github.com/DataDog/datadog-api-client-go/api/v1/datadog","github.com/DataDog/datadog-api-client-go/api/v2/datadog" -coverprofile="coverage.txt" -covermode=atomic -v $(go list ./...)
+      run: ./run-tests.sh
