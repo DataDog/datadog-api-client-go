@@ -17,5 +17,10 @@ if [ -n "$DEPS_NOT_FOUND" ]; then
 else
     echo "LICENSE-3rdparty.csv is up to date"
 fi
+
+
+go get -u golang.org/x/lint/golint
+go get -u gotest.tools/gotestsum@v0.4.0
 golint ./...
 gotestsum --format testname -- -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
+go mod tidy
