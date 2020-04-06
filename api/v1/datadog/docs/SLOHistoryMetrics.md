@@ -1,13 +1,13 @@
-# HistoryServiceLevelObjectiveMetrics
+# SLOHistoryMetrics
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Denominator** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeries**](HistoryServiceLevelObjectiveMetricsSeries.md) |  | 
+**Denominator** | Pointer to [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |  | 
 **Interval** | Pointer to **int64** | The aggregated query interval for the series data. It&#39;s implicit based on the query time window. | 
 **Message** | Pointer to **string** | Optional message if there are specific query issues/warnings. | [optional] 
-**Numerator** | Pointer to [**HistoryServiceLevelObjectiveMetricsSeries**](HistoryServiceLevelObjectiveMetricsSeries.md) |  | 
+**Numerator** | Pointer to [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |  | 
 **Query** | Pointer to **string** | The combined numerator &amp;&amp; denominator query CSV. | 
 **ResType** | Pointer to **string** | The series result type. This mimics &#x60;batch_query&#x60; response type. | 
 **RespVersion** | Pointer to **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type. | 
@@ -15,184 +15,184 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewHistoryServiceLevelObjectiveMetrics
+### NewSLOHistoryMetrics
 
-`func NewHistoryServiceLevelObjectiveMetrics(denominator HistoryServiceLevelObjectiveMetricsSeries, interval int64, numerator HistoryServiceLevelObjectiveMetricsSeries, query string, resType string, respVersion int64, times []float64, ) *HistoryServiceLevelObjectiveMetrics`
+`func NewSLOHistoryMetrics(denominator SLOHistoryMetricsSeries, interval int64, numerator SLOHistoryMetricsSeries, query string, resType string, respVersion int64, times []float64, ) *SLOHistoryMetrics`
 
-NewHistoryServiceLevelObjectiveMetrics instantiates a new HistoryServiceLevelObjectiveMetrics object
+NewSLOHistoryMetrics instantiates a new SLOHistoryMetrics object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewHistoryServiceLevelObjectiveMetricsWithDefaults
+### NewSLOHistoryMetricsWithDefaults
 
-`func NewHistoryServiceLevelObjectiveMetricsWithDefaults() *HistoryServiceLevelObjectiveMetrics`
+`func NewSLOHistoryMetricsWithDefaults() *SLOHistoryMetrics`
 
-NewHistoryServiceLevelObjectiveMetricsWithDefaults instantiates a new HistoryServiceLevelObjectiveMetrics object
+NewSLOHistoryMetricsWithDefaults instantiates a new SLOHistoryMetrics object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetDenominator
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetDenominator() HistoryServiceLevelObjectiveMetricsSeries`
+`func (o *SLOHistoryMetrics) GetDenominator() SLOHistoryMetricsSeries`
 
 GetDenominator returns the Denominator field if non-nil, zero value otherwise.
 
 ### GetDenominatorOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetDenominatorOk() (*HistoryServiceLevelObjectiveMetricsSeries, bool)`
+`func (o *SLOHistoryMetrics) GetDenominatorOk() (*SLOHistoryMetricsSeries, bool)`
 
 GetDenominatorOk returns a tuple with the Denominator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDenominator
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetDenominator(v HistoryServiceLevelObjectiveMetricsSeries)`
+`func (o *SLOHistoryMetrics) SetDenominator(v SLOHistoryMetricsSeries)`
 
 SetDenominator sets Denominator field to given value.
 
 
 ### GetInterval
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetInterval() int64`
+`func (o *SLOHistoryMetrics) GetInterval() int64`
 
 GetInterval returns the Interval field if non-nil, zero value otherwise.
 
 ### GetIntervalOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetIntervalOk() (*int64, bool)`
+`func (o *SLOHistoryMetrics) GetIntervalOk() (*int64, bool)`
 
 GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInterval
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetInterval(v int64)`
+`func (o *SLOHistoryMetrics) SetInterval(v int64)`
 
 SetInterval sets Interval field to given value.
 
 
 ### GetMessage
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetMessage() string`
+`func (o *SLOHistoryMetrics) GetMessage() string`
 
 GetMessage returns the Message field if non-nil, zero value otherwise.
 
 ### GetMessageOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetMessageOk() (*string, bool)`
+`func (o *SLOHistoryMetrics) GetMessageOk() (*string, bool)`
 
 GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMessage
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetMessage(v string)`
+`func (o *SLOHistoryMetrics) SetMessage(v string)`
 
 SetMessage sets Message field to given value.
 
 ### HasMessage
 
-`func (o *HistoryServiceLevelObjectiveMetrics) HasMessage() bool`
+`func (o *SLOHistoryMetrics) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
 
 ### GetNumerator
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetNumerator() HistoryServiceLevelObjectiveMetricsSeries`
+`func (o *SLOHistoryMetrics) GetNumerator() SLOHistoryMetricsSeries`
 
 GetNumerator returns the Numerator field if non-nil, zero value otherwise.
 
 ### GetNumeratorOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetNumeratorOk() (*HistoryServiceLevelObjectiveMetricsSeries, bool)`
+`func (o *SLOHistoryMetrics) GetNumeratorOk() (*SLOHistoryMetricsSeries, bool)`
 
 GetNumeratorOk returns a tuple with the Numerator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNumerator
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetNumerator(v HistoryServiceLevelObjectiveMetricsSeries)`
+`func (o *SLOHistoryMetrics) SetNumerator(v SLOHistoryMetricsSeries)`
 
 SetNumerator sets Numerator field to given value.
 
 
 ### GetQuery
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetQuery() string`
+`func (o *SLOHistoryMetrics) GetQuery() string`
 
 GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetQueryOk() (*string, bool)`
+`func (o *SLOHistoryMetrics) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuery
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetQuery(v string)`
+`func (o *SLOHistoryMetrics) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
 
 
 ### GetResType
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetResType() string`
+`func (o *SLOHistoryMetrics) GetResType() string`
 
 GetResType returns the ResType field if non-nil, zero value otherwise.
 
 ### GetResTypeOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetResTypeOk() (*string, bool)`
+`func (o *SLOHistoryMetrics) GetResTypeOk() (*string, bool)`
 
 GetResTypeOk returns a tuple with the ResType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResType
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetResType(v string)`
+`func (o *SLOHistoryMetrics) SetResType(v string)`
 
 SetResType sets ResType field to given value.
 
 
 ### GetRespVersion
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersion() int64`
+`func (o *SLOHistoryMetrics) GetRespVersion() int64`
 
 GetRespVersion returns the RespVersion field if non-nil, zero value otherwise.
 
 ### GetRespVersionOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersionOk() (*int64, bool)`
+`func (o *SLOHistoryMetrics) GetRespVersionOk() (*int64, bool)`
 
 GetRespVersionOk returns a tuple with the RespVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRespVersion
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetRespVersion(v int64)`
+`func (o *SLOHistoryMetrics) SetRespVersion(v int64)`
 
 SetRespVersion sets RespVersion field to given value.
 
 
 ### GetTimes
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetTimes() []float64`
+`func (o *SLOHistoryMetrics) GetTimes() []float64`
 
 GetTimes returns the Times field if non-nil, zero value otherwise.
 
 ### GetTimesOk
 
-`func (o *HistoryServiceLevelObjectiveMetrics) GetTimesOk() (*[]float64, bool)`
+`func (o *SLOHistoryMetrics) GetTimesOk() (*[]float64, bool)`
 
 GetTimesOk returns a tuple with the Times field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimes
 
-`func (o *HistoryServiceLevelObjectiveMetrics) SetTimes(v []float64)`
+`func (o *SLOHistoryMetrics) SetTimes(v []float64)`
 
 SetTimes sets Times field to given value.
 

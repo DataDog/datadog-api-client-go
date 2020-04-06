@@ -12,14 +12,14 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveMetrics A `metric` based SLO history response.
-type HistoryServiceLevelObjectiveMetrics struct {
-	Denominator HistoryServiceLevelObjectiveMetricsSeries `json:"denominator"`
+// SLOHistoryMetrics A `metric` based SLO history response.
+type SLOHistoryMetrics struct {
+	Denominator SLOHistoryMetricsSeries `json:"denominator"`
 	// The aggregated query interval for the series data. It's implicit based on the query time window.
 	Interval int64 `json:"interval"`
 	// Optional message if there are specific query issues/warnings.
-	Message   *string                                   `json:"message,omitempty"`
-	Numerator HistoryServiceLevelObjectiveMetricsSeries `json:"numerator"`
+	Message   *string                 `json:"message,omitempty"`
+	Numerator SLOHistoryMetricsSeries `json:"numerator"`
 	// The combined numerator && denominator query CSV.
 	Query string `json:"query"`
 	// The series result type. This mimics `batch_query` response type.
@@ -30,12 +30,12 @@ type HistoryServiceLevelObjectiveMetrics struct {
 	Times []float64 `json:"times"`
 }
 
-// NewHistoryServiceLevelObjectiveMetrics instantiates a new HistoryServiceLevelObjectiveMetrics object
+// NewSLOHistoryMetrics instantiates a new SLOHistoryMetrics object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHistoryServiceLevelObjectiveMetrics(denominator HistoryServiceLevelObjectiveMetricsSeries, interval int64, numerator HistoryServiceLevelObjectiveMetricsSeries, query string, resType string, respVersion int64, times []float64) *HistoryServiceLevelObjectiveMetrics {
-	this := HistoryServiceLevelObjectiveMetrics{}
+func NewSLOHistoryMetrics(denominator SLOHistoryMetricsSeries, interval int64, numerator SLOHistoryMetricsSeries, query string, resType string, respVersion int64, times []float64) *SLOHistoryMetrics {
+	this := SLOHistoryMetrics{}
 	this.Denominator = denominator
 	this.Interval = interval
 	this.Numerator = numerator
@@ -46,18 +46,18 @@ func NewHistoryServiceLevelObjectiveMetrics(denominator HistoryServiceLevelObjec
 	return &this
 }
 
-// NewHistoryServiceLevelObjectiveMetricsWithDefaults instantiates a new HistoryServiceLevelObjectiveMetrics object
+// NewSLOHistoryMetricsWithDefaults instantiates a new SLOHistoryMetrics object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHistoryServiceLevelObjectiveMetricsWithDefaults() *HistoryServiceLevelObjectiveMetrics {
-	this := HistoryServiceLevelObjectiveMetrics{}
+func NewSLOHistoryMetricsWithDefaults() *SLOHistoryMetrics {
+	this := SLOHistoryMetrics{}
 	return &this
 }
 
 // GetDenominator returns the Denominator field value
-func (o *HistoryServiceLevelObjectiveMetrics) GetDenominator() HistoryServiceLevelObjectiveMetricsSeries {
+func (o *SLOHistoryMetrics) GetDenominator() SLOHistoryMetricsSeries {
 	if o == nil {
-		var ret HistoryServiceLevelObjectiveMetricsSeries
+		var ret SLOHistoryMetricsSeries
 		return ret
 	}
 
@@ -66,7 +66,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetDenominator() HistoryServiceLev
 
 // GetDenominatorOk returns a tuple with the Denominator field value
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetDenominatorOk() (*HistoryServiceLevelObjectiveMetricsSeries, bool) {
+func (o *SLOHistoryMetrics) GetDenominatorOk() (*SLOHistoryMetricsSeries, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -74,12 +74,12 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetDenominatorOk() (*HistoryServic
 }
 
 // SetDenominator sets field value
-func (o *HistoryServiceLevelObjectiveMetrics) SetDenominator(v HistoryServiceLevelObjectiveMetricsSeries) {
+func (o *SLOHistoryMetrics) SetDenominator(v SLOHistoryMetricsSeries) {
 	o.Denominator = v
 }
 
 // GetInterval returns the Interval field value
-func (o *HistoryServiceLevelObjectiveMetrics) GetInterval() int64 {
+func (o *SLOHistoryMetrics) GetInterval() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -90,7 +90,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetInterval() int64 {
 
 // GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetIntervalOk() (*int64, bool) {
+func (o *SLOHistoryMetrics) GetIntervalOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,12 +98,12 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetIntervalOk() (*int64, bool) {
 }
 
 // SetInterval sets field value
-func (o *HistoryServiceLevelObjectiveMetrics) SetInterval(v int64) {
+func (o *SLOHistoryMetrics) SetInterval(v int64) {
 	o.Interval = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetrics) GetMessage() string {
+func (o *SLOHistoryMetrics) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret
@@ -113,7 +113,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetMessageOk() (*string, bool) {
+func (o *SLOHistoryMetrics) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
 		return nil, false
 	}
@@ -121,7 +121,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) HasMessage() bool {
+func (o *SLOHistoryMetrics) HasMessage() bool {
 	if o != nil && o.Message != nil {
 		return true
 	}
@@ -130,14 +130,14 @@ func (o *HistoryServiceLevelObjectiveMetrics) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *HistoryServiceLevelObjectiveMetrics) SetMessage(v string) {
+func (o *SLOHistoryMetrics) SetMessage(v string) {
 	o.Message = &v
 }
 
 // GetNumerator returns the Numerator field value
-func (o *HistoryServiceLevelObjectiveMetrics) GetNumerator() HistoryServiceLevelObjectiveMetricsSeries {
+func (o *SLOHistoryMetrics) GetNumerator() SLOHistoryMetricsSeries {
 	if o == nil {
-		var ret HistoryServiceLevelObjectiveMetricsSeries
+		var ret SLOHistoryMetricsSeries
 		return ret
 	}
 
@@ -146,7 +146,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetNumerator() HistoryServiceLevel
 
 // GetNumeratorOk returns a tuple with the Numerator field value
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetNumeratorOk() (*HistoryServiceLevelObjectiveMetricsSeries, bool) {
+func (o *SLOHistoryMetrics) GetNumeratorOk() (*SLOHistoryMetricsSeries, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -154,12 +154,12 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetNumeratorOk() (*HistoryServiceL
 }
 
 // SetNumerator sets field value
-func (o *HistoryServiceLevelObjectiveMetrics) SetNumerator(v HistoryServiceLevelObjectiveMetricsSeries) {
+func (o *SLOHistoryMetrics) SetNumerator(v SLOHistoryMetricsSeries) {
 	o.Numerator = v
 }
 
 // GetQuery returns the Query field value
-func (o *HistoryServiceLevelObjectiveMetrics) GetQuery() string {
+func (o *SLOHistoryMetrics) GetQuery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -170,7 +170,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetQueryOk() (*string, bool) {
+func (o *SLOHistoryMetrics) GetQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -178,12 +178,12 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetQueryOk() (*string, bool) {
 }
 
 // SetQuery sets field value
-func (o *HistoryServiceLevelObjectiveMetrics) SetQuery(v string) {
+func (o *SLOHistoryMetrics) SetQuery(v string) {
 	o.Query = v
 }
 
 // GetResType returns the ResType field value
-func (o *HistoryServiceLevelObjectiveMetrics) GetResType() string {
+func (o *SLOHistoryMetrics) GetResType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -194,7 +194,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetResType() string {
 
 // GetResTypeOk returns a tuple with the ResType field value
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetResTypeOk() (*string, bool) {
+func (o *SLOHistoryMetrics) GetResTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -202,12 +202,12 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetResTypeOk() (*string, bool) {
 }
 
 // SetResType sets field value
-func (o *HistoryServiceLevelObjectiveMetrics) SetResType(v string) {
+func (o *SLOHistoryMetrics) SetResType(v string) {
 	o.ResType = v
 }
 
 // GetRespVersion returns the RespVersion field value
-func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersion() int64 {
+func (o *SLOHistoryMetrics) GetRespVersion() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -218,7 +218,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersion() int64 {
 
 // GetRespVersionOk returns a tuple with the RespVersion field value
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersionOk() (*int64, bool) {
+func (o *SLOHistoryMetrics) GetRespVersionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -226,12 +226,12 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetRespVersionOk() (*int64, bool) 
 }
 
 // SetRespVersion sets field value
-func (o *HistoryServiceLevelObjectiveMetrics) SetRespVersion(v int64) {
+func (o *SLOHistoryMetrics) SetRespVersion(v int64) {
 	o.RespVersion = v
 }
 
 // GetTimes returns the Times field value
-func (o *HistoryServiceLevelObjectiveMetrics) GetTimes() []float64 {
+func (o *SLOHistoryMetrics) GetTimes() []float64 {
 	if o == nil {
 		var ret []float64
 		return ret
@@ -242,7 +242,7 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetTimes() []float64 {
 
 // GetTimesOk returns a tuple with the Times field value
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetrics) GetTimesOk() (*[]float64, bool) {
+func (o *SLOHistoryMetrics) GetTimesOk() (*[]float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -250,11 +250,11 @@ func (o *HistoryServiceLevelObjectiveMetrics) GetTimesOk() (*[]float64, bool) {
 }
 
 // SetTimes sets field value
-func (o *HistoryServiceLevelObjectiveMetrics) SetTimes(v []float64) {
+func (o *SLOHistoryMetrics) SetTimes(v []float64) {
 	o.Times = v
 }
 
-func (o HistoryServiceLevelObjectiveMetrics) MarshalJSON() ([]byte, error) {
+func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["denominator"] = o.Denominator
@@ -283,38 +283,38 @@ func (o HistoryServiceLevelObjectiveMetrics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableHistoryServiceLevelObjectiveMetrics struct {
-	value *HistoryServiceLevelObjectiveMetrics
+type NullableSLOHistoryMetrics struct {
+	value *SLOHistoryMetrics
 	isSet bool
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetrics) Get() *HistoryServiceLevelObjectiveMetrics {
+func (v NullableSLOHistoryMetrics) Get() *SLOHistoryMetrics {
 	return v.value
 }
 
-func (v *NullableHistoryServiceLevelObjectiveMetrics) Set(val *HistoryServiceLevelObjectiveMetrics) {
+func (v *NullableSLOHistoryMetrics) Set(val *SLOHistoryMetrics) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetrics) IsSet() bool {
+func (v NullableSLOHistoryMetrics) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHistoryServiceLevelObjectiveMetrics) Unset() {
+func (v *NullableSLOHistoryMetrics) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHistoryServiceLevelObjectiveMetrics(val *HistoryServiceLevelObjectiveMetrics) *NullableHistoryServiceLevelObjectiveMetrics {
-	return &NullableHistoryServiceLevelObjectiveMetrics{value: val, isSet: true}
+func NewNullableSLOHistoryMetrics(val *SLOHistoryMetrics) *NullableSLOHistoryMetrics {
+	return &NullableSLOHistoryMetrics{value: val, isSet: true}
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetrics) MarshalJSON() ([]byte, error) {
+func (v NullableSLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHistoryServiceLevelObjectiveMetrics) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOHistoryMetrics) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

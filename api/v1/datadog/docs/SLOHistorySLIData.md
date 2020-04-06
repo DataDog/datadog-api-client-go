@@ -1,4 +1,4 @@
-# HistoryServiceLevelObjectiveSLIData
+# SLOHistorySLIData
 
 ## Properties
 
@@ -14,195 +14,195 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewHistoryServiceLevelObjectiveSLIData
+### NewSLOHistorySLIData
 
-`func NewHistoryServiceLevelObjectiveSLIData() *HistoryServiceLevelObjectiveSLIData`
+`func NewSLOHistorySLIData() *SLOHistorySLIData`
 
-NewHistoryServiceLevelObjectiveSLIData instantiates a new HistoryServiceLevelObjectiveSLIData object
+NewSLOHistorySLIData instantiates a new SLOHistorySLIData object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewHistoryServiceLevelObjectiveSLIDataWithDefaults
+### NewSLOHistorySLIDataWithDefaults
 
-`func NewHistoryServiceLevelObjectiveSLIDataWithDefaults() *HistoryServiceLevelObjectiveSLIData`
+`func NewSLOHistorySLIDataWithDefaults() *SLOHistorySLIData`
 
-NewHistoryServiceLevelObjectiveSLIDataWithDefaults instantiates a new HistoryServiceLevelObjectiveSLIData object
+NewSLOHistorySLIDataWithDefaults instantiates a new SLOHistorySLIData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetHistory
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetHistory() [][]float64`
+`func (o *SLOHistorySLIData) GetHistory() [][]float64`
 
 GetHistory returns the History field if non-nil, zero value otherwise.
 
 ### GetHistoryOk
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetHistoryOk() (*[][]float64, bool)`
+`func (o *SLOHistorySLIData) GetHistoryOk() (*[][]float64, bool)`
 
 GetHistoryOk returns a tuple with the History field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHistory
 
-`func (o *HistoryServiceLevelObjectiveSLIData) SetHistory(v [][]float64)`
+`func (o *SLOHistorySLIData) SetHistory(v [][]float64)`
 
 SetHistory sets History field to given value.
 
 ### HasHistory
 
-`func (o *HistoryServiceLevelObjectiveSLIData) HasHistory() bool`
+`func (o *SLOHistorySLIData) HasHistory() bool`
 
 HasHistory returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetName() string`
+`func (o *SLOHistorySLIData) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetNameOk() (*string, bool)`
+`func (o *SLOHistorySLIData) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *HistoryServiceLevelObjectiveSLIData) SetName(v string)`
+`func (o *SLOHistorySLIData) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *HistoryServiceLevelObjectiveSLIData) HasName() bool`
+`func (o *SLOHistorySLIData) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetPrecision
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetPrecision() map[string]float64`
+`func (o *SLOHistorySLIData) GetPrecision() map[string]float64`
 
 GetPrecision returns the Precision field if non-nil, zero value otherwise.
 
 ### GetPrecisionOk
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetPrecisionOk() (*map[string]float64, bool)`
+`func (o *SLOHistorySLIData) GetPrecisionOk() (*map[string]float64, bool)`
 
 GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrecision
 
-`func (o *HistoryServiceLevelObjectiveSLIData) SetPrecision(v map[string]float64)`
+`func (o *SLOHistorySLIData) SetPrecision(v map[string]float64)`
 
 SetPrecision sets Precision field to given value.
 
 ### HasPrecision
 
-`func (o *HistoryServiceLevelObjectiveSLIData) HasPrecision() bool`
+`func (o *SLOHistorySLIData) HasPrecision() bool`
 
 HasPrecision returns a boolean if a field has been set.
 
 ### GetPreview
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetPreview() bool`
+`func (o *SLOHistorySLIData) GetPreview() bool`
 
 GetPreview returns the Preview field if non-nil, zero value otherwise.
 
 ### GetPreviewOk
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetPreviewOk() (*bool, bool)`
+`func (o *SLOHistorySLIData) GetPreviewOk() (*bool, bool)`
 
 GetPreviewOk returns a tuple with the Preview field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPreview
 
-`func (o *HistoryServiceLevelObjectiveSLIData) SetPreview(v bool)`
+`func (o *SLOHistorySLIData) SetPreview(v bool)`
 
 SetPreview sets Preview field to given value.
 
 ### HasPreview
 
-`func (o *HistoryServiceLevelObjectiveSLIData) HasPreview() bool`
+`func (o *SLOHistorySLIData) HasPreview() bool`
 
 HasPreview returns a boolean if a field has been set.
 
 ### GetSliValue
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetSliValue() float64`
+`func (o *SLOHistorySLIData) GetSliValue() float64`
 
 GetSliValue returns the SliValue field if non-nil, zero value otherwise.
 
 ### GetSliValueOk
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetSliValueOk() (*float64, bool)`
+`func (o *SLOHistorySLIData) GetSliValueOk() (*float64, bool)`
 
 GetSliValueOk returns a tuple with the SliValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSliValue
 
-`func (o *HistoryServiceLevelObjectiveSLIData) SetSliValue(v float64)`
+`func (o *SLOHistorySLIData) SetSliValue(v float64)`
 
 SetSliValue sets SliValue field to given value.
 
 ### HasSliValue
 
-`func (o *HistoryServiceLevelObjectiveSLIData) HasSliValue() bool`
+`func (o *SLOHistorySLIData) HasSliValue() bool`
 
 HasSliValue returns a boolean if a field has been set.
 
 ### GetSpanPrecision
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetSpanPrecision() float64`
+`func (o *SLOHistorySLIData) GetSpanPrecision() float64`
 
 GetSpanPrecision returns the SpanPrecision field if non-nil, zero value otherwise.
 
 ### GetSpanPrecisionOk
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetSpanPrecisionOk() (*float64, bool)`
+`func (o *SLOHistorySLIData) GetSpanPrecisionOk() (*float64, bool)`
 
 GetSpanPrecisionOk returns a tuple with the SpanPrecision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpanPrecision
 
-`func (o *HistoryServiceLevelObjectiveSLIData) SetSpanPrecision(v float64)`
+`func (o *SLOHistorySLIData) SetSpanPrecision(v float64)`
 
 SetSpanPrecision sets SpanPrecision field to given value.
 
 ### HasSpanPrecision
 
-`func (o *HistoryServiceLevelObjectiveSLIData) HasSpanPrecision() bool`
+`func (o *SLOHistorySLIData) HasSpanPrecision() bool`
 
 HasSpanPrecision returns a boolean if a field has been set.
 
 ### GetUptime
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetUptime() float64`
+`func (o *SLOHistorySLIData) GetUptime() float64`
 
 GetUptime returns the Uptime field if non-nil, zero value otherwise.
 
 ### GetUptimeOk
 
-`func (o *HistoryServiceLevelObjectiveSLIData) GetUptimeOk() (*float64, bool)`
+`func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool)`
 
 GetUptimeOk returns a tuple with the Uptime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUptime
 
-`func (o *HistoryServiceLevelObjectiveSLIData) SetUptime(v float64)`
+`func (o *SLOHistorySLIData) SetUptime(v float64)`
 
 SetUptime sets Uptime field to given value.
 
 ### HasUptime
 
-`func (o *HistoryServiceLevelObjectiveSLIData) HasUptime() bool`
+`func (o *SLOHistorySLIData) HasUptime() bool`
 
 HasUptime returns a boolean if a field has been set.
 

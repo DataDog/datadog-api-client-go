@@ -4,162 +4,14 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AWSLogsCheckLambdaAsync**](AWSLogsIntegrationApi.md#AWSLogsCheckLambdaAsync) | **Post** /api/v1/integration/aws/logs/check_async | Check that an AWS Lambda Function exists
-[**AWSLogsCheckServicesAsync**](AWSLogsIntegrationApi.md#AWSLogsCheckServicesAsync) | **Post** /api/v1/integration/aws/logs/services_async | Check permissions for Log Services
-[**AWSLogsList**](AWSLogsIntegrationApi.md#AWSLogsList) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
-[**AWSLogsServicesList**](AWSLogsIntegrationApi.md#AWSLogsServicesList) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
 [**AddAWSLambdaARN**](AWSLogsIntegrationApi.md#AddAWSLambdaARN) | **Post** /api/v1/integration/aws/logs | Add AWS Log Lambda ARN
+[**CheckAWSLogsLambdaAsync**](AWSLogsIntegrationApi.md#CheckAWSLogsLambdaAsync) | **Post** /api/v1/integration/aws/logs/check_async | Check that an AWS Lambda Function exists
+[**CheckAWSLogsServicesAsync**](AWSLogsIntegrationApi.md#CheckAWSLogsServicesAsync) | **Post** /api/v1/integration/aws/logs/services_async | Check permissions for Log Services
 [**DeleteAWSLambdaARN**](AWSLogsIntegrationApi.md#DeleteAWSLambdaARN) | **Delete** /api/v1/integration/aws/logs | Delete an AWS Logs integration
 [**EnableAWSLogServices**](AWSLogsIntegrationApi.md#EnableAWSLogServices) | **Post** /api/v1/integration/aws/logs/services | Enable an AWS Logs integration
+[**GetAllAWSLogsIntegrations**](AWSLogsIntegrationApi.md#GetAllAWSLogsIntegrations) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
+[**GetAllAWSLogsServices**](AWSLogsIntegrationApi.md#GetAllAWSLogsServices) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
 
-
-
-## AWSLogsCheckLambdaAsync
-
-> AWSLogsAsyncResponse AWSLogsCheckLambdaAsync(ctx).Body(body).Execute()
-
-Check that an AWS Lambda Function exists
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAWSLogsCheckLambdaAsyncRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
-
-### Return type
-
-[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AWSLogsCheckServicesAsync
-
-> AWSLogsAsyncResponse AWSLogsCheckServicesAsync(ctx).Body(body).Execute()
-
-Check permissions for Log Services
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAWSLogsCheckServicesAsyncRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | AWS Logs Async Services check request body. | 
-
-### Return type
-
-[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AWSLogsList
-
-> []AWSLogsListResponse AWSLogsList(ctx).Execute()
-
-List all AWS Logs Integrations
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAWSLogsListRequest struct via the builder pattern
-
-
-### Return type
-
-[**[]AWSLogsListResponse**](AWSLogsListResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AWSLogsServicesList
-
-> []AWSLogsListServicesResponse AWSLogsServicesList(ctx).Execute()
-
-Get list of AWS log ready services
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAWSLogsServicesListRequest struct via the builder pattern
-
-
-### Return type
-
-[**[]AWSLogsListServicesResponse**](AWSLogsListServicesResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## AddAWSLambdaARN
@@ -186,6 +38,84 @@ Name | Type | Description  | Notes
 ### Return type
 
 **interface{}**
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CheckAWSLogsLambdaAsync
+
+> AWSLogsAsyncResponse CheckAWSLogsLambdaAsync(ctx).Body(body).Execute()
+
+Check that an AWS Lambda Function exists
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCheckAWSLogsLambdaAsyncRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+
+### Return type
+
+[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CheckAWSLogsServicesAsync
+
+> AWSLogsAsyncResponse CheckAWSLogsServicesAsync(ctx).Body(body).Execute()
+
+Check permissions for Log Services
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCheckAWSLogsServicesAsyncRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | AWS Logs Async Services check request body. | 
+
+### Return type
+
+[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
 
 ### Authorization
 
@@ -272,6 +202,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAllAWSLogsIntegrations
+
+> []AWSLogsListResponse GetAllAWSLogsIntegrations(ctx).Execute()
+
+List all AWS Logs Integrations
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllAWSLogsIntegrationsRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]AWSLogsListResponse**](AWSLogsListResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAllAWSLogsServices
+
+> []AWSLogsListServicesResponse GetAllAWSLogsServices(ctx).Execute()
+
+Get list of AWS log ready services
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllAWSLogsServicesRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]AWSLogsListServicesResponse**](AWSLogsListServicesResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

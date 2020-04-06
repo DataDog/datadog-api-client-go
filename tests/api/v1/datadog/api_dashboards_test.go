@@ -20,14 +20,14 @@ func TestDashboardLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-    // create SLO for referencing in SLO widget (we're borrowing these from api_slo_test.go)
-    sloResp, httpresp, err := TESTAPICLIENT.SLOApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
-    if err != nil {
-        t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testMonitorSLO, err.Error(), err)
-    }
-    slo := sloResp.GetData()[0]
-    defer deleteSLOIfExists(slo.GetId())
-    assert.Equal(t, httpresp.StatusCode, 200)
+	// create SLO for referencing in SLO widget (we're borrowing these from api_slo_test.go)
+	sloResp, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
+	if err != nil {
+		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testMonitorSLO, err.Error(), err)
+	}
+	slo := sloResp.GetData()[0]
+	defer deleteSLOIfExists(slo.GetId())
+	assert.Equal(t, httpresp.StatusCode, 200)
 
 	widgetTime := datadog.NewWidgetTimeWithDefaults()
 	widgetTime.SetLiveSpan(datadog.WIDGETLIVESPAN_PAST_FIFTEEN_MINUTES)

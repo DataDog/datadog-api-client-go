@@ -68,7 +68,7 @@ func TestListAWSLogsServices(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	listServicesOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsServicesList(TESTAUTH).Execute()
+	listServicesOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsServices(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -104,7 +104,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List AWS Logs integrations before deleting
-	listOutput1, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH).Execute()
+	listOutput1, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsIntegrations(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -129,7 +129,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List AWS logs integrations after deleting
-	listOutput2, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsList(TESTAUTH).Execute()
+	listOutput2, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsIntegrations(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -162,7 +162,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(t, testAWSAcc)
 
-	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
+	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
 	if err != nil {
 		t.Fatalf("Error checking the AWS Lambda Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -173,7 +173,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 
 	// Give the async call time to finish
 	tests.Retry(time.Duration(5*time.Second), 10, func() bool {
-		status, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
+		status, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(TESTAUTH).Body(testLambdaAcc).Execute()
 		if err != nil {
 			t.Logf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)
 			return false
@@ -196,7 +196,7 @@ func TestCheckServicesAsync(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(t, testAWSAcc)
 
-	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AWSLogsCheckServicesAsync(TESTAUTH).Body(testServices).Execute()
+	status, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(TESTAUTH).Body(testServices).Execute()
 	if err != nil {
 		t.Fatalf("Error checking the AWS Logs Services Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

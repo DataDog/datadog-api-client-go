@@ -15,16 +15,16 @@ import (
 // HistoryServiceLevelObjectiveResponseData An array of service level objective objects.
 type HistoryServiceLevelObjectiveResponseData struct {
 	// The `from` timestamp in epoch seconds.
-	FromTs  *int64                               `json:"from_ts,omitempty"`
-	Groups  *HistoryServiceLevelObjectiveSLIData `json:"groups,omitempty"`
-	Overall *HistoryServiceLevelObjectiveSLIData `json:"overall,omitempty"`
-	Series  *HistoryServiceLevelObjectiveMetrics `json:"series,omitempty"`
+	FromTs  *int64             `json:"from_ts,omitempty"`
+	Groups  *SLOHistorySLIData `json:"groups,omitempty"`
+	Overall *SLOHistorySLIData `json:"overall,omitempty"`
+	Series  *SLOHistoryMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
 	// The `to` timestamp in epoch seconds.
-	ToTs   *int64                            `json:"to_ts,omitempty"`
-	Type   *ServiceLevelObjectiveType        `json:"type,omitempty"`
-	TypeId *ServiceLevelObjectiveTypeNumeric `json:"type_id,omitempty"`
+	ToTs   *int64          `json:"to_ts,omitempty"`
+	Type   *SLOType        `json:"type,omitempty"`
+	TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
 }
 
 // NewHistoryServiceLevelObjectiveResponseData instantiates a new HistoryServiceLevelObjectiveResponseData object
@@ -77,9 +77,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetFromTs(v int64) {
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLevelObjectiveSLIData {
+func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() SLOHistorySLIData {
 	if o == nil || o.Groups == nil {
-		var ret HistoryServiceLevelObjectiveSLIData
+		var ret SLOHistorySLIData
 		return ret
 	}
 	return *o.Groups
@@ -87,7 +87,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLev
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (*HistoryServiceLevelObjectiveSLIData, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (*SLOHistorySLIData, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
@@ -103,15 +103,15 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasGroups() bool {
 	return false
 }
 
-// SetGroups gets a reference to the given HistoryServiceLevelObjectiveSLIData and assigns it to the Groups field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v HistoryServiceLevelObjectiveSLIData) {
+// SetGroups gets a reference to the given SLOHistorySLIData and assigns it to the Groups field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v SLOHistorySLIData) {
 	o.Groups = &v
 }
 
 // GetOverall returns the Overall field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLevelObjectiveSLIData {
+func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() SLOHistorySLIData {
 	if o == nil || o.Overall == nil {
-		var ret HistoryServiceLevelObjectiveSLIData
+		var ret SLOHistorySLIData
 		return ret
 	}
 	return *o.Overall
@@ -119,7 +119,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLe
 
 // GetOverallOk returns a tuple with the Overall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (*HistoryServiceLevelObjectiveSLIData, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (*SLOHistorySLIData, bool) {
 	if o == nil || o.Overall == nil {
 		return nil, false
 	}
@@ -135,15 +135,15 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasOverall() bool {
 	return false
 }
 
-// SetOverall gets a reference to the given HistoryServiceLevelObjectiveSLIData and assigns it to the Overall field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v HistoryServiceLevelObjectiveSLIData) {
+// SetOverall gets a reference to the given SLOHistorySLIData and assigns it to the Overall field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v SLOHistorySLIData) {
 	o.Overall = &v
 }
 
 // GetSeries returns the Series field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() HistoryServiceLevelObjectiveMetrics {
+func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() SLOHistoryMetrics {
 	if o == nil || o.Series == nil {
-		var ret HistoryServiceLevelObjectiveMetrics
+		var ret SLOHistoryMetrics
 		return ret
 	}
 	return *o.Series
@@ -151,7 +151,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() HistoryServiceLev
 
 // GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (*HistoryServiceLevelObjectiveMetrics, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (*SLOHistoryMetrics, bool) {
 	if o == nil || o.Series == nil {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasSeries() bool {
 	return false
 }
 
-// SetSeries gets a reference to the given HistoryServiceLevelObjectiveMetrics and assigns it to the Series field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v HistoryServiceLevelObjectiveMetrics) {
+// SetSeries gets a reference to the given SLOHistoryMetrics and assigns it to the Series field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v SLOHistoryMetrics) {
 	o.Series = &v
 }
 
@@ -237,9 +237,9 @@ func (o *HistoryServiceLevelObjectiveResponseData) SetToTs(v int64) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetType() ServiceLevelObjectiveType {
+func (o *HistoryServiceLevelObjectiveResponseData) GetType() SLOType {
 	if o == nil || o.Type == nil {
-		var ret ServiceLevelObjectiveType
+		var ret SLOType
 		return ret
 	}
 	return *o.Type
@@ -247,7 +247,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetType() ServiceLevelObjecti
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (*ServiceLevelObjectiveType, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (*SLOType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -263,15 +263,15 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given ServiceLevelObjectiveType and assigns it to the Type field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetType(v ServiceLevelObjectiveType) {
+// SetType gets a reference to the given SLOType and assigns it to the Type field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetType(v SLOType) {
 	o.Type = &v
 }
 
 // GetTypeId returns the TypeId field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() ServiceLevelObjectiveTypeNumeric {
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() SLOTypeNumeric {
 	if o == nil || o.TypeId == nil {
-		var ret ServiceLevelObjectiveTypeNumeric
+		var ret SLOTypeNumeric
 		return ret
 	}
 	return *o.TypeId
@@ -279,7 +279,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() ServiceLevelObjec
 
 // GetTypeIdOk returns a tuple with the TypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (*ServiceLevelObjectiveTypeNumeric, bool) {
+func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (*SLOTypeNumeric, bool) {
 	if o == nil || o.TypeId == nil {
 		return nil, false
 	}
@@ -295,8 +295,8 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasTypeId() bool {
 	return false
 }
 
-// SetTypeId gets a reference to the given ServiceLevelObjectiveTypeNumeric and assigns it to the TypeId field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetTypeId(v ServiceLevelObjectiveTypeNumeric) {
+// SetTypeId gets a reference to the given SLOTypeNumeric and assigns it to the TypeId field.
+func (o *HistoryServiceLevelObjectiveResponseData) SetTypeId(v SLOTypeNumeric) {
 	o.TypeId = &v
 }
 
