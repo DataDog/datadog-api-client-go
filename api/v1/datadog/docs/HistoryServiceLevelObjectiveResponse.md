@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**HistoryServiceLevelObjectiveResponseData**](HistoryServiceLevelObjectiveResponse_data.md) |  | 
-**Errors** | Pointer to [**[]HistoryServiceLevelObjectiveResponseError**](HistoryServiceLevelObjectiveResponseError.md) | A list of errors while querying the history data for the service level obective. | [optional] 
+**Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level obective. | [optional] 
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetData sets Data field to given value.
 
 ### GetErrors
 
-`func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []HistoryServiceLevelObjectiveResponseError`
+`func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []SLOHistoryResponseError`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() (*[]HistoryServiceLevelObjectiveResponseError, bool)`
+`func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() (*[]SLOHistoryResponseError, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *HistoryServiceLevelObjectiveResponse) SetErrors(v []HistoryServiceLevelObjectiveResponseError)`
+`func (o *HistoryServiceLevelObjectiveResponse) SetErrors(v []SLOHistoryResponseError)`
 
 SetErrors sets Errors field to given value.
 

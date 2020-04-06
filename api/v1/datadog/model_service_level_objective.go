@@ -35,16 +35,16 @@ type ServiceLevelObjective struct {
 	// A list of tags (e.g. \"env:prod\") associated with this service level objective.  Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
-	Thresholds []SLOThreshold                    `json:"thresholds"`
-	Type       ServiceLevelObjectiveType         `json:"type"`
-	TypeId     *ServiceLevelObjectiveTypeNumeric `json:"type_id,omitempty"`
+	Thresholds []SLOThreshold  `json:"thresholds"`
+	Type       SLOType         `json:"type"`
+	TypeId     *SLOTypeNumeric `json:"type_id,omitempty"`
 }
 
 // NewServiceLevelObjective instantiates a new ServiceLevelObjective object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ ServiceLevelObjectiveType) *ServiceLevelObjective {
+func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ SLOType) *ServiceLevelObjective {
 	this := ServiceLevelObjective{}
 	this.Name = name
 	this.Thresholds = thresholds
@@ -440,9 +440,9 @@ func (o *ServiceLevelObjective) SetThresholds(v []SLOThreshold) {
 }
 
 // GetType returns the Type field value
-func (o *ServiceLevelObjective) GetType() ServiceLevelObjectiveType {
+func (o *ServiceLevelObjective) GetType() SLOType {
 	if o == nil {
-		var ret ServiceLevelObjectiveType
+		var ret SLOType
 		return ret
 	}
 
@@ -451,7 +451,7 @@ func (o *ServiceLevelObjective) GetType() ServiceLevelObjectiveType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjective) GetTypeOk() (*ServiceLevelObjectiveType, bool) {
+func (o *ServiceLevelObjective) GetTypeOk() (*SLOType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -459,14 +459,14 @@ func (o *ServiceLevelObjective) GetTypeOk() (*ServiceLevelObjectiveType, bool) {
 }
 
 // SetType sets field value
-func (o *ServiceLevelObjective) SetType(v ServiceLevelObjectiveType) {
+func (o *ServiceLevelObjective) SetType(v SLOType) {
 	o.Type = v
 }
 
 // GetTypeId returns the TypeId field value if set, zero value otherwise.
-func (o *ServiceLevelObjective) GetTypeId() ServiceLevelObjectiveTypeNumeric {
+func (o *ServiceLevelObjective) GetTypeId() SLOTypeNumeric {
 	if o == nil || o.TypeId == nil {
-		var ret ServiceLevelObjectiveTypeNumeric
+		var ret SLOTypeNumeric
 		return ret
 	}
 	return *o.TypeId
@@ -474,7 +474,7 @@ func (o *ServiceLevelObjective) GetTypeId() ServiceLevelObjectiveTypeNumeric {
 
 // GetTypeIdOk returns a tuple with the TypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjective) GetTypeIdOk() (*ServiceLevelObjectiveTypeNumeric, bool) {
+func (o *ServiceLevelObjective) GetTypeIdOk() (*SLOTypeNumeric, bool) {
 	if o == nil || o.TypeId == nil {
 		return nil, false
 	}
@@ -490,8 +490,8 @@ func (o *ServiceLevelObjective) HasTypeId() bool {
 	return false
 }
 
-// SetTypeId gets a reference to the given ServiceLevelObjectiveTypeNumeric and assigns it to the TypeId field.
-func (o *ServiceLevelObjective) SetTypeId(v ServiceLevelObjectiveTypeNumeric) {
+// SetTypeId gets a reference to the given SLOTypeNumeric and assigns it to the TypeId field.
+func (o *ServiceLevelObjective) SetTypeId(v SLOTypeNumeric) {
 	o.TypeId = &v
 }
 

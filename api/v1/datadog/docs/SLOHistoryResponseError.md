@@ -1,4 +1,4 @@
-# HistoryServiceLevelObjectiveResponseError
+# SLOHistoryResponseError
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewHistoryServiceLevelObjectiveResponseError
+### NewSLOHistoryResponseError
 
-`func NewHistoryServiceLevelObjectiveResponseError() *HistoryServiceLevelObjectiveResponseError`
+`func NewSLOHistoryResponseError() *SLOHistoryResponseError`
 
-NewHistoryServiceLevelObjectiveResponseError instantiates a new HistoryServiceLevelObjectiveResponseError object
+NewSLOHistoryResponseError instantiates a new SLOHistoryResponseError object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewHistoryServiceLevelObjectiveResponseErrorWithDefaults
+### NewSLOHistoryResponseErrorWithDefaults
 
-`func NewHistoryServiceLevelObjectiveResponseErrorWithDefaults() *HistoryServiceLevelObjectiveResponseError`
+`func NewSLOHistoryResponseErrorWithDefaults() *SLOHistoryResponseError`
 
-NewHistoryServiceLevelObjectiveResponseErrorWithDefaults instantiates a new HistoryServiceLevelObjectiveResponseError object
+NewSLOHistoryResponseErrorWithDefaults instantiates a new SLOHistoryResponseError object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetError
 
-`func (o *HistoryServiceLevelObjectiveResponseError) GetError() string`
+`func (o *SLOHistoryResponseError) GetError() string`
 
 GetError returns the Error field if non-nil, zero value otherwise.
 
 ### GetErrorOk
 
-`func (o *HistoryServiceLevelObjectiveResponseError) GetErrorOk() (*string, bool)`
+`func (o *SLOHistoryResponseError) GetErrorOk() (*string, bool)`
 
 GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetError
 
-`func (o *HistoryServiceLevelObjectiveResponseError) SetError(v string)`
+`func (o *SLOHistoryResponseError) SetError(v string)`
 
 SetError sets Error field to given value.
 
 ### HasError
 
-`func (o *HistoryServiceLevelObjectiveResponseError) HasError() bool`
+`func (o *SLOHistoryResponseError) HasError() bool`
 
 HasError returns a boolean if a field has been set.
 

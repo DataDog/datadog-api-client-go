@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveSLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value or the SLI value for a specific monitor (in multi-monitor SLOs) or group (in grouped SLOs). The uptime history is included for monitor SLOs.
-type HistoryServiceLevelObjectiveSLIData struct {
+// SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value or the SLI value for a specific monitor (in multi-monitor SLOs) or group (in grouped SLOs). The uptime history is included for monitor SLOs.
+type SLOHistorySLIData struct {
 	// For `monitor` based SLOs, this includes the aggregated history uptime time series.
 	History *[][]float64 `json:"history,omitempty"`
 	// For groups in a grouped SLO this is the group name. For monitors in a multi-monitor SLO this is the monitor name.
@@ -30,25 +30,25 @@ type HistoryServiceLevelObjectiveSLIData struct {
 	Uptime *float64 `json:"uptime,omitempty"`
 }
 
-// NewHistoryServiceLevelObjectiveSLIData instantiates a new HistoryServiceLevelObjectiveSLIData object
+// NewSLOHistorySLIData instantiates a new SLOHistorySLIData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHistoryServiceLevelObjectiveSLIData() *HistoryServiceLevelObjectiveSLIData {
-	this := HistoryServiceLevelObjectiveSLIData{}
+func NewSLOHistorySLIData() *SLOHistorySLIData {
+	this := SLOHistorySLIData{}
 	return &this
 }
 
-// NewHistoryServiceLevelObjectiveSLIDataWithDefaults instantiates a new HistoryServiceLevelObjectiveSLIData object
+// NewSLOHistorySLIDataWithDefaults instantiates a new SLOHistorySLIData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHistoryServiceLevelObjectiveSLIDataWithDefaults() *HistoryServiceLevelObjectiveSLIData {
-	this := HistoryServiceLevelObjectiveSLIData{}
+func NewSLOHistorySLIDataWithDefaults() *SLOHistorySLIData {
+	this := SLOHistorySLIData{}
 	return &this
 }
 
 // GetHistory returns the History field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveSLIData) GetHistory() [][]float64 {
+func (o *SLOHistorySLIData) GetHistory() [][]float64 {
 	if o == nil || o.History == nil {
 		var ret [][]float64
 		return ret
@@ -58,7 +58,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetHistory() [][]float64 {
 
 // GetHistoryOk returns a tuple with the History field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) GetHistoryOk() (*[][]float64, bool) {
+func (o *SLOHistorySLIData) GetHistoryOk() (*[][]float64, bool) {
 	if o == nil || o.History == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetHistoryOk() (*[][]float64, bool
 }
 
 // HasHistory returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) HasHistory() bool {
+func (o *SLOHistorySLIData) HasHistory() bool {
 	if o != nil && o.History != nil {
 		return true
 	}
@@ -75,12 +75,12 @@ func (o *HistoryServiceLevelObjectiveSLIData) HasHistory() bool {
 }
 
 // SetHistory gets a reference to the given [][]float64 and assigns it to the History field.
-func (o *HistoryServiceLevelObjectiveSLIData) SetHistory(v [][]float64) {
+func (o *SLOHistorySLIData) SetHistory(v [][]float64) {
 	o.History = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveSLIData) GetName() string {
+func (o *SLOHistorySLIData) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -90,7 +90,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) GetNameOk() (*string, bool) {
+func (o *SLOHistorySLIData) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) HasName() bool {
+func (o *SLOHistorySLIData) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -107,12 +107,12 @@ func (o *HistoryServiceLevelObjectiveSLIData) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *HistoryServiceLevelObjectiveSLIData) SetName(v string) {
+func (o *SLOHistorySLIData) SetName(v string) {
 	o.Name = &v
 }
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveSLIData) GetPrecision() map[string]float64 {
+func (o *SLOHistorySLIData) GetPrecision() map[string]float64 {
 	if o == nil || o.Precision == nil {
 		var ret map[string]float64
 		return ret
@@ -122,7 +122,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetPrecision() map[string]float64 
 
 // GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) GetPrecisionOk() (*map[string]float64, bool) {
+func (o *SLOHistorySLIData) GetPrecisionOk() (*map[string]float64, bool) {
 	if o == nil || o.Precision == nil {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetPrecisionOk() (*map[string]floa
 }
 
 // HasPrecision returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) HasPrecision() bool {
+func (o *SLOHistorySLIData) HasPrecision() bool {
 	if o != nil && o.Precision != nil {
 		return true
 	}
@@ -139,12 +139,12 @@ func (o *HistoryServiceLevelObjectiveSLIData) HasPrecision() bool {
 }
 
 // SetPrecision gets a reference to the given map[string]float64 and assigns it to the Precision field.
-func (o *HistoryServiceLevelObjectiveSLIData) SetPrecision(v map[string]float64) {
+func (o *SLOHistorySLIData) SetPrecision(v map[string]float64) {
 	o.Precision = &v
 }
 
 // GetPreview returns the Preview field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveSLIData) GetPreview() bool {
+func (o *SLOHistorySLIData) GetPreview() bool {
 	if o == nil || o.Preview == nil {
 		var ret bool
 		return ret
@@ -154,7 +154,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetPreview() bool {
 
 // GetPreviewOk returns a tuple with the Preview field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) GetPreviewOk() (*bool, bool) {
+func (o *SLOHistorySLIData) GetPreviewOk() (*bool, bool) {
 	if o == nil || o.Preview == nil {
 		return nil, false
 	}
@@ -162,7 +162,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetPreviewOk() (*bool, bool) {
 }
 
 // HasPreview returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) HasPreview() bool {
+func (o *SLOHistorySLIData) HasPreview() bool {
 	if o != nil && o.Preview != nil {
 		return true
 	}
@@ -171,12 +171,12 @@ func (o *HistoryServiceLevelObjectiveSLIData) HasPreview() bool {
 }
 
 // SetPreview gets a reference to the given bool and assigns it to the Preview field.
-func (o *HistoryServiceLevelObjectiveSLIData) SetPreview(v bool) {
+func (o *SLOHistorySLIData) SetPreview(v bool) {
 	o.Preview = &v
 }
 
 // GetSliValue returns the SliValue field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveSLIData) GetSliValue() float64 {
+func (o *SLOHistorySLIData) GetSliValue() float64 {
 	if o == nil || o.SliValue == nil {
 		var ret float64
 		return ret
@@ -186,7 +186,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetSliValue() float64 {
 
 // GetSliValueOk returns a tuple with the SliValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) GetSliValueOk() (*float64, bool) {
+func (o *SLOHistorySLIData) GetSliValueOk() (*float64, bool) {
 	if o == nil || o.SliValue == nil {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetSliValueOk() (*float64, bool) {
 }
 
 // HasSliValue returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) HasSliValue() bool {
+func (o *SLOHistorySLIData) HasSliValue() bool {
 	if o != nil && o.SliValue != nil {
 		return true
 	}
@@ -203,12 +203,12 @@ func (o *HistoryServiceLevelObjectiveSLIData) HasSliValue() bool {
 }
 
 // SetSliValue gets a reference to the given float64 and assigns it to the SliValue field.
-func (o *HistoryServiceLevelObjectiveSLIData) SetSliValue(v float64) {
+func (o *SLOHistorySLIData) SetSliValue(v float64) {
 	o.SliValue = &v
 }
 
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveSLIData) GetSpanPrecision() float64 {
+func (o *SLOHistorySLIData) GetSpanPrecision() float64 {
 	if o == nil || o.SpanPrecision == nil {
 		var ret float64
 		return ret
@@ -218,7 +218,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetSpanPrecision() float64 {
 
 // GetSpanPrecisionOk returns a tuple with the SpanPrecision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) GetSpanPrecisionOk() (*float64, bool) {
+func (o *SLOHistorySLIData) GetSpanPrecisionOk() (*float64, bool) {
 	if o == nil || o.SpanPrecision == nil {
 		return nil, false
 	}
@@ -226,7 +226,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetSpanPrecisionOk() (*float64, bo
 }
 
 // HasSpanPrecision returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) HasSpanPrecision() bool {
+func (o *SLOHistorySLIData) HasSpanPrecision() bool {
 	if o != nil && o.SpanPrecision != nil {
 		return true
 	}
@@ -235,12 +235,12 @@ func (o *HistoryServiceLevelObjectiveSLIData) HasSpanPrecision() bool {
 }
 
 // SetSpanPrecision gets a reference to the given float64 and assigns it to the SpanPrecision field.
-func (o *HistoryServiceLevelObjectiveSLIData) SetSpanPrecision(v float64) {
+func (o *SLOHistorySLIData) SetSpanPrecision(v float64) {
 	o.SpanPrecision = &v
 }
 
 // GetUptime returns the Uptime field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveSLIData) GetUptime() float64 {
+func (o *SLOHistorySLIData) GetUptime() float64 {
 	if o == nil || o.Uptime == nil {
 		var ret float64
 		return ret
@@ -250,7 +250,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetUptime() float64 {
 
 // GetUptimeOk returns a tuple with the Uptime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) GetUptimeOk() (*float64, bool) {
+func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool) {
 	if o == nil || o.Uptime == nil {
 		return nil, false
 	}
@@ -258,7 +258,7 @@ func (o *HistoryServiceLevelObjectiveSLIData) GetUptimeOk() (*float64, bool) {
 }
 
 // HasUptime returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveSLIData) HasUptime() bool {
+func (o *SLOHistorySLIData) HasUptime() bool {
 	if o != nil && o.Uptime != nil {
 		return true
 	}
@@ -267,11 +267,11 @@ func (o *HistoryServiceLevelObjectiveSLIData) HasUptime() bool {
 }
 
 // SetUptime gets a reference to the given float64 and assigns it to the Uptime field.
-func (o *HistoryServiceLevelObjectiveSLIData) SetUptime(v float64) {
+func (o *SLOHistorySLIData) SetUptime(v float64) {
 	o.Uptime = &v
 }
 
-func (o HistoryServiceLevelObjectiveSLIData) MarshalJSON() ([]byte, error) {
+func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.History != nil {
 		toSerialize["history"] = o.History
@@ -297,38 +297,38 @@ func (o HistoryServiceLevelObjectiveSLIData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableHistoryServiceLevelObjectiveSLIData struct {
-	value *HistoryServiceLevelObjectiveSLIData
+type NullableSLOHistorySLIData struct {
+	value *SLOHistorySLIData
 	isSet bool
 }
 
-func (v NullableHistoryServiceLevelObjectiveSLIData) Get() *HistoryServiceLevelObjectiveSLIData {
+func (v NullableSLOHistorySLIData) Get() *SLOHistorySLIData {
 	return v.value
 }
 
-func (v *NullableHistoryServiceLevelObjectiveSLIData) Set(val *HistoryServiceLevelObjectiveSLIData) {
+func (v *NullableSLOHistorySLIData) Set(val *SLOHistorySLIData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHistoryServiceLevelObjectiveSLIData) IsSet() bool {
+func (v NullableSLOHistorySLIData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHistoryServiceLevelObjectiveSLIData) Unset() {
+func (v *NullableSLOHistorySLIData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHistoryServiceLevelObjectiveSLIData(val *HistoryServiceLevelObjectiveSLIData) *NullableHistoryServiceLevelObjectiveSLIData {
-	return &NullableHistoryServiceLevelObjectiveSLIData{value: val, isSet: true}
+func NewNullableSLOHistorySLIData(val *SLOHistorySLIData) *NullableSLOHistorySLIData {
+	return &NullableSLOHistorySLIData{value: val, isSet: true}
 }
 
-func (v NullableHistoryServiceLevelObjectiveSLIData) MarshalJSON() ([]byte, error) {
+func (v NullableSLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHistoryServiceLevelObjectiveSLIData) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOHistorySLIData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

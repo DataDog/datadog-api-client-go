@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveMetricsSeriesMetadata Query metadata.
-type HistoryServiceLevelObjectiveMetricsSeriesMetadata struct {
+// SLOHistoryMetricsSeriesMetadata Query metadata.
+type SLOHistoryMetricsSeriesMetadata struct {
 	// Query aggregator function.
 	Aggr *string `json:"aggr,omitempty"`
 	// Query expression.
@@ -28,25 +28,25 @@ type HistoryServiceLevelObjectiveMetricsSeriesMetadata struct {
 	Unit *string `json:"unit,omitempty"`
 }
 
-// NewHistoryServiceLevelObjectiveMetricsSeriesMetadata instantiates a new HistoryServiceLevelObjectiveMetricsSeriesMetadata object
+// NewSLOHistoryMetricsSeriesMetadata instantiates a new SLOHistoryMetricsSeriesMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHistoryServiceLevelObjectiveMetricsSeriesMetadata() *HistoryServiceLevelObjectiveMetricsSeriesMetadata {
-	this := HistoryServiceLevelObjectiveMetricsSeriesMetadata{}
+func NewSLOHistoryMetricsSeriesMetadata() *SLOHistoryMetricsSeriesMetadata {
+	this := SLOHistoryMetricsSeriesMetadata{}
 	return &this
 }
 
-// NewHistoryServiceLevelObjectiveMetricsSeriesMetadataWithDefaults instantiates a new HistoryServiceLevelObjectiveMetricsSeriesMetadata object
+// NewSLOHistoryMetricsSeriesMetadataWithDefaults instantiates a new SLOHistoryMetricsSeriesMetadata object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHistoryServiceLevelObjectiveMetricsSeriesMetadataWithDefaults() *HistoryServiceLevelObjectiveMetricsSeriesMetadata {
-	this := HistoryServiceLevelObjectiveMetricsSeriesMetadata{}
+func NewSLOHistoryMetricsSeriesMetadataWithDefaults() *SLOHistoryMetricsSeriesMetadata {
+	this := SLOHistoryMetricsSeriesMetadata{}
 	return &this
 }
 
 // GetAggr returns the Aggr field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggr() string {
+func (o *SLOHistoryMetricsSeriesMetadata) GetAggr() string {
 	if o == nil || o.Aggr == nil {
 		var ret string
 		return ret
@@ -56,7 +56,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggr() string {
 
 // GetAggrOk returns a tuple with the Aggr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggrOk() (*string, bool) {
+func (o *SLOHistoryMetricsSeriesMetadata) GetAggrOk() (*string, bool) {
 	if o == nil || o.Aggr == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggrOk() (*string
 }
 
 // HasAggr returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasAggr() bool {
+func (o *SLOHistoryMetricsSeriesMetadata) HasAggr() bool {
 	if o != nil && o.Aggr != nil {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasAggr() bool {
 }
 
 // SetAggr gets a reference to the given string and assigns it to the Aggr field.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetAggr(v string) {
+func (o *SLOHistoryMetricsSeriesMetadata) SetAggr(v string) {
 	o.Aggr = &v
 }
 
 // GetExpression returns the Expression field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpression() string {
+func (o *SLOHistoryMetricsSeriesMetadata) GetExpression() string {
 	if o == nil || o.Expression == nil {
 		var ret string
 		return ret
@@ -88,7 +88,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpression() stri
 
 // GetExpressionOk returns a tuple with the Expression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpressionOk() (*string, bool) {
+func (o *SLOHistoryMetricsSeriesMetadata) GetExpressionOk() (*string, bool) {
 	if o == nil || o.Expression == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpressionOk() (*
 }
 
 // HasExpression returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasExpression() bool {
+func (o *SLOHistoryMetricsSeriesMetadata) HasExpression() bool {
 	if o != nil && o.Expression != nil {
 		return true
 	}
@@ -105,12 +105,12 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasExpression() bool
 }
 
 // SetExpression gets a reference to the given string and assigns it to the Expression field.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetExpression(v string) {
+func (o *SLOHistoryMetricsSeriesMetadata) SetExpression(v string) {
 	o.Expression = &v
 }
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetric() string {
+func (o *SLOHistoryMetricsSeriesMetadata) GetMetric() string {
 	if o == nil || o.Metric == nil {
 		var ret string
 		return ret
@@ -120,7 +120,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetric() string {
 
 // GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetricOk() (*string, bool) {
+func (o *SLOHistoryMetricsSeriesMetadata) GetMetricOk() (*string, bool) {
 	if o == nil || o.Metric == nil {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetricOk() (*stri
 }
 
 // HasMetric returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasMetric() bool {
+func (o *SLOHistoryMetricsSeriesMetadata) HasMetric() bool {
 	if o != nil && o.Metric != nil {
 		return true
 	}
@@ -137,12 +137,12 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasMetric() bool {
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetMetric(v string) {
+func (o *SLOHistoryMetricsSeriesMetadata) SetMetric(v string) {
 	o.Metric = &v
 }
 
 // GetQueryIndex returns the QueryIndex field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndex() int64 {
+func (o *SLOHistoryMetricsSeriesMetadata) GetQueryIndex() int64 {
 	if o == nil || o.QueryIndex == nil {
 		var ret int64
 		return ret
@@ -152,7 +152,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndex() int6
 
 // GetQueryIndexOk returns a tuple with the QueryIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndexOk() (*int64, bool) {
+func (o *SLOHistoryMetricsSeriesMetadata) GetQueryIndexOk() (*int64, bool) {
 	if o == nil || o.QueryIndex == nil {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndexOk() (*
 }
 
 // HasQueryIndex returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasQueryIndex() bool {
+func (o *SLOHistoryMetricsSeriesMetadata) HasQueryIndex() bool {
 	if o != nil && o.QueryIndex != nil {
 		return true
 	}
@@ -169,12 +169,12 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasQueryIndex() bool
 }
 
 // SetQueryIndex gets a reference to the given int64 and assigns it to the QueryIndex field.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetQueryIndex(v int64) {
+func (o *SLOHistoryMetricsSeriesMetadata) SetQueryIndex(v int64) {
 	o.QueryIndex = &v
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScope() string {
+func (o *SLOHistoryMetricsSeriesMetadata) GetScope() string {
 	if o == nil || o.Scope == nil {
 		var ret string
 		return ret
@@ -184,7 +184,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScope() string {
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScopeOk() (*string, bool) {
+func (o *SLOHistoryMetricsSeriesMetadata) GetScopeOk() (*string, bool) {
 	if o == nil || o.Scope == nil {
 		return nil, false
 	}
@@ -192,7 +192,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScopeOk() (*strin
 }
 
 // HasScope returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasScope() bool {
+func (o *SLOHistoryMetricsSeriesMetadata) HasScope() bool {
 	if o != nil && o.Scope != nil {
 		return true
 	}
@@ -201,12 +201,12 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasScope() bool {
 }
 
 // SetScope gets a reference to the given string and assigns it to the Scope field.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetScope(v string) {
+func (o *SLOHistoryMetricsSeriesMetadata) SetScope(v string) {
 	o.Scope = &v
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnit() string {
+func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() string {
 	if o == nil || o.Unit == nil {
 		var ret string
 		return ret
@@ -216,7 +216,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnit() string {
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnitOk() (*string, bool) {
+func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*string, bool) {
 	if o == nil || o.Unit == nil {
 		return nil, false
 	}
@@ -224,7 +224,7 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnitOk() (*string
 }
 
 // HasUnit returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasUnit() bool {
+func (o *SLOHistoryMetricsSeriesMetadata) HasUnit() bool {
 	if o != nil && o.Unit != nil {
 		return true
 	}
@@ -233,11 +233,11 @@ func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasUnit() bool {
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.
-func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetUnit(v string) {
+func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v string) {
 	o.Unit = &v
 }
 
-func (o HistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
+func (o SLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Aggr != nil {
 		toSerialize["aggr"] = o.Aggr
@@ -260,38 +260,38 @@ func (o HistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte
 	return json.Marshal(toSerialize)
 }
 
-type NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata struct {
-	value *HistoryServiceLevelObjectiveMetricsSeriesMetadata
+type NullableSLOHistoryMetricsSeriesMetadata struct {
+	value *SLOHistoryMetricsSeriesMetadata
 	isSet bool
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) Get() *HistoryServiceLevelObjectiveMetricsSeriesMetadata {
+func (v NullableSLOHistoryMetricsSeriesMetadata) Get() *SLOHistoryMetricsSeriesMetadata {
 	return v.value
 }
 
-func (v *NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) Set(val *HistoryServiceLevelObjectiveMetricsSeriesMetadata) {
+func (v *NullableSLOHistoryMetricsSeriesMetadata) Set(val *SLOHistoryMetricsSeriesMetadata) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) IsSet() bool {
+func (v NullableSLOHistoryMetricsSeriesMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) Unset() {
+func (v *NullableSLOHistoryMetricsSeriesMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHistoryServiceLevelObjectiveMetricsSeriesMetadata(val *HistoryServiceLevelObjectiveMetricsSeriesMetadata) *NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata {
-	return &NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata{value: val, isSet: true}
+func NewNullableSLOHistoryMetricsSeriesMetadata(val *SLOHistoryMetricsSeriesMetadata) *NullableSLOHistoryMetricsSeriesMetadata {
+	return &NullableSLOHistoryMetricsSeriesMetadata{value: val, isSet: true}
 }
 
-func (v NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
+func (v NullableSLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHistoryServiceLevelObjectiveMetricsSeriesMetadata) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOHistoryMetricsSeriesMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

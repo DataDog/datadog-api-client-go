@@ -1,17 +1,17 @@
-# \SLOApi
+# \ServiceLevelObjectivesApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BulkPartialDeleteSLO**](SLOApi.md#BulkPartialDeleteSLO) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
-[**CheckCanDeleteSLO**](SLOApi.md#CheckCanDeleteSLO) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
-[**CreateSLO**](SLOApi.md#CreateSLO) | **Post** /api/v1/slo | Create a SLO object
-[**DeleteSLO**](SLOApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
-[**EditSLO**](SLOApi.md#EditSLO) | **Put** /api/v1/slo/{slo_id} | Edit a SLO
-[**GetSLO**](SLOApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
-[**GetSLOs**](SLOApi.md#GetSLOs) | **Get** /api/v1/slo | Search SLOs
-[**HistoryForSLO**](SLOApi.md#HistoryForSLO) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
+[**BulkPartialDeleteSLO**](ServiceLevelObjectivesApi.md#BulkPartialDeleteSLO) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
+[**CheckCanDeleteSLO**](ServiceLevelObjectivesApi.md#CheckCanDeleteSLO) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
+[**CreateSLO**](ServiceLevelObjectivesApi.md#CreateSLO) | **Post** /api/v1/slo | Create a SLO object
+[**DeleteSLO**](ServiceLevelObjectivesApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
+[**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
+[**GetSLOs**](ServiceLevelObjectivesApi.md#GetSLOs) | **Get** /api/v1/slo | Search SLOs
+[**HistoryForSLO**](ServiceLevelObjectivesApi.md#HistoryForSLO) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
+[**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 
 
 
@@ -175,50 +175,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## EditSLO
-
-> ServiceLevelObjectiveListResponse EditSLO(ctx, sloId).Body(body).Execute()
-
-Edit a SLO
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The ID of the service level objective object. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEditSLORequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | The edited service level objective request object. | 
-
-### Return type
-
-[**ServiceLevelObjectiveListResponse**](ServiceLevelObjectiveListResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetSLO
 
 > ServiceLevelObjectiveResponse GetSLO(ctx, sloId).Execute()
@@ -339,6 +295,50 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateSLO
+
+> ServiceLevelObjectiveListResponse UpdateSLO(ctx, sloId).Body(body).Execute()
+
+Update a SLO
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**sloId** | **string** | The ID of the service level objective object. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateSLORequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | The edited service level objective request object. | 
+
+### Return type
+
+[**ServiceLevelObjectiveListResponse**](ServiceLevelObjectiveListResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

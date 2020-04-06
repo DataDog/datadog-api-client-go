@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromTs** | Pointer to **int64** | The &#x60;from&#x60; timestamp in epoch seconds. | [optional] 
-**Groups** | Pointer to [**HistoryServiceLevelObjectiveSLIData**](HistoryServiceLevelObjectiveSLIData.md) |  | [optional] 
-**Overall** | Pointer to [**HistoryServiceLevelObjectiveSLIData**](HistoryServiceLevelObjectiveSLIData.md) |  | [optional] 
-**Series** | Pointer to [**HistoryServiceLevelObjectiveMetrics**](HistoryServiceLevelObjectiveMetrics.md) |  | [optional] 
+**Groups** | Pointer to [**SLOHistorySLIData**](SLOHistorySLIData.md) |  | [optional] 
+**Overall** | Pointer to [**SLOHistorySLIData**](SLOHistorySLIData.md) |  | [optional] 
+**Series** | Pointer to [**SLOHistoryMetrics**](SLOHistoryMetrics.md) |  | [optional] 
 **Thresholds** | Pointer to [**map[string]SLOThreshold**](SLOThreshold.md) | mapping of string timeframe to the SLO threshold. | [optional] 
 **ToTs** | Pointer to **int64** | The &#x60;to&#x60; timestamp in epoch seconds. | [optional] 
-**Type** | Pointer to [**ServiceLevelObjectiveType**](ServiceLevelObjectiveType.md) |  | [optional] 
-**TypeId** | Pointer to [**ServiceLevelObjectiveTypeNumeric**](ServiceLevelObjectiveTypeNumeric.md) |  | [optional] 
+**Type** | Pointer to [**SLOType**](SLOType.md) |  | [optional] 
+**TypeId** | Pointer to [**SLOTypeNumeric**](SLOTypeNumeric.md) |  | [optional] 
 
 ## Methods
 
@@ -59,20 +59,20 @@ HasFromTs returns a boolean if a field has been set.
 
 ### GetGroups
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() HistoryServiceLevelObjectiveSLIData`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() SLOHistorySLIData`
 
 GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### GetGroupsOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (*HistoryServiceLevelObjectiveSLIData, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (*SLOHistorySLIData, bool)`
 
 GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroups
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v HistoryServiceLevelObjectiveSLIData)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v SLOHistorySLIData)`
 
 SetGroups sets Groups field to given value.
 
@@ -84,20 +84,20 @@ HasGroups returns a boolean if a field has been set.
 
 ### GetOverall
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() HistoryServiceLevelObjectiveSLIData`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() SLOHistorySLIData`
 
 GetOverall returns the Overall field if non-nil, zero value otherwise.
 
 ### GetOverallOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (*HistoryServiceLevelObjectiveSLIData, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (*SLOHistorySLIData, bool)`
 
 GetOverallOk returns a tuple with the Overall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOverall
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v HistoryServiceLevelObjectiveSLIData)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v SLOHistorySLIData)`
 
 SetOverall sets Overall field to given value.
 
@@ -109,20 +109,20 @@ HasOverall returns a boolean if a field has been set.
 
 ### GetSeries
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() HistoryServiceLevelObjectiveMetrics`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() SLOHistoryMetrics`
 
 GetSeries returns the Series field if non-nil, zero value otherwise.
 
 ### GetSeriesOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (*HistoryServiceLevelObjectiveMetrics, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (*SLOHistoryMetrics, bool)`
 
 GetSeriesOk returns a tuple with the Series field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSeries
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v HistoryServiceLevelObjectiveMetrics)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v SLOHistoryMetrics)`
 
 SetSeries sets Series field to given value.
 
@@ -184,20 +184,20 @@ HasToTs returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetType() ServiceLevelObjectiveType`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetType() SLOType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (*ServiceLevelObjectiveType, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (*SLOType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetType(v ServiceLevelObjectiveType)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetType(v SLOType)`
 
 SetType sets Type field to given value.
 
@@ -209,20 +209,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetTypeId
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() ServiceLevelObjectiveTypeNumeric`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() SLOTypeNumeric`
 
 GetTypeId returns the TypeId field if non-nil, zero value otherwise.
 
 ### GetTypeIdOk
 
-`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (*ServiceLevelObjectiveTypeNumeric, bool)`
+`func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (*SLOTypeNumeric, bool)`
 
 GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeId
 
-`func (o *HistoryServiceLevelObjectiveResponseData) SetTypeId(v ServiceLevelObjectiveTypeNumeric)`
+`func (o *HistoryServiceLevelObjectiveResponseData) SetTypeId(v SLOTypeNumeric)`
 
 SetTypeId sets TypeId field to given value.
 
