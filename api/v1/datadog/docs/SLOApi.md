@@ -4,14 +4,14 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BulkPartialDeleteSLO**](SLOApi.md#BulkPartialDeleteSLO) | **Post** /api/v1/slo/bulk_delete | Delete (or partially delete) multiple service level objective objects.
-[**CheckCanDeleteSLO**](SLOApi.md#CheckCanDeleteSLO) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted.
-[**CreateSLO**](SLOApi.md#CreateSLO) | **Post** /api/v1/slo | Create a service level objective object.
-[**DeleteSLO**](SLOApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete the specified service level objective object.
-[**EditSLO**](SLOApi.md#EditSLO) | **Put** /api/v1/slo/{slo_id} | Edit the specified service level objective
-[**GetSLO**](SLOApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get a service level objective object
-[**GetSLOs**](SLOApi.md#GetSLOs) | **Get** /api/v1/slo | Get multiple service level objective objects by their IDs.
-[**HistoryForSLO**](SLOApi.md#HistoryForSLO) | **Get** /api/v1/slo/{slo_id}/history | Get the history of the service level objective.
+[**BulkPartialDeleteSLO**](SLOApi.md#BulkPartialDeleteSLO) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
+[**CheckCanDeleteSLO**](SLOApi.md#CheckCanDeleteSLO) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
+[**CreateSLO**](SLOApi.md#CreateSLO) | **Post** /api/v1/slo | Create a SLO object
+[**DeleteSLO**](SLOApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
+[**EditSLO**](SLOApi.md#EditSLO) | **Put** /api/v1/slo/{slo_id} | Edit a SLO
+[**GetSLO**](SLOApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
+[**GetSLOs**](SLOApi.md#GetSLOs) | **Get** /api/v1/slo | Search SLOs
+[**HistoryForSLO**](SLOApi.md#HistoryForSLO) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
 
 
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 > ServiceLevelObjectivesBulkDeleted BulkPartialDeleteSLO(ctx).Body(body).Execute()
 
-Delete (or partially delete) multiple service level objective objects.
+Bulk Delete SLO Timeframes
 
 
 
@@ -34,7 +34,7 @@ Other parameters are passed through a pointer to a apiBulkPartialDeleteSLOReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**map[string][]SLOTimeframe**](array.md) | Thresholds by service level objective object ID | 
+ **body** | [**map[string][]SLOTimeframe**](array.md) | Thresholds by service level objective object ID. | 
 
 ### Return type
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 > CheckCanDeleteServiceLevelObjectiveResponse CheckCanDeleteSLO(ctx).Ids(ids).Execute()
 
-Check if SLOs can be safely deleted.
+Check if SLOs can be safely deleted
 
 
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 > ServiceLevelObjectiveListResponse CreateSLO(ctx).Body(body).Execute()
 
-Create a service level objective object.
+Create a SLO object
 
 
 
@@ -112,7 +112,7 @@ Other parameters are passed through a pointer to a apiCreateSLORequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | Service level objective request object | 
+ **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | Service level objective request object. | 
 
 ### Return type
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 > ServiceLevelObjectiveDeleted DeleteSLO(ctx, sloId).Execute()
 
-Delete the specified service level objective object.
+Delete a SLO
 
 
 
@@ -146,7 +146,7 @@ Delete the specified service level objective object.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The id of the service level objective | 
+**sloId** | **string** | The id of the service level objective. | 
 
 ### Other Parameters
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 > ServiceLevelObjectiveListResponse EditSLO(ctx, sloId).Body(body).Execute()
 
-Edit the specified service level objective
+Edit a SLO
 
 
 
@@ -189,7 +189,7 @@ Edit the specified service level objective
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The ID of the service level objective object | 
+**sloId** | **string** | The ID of the service level objective object. | 
 
 ### Other Parameters
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 > ServiceLevelObjectiveResponse GetSLO(ctx, sloId).Execute()
 
-Get a service level objective object
+Get a SLO's details
 
 
 
@@ -233,7 +233,7 @@ Get a service level objective object
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The ID of the service level objective object | 
+**sloId** | **string** | The ID of the service level objective object. | 
 
 ### Other Parameters
 
@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 
 > ServiceLevelObjectiveListResponse GetSLOs(ctx).Ids(ids).Execute()
 
-Get multiple service level objective objects by their IDs.
+Search SLOs
 
 
 
@@ -281,7 +281,7 @@ Other parameters are passed through a pointer to a apiGetSLOsRequest struct via 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **string** | A comma separated list of the IDs of the service level objectives objects (e.g. \&quot;id1,id2,id3\&quot;). | 
+ **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. For example, \&quot;id1,id2,id3\&quot;. | 
 
 ### Return type
 
@@ -305,7 +305,7 @@ Name | Type | Description  | Notes
 
 > HistoryServiceLevelObjectiveResponse HistoryForSLO(ctx, sloId).FromTs(fromTs).ToTs(toTs).Execute()
 
-Get the history of the service level objective.
+Get an SLO's history
 
 
 
@@ -315,7 +315,7 @@ Get the history of the service level objective.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The ID of the service level objective object | 
+**sloId** | **string** | The ID of the service level objective object. | 
 
 ### Other Parameters
 
@@ -325,8 +325,8 @@ Other parameters are passed through a pointer to a apiHistoryForSLORequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fromTs** | **string** | The &#x60;from&#x60; timestamp for the query window in epoch seconds | 
- **toTs** | **string** | The &#x60;to&#x60; timestamp for the query window in epoch seconds | 
+ **fromTs** | **string** | The &#x60;from&#x60; timestamp for the query window in epoch seconds. | 
+ **toTs** | **string** | The &#x60;to&#x60; timestamp for the query window in epoch seconds. | 
 
 ### Return type
 

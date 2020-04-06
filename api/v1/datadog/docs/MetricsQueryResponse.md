@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | Pointer to **string** | Message indicating the errors if status is not &#x60;ok&#x60; | [optional] [readonly] 
-**FromDate** | Pointer to **int64** | Start of requested time window, milliseconds since Unix epoch | [optional] [readonly] 
-**GroupBy** | Pointer to **[]string** | List of tag keys on which to group | [optional] [readonly] 
-**Message** | Pointer to **string** | Message indicating &#x60;success&#x60; if status is &#x60;ok&#x60; | [optional] [readonly] 
+**Error** | Pointer to **string** | Message indicating the errors if status is not &#x60;ok&#x60;. | [optional] [readonly] 
+**FromDate** | Pointer to **int64** | Start of requested time window, milliseconds since Unix epoch. | [optional] [readonly] 
+**GroupBy** | Pointer to **[]string** | List of tag keys on which to group. | [optional] [readonly] 
+**Message** | Pointer to **string** | Message indicating &#x60;success&#x60; if status is &#x60;ok&#x60;. | [optional] [readonly] 
 **Query** | Pointer to **string** | Query string | [optional] [readonly] 
-**ResType** | Pointer to **string** | Type of response | [optional] [readonly] 
-**Series** | Pointer to [**[]MetricsQueryResponseSeries**](MetricsQueryResponse_series.md) | List of timeseries queried | [optional] [readonly] 
-**Status** | Pointer to **string** | Status of the query | [optional] [readonly] 
-**ToDate** | Pointer to **int64** | End of requested time window, milliseconds since Unix epoch | [optional] [readonly] 
+**ResType** | Pointer to **string** | Type of response. | [optional] [readonly] 
+**Series** | Pointer to [**[]MetricsQueryResponseSeries**](MetricsQueryResponse_series.md) | List of timeseries queried. | [optional] [readonly] 
+**Status** | Pointer to **string** | Status of the query. | [optional] [readonly] 
+**ToDate** | Pointer to **int64** | End of requested time window, milliseconds since Unix epoch. | [optional] [readonly] 
 
 ## Methods
 
@@ -41,22 +41,22 @@ GetError returns the Error field if non-nil, zero value otherwise.
 
 ### GetErrorOk
 
-`func (o *MetricsQueryResponse) GetErrorOk() (string, bool)`
+`func (o *MetricsQueryResponse) GetErrorOk() (*string, bool)`
 
 GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *MetricsQueryResponse) SetError(v string)`
+
+SetError sets Error field to given value.
 
 ### HasError
 
 `func (o *MetricsQueryResponse) HasError() bool`
 
 HasError returns a boolean if a field has been set.
-
-### SetError
-
-`func (o *MetricsQueryResponse) SetError(v string)`
-
-SetError gets a reference to the given string and assigns it to the Error field.
 
 ### GetFromDate
 
@@ -66,22 +66,22 @@ GetFromDate returns the FromDate field if non-nil, zero value otherwise.
 
 ### GetFromDateOk
 
-`func (o *MetricsQueryResponse) GetFromDateOk() (int64, bool)`
+`func (o *MetricsQueryResponse) GetFromDateOk() (*int64, bool)`
 
 GetFromDateOk returns a tuple with the FromDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFromDate
+
+`func (o *MetricsQueryResponse) SetFromDate(v int64)`
+
+SetFromDate sets FromDate field to given value.
 
 ### HasFromDate
 
 `func (o *MetricsQueryResponse) HasFromDate() bool`
 
 HasFromDate returns a boolean if a field has been set.
-
-### SetFromDate
-
-`func (o *MetricsQueryResponse) SetFromDate(v int64)`
-
-SetFromDate gets a reference to the given int64 and assigns it to the FromDate field.
 
 ### GetGroupBy
 
@@ -91,22 +91,22 @@ GetGroupBy returns the GroupBy field if non-nil, zero value otherwise.
 
 ### GetGroupByOk
 
-`func (o *MetricsQueryResponse) GetGroupByOk() ([]string, bool)`
+`func (o *MetricsQueryResponse) GetGroupByOk() (*[]string, bool)`
 
 GetGroupByOk returns a tuple with the GroupBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetGroupBy
+
+`func (o *MetricsQueryResponse) SetGroupBy(v []string)`
+
+SetGroupBy sets GroupBy field to given value.
 
 ### HasGroupBy
 
 `func (o *MetricsQueryResponse) HasGroupBy() bool`
 
 HasGroupBy returns a boolean if a field has been set.
-
-### SetGroupBy
-
-`func (o *MetricsQueryResponse) SetGroupBy(v []string)`
-
-SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
 
 ### GetMessage
 
@@ -116,22 +116,22 @@ GetMessage returns the Message field if non-nil, zero value otherwise.
 
 ### GetMessageOk
 
-`func (o *MetricsQueryResponse) GetMessageOk() (string, bool)`
+`func (o *MetricsQueryResponse) GetMessageOk() (*string, bool)`
 
 GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMessage
+
+`func (o *MetricsQueryResponse) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
 
 ### HasMessage
 
 `func (o *MetricsQueryResponse) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
-
-### SetMessage
-
-`func (o *MetricsQueryResponse) SetMessage(v string)`
-
-SetMessage gets a reference to the given string and assigns it to the Message field.
 
 ### GetQuery
 
@@ -141,22 +141,22 @@ GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *MetricsQueryResponse) GetQueryOk() (string, bool)`
+`func (o *MetricsQueryResponse) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *MetricsQueryResponse) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
 
 ### HasQuery
 
 `func (o *MetricsQueryResponse) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
-
-### SetQuery
-
-`func (o *MetricsQueryResponse) SetQuery(v string)`
-
-SetQuery gets a reference to the given string and assigns it to the Query field.
 
 ### GetResType
 
@@ -166,22 +166,22 @@ GetResType returns the ResType field if non-nil, zero value otherwise.
 
 ### GetResTypeOk
 
-`func (o *MetricsQueryResponse) GetResTypeOk() (string, bool)`
+`func (o *MetricsQueryResponse) GetResTypeOk() (*string, bool)`
 
 GetResTypeOk returns a tuple with the ResType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetResType
+
+`func (o *MetricsQueryResponse) SetResType(v string)`
+
+SetResType sets ResType field to given value.
 
 ### HasResType
 
 `func (o *MetricsQueryResponse) HasResType() bool`
 
 HasResType returns a boolean if a field has been set.
-
-### SetResType
-
-`func (o *MetricsQueryResponse) SetResType(v string)`
-
-SetResType gets a reference to the given string and assigns it to the ResType field.
 
 ### GetSeries
 
@@ -191,22 +191,22 @@ GetSeries returns the Series field if non-nil, zero value otherwise.
 
 ### GetSeriesOk
 
-`func (o *MetricsQueryResponse) GetSeriesOk() ([]MetricsQueryResponseSeries, bool)`
+`func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryResponseSeries, bool)`
 
 GetSeriesOk returns a tuple with the Series field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSeries
+
+`func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryResponseSeries)`
+
+SetSeries sets Series field to given value.
 
 ### HasSeries
 
 `func (o *MetricsQueryResponse) HasSeries() bool`
 
 HasSeries returns a boolean if a field has been set.
-
-### SetSeries
-
-`func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryResponseSeries)`
-
-SetSeries gets a reference to the given []MetricsQueryResponseSeries and assigns it to the Series field.
 
 ### GetStatus
 
@@ -216,22 +216,22 @@ GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *MetricsQueryResponse) GetStatusOk() (string, bool)`
+`func (o *MetricsQueryResponse) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *MetricsQueryResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 ### HasStatus
 
 `func (o *MetricsQueryResponse) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
-
-### SetStatus
-
-`func (o *MetricsQueryResponse) SetStatus(v string)`
-
-SetStatus gets a reference to the given string and assigns it to the Status field.
 
 ### GetToDate
 
@@ -241,22 +241,22 @@ GetToDate returns the ToDate field if non-nil, zero value otherwise.
 
 ### GetToDateOk
 
-`func (o *MetricsQueryResponse) GetToDateOk() (int64, bool)`
+`func (o *MetricsQueryResponse) GetToDateOk() (*int64, bool)`
 
 GetToDateOk returns a tuple with the ToDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetToDate
+
+`func (o *MetricsQueryResponse) SetToDate(v int64)`
+
+SetToDate sets ToDate field to given value.
 
 ### HasToDate
 
 `func (o *MetricsQueryResponse) HasToDate() bool`
 
 HasToDate returns a boolean if a field has been set.
-
-### SetToDate
-
-`func (o *MetricsQueryResponse) SetToDate(v int64)`
-
-SetToDate gets a reference to the given int64 and assigns it to the ToDate field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

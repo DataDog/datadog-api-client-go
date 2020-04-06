@@ -7,11 +7,8 @@
 package test
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"testing"
 	"time"
 
@@ -22,100 +19,6 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func TestMetricSubmissionMock(t *testing.T) {
-	teardownTest := setupUnitTest(t)
-	defer teardownTest(t)
-	defer gock.Off()
-
-	// Test that a normal submission works
-	t.Run("normalSubmission", func(t *testing.T) {
-		testHost := "test"
-		testTags := []string{"tagA", "tagB"}
-		testType := "count"
-		testInterval := datadog.NewNullableInt64(datadog.PtrInt64(20))
-		testMetric := "hello.world"
-		testPoints := [][]float64{{5, 10.5}}
-		metricsPayload := datadog.MetricsPayload{
-			Series: &[]datadog.Series{
-				{
-					Host:     &testHost,
-					Type:     &testType,
-					Interval: *testInterval,
-					Metric:   testMetric,
-					Points:   testPoints,
-					Tags:     &testTags,
-				},
-			},
-		}
-		// Check that request is correct
-		gock.Clean()
-		gock.New("https://api.datadoghq.com/api/v1").Post("/series").
-			AddMatcher(func(req *http.Request, _ *gock.Request) (bool, error) {
-				// Read request
-				defer req.Body.Close()
-				body, err := ioutil.ReadAll(req.Body)
-				assert.NoError(t, err)
-				var payload datadog.MetricsPayload
-				json.Unmarshal(body, &payload)
-
-				// Check equality
-				assert.Equal(t, *payload.GetSeries()[0].Host, testHost)
-				assert.Equal(t, *payload.GetSeries()[0].Type, testType)
-				assert.Equal(t, payload.GetSeries()[0].Interval.Get(), testInterval.Get())
-				assert.Equal(t, payload.GetSeries()[0].Metric, testMetric)
-				assert.Equal(t, payload.GetSeries()[0].Points, testPoints)
-				assert.Equal(t, *payload.GetSeries()[0].Tags, testTags)
-
-				return true, nil
-			}).Reply(200).JSON(map[string]string{"status": "ok"})
-
-		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-		_, _, err := TESTAPICLIENT.MetricsApi.SubmitMetrics(ctx).Body(metricsPayload).Execute()
-		cancel()
-		assert.NoError(t, err)
-	})
-
-	// Test that we can send multiple points
-	t.Run("multiplePoints", func(t *testing.T) {
-		testHost := "test"
-		testTags := []string{"tagA", "tagB"}
-		metricsPayload := datadog.MetricsPayload{
-			Series: &[]datadog.Series{
-				{
-					Host:   &testHost,
-					Metric: "hello.world",
-					Points: [][]float64{{5, 10.5}, {6, 11}},
-					Tags:   &testTags,
-				},
-			},
-		}
-		// Check that request is correct
-		gock.Clean()
-		gock.New("https://api.datadoghq.com/api/v1").Post("/series").
-			AddMatcher(func(req *http.Request, _ *gock.Request) (bool, error) {
-				// Read request
-				defer req.Body.Close()
-				body, err := ioutil.ReadAll(req.Body)
-				assert.NoError(t, err)
-				var payload datadog.MetricsPayload
-				json.Unmarshal(body, &payload)
-
-				// Check equality
-				assert.Equal(t, *payload.GetSeries()[0].Host, testHost)
-				assert.Equal(t, payload.GetSeries()[0].Metric, "hello.world")
-				assert.Equal(t, payload.GetSeries()[0].Points, [][]float64{{5, 10.5}, {6, 11}})
-				assert.Equal(t, *payload.GetSeries()[0].Tags, testTags)
-
-				return true, nil
-			}).Reply(200).JSON(map[string]string{"status": "ok"})
-
-		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-		_, _, err := TESTAPICLIENT.MetricsApi.SubmitMetrics(ctx).Body(metricsPayload).Execute()
-		cancel()
-		assert.NoError(t, err)
-	})
-}
-
 func TestMetrics(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
@@ -124,27 +27,18 @@ func TestMetrics(t *testing.T) {
 	now := TESTCLOCK.Now().Unix()
 
 	testMetric := fmt.Sprintf("go.client.test.%d", now)
-	testPoints := [][]float64{{float64(now - 60), 10.5}, {float64(now), 11}}
-	testTags := []string{"tag:foo", "bar:baz"}
-	testHost := "go-client-test-host"
 	testQuery := fmt.Sprintf("avg:%s{bar:baz}by{host}", testMetric)
-	metricsPayload := datadog.MetricsPayload{
-		Series: &[]datadog.Series{
-			{
-				Host:   &testHost,
-				Metric: testMetric,
-				Points: testPoints,
-				Tags:   &testTags,
-			},
-		},
-	}
 
-	r, httpresp, err := api.SubmitMetrics(TESTAUTH).Body(metricsPayload).Execute()
+	metricsPayload := fmt.Sprintf(
+		`{"series": [{"host": "go-client-test-host", "metric": "%s", "points": [[%f, 10.5], [%f, 11]], "tags": ["%s", "%s"]}]}`,
+		testMetric, float64(now - 60), float64(now), "tag:foo", "bar:baz",
+	)
+	httpresp, respBody, err := sendRequest("POST", "/api/v1/series", []byte(metricsPayload))
 	if err != nil {
-		t.Fatalf("Error submitting metric %v: Response %s: %v", metricsPayload, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error submitting metric: Response %s: %v", string(respBody), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 202)
-	assert.Equal(t, "ok", r.GetStatus())
+	assert.Equal(t, `{"status": "ok"}`, string(respBody))
 
 	// Check that the metric was submitted successfully
 	err = tests.Retry(10*time.Second, 10, func() bool {
@@ -217,7 +111,7 @@ func TestMetrics(t *testing.T) {
 	assert.Nil(t, metadata.Unit)
 	assert.Nil(t, metadata.ShortName)
 	assert.Nil(t, metadata.StatsdInterval)
-	assert.Equal(t, "", metadata.Type)
+	assert.Nil(t, metadata.Type)
 
 	newMetadata := datadog.MetricMetadata{
 		Description:    datadog.PtrString("description"),
@@ -225,7 +119,7 @@ func TestMetrics(t *testing.T) {
 		Unit:           datadog.PtrString("byte"),
 		ShortName:      datadog.PtrString("short_name"),
 		StatsdInterval: datadog.PtrInt64(20),
-		Type:           "count",
+		Type:           datadog.PtrString("count"),
 	}
 
 	metadata, httpresp, err = api.EditMetricMetadata(TESTAUTH, testMetric).Body(newMetadata).Execute()

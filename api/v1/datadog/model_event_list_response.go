@@ -44,14 +44,13 @@ func (o *EventListResponse) GetEvents() []Event {
 	return *o.Events
 }
 
-// GetEventsOk returns a tuple with the Events field value if set, zero value otherwise
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventListResponse) GetEventsOk() ([]Event, bool) {
+func (o *EventListResponse) GetEventsOk() (*[]Event, bool) {
 	if o == nil || o.Events == nil {
-		var ret []Event
-		return ret, false
+		return nil, false
 	}
-	return *o.Events, true
+	return o.Events, true
 }
 
 // HasEvents returns a boolean if a field has been set.
@@ -77,14 +76,13 @@ func (o *EventListResponse) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventListResponse) GetStatusOk() (string, bool) {
+func (o *EventListResponse) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -121,7 +119,7 @@ func (v NullableEventListResponse) Get() *EventListResponse {
 	return v.value
 }
 
-func (v NullableEventListResponse) Set(val *EventListResponse) {
+func (v *NullableEventListResponse) Set(val *EventListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -130,7 +128,7 @@ func (v NullableEventListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableEventListResponse) Unset() {
+func (v *NullableEventListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

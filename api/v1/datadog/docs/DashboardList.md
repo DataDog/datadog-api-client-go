@@ -40,22 +40,22 @@ GetAuthor returns the Author field if non-nil, zero value otherwise.
 
 ### GetAuthorOk
 
-`func (o *DashboardList) GetAuthorOk() (Creator, bool)`
+`func (o *DashboardList) GetAuthorOk() (*Creator, bool)`
 
 GetAuthorOk returns a tuple with the Author field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAuthor
+
+`func (o *DashboardList) SetAuthor(v Creator)`
+
+SetAuthor sets Author field to given value.
 
 ### HasAuthor
 
 `func (o *DashboardList) HasAuthor() bool`
 
 HasAuthor returns a boolean if a field has been set.
-
-### SetAuthor
-
-`func (o *DashboardList) SetAuthor(v Creator)`
-
-SetAuthor gets a reference to the given Creator and assigns it to the Author field.
 
 ### GetCreated
 
@@ -65,22 +65,22 @@ GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *DashboardList) GetCreatedOk() (time.Time, bool)`
+`func (o *DashboardList) GetCreatedOk() (*time.Time, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCreated
+
+`func (o *DashboardList) SetCreated(v time.Time)`
+
+SetCreated sets Created field to given value.
 
 ### HasCreated
 
 `func (o *DashboardList) HasCreated() bool`
 
 HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *DashboardList) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetDashboardCount
 
@@ -90,22 +90,22 @@ GetDashboardCount returns the DashboardCount field if non-nil, zero value otherw
 
 ### GetDashboardCountOk
 
-`func (o *DashboardList) GetDashboardCountOk() (int64, bool)`
+`func (o *DashboardList) GetDashboardCountOk() (*int64, bool)`
 
 GetDashboardCountOk returns a tuple with the DashboardCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDashboardCount
+
+`func (o *DashboardList) SetDashboardCount(v int64)`
+
+SetDashboardCount sets DashboardCount field to given value.
 
 ### HasDashboardCount
 
 `func (o *DashboardList) HasDashboardCount() bool`
 
 HasDashboardCount returns a boolean if a field has been set.
-
-### SetDashboardCount
-
-`func (o *DashboardList) SetDashboardCount(v int64)`
-
-SetDashboardCount gets a reference to the given int64 and assigns it to the DashboardCount field.
 
 ### GetId
 
@@ -115,22 +115,22 @@ GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DashboardList) GetIdOk() (int64, bool)`
+`func (o *DashboardList) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *DashboardList) SetId(v int64)`
+
+SetId sets Id field to given value.
 
 ### HasId
 
 `func (o *DashboardList) HasId() bool`
 
 HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *DashboardList) SetId(v int64)`
-
-SetId gets a reference to the given int64 and assigns it to the Id field.
 
 ### GetIsFavorite
 
@@ -140,22 +140,22 @@ GetIsFavorite returns the IsFavorite field if non-nil, zero value otherwise.
 
 ### GetIsFavoriteOk
 
-`func (o *DashboardList) GetIsFavoriteOk() (bool, bool)`
+`func (o *DashboardList) GetIsFavoriteOk() (*bool, bool)`
 
 GetIsFavoriteOk returns a tuple with the IsFavorite field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsFavorite
+
+`func (o *DashboardList) SetIsFavorite(v bool)`
+
+SetIsFavorite sets IsFavorite field to given value.
 
 ### HasIsFavorite
 
 `func (o *DashboardList) HasIsFavorite() bool`
 
 HasIsFavorite returns a boolean if a field has been set.
-
-### SetIsFavorite
-
-`func (o *DashboardList) SetIsFavorite(v bool)`
-
-SetIsFavorite gets a reference to the given bool and assigns it to the IsFavorite field.
 
 ### GetModified
 
@@ -165,22 +165,22 @@ GetModified returns the Modified field if non-nil, zero value otherwise.
 
 ### GetModifiedOk
 
-`func (o *DashboardList) GetModifiedOk() (time.Time, bool)`
+`func (o *DashboardList) GetModifiedOk() (*time.Time, bool)`
 
 GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetModified
+
+`func (o *DashboardList) SetModified(v time.Time)`
+
+SetModified sets Modified field to given value.
 
 ### HasModified
 
 `func (o *DashboardList) HasModified() bool`
 
 HasModified returns a boolean if a field has been set.
-
-### SetModified
-
-`func (o *DashboardList) SetModified(v time.Time)`
-
-SetModified gets a reference to the given time.Time and assigns it to the Modified field.
 
 ### GetName
 
@@ -190,22 +190,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *DashboardList) GetNameOk() (string, bool)`
+`func (o *DashboardList) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *DashboardList) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *DashboardList) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetType
 
@@ -215,22 +210,22 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *DashboardList) GetTypeOk() (string, bool)`
+`func (o *DashboardList) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DashboardList) SetType(v string)`
+
+SetType sets Type field to given value.
 
 ### HasType
 
 `func (o *DashboardList) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *DashboardList) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

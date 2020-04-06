@@ -47,6 +47,15 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponse) GetData() CheckCanDeleteSe
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *CheckCanDeleteServiceLevelObjectiveResponse) GetDataOk() (*CheckCanDeleteServiceLevelObjectiveResponseData, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *CheckCanDeleteServiceLevelObjectiveResponse) SetData(v CheckCanDeleteServiceLevelObjectiveResponseData) {
 	o.Data = v
@@ -61,14 +70,13 @@ func (o *CheckCanDeleteServiceLevelObjectiveResponse) GetErrors() map[string]str
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckCanDeleteServiceLevelObjectiveResponse) GetErrorsOk() (map[string]string, bool) {
+func (o *CheckCanDeleteServiceLevelObjectiveResponse) GetErrorsOk() (*map[string]string, bool) {
 	if o == nil || o.Errors == nil {
-		var ret map[string]string
-		return ret, false
+		return nil, false
 	}
-	return *o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -105,7 +113,7 @@ func (v NullableCheckCanDeleteServiceLevelObjectiveResponse) Get() *CheckCanDele
 	return v.value
 }
 
-func (v NullableCheckCanDeleteServiceLevelObjectiveResponse) Set(val *CheckCanDeleteServiceLevelObjectiveResponse) {
+func (v *NullableCheckCanDeleteServiceLevelObjectiveResponse) Set(val *CheckCanDeleteServiceLevelObjectiveResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -114,7 +122,7 @@ func (v NullableCheckCanDeleteServiceLevelObjectiveResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableCheckCanDeleteServiceLevelObjectiveResponse) Unset() {
+func (v *NullableCheckCanDeleteServiceLevelObjectiveResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

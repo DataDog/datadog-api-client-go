@@ -18,11 +18,11 @@ type IPRanges struct {
 	Api    *IPPrefixes `json:"api,omitempty"`
 	Apm    *IPPrefixes `json:"apm,omitempty"`
 	Logs   *IPPrefixes `json:"logs,omitempty"`
-	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`
+	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
 	Modified   *string     `json:"modified,omitempty"`
 	Process    *IPPrefixes `json:"process,omitempty"`
 	Synthetics *IPPrefixes `json:"synthetics,omitempty"`
-	// Version of the IP list
+	// Version of the IP list.
 	Version  *int64      `json:"version,omitempty"`
 	Webhooks *IPPrefixes `json:"webhooks,omitempty"`
 }
@@ -53,14 +53,13 @@ func (o *IPRanges) GetAgents() IPPrefixes {
 	return *o.Agents
 }
 
-// GetAgentsOk returns a tuple with the Agents field value if set, zero value otherwise
+// GetAgentsOk returns a tuple with the Agents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetAgentsOk() (IPPrefixes, bool) {
+func (o *IPRanges) GetAgentsOk() (*IPPrefixes, bool) {
 	if o == nil || o.Agents == nil {
-		var ret IPPrefixes
-		return ret, false
+		return nil, false
 	}
-	return *o.Agents, true
+	return o.Agents, true
 }
 
 // HasAgents returns a boolean if a field has been set.
@@ -86,14 +85,13 @@ func (o *IPRanges) GetApi() IPPrefixes {
 	return *o.Api
 }
 
-// GetApiOk returns a tuple with the Api field value if set, zero value otherwise
+// GetApiOk returns a tuple with the Api field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetApiOk() (IPPrefixes, bool) {
+func (o *IPRanges) GetApiOk() (*IPPrefixes, bool) {
 	if o == nil || o.Api == nil {
-		var ret IPPrefixes
-		return ret, false
+		return nil, false
 	}
-	return *o.Api, true
+	return o.Api, true
 }
 
 // HasApi returns a boolean if a field has been set.
@@ -119,14 +117,13 @@ func (o *IPRanges) GetApm() IPPrefixes {
 	return *o.Apm
 }
 
-// GetApmOk returns a tuple with the Apm field value if set, zero value otherwise
+// GetApmOk returns a tuple with the Apm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetApmOk() (IPPrefixes, bool) {
+func (o *IPRanges) GetApmOk() (*IPPrefixes, bool) {
 	if o == nil || o.Apm == nil {
-		var ret IPPrefixes
-		return ret, false
+		return nil, false
 	}
-	return *o.Apm, true
+	return o.Apm, true
 }
 
 // HasApm returns a boolean if a field has been set.
@@ -152,14 +149,13 @@ func (o *IPRanges) GetLogs() IPPrefixes {
 	return *o.Logs
 }
 
-// GetLogsOk returns a tuple with the Logs field value if set, zero value otherwise
+// GetLogsOk returns a tuple with the Logs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetLogsOk() (IPPrefixes, bool) {
+func (o *IPRanges) GetLogsOk() (*IPPrefixes, bool) {
 	if o == nil || o.Logs == nil {
-		var ret IPPrefixes
-		return ret, false
+		return nil, false
 	}
-	return *o.Logs, true
+	return o.Logs, true
 }
 
 // HasLogs returns a boolean if a field has been set.
@@ -185,14 +181,13 @@ func (o *IPRanges) GetModified() string {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetModifiedOk() (string, bool) {
+func (o *IPRanges) GetModifiedOk() (*string, bool) {
 	if o == nil || o.Modified == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
@@ -218,14 +213,13 @@ func (o *IPRanges) GetProcess() IPPrefixes {
 	return *o.Process
 }
 
-// GetProcessOk returns a tuple with the Process field value if set, zero value otherwise
+// GetProcessOk returns a tuple with the Process field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetProcessOk() (IPPrefixes, bool) {
+func (o *IPRanges) GetProcessOk() (*IPPrefixes, bool) {
 	if o == nil || o.Process == nil {
-		var ret IPPrefixes
-		return ret, false
+		return nil, false
 	}
-	return *o.Process, true
+	return o.Process, true
 }
 
 // HasProcess returns a boolean if a field has been set.
@@ -251,14 +245,13 @@ func (o *IPRanges) GetSynthetics() IPPrefixes {
 	return *o.Synthetics
 }
 
-// GetSyntheticsOk returns a tuple with the Synthetics field value if set, zero value otherwise
+// GetSyntheticsOk returns a tuple with the Synthetics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetSyntheticsOk() (IPPrefixes, bool) {
+func (o *IPRanges) GetSyntheticsOk() (*IPPrefixes, bool) {
 	if o == nil || o.Synthetics == nil {
-		var ret IPPrefixes
-		return ret, false
+		return nil, false
 	}
-	return *o.Synthetics, true
+	return o.Synthetics, true
 }
 
 // HasSynthetics returns a boolean if a field has been set.
@@ -284,14 +277,13 @@ func (o *IPRanges) GetVersion() int64 {
 	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, zero value otherwise
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetVersionOk() (int64, bool) {
+func (o *IPRanges) GetVersionOk() (*int64, bool) {
 	if o == nil || o.Version == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Version, true
+	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
@@ -317,14 +309,13 @@ func (o *IPRanges) GetWebhooks() IPPrefixes {
 	return *o.Webhooks
 }
 
-// GetWebhooksOk returns a tuple with the Webhooks field value if set, zero value otherwise
+// GetWebhooksOk returns a tuple with the Webhooks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetWebhooksOk() (IPPrefixes, bool) {
+func (o *IPRanges) GetWebhooksOk() (*IPPrefixes, bool) {
 	if o == nil || o.Webhooks == nil {
-		var ret IPPrefixes
-		return ret, false
+		return nil, false
 	}
-	return *o.Webhooks, true
+	return o.Webhooks, true
 }
 
 // HasWebhooks returns a boolean if a field has been set.
@@ -382,7 +373,7 @@ func (v NullableIPRanges) Get() *IPRanges {
 	return v.value
 }
 
-func (v NullableIPRanges) Set(val *IPRanges) {
+func (v *NullableIPRanges) Set(val *IPRanges) {
 	v.value = val
 	v.isSet = true
 }
@@ -391,7 +382,7 @@ func (v NullableIPRanges) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableIPRanges) Unset() {
+func (v *NullableIPRanges) Unset() {
 	v.value = nil
 	v.isSet = false
 }

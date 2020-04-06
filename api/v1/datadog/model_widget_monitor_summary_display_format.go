@@ -36,7 +36,7 @@ func (v NullableWidgetMonitorSummaryDisplayFormat) Get() *WidgetMonitorSummaryDi
 	return v.value
 }
 
-func (v NullableWidgetMonitorSummaryDisplayFormat) Set(val *WidgetMonitorSummaryDisplayFormat) {
+func (v *NullableWidgetMonitorSummaryDisplayFormat) Set(val *WidgetMonitorSummaryDisplayFormat) {
 	v.value = val
 	v.isSet = true
 }
@@ -45,7 +45,7 @@ func (v NullableWidgetMonitorSummaryDisplayFormat) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableWidgetMonitorSummaryDisplayFormat) Unset() {
+func (v *NullableWidgetMonitorSummaryDisplayFormat) Unset() {
 	v.value = nil
 	v.isSet = false
 }

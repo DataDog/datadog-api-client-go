@@ -29,16 +29,22 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDefault
 
-`func (o *DashboardTemplateVariables) GetDefault() NullableString`
+`func (o *DashboardTemplateVariables) GetDefault() string`
 
 GetDefault returns the Default field if non-nil, zero value otherwise.
 
 ### GetDefaultOk
 
-`func (o *DashboardTemplateVariables) GetDefaultOk() (NullableString, bool)`
+`func (o *DashboardTemplateVariables) GetDefaultOk() (*string, bool)`
 
 GetDefaultOk returns a tuple with the Default field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDefault
+
+`func (o *DashboardTemplateVariables) SetDefault(v string)`
+
+SetDefault sets Default field to given value.
 
 ### HasDefault
 
@@ -46,19 +52,16 @@ and a boolean to check if the value has been set.
 
 HasDefault returns a boolean if a field has been set.
 
-### SetDefault
+### SetDefaultNil
 
-`func (o *DashboardTemplateVariables) SetDefault(v NullableString)`
+`func (o *DashboardTemplateVariables) SetDefaultNil(b bool)`
 
-SetDefault gets a reference to the given NullableString and assigns it to the Default field.
+ SetDefaultNil sets the value for Default to be an explicit nil
 
-### SetDefaultExplicitNull
+### UnsetDefault
+`func (o *DashboardTemplateVariables) UnsetDefault()`
 
-`func (o *DashboardTemplateVariables) SetDefaultExplicitNull(b bool)`
-
-SetDefaultExplicitNull (un)sets Default to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Default value is set to nil even if false is passed
+UnsetDefault ensures that no value is present for Default, not even an explicit nil
 ### GetName
 
 `func (o *DashboardTemplateVariables) GetName() string`
@@ -67,35 +70,36 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *DashboardTemplateVariables) GetNameOk() (string, bool)`
+`func (o *DashboardTemplateVariables) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *DashboardTemplateVariables) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *DashboardTemplateVariables) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetPrefix
 
-`func (o *DashboardTemplateVariables) GetPrefix() NullableString`
+`func (o *DashboardTemplateVariables) GetPrefix() string`
 
 GetPrefix returns the Prefix field if non-nil, zero value otherwise.
 
 ### GetPrefixOk
 
-`func (o *DashboardTemplateVariables) GetPrefixOk() (NullableString, bool)`
+`func (o *DashboardTemplateVariables) GetPrefixOk() (*string, bool)`
 
 GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPrefix
+
+`func (o *DashboardTemplateVariables) SetPrefix(v string)`
+
+SetPrefix sets Prefix field to given value.
 
 ### HasPrefix
 
@@ -103,19 +107,16 @@ and a boolean to check if the value has been set.
 
 HasPrefix returns a boolean if a field has been set.
 
-### SetPrefix
+### SetPrefixNil
 
-`func (o *DashboardTemplateVariables) SetPrefix(v NullableString)`
+`func (o *DashboardTemplateVariables) SetPrefixNil(b bool)`
 
-SetPrefix gets a reference to the given NullableString and assigns it to the Prefix field.
+ SetPrefixNil sets the value for Prefix to be an explicit nil
 
-### SetPrefixExplicitNull
+### UnsetPrefix
+`func (o *DashboardTemplateVariables) UnsetPrefix()`
 
-`func (o *DashboardTemplateVariables) SetPrefixExplicitNull(b bool)`
-
-SetPrefixExplicitNull (un)sets Prefix to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Prefix value is set to nil even if false is passed
+UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

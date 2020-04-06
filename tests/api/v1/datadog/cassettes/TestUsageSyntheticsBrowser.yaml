@@ -1,0 +1,56 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/usage/synthetics_browser?end_hr=2020-02-13T00%3A00%3A00Z&start_hr=2020-02-12T00%3A00%3A00Z
+    method: GET
+  response:
+    body: '{"usage":[{"browser_check_calls_count":2923,"hour":"2020-02-12T00:00:00+00:00"},{"browser_check_calls_count":2883,"hour":"2020-02-12T01:00:00+00:00"},{"browser_check_calls_count":2945,"hour":"2020-02-12T02:00:00+00:00"},{"browser_check_calls_count":2882,"hour":"2020-02-12T03:00:00+00:00"},{"browser_check_calls_count":2958,"hour":"2020-02-12T04:00:00+00:00"},{"browser_check_calls_count":2876,"hour":"2020-02-12T05:00:00+00:00"},{"browser_check_calls_count":2878,"hour":"2020-02-12T06:00:00+00:00"},{"browser_check_calls_count":2882,"hour":"2020-02-12T07:00:00+00:00"},{"browser_check_calls_count":2952,"hour":"2020-02-12T08:00:00+00:00"},{"browser_check_calls_count":3181,"hour":"2020-02-12T09:00:00+00:00"},{"browser_check_calls_count":3436,"hour":"2020-02-12T10:00:00+00:00"},{"browser_check_calls_count":3107,"hour":"2020-02-12T11:00:00+00:00"},{"browser_check_calls_count":3107,"hour":"2020-02-12T12:00:00+00:00"},{"browser_check_calls_count":3469,"hour":"2020-02-12T13:00:00+00:00"},{"browser_check_calls_count":3161,"hour":"2020-02-12T14:00:00+00:00"},{"browser_check_calls_count":3389,"hour":"2020-02-12T15:00:00+00:00"},{"browser_check_calls_count":4170,"hour":"2020-02-12T16:00:00+00:00"},{"browser_check_calls_count":3905,"hour":"2020-02-12T17:00:00+00:00"},{"browser_check_calls_count":3540,"hour":"2020-02-12T18:00:00+00:00"},{"browser_check_calls_count":3529,"hour":"2020-02-12T19:00:00+00:00"},{"browser_check_calls_count":3763,"hour":"2020-02-12T20:00:00+00:00"},{"browser_check_calls_count":3834,"hour":"2020-02-12T21:00:00+00:00"},{"browser_check_calls_count":3545,"hour":"2020-02-12T22:00:00+00:00"},{"browser_check_calls_count":3467,"hour":"2020-02-12T23:00:00+00:00"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 30 Mar 2020 20:56:10 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Mon, 06-Apr-2020 20:56:10 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - F11u7JCZTPrHz8VfzL5YeXThxcQSR6CdLGgk2tF52+EbYWhXciN8nv9vA8oQ9C9A
+      X-Dd-Version:
+      - "35.2336355"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "200"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "76"
+      X-Ratelimit-Reset:
+      - "230"
+    status: 200 OK
+    code: 200
+    duration: ""

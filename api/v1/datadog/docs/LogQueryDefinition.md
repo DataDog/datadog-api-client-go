@@ -37,22 +37,22 @@ GetCompute returns the Compute field if non-nil, zero value otherwise.
 
 ### GetComputeOk
 
-`func (o *LogQueryDefinition) GetComputeOk() (LogsQueryCompute, bool)`
+`func (o *LogQueryDefinition) GetComputeOk() (*LogsQueryCompute, bool)`
 
 GetComputeOk returns a tuple with the Compute field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCompute
+
+`func (o *LogQueryDefinition) SetCompute(v LogsQueryCompute)`
+
+SetCompute sets Compute field to given value.
 
 ### HasCompute
 
 `func (o *LogQueryDefinition) HasCompute() bool`
 
 HasCompute returns a boolean if a field has been set.
-
-### SetCompute
-
-`func (o *LogQueryDefinition) SetCompute(v LogsQueryCompute)`
-
-SetCompute gets a reference to the given LogsQueryCompute and assigns it to the Compute field.
 
 ### GetGroupBy
 
@@ -62,22 +62,22 @@ GetGroupBy returns the GroupBy field if non-nil, zero value otherwise.
 
 ### GetGroupByOk
 
-`func (o *LogQueryDefinition) GetGroupByOk() ([]LogQueryDefinitionGroupBy, bool)`
+`func (o *LogQueryDefinition) GetGroupByOk() (*[]LogQueryDefinitionGroupBy, bool)`
 
 GetGroupByOk returns a tuple with the GroupBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetGroupBy
+
+`func (o *LogQueryDefinition) SetGroupBy(v []LogQueryDefinitionGroupBy)`
+
+SetGroupBy sets GroupBy field to given value.
 
 ### HasGroupBy
 
 `func (o *LogQueryDefinition) HasGroupBy() bool`
 
 HasGroupBy returns a boolean if a field has been set.
-
-### SetGroupBy
-
-`func (o *LogQueryDefinition) SetGroupBy(v []LogQueryDefinitionGroupBy)`
-
-SetGroupBy gets a reference to the given []LogQueryDefinitionGroupBy and assigns it to the GroupBy field.
 
 ### GetIndex
 
@@ -87,22 +87,22 @@ GetIndex returns the Index field if non-nil, zero value otherwise.
 
 ### GetIndexOk
 
-`func (o *LogQueryDefinition) GetIndexOk() (string, bool)`
+`func (o *LogQueryDefinition) GetIndexOk() (*string, bool)`
 
 GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIndex
+
+`func (o *LogQueryDefinition) SetIndex(v string)`
+
+SetIndex sets Index field to given value.
 
 ### HasIndex
 
 `func (o *LogQueryDefinition) HasIndex() bool`
 
 HasIndex returns a boolean if a field has been set.
-
-### SetIndex
-
-`func (o *LogQueryDefinition) SetIndex(v string)`
-
-SetIndex gets a reference to the given string and assigns it to the Index field.
 
 ### GetMultiCompute
 
@@ -112,22 +112,22 @@ GetMultiCompute returns the MultiCompute field if non-nil, zero value otherwise.
 
 ### GetMultiComputeOk
 
-`func (o *LogQueryDefinition) GetMultiComputeOk() ([]LogsQueryCompute, bool)`
+`func (o *LogQueryDefinition) GetMultiComputeOk() (*[]LogsQueryCompute, bool)`
 
 GetMultiComputeOk returns a tuple with the MultiCompute field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMultiCompute
+
+`func (o *LogQueryDefinition) SetMultiCompute(v []LogsQueryCompute)`
+
+SetMultiCompute sets MultiCompute field to given value.
 
 ### HasMultiCompute
 
 `func (o *LogQueryDefinition) HasMultiCompute() bool`
 
 HasMultiCompute returns a boolean if a field has been set.
-
-### SetMultiCompute
-
-`func (o *LogQueryDefinition) SetMultiCompute(v []LogsQueryCompute)`
-
-SetMultiCompute gets a reference to the given []LogsQueryCompute and assigns it to the MultiCompute field.
 
 ### GetSearch
 
@@ -137,22 +137,22 @@ GetSearch returns the Search field if non-nil, zero value otherwise.
 
 ### GetSearchOk
 
-`func (o *LogQueryDefinition) GetSearchOk() (LogQueryDefinitionSearch, bool)`
+`func (o *LogQueryDefinition) GetSearchOk() (*LogQueryDefinitionSearch, bool)`
 
 GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSearch
+
+`func (o *LogQueryDefinition) SetSearch(v LogQueryDefinitionSearch)`
+
+SetSearch sets Search field to given value.
 
 ### HasSearch
 
 `func (o *LogQueryDefinition) HasSearch() bool`
 
 HasSearch returns a boolean if a field has been set.
-
-### SetSearch
-
-`func (o *LogQueryDefinition) SetSearch(v LogQueryDefinitionSearch)`
-
-SetSearch gets a reference to the given LogQueryDefinitionSearch and assigns it to the Search field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

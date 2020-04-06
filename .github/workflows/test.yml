@@ -20,7 +20,7 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Install gogetsum
+    - name: Install gotestsum
       run: go get gotest.tools/gotestsum
     - name: Test
       run: ./run-tests.sh

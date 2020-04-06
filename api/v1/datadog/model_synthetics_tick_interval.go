@@ -42,7 +42,7 @@ func (v NullableSyntheticsTickInterval) Get() *SyntheticsTickInterval {
 	return v.value
 }
 
-func (v NullableSyntheticsTickInterval) Set(val *SyntheticsTickInterval) {
+func (v *NullableSyntheticsTickInterval) Set(val *SyntheticsTickInterval) {
 	v.value = val
 	v.isSet = true
 }
@@ -51,7 +51,7 @@ func (v NullableSyntheticsTickInterval) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTickInterval) Unset() {
+func (v *NullableSyntheticsTickInterval) Unset() {
 	v.value = nil
 	v.isSet = false
 }

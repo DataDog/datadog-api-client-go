@@ -67,15 +67,9 @@ func (r apiGetAllHostsRequest) From(from int64) apiGetAllHostsRequest {
 
 /*
 GetAllHosts Get all hosts for your organization
-## Search Hosts
-This endpoint allows searching for hosts by name, alias, or tag. Hosts live within the past 3 hours are included. Results are paginated with a max of 1000 results at a time.
-### Arguments:
-* **`filter`** [*optional*, *default* = **None**]: Query string to filter search results.
-* **`sort_field`** [*optional*, *default* = **cpu**]: Sort hosts by the given field. Options: **status, apps, cpu, iowait, load**
-* **`sort_dir`** [*optional*, *default* = **desc**]: Direction of sort. Options: **asc, desc**
-* **`start`** [*optional*, *default* = **0**]: Host result to start search from.
-* **`count`** [*optional*, *default* = **100**]: Number of host results to return. Max 1000.
-* **`from`** [*optional*, *default* = **now - 2 hours**]: Number of seconds since UNIX epoch from which you want to search your hosts.
+This endpoint allows searching for hosts by name, alias, or tag.
+Hosts live within the past 3 hours are included.
+Results are paginated with a max of 1000 results at a time.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllHostsRequest
 */
@@ -251,11 +245,9 @@ func (r apiGetHostTotalsRequest) From(from int64) apiGetHostTotalsRequest {
 }
 
 /*
-GetHostTotals Get total number of active hosts in your Datadog Account
-## Get Host totals
-This endpoint returns the total number of active and up hosts in your Datadog account. Active means the host has reported in the past hour, and up means it has reported in the past two hours.
-### Arguments:
-* **`from`** [*optional*, *default*= **now - 2 hours**]:  Number of seconds since UNIX epoch from which you want to get the total number of active and up hosts.
+GetHostTotals Get the total number of active hosts
+This endpoint returns the total number of active and up hosts in your Datadog account.
+Active means the host has reported in the past hour, and up means it has reported in the past two hours.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetHostTotalsRequest
 */
@@ -407,14 +399,10 @@ func (r apiMuteHostRequest) Body(body HostMuteSettings) apiMuteHostRequest {
 }
 
 /*
-MuteHost Mute a Host
-## Mute a Host
-### Arguments:
-* **`end`** [*optional*, *default*= *None*]: POSIX timestamp when the host is unmuted. If omitted, the host remains muted until explicitly unmuted.
-* **`message`** [*optional*, *default*= *None*]: Message to associate with the muting of this host.
-* **`override`** [*optional*, *default*= *False*]: If true and the host is already muted, replaces existing host mute settings.
+MuteHost Mute a host
+Mute a host.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param hostName Name of the host to mute
+ * @param hostName Name of the host to mute.
 @return apiMuteHostRequest
 */
 func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string) apiMuteHostRequest {
@@ -560,11 +548,10 @@ type apiUnmuteHostRequest struct {
 }
 
 /*
-UnmuteHost Unmute a Host
-### Unmute a Host
-This endpoint takes no JSON arguments.
+UnmuteHost Unmute a host
+Unmutes a host. This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param hostName Name of the host to unmute
+ * @param hostName Name of the host to unmute.
 @return apiUnmuteHostRequest
 */
 func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) apiUnmuteHostRequest {

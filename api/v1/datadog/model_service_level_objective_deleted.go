@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectiveDeleted struct for ServiceLevelObjectiveDeleted
+// ServiceLevelObjectiveDeleted A response list of all service level objective deleted.
 type ServiceLevelObjectiveDeleted struct {
 	// An array containing the ID of the deleted service level objective object.
 	Data []string `json:"data"`
@@ -46,6 +46,15 @@ func (o *ServiceLevelObjectiveDeleted) GetData() []string {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectiveDeleted) GetDataOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *ServiceLevelObjectiveDeleted) SetData(v []string) {
 	o.Data = v
@@ -68,7 +77,7 @@ func (v NullableServiceLevelObjectiveDeleted) Get() *ServiceLevelObjectiveDelete
 	return v.value
 }
 
-func (v NullableServiceLevelObjectiveDeleted) Set(val *ServiceLevelObjectiveDeleted) {
+func (v *NullableServiceLevelObjectiveDeleted) Set(val *ServiceLevelObjectiveDeleted) {
 	v.value = val
 	v.isSet = true
 }
@@ -77,7 +86,7 @@ func (v NullableServiceLevelObjectiveDeleted) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectiveDeleted) Unset() {
+func (v *NullableServiceLevelObjectiveDeleted) Unset() {
 	v.value = nil
 	v.isSet = false
 }

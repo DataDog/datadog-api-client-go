@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// LogsGrokParserRules Set of rules for the grok parser
+// LogsGrokParserRules Set of rules for the grok parser.
 type LogsGrokParserRules struct {
-	// List of match rules for the grok parser, separated by a new line
+	// List of match rules for the grok parser, separated by a new line.
 	MatchRules string `json:"match_rules"`
-	// List of support rules for the grok parser, separated by a new line
+	// List of support rules for the grok parser, separated by a new line.
 	SupportRules *string `json:"support_rules,omitempty"`
 }
 
@@ -52,6 +52,15 @@ func (o *LogsGrokParserRules) GetMatchRules() string {
 	return o.MatchRules
 }
 
+// GetMatchRulesOk returns a tuple with the MatchRules field value
+// and a boolean to check if the value has been set.
+func (o *LogsGrokParserRules) GetMatchRulesOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MatchRules, true
+}
+
 // SetMatchRules sets field value
 func (o *LogsGrokParserRules) SetMatchRules(v string) {
 	o.MatchRules = v
@@ -66,14 +75,13 @@ func (o *LogsGrokParserRules) GetSupportRules() string {
 	return *o.SupportRules
 }
 
-// GetSupportRulesOk returns a tuple with the SupportRules field value if set, zero value otherwise
+// GetSupportRulesOk returns a tuple with the SupportRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsGrokParserRules) GetSupportRulesOk() (string, bool) {
+func (o *LogsGrokParserRules) GetSupportRulesOk() (*string, bool) {
 	if o == nil || o.SupportRules == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SupportRules, true
+	return o.SupportRules, true
 }
 
 // HasSupportRules returns a boolean if a field has been set.
@@ -110,7 +118,7 @@ func (v NullableLogsGrokParserRules) Get() *LogsGrokParserRules {
 	return v.value
 }
 
-func (v NullableLogsGrokParserRules) Set(val *LogsGrokParserRules) {
+func (v *NullableLogsGrokParserRules) Set(val *LogsGrokParserRules) {
 	v.value = val
 	v.isSet = true
 }
@@ -119,7 +127,7 @@ func (v NullableLogsGrokParserRules) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsGrokParserRules) Unset() {
+func (v *NullableLogsGrokParserRules) Unset() {
 	v.value = nil
 	v.isSet = false
 }

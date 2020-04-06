@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveResponse struct for HistoryServiceLevelObjectiveResponse
+// HistoryServiceLevelObjectiveResponse A service level objective history response.
 type HistoryServiceLevelObjectiveResponse struct {
 	Data HistoryServiceLevelObjectiveResponseData `json:"data"`
 	// A list of errors while querying the history data for the service level obective.
@@ -47,6 +47,15 @@ func (o *HistoryServiceLevelObjectiveResponse) GetData() HistoryServiceLevelObje
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *HistoryServiceLevelObjectiveResponse) GetDataOk() (*HistoryServiceLevelObjectiveResponseData, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *HistoryServiceLevelObjectiveResponse) SetData(v HistoryServiceLevelObjectiveResponseData) {
 	o.Data = v
@@ -61,14 +70,13 @@ func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []HistoryServiceLevel
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() ([]HistoryServiceLevelObjectiveResponseError, bool) {
+func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() (*[]HistoryServiceLevelObjectiveResponseError, bool) {
 	if o == nil || o.Errors == nil {
-		var ret []HistoryServiceLevelObjectiveResponseError
-		return ret, false
+		return nil, false
 	}
-	return *o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -105,7 +113,7 @@ func (v NullableHistoryServiceLevelObjectiveResponse) Get() *HistoryServiceLevel
 	return v.value
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponse) Set(val *HistoryServiceLevelObjectiveResponse) {
+func (v *NullableHistoryServiceLevelObjectiveResponse) Set(val *HistoryServiceLevelObjectiveResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -114,7 +122,7 @@ func (v NullableHistoryServiceLevelObjectiveResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponse) Unset() {
+func (v *NullableHistoryServiceLevelObjectiveResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

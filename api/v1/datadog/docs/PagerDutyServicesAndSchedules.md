@@ -34,22 +34,22 @@ GetSchedules returns the Schedules field if non-nil, zero value otherwise.
 
 ### GetSchedulesOk
 
-`func (o *PagerDutyServicesAndSchedules) GetSchedulesOk() ([]string, bool)`
+`func (o *PagerDutyServicesAndSchedules) GetSchedulesOk() (*[]string, bool)`
 
 GetSchedulesOk returns a tuple with the Schedules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSchedules
+
+`func (o *PagerDutyServicesAndSchedules) SetSchedules(v []string)`
+
+SetSchedules sets Schedules field to given value.
 
 ### HasSchedules
 
 `func (o *PagerDutyServicesAndSchedules) HasSchedules() bool`
 
 HasSchedules returns a boolean if a field has been set.
-
-### SetSchedules
-
-`func (o *PagerDutyServicesAndSchedules) SetSchedules(v []string)`
-
-SetSchedules gets a reference to the given []string and assigns it to the Schedules field.
 
 ### GetServices
 
@@ -59,22 +59,22 @@ GetServices returns the Services field if non-nil, zero value otherwise.
 
 ### GetServicesOk
 
-`func (o *PagerDutyServicesAndSchedules) GetServicesOk() ([]PagerDutyService, bool)`
+`func (o *PagerDutyServicesAndSchedules) GetServicesOk() (*[]PagerDutyService, bool)`
 
 GetServicesOk returns a tuple with the Services field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetServices
+
+`func (o *PagerDutyServicesAndSchedules) SetServices(v []PagerDutyService)`
+
+SetServices sets Services field to given value.
 
 ### HasServices
 
 `func (o *PagerDutyServicesAndSchedules) HasServices() bool`
 
 HasServices returns a boolean if a field has been set.
-
-### SetServices
-
-`func (o *PagerDutyServicesAndSchedules) SetServices(v []PagerDutyService)`
-
-SetServices gets a reference to the given []PagerDutyService and assigns it to the Services field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

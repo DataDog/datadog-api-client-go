@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectivesBulkDeleted The bulk partial delete service level objective object endpoint response. This endpoint operates on multiple service level objective objects, so it may be partially successful. In such cases, the \"data\" and \"error\" fields in this response indicate which deletions succeeded and failed.
+// ServiceLevelObjectivesBulkDeleted The bulk partial delete service level objective object endpoint response.  This endpoint operates on multiple service level objective objects, so it may be partially successful. In such cases, the \"data\" and \"error\" fields in this response indicate which deletions succeeded and failed.
 type ServiceLevelObjectivesBulkDeleted struct {
 	Data   ServiceLevelObjectivesBulkDeletedData     `json:"data"`
 	Errors []ServiceLevelObjectivesBulkDeletedErrors `json:"errors"`
@@ -47,6 +47,15 @@ func (o *ServiceLevelObjectivesBulkDeleted) GetData() ServiceLevelObjectivesBulk
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectivesBulkDeleted) GetDataOk() (*ServiceLevelObjectivesBulkDeletedData, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *ServiceLevelObjectivesBulkDeleted) SetData(v ServiceLevelObjectivesBulkDeletedData) {
 	o.Data = v
@@ -60,6 +69,15 @@ func (o *ServiceLevelObjectivesBulkDeleted) GetErrors() []ServiceLevelObjectives
 	}
 
 	return o.Errors
+}
+
+// GetErrorsOk returns a tuple with the Errors field value
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjectivesBulkDeleted) GetErrorsOk() (*[]ServiceLevelObjectivesBulkDeletedErrors, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Errors, true
 }
 
 // SetErrors sets field value
@@ -87,7 +105,7 @@ func (v NullableServiceLevelObjectivesBulkDeleted) Get() *ServiceLevelObjectives
 	return v.value
 }
 
-func (v NullableServiceLevelObjectivesBulkDeleted) Set(val *ServiceLevelObjectivesBulkDeleted) {
+func (v *NullableServiceLevelObjectivesBulkDeleted) Set(val *ServiceLevelObjectivesBulkDeleted) {
 	v.value = val
 	v.isSet = true
 }
@@ -96,7 +114,7 @@ func (v NullableServiceLevelObjectivesBulkDeleted) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableServiceLevelObjectivesBulkDeleted) Unset() {
+func (v *NullableServiceLevelObjectivesBulkDeleted) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -44,7 +44,7 @@ func (v NullableSyntheticsCheckType) Get() *SyntheticsCheckType {
 	return v.value
 }
 
-func (v NullableSyntheticsCheckType) Set(val *SyntheticsCheckType) {
+func (v *NullableSyntheticsCheckType) Set(val *SyntheticsCheckType) {
 	v.value = val
 	v.isSet = true
 }
@@ -53,7 +53,7 @@ func (v NullableSyntheticsCheckType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsCheckType) Unset() {
+func (v *NullableSyntheticsCheckType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

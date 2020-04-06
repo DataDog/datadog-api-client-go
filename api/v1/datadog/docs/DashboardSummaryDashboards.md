@@ -41,22 +41,22 @@ GetAuthorHandle returns the AuthorHandle field if non-nil, zero value otherwise.
 
 ### GetAuthorHandleOk
 
-`func (o *DashboardSummaryDashboards) GetAuthorHandleOk() (string, bool)`
+`func (o *DashboardSummaryDashboards) GetAuthorHandleOk() (*string, bool)`
 
 GetAuthorHandleOk returns a tuple with the AuthorHandle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAuthorHandle
+
+`func (o *DashboardSummaryDashboards) SetAuthorHandle(v string)`
+
+SetAuthorHandle sets AuthorHandle field to given value.
 
 ### HasAuthorHandle
 
 `func (o *DashboardSummaryDashboards) HasAuthorHandle() bool`
 
 HasAuthorHandle returns a boolean if a field has been set.
-
-### SetAuthorHandle
-
-`func (o *DashboardSummaryDashboards) SetAuthorHandle(v string)`
-
-SetAuthorHandle gets a reference to the given string and assigns it to the AuthorHandle field.
 
 ### GetCreatedAt
 
@@ -66,22 +66,22 @@ GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *DashboardSummaryDashboards) GetCreatedAtOk() (time.Time, bool)`
+`func (o *DashboardSummaryDashboards) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *DashboardSummaryDashboards) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 ### HasCreatedAt
 
 `func (o *DashboardSummaryDashboards) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
-
-### SetCreatedAt
-
-`func (o *DashboardSummaryDashboards) SetCreatedAt(v time.Time)`
-
-SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 
 ### GetDescription
 
@@ -91,22 +91,22 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *DashboardSummaryDashboards) GetDescriptionOk() (string, bool)`
+`func (o *DashboardSummaryDashboards) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *DashboardSummaryDashboards) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
 `func (o *DashboardSummaryDashboards) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *DashboardSummaryDashboards) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetId
 
@@ -116,22 +116,22 @@ GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DashboardSummaryDashboards) GetIdOk() (string, bool)`
+`func (o *DashboardSummaryDashboards) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *DashboardSummaryDashboards) SetId(v string)`
+
+SetId sets Id field to given value.
 
 ### HasId
 
 `func (o *DashboardSummaryDashboards) HasId() bool`
 
 HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *DashboardSummaryDashboards) SetId(v string)`
-
-SetId gets a reference to the given string and assigns it to the Id field.
 
 ### GetIsReadOnly
 
@@ -141,22 +141,22 @@ GetIsReadOnly returns the IsReadOnly field if non-nil, zero value otherwise.
 
 ### GetIsReadOnlyOk
 
-`func (o *DashboardSummaryDashboards) GetIsReadOnlyOk() (bool, bool)`
+`func (o *DashboardSummaryDashboards) GetIsReadOnlyOk() (*bool, bool)`
 
 GetIsReadOnlyOk returns a tuple with the IsReadOnly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIsReadOnly
+
+`func (o *DashboardSummaryDashboards) SetIsReadOnly(v bool)`
+
+SetIsReadOnly sets IsReadOnly field to given value.
 
 ### HasIsReadOnly
 
 `func (o *DashboardSummaryDashboards) HasIsReadOnly() bool`
 
 HasIsReadOnly returns a boolean if a field has been set.
-
-### SetIsReadOnly
-
-`func (o *DashboardSummaryDashboards) SetIsReadOnly(v bool)`
-
-SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
 
 ### GetLayoutType
 
@@ -166,22 +166,22 @@ GetLayoutType returns the LayoutType field if non-nil, zero value otherwise.
 
 ### GetLayoutTypeOk
 
-`func (o *DashboardSummaryDashboards) GetLayoutTypeOk() (string, bool)`
+`func (o *DashboardSummaryDashboards) GetLayoutTypeOk() (*string, bool)`
 
 GetLayoutTypeOk returns a tuple with the LayoutType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLayoutType
+
+`func (o *DashboardSummaryDashboards) SetLayoutType(v string)`
+
+SetLayoutType sets LayoutType field to given value.
 
 ### HasLayoutType
 
 `func (o *DashboardSummaryDashboards) HasLayoutType() bool`
 
 HasLayoutType returns a boolean if a field has been set.
-
-### SetLayoutType
-
-`func (o *DashboardSummaryDashboards) SetLayoutType(v string)`
-
-SetLayoutType gets a reference to the given string and assigns it to the LayoutType field.
 
 ### GetModifiedAt
 
@@ -191,22 +191,22 @@ GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
 
 ### GetModifiedAtOk
 
-`func (o *DashboardSummaryDashboards) GetModifiedAtOk() (time.Time, bool)`
+`func (o *DashboardSummaryDashboards) GetModifiedAtOk() (*time.Time, bool)`
 
 GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *DashboardSummaryDashboards) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
 
 ### HasModifiedAt
 
 `func (o *DashboardSummaryDashboards) HasModifiedAt() bool`
 
 HasModifiedAt returns a boolean if a field has been set.
-
-### SetModifiedAt
-
-`func (o *DashboardSummaryDashboards) SetModifiedAt(v time.Time)`
-
-SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
 
 ### GetTitle
 
@@ -216,22 +216,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *DashboardSummaryDashboards) GetTitleOk() (string, bool)`
+`func (o *DashboardSummaryDashboards) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *DashboardSummaryDashboards) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *DashboardSummaryDashboards) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *DashboardSummaryDashboards) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetUrl
 
@@ -241,22 +241,22 @@ GetUrl returns the Url field if non-nil, zero value otherwise.
 
 ### GetUrlOk
 
-`func (o *DashboardSummaryDashboards) GetUrlOk() (string, bool)`
+`func (o *DashboardSummaryDashboards) GetUrlOk() (*string, bool)`
 
 GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *DashboardSummaryDashboards) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
 
 ### HasUrl
 
 `func (o *DashboardSummaryDashboards) HasUrl() bool`
 
 HasUrl returns a boolean if a field has been set.
-
-### SetUrl
-
-`func (o *DashboardSummaryDashboards) SetUrl(v string)`
-
-SetUrl gets a reference to the given string and assigns it to the Url field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

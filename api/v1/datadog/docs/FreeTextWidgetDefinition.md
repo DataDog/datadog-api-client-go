@@ -37,22 +37,22 @@ GetColor returns the Color field if non-nil, zero value otherwise.
 
 ### GetColorOk
 
-`func (o *FreeTextWidgetDefinition) GetColorOk() (string, bool)`
+`func (o *FreeTextWidgetDefinition) GetColorOk() (*string, bool)`
 
 GetColorOk returns a tuple with the Color field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetColor
+
+`func (o *FreeTextWidgetDefinition) SetColor(v string)`
+
+SetColor sets Color field to given value.
 
 ### HasColor
 
 `func (o *FreeTextWidgetDefinition) HasColor() bool`
 
 HasColor returns a boolean if a field has been set.
-
-### SetColor
-
-`func (o *FreeTextWidgetDefinition) SetColor(v string)`
-
-SetColor gets a reference to the given string and assigns it to the Color field.
 
 ### GetFontSize
 
@@ -62,22 +62,22 @@ GetFontSize returns the FontSize field if non-nil, zero value otherwise.
 
 ### GetFontSizeOk
 
-`func (o *FreeTextWidgetDefinition) GetFontSizeOk() (string, bool)`
+`func (o *FreeTextWidgetDefinition) GetFontSizeOk() (*string, bool)`
 
 GetFontSizeOk returns a tuple with the FontSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFontSize
+
+`func (o *FreeTextWidgetDefinition) SetFontSize(v string)`
+
+SetFontSize sets FontSize field to given value.
 
 ### HasFontSize
 
 `func (o *FreeTextWidgetDefinition) HasFontSize() bool`
 
 HasFontSize returns a boolean if a field has been set.
-
-### SetFontSize
-
-`func (o *FreeTextWidgetDefinition) SetFontSize(v string)`
-
-SetFontSize gets a reference to the given string and assigns it to the FontSize field.
 
 ### GetText
 
@@ -87,22 +87,17 @@ GetText returns the Text field if non-nil, zero value otherwise.
 
 ### GetTextOk
 
-`func (o *FreeTextWidgetDefinition) GetTextOk() (string, bool)`
+`func (o *FreeTextWidgetDefinition) GetTextOk() (*string, bool)`
 
 GetTextOk returns a tuple with the Text field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasText
-
-`func (o *FreeTextWidgetDefinition) HasText() bool`
-
-HasText returns a boolean if a field has been set.
 
 ### SetText
 
 `func (o *FreeTextWidgetDefinition) SetText(v string)`
 
-SetText gets a reference to the given string and assigns it to the Text field.
+SetText sets Text field to given value.
+
 
 ### GetTextAlign
 
@@ -112,22 +107,22 @@ GetTextAlign returns the TextAlign field if non-nil, zero value otherwise.
 
 ### GetTextAlignOk
 
-`func (o *FreeTextWidgetDefinition) GetTextAlignOk() (WidgetTextAlign, bool)`
+`func (o *FreeTextWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool)`
 
 GetTextAlignOk returns a tuple with the TextAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTextAlign
+
+`func (o *FreeTextWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
+
+SetTextAlign sets TextAlign field to given value.
 
 ### HasTextAlign
 
 `func (o *FreeTextWidgetDefinition) HasTextAlign() bool`
 
 HasTextAlign returns a boolean if a field has been set.
-
-### SetTextAlign
-
-`func (o *FreeTextWidgetDefinition) SetTextAlign(v WidgetTextAlign)`
-
-SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.
 
 ### GetType
 
@@ -137,22 +132,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *FreeTextWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *FreeTextWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *FreeTextWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *FreeTextWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

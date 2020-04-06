@@ -15,6 +15,8 @@ import (
 
 // UsageLogsHour struct for UsageLogsHour
 type UsageLogsHour struct {
+	// Contains the number of billable log bytes ingested.
+	BillableIngestedBytes *int64 `json:"billable_ingested_bytes,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of log events indexed.
@@ -40,6 +42,38 @@ func NewUsageLogsHourWithDefaults() *UsageLogsHour {
 	return &this
 }
 
+// GetBillableIngestedBytes returns the BillableIngestedBytes field value if set, zero value otherwise.
+func (o *UsageLogsHour) GetBillableIngestedBytes() int64 {
+	if o == nil || o.BillableIngestedBytes == nil {
+		var ret int64
+		return ret
+	}
+	return *o.BillableIngestedBytes
+}
+
+// GetBillableIngestedBytesOk returns a tuple with the BillableIngestedBytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageLogsHour) GetBillableIngestedBytesOk() (*int64, bool) {
+	if o == nil || o.BillableIngestedBytes == nil {
+		return nil, false
+	}
+	return o.BillableIngestedBytes, true
+}
+
+// HasBillableIngestedBytes returns a boolean if a field has been set.
+func (o *UsageLogsHour) HasBillableIngestedBytes() bool {
+	if o != nil && o.BillableIngestedBytes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBillableIngestedBytes gets a reference to the given int64 and assigns it to the BillableIngestedBytes field.
+func (o *UsageLogsHour) SetBillableIngestedBytes(v int64) {
+	o.BillableIngestedBytes = &v
+}
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -49,14 +83,13 @@ func (o *UsageLogsHour) GetHour() time.Time {
 	return *o.Hour
 }
 
-// GetHourOk returns a tuple with the Hour field value if set, zero value otherwise
+// GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageLogsHour) GetHourOk() (time.Time, bool) {
+func (o *UsageLogsHour) GetHourOk() (*time.Time, bool) {
 	if o == nil || o.Hour == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Hour, true
+	return o.Hour, true
 }
 
 // HasHour returns a boolean if a field has been set.
@@ -82,14 +115,13 @@ func (o *UsageLogsHour) GetIndexedEventsCount() int64 {
 	return *o.IndexedEventsCount
 }
 
-// GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field value if set, zero value otherwise
+// GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageLogsHour) GetIndexedEventsCountOk() (int64, bool) {
+func (o *UsageLogsHour) GetIndexedEventsCountOk() (*int64, bool) {
 	if o == nil || o.IndexedEventsCount == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.IndexedEventsCount, true
+	return o.IndexedEventsCount, true
 }
 
 // HasIndexedEventsCount returns a boolean if a field has been set.
@@ -115,14 +147,13 @@ func (o *UsageLogsHour) GetIngestedEventsBytes() int64 {
 	return *o.IngestedEventsBytes
 }
 
-// GetIngestedEventsBytesOk returns a tuple with the IngestedEventsBytes field value if set, zero value otherwise
+// GetIngestedEventsBytesOk returns a tuple with the IngestedEventsBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageLogsHour) GetIngestedEventsBytesOk() (int64, bool) {
+func (o *UsageLogsHour) GetIngestedEventsBytesOk() (*int64, bool) {
 	if o == nil || o.IngestedEventsBytes == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.IngestedEventsBytes, true
+	return o.IngestedEventsBytes, true
 }
 
 // HasIngestedEventsBytes returns a boolean if a field has been set.
@@ -141,6 +172,9 @@ func (o *UsageLogsHour) SetIngestedEventsBytes(v int64) {
 
 func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.BillableIngestedBytes != nil {
+		toSerialize["billable_ingested_bytes"] = o.BillableIngestedBytes
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -162,7 +196,7 @@ func (v NullableUsageLogsHour) Get() *UsageLogsHour {
 	return v.value
 }
 
-func (v NullableUsageLogsHour) Set(val *UsageLogsHour) {
+func (v *NullableUsageLogsHour) Set(val *UsageLogsHour) {
 	v.value = val
 	v.isSet = true
 }
@@ -171,7 +205,7 @@ func (v NullableUsageLogsHour) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageLogsHour) Unset() {
+func (v *NullableUsageLogsHour) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -51,14 +51,13 @@ func (o *SyntheticsTiming) GetDns() float64 {
 	return *o.Dns
 }
 
-// GetDnsOk returns a tuple with the Dns field value if set, zero value otherwise
+// GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetDnsOk() (float64, bool) {
+func (o *SyntheticsTiming) GetDnsOk() (*float64, bool) {
 	if o == nil || o.Dns == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Dns, true
+	return o.Dns, true
 }
 
 // HasDns returns a boolean if a field has been set.
@@ -84,14 +83,13 @@ func (o *SyntheticsTiming) GetDownload() float64 {
 	return *o.Download
 }
 
-// GetDownloadOk returns a tuple with the Download field value if set, zero value otherwise
+// GetDownloadOk returns a tuple with the Download field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetDownloadOk() (float64, bool) {
+func (o *SyntheticsTiming) GetDownloadOk() (*float64, bool) {
 	if o == nil || o.Download == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Download, true
+	return o.Download, true
 }
 
 // HasDownload returns a boolean if a field has been set.
@@ -117,14 +115,13 @@ func (o *SyntheticsTiming) GetFirstByte() float64 {
 	return *o.FirstByte
 }
 
-// GetFirstByteOk returns a tuple with the FirstByte field value if set, zero value otherwise
+// GetFirstByteOk returns a tuple with the FirstByte field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetFirstByteOk() (float64, bool) {
+func (o *SyntheticsTiming) GetFirstByteOk() (*float64, bool) {
 	if o == nil || o.FirstByte == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.FirstByte, true
+	return o.FirstByte, true
 }
 
 // HasFirstByte returns a boolean if a field has been set.
@@ -150,14 +147,13 @@ func (o *SyntheticsTiming) GetHandshake() float64 {
 	return *o.Handshake
 }
 
-// GetHandshakeOk returns a tuple with the Handshake field value if set, zero value otherwise
+// GetHandshakeOk returns a tuple with the Handshake field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetHandshakeOk() (float64, bool) {
+func (o *SyntheticsTiming) GetHandshakeOk() (*float64, bool) {
 	if o == nil || o.Handshake == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Handshake, true
+	return o.Handshake, true
 }
 
 // HasHandshake returns a boolean if a field has been set.
@@ -183,14 +179,13 @@ func (o *SyntheticsTiming) GetRedirect() float64 {
 	return *o.Redirect
 }
 
-// GetRedirectOk returns a tuple with the Redirect field value if set, zero value otherwise
+// GetRedirectOk returns a tuple with the Redirect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetRedirectOk() (float64, bool) {
+func (o *SyntheticsTiming) GetRedirectOk() (*float64, bool) {
 	if o == nil || o.Redirect == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Redirect, true
+	return o.Redirect, true
 }
 
 // HasRedirect returns a boolean if a field has been set.
@@ -216,14 +211,13 @@ func (o *SyntheticsTiming) GetSsl() float64 {
 	return *o.Ssl
 }
 
-// GetSslOk returns a tuple with the Ssl field value if set, zero value otherwise
+// GetSslOk returns a tuple with the Ssl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetSslOk() (float64, bool) {
+func (o *SyntheticsTiming) GetSslOk() (*float64, bool) {
 	if o == nil || o.Ssl == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Ssl, true
+	return o.Ssl, true
 }
 
 // HasSsl returns a boolean if a field has been set.
@@ -249,14 +243,13 @@ func (o *SyntheticsTiming) GetTcp() float64 {
 	return *o.Tcp
 }
 
-// GetTcpOk returns a tuple with the Tcp field value if set, zero value otherwise
+// GetTcpOk returns a tuple with the Tcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetTcpOk() (float64, bool) {
+func (o *SyntheticsTiming) GetTcpOk() (*float64, bool) {
 	if o == nil || o.Tcp == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Tcp, true
+	return o.Tcp, true
 }
 
 // HasTcp returns a boolean if a field has been set.
@@ -282,14 +275,13 @@ func (o *SyntheticsTiming) GetTotal() float64 {
 	return *o.Total
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, zero value otherwise
+// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetTotalOk() (float64, bool) {
+func (o *SyntheticsTiming) GetTotalOk() (*float64, bool) {
 	if o == nil || o.Total == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Total, true
+	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
@@ -315,14 +307,13 @@ func (o *SyntheticsTiming) GetWait() float64 {
 	return *o.Wait
 }
 
-// GetWaitOk returns a tuple with the Wait field value if set, zero value otherwise
+// GetWaitOk returns a tuple with the Wait field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTiming) GetWaitOk() (float64, bool) {
+func (o *SyntheticsTiming) GetWaitOk() (*float64, bool) {
 	if o == nil || o.Wait == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Wait, true
+	return o.Wait, true
 }
 
 // HasWait returns a boolean if a field has been set.
@@ -380,7 +371,7 @@ func (v NullableSyntheticsTiming) Get() *SyntheticsTiming {
 	return v.value
 }
 
-func (v NullableSyntheticsTiming) Set(val *SyntheticsTiming) {
+func (v *NullableSyntheticsTiming) Set(val *SyntheticsTiming) {
 	v.value = val
 	v.isSet = true
 }
@@ -389,7 +380,7 @@ func (v NullableSyntheticsTiming) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTiming) Unset() {
+func (v *NullableSyntheticsTiming) Unset() {
 	v.value = nil
 	v.isSet = false
 }

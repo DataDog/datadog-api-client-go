@@ -12,9 +12,10 @@ import (
 	"encoding/json"
 )
 
-// ApplicationKey struct for ApplicationKey
+// ApplicationKey An application key with its associated metadata.
 type ApplicationKey struct {
-	Hash  *string `json:"hash,omitempty"`
+	Hash *string `json:"hash,omitempty"`
+	// Name of your application key.
 	Name  *string `json:"name,omitempty"`
 	Owner *string `json:"owner,omitempty"`
 }
@@ -45,14 +46,13 @@ func (o *ApplicationKey) GetHash() string {
 	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value if set, zero value otherwise
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationKey) GetHashOk() (string, bool) {
+func (o *ApplicationKey) GetHashOk() (*string, bool) {
 	if o == nil || o.Hash == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Hash, true
+	return o.Hash, true
 }
 
 // HasHash returns a boolean if a field has been set.
@@ -78,14 +78,13 @@ func (o *ApplicationKey) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationKey) GetNameOk() (string, bool) {
+func (o *ApplicationKey) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -111,14 +110,13 @@ func (o *ApplicationKey) GetOwner() string {
 	return *o.Owner
 }
 
-// GetOwnerOk returns a tuple with the Owner field value if set, zero value otherwise
+// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationKey) GetOwnerOk() (string, bool) {
+func (o *ApplicationKey) GetOwnerOk() (*string, bool) {
 	if o == nil || o.Owner == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Owner, true
+	return o.Owner, true
 }
 
 // HasOwner returns a boolean if a field has been set.
@@ -158,7 +156,7 @@ func (v NullableApplicationKey) Get() *ApplicationKey {
 	return v.value
 }
 
-func (v NullableApplicationKey) Set(val *ApplicationKey) {
+func (v *NullableApplicationKey) Set(val *ApplicationKey) {
 	v.value = val
 	v.isSet = true
 }
@@ -167,7 +165,7 @@ func (v NullableApplicationKey) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableApplicationKey) Unset() {
+func (v *NullableApplicationKey) Unset() {
 	v.value = nil
 	v.isSet = false
 }

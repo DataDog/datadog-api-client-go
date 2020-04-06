@@ -34,7 +34,7 @@ func (v NullableSyntheticsWarningType) Get() *SyntheticsWarningType {
 	return v.value
 }
 
-func (v NullableSyntheticsWarningType) Set(val *SyntheticsWarningType) {
+func (v *NullableSyntheticsWarningType) Set(val *SyntheticsWarningType) {
 	v.value = val
 	v.isSet = true
 }
@@ -43,7 +43,7 @@ func (v NullableSyntheticsWarningType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsWarningType) Unset() {
+func (v *NullableSyntheticsWarningType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

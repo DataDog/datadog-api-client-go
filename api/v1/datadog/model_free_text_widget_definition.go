@@ -55,14 +55,13 @@ func (o *FreeTextWidgetDefinition) GetColor() string {
 	return *o.Color
 }
 
-// GetColorOk returns a tuple with the Color field value if set, zero value otherwise
+// GetColorOk returns a tuple with the Color field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FreeTextWidgetDefinition) GetColorOk() (string, bool) {
+func (o *FreeTextWidgetDefinition) GetColorOk() (*string, bool) {
 	if o == nil || o.Color == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Color, true
+	return o.Color, true
 }
 
 // HasColor returns a boolean if a field has been set.
@@ -88,14 +87,13 @@ func (o *FreeTextWidgetDefinition) GetFontSize() string {
 	return *o.FontSize
 }
 
-// GetFontSizeOk returns a tuple with the FontSize field value if set, zero value otherwise
+// GetFontSizeOk returns a tuple with the FontSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FreeTextWidgetDefinition) GetFontSizeOk() (string, bool) {
+func (o *FreeTextWidgetDefinition) GetFontSizeOk() (*string, bool) {
 	if o == nil || o.FontSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.FontSize, true
+	return o.FontSize, true
 }
 
 // HasFontSize returns a boolean if a field has been set.
@@ -122,6 +120,15 @@ func (o *FreeTextWidgetDefinition) GetText() string {
 	return o.Text
 }
 
+// GetTextOk returns a tuple with the Text field value
+// and a boolean to check if the value has been set.
+func (o *FreeTextWidgetDefinition) GetTextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Text, true
+}
+
 // SetText sets field value
 func (o *FreeTextWidgetDefinition) SetText(v string) {
 	o.Text = v
@@ -136,14 +143,13 @@ func (o *FreeTextWidgetDefinition) GetTextAlign() WidgetTextAlign {
 	return *o.TextAlign
 }
 
-// GetTextAlignOk returns a tuple with the TextAlign field value if set, zero value otherwise
+// GetTextAlignOk returns a tuple with the TextAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FreeTextWidgetDefinition) GetTextAlignOk() (WidgetTextAlign, bool) {
+func (o *FreeTextWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TextAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TextAlign, true
+	return o.TextAlign, true
 }
 
 // HasTextAlign returns a boolean if a field has been set.
@@ -168,6 +174,15 @@ func (o *FreeTextWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *FreeTextWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -209,7 +224,7 @@ func (v NullableFreeTextWidgetDefinition) Get() *FreeTextWidgetDefinition {
 	return v.value
 }
 
-func (v NullableFreeTextWidgetDefinition) Set(val *FreeTextWidgetDefinition) {
+func (v *NullableFreeTextWidgetDefinition) Set(val *FreeTextWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -218,7 +233,7 @@ func (v NullableFreeTextWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableFreeTextWidgetDefinition) Unset() {
+func (v *NullableFreeTextWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

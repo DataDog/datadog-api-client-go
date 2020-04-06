@@ -73,10 +73,10 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DashboardListsApi* | [**AddDashboardListItems**](docs/DashboardListsApi.md#adddashboardlistitems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add dashboards to an existing dashboard list.
-*DashboardListsApi* | [**DeleteDashboardListItems**](docs/DashboardListsApi.md#deletedashboardlistitems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete dashboards from an existing dashboard list.
-*DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Fetch the dashboard list&#39;s dashboard definitions.
-*DashboardListsApi* | [**UpdateDashboardListItems**](docs/DashboardListsApi.md#updatedashboardlistitems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update dashboards of an existing dashboard list.
+*DashboardListsApi* | [**AddDashboardListItems**](docs/DashboardListsApi.md#adddashboardlistitems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
+*DashboardListsApi* | [**DeleteDashboardListItems**](docs/DashboardListsApi.md#deletedashboardlistitems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
+*DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
+*DashboardListsApi* | [**UpdateDashboardListItems**](docs/DashboardListsApi.md#updatedashboardlistitems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update items of a dashboard list
 
 
 ## Documentation For Models

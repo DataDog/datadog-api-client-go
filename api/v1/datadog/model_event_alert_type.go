@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// EventAlertType If it is an alert event, set its type between: error, warning, info, and success.
+// EventAlertType If an alert event is enabled, set its type. For example, `error`, `warning`, `info`, and `success`.
 type EventAlertType string
 
 // List of EventAlertType
@@ -37,7 +37,7 @@ func (v NullableEventAlertType) Get() *EventAlertType {
 	return v.value
 }
 
-func (v NullableEventAlertType) Set(val *EventAlertType) {
+func (v *NullableEventAlertType) Set(val *EventAlertType) {
 	v.value = val
 	v.isSet = true
 }
@@ -46,7 +46,7 @@ func (v NullableEventAlertType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableEventAlertType) Unset() {
+func (v *NullableEventAlertType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

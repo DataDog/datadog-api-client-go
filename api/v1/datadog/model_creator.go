@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// Creator Creator of the object
+// Creator Creator of the object.
 type Creator struct {
 	Email  *string `json:"email,omitempty"`
 	Handle *string `json:"handle,omitempty"`
@@ -45,14 +45,13 @@ func (o *Creator) GetEmail() string {
 	return *o.Email
 }
 
-// GetEmailOk returns a tuple with the Email field value if set, zero value otherwise
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Creator) GetEmailOk() (string, bool) {
+func (o *Creator) GetEmailOk() (*string, bool) {
 	if o == nil || o.Email == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Email, true
+	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
@@ -78,14 +77,13 @@ func (o *Creator) GetHandle() string {
 	return *o.Handle
 }
 
-// GetHandleOk returns a tuple with the Handle field value if set, zero value otherwise
+// GetHandleOk returns a tuple with the Handle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Creator) GetHandleOk() (string, bool) {
+func (o *Creator) GetHandleOk() (*string, bool) {
 	if o == nil || o.Handle == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Handle, true
+	return o.Handle, true
 }
 
 // HasHandle returns a boolean if a field has been set.
@@ -111,14 +109,13 @@ func (o *Creator) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Creator) GetNameOk() (string, bool) {
+func (o *Creator) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -158,7 +155,7 @@ func (v NullableCreator) Get() *Creator {
 	return v.value
 }
 
-func (v NullableCreator) Set(val *Creator) {
+func (v *NullableCreator) Set(val *Creator) {
 	v.value = val
 	v.isSet = true
 }
@@ -167,7 +164,7 @@ func (v NullableCreator) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableCreator) Unset() {
+func (v *NullableCreator) Unset() {
 	v.value = nil
 	v.isSet = false
 }

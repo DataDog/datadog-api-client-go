@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ApiKeyListResponse struct for ApiKeyListResponse
+// ApiKeyListResponse List of API and application keys available for a given organization.
 type ApiKeyListResponse struct {
 	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
 }
@@ -43,14 +43,13 @@ func (o *ApiKeyListResponse) GetApiKeys() []ApiKey {
 	return *o.ApiKeys
 }
 
-// GetApiKeysOk returns a tuple with the ApiKeys field value if set, zero value otherwise
+// GetApiKeysOk returns a tuple with the ApiKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKeyListResponse) GetApiKeysOk() ([]ApiKey, bool) {
+func (o *ApiKeyListResponse) GetApiKeysOk() (*[]ApiKey, bool) {
 	if o == nil || o.ApiKeys == nil {
-		var ret []ApiKey
-		return ret, false
+		return nil, false
 	}
-	return *o.ApiKeys, true
+	return o.ApiKeys, true
 }
 
 // HasApiKeys returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableApiKeyListResponse) Get() *ApiKeyListResponse {
 	return v.value
 }
 
-func (v NullableApiKeyListResponse) Set(val *ApiKeyListResponse) {
+func (v *NullableApiKeyListResponse) Set(val *ApiKeyListResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableApiKeyListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableApiKeyListResponse) Unset() {
+func (v *NullableApiKeyListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }

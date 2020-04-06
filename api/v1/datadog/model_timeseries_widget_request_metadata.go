@@ -45,14 +45,13 @@ func (o *TimeseriesWidgetRequestMetadata) GetAliasName() string {
 	return *o.AliasName
 }
 
-// GetAliasNameOk returns a tuple with the AliasName field value if set, zero value otherwise
+// GetAliasNameOk returns a tuple with the AliasName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequestMetadata) GetAliasNameOk() (string, bool) {
+func (o *TimeseriesWidgetRequestMetadata) GetAliasNameOk() (*string, bool) {
 	if o == nil || o.AliasName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AliasName, true
+	return o.AliasName, true
 }
 
 // HasAliasName returns a boolean if a field has been set.
@@ -77,6 +76,15 @@ func (o *TimeseriesWidgetRequestMetadata) GetExpression() string {
 	}
 
 	return o.Expression
+}
+
+// GetExpressionOk returns a tuple with the Expression field value
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetRequestMetadata) GetExpressionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Expression, true
 }
 
 // SetExpression sets field value
@@ -104,7 +112,7 @@ func (v NullableTimeseriesWidgetRequestMetadata) Get() *TimeseriesWidgetRequestM
 	return v.value
 }
 
-func (v NullableTimeseriesWidgetRequestMetadata) Set(val *TimeseriesWidgetRequestMetadata) {
+func (v *NullableTimeseriesWidgetRequestMetadata) Set(val *TimeseriesWidgetRequestMetadata) {
 	v.value = val
 	v.isSet = true
 }
@@ -113,7 +121,7 @@ func (v NullableTimeseriesWidgetRequestMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableTimeseriesWidgetRequestMetadata) Unset() {
+func (v *NullableTimeseriesWidgetRequestMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }

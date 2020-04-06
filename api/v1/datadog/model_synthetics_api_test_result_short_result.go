@@ -43,14 +43,13 @@ func (o *SyntheticsAPITestResultShortResult) GetTimings() SyntheticsTiming {
 	return *o.Timings
 }
 
-// GetTimingsOk returns a tuple with the Timings field value if set, zero value otherwise
+// GetTimingsOk returns a tuple with the Timings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultShortResult) GetTimingsOk() (SyntheticsTiming, bool) {
+func (o *SyntheticsAPITestResultShortResult) GetTimingsOk() (*SyntheticsTiming, bool) {
 	if o == nil || o.Timings == nil {
-		var ret SyntheticsTiming
-		return ret, false
+		return nil, false
 	}
-	return *o.Timings, true
+	return o.Timings, true
 }
 
 // HasTimings returns a boolean if a field has been set.
@@ -84,7 +83,7 @@ func (v NullableSyntheticsAPITestResultShortResult) Get() *SyntheticsAPITestResu
 	return v.value
 }
 
-func (v NullableSyntheticsAPITestResultShortResult) Set(val *SyntheticsAPITestResultShortResult) {
+func (v *NullableSyntheticsAPITestResultShortResult) Set(val *SyntheticsAPITestResultShortResult) {
 	v.value = val
 	v.isSet = true
 }
@@ -93,7 +92,7 @@ func (v NullableSyntheticsAPITestResultShortResult) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsAPITestResultShortResult) Unset() {
+func (v *NullableSyntheticsAPITestResultShortResult) Unset() {
 	v.value = nil
 	v.isSet = false
 }

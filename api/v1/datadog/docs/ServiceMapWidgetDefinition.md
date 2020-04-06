@@ -38,22 +38,17 @@ GetFilters returns the Filters field if non-nil, zero value otherwise.
 
 ### GetFiltersOk
 
-`func (o *ServiceMapWidgetDefinition) GetFiltersOk() ([]string, bool)`
+`func (o *ServiceMapWidgetDefinition) GetFiltersOk() (*[]string, bool)`
 
 GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasFilters
-
-`func (o *ServiceMapWidgetDefinition) HasFilters() bool`
-
-HasFilters returns a boolean if a field has been set.
 
 ### SetFilters
 
 `func (o *ServiceMapWidgetDefinition) SetFilters(v []string)`
 
-SetFilters gets a reference to the given []string and assigns it to the Filters field.
+SetFilters sets Filters field to given value.
+
 
 ### GetService
 
@@ -63,22 +58,17 @@ GetService returns the Service field if non-nil, zero value otherwise.
 
 ### GetServiceOk
 
-`func (o *ServiceMapWidgetDefinition) GetServiceOk() (string, bool)`
+`func (o *ServiceMapWidgetDefinition) GetServiceOk() (*string, bool)`
 
 GetServiceOk returns a tuple with the Service field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasService
-
-`func (o *ServiceMapWidgetDefinition) HasService() bool`
-
-HasService returns a boolean if a field has been set.
 
 ### SetService
 
 `func (o *ServiceMapWidgetDefinition) SetService(v string)`
 
-SetService gets a reference to the given string and assigns it to the Service field.
+SetService sets Service field to given value.
+
 
 ### GetTitle
 
@@ -88,22 +78,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *ServiceMapWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *ServiceMapWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *ServiceMapWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *ServiceMapWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *ServiceMapWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -113,22 +103,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *ServiceMapWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *ServiceMapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *ServiceMapWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *ServiceMapWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *ServiceMapWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -138,22 +128,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *ServiceMapWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *ServiceMapWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *ServiceMapWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *ServiceMapWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *ServiceMapWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -163,22 +153,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ServiceMapWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *ServiceMapWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *ServiceMapWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *ServiceMapWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

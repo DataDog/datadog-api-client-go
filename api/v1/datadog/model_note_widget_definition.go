@@ -60,14 +60,13 @@ func (o *NoteWidgetDefinition) GetBackgroundColor() string {
 	return *o.BackgroundColor
 }
 
-// GetBackgroundColorOk returns a tuple with the BackgroundColor field value if set, zero value otherwise
+// GetBackgroundColorOk returns a tuple with the BackgroundColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NoteWidgetDefinition) GetBackgroundColorOk() (string, bool) {
+func (o *NoteWidgetDefinition) GetBackgroundColorOk() (*string, bool) {
 	if o == nil || o.BackgroundColor == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BackgroundColor, true
+	return o.BackgroundColor, true
 }
 
 // HasBackgroundColor returns a boolean if a field has been set.
@@ -94,6 +93,15 @@ func (o *NoteWidgetDefinition) GetContent() string {
 	return o.Content
 }
 
+// GetContentOk returns a tuple with the Content field value
+// and a boolean to check if the value has been set.
+func (o *NoteWidgetDefinition) GetContentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Content, true
+}
+
 // SetContent sets field value
 func (o *NoteWidgetDefinition) SetContent(v string) {
 	o.Content = v
@@ -108,14 +116,13 @@ func (o *NoteWidgetDefinition) GetFontSize() string {
 	return *o.FontSize
 }
 
-// GetFontSizeOk returns a tuple with the FontSize field value if set, zero value otherwise
+// GetFontSizeOk returns a tuple with the FontSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NoteWidgetDefinition) GetFontSizeOk() (string, bool) {
+func (o *NoteWidgetDefinition) GetFontSizeOk() (*string, bool) {
 	if o == nil || o.FontSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.FontSize, true
+	return o.FontSize, true
 }
 
 // HasFontSize returns a boolean if a field has been set.
@@ -141,14 +148,13 @@ func (o *NoteWidgetDefinition) GetShowTick() bool {
 	return *o.ShowTick
 }
 
-// GetShowTickOk returns a tuple with the ShowTick field value if set, zero value otherwise
+// GetShowTickOk returns a tuple with the ShowTick field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NoteWidgetDefinition) GetShowTickOk() (bool, bool) {
+func (o *NoteWidgetDefinition) GetShowTickOk() (*bool, bool) {
 	if o == nil || o.ShowTick == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowTick, true
+	return o.ShowTick, true
 }
 
 // HasShowTick returns a boolean if a field has been set.
@@ -174,14 +180,13 @@ func (o *NoteWidgetDefinition) GetTextAlign() WidgetTextAlign {
 	return *o.TextAlign
 }
 
-// GetTextAlignOk returns a tuple with the TextAlign field value if set, zero value otherwise
+// GetTextAlignOk returns a tuple with the TextAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NoteWidgetDefinition) GetTextAlignOk() (WidgetTextAlign, bool) {
+func (o *NoteWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TextAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TextAlign, true
+	return o.TextAlign, true
 }
 
 // HasTextAlign returns a boolean if a field has been set.
@@ -207,14 +212,13 @@ func (o *NoteWidgetDefinition) GetTickEdge() WidgetTickEdge {
 	return *o.TickEdge
 }
 
-// GetTickEdgeOk returns a tuple with the TickEdge field value if set, zero value otherwise
+// GetTickEdgeOk returns a tuple with the TickEdge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NoteWidgetDefinition) GetTickEdgeOk() (WidgetTickEdge, bool) {
+func (o *NoteWidgetDefinition) GetTickEdgeOk() (*WidgetTickEdge, bool) {
 	if o == nil || o.TickEdge == nil {
-		var ret WidgetTickEdge
-		return ret, false
+		return nil, false
 	}
-	return *o.TickEdge, true
+	return o.TickEdge, true
 }
 
 // HasTickEdge returns a boolean if a field has been set.
@@ -240,14 +244,13 @@ func (o *NoteWidgetDefinition) GetTickPos() string {
 	return *o.TickPos
 }
 
-// GetTickPosOk returns a tuple with the TickPos field value if set, zero value otherwise
+// GetTickPosOk returns a tuple with the TickPos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NoteWidgetDefinition) GetTickPosOk() (string, bool) {
+func (o *NoteWidgetDefinition) GetTickPosOk() (*string, bool) {
 	if o == nil || o.TickPos == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TickPos, true
+	return o.TickPos, true
 }
 
 // HasTickPos returns a boolean if a field has been set.
@@ -272,6 +275,15 @@ func (o *NoteWidgetDefinition) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *NoteWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -322,7 +334,7 @@ func (v NullableNoteWidgetDefinition) Get() *NoteWidgetDefinition {
 	return v.value
 }
 
-func (v NullableNoteWidgetDefinition) Set(val *NoteWidgetDefinition) {
+func (v *NullableNoteWidgetDefinition) Set(val *NoteWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -331,7 +343,7 @@ func (v NullableNoteWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableNoteWidgetDefinition) Unset() {
+func (v *NullableNoteWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

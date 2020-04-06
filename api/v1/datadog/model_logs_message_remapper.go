@@ -12,15 +12,15 @@ import (
 	"encoding/json"
 )
 
-// LogsMessageRemapper The message is a key attribute in Datadog. It is displayed in the message column of the Log Explorer and you can do full string search on it. Use this Processor to define one or more attributes as the official log message. **Note:** If multiple log message remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account.
+// LogsMessageRemapper The message is a key attribute in Datadog. It is displayed in the message column of the Log Explorer and you can do full string search on it. Use this Processor to define one or more attributes as the official log message.  **Note:** If multiple log message remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account.
 type LogsMessageRemapper struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
-	// Type of processor
+	// Type of processor.
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -60,6 +60,15 @@ func (o *LogsMessageRemapper) GetSources() []string {
 	return o.Sources
 }
 
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *LogsMessageRemapper) GetSourcesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
 // SetSources sets field value
 func (o *LogsMessageRemapper) SetSources(v []string) {
 	o.Sources = v
@@ -74,14 +83,13 @@ func (o *LogsMessageRemapper) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsMessageRemapper) GetTypeOk() (string, bool) {
+func (o *LogsMessageRemapper) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -107,14 +115,13 @@ func (o *LogsMessageRemapper) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsMessageRemapper) GetIsEnabledOk() (bool, bool) {
+func (o *LogsMessageRemapper) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -140,14 +147,13 @@ func (o *LogsMessageRemapper) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsMessageRemapper) GetNameOk() (string, bool) {
+func (o *LogsMessageRemapper) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -195,7 +201,7 @@ func (v NullableLogsMessageRemapper) Get() *LogsMessageRemapper {
 	return v.value
 }
 
-func (v NullableLogsMessageRemapper) Set(val *LogsMessageRemapper) {
+func (v *NullableLogsMessageRemapper) Set(val *LogsMessageRemapper) {
 	v.value = val
 	v.isSet = true
 }
@@ -204,7 +210,7 @@ func (v NullableLogsMessageRemapper) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsMessageRemapper) Unset() {
+func (v *NullableLogsMessageRemapper) Unset() {
 	v.value = nil
 	v.isSet = false
 }

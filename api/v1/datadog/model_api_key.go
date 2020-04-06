@@ -12,12 +12,16 @@ import (
 	"encoding/json"
 )
 
-// ApiKey struct for ApiKey
+// ApiKey Manage your Datadog API and application keys.  You need an API and applications key with Admin rights to interact with this endpoint. The full list of keys can be seen on your [Datadog API page](https://app.datadoghq.com/account/login?next=%2Faccount%2Fsettings#api).
 type ApiKey struct {
-	Created   *string `json:"created,omitempty"`
+	// Date of creation of the API key.
+	Created *string `json:"created,omitempty"`
+	// Datadog user handle that created the API key.
 	CreatedBy *string `json:"created_by,omitempty"`
-	Key       *string `json:"key,omitempty"`
-	Name      *string `json:"name,omitempty"`
+	// API key.
+	Key *string `json:"key,omitempty"`
+	// Name of your API key.
+	Name *string `json:"name,omitempty"`
 }
 
 // NewApiKey instantiates a new ApiKey object
@@ -46,14 +50,13 @@ func (o *ApiKey) GetCreated() string {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetCreatedOk() (string, bool) {
+func (o *ApiKey) GetCreatedOk() (*string, bool) {
 	if o == nil || o.Created == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -79,14 +82,13 @@ func (o *ApiKey) GetCreatedBy() string {
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetCreatedByOk() (string, bool) {
+func (o *ApiKey) GetCreatedByOk() (*string, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
@@ -112,14 +114,13 @@ func (o *ApiKey) GetKey() string {
 	return *o.Key
 }
 
-// GetKeyOk returns a tuple with the Key field value if set, zero value otherwise
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetKeyOk() (string, bool) {
+func (o *ApiKey) GetKeyOk() (*string, bool) {
 	if o == nil || o.Key == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Key, true
+	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
@@ -145,14 +146,13 @@ func (o *ApiKey) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetNameOk() (string, bool) {
+func (o *ApiKey) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -195,7 +195,7 @@ func (v NullableApiKey) Get() *ApiKey {
 	return v.value
 }
 
-func (v NullableApiKey) Set(val *ApiKey) {
+func (v *NullableApiKey) Set(val *ApiKey) {
 	v.value = val
 	v.isSet = true
 }
@@ -204,7 +204,7 @@ func (v NullableApiKey) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableApiKey) Unset() {
+func (v *NullableApiKey) Unset() {
 	v.value = nil
 	v.isSet = false
 }

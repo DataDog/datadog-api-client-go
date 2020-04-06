@@ -59,14 +59,13 @@ func (o *SyntheticsStepDetail) GetBrowserErrors() []SyntheticsBrowserError {
 	return *o.BrowserErrors
 }
 
-// GetBrowserErrorsOk returns a tuple with the BrowserErrors field value if set, zero value otherwise
+// GetBrowserErrorsOk returns a tuple with the BrowserErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetBrowserErrorsOk() ([]SyntheticsBrowserError, bool) {
+func (o *SyntheticsStepDetail) GetBrowserErrorsOk() (*[]SyntheticsBrowserError, bool) {
 	if o == nil || o.BrowserErrors == nil {
-		var ret []SyntheticsBrowserError
-		return ret, false
+		return nil, false
 	}
-	return *o.BrowserErrors, true
+	return o.BrowserErrors, true
 }
 
 // HasBrowserErrors returns a boolean if a field has been set.
@@ -92,14 +91,13 @@ func (o *SyntheticsStepDetail) GetCheckType() SyntheticsCheckType {
 	return *o.CheckType
 }
 
-// GetCheckTypeOk returns a tuple with the CheckType field value if set, zero value otherwise
+// GetCheckTypeOk returns a tuple with the CheckType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetCheckTypeOk() (SyntheticsCheckType, bool) {
+func (o *SyntheticsStepDetail) GetCheckTypeOk() (*SyntheticsCheckType, bool) {
 	if o == nil || o.CheckType == nil {
-		var ret SyntheticsCheckType
-		return ret, false
+		return nil, false
 	}
-	return *o.CheckType, true
+	return o.CheckType, true
 }
 
 // HasCheckType returns a boolean if a field has been set.
@@ -125,14 +123,13 @@ func (o *SyntheticsStepDetail) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetDescriptionOk() (string, bool) {
+func (o *SyntheticsStepDetail) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -158,14 +155,13 @@ func (o *SyntheticsStepDetail) GetDuration() float64 {
 	return *o.Duration
 }
 
-// GetDurationOk returns a tuple with the Duration field value if set, zero value otherwise
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetDurationOk() (float64, bool) {
+func (o *SyntheticsStepDetail) GetDurationOk() (*float64, bool) {
 	if o == nil || o.Duration == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Duration, true
+	return o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
@@ -191,14 +187,13 @@ func (o *SyntheticsStepDetail) GetError() string {
 	return *o.Error
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, zero value otherwise
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetErrorOk() (string, bool) {
+func (o *SyntheticsStepDetail) GetErrorOk() (*string, bool) {
 	if o == nil || o.Error == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Error, true
+	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
@@ -224,14 +219,13 @@ func (o *SyntheticsStepDetail) GetPlayingTab() SyntheticsPlayingTab {
 	return *o.PlayingTab
 }
 
-// GetPlayingTabOk returns a tuple with the PlayingTab field value if set, zero value otherwise
+// GetPlayingTabOk returns a tuple with the PlayingTab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetPlayingTabOk() (SyntheticsPlayingTab, bool) {
+func (o *SyntheticsStepDetail) GetPlayingTabOk() (*SyntheticsPlayingTab, bool) {
 	if o == nil || o.PlayingTab == nil {
-		var ret SyntheticsPlayingTab
-		return ret, false
+		return nil, false
 	}
-	return *o.PlayingTab, true
+	return o.PlayingTab, true
 }
 
 // HasPlayingTab returns a boolean if a field has been set.
@@ -257,14 +251,13 @@ func (o *SyntheticsStepDetail) GetResources() []SyntheticsResource {
 	return *o.Resources
 }
 
-// GetResourcesOk returns a tuple with the Resources field value if set, zero value otherwise
+// GetResourcesOk returns a tuple with the Resources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetResourcesOk() ([]SyntheticsResource, bool) {
+func (o *SyntheticsStepDetail) GetResourcesOk() (*[]SyntheticsResource, bool) {
 	if o == nil || o.Resources == nil {
-		var ret []SyntheticsResource
-		return ret, false
+		return nil, false
 	}
-	return *o.Resources, true
+	return o.Resources, true
 }
 
 // HasResources returns a boolean if a field has been set.
@@ -290,14 +283,13 @@ func (o *SyntheticsStepDetail) GetScreenshotBucketKey() bool {
 	return *o.ScreenshotBucketKey
 }
 
-// GetScreenshotBucketKeyOk returns a tuple with the ScreenshotBucketKey field value if set, zero value otherwise
+// GetScreenshotBucketKeyOk returns a tuple with the ScreenshotBucketKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetScreenshotBucketKeyOk() (bool, bool) {
+func (o *SyntheticsStepDetail) GetScreenshotBucketKeyOk() (*bool, bool) {
 	if o == nil || o.ScreenshotBucketKey == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ScreenshotBucketKey, true
+	return o.ScreenshotBucketKey, true
 }
 
 // HasScreenshotBucketKey returns a boolean if a field has been set.
@@ -323,14 +315,13 @@ func (o *SyntheticsStepDetail) GetSkipped() bool {
 	return *o.Skipped
 }
 
-// GetSkippedOk returns a tuple with the Skipped field value if set, zero value otherwise
+// GetSkippedOk returns a tuple with the Skipped field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetSkippedOk() (bool, bool) {
+func (o *SyntheticsStepDetail) GetSkippedOk() (*bool, bool) {
 	if o == nil || o.Skipped == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Skipped, true
+	return o.Skipped, true
 }
 
 // HasSkipped returns a boolean if a field has been set.
@@ -356,14 +347,13 @@ func (o *SyntheticsStepDetail) GetSnapshotBucketKey() bool {
 	return *o.SnapshotBucketKey
 }
 
-// GetSnapshotBucketKeyOk returns a tuple with the SnapshotBucketKey field value if set, zero value otherwise
+// GetSnapshotBucketKeyOk returns a tuple with the SnapshotBucketKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetSnapshotBucketKeyOk() (bool, bool) {
+func (o *SyntheticsStepDetail) GetSnapshotBucketKeyOk() (*bool, bool) {
 	if o == nil || o.SnapshotBucketKey == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.SnapshotBucketKey, true
+	return o.SnapshotBucketKey, true
 }
 
 // HasSnapshotBucketKey returns a boolean if a field has been set.
@@ -389,14 +379,13 @@ func (o *SyntheticsStepDetail) GetStepId() int64 {
 	return *o.StepId
 }
 
-// GetStepIdOk returns a tuple with the StepId field value if set, zero value otherwise
+// GetStepIdOk returns a tuple with the StepId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetStepIdOk() (int64, bool) {
+func (o *SyntheticsStepDetail) GetStepIdOk() (*int64, bool) {
 	if o == nil || o.StepId == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.StepId, true
+	return o.StepId, true
 }
 
 // HasStepId returns a boolean if a field has been set.
@@ -422,14 +411,13 @@ func (o *SyntheticsStepDetail) GetSubTestStepDetails() []SyntheticsStepDetail {
 	return *o.SubTestStepDetails
 }
 
-// GetSubTestStepDetailsOk returns a tuple with the SubTestStepDetails field value if set, zero value otherwise
+// GetSubTestStepDetailsOk returns a tuple with the SubTestStepDetails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetSubTestStepDetailsOk() ([]SyntheticsStepDetail, bool) {
+func (o *SyntheticsStepDetail) GetSubTestStepDetailsOk() (*[]SyntheticsStepDetail, bool) {
 	if o == nil || o.SubTestStepDetails == nil {
-		var ret []SyntheticsStepDetail
-		return ret, false
+		return nil, false
 	}
-	return *o.SubTestStepDetails, true
+	return o.SubTestStepDetails, true
 }
 
 // HasSubTestStepDetails returns a boolean if a field has been set.
@@ -455,14 +443,13 @@ func (o *SyntheticsStepDetail) GetTimeToInteractive() float64 {
 	return *o.TimeToInteractive
 }
 
-// GetTimeToInteractiveOk returns a tuple with the TimeToInteractive field value if set, zero value otherwise
+// GetTimeToInteractiveOk returns a tuple with the TimeToInteractive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetTimeToInteractiveOk() (float64, bool) {
+func (o *SyntheticsStepDetail) GetTimeToInteractiveOk() (*float64, bool) {
 	if o == nil || o.TimeToInteractive == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.TimeToInteractive, true
+	return o.TimeToInteractive, true
 }
 
 // HasTimeToInteractive returns a boolean if a field has been set.
@@ -488,14 +475,13 @@ func (o *SyntheticsStepDetail) GetType() SyntheticsStepType {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetTypeOk() (SyntheticsStepType, bool) {
+func (o *SyntheticsStepDetail) GetTypeOk() (*SyntheticsStepType, bool) {
 	if o == nil || o.Type == nil {
-		var ret SyntheticsStepType
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -521,14 +507,13 @@ func (o *SyntheticsStepDetail) GetUrl() string {
 	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, zero value otherwise
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetUrlOk() (string, bool) {
+func (o *SyntheticsStepDetail) GetUrlOk() (*string, bool) {
 	if o == nil || o.Url == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Url, true
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
@@ -554,14 +539,13 @@ func (o *SyntheticsStepDetail) GetValue() interface{} {
 	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value if set, zero value otherwise
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetValueOk() (interface{}, bool) {
+func (o *SyntheticsStepDetail) GetValueOk() (*interface{}, bool) {
 	if o == nil || o.Value == nil {
-		var ret interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -587,14 +571,13 @@ func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarnings {
 	return *o.Warnings
 }
 
-// GetWarningsOk returns a tuple with the Warnings field value if set, zero value otherwise
+// GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetWarningsOk() ([]SyntheticsStepDetailWarnings, bool) {
+func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarnings, bool) {
 	if o == nil || o.Warnings == nil {
-		var ret []SyntheticsStepDetailWarnings
-		return ret, false
+		return nil, false
 	}
-	return *o.Warnings, true
+	return o.Warnings, true
 }
 
 // HasWarnings returns a boolean if a field has been set.
@@ -676,7 +659,7 @@ func (v NullableSyntheticsStepDetail) Get() *SyntheticsStepDetail {
 	return v.value
 }
 
-func (v NullableSyntheticsStepDetail) Set(val *SyntheticsStepDetail) {
+func (v *NullableSyntheticsStepDetail) Set(val *SyntheticsStepDetail) {
 	v.value = val
 	v.isSet = true
 }
@@ -685,7 +668,7 @@ func (v NullableSyntheticsStepDetail) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsStepDetail) Unset() {
+func (v *NullableSyntheticsStepDetail) Unset() {
 	v.value = nil
 	v.isSet = false
 }

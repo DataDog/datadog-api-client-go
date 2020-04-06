@@ -34,22 +34,22 @@ GetLastTimestampFetched returns the LastTimestampFetched field if non-nil, zero 
 
 ### GetLastTimestampFetchedOk
 
-`func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetchedOk() (int64, bool)`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetchedOk() (*int64, bool)`
 
 GetLastTimestampFetchedOk returns a tuple with the LastTimestampFetched field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLastTimestampFetched
+
+`func (o *SyntheticsGetAPITestLatestResultsResponse) SetLastTimestampFetched(v int64)`
+
+SetLastTimestampFetched sets LastTimestampFetched field to given value.
 
 ### HasLastTimestampFetched
 
 `func (o *SyntheticsGetAPITestLatestResultsResponse) HasLastTimestampFetched() bool`
 
 HasLastTimestampFetched returns a boolean if a field has been set.
-
-### SetLastTimestampFetched
-
-`func (o *SyntheticsGetAPITestLatestResultsResponse) SetLastTimestampFetched(v int64)`
-
-SetLastTimestampFetched gets a reference to the given int64 and assigns it to the LastTimestampFetched field.
 
 ### GetResults
 
@@ -59,22 +59,22 @@ GetResults returns the Results field if non-nil, zero value otherwise.
 
 ### GetResultsOk
 
-`func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() ([]SyntheticsAPITestResultShort, bool)`
+`func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() (*[]SyntheticsAPITestResultShort, bool)`
 
 GetResultsOk returns a tuple with the Results field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetResults
+
+`func (o *SyntheticsGetAPITestLatestResultsResponse) SetResults(v []SyntheticsAPITestResultShort)`
+
+SetResults sets Results field to given value.
 
 ### HasResults
 
 `func (o *SyntheticsGetAPITestLatestResultsResponse) HasResults() bool`
 
 HasResults returns a boolean if a field has been set.
-
-### SetResults
-
-`func (o *SyntheticsGetAPITestLatestResultsResponse) SetResults(v []SyntheticsAPITestResultShort)`
-
-SetResults gets a reference to the given []SyntheticsAPITestResultShort and assigns it to the Results field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

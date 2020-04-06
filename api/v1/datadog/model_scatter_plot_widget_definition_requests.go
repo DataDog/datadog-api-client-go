@@ -47,6 +47,15 @@ func (o *ScatterPlotWidgetDefinitionRequests) GetX() ScatterPlotRequest {
 	return o.X
 }
 
+// GetXOk returns a tuple with the X field value
+// and a boolean to check if the value has been set.
+func (o *ScatterPlotWidgetDefinitionRequests) GetXOk() (*ScatterPlotRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.X, true
+}
+
 // SetX sets field value
 func (o *ScatterPlotWidgetDefinitionRequests) SetX(v ScatterPlotRequest) {
 	o.X = v
@@ -60,6 +69,15 @@ func (o *ScatterPlotWidgetDefinitionRequests) GetY() ScatterPlotRequest {
 	}
 
 	return o.Y
+}
+
+// GetYOk returns a tuple with the Y field value
+// and a boolean to check if the value has been set.
+func (o *ScatterPlotWidgetDefinitionRequests) GetYOk() (*ScatterPlotRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Y, true
 }
 
 // SetY sets field value
@@ -87,7 +105,7 @@ func (v NullableScatterPlotWidgetDefinitionRequests) Get() *ScatterPlotWidgetDef
 	return v.value
 }
 
-func (v NullableScatterPlotWidgetDefinitionRequests) Set(val *ScatterPlotWidgetDefinitionRequests) {
+func (v *NullableScatterPlotWidgetDefinitionRequests) Set(val *ScatterPlotWidgetDefinitionRequests) {
 	v.value = val
 	v.isSet = true
 }
@@ -96,7 +114,7 @@ func (v NullableScatterPlotWidgetDefinitionRequests) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableScatterPlotWidgetDefinitionRequests) Unset() {
+func (v *NullableScatterPlotWidgetDefinitionRequests) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -44,22 +44,22 @@ GetGroup returns the Group field if non-nil, zero value otherwise.
 
 ### GetGroupOk
 
-`func (o *HostMapWidgetDefinition) GetGroupOk() ([]string, bool)`
+`func (o *HostMapWidgetDefinition) GetGroupOk() (*[]string, bool)`
 
 GetGroupOk returns a tuple with the Group field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetGroup
+
+`func (o *HostMapWidgetDefinition) SetGroup(v []string)`
+
+SetGroup sets Group field to given value.
 
 ### HasGroup
 
 `func (o *HostMapWidgetDefinition) HasGroup() bool`
 
 HasGroup returns a boolean if a field has been set.
-
-### SetGroup
-
-`func (o *HostMapWidgetDefinition) SetGroup(v []string)`
-
-SetGroup gets a reference to the given []string and assigns it to the Group field.
 
 ### GetNoGroupHosts
 
@@ -69,22 +69,22 @@ GetNoGroupHosts returns the NoGroupHosts field if non-nil, zero value otherwise.
 
 ### GetNoGroupHostsOk
 
-`func (o *HostMapWidgetDefinition) GetNoGroupHostsOk() (bool, bool)`
+`func (o *HostMapWidgetDefinition) GetNoGroupHostsOk() (*bool, bool)`
 
 GetNoGroupHostsOk returns a tuple with the NoGroupHosts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetNoGroupHosts
+
+`func (o *HostMapWidgetDefinition) SetNoGroupHosts(v bool)`
+
+SetNoGroupHosts sets NoGroupHosts field to given value.
 
 ### HasNoGroupHosts
 
 `func (o *HostMapWidgetDefinition) HasNoGroupHosts() bool`
 
 HasNoGroupHosts returns a boolean if a field has been set.
-
-### SetNoGroupHosts
-
-`func (o *HostMapWidgetDefinition) SetNoGroupHosts(v bool)`
-
-SetNoGroupHosts gets a reference to the given bool and assigns it to the NoGroupHosts field.
 
 ### GetNoMetricHosts
 
@@ -94,22 +94,22 @@ GetNoMetricHosts returns the NoMetricHosts field if non-nil, zero value otherwis
 
 ### GetNoMetricHostsOk
 
-`func (o *HostMapWidgetDefinition) GetNoMetricHostsOk() (bool, bool)`
+`func (o *HostMapWidgetDefinition) GetNoMetricHostsOk() (*bool, bool)`
 
 GetNoMetricHostsOk returns a tuple with the NoMetricHosts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetNoMetricHosts
+
+`func (o *HostMapWidgetDefinition) SetNoMetricHosts(v bool)`
+
+SetNoMetricHosts sets NoMetricHosts field to given value.
 
 ### HasNoMetricHosts
 
 `func (o *HostMapWidgetDefinition) HasNoMetricHosts() bool`
 
 HasNoMetricHosts returns a boolean if a field has been set.
-
-### SetNoMetricHosts
-
-`func (o *HostMapWidgetDefinition) SetNoMetricHosts(v bool)`
-
-SetNoMetricHosts gets a reference to the given bool and assigns it to the NoMetricHosts field.
 
 ### GetNodeType
 
@@ -119,22 +119,22 @@ GetNodeType returns the NodeType field if non-nil, zero value otherwise.
 
 ### GetNodeTypeOk
 
-`func (o *HostMapWidgetDefinition) GetNodeTypeOk() (WidgetNodeType, bool)`
+`func (o *HostMapWidgetDefinition) GetNodeTypeOk() (*WidgetNodeType, bool)`
 
 GetNodeTypeOk returns a tuple with the NodeType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetNodeType
+
+`func (o *HostMapWidgetDefinition) SetNodeType(v WidgetNodeType)`
+
+SetNodeType sets NodeType field to given value.
 
 ### HasNodeType
 
 `func (o *HostMapWidgetDefinition) HasNodeType() bool`
 
 HasNodeType returns a boolean if a field has been set.
-
-### SetNodeType
-
-`func (o *HostMapWidgetDefinition) SetNodeType(v WidgetNodeType)`
-
-SetNodeType gets a reference to the given WidgetNodeType and assigns it to the NodeType field.
 
 ### GetNotes
 
@@ -144,22 +144,22 @@ GetNotes returns the Notes field if non-nil, zero value otherwise.
 
 ### GetNotesOk
 
-`func (o *HostMapWidgetDefinition) GetNotesOk() (string, bool)`
+`func (o *HostMapWidgetDefinition) GetNotesOk() (*string, bool)`
 
 GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetNotes
+
+`func (o *HostMapWidgetDefinition) SetNotes(v string)`
+
+SetNotes sets Notes field to given value.
 
 ### HasNotes
 
 `func (o *HostMapWidgetDefinition) HasNotes() bool`
 
 HasNotes returns a boolean if a field has been set.
-
-### SetNotes
-
-`func (o *HostMapWidgetDefinition) SetNotes(v string)`
-
-SetNotes gets a reference to the given string and assigns it to the Notes field.
 
 ### GetRequests
 
@@ -169,22 +169,17 @@ GetRequests returns the Requests field if non-nil, zero value otherwise.
 
 ### GetRequestsOk
 
-`func (o *HostMapWidgetDefinition) GetRequestsOk() (HostMapWidgetDefinitionRequests, bool)`
+`func (o *HostMapWidgetDefinition) GetRequestsOk() (*HostMapWidgetDefinitionRequests, bool)`
 
 GetRequestsOk returns a tuple with the Requests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasRequests
-
-`func (o *HostMapWidgetDefinition) HasRequests() bool`
-
-HasRequests returns a boolean if a field has been set.
 
 ### SetRequests
 
 `func (o *HostMapWidgetDefinition) SetRequests(v HostMapWidgetDefinitionRequests)`
 
-SetRequests gets a reference to the given HostMapWidgetDefinitionRequests and assigns it to the Requests field.
+SetRequests sets Requests field to given value.
+
 
 ### GetScope
 
@@ -194,22 +189,22 @@ GetScope returns the Scope field if non-nil, zero value otherwise.
 
 ### GetScopeOk
 
-`func (o *HostMapWidgetDefinition) GetScopeOk() ([]string, bool)`
+`func (o *HostMapWidgetDefinition) GetScopeOk() (*[]string, bool)`
 
 GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetScope
+
+`func (o *HostMapWidgetDefinition) SetScope(v []string)`
+
+SetScope sets Scope field to given value.
 
 ### HasScope
 
 `func (o *HostMapWidgetDefinition) HasScope() bool`
 
 HasScope returns a boolean if a field has been set.
-
-### SetScope
-
-`func (o *HostMapWidgetDefinition) SetScope(v []string)`
-
-SetScope gets a reference to the given []string and assigns it to the Scope field.
 
 ### GetStyle
 
@@ -219,22 +214,22 @@ GetStyle returns the Style field if non-nil, zero value otherwise.
 
 ### GetStyleOk
 
-`func (o *HostMapWidgetDefinition) GetStyleOk() (HostMapWidgetDefinitionStyle, bool)`
+`func (o *HostMapWidgetDefinition) GetStyleOk() (*HostMapWidgetDefinitionStyle, bool)`
 
 GetStyleOk returns a tuple with the Style field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStyle
+
+`func (o *HostMapWidgetDefinition) SetStyle(v HostMapWidgetDefinitionStyle)`
+
+SetStyle sets Style field to given value.
 
 ### HasStyle
 
 `func (o *HostMapWidgetDefinition) HasStyle() bool`
 
 HasStyle returns a boolean if a field has been set.
-
-### SetStyle
-
-`func (o *HostMapWidgetDefinition) SetStyle(v HostMapWidgetDefinitionStyle)`
-
-SetStyle gets a reference to the given HostMapWidgetDefinitionStyle and assigns it to the Style field.
 
 ### GetTitle
 
@@ -244,22 +239,22 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *HostMapWidgetDefinition) GetTitleOk() (string, bool)`
+`func (o *HostMapWidgetDefinition) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *HostMapWidgetDefinition) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 ### HasTitle
 
 `func (o *HostMapWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *HostMapWidgetDefinition) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetTitleAlign
 
@@ -269,22 +264,22 @@ GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
 
 ### GetTitleAlignOk
 
-`func (o *HostMapWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool)`
+`func (o *HostMapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
 
 GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *HostMapWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
 
 ### HasTitleAlign
 
 `func (o *HostMapWidgetDefinition) HasTitleAlign() bool`
 
 HasTitleAlign returns a boolean if a field has been set.
-
-### SetTitleAlign
-
-`func (o *HostMapWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
-
-SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
 
 ### GetTitleSize
 
@@ -294,22 +289,22 @@ GetTitleSize returns the TitleSize field if non-nil, zero value otherwise.
 
 ### GetTitleSizeOk
 
-`func (o *HostMapWidgetDefinition) GetTitleSizeOk() (string, bool)`
+`func (o *HostMapWidgetDefinition) GetTitleSizeOk() (*string, bool)`
 
 GetTitleSizeOk returns a tuple with the TitleSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTitleSize
+
+`func (o *HostMapWidgetDefinition) SetTitleSize(v string)`
+
+SetTitleSize sets TitleSize field to given value.
 
 ### HasTitleSize
 
 `func (o *HostMapWidgetDefinition) HasTitleSize() bool`
 
 HasTitleSize returns a boolean if a field has been set.
-
-### SetTitleSize
-
-`func (o *HostMapWidgetDefinition) SetTitleSize(v string)`
-
-SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
 
 ### GetType
 
@@ -319,22 +314,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *HostMapWidgetDefinition) GetTypeOk() (string, bool)`
+`func (o *HostMapWidgetDefinition) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *HostMapWidgetDefinition) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *HostMapWidgetDefinition) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 
 ### AsWidgetDefinition

@@ -35,7 +35,7 @@ func (v NullableSyntheticsBrowserErrorType) Get() *SyntheticsBrowserErrorType {
 	return v.value
 }
 
-func (v NullableSyntheticsBrowserErrorType) Set(val *SyntheticsBrowserErrorType) {
+func (v *NullableSyntheticsBrowserErrorType) Set(val *SyntheticsBrowserErrorType) {
 	v.value = val
 	v.isSet = true
 }
@@ -44,7 +44,7 @@ func (v NullableSyntheticsBrowserErrorType) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsBrowserErrorType) Unset() {
+func (v *NullableSyntheticsBrowserErrorType) Unset() {
 	v.value = nil
 	v.isSet = false
 }

@@ -29,8 +29,8 @@ type apiGetIPRangesRequest struct {
 }
 
 /*
-GetIPRanges Method for GetIPRanges
-Get information about Datadog IP ranges
+GetIPRanges List IP Ranges
+Get information about Datadog IP ranges.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetIPRangesRequest
 */

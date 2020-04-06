@@ -66,20 +66,7 @@ func (r apiGetGraphSnapshotRequest) Title(title string) apiGetGraphSnapshotReque
 
 /*
 GetGraphSnapshot Take graph snapshots
-### Overview
-Take graph snapshots
-### Arguments
-* **`metric_query`** [*optional*]: The metric query. One of metric_query or graph_def is required
-* **`start`** [*required*]: The POSIX timestamp of the start of the query.
-* **`end`** [*required*]: The POSIX timestamp of the end of the query.
-* **`event_query`** [*optional*, *default* = **None**]: A query that adds event bands to the graph.
-* **`graph_def`** [*optional*, *default* = **None**]: A JSON document defining the graph.
-  graph_def can be used instead of metric_query. The JSON document uses the
-  [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
-  and should be formatted to a single line then URLEncoded.
-
-* **`title`** [*optional*, *default* = **None**]: A title for the graph.
-  If no title is specified, the graph doesn’t have a title.
+Take graph snapshots.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetGraphSnapshotRequest
 */

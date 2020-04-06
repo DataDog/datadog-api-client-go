@@ -22,11 +22,11 @@ type LogsLookupProcessor struct {
 	Source string `json:"source"`
 	// Name of the attribute that contains the corresponding value in the mapping list or the `default_lookup` if not found in the mapping list.
 	Target string `json:"target"`
-	// Type of processor
+	// Type of processor.
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -67,14 +67,13 @@ func (o *LogsLookupProcessor) GetDefaultLookup() string {
 	return *o.DefaultLookup
 }
 
-// GetDefaultLookupOk returns a tuple with the DefaultLookup field value if set, zero value otherwise
+// GetDefaultLookupOk returns a tuple with the DefaultLookup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsLookupProcessor) GetDefaultLookupOk() (string, bool) {
+func (o *LogsLookupProcessor) GetDefaultLookupOk() (*string, bool) {
 	if o == nil || o.DefaultLookup == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DefaultLookup, true
+	return o.DefaultLookup, true
 }
 
 // HasDefaultLookup returns a boolean if a field has been set.
@@ -101,6 +100,15 @@ func (o *LogsLookupProcessor) GetLookupTable() []string {
 	return o.LookupTable
 }
 
+// GetLookupTableOk returns a tuple with the LookupTable field value
+// and a boolean to check if the value has been set.
+func (o *LogsLookupProcessor) GetLookupTableOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LookupTable, true
+}
+
 // SetLookupTable sets field value
 func (o *LogsLookupProcessor) SetLookupTable(v []string) {
 	o.LookupTable = v
@@ -114,6 +122,15 @@ func (o *LogsLookupProcessor) GetSource() string {
 	}
 
 	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *LogsLookupProcessor) GetSourceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Source, true
 }
 
 // SetSource sets field value
@@ -131,6 +148,15 @@ func (o *LogsLookupProcessor) GetTarget() string {
 	return o.Target
 }
 
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsLookupProcessor) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
 // SetTarget sets field value
 func (o *LogsLookupProcessor) SetTarget(v string) {
 	o.Target = v
@@ -145,14 +171,13 @@ func (o *LogsLookupProcessor) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsLookupProcessor) GetTypeOk() (string, bool) {
+func (o *LogsLookupProcessor) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -178,14 +203,13 @@ func (o *LogsLookupProcessor) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsLookupProcessor) GetIsEnabledOk() (bool, bool) {
+func (o *LogsLookupProcessor) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -211,14 +235,13 @@ func (o *LogsLookupProcessor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsLookupProcessor) GetNameOk() (string, bool) {
+func (o *LogsLookupProcessor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -275,7 +298,7 @@ func (v NullableLogsLookupProcessor) Get() *LogsLookupProcessor {
 	return v.value
 }
 
-func (v NullableLogsLookupProcessor) Set(val *LogsLookupProcessor) {
+func (v *NullableLogsLookupProcessor) Set(val *LogsLookupProcessor) {
 	v.value = val
 	v.isSet = true
 }
@@ -284,7 +307,7 @@ func (v NullableLogsLookupProcessor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsLookupProcessor) Unset() {
+func (v *NullableLogsLookupProcessor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

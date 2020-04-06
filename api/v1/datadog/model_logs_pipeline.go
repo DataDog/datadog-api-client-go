@@ -12,20 +12,20 @@ import (
 	"encoding/json"
 )
 
-// LogsPipeline Definition of a logs pipeline
+// LogsPipeline Pipelines and processors operate on incoming logs, parsing and transforming them into structured attributes for easier querying.  **Note**: These endpoints are only available for admin users. Make sure to use an application key created by an admin.
 type LogsPipeline struct {
 	Filter *LogsFilter `json:"filter,omitempty"`
-	// ID of the pipeline
+	// ID of the pipeline.
 	Id *string `json:"id,omitempty"`
-	// Whether or not the pipeline is enabled
+	// Whether or not the pipeline is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Whether or not the pipeline can be edited
+	// Whether or not the pipeline can be edited.
 	IsReadOnly *bool `json:"is_read_only,omitempty"`
-	// Name of the pipeline
+	// Name of the pipeline.
 	Name string `json:"name"`
-	// Ordered list of processors in this pipeline
+	// Ordered list of processors in this pipeline.
 	Processors *[]LogsProcessor `json:"processors,omitempty"`
-	// Type of pipeline
+	// Type of pipeline.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -56,14 +56,13 @@ func (o *LogsPipeline) GetFilter() LogsFilter {
 	return *o.Filter
 }
 
-// GetFilterOk returns a tuple with the Filter field value if set, zero value otherwise
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsPipeline) GetFilterOk() (LogsFilter, bool) {
+func (o *LogsPipeline) GetFilterOk() (*LogsFilter, bool) {
 	if o == nil || o.Filter == nil {
-		var ret LogsFilter
-		return ret, false
+		return nil, false
 	}
-	return *o.Filter, true
+	return o.Filter, true
 }
 
 // HasFilter returns a boolean if a field has been set.
@@ -89,14 +88,13 @@ func (o *LogsPipeline) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsPipeline) GetIdOk() (string, bool) {
+func (o *LogsPipeline) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -122,14 +120,13 @@ func (o *LogsPipeline) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsPipeline) GetIsEnabledOk() (bool, bool) {
+func (o *LogsPipeline) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -155,14 +152,13 @@ func (o *LogsPipeline) GetIsReadOnly() bool {
 	return *o.IsReadOnly
 }
 
-// GetIsReadOnlyOk returns a tuple with the IsReadOnly field value if set, zero value otherwise
+// GetIsReadOnlyOk returns a tuple with the IsReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsPipeline) GetIsReadOnlyOk() (bool, bool) {
+func (o *LogsPipeline) GetIsReadOnlyOk() (*bool, bool) {
 	if o == nil || o.IsReadOnly == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsReadOnly, true
+	return o.IsReadOnly, true
 }
 
 // HasIsReadOnly returns a boolean if a field has been set.
@@ -189,6 +185,15 @@ func (o *LogsPipeline) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LogsPipeline) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *LogsPipeline) SetName(v string) {
 	o.Name = v
@@ -203,14 +208,13 @@ func (o *LogsPipeline) GetProcessors() []LogsProcessor {
 	return *o.Processors
 }
 
-// GetProcessorsOk returns a tuple with the Processors field value if set, zero value otherwise
+// GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsPipeline) GetProcessorsOk() ([]LogsProcessor, bool) {
+func (o *LogsPipeline) GetProcessorsOk() (*[]LogsProcessor, bool) {
 	if o == nil || o.Processors == nil {
-		var ret []LogsProcessor
-		return ret, false
+		return nil, false
 	}
-	return *o.Processors, true
+	return o.Processors, true
 }
 
 // HasProcessors returns a boolean if a field has been set.
@@ -236,14 +240,13 @@ func (o *LogsPipeline) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsPipeline) GetTypeOk() (string, bool) {
+func (o *LogsPipeline) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -295,7 +298,7 @@ func (v NullableLogsPipeline) Get() *LogsPipeline {
 	return v.value
 }
 
-func (v NullableLogsPipeline) Set(val *LogsPipeline) {
+func (v *NullableLogsPipeline) Set(val *LogsPipeline) {
 	v.value = val
 	v.isSet = true
 }
@@ -304,7 +307,7 @@ func (v NullableLogsPipeline) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsPipeline) Unset() {
+func (v *NullableLogsPipeline) Unset() {
 	v.value = nil
 	v.isSet = false
 }

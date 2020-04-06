@@ -17,10 +17,16 @@ type LogStreamWidgetDefinition struct {
 	// Which columns to display on the widget
 	Columns *[]string `json:"columns,omitempty"`
 	// An array of index names to query in the stream.
-	Indexes *[]string `json:"indexes,omitempty"`
+	Indexes        *[]string             `json:"indexes,omitempty"`
+	MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
 	// Query to filter the log stream with
-	Query *string     `json:"query,omitempty"`
-	Time  *WidgetTime `json:"time,omitempty"`
+	Query *string `json:"query,omitempty"`
+	// Whether to show the date column or not
+	ShowDateColumn *bool `json:"show_date_column,omitempty"`
+	// Whether to show the message column or not
+	ShowMessageColumn *bool            `json:"show_message_column,omitempty"`
+	Sort              *WidgetFieldSort `json:"sort,omitempty"`
+	Time              *WidgetTime      `json:"time,omitempty"`
 	// Title of the widget
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
@@ -59,14 +65,13 @@ func (o *LogStreamWidgetDefinition) GetColumns() []string {
 	return *o.Columns
 }
 
-// GetColumnsOk returns a tuple with the Columns field value if set, zero value otherwise
+// GetColumnsOk returns a tuple with the Columns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetColumnsOk() ([]string, bool) {
+func (o *LogStreamWidgetDefinition) GetColumnsOk() (*[]string, bool) {
 	if o == nil || o.Columns == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Columns, true
+	return o.Columns, true
 }
 
 // HasColumns returns a boolean if a field has been set.
@@ -92,14 +97,13 @@ func (o *LogStreamWidgetDefinition) GetIndexes() []string {
 	return *o.Indexes
 }
 
-// GetIndexesOk returns a tuple with the Indexes field value if set, zero value otherwise
+// GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetIndexesOk() ([]string, bool) {
+func (o *LogStreamWidgetDefinition) GetIndexesOk() (*[]string, bool) {
 	if o == nil || o.Indexes == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Indexes, true
+	return o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -116,6 +120,38 @@ func (o *LogStreamWidgetDefinition) SetIndexes(v []string) {
 	o.Indexes = &v
 }
 
+// GetMessageDisplay returns the MessageDisplay field value if set, zero value otherwise.
+func (o *LogStreamWidgetDefinition) GetMessageDisplay() WidgetMessageDisplay {
+	if o == nil || o.MessageDisplay == nil {
+		var ret WidgetMessageDisplay
+		return ret
+	}
+	return *o.MessageDisplay
+}
+
+// GetMessageDisplayOk returns a tuple with the MessageDisplay field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogStreamWidgetDefinition) GetMessageDisplayOk() (*WidgetMessageDisplay, bool) {
+	if o == nil || o.MessageDisplay == nil {
+		return nil, false
+	}
+	return o.MessageDisplay, true
+}
+
+// HasMessageDisplay returns a boolean if a field has been set.
+func (o *LogStreamWidgetDefinition) HasMessageDisplay() bool {
+	if o != nil && o.MessageDisplay != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessageDisplay gets a reference to the given WidgetMessageDisplay and assigns it to the MessageDisplay field.
+func (o *LogStreamWidgetDefinition) SetMessageDisplay(v WidgetMessageDisplay) {
+	o.MessageDisplay = &v
+}
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -125,14 +161,13 @@ func (o *LogStreamWidgetDefinition) GetQuery() string {
 	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, zero value otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetQueryOk() (string, bool) {
+func (o *LogStreamWidgetDefinition) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Query, true
+	return o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -149,6 +184,102 @@ func (o *LogStreamWidgetDefinition) SetQuery(v string) {
 	o.Query = &v
 }
 
+// GetShowDateColumn returns the ShowDateColumn field value if set, zero value otherwise.
+func (o *LogStreamWidgetDefinition) GetShowDateColumn() bool {
+	if o == nil || o.ShowDateColumn == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowDateColumn
+}
+
+// GetShowDateColumnOk returns a tuple with the ShowDateColumn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogStreamWidgetDefinition) GetShowDateColumnOk() (*bool, bool) {
+	if o == nil || o.ShowDateColumn == nil {
+		return nil, false
+	}
+	return o.ShowDateColumn, true
+}
+
+// HasShowDateColumn returns a boolean if a field has been set.
+func (o *LogStreamWidgetDefinition) HasShowDateColumn() bool {
+	if o != nil && o.ShowDateColumn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShowDateColumn gets a reference to the given bool and assigns it to the ShowDateColumn field.
+func (o *LogStreamWidgetDefinition) SetShowDateColumn(v bool) {
+	o.ShowDateColumn = &v
+}
+
+// GetShowMessageColumn returns the ShowMessageColumn field value if set, zero value otherwise.
+func (o *LogStreamWidgetDefinition) GetShowMessageColumn() bool {
+	if o == nil || o.ShowMessageColumn == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowMessageColumn
+}
+
+// GetShowMessageColumnOk returns a tuple with the ShowMessageColumn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogStreamWidgetDefinition) GetShowMessageColumnOk() (*bool, bool) {
+	if o == nil || o.ShowMessageColumn == nil {
+		return nil, false
+	}
+	return o.ShowMessageColumn, true
+}
+
+// HasShowMessageColumn returns a boolean if a field has been set.
+func (o *LogStreamWidgetDefinition) HasShowMessageColumn() bool {
+	if o != nil && o.ShowMessageColumn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShowMessageColumn gets a reference to the given bool and assigns it to the ShowMessageColumn field.
+func (o *LogStreamWidgetDefinition) SetShowMessageColumn(v bool) {
+	o.ShowMessageColumn = &v
+}
+
+// GetSort returns the Sort field value if set, zero value otherwise.
+func (o *LogStreamWidgetDefinition) GetSort() WidgetFieldSort {
+	if o == nil || o.Sort == nil {
+		var ret WidgetFieldSort
+		return ret
+	}
+	return *o.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogStreamWidgetDefinition) GetSortOk() (*WidgetFieldSort, bool) {
+	if o == nil || o.Sort == nil {
+		return nil, false
+	}
+	return o.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (o *LogStreamWidgetDefinition) HasSort() bool {
+	if o != nil && o.Sort != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSort gets a reference to the given WidgetFieldSort and assigns it to the Sort field.
+func (o *LogStreamWidgetDefinition) SetSort(v WidgetFieldSort) {
+	o.Sort = &v
+}
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -158,14 +289,13 @@ func (o *LogStreamWidgetDefinition) GetTime() WidgetTime {
 	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value if set, zero value otherwise
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTimeOk() (WidgetTime, bool) {
+func (o *LogStreamWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 	if o == nil || o.Time == nil {
-		var ret WidgetTime
-		return ret, false
+		return nil, false
 	}
-	return *o.Time, true
+	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
@@ -191,14 +321,13 @@ func (o *LogStreamWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *LogStreamWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -224,14 +353,13 @@ func (o *LogStreamWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *LogStreamWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -257,14 +385,13 @@ func (o *LogStreamWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogStreamWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *LogStreamWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -291,6 +418,15 @@ func (o *LogStreamWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LogStreamWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *LogStreamWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -304,8 +440,20 @@ func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
 	}
+	if o.MessageDisplay != nil {
+		toSerialize["message_display"] = o.MessageDisplay
+	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
+	}
+	if o.ShowDateColumn != nil {
+		toSerialize["show_date_column"] = o.ShowDateColumn
+	}
+	if o.ShowMessageColumn != nil {
+		toSerialize["show_message_column"] = o.ShowMessageColumn
+	}
+	if o.Sort != nil {
+		toSerialize["sort"] = o.Sort
 	}
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
@@ -339,7 +487,7 @@ func (v NullableLogStreamWidgetDefinition) Get() *LogStreamWidgetDefinition {
 	return v.value
 }
 
-func (v NullableLogStreamWidgetDefinition) Set(val *LogStreamWidgetDefinition) {
+func (v *NullableLogStreamWidgetDefinition) Set(val *LogStreamWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -348,7 +496,7 @@ func (v NullableLogStreamWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogStreamWidgetDefinition) Unset() {
+func (v *NullableLogStreamWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

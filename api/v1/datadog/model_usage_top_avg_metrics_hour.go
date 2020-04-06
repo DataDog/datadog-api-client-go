@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UsageTopAvgMetricsHour struct for UsageTopAvgMetricsHour
+// UsageTopAvgMetricsHour Number of hourly recorded custom metrics for a given organization.
 type UsageTopAvgMetricsHour struct {
 	// Average number of timeseries per hour in which the metric occurs.
 	AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
@@ -49,14 +49,13 @@ func (o *UsageTopAvgMetricsHour) GetAvgMetricHour() int64 {
 	return *o.AvgMetricHour
 }
 
-// GetAvgMetricHourOk returns a tuple with the AvgMetricHour field value if set, zero value otherwise
+// GetAvgMetricHourOk returns a tuple with the AvgMetricHour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTopAvgMetricsHour) GetAvgMetricHourOk() (int64, bool) {
+func (o *UsageTopAvgMetricsHour) GetAvgMetricHourOk() (*int64, bool) {
 	if o == nil || o.AvgMetricHour == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.AvgMetricHour, true
+	return o.AvgMetricHour, true
 }
 
 // HasAvgMetricHour returns a boolean if a field has been set.
@@ -82,14 +81,13 @@ func (o *UsageTopAvgMetricsHour) GetMaxMetricHour() int64 {
 	return *o.MaxMetricHour
 }
 
-// GetMaxMetricHourOk returns a tuple with the MaxMetricHour field value if set, zero value otherwise
+// GetMaxMetricHourOk returns a tuple with the MaxMetricHour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTopAvgMetricsHour) GetMaxMetricHourOk() (int64, bool) {
+func (o *UsageTopAvgMetricsHour) GetMaxMetricHourOk() (*int64, bool) {
 	if o == nil || o.MaxMetricHour == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.MaxMetricHour, true
+	return o.MaxMetricHour, true
 }
 
 // HasMaxMetricHour returns a boolean if a field has been set.
@@ -115,14 +113,13 @@ func (o *UsageTopAvgMetricsHour) GetMetricCategory() UsageMetricCategory {
 	return *o.MetricCategory
 }
 
-// GetMetricCategoryOk returns a tuple with the MetricCategory field value if set, zero value otherwise
+// GetMetricCategoryOk returns a tuple with the MetricCategory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTopAvgMetricsHour) GetMetricCategoryOk() (UsageMetricCategory, bool) {
+func (o *UsageTopAvgMetricsHour) GetMetricCategoryOk() (*UsageMetricCategory, bool) {
 	if o == nil || o.MetricCategory == nil {
-		var ret UsageMetricCategory
-		return ret, false
+		return nil, false
 	}
-	return *o.MetricCategory, true
+	return o.MetricCategory, true
 }
 
 // HasMetricCategory returns a boolean if a field has been set.
@@ -148,14 +145,13 @@ func (o *UsageTopAvgMetricsHour) GetMetricName() string {
 	return *o.MetricName
 }
 
-// GetMetricNameOk returns a tuple with the MetricName field value if set, zero value otherwise
+// GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTopAvgMetricsHour) GetMetricNameOk() (string, bool) {
+func (o *UsageTopAvgMetricsHour) GetMetricNameOk() (*string, bool) {
 	if o == nil || o.MetricName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.MetricName, true
+	return o.MetricName, true
 }
 
 // HasMetricName returns a boolean if a field has been set.
@@ -198,7 +194,7 @@ func (v NullableUsageTopAvgMetricsHour) Get() *UsageTopAvgMetricsHour {
 	return v.value
 }
 
-func (v NullableUsageTopAvgMetricsHour) Set(val *UsageTopAvgMetricsHour) {
+func (v *NullableUsageTopAvgMetricsHour) Set(val *UsageTopAvgMetricsHour) {
 	v.value = val
 	v.isSet = true
 }
@@ -207,7 +203,7 @@ func (v NullableUsageTopAvgMetricsHour) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableUsageTopAvgMetricsHour) Unset() {
+func (v *NullableUsageTopAvgMetricsHour) Unset() {
 	v.value = nil
 	v.isSet = false
 }

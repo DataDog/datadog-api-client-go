@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log with the result of the provided formula. This enables you to remap different time attributes with different units into a single attribute, or to compute operations on attributes within the same log.  The formula can use parentheses and the basic arithmetic operators: `-`, `+`, `*`, `/`.  By default, the calculation is skipped if an attribute is missing. Select “Replace missing attribute by 0” to automatically populate missing attribute values with 0 to ensure that the calculation is done. An attribute is missing if it is not found in the log attributes, or if it cannot be converted to a number. *Notes*: - The operator `-` needs to be space split in the formula as it can also be contained in attribute names. - If the target attribute already exists, it is overwritten by the result of the formula. - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`, the actual value stored for the attribute is `0.123456789`. - If you need to scale a unit of measure, see [Scale Filter](https://docs.datadoghq.com/logs/processing/parsing/?tab=filter#matcher-and-filter).
+// LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log with the result of the provided formula. This enables you to remap different time attributes with different units into a single attribute, or to compute operations on attributes within the same log.  The formula can use parentheses and the basic arithmetic operators `-`, `+`, `*`, `/`.  By default, the calculation is skipped if an attribute is missing. Select “Replace missing attribute by 0” to automatically populate missing attribute values with 0 to ensure that the calculation is done. An attribute is missing if it is not found in the log attributes, or if it cannot be converted to a number.  *Notes*:  - The operator `-` needs to be space split in the formula as it can also be contained in attribute names. - If the target attribute already exists, it is overwritten by the result of the formula. - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,   the actual value stored for the attribute is `0.123456789`. - If you need to scale a unit of measure,   see [Scale Filter](https://docs.datadoghq.com/logs/processing/parsing/?tab=filter#matcher-and-filter).
 type LogsArithmeticProcessor struct {
 	// Arithmetic operation between one or more log attributes.
 	Expression string `json:"expression"`
@@ -22,9 +22,9 @@ type LogsArithmeticProcessor struct {
 	Target string `json:"target"`
 	// Type of processor
 	Type *string `json:"type,omitempty"`
-	// Whether or not the processor is enabled
+	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Name of the processor
+	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -69,6 +69,15 @@ func (o *LogsArithmeticProcessor) GetExpression() string {
 	return o.Expression
 }
 
+// GetExpressionOk returns a tuple with the Expression field value
+// and a boolean to check if the value has been set.
+func (o *LogsArithmeticProcessor) GetExpressionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Expression, true
+}
+
 // SetExpression sets field value
 func (o *LogsArithmeticProcessor) SetExpression(v string) {
 	o.Expression = v
@@ -83,14 +92,13 @@ func (o *LogsArithmeticProcessor) GetIsReplaceMissing() bool {
 	return *o.IsReplaceMissing
 }
 
-// GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field value if set, zero value otherwise
+// GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetIsReplaceMissingOk() (bool, bool) {
+func (o *LogsArithmeticProcessor) GetIsReplaceMissingOk() (*bool, bool) {
 	if o == nil || o.IsReplaceMissing == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsReplaceMissing, true
+	return o.IsReplaceMissing, true
 }
 
 // HasIsReplaceMissing returns a boolean if a field has been set.
@@ -117,6 +125,15 @@ func (o *LogsArithmeticProcessor) GetTarget() string {
 	return o.Target
 }
 
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *LogsArithmeticProcessor) GetTargetOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
 // SetTarget sets field value
 func (o *LogsArithmeticProcessor) SetTarget(v string) {
 	o.Target = v
@@ -131,14 +148,13 @@ func (o *LogsArithmeticProcessor) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetTypeOk() (string, bool) {
+func (o *LogsArithmeticProcessor) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -164,14 +180,13 @@ func (o *LogsArithmeticProcessor) GetIsEnabled() bool {
 	return *o.IsEnabled
 }
 
-// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, zero value otherwise
+// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetIsEnabledOk() (bool, bool) {
+func (o *LogsArithmeticProcessor) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsEnabled, true
+	return o.IsEnabled, true
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
@@ -197,14 +212,13 @@ func (o *LogsArithmeticProcessor) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsArithmeticProcessor) GetNameOk() (string, bool) {
+func (o *LogsArithmeticProcessor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -258,7 +272,7 @@ func (v NullableLogsArithmeticProcessor) Get() *LogsArithmeticProcessor {
 	return v.value
 }
 
-func (v NullableLogsArithmeticProcessor) Set(val *LogsArithmeticProcessor) {
+func (v *NullableLogsArithmeticProcessor) Set(val *LogsArithmeticProcessor) {
 	v.value = val
 	v.isSet = true
 }
@@ -267,7 +281,7 @@ func (v NullableLogsArithmeticProcessor) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableLogsArithmeticProcessor) Unset() {
+func (v *NullableLogsArithmeticProcessor) Unset() {
 	v.value = nil
 	v.isSet = false
 }

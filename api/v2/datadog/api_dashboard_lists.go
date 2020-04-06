@@ -37,27 +37,10 @@ func (r apiAddDashboardListItemsRequest) Body(body DashboardListItems) apiAddDas
 }
 
 /*
-AddDashboardListItems Add dashboards to an existing dashboard list.
-### Overview
+AddDashboardListItems Add Items to a Dashboard List
 Add dashboards to an existing dashboard list.
-### Arguments
-- **`dashboards`** [*required*]: A list of dashboards to add to the list. Dashboard definitions follow this form:
-
-  - **`type`** [*required*]: The type of the dashboard. The type must be one of:
-
-    - `"custom_timeboard"`
-
-    - `"custom_screenboard"`
-
-    - `"integration_screenboard"`
-
-    - `"integration_timeboard"`
-
-    - `"host_timeboard"`
-
-  - **`id`** [*required*]: The id of the dashboard.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardListId ID of the dashboard list to add items to
+ * @param dashboardListId ID of the dashboard list to add items to.
 @return apiAddDashboardListItemsRequest
 */
 func (a *DashboardListsApiService) AddDashboardListItems(ctx _context.Context, dashboardListId int64) apiAddDashboardListItemsRequest {
@@ -233,27 +216,10 @@ func (r apiDeleteDashboardListItemsRequest) Body(body DashboardListItems) apiDel
 }
 
 /*
-DeleteDashboardListItems Delete dashboards from an existing dashboard list.
-### Overview
+DeleteDashboardListItems Delete items from a dashboard list
 Delete dashboards from an existing dashboard list.
-### Arguments
-- **`dashboards`** [*required*]: A list of dashboards to add to the list. Dashboard definitions follow this form:
-
-  - **`type`** [*required*]: The type of the dashboard. The type must be one of:
-
-    - `"custom_timeboard"`
-
-    - `"custom_screenboard"`
-
-    - `"integration_screenboard"`
-
-    - `"integration_timeboard"`
-
-    - `"host_timeboard"`
-
-  - **`id`** [*required*]: The id of the dashboard.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardListId ID of the dashboard list to delete items from
+ * @param dashboardListId ID of the dashboard list to delete items from.
 @return apiDeleteDashboardListItemsRequest
 */
 func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64) apiDeleteDashboardListItemsRequest {
@@ -423,13 +389,10 @@ type apiGetDashboardListItemsRequest struct {
 }
 
 /*
-GetDashboardListItems Fetch the dashboard list's dashboard definitions.
-### Overview
+GetDashboardListItems Get a Dashboard List
 Fetch the dashboard list’s dashboard definitions.
-### Arguments
-This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardListId ID of the dashboard list to get items from
+ * @param dashboardListId ID of the dashboard list to get items from.
 @return apiGetDashboardListItemsRequest
 */
 func (a *DashboardListsApiService) GetDashboardListItems(ctx _context.Context, dashboardListId int64) apiGetDashboardListItemsRequest {
@@ -589,27 +552,10 @@ func (r apiUpdateDashboardListItemsRequest) Body(body DashboardListItems) apiUpd
 }
 
 /*
-UpdateDashboardListItems Update dashboards of an existing dashboard list.
-### Overview
+UpdateDashboardListItems Update items of a dashboard list
 Update dashboards of an existing dashboard list.
-### Arguments
-- **`dashboards`** [*required*]: A list of dashboards to add to the list. Dashboard definitions follow this form:
-
-  - **`type`** [*required*]: The type of the dashboard. The type must be one of:
-
-    - `"custom_timeboard"`
-
-    - `"custom_screenboard"`
-
-    - `"integration_screenboard"`
-
-    - `"integration_timeboard"`
-
-    - `"host_timeboard"`
-
-  - **`id`** [*required*]: The id of the dashboard.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardListId ID of the dashboard list to update items from
+ * @param dashboardListId ID of the dashboard list to update items from.
 @return apiUpdateDashboardListItemsRequest
 */
 func (a *DashboardListsApiService) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64) apiUpdateDashboardListItemsRequest {

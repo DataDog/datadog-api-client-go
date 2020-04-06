@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// MetricSearchResponseResults Search result
+// MetricSearchResponseResults Search result.
 type MetricSearchResponseResults struct {
-	// List of metrics that match the search query
+	// List of metrics that match the search query.
 	Metrics *[]string `json:"metrics,omitempty"`
 }
 
@@ -44,14 +44,13 @@ func (o *MetricSearchResponseResults) GetMetrics() []string {
 	return *o.Metrics
 }
 
-// GetMetricsOk returns a tuple with the Metrics field value if set, zero value otherwise
+// GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricSearchResponseResults) GetMetricsOk() ([]string, bool) {
+func (o *MetricSearchResponseResults) GetMetricsOk() (*[]string, bool) {
 	if o == nil || o.Metrics == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Metrics, true
+	return o.Metrics, true
 }
 
 // HasMetrics returns a boolean if a field has been set.
@@ -85,7 +84,7 @@ func (v NullableMetricSearchResponseResults) Get() *MetricSearchResponseResults 
 	return v.value
 }
 
-func (v NullableMetricSearchResponseResults) Set(val *MetricSearchResponseResults) {
+func (v *NullableMetricSearchResponseResults) Set(val *MetricSearchResponseResults) {
 	v.value = val
 	v.isSet = true
 }
@@ -94,7 +93,7 @@ func (v NullableMetricSearchResponseResults) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableMetricSearchResponseResults) Unset() {
+func (v *NullableMetricSearchResponseResults) Unset() {
 	v.value = nil
 	v.isSet = false
 }

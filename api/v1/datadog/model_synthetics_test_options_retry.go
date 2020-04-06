@@ -44,14 +44,13 @@ func (o *SyntheticsTestOptionsRetry) GetCount() int64 {
 	return *o.Count
 }
 
-// GetCountOk returns a tuple with the Count field value if set, zero value otherwise
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptionsRetry) GetCountOk() (int64, bool) {
+func (o *SyntheticsTestOptionsRetry) GetCountOk() (*int64, bool) {
 	if o == nil || o.Count == nil {
-		var ret int64
-		return ret, false
+		return nil, false
 	}
-	return *o.Count, true
+	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
@@ -77,14 +76,13 @@ func (o *SyntheticsTestOptionsRetry) GetInterval() float64 {
 	return *o.Interval
 }
 
-// GetIntervalOk returns a tuple with the Interval field value if set, zero value otherwise
+// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptionsRetry) GetIntervalOk() (float64, bool) {
+func (o *SyntheticsTestOptionsRetry) GetIntervalOk() (*float64, bool) {
 	if o == nil || o.Interval == nil {
-		var ret float64
-		return ret, false
+		return nil, false
 	}
-	return *o.Interval, true
+	return o.Interval, true
 }
 
 // HasInterval returns a boolean if a field has been set.
@@ -121,7 +119,7 @@ func (v NullableSyntheticsTestOptionsRetry) Get() *SyntheticsTestOptionsRetry {
 	return v.value
 }
 
-func (v NullableSyntheticsTestOptionsRetry) Set(val *SyntheticsTestOptionsRetry) {
+func (v *NullableSyntheticsTestOptionsRetry) Set(val *SyntheticsTestOptionsRetry) {
 	v.value = val
 	v.isSet = true
 }
@@ -130,7 +128,7 @@ func (v NullableSyntheticsTestOptionsRetry) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSyntheticsTestOptionsRetry) Unset() {
+func (v *NullableSyntheticsTestOptionsRetry) Unset() {
 	v.value = nil
 	v.isSet = false
 }

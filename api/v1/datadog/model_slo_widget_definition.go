@@ -60,14 +60,13 @@ func (o *SLOWidgetDefinition) GetShowErrorBudget() bool {
 	return *o.ShowErrorBudget
 }
 
-// GetShowErrorBudgetOk returns a tuple with the ShowErrorBudget field value if set, zero value otherwise
+// GetShowErrorBudgetOk returns a tuple with the ShowErrorBudget field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetShowErrorBudgetOk() (bool, bool) {
+func (o *SLOWidgetDefinition) GetShowErrorBudgetOk() (*bool, bool) {
 	if o == nil || o.ShowErrorBudget == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ShowErrorBudget, true
+	return o.ShowErrorBudget, true
 }
 
 // HasShowErrorBudget returns a boolean if a field has been set.
@@ -93,14 +92,13 @@ func (o *SLOWidgetDefinition) GetSloId() string {
 	return *o.SloId
 }
 
-// GetSloIdOk returns a tuple with the SloId field value if set, zero value otherwise
+// GetSloIdOk returns a tuple with the SloId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetSloIdOk() (string, bool) {
+func (o *SLOWidgetDefinition) GetSloIdOk() (*string, bool) {
 	if o == nil || o.SloId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SloId, true
+	return o.SloId, true
 }
 
 // HasSloId returns a boolean if a field has been set.
@@ -126,14 +124,13 @@ func (o *SLOWidgetDefinition) GetTimeWindows() []WidgetTimeWindows {
 	return *o.TimeWindows
 }
 
-// GetTimeWindowsOk returns a tuple with the TimeWindows field value if set, zero value otherwise
+// GetTimeWindowsOk returns a tuple with the TimeWindows field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetTimeWindowsOk() ([]WidgetTimeWindows, bool) {
+func (o *SLOWidgetDefinition) GetTimeWindowsOk() (*[]WidgetTimeWindows, bool) {
 	if o == nil || o.TimeWindows == nil {
-		var ret []WidgetTimeWindows
-		return ret, false
+		return nil, false
 	}
-	return *o.TimeWindows, true
+	return o.TimeWindows, true
 }
 
 // HasTimeWindows returns a boolean if a field has been set.
@@ -159,14 +156,13 @@ func (o *SLOWidgetDefinition) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetTitleOk() (string, bool) {
+func (o *SLOWidgetDefinition) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -192,14 +188,13 @@ func (o *SLOWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	return *o.TitleAlign
 }
 
-// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, zero value otherwise
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetTitleAlignOk() (WidgetTextAlign, bool) {
+func (o *SLOWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 	if o == nil || o.TitleAlign == nil {
-		var ret WidgetTextAlign
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleAlign, true
+	return o.TitleAlign, true
 }
 
 // HasTitleAlign returns a boolean if a field has been set.
@@ -225,14 +220,13 @@ func (o *SLOWidgetDefinition) GetTitleSize() string {
 	return *o.TitleSize
 }
 
-// GetTitleSizeOk returns a tuple with the TitleSize field value if set, zero value otherwise
+// GetTitleSizeOk returns a tuple with the TitleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetTitleSizeOk() (string, bool) {
+func (o *SLOWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 	if o == nil || o.TitleSize == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TitleSize, true
+	return o.TitleSize, true
 }
 
 // HasTitleSize returns a boolean if a field has been set.
@@ -259,6 +253,15 @@ func (o *SLOWidgetDefinition) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SLOWidgetDefinition) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *SLOWidgetDefinition) SetType(v string) {
 	o.Type = v
@@ -273,14 +276,13 @@ func (o *SLOWidgetDefinition) GetViewMode() WidgetViewMode {
 	return *o.ViewMode
 }
 
-// GetViewModeOk returns a tuple with the ViewMode field value if set, zero value otherwise
+// GetViewModeOk returns a tuple with the ViewMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetViewModeOk() (WidgetViewMode, bool) {
+func (o *SLOWidgetDefinition) GetViewModeOk() (*WidgetViewMode, bool) {
 	if o == nil || o.ViewMode == nil {
-		var ret WidgetViewMode
-		return ret, false
+		return nil, false
 	}
-	return *o.ViewMode, true
+	return o.ViewMode, true
 }
 
 // HasViewMode returns a boolean if a field has been set.
@@ -305,6 +307,15 @@ func (o *SLOWidgetDefinition) GetViewType() string {
 	}
 
 	return o.ViewType
+}
+
+// GetViewTypeOk returns a tuple with the ViewType field value
+// and a boolean to check if the value has been set.
+func (o *SLOWidgetDefinition) GetViewTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ViewType, true
 }
 
 // SetViewType sets field value
@@ -358,7 +369,7 @@ func (v NullableSLOWidgetDefinition) Get() *SLOWidgetDefinition {
 	return v.value
 }
 
-func (v NullableSLOWidgetDefinition) Set(val *SLOWidgetDefinition) {
+func (v *NullableSLOWidgetDefinition) Set(val *SLOWidgetDefinition) {
 	v.value = val
 	v.isSet = true
 }
@@ -367,7 +378,7 @@ func (v NullableSLOWidgetDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v NullableSLOWidgetDefinition) Unset() {
+func (v *NullableSLOWidgetDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }

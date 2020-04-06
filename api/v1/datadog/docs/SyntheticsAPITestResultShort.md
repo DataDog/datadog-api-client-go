@@ -37,22 +37,22 @@ GetCheckTime returns the CheckTime field if non-nil, zero value otherwise.
 
 ### GetCheckTimeOk
 
-`func (o *SyntheticsAPITestResultShort) GetCheckTimeOk() (float64, bool)`
+`func (o *SyntheticsAPITestResultShort) GetCheckTimeOk() (*float64, bool)`
 
 GetCheckTimeOk returns a tuple with the CheckTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCheckTime
+
+`func (o *SyntheticsAPITestResultShort) SetCheckTime(v float64)`
+
+SetCheckTime sets CheckTime field to given value.
 
 ### HasCheckTime
 
 `func (o *SyntheticsAPITestResultShort) HasCheckTime() bool`
 
 HasCheckTime returns a boolean if a field has been set.
-
-### SetCheckTime
-
-`func (o *SyntheticsAPITestResultShort) SetCheckTime(v float64)`
-
-SetCheckTime gets a reference to the given float64 and assigns it to the CheckTime field.
 
 ### GetProbeDc
 
@@ -62,22 +62,22 @@ GetProbeDc returns the ProbeDc field if non-nil, zero value otherwise.
 
 ### GetProbeDcOk
 
-`func (o *SyntheticsAPITestResultShort) GetProbeDcOk() (string, bool)`
+`func (o *SyntheticsAPITestResultShort) GetProbeDcOk() (*string, bool)`
 
 GetProbeDcOk returns a tuple with the ProbeDc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProbeDc
+
+`func (o *SyntheticsAPITestResultShort) SetProbeDc(v string)`
+
+SetProbeDc sets ProbeDc field to given value.
 
 ### HasProbeDc
 
 `func (o *SyntheticsAPITestResultShort) HasProbeDc() bool`
 
 HasProbeDc returns a boolean if a field has been set.
-
-### SetProbeDc
-
-`func (o *SyntheticsAPITestResultShort) SetProbeDc(v string)`
-
-SetProbeDc gets a reference to the given string and assigns it to the ProbeDc field.
 
 ### GetResult
 
@@ -87,22 +87,22 @@ GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *SyntheticsAPITestResultShort) GetResultOk() (SyntheticsAPITestResultShortResult, bool)`
+`func (o *SyntheticsAPITestResultShort) GetResultOk() (*SyntheticsAPITestResultShortResult, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetResult
+
+`func (o *SyntheticsAPITestResultShort) SetResult(v SyntheticsAPITestResultShortResult)`
+
+SetResult sets Result field to given value.
 
 ### HasResult
 
 `func (o *SyntheticsAPITestResultShort) HasResult() bool`
 
 HasResult returns a boolean if a field has been set.
-
-### SetResult
-
-`func (o *SyntheticsAPITestResultShort) SetResult(v SyntheticsAPITestResultShortResult)`
-
-SetResult gets a reference to the given SyntheticsAPITestResultShortResult and assigns it to the Result field.
 
 ### GetResultId
 
@@ -112,22 +112,22 @@ GetResultId returns the ResultId field if non-nil, zero value otherwise.
 
 ### GetResultIdOk
 
-`func (o *SyntheticsAPITestResultShort) GetResultIdOk() (string, bool)`
+`func (o *SyntheticsAPITestResultShort) GetResultIdOk() (*string, bool)`
 
 GetResultIdOk returns a tuple with the ResultId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetResultId
+
+`func (o *SyntheticsAPITestResultShort) SetResultId(v string)`
+
+SetResultId sets ResultId field to given value.
 
 ### HasResultId
 
 `func (o *SyntheticsAPITestResultShort) HasResultId() bool`
 
 HasResultId returns a boolean if a field has been set.
-
-### SetResultId
-
-`func (o *SyntheticsAPITestResultShort) SetResultId(v string)`
-
-SetResultId gets a reference to the given string and assigns it to the ResultId field.
 
 ### GetStatus
 
@@ -137,22 +137,22 @@ GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *SyntheticsAPITestResultShort) GetStatusOk() (SyntheticsTestMonitorStatus, bool)`
+`func (o *SyntheticsAPITestResultShort) GetStatusOk() (*SyntheticsTestMonitorStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *SyntheticsAPITestResultShort) SetStatus(v SyntheticsTestMonitorStatus)`
+
+SetStatus sets Status field to given value.
 
 ### HasStatus
 
 `func (o *SyntheticsAPITestResultShort) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
-
-### SetStatus
-
-`func (o *SyntheticsAPITestResultShort) SetStatus(v SyntheticsTestMonitorStatus)`
-
-SetStatus gets a reference to the given SyntheticsTestMonitorStatus and assigns it to the Status field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
