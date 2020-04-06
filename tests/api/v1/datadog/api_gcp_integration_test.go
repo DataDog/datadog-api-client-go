@@ -7,12 +7,15 @@
 package test
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"gotest.tools/assert"
+	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/stretchr/testify/assert"
+	"gopkg.in/h2non/gock.v1"
 )
 
 func generateUniqueGCPAccount() (datadog.GCPAccount, datadog.GCPAccount) {
@@ -52,7 +55,7 @@ func TestGCPCreate(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 }
 
 func TestGCPListandDelete(t *testing.T) {
@@ -69,25 +72,25 @@ func TestGCPListandDelete(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error listing GCP Accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 	var x datadog.GCPAccount
 	for _, Account := range gcpListOutput {
 		if Account.GetProjectId() == *testGCPAcct.ProjectId {
 			x = Account
 		}
 	}
-	assert.Equal(t, x.GetClientEmail(), *testGCPAcct.ClientEmail)
-	assert.Equal(t, x.GetHostFilters(), *testGCPAcct.HostFilters)
+	assert.Equal(t, *testGCPAcct.ClientEmail, x.GetClientEmail())
+	assert.Equal(t, *testGCPAcct.HostFilters, x.GetHostFilters())
 
 	// Assert returned list is greater than or equal to 1
-	assert.Assert(t, len(gcpListOutput) >= 1)
+	assert.True(t, len(gcpListOutput) >= 1)
 
 	// Test account deletion as well
 	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(TESTAUTH).Body(testGCPAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error uninstalling GCP Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 }
 
 func TestUpdateGCPAccount(t *testing.T) {
@@ -102,28 +105,151 @@ func TestUpdateGCPAccount(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	_, httpresp, err = TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(TESTAUTH).Body(testGCPUpdateAcct).Execute()
 	if err != nil {
 		t.Fatalf("Error updating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// List account to ensure update worked.
 	gcpListOutput, _, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing GCP accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 	var x datadog.GCPAccount
 	for _, Account := range gcpListOutput {
 		if Account.GetClientEmail() == *testGCPAcct.ClientEmail {
 			x = Account
 		}
 	}
-	assert.Equal(t, x.GetAutomute(), true)
-	assert.Equal(t, x.GetHostFilters(), *testGCPUpdateAcct.HostFilters)
+	assert.Equal(t, true, x.GetAutomute())
+	assert.Equal(t, *testGCPUpdateAcct.HostFilters, x.GetHostFilters())
+}
+
+func TestGCPList400Error(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	res, err := tests.ReadFixture("fixtures/gcp/error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
+	// and it can't be done through the API
+	gock.New("https://api.datadoghq.com").Get("/api/v1/integration/gcp").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Bad Request
+	_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(TESTAUTH).Execute()
+	assert.Equal(t, 400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestGCPListErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.ListGCPIntegration(tc.Ctx).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestGCPCreateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.GCPAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.GCPAccount{}, 400},
+		{"403 Forbidden", fake_auth, datadog.GCPAccount{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.CreateGCPIntegration(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestGCPDeleteErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.GCPAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.GCPAccount{}, 400},
+		{"403 Forbidden", fake_auth, datadog.GCPAccount{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.DeleteGCPIntegration(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestGCPUpdateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.GCPAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.GCPAccount{}, 400},
+		{"403 Forbidden", fake_auth, datadog.GCPAccount{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.GCPIntegrationApi.UpdateGCPIntegration(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func uninstallGCPIntegration(account datadog.GCPAccount) {
