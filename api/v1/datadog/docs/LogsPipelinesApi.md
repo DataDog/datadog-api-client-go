@@ -6,9 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateLogsPipeline**](LogsPipelinesApi.md#CreateLogsPipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline
 [**DeleteLogsPipeline**](LogsPipelinesApi.md#DeleteLogsPipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline
-[**GetAllLogsPipelines**](LogsPipelinesApi.md#GetAllLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
 [**GetLogsPipeline**](LogsPipelinesApi.md#GetLogsPipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a pipeline
 [**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
+[**ListLogsPipelines**](LogsPipelinesApi.md#ListLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
 [**UpdateLogsPipeline**](LogsPipelinesApi.md#UpdateLogsPipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline
 [**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
 
@@ -96,41 +96,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllLogsPipelines
-
-> []LogsPipeline GetAllLogsPipelines(ctx).Execute()
-
-Get all Pipeline
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllLogsPipelinesRequest struct via the builder pattern
-
-
-### Return type
-
-[**[]LogsPipeline**](LogsPipeline.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetLogsPipeline
 
 > LogsPipeline GetLogsPipeline(ctx, pipelineId).Execute()
@@ -194,6 +159,41 @@ Other parameters are passed through a pointer to a apiGetLogsPipelineOrderReques
 ### Return type
 
 [**LogsPipelinesOrder**](LogsPipelinesOrder.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListLogsPipelines
+
+> []LogsPipeline ListLogsPipelines(ctx).Execute()
+
+Get all Pipeline
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListLogsPipelinesRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]LogsPipeline**](LogsPipeline.md)
 
 ### Authorization
 

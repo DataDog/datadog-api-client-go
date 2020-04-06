@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v1/user | Create user
 [**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v1/user/{user_handle} | Disable user
-[**GetAllUsers**](UsersApi.md#GetAllUsers) | **Get** /api/v1/user | Get all users
 [**GetUser**](UsersApi.md#GetUser) | **Get** /api/v1/user/{user_handle} | Get user
+[**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v1/user | Get all users
 [**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /api/v1/user/{user_handle} | Update user
 
 
@@ -94,41 +94,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllUsers
-
-> UserListResponse GetAllUsers(ctx).Execute()
-
-Get all users
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllUsersRequest struct via the builder pattern
-
-
-### Return type
-
-[**UserListResponse**](UserListResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetUser
 
 > UserResponse GetUser(ctx, userHandle).Execute()
@@ -157,6 +122,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserResponse**](UserResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListUsers
+
+> UserListResponse ListUsers(ctx).Execute()
+
+Get all users
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsersRequest struct via the builder pattern
+
+
+### Return type
+
+[**UserListResponse**](UserListResponse.md)
 
 ### Authorization
 

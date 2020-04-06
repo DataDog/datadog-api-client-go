@@ -4,47 +4,12 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAllLogIndexes**](LogsIndexesApi.md#GetAllLogIndexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 [**GetLogsIndex**](LogsIndexesApi.md#GetLogsIndex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 [**GetLogsIndexOrder**](LogsIndexesApi.md#GetLogsIndexOrder) | **Get** /api/v1/logs/config/index-order | Get indexes order
+[**ListLogIndexes**](LogsIndexesApi.md#ListLogIndexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 [**UpdateLogsIndex**](LogsIndexesApi.md#UpdateLogsIndex) | **Put** /api/v1/logs/config/indexes/{name} | Update an index
 [**UpdateLogsIndexOrder**](LogsIndexesApi.md#UpdateLogsIndexOrder) | **Put** /api/v1/logs/config/index-order | Update indexes order
 
-
-
-## GetAllLogIndexes
-
-> LogsIndexListResponse GetAllLogIndexes(ctx).Execute()
-
-Get all indexes
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllLogIndexesRequest struct via the builder pattern
-
-
-### Return type
-
-[**LogsIndexListResponse**](LogsIndexListResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## GetLogsIndex
@@ -110,6 +75,41 @@ Other parameters are passed through a pointer to a apiGetLogsIndexOrderRequest s
 ### Return type
 
 [**LogsIndexesOrder**](LogsIndexesOrder.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListLogIndexes
+
+> LogsIndexListResponse ListLogIndexes(ctx).Execute()
+
+Get all indexes
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListLogIndexesRequest struct via the builder pattern
+
+
+### Return type
+
+[**LogsIndexListResponse**](LogsIndexListResponse.md)
 
 ### Authorization
 

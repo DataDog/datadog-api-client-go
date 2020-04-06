@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateDashboard**](DashboardsApi.md#CreateDashboard) | **Post** /api/v1/dashboard | Create a new Dashboard
 [**DeleteDashboard**](DashboardsApi.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a Dashboard
-[**GetAllDashboards**](DashboardsApi.md#GetAllDashboards) | **Get** /api/v1/dashboard | Get all Dashboards
 [**GetDashboard**](DashboardsApi.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboard_id} | Get a Dashboard
+[**ListDashboards**](DashboardsApi.md#ListDashboards) | **Get** /api/v1/dashboard | Get all Dashboards
 [**UpdateDashboard**](DashboardsApi.md#UpdateDashboard) | **Put** /api/v1/dashboard/{dashboard_id} | Update a Dashboard
 
 
@@ -94,41 +94,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllDashboards
-
-> DashboardSummary GetAllDashboards(ctx).Execute()
-
-Get all Dashboards
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllDashboardsRequest struct via the builder pattern
-
-
-### Return type
-
-[**DashboardSummary**](DashboardSummary.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetDashboard
 
 > Dashboard GetDashboard(ctx, dashboardId).Execute()
@@ -157,6 +122,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Dashboard**](Dashboard.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListDashboards
+
+> DashboardSummary ListDashboards(ctx).Execute()
+
+Get all Dashboards
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListDashboardsRequest struct via the builder pattern
+
+
+### Return type
+
+[**DashboardSummary**](DashboardSummary.md)
 
 ### Authorization
 
