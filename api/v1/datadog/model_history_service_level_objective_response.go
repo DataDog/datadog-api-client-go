@@ -16,7 +16,7 @@ import (
 type HistoryServiceLevelObjectiveResponse struct {
 	Data HistoryServiceLevelObjectiveResponseData `json:"data"`
 	// A list of errors while querying the history data for the service level obective.
-	Errors *[]HistoryServiceLevelObjectiveResponseError `json:"errors,omitempty"`
+	Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
 }
 
 // NewHistoryServiceLevelObjectiveResponse instantiates a new HistoryServiceLevelObjectiveResponse object
@@ -62,9 +62,9 @@ func (o *HistoryServiceLevelObjectiveResponse) SetData(v HistoryServiceLevelObje
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []HistoryServiceLevelObjectiveResponseError {
+func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []SLOHistoryResponseError {
 	if o == nil || o.Errors == nil {
-		var ret []HistoryServiceLevelObjectiveResponseError
+		var ret []SLOHistoryResponseError
 		return ret
 	}
 	return *o.Errors
@@ -72,7 +72,7 @@ func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []HistoryServiceLevel
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() (*[]HistoryServiceLevelObjectiveResponseError, bool) {
+func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() (*[]SLOHistoryResponseError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
@@ -88,8 +88,8 @@ func (o *HistoryServiceLevelObjectiveResponse) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []HistoryServiceLevelObjectiveResponseError and assigns it to the Errors field.
-func (o *HistoryServiceLevelObjectiveResponse) SetErrors(v []HistoryServiceLevelObjectiveResponseError) {
+// SetErrors gets a reference to the given []SLOHistoryResponseError and assigns it to the Errors field.
+func (o *HistoryServiceLevelObjectiveResponse) SetErrors(v []SLOHistoryResponseError) {
 	o.Errors = &v
 }
 

@@ -16,14 +16,14 @@ Name | Type | Description | Notes
 **Query** | Pointer to [**ServiceLevelObjectiveQuery**](ServiceLevelObjective_query.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags (e.g. \&quot;env:prod\&quot;) associated with this service level objective.  Always included in service level objective responses (but may be empty). Optional in create/update requests. | [optional] 
 **Thresholds** | Pointer to [**[]SLOThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
-**Type** | Pointer to [**ServiceLevelObjectiveType**](ServiceLevelObjectiveType.md) |  | 
-**TypeId** | Pointer to [**ServiceLevelObjectiveTypeNumeric**](ServiceLevelObjectiveTypeNumeric.md) |  | [optional] 
+**Type** | Pointer to [**SLOType**](SLOType.md) |  | 
+**TypeId** | Pointer to [**SLOTypeNumeric**](SLOTypeNumeric.md) |  | [optional] 
 
 ## Methods
 
 ### NewServiceLevelObjective
 
-`func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ ServiceLevelObjectiveType, ) *ServiceLevelObjective`
+`func NewServiceLevelObjective(name string, thresholds []SLOThreshold, type_ SLOType, ) *ServiceLevelObjective`
 
 NewServiceLevelObjective instantiates a new ServiceLevelObjective object
 This constructor will assign default values to properties that have it defined,
@@ -340,40 +340,40 @@ SetThresholds sets Thresholds field to given value.
 
 ### GetType
 
-`func (o *ServiceLevelObjective) GetType() ServiceLevelObjectiveType`
+`func (o *ServiceLevelObjective) GetType() SLOType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ServiceLevelObjective) GetTypeOk() (*ServiceLevelObjectiveType, bool)`
+`func (o *ServiceLevelObjective) GetTypeOk() (*SLOType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ServiceLevelObjective) SetType(v ServiceLevelObjectiveType)`
+`func (o *ServiceLevelObjective) SetType(v SLOType)`
 
 SetType sets Type field to given value.
 
 
 ### GetTypeId
 
-`func (o *ServiceLevelObjective) GetTypeId() ServiceLevelObjectiveTypeNumeric`
+`func (o *ServiceLevelObjective) GetTypeId() SLOTypeNumeric`
 
 GetTypeId returns the TypeId field if non-nil, zero value otherwise.
 
 ### GetTypeIdOk
 
-`func (o *ServiceLevelObjective) GetTypeIdOk() (*ServiceLevelObjectiveTypeNumeric, bool)`
+`func (o *ServiceLevelObjective) GetTypeIdOk() (*SLOTypeNumeric, bool)`
 
 GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeId
 
-`func (o *ServiceLevelObjective) SetTypeId(v ServiceLevelObjectiveTypeNumeric)`
+`func (o *ServiceLevelObjective) SetTypeId(v SLOTypeNumeric)`
 
 SetTypeId sets TypeId field to given value.
 

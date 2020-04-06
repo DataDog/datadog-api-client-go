@@ -58,7 +58,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
 
 	// Create SLO
-	sloResp, httpresp, err := TESTAPICLIENT.SLOApi.CreateSLO(TESTAUTH).Body(testMonitorSLO).Execute()
+	sloResp, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.CreateSLO(TESTAUTH).Body(testMonitorSLO).Execute()
 	if err != nil {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.Error(), err)
 	}
@@ -69,7 +69,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 
 	// Edit SLO
 	slo.SetDescription("Updated description")
-	sloResp, httpresp, err = TESTAPICLIENT.SLOApi.EditSLO(TESTAUTH, slo.GetId()).Body(slo).Execute()
+	sloResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.UpdateSLO(TESTAUTH, slo.GetId()).Body(slo).Execute()
 	if err != nil {
 		t.Fatalf("Error updating SLO %v: Response %s: %v", slo, err.Error(), err)
 	}
@@ -79,7 +79,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 
 	// Check that the SLO can be deleted
 	var canDeleteResp datadog.CheckCanDeleteServiceLevelObjectiveResponse
-	canDeleteResp, httpresp, err = TESTAPICLIENT.SLOApi.CheckCanDeleteSLO(TESTAUTH).Ids(slo2.GetId()).Execute()
+	canDeleteResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.CheckCanDeleteSLO(TESTAUTH).Ids(slo2.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error checking that SLO %s can be deleted: Response %s: %v", slo.GetId(), err.Error(), err)
 	}
@@ -89,7 +89,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 
 	// Get SLO
 	var sloGetResp datadog.ServiceLevelObjectiveResponse
-	sloGetResp, httpresp, err = TESTAPICLIENT.SLOApi.GetSLO(TESTAUTH, slo2.GetId()).Execute()
+	sloGetResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.GetSLO(TESTAUTH, slo2.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error getting SLO %s: Response %s: %v", slo2.GetId(), err.Error(), err)
 	}
@@ -99,7 +99,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 
 	// Get SLO history
 	now := TESTCLOCK.Now().Unix()
-	_, httpresp, err = TESTAPICLIENT.SLOApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
+	_, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
 		FromTs(fmt.Sprintf("%d", now-11)).ToTs(fmt.Sprintf("%d", now-1)).Execute()
 	// the contents of history really depend on the org that this test is running in, so we just ensure
 	// that the structure deserialized properly and no error was returned
@@ -110,7 +110,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 
 	// Delete SLO
 	var sloDeleteResp datadog.ServiceLevelObjectiveDeleted
-	sloDeleteResp, httpresp, err = TESTAPICLIENT.SLOApi.DeleteSLO(TESTAUTH, slo3.GetId()).Execute()
+	sloDeleteResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.DeleteSLO(TESTAUTH, slo3.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error deleting SLO %s: Response %s: %v", slo3.GetId(), err.Error(), err)
 	}
@@ -123,7 +123,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 	defer teardownTest(t)
 
 	// Create SLO
-	sloResp, httpresp, err := TESTAPICLIENT.SLOApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
+	sloResp, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
 	if err != nil {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.Error(), err)
 	}
@@ -134,7 +134,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 
 	// Edit SLO
 	slo.SetDescription("Updated description")
-	sloResp, httpresp, err = TESTAPICLIENT.SLOApi.EditSLO(TESTAUTH, slo.GetId()).Body(slo).Execute()
+	sloResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.UpdateSLO(TESTAUTH, slo.GetId()).Body(slo).Execute()
 	if err != nil {
 		t.Fatalf("Error updating SLO %v: Response %s: %v", slo, err.Error(), err)
 	}
@@ -144,7 +144,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 
 	// Check that the SLO can be deleted
 	var canDeleteResp datadog.CheckCanDeleteServiceLevelObjectiveResponse
-	canDeleteResp, httpresp, err = TESTAPICLIENT.SLOApi.CheckCanDeleteSLO(TESTAUTH).Ids(slo2.GetId()).Execute()
+	canDeleteResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.CheckCanDeleteSLO(TESTAUTH).Ids(slo2.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error checking that SLO %s can be deleted: Response %s: %v", slo.GetId(), err.Error(), err)
 	}
@@ -154,7 +154,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 
 	// Get SLO
 	var sloGetResp datadog.ServiceLevelObjectiveResponse
-	sloGetResp, httpresp, err = TESTAPICLIENT.SLOApi.GetSLO(TESTAUTH, slo2.GetId()).Execute()
+	sloGetResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.GetSLO(TESTAUTH, slo2.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error getting SLO %s: Response %s: %v", slo2.GetId(), err.Error(), err)
 	}
@@ -164,7 +164,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 
 	// Get SLO history
 	now := TESTCLOCK.Now().Unix()
-	_, httpresp, err = TESTAPICLIENT.SLOApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
+	_, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
 		FromTs(fmt.Sprintf("%d", now-11)).ToTs(fmt.Sprintf("%d", now-1)).Execute()
 	// the contents of history really depend on the org that this test is running in, so we just ensure
 	// that the structure deserialized properly and no error was returned
@@ -175,7 +175,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 
 	// Delete SLO
 	var sloDeleteResp datadog.ServiceLevelObjectiveDeleted
-	sloDeleteResp, httpresp, err = TESTAPICLIENT.SLOApi.DeleteSLO(TESTAUTH, slo3.GetId()).Execute()
+	sloDeleteResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.DeleteSLO(TESTAUTH, slo3.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error deleting SLO %s: Response %s: %v", slo3.GetId(), err.Error(), err)
 	}
@@ -198,7 +198,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
 
 	// Create monitor SLO
-	sloResp, httpresp, err := TESTAPICLIENT.SLOApi.CreateSLO(TESTAUTH).Body(testMonitorSLO).Execute()
+	sloResp, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.CreateSLO(TESTAUTH).Body(testMonitorSLO).Execute()
 	if err != nil {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.Error(), err)
 	}
@@ -207,7 +207,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// Create event SLO
-	sloResp, httpresp, err = TESTAPICLIENT.SLOApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
+	sloResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
 	if err != nil {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.Error(), err)
 	}
@@ -217,7 +217,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 
 	// Get multiple SLOs
 	var slosResp datadog.ServiceLevelObjectiveListResponse
-	slosResp, httpresp, err = TESTAPICLIENT.SLOApi.GetSLOs(TESTAUTH).
+	slosResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.GetSLOs(TESTAUTH).
 		Ids(fmt.Sprintf("%s,%s", monitorSLO.GetId(), eventSLO.GetId())).Execute()
 	if err != nil {
 		t.Fatalf("Error getting SLOs: Response %s: %v", err.Error(), err)
@@ -229,7 +229,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 
 	// Use bulk delete operation to delete the event SLO
 	var deleteResp datadog.ServiceLevelObjectivesBulkDeleted
-	deleteResp, httpresp, err = TESTAPICLIENT.SLOApi.BulkPartialDeleteSLO(TESTAUTH).
+	deleteResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.BulkPartialDeleteSLO(TESTAUTH).
 		Body(map[string][]datadog.SLOTimeframe{
 			eventSLO.GetId(): {datadog.SLOTIMEFRAME_SEVEN_DAYS},
 		}).Execute()
@@ -253,7 +253,7 @@ func assertSLOIDPresent(t *testing.T, sloID string, slos []datadog.ServiceLevelO
 }
 
 func deleteSLOIfExists(sloID string) {
-	_, httpresp, err := TESTAPICLIENT.SLOApi.DeleteSLO(TESTAUTH, sloID).Execute()
+	_, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.DeleteSLO(TESTAUTH, sloID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
 		log.Printf("Deleting SLO: %v failed with %v, Another test may have already deleted this SLO: %v",
 			sloID, httpresp.StatusCode, err)

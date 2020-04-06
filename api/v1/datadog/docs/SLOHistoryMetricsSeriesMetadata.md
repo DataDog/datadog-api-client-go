@@ -1,4 +1,4 @@
-# HistoryServiceLevelObjectiveMetricsSeriesMetadata
+# SLOHistoryMetricsSeriesMetadata
 
 ## Properties
 
@@ -13,170 +13,170 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewHistoryServiceLevelObjectiveMetricsSeriesMetadata
+### NewSLOHistoryMetricsSeriesMetadata
 
-`func NewHistoryServiceLevelObjectiveMetricsSeriesMetadata() *HistoryServiceLevelObjectiveMetricsSeriesMetadata`
+`func NewSLOHistoryMetricsSeriesMetadata() *SLOHistoryMetricsSeriesMetadata`
 
-NewHistoryServiceLevelObjectiveMetricsSeriesMetadata instantiates a new HistoryServiceLevelObjectiveMetricsSeriesMetadata object
+NewSLOHistoryMetricsSeriesMetadata instantiates a new SLOHistoryMetricsSeriesMetadata object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewHistoryServiceLevelObjectiveMetricsSeriesMetadataWithDefaults
+### NewSLOHistoryMetricsSeriesMetadataWithDefaults
 
-`func NewHistoryServiceLevelObjectiveMetricsSeriesMetadataWithDefaults() *HistoryServiceLevelObjectiveMetricsSeriesMetadata`
+`func NewSLOHistoryMetricsSeriesMetadataWithDefaults() *SLOHistoryMetricsSeriesMetadata`
 
-NewHistoryServiceLevelObjectiveMetricsSeriesMetadataWithDefaults instantiates a new HistoryServiceLevelObjectiveMetricsSeriesMetadata object
+NewSLOHistoryMetricsSeriesMetadataWithDefaults instantiates a new SLOHistoryMetricsSeriesMetadata object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAggr
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggr() string`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetAggr() string`
 
 GetAggr returns the Aggr field if non-nil, zero value otherwise.
 
 ### GetAggrOk
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetAggrOk() (*string, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetAggrOk() (*string, bool)`
 
 GetAggrOk returns a tuple with the Aggr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAggr
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetAggr(v string)`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetAggr(v string)`
 
 SetAggr sets Aggr field to given value.
 
 ### HasAggr
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasAggr() bool`
+`func (o *SLOHistoryMetricsSeriesMetadata) HasAggr() bool`
 
 HasAggr returns a boolean if a field has been set.
 
 ### GetExpression
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpression() string`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetExpression() string`
 
 GetExpression returns the Expression field if non-nil, zero value otherwise.
 
 ### GetExpressionOk
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetExpressionOk() (*string, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetExpressionOk() (*string, bool)`
 
 GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpression
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetExpression(v string)`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetExpression(v string)`
 
 SetExpression sets Expression field to given value.
 
 ### HasExpression
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasExpression() bool`
+`func (o *SLOHistoryMetricsSeriesMetadata) HasExpression() bool`
 
 HasExpression returns a boolean if a field has been set.
 
 ### GetMetric
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetric() string`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetMetric() string`
 
 GetMetric returns the Metric field if non-nil, zero value otherwise.
 
 ### GetMetricOk
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetMetricOk() (*string, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetMetricOk() (*string, bool)`
 
 GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetric
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetMetric(v string)`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetMetric(v string)`
 
 SetMetric sets Metric field to given value.
 
 ### HasMetric
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasMetric() bool`
+`func (o *SLOHistoryMetricsSeriesMetadata) HasMetric() bool`
 
 HasMetric returns a boolean if a field has been set.
 
 ### GetQueryIndex
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndex() int64`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetQueryIndex() int64`
 
 GetQueryIndex returns the QueryIndex field if non-nil, zero value otherwise.
 
 ### GetQueryIndexOk
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetQueryIndexOk() (*int64, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetQueryIndexOk() (*int64, bool)`
 
 GetQueryIndexOk returns a tuple with the QueryIndex field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQueryIndex
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetQueryIndex(v int64)`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetQueryIndex(v int64)`
 
 SetQueryIndex sets QueryIndex field to given value.
 
 ### HasQueryIndex
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasQueryIndex() bool`
+`func (o *SLOHistoryMetricsSeriesMetadata) HasQueryIndex() bool`
 
 HasQueryIndex returns a boolean if a field has been set.
 
 ### GetScope
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScope() string`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetScope() string`
 
 GetScope returns the Scope field if non-nil, zero value otherwise.
 
 ### GetScopeOk
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetScopeOk() (*string, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetScopeOk() (*string, bool)`
 
 GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScope
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetScope(v string)`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetScope(v string)`
 
 SetScope sets Scope field to given value.
 
 ### HasScope
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasScope() bool`
+`func (o *SLOHistoryMetricsSeriesMetadata) HasScope() bool`
 
 HasScope returns a boolean if a field has been set.
 
 ### GetUnit
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnit() string`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() string`
 
 GetUnit returns the Unit field if non-nil, zero value otherwise.
 
 ### GetUnitOk
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) GetUnitOk() (*string, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*string, bool)`
 
 GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnit
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) SetUnit(v string)`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v string)`
 
 SetUnit sets Unit field to given value.
 
 ### HasUnit
 
-`func (o *HistoryServiceLevelObjectiveMetricsSeriesMetadata) HasUnit() bool`
+`func (o *SLOHistoryMetricsSeriesMetadata) HasUnit() bool`
 
 HasUnit returns a boolean if a field has been set.
 
