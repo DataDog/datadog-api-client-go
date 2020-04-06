@@ -58,7 +58,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	defer retryDeleteAccount(t, testAWSAccount)
 
 	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.
-		GetAllAWSAccounts(TESTAUTH).
+		ListAWSAccounts(TESTAUTH).
 		AccountId(testAWSAccount.GetAccountId()).
 		RoleName(testAWSAccount.GetRoleName()).
 		Execute()
@@ -99,7 +99,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 	defer retryDeleteAccount(t, UPDATEDAWSACCT)
 
 	// Assert AWS Account Get with proper fields
-	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH).
+	awsAccts, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAWSAccounts(TESTAUTH).
 		AccountId(UPDATEDAWSACCT.GetAccountId()).
 		RoleName(UPDATEDAWSACCT.GetRoleName()).
 		Execute()
@@ -145,7 +145,7 @@ func TestGenerateNewExternalId(t *testing.T) {
 	retryCreateAccount(t, testAWSAccount)
 	defer retryDeleteAccount(t, testAWSAccount)
 
-	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(TESTAUTH).Body(testAWSAccount).Execute()
+	apiResp, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateNewAWSExternalID(TESTAUTH).Body(testAWSAccount).Execute()
 	if err != nil {
 		t.Fatalf("Error generating new AWS External ID: Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

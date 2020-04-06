@@ -136,7 +136,7 @@ func TestListUsers(t *testing.T) {
 	defer teardownTest(t)
 
 	// Assert User Created with proper fields
-	userListResponse, httpresp, err := TESTAPICLIENT.UsersApi.GetAllUsers(TESTAUTH).Execute()
+	userListResponse, httpresp, err := TESTAPICLIENT.UsersApi.ListUsers(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing Users. Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

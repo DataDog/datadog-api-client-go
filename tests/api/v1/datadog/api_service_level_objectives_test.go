@@ -99,7 +99,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 
 	// Get SLO history
 	now := TESTCLOCK.Now().Unix()
-	_, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
+	_, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.GetSLOHistory(TESTAUTH, slo3.GetId()).
 		FromTs(fmt.Sprintf("%d", now-11)).ToTs(fmt.Sprintf("%d", now-1)).Execute()
 	// the contents of history really depend on the org that this test is running in, so we just ensure
 	// that the structure deserialized properly and no error was returned
@@ -164,7 +164,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 
 	// Get SLO history
 	now := TESTCLOCK.Now().Unix()
-	_, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.HistoryForSLO(TESTAUTH, slo3.GetId()).
+	_, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.GetSLOHistory(TESTAUTH, slo3.GetId()).
 		FromTs(fmt.Sprintf("%d", now-11)).ToTs(fmt.Sprintf("%d", now-1)).Execute()
 	// the contents of history really depend on the org that this test is running in, so we just ensure
 	// that the structure deserialized properly and no error was returned
@@ -229,7 +229,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 
 	// Use bulk delete operation to delete the event SLO
 	var deleteResp datadog.ServiceLevelObjectivesBulkDeleted
-	deleteResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.BulkPartialDeleteSLO(TESTAUTH).
+	deleteResp, httpresp, err = TESTAPICLIENT.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(TESTAUTH).
 		Body(map[string][]datadog.SLOTimeframe{
 			eventSLO.GetId(): {datadog.SLOTIMEFRAME_SEVEN_DAYS},
 		}).Execute()

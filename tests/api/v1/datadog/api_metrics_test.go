@@ -42,7 +42,7 @@ func TestMetrics(t *testing.T) {
 
 	// Check that the metric was submitted successfully
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		metrics, httpresp, err := api.GetAllActiveMetrics(TESTAUTH).From(now).Execute()
+		metrics, httpresp, err := api.ListActiveMetrics(TESTAUTH).From(now).Execute()
 		if err != nil {
 			t.Logf("Error getting list of active metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 			return false
@@ -90,7 +90,7 @@ func TestMetrics(t *testing.T) {
 
 	// Test search
 	searchQuery := fmt.Sprintf("metrics:%s", testMetric)
-	searchResult, httpresp, err := api.SearchMetrics(TESTAUTH).Q(searchQuery).Execute()
+	searchResult, httpresp, err := api.ListMetrics(TESTAUTH).Q(searchQuery).Execute()
 	if err != nil {
 		t.Errorf("Error searching metrics %s: Response %s: %v", searchQuery, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -122,7 +122,7 @@ func TestMetrics(t *testing.T) {
 		Type:           datadog.PtrString("count"),
 	}
 
-	metadata, httpresp, err = api.EditMetricMetadata(TESTAUTH, testMetric).Body(newMetadata).Execute()
+	metadata, httpresp, err = api.UpdateMetricMetadata(TESTAUTH, testMetric).Body(newMetadata).Execute()
 	if err != nil {
 		t.Errorf("Error editing metric metadata for %s: Response %s: %v", testMetric, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -147,10 +147,10 @@ func TestMetricListActive(t *testing.T) {
 
 	api := TESTAPICLIENT.MetricsApi
 
-	_, _, err := api.GetAllActiveMetrics(TESTAUTH).Execute()
+	_, _, err := api.ListActiveMetrics(TESTAUTH).Execute()
 	assert.NotNil(t, err) // Parameter `from` required
 
-	metrics, _, err := api.GetAllActiveMetrics(TESTAUTH).From(1).Host("host").Execute()
+	metrics, _, err := api.ListActiveMetrics(TESTAUTH).From(1).Host("host").Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, expected.GetMetrics(), metrics.GetMetrics())
 	assert.Equal(t, expected.GetFrom(), metrics.GetFrom())

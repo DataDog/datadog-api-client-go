@@ -128,8 +128,8 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// Stop API test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
-		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTestPauseStatus(TESTAUTH, publicID).
+		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.Error(), err)
 	}
@@ -138,8 +138,8 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 
 	// Start API test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
-		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTestPauseStatus(TESTAUTH, publicID).
+		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.Error(), err)
 	}
@@ -220,8 +220,8 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	// Start Browser test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
-		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTestPauseStatus(TESTAUTH, publicID).
+		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.Error(), err)
 	}
@@ -230,8 +230,8 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 
 	// Stop Browser test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.SetTestPauseStatus(TESTAUTH, publicID).
-		Body(datadog.SyntheticsSetTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = TESTAPICLIENT.SyntheticsApi.UpdateTestPauseStatus(TESTAUTH, publicID).
+		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.Error(), err)
 	}
@@ -362,8 +362,8 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	assert.Equal(t, syntBrowser.GetName(), "testing Synthetics Browser test")
 
 	// Test Getting multiple tests
-	var allTests datadog.SyntheticsGetAllTestsResponse
-	allTests, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetAllTests(TESTAUTH).Execute()
+	var allTests datadog.SyntheticsListTestsResponse
+	allTests, httpresp, err = TESTAPICLIENT.SyntheticsApi.ListTests(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all Synthetics tests: Response %s: %v", err.Error(), err)
 	}
@@ -373,10 +373,10 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	assertPublicIDPresent(t, publicIDBrowser, td)
 }
 
-func TestSyntheticsGetAllLocations(t *testing.T) {
+func TestSyntheticsListLocations(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	locs, httpresp, err := TESTAPICLIENT.SyntheticsApi.GetAllLocations(TESTAUTH).Execute()
+	locs, httpresp, err := TESTAPICLIENT.SyntheticsApi.ListLocations(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all Synthetics locations: Response %s: %v", err.Error(), err)
 	}
@@ -384,10 +384,10 @@ func TestSyntheticsGetAllLocations(t *testing.T) {
 	assert.Assert(t, len(locs.GetLocations()) > 0)
 }
 
-func TestSyntheticsGetAllDevices(t *testing.T) {
+func TestSyntheticsListDevices(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	devices, httpresp, err := TESTAPICLIENT.SyntheticsApi.GetAllDevices(TESTAUTH).Execute()
+	devices, httpresp, err := TESTAPICLIENT.SyntheticsApi.ListDevices(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all Synthetics devices: Response %s: %v", err.Error(), err)
 	}
