@@ -1,4 +1,4 @@
-# ServiceLevelObjectiveType
+# SLOTypeNumeric
 
 ## Properties
 

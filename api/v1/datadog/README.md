@@ -164,14 +164,14 @@ Class | Method | HTTP request | Description
 *PagerDutyIntegrationApi* | [**GetPagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegrationservice) | **Get** /api/v1/integration/pagerduty/configuration/services/{service_name} | Get a single service object
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegration) | **Post** /api/v1/integration/pagerduty | Add new services and schedules
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegrationservice) | **Put** /api/v1/integration/pagerduty/configuration/services/{service_name} | Update a single service object
-*SLOApi* | [**BulkPartialDeleteSLO**](docs/SLOApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
-*SLOApi* | [**CheckCanDeleteSLO**](docs/SLOApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
-*SLOApi* | [**CreateSLO**](docs/SLOApi.md#createslo) | **Post** /api/v1/slo | Create a SLO object
-*SLOApi* | [**DeleteSLO**](docs/SLOApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
-*SLOApi* | [**EditSLO**](docs/SLOApi.md#editslo) | **Put** /api/v1/slo/{slo_id} | Edit a SLO
-*SLOApi* | [**GetSLO**](docs/SLOApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
-*SLOApi* | [**GetSLOs**](docs/SLOApi.md#getslos) | **Get** /api/v1/slo | Search SLOs
-*SLOApi* | [**HistoryForSLO**](docs/SLOApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
+*ServiceLevelObjectivesApi* | [**BulkPartialDeleteSLO**](docs/ServiceLevelObjectivesApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
+*ServiceLevelObjectivesApi* | [**CheckCanDeleteSLO**](docs/ServiceLevelObjectivesApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
+*ServiceLevelObjectivesApi* | [**CreateSLO**](docs/ServiceLevelObjectivesApi.md#createslo) | **Post** /api/v1/slo | Create a SLO object
+*ServiceLevelObjectivesApi* | [**DeleteSLO**](docs/ServiceLevelObjectivesApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
+*ServiceLevelObjectivesApi* | [**GetSLO**](docs/ServiceLevelObjectivesApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
+*ServiceLevelObjectivesApi* | [**GetSLOs**](docs/ServiceLevelObjectivesApi.md#getslos) | **Get** /api/v1/slo | Search SLOs
+*ServiceLevelObjectivesApi* | [**HistoryForSLO**](docs/ServiceLevelObjectivesApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
+*ServiceLevelObjectivesApi* | [**UpdateSLO**](docs/ServiceLevelObjectivesApi.md#updateslo) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateTest**](docs/SyntheticsApi.md#createtest) | **Post** /api/v1/synthetics/tests | Create or clone test
 *SyntheticsApi* | [**DeleteTests**](docs/SyntheticsApi.md#deletetests) | **Post** /api/v1/synthetics/tests/delete | Delete multiple tests
@@ -274,13 +274,8 @@ Class | Method | HTTP request | Description
  - [HTTPMethod](docs/HTTPMethod.md)
  - [HeatMapWidgetDefinition](docs/HeatMapWidgetDefinition.md)
  - [HeatMapWidgetRequest](docs/HeatMapWidgetRequest.md)
- - [HistoryServiceLevelObjectiveMetrics](docs/HistoryServiceLevelObjectiveMetrics.md)
- - [HistoryServiceLevelObjectiveMetricsSeries](docs/HistoryServiceLevelObjectiveMetricsSeries.md)
- - [HistoryServiceLevelObjectiveMetricsSeriesMetadata](docs/HistoryServiceLevelObjectiveMetricsSeriesMetadata.md)
  - [HistoryServiceLevelObjectiveResponse](docs/HistoryServiceLevelObjectiveResponse.md)
  - [HistoryServiceLevelObjectiveResponseData](docs/HistoryServiceLevelObjectiveResponseData.md)
- - [HistoryServiceLevelObjectiveResponseError](docs/HistoryServiceLevelObjectiveResponseError.md)
- - [HistoryServiceLevelObjectiveSLIData](docs/HistoryServiceLevelObjectiveSLIData.md)
  - [Host](docs/Host.md)
  - [HostListResponse](docs/HostListResponse.md)
  - [HostMapRequest](docs/HostMapRequest.md)
@@ -377,8 +372,15 @@ Class | Method | HTTP request | Description
  - [QueryValueWidgetDefinition](docs/QueryValueWidgetDefinition.md)
  - [QueryValueWidgetRequest](docs/QueryValueWidgetRequest.md)
  - [SLOErrorTimeframe](docs/SLOErrorTimeframe.md)
+ - [SLOHistoryMetrics](docs/SLOHistoryMetrics.md)
+ - [SLOHistoryMetricsSeries](docs/SLOHistoryMetricsSeries.md)
+ - [SLOHistoryMetricsSeriesMetadata](docs/SLOHistoryMetricsSeriesMetadata.md)
+ - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)
+ - [SLOHistorySLIData](docs/SLOHistorySLIData.md)
  - [SLOThreshold](docs/SLOThreshold.md)
  - [SLOTimeframe](docs/SLOTimeframe.md)
+ - [SLOType](docs/SLOType.md)
+ - [SLOTypeNumeric](docs/SLOTypeNumeric.md)
  - [SLOWidgetDefinition](docs/SLOWidgetDefinition.md)
  - [ScatterPlotRequest](docs/ScatterPlotRequest.md)
  - [ScatterPlotWidgetDefinition](docs/ScatterPlotWidgetDefinition.md)
@@ -388,8 +390,6 @@ Class | Method | HTTP request | Description
  - [ServiceLevelObjectiveListResponse](docs/ServiceLevelObjectiveListResponse.md)
  - [ServiceLevelObjectiveQuery](docs/ServiceLevelObjectiveQuery.md)
  - [ServiceLevelObjectiveResponse](docs/ServiceLevelObjectiveResponse.md)
- - [ServiceLevelObjectiveType](docs/ServiceLevelObjectiveType.md)
- - [ServiceLevelObjectiveTypeNumeric](docs/ServiceLevelObjectiveTypeNumeric.md)
  - [ServiceLevelObjectivesBulkDeleted](docs/ServiceLevelObjectivesBulkDeleted.md)
  - [ServiceLevelObjectivesBulkDeletedData](docs/ServiceLevelObjectivesBulkDeletedData.md)
  - [ServiceLevelObjectivesBulkDeletedErrors](docs/ServiceLevelObjectivesBulkDeletedErrors.md)
