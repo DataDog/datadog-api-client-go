@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 set -e
 echo "Ensuring all dependencies are present in LICENSE-3rdparty.csv ..."
+go mod tidy
 ALL_DEPS=`cat go.sum | awk '{print $1}' | uniq | sort | sed "s|^\(.*\)|go.sum,\1,|"`
 DEPS_NOT_FOUND=""
 for one_dep in `echo $ALL_DEPS`; do
