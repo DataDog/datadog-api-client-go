@@ -100,15 +100,15 @@ func TestUserLifecycle(t *testing.T) {
 	urAttributes = usrp.GetData()[0].GetAttributes()
 	assert.Equal(t, urAttributes.GetEmail(), uca.GetEmail())
 
-	// now, test getting a user organization
-	// TODO: it seems that this can only be called for the current user, but how do we get current user UUID?
+	// NOTE: to test getting a user organization, we'd need to have a "whoami" API endpoint
+	// to get the UUID of the current user, but there's no such stable endpoint right now
+	// (a user can only get organization for itself, never for a different user)
 }
 
 func TestUserInvitation(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	// TODO: setting login_method
 	uca := testingUserCreateAttributes()
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
@@ -140,14 +140,14 @@ func TestUserInvitation(t *testing.T) {
 		t.Fatalf("Error sending invitation for %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 201)
-	respId := resp.GetData()[0].GetId()
+	respID := resp.GetData()[0].GetId()
 
 	// now, test getting the invitation
-	oneresp, httpresp, err := TestAPIClient.UsersApi.GetInvitation(TestAuth, respId).Execute()
+	oneresp, httpresp, err := TestAPIClient.UsersApi.GetInvitation(TestAuth, respID).Execute()
 	if err != nil {
-		t.Fatalf("Error getting invitation %s: Response %s: %v", respId, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error getting invitation %s: Response %s: %v", respID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 	data := oneresp.GetData()
-	assert.Equal(t, data.GetId(), respId)
+	assert.Equal(t, data.GetId(), respID)
 }
