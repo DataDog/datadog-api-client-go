@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// LogsRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag. Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice). Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
-type LogsRemapper struct {
+// LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag. Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice). Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
+type LogsAttributeRemapper struct {
 	// Override or not the target element if already set,
 	OverrideOnConflict *bool `json:"override_on_conflict,omitempty"`
 	// Remove or preserve the remapped source element.
@@ -34,12 +34,12 @@ type LogsRemapper struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// NewLogsRemapper instantiates a new LogsRemapper object
+// NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsRemapper(sources []string, target string) *LogsRemapper {
-	this := LogsRemapper{}
+func NewLogsAttributeRemapper(sources []string, target string) *LogsAttributeRemapper {
+	this := LogsAttributeRemapper{}
 	var overrideOnConflict bool = false
 	this.OverrideOnConflict = &overrideOnConflict
 	var preserveSource bool = false
@@ -57,11 +57,11 @@ func NewLogsRemapper(sources []string, target string) *LogsRemapper {
 	return &this
 }
 
-// NewLogsRemapperWithDefaults instantiates a new LogsRemapper object
+// NewLogsAttributeRemapperWithDefaults instantiates a new LogsAttributeRemapper object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLogsRemapperWithDefaults() *LogsRemapper {
-	this := LogsRemapper{}
+func NewLogsAttributeRemapperWithDefaults() *LogsAttributeRemapper {
+	this := LogsAttributeRemapper{}
 	var overrideOnConflict bool = false
 	this.OverrideOnConflict = &overrideOnConflict
 	var preserveSource bool = false
@@ -78,7 +78,7 @@ func NewLogsRemapperWithDefaults() *LogsRemapper {
 }
 
 // GetOverrideOnConflict returns the OverrideOnConflict field value if set, zero value otherwise.
-func (o *LogsRemapper) GetOverrideOnConflict() bool {
+func (o *LogsAttributeRemapper) GetOverrideOnConflict() bool {
 	if o == nil || o.OverrideOnConflict == nil {
 		var ret bool
 		return ret
@@ -88,7 +88,7 @@ func (o *LogsRemapper) GetOverrideOnConflict() bool {
 
 // GetOverrideOnConflictOk returns a tuple with the OverrideOnConflict field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetOverrideOnConflictOk() (*bool, bool) {
+func (o *LogsAttributeRemapper) GetOverrideOnConflictOk() (*bool, bool) {
 	if o == nil || o.OverrideOnConflict == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *LogsRemapper) GetOverrideOnConflictOk() (*bool, bool) {
 }
 
 // HasOverrideOnConflict returns a boolean if a field has been set.
-func (o *LogsRemapper) HasOverrideOnConflict() bool {
+func (o *LogsAttributeRemapper) HasOverrideOnConflict() bool {
 	if o != nil && o.OverrideOnConflict != nil {
 		return true
 	}
@@ -105,12 +105,12 @@ func (o *LogsRemapper) HasOverrideOnConflict() bool {
 }
 
 // SetOverrideOnConflict gets a reference to the given bool and assigns it to the OverrideOnConflict field.
-func (o *LogsRemapper) SetOverrideOnConflict(v bool) {
+func (o *LogsAttributeRemapper) SetOverrideOnConflict(v bool) {
 	o.OverrideOnConflict = &v
 }
 
 // GetPreserveSource returns the PreserveSource field value if set, zero value otherwise.
-func (o *LogsRemapper) GetPreserveSource() bool {
+func (o *LogsAttributeRemapper) GetPreserveSource() bool {
 	if o == nil || o.PreserveSource == nil {
 		var ret bool
 		return ret
@@ -120,7 +120,7 @@ func (o *LogsRemapper) GetPreserveSource() bool {
 
 // GetPreserveSourceOk returns a tuple with the PreserveSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetPreserveSourceOk() (*bool, bool) {
+func (o *LogsAttributeRemapper) GetPreserveSourceOk() (*bool, bool) {
 	if o == nil || o.PreserveSource == nil {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *LogsRemapper) GetPreserveSourceOk() (*bool, bool) {
 }
 
 // HasPreserveSource returns a boolean if a field has been set.
-func (o *LogsRemapper) HasPreserveSource() bool {
+func (o *LogsAttributeRemapper) HasPreserveSource() bool {
 	if o != nil && o.PreserveSource != nil {
 		return true
 	}
@@ -137,12 +137,12 @@ func (o *LogsRemapper) HasPreserveSource() bool {
 }
 
 // SetPreserveSource gets a reference to the given bool and assigns it to the PreserveSource field.
-func (o *LogsRemapper) SetPreserveSource(v bool) {
+func (o *LogsAttributeRemapper) SetPreserveSource(v bool) {
 	o.PreserveSource = &v
 }
 
 // GetSourceType returns the SourceType field value if set, zero value otherwise.
-func (o *LogsRemapper) GetSourceType() string {
+func (o *LogsAttributeRemapper) GetSourceType() string {
 	if o == nil || o.SourceType == nil {
 		var ret string
 		return ret
@@ -152,7 +152,7 @@ func (o *LogsRemapper) GetSourceType() string {
 
 // GetSourceTypeOk returns a tuple with the SourceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetSourceTypeOk() (*string, bool) {
+func (o *LogsAttributeRemapper) GetSourceTypeOk() (*string, bool) {
 	if o == nil || o.SourceType == nil {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *LogsRemapper) GetSourceTypeOk() (*string, bool) {
 }
 
 // HasSourceType returns a boolean if a field has been set.
-func (o *LogsRemapper) HasSourceType() bool {
+func (o *LogsAttributeRemapper) HasSourceType() bool {
 	if o != nil && o.SourceType != nil {
 		return true
 	}
@@ -169,12 +169,12 @@ func (o *LogsRemapper) HasSourceType() bool {
 }
 
 // SetSourceType gets a reference to the given string and assigns it to the SourceType field.
-func (o *LogsRemapper) SetSourceType(v string) {
+func (o *LogsAttributeRemapper) SetSourceType(v string) {
 	o.SourceType = &v
 }
 
 // GetSources returns the Sources field value
-func (o *LogsRemapper) GetSources() []string {
+func (o *LogsAttributeRemapper) GetSources() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -185,7 +185,7 @@ func (o *LogsRemapper) GetSources() []string {
 
 // GetSourcesOk returns a tuple with the Sources field value
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetSourcesOk() (*[]string, bool) {
+func (o *LogsAttributeRemapper) GetSourcesOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -193,12 +193,12 @@ func (o *LogsRemapper) GetSourcesOk() (*[]string, bool) {
 }
 
 // SetSources sets field value
-func (o *LogsRemapper) SetSources(v []string) {
+func (o *LogsAttributeRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
 // GetTarget returns the Target field value
-func (o *LogsRemapper) GetTarget() string {
+func (o *LogsAttributeRemapper) GetTarget() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -209,7 +209,7 @@ func (o *LogsRemapper) GetTarget() string {
 
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetTargetOk() (*string, bool) {
+func (o *LogsAttributeRemapper) GetTargetOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -217,12 +217,12 @@ func (o *LogsRemapper) GetTargetOk() (*string, bool) {
 }
 
 // SetTarget sets field value
-func (o *LogsRemapper) SetTarget(v string) {
+func (o *LogsAttributeRemapper) SetTarget(v string) {
 	o.Target = v
 }
 
 // GetTargetType returns the TargetType field value if set, zero value otherwise.
-func (o *LogsRemapper) GetTargetType() string {
+func (o *LogsAttributeRemapper) GetTargetType() string {
 	if o == nil || o.TargetType == nil {
 		var ret string
 		return ret
@@ -232,7 +232,7 @@ func (o *LogsRemapper) GetTargetType() string {
 
 // GetTargetTypeOk returns a tuple with the TargetType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetTargetTypeOk() (*string, bool) {
+func (o *LogsAttributeRemapper) GetTargetTypeOk() (*string, bool) {
 	if o == nil || o.TargetType == nil {
 		return nil, false
 	}
@@ -240,7 +240,7 @@ func (o *LogsRemapper) GetTargetTypeOk() (*string, bool) {
 }
 
 // HasTargetType returns a boolean if a field has been set.
-func (o *LogsRemapper) HasTargetType() bool {
+func (o *LogsAttributeRemapper) HasTargetType() bool {
 	if o != nil && o.TargetType != nil {
 		return true
 	}
@@ -249,12 +249,12 @@ func (o *LogsRemapper) HasTargetType() bool {
 }
 
 // SetTargetType gets a reference to the given string and assigns it to the TargetType field.
-func (o *LogsRemapper) SetTargetType(v string) {
+func (o *LogsAttributeRemapper) SetTargetType(v string) {
 	o.TargetType = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *LogsRemapper) GetType() string {
+func (o *LogsAttributeRemapper) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -264,7 +264,7 @@ func (o *LogsRemapper) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetTypeOk() (*string, bool) {
+func (o *LogsAttributeRemapper) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -272,7 +272,7 @@ func (o *LogsRemapper) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *LogsRemapper) HasType() bool {
+func (o *LogsAttributeRemapper) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -281,12 +281,12 @@ func (o *LogsRemapper) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *LogsRemapper) SetType(v string) {
+func (o *LogsAttributeRemapper) SetType(v string) {
 	o.Type = &v
 }
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
-func (o *LogsRemapper) GetIsEnabled() bool {
+func (o *LogsAttributeRemapper) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
 		var ret bool
 		return ret
@@ -296,7 +296,7 @@ func (o *LogsRemapper) GetIsEnabled() bool {
 
 // GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetIsEnabledOk() (*bool, bool) {
+func (o *LogsAttributeRemapper) GetIsEnabledOk() (*bool, bool) {
 	if o == nil || o.IsEnabled == nil {
 		return nil, false
 	}
@@ -304,7 +304,7 @@ func (o *LogsRemapper) GetIsEnabledOk() (*bool, bool) {
 }
 
 // HasIsEnabled returns a boolean if a field has been set.
-func (o *LogsRemapper) HasIsEnabled() bool {
+func (o *LogsAttributeRemapper) HasIsEnabled() bool {
 	if o != nil && o.IsEnabled != nil {
 		return true
 	}
@@ -313,12 +313,12 @@ func (o *LogsRemapper) HasIsEnabled() bool {
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
-func (o *LogsRemapper) SetIsEnabled(v bool) {
+func (o *LogsAttributeRemapper) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *LogsRemapper) GetName() string {
+func (o *LogsAttributeRemapper) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -328,7 +328,7 @@ func (o *LogsRemapper) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsRemapper) GetNameOk() (*string, bool) {
+func (o *LogsAttributeRemapper) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -336,7 +336,7 @@ func (o *LogsRemapper) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *LogsRemapper) HasName() bool {
+func (o *LogsAttributeRemapper) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -345,11 +345,11 @@ func (o *LogsRemapper) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *LogsRemapper) SetName(v string) {
+func (o *LogsAttributeRemapper) SetName(v string) {
 	o.Name = &v
 }
 
-func (o LogsRemapper) MarshalJSON() ([]byte, error) {
+func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.OverrideOnConflict != nil {
 		toSerialize["override_on_conflict"] = o.OverrideOnConflict
@@ -381,43 +381,43 @@ func (o LogsRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-// AsLogsProcessor wraps this instance of LogsRemapper in LogsProcessor
-func (s *LogsRemapper) AsLogsProcessor() LogsProcessor {
+// AsLogsProcessor wraps this instance of LogsAttributeRemapper in LogsProcessor
+func (s *LogsAttributeRemapper) AsLogsProcessor() LogsProcessor {
 	return LogsProcessor{LogsProcessorInterface: s}
 }
 
-type NullableLogsRemapper struct {
-	value *LogsRemapper
+type NullableLogsAttributeRemapper struct {
+	value *LogsAttributeRemapper
 	isSet bool
 }
 
-func (v NullableLogsRemapper) Get() *LogsRemapper {
+func (v NullableLogsAttributeRemapper) Get() *LogsAttributeRemapper {
 	return v.value
 }
 
-func (v *NullableLogsRemapper) Set(val *LogsRemapper) {
+func (v *NullableLogsAttributeRemapper) Set(val *LogsAttributeRemapper) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogsRemapper) IsSet() bool {
+func (v NullableLogsAttributeRemapper) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLogsRemapper) Unset() {
+func (v *NullableLogsAttributeRemapper) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogsRemapper(val *LogsRemapper) *NullableLogsRemapper {
-	return &NullableLogsRemapper{value: val, isSet: true}
+func NewNullableLogsAttributeRemapper(val *LogsAttributeRemapper) *NullableLogsAttributeRemapper {
+	return &NullableLogsAttributeRemapper{value: val, isSet: true}
 }
 
-func (v NullableLogsRemapper) MarshalJSON() ([]byte, error) {
+func (v NullableLogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogsRemapper) UnmarshalJSON(src []byte) error {
+func (v *NullableLogsAttributeRemapper) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

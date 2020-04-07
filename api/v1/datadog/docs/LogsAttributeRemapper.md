@@ -1,4 +1,4 @@
-# LogsRemapper
+# LogsAttributeRemapper
 
 ## Properties
 
@@ -16,244 +16,244 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewLogsRemapper
+### NewLogsAttributeRemapper
 
-`func NewLogsRemapper(sources []string, target string, ) *LogsRemapper`
+`func NewLogsAttributeRemapper(sources []string, target string, ) *LogsAttributeRemapper`
 
-NewLogsRemapper instantiates a new LogsRemapper object
+NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewLogsRemapperWithDefaults
+### NewLogsAttributeRemapperWithDefaults
 
-`func NewLogsRemapperWithDefaults() *LogsRemapper`
+`func NewLogsAttributeRemapperWithDefaults() *LogsAttributeRemapper`
 
-NewLogsRemapperWithDefaults instantiates a new LogsRemapper object
+NewLogsAttributeRemapperWithDefaults instantiates a new LogsAttributeRemapper object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetOverrideOnConflict
 
-`func (o *LogsRemapper) GetOverrideOnConflict() bool`
+`func (o *LogsAttributeRemapper) GetOverrideOnConflict() bool`
 
 GetOverrideOnConflict returns the OverrideOnConflict field if non-nil, zero value otherwise.
 
 ### GetOverrideOnConflictOk
 
-`func (o *LogsRemapper) GetOverrideOnConflictOk() (*bool, bool)`
+`func (o *LogsAttributeRemapper) GetOverrideOnConflictOk() (*bool, bool)`
 
 GetOverrideOnConflictOk returns a tuple with the OverrideOnConflict field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOverrideOnConflict
 
-`func (o *LogsRemapper) SetOverrideOnConflict(v bool)`
+`func (o *LogsAttributeRemapper) SetOverrideOnConflict(v bool)`
 
 SetOverrideOnConflict sets OverrideOnConflict field to given value.
 
 ### HasOverrideOnConflict
 
-`func (o *LogsRemapper) HasOverrideOnConflict() bool`
+`func (o *LogsAttributeRemapper) HasOverrideOnConflict() bool`
 
 HasOverrideOnConflict returns a boolean if a field has been set.
 
 ### GetPreserveSource
 
-`func (o *LogsRemapper) GetPreserveSource() bool`
+`func (o *LogsAttributeRemapper) GetPreserveSource() bool`
 
 GetPreserveSource returns the PreserveSource field if non-nil, zero value otherwise.
 
 ### GetPreserveSourceOk
 
-`func (o *LogsRemapper) GetPreserveSourceOk() (*bool, bool)`
+`func (o *LogsAttributeRemapper) GetPreserveSourceOk() (*bool, bool)`
 
 GetPreserveSourceOk returns a tuple with the PreserveSource field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPreserveSource
 
-`func (o *LogsRemapper) SetPreserveSource(v bool)`
+`func (o *LogsAttributeRemapper) SetPreserveSource(v bool)`
 
 SetPreserveSource sets PreserveSource field to given value.
 
 ### HasPreserveSource
 
-`func (o *LogsRemapper) HasPreserveSource() bool`
+`func (o *LogsAttributeRemapper) HasPreserveSource() bool`
 
 HasPreserveSource returns a boolean if a field has been set.
 
 ### GetSourceType
 
-`func (o *LogsRemapper) GetSourceType() string`
+`func (o *LogsAttributeRemapper) GetSourceType() string`
 
 GetSourceType returns the SourceType field if non-nil, zero value otherwise.
 
 ### GetSourceTypeOk
 
-`func (o *LogsRemapper) GetSourceTypeOk() (*string, bool)`
+`func (o *LogsAttributeRemapper) GetSourceTypeOk() (*string, bool)`
 
 GetSourceTypeOk returns a tuple with the SourceType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSourceType
 
-`func (o *LogsRemapper) SetSourceType(v string)`
+`func (o *LogsAttributeRemapper) SetSourceType(v string)`
 
 SetSourceType sets SourceType field to given value.
 
 ### HasSourceType
 
-`func (o *LogsRemapper) HasSourceType() bool`
+`func (o *LogsAttributeRemapper) HasSourceType() bool`
 
 HasSourceType returns a boolean if a field has been set.
 
 ### GetSources
 
-`func (o *LogsRemapper) GetSources() []string`
+`func (o *LogsAttributeRemapper) GetSources() []string`
 
 GetSources returns the Sources field if non-nil, zero value otherwise.
 
 ### GetSourcesOk
 
-`func (o *LogsRemapper) GetSourcesOk() (*[]string, bool)`
+`func (o *LogsAttributeRemapper) GetSourcesOk() (*[]string, bool)`
 
 GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSources
 
-`func (o *LogsRemapper) SetSources(v []string)`
+`func (o *LogsAttributeRemapper) SetSources(v []string)`
 
 SetSources sets Sources field to given value.
 
 
 ### GetTarget
 
-`func (o *LogsRemapper) GetTarget() string`
+`func (o *LogsAttributeRemapper) GetTarget() string`
 
 GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *LogsRemapper) GetTargetOk() (*string, bool)`
+`func (o *LogsAttributeRemapper) GetTargetOk() (*string, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTarget
 
-`func (o *LogsRemapper) SetTarget(v string)`
+`func (o *LogsAttributeRemapper) SetTarget(v string)`
 
 SetTarget sets Target field to given value.
 
 
 ### GetTargetType
 
-`func (o *LogsRemapper) GetTargetType() string`
+`func (o *LogsAttributeRemapper) GetTargetType() string`
 
 GetTargetType returns the TargetType field if non-nil, zero value otherwise.
 
 ### GetTargetTypeOk
 
-`func (o *LogsRemapper) GetTargetTypeOk() (*string, bool)`
+`func (o *LogsAttributeRemapper) GetTargetTypeOk() (*string, bool)`
 
 GetTargetTypeOk returns a tuple with the TargetType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargetType
 
-`func (o *LogsRemapper) SetTargetType(v string)`
+`func (o *LogsAttributeRemapper) SetTargetType(v string)`
 
 SetTargetType sets TargetType field to given value.
 
 ### HasTargetType
 
-`func (o *LogsRemapper) HasTargetType() bool`
+`func (o *LogsAttributeRemapper) HasTargetType() bool`
 
 HasTargetType returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *LogsRemapper) GetType() string`
+`func (o *LogsAttributeRemapper) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsRemapper) GetTypeOk() (*string, bool)`
+`func (o *LogsAttributeRemapper) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *LogsRemapper) SetType(v string)`
+`func (o *LogsAttributeRemapper) SetType(v string)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *LogsRemapper) HasType() bool`
+`func (o *LogsAttributeRemapper) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 
-`func (o *LogsRemapper) GetIsEnabled() bool`
+`func (o *LogsAttributeRemapper) GetIsEnabled() bool`
 
 GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
 ### GetIsEnabledOk
 
-`func (o *LogsRemapper) GetIsEnabledOk() (*bool, bool)`
+`func (o *LogsAttributeRemapper) GetIsEnabledOk() (*bool, bool)`
 
 GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsEnabled
 
-`func (o *LogsRemapper) SetIsEnabled(v bool)`
+`func (o *LogsAttributeRemapper) SetIsEnabled(v bool)`
 
 SetIsEnabled sets IsEnabled field to given value.
 
 ### HasIsEnabled
 
-`func (o *LogsRemapper) HasIsEnabled() bool`
+`func (o *LogsAttributeRemapper) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *LogsRemapper) GetName() string`
+`func (o *LogsAttributeRemapper) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogsRemapper) GetNameOk() (*string, bool)`
+`func (o *LogsAttributeRemapper) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *LogsRemapper) SetName(v string)`
+`func (o *LogsAttributeRemapper) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *LogsRemapper) HasName() bool`
+`func (o *LogsAttributeRemapper) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 
 ### AsLogsProcessor
 
-`func (s *LogsRemapper) AsLogsProcessor() LogsProcessor`
+`func (s *LogsAttributeRemapper) AsLogsProcessor() LogsProcessor`
 
-Convenience method to wrap this instance of LogsRemapper in LogsProcessor
+Convenience method to wrap this instance of LogsAttributeRemapper in LogsProcessor
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
