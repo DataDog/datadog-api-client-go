@@ -153,7 +153,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 			y = Account
 		}
 	}
-	assert.Equal(t, *testAzureUpdateHostFilters.HostFilters, y.GetHostFilters())
+	assert.Equal(t, *testUpdateAzureHostFilters.HostFilters, y.GetHostFilters())
 }
 
 func TestAzureList400Error(t *testing.T) {
@@ -285,7 +285,7 @@ func TestAzureUpdateHostFiltersErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(tc.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.UpdateAzureHostFilters(tc.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

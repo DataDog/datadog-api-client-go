@@ -192,7 +192,7 @@ func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GenerateNewAWSExternalID(tc.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateNewAWSExternalID(tc.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -256,7 +256,7 @@ func TestAWSIntegrationGetAll403Error(t *testing.T) {
 	defer teardownTest(t)
 
 	// 403 Forbidden
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(context.Background()).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAWSAccounts(context.Background()).Execute()
 	assert.Equal(t, 403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -277,7 +277,7 @@ func TestAWSIntegrationGetAll400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.GetAllAWSAccounts(TESTAUTH).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAWSAccounts(TESTAUTH).Execute()
 	assert.Equal(t, 400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)

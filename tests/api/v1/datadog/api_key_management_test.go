@@ -249,7 +249,7 @@ func TestAPIKeysMgmtListErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAllAPIKeys(tc.Ctx).Execute()
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListAPIKeys(tc.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -331,7 +331,7 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.EditAPIKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.UpdateAPIKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -401,7 +401,7 @@ func TestAppKeysMgmtListErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAllApplicationKeys(tc.Ctx).Execute()
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListApplicationKeys(tc.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -505,7 +505,7 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.EditApplicationKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -540,7 +540,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	defer deleteAppKey(appKeyData2.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.EditApplicationKey(TESTAUTH, appKeyData1.ApplicationKey.GetHash()).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
+	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(TESTAUTH, appKeyData1.ApplicationKey.GetHash()).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
 	assert.Equal(t, 409, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)

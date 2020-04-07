@@ -84,7 +84,7 @@ func TestDashboardListListErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.DashboardListsApi.GetAllDashboardLists(tc.Ctx).Execute()
+			_, httpresp, err := TESTAPICLIENT.DashboardListsApi.ListDashboardLists(tc.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

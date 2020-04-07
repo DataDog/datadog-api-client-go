@@ -222,7 +222,7 @@ func TestAWSLogsList400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsIntegrations(TESTAUTH).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(TESTAUTH).Execute()
 	assert.Equal(t, 400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -235,7 +235,7 @@ func TestAWSLogsList403Error(t *testing.T) {
 	defer teardownTest(t)
 
 	// 403 Forbidden
-	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsIntegrations(context.Background()).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(context.Background()).Execute()
 	assert.Equal(t, 403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -256,7 +256,7 @@ func TestAWSLogsAdd400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CreateAWSLambdaARN(TESTAUTH).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
 	assert.Equal(t, 400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -269,7 +269,7 @@ func TestAWSLogsAdd403Error(t *testing.T) {
 	defer teardownTest(t)
 
 	// 403 Forbidden
-	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(context.Background()).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CreateAWSLambdaARN(context.Background()).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
 	assert.Equal(t, 403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -316,7 +316,7 @@ func TestAWSLogsServicesListErrors(t *testing.T) {
 	defer teardownTest(t)
 
 	// 403 Forbidden
-	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsServices(context.Background()).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsServices(context.Background()).Execute()
 	assert.Equal(t, 403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)

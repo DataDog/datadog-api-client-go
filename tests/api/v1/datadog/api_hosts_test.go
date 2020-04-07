@@ -182,7 +182,7 @@ func TestHostsListErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.HostsApi.GetAllHosts(tc.Ctx).Count(-1).Execute()
+			_, httpresp, err := TESTAPICLIENT.HostsApi.ListHosts(tc.Ctx).Count(-1).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
