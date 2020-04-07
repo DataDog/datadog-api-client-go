@@ -40,7 +40,7 @@ func (s *LogsProcessor) UnmarshalJSON(src []byte) error {
 			s.LogsProcessorInterface = result
 			return nil
 		case "attribute-remapper":
-			var result *LogsRemapper = &LogsRemapper{}
+			var result *LogsAttributeRemapper = &LogsAttributeRemapper{}
 			err = json.Unmarshal(src, result)
 			if err != nil {
 				return err

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
 **Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["http.url"]]
 **Target** | Pointer to **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.url_details"]
 **Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "url-parser"]
@@ -29,6 +30,41 @@ NewLogsURLParserWithDefaults instantiates a new LogsURLParser object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetNormalizeEndingSlashes
+
+`func (o *LogsURLParser) GetNormalizeEndingSlashes() bool`
+
+GetNormalizeEndingSlashes returns the NormalizeEndingSlashes field if non-nil, zero value otherwise.
+
+### GetNormalizeEndingSlashesOk
+
+`func (o *LogsURLParser) GetNormalizeEndingSlashesOk() (*bool, bool)`
+
+GetNormalizeEndingSlashesOk returns a tuple with the NormalizeEndingSlashes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNormalizeEndingSlashes
+
+`func (o *LogsURLParser) SetNormalizeEndingSlashes(v bool)`
+
+SetNormalizeEndingSlashes sets NormalizeEndingSlashes field to given value.
+
+### HasNormalizeEndingSlashes
+
+`func (o *LogsURLParser) HasNormalizeEndingSlashes() bool`
+
+HasNormalizeEndingSlashes returns a boolean if a field has been set.
+
+### SetNormalizeEndingSlashesNil
+
+`func (o *LogsURLParser) SetNormalizeEndingSlashesNil(b bool)`
+
+ SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil
+
+### UnsetNormalizeEndingSlashes
+`func (o *LogsURLParser) UnsetNormalizeEndingSlashes()`
+
+UnsetNormalizeEndingSlashes ensures that no value is present for NormalizeEndingSlashes, not even an explicit nil
 ### GetSources
 
 `func (o *LogsURLParser) GetSources() []string`

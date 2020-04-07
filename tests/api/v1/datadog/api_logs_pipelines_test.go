@@ -48,7 +48,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	logMessageRemapper.SetSources([]string{"source"})
 	logMessageRemapper.SetName("log message remapper")
 
-	remapper := datadog.NewLogsRemapperWithDefaults()
+	remapper := datadog.NewLogsAttributeRemapperWithDefaults()
 	remapper.SetSources([]string{"source"})
 	remapper.SetSourceType("tag")
 	remapper.SetTarget("target")
