@@ -55,7 +55,7 @@ func TestTags(t *testing.T) {
 	hostTags := datadog.HostTags{
 		Tags: &[]string{"test:client_go"},
 	}
-	sentHostTags, httpresp, err := api.AddToHostTags(TESTAUTH, hostname).Body(hostTags).Source("datadog").Execute()
+	sentHostTags, httpresp, err := api.CreateHostTags(TESTAUTH, hostname).Body(hostTags).Source("datadog").Execute()
 	if err != nil {
 		t.Fatalf("Error adding tags to %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -78,7 +78,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(t, 0, len(getHostTags.GetTags())) // filtering on a different source gives 0 tags
 
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		hostTagsList, httpresp, err := api.GetAllHostTags(TESTAUTH).Source("datadog").Execute()
+		hostTagsList, httpresp, err := api.ListHostTags(TESTAUTH).Source("datadog").Execute()
 		if err != nil {
 			t.Logf("Error getting all tags: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
@@ -95,7 +95,7 @@ func TestTags(t *testing.T) {
 		t.Errorf("%v", err)
 	}
 
-	hostTagsList, httpresp, err := api.GetAllHostTags(TESTAUTH).Source("users").Execute()
+	hostTagsList, httpresp, err := api.ListHostTags(TESTAUTH).Source("users").Execute()
 	if err != nil {
 		t.Errorf("Error getting all tags: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -112,7 +112,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(t, hostname, updatedHostTags.GetHost())
 
 	hostTags.Tags = &[]string{"foo:bar", "toto:tata"}
-	httpresp, err = api.RemoveHostTags(TESTAUTH, hostname).Source("datadog").Execute()
+	httpresp, err = api.DeleteHostTags(TESTAUTH, hostname).Source("datadog").Execute()
 	if err != nil {
 		t.Errorf("Error deleting tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}

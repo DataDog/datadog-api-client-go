@@ -74,38 +74,38 @@ All URIs are relative to *https://api.datadoghq.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AWSIntegrationApi* | [**CreateAWSAccount**](docs/AWSIntegrationApi.md#createawsaccount) | **Post** /api/v1/integration/aws | Create an AWS Integration
+*AWSIntegrationApi* | [**CreateNewAWSExternalID**](docs/AWSIntegrationApi.md#createnewawsexternalid) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
 *AWSIntegrationApi* | [**DeleteAWSAccount**](docs/AWSIntegrationApi.md#deleteawsaccount) | **Delete** /api/v1/integration/aws | Delete an AWS Integration
-*AWSIntegrationApi* | [**GenerateNewAWSExternalID**](docs/AWSIntegrationApi.md#generatenewawsexternalid) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
-*AWSIntegrationApi* | [**GetAllAWSAccounts**](docs/AWSIntegrationApi.md#getallawsaccounts) | **Get** /api/v1/integration/aws | List all AWS Integrations
+*AWSIntegrationApi* | [**ListAWSAccounts**](docs/AWSIntegrationApi.md#listawsaccounts) | **Get** /api/v1/integration/aws | List all AWS Integrations
 *AWSIntegrationApi* | [**ListAvailableAWSNamespaces**](docs/AWSIntegrationApi.md#listavailableawsnamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
 *AWSIntegrationApi* | [**UpdateAWSAccount**](docs/AWSIntegrationApi.md#updateawsaccount) | **Put** /api/v1/integration/aws | Update an AWS Integration
-*AWSLogsIntegrationApi* | [**AddAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#addawslambdaarn) | **Post** /api/v1/integration/aws/logs | Add AWS Log Lambda ARN
 *AWSLogsIntegrationApi* | [**CheckAWSLogsLambdaAsync**](docs/AWSLogsIntegrationApi.md#checkawslogslambdaasync) | **Post** /api/v1/integration/aws/logs/check_async | Check that an AWS Lambda Function exists
 *AWSLogsIntegrationApi* | [**CheckAWSLogsServicesAsync**](docs/AWSLogsIntegrationApi.md#checkawslogsservicesasync) | **Post** /api/v1/integration/aws/logs/services_async | Check permissions for Log Services
+*AWSLogsIntegrationApi* | [**CreateAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#createawslambdaarn) | **Post** /api/v1/integration/aws/logs | Add AWS Log Lambda ARN
 *AWSLogsIntegrationApi* | [**DeleteAWSLambdaARN**](docs/AWSLogsIntegrationApi.md#deleteawslambdaarn) | **Delete** /api/v1/integration/aws/logs | Delete an AWS Logs integration
 *AWSLogsIntegrationApi* | [**EnableAWSLogServices**](docs/AWSLogsIntegrationApi.md#enableawslogservices) | **Post** /api/v1/integration/aws/logs/services | Enable an AWS Logs integration
-*AWSLogsIntegrationApi* | [**GetAllAWSLogsIntegrations**](docs/AWSLogsIntegrationApi.md#getallawslogsintegrations) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
-*AWSLogsIntegrationApi* | [**GetAllAWSLogsServices**](docs/AWSLogsIntegrationApi.md#getallawslogsservices) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
-*AzureIntegrationApi* | [**AzureUpdateHostFilters**](docs/AzureIntegrationApi.md#azureupdatehostfilters) | **Post** /api/v1/integration/azure/host_filters | Update Azure integration host filters
+*AWSLogsIntegrationApi* | [**ListAWSLogsIntegrations**](docs/AWSLogsIntegrationApi.md#listawslogsintegrations) | **Get** /api/v1/integration/aws/logs | List all AWS Logs Integrations
+*AWSLogsIntegrationApi* | [**ListAWSLogsServices**](docs/AWSLogsIntegrationApi.md#listawslogsservices) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
 *AzureIntegrationApi* | [**CreateAzureIntegration**](docs/AzureIntegrationApi.md#createazureintegration) | **Post** /api/v1/integration/azure | Create an Azure integration
 *AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure integration
 *AzureIntegrationApi* | [**ListAzureIntegration**](docs/AzureIntegrationApi.md#listazureintegration) | **Get** /api/v1/integration/azure | List all Azure integrations
+*AzureIntegrationApi* | [**UpdateAzureHostFilters**](docs/AzureIntegrationApi.md#updateazurehostfilters) | **Post** /api/v1/integration/azure/host_filters | Update Azure integration host filters
 *AzureIntegrationApi* | [**UpdateAzureIntegration**](docs/AzureIntegrationApi.md#updateazureintegration) | **Put** /api/v1/integration/azure | Update an Azure integration
 *DashboardListsApi* | [**CreateDashboardList**](docs/DashboardListsApi.md#createdashboardlist) | **Post** /api/v1/dashboard/lists/manual | Create a dashboard list
 *DashboardListsApi* | [**DeleteDashboardList**](docs/DashboardListsApi.md#deletedashboardlist) | **Delete** /api/v1/dashboard/lists/manual/{list_id} | Delete a dashboard list
-*DashboardListsApi* | [**GetAllDashboardLists**](docs/DashboardListsApi.md#getalldashboardlists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
 *DashboardListsApi* | [**GetDashboardList**](docs/DashboardListsApi.md#getdashboardlist) | **Get** /api/v1/dashboard/lists/manual/{list_id} | Get a dashboard list
+*DashboardListsApi* | [**ListDashboardLists**](docs/DashboardListsApi.md#listdashboardlists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
 *DashboardListsApi* | [**UpdateDashboardList**](docs/DashboardListsApi.md#updatedashboardlist) | **Put** /api/v1/dashboard/lists/manual/{list_id} | Update a dashboard list
 *DashboardsApi* | [**CreateDashboard**](docs/DashboardsApi.md#createdashboard) | **Post** /api/v1/dashboard | Create a new Dashboard
 *DashboardsApi* | [**DeleteDashboard**](docs/DashboardsApi.md#deletedashboard) | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a Dashboard
-*DashboardsApi* | [**GetAllDashboards**](docs/DashboardsApi.md#getalldashboards) | **Get** /api/v1/dashboard | Get all Dashboards
 *DashboardsApi* | [**GetDashboard**](docs/DashboardsApi.md#getdashboard) | **Get** /api/v1/dashboard/{dashboard_id} | Get a Dashboard
+*DashboardsApi* | [**ListDashboards**](docs/DashboardsApi.md#listdashboards) | **Get** /api/v1/dashboard | Get all Dashboards
 *DashboardsApi* | [**UpdateDashboard**](docs/DashboardsApi.md#updatedashboard) | **Put** /api/v1/dashboard/{dashboard_id} | Update a Dashboard
 *DowntimesApi* | [**CancelDowntime**](docs/DowntimesApi.md#canceldowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
 *DowntimesApi* | [**CancelDowntimesByScope**](docs/DowntimesApi.md#canceldowntimesbyscope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
 *DowntimesApi* | [**CreateDowntime**](docs/DowntimesApi.md#createdowntime) | **Post** /api/v1/downtime | Schedule a downtime
-*DowntimesApi* | [**GetAllDowntimes**](docs/DowntimesApi.md#getalldowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**GetDowntime**](docs/DowntimesApi.md#getdowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
+*DowntimesApi* | [**ListDowntimes**](docs/DowntimesApi.md#listdowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /api/v1/events/{event_id} | Get an event
 *EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream
@@ -113,8 +113,8 @@ Class | Method | HTTP request | Description
 *GCPIntegrationApi* | [**DeleteGCPIntegration**](docs/GCPIntegrationApi.md#deletegcpintegration) | **Delete** /api/v1/integration/gcp | Delete a GCP integration
 *GCPIntegrationApi* | [**ListGCPIntegration**](docs/GCPIntegrationApi.md#listgcpintegration) | **Get** /api/v1/integration/gcp | List all GCP integrations
 *GCPIntegrationApi* | [**UpdateGCPIntegration**](docs/GCPIntegrationApi.md#updategcpintegration) | **Put** /api/v1/integration/gcp | Update a GCP integration
-*HostsApi* | [**GetAllHosts**](docs/HostsApi.md#getallhosts) | **Get** /api/v1/hosts | Get all hosts for your organization
 *HostsApi* | [**GetHostTotals**](docs/HostsApi.md#gethosttotals) | **Get** /api/v1/hosts/totals | Get the total number of active hosts
+*HostsApi* | [**ListHosts**](docs/HostsApi.md#listhosts) | **Get** /api/v1/hosts | Get all hosts for your organization
 *HostsApi* | [**MuteHost**](docs/HostsApi.md#mutehost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
 *HostsApi* | [**UnmuteHost**](docs/HostsApi.md#unmutehost) | **Post** /api/v1/host/{host_name}/unmute | Unmute a host
 *IPRangesApi* | [**GetIPRanges**](docs/IPRangesApi.md#getipranges) | **Get** / | List IP Ranges
@@ -122,35 +122,35 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**CreateApplicationKey**](docs/KeyManagementApi.md#createapplicationkey) | **Post** /api/v1/application_key | Create an application key
 *KeyManagementApi* | [**DeleteAPIKey**](docs/KeyManagementApi.md#deleteapikey) | **Delete** /api/v1/api_key/{key} | Delete an API key
 *KeyManagementApi* | [**DeleteApplicationKey**](docs/KeyManagementApi.md#deleteapplicationkey) | **Delete** /api/v1/application_key/{key} | Delete an application key
-*KeyManagementApi* | [**EditAPIKey**](docs/KeyManagementApi.md#editapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
-*KeyManagementApi* | [**EditApplicationKey**](docs/KeyManagementApi.md#editapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
 *KeyManagementApi* | [**GetAPIKey**](docs/KeyManagementApi.md#getapikey) | **Get** /api/v1/api_key/{key} | Get API key
-*KeyManagementApi* | [**GetAllAPIKeys**](docs/KeyManagementApi.md#getallapikeys) | **Get** /api/v1/api_key | Get all API keys
-*KeyManagementApi* | [**GetAllApplicationKeys**](docs/KeyManagementApi.md#getallapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
 *KeyManagementApi* | [**GetApplicationKey**](docs/KeyManagementApi.md#getapplicationkey) | **Get** /api/v1/application_key/{key} | Get an application key
+*KeyManagementApi* | [**ListAPIKeys**](docs/KeyManagementApi.md#listapikeys) | **Get** /api/v1/api_key | Get all API keys
+*KeyManagementApi* | [**ListApplicationKeys**](docs/KeyManagementApi.md#listapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
+*KeyManagementApi* | [**UpdateAPIKey**](docs/KeyManagementApi.md#updateapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
+*KeyManagementApi* | [**UpdateApplicationKey**](docs/KeyManagementApi.md#updateapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
-*LogsIndexesApi* | [**GetAllLogIndexes**](docs/LogsIndexesApi.md#getalllogindexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
+*LogsIndexesApi* | [**ListLogIndexes**](docs/LogsIndexesApi.md#listlogindexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
 *LogsIndexesApi* | [**UpdateLogsIndex**](docs/LogsIndexesApi.md#updatelogsindex) | **Put** /api/v1/logs/config/indexes/{name} | Update an index
 *LogsIndexesApi* | [**UpdateLogsIndexOrder**](docs/LogsIndexesApi.md#updatelogsindexorder) | **Put** /api/v1/logs/config/index-order | Update indexes order
 *LogsPipelinesApi* | [**CreateLogsPipeline**](docs/LogsPipelinesApi.md#createlogspipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline
 *LogsPipelinesApi* | [**DeleteLogsPipeline**](docs/LogsPipelinesApi.md#deletelogspipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline
-*LogsPipelinesApi* | [**GetAllLogsPipelines**](docs/LogsPipelinesApi.md#getalllogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
 *LogsPipelinesApi* | [**GetLogsPipeline**](docs/LogsPipelinesApi.md#getlogspipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a pipeline
 *LogsPipelinesApi* | [**GetLogsPipelineOrder**](docs/LogsPipelinesApi.md#getlogspipelineorder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
+*LogsPipelinesApi* | [**ListLogsPipelines**](docs/LogsPipelinesApi.md#listlogspipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
 *LogsPipelinesApi* | [**UpdateLogsPipeline**](docs/LogsPipelinesApi.md#updatelogspipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline
 *LogsPipelinesApi* | [**UpdateLogsPipelineOrder**](docs/LogsPipelinesApi.md#updatelogspipelineorder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
-*MetricsApi* | [**EditMetricMetadata**](docs/MetricsApi.md#editmetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
-*MetricsApi* | [**GetAllActiveMetrics**](docs/MetricsApi.md#getallactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
 *MetricsApi* | [**GetMetricMetadata**](docs/MetricsApi.md#getmetricmetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
+*MetricsApi* | [**ListActiveMetrics**](docs/MetricsApi.md#listactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
+*MetricsApi* | [**ListMetrics**](docs/MetricsApi.md#listmetrics) | **Get** /api/v1/search | Search metrics
 *MetricsApi* | [**QueryMetrics**](docs/MetricsApi.md#querymetrics) | **Get** /api/v1/query | Query timeseries points
-*MetricsApi* | [**SearchMetrics**](docs/MetricsApi.md#searchmetrics) | **Get** /api/v1/search | Search metrics
+*MetricsApi* | [**UpdateMetricMetadata**](docs/MetricsApi.md#updatemetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
-*MonitorsApi* | [**EditMonitor**](docs/MonitorsApi.md#editmonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
-*MonitorsApi* | [**GetAllMonitors**](docs/MonitorsApi.md#getallmonitors) | **Get** /api/v1/monitor | Get all monitor details
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
+*MonitorsApi* | [**ListMonitors**](docs/MonitorsApi.md#listmonitors) | **Get** /api/v1/monitor | Get all monitor details
+*MonitorsApi* | [**UpdateMonitor**](docs/MonitorsApi.md#updatemonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
 *OrganizationsApi* | [**CreateChildOrg**](docs/OrganizationsApi.md#createchildorg) | **Post** /api/v1/org | Create a child organization
 *OrganizationsApi* | [**GetOrg**](docs/OrganizationsApi.md#getorg) | **Get** /api/v1/org | Get organization information
@@ -164,31 +164,31 @@ Class | Method | HTTP request | Description
 *PagerDutyIntegrationApi* | [**GetPagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegrationservice) | **Get** /api/v1/integration/pagerduty/configuration/services/{service_name} | Get a single service object
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegration) | **Post** /api/v1/integration/pagerduty | Add new services and schedules
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegrationservice) | **Put** /api/v1/integration/pagerduty/configuration/services/{service_name} | Update a single service object
-*ServiceLevelObjectivesApi* | [**BulkPartialDeleteSLO**](docs/ServiceLevelObjectivesApi.md#bulkpartialdeleteslo) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *ServiceLevelObjectivesApi* | [**CheckCanDeleteSLO**](docs/ServiceLevelObjectivesApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
 *ServiceLevelObjectivesApi* | [**CreateSLO**](docs/ServiceLevelObjectivesApi.md#createslo) | **Post** /api/v1/slo | Create a SLO object
 *ServiceLevelObjectivesApi* | [**DeleteSLO**](docs/ServiceLevelObjectivesApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
+*ServiceLevelObjectivesApi* | [**DeleteSLOTimeframeInBulk**](docs/ServiceLevelObjectivesApi.md#deleteslotimeframeinbulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *ServiceLevelObjectivesApi* | [**GetSLO**](docs/ServiceLevelObjectivesApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
+*ServiceLevelObjectivesApi* | [**GetSLOHistory**](docs/ServiceLevelObjectivesApi.md#getslohistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
 *ServiceLevelObjectivesApi* | [**GetSLOs**](docs/ServiceLevelObjectivesApi.md#getslos) | **Get** /api/v1/slo | Search SLOs
-*ServiceLevelObjectivesApi* | [**HistoryForSLO**](docs/ServiceLevelObjectivesApi.md#historyforslo) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
 *ServiceLevelObjectivesApi* | [**UpdateSLO**](docs/ServiceLevelObjectivesApi.md#updateslo) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateTest**](docs/SyntheticsApi.md#createtest) | **Post** /api/v1/synthetics/tests | Create or clone test
 *SyntheticsApi* | [**DeleteTests**](docs/SyntheticsApi.md#deletetests) | **Post** /api/v1/synthetics/tests/delete | Delete multiple tests
 *SyntheticsApi* | [**GetAPITestLatestResults**](docs/SyntheticsApi.md#getapitestlatestresults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get test latest results (as summaries)
 *SyntheticsApi* | [**GetAPITestResult**](docs/SyntheticsApi.md#getapitestresult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get test result (API)
-*SyntheticsApi* | [**GetAllDevices**](docs/SyntheticsApi.md#getalldevices) | **Get** /api/v1/synthetics/browser/devices | Get all devices
-*SyntheticsApi* | [**GetAllLocations**](docs/SyntheticsApi.md#getalllocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
-*SyntheticsApi* | [**GetAllTests**](docs/SyntheticsApi.md#getalltests) | **Get** /api/v1/synthetics/tests | Get all test
 *SyntheticsApi* | [**GetBrowserTestLatestResults**](docs/SyntheticsApi.md#getbrowsertestlatestresults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
 *SyntheticsApi* | [**GetBrowserTestResult**](docs/SyntheticsApi.md#getbrowsertestresult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
 *SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
-*SyntheticsApi* | [**SetTestPauseStatus**](docs/SyntheticsApi.md#settestpausestatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
+*SyntheticsApi* | [**ListDevices**](docs/SyntheticsApi.md#listdevices) | **Get** /api/v1/synthetics/browser/devices | Get all devices
+*SyntheticsApi* | [**ListLocations**](docs/SyntheticsApi.md#listlocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
+*SyntheticsApi* | [**ListTests**](docs/SyntheticsApi.md#listtests) | **Get** /api/v1/synthetics/tests | Get all test
 *SyntheticsApi* | [**UpdateTest**](docs/SyntheticsApi.md#updatetest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
-*TagsApi* | [**AddToHostTags**](docs/TagsApi.md#addtohosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
-*TagsApi* | [**GetAllHostTags**](docs/TagsApi.md#getallhosttags) | **Get** /api/v1/tags/hosts | Get Tags
+*SyntheticsApi* | [**UpdateTestPauseStatus**](docs/SyntheticsApi.md#updatetestpausestatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
+*TagsApi* | [**CreateHostTags**](docs/TagsApi.md#createhosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
+*TagsApi* | [**DeleteHostTags**](docs/TagsApi.md#deletehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
 *TagsApi* | [**GetHostTags**](docs/TagsApi.md#gethosttags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
-*TagsApi* | [**RemoveHostTags**](docs/TagsApi.md#removehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
+*TagsApi* | [**ListHostTags**](docs/TagsApi.md#listhosttags) | **Get** /api/v1/tags/hosts | Get Tags
 *TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
@@ -207,8 +207,8 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageTrace**](docs/UsageMeteringApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable user
-*UsersApi* | [**GetAllUsers**](docs/UsersApi.md#getallusers) | **Get** /api/v1/user | Get all users
 *UsersApi* | [**GetUser**](docs/UsersApi.md#getuser) | **Get** /api/v1/user/{user_handle} | Get user
+*UsersApi* | [**ListUsers**](docs/UsersApi.md#listusers) | **Get** /api/v1/user | Get all users
 *UsersApi* | [**UpdateUser**](docs/UsersApi.md#updateuser) | **Put** /api/v1/user/{user_handle} | Update user
 
 
@@ -420,9 +420,9 @@ Class | Method | HTTP request | Description
  - [SyntheticsDevices](docs/SyntheticsDevices.md)
  - [SyntheticsErrorCode](docs/SyntheticsErrorCode.md)
  - [SyntheticsGetAPITestLatestResultsResponse](docs/SyntheticsGetAPITestLatestResultsResponse.md)
- - [SyntheticsGetAllTestsResponse](docs/SyntheticsGetAllTestsResponse.md)
  - [SyntheticsGetBrowserTestLatestResultsResponse](docs/SyntheticsGetBrowserTestLatestResultsResponse.md)
  - [SyntheticsGetTestLatestResultsPayload](docs/SyntheticsGetTestLatestResultsPayload.md)
+ - [SyntheticsListTestsResponse](docs/SyntheticsListTestsResponse.md)
  - [SyntheticsLocation](docs/SyntheticsLocation.md)
  - [SyntheticsLocations](docs/SyntheticsLocations.md)
  - [SyntheticsPlayingTab](docs/SyntheticsPlayingTab.md)
@@ -431,7 +431,6 @@ Class | Method | HTTP request | Description
  - [SyntheticsSSLCertificate](docs/SyntheticsSSLCertificate.md)
  - [SyntheticsSSLCertificateIssuer](docs/SyntheticsSSLCertificateIssuer.md)
  - [SyntheticsSSLCertificateSubject](docs/SyntheticsSSLCertificateSubject.md)
- - [SyntheticsSetTestPauseStatusPayload](docs/SyntheticsSetTestPauseStatusPayload.md)
  - [SyntheticsStepDetail](docs/SyntheticsStepDetail.md)
  - [SyntheticsStepDetailWarnings](docs/SyntheticsStepDetailWarnings.md)
  - [SyntheticsStepType](docs/SyntheticsStepType.md)
@@ -449,6 +448,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsTestRequestBasicAuth](docs/SyntheticsTestRequestBasicAuth.md)
  - [SyntheticsTickInterval](docs/SyntheticsTickInterval.md)
  - [SyntheticsTiming](docs/SyntheticsTiming.md)
+ - [SyntheticsUpdateTestPauseStatusPayload](docs/SyntheticsUpdateTestPauseStatusPayload.md)
  - [SyntheticsWarningType](docs/SyntheticsWarningType.md)
  - [TableWidgetDefinition](docs/TableWidgetDefinition.md)
  - [TableWidgetRequest](docs/TableWidgetRequest.md)

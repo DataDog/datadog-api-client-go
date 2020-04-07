@@ -12,30 +12,30 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsGetAllTestsResponse struct for SyntheticsGetAllTestsResponse
-type SyntheticsGetAllTestsResponse struct {
+// SyntheticsListTestsResponse struct for SyntheticsListTestsResponse
+type SyntheticsListTestsResponse struct {
 	Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
 }
 
-// NewSyntheticsGetAllTestsResponse instantiates a new SyntheticsGetAllTestsResponse object
+// NewSyntheticsListTestsResponse instantiates a new SyntheticsListTestsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsGetAllTestsResponse() *SyntheticsGetAllTestsResponse {
-	this := SyntheticsGetAllTestsResponse{}
+func NewSyntheticsListTestsResponse() *SyntheticsListTestsResponse {
+	this := SyntheticsListTestsResponse{}
 	return &this
 }
 
-// NewSyntheticsGetAllTestsResponseWithDefaults instantiates a new SyntheticsGetAllTestsResponse object
+// NewSyntheticsListTestsResponseWithDefaults instantiates a new SyntheticsListTestsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsGetAllTestsResponseWithDefaults() *SyntheticsGetAllTestsResponse {
-	this := SyntheticsGetAllTestsResponse{}
+func NewSyntheticsListTestsResponseWithDefaults() *SyntheticsListTestsResponse {
+	this := SyntheticsListTestsResponse{}
 	return &this
 }
 
 // GetTests returns the Tests field value if set, zero value otherwise.
-func (o *SyntheticsGetAllTestsResponse) GetTests() []SyntheticsTestDetails {
+func (o *SyntheticsListTestsResponse) GetTests() []SyntheticsTestDetails {
 	if o == nil || o.Tests == nil {
 		var ret []SyntheticsTestDetails
 		return ret
@@ -45,7 +45,7 @@ func (o *SyntheticsGetAllTestsResponse) GetTests() []SyntheticsTestDetails {
 
 // GetTestsOk returns a tuple with the Tests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGetAllTestsResponse) GetTestsOk() (*[]SyntheticsTestDetails, bool) {
+func (o *SyntheticsListTestsResponse) GetTestsOk() (*[]SyntheticsTestDetails, bool) {
 	if o == nil || o.Tests == nil {
 		return nil, false
 	}
@@ -53,7 +53,7 @@ func (o *SyntheticsGetAllTestsResponse) GetTestsOk() (*[]SyntheticsTestDetails, 
 }
 
 // HasTests returns a boolean if a field has been set.
-func (o *SyntheticsGetAllTestsResponse) HasTests() bool {
+func (o *SyntheticsListTestsResponse) HasTests() bool {
 	if o != nil && o.Tests != nil {
 		return true
 	}
@@ -62,11 +62,11 @@ func (o *SyntheticsGetAllTestsResponse) HasTests() bool {
 }
 
 // SetTests gets a reference to the given []SyntheticsTestDetails and assigns it to the Tests field.
-func (o *SyntheticsGetAllTestsResponse) SetTests(v []SyntheticsTestDetails) {
+func (o *SyntheticsListTestsResponse) SetTests(v []SyntheticsTestDetails) {
 	o.Tests = &v
 }
 
-func (o SyntheticsGetAllTestsResponse) MarshalJSON() ([]byte, error) {
+func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Tests != nil {
 		toSerialize["tests"] = o.Tests
@@ -74,38 +74,38 @@ func (o SyntheticsGetAllTestsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableSyntheticsGetAllTestsResponse struct {
-	value *SyntheticsGetAllTestsResponse
+type NullableSyntheticsListTestsResponse struct {
+	value *SyntheticsListTestsResponse
 	isSet bool
 }
 
-func (v NullableSyntheticsGetAllTestsResponse) Get() *SyntheticsGetAllTestsResponse {
+func (v NullableSyntheticsListTestsResponse) Get() *SyntheticsListTestsResponse {
 	return v.value
 }
 
-func (v *NullableSyntheticsGetAllTestsResponse) Set(val *SyntheticsGetAllTestsResponse) {
+func (v *NullableSyntheticsListTestsResponse) Set(val *SyntheticsListTestsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsGetAllTestsResponse) IsSet() bool {
+func (v NullableSyntheticsListTestsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSyntheticsGetAllTestsResponse) Unset() {
+func (v *NullableSyntheticsListTestsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsGetAllTestsResponse(val *SyntheticsGetAllTestsResponse) *NullableSyntheticsGetAllTestsResponse {
-	return &NullableSyntheticsGetAllTestsResponse{value: val, isSet: true}
+func NewNullableSyntheticsListTestsResponse(val *SyntheticsListTestsResponse) *NullableSyntheticsListTestsResponse {
+	return &NullableSyntheticsListTestsResponse{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsGetAllTestsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsGetAllTestsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsListTestsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

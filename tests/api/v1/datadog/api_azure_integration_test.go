@@ -32,13 +32,13 @@ func generateUniqueAzureAccount() (datadog.AzureAccount, datadog.AzureAccount, d
 		HostFilters:   datadog.PtrString("filter:foo,test:bar"),
 	}
 
-	var testAzureUpdateHostFilters = datadog.AzureAccount{
+	var testUpdateAzureHostFilters = datadog.AzureAccount{
 		ClientId:    testUpdateAzureAcct.NewClientId,
 		TenantName:  testUpdateAzureAcct.NewTenantName,
 		HostFilters: datadog.PtrString("test:foo,test:bar"),
 	}
 
-	return testAzureAcct, testUpdateAzureAcct, testAzureUpdateHostFilters
+	return testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters
 }
 
 func TestAzureCreate(t *testing.T) {
@@ -59,9 +59,9 @@ func TestAzureListandDelete(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	testAzureAcct, _, testAzureUpdateHostFilters := generateUniqueAzureAccount()
+	testAzureAcct, _, testUpdateAzureHostFilters := generateUniqueAzureAccount()
 	defer uninstallAzureIntegration(testAzureAcct)
-	defer uninstallAzureIntegration(testAzureUpdateHostFilters)
+	defer uninstallAzureIntegration(testUpdateAzureHostFilters)
 
 	// Setup Azure Account to List
 	_, httpresp, err := TESTAPICLIENT.AzureIntegrationApi.CreateAzureIntegration(TESTAUTH).Body(testAzureAcct).Execute()
@@ -99,7 +99,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	testAzureAcct, testUpdateAzureAcct, testAzureUpdateHostFilters := generateUniqueAzureAccount()
+	testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters := generateUniqueAzureAccount()
 	defer uninstallAzureIntegration(testAzureAcct)
 
 	// Setup Azure Account to Update
@@ -134,7 +134,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(t, x.GetHostFilters(), *testUpdateAzureAcct.HostFilters)
 
 	// Test update host filters endpoint
-	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.AzureUpdateHostFilters(TESTAUTH).Body(testAzureUpdateHostFilters).Execute()
+	_, httpresp, err = TESTAPICLIENT.AzureIntegrationApi.UpdateAzureHostFilters(TESTAUTH).Body(testUpdateAzureHostFilters).Execute()
 	if err != nil {
 		t.Fatalf("Error updating Azure Host Filters: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -146,11 +146,11 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 	var y datadog.AzureAccount
 	for _, Account := range HFListOutput {
-		if Account.GetClientId() == *testAzureUpdateHostFilters.ClientId {
+		if Account.GetClientId() == *testUpdateAzureHostFilters.ClientId {
 			y = Account
 		}
 	}
-	assert.Equal(t, y.GetHostFilters(), *testAzureUpdateHostFilters.HostFilters)
+	assert.Equal(t, y.GetHostFilters(), *testUpdateAzureHostFilters.HostFilters)
 }
 
 func uninstallAzureIntegration(account datadog.AzureAccount) {

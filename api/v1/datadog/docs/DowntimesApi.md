@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**CancelDowntime**](DowntimesApi.md#CancelDowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
 [**CancelDowntimesByScope**](DowntimesApi.md#CancelDowntimesByScope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
 [**CreateDowntime**](DowntimesApi.md#CreateDowntime) | **Post** /api/v1/downtime | Schedule a downtime
-[**GetAllDowntimes**](DowntimesApi.md#GetAllDowntimes) | **Get** /api/v1/downtime | Get all downtimes
 [**GetDowntime**](DowntimesApi.md#GetDowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
+[**ListDowntimes**](DowntimesApi.md#ListDowntimes) | **Get** /api/v1/downtime | Get all downtimes
 [**UpdateDowntime**](DowntimesApi.md#UpdateDowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
 
 
@@ -134,45 +134,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllDowntimes
-
-> []Downtime GetAllDowntimes(ctx).CurrentOnly(currentOnly).Execute()
-
-Get all downtimes
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllDowntimesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **currentOnly** | **bool** | Only return downtimes that are active when the request is made. | 
-
-### Return type
-
-[**[]Downtime**](Downtime.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetDowntime
 
 > Downtime GetDowntime(ctx, downtimeId).Execute()
@@ -201,6 +162,45 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Downtime**](Downtime.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListDowntimes
+
+> []Downtime ListDowntimes(ctx).CurrentOnly(currentOnly).Execute()
+
+Get all downtimes
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListDowntimesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currentOnly** | **bool** | Only return downtimes that are active when the request is made. | 
+
+### Return type
+
+[**[]Downtime**](Downtime.md)
 
 ### Authorization
 

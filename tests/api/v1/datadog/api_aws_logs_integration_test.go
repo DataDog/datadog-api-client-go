@@ -40,7 +40,7 @@ func generateUniqueAWSLambdaAccounts() (datadog.AWSAccount, datadog.AWSAccountAn
 	return uniqueAWSAccount, testLambdaArn, savedServices
 }
 
-// Test AddAWSLambdaARN and EnableServices endpoints
+// Test CreateAWSLambdaARN and EnableServices endpoints
 func TestAddAndSaveAWSLogs(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
@@ -51,7 +51,7 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(t, testawsacc)
 
-	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CreateAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
 	if err != nil {
 		t.Fatalf("Error adding lamda ARN: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -68,7 +68,7 @@ func TestListAWSLogsServices(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	listServicesOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsServices(TESTAUTH).Execute()
+	listServicesOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsServices(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -90,7 +90,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	retryCreateAccount(t, testAWSAcc)
 
 	// Add Lambda to Account
-	addOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.AddAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
+	addOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CreateAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
 	if err != nil {
 		t.Fatalf("Error Adding Lambda %v: Response %s: %v", addOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -104,7 +104,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List AWS Logs integrations before deleting
-	listOutput1, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsIntegrations(TESTAUTH).Execute()
+	listOutput1, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -129,7 +129,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	// List AWS logs integrations after deleting
-	listOutput2, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.GetAllAWSLogsIntegrations(TESTAUTH).Execute()
+	listOutput2, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

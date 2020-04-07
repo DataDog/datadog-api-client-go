@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateDashboardList**](DashboardListsApi.md#CreateDashboardList) | **Post** /api/v1/dashboard/lists/manual | Create a dashboard list
 [**DeleteDashboardList**](DashboardListsApi.md#DeleteDashboardList) | **Delete** /api/v1/dashboard/lists/manual/{list_id} | Delete a dashboard list
-[**GetAllDashboardLists**](DashboardListsApi.md#GetAllDashboardLists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
 [**GetDashboardList**](DashboardListsApi.md#GetDashboardList) | **Get** /api/v1/dashboard/lists/manual/{list_id} | Get a dashboard list
+[**ListDashboardLists**](DashboardListsApi.md#ListDashboardLists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
 [**UpdateDashboardList**](DashboardListsApi.md#UpdateDashboardList) | **Put** /api/v1/dashboard/lists/manual/{list_id} | Update a dashboard list
 
 
@@ -94,41 +94,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllDashboardLists
-
-> DashboardListListResponse GetAllDashboardLists(ctx).Execute()
-
-Get all dashboard lists
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllDashboardListsRequest struct via the builder pattern
-
-
-### Return type
-
-[**DashboardListListResponse**](DashboardListListResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetDashboardList
 
 > DashboardList GetDashboardList(ctx, listId).Execute()
@@ -157,6 +122,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DashboardList**](DashboardList.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListDashboardLists
+
+> DashboardListListResponse ListDashboardLists(ctx).Execute()
+
+Get all dashboard lists
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListDashboardListsRequest struct via the builder pattern
+
+
+### Return type
+
+[**DashboardListListResponse**](DashboardListListResponse.md)
 
 ### Authorization
 

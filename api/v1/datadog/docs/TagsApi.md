@@ -4,17 +4,17 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddToHostTags**](TagsApi.md#AddToHostTags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
-[**GetAllHostTags**](TagsApi.md#GetAllHostTags) | **Get** /api/v1/tags/hosts | Get Tags
+[**CreateHostTags**](TagsApi.md#CreateHostTags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
+[**DeleteHostTags**](TagsApi.md#DeleteHostTags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
 [**GetHostTags**](TagsApi.md#GetHostTags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
-[**RemoveHostTags**](TagsApi.md#RemoveHostTags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
+[**ListHostTags**](TagsApi.md#ListHostTags) | **Get** /api/v1/tags/hosts | Get Tags
 [**UpdateHostTags**](TagsApi.md#UpdateHostTags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
 
 
 
-## AddToHostTags
+## CreateHostTags
 
-> HostTags AddToHostTags(ctx, hostName).Body(body).Source(source).Execute()
+> HostTags CreateHostTags(ctx, hostName).Body(body).Source(source).Execute()
 
 Add tags to a host
 
@@ -30,7 +30,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAddToHostTagsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateHostTagsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -57,30 +57,35 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllHostTags
+## DeleteHostTags
 
-> TagToHosts GetAllHostTags(ctx).Source(source).Execute()
+> DeleteHostTags(ctx, hostName).Source(source).Execute()
 
-Get Tags
+Remove host tags
 
 
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostName** | **string** | This endpoint allows you to remove all user-assigned tags for a single host. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetAllHostTagsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteHostTagsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **source** | **string** | When specified, filters host list to those tags with the specified source. | 
+
+ **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
 
 ### Return type
 
-[**TagToHosts**](TagToHosts.md)
+ (empty response body)
 
 ### Authorization
 
@@ -140,35 +145,30 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RemoveHostTags
+## ListHostTags
 
-> RemoveHostTags(ctx, hostName).Source(source).Execute()
+> TagToHosts ListHostTags(ctx).Source(source).Execute()
 
-Remove host tags
+Get Tags
 
 
 
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**hostName** | **string** | This endpoint allows you to remove all user-assigned tags for a single host. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveHostTagsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListHostTagsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
+ **source** | **string** | When specified, filters host list to those tags with the specified source. | 
 
 ### Return type
 
- (empty response body)
+[**TagToHosts**](TagToHosts.md)
 
 ### Authorization
 

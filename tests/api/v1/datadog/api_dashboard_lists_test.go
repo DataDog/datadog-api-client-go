@@ -53,7 +53,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Equal(t, editedDashboardList.GetName(), fetchedDashboardList.GetName())
 
 	// Find our downtime in the full list
-	dashboardLists, httpresp, err := TESTAPICLIENT.DashboardListsApi.GetAllDashboardLists(TESTAUTH).Execute()
+	dashboardLists, httpresp, err := TESTAPICLIENT.DashboardListsApi.ListDashboardLists(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error fetching dashboard lists: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
