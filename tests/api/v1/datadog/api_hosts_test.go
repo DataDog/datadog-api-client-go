@@ -157,7 +157,7 @@ func TestHostsSearchMocked(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := TESTAPICLIENT.HostsApi
-	hostListResp, httpresp, err := api.GetAllHosts(TESTAUTH).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).Execute()
+	hostListResp, httpresp, err := api.ListHosts(TESTAUTH).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).Execute()
 	if err != nil {
 		t.Errorf("Failed to get hosts: %v", err)
 	}

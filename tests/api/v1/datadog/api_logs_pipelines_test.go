@@ -48,7 +48,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	logMessageRemapper.SetSources([]string{"source"})
 	logMessageRemapper.SetName("log message remapper")
 
-	remapper := datadog.NewLogsRemapperWithDefaults()
+	remapper := datadog.NewLogsAttributeRemapperWithDefaults()
 	remapper.SetSources([]string{"source"})
 	remapper.SetSourceType("tag")
 	remapper.SetTarget("target")
@@ -157,7 +157,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Equal(t, traceRemapper.GetType(), processors[13].LogsProcessorInterface.GetType())
 
 	// Get all pipelines and assert our freshly created one is part of the result
-	pipelines, httpresp, err := TESTAPICLIENT.LogsPipelinesApi.GetAllLogsPipelines(TESTAUTH).Execute()
+	pipelines, httpresp, err := TESTAPICLIENT.LogsPipelinesApi.ListLogsPipelines(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all logs pipelines: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

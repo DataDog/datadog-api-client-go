@@ -1,4 +1,4 @@
-# SyntheticsSetTestPauseStatusPayload
+# SyntheticsUpdateTestPauseStatusPayload
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSyntheticsSetTestPauseStatusPayload
+### NewSyntheticsUpdateTestPauseStatusPayload
 
-`func NewSyntheticsSetTestPauseStatusPayload() *SyntheticsSetTestPauseStatusPayload`
+`func NewSyntheticsUpdateTestPauseStatusPayload() *SyntheticsUpdateTestPauseStatusPayload`
 
-NewSyntheticsSetTestPauseStatusPayload instantiates a new SyntheticsSetTestPauseStatusPayload object
+NewSyntheticsUpdateTestPauseStatusPayload instantiates a new SyntheticsUpdateTestPauseStatusPayload object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSyntheticsSetTestPauseStatusPayloadWithDefaults
+### NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults
 
-`func NewSyntheticsSetTestPauseStatusPayloadWithDefaults() *SyntheticsSetTestPauseStatusPayload`
+`func NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults() *SyntheticsUpdateTestPauseStatusPayload`
 
-NewSyntheticsSetTestPauseStatusPayloadWithDefaults instantiates a new SyntheticsSetTestPauseStatusPayload object
+NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults instantiates a new SyntheticsUpdateTestPauseStatusPayload object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetNewStatus
 
-`func (o *SyntheticsSetTestPauseStatusPayload) GetNewStatus() SyntheticsTestPauseStatus`
+`func (o *SyntheticsUpdateTestPauseStatusPayload) GetNewStatus() SyntheticsTestPauseStatus`
 
 GetNewStatus returns the NewStatus field if non-nil, zero value otherwise.
 
 ### GetNewStatusOk
 
-`func (o *SyntheticsSetTestPauseStatusPayload) GetNewStatusOk() (*SyntheticsTestPauseStatus, bool)`
+`func (o *SyntheticsUpdateTestPauseStatusPayload) GetNewStatusOk() (*SyntheticsTestPauseStatus, bool)`
 
 GetNewStatusOk returns a tuple with the NewStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewStatus
 
-`func (o *SyntheticsSetTestPauseStatusPayload) SetNewStatus(v SyntheticsTestPauseStatus)`
+`func (o *SyntheticsUpdateTestPauseStatusPayload) SetNewStatus(v SyntheticsTestPauseStatus)`
 
 SetNewStatus sets NewStatus field to given value.
 
 ### HasNewStatus
 
-`func (o *SyntheticsSetTestPauseStatusPayload) HasNewStatus() bool`
+`func (o *SyntheticsUpdateTestPauseStatusPayload) HasNewStatus() bool`
 
 HasNewStatus returns a boolean if a field has been set.
 

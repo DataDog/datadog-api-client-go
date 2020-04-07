@@ -68,7 +68,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 	assert.Equal(t, updatedDowntime.GetMessage(), fetchedDowntime.GetMessage())
 
 	// Find our downtime in the full list
-	downtimes, httpresp, err := TESTAPICLIENT.DowntimesApi.GetAllDowntimes(TESTAUTH).Execute()
+	downtimes, httpresp, err := TESTAPICLIENT.DowntimesApi.ListDowntimes(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error fetching downtimes: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

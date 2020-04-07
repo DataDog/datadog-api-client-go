@@ -14,6 +14,8 @@ import (
 
 // LogsURLParser This processor extracts query parameters and other important parameters from a URL.
 type LogsURLParser struct {
+	// Normalize the ending slashes or not.
+	NormalizeEndingSlashes NullableBool `json:"normalize_ending_slashes,omitempty"`
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`.
@@ -32,6 +34,8 @@ type LogsURLParser struct {
 // will change when the set of required properties is changed
 func NewLogsURLParser(sources []string, target string) *LogsURLParser {
 	this := LogsURLParser{}
+	var normalizeEndingSlashes bool = false
+	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
 	this.Sources = sources
 	this.Target = target
 	var type_ string = "url-parser"
@@ -46,6 +50,8 @@ func NewLogsURLParser(sources []string, target string) *LogsURLParser {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsURLParserWithDefaults() *LogsURLParser {
 	this := LogsURLParser{}
+	var normalizeEndingSlashes bool = false
+	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
 	var target string = "http.url_details"
 	this.Target = target
 	var type_ string = "url-parser"
@@ -53,6 +59,49 @@ func NewLogsURLParserWithDefaults() *LogsURLParser {
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	return &this
+}
+
+// GetNormalizeEndingSlashes returns the NormalizeEndingSlashes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LogsURLParser) GetNormalizeEndingSlashes() bool {
+	if o == nil || o.NormalizeEndingSlashes.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NormalizeEndingSlashes.Get()
+}
+
+// GetNormalizeEndingSlashesOk returns a tuple with the NormalizeEndingSlashes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LogsURLParser) GetNormalizeEndingSlashesOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NormalizeEndingSlashes.Get(), o.NormalizeEndingSlashes.IsSet()
+}
+
+// HasNormalizeEndingSlashes returns a boolean if a field has been set.
+func (o *LogsURLParser) HasNormalizeEndingSlashes() bool {
+	if o != nil && o.NormalizeEndingSlashes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNormalizeEndingSlashes gets a reference to the given NullableBool and assigns it to the NormalizeEndingSlashes field.
+func (o *LogsURLParser) SetNormalizeEndingSlashes(v bool) {
+	o.NormalizeEndingSlashes.Set(&v)
+}
+
+// SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil
+func (o *LogsURLParser) SetNormalizeEndingSlashesNil() {
+	o.NormalizeEndingSlashes.Set(nil)
+}
+
+// UnsetNormalizeEndingSlashes ensures that no value is present for NormalizeEndingSlashes, not even an explicit nil
+func (o *LogsURLParser) UnsetNormalizeEndingSlashes() {
+	o.NormalizeEndingSlashes.Unset()
 }
 
 // GetSources returns the Sources field value
@@ -201,6 +250,9 @@ func (o *LogsURLParser) SetName(v string) {
 
 func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.NormalizeEndingSlashes.IsSet() {
+		toSerialize["normalize_ending_slashes"] = o.NormalizeEndingSlashes.Get()
+	}
 	if true {
 		toSerialize["sources"] = o.Sources
 	}

@@ -224,7 +224,7 @@ paths:
   /api/v1/api_key:
     get:
       description: Get all API keys available for your account.
-      operationId: GetAllAPIKeys
+      operationId: ListAPIKeys
       responses:
         "200":
           content:
@@ -367,7 +367,7 @@ paths:
       - Key Management
     put:
       description: Edit an API key name.
-      operationId: EditAPIKey
+      operationId: UpdateAPIKey
       parameters:
       - description: The specific API key you are working with.
         explode: false
@@ -414,7 +414,7 @@ paths:
   /api/v1/application_key:
     get:
       description: Get all application keys available for your Datadog account.
-      operationId: GetAllApplicationKeys
+      operationId: ListApplicationKeys
       responses:
         "200":
           content:
@@ -557,7 +557,7 @@ paths:
       - Key Management
     put:
       description: Edit an application key name.
-      operationId: EditApplicationKey
+      operationId: UpdateApplicationKey
       parameters:
       - description: The specific APP key you are working with.
         explode: false
@@ -606,7 +606,7 @@ paths:
       description: |-
         ### Overview
         Get all dashboards
-      operationId: GetAllDashboards
+      operationId: ListDashboards
       responses:
         "200":
           content:
@@ -675,7 +675,7 @@ paths:
   /api/v1/dashboard/lists/manual:
     get:
       description: Fetch all of your existing dashboard list definitions.
-      operationId: GetAllDashboardLists
+      operationId: ListDashboardLists
       responses:
         "200":
           content:
@@ -983,7 +983,7 @@ paths:
   /api/v1/downtime:
     get:
       description: Get all scheduled downtimes.
-      operationId: GetAllDowntimes
+      operationId: ListDowntimes
       parameters:
       - description: Only return downtimes that are active when the request is made.
         explode: true
@@ -1439,7 +1439,7 @@ paths:
         This endpoint allows searching for hosts by name, alias, or tag.
         Hosts live within the past 3 hours are included.
         Results are paginated with a max of 1000 results at a time.
-      operationId: GetAllHosts
+      operationId: ListHosts
       parameters:
       - description: String to filter search results.
         explode: true
@@ -1585,7 +1585,7 @@ paths:
       x-codegen-request-body-name: body
     get:
       description: List all Datadog-AWS integrations available in your Datadog organization.
-      operationId: GetAllAWSAccounts
+      operationId: ListAWSAccounts
       parameters:
       - description: Only return AWS accounts that matches this account_id.
         explode: true
@@ -1774,7 +1774,7 @@ paths:
     put:
       description: Generate a new AWS external ID for a given AWS account ID and role
         name pair.
-      operationId: GenerateNewAWSExternalID
+      operationId: CreateNewAWSExternalID
       requestBody:
         content:
           application/json:
@@ -1846,7 +1846,7 @@ paths:
     get:
       description: List all Datadog-AWS Logs integrations configured in your Datadog
         account.
-      operationId: GetAllAWSLogsIntegrations
+      operationId: ListAWSLogsIntegrations
       responses:
         "200":
           content:
@@ -1884,7 +1884,7 @@ paths:
     post:
       description: Attach the Lambda ARN of the Lambda created for the Datadog-AWS
         log collection to your AWS account ID to enable log collection.
-      operationId: AddAWSLambdaARN
+      operationId: CreateAWSLambdaARN
       requestBody:
         content:
           application/json:
@@ -1959,7 +1959,7 @@ paths:
       description: Get the list of current AWS services that Datadog offers automatic
         log collection. Use returned service IDs with the services parameter for the
         Enable an AWS service log collection API endpoint.
-      operationId: GetAllAWSLogsServices
+      operationId: ListAWSLogsServices
       responses:
         "200":
           content:
@@ -1999,7 +1999,7 @@ paths:
       - AWS Logs Integration
     post:
       description: Enable automatic log collection for a list of services. This should
-        be run after running 'AddAWSLambdaARN' to save the config.
+        be run after running 'CreateAWSLambdaARN' to save the config.
       operationId: EnableAWSLogServices
       requestBody:
         content:
@@ -2215,7 +2215,7 @@ paths:
     post:
       description: Update the defined list of host filters for a given Datadog-Azure
         integration.
-      operationId: AzureUpdateHostFilters
+      operationId: UpdateAzureHostFilters
       requestBody:
         content:
           application/json:
@@ -2733,7 +2733,7 @@ paths:
       description: |-
         The Index object describes the configuration of a log index.
         This endpoint returns an array of the `LogIndex` objects of your organization.
-      operationId: GetAllLogIndexes
+      operationId: ListLogIndexes
       responses:
         "200":
           content:
@@ -2916,7 +2916,7 @@ paths:
       description: |-
         Get all pipelines from your organization.
         This endpoint takes no JSON arguments.
-      operationId: GetAllLogsPipelines
+      operationId: ListLogsPipelines
       responses:
         "200":
           content:
@@ -3097,7 +3097,7 @@ paths:
     get:
       description: Get the list of actively reporting metrics from a given time until
         now.
-      operationId: GetAllActiveMetrics
+      operationId: ListActiveMetrics
       parameters:
       - description: Seconds since the Unix epoch
         explode: true
@@ -3165,7 +3165,7 @@ paths:
       - Metrics
     put:
       description: Edit metadata of a specific metric.
-      operationId: EditMetricMetadata
+      operationId: UpdateMetricMetadata
       parameters:
       - description: Name of the metric for which to edit metadata.
         explode: false
@@ -3202,7 +3202,7 @@ paths:
   /api/v1/monitor:
     get:
       description: Get details about the specified monitor from your organization.
-      operationId: GetAllMonitors
+      operationId: ListMonitors
       parameters:
       - description: |-
           When specified, shows additional information about the group states.
@@ -3412,7 +3412,7 @@ paths:
       - Monitors
     put:
       description: Edit the specified monitor.
-      operationId: EditMonitor
+      operationId: UpdateMonitor
       parameters:
       - description: The id of the monitor.
         explode: false
@@ -3674,7 +3674,7 @@ paths:
   /api/v1/search:
     get:
       description: Search for metrics from the last 24 hours in Datadog.
-      operationId: SearchMetrics
+      operationId: ListMetrics
       parameters:
       - description: Query string to search metrics upon. Must be prefixed with `metrics:`.
         explode: true
@@ -3796,7 +3796,7 @@ paths:
         This endpoint facilitates deletion of one or more thresholds for one or more
         service level objective objects. If all thresholds are deleted, the service level
         objective object is deleted as well.
-      operationId: BulkPartialDeleteSLO
+      operationId: DeleteSLOTimeframeInBulk
       requestBody:
         content:
           application/json:
@@ -4040,7 +4040,7 @@ paths:
 
         **Note:** There are different response formats for event based and time based SLOs.
         Examples of both are shown.
-      operationId: HistoryForSLO
+      operationId: GetSLOHistory
       parameters:
       - description: The ID of the service level objective object.
         explode: false
@@ -4097,7 +4097,7 @@ paths:
   /api/v1/synthetics/browser/devices:
     get:
       description: Get the list of devices available for Synthetics browser tests.
-      operationId: GetAllDevices
+      operationId: ListDevices
       responses:
         "200":
           content:
@@ -4112,7 +4112,7 @@ paths:
     get:
       description: Get the list of public and private locations available for Synthetics
         tests. No arguments required
-      operationId: GetAllLocations
+      operationId: ListLocations
       responses:
         "200":
           content:
@@ -4126,7 +4126,7 @@ paths:
   /api/v1/synthetics/tests:
     get:
       description: Get the list of all Synthetics tests (can be filtered by type).
-      operationId: GetAllTests
+      operationId: ListTests
       parameters:
       - description: API or browser to filter the list by type, undefined to get the
           unfiltered list.
@@ -4142,7 +4142,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SyntheticsGetAllTestsResponse'
+                $ref: '#/components/schemas/SyntheticsListTestsResponse'
           description: OK - Returns the list of all Synthetics test (properly filtered
             by type).
         "404":
@@ -4472,7 +4472,7 @@ paths:
   /api/v1/synthetics/tests/{public_id}/status:
     put:
       description: Change pause/live status of a given Synthetics test.
-      operationId: SetTestPauseStatus
+      operationId: UpdateTestPauseStatus
       parameters:
       - description: The public id of the Synthetics test to update
         explode: false
@@ -4486,7 +4486,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SyntheticsSetTestPauseStatusPayload'
+              $ref: '#/components/schemas/SyntheticsUpdateTestPauseStatusPayload'
         description: Pause/live status to set the given Synthetics test to
         required: true
       responses:
@@ -4516,7 +4516,7 @@ paths:
   /api/v1/tags/hosts:
     get:
       description: Return a mapping of tags to hosts for your whole infrastructure.
-      operationId: GetAllHostTags
+      operationId: ListHostTags
       parameters:
       - description: When specified, filters host list to those tags with the specified
           source.
@@ -4554,7 +4554,7 @@ paths:
       description: |-
         This endpoint allows you to remove all user-assigned tags
         for a single host.
-      operationId: RemoveHostTags
+      operationId: DeleteHostTags
       parameters:
       - description: This endpoint allows you to remove all user-assigned tags for
           a single host.
@@ -4640,7 +4640,7 @@ paths:
       description: |-
         This endpoint allows you to add new tags to a host,
         optionally specifying where these tags come from.
-      operationId: AddToHostTags
+      operationId: CreateHostTags
       parameters:
       - description: This endpoint allows you to add new tags to a host, optionally
           specifying where the tags came from.
@@ -5565,7 +5565,7 @@ paths:
   /api/v1/user:
     get:
       description: Get all users for your organization.
-      operationId: GetAllUsers
+      operationId: ListUsers
       responses:
         "200":
           content:
@@ -8136,6 +8136,45 @@ components:
       - expression
       - target
       type: object
+    LogsAttributeRemapper:
+      description: |-
+        The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.
+        Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice).
+        Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
+      properties:
+        override_on_conflict:
+          default: false
+          description: Override or not the target element if already set,
+          type: boolean
+        preserve_source:
+          default: false
+          description: Remove or preserve the remapped source element.
+          type: boolean
+        source_type:
+          default: attribute
+          description: Defines if the sources are from log `attribute` or `tag`.
+          type: string
+        sources:
+          description: Array of source attributes.
+          items:
+            type: string
+          type: array
+        target:
+          description: Final attribute or tag name to remap the sources to.
+          type: string
+        target_type:
+          default: attribute
+          description: Defines if the sources are from log `attribute` or `tag`.
+          type: string
+        type:
+          default: attribute-remapper
+          description: Type of processor.
+          readOnly: true
+          type: string
+      required:
+      - sources
+      - target
+      type: object
     LogsCategoryProcessor:
       description: |-
         Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name)
@@ -8661,7 +8700,7 @@ components:
       discriminator:
         mapping:
           arithmetic-processor: '#/components/schemas/LogsArithmeticProcessor'
-          attribute-remapper: '#/components/schemas/LogsRemapper'
+          attribute-remapper: '#/components/schemas/LogsAttributeRemapper'
           category-processor: '#/components/schemas/LogsCategoryProcessor'
           date-remapper: '#/components/schemas/LogsDateRemapper'
           geo-ip-parser: '#/components/schemas/LogsGeoIPParser'
@@ -8684,7 +8723,7 @@ components:
       - $ref: '#/components/schemas/LogsStatusRemapper'
       - $ref: '#/components/schemas/LogsServiceRemapper'
       - $ref: '#/components/schemas/LogsMessageRemapper'
-      - $ref: '#/components/schemas/LogsRemapper'
+      - $ref: '#/components/schemas/LogsAttributeRemapper'
       - $ref: '#/components/schemas/LogsURLParser'
       - $ref: '#/components/schemas/LogsUserAgentParser'
       - $ref: '#/components/schemas/LogsCategoryProcessor'
@@ -8714,45 +8753,6 @@ components:
           type: integer
       required:
       - aggregation
-      type: object
-    LogsRemapper:
-      description: |-
-        The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.
-        Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice).
-        Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
-      properties:
-        override_on_conflict:
-          default: false
-          description: Override or not the target element if already set,
-          type: boolean
-        preserve_source:
-          default: false
-          description: Remove or preserve the remapped source element.
-          type: boolean
-        source_type:
-          default: attribute
-          description: Defines if the sources are from log `attribute` or `tag`.
-          type: string
-        sources:
-          description: Array of source attributes.
-          items:
-            type: string
-          type: array
-        target:
-          description: Final attribute or tag name to remap the sources to.
-          type: string
-        target_type:
-          default: attribute
-          description: Defines if the sources are from log `attribute` or `tag`.
-          type: string
-        type:
-          default: attribute-remapper
-          description: Type of processor.
-          readOnly: true
-          type: string
-      required:
-      - sources
-      - target
       type: object
     LogsServiceRemapper:
       description: |-
@@ -8880,6 +8880,11 @@ components:
       description: This processor extracts query parameters and other important parameters
         from a URL.
       properties:
+        normalize_ending_slashes:
+          default: false
+          description: Normalize the ending slashes or not.
+          nullable: true
+          type: boolean
         sources:
           default:
           - http.url
@@ -11604,7 +11609,68 @@ components:
             $ref: '#/components/schemas/SyntheticsAPITestResultShort'
           type: array
       type: object
-    SyntheticsGetAllTestsResponse:
+    SyntheticsGetBrowserTestLatestResultsResponse:
+      example:
+        last_timestamp_fetched: 0
+        results:
+        - result:
+            duration: 1.4658129805029452
+            stepCountTotal: 2
+            device:
+              name: name
+              width: 6
+              isMobile: true
+              height: 0
+            errorCount: 5
+            stepCountCompleted: 5
+          probe_dc: probe_dc
+          result_id: result_id
+          check_time: 6.027456183070403
+        - result:
+            duration: 1.4658129805029452
+            stepCountTotal: 2
+            device:
+              name: name
+              width: 6
+              isMobile: true
+              height: 0
+            errorCount: 5
+            stepCountCompleted: 5
+          probe_dc: probe_dc
+          result_id: result_id
+          check_time: 6.027456183070403
+      properties:
+        last_timestamp_fetched:
+          format: int64
+          type: integer
+        results:
+          items:
+            $ref: '#/components/schemas/SyntheticsBrowserTestResultShort'
+          type: array
+      type: object
+    SyntheticsGetTestLatestResultsPayload:
+      example:
+        to_ts: 6.027456183070403
+        probe_dc:
+        - probe_dc
+        - probe_dc
+        from_ts: 0.8008281904610115
+      properties:
+        from_ts:
+          format: double
+          type: number
+        probe_dc:
+          items:
+            type: string
+          type: array
+        to_ts:
+          format: double
+          type: number
+      required:
+      - from_ts
+      - to_ts
+      type: object
+    SyntheticsListTestsResponse:
       example:
         tests:
         - created_at: created_at
@@ -11730,67 +11796,6 @@ components:
           items:
             $ref: '#/components/schemas/SyntheticsTestDetails'
           type: array
-      type: object
-    SyntheticsGetBrowserTestLatestResultsResponse:
-      example:
-        last_timestamp_fetched: 0
-        results:
-        - result:
-            duration: 1.4658129805029452
-            stepCountTotal: 2
-            device:
-              name: name
-              width: 6
-              isMobile: true
-              height: 0
-            errorCount: 5
-            stepCountCompleted: 5
-          probe_dc: probe_dc
-          result_id: result_id
-          check_time: 6.027456183070403
-        - result:
-            duration: 1.4658129805029452
-            stepCountTotal: 2
-            device:
-              name: name
-              width: 6
-              isMobile: true
-              height: 0
-            errorCount: 5
-            stepCountCompleted: 5
-          probe_dc: probe_dc
-          result_id: result_id
-          check_time: 6.027456183070403
-      properties:
-        last_timestamp_fetched:
-          format: int64
-          type: integer
-        results:
-          items:
-            $ref: '#/components/schemas/SyntheticsBrowserTestResultShort'
-          type: array
-      type: object
-    SyntheticsGetTestLatestResultsPayload:
-      example:
-        to_ts: 6.027456183070403
-        probe_dc:
-        - probe_dc
-        - probe_dc
-        from_ts: 0.8008281904610115
-      properties:
-        from_ts:
-          format: double
-          type: number
-        probe_dc:
-          items:
-            type: string
-          type: array
-        to_ts:
-          format: double
-          type: number
-      required:
-      - from_ts
-      - to_ts
       type: object
     SyntheticsLocation:
       example:
@@ -11954,12 +11959,6 @@ components:
         validTo:
           format: date-time
           type: string
-      type: object
-    SyntheticsSetTestPauseStatusPayload:
-      example: {}
-      properties:
-        new_status:
-          $ref: '#/components/schemas/SyntheticsTestPauseStatus'
       type: object
     SyntheticsStepDetail:
       example:
@@ -12430,6 +12429,12 @@ components:
         wait:
           format: double
           type: number
+      type: object
+    SyntheticsUpdateTestPauseStatusPayload:
+      example: {}
+      properties:
+        new_status:
+          $ref: '#/components/schemas/SyntheticsTestPauseStatus'
       type: object
     SyntheticsWarningType:
       enum:

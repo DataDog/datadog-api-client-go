@@ -796,7 +796,7 @@ func TestDashboardLifecycle(t *testing.T) {
 func TestDashboardGetAll(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
-	getAllResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.GetAllDashboards(TESTAUTH).Execute()
+	getAllResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.ListDashboards(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all dashboards: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

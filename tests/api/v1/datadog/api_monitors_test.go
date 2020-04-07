@@ -95,7 +95,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Nil(t, val)
 
 	// Edit a monitor
-	updatedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.EditMonitor(TESTAUTH, monitor.GetId()).Body(testUpdateMonitor).Execute()
+	updatedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.UpdateMonitor(TESTAUTH, monitor.GetId()).Body(testUpdateMonitor).Execute()
 	if err != nil {
 		t.Errorf("Error updating Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -132,7 +132,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(t, updatedMonitor.GetName(), fetchedMonitor.GetName())
 
 	// Find our monitor in the full list
-	monitors, httpresp, err := TESTAPICLIENT.MonitorsApi.GetAllMonitors(TESTAUTH).Execute()
+	monitors, httpresp, err := TESTAPICLIENT.MonitorsApi.ListMonitors(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

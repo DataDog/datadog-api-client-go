@@ -76,7 +76,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Get All API Keys
 	// ----------------------------------
-	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAllAPIKeys(TESTAUTH).Execute()
+	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListAPIKeys(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error getting all api keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -90,7 +90,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Edit API Key
 	// ----------------------------------
 	newAPIKeyName := fmt.Sprintf("new-%s", testAPIKeyName)
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.EditAPIKey(TESTAUTH, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
+	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.UpdateAPIKey(TESTAUTH, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -183,7 +183,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Get All Application Keys
 	// ----------------------------------
-	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAllApplicationKeys(TESTAUTH).Execute()
+	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListApplicationKeys(TESTAUTH).Execute()
 	if err != nil {
 		t.Errorf("Error getting all app keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -197,7 +197,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Edit Application Key
 	// ----------------------------------
 	newAppKeyName := fmt.Sprintf("New %s", testAppKeyName)
-	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.EditApplicationKey(TESTAUTH, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
+	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(TESTAUTH, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}

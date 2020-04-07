@@ -20,13 +20,13 @@ import (
 
 func enableLogsIndexesUnstableOperations() {
     TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetLogsIndex", true)
-    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetAllLogIndexes", true)
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("ListLogIndexes", true)
     TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", true)
 }
 
 func disableLogsIndexesUnstableOperations() {
     TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetLogsIndex", false)
-    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("GetAllLogIndexes", false)
+    TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("ListLogIndexes", false)
     TESTAPICLIENT.GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", false)
 }
 
@@ -47,7 +47,7 @@ func TestGetAllLogsIndexes(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
-	logIndexes, httpresp, err := TESTAPICLIENT.LogsIndexesApi.GetAllLogIndexes(TESTAUTH).Execute()
+	logIndexes, httpresp, err := TESTAPICLIENT.LogsIndexesApi.ListLogIndexes(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all log indexes: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

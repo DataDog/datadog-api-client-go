@@ -8,14 +8,14 @@ Method | HTTP request | Description
 [**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete multiple tests
 [**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get test latest results (as summaries)
 [**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get test result (API)
-[**GetAllDevices**](SyntheticsApi.md#GetAllDevices) | **Get** /api/v1/synthetics/browser/devices | Get all devices
-[**GetAllLocations**](SyntheticsApi.md#GetAllLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
-[**GetAllTests**](SyntheticsApi.md#GetAllTests) | **Get** /api/v1/synthetics/tests | Get all test
 [**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
 [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
 [**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
-[**SetTestPauseStatus**](SyntheticsApi.md#SetTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
+[**ListDevices**](SyntheticsApi.md#ListDevices) | **Get** /api/v1/synthetics/browser/devices | Get all devices
+[**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
+[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get all test
 [**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
+[**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
 
 
 
@@ -187,115 +187,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllDevices
-
-> SyntheticsDevices GetAllDevices(ctx).Execute()
-
-Get all devices
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllDevicesRequest struct via the builder pattern
-
-
-### Return type
-
-[**SyntheticsDevices**](SyntheticsDevices.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetAllLocations
-
-> SyntheticsLocations GetAllLocations(ctx).Execute()
-
-Get all locations (public and private)
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllLocationsRequest struct via the builder pattern
-
-
-### Return type
-
-[**SyntheticsLocations**](SyntheticsLocations.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetAllTests
-
-> SyntheticsGetAllTestsResponse GetAllTests(ctx).CheckType(checkType).Execute()
-
-Get all test
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllTestsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **checkType** | **string** | API or browser to filter the list by type, undefined to get the unfiltered list. | 
-
-### Return type
-
-[**SyntheticsGetAllTestsResponse**](SyntheticsGetAllTestsResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetBrowserTestLatestResults
 
 > SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).Body(body).Execute()
@@ -428,35 +319,26 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SetTestPauseStatus
+## ListDevices
 
-> bool SetTestPauseStatus(ctx, publicId).Body(body).Execute()
+> SyntheticsDevices ListDevices(ctx).Execute()
 
-Change test pause/live status
+Get all devices
 
 
 
 ### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the Synthetics test to update | 
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSetTestPauseStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListDevicesRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SyntheticsSetTestPauseStatusPayload**](SyntheticsSetTestPauseStatusPayload.md) | Pause/live status to set the given Synthetics test to | 
 
 ### Return type
 
-**bool**
+[**SyntheticsDevices**](SyntheticsDevices.md)
 
 ### Authorization
 
@@ -464,7 +346,81 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListLocations
+
+> SyntheticsLocations ListLocations(ctx).Execute()
+
+Get all locations (public and private)
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListLocationsRequest struct via the builder pattern
+
+
+### Return type
+
+[**SyntheticsLocations**](SyntheticsLocations.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListTests
+
+> SyntheticsListTestsResponse ListTests(ctx).CheckType(checkType).Execute()
+
+Get all test
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListTestsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **checkType** | **string** | API or browser to filter the list by type, undefined to get the unfiltered list. | 
+
+### Return type
+
+[**SyntheticsListTestsResponse**](SyntheticsListTestsResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -501,6 +457,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SyntheticsTestDetails**](SyntheticsTestDetails.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateTestPauseStatus
+
+> bool UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
+
+Change test pause/live status
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**publicId** | **string** | The public id of the Synthetics test to update | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateTestPauseStatusRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Pause/live status to set the given Synthetics test to | 
+
+### Return type
+
+**bool**
 
 ### Authorization
 
