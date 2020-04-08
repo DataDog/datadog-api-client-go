@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 set -e
 echo "Ensuring all dependencies are present in LICENSE-3rdparty.csv ..."
+go mod tidy
 ALL_DEPS=`cat go.sum | awk '{print $1}' | uniq | sort | sed "s|^\(.*\)|go.sum,\1,|"`
 DEPS_NOT_FOUND=""
 for one_dep in `echo $ALL_DEPS`; do
@@ -17,5 +18,10 @@ if [ -n "$DEPS_NOT_FOUND" ]; then
 else
     echo "LICENSE-3rdparty.csv is up to date"
 fi
+
+
+go get -u golang.org/x/lint/golint
+go get -u gotest.tools/gotestsum@v0.4.1
 golint ./...
-go test -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
+gotestsum --format testname -- -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
+go mod tidy
