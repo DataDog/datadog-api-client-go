@@ -12,10 +12,12 @@ import (
 	"encoding/json"
 )
 
-// TimeseriesWidgetRequestMetadata struct for TimeseriesWidgetRequestMetadata
+// TimeseriesWidgetRequestMetadata TODO.
 type TimeseriesWidgetRequestMetadata struct {
-	AliasName  *string `json:"alias_name,omitempty"`
-	Expression string  `json:"expression"`
+	// TODO.
+	AliasName *string `json:"alias_name,omitempty"`
+	// TODO.
+	Expression string `json:"expression"`
 }
 
 // NewTimeseriesWidgetRequestMetadata instantiates a new TimeseriesWidgetRequestMetadata object

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestMonitorStatus the model 'SyntheticsTestMonitorStatus'
+// SyntheticsTestMonitorStatus TODO.
 type SyntheticsTestMonitorStatus int64
 
 // List of SyntheticsTestMonitorStatus

@@ -12,19 +12,19 @@ import (
 	"encoding/json"
 )
 
-// IPRanges struct for IPRanges
+// IPRanges TODO.
 type IPRanges struct {
-	Agents *IPPrefixes `json:"agents,omitempty"`
-	Api    *IPPrefixes `json:"api,omitempty"`
-	Apm    *IPPrefixes `json:"apm,omitempty"`
-	Logs   *IPPrefixes `json:"logs,omitempty"`
+	Agents *IPAgentsPrefixes `json:"agents,omitempty"`
+	Api    *IPAPIPrefixes    `json:"api,omitempty"`
+	Apm    *IPAPMPrefixes    `json:"apm,omitempty"`
+	Logs   *IPLogsPrefixes   `json:"logs,omitempty"`
 	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
-	Modified   *string     `json:"modified,omitempty"`
-	Process    *IPPrefixes `json:"process,omitempty"`
-	Synthetics *IPPrefixes `json:"synthetics,omitempty"`
+	Modified   *string               `json:"modified,omitempty"`
+	Process    *IPProcessPrefixes    `json:"process,omitempty"`
+	Synthetics *IPSyntheticsPrefixes `json:"synthetics,omitempty"`
 	// Version of the IP list.
-	Version  *int64      `json:"version,omitempty"`
-	Webhooks *IPPrefixes `json:"webhooks,omitempty"`
+	Version  *int64              `json:"version,omitempty"`
+	Webhooks *IPWebhooksPrefixes `json:"webhooks,omitempty"`
 }
 
 // NewIPRanges instantiates a new IPRanges object
@@ -45,9 +45,9 @@ func NewIPRangesWithDefaults() *IPRanges {
 }
 
 // GetAgents returns the Agents field value if set, zero value otherwise.
-func (o *IPRanges) GetAgents() IPPrefixes {
+func (o *IPRanges) GetAgents() IPAgentsPrefixes {
 	if o == nil || o.Agents == nil {
-		var ret IPPrefixes
+		var ret IPAgentsPrefixes
 		return ret
 	}
 	return *o.Agents
@@ -55,7 +55,7 @@ func (o *IPRanges) GetAgents() IPPrefixes {
 
 // GetAgentsOk returns a tuple with the Agents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetAgentsOk() (*IPPrefixes, bool) {
+func (o *IPRanges) GetAgentsOk() (*IPAgentsPrefixes, bool) {
 	if o == nil || o.Agents == nil {
 		return nil, false
 	}
@@ -71,15 +71,15 @@ func (o *IPRanges) HasAgents() bool {
 	return false
 }
 
-// SetAgents gets a reference to the given IPPrefixes and assigns it to the Agents field.
-func (o *IPRanges) SetAgents(v IPPrefixes) {
+// SetAgents gets a reference to the given IPAgentsPrefixes and assigns it to the Agents field.
+func (o *IPRanges) SetAgents(v IPAgentsPrefixes) {
 	o.Agents = &v
 }
 
 // GetApi returns the Api field value if set, zero value otherwise.
-func (o *IPRanges) GetApi() IPPrefixes {
+func (o *IPRanges) GetApi() IPAPIPrefixes {
 	if o == nil || o.Api == nil {
-		var ret IPPrefixes
+		var ret IPAPIPrefixes
 		return ret
 	}
 	return *o.Api
@@ -87,7 +87,7 @@ func (o *IPRanges) GetApi() IPPrefixes {
 
 // GetApiOk returns a tuple with the Api field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetApiOk() (*IPPrefixes, bool) {
+func (o *IPRanges) GetApiOk() (*IPAPIPrefixes, bool) {
 	if o == nil || o.Api == nil {
 		return nil, false
 	}
@@ -103,15 +103,15 @@ func (o *IPRanges) HasApi() bool {
 	return false
 }
 
-// SetApi gets a reference to the given IPPrefixes and assigns it to the Api field.
-func (o *IPRanges) SetApi(v IPPrefixes) {
+// SetApi gets a reference to the given IPAPIPrefixes and assigns it to the Api field.
+func (o *IPRanges) SetApi(v IPAPIPrefixes) {
 	o.Api = &v
 }
 
 // GetApm returns the Apm field value if set, zero value otherwise.
-func (o *IPRanges) GetApm() IPPrefixes {
+func (o *IPRanges) GetApm() IPAPMPrefixes {
 	if o == nil || o.Apm == nil {
-		var ret IPPrefixes
+		var ret IPAPMPrefixes
 		return ret
 	}
 	return *o.Apm
@@ -119,7 +119,7 @@ func (o *IPRanges) GetApm() IPPrefixes {
 
 // GetApmOk returns a tuple with the Apm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetApmOk() (*IPPrefixes, bool) {
+func (o *IPRanges) GetApmOk() (*IPAPMPrefixes, bool) {
 	if o == nil || o.Apm == nil {
 		return nil, false
 	}
@@ -135,15 +135,15 @@ func (o *IPRanges) HasApm() bool {
 	return false
 }
 
-// SetApm gets a reference to the given IPPrefixes and assigns it to the Apm field.
-func (o *IPRanges) SetApm(v IPPrefixes) {
+// SetApm gets a reference to the given IPAPMPrefixes and assigns it to the Apm field.
+func (o *IPRanges) SetApm(v IPAPMPrefixes) {
 	o.Apm = &v
 }
 
 // GetLogs returns the Logs field value if set, zero value otherwise.
-func (o *IPRanges) GetLogs() IPPrefixes {
+func (o *IPRanges) GetLogs() IPLogsPrefixes {
 	if o == nil || o.Logs == nil {
-		var ret IPPrefixes
+		var ret IPLogsPrefixes
 		return ret
 	}
 	return *o.Logs
@@ -151,7 +151,7 @@ func (o *IPRanges) GetLogs() IPPrefixes {
 
 // GetLogsOk returns a tuple with the Logs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetLogsOk() (*IPPrefixes, bool) {
+func (o *IPRanges) GetLogsOk() (*IPLogsPrefixes, bool) {
 	if o == nil || o.Logs == nil {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *IPRanges) HasLogs() bool {
 	return false
 }
 
-// SetLogs gets a reference to the given IPPrefixes and assigns it to the Logs field.
-func (o *IPRanges) SetLogs(v IPPrefixes) {
+// SetLogs gets a reference to the given IPLogsPrefixes and assigns it to the Logs field.
+func (o *IPRanges) SetLogs(v IPLogsPrefixes) {
 	o.Logs = &v
 }
 
@@ -205,9 +205,9 @@ func (o *IPRanges) SetModified(v string) {
 }
 
 // GetProcess returns the Process field value if set, zero value otherwise.
-func (o *IPRanges) GetProcess() IPPrefixes {
+func (o *IPRanges) GetProcess() IPProcessPrefixes {
 	if o == nil || o.Process == nil {
-		var ret IPPrefixes
+		var ret IPProcessPrefixes
 		return ret
 	}
 	return *o.Process
@@ -215,7 +215,7 @@ func (o *IPRanges) GetProcess() IPPrefixes {
 
 // GetProcessOk returns a tuple with the Process field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetProcessOk() (*IPPrefixes, bool) {
+func (o *IPRanges) GetProcessOk() (*IPProcessPrefixes, bool) {
 	if o == nil || o.Process == nil {
 		return nil, false
 	}
@@ -231,15 +231,15 @@ func (o *IPRanges) HasProcess() bool {
 	return false
 }
 
-// SetProcess gets a reference to the given IPPrefixes and assigns it to the Process field.
-func (o *IPRanges) SetProcess(v IPPrefixes) {
+// SetProcess gets a reference to the given IPProcessPrefixes and assigns it to the Process field.
+func (o *IPRanges) SetProcess(v IPProcessPrefixes) {
 	o.Process = &v
 }
 
 // GetSynthetics returns the Synthetics field value if set, zero value otherwise.
-func (o *IPRanges) GetSynthetics() IPPrefixes {
+func (o *IPRanges) GetSynthetics() IPSyntheticsPrefixes {
 	if o == nil || o.Synthetics == nil {
-		var ret IPPrefixes
+		var ret IPSyntheticsPrefixes
 		return ret
 	}
 	return *o.Synthetics
@@ -247,7 +247,7 @@ func (o *IPRanges) GetSynthetics() IPPrefixes {
 
 // GetSyntheticsOk returns a tuple with the Synthetics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetSyntheticsOk() (*IPPrefixes, bool) {
+func (o *IPRanges) GetSyntheticsOk() (*IPSyntheticsPrefixes, bool) {
 	if o == nil || o.Synthetics == nil {
 		return nil, false
 	}
@@ -263,8 +263,8 @@ func (o *IPRanges) HasSynthetics() bool {
 	return false
 }
 
-// SetSynthetics gets a reference to the given IPPrefixes and assigns it to the Synthetics field.
-func (o *IPRanges) SetSynthetics(v IPPrefixes) {
+// SetSynthetics gets a reference to the given IPSyntheticsPrefixes and assigns it to the Synthetics field.
+func (o *IPRanges) SetSynthetics(v IPSyntheticsPrefixes) {
 	o.Synthetics = &v
 }
 
@@ -301,9 +301,9 @@ func (o *IPRanges) SetVersion(v int64) {
 }
 
 // GetWebhooks returns the Webhooks field value if set, zero value otherwise.
-func (o *IPRanges) GetWebhooks() IPPrefixes {
+func (o *IPRanges) GetWebhooks() IPWebhooksPrefixes {
 	if o == nil || o.Webhooks == nil {
-		var ret IPPrefixes
+		var ret IPWebhooksPrefixes
 		return ret
 	}
 	return *o.Webhooks
@@ -311,7 +311,7 @@ func (o *IPRanges) GetWebhooks() IPPrefixes {
 
 // GetWebhooksOk returns a tuple with the Webhooks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPRanges) GetWebhooksOk() (*IPPrefixes, bool) {
+func (o *IPRanges) GetWebhooksOk() (*IPWebhooksPrefixes, bool) {
 	if o == nil || o.Webhooks == nil {
 		return nil, false
 	}
@@ -327,8 +327,8 @@ func (o *IPRanges) HasWebhooks() bool {
 	return false
 }
 
-// SetWebhooks gets a reference to the given IPPrefixes and assigns it to the Webhooks field.
-func (o *IPRanges) SetWebhooks(v IPPrefixes) {
+// SetWebhooks gets a reference to the given IPWebhooksPrefixes and assigns it to the Webhooks field.
+func (o *IPRanges) SetWebhooks(v IPWebhooksPrefixes) {
 	o.Webhooks = &v
 }
 

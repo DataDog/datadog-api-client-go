@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// TimeseriesWidgetRequest struct for TimeseriesWidgetRequest
+// TimeseriesWidgetRequest TODO.
 type TimeseriesWidgetRequest struct {
 	ApmQuery    *LogQueryDefinition   `json:"apm_query,omitempty"`
 	DisplayType *WidgetDisplayType    `json:"display_type,omitempty"`
@@ -22,9 +22,10 @@ type TimeseriesWidgetRequest struct {
 	Metadata     *[]TimeseriesWidgetRequestMetadata `json:"metadata,omitempty"`
 	NetworkQuery *LogQueryDefinition                `json:"network_query,omitempty"`
 	ProcessQuery *ProcessQueryDefinition            `json:"process_query,omitempty"`
-	Q            *string                            `json:"q,omitempty"`
-	RumQuery     *LogQueryDefinition                `json:"rum_query,omitempty"`
-	Style        *TimeseriesWidgetRequestStyle      `json:"style,omitempty"`
+	// TODO.
+	Q        *string                       `json:"q,omitempty"`
+	RumQuery *LogQueryDefinition           `json:"rum_query,omitempty"`
+	Style    *TimeseriesWidgetRequestStyle `json:"style,omitempty"`
 }
 
 // NewTimeseriesWidgetRequest instantiates a new TimeseriesWidgetRequest object

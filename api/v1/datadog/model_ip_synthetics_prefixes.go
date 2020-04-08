@@ -12,33 +12,33 @@ import (
 	"encoding/json"
 )
 
-// IPPrefixes struct for IPPrefixes
-type IPPrefixes struct {
+// IPSyntheticsPrefixes Available prefix information for the Synthetics endpoints.
+type IPSyntheticsPrefixes struct {
 	// List of IPv4 prefixes.
 	PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
 	// List of IPv6 prefixes.
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 }
 
-// NewIPPrefixes instantiates a new IPPrefixes object
+// NewIPSyntheticsPrefixes instantiates a new IPSyntheticsPrefixes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPPrefixes() *IPPrefixes {
-	this := IPPrefixes{}
+func NewIPSyntheticsPrefixes() *IPSyntheticsPrefixes {
+	this := IPSyntheticsPrefixes{}
 	return &this
 }
 
-// NewIPPrefixesWithDefaults instantiates a new IPPrefixes object
+// NewIPSyntheticsPrefixesWithDefaults instantiates a new IPSyntheticsPrefixes object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIPPrefixesWithDefaults() *IPPrefixes {
-	this := IPPrefixes{}
+func NewIPSyntheticsPrefixesWithDefaults() *IPSyntheticsPrefixes {
+	this := IPSyntheticsPrefixes{}
 	return &this
 }
 
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
-func (o *IPPrefixes) GetPrefixesIpv4() []string {
+func (o *IPSyntheticsPrefixes) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {
 		var ret []string
 		return ret
@@ -48,7 +48,7 @@ func (o *IPPrefixes) GetPrefixesIpv4() []string {
 
 // GetPrefixesIpv4Ok returns a tuple with the PrefixesIpv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPrefixes) GetPrefixesIpv4Ok() (*[]string, bool) {
+func (o *IPSyntheticsPrefixes) GetPrefixesIpv4Ok() (*[]string, bool) {
 	if o == nil || o.PrefixesIpv4 == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *IPPrefixes) GetPrefixesIpv4Ok() (*[]string, bool) {
 }
 
 // HasPrefixesIpv4 returns a boolean if a field has been set.
-func (o *IPPrefixes) HasPrefixesIpv4() bool {
+func (o *IPSyntheticsPrefixes) HasPrefixesIpv4() bool {
 	if o != nil && o.PrefixesIpv4 != nil {
 		return true
 	}
@@ -65,12 +65,12 @@ func (o *IPPrefixes) HasPrefixesIpv4() bool {
 }
 
 // SetPrefixesIpv4 gets a reference to the given []string and assigns it to the PrefixesIpv4 field.
-func (o *IPPrefixes) SetPrefixesIpv4(v []string) {
+func (o *IPSyntheticsPrefixes) SetPrefixesIpv4(v []string) {
 	o.PrefixesIpv4 = &v
 }
 
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
-func (o *IPPrefixes) GetPrefixesIpv6() []string {
+func (o *IPSyntheticsPrefixes) GetPrefixesIpv6() []string {
 	if o == nil || o.PrefixesIpv6 == nil {
 		var ret []string
 		return ret
@@ -80,7 +80,7 @@ func (o *IPPrefixes) GetPrefixesIpv6() []string {
 
 // GetPrefixesIpv6Ok returns a tuple with the PrefixesIpv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPrefixes) GetPrefixesIpv6Ok() (*[]string, bool) {
+func (o *IPSyntheticsPrefixes) GetPrefixesIpv6Ok() (*[]string, bool) {
 	if o == nil || o.PrefixesIpv6 == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *IPPrefixes) GetPrefixesIpv6Ok() (*[]string, bool) {
 }
 
 // HasPrefixesIpv6 returns a boolean if a field has been set.
-func (o *IPPrefixes) HasPrefixesIpv6() bool {
+func (o *IPSyntheticsPrefixes) HasPrefixesIpv6() bool {
 	if o != nil && o.PrefixesIpv6 != nil {
 		return true
 	}
@@ -97,11 +97,11 @@ func (o *IPPrefixes) HasPrefixesIpv6() bool {
 }
 
 // SetPrefixesIpv6 gets a reference to the given []string and assigns it to the PrefixesIpv6 field.
-func (o *IPPrefixes) SetPrefixesIpv6(v []string) {
+func (o *IPSyntheticsPrefixes) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = &v
 }
 
-func (o IPPrefixes) MarshalJSON() ([]byte, error) {
+func (o IPSyntheticsPrefixes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.PrefixesIpv4 != nil {
 		toSerialize["prefixes_ipv4"] = o.PrefixesIpv4
@@ -112,38 +112,38 @@ func (o IPPrefixes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableIPPrefixes struct {
-	value *IPPrefixes
+type NullableIPSyntheticsPrefixes struct {
+	value *IPSyntheticsPrefixes
 	isSet bool
 }
 
-func (v NullableIPPrefixes) Get() *IPPrefixes {
+func (v NullableIPSyntheticsPrefixes) Get() *IPSyntheticsPrefixes {
 	return v.value
 }
 
-func (v *NullableIPPrefixes) Set(val *IPPrefixes) {
+func (v *NullableIPSyntheticsPrefixes) Set(val *IPSyntheticsPrefixes) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIPPrefixes) IsSet() bool {
+func (v NullableIPSyntheticsPrefixes) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIPPrefixes) Unset() {
+func (v *NullableIPSyntheticsPrefixes) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIPPrefixes(val *IPPrefixes) *NullableIPPrefixes {
-	return &NullableIPPrefixes{value: val, isSet: true}
+func NewNullableIPSyntheticsPrefixes(val *IPSyntheticsPrefixes) *NullableIPSyntheticsPrefixes {
+	return &NullableIPSyntheticsPrefixes{value: val, isSet: true}
 }
 
-func (v NullableIPPrefixes) MarshalJSON() ([]byte, error) {
+func (v NullableIPSyntheticsPrefixes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIPPrefixes) UnmarshalJSON(src []byte) error {
+func (v *NullableIPSyntheticsPrefixes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

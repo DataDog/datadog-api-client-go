@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AcceptSelfSigned** | Pointer to **bool** |  | [optional] 
-**DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | [optional] 
-**FollowRedirects** | Pointer to **bool** |  | [optional] 
-**MinLocationFailed** | Pointer to **int64** |  | [optional] 
+**AcceptSelfSigned** | Pointer to **bool** | TODO. | [optional] 
+**DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) | TODO. | [optional] 
+**FollowRedirects** | Pointer to **bool** | TODO. | [optional] 
+**MinLocationFailed** | Pointer to **int64** | TODO. | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptions_retry.md) |  | [optional] 
 **TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
 

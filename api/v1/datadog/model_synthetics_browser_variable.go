@@ -12,11 +12,15 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsBrowserVariable struct for SyntheticsBrowserVariable
+// SyntheticsBrowserVariable TODO.
 type SyntheticsBrowserVariable struct {
-	Example *string                       `json:"example,omitempty"`
-	Id      *string                       `json:"id,omitempty"`
-	Name    string                        `json:"name"`
+	// TODO.
+	Example *string `json:"example,omitempty"`
+	// TODO.
+	Id *string `json:"id,omitempty"`
+	// TODO.
+	Name string `json:"name"`
+	// TODO.
 	Pattern *string                       `json:"pattern,omitempty"`
 	Type    SyntheticsBrowserVariableType `json:"type"`
 }

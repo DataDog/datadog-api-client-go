@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aggregation** | Pointer to **string** |  | 
-**Facet** | Pointer to **string** |  | [optional] 
-**Interval** | Pointer to **int64** |  | [optional] 
+**Aggregation** | Pointer to **string** | TODO. | 
+**Facet** | Pointer to **string** | TODO. | [optional] 
+**Interval** | Pointer to **int64** | TODO. | [optional] 
 
 ## Methods
 

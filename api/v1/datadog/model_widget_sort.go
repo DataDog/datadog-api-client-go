@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetSort the model 'WidgetSort'
+// WidgetSort TODO.
 type WidgetSort string
 
 // List of WidgetSort

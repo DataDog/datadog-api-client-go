@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastTimestampFetched** | Pointer to **int64** |  | [optional] 
-**Results** | Pointer to [**[]SyntheticsBrowserTestResultShort**](SyntheticsBrowserTestResultShort.md) |  | [optional] 
+**LastTimestampFetched** | Pointer to **int64** | TODO. | [optional] 
+**Results** | Pointer to [**[]SyntheticsBrowserTestResultShort**](SyntheticsBrowserTestResultShort.md) | TODO. | [optional] 
 
 ## Methods
 

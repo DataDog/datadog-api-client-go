@@ -5759,9 +5759,12 @@ components:
   responses: {}
   schemas:
     APIErrorResponse:
+      description: TODO.
       properties:
         errors:
+          description: TODO.
           items:
+            description: TODO.
             example: Bad Request
             type: string
           type: array
@@ -5794,6 +5797,7 @@ components:
           type: string
         account_specific_namespace_rules:
           additionalProperties:
+            description: TODO.
             type: boolean
           description: |-
             An object (in the form {"namespace1":true/false, "namespace2":true/false})
@@ -5808,6 +5812,7 @@ components:
           - us-east-1
           - us-west-2
           items:
+            description: TODO.
             type: string
           type: array
         filter_tags:
@@ -5821,6 +5826,7 @@ components:
           example:
           - <KEY>:<VALUE>
           items:
+            description: TODO.
             type: string
           type: array
         host_tags:
@@ -5830,6 +5836,7 @@ components:
           example:
           - <KEY>:<VALUE>
           items:
+            description: TODO.
             type: string
           type: array
         role_name:
@@ -5842,6 +5849,7 @@ components:
           type: string
       type: object
     AWSAccountAndLambdaRequest:
+      description: TODO.
       example:
         lambda_arn: arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest
         account_id: "1234567"
@@ -5860,13 +5868,16 @@ components:
       - lambda_arn
       type: object
     AWSAccountCreateResponse:
+      description: TODO.
       example:
         external_id: external_id
       properties:
         external_id:
+          description: TODO.
           type: string
       type: object
     AWSAccountListResponse:
+      description: TODO.
       example:
         accounts:
         - access_key_id: access_key_id
@@ -5895,11 +5906,13 @@ components:
           - <KEY>:<VALUE>
       properties:
         accounts:
+          description: TODO.
           items:
             $ref: '#/components/schemas/AWSAccount'
           type: array
       type: object
     AWSLogsAsyncResponse:
+      description: TODO.
       example:
         errors:
         - code: no_such_config
@@ -5909,14 +5922,17 @@ components:
         status: created
       properties:
         errors:
+          description: TODO.
           items:
             $ref: '#/components/schemas/AWSLogsAsyncResponse_errors'
           type: array
         status:
+          description: TODO.
           example: created
           type: string
       type: object
     AWSLogsListResponse:
+      description: TODO.
       properties:
         account_id:
           description: Your AWS Account ID without dashes.
@@ -5939,10 +5955,12 @@ components:
           - redshift
           - lambda
           items:
+            description: TODO.
             type: string
           type: array
       type: object
     AWSLogsListServicesResponse:
+      description: TODO.
       properties:
         id:
           description: Key value in returned object.
@@ -5954,6 +5972,7 @@ components:
           type: string
       type: object
     AWSLogsServicesRequest:
+      description: TODO.
       example:
         account_id: "1234567"
         services:
@@ -5980,6 +5999,7 @@ components:
           - redshift
           - lambda
           items:
+            description: TODO.
             type: string
           type: array
       required:
@@ -6107,6 +6127,7 @@ components:
           name: app_key
       properties:
         api_keys:
+          description: TODO.
           items:
             $ref: '#/components/schemas/ApiKey'
           type: array
@@ -6130,6 +6151,7 @@ components:
         hash: 1234512345123459cda4eb9ced49a3d84fd0138c
       properties:
         hash:
+          description: TODO.
           example: 1234512345123459cda4eb9ced49a3d84fd0138c
           maxLength: 40
           minLength: 40
@@ -6140,11 +6162,13 @@ components:
           example: example user
           type: string
         owner:
+          description: TODO.
           example: example.com
           readOnly: true
           type: string
       type: object
     ApplicationKeyListResponse:
+      description: TODO.
       example:
         application_keys:
         - hash: 1234512345123459cda4eb9ced49a3d84fd0138c
@@ -6152,11 +6176,13 @@ components:
           owner: test_user
       properties:
         application_keys:
+          description: TODO.
           items:
             $ref: '#/components/schemas/ApplicationKey'
           type: array
       type: object
     ApplicationKeyResponse:
+      description: TODO.
       example:
         application_key:
           hash: 1234512345123459cda4eb9ced49a3d84fd0138c
@@ -6167,6 +6193,7 @@ components:
           $ref: '#/components/schemas/ApplicationKey'
       type: object
     AzureAccount:
+      description: TODO.
       example:
         host_filters: key:value,filter:example
         tenant_name: testc44-1234-5678-9101-cc00736ftest
@@ -6186,9 +6213,11 @@ components:
           example: testingx./Sw*g/Y33t..R1cH+hScMDt
           type: string
         errors:
+          description: TODO.
           example:
           - '*'
           items:
+            description: TODO.
             readOnly: true
             type: string
           type: array
@@ -6212,10 +6241,12 @@ components:
           type: string
       type: object
     AzureAccountListResponse:
+      description: TODO.
       items:
         $ref: '#/components/schemas/AzureAccount'
       type: array
     CancelDowntimesByScopeRequest:
+      description: TODO.
       example:
         scope: host:myserver
       properties:
@@ -6230,6 +6261,7 @@ components:
       - scope
       type: object
     CanceledDowntimesIds:
+      description: TODO.
       example:
         cancelled_ids:
         - 123456789
@@ -6241,6 +6273,7 @@ components:
           - 123456789
           - 123456790
           items:
+            description: TODO.
             format: int64
             type: integer
           type: array
@@ -6250,6 +6283,7 @@ components:
         period chosen
       properties:
         requests:
+          description: TODO.
           example:
           - q/apm_query/log_query: <METRIC_1>{<SCOPE_1>}
           items:
@@ -6277,6 +6311,7 @@ components:
       - type
       type: object
     ChangeWidgetRequest:
+      description: TODO.
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -6300,6 +6335,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -6341,6 +6377,7 @@ components:
         group_by:
           description: List of tag prefixes to group by in the case of a cluster check
           items:
+            description: TODO.
             type: string
           type: array
         grouping:
@@ -6349,6 +6386,7 @@ components:
           description: List of tags used to filter the groups reporting a cluster
             check
           items:
+            description: TODO.
             type: string
           type: array
         time:
@@ -6379,14 +6417,18 @@ components:
         email: email
       properties:
         email:
+          description: TODO.
           type: string
         handle:
+          description: TODO.
           type: string
         name:
+          description: TODO.
           type: string
       readOnly: true
       type: object
     Dashboard:
+      description: TODO.
       example:
         template_variable_presets:
         - name: name
@@ -6434,10 +6476,12 @@ components:
         modified_at: 2000-01-23T04:56:07.000+00:00
       properties:
         author_handle:
+          description: TODO.
           example: test@datadoghq.com
           readOnly: true
           type: string
         created_at:
+          description: TODO.
           format: date-time
           readOnly: true
           type: string
@@ -6459,6 +6503,7 @@ components:
         layout_type:
           $ref: '#/components/schemas/DashboardLayoutType'
         modified_at:
+          description: TODO.
           format: date-time
           readOnly: true
           type: string
@@ -6466,15 +6511,18 @@ components:
           description: List of handles of users to notify when changes are made to
             this dashboard.
           items:
+            description: TODO.
             type: string
           nullable: true
           type: array
         template_variable_presets:
+          description: TODO.
           items:
             $ref: '#/components/schemas/DashboardTemplateVariablePreset'
           nullable: true
           type: array
         template_variables:
+          description: TODO.
           items:
             $ref: '#/components/schemas/Dashboard_template_variables'
           nullable: true
@@ -6483,6 +6531,7 @@ components:
           description: Title of the dashboard
           type: string
         url:
+          description: TODO.
           example: /dashboard/123-abc-456/example-dashboard-title
           readOnly: true
           type: string
@@ -6515,6 +6564,7 @@ components:
       - ORDERED
       - FREE
     DashboardList:
+      description: TODO.
       example:
         is_favorite: true
         dashboard_count: 0
@@ -6566,6 +6616,7 @@ components:
       - name
       type: object
     DashboardListDeleteResponse:
+      description: TODO.
       example:
         deleted_dashboard_list_id: 0
       properties:
@@ -6575,6 +6626,7 @@ components:
           type: integer
       type: object
     DashboardListListResponse:
+      description: TODO.
       example:
         dashboard_lists:
         - is_favorite: true
@@ -6607,6 +6659,7 @@ components:
           type: array
       type: object
     DashboardSummary:
+      description: TODO.
       example:
         dashboards:
         - created_at: 2000-01-23T04:56:07.000+00:00
@@ -6629,6 +6682,7 @@ components:
           url: url
       properties:
         dashboards:
+          description: TODO.
           items:
             $ref: '#/components/schemas/DashboardSummary_dashboards'
           type: array
@@ -6647,11 +6701,13 @@ components:
           description: The name of the variable
           type: string
         template_variables:
+          description: TODO.
           items:
             $ref: '#/components/schemas/DashboardTemplateVariablePresetValue'
           type: array
       type: object
     DashboardTemplateVariablePresetValue:
+      description: TODO.
       example:
         name: name
         value: value
@@ -6682,6 +6738,7 @@ components:
         legend_size:
           $ref: '#/components/schemas/WidgetLegendSize'
         requests:
+          description: TODO.
           items:
             $ref: '#/components/schemas/DistributionWidgetRequest'
           maxItems: 1
@@ -6710,6 +6767,7 @@ components:
       - type
       type: object
     DistributionWidgetRequest:
+      description: TODO.
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -6722,6 +6780,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -6830,6 +6889,7 @@ components:
           example:
           - '*'
           items:
+            description: TODO.
             type: string
           type: array
         parent_id:
@@ -6848,6 +6908,7 @@ components:
           example:
           - env:staging
           items:
+            description: TODO.
             type: string
           type: array
         start:
@@ -6920,10 +6981,12 @@ components:
           - Mon
           - Tue
           items:
+            description: TODO.
             type: string
           type: array
       type: object
     Event:
+      description: TODO.
       example:
         aggregation_key: aggregation_key
         related_event_id: 1
@@ -6960,6 +7023,7 @@ components:
         device_name:
           description: A list of device names to post the event with.
           items:
+            description: TODO.
             type: string
           type: array
         host:
@@ -6968,10 +7032,12 @@ components:
             Any tags associated with the host are also applied to this event.
           type: string
         id:
+          description: TODO.
           format: int64
           readOnly: true
           type: integer
         payload:
+          description: TODO.
           example: '{}'
           readOnly: true
           type: string
@@ -6992,6 +7058,7 @@ components:
           example:
           - environment:test
           items:
+            description: TODO.
             type: string
           type: array
         text:
@@ -7008,6 +7075,7 @@ components:
           maxLength: 100
           type: string
         url:
+          description: TODO.
           readOnly: true
           type: string
       required:
@@ -7031,6 +7099,7 @@ components:
       - INFO
       - SUCCESS
     EventListResponse:
+      description: TODO.
       example:
         events:
         - aggregation_key: aggregation_key
@@ -7070,10 +7139,12 @@ components:
         status: status
       properties:
         events:
+          description: TODO.
           items:
             $ref: '#/components/schemas/Event'
           type: array
         status:
+          description: TODO.
           type: string
       type: object
     EventPriority:
@@ -7087,8 +7158,10 @@ components:
       - NORMAL
       - LOW
     EventQueryDefinition:
+      description: TODO.
       properties:
         search:
+          description: TODO.
           type: string
         tags_execution:
           description: The execution method for multi-value filters. Can be either
@@ -7099,6 +7172,7 @@ components:
       - tags_execution
       type: object
     EventResponse:
+      description: TODO.
       example:
         event:
           aggregation_key: aggregation_key
@@ -7123,6 +7197,7 @@ components:
         event:
           $ref: '#/components/schemas/Event'
         status:
+          description: TODO.
           type: string
       type: object
     EventStreamWidgetDefinition:
@@ -7256,9 +7331,11 @@ components:
           example: https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
           type: string
         errors:
+          description: TODO.
           example:
           - '*'
           items:
+            description: TODO.
             readOnly: true
             type: string
           type: array
@@ -7292,10 +7369,12 @@ components:
           type: string
       type: object
     GCPAccountListResponse:
+      description: TODO.
       items:
         $ref: '#/components/schemas/GCPAccount'
       type: array
     GraphSnapshot:
+      description: TODO.
       example:
         graph_def: graph_def
         metric_query: metric_query
@@ -7331,6 +7410,7 @@ components:
           readOnly: true
           type: string
         widgets:
+          description: TODO.
           items:
             $ref: '#/components/schemas/Widget'
           type: array
@@ -7340,6 +7420,7 @@ components:
       - widgets
       type: object
     HTTPMethod:
+      description: TODO.
       enum:
       - GET
       - POST
@@ -7363,12 +7444,14 @@ components:
         that square is.
       properties:
         events:
+          description: TODO.
           items:
             $ref: '#/components/schemas/WidgetEvent'
           type: array
         legend_size:
           $ref: '#/components/schemas/WidgetLegendSize'
         requests:
+          description: TODO.
           items:
             $ref: '#/components/schemas/HeatMapWidgetRequest'
           maxItems: 1
@@ -7399,6 +7482,7 @@ components:
       - type
       type: object
     HeatMapWidgetRequest:
+      description: TODO.
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -7411,6 +7495,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -7506,6 +7591,7 @@ components:
       - data
       type: object
     Host:
+      description: TODO.
       example:
         tags_by_source:
           key:
@@ -7540,12 +7626,14 @@ components:
         aliases:
           description: Host aliases collected by Datadog.
           items:
+            description: TODO.
             example: mycoolhost-1
             type: string
           type: array
         apps:
           description: The Datadog integrations reporting metrics for the host.
           items:
+            description: TODO.
             example: agent
             type: string
           type: array
@@ -7586,12 +7674,15 @@ components:
         sources:
           description: Source or cloud provider associated with your host.
           items:
+            description: TODO.
             example: aws
             type: string
           type: array
         tags_by_source:
           additionalProperties:
+            description: TODO.
             items:
+              description: TODO.
               example: test.example.com.host
               type: string
             type: array
@@ -7685,6 +7776,7 @@ components:
           type: integer
       type: object
     HostMapRequest:
+      description: TODO.
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -7697,6 +7789,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -7708,6 +7801,7 @@ components:
         group:
           description: List of tag prefixes to group by.
           items:
+            description: TODO.
             type: string
           type: array
         no_group_hosts:
@@ -7719,12 +7813,14 @@ components:
         node_type:
           $ref: '#/components/schemas/WidgetNodeType'
         notes:
+          description: TODO.
           type: string
         requests:
           $ref: '#/components/schemas/HostMapWidgetDefinition_requests'
         scope:
           description: List of tags used to filter the map.
           items:
+            description: TODO.
             type: string
           type: array
         style:
@@ -7810,6 +7906,7 @@ components:
         tags:
           description: A list of tags to apply to the host.
           items:
+            description: TODO.
             example: environment:production
             type: string
           type: array
@@ -7845,7 +7942,100 @@ components:
       - type
       - url
       type: object
-    IPPrefixes:
+    IPAPIPrefixes:
+      description: Available prefix information for the API endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPAPMPrefixes:
+      description: Available prefix information for the APM endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPAgentsPrefixes:
+      description: Available prefix information for the Agent endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPLogsPrefixes:
+      description: Available prefix information for the Logs endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPProcessPrefixes:
+      description: Available prefix information for the Process endpoints.
       example:
         prefixes_ipv4:
         - prefixes_ipv4
@@ -7868,6 +8058,7 @@ components:
           type: array
       type: object
     IPRanges:
+      description: TODO.
       example:
         process:
           prefixes_ipv4:
@@ -7922,30 +8113,77 @@ components:
           - prefixes_ipv6
       properties:
         agents:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPAgentsPrefixes'
         api:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPAPIPrefixes'
         apm:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPAPMPrefixes'
         logs:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPLogsPrefixes'
         modified:
           description: Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
           example: 2019-10-31-20-00-00
           type: string
         process:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPProcessPrefixes'
         synthetics:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPSyntheticsPrefixes'
         version:
           description: Version of the IP list.
           example: 11
           format: int64
           type: integer
         webhooks:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPWebhooksPrefixes'
+      type: object
+    IPSyntheticsPrefixes:
+      description: Available prefix information for the Synthetics endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPWebhooksPrefixes:
+      description: Available prefix information for the Webhook endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
       type: object
     IdpFormData:
+      description: TODO.
       properties:
         idp_file:
           description: The path to the XML metadata file you wish to upload.
@@ -7955,6 +8193,7 @@ components:
       - idp_file
       type: object
     IdpResponse:
+      description: TODO.
       example:
         message: IdP metadata successfully uploaded for example org
       properties:
@@ -7987,6 +8226,7 @@ components:
       - url
       type: object
     Log:
+      description: TODO.
       example:
         id: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
         content:
@@ -8003,18 +8243,22 @@ components:
         content:
           $ref: '#/components/schemas/Log_content'
         id:
+          description: TODO.
           example: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
           type: string
       type: object
     LogQueryDefinition:
+      description: TODO.
       properties:
         compute:
           $ref: '#/components/schemas/LogsQueryCompute'
         group_by:
+          description: TODO.
           items:
             $ref: '#/components/schemas/LogQueryDefinition_group_by'
           type: array
         index:
+          description: TODO.
           type: string
         multi_compute:
           description: This field is mutually exclusive with `compute`
@@ -8031,11 +8275,13 @@ components:
         columns:
           description: Which columns to display on the widget
           items:
+            description: TODO.
             type: string
           type: array
         indexes:
           description: An array of index names to query in the stream.
           items:
+            description: TODO.
             type: string
           type: array
         message_display:
@@ -8157,6 +8403,7 @@ components:
         sources:
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         target:
@@ -8236,6 +8483,7 @@ components:
         sources:
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         type:
@@ -8258,8 +8506,10 @@ components:
         filter:
           $ref: '#/components/schemas/LogsExclusionFilter'
         is_enabled:
+          description: TODO.
           type: boolean
         name:
+          description: TODO.
           type: string
       required:
       - name
@@ -8278,6 +8528,7 @@ components:
           example: '*'
           type: string
         sample_rate:
+          description: TODO.
           example: 1
           format: double
           type: number
@@ -8304,6 +8555,7 @@ components:
           - network.client.ip
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         target:
@@ -8330,6 +8582,7 @@ components:
         samples:
           description: List of sample logs to test this grok parser.
           items:
+            description: TODO.
             maxLength: 5000
             type: string
           maxItems: 5
@@ -8369,6 +8622,7 @@ components:
       - match_rules
       type: object
     LogsIndex:
+      description: TODO.
       example:
         filter:
           query: source:python
@@ -8423,6 +8677,7 @@ components:
       - filter
       type: object
     LogsIndexListResponse:
+      description: TODO.
       example:
         indexes:
         - filter:
@@ -8461,6 +8716,7 @@ components:
           daily_limit: 0
       properties:
         indexes:
+          description: TODO.
           items:
             $ref: '#/components/schemas/LogsIndex'
           type: array
@@ -8478,12 +8734,14 @@ components:
             Logs are tested against the query filter of each index one by one, following the order of the array.
             Logs are eventually stored in the first matching index.
           items:
+            description: TODO.
             type: string
           type: array
       required:
       - index_names
       type: object
     LogsListRequest:
+      description: TODO.
       example:
         query: query
         limit: 80
@@ -8523,6 +8781,7 @@ components:
       - time
       type: object
     LogsListResponse:
+      description: TODO.
       example:
         nextLogId: nextLogId
         logs:
@@ -8551,6 +8810,7 @@ components:
         status: status
       properties:
         logs:
+          description: TODO.
           items:
             $ref: '#/components/schemas/Log'
           type: array
@@ -8560,6 +8820,7 @@ components:
             This parameter is used for the pagination feature.
           type: string
         status:
+          description: TODO.
           type: string
       type: object
     LogsLookupProcessor:
@@ -8580,6 +8841,7 @@ components:
             Mapping table of values for the source attribute and their associated target attribute values,
             formatted as `["source_key1,target_value1", "source_key2,target_value2"]`
           items:
+            description: TODO.
             type: string
           type: array
         source:
@@ -8614,6 +8876,7 @@ components:
           - msg
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         type:
@@ -8675,6 +8938,7 @@ components:
       - name
       type: object
     LogsPipelineList:
+      description: TODO.
       items:
         $ref: '#/components/schemas/LogsPipeline'
       type: array
@@ -8690,6 +8954,7 @@ components:
             Ordered Array of `<PIPELINE_ID>` strings, the order of pipeline IDs in the array
             define the overall Pipelines order for Datadog.
           items:
+            description: TODO.
             type: string
           type: array
       required:
@@ -8743,12 +9008,16 @@ components:
       type: object
       x-oneOf-name: LogsProcessor
     LogsQueryCompute:
+      description: TODO.
       properties:
         aggregation:
+          description: TODO.
           type: string
         facet:
+          description: TODO.
           type: string
         interval:
+          description: TODO.
           format: int64
           type: integer
       required:
@@ -8764,6 +9033,7 @@ components:
         sources:
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         type:
@@ -8807,6 +9077,7 @@ components:
         sources:
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         type:
@@ -8868,6 +9139,7 @@ components:
           - dd.trace_id
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         type:
@@ -8890,6 +9162,7 @@ components:
           - http.url
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         target:
@@ -8920,6 +9193,7 @@ components:
           - http.useragent
           description: Array of source attributes.
           items:
+            description: TODO.
             type: string
           type: array
         target:
@@ -8937,6 +9211,7 @@ components:
       - target
       type: object
     MetricMetadata:
+      description: TODO.
       example:
         unit: byte
         per_unit: second
@@ -8975,6 +9250,7 @@ components:
           type: string
       type: object
     MetricSearchResponse:
+      description: TODO.
       example:
         results:
           metrics:
@@ -8985,6 +9261,7 @@ components:
           $ref: '#/components/schemas/MetricSearchResponse_results'
       type: object
     MetricsListResponse:
+      description: TODO.
       example:
         from: from
         metrics:
@@ -8997,10 +9274,12 @@ components:
         metrics:
           description: List of metric names.
           items:
+            description: TODO.
             type: string
           type: array
       type: object
     MetricsQueryResponse:
+      description: TODO.
       example:
         res_type: time_series
         from_date: 0
@@ -9076,6 +9355,7 @@ components:
         group_by:
           description: List of tag keys on which to group.
           items:
+            description: TODO.
             type: string
           readOnly: true
           type: array
@@ -9110,6 +9390,7 @@ components:
           type: integer
       type: object
     Monitor:
+      description: TODO.
       example:
         creator:
           name: name
@@ -9208,12 +9489,14 @@ components:
         overall_state:
           $ref: '#/components/schemas/MonitorOverallStates'
         query:
+          description: TODO.
           type: string
         state:
           $ref: '#/components/schemas/MonitorState'
         tags:
           description: Tags associated to your monitor.
           items:
+            description: TODO.
             type: string
           type: array
         type:
@@ -9303,6 +9586,7 @@ components:
             - If `False`, `[Triggered] Monitor Title`
           type: boolean
         locked:
+          description: TODO.
           type: boolean
         min_failure_duration:
           default: 0
@@ -9366,6 +9650,7 @@ components:
           type: boolean
         silenced:
           additionalProperties:
+            description: TODO.
             format: int64
             nullable: true
             type: integer
@@ -9664,6 +9949,7 @@ components:
           $ref: '#/components/schemas/Organization_subscription'
       type: object
     OrganizationCreateBody:
+      description: TODO.
       example:
         name: New child org
         subscription: '{"type":"pro"}'
@@ -9683,6 +9969,7 @@ components:
       - subscription
       type: object
     OrganizationCreateResponse:
+      description: TODO.
       example:
         api_key:
           created: 2019-08-02 15:31:07
@@ -9790,6 +10077,7 @@ components:
           public_id: abcdef12345
       properties:
         orgs:
+          description: TODO.
           items:
             $ref: '#/components/schemas/Organization'
           type: array
@@ -9850,6 +10138,7 @@ components:
           - https://my-pd.pagerduty.com/schedules#PCPYT4M
           - https://my-pd.pagerduty.com/schedules#PKTPB7P
           items:
+            description: TODO.
             type: string
           type: array
         services:
@@ -9925,6 +10214,7 @@ components:
           - https://my-pd.pagerduty.com/schedules#PCPYT4M
           - https://my-pd.pagerduty.com/schedules#PKTPB7P
           items:
+            description: TODO.
             type: string
           type: array
         services:
@@ -9948,24 +10238,31 @@ components:
       - 1575317847
       - 0.5
       items:
+        description: TODO.
         format: double
         type: number
       maxItems: 2
       minItems: 2
       type: array
     ProcessQueryDefinition:
+      description: TODO.
       properties:
         filter_by:
+          description: TODO.
           items:
+            description: TODO.
             type: string
           type: array
         limit:
+          description: TODO.
           format: int64
           minimum: 0
           type: integer
         metric:
+          description: TODO.
           type: string
         search_by:
+          description: TODO.
           type: string
       required:
       - metric
@@ -9986,6 +10283,7 @@ components:
           format: int64
           type: integer
         requests:
+          description: TODO.
           example:
           - q/apm_query/log_query: <METRIC_1>{<SCOPE_1>}
           items:
@@ -10015,12 +10313,14 @@ components:
       - type
       type: object
     QueryValueWidgetRequest:
+      description: TODO.
       properties:
         aggregator:
           $ref: '#/components/schemas/WidgetAggregator'
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
+          description: TODO.
           items:
             $ref: '#/components/schemas/WidgetConditionalFormat'
           type: array
@@ -10033,6 +10333,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -10117,6 +10418,7 @@ components:
         times:
           description: The query timestamps in epoch milliseconds
           items:
+            description: TODO.
             format: double
             type: number
           type: array
@@ -10160,6 +10462,7 @@ components:
         values:
           description: The query values.
           items:
+            description: TODO.
             format: double
             type: number
           type: array
@@ -10204,6 +10507,7 @@ components:
             description: Represents an array of 2-tuple of (timestamp, value) time
               series data.
             items:
+              description: TODO.
               format: double
               type: number
             maxItems: 2
@@ -10216,6 +10520,7 @@ components:
           type: string
         precision:
           additionalProperties:
+            description: TODO.
             format: double
             type: number
           description: A mapping of threshold `timeframe` to number of accurate decimals,
@@ -10269,6 +10574,7 @@ components:
         timeframe:
           $ref: '#/components/schemas/SLOTimeframe'
         warning:
+          description: TODO.
           format: double
           type: number
         warning_display:
@@ -10323,10 +10629,13 @@ components:
         Objectives) and uptime on screenboards and timeboards.
       properties:
         show_error_budget:
+          description: TODO.
           type: boolean
         slo_id:
+          description: TODO.
           type: string
         time_windows:
+          description: TODO.
           items:
             $ref: '#/components/schemas/WidgetTimeWindows'
           type: array
@@ -10347,12 +10656,14 @@ components:
           $ref: '#/components/schemas/WidgetViewMode'
         view_type:
           default: detail
+          description: TODO.
           type: string
       required:
       - type
       - view_type
       type: object
     ScatterPlotRequest:
+      description: TODO.
       properties:
         aggregator:
           $ref: '#/components/schemas/WidgetAggregator'
@@ -10367,6 +10678,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -10378,6 +10690,7 @@ components:
         color_by_groups:
           description: List of groups used for colors.
           items:
+            description: TODO.
             type: string
           type: array
         requests:
@@ -10471,6 +10784,7 @@ components:
             create/update requests for monitor service level objectives, but may only be
             used when then length of the "monitor_ids" field is one.
           items:
+            description: TODO.
             type: string
           type: array
         id:
@@ -10495,6 +10809,7 @@ components:
 
             Required if type is "monitor".
           items:
+            description: TODO.
             format: int64
             type: integer
           type: array
@@ -10508,6 +10823,7 @@ components:
             affect which monitors are included in the service level objective (that is
             determined entirely by the monitor_ids field).
           items:
+            description: TODO.
             type: string
           type: array
         name:
@@ -10522,6 +10838,7 @@ components:
             Always included in service level objective responses (but may be empty).
             Optional in create/update requests.
           items:
+            description: TODO.
             type: string
           type: array
         thresholds:
@@ -10551,6 +10868,7 @@ components:
             An array containing the ID of the deleted service level objective
             object.
           items:
+            description: TODO.
             type: string
           type: array
       required:
@@ -10640,6 +10958,7 @@ components:
             An array of error messages. Each endpoint documents how/whether this field is
             used.
           items:
+            description: TODO.
             type: string
           type: array
       required:
@@ -10694,6 +11013,7 @@ components:
             An array of error messages. Each endpoint documents how/whether this field is
             used.
           items:
+            description: TODO.
             type: string
           type: array
       required:
@@ -10701,6 +11021,7 @@ components:
       type: object
     ServiceLevelObjectivesBulkDelete:
       additionalProperties:
+        description: TODO.
         items:
           $ref: '#/components/schemas/SLOTimeframe'
         type: array
@@ -10740,6 +11061,7 @@ components:
         data:
           $ref: '#/components/schemas/ServiceLevelObjectivesBulkDeleted_data'
         errors:
+          description: TODO.
           items:
             $ref: '#/components/schemas/ServiceLevelObjectivesBulkDeleted_errors'
           type: array
@@ -10754,6 +11076,7 @@ components:
         filters:
           description: Your env and primary tag (or * if enabled for your account).
           items:
+            description: TODO.
             type: string
           minItems: 1
           type: array
@@ -10835,6 +11158,7 @@ components:
       - type
       type: object
     SyntheticsAPITestResultData:
+      description: TODO.
       example:
         requestHeaders:
           key: '{}'
@@ -10888,29 +11212,38 @@ components:
         errorCode:
           $ref: '#/components/schemas/SyntheticsErrorCode'
         errorMessage:
+          description: TODO.
           type: string
         eventType:
           $ref: '#/components/schemas/SyntheticsTestProcessStatus'
         httpStatusCode:
+          description: TODO.
           format: int64
           type: integer
         requestHeaders:
           additionalProperties:
+            description: TODO.
             type: object
+          description: TODO.
           type: object
         responseBody:
+          description: TODO.
           type: string
         responseHeaders:
           additionalProperties:
+            description: TODO.
             type: object
+          description: TODO.
           type: object
         responseSize:
+          description: TODO.
           format: int64
           type: integer
         timings:
           $ref: '#/components/schemas/SyntheticsTiming'
       type: object
     SyntheticsAPITestResultFull:
+      description: TODO.
       example:
         result:
           requestHeaders:
@@ -10995,21 +11328,26 @@ components:
         check:
           $ref: '#/components/schemas/SyntheticsAPITestResultFull_check'
         check_time:
+          description: TODO.
           format: double
           type: number
         check_version:
+          description: TODO.
           format: int64
           type: integer
         probe_dc:
+          description: TODO.
           type: string
         result:
           $ref: '#/components/schemas/SyntheticsAPITestResultData'
         result_id:
+          description: TODO.
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestMonitorStatus'
       type: object
     SyntheticsAPITestResultShort:
+      description: TODO.
       example:
         result:
           timings:
@@ -11027,18 +11365,22 @@ components:
         check_time: 6.027456183070403
       properties:
         check_time:
+          description: TODO.
           format: double
           type: number
         probe_dc:
+          description: TODO.
           type: string
         result:
           $ref: '#/components/schemas/SyntheticsAPITestResultShort_result'
         result_id:
+          description: TODO.
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestMonitorStatus'
       type: object
     SyntheticsAssertion:
+      description: TODO.
       example:
         property: property
         target: '{}'
@@ -11046,8 +11388,10 @@ components:
         operator:
           $ref: '#/components/schemas/SyntheticsAssertionOperator'
         property:
+          description: TODO.
           type: string
         target:
+          description: TODO.
           type: object
         type:
           $ref: '#/components/schemas/SyntheticsAssertionType'
@@ -11056,6 +11400,7 @@ components:
       - type
       type: object
     SyntheticsAssertionOperator:
+      description: TODO.
       enum:
       - contains
       - doesNotContain
@@ -11078,6 +11423,7 @@ components:
       - VALIDATES
       - IS_IN_MORE_DAYS_THAN
     SyntheticsAssertionType:
+      description: TODO.
       enum:
       - body
       - header
@@ -11094,16 +11440,20 @@ components:
       - RESPONSE_TIME
       - PROPERTY
     SyntheticsBrowserError:
+      description: TODO.
       example:
         name: name
         description: description
         statusCode: 5
       properties:
         description:
+          description: TODO.
           type: string
         name:
+          description: TODO.
           type: string
         statusCode:
+          description: TODO.
           format: int64
           type: integer
         type:
@@ -11114,6 +11464,7 @@ components:
       - type
       type: object
     SyntheticsBrowserErrorType:
+      description: TODO.
       enum:
       - network
       - js
@@ -11122,6 +11473,7 @@ components:
       - NETWORK
       - JS
     SyntheticsBrowserTestResultData:
+      description: TODO.
       example:
         duration: 1.4658129805029452
         startUrl: startUrl
@@ -11216,34 +11568,45 @@ components:
         browserType: browserType
       properties:
         browserType:
+          description: TODO.
           type: string
         browserVersion:
+          description: TODO.
           type: string
         device:
           $ref: '#/components/schemas/SyntheticsDevice'
         duration:
+          description: TODO.
           format: double
           type: number
         error:
+          description: TODO.
           type: string
         passed:
+          description: TODO.
           type: boolean
         receivedEmailCount:
+          description: TODO.
           format: int64
           type: integer
         startUrl:
+          description: TODO.
           type: string
         stepDetails:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsStepDetail'
           type: array
         thumbnailsBucketKey:
+          description: TODO.
           type: boolean
         timeToInteractive:
+          description: TODO.
           format: double
           type: number
       type: object
     SyntheticsBrowserTestResultFull:
+      description: TODO.
       example:
         result:
           duration: 1.4658129805029452
@@ -11373,21 +11736,26 @@ components:
         check:
           $ref: '#/components/schemas/SyntheticsAPITestResultFull_check'
         check_time:
+          description: TODO.
           format: double
           type: number
         check_version:
+          description: TODO.
           format: int64
           type: integer
         probe_dc:
+          description: TODO.
           type: string
         result:
           $ref: '#/components/schemas/SyntheticsBrowserTestResultData'
         result_id:
+          description: TODO.
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestMonitorStatus'
       type: object
     SyntheticsBrowserTestResultShort:
+      description: TODO.
       example:
         result:
           duration: 1.4658129805029452
@@ -11404,18 +11772,22 @@ components:
         check_time: 6.027456183070403
       properties:
         check_time:
+          description: TODO.
           format: double
           type: number
         probe_dc:
+          description: TODO.
           type: string
         result:
           $ref: '#/components/schemas/SyntheticsBrowserTestResultShort_result'
         result_id:
+          description: TODO.
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestMonitorStatus'
       type: object
     SyntheticsBrowserVariable:
+      description: TODO.
       example:
         name: name
         pattern: pattern
@@ -11423,12 +11795,16 @@ components:
         example: example
       properties:
         example:
+          description: TODO.
           type: string
         id:
+          description: TODO.
           type: string
         name:
+          description: TODO.
           type: string
         pattern:
+          description: TODO.
           type: string
         type:
           $ref: '#/components/schemas/SyntheticsBrowserVariableType'
@@ -11437,6 +11813,7 @@ components:
       - type
       type: object
     SyntheticsBrowserVariableType:
+      description: TODO.
       enum:
       - element
       - email
@@ -11449,6 +11826,7 @@ components:
       - GLOBAL
       - TEXT
     SyntheticsCheckType:
+      description: TODO.
       enum:
       - equals
       - notEquals
@@ -11475,17 +11853,21 @@ components:
       - LOWER_EQUALS
       - MATCH_REGEX
     SyntheticsDeleteTestsPayload:
+      description: TODO.
       example:
         public_ids:
         - public_ids
         - public_ids
       properties:
         public_ids:
+          description: TODO.
           items:
+            description: TODO.
             type: string
           type: array
       type: object
     SyntheticsDeleteTestsResponse:
+      description: TODO.
       example:
         deleted_tests:
         - deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -11494,11 +11876,13 @@ components:
           public_id: public_id
       properties:
         deleted_tests:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsDeleteTestsResponse_deleted_tests'
           type: array
       type: object
     SyntheticsDevice:
+      description: TODO.
       example:
         name: name
         width: 6
@@ -11506,15 +11890,19 @@ components:
         height: 0
       properties:
         height:
+          description: TODO.
           format: int64
           type: integer
         id:
           $ref: '#/components/schemas/SyntheticsDeviceID'
         isMobile:
+          description: TODO.
           type: boolean
         name:
+          description: TODO.
           type: string
         width:
+          description: TODO.
           format: int64
           type: integer
       required:
@@ -11524,6 +11912,7 @@ components:
       - width
       type: object
     SyntheticsDeviceID:
+      description: TODO.
       enum:
       - laptop_large
       - tablet
@@ -11534,6 +11923,7 @@ components:
       - TABLET
       - MOBILE_SMALL
     SyntheticsDevices:
+      description: TODO.
       example:
         devices:
         - name: name
@@ -11546,11 +11936,13 @@ components:
           height: 0
       properties:
         devices:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsDevice'
           type: array
       type: object
     SyntheticsErrorCode:
+      description: TODO.
       enum:
       - NO_ERROR
       - UNKNOWN
@@ -11569,6 +11961,7 @@ components:
       - DENIED
       - INCORRECT_ASSERTION
     SyntheticsGetAPITestLatestResultsResponse:
+      description: TODO.
       example:
         last_timestamp_fetched: 0
         results:
@@ -11602,14 +11995,17 @@ components:
           check_time: 6.027456183070403
       properties:
         last_timestamp_fetched:
+          description: TODO.
           format: int64
           type: integer
         results:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsAPITestResultShort'
           type: array
       type: object
     SyntheticsGetBrowserTestLatestResultsResponse:
+      description: TODO.
       example:
         last_timestamp_fetched: 0
         results:
@@ -11641,14 +12037,17 @@ components:
           check_time: 6.027456183070403
       properties:
         last_timestamp_fetched:
+          description: TODO.
           format: int64
           type: integer
         results:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsBrowserTestResultShort'
           type: array
       type: object
     SyntheticsGetTestLatestResultsPayload:
+      description: TODO.
       example:
         to_ts: 6.027456183070403
         probe_dc:
@@ -11657,13 +12056,17 @@ components:
         from_ts: 0.8008281904610115
       properties:
         from_ts:
+          description: TODO.
           format: double
           type: number
         probe_dc:
+          description: TODO.
           items:
+            description: TODO.
             type: string
           type: array
         to_ts:
+          description: TODO.
           format: double
           type: number
       required:
@@ -11671,6 +12074,7 @@ components:
       - to_ts
       type: object
     SyntheticsListTestsResponse:
+      description: TODO.
       example:
         tests:
         - created_at: created_at
@@ -11793,11 +12197,13 @@ components:
           stepCount: 7
       properties:
         tests:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsTestDetails'
           type: array
       type: object
     SyntheticsLocation:
+      description: TODO.
       example:
         is_active: true
         name: name
@@ -11806,18 +12212,24 @@ components:
         region: region
       properties:
         display_name:
+          description: TODO.
           type: string
         id:
+          description: TODO.
           format: int64
           type: integer
         is_active:
+          description: TODO.
           type: boolean
         name:
+          description: TODO.
           type: string
         region:
+          description: TODO.
           type: string
       type: object
     SyntheticsLocations:
+      description: TODO.
       example:
         locations:
         - is_active: true
@@ -11832,11 +12244,13 @@ components:
           region: region
       properties:
         locations:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsLocation'
           type: array
       type: object
     SyntheticsPlayingTab:
+      description: TODO.
       enum:
       - -1
       - 0
@@ -11852,6 +12266,7 @@ components:
       - TAB_2
       - TAB_3
     SyntheticsResource:
+      description: TODO.
       example:
         duration: 7.061401241503109
         traceId: traceId
@@ -11862,27 +12277,35 @@ components:
         timestamp: 2.027123023002322
       properties:
         duration:
+          description: TODO.
           format: double
           type: number
         method:
+          description: TODO.
           type: string
         size:
+          description: TODO.
           format: int64
           type: integer
         status:
+          description: TODO.
           format: int64
           type: integer
         timestamp:
+          description: TODO.
           format: double
           type: number
         traceId:
+          description: TODO.
           type: string
         type:
           $ref: '#/components/schemas/SyntheticsResourceType'
         url:
+          description: TODO.
           type: string
       type: object
     SyntheticsResourceType:
+      description: TODO.
       enum:
       - document
       - stylesheet
@@ -11901,6 +12324,7 @@ components:
       - XHR
       - OTHER
     SyntheticsSSLCertificate:
+      description: TODO.
       example:
         cipher: cipher
         protocol: protocol
@@ -11931,36 +12355,48 @@ components:
         validTo: 2000-01-23T04:56:07.000+00:00
       properties:
         cipher:
+          description: TODO.
           type: string
         exponent:
+          description: TODO.
           format: double
           type: number
         extKeyUsage:
+          description: TODO.
           items:
+            description: TODO.
             type: string
           type: array
         fingerprint:
+          description: TODO.
           type: string
         fingerprint256:
+          description: TODO.
           type: string
         issuer:
           $ref: '#/components/schemas/SyntheticsSSLCertificate_issuer'
         modulus:
+          description: TODO.
           type: string
         protocol:
+          description: TODO.
           type: string
         serialNumber:
+          description: TODO.
           type: string
         subject:
           $ref: '#/components/schemas/SyntheticsSSLCertificate_subject'
         validFrom:
+          description: TODO.
           format: date-time
           type: string
         validTo:
+          description: TODO.
           format: date-time
           type: string
       type: object
     SyntheticsStepDetail:
+      description: TODO.
       example:
         screenshotBucketKey: true
         snapshotBucketKey: true
@@ -12002,52 +12438,67 @@ components:
         value: '{}'
       properties:
         browserErrors:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsBrowserError'
           type: array
         checkType:
           $ref: '#/components/schemas/SyntheticsCheckType'
         description:
+          description: TODO.
           type: string
         duration:
+          description: TODO.
           format: double
           type: number
         error:
+          description: TODO.
           type: string
         playingTab:
           $ref: '#/components/schemas/SyntheticsPlayingTab'
         resources:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsResource'
           type: array
         screenshotBucketKey:
+          description: TODO.
           type: boolean
         skipped:
+          description: TODO.
           type: boolean
         snapshotBucketKey:
+          description: TODO.
           type: boolean
         stepId:
+          description: TODO.
           format: int64
           type: integer
         subTestStepDetails:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsStepDetail'
           type: array
         timeToInteractive:
+          description: TODO.
           format: double
           type: number
         type:
           $ref: '#/components/schemas/SyntheticsStepType'
         url:
+          description: TODO.
           type: string
         value:
+          description: TODO.
           type: object
         warnings:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsStepDetail_warnings'
           type: array
       type: object
     SyntheticsStepType:
+      description: TODO.
       enum:
       - assertCurrentUrl
       - assertElementContent
@@ -12090,6 +12541,7 @@ components:
       - UPLOAD_FILES
       - WAIT
     SyntheticsTestAuthor:
+      description: TODO.
       example:
         name: name
         handle: handle
@@ -12097,16 +12549,21 @@ components:
         email: email
       properties:
         email:
+          description: TODO.
           type: string
         handle:
+          description: TODO.
           type: string
         id:
+          description: TODO.
           format: int64
           type: integer
         name:
+          description: TODO.
           type: string
       type: object
     SyntheticsTestConfig:
+      description: TODO.
       example:
         request:
           headers:
@@ -12137,12 +12594,14 @@ components:
       properties:
         assertions:
           default: []
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsAssertion'
           type: array
         request:
           $ref: '#/components/schemas/SyntheticsTestRequest'
         variables:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsBrowserVariable'
           type: array
@@ -12151,6 +12610,7 @@ components:
       - request
       type: object
     SyntheticsTestDetails:
+      description: TODO.
       example:
         created_at: created_at
         message: message
@@ -12215,42 +12675,53 @@ components:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
         created_at:
+          description: TODO.
           type: string
         created_by:
           $ref: '#/components/schemas/SyntheticsTestAuthor'
         locations:
+          description: TODO.
           items:
+            description: TODO.
             type: string
           type: array
         message:
+          description: TODO.
           type: string
         modified_at:
+          description: TODO.
           type: string
         modified_by:
           $ref: '#/components/schemas/SyntheticsTestAuthor'
         name:
+          description: TODO.
           type: string
         options:
           $ref: '#/components/schemas/SyntheticsTestOptions'
         overall_state:
           $ref: '#/components/schemas/SyntheticsTestMonitorStatus'
         public_id:
+          description: TODO.
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
         stepCount:
+          description: TODO.
           format: int64
           type: integer
         subtype:
           $ref: '#/components/schemas/SyntheticsTestDetailsSubType'
         tags:
+          description: TODO.
           items:
+            description: TODO.
             type: string
           type: array
         type:
           $ref: '#/components/schemas/SyntheticsTestDetailsType'
       type: object
     SyntheticsTestDetailsSubType:
+      description: TODO.
       enum:
       - http
       - ssl
@@ -12259,6 +12730,7 @@ components:
       - HTTP
       - SSL
     SyntheticsTestDetailsType:
+      description: TODO.
       enum:
       - api
       - browser
@@ -12267,6 +12739,7 @@ components:
       - API
       - BROWSER
     SyntheticsTestMonitorStatus:
+      description: TODO.
       enum:
       - 0
       - 1
@@ -12278,6 +12751,7 @@ components:
       - TRIGGERED
       - NO_DATA
     SyntheticsTestOptions:
+      description: TODO.
       example:
         min_location_failed: 5
         device_ids:
@@ -12290,14 +12764,18 @@ components:
           interval: 2.3021358869347655
       properties:
         accept_self_signed:
+          description: TODO.
           type: boolean
         device_ids:
+          description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsDeviceID'
           type: array
         follow_redirects:
+          description: TODO.
           type: boolean
         min_location_failed:
+          description: TODO.
           format: int64
           type: integer
         retry:
@@ -12306,6 +12784,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTickInterval'
       type: object
     SyntheticsTestPauseStatus:
+      description: TODO.
       enum:
       - live
       - paused
@@ -12314,6 +12793,7 @@ components:
       - LIVE
       - PAUSED
     SyntheticsTestProcessStatus:
+      description: TODO.
       enum:
       - not_scheduled
       - scheduled
@@ -12328,6 +12808,7 @@ components:
       - FINISHED
       - FINISHED_WITH_ERROR
     SyntheticsTestRequest:
+      description: TODO.
       example:
         headers:
           key: headers
@@ -12344,30 +12825,39 @@ components:
         basicAuth:
           $ref: '#/components/schemas/SyntheticsTestRequest_basicAuth'
         body:
+          description: TODO.
           type: string
         headers:
           additionalProperties:
+            description: TODO.
             type: string
+          description: TODO.
           type: object
         host:
+          description: TODO.
           type: string
         method:
           $ref: '#/components/schemas/HTTPMethod'
         port:
+          description: TODO.
           format: int64
           type: integer
         query:
+          description: TODO.
           type: object
         timeout:
+          description: TODO.
           format: double
           type: number
         url:
+          description: TODO.
           type: string
       required:
       - method
       - url
       type: object
     SyntheticsTickInterval:
+      description: TODO.
       enum:
       - 60
       - 300
@@ -12391,6 +12881,7 @@ components:
       - DAY
       - WEEK
     SyntheticsTiming:
+      description: TODO.
       example:
         redirect: 7.061401241503109
         tcp: 3.616076749251911
@@ -12403,40 +12894,51 @@ components:
         ssl: 9.301444243932576
       properties:
         dns:
+          description: TODO.
           format: double
           type: number
         download:
+          description: TODO.
           format: double
           type: number
         firstByte:
+          description: TODO.
           format: double
           type: number
         handshake:
+          description: TODO.
           format: double
           type: number
         redirect:
+          description: TODO.
           format: double
           type: number
         ssl:
+          description: TODO.
           format: double
           type: number
         tcp:
+          description: TODO.
           format: double
           type: number
         total:
+          description: TODO.
           format: double
           type: number
         wait:
+          description: TODO.
           format: double
           type: number
       type: object
     SyntheticsUpdateTestPauseStatusPayload:
+      description: TODO.
       example: {}
       properties:
         new_status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
       type: object
     SyntheticsWarningType:
+      description: TODO.
       enum:
       - user_locator
       type: string
@@ -12447,6 +12949,7 @@ components:
         It displays columns of metrics grouped by tag key
       properties:
         requests:
+          description: TODO.
           example:
           - q/apm_query/log_query: <METRIC_1>{<SCOPE_1>}
           items:
@@ -12472,6 +12975,7 @@ components:
       - type
       type: object
     TableWidgetRequest:
+      description: TODO.
       properties:
         aggregator:
           $ref: '#/components/schemas/WidgetAggregator'
@@ -12481,6 +12985,7 @@ components:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
+          description: TODO.
           items:
             $ref: '#/components/schemas/WidgetConditionalFormat'
           type: array
@@ -12500,6 +13005,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -12515,7 +13021,9 @@ components:
       properties:
         tags:
           additionalProperties:
+            description: TODO.
             items:
+              description: TODO.
               example: test.metric.host
               type: string
             type: array
@@ -12527,16 +13035,19 @@ components:
         of one or more metrics, log events, or Analyzed Spans over time.
       properties:
         events:
+          description: TODO.
           items:
             $ref: '#/components/schemas/WidgetEvent'
           type: array
         legend_size:
           $ref: '#/components/schemas/WidgetLegendSize'
         markers:
+          description: TODO.
           items:
             $ref: '#/components/schemas/WidgetMarker'
           type: array
         requests:
+          description: TODO.
           example:
           - q/apm_query/log_query: <METRIC_1>{<SCOPE_1>}
           items:
@@ -12568,6 +13079,7 @@ components:
       - type
       type: object
     TimeseriesWidgetRequest:
+      description: TODO.
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -12587,6 +13099,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -12599,6 +13112,7 @@ components:
         such as highest consumers of CPU, hosts with the least disk space, etc
       properties:
         requests:
+          description: TODO.
           items:
             $ref: '#/components/schemas/ToplistWidgetRequest'
           type: array
@@ -12622,10 +13136,12 @@ components:
       - type
       type: object
     ToplistWidgetRequest:
+      description: TODO.
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
+          description: TODO.
           items:
             $ref: '#/components/schemas/WidgetConditionalFormat'
           minItems: 1
@@ -12639,6 +13155,7 @@ components:
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
+          description: TODO.
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -12646,6 +13163,7 @@ components:
           $ref: '#/components/schemas/TimeseriesWidgetRequest_style'
       type: object
     UsageFargateHour:
+      description: TODO.
       example:
         hour: 2000-01-23T04:56:07.000+00:00
         tasks_count: 0
@@ -12660,6 +13178,7 @@ components:
           type: integer
       type: object
     UsageFargateResponse:
+      description: TODO.
       example:
         usage:
         - hour: 2000-01-23T04:56:07.000+00:00
@@ -12740,6 +13259,7 @@ components:
           type: string
       type: object
     UsageHostsResponse:
+      description: TODO.
       example:
         usage:
         - apm_host_count: 1
@@ -12762,6 +13282,7 @@ components:
           container_count: 2
       properties:
         usage:
+          description: TODO.
           items:
             $ref: '#/components/schemas/UsageHostHour'
           type: array
@@ -12853,11 +13374,13 @@ components:
           retention: 6
       properties:
         usage:
+          description: TODO.
           items:
             $ref: '#/components/schemas/UsageLogsByIndexHour'
           type: array
       type: object
     UsageLogsHour:
+      description: TODO.
       example:
         indexed_events_count: 6
         hour: 2000-01-23T04:56:07.000+00:00
@@ -12882,6 +13405,7 @@ components:
           type: integer
       type: object
     UsageLogsResponse:
+      description: TODO.
       example:
         usage:
         - indexed_events_count: 6
@@ -12894,6 +13418,7 @@ components:
           ingested_events_bytes: 1
       properties:
         usage:
+          description: TODO.
           items:
             $ref: '#/components/schemas/UsageLogsHour'
           type: array
@@ -13001,6 +13526,7 @@ components:
           type: array
       type: object
     UsageSummaryDate:
+      description: TODO.
       example:
         date: 2000-01-23T04:56:07.000+00:00
         npm_host_top99p: 7
@@ -13164,6 +13690,7 @@ components:
           format: int64
           type: integer
         orgs:
+          description: TODO.
           items:
             $ref: '#/components/schemas/UsageSummaryDateOrg'
           type: array
@@ -13263,6 +13790,7 @@ components:
           format: int64
           type: integer
         fargate_tasks_count_avg:
+          description: TODO.
           format: int64
           type: integer
         fargate_tasks_count_hwm:
@@ -13331,6 +13859,7 @@ components:
           type: integer
       type: object
     UsageSummaryResponse:
+      description: TODO.
       example:
         end_date: 2000-01-23T04:56:07.000+00:00
         azure_host_top99p_sum: 2
@@ -13627,6 +14156,7 @@ components:
           format: int64
           type: integer
         usage:
+          description: TODO.
           items:
             $ref: '#/components/schemas/UsageSummaryDate'
           type: array
@@ -13727,6 +14257,7 @@ components:
           type: array
       type: object
     UsageTimeseriesHour:
+      description: TODO.
       example:
         num_custom_input_timeseries: 0
         hour: 2000-01-23T04:56:07.000+00:00
@@ -13753,6 +14284,7 @@ components:
           type: integer
       type: object
     UsageTimeseriesResponse:
+      description: TODO.
       example:
         usage:
         - num_custom_input_timeseries: 0
@@ -13765,6 +14297,7 @@ components:
           num_custom_output_timeseries: 6
       properties:
         usage:
+          description: TODO.
           items:
             $ref: '#/components/schemas/UsageTimeseriesHour'
           type: array
@@ -13809,6 +14342,7 @@ components:
           type: array
       type: object
     UsageTraceHour:
+      description: TODO.
       example:
         indexed_events_count: 0
         hour: 2000-01-23T04:56:07.000+00:00
@@ -13823,6 +14357,7 @@ components:
           type: integer
       type: object
     UsageTraceResponse:
+      description: TODO.
       example:
         usage:
         - indexed_events_count: 0
@@ -13883,6 +14418,7 @@ components:
       description: Array of user disabled for a given organization.
       properties:
         message:
+          description: TODO.
           type: string
       type: object
     UserListResponse:
@@ -13926,6 +14462,7 @@ components:
           $ref: '#/components/schemas/User'
       type: object
     Widget:
+      description: TODO.
       example:
         layout:
           width: 1
@@ -13965,6 +14502,7 @@ components:
       description: Axis controls for the widget
       properties:
         include_zero:
+          description: TODO.
           type: boolean
         label:
           description: The label of the axis to display on the graph.
@@ -14033,6 +14571,7 @@ components:
       - WEEK_BEFORE
       - MONTH_BEFORE
     WidgetConditionalFormat:
+      description: TODO.
       properties:
         comparator:
           $ref: '#/components/schemas/WidgetComparator'
@@ -14045,6 +14584,7 @@ components:
             as palette.
           type: string
         hide_value:
+          description: TODO.
           type: boolean
         image_url:
           description: Displays an image as the background.
@@ -14056,6 +14596,7 @@ components:
         palette:
           $ref: '#/components/schemas/WidgetPalette'
         timeframe:
+          description: TODO.
           type: string
         value:
           description: Value for the comparator.
@@ -14135,8 +14676,10 @@ components:
       - BARS
       - LINE
     WidgetEvent:
+      description: TODO.
       properties:
         q:
+          description: TODO.
           type: string
         tags_execution:
           description: The execution method for multi-value filters. Can be either
@@ -14226,6 +14769,7 @@ components:
       x-enum-varnames:
       - ORDERED
     WidgetLegendSize:
+      description: TODO.
       enum:
       - "2"
       - "4"
@@ -14324,6 +14868,7 @@ components:
           example: Error threshold
           type: string
         time:
+          description: TODO.
           type: string
         value:
           description: Value to apply. Can be a single value y = 15 or a range of
@@ -14440,6 +14985,7 @@ components:
       - MEDIUM
       - LARGE
     WidgetSort:
+      description: TODO.
       enum:
       - asc
       - desc
@@ -14448,6 +14994,7 @@ components:
       - ASCENDING
       - DESCENDING
     WidgetStyle:
+      description: TODO.
       properties:
         palette:
           description: Color palette to apply to the widget.
@@ -14495,6 +15042,7 @@ components:
           $ref: '#/components/schemas/WidgetLiveSpan'
       type: object
     WidgetTimeWindows:
+      description: TODO.
       enum:
       - 7d
       - 30d
@@ -14513,6 +15061,7 @@ components:
       - MONTH_TO_DATE
       - PREVIOUS_MONTH
     WidgetViewMode:
+      description: TODO.
       enum:
       - overall
       - component
@@ -14533,19 +15082,24 @@ components:
       - TIMESERIES
       - TOPLIST
     AWSLogsAsyncResponse_errors:
+      description: TODO.
       example:
         code: no_such_config
         message: AWS account 12345 has no lambda config to update
       properties:
         code:
+          description: TODO.
           example: no_such_config
           type: string
         message:
+          description: TODO.
           example: AWS account 12345 has no lambda config to update
           type: string
     AWSLogsListResponse_lambdas:
+      description: TODO.
       properties:
         arn:
+          description: TODO.
           type: string
     CheckCanDeleteServiceLevelObjectiveResponse_data:
       description: An array of service level objective objects.
@@ -14557,28 +15111,34 @@ components:
         ok:
           description: An array of of SLO IDs that can be safely deleted.
           items:
+            description: TODO.
             type: string
           type: array
     Dashboard_template_variables:
+      description: TODO.
       example:
         default: my-host
         prefix: host
         name: host1
       properties:
         default:
+          description: TODO.
           example: my-host
           nullable: true
           type: string
         name:
+          description: TODO.
           example: host1
           type: string
         prefix:
+          description: TODO.
           example: host
           nullable: true
           type: string
       required:
       - name
     DashboardSummary_dashboards:
+      description: TODO.
       example:
         created_at: 2000-01-23T04:56:07.000+00:00
         description: description
@@ -14591,24 +15151,33 @@ components:
         url: url
       properties:
         author_handle:
+          description: TODO.
           type: string
         created_at:
+          description: TODO.
           format: date-time
           type: string
         description:
+          description: TODO.
           type: string
         id:
+          description: TODO.
           type: string
         is_read_only:
+          description: TODO.
           type: boolean
         layout_type:
+          description: TODO.
           type: string
         modified_at:
+          description: TODO.
           format: date-time
           type: string
         title:
+          description: TODO.
           type: string
         url:
+          description: TODO.
           type: string
     HistoryServiceLevelObjectiveResponse_data:
       description: An array of service level objective objects.
@@ -14714,7 +15283,9 @@ components:
         - Ubuntu
       properties:
         nixV:
+          description: TODO.
           items:
+            description: TODO.
             example: Ubuntu
             type: string
           type: array
@@ -14742,6 +15313,7 @@ components:
           format: double
           type: number
     HostMapWidgetDefinition_requests:
+      description: TODO.
       properties:
         fill:
           $ref: '#/components/schemas/HostMapRequest'
@@ -14763,6 +15335,7 @@ components:
           description: Whether to flip the palette tones.
           type: boolean
     Log_content:
+      description: TODO.
       example:
         service: agent
         host: i-0123
@@ -14814,10 +15387,13 @@ components:
           format: date-time
           type: string
     LogQueryDefinition_sort:
+      description: TODO.
       properties:
         aggregation:
+          description: TODO.
           type: string
         facet:
+          description: TODO.
           type: string
         order:
           $ref: '#/components/schemas/WidgetSort'
@@ -14825,10 +15401,13 @@ components:
       - aggregation
       - order
     LogQueryDefinition_group_by:
+      description: TODO.
       properties:
         facet:
+          description: TODO.
           type: string
         limit:
+          description: TODO.
           format: int64
           type: integer
         sort:
@@ -14836,12 +15415,15 @@ components:
       required:
       - facet
     LogQueryDefinition_search:
+      description: TODO.
       properties:
         query:
+          description: TODO.
           type: string
       required:
       - query
     LogsCategoryProcessor_categories:
+      description: TODO.
       properties:
         filter:
           $ref: '#/components/schemas/LogsFilter'
@@ -14849,6 +15431,7 @@ components:
           description: Value to assign to the target attribute.
           type: string
     LogsListRequest_time:
+      description: TODO.
       example:
         timezone: timezone
         from: 2000-01-23T04:56:07.000+00:00
@@ -14880,9 +15463,11 @@ components:
         metrics:
           description: List of metrics that match the search query.
           items:
+            description: TODO.
             type: string
           type: array
     MetricsQueryResponse_unit:
+      description: TODO.
       example:
         plural: minutes
         name: minute
@@ -14918,6 +15503,7 @@ components:
           readOnly: true
           type: string
     MetricsQueryResponse_series:
+      description: TODO.
       example:
         unit:
         - plural: minutes
@@ -15032,6 +15618,7 @@ components:
       example: '{"type":"parent_billing"}'
       properties:
         type:
+          description: TODO.
           type: string
     Organization_settings_saml:
       description: |-
@@ -15041,6 +15628,7 @@ components:
         enabled: false
       properties:
         enabled:
+          description: TODO.
           example: false
           type: boolean
     Organization_settings_saml_autocreate_users_domains:
@@ -15055,6 +15643,7 @@ components:
         domains:
           description: List of domains where the SAML automated user creation is enabled.
           items:
+            description: TODO.
             example: example.com
             type: string
           type: array
@@ -15069,6 +15658,7 @@ components:
         enabled: false
       properties:
         enabled:
+          description: TODO.
           example: false
           type: boolean
     Organization_settings:
@@ -15130,6 +15720,7 @@ components:
       example: '{"type":"pro"}'
       properties:
         type:
+          description: TODO.
           type: string
     SLOHistoryMetricsSeries_metadata:
       description: Query metadata.
@@ -15161,6 +15752,7 @@ components:
           description: Query units (if available).
           type: string
     ScatterPlotWidgetDefinition_requests:
+      description: TODO.
       properties:
         x:
           $ref: '#/components/schemas/ScatterPlotRequest'
@@ -15202,6 +15794,7 @@ components:
             An array of service level objective object IDs that indicates
             which objects that were completely deleted.
           items:
+            description: TODO.
             type: string
           type: array
         updated:
@@ -15210,9 +15803,11 @@ components:
             which objects that were modified (objects for which at least one
             threshold was deleted, but that were not completely deleted).
           items:
+            description: TODO.
             type: string
           type: array
     ServiceLevelObjectivesBulkDeleted_errors:
+      description: TODO.
       example:
         id: id
         message: message
@@ -15232,6 +15827,7 @@ components:
       - message
       - timeframe
     SyntheticsAPITestResultFull_check:
+      description: TODO.
       example:
         config:
           request:
@@ -15266,6 +15862,7 @@ components:
       required:
       - config
     SyntheticsAPITestResultShort_result:
+      description: TODO.
       example:
         timings:
           redirect: 7.061401241503109
@@ -15281,6 +15878,7 @@ components:
         timings:
           $ref: '#/components/schemas/SyntheticsTiming'
     SyntheticsBrowserTestResultShort_result:
+      description: TODO.
       example:
         duration: 1.4658129805029452
         stepCountTotal: 2
@@ -15295,28 +15893,36 @@ components:
         device:
           $ref: '#/components/schemas/SyntheticsDevice'
         duration:
+          description: TODO.
           format: double
           type: number
         errorCount:
+          description: TODO.
           format: int64
           type: integer
         stepCountCompleted:
+          description: TODO.
           format: int64
           type: integer
         stepCountTotal:
+          description: TODO.
           format: int64
           type: integer
     SyntheticsDeleteTestsResponse_deleted_tests:
+      description: TODO.
       example:
         deleted_at: 2000-01-23T04:56:07.000+00:00
         public_id: public_id
       properties:
         deleted_at:
+          description: TODO.
           format: date-time
           type: string
         public_id:
+          description: TODO.
           type: string
     SyntheticsSSLCertificate_issuer:
+      description: TODO.
       example:
         ST: ST
         C: C
@@ -15326,18 +15932,25 @@ components:
         O: O
       properties:
         C:
+          description: TODO.
           type: string
         CN:
+          description: TODO.
           type: string
         L:
+          description: TODO.
           type: string
         O:
+          description: TODO.
           type: string
         OU:
+          description: TODO.
           type: string
         ST:
+          description: TODO.
           type: string
     SyntheticsSSLCertificate_subject:
+      description: TODO.
       example:
         ST: ST
         C: C
@@ -15348,24 +15961,33 @@ components:
         O: O
       properties:
         C:
+          description: TODO.
           type: string
         CN:
+          description: TODO.
           type: string
         L:
+          description: TODO.
           type: string
         O:
+          description: TODO.
           type: string
         OU:
+          description: TODO.
           type: string
         ST:
+          description: TODO.
           type: string
         altName:
+          description: TODO.
           type: string
     SyntheticsStepDetail_warnings:
+      description: TODO.
       example:
         message: message
       properties:
         message:
+          description: TODO.
           type: string
         type:
           $ref: '#/components/schemas/SyntheticsWarningType'
@@ -15373,37 +15995,47 @@ components:
       - message
       - type
     SyntheticsTestOptions_retry:
+      description: TODO.
       example:
         count: 5
         interval: 2.3021358869347655
       properties:
         count:
+          description: TODO.
           format: int64
           type: integer
         interval:
+          description: TODO.
           format: double
           type: number
     SyntheticsTestRequest_basicAuth:
+      description: TODO.
       example:
         password: password
         username: username
       properties:
         password:
+          description: TODO.
           type: string
         username:
+          description: TODO.
           type: string
       required:
       - password
       - username
     TimeseriesWidgetRequest_metadata:
+      description: TODO.
       properties:
         alias_name:
+          description: TODO.
           type: string
         expression:
+          description: TODO.
           type: string
       required:
       - expression
     TimeseriesWidgetRequest_style:
+      description: TODO.
       properties:
         line_type:
           $ref: '#/components/schemas/WidgetLineType'

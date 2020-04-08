@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsListTestsResponse struct for SyntheticsListTestsResponse
+// SyntheticsListTestsResponse TODO.
 type SyntheticsListTestsResponse struct {
+	// TODO.
 	Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
 }
 

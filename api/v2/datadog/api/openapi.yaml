@@ -230,9 +230,12 @@ components:
   responses: {}
   schemas:
     APIErrorResponse:
+      description: TODO.
       properties:
         errors:
+          description: TODO.
           items:
+            description: TODO.
             example: Bad Request
             type: string
           type: array
@@ -247,13 +250,17 @@ components:
         email: email
       properties:
         email:
+          description: TODO.
           type: string
         handle:
+          description: TODO.
           type: string
         name:
+          description: TODO.
           type: string
       type: object
     DashboardListAddItemsResponse:
+      description: TODO.
       example:
         added_dashboards_to_list:
         - is_favorite: true
@@ -292,6 +299,7 @@ components:
           type: array
       type: object
     DashboardListDeleteItemsResponse:
+      description: TODO.
       example:
         deleted_dashboards_from_list:
         - is_favorite: true
@@ -330,6 +338,7 @@ components:
           type: array
       type: object
     DashboardListItem:
+      description: TODO.
       example:
         is_favorite: true
         author:
@@ -398,6 +407,7 @@ components:
       - type
       type: object
     DashboardListItems:
+      description: TODO.
       example:
         total: 6
         dashboards:

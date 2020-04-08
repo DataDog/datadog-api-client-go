@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) |  | [optional] 
+**Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | TODO. | [optional] 
 **LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
-**Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) |  | [optional] 
-**Requests** | Pointer to [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) |  | 
+**Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | TODO. | [optional] 
+**Requests** | Pointer to [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | TODO. | 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 

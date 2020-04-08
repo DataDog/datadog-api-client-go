@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDevices struct for SyntheticsDevices
+// SyntheticsDevices TODO.
 type SyntheticsDevices struct {
+	// TODO.
 	Devices *[]SyntheticsDevice `json:"devices,omitempty"`
 }
 

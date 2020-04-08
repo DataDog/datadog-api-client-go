@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int64** |  | [optional] 
-**Interval** | Pointer to **float64** |  | [optional] 
+**Count** | Pointer to **int64** | TODO. | [optional] 
+**Interval** | Pointer to **float64** | TODO. | [optional] 
 
 ## Methods
 

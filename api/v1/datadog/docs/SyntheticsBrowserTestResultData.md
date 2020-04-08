@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserType** | Pointer to **string** |  | [optional] 
-**BrowserVersion** | Pointer to **string** |  | [optional] 
+**BrowserType** | Pointer to **string** | TODO. | [optional] 
+**BrowserVersion** | Pointer to **string** | TODO. | [optional] 
 **Device** | Pointer to [**SyntheticsDevice**](SyntheticsDevice.md) |  | [optional] 
-**Duration** | Pointer to **float64** |  | [optional] 
-**Error** | Pointer to **string** |  | [optional] 
-**Passed** | Pointer to **bool** |  | [optional] 
-**ReceivedEmailCount** | Pointer to **int64** |  | [optional] 
-**StartUrl** | Pointer to **string** |  | [optional] 
-**StepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) |  | [optional] 
-**ThumbnailsBucketKey** | Pointer to **bool** |  | [optional] 
-**TimeToInteractive** | Pointer to **float64** |  | [optional] 
+**Duration** | Pointer to **float64** | TODO. | [optional] 
+**Error** | Pointer to **string** | TODO. | [optional] 
+**Passed** | Pointer to **bool** | TODO. | [optional] 
+**ReceivedEmailCount** | Pointer to **int64** | TODO. | [optional] 
+**StartUrl** | Pointer to **string** | TODO. | [optional] 
+**StepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | TODO. | [optional] 
+**ThumbnailsBucketKey** | Pointer to **bool** | TODO. | [optional] 
+**TimeToInteractive** | Pointer to **float64** | TODO. | [optional] 
 
 ## Methods
 

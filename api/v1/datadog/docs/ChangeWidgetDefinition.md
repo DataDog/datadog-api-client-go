@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Requests** | Pointer to [**[]ChangeWidgetRequest**](ChangeWidgetRequest.md) |  | 
+**Requests** | Pointer to [**[]ChangeWidgetRequest**](ChangeWidgetRequest.md) | TODO. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 

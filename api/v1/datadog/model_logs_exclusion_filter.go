@@ -15,7 +15,8 @@ import (
 // LogsExclusionFilter Exclusion filter is defined by a query, a sampling rule, and a active/inactive toggle.
 type LogsExclusionFilter struct {
 	// Default query is '*', meaning all logs flowing in the index would be excluded. Scope down exclusion filter to only a subset of logs with a log query.
-	Query      *string `json:"query,omitempty"`
+	Query *string `json:"query,omitempty"`
+	// TODO.
 	SampleRate float64 `json:"sample_rate"`
 }
 

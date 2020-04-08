@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// IdpResponse struct for IdpResponse
+// IdpResponse TODO.
 type IdpResponse struct {
 	// Identity provider response.
 	Message string `json:"message"`

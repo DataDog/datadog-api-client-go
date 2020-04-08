@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Query** | Pointer to **string** |  | 
+**Query** | Pointer to **string** | TODO. | 
 
 ## Methods
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Duration** | Pointer to **float64** |  | [optional] 
-**Method** | Pointer to **string** |  | [optional] 
-**Size** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
-**Timestamp** | Pointer to **float64** |  | [optional] 
-**TraceId** | Pointer to **string** |  | [optional] 
+**Duration** | Pointer to **float64** | TODO. | [optional] 
+**Method** | Pointer to **string** | TODO. | [optional] 
+**Size** | Pointer to **int64** | TODO. | [optional] 
+**Status** | Pointer to **int64** | TODO. | [optional] 
+**Timestamp** | Pointer to **float64** | TODO. | [optional] 
+**TraceId** | Pointer to **string** | TODO. | [optional] 
 **Type** | Pointer to [**SyntheticsResourceType**](SyntheticsResourceType.md) |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

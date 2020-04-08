@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) |  | [default to []]
+**Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | TODO. | [default to []]
 **Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | 
-**Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) |  | [optional] 
+**Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | TODO. | [optional] 
 
 ## Methods
 

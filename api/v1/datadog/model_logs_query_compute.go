@@ -12,11 +12,14 @@ import (
 	"encoding/json"
 )
 
-// LogsQueryCompute struct for LogsQueryCompute
+// LogsQueryCompute TODO.
 type LogsQueryCompute struct {
-	Aggregation string  `json:"aggregation"`
-	Facet       *string `json:"facet,omitempty"`
-	Interval    *int64  `json:"interval,omitempty"`
+	// TODO.
+	Aggregation string `json:"aggregation"`
+	// TODO.
+	Facet *string `json:"facet,omitempty"`
+	// TODO.
+	Interval *int64 `json:"interval,omitempty"`
 }
 
 // NewLogsQueryCompute instantiates a new LogsQueryCompute object

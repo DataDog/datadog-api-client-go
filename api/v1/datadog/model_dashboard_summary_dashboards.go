@@ -13,17 +13,26 @@ import (
 	"time"
 )
 
-// DashboardSummaryDashboards struct for DashboardSummaryDashboards
+// DashboardSummaryDashboards TODO.
 type DashboardSummaryDashboards struct {
-	AuthorHandle *string    `json:"author_handle,omitempty"`
-	CreatedAt    *time.Time `json:"created_at,omitempty"`
-	Description  *string    `json:"description,omitempty"`
-	Id           *string    `json:"id,omitempty"`
-	IsReadOnly   *bool      `json:"is_read_only,omitempty"`
-	LayoutType   *string    `json:"layout_type,omitempty"`
-	ModifiedAt   *time.Time `json:"modified_at,omitempty"`
-	Title        *string    `json:"title,omitempty"`
-	Url          *string    `json:"url,omitempty"`
+	// TODO.
+	AuthorHandle *string `json:"author_handle,omitempty"`
+	// TODO.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// TODO.
+	Description *string `json:"description,omitempty"`
+	// TODO.
+	Id *string `json:"id,omitempty"`
+	// TODO.
+	IsReadOnly *bool `json:"is_read_only,omitempty"`
+	// TODO.
+	LayoutType *string `json:"layout_type,omitempty"`
+	// TODO.
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	// TODO.
+	Title *string `json:"title,omitempty"`
+	// TODO.
+	Url *string `json:"url,omitempty"`
 }
 
 // NewDashboardSummaryDashboards instantiates a new DashboardSummaryDashboards object

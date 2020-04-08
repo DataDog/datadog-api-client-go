@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// LogQueryDefinitionSearch struct for LogQueryDefinitionSearch
+// LogQueryDefinitionSearch TODO.
 type LogQueryDefinitionSearch struct {
+	// TODO.
 	Query string `json:"query"`
 }
 
