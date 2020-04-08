@@ -1,0 +1,78 @@
+---
+version: 1
+interactions:
+- request:
+    body: "--571cb7da01e9a43c29e1411b695a5f1f771896f3ce9fb7b6937733b8db7e\r\nContent-Disposition:
+      form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--571cb7da01e9a43c29e1411b695a5f1f771896f3ce9fb7b6937733b8db7e--\r\n"
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "262"
+      Content-Type:
+      - multipart/form-data; boundary=571cb7da01e9a43c29e1411b695a5f1f771896f3ce9fb7b6937733b8db7e
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/org/lsqdkjf/idp_metadata
+    method: POST
+  response:
+    body: '{"errors": ["Not allowed to access this organization"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "55"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 08 Apr 2020 15:21:10 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2369501"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 400 Bad Request
+    code: 400
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - multipart/form-data
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/org/lsqdkjf/idp_metadata
+    method: POST
+  response:
+    body: |
+      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "170"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 08 Apr 2020 15:21:10 GMT
+      Via:
+      - haproxy
+    status: 403 Forbidden
+    code: 403
+    duration: ""
