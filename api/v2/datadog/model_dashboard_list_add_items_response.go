@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// DashboardListAddItemsResponse struct for DashboardListAddItemsResponse
+// DashboardListAddItemsResponse TODO.
 type DashboardListAddItemsResponse struct {
 	// List of dashboards added to the dashboard list.
 	AddedDashboardsToList *[]DashboardListItem `json:"added_dashboards_to_list,omitempty"`

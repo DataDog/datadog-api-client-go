@@ -19,7 +19,8 @@ type QueryValueWidgetDefinition struct {
 	// Display a unit of your choice on the widget.
 	CustomUnit *string `json:"custom_unit,omitempty"`
 	// Number of decimals to show. If not defined, the widget uses the raw value.
-	Precision *int64                    `json:"precision,omitempty"`
+	Precision *int64 `json:"precision,omitempty"`
+	// TODO.
 	Requests  []QueryValueWidgetRequest `json:"requests"`
 	TextAlign *WidgetTextAlign          `json:"text_align,omitempty"`
 	Time      *WidgetTime               `json:"time,omitempty"`

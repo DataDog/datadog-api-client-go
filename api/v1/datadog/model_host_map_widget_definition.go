@@ -19,10 +19,11 @@ type HostMapWidgetDefinition struct {
 	// Whether to show the hosts that don’t fit in a group.
 	NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
 	// Whether to show the hosts with no metrics.
-	NoMetricHosts *bool                           `json:"no_metric_hosts,omitempty"`
-	NodeType      *WidgetNodeType                 `json:"node_type,omitempty"`
-	Notes         *string                         `json:"notes,omitempty"`
-	Requests      HostMapWidgetDefinitionRequests `json:"requests"`
+	NoMetricHosts *bool           `json:"no_metric_hosts,omitempty"`
+	NodeType      *WidgetNodeType `json:"node_type,omitempty"`
+	// TODO.
+	Notes    *string                         `json:"notes,omitempty"`
+	Requests HostMapWidgetDefinitionRequests `json:"requests"`
 	// List of tags used to filter the map.
 	Scope *[]string                     `json:"scope,omitempty"`
 	Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`

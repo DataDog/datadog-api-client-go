@@ -12,13 +12,14 @@ import (
 	"encoding/json"
 )
 
-// AzureAccount struct for AzureAccount
+// AzureAccount TODO.
 type AzureAccount struct {
 	// Your Azure web application ID.
 	ClientId *string `json:"client_id,omitempty"`
 	// Your Azure web application secret key.
-	ClientSecret *string   `json:"client_secret,omitempty"`
-	Errors       *[]string `json:"errors,omitempty"`
+	ClientSecret *string `json:"client_secret,omitempty"`
+	// TODO.
+	Errors *[]string `json:"errors,omitempty"`
 	// Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
 	HostFilters *string `json:"host_filters,omitempty"`
 	// Your New Azure web application ID.

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetTimeWindows the model 'WidgetTimeWindows'
+// WidgetTimeWindows TODO.
 type WidgetTimeWindows string
 
 // List of WidgetTimeWindows

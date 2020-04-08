@@ -14,10 +14,13 @@ import (
 
 // TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Analyzed Spans over time.
 type TimeseriesWidgetDefinition struct {
-	Events     *[]WidgetEvent            `json:"events,omitempty"`
-	LegendSize *WidgetLegendSize         `json:"legend_size,omitempty"`
-	Markers    *[]WidgetMarker           `json:"markers,omitempty"`
-	Requests   []TimeseriesWidgetRequest `json:"requests"`
+	// TODO.
+	Events     *[]WidgetEvent    `json:"events,omitempty"`
+	LegendSize *WidgetLegendSize `json:"legend_size,omitempty"`
+	// TODO.
+	Markers *[]WidgetMarker `json:"markers,omitempty"`
+	// TODO.
+	Requests []TimeseriesWidgetRequest `json:"requests"`
 	// (screenboard only) Show the legend for this widget
 	ShowLegend *bool       `json:"show_legend,omitempty"`
 	Time       *WidgetTime `json:"time,omitempty"`

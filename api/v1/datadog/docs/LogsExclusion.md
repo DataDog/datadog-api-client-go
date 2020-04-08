@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Filter** | Pointer to [**LogsExclusionFilter**](LogsExclusionFilter.md) |  | [optional] 
-**IsEnabled** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **string** |  | 
+**IsEnabled** | Pointer to **bool** | TODO. | [optional] 
+**Name** | Pointer to **string** | TODO. | 
 
 ## Methods
 

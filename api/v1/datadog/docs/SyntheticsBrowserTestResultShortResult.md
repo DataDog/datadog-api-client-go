@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Device** | Pointer to [**SyntheticsDevice**](SyntheticsDevice.md) |  | [optional] 
-**Duration** | Pointer to **float64** |  | [optional] 
-**ErrorCount** | Pointer to **int64** |  | [optional] 
-**StepCountCompleted** | Pointer to **int64** |  | [optional] 
-**StepCountTotal** | Pointer to **int64** |  | [optional] 
+**Duration** | Pointer to **float64** | TODO. | [optional] 
+**ErrorCount** | Pointer to **int64** | TODO. | [optional] 
+**StepCountCompleted** | Pointer to **int64** | TODO. | [optional] 
+**StepCountTotal** | Pointer to **int64** | TODO. | [optional] 
 
 ## Methods
 

@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// LogsListRequestTime struct for LogsListRequestTime
+// LogsListRequestTime TODO.
 type LogsListRequestTime struct {
 	// Minimum timestamp for requested logs.
 	From time.Time `json:"from"`

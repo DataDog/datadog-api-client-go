@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**ServiceLevelObjectivesBulkDeletedData**](ServiceLevelObjectivesBulkDeleted_data.md) |  | 
-**Errors** | Pointer to [**[]ServiceLevelObjectivesBulkDeletedErrors**](ServiceLevelObjectivesBulkDeleted_errors.md) |  | 
+**Errors** | Pointer to [**[]ServiceLevelObjectivesBulkDeletedErrors**](ServiceLevelObjectivesBulkDeleted_errors.md) | TODO. | 
 
 ## Methods
 

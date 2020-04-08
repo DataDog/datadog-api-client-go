@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// EventQueryDefinition struct for EventQueryDefinition
+// EventQueryDefinition TODO.
 type EventQueryDefinition struct {
+	// TODO.
 	Search string `json:"search"`
 	// The execution method for multi-value filters. Can be either and or or
 	TagsExecution string `json:"tags_execution"`

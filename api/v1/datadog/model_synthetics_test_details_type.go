@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestDetailsType the model 'SyntheticsTestDetailsType'
+// SyntheticsTestDetailsType TODO.
 type SyntheticsTestDetailsType string
 
 // List of SyntheticsTestDetailsType

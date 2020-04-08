@@ -12,11 +12,14 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsGetTestLatestResultsPayload struct for SyntheticsGetTestLatestResultsPayload
+// SyntheticsGetTestLatestResultsPayload TODO.
 type SyntheticsGetTestLatestResultsPayload struct {
-	FromTs  float64   `json:"from_ts"`
+	// TODO.
+	FromTs float64 `json:"from_ts"`
+	// TODO.
 	ProbeDc *[]string `json:"probe_dc,omitempty"`
-	ToTs    float64   `json:"to_ts"`
+	// TODO.
+	ToTs float64 `json:"to_ts"`
 }
 
 // NewSyntheticsGetTestLatestResultsPayload instantiates a new SyntheticsGetTestLatestResultsPayload object

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**C** | Pointer to **string** |  | [optional] 
-**CN** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**OU** | Pointer to **string** |  | [optional] 
-**ST** | Pointer to **string** |  | [optional] 
+**C** | Pointer to **string** | TODO. | [optional] 
+**CN** | Pointer to **string** | TODO. | [optional] 
+**L** | Pointer to **string** | TODO. | [optional] 
+**O** | Pointer to **string** | TODO. | [optional] 
+**OU** | Pointer to **string** | TODO. | [optional] 
+**ST** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

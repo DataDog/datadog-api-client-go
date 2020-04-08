@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to **[]string** |  | 
+**Errors** | Pointer to **[]string** | TODO. | 
 
 ## Methods
 

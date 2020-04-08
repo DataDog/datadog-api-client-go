@@ -12,9 +12,11 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestRequestBasicAuth struct for SyntheticsTestRequestBasicAuth
+// SyntheticsTestRequestBasicAuth TODO.
 type SyntheticsTestRequestBasicAuth struct {
+	// TODO.
 	Password string `json:"password"`
+	// TODO.
 	Username string `json:"username"`
 }
 

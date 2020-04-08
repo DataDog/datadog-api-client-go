@@ -13,20 +13,30 @@ import (
 	"time"
 )
 
-// SyntheticsSSLCertificate struct for SyntheticsSSLCertificate
+// SyntheticsSSLCertificate TODO.
 type SyntheticsSSLCertificate struct {
-	Cipher         *string                          `json:"cipher,omitempty"`
-	Exponent       *float64                         `json:"exponent,omitempty"`
-	ExtKeyUsage    *[]string                        `json:"extKeyUsage,omitempty"`
-	Fingerprint    *string                          `json:"fingerprint,omitempty"`
-	Fingerprint256 *string                          `json:"fingerprint256,omitempty"`
-	Issuer         *SyntheticsSSLCertificateIssuer  `json:"issuer,omitempty"`
-	Modulus        *string                          `json:"modulus,omitempty"`
-	Protocol       *string                          `json:"protocol,omitempty"`
-	SerialNumber   *string                          `json:"serialNumber,omitempty"`
-	Subject        *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
-	ValidFrom      *time.Time                       `json:"validFrom,omitempty"`
-	ValidTo        *time.Time                       `json:"validTo,omitempty"`
+	// TODO.
+	Cipher *string `json:"cipher,omitempty"`
+	// TODO.
+	Exponent *float64 `json:"exponent,omitempty"`
+	// TODO.
+	ExtKeyUsage *[]string `json:"extKeyUsage,omitempty"`
+	// TODO.
+	Fingerprint *string `json:"fingerprint,omitempty"`
+	// TODO.
+	Fingerprint256 *string                         `json:"fingerprint256,omitempty"`
+	Issuer         *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
+	// TODO.
+	Modulus *string `json:"modulus,omitempty"`
+	// TODO.
+	Protocol *string `json:"protocol,omitempty"`
+	// TODO.
+	SerialNumber *string                          `json:"serialNumber,omitempty"`
+	Subject      *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
+	// TODO.
+	ValidFrom *time.Time `json:"validFrom,omitempty"`
+	// TODO.
+	ValidTo *time.Time `json:"validTo,omitempty"`
 }
 
 // NewSyntheticsSSLCertificate instantiates a new SyntheticsSSLCertificate object

@@ -12,12 +12,16 @@ import (
 	"encoding/json"
 )
 
-// ProcessQueryDefinition struct for ProcessQueryDefinition
+// ProcessQueryDefinition TODO.
 type ProcessQueryDefinition struct {
+	// TODO.
 	FilterBy *[]string `json:"filter_by,omitempty"`
-	Limit    *int64    `json:"limit,omitempty"`
-	Metric   string    `json:"metric"`
-	SearchBy *string   `json:"search_by,omitempty"`
+	// TODO.
+	Limit *int64 `json:"limit,omitempty"`
+	// TODO.
+	Metric string `json:"metric"`
+	// TODO.
+	SearchBy *string `json:"search_by,omitempty"`
 }
 
 // NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object

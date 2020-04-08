@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// AWSLogsListServicesResponse struct for AWSLogsListServicesResponse
+// AWSLogsListServicesResponse TODO.
 type AWSLogsListServicesResponse struct {
 	// Key value in returned object.
 	Id *string `json:"id,omitempty"`

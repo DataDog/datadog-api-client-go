@@ -12,11 +12,15 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestOptions struct for SyntheticsTestOptions
+// SyntheticsTestOptions TODO.
 type SyntheticsTestOptions struct {
-	AcceptSelfSigned  *bool                       `json:"accept_self_signed,omitempty"`
-	DeviceIds         *[]SyntheticsDeviceID       `json:"device_ids,omitempty"`
-	FollowRedirects   *bool                       `json:"follow_redirects,omitempty"`
+	// TODO.
+	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
+	// TODO.
+	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
+	// TODO.
+	FollowRedirects *bool `json:"follow_redirects,omitempty"`
+	// TODO.
 	MinLocationFailed *int64                      `json:"min_location_failed,omitempty"`
 	Retry             *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	TickEvery         *SyntheticsTickInterval     `json:"tick_every,omitempty"`

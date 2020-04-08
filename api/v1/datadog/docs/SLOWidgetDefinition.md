@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ShowErrorBudget** | Pointer to **bool** |  | [optional] 
-**SloId** | Pointer to **string** |  | [optional] 
-**TimeWindows** | Pointer to [**[]WidgetTimeWindows**](WidgetTimeWindows.md) |  | [optional] 
+**ShowErrorBudget** | Pointer to **bool** | TODO. | [optional] 
+**SloId** | Pointer to **string** | TODO. | [optional] 
+**TimeWindows** | Pointer to [**[]WidgetTimeWindows**](WidgetTimeWindows.md) | TODO. | [optional] 
 **Title** | Pointer to **string** | Title of the widget | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title | [optional] 
 **Type** | Pointer to **string** | Type of the widget | [readonly] [default to "slo"]
 **ViewMode** | Pointer to [**WidgetViewMode**](WidgetViewMode.md) |  | [optional] 
-**ViewType** | Pointer to **string** |  | [default to "detail"]
+**ViewType** | Pointer to **string** | TODO. | [default to "detail"]
 
 ## Methods
 

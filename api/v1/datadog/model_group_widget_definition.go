@@ -18,7 +18,8 @@ type GroupWidgetDefinition struct {
 	// Title of the widget
 	Title *string `json:"title,omitempty"`
 	// Type of the widget
-	Type    string   `json:"type"`
+	Type string `json:"type"`
+	// TODO.
 	Widgets []Widget `json:"widgets"`
 }
 

@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageFargateHour struct for UsageFargateHour
+// UsageFargateHour TODO.
 type UsageFargateHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`

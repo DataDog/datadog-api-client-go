@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** |  | [optional] 
+**Message** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

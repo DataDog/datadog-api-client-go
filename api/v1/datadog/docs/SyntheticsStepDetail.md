@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserErrors** | Pointer to [**[]SyntheticsBrowserError**](SyntheticsBrowserError.md) |  | [optional] 
+**BrowserErrors** | Pointer to [**[]SyntheticsBrowserError**](SyntheticsBrowserError.md) | TODO. | [optional] 
 **CheckType** | Pointer to [**SyntheticsCheckType**](SyntheticsCheckType.md) |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Duration** | Pointer to **float64** |  | [optional] 
-**Error** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** | TODO. | [optional] 
+**Duration** | Pointer to **float64** | TODO. | [optional] 
+**Error** | Pointer to **string** | TODO. | [optional] 
 **PlayingTab** | Pointer to [**SyntheticsPlayingTab**](SyntheticsPlayingTab.md) |  | [optional] 
-**Resources** | Pointer to [**[]SyntheticsResource**](SyntheticsResource.md) |  | [optional] 
-**ScreenshotBucketKey** | Pointer to **bool** |  | [optional] 
-**Skipped** | Pointer to **bool** |  | [optional] 
-**SnapshotBucketKey** | Pointer to **bool** |  | [optional] 
-**StepId** | Pointer to **int64** |  | [optional] 
-**SubTestStepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) |  | [optional] 
-**TimeToInteractive** | Pointer to **float64** |  | [optional] 
+**Resources** | Pointer to [**[]SyntheticsResource**](SyntheticsResource.md) | TODO. | [optional] 
+**ScreenshotBucketKey** | Pointer to **bool** | TODO. | [optional] 
+**Skipped** | Pointer to **bool** | TODO. | [optional] 
+**SnapshotBucketKey** | Pointer to **bool** | TODO. | [optional] 
+**StepId** | Pointer to **int64** | TODO. | [optional] 
+**SubTestStepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | TODO. | [optional] 
+**TimeToInteractive** | Pointer to **float64** | TODO. | [optional] 
 **Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
-**Value** | Pointer to [**interface{}**](.md) |  | [optional] 
-**Warnings** | Pointer to [**[]SyntheticsStepDetailWarnings**](SyntheticsStepDetail_warnings.md) |  | [optional] 
+**Url** | Pointer to **string** | TODO. | [optional] 
+**Value** | Pointer to [**interface{}**](.md) | TODO. | [optional] 
+**Warnings** | Pointer to [**[]SyntheticsStepDetailWarnings**](SyntheticsStepDetail_warnings.md) | TODO. | [optional] 
 
 ## Methods
 

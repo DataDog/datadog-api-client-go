@@ -12,19 +12,29 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsBrowserTestResultData struct for SyntheticsBrowserTestResultData
+// SyntheticsBrowserTestResultData TODO.
 type SyntheticsBrowserTestResultData struct {
-	BrowserType         *string                 `json:"browserType,omitempty"`
-	BrowserVersion      *string                 `json:"browserVersion,omitempty"`
-	Device              *SyntheticsDevice       `json:"device,omitempty"`
-	Duration            *float64                `json:"duration,omitempty"`
-	Error               *string                 `json:"error,omitempty"`
-	Passed              *bool                   `json:"passed,omitempty"`
-	ReceivedEmailCount  *int64                  `json:"receivedEmailCount,omitempty"`
-	StartUrl            *string                 `json:"startUrl,omitempty"`
-	StepDetails         *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
-	ThumbnailsBucketKey *bool                   `json:"thumbnailsBucketKey,omitempty"`
-	TimeToInteractive   *float64                `json:"timeToInteractive,omitempty"`
+	// TODO.
+	BrowserType *string `json:"browserType,omitempty"`
+	// TODO.
+	BrowserVersion *string           `json:"browserVersion,omitempty"`
+	Device         *SyntheticsDevice `json:"device,omitempty"`
+	// TODO.
+	Duration *float64 `json:"duration,omitempty"`
+	// TODO.
+	Error *string `json:"error,omitempty"`
+	// TODO.
+	Passed *bool `json:"passed,omitempty"`
+	// TODO.
+	ReceivedEmailCount *int64 `json:"receivedEmailCount,omitempty"`
+	// TODO.
+	StartUrl *string `json:"startUrl,omitempty"`
+	// TODO.
+	StepDetails *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
+	// TODO.
+	ThumbnailsBucketKey *bool `json:"thumbnailsBucketKey,omitempty"`
+	// TODO.
+	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
 }
 
 // NewSyntheticsBrowserTestResultData instantiates a new SyntheticsBrowserTestResultData object
