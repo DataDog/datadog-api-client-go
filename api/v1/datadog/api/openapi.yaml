@@ -7942,8 +7942,146 @@ components:
       - type
       - url
       type: object
-    IPPrefixes:
-      description: TODO.
+    IPPrefixesAPI:
+      description: Available prefix information for the API endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPPrefixesAPM:
+      description: Available prefix information for the APM endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPPrefixesAgents:
+      description: Available prefix information for the Agent endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPPrefixesLogs:
+      description: Available prefix information for the Logs endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPPrefixesProcess:
+      description: Available prefix information for the Process endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPPrefixesSynthetics:
+      description: Available prefix information for the Synthetics endpoints.
+      example:
+        prefixes_ipv4:
+        - prefixes_ipv4
+        - prefixes_ipv4
+        prefixes_ipv6:
+        - prefixes_ipv6
+        - prefixes_ipv6
+      properties:
+        prefixes_ipv4:
+          description: List of IPv4 prefixes.
+          items:
+            description: IPv4 prefix
+            type: string
+          type: array
+        prefixes_ipv6:
+          description: List of IPv6 prefixes.
+          items:
+            description: IPv6 prefix
+            type: string
+          type: array
+      type: object
+    IPPrefixesWebhooks:
+      description: Available prefix information for the Webhook endpoints.
       example:
         prefixes_ipv4:
         - prefixes_ipv4
@@ -8021,28 +8159,28 @@ components:
           - prefixes_ipv6
       properties:
         agents:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPPrefixesAgents'
         api:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPPrefixesAPI'
         apm:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPPrefixesAPM'
         logs:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPPrefixesLogs'
         modified:
           description: Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
           example: 2019-10-31-20-00-00
           type: string
         process:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPPrefixesProcess'
         synthetics:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPPrefixesSynthetics'
         version:
           description: Version of the IP list.
           example: 11
           format: int64
           type: integer
         webhooks:
-          $ref: '#/components/schemas/IPPrefixes'
+          $ref: '#/components/schemas/IPPrefixesWebhooks'
       type: object
     IdpFormData:
       description: TODO.
