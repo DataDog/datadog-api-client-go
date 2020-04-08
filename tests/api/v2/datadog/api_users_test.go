@@ -91,7 +91,13 @@ func TestUserLifecycle(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 204)
 
 	// now, test filtering for it in the list call
-	usrp, httpresp, err := TestAPIClient.UsersApi.ListUsers(TestAuth).Filter(uca.GetEmail()).PageSize(1).PageNumber(0).Execute()
+	usrp, httpresp, err := TestAPIClient.UsersApi.
+		ListUsers(TestAuth).
+		Filter(uca.GetEmail()).
+		PageSize(1).
+		PageNumber(0).
+		SortDir(datadog.QUERYSORTORDER_ASC).
+		Execute()
 	if err != nil {
 		t.Fatalf("Error listing users %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
