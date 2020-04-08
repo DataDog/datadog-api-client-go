@@ -99,6 +99,10 @@ func TestUserLifecycle(t *testing.T) {
 	assert.Equal(t, len(usrp.GetData()), 1)
 	urAttributes = usrp.GetData()[0].GetAttributes()
 	assert.Equal(t, urAttributes.GetEmail(), uca.GetEmail())
+	urMetaAttributes := usrp.GetMeta()
+	page := urMetaAttributes.GetPage()
+	assert.Assert(t, page.GetTotalCount() >= 1)
+	assert.Assert(t, page.GetTotalFilteredCount() >= 1)
 
 	// NOTE: to test getting a user organization, we'd need to have a "whoami" API endpoint
 	// to get the UUID of the current user, but there's no such stable endpoint right now
