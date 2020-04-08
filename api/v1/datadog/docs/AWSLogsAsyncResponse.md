@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to [**[]AWSLogsAsyncResponseErrors**](AWSLogsAsyncResponse_errors.md) |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Errors** | Pointer to [**[]AWSLogsAsyncResponseErrors**](AWSLogsAsyncResponse_errors.md) | TODO. | [optional] 
+**Status** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

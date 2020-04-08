@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tests** | Pointer to [**[]SyntheticsTestDetails**](SyntheticsTestDetails.md) |  | [optional] 
+**Tests** | Pointer to [**[]SyntheticsTestDetails**](SyntheticsTestDetails.md) | TODO. | [optional] 
 
 ## Methods
 

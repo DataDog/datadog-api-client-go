@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cipher** | Pointer to **string** |  | [optional] 
-**Exponent** | Pointer to **float64** |  | [optional] 
-**ExtKeyUsage** | Pointer to **[]string** |  | [optional] 
-**Fingerprint** | Pointer to **string** |  | [optional] 
-**Fingerprint256** | Pointer to **string** |  | [optional] 
+**Cipher** | Pointer to **string** | TODO. | [optional] 
+**Exponent** | Pointer to **float64** | TODO. | [optional] 
+**ExtKeyUsage** | Pointer to **[]string** | TODO. | [optional] 
+**Fingerprint** | Pointer to **string** | TODO. | [optional] 
+**Fingerprint256** | Pointer to **string** | TODO. | [optional] 
 **Issuer** | Pointer to [**SyntheticsSSLCertificateIssuer**](SyntheticsSSLCertificate_issuer.md) |  | [optional] 
-**Modulus** | Pointer to **string** |  | [optional] 
-**Protocol** | Pointer to **string** |  | [optional] 
-**SerialNumber** | Pointer to **string** |  | [optional] 
+**Modulus** | Pointer to **string** | TODO. | [optional] 
+**Protocol** | Pointer to **string** | TODO. | [optional] 
+**SerialNumber** | Pointer to **string** | TODO. | [optional] 
 **Subject** | Pointer to [**SyntheticsSSLCertificateSubject**](SyntheticsSSLCertificate_subject.md) |  | [optional] 
-**ValidFrom** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**ValidTo** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
+**ValidFrom** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
+**ValidTo** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
 
 ## Methods
 

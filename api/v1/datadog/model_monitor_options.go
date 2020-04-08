@@ -25,7 +25,8 @@ type MonitorOptions struct {
 	EvaluationDelay NullableInt64 `json:"evaluation_delay,omitempty"`
 	// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.  **Examples** - If `True`, `[Triggered on {host:h1}] Monitor Title` - If `False`, `[Triggered] Monitor Title`
 	IncludeTags *bool `json:"include_tags,omitempty"`
-	Locked      *bool `json:"locked,omitempty"`
+	// TODO.
+	Locked *bool `json:"locked,omitempty"`
 	// How long the test should be in failure before alerting (integer, number of seconds, max 7200).
 	MinFailureDuration NullableInt64 `json:"min_failure_duration,omitempty"`
 	// The minimum number of locations in failure at the same time during at least one moment in the `min_failure_duration` period (`min_location_failed` and `min_failure_duration` are part of the advanced alerting rules - integer, >= 1).

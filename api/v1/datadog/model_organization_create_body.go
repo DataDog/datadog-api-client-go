@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// OrganizationCreateBody struct for OrganizationCreateBody
+// OrganizationCreateBody TODO.
 type OrganizationCreateBody struct {
 	Billing OrganizationBilling `json:"billing"`
 	// The name of the new child-organization, limited to 32 characters.

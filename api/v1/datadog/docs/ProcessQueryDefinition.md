@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FilterBy** | Pointer to **[]string** |  | [optional] 
-**Limit** | Pointer to **int64** |  | [optional] 
-**Metric** | Pointer to **string** |  | 
-**SearchBy** | Pointer to **string** |  | [optional] 
+**FilterBy** | Pointer to **[]string** | TODO. | [optional] 
+**Limit** | Pointer to **int64** | TODO. | [optional] 
+**Metric** | Pointer to **string** | TODO. | 
+**SearchBy** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageSummaryDate struct for UsageSummaryDate
+// UsageSummaryDate TODO.
 type UsageSummaryDate struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current date for all orgs.
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
@@ -50,8 +50,9 @@ type UsageSummaryDate struct {
 	// Shows the sum of all Network flows indexed over all hours in the current date for all orgs.
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all orgs.
-	NpmHostTop99p *int64                 `json:"npm_host_top99p,omitempty"`
-	Orgs          *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
+	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
+	// TODO.
+	Orgs *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
 	// Shows the sum of all RUM Sessions over all hours in the current date for all orgs
 	RumSessionCountSum *int64 `json:"rum_session_count_sum,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current date for all orgs.

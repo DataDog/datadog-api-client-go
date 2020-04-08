@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Devices** | Pointer to [**[]SyntheticsDevice**](SyntheticsDevice.md) |  | [optional] 
+**Devices** | Pointer to [**[]SyntheticsDevice**](SyntheticsDevice.md) | TODO. | [optional] 
 
 ## Methods
 

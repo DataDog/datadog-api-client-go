@@ -13,7 +13,7 @@ import (
 	"os"
 )
 
-// IdpFormData struct for IdpFormData
+// IdpFormData TODO.
 type IdpFormData struct {
 	// The path to the XML metadata file you wish to upload.
 	IdpFile *os.File `json:"idp_file"`

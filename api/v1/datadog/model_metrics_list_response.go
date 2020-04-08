@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MetricsListResponse struct for MetricsListResponse
+// MetricsListResponse TODO.
 type MetricsListResponse struct {
 	// Time when the metrics were active, seconds since the Unix epoch.
 	From *string `json:"from,omitempty"`

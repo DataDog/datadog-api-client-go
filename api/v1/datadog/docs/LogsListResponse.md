@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Logs** | Pointer to [**[]Log**](Log.md) |  | [optional] 
+**Logs** | Pointer to [**[]Log**](Log.md) | TODO. | [optional] 
 **NextLogId** | Pointer to **string** | Hash identifier of the next log to return in the list. This parameter is used for the pagination feature. | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

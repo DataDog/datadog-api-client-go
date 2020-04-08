@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestProcessStatus the model 'SyntheticsTestProcessStatus'
+// SyntheticsTestProcessStatus TODO.
 type SyntheticsTestProcessStatus string
 
 // List of SyntheticsTestProcessStatus

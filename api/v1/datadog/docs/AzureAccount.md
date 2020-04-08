@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientId** | Pointer to **string** | Your Azure web application ID. | [optional] 
 **ClientSecret** | Pointer to **string** | Your Azure web application secret key. | [optional] 
-**Errors** | Pointer to **[]string** |  | [optional] 
+**Errors** | Pointer to **[]string** | TODO. | [optional] 
 **HostFilters** | Pointer to **string** | Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog. | [optional] 
 **NewClientId** | Pointer to **string** | Your New Azure web application ID. | [optional] 
 **NewTenantName** | Pointer to **string** | Your New Azure Active Directory ID. | [optional] 

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsBrowserVariableType the model 'SyntheticsBrowserVariableType'
+// SyntheticsBrowserVariableType TODO.
 type SyntheticsBrowserVariableType string
 
 // List of SyntheticsBrowserVariableType

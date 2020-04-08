@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Operator** | Pointer to [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
-**Property** | Pointer to **string** |  | [optional] 
-**Target** | Pointer to [**interface{}**](.md) |  | [optional] 
+**Property** | Pointer to **string** | TODO. | [optional] 
+**Target** | Pointer to [**interface{}**](.md) | TODO. | [optional] 
 **Type** | Pointer to [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
 
 ## Methods

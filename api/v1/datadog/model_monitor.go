@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// Monitor struct for Monitor
+// Monitor TODO.
 type Monitor struct {
 	// Timestamp of the monitor creation.
 	Created *time.Time `json:"created,omitempty"`
@@ -32,8 +32,9 @@ type Monitor struct {
 	Name         *string               `json:"name,omitempty"`
 	Options      *MonitorOptions       `json:"options,omitempty"`
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
-	Query        *string               `json:"query,omitempty"`
-	State        *MonitorState         `json:"state,omitempty"`
+	// TODO.
+	Query *string       `json:"query,omitempty"`
+	State *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
 	Tags *[]string    `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`

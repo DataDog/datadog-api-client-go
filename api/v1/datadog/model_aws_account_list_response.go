@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// AWSAccountListResponse struct for AWSAccountListResponse
+// AWSAccountListResponse TODO.
 type AWSAccountListResponse struct {
+	// TODO.
 	Accounts *[]AWSAccount `json:"accounts,omitempty"`
 }
 

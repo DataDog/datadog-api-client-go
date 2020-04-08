@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Accounts** | Pointer to [**[]AWSAccount**](AWSAccount.md) |  | [optional] 
+**Accounts** | Pointer to [**[]AWSAccount**](AWSAccount.md) | TODO. | [optional] 
 
 ## Methods
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Query** | Pointer to **string** | Default query is &#39;*&#39;, meaning all logs flowing in the index would be excluded. Scope down exclusion filter to only a subset of logs with a log query. | [optional] 
-**SampleRate** | Pointer to **float64** |  | 
+**SampleRate** | Pointer to **float64** | TODO. | 
 
 ## Methods
 

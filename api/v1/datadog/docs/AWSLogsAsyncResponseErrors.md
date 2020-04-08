@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to **string** | TODO. | [optional] 
+**Message** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

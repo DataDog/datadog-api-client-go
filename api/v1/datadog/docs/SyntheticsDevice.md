@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Height** | Pointer to **int64** |  | 
+**Height** | Pointer to **int64** | TODO. | 
 **Id** | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | 
-**IsMobile** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **string** |  | 
-**Width** | Pointer to **int64** |  | 
+**IsMobile** | Pointer to **bool** | TODO. | [optional] 
+**Name** | Pointer to **string** | TODO. | 
+**Width** | Pointer to **int64** | TODO. | 
 
 ## Methods
 

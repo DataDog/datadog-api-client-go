@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDeviceID the model 'SyntheticsDeviceID'
+// SyntheticsDeviceID TODO.
 type SyntheticsDeviceID string
 
 // List of SyntheticsDeviceID

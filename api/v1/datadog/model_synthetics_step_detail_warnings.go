@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsStepDetailWarnings struct for SyntheticsStepDetailWarnings
+// SyntheticsStepDetailWarnings TODO.
 type SyntheticsStepDetailWarnings struct {
+	// TODO.
 	Message string                `json:"message"`
 	Type    SyntheticsWarningType `json:"type"`
 }

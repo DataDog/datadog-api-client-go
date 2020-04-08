@@ -13,10 +13,12 @@ import (
 	"time"
 )
 
-// SyntheticsDeleteTestsResponseDeletedTests struct for SyntheticsDeleteTestsResponseDeletedTests
+// SyntheticsDeleteTestsResponseDeletedTests TODO.
 type SyntheticsDeleteTestsResponseDeletedTests struct {
+	// TODO.
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
-	PublicId  *string    `json:"public_id,omitempty"`
+	// TODO.
+	PublicId *string `json:"public_id,omitempty"`
 }
 
 // NewSyntheticsDeleteTestsResponseDeletedTests instantiates a new SyntheticsDeleteTestsResponseDeletedTests object

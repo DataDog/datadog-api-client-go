@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageSummaryResponse struct for UsageSummaryResponse
+// UsageSummaryResponse TODO.
 type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current month(s) for all orgs.
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
@@ -64,8 +64,9 @@ type UsageSummaryResponse struct {
 	// Shows the sum of all Synthetic API tests over all hours in the current month(s) for all orgs.
 	SyntheticsCheckCallsCountAggSum *int64 `json:"synthetics_check_calls_count_agg_sum,omitempty"`
 	// Shows the sum of all analyzed spans indexed over all hours in the current month(s) for all orgs.
-	TraceSearchIndexedEventsCountAggSum *int64              `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
-	Usage                               *[]UsageSummaryDate `json:"usage,omitempty"`
+	TraceSearchIndexedEventsCountAggSum *int64 `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
+	// TODO.
+	Usage *[]UsageSummaryDate `json:"usage,omitempty"`
 }
 
 // NewUsageSummaryResponse instantiates a new UsageSummaryResponse object

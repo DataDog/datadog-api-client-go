@@ -12,12 +12,15 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsBrowserError struct for SyntheticsBrowserError
+// SyntheticsBrowserError TODO.
 type SyntheticsBrowserError struct {
-	Description string                     `json:"description"`
-	Name        string                     `json:"name"`
-	StatusCode  *int64                     `json:"statusCode,omitempty"`
-	Type        SyntheticsBrowserErrorType `json:"type"`
+	// TODO.
+	Description string `json:"description"`
+	// TODO.
+	Name string `json:"name"`
+	// TODO.
+	StatusCode *int64                     `json:"statusCode,omitempty"`
+	Type       SyntheticsBrowserErrorType `json:"type"`
 }
 
 // NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object

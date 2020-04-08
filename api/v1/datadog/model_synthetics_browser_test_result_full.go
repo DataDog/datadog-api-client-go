@@ -12,15 +12,19 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsBrowserTestResultFull struct for SyntheticsBrowserTestResultFull
+// SyntheticsBrowserTestResultFull TODO.
 type SyntheticsBrowserTestResultFull struct {
-	Check        *SyntheticsAPITestResultFullCheck `json:"check,omitempty"`
-	CheckTime    *float64                          `json:"check_time,omitempty"`
-	CheckVersion *int64                            `json:"check_version,omitempty"`
-	ProbeDc      *string                           `json:"probe_dc,omitempty"`
-	Result       *SyntheticsBrowserTestResultData  `json:"result,omitempty"`
-	ResultId     *string                           `json:"result_id,omitempty"`
-	Status       *SyntheticsTestMonitorStatus      `json:"status,omitempty"`
+	Check *SyntheticsAPITestResultFullCheck `json:"check,omitempty"`
+	// TODO.
+	CheckTime *float64 `json:"check_time,omitempty"`
+	// TODO.
+	CheckVersion *int64 `json:"check_version,omitempty"`
+	// TODO.
+	ProbeDc *string                          `json:"probe_dc,omitempty"`
+	Result  *SyntheticsBrowserTestResultData `json:"result,omitempty"`
+	// TODO.
+	ResultId *string                      `json:"result_id,omitempty"`
+	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 }
 
 // NewSyntheticsBrowserTestResultFull instantiates a new SyntheticsBrowserTestResultFull object

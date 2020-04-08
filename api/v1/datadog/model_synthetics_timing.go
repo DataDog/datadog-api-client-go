@@ -12,17 +12,26 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTiming struct for SyntheticsTiming
+// SyntheticsTiming TODO.
 type SyntheticsTiming struct {
-	Dns       *float64 `json:"dns,omitempty"`
-	Download  *float64 `json:"download,omitempty"`
+	// TODO.
+	Dns *float64 `json:"dns,omitempty"`
+	// TODO.
+	Download *float64 `json:"download,omitempty"`
+	// TODO.
 	FirstByte *float64 `json:"firstByte,omitempty"`
+	// TODO.
 	Handshake *float64 `json:"handshake,omitempty"`
-	Redirect  *float64 `json:"redirect,omitempty"`
-	Ssl       *float64 `json:"ssl,omitempty"`
-	Tcp       *float64 `json:"tcp,omitempty"`
-	Total     *float64 `json:"total,omitempty"`
-	Wait      *float64 `json:"wait,omitempty"`
+	// TODO.
+	Redirect *float64 `json:"redirect,omitempty"`
+	// TODO.
+	Ssl *float64 `json:"ssl,omitempty"`
+	// TODO.
+	Tcp *float64 `json:"tcp,omitempty"`
+	// TODO.
+	Total *float64 `json:"total,omitempty"`
+	// TODO.
+	Wait *float64 `json:"wait,omitempty"`
 }
 
 // NewSyntheticsTiming instantiates a new SyntheticsTiming object

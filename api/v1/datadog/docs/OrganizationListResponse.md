@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Orgs** | Pointer to [**[]Organization**](Organization.md) |  | [optional] 
+**Orgs** | Pointer to [**[]Organization**](Organization.md) | TODO. | [optional] 
 
 ## Methods
 

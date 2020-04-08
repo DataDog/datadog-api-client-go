@@ -12,12 +12,14 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsAssertion struct for SyntheticsAssertion
+// SyntheticsAssertion TODO.
 type SyntheticsAssertion struct {
 	Operator SyntheticsAssertionOperator `json:"operator"`
-	Property *string                     `json:"property,omitempty"`
-	Target   *interface{}                `json:"target,omitempty"`
-	Type     SyntheticsAssertionType     `json:"type"`
+	// TODO.
+	Property *string `json:"property,omitempty"`
+	// TODO.
+	Target *interface{}            `json:"target,omitempty"`
+	Type   SyntheticsAssertionType `json:"type"`
 }
 
 // NewSyntheticsAssertion instantiates a new SyntheticsAssertion object

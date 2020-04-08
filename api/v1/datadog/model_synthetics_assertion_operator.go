@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsAssertionOperator the model 'SyntheticsAssertionOperator'
+// SyntheticsAssertionOperator TODO.
 type SyntheticsAssertionOperator string
 
 // List of SyntheticsAssertionOperator

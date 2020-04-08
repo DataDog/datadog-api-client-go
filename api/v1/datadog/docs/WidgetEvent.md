@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Q** | Pointer to **string** |  | 
+**Q** | Pointer to **string** | TODO. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or | [optional] 
 
 ## Methods

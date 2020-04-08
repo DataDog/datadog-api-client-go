@@ -12,10 +12,11 @@ import (
 	"encoding/json"
 )
 
-// Log struct for Log
+// Log TODO.
 type Log struct {
 	Content *LogContent `json:"content,omitempty"`
-	Id      *string     `json:"id,omitempty"`
+	// TODO.
+	Id *string `json:"id,omitempty"`
 }
 
 // NewLog instantiates a new Log object

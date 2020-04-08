@@ -12,24 +12,32 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestDetails struct for SyntheticsTestDetails
+// SyntheticsTestDetails TODO.
 type SyntheticsTestDetails struct {
-	Config       *SyntheticsTestConfig         `json:"config,omitempty"`
-	CreatedAt    *string                       `json:"created_at,omitempty"`
-	CreatedBy    *SyntheticsTestAuthor         `json:"created_by,omitempty"`
-	Locations    *[]string                     `json:"locations,omitempty"`
-	Message      *string                       `json:"message,omitempty"`
-	ModifiedAt   *string                       `json:"modified_at,omitempty"`
-	ModifiedBy   *SyntheticsTestAuthor         `json:"modified_by,omitempty"`
-	Name         *string                       `json:"name,omitempty"`
-	Options      *SyntheticsTestOptions        `json:"options,omitempty"`
-	OverallState *SyntheticsTestMonitorStatus  `json:"overall_state,omitempty"`
-	PublicId     *string                       `json:"public_id,omitempty"`
-	Status       *SyntheticsTestPauseStatus    `json:"status,omitempty"`
-	StepCount    *int64                        `json:"stepCount,omitempty"`
-	Subtype      *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-	Tags         *[]string                     `json:"tags,omitempty"`
-	Type         *SyntheticsTestDetailsType    `json:"type,omitempty"`
+	Config *SyntheticsTestConfig `json:"config,omitempty"`
+	// TODO.
+	CreatedAt *string               `json:"created_at,omitempty"`
+	CreatedBy *SyntheticsTestAuthor `json:"created_by,omitempty"`
+	// TODO.
+	Locations *[]string `json:"locations,omitempty"`
+	// TODO.
+	Message *string `json:"message,omitempty"`
+	// TODO.
+	ModifiedAt *string               `json:"modified_at,omitempty"`
+	ModifiedBy *SyntheticsTestAuthor `json:"modified_by,omitempty"`
+	// TODO.
+	Name         *string                      `json:"name,omitempty"`
+	Options      *SyntheticsTestOptions       `json:"options,omitempty"`
+	OverallState *SyntheticsTestMonitorStatus `json:"overall_state,omitempty"`
+	// TODO.
+	PublicId *string                    `json:"public_id,omitempty"`
+	Status   *SyntheticsTestPauseStatus `json:"status,omitempty"`
+	// TODO.
+	StepCount *int64                        `json:"stepCount,omitempty"`
+	Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+	// TODO.
+	Tags *[]string                  `json:"tags,omitempty"`
+	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 }
 
 // NewSyntheticsTestDetails instantiates a new SyntheticsTestDetails object

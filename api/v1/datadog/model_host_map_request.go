@@ -12,15 +12,16 @@ import (
 	"encoding/json"
 )
 
-// HostMapRequest struct for HostMapRequest
+// HostMapRequest TODO.
 type HostMapRequest struct {
 	ApmQuery     *LogQueryDefinition     `json:"apm_query,omitempty"`
 	EventQuery   *EventQueryDefinition   `json:"event_query,omitempty"`
 	LogQuery     *LogQueryDefinition     `json:"log_query,omitempty"`
 	NetworkQuery *LogQueryDefinition     `json:"network_query,omitempty"`
 	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
-	Q            *string                 `json:"q,omitempty"`
-	RumQuery     *LogQueryDefinition     `json:"rum_query,omitempty"`
+	// TODO.
+	Q        *string             `json:"q,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 }
 
 // NewHostMapRequest instantiates a new HostMapRequest object

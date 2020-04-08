@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Check** | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFull_check.md) |  | [optional] 
-**CheckTime** | Pointer to **float64** |  | [optional] 
-**CheckVersion** | Pointer to **int64** |  | [optional] 
-**ProbeDc** | Pointer to **string** |  | [optional] 
+**CheckTime** | Pointer to **float64** | TODO. | [optional] 
+**CheckVersion** | Pointer to **int64** | TODO. | [optional] 
+**ProbeDc** | Pointer to **string** | TODO. | [optional] 
 **Result** | Pointer to [**SyntheticsBrowserTestResultData**](SyntheticsBrowserTestResultData.md) |  | [optional] 
-**ResultId** | Pointer to **string** |  | [optional] 
+**ResultId** | Pointer to **string** | TODO. | [optional] 
 **Status** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
 
 ## Methods

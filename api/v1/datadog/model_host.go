@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// Host struct for Host
+// Host TODO.
 type Host struct {
 	// Host aliases collected by Datadog.
 	Aliases *[]string `json:"aliases,omitempty"`

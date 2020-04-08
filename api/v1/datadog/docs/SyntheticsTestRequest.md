@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BasicAuth** | Pointer to [**SyntheticsTestRequestBasicAuth**](SyntheticsTestRequest_basicAuth.md) |  | [optional] 
-**Body** | Pointer to **string** |  | [optional] 
-**Headers** | Pointer to **map[string]string** |  | [optional] 
-**Host** | Pointer to **string** |  | [optional] 
+**Body** | Pointer to **string** | TODO. | [optional] 
+**Headers** | Pointer to **map[string]string** | TODO. | [optional] 
+**Host** | Pointer to **string** | TODO. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | 
-**Port** | Pointer to **int64** |  | [optional] 
-**Query** | Pointer to [**interface{}**](.md) |  | [optional] 
-**Timeout** | Pointer to **float64** |  | [optional] 
-**Url** | Pointer to **string** |  | 
+**Port** | Pointer to **int64** | TODO. | [optional] 
+**Query** | Pointer to [**interface{}**](.md) | TODO. | [optional] 
+**Timeout** | Pointer to **float64** | TODO. | [optional] 
+**Url** | Pointer to **string** | TODO. | 
 
 ## Methods
 

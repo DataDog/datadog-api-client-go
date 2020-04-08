@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// UsageFargateResponse struct for UsageFargateResponse
+// UsageFargateResponse TODO.
 type UsageFargateResponse struct {
 	// Array with the number of hourly Fargate tasks recorded for a given organization.
 	Usage *[]UsageFargateHour `json:"usage,omitempty"`

@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// ApplicationKeyListResponse struct for ApplicationKeyListResponse
+// ApplicationKeyListResponse TODO.
 type ApplicationKeyListResponse struct {
+	// TODO.
 	ApplicationKeys *[]ApplicationKey `json:"application_keys,omitempty"`
 }
 

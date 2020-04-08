@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDeleteTestsPayload struct for SyntheticsDeleteTestsPayload
+// SyntheticsDeleteTestsPayload TODO.
 type SyntheticsDeleteTestsPayload struct {
+	// TODO.
 	PublicIds *[]string `json:"public_ids,omitempty"`
 }
 
