@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DisplayName** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**IsActive** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Region** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** | TODO. | [optional] 
+**Id** | Pointer to **int64** | TODO. | [optional] 
+**IsActive** | Pointer to **bool** | TODO. | [optional] 
+**Name** | Pointer to **string** | TODO. | [optional] 
+**Region** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

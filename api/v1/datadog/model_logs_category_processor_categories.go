@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// LogsCategoryProcessorCategories struct for LogsCategoryProcessorCategories
+// LogsCategoryProcessorCategories TODO.
 type LogsCategoryProcessorCategories struct {
 	Filter *LogsFilter `json:"filter,omitempty"`
 	// Value to assign to the target attribute.

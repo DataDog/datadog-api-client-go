@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectivesBulkDeletedErrors struct for ServiceLevelObjectivesBulkDeletedErrors
+// ServiceLevelObjectivesBulkDeletedErrors TODO.
 type ServiceLevelObjectivesBulkDeletedErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`

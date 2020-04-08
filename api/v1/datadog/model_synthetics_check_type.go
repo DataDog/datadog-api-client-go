@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsCheckType the model 'SyntheticsCheckType'
+// SyntheticsCheckType TODO.
 type SyntheticsCheckType string
 
 // List of SyntheticsCheckType

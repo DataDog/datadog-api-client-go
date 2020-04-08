@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsAPITestResultFullCheck struct for SyntheticsAPITestResultFullCheck
+// SyntheticsAPITestResultFullCheck TODO.
 type SyntheticsAPITestResultFullCheck struct {
 	Config SyntheticsTestConfig `json:"config"`
 }

@@ -12,10 +12,12 @@ import (
 	"encoding/json"
 )
 
-// AWSLogsAsyncResponse struct for AWSLogsAsyncResponse
+// AWSLogsAsyncResponse TODO.
 type AWSLogsAsyncResponse struct {
+	// TODO.
 	Errors *[]AWSLogsAsyncResponseErrors `json:"errors,omitempty"`
-	Status *string                       `json:"status,omitempty"`
+	// TODO.
+	Status *string `json:"status,omitempty"`
 }
 
 // NewAWSLogsAsyncResponse instantiates a new AWSLogsAsyncResponse object

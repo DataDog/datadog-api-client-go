@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// Widget struct for Widget
+// Widget TODO.
 type Widget struct {
 	Definition WidgetDefinition `json:"definition"`
 	// ID of the widget

@@ -12,13 +12,19 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsSSLCertificateIssuer struct for SyntheticsSSLCertificateIssuer
+// SyntheticsSSLCertificateIssuer TODO.
 type SyntheticsSSLCertificateIssuer struct {
-	C  *string `json:"C,omitempty"`
+	// TODO.
+	C *string `json:"C,omitempty"`
+	// TODO.
 	CN *string `json:"CN,omitempty"`
-	L  *string `json:"L,omitempty"`
-	O  *string `json:"O,omitempty"`
+	// TODO.
+	L *string `json:"L,omitempty"`
+	// TODO.
+	O *string `json:"O,omitempty"`
+	// TODO.
 	OU *string `json:"OU,omitempty"`
+	// TODO.
 	ST *string `json:"ST,omitempty"`
 }
 

@@ -12,13 +12,18 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsLocation struct for SyntheticsLocation
+// SyntheticsLocation TODO.
 type SyntheticsLocation struct {
+	// TODO.
 	DisplayName *string `json:"display_name,omitempty"`
-	Id          *int64  `json:"id,omitempty"`
-	IsActive    *bool   `json:"is_active,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	Region      *string `json:"region,omitempty"`
+	// TODO.
+	Id *int64 `json:"id,omitempty"`
+	// TODO.
+	IsActive *bool `json:"is_active,omitempty"`
+	// TODO.
+	Name *string `json:"name,omitempty"`
+	// TODO.
+	Region *string `json:"region,omitempty"`
 }
 
 // NewSyntheticsLocation instantiates a new SyntheticsLocation object

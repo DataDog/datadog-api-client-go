@@ -14,6 +14,7 @@ import (
 
 // OrganizationSubscription A JSON array of subscription type. Types available are `trial`, `free`, and `pro`.
 type OrganizationSubscription struct {
+	// TODO.
 	Type *string `json:"type,omitempty"`
 }
 

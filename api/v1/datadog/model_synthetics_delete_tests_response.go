@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDeleteTestsResponse struct for SyntheticsDeleteTestsResponse
+// SyntheticsDeleteTestsResponse TODO.
 type SyntheticsDeleteTestsResponse struct {
+	// TODO.
 	DeletedTests *[]SyntheticsDeleteTestsResponseDeletedTests `json:"deleted_tests,omitempty"`
 }
 

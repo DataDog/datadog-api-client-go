@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// AWSLogsListResponse struct for AWSLogsListResponse
+// AWSLogsListResponse TODO.
 type AWSLogsListResponse struct {
 	// Your AWS Account ID without dashes.
 	AccountId *string `json:"account_id,omitempty"`

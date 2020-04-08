@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Default** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **string** |  | 
-**Prefix** | Pointer to **NullableString** |  | [optional] 
+**Default** | Pointer to **NullableString** | TODO. | [optional] 
+**Name** | Pointer to **string** | TODO. | 
+**Prefix** | Pointer to **NullableString** | TODO. | [optional] 
 
 ## Methods
 

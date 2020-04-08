@@ -12,12 +12,16 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestAuthor struct for SyntheticsTestAuthor
+// SyntheticsTestAuthor TODO.
 type SyntheticsTestAuthor struct {
-	Email  *string `json:"email,omitempty"`
+	// TODO.
+	Email *string `json:"email,omitempty"`
+	// TODO.
 	Handle *string `json:"handle,omitempty"`
-	Id     *int64  `json:"id,omitempty"`
-	Name   *string `json:"name,omitempty"`
+	// TODO.
+	Id *int64 `json:"id,omitempty"`
+	// TODO.
+	Name *string `json:"name,omitempty"`
 }
 
 // NewSyntheticsTestAuthor instantiates a new SyntheticsTestAuthor object

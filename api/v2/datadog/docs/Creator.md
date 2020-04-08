@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | [optional] 
-**Handle** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Email** | Pointer to **string** | TODO. | [optional] 
+**Handle** | Pointer to **string** | TODO. | [optional] 
+**Name** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

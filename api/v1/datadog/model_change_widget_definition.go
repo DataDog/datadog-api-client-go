@@ -14,6 +14,7 @@ import (
 
 // ChangeWidgetDefinition The Change graph shows you the change in a value over the time period chosen
 type ChangeWidgetDefinition struct {
+	// TODO.
 	Requests []ChangeWidgetRequest `json:"requests"`
 	Time     *WidgetTime           `json:"time,omitempty"`
 	// Title of the widget

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dns** | Pointer to **float64** |  | [optional] 
-**Download** | Pointer to **float64** |  | [optional] 
-**FirstByte** | Pointer to **float64** |  | [optional] 
-**Handshake** | Pointer to **float64** |  | [optional] 
-**Redirect** | Pointer to **float64** |  | [optional] 
-**Ssl** | Pointer to **float64** |  | [optional] 
-**Tcp** | Pointer to **float64** |  | [optional] 
-**Total** | Pointer to **float64** |  | [optional] 
-**Wait** | Pointer to **float64** |  | [optional] 
+**Dns** | Pointer to **float64** | TODO. | [optional] 
+**Download** | Pointer to **float64** | TODO. | [optional] 
+**FirstByte** | Pointer to **float64** | TODO. | [optional] 
+**Handshake** | Pointer to **float64** | TODO. | [optional] 
+**Redirect** | Pointer to **float64** | TODO. | [optional] 
+**Ssl** | Pointer to **float64** | TODO. | [optional] 
+**Tcp** | Pointer to **float64** | TODO. | [optional] 
+**Total** | Pointer to **float64** | TODO. | [optional] 
+**Wait** | Pointer to **float64** | TODO. | [optional] 
 
 ## Methods
 

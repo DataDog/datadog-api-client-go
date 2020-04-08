@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FromTs** | Pointer to **float64** |  | 
-**ProbeDc** | Pointer to **[]string** |  | [optional] 
-**ToTs** | Pointer to **float64** |  | 
+**FromTs** | Pointer to **float64** | TODO. | 
+**ProbeDc** | Pointer to **[]string** | TODO. | [optional] 
+**ToTs** | Pointer to **float64** | TODO. | 
 
 ## Methods
 

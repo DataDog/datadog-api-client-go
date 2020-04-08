@@ -12,16 +12,23 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsResource struct for SyntheticsResource
+// SyntheticsResource TODO.
 type SyntheticsResource struct {
-	Duration  *float64                `json:"duration,omitempty"`
-	Method    *string                 `json:"method,omitempty"`
-	Size      *int64                  `json:"size,omitempty"`
-	Status    *int64                  `json:"status,omitempty"`
-	Timestamp *float64                `json:"timestamp,omitempty"`
-	TraceId   *string                 `json:"traceId,omitempty"`
-	Type      *SyntheticsResourceType `json:"type,omitempty"`
-	Url       *string                 `json:"url,omitempty"`
+	// TODO.
+	Duration *float64 `json:"duration,omitempty"`
+	// TODO.
+	Method *string `json:"method,omitempty"`
+	// TODO.
+	Size *int64 `json:"size,omitempty"`
+	// TODO.
+	Status *int64 `json:"status,omitempty"`
+	// TODO.
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// TODO.
+	TraceId *string                 `json:"traceId,omitempty"`
+	Type    *SyntheticsResourceType `json:"type,omitempty"`
+	// TODO.
+	Url *string `json:"url,omitempty"`
 }
 
 // NewSyntheticsResource instantiates a new SyntheticsResource object

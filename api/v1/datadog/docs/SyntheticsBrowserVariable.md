@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Example** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | 
-**Pattern** | Pointer to **string** |  | [optional] 
+**Example** | Pointer to **string** | TODO. | [optional] 
+**Id** | Pointer to **string** | TODO. | [optional] 
+**Name** | Pointer to **string** | TODO. | 
+**Pattern** | Pointer to **string** | TODO. | [optional] 
 **Type** | Pointer to [**SyntheticsBrowserVariableType**](SyntheticsBrowserVariableType.md) |  | 
 
 ## Methods

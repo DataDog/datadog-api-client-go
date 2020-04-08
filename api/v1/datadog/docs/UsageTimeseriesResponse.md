@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageTimeseriesHour**](UsageTimeseriesHour.md) |  | [optional] 
+**Usage** | Pointer to [**[]UsageTimeseriesHour**](UsageTimeseriesHour.md) | TODO. | [optional] 
 
 ## Methods
 

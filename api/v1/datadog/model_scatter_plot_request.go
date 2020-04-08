@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ScatterPlotRequest struct for ScatterPlotRequest
+// ScatterPlotRequest TODO.
 type ScatterPlotRequest struct {
 	Aggregator   *WidgetAggregator       `json:"aggregator,omitempty"`
 	ApmQuery     *LogQueryDefinition     `json:"apm_query,omitempty"`
@@ -20,8 +20,9 @@ type ScatterPlotRequest struct {
 	LogQuery     *LogQueryDefinition     `json:"log_query,omitempty"`
 	NetworkQuery *LogQueryDefinition     `json:"network_query,omitempty"`
 	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
-	Q            *string                 `json:"q,omitempty"`
-	RumQuery     *LogQueryDefinition     `json:"rum_query,omitempty"`
+	// TODO.
+	Q        *string             `json:"q,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 }
 
 // NewScatterPlotRequest instantiates a new ScatterPlotRequest object

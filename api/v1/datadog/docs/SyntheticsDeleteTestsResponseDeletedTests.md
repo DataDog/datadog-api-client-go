@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**PublicId** | Pointer to **string** |  | [optional] 
+**DeletedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
+**PublicId** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

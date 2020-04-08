@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsPlayingTab the model 'SyntheticsPlayingTab'
+// SyntheticsPlayingTab TODO.
 type SyntheticsPlayingTab int64
 
 // List of SyntheticsPlayingTab

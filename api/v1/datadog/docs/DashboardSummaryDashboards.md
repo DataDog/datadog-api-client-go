@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorHandle** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**IsReadOnly** | Pointer to **bool** |  | [optional] 
-**LayoutType** | Pointer to **string** |  | [optional] 
-**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
+**AuthorHandle** | Pointer to **string** | TODO. | [optional] 
+**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
+**Description** | Pointer to **string** | TODO. | [optional] 
+**Id** | Pointer to **string** | TODO. | [optional] 
+**IsReadOnly** | Pointer to **bool** | TODO. | [optional] 
+**LayoutType** | Pointer to **string** | TODO. | [optional] 
+**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
+**Title** | Pointer to **string** | TODO. | [optional] 
+**Url** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

@@ -14,6 +14,7 @@ import (
 
 // OrganizationBilling A JSON array of billing type. Note that only `parent_billing` is supported.
 type OrganizationBilling struct {
+	// TODO.
 	Type *string `json:"type,omitempty"`
 }
 

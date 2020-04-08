@@ -12,9 +12,11 @@ import (
 	"encoding/json"
 )
 
-// LogQueryDefinitionGroupBy struct for LogQueryDefinitionGroupBy
+// LogQueryDefinitionGroupBy TODO.
 type LogQueryDefinitionGroupBy struct {
-	Facet string                  `json:"facet"`
+	// TODO.
+	Facet string `json:"facet"`
+	// TODO.
 	Limit *int64                  `json:"limit,omitempty"`
 	Sort  *LogQueryDefinitionSort `json:"sort,omitempty"`
 }

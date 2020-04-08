@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedTests** | Pointer to [**[]SyntheticsDeleteTestsResponseDeletedTests**](SyntheticsDeleteTestsResponse_deleted_tests.md) |  | [optional] 
+**DeletedTests** | Pointer to [**[]SyntheticsDeleteTestsResponseDeletedTests**](SyntheticsDeleteTestsResponse_deleted_tests.md) | TODO. | [optional] 
 
 ## Methods
 

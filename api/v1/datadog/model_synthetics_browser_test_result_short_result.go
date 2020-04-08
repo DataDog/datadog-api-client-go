@@ -12,13 +12,17 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsBrowserTestResultShortResult struct for SyntheticsBrowserTestResultShortResult
+// SyntheticsBrowserTestResultShortResult TODO.
 type SyntheticsBrowserTestResultShortResult struct {
-	Device             *SyntheticsDevice `json:"device,omitempty"`
-	Duration           *float64          `json:"duration,omitempty"`
-	ErrorCount         *int64            `json:"errorCount,omitempty"`
-	StepCountCompleted *int64            `json:"stepCountCompleted,omitempty"`
-	StepCountTotal     *int64            `json:"stepCountTotal,omitempty"`
+	Device *SyntheticsDevice `json:"device,omitempty"`
+	// TODO.
+	Duration *float64 `json:"duration,omitempty"`
+	// TODO.
+	ErrorCount *int64 `json:"errorCount,omitempty"`
+	// TODO.
+	StepCountCompleted *int64 `json:"stepCountCompleted,omitempty"`
+	// TODO.
+	StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
 }
 
 // NewSyntheticsBrowserTestResultShortResult instantiates a new SyntheticsBrowserTestResultShortResult object

@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UsageLogsResponse struct for UsageLogsResponse
+// UsageLogsResponse TODO.
 type UsageLogsResponse struct {
+	// TODO.
 	Usage *[]UsageLogsHour `json:"usage,omitempty"`
 }
 

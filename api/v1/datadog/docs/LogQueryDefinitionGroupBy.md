@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Facet** | Pointer to **string** |  | 
-**Limit** | Pointer to **int64** |  | [optional] 
+**Facet** | Pointer to **string** | TODO. | 
+**Limit** | Pointer to **int64** | TODO. | [optional] 
 **Sort** | Pointer to [**LogQueryDefinitionSort**](LogQueryDefinition_sort.md) |  | [optional] 
 
 ## Methods

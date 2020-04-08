@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cert** | Pointer to [**SyntheticsSSLCertificate**](SyntheticsSSLCertificate.md) |  | [optional] 
 **ErrorCode** | Pointer to [**SyntheticsErrorCode**](SyntheticsErrorCode.md) |  | [optional] 
-**ErrorMessage** | Pointer to **string** |  | [optional] 
+**ErrorMessage** | Pointer to **string** | TODO. | [optional] 
 **EventType** | Pointer to [**SyntheticsTestProcessStatus**](SyntheticsTestProcessStatus.md) |  | [optional] 
-**HttpStatusCode** | Pointer to **int64** |  | [optional] 
-**RequestHeaders** | Pointer to **map[string]interface{}** |  | [optional] 
-**ResponseBody** | Pointer to **string** |  | [optional] 
-**ResponseHeaders** | Pointer to **map[string]interface{}** |  | [optional] 
-**ResponseSize** | Pointer to **int64** |  | [optional] 
+**HttpStatusCode** | Pointer to **int64** | TODO. | [optional] 
+**RequestHeaders** | Pointer to **map[string]interface{}** | TODO. | [optional] 
+**ResponseBody** | Pointer to **string** | TODO. | [optional] 
+**ResponseHeaders** | Pointer to **map[string]interface{}** | TODO. | [optional] 
+**ResponseSize** | Pointer to **int64** | TODO. | [optional] 
 **Timings** | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md) |  | [optional] 
 
 ## Methods

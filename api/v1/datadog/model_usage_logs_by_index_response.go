@@ -14,6 +14,7 @@ import (
 
 // UsageLogsByIndexResponse Response containing the number of indexed logs for each hour and index for a given organization.
 type UsageLogsByIndexResponse struct {
+	// TODO.
 	Usage *[]UsageLogsByIndexHour `json:"usage,omitempty"`
 }
 

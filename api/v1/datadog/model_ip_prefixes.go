@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// IPPrefixes struct for IPPrefixes
+// IPPrefixes TODO.
 type IPPrefixes struct {
 	// List of IPv4 prefixes.
 	PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`

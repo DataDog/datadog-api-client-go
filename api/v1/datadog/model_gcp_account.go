@@ -25,8 +25,9 @@ type GCPAccount struct {
 	// Your ID found in your JSON service account key.
 	ClientId *string `json:"client_id,omitempty"`
 	// Should be https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL> where <CLIENT_EMAIL> is the email found in your JSON service account key.
-	ClientX509CertUrl *string   `json:"client_x509_cert_url,omitempty"`
-	Errors            *[]string `json:"errors,omitempty"`
+	ClientX509CertUrl *string `json:"client_x509_cert_url,omitempty"`
+	// TODO.
+	Errors *[]string `json:"errors,omitempty"`
 	// Limit the GCE instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.
 	HostFilters *string `json:"host_filters,omitempty"`
 	// Your private key name found in your JSON service account key.

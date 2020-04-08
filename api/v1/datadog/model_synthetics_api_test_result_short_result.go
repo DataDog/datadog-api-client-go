@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsAPITestResultShortResult struct for SyntheticsAPITestResultShortResult
+// SyntheticsAPITestResultShortResult TODO.
 type SyntheticsAPITestResultShortResult struct {
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 }

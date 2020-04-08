@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **OrderBy** | Pointer to [**WidgetOrderBy**](WidgetOrderBy.md) |  | [optional] 
 **OrderDir** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
+**Q** | Pointer to **string** | TODO. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ShowPresent** | Pointer to **bool** | Whether to show the present value. | [optional] 
 

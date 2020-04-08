@@ -12,13 +12,16 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsAPITestResultShort struct for SyntheticsAPITestResultShort
+// SyntheticsAPITestResultShort TODO.
 type SyntheticsAPITestResultShort struct {
-	CheckTime *float64                            `json:"check_time,omitempty"`
-	ProbeDc   *string                             `json:"probe_dc,omitempty"`
-	Result    *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
-	ResultId  *string                             `json:"result_id,omitempty"`
-	Status    *SyntheticsTestMonitorStatus        `json:"status,omitempty"`
+	// TODO.
+	CheckTime *float64 `json:"check_time,omitempty"`
+	// TODO.
+	ProbeDc *string                             `json:"probe_dc,omitempty"`
+	Result  *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
+	// TODO.
+	ResultId *string                      `json:"result_id,omitempty"`
+	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 }
 
 // NewSyntheticsAPITestResultShort instantiates a new SyntheticsAPITestResultShort object

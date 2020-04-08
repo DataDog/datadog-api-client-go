@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** |  | 
+**Message** | Pointer to **string** | TODO. | 
 **Type** | Pointer to [**SyntheticsWarningType**](SyntheticsWarningType.md) |  | 
 
 ## Methods

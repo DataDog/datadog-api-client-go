@@ -18,7 +18,8 @@ type WidgetMarker struct {
 	DisplayType *string `json:"display_type,omitempty"`
 	// Label to display over the marker.
 	Label *string `json:"label,omitempty"`
-	Time  *string `json:"time,omitempty"`
+	// TODO.
+	Time *string `json:"time,omitempty"`
 	// Value to apply. Can be a single value y = 15 or a range of values 0 < y < 10
 	Value string `json:"value"`
 }

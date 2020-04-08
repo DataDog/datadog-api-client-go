@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NixV** | Pointer to **[]string** |  | [optional] 
+**NixV** | Pointer to **[]string** | TODO. | [optional] 
 
 ## Methods
 

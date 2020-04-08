@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageLogsByIndexHour**](UsageLogsByIndexHour.md) |  | [optional] 
+**Usage** | Pointer to [**[]UsageLogsByIndexHour**](UsageLogsByIndexHour.md) | TODO. | [optional] 
 
 ## Methods
 

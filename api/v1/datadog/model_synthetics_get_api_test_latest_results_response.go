@@ -12,10 +12,12 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsGetAPITestLatestResultsResponse struct for SyntheticsGetAPITestLatestResultsResponse
+// SyntheticsGetAPITestLatestResultsResponse TODO.
 type SyntheticsGetAPITestLatestResultsResponse struct {
-	LastTimestampFetched *int64                          `json:"last_timestamp_fetched,omitempty"`
-	Results              *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
+	// TODO.
+	LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`
+	// TODO.
+	Results *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
 }
 
 // NewSyntheticsGetAPITestLatestResultsResponse instantiates a new SyntheticsGetAPITestLatestResultsResponse object

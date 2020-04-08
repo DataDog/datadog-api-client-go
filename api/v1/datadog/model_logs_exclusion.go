@@ -14,9 +14,11 @@ import (
 
 // LogsExclusion Represents the index exclusion filter object from config API.
 type LogsExclusion struct {
-	Filter    *LogsExclusionFilter `json:"filter,omitempty"`
-	IsEnabled *bool                `json:"is_enabled,omitempty"`
-	Name      string               `json:"name"`
+	Filter *LogsExclusionFilter `json:"filter,omitempty"`
+	// TODO.
+	IsEnabled *bool `json:"is_enabled,omitempty"`
+	// TODO.
+	Name string `json:"name"`
 }
 
 // NewLogsExclusion instantiates a new LogsExclusion object

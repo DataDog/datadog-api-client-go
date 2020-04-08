@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageTraceHour struct for UsageTraceHour
+// UsageTraceHour TODO.
 type UsageTraceHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`

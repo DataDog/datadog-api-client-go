@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aggregation** | Pointer to **string** |  | 
-**Facet** | Pointer to **string** |  | [optional] 
+**Aggregation** | Pointer to **string** | TODO. | 
+**Facet** | Pointer to **string** | TODO. | [optional] 
 **Order** | Pointer to [**WidgetSort**](WidgetSort.md) |  | 
 
 ## Methods

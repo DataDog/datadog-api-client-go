@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** | TODO. | [optional] 
 **CreatedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
-**Locations** | Pointer to **[]string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**ModifiedAt** | Pointer to **string** |  | [optional] 
+**Locations** | Pointer to **[]string** | TODO. | [optional] 
+**Message** | Pointer to **string** | TODO. | [optional] 
+**ModifiedAt** | Pointer to **string** | TODO. | [optional] 
 **ModifiedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | TODO. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
-**PublicId** | Pointer to **string** |  | [optional] 
+**PublicId** | Pointer to **string** | TODO. | [optional] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
-**StepCount** | Pointer to **int64** |  | [optional] 
+**StepCount** | Pointer to **int64** | TODO. | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
+**Tags** | Pointer to **[]string** | TODO. | [optional] 
 **Type** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
 
 ## Methods

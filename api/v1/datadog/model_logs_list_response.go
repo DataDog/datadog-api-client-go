@@ -12,12 +12,14 @@ import (
 	"encoding/json"
 )
 
-// LogsListResponse struct for LogsListResponse
+// LogsListResponse TODO.
 type LogsListResponse struct {
+	// TODO.
 	Logs *[]Log `json:"logs,omitempty"`
 	// Hash identifier of the next log to return in the list. This parameter is used for the pagination feature.
 	NextLogId *string `json:"nextLogId,omitempty"`
-	Status    *string `json:"status,omitempty"`
+	// TODO.
+	Status *string `json:"status,omitempty"`
 }
 
 // NewLogsListResponse instantiates a new LogsListResponse object

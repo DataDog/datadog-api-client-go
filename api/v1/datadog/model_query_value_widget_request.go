@@ -12,17 +12,19 @@ import (
 	"encoding/json"
 )
 
-// QueryValueWidgetRequest struct for QueryValueWidgetRequest
+// QueryValueWidgetRequest TODO.
 type QueryValueWidgetRequest struct {
-	Aggregator         *WidgetAggregator          `json:"aggregator,omitempty"`
-	ApmQuery           *LogQueryDefinition        `json:"apm_query,omitempty"`
+	Aggregator *WidgetAggregator   `json:"aggregator,omitempty"`
+	ApmQuery   *LogQueryDefinition `json:"apm_query,omitempty"`
+	// TODO.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	EventQuery         *EventQueryDefinition      `json:"event_query,omitempty"`
 	LogQuery           *LogQueryDefinition        `json:"log_query,omitempty"`
 	NetworkQuery       *LogQueryDefinition        `json:"network_query,omitempty"`
 	ProcessQuery       *ProcessQueryDefinition    `json:"process_query,omitempty"`
-	Q                  *string                    `json:"q,omitempty"`
-	RumQuery           *LogQueryDefinition        `json:"rum_query,omitempty"`
+	// TODO.
+	Q        *string             `json:"q,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 }
 
 // NewQueryValueWidgetRequest instantiates a new QueryValueWidgetRequest object

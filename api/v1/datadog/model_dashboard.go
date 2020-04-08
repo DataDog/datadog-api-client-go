@@ -13,10 +13,12 @@ import (
 	"time"
 )
 
-// Dashboard struct for Dashboard
+// Dashboard TODO.
 type Dashboard struct {
-	AuthorHandle *string    `json:"author_handle,omitempty"`
-	CreatedAt    *time.Time `json:"created_at,omitempty"`
+	// TODO.
+	AuthorHandle *string `json:"author_handle,omitempty"`
+	// TODO.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Description of the dashboard
 	Description NullableString `json:"description,omitempty"`
 	// ID of the dashboard
@@ -24,14 +26,18 @@ type Dashboard struct {
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
 	IsReadOnly *bool               `json:"is_read_only,omitempty"`
 	LayoutType DashboardLayoutType `json:"layout_type"`
-	ModifiedAt *time.Time          `json:"modified_at,omitempty"`
+	// TODO.
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of handles of users to notify when changes are made to this dashboard.
-	NotifyList              []string                          `json:"notify_list,omitempty"`
+	NotifyList []string `json:"notify_list,omitempty"`
+	// TODO.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
-	TemplateVariables       []DashboardTemplateVariables      `json:"template_variables,omitempty"`
+	// TODO.
+	TemplateVariables []DashboardTemplateVariables `json:"template_variables,omitempty"`
 	// Title of the dashboard
-	Title string  `json:"title"`
-	Url   *string `json:"url,omitempty"`
+	Title string `json:"title"`
+	// TODO.
+	Url *string `json:"url,omitempty"`
 	// List of widgets to display on the dashboard
 	Widgets []Widget `json:"widgets"`
 }

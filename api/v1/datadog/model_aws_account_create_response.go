@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// AWSAccountCreateResponse struct for AWSAccountCreateResponse
+// AWSAccountCreateResponse TODO.
 type AWSAccountCreateResponse struct {
+	// TODO.
 	ExternalId *string `json:"external_id,omitempty"`
 }
 

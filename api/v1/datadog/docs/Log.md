@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Content** | Pointer to [**LogContent**](Log_content.md) |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

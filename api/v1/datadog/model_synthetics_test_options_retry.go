@@ -12,9 +12,11 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestOptionsRetry struct for SyntheticsTestOptionsRetry
+// SyntheticsTestOptionsRetry TODO.
 type SyntheticsTestOptionsRetry struct {
-	Count    *int64   `json:"count,omitempty"`
+	// TODO.
+	Count *int64 `json:"count,omitempty"`
+	// TODO.
 	Interval *float64 `json:"interval,omitempty"`
 }
 

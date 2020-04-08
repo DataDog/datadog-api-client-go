@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsStepType the model 'SyntheticsStepType'
+// SyntheticsStepType TODO.
 type SyntheticsStepType string
 
 // List of SyntheticsStepType

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetLegendSize the model 'WidgetLegendSize'
+// WidgetLegendSize TODO.
 type WidgetLegendSize string
 
 // List of WidgetLegendSize
