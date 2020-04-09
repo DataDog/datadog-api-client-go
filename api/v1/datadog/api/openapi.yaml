@@ -12135,7 +12135,6 @@ components:
               target: '{}'
             - property: property
               target: '{}'
-          stepCount: 7
         - created_at: created_at
           message: message
           created_by:
@@ -12194,7 +12193,6 @@ components:
               target: '{}'
             - property: property
               target: '{}'
-          stepCount: 7
       properties:
         tests:
           description: TODO.
@@ -12670,7 +12668,6 @@ components:
             target: '{}'
           - property: property
             target: '{}'
-        stepCount: 7
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
@@ -12705,10 +12702,6 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
-        stepCount:
-          description: TODO.
-          format: int64
-          type: integer
         subtype:
           $ref: '#/components/schemas/SyntheticsTestDetailsSubType'
         tags:

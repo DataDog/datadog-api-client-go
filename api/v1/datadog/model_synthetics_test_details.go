@@ -30,11 +30,9 @@ type SyntheticsTestDetails struct {
 	Options      *SyntheticsTestOptions       `json:"options,omitempty"`
 	OverallState *SyntheticsTestMonitorStatus `json:"overall_state,omitempty"`
 	// TODO.
-	PublicId *string                    `json:"public_id,omitempty"`
-	Status   *SyntheticsTestPauseStatus `json:"status,omitempty"`
-	// TODO.
-	StepCount *int64                        `json:"stepCount,omitempty"`
-	Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+	PublicId *string                       `json:"public_id,omitempty"`
+	Status   *SyntheticsTestPauseStatus    `json:"status,omitempty"`
+	Subtype  *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// TODO.
 	Tags *[]string                  `json:"tags,omitempty"`
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
@@ -441,38 +439,6 @@ func (o *SyntheticsTestDetails) SetStatus(v SyntheticsTestPauseStatus) {
 	o.Status = &v
 }
 
-// GetStepCount returns the StepCount field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetStepCount() int64 {
-	if o == nil || o.StepCount == nil {
-		var ret int64
-		return ret
-	}
-	return *o.StepCount
-}
-
-// GetStepCountOk returns a tuple with the StepCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetStepCountOk() (*int64, bool) {
-	if o == nil || o.StepCount == nil {
-		return nil, false
-	}
-	return o.StepCount, true
-}
-
-// HasStepCount returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasStepCount() bool {
-	if o != nil && o.StepCount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStepCount gets a reference to the given int64 and assigns it to the StepCount field.
-func (o *SyntheticsTestDetails) SetStepCount(v int64) {
-	o.StepCount = &v
-}
-
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetSubtype() SyntheticsTestDetailsSubType {
 	if o == nil || o.Subtype == nil {
@@ -606,9 +572,6 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
-	}
-	if o.StepCount != nil {
-		toSerialize["stepCount"] = o.StepCount
 	}
 	if o.Subtype != nil {
 		toSerialize["subtype"] = o.Subtype
