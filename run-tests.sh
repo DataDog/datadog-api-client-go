@@ -22,9 +22,9 @@ fi
 # make sure the below installed dependencies don't get added to go.mod/go.sum
 # unfortunately there's no better way to fix this than change directory
 # this might get solved in Go 1.14: https://github.com/golang/go/issues/30515
-cd /tmp
-go get -u golang.org/x/lint/golint
-go get -u gotest.tools/gotestsum@v0.4.1
+cd `mktemp -d`
+GO111MODULE=on go get -u golang.org/x/lint/golint
+GO111MODULE=on go get -u gotest.tools/gotestsum@v0.4.1
 cd -
 
 golint ./...
