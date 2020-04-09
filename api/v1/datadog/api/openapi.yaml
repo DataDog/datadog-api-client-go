@@ -4094,35 +4094,6 @@ paths:
       summary: Get an SLO's history
       tags:
       - Service Level Objectives
-  /api/v1/synthetics/browser/devices:
-    get:
-      description: Get the list of devices available for Synthetics browser tests.
-      operationId: ListDevices
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SyntheticsDevices'
-          description: OK
-      summary: Get all devices
-      tags:
-      - Synthetics
-  /api/v1/synthetics/locations:
-    get:
-      description: Get the list of public and private locations available for Synthetics
-        tests. No arguments required
-      operationId: ListLocations
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SyntheticsLocations'
-          description: OK
-      summary: Get all locations (public and private)
-      tags:
-      - Synthetics
   /api/v1/synthetics/tests:
     get:
       description: Get the list of all Synthetics tests (can be filtered by type).
@@ -11485,9 +11456,9 @@ components:
         error: error
         device:
           name: name
-          width: 6
+          width: 5
           isMobile: true
-          height: 0
+          height: 1
         stepDetails:
         - screenshotBucketKey: true
           snapshotBucketKey: true
@@ -11619,9 +11590,9 @@ components:
           error: error
           device:
             name: name
-            width: 6
+            width: 5
             isMobile: true
-            height: 0
+            height: 1
           stepDetails:
           - screenshotBucketKey: true
             snapshotBucketKey: true
@@ -11758,15 +11729,15 @@ components:
       description: TODO.
       example:
         result:
-          duration: 1.4658129805029452
-          stepCountTotal: 2
+          duration: 5.637376656633329
+          stepCountTotal: 9
           device:
             name: name
-            width: 6
+            width: 5
             isMobile: true
-            height: 0
-          errorCount: 5
-          stepCountCompleted: 5
+            height: 1
+          errorCount: 2
+          stepCountCompleted: 7
         probe_dc: probe_dc
         result_id: result_id
         check_time: 6.027456183070403
@@ -11885,9 +11856,9 @@ components:
       description: TODO.
       example:
         name: name
-        width: 6
+        width: 5
         isMobile: true
-        height: 0
+        height: 1
       properties:
         height:
           description: TODO.
@@ -11922,25 +11893,6 @@ components:
       - LAPTOP_LARGE
       - TABLET
       - MOBILE_SMALL
-    SyntheticsDevices:
-      description: TODO.
-      example:
-        devices:
-        - name: name
-          width: 6
-          isMobile: true
-          height: 0
-        - name: name
-          width: 6
-          isMobile: true
-          height: 0
-      properties:
-        devices:
-          description: TODO.
-          items:
-            $ref: '#/components/schemas/SyntheticsDevice'
-          type: array
-      type: object
     SyntheticsErrorCode:
       description: TODO.
       enum:
@@ -12010,28 +11962,28 @@ components:
         last_timestamp_fetched: 0
         results:
         - result:
-            duration: 1.4658129805029452
-            stepCountTotal: 2
+            duration: 5.637376656633329
+            stepCountTotal: 9
             device:
               name: name
-              width: 6
+              width: 5
               isMobile: true
-              height: 0
-            errorCount: 5
-            stepCountCompleted: 5
+              height: 1
+            errorCount: 2
+            stepCountCompleted: 7
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
         - result:
-            duration: 1.4658129805029452
-            stepCountTotal: 2
+            duration: 5.637376656633329
+            stepCountTotal: 9
             device:
               name: name
-              width: 6
+              width: 5
               isMobile: true
-              height: 0
-            errorCount: 5
-            stepCountCompleted: 5
+              height: 1
+            errorCount: 2
+            stepCountCompleted: 7
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
@@ -12135,7 +12087,6 @@ components:
               target: '{}'
             - property: property
               target: '{}'
-          stepCount: 7
         - created_at: created_at
           message: message
           created_by:
@@ -12194,59 +12145,11 @@ components:
               target: '{}'
             - property: property
               target: '{}'
-          stepCount: 7
       properties:
         tests:
           description: TODO.
           items:
             $ref: '#/components/schemas/SyntheticsTestDetails'
-          type: array
-      type: object
-    SyntheticsLocation:
-      description: TODO.
-      example:
-        is_active: true
-        name: name
-        id: 0
-        display_name: display_name
-        region: region
-      properties:
-        display_name:
-          description: TODO.
-          type: string
-        id:
-          description: TODO.
-          format: int64
-          type: integer
-        is_active:
-          description: TODO.
-          type: boolean
-        name:
-          description: TODO.
-          type: string
-        region:
-          description: TODO.
-          type: string
-      type: object
-    SyntheticsLocations:
-      description: TODO.
-      example:
-        locations:
-        - is_active: true
-          name: name
-          id: 0
-          display_name: display_name
-          region: region
-        - is_active: true
-          name: name
-          id: 0
-          display_name: display_name
-          region: region
-      properties:
-        locations:
-          description: TODO.
-          items:
-            $ref: '#/components/schemas/SyntheticsLocation'
           type: array
       type: object
     SyntheticsPlayingTab:
@@ -12670,7 +12573,6 @@ components:
             target: '{}'
           - property: property
             target: '{}'
-        stepCount: 7
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
@@ -12698,17 +12600,11 @@ components:
           type: string
         options:
           $ref: '#/components/schemas/SyntheticsTestOptions'
-        overall_state:
-          $ref: '#/components/schemas/SyntheticsTestMonitorStatus'
         public_id:
           description: TODO.
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
-        stepCount:
-          description: TODO.
-          format: int64
-          type: integer
         subtype:
           $ref: '#/components/schemas/SyntheticsTestDetailsSubType'
         tags:
@@ -15880,15 +15776,15 @@ components:
     SyntheticsBrowserTestResultShort_result:
       description: TODO.
       example:
-        duration: 1.4658129805029452
-        stepCountTotal: 2
+        duration: 5.637376656633329
+        stepCountTotal: 9
         device:
           name: name
-          width: 6
+          width: 5
           isMobile: true
-          height: 0
-        errorCount: 5
-        stepCountCompleted: 5
+          height: 1
+        errorCount: 2
+        stepCountCompleted: 7
       properties:
         device:
           $ref: '#/components/schemas/SyntheticsDevice'

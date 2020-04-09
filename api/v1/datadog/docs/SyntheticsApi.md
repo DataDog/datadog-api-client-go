@@ -11,8 +11,6 @@ Method | HTTP request | Description
 [**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
 [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
 [**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
-[**ListDevices**](SyntheticsApi.md#ListDevices) | **Get** /api/v1/synthetics/browser/devices | Get all devices
-[**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get all test
 [**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
 [**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
@@ -304,76 +302,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SyntheticsTestDetails**](SyntheticsTestDetails.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListDevices
-
-> SyntheticsDevices ListDevices(ctx).Execute()
-
-Get all devices
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListDevicesRequest struct via the builder pattern
-
-
-### Return type
-
-[**SyntheticsDevices**](SyntheticsDevices.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListLocations
-
-> SyntheticsLocations ListLocations(ctx).Execute()
-
-Get all locations (public and private)
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListLocationsRequest struct via the builder pattern
-
-
-### Return type
-
-[**SyntheticsLocations**](SyntheticsLocations.md)
 
 ### Authorization
 

@@ -13,10 +13,8 @@ Name | Type | Description | Notes
 **ModifiedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
 **Name** | Pointer to **string** | TODO. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
-**OverallState** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
 **PublicId** | Pointer to **string** | TODO. | [optional] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
-**StepCount** | Pointer to **int64** | TODO. | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | TODO. | [optional] 
 **Type** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
@@ -265,31 +263,6 @@ SetOptions sets Options field to given value.
 
 HasOptions returns a boolean if a field has been set.
 
-### GetOverallState
-
-`func (o *SyntheticsTestDetails) GetOverallState() SyntheticsTestMonitorStatus`
-
-GetOverallState returns the OverallState field if non-nil, zero value otherwise.
-
-### GetOverallStateOk
-
-`func (o *SyntheticsTestDetails) GetOverallStateOk() (*SyntheticsTestMonitorStatus, bool)`
-
-GetOverallStateOk returns a tuple with the OverallState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOverallState
-
-`func (o *SyntheticsTestDetails) SetOverallState(v SyntheticsTestMonitorStatus)`
-
-SetOverallState sets OverallState field to given value.
-
-### HasOverallState
-
-`func (o *SyntheticsTestDetails) HasOverallState() bool`
-
-HasOverallState returns a boolean if a field has been set.
-
 ### GetPublicId
 
 `func (o *SyntheticsTestDetails) GetPublicId() string`
@@ -339,31 +312,6 @@ SetStatus sets Status field to given value.
 `func (o *SyntheticsTestDetails) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
-
-### GetStepCount
-
-`func (o *SyntheticsTestDetails) GetStepCount() int64`
-
-GetStepCount returns the StepCount field if non-nil, zero value otherwise.
-
-### GetStepCountOk
-
-`func (o *SyntheticsTestDetails) GetStepCountOk() (*int64, bool)`
-
-GetStepCountOk returns a tuple with the StepCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStepCount
-
-`func (o *SyntheticsTestDetails) SetStepCount(v int64)`
-
-SetStepCount sets StepCount field to given value.
-
-### HasStepCount
-
-`func (o *SyntheticsTestDetails) HasStepCount() bool`
-
-HasStepCount returns a boolean if a field has been set.
 
 ### GetSubtype
 

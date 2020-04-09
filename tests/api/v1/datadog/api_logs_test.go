@@ -58,13 +58,16 @@ func TestLogsList(t *testing.T) {
 	var logsResponse datadog.LogsListResponse
 
 	// Make sure that both log items are indexed
-	tests.Retry(time.Duration(5)*time.Second, 10, func() bool {
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
 		logsResponse, httpresp, err = TESTAPICLIENT.LogsApi.ListLogs(TESTAUTH).Body(logsRequest).Execute()
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
 		return 200 == httpresp.StatusCode && 2 == len(logsResponse.GetLogs())
 	})
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 
 	// Find first log item
 	logsRequest.SetLimit(1)

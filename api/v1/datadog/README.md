@@ -180,8 +180,6 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**GetBrowserTestLatestResults**](docs/SyntheticsApi.md#getbrowsertestlatestresults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
 *SyntheticsApi* | [**GetBrowserTestResult**](docs/SyntheticsApi.md#getbrowsertestresult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
 *SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
-*SyntheticsApi* | [**ListDevices**](docs/SyntheticsApi.md#listdevices) | **Get** /api/v1/synthetics/browser/devices | Get all devices
-*SyntheticsApi* | [**ListLocations**](docs/SyntheticsApi.md#listlocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 *SyntheticsApi* | [**ListTests**](docs/SyntheticsApi.md#listtests) | **Get** /api/v1/synthetics/tests | Get all test
 *SyntheticsApi* | [**UpdateTest**](docs/SyntheticsApi.md#updatetest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
 *SyntheticsApi* | [**UpdateTestPauseStatus**](docs/SyntheticsApi.md#updatetestpausestatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
@@ -423,14 +421,11 @@ Class | Method | HTTP request | Description
  - [SyntheticsDeleteTestsResponseDeletedTests](docs/SyntheticsDeleteTestsResponseDeletedTests.md)
  - [SyntheticsDevice](docs/SyntheticsDevice.md)
  - [SyntheticsDeviceID](docs/SyntheticsDeviceID.md)
- - [SyntheticsDevices](docs/SyntheticsDevices.md)
  - [SyntheticsErrorCode](docs/SyntheticsErrorCode.md)
  - [SyntheticsGetAPITestLatestResultsResponse](docs/SyntheticsGetAPITestLatestResultsResponse.md)
  - [SyntheticsGetBrowserTestLatestResultsResponse](docs/SyntheticsGetBrowserTestLatestResultsResponse.md)
  - [SyntheticsGetTestLatestResultsPayload](docs/SyntheticsGetTestLatestResultsPayload.md)
  - [SyntheticsListTestsResponse](docs/SyntheticsListTestsResponse.md)
- - [SyntheticsLocation](docs/SyntheticsLocation.md)
- - [SyntheticsLocations](docs/SyntheticsLocations.md)
  - [SyntheticsPlayingTab](docs/SyntheticsPlayingTab.md)
  - [SyntheticsResource](docs/SyntheticsResource.md)
  - [SyntheticsResourceType](docs/SyntheticsResourceType.md)
