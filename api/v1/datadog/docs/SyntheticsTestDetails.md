@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **ModifiedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
 **Name** | Pointer to **string** | TODO. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
-**OverallState** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
 **PublicId** | Pointer to **string** | TODO. | [optional] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
@@ -263,31 +262,6 @@ SetOptions sets Options field to given value.
 `func (o *SyntheticsTestDetails) HasOptions() bool`
 
 HasOptions returns a boolean if a field has been set.
-
-### GetOverallState
-
-`func (o *SyntheticsTestDetails) GetOverallState() SyntheticsTestMonitorStatus`
-
-GetOverallState returns the OverallState field if non-nil, zero value otherwise.
-
-### GetOverallStateOk
-
-`func (o *SyntheticsTestDetails) GetOverallStateOk() (*SyntheticsTestMonitorStatus, bool)`
-
-GetOverallStateOk returns a tuple with the OverallState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOverallState
-
-`func (o *SyntheticsTestDetails) SetOverallState(v SyntheticsTestMonitorStatus)`
-
-SetOverallState sets OverallState field to given value.
-
-### HasOverallState
-
-`func (o *SyntheticsTestDetails) HasOverallState() bool`
-
-HasOverallState returns a boolean if a field has been set.
 
 ### GetPublicId
 

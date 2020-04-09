@@ -373,28 +373,6 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	assertPublicIDPresent(t, publicIDBrowser, td)
 }
 
-func TestSyntheticsListLocations(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
-	locs, httpresp, err := TESTAPICLIENT.SyntheticsApi.ListLocations(TESTAUTH).Execute()
-	if err != nil {
-		t.Fatalf("Error getting all Synthetics locations: Response %s: %v", err.Error(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Assert(t, len(locs.GetLocations()) > 0)
-}
-
-func TestSyntheticsListDevices(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
-	devices, httpresp, err := TESTAPICLIENT.SyntheticsApi.ListDevices(TESTAUTH).Execute()
-	if err != nil {
-		t.Fatalf("Error getting all Synthetics devices: Response %s: %v", err.Error(), err)
-	}
-	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Assert(t, len(devices.GetDevices()) > 0)
-}
-
 func assertPublicIDPresent(t *testing.T, publicID string, syntTests []datadog.SyntheticsTestDetails) {
 	for _, st := range syntTests {
 		if st.GetPublicId() == publicID {
