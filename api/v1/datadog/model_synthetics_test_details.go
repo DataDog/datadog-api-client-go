@@ -26,9 +26,8 @@ type SyntheticsTestDetails struct {
 	ModifiedAt *string               `json:"modified_at,omitempty"`
 	ModifiedBy *SyntheticsTestAuthor `json:"modified_by,omitempty"`
 	// TODO.
-	Name         *string                      `json:"name,omitempty"`
-	Options      *SyntheticsTestOptions       `json:"options,omitempty"`
-	OverallState *SyntheticsTestMonitorStatus `json:"overall_state,omitempty"`
+	Name    *string                `json:"name,omitempty"`
+	Options *SyntheticsTestOptions `json:"options,omitempty"`
 	// TODO.
 	PublicId *string                       `json:"public_id,omitempty"`
 	Status   *SyntheticsTestPauseStatus    `json:"status,omitempty"`
@@ -343,38 +342,6 @@ func (o *SyntheticsTestDetails) SetOptions(v SyntheticsTestOptions) {
 	o.Options = &v
 }
 
-// GetOverallState returns the OverallState field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetOverallState() SyntheticsTestMonitorStatus {
-	if o == nil || o.OverallState == nil {
-		var ret SyntheticsTestMonitorStatus
-		return ret
-	}
-	return *o.OverallState
-}
-
-// GetOverallStateOk returns a tuple with the OverallState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetOverallStateOk() (*SyntheticsTestMonitorStatus, bool) {
-	if o == nil || o.OverallState == nil {
-		return nil, false
-	}
-	return o.OverallState, true
-}
-
-// HasOverallState returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasOverallState() bool {
-	if o != nil && o.OverallState != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOverallState gets a reference to the given SyntheticsTestMonitorStatus and assigns it to the OverallState field.
-func (o *SyntheticsTestDetails) SetOverallState(v SyntheticsTestMonitorStatus) {
-	o.OverallState = &v
-}
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -563,9 +530,6 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 	}
 	if o.Options != nil {
 		toSerialize["options"] = o.Options
-	}
-	if o.OverallState != nil {
-		toSerialize["overall_state"] = o.OverallState
 	}
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
