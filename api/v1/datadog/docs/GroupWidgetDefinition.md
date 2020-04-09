@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **LayoutType** | Pointer to [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Title** | Pointer to **string** | Title of the widget | [optional] 
 **Type** | Pointer to **string** | Type of the widget | [readonly] [default to "group"]
-**Widgets** | Pointer to [**[]Widget**](Widget.md) |  | 
+**Widgets** | Pointer to [**[]Widget**](Widget.md) | TODO. | 
 
 ## Methods
 

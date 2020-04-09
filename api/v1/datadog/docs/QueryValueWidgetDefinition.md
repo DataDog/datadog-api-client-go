@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Autoscale** | Pointer to **bool** | Whether to use autoscaling or not. | [optional] 
 **CustomUnit** | Pointer to **string** | Display a unit of your choice on the widget. | [optional] 
 **Precision** | Pointer to **int64** | Number of decimals to show. If not defined, the widget uses the raw value. | [optional] 
-**Requests** | Pointer to [**[]QueryValueWidgetRequest**](QueryValueWidgetRequest.md) |  | 
+**Requests** | Pointer to [**[]QueryValueWidgetRequest**](QueryValueWidgetRequest.md) | TODO. | 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 

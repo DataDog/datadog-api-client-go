@@ -14,6 +14,7 @@ import (
 
 // OrganizationSettingsSamlIdpInitiatedLogin Has one property enabled (boolean).
 type OrganizationSettingsSamlIdpInitiatedLogin struct {
+	// TODO.
 	Enabled *bool `json:"enabled,omitempty"`
 }
 

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsResourceType the model 'SyntheticsResourceType'
+// SyntheticsResourceType TODO.
 type SyntheticsResourceType string
 
 // List of SyntheticsResourceType

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Arn** | Pointer to **string** |  | [optional] 
+**Arn** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

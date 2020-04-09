@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Locations** | Pointer to [**[]SyntheticsLocation**](SyntheticsLocation.md) |  | [optional] 
+**Locations** | Pointer to [**[]SyntheticsLocation**](SyntheticsLocation.md) | TODO. | [optional] 
 
 ## Methods
 

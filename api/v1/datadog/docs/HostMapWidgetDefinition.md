@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **NoGroupHosts** | Pointer to **bool** | Whether to show the hosts that don’t fit in a group. | [optional] 
 **NoMetricHosts** | Pointer to **bool** | Whether to show the hosts with no metrics. | [optional] 
 **NodeType** | Pointer to [**WidgetNodeType**](WidgetNodeType.md) |  | [optional] 
-**Notes** | Pointer to **string** |  | [optional] 
+**Notes** | Pointer to **string** | TODO. | [optional] 
 **Requests** | Pointer to [**HostMapWidgetDefinitionRequests**](HostMapWidgetDefinition_requests.md) |  | 
 **Scope** | Pointer to **[]string** | List of tags used to filter the map. | [optional] 
 **Style** | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinition_style.md) |  | [optional] 

@@ -14,9 +14,12 @@ import (
 
 // Creator Creator of the object
 type Creator struct {
-	Email  *string `json:"email,omitempty"`
+	// TODO.
+	Email *string `json:"email,omitempty"`
+	// TODO.
 	Handle *string `json:"handle,omitempty"`
-	Name   *string `json:"name,omitempty"`
+	// TODO.
+	Name *string `json:"name,omitempty"`
 }
 
 // NewCreator instantiates a new Creator object

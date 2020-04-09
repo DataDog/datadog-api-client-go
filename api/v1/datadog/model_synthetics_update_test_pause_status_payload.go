@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsUpdateTestPauseStatusPayload struct for SyntheticsUpdateTestPauseStatusPayload
+// SyntheticsUpdateTestPauseStatusPayload TODO.
 type SyntheticsUpdateTestPauseStatusPayload struct {
 	NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
 }

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// AWSLogsServicesRequest struct for AWSLogsServicesRequest
+// AWSLogsServicesRequest TODO.
 type AWSLogsServicesRequest struct {
 	// Your AWS Account ID without dashes.
 	AccountId string `json:"account_id"`

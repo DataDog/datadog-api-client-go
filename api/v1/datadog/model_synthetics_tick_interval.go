@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTickInterval the model 'SyntheticsTickInterval'
+// SyntheticsTickInterval TODO.
 type SyntheticsTickInterval int64
 
 // List of SyntheticsTickInterval

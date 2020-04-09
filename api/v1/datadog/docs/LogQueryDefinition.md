@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Compute** | Pointer to [**LogsQueryCompute**](LogsQueryCompute.md) |  | [optional] 
-**GroupBy** | Pointer to [**[]LogQueryDefinitionGroupBy**](LogQueryDefinition_group_by.md) |  | [optional] 
-**Index** | Pointer to **string** |  | [optional] 
+**GroupBy** | Pointer to [**[]LogQueryDefinitionGroupBy**](LogQueryDefinition_group_by.md) | TODO. | [optional] 
+**Index** | Pointer to **string** | TODO. | [optional] 
 **MultiCompute** | Pointer to [**[]LogsQueryCompute**](LogsQueryCompute.md) | This field is mutually exclusive with &#x60;compute&#x60; | [optional] 
 **Search** | Pointer to [**LogQueryDefinitionSearch**](LogQueryDefinition_search.md) |  | [optional] 
 

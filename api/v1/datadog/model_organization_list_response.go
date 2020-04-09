@@ -14,6 +14,7 @@ import (
 
 // OrganizationListResponse Response with the list of organizations.
 type OrganizationListResponse struct {
+	// TODO.
 	Orgs *[]Organization `json:"orgs,omitempty"`
 }
 

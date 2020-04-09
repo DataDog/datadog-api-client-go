@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MetricSearchResponse struct for MetricSearchResponse
+// MetricSearchResponse TODO.
 type MetricSearchResponse struct {
 	Results *MetricSearchResponseResults `json:"results,omitempty"`
 }

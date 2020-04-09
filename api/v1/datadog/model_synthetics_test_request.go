@@ -12,17 +12,24 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestRequest struct for SyntheticsTestRequest
+// SyntheticsTestRequest TODO.
 type SyntheticsTestRequest struct {
 	BasicAuth *SyntheticsTestRequestBasicAuth `json:"basicAuth,omitempty"`
-	Body      *string                         `json:"body,omitempty"`
-	Headers   *map[string]string              `json:"headers,omitempty"`
-	Host      *string                         `json:"host,omitempty"`
-	Method    HTTPMethod                      `json:"method"`
-	Port      *int64                          `json:"port,omitempty"`
-	Query     *interface{}                    `json:"query,omitempty"`
-	Timeout   *float64                        `json:"timeout,omitempty"`
-	Url       string                          `json:"url"`
+	// TODO.
+	Body *string `json:"body,omitempty"`
+	// TODO.
+	Headers *map[string]string `json:"headers,omitempty"`
+	// TODO.
+	Host   *string    `json:"host,omitempty"`
+	Method HTTPMethod `json:"method"`
+	// TODO.
+	Port *int64 `json:"port,omitempty"`
+	// TODO.
+	Query *interface{} `json:"query,omitempty"`
+	// TODO.
+	Timeout *float64 `json:"timeout,omitempty"`
+	// TODO.
+	Url string `json:"url"`
 }
 
 // NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object

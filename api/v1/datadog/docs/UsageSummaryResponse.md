@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all orgs. | [optional] 
 **SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current month(s) for all orgs. | [optional] 
 **TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current month(s) for all orgs. | [optional] 
-**Usage** | Pointer to [**[]UsageSummaryDate**](UsageSummaryDate.md) |  | [optional] 
+**Usage** | Pointer to [**[]UsageSummaryDate**](UsageSummaryDate.md) | TODO. | [optional] 
 
 ## Methods
 

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Agents** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
-**Api** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
-**Apm** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
-**Logs** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
+**Agents** | Pointer to [**IPPrefixesAgents**](IPPrefixesAgents.md) |  | [optional] 
+**Api** | Pointer to [**IPPrefixesAPI**](IPPrefixesAPI.md) |  | [optional] 
+**Apm** | Pointer to [**IPPrefixesAPM**](IPPrefixesAPM.md) |  | [optional] 
+**Logs** | Pointer to [**IPPrefixesLogs**](IPPrefixesLogs.md) |  | [optional] 
 **Modified** | Pointer to **string** | Date when last updated, in the form &#x60;YYYY-MM-DD-hh-mm-ss&#x60;. | [optional] 
-**Process** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
-**Synthetics** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
+**Process** | Pointer to [**IPPrefixesProcess**](IPPrefixesProcess.md) |  | [optional] 
+**Synthetics** | Pointer to [**IPPrefixesSynthetics**](IPPrefixesSynthetics.md) |  | [optional] 
 **Version** | Pointer to **int64** | Version of the IP list. | [optional] 
-**Webhooks** | Pointer to [**IPPrefixes**](IPPrefixes.md) |  | [optional] 
+**Webhooks** | Pointer to [**IPPrefixesWebhooks**](IPPrefixesWebhooks.md) |  | [optional] 
 
 ## Methods
 
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAgents
 
-`func (o *IPRanges) GetAgents() IPPrefixes`
+`func (o *IPRanges) GetAgents() IPPrefixesAgents`
 
 GetAgents returns the Agents field if non-nil, zero value otherwise.
 
 ### GetAgentsOk
 
-`func (o *IPRanges) GetAgentsOk() (*IPPrefixes, bool)`
+`func (o *IPRanges) GetAgentsOk() (*IPPrefixesAgents, bool)`
 
 GetAgentsOk returns a tuple with the Agents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAgents
 
-`func (o *IPRanges) SetAgents(v IPPrefixes)`
+`func (o *IPRanges) SetAgents(v IPPrefixesAgents)`
 
 SetAgents sets Agents field to given value.
 
@@ -60,20 +60,20 @@ HasAgents returns a boolean if a field has been set.
 
 ### GetApi
 
-`func (o *IPRanges) GetApi() IPPrefixes`
+`func (o *IPRanges) GetApi() IPPrefixesAPI`
 
 GetApi returns the Api field if non-nil, zero value otherwise.
 
 ### GetApiOk
 
-`func (o *IPRanges) GetApiOk() (*IPPrefixes, bool)`
+`func (o *IPRanges) GetApiOk() (*IPPrefixesAPI, bool)`
 
 GetApiOk returns a tuple with the Api field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApi
 
-`func (o *IPRanges) SetApi(v IPPrefixes)`
+`func (o *IPRanges) SetApi(v IPPrefixesAPI)`
 
 SetApi sets Api field to given value.
 
@@ -85,20 +85,20 @@ HasApi returns a boolean if a field has been set.
 
 ### GetApm
 
-`func (o *IPRanges) GetApm() IPPrefixes`
+`func (o *IPRanges) GetApm() IPPrefixesAPM`
 
 GetApm returns the Apm field if non-nil, zero value otherwise.
 
 ### GetApmOk
 
-`func (o *IPRanges) GetApmOk() (*IPPrefixes, bool)`
+`func (o *IPRanges) GetApmOk() (*IPPrefixesAPM, bool)`
 
 GetApmOk returns a tuple with the Apm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApm
 
-`func (o *IPRanges) SetApm(v IPPrefixes)`
+`func (o *IPRanges) SetApm(v IPPrefixesAPM)`
 
 SetApm sets Apm field to given value.
 
@@ -110,20 +110,20 @@ HasApm returns a boolean if a field has been set.
 
 ### GetLogs
 
-`func (o *IPRanges) GetLogs() IPPrefixes`
+`func (o *IPRanges) GetLogs() IPPrefixesLogs`
 
 GetLogs returns the Logs field if non-nil, zero value otherwise.
 
 ### GetLogsOk
 
-`func (o *IPRanges) GetLogsOk() (*IPPrefixes, bool)`
+`func (o *IPRanges) GetLogsOk() (*IPPrefixesLogs, bool)`
 
 GetLogsOk returns a tuple with the Logs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogs
 
-`func (o *IPRanges) SetLogs(v IPPrefixes)`
+`func (o *IPRanges) SetLogs(v IPPrefixesLogs)`
 
 SetLogs sets Logs field to given value.
 
@@ -160,20 +160,20 @@ HasModified returns a boolean if a field has been set.
 
 ### GetProcess
 
-`func (o *IPRanges) GetProcess() IPPrefixes`
+`func (o *IPRanges) GetProcess() IPPrefixesProcess`
 
 GetProcess returns the Process field if non-nil, zero value otherwise.
 
 ### GetProcessOk
 
-`func (o *IPRanges) GetProcessOk() (*IPPrefixes, bool)`
+`func (o *IPRanges) GetProcessOk() (*IPPrefixesProcess, bool)`
 
 GetProcessOk returns a tuple with the Process field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProcess
 
-`func (o *IPRanges) SetProcess(v IPPrefixes)`
+`func (o *IPRanges) SetProcess(v IPPrefixesProcess)`
 
 SetProcess sets Process field to given value.
 
@@ -185,20 +185,20 @@ HasProcess returns a boolean if a field has been set.
 
 ### GetSynthetics
 
-`func (o *IPRanges) GetSynthetics() IPPrefixes`
+`func (o *IPRanges) GetSynthetics() IPPrefixesSynthetics`
 
 GetSynthetics returns the Synthetics field if non-nil, zero value otherwise.
 
 ### GetSyntheticsOk
 
-`func (o *IPRanges) GetSyntheticsOk() (*IPPrefixes, bool)`
+`func (o *IPRanges) GetSyntheticsOk() (*IPPrefixesSynthetics, bool)`
 
 GetSyntheticsOk returns a tuple with the Synthetics field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSynthetics
 
-`func (o *IPRanges) SetSynthetics(v IPPrefixes)`
+`func (o *IPRanges) SetSynthetics(v IPPrefixesSynthetics)`
 
 SetSynthetics sets Synthetics field to given value.
 
@@ -235,20 +235,20 @@ HasVersion returns a boolean if a field has been set.
 
 ### GetWebhooks
 
-`func (o *IPRanges) GetWebhooks() IPPrefixes`
+`func (o *IPRanges) GetWebhooks() IPPrefixesWebhooks`
 
 GetWebhooks returns the Webhooks field if non-nil, zero value otherwise.
 
 ### GetWebhooksOk
 
-`func (o *IPRanges) GetWebhooksOk() (*IPPrefixes, bool)`
+`func (o *IPRanges) GetWebhooksOk() (*IPPrefixesWebhooks, bool)`
 
 GetWebhooksOk returns a tuple with the Webhooks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWebhooks
 
-`func (o *IPRanges) SetWebhooks(v IPPrefixes)`
+`func (o *IPRanges) SetWebhooks(v IPPrefixesWebhooks)`
 
 SetWebhooks sets Webhooks field to given value.
 

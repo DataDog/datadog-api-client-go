@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageHostHour**](UsageHostHour.md) |  | [optional] 
+**Usage** | Pointer to [**[]UsageHostHour**](UsageHostHour.md) | TODO. | [optional] 
 
 ## Methods
 

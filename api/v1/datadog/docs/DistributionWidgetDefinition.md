@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
-**Requests** | Pointer to [**[]DistributionWidgetRequest**](DistributionWidgetRequest.md) |  | 
+**Requests** | Pointer to [**[]DistributionWidgetRequest**](DistributionWidgetRequest.md) | TODO. | 
 **ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget | [optional] 

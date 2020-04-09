@@ -1,8 +1,6 @@
 FROM golang:latest
 ENTRYPOINT ["/datadog-api-client-go/run-tests.sh"]
 
-RUN go get -u golang.org/x/lint/golint
-
 COPY go.mod go.sum /datadog-api-client-go/
 
 WORKDIR /datadog-api-client-go/

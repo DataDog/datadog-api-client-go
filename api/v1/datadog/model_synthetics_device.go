@@ -12,13 +12,17 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDevice struct for SyntheticsDevice
+// SyntheticsDevice TODO.
 type SyntheticsDevice struct {
-	Height   int64              `json:"height"`
-	Id       SyntheticsDeviceID `json:"id"`
-	IsMobile *bool              `json:"isMobile,omitempty"`
-	Name     string             `json:"name"`
-	Width    int64              `json:"width"`
+	// TODO.
+	Height int64              `json:"height"`
+	Id     SyntheticsDeviceID `json:"id"`
+	// TODO.
+	IsMobile *bool `json:"isMobile,omitempty"`
+	// TODO.
+	Name string `json:"name"`
+	// TODO.
+	Width int64 `json:"width"`
 }
 
 // NewSyntheticsDevice instantiates a new SyntheticsDevice object

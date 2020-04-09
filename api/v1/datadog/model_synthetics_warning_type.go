@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsWarningType the model 'SyntheticsWarningType'
+// SyntheticsWarningType TODO.
 type SyntheticsWarningType string
 
 // List of SyntheticsWarningType

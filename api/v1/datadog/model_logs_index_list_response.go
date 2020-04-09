@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// LogsIndexListResponse struct for LogsIndexListResponse
+// LogsIndexListResponse TODO.
 type LogsIndexListResponse struct {
+	// TODO.
 	Indexes *[]LogsIndex `json:"indexes,omitempty"`
 }
 

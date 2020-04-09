@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | Pointer to [**[]Event**](Event.md) |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Events** | Pointer to [**[]Event**](Event.md) | TODO. | [optional] 
+**Status** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | Pointer to **string** |  | 
-**Username** | Pointer to **string** |  | 
+**Password** | Pointer to **string** | TODO. | 
+**Username** | Pointer to **string** | TODO. | 
 
 ## Methods
 

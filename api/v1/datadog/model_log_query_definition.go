@@ -12,11 +12,13 @@ import (
 	"encoding/json"
 )
 
-// LogQueryDefinition struct for LogQueryDefinition
+// LogQueryDefinition TODO.
 type LogQueryDefinition struct {
-	Compute *LogsQueryCompute            `json:"compute,omitempty"`
+	Compute *LogsQueryCompute `json:"compute,omitempty"`
+	// TODO.
 	GroupBy *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
-	Index   *string                      `json:"index,omitempty"`
+	// TODO.
+	Index *string `json:"index,omitempty"`
 	// This field is mutually exclusive with `compute`
 	MultiCompute *[]LogsQueryCompute       `json:"multi_compute,omitempty"`
 	Search       *LogQueryDefinitionSearch `json:"search,omitempty"`

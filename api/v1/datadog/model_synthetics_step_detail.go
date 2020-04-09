@@ -12,25 +12,39 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsStepDetail struct for SyntheticsStepDetail
+// SyntheticsStepDetail TODO.
 type SyntheticsStepDetail struct {
-	BrowserErrors       *[]SyntheticsBrowserError       `json:"browserErrors,omitempty"`
-	CheckType           *SyntheticsCheckType            `json:"checkType,omitempty"`
-	Description         *string                         `json:"description,omitempty"`
-	Duration            *float64                        `json:"duration,omitempty"`
-	Error               *string                         `json:"error,omitempty"`
-	PlayingTab          *SyntheticsPlayingTab           `json:"playingTab,omitempty"`
-	Resources           *[]SyntheticsResource           `json:"resources,omitempty"`
-	ScreenshotBucketKey *bool                           `json:"screenshotBucketKey,omitempty"`
-	Skipped             *bool                           `json:"skipped,omitempty"`
-	SnapshotBucketKey   *bool                           `json:"snapshotBucketKey,omitempty"`
-	StepId              *int64                          `json:"stepId,omitempty"`
-	SubTestStepDetails  *[]SyntheticsStepDetail         `json:"subTestStepDetails,omitempty"`
-	TimeToInteractive   *float64                        `json:"timeToInteractive,omitempty"`
-	Type                *SyntheticsStepType             `json:"type,omitempty"`
-	Url                 *string                         `json:"url,omitempty"`
-	Value               *interface{}                    `json:"value,omitempty"`
-	Warnings            *[]SyntheticsStepDetailWarnings `json:"warnings,omitempty"`
+	// TODO.
+	BrowserErrors *[]SyntheticsBrowserError `json:"browserErrors,omitempty"`
+	CheckType     *SyntheticsCheckType      `json:"checkType,omitempty"`
+	// TODO.
+	Description *string `json:"description,omitempty"`
+	// TODO.
+	Duration *float64 `json:"duration,omitempty"`
+	// TODO.
+	Error      *string               `json:"error,omitempty"`
+	PlayingTab *SyntheticsPlayingTab `json:"playingTab,omitempty"`
+	// TODO.
+	Resources *[]SyntheticsResource `json:"resources,omitempty"`
+	// TODO.
+	ScreenshotBucketKey *bool `json:"screenshotBucketKey,omitempty"`
+	// TODO.
+	Skipped *bool `json:"skipped,omitempty"`
+	// TODO.
+	SnapshotBucketKey *bool `json:"snapshotBucketKey,omitempty"`
+	// TODO.
+	StepId *int64 `json:"stepId,omitempty"`
+	// TODO.
+	SubTestStepDetails *[]SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
+	// TODO.
+	TimeToInteractive *float64            `json:"timeToInteractive,omitempty"`
+	Type              *SyntheticsStepType `json:"type,omitempty"`
+	// TODO.
+	Url *string `json:"url,omitempty"`
+	// TODO.
+	Value *interface{} `json:"value,omitempty"`
+	// TODO.
+	Warnings *[]SyntheticsStepDetailWarnings `json:"warnings,omitempty"`
 }
 
 // NewSyntheticsStepDetail instantiates a new SyntheticsStepDetail object

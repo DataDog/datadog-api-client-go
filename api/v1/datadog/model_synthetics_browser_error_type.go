@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsBrowserErrorType the model 'SyntheticsBrowserErrorType'
+// SyntheticsBrowserErrorType TODO.
 type SyntheticsBrowserErrorType string
 
 // List of SyntheticsBrowserErrorType

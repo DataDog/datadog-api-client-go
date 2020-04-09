@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorHandle** | Pointer to **string** |  | [optional] [readonly] 
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
+**AuthorHandle** | Pointer to **string** | TODO. | [optional] [readonly] 
+**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
 **Description** | Pointer to **NullableString** | Description of the dashboard | [optional] 
 **Id** | Pointer to **string** | ID of the dashboard | [optional] [readonly] 
 **IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] [default to false]
 **LayoutType** | Pointer to [**DashboardLayoutType**](DashboardLayoutType.md) |  | 
-**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] [readonly] 
+**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] [readonly] 
 **NotifyList** | Pointer to **[]string** | List of handles of users to notify when changes are made to this dashboard. | [optional] 
-**TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) |  | [optional] 
-**TemplateVariables** | Pointer to [**[]DashboardTemplateVariables**](Dashboard_template_variables.md) |  | [optional] 
+**TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) | TODO. | [optional] 
+**TemplateVariables** | Pointer to [**[]DashboardTemplateVariables**](Dashboard_template_variables.md) | TODO. | [optional] 
 **Title** | Pointer to **string** | Title of the dashboard | 
-**Url** | Pointer to **string** |  | [optional] [readonly] 
+**Url** | Pointer to **string** | TODO. | [optional] [readonly] 
 **Widgets** | Pointer to [**[]Widget**](Widget.md) | List of widgets to display on the dashboard | 
 
 ## Methods

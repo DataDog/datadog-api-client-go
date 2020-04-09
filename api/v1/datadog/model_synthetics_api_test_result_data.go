@@ -12,18 +12,24 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsAPITestResultData struct for SyntheticsAPITestResultData
+// SyntheticsAPITestResultData TODO.
 type SyntheticsAPITestResultData struct {
-	Cert            *SyntheticsSSLCertificate    `json:"cert,omitempty"`
-	ErrorCode       *SyntheticsErrorCode         `json:"errorCode,omitempty"`
-	ErrorMessage    *string                      `json:"errorMessage,omitempty"`
-	EventType       *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
-	HttpStatusCode  *int64                       `json:"httpStatusCode,omitempty"`
-	RequestHeaders  *map[string]interface{}      `json:"requestHeaders,omitempty"`
-	ResponseBody    *string                      `json:"responseBody,omitempty"`
-	ResponseHeaders *map[string]interface{}      `json:"responseHeaders,omitempty"`
-	ResponseSize    *int64                       `json:"responseSize,omitempty"`
-	Timings         *SyntheticsTiming            `json:"timings,omitempty"`
+	Cert      *SyntheticsSSLCertificate `json:"cert,omitempty"`
+	ErrorCode *SyntheticsErrorCode      `json:"errorCode,omitempty"`
+	// TODO.
+	ErrorMessage *string                      `json:"errorMessage,omitempty"`
+	EventType    *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
+	// TODO.
+	HttpStatusCode *int64 `json:"httpStatusCode,omitempty"`
+	// TODO.
+	RequestHeaders *map[string]interface{} `json:"requestHeaders,omitempty"`
+	// TODO.
+	ResponseBody *string `json:"responseBody,omitempty"`
+	// TODO.
+	ResponseHeaders *map[string]interface{} `json:"responseHeaders,omitempty"`
+	// TODO.
+	ResponseSize *int64            `json:"responseSize,omitempty"`
+	Timings      *SyntheticsTiming `json:"timings,omitempty"`
 }
 
 // NewSyntheticsAPITestResultData instantiates a new SyntheticsAPITestResultData object

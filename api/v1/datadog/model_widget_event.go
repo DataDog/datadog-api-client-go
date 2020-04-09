@@ -12,8 +12,9 @@ import (
 	"encoding/json"
 )
 
-// WidgetEvent struct for WidgetEvent
+// WidgetEvent TODO.
 type WidgetEvent struct {
+	// TODO.
 	Q string `json:"q"`
 	// The execution method for multi-value filters. Can be either and or or
 	TagsExecution *string `json:"tags_execution,omitempty"`

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The monitor name. | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
-**Query** | Pointer to **string** |  | [optional] 
+**Query** | Pointer to **string** | TODO. | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Tags associated to your monitor. | [optional] 
 **Type** | Pointer to [**MonitorType**](MonitorType.md) |  | [optional] 

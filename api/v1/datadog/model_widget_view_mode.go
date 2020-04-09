@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetViewMode the model 'WidgetViewMode'
+// WidgetViewMode TODO.
 type WidgetViewMode string
 
 // List of WidgetViewMode

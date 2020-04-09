@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// LogContent struct for LogContent
+// LogContent TODO.
 type LogContent struct {
 	// JSON object of attributes from your log.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`

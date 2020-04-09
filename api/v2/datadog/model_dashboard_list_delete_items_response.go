@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// DashboardListDeleteItemsResponse struct for DashboardListDeleteItemsResponse
+// DashboardListDeleteItemsResponse TODO.
 type DashboardListDeleteItemsResponse struct {
 	// List of dashboards deleted from the dashboard list.
 	DeletedDashboardsFromList *[]DashboardListItem `json:"deleted_dashboards_from_list,omitempty"`

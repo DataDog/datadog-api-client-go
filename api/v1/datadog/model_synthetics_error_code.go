@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsErrorCode the model 'SyntheticsErrorCode'
+// SyntheticsErrorCode TODO.
 type SyntheticsErrorCode string
 
 // List of SyntheticsErrorCode

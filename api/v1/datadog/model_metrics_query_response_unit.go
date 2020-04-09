@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MetricsQueryResponseUnit struct for MetricsQueryResponseUnit
+// MetricsQueryResponseUnit TODO.
 type MetricsQueryResponseUnit struct {
 	// Unit family, allows for conversion between units of the same family, for scaling.
 	Family *string `json:"family,omitempty"`

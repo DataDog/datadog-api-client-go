@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PublicIds** | Pointer to **[]string** |  | [optional] 
+**PublicIds** | Pointer to **[]string** | TODO. | [optional] 
 
 ## Methods
 

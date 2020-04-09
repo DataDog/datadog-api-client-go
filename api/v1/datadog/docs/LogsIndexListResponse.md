@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Indexes** | Pointer to [**[]LogsIndex**](LogsIndex.md) |  | [optional] 
+**Indexes** | Pointer to [**[]LogsIndex**](LogsIndex.md) | TODO. | [optional] 
 
 ## Methods
 

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MetricsQueryResponse struct for MetricsQueryResponse
+// MetricsQueryResponse TODO.
 type MetricsQueryResponse struct {
 	// Message indicating the errors if status is not `ok`.
 	Error *string `json:"error,omitempty"`

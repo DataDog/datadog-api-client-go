@@ -12,11 +12,14 @@ import (
 	"encoding/json"
 )
 
-// DashboardTemplateVariables struct for DashboardTemplateVariables
+// DashboardTemplateVariables TODO.
 type DashboardTemplateVariables struct {
+	// TODO.
 	Default NullableString `json:"default,omitempty"`
-	Name    string         `json:"name"`
-	Prefix  NullableString `json:"prefix,omitempty"`
+	// TODO.
+	Name string `json:"name"`
+	// TODO.
+	Prefix NullableString `json:"prefix,omitempty"`
 }
 
 // NewDashboardTemplateVariables instantiates a new DashboardTemplateVariables object
