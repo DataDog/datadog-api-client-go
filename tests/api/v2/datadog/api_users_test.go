@@ -12,8 +12,8 @@ import (
 
 func testingUserCreateAttributes() *datadog.UserCreateAttributes {
 	uca := datadog.NewUserCreateAttributes()
-	uca.SetEmail(fmt.Sprintf("testinguser-%d@datadoghq.com", TestClock.Now().UnixNano()))
-	uca.SetName("Testign User")
+	uca.SetEmail(fmt.Sprintf("test-datadog-client-go-%d@datadoghq.com", TestClock.Now().UnixNano()))
+	uca.SetName("Test Datadog Client Go")
 	uca.SetTitle("Big boss")
 	return uca
 }
