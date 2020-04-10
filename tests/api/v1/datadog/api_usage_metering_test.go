@@ -254,8 +254,8 @@ func TestUsageSummary(t *testing.T) {
 		t.Errorf("Failed to get Usage Summary: %v", err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC), usage.GetStartDate())
-	assert.Equal(t, time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usage.GetEndDate())
+	assert.Equal(t, time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC), usage.GetStartDate().UTC())
+	assert.Equal(t, time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usage.GetEndDate().UTC())
 	assert.Equal(t, int64(1), usage.GetApmHostTop99pSum())
 	assert.Equal(t, int64(2), usage.GetInfraHostTop99pSum())
 	assert.Equal(t, int64(1), usage.GetContainerHwmSum())
@@ -263,7 +263,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(t, int64(5), usage.GetRumSessionCountAggSum())
 
 	var usageItem = usage.GetUsage()[0]
-	assert.Equal(t, time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate())
+	assert.Equal(t, time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate().UTC())
 	assert.Equal(t, int64(1), usageItem.GetAgentHostTop99p())
 	assert.Equal(t, int64(2), usageItem.GetApmHostTop99p())
 	assert.Equal(t, int64(3), usageItem.GetAwsHostTop99p())

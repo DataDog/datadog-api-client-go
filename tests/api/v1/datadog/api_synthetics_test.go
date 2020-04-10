@@ -402,7 +402,7 @@ func TestSyntheticsDeleteTest404Error(t *testing.T) {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
 	// Mocked because not sure how to trigger the 404 response
-	gock.New("https://api.datadoghq.com").Delete("/api/v1/synthetics/tests/delete").Reply(404).JSON(res)
+	gock.New("https://api.datadoghq.com").Post("/api/v1/synthetics/tests/delete").Reply(404).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := TESTAPICLIENT.SyntheticsApi.DeleteTests(TESTAUTH).Body(datadog.SyntheticsDeleteTestsPayload{}).Execute()

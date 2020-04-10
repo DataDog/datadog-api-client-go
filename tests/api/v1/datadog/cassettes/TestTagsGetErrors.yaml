@@ -9,7 +9,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/tags/hosts/host
+    url: https://api.datadoghq.com/api/v1/tags/hosts/notahostname1234
     method: GET
   response:
     body: '{"errors": ["API key required"]}'
@@ -25,7 +25,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 13:15:14 GMT
+      - Fri, 10 Apr 2020 16:50:27 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -33,7 +33,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2377862"
+      - "35.2378719"
       X-Frame-Options:
       - SAMEORIGIN
     status: 403 Forbidden
@@ -47,7 +47,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/tags/hosts/host
+    url: https://api.datadoghq.com/api/v1/tags/hosts/notahostname1234
     method: GET
   response:
     body: '{"errors": ["No host matches that host_id"]}'
@@ -63,7 +63,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 13:15:15 GMT
+      - Fri, 10 Apr 2020 16:50:27 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -71,7 +71,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2377862"
+      - "35.2378719"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

@@ -183,7 +183,6 @@ func TestPagerDutyCreateErrors(t *testing.T) {
 	}{
 		{"400 Bad Request", TESTAUTH, 400},
 		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
 	}
 
 	for _, tc := range testCases {
