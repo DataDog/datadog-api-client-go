@@ -153,7 +153,11 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetAPITestLatestResults(TESTAUTH, publicID).ProbeDc(locs).Execute()
+	_, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetAPITestLatestResults(TESTAUTH, publicID).
+		FromTs(0).
+		ToTs(TESTCLOCK.Now().Unix() * 1000).
+		ProbeDc(locs).
+		Execute()
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
 			publicID, err.Error(), err)
@@ -240,7 +244,11 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	// Get the most recent Browser test results
 	var latestResults datadog.SyntheticsGetBrowserTestLatestResultsResponse
 	locs := synt.GetLocations()
-	latestResults, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetBrowserTestLatestResults(TESTAUTH, publicID).ProbeDc(locs).Execute()
+	latestResults, httpresp, err = TESTAPICLIENT.SyntheticsApi.GetBrowserTestLatestResults(TESTAUTH, publicID).
+		FromTs(0).
+		ToTs(TESTCLOCK.Now().Unix() * 1000).
+		ProbeDc(locs).
+		Execute()
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
 			publicID, err.Error(), err)
