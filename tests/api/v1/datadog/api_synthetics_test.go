@@ -697,12 +697,11 @@ func TestSyntheticsCreateTest402Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
-	// and it can't be done through the API
+	// Triggered when the synthetics test quota is reached. Need to mock.
 	gock.New("https://api.datadoghq.com").Post("/api/v1/synthetics/test").Reply(402).JSON(res)
 	defer gock.Off()
 
-	// 400 Bad Request
+	// 402 Bad Request
 	_, httpresp, err := TESTAPICLIENT.SyntheticsApi.CreateTest(TESTAUTH).Body(datadog.SyntheticsTestDetails{}).Execute()
 	assert.Equal(t, 402, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

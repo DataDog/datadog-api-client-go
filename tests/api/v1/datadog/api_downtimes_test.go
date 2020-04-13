@@ -327,7 +327,7 @@ func TestDowntimeCancelByScopeErrors(t *testing.T) {
 	}{
 		{"400 Bad Request", TESTAUTH, datadog.CancelDowntimesByScopeRequest{}, 400},
 		{"403 Forbidden", fake_auth, datadog.CancelDowntimesByScopeRequest{}, 403},
-		{"404 Not Found", TESTAUTH, datadog.CancelDowntimesByScopeRequest{Scope: "whatever"}, 404},
+		{"404 Not Found", TESTAUTH, datadog.CancelDowntimesByScopeRequest{Scope: "nonexistent"}, 404},
 	}
 
 	for _, tc := range testCases {

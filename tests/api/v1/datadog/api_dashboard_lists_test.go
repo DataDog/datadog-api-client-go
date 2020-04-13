@@ -157,7 +157,7 @@ func TestDashboardListUpdateErrors(t *testing.T) {
 	}{
 		{"400 Bad Request", TESTAUTH, datadog.DashboardList{}, 400},
 		{"403 Forbidden", context.Background(), datadog.DashboardList{}, 403},
-		{"404 Not Found", TESTAUTH, datadog.DashboardList{Name: "who cares"}, 404},
+		{"404 Not Found", TESTAUTH, datadog.DashboardList{Name: "nonexistent"}, 404},
 	}
 
 	for _, tc := range testCases {

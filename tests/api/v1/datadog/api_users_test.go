@@ -152,13 +152,6 @@ func TestUserCreateErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	// Create user to trigger 409
-	testUser := generateUniqueUser(t)
-	_, _, err := TESTAPICLIENT.UsersApi.CreateUser(TESTAUTH).Body(testUser).Execute()
-	if err != nil {
-		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	defer disableUser(testUser.GetHandle())
 
 	testCases := []struct {
 		Name               string

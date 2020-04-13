@@ -317,7 +317,7 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	name := "shrugs"
+	name := "nonexistent key"
 	testCases := []struct {
 		Name               string
 		Ctx                context.Context
@@ -446,7 +446,7 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 	defer teardownTest(t)
 
 	// Create an app key to trigger the 409 conflict
-	testAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	testAPPKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
 	appKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -491,7 +491,7 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	name := "shrugs"
+	name := "nonexistent key"
 	testCases := []struct {
 		Name               string
 		Ctx                context.Context
@@ -527,7 +527,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	testAPPKeyName1 := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
 	appKeyData1, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName1}).Execute()
 	if err != nil {
-		t.Errorf("Error creating api key %v: Response %s: %v", testAPPKeyName1, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName1, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteAppKey(appKeyData1.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
@@ -535,7 +535,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	testAPPKeyName2 := fmt.Sprintf("%s:%d2", t.Name(), time.Now().UnixNano())
 	appKeyData2, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
 	if err != nil {
-		t.Errorf("Error creating api key %v: Response %s: %v", testAPPKeyName2, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName2, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteAppKey(appKeyData2.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)

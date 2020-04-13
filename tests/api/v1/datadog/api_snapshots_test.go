@@ -51,9 +51,8 @@ func TestGetGraphSnapshotRequiredParams(t *testing.T) {
 	var end int64 = 2
 	metricQuery := "query"
 
-	client := datadog.NewAPIClient(datadog.NewConfiguration())
 
-	_, _, err := client.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).End(end).Execute()
+	_, _, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).End(end).Execute()
 	assert.Contains(t, err.Error(), "start is required")
 	_, _, err = TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).Start(start).Execute()
 	assert.Contains(t, err.Error(), "end is required")

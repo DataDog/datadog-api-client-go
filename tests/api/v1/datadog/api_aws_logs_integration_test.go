@@ -375,7 +375,7 @@ func TestAWSLogsServicesCheckErrors(t *testing.T) {
 	}
 }
 
-// FIXME: Right now we get 502s for these request instead of 400 or 403. Raised with the AWS intg team.
+// FIXME: Right now we get 502s for these request instead of 400 or 403.
 func TestAWSLogsLambdaCheckErrors(t *testing.T) {
 	t.Skip("Receiving 502 instead of 400 or 403, so skipping")
 	// Setup the Client we'll use to interact with the Test account

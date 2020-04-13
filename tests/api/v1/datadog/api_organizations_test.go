@@ -170,7 +170,7 @@ func TestGetOrg(t *testing.T) {
 	// Get mocked request data
 	getOrgResp, _, err := TESTAPICLIENT.OrganizationsApi.GetOrg(TESTAUTH, *orgsFixture.GetOrg().PublicId).Execute()
 	if err != nil {
-		t.Errorf("Failed to update the test org %s", err)
+		t.Errorf("Failed to get the test org %s", err)
 	}
 
 	// Assert basic org fields

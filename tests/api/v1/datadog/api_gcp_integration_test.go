@@ -137,7 +137,7 @@ func TestGCPList400Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
+	// Mocked because it is only returned when the gcp integration is not installed, which is not the case on test org
 	// and it can't be done through the API
 	gock.New("https://api.datadoghq.com").Get("/api/v1/integration/gcp").Reply(400).JSON(res)
 	defer gock.Off()

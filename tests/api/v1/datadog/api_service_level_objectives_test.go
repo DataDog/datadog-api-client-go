@@ -383,8 +383,6 @@ func TestSLODelete409Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
-	// and it can't be done through the API
 	gock.New("https://api.datadoghq.com").Delete("/api/v1/slo/id").Reply(409).JSON(res)
 	defer gock.Off()
 
@@ -498,8 +496,6 @@ func TestSLOCanDelete409Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
-	// and it can't be done through the API
 	// FIXME: Make it an integration test when feature is fixed
 	gock.New("https://api.datadoghq.com").Get("/api/v1/slo/can_delete").Reply(409).JSON(res)
 	defer gock.Off()

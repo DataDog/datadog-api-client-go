@@ -331,7 +331,7 @@ func TestPagerDutyServicesUpdateErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(tc.Ctx, "aservice").Body(tc.Body).Execute()
+			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(tc.Ctx, "qoisdfhanniq").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -356,7 +356,7 @@ func TestPagerDutyServicesDeleteErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(tc.Ctx, "aservice").Execute()
+			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(tc.Ctx, "lqnioiuyzbefnkje").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

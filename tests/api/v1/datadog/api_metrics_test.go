@@ -259,8 +259,6 @@ func TestMetricsMetadataUpdateErrors(t *testing.T) {
 		Body               datadog.MetricMetadata
 		ExpectedStatusCode int
 	}{
-		// Error 400 cannot be triggered from the client due to client side validation
-		// {"400 Bad Request", TESTAUTH, datadog.MetricMetadata{}, 400},
 		{"403 Forbidden", fake_auth, datadog.MetricMetadata{}, 403},
 		{"404 Not Found", TESTAUTH, datadog.MetricMetadata{}, 404},
 	}
