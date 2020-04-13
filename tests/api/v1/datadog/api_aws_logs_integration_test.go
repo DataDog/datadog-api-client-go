@@ -378,27 +378,27 @@ func TestAWSLogsServicesCheckErrors(t *testing.T) {
 // FIXME: Right now we get 502s for these request instead of 400 or 403.
 func TestAWSLogsLambdaCheckErrors(t *testing.T) {
 	t.Skip("Receiving 502 instead of 400 or 403, so skipping")
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	//// Setup the Client we'll use to interact with the Test account
+	//teardownTest := setupTest(t)
+	//defer teardownTest(t)
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
-		Body               datadog.AWSAccountAndLambdaRequest
-		ExpectedStatusCode int
-	}{
-		{"400 Bad Request", TESTAUTH, datadog.AWSAccountAndLambdaRequest{}, 400},
-		{"403 Forbidden", context.Background(), datadog.AWSAccountAndLambdaRequest{}, 403},
-	}
+	//testCases := []struct {
+	//	Name               string
+	//	Ctx                context.Context
+	//	Body               datadog.AWSAccountAndLambdaRequest
+	//	ExpectedStatusCode int
+	//}{
+	//	{"400 Bad Request", TESTAUTH, datadog.AWSAccountAndLambdaRequest{}, 400},
+	//	{"403 Forbidden", context.Background(), datadog.AWSAccountAndLambdaRequest{}, 403},
+	//}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(tc.Ctx).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
-		})
-	}
+	//for _, tc := range testCases {
+	//	t.Run(tc.Name, func(t *testing.T) {
+	//		_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(tc.Ctx).Body(tc.Body).Execute()
+	//		assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+	//		apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	//		assert.True(t, ok)
+	//		assert.NotEmpty(t, apiError.GetErrors())
+	//	})
+	//}
 }
