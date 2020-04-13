@@ -77,6 +77,15 @@ Class | Method | HTTP request | Description
 *DashboardListsApi* | [**DeleteDashboardListItems**](docs/DashboardListsApi.md#deletedashboardlistitems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
 *DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
 *DashboardListsApi* | [**UpdateDashboardListItems**](docs/DashboardListsApi.md#updatedashboardlistitems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update items of a dashboard list
+*UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v2/users | Create user
+*UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v2/users/{user_id} | Disable user
+*UsersApi* | [**GetInvitation**](docs/UsersApi.md#getinvitation) | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation
+*UsersApi* | [**GetUser**](docs/UsersApi.md#getuser) | **Get** /api/v2/users/{user_id} | Get a user
+*UsersApi* | [**GetUserOrganization**](docs/UsersApi.md#getuserorganization) | **Get** /api/v2/users/{user_id}/orgs | Get a user organization
+*UsersApi* | [**GetUserPermissions**](docs/UsersApi.md#getuserpermissions) | **Get** /api/v2/users/{user_id}/permissions | Get a user permissions
+*UsersApi* | [**ListUsers**](docs/UsersApi.md#listusers) | **Get** /api/v2/users | List all users
+*UsersApi* | [**SendInvitations**](docs/UsersApi.md#sendinvitations) | **Post** /api/v2/user_invitations | Send invitation emails
+*UsersApi* | [**UpdateUser**](docs/UsersApi.md#updateuser) | **Patch** /api/v2/users/{user_id} | Update a user
 
 
 ## Documentation For Models
@@ -88,6 +97,47 @@ Class | Method | HTTP request | Description
  - [DashboardListItem](docs/DashboardListItem.md)
  - [DashboardListItems](docs/DashboardListItems.md)
  - [DashboardType](docs/DashboardType.md)
+ - [Organization](docs/Organization.md)
+ - [OrganizationAttributes](docs/OrganizationAttributes.md)
+ - [Pagination](docs/Pagination.md)
+ - [Permission](docs/Permission.md)
+ - [PermissionAttributes](docs/PermissionAttributes.md)
+ - [Permissions](docs/Permissions.md)
+ - [QuerySortOrder](docs/QuerySortOrder.md)
+ - [RelationshipToOrganization](docs/RelationshipToOrganization.md)
+ - [RelationshipToOrganizationData](docs/RelationshipToOrganizationData.md)
+ - [RelationshipToOrganizations](docs/RelationshipToOrganizations.md)
+ - [RelationshipToPermissionData](docs/RelationshipToPermissionData.md)
+ - [RelationshipToPermissions](docs/RelationshipToPermissions.md)
+ - [RelationshipToRoleData](docs/RelationshipToRoleData.md)
+ - [RelationshipToRoles](docs/RelationshipToRoles.md)
+ - [RelationshipToUser](docs/RelationshipToUser.md)
+ - [RelationshipToUserData](docs/RelationshipToUserData.md)
+ - [RelationshipToUsers](docs/RelationshipToUsers.md)
+ - [ResponseMetaAttributes](docs/ResponseMetaAttributes.md)
+ - [Role](docs/Role.md)
+ - [RoleAttributes](docs/RoleAttributes.md)
+ - [RoleRelationships](docs/RoleRelationships.md)
+ - [UserCreateAttributes](docs/UserCreateAttributes.md)
+ - [UserCreateData](docs/UserCreateData.md)
+ - [UserCreatePayload](docs/UserCreatePayload.md)
+ - [UserInvitationData](docs/UserInvitationData.md)
+ - [UserInvitationDataAttributes](docs/UserInvitationDataAttributes.md)
+ - [UserInvitationPayload](docs/UserInvitationPayload.md)
+ - [UserInvitationRelationships](docs/UserInvitationRelationships.md)
+ - [UserInvitationResponse](docs/UserInvitationResponse.md)
+ - [UserInvitationResponseData](docs/UserInvitationResponseData.md)
+ - [UserInvitationsResponse](docs/UserInvitationsResponse.md)
+ - [UserRelationships](docs/UserRelationships.md)
+ - [UserResponse](docs/UserResponse.md)
+ - [UserResponseAttributes](docs/UserResponseAttributes.md)
+ - [UserResponseIncludedItem](docs/UserResponseIncludedItem.md)
+ - [UserResponsePayload](docs/UserResponsePayload.md)
+ - [UserResponseRelationships](docs/UserResponseRelationships.md)
+ - [UserUpdateAttributes](docs/UserUpdateAttributes.md)
+ - [UserUpdateData](docs/UserUpdateData.md)
+ - [UserUpdatePayload](docs/UserUpdatePayload.md)
+ - [UsersResponsePayload](docs/UsersResponsePayload.md)
 
 
 ## Documentation For Authorization
