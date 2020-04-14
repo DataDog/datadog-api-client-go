@@ -16,11 +16,11 @@ This document provides some basic guidelines for contributing to this repository
 
 ## Suggesting an enhancements - Pull Requests
 
-Client source code is generated using [apigentool](https://apigentools.readthedocs.io/en/latest/).
+Client source code is generated using [apigentools](https://apigentools.readthedocs.io/en/latest/).
  
-While you can create an issue to suggest an client enhancement, you won't be able to make a Pull Request for it.
+While you can create an issue to suggest a client enhancement, you won't be able to make a Pull Request for it.
 
-This is true except if you intent to:
+Changes can only be made to:
 - Improve tests
 - Improve dev tooling
 - Improve non client usage doc. 
@@ -36,7 +36,7 @@ In order to ease/speed up our review, here are some items you can check/improve 
 * Summarize your PR with a **meaningful title** and **fill out the pull request description template completely!**
 
 Your pull request must pass all CI tests. If you're seeing an error and don't think it's your fault, it may not be! 
-[Join us on Slack][5] or send us an email, and together we'llget it sorted out.
+[Join us on Slack][5] or send us an email, and together we'll get it sorted out.
 
 ### Keep it small, focused
 
