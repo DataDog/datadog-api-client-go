@@ -84,7 +84,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	}
 	body := datadog.NewDashboardListItems(dashboards)
 
-	addResponse, httpresp, err := TestAPIClient.DashboardListsApi.AddDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
+	addResponse, httpresp, err := TestAPIClient.DashboardListsApi.CreateDashboardListItems(TestAuth, dashboardListID).Body(*body).Execute()
 	if err != nil {
 		t.Fatalf("error adding items to dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -152,4 +152,128 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.NotNil(t, getResponse.GetDashboards()[0].Modified)
 	assert.NotNil(t, getResponse.GetDashboards()[0].Created)
 	assert.Nil(t, getResponse.GetDashboards()[0].Icon)
+}
+
+func TestDashboardListGetItemsErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardown := setupTest(t)
+	defer teardown(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", context.Background(), 403},
+		{"404 Not Found", TestAuth, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TestAPIClient.DashboardListsApi.GetDashboardListItems(tc.Ctx, 1234).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDashboardListCreateItemsErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardown := setupTest(t)
+	defer teardown(t)
+
+	err := createDashboardList()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer deleteDashboardList()
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ID                 int64
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TestAuth, dashboardListID, 400},
+		{"403 Forbidden", context.Background(), 0, 403},
+		{"404 Not Found", TestAuth, 0, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TestAPIClient.DashboardListsApi.CreateDashboardListItems(tc.Ctx, tc.ID).Body(datadog.DashboardListItems{}).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDashboardListUpdateItemsErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardown := setupTest(t)
+	defer teardown(t)
+
+	err := createDashboardList()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer deleteDashboardList()
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ID                 int64
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TestAuth, dashboardListID, 400},
+		{"403 Forbidden", context.Background(), 0, 403},
+		{"404 Not Found", TestAuth, 0, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TestAPIClient.DashboardListsApi.UpdateDashboardListItems(tc.Ctx, tc.ID).Body(datadog.DashboardListItems{}).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDashboardListDeleteItemsErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardown := setupTest(t)
+	defer teardown(t)
+
+	err := createDashboardList()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer deleteDashboardList()
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ID                 int64
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TestAuth, dashboardListID, 400},
+		{"403 Forbidden", context.Background(), 0, 403},
+		{"404 Not Found", TestAuth, 0, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TestAPIClient.DashboardListsApi.DeleteDashboardListItems(tc.Ctx, tc.ID).Body(datadog.DashboardListItems{}).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }

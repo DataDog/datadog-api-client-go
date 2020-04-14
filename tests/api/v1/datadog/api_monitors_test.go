@@ -7,11 +7,15 @@
 package test
 
 import (
+	"context"
+	"fmt"
 	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/stretchr/testify/assert"
+	"gopkg.in/h2non/gock.v1"
 )
 
 var testMonitor = datadog.Monitor{
@@ -139,6 +143,16 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Contains(t, monitors, fetchedMonitor)
 
+	// Can delete
+	ids := []int64{monitor.GetId()}
+	canDeleteResp, httpresp, err := TESTAPICLIENT.MonitorsApi.CheckCanDeleteMonitor(TESTAUTH).MonitorIds(ids).Execute()
+	if err != nil {
+		t.Errorf("Cannot delete Monitor %v: Response %s: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(t, ids, canDeleteResp.Data.GetOk())
+	assert.Empty(t, canDeleteResp.GetErrors())
+
 	// Delete
 	deletedMonitor, httpresp, err := TESTAPICLIENT.MonitorsApi.DeleteMonitor(TESTAUTH, monitor.GetId()).Execute()
 	if err != nil {
@@ -146,6 +160,301 @@ func TestMonitorLifecycle(t *testing.T) {
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, monitor.GetId(), deletedMonitor.GetDeletedMonitorId())
+}
+
+func TestMonitorsCreateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.Monitor
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.Monitor{}, 400},
+		{"403 Forbidden", fake_auth, datadog.Monitor{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestMonitorsListErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, 400},
+		{"403 Forbidden", fake_auth, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.MonitorsApi.ListMonitors(tc.Ctx).GroupStates("notagroupstate").Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestMonitorUpdateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Create monitor
+	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(testMonitor).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteMonitor(monitor.GetId())
+	assert.Equal(t, 200, httpresp.StatusCode)
+
+	updateMonitor := *datadog.NewMonitorWithDefaults()
+	updateMonitor.SetType(datadog.MONITORTYPE_COMPOSITE)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ID                 int64
+		Body               datadog.Monitor
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, monitor.GetId(), updateMonitor, 400},
+		// Cannot trigger 401 for client. Need underrestricted creds.
+		// {"401 Unauthorized", TESTAUTH, 1234, datadog.Monitor{}, 401},
+		{"403 Forbidden", fake_auth, 1234, datadog.Monitor{}, 403},
+		{"404 Not Found", TESTAUTH, 1234, datadog.Monitor{}, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.MonitorsApi.UpdateMonitor(tc.Ctx, tc.ID).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestMonitorUpdate401Error(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	// Cannot trigger 401 for client. Need underrestricted creds. Mock it.
+	res, err := tests.ReadFixture("fixtures/monitors/error_401.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	gock.New("https://api.datadoghq.com").Put("/api/v1/monitor/121").Reply(401).JSON(res)
+	defer gock.Off()
+
+	_, httpresp, err := TESTAPICLIENT.MonitorsApi.UpdateMonitor(TESTAUTH, 121).Body(datadog.Monitor{}).Execute()
+	assert.Equal(t, 401, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestMonitorsGetErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Create monitor
+	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(testMonitor).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteMonitor(monitor.GetId())
+	assert.Equal(t, 200, httpresp.StatusCode)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ID                 int64
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, monitor.GetId(), 400},
+		{"403 Forbidden", fake_auth, 1234, 403},
+		{"404 Not Found", TESTAUTH, 1234, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.MonitorsApi.GetMonitor(tc.Ctx, tc.ID).GroupStates("notagroupstate").Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestMonitorDeleteErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ID                 int64
+		Body               datadog.Monitor
+		ExpectedStatusCode int
+	}{
+		// Cannot trigger 400 due to client side validations
+		// {"400 Bad Request", TESTAUTH, monitor.GetId(), updateMonitor, 400},
+		// Cannot trigger 401 for client. Need underrestricted creds.
+		// {"401 Unauthorized", TESTAUTH, 1234, datadog.Monitor{}, 401},
+		{"403 Forbidden", fake_auth, 1234, datadog.Monitor{}, 403},
+		{"404 Not Found", TESTAUTH, 1234, datadog.Monitor{}, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.MonitorsApi.UpdateMonitor(tc.Ctx, tc.ID).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestMonitorDelete400Error(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	// Cannot trigger 400 due to client side validations, so mock it
+	res, err := tests.ReadFixture("fixtures/monitors/error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	gock.New("https://api.datadoghq.com").Delete("/api/v1/monitor/121").Reply(400).JSON(res)
+	defer gock.Off()
+
+	_, httpresp, err := TESTAPICLIENT.MonitorsApi.DeleteMonitor(TESTAUTH, 121).Execute()
+	assert.Equal(t, 400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestMonitorDelete401Error(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	// Cannot trigger 401 for client. Need underrestricted creds. Mock it.
+	res, err := tests.ReadFixture("fixtures/monitors/error_401.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	gock.New("https://api.datadoghq.com").Delete("/api/v1/monitor/121").Reply(401).JSON(res)
+	defer gock.Off()
+
+	_, httpresp, err := TESTAPICLIENT.MonitorsApi.DeleteMonitor(TESTAUTH, 121).Execute()
+	assert.Equal(t, 401, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestMonitorCanDeleteErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Create monitor that can't be deleted
+	monitor := *datadog.NewMonitorWithDefaults()
+	monitor.SetType(datadog.MONITORTYPE_QUERY_ALERT)
+	monitor.SetQuery("avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100")
+	monitor, _, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(monitor).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteMonitor(monitor.GetId())
+	composite := *datadog.NewMonitorWithDefaults()
+	composite.SetType(datadog.MONITORTYPE_COMPOSITE)
+	composite.SetQuery(fmt.Sprintf("%d", monitor.GetId()))
+	composite, _, err = TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(composite).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteMonitor(composite.GetId())
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		IDs                []int64
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, []int64{}, 400},
+		{"403 Forbidden", fake_auth, []int64{1234}, 403},
+		{"409 Conflict", TESTAUTH, []int64{monitor.GetId()}, 409},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.MonitorsApi.CheckCanDeleteMonitor(tc.Ctx).MonitorIds(tc.IDs).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			if tc.ExpectedStatusCode == 409 {
+				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.CheckCanDeleteMonitorResponse)
+				assert.True(t, ok)
+				assert.NotEmpty(t, apiError.GetErrors())
+			} else {
+				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+				assert.True(t, ok)
+				assert.NotEmpty(t, apiError.GetErrors())
+			}
+		})
+	}
+}
+
+func TestMonitorValidateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.Monitor
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.Monitor{}, 400},
+		{"403 Forbidden", fake_auth, datadog.Monitor{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.MonitorsApi.ValidateMonitor(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func deleteMonitor(monitorID int64) {

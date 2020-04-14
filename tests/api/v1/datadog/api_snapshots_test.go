@@ -7,10 +7,11 @@
 package test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"gotest.tools/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetGraphSnapshot(t *testing.T) {
@@ -32,7 +33,7 @@ func TestGetGraphSnapshot(t *testing.T) {
 
 	assert.Equal(t, snapshot.GetGraphDef(), graphDef)
 	assert.Equal(t, snapshot.GetMetricQuery(), metricQuery)
-	assert.Assert(t, snapshot.GetSnapshotUrl() != "")
+	assert.NotEmpty(t, snapshot.GetSnapshotUrl())
 
 	// Try to create a snapshot with a graph_def
 	snapshot, httpresp, err = TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).GraphDef(graphDef).Start(start).End(end).Execute()
@@ -42,7 +43,7 @@ func TestGetGraphSnapshot(t *testing.T) {
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	assert.Equal(t, snapshot.GetGraphDef(), graphDef)
-	assert.Assert(t, snapshot.GetSnapshotUrl() != "")
+	assert.NotEmpty(t, snapshot.GetSnapshotUrl())
 }
 
 func TestGetGraphSnapshotRequiredParams(t *testing.T) {
@@ -50,8 +51,34 @@ func TestGetGraphSnapshotRequiredParams(t *testing.T) {
 	var end int64 = 2
 	metricQuery := "query"
 
+
 	_, _, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).End(end).Execute()
-	assert.ErrorContains(t, err, "start is required")
+	assert.Contains(t, err.Error(), "start is required")
 	_, _, err = TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(TESTAUTH).MetricQuery(metricQuery).Start(start).Execute()
-	assert.ErrorContains(t, err, "end is required")
+	assert.Contains(t, err.Error(), "end is required")
+}
+
+func TestGraphGetErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, 400},
+		{"403 Forbidden", fake_auth, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.SnapshotsApi.GetGraphSnapshot(tc.Ctx).Start(345).End(123).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }

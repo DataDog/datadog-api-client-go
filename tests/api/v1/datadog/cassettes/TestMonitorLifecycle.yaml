@@ -17,9 +17,8 @@ interactions:
   response:
     body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
-      message Notify: @hipchat-channel","id":15961481,"multi":false,"name":"name for
-      Go client monitor foo","created":"2020-02-21T17:14:37.394417+00:00","created_at":1582305277000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
-      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-21T17:14:37.394417+00:00","overall_state_modified":null,"overall_state":"No
+      message Notify: @hipchat-channel","id":17546219,"multi":false,"name":"name for
+      Go client monitor foo","created":"2020-04-08T13:10:38.914281+00:00","created_at":1586351438000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-08T13:10:38.914281+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"include_tags":true,"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"enable_logs_sample":true,"no_data_timeframe":null,"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"renotify_interval":60,"evaluation_delay":700,"escalation_message":"the
       situation has escalated","thresholds":{"critical":2.0,"warning":1.0}}}'
     headers:
@@ -27,29 +26,25 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "949"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 21 Feb 2020 17:14:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Wed, 08 Apr 2020 13:10:39 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:37 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 15-Apr-2020 13:10:38 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - yEcEaKqmSUfeSlQ/kN/c5E6EpIXbM1JPI9KV27pdsvBWWv3FI4tsqqRarYTS+fS+
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2368852"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -59,7 +54,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "3"
+      - "2"
     status: 200 OK
     code: 200
     duration: ""
@@ -74,42 +69,38 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/monitor/15961481
+    url: https://api.datadoghq.com/api/v1/monitor/17546219
     method: PUT
   response:
     body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
-      message Notify: @hipchat-channel","id":15961481,"multi":false,"name":"updated
-      name","created":"2020-02-21T17:14:37.394417+00:00","created_at":1582305277000,"org_id":321813,"modified":"2020-02-21T17:14:37.628139+00:00","overall_state_modified":null,"overall_state":"No
+      message Notify: @hipchat-channel","id":17546219,"multi":false,"name":"updated
+      name","created":"2020-04-08T13:10:38.914281+00:00","created_at":1586351438000,"org_id":321813,"modified":"2020-04-08T13:10:39.172817+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":null,"silenced":{},"include_tags":true,"thresholds":{"critical":2.0},"new_host_delay":null,"notify_no_data":false,"renotify_interval":null,"evaluation_delay":null}}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "698"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 21 Feb 2020 17:14:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Wed, 08 Apr 2020 13:10:39 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:37 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 15-Apr-2020 13:10:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - yEcEaKqmSUfeSlQ/kN/c5E6EpIXbM1JPI9KV27pdsvBWWv3FI4tsqqRarYTS+fS+
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2368852"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -119,7 +110,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "3"
+      - "1"
     status: 200 OK
     code: 200
     duration: ""
@@ -131,43 +122,38 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/monitor/15961481
+    url: https://api.datadoghq.com/api/v1/monitor/17546219
     method: GET
   response:
     body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
-      message Notify: @hipchat-channel","id":15961481,"multi":false,"name":"updated
-      name","created":"2020-02-21T17:14:37.394417+00:00","created_at":1582305277000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
-      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-21T17:14:37.628139+00:00","overall_state_modified":null,"overall_state":"No
+      message Notify: @hipchat-channel","id":17546219,"multi":false,"name":"updated
+      name","created":"2020-04-08T13:10:38.914281+00:00","created_at":1586351438000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-08T13:10:39.172817+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":null,"silenced":{},"include_tags":true,"thresholds":{"critical":2.0},"new_host_delay":null,"notify_no_data":false,"renotify_interval":null,"evaluation_delay":null}}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "794"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 21 Feb 2020 17:14:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Wed, 08 Apr 2020 13:10:39 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:37 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 15-Apr-2020 13:10:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - vLqqOLcWkbQm3aIBHfcEmIwzrJtjtqNdArlWt57BFwl8nfWymjIeK67csuZ1woEb
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2368852"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -177,7 +163,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "2999"
       X-Ratelimit-Reset:
-      - "3"
+      - "1"
     status: 200 OK
     code: 200
     duration: ""
@@ -193,157 +179,221 @@ interactions:
     method: GET
   response:
     body: '[{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15536429,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452},{"end":null,"monitor_id":15536429,"start":1585072424,"groups":[],"active":true,"scope":["*"],"id":775835837}],"id":15536429,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-28T13:50:19.654110+00:00","created_at":1580219419000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-01-28T13:50:23.732996+00:00","overall_state_modified":"2020-01-28T13:53:30+00:00","overall_state":"Alert","type":"query
-      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15574196,"multi":true,"name":"**system.net.bytes_rcvd**
+      alert","options":{"notify_audit":false,"locked":false,"silenced":{"*":null},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15574196,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-30T10:31:31.834434+00:00","created_at":1580380291000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-30T10:31:37.907308+00:00","overall_state_modified":"2020-01-30T10:33:57+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15577126,"multi":false,"name":"**system.net.bytes_rcvd**
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15577126,"multi":false,"name":"**system.net.bytes_rcvd**
       over **host:host0** was **> 100.0** on average during the **last 1h**.","created":"2020-01-30T12:52:29.668098+00:00","created_at":1580388749000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-30T12:52:29.668098+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"","matching_downtimes":[],"id":15577127,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15577127,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-30T12:52:29.930488+00:00","created_at":1580388749000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-30T12:52:29.930488+00:00","overall_state_modified":"2020-01-30T12:54:48+00:00","overall_state":"Alert","type":"metric
-      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"logs(\"source:test\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
-      > 1","message":"@slack-datadog-testing","matching_downtimes":[],"id":15605236,"multi":true,"name":"SSH
+      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":[{"uuid":"94172442-be03-11e9-a77a-3b7612558ac1","name":"Datadog
+      Admin Role"}],"tags":[],"deleted":null,"query":"logs(\"source:test\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
+      > 1","message":"@slack-datadog-testing","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15605236,"multi":true,"name":"SSH
       Activity on PROD","created":"2020-01-31T14:29:00.621013+00:00","created_at":1580480940000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T14:37:08.569640+00:00","overall_state_modified":"2020-01-31T14:38:16+00:00","overall_state":"OK","type":"log
-      alert","options":{"notify_audit":false,"locked":true,"timeout_h":0,"silenced":{},"include_tags":true,"thresholds":{"critical":1.0},"new_host_delay":300,"queryConfig":{"logset":{"id":"33715","name":"main"},"timeRange":{"to":1580481366378,"live":true,"from":1580466966378},"queryString":"source:test","queryIsFailed":false,"indexes":[]},"notify_no_data":false,"renotify_interval":0,"enable_logs_sample":true,"aggregation":{"metric":"count","type":"count","groupBy":"tag_source"}}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"invalid
-      query","message":"@slack-datadog-testing","matching_downtimes":[],"id":15605303,"multi":false,"name":"SSH
+      alert","options":{"notify_audit":false,"locked":true,"timeout_h":0,"silenced":{},"include_tags":true,"thresholds":{"critical":1.0},"new_host_delay":300,"queryConfig":{"logset":{"id":"33715","name":"main"},"timeRange":{"to":1580481366378,"live":true,"from":1580466966378},"queryString":"source:test","queryIsFailed":false,"indexes":[]},"notify_no_data":false,"renotify_interval":0,"enable_logs_sample":true,"aggregation":{"metric":"count","type":"count","groupBy":"tag_source"}}},{"restricted_roles":[{"uuid":"94172442-be03-11e9-a77a-3b7612558ac1","name":"Datadog
+      Admin Role"}],"tags":[],"deleted":null,"query":"invalid query","message":"@slack-datadog-testing","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15605303,"multi":false,"name":"SSH
       Activity on PROD","created":"2020-01-31T14:34:24.114915+00:00","created_at":1580481264000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T14:34:24.114915+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"locked":true,"renotify_interval":0,"include_tags":true,"silenced":{},"new_host_delay":300,"notify_no_data":false,"enable_logs_sample":true}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"","matching_downtimes":[],"id":15613139,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613139,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T22:54:04.744803+00:00","created_at":1580511244000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T22:54:05.296090+00:00","overall_state_modified":"2020-01-31T22:57:00+00:00","overall_state":"Alert","type":"metric
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"","matching_downtimes":[],"id":15613299,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613299,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:10:03.283067+00:00","created_at":1580512203000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:10:03.703733+00:00","overall_state_modified":"2020-01-31T23:12:40+00:00","overall_state":"Alert","type":"metric
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"","matching_downtimes":[],"id":15613306,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613306,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:10:27.155709+00:00","created_at":1580512227000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:10:27.155709+00:00","overall_state_modified":"2020-01-31T23:12:47+00:00","overall_state":"Alert","type":"metric
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"","matching_downtimes":[],"id":15613420,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613420,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:25:23.230505+00:00","created_at":1580513123000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:25:23.614841+00:00","overall_state_modified":"2020-01-31T23:27:42+00:00","overall_state":"Alert","type":"metric
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613427,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613427,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:26:39.253667+00:00","created_at":1580513199000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:26:40.981287+00:00","overall_state_modified":"2020-01-31T23:28:48+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613434,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613434,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:27:39.101393+00:00","created_at":1580513259000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:27:40.790460+00:00","overall_state_modified":"2020-01-31T23:29:55+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613485,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613485,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:31:56.973475+00:00","created_at":1580513516000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:31:58.973521+00:00","overall_state_modified":"2020-01-31T23:34:46+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613495,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613495,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:34:45.914819+00:00","created_at":1580513685000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:34:47.500019+00:00","overall_state_modified":"2020-01-31T23:36:56+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613531,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613531,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:37:36.165594+00:00","created_at":1580513856000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:37:39.959943+00:00","overall_state_modified":"2020-01-31T23:39:33+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613633,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613633,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:53:03.208475+00:00","created_at":1580514783000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:53:06.297277+00:00","overall_state_modified":"2020-01-31T23:55:14+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613667,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613667,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-31T23:56:24.524297+00:00","created_at":1580514984000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T23:56:26.009932+00:00","overall_state_modified":"2020-01-31T23:58:48+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613901,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613901,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-02-01T00:28:38.286034+00:00","created_at":1580516918000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-01T00:28:40.473807+00:00","overall_state_modified":"2020-02-01T00:30:42+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15613907,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15613907,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-02-01T00:28:55.722909+00:00","created_at":1580516935000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-01T00:28:57.676238+00:00","overall_state_modified":"2020-02-01T00:31:48+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15625182,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15625182,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-02-02T23:55:23.034906+00:00","created_at":1580687723000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-02T23:55:25.639877+00:00","overall_state_modified":"2020-02-02T23:57:43+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{*}
-      by {host} > 100","message":"monitor updated","matching_downtimes":[],"id":15652019,"multi":true,"name":"**system.net.bytes_rcvd**
+      by {host} > 100","message":"monitor updated","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15652019,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-02-04T11:08:15.948648+00:00","created_at":1580814495000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-02-04T11:08:19.886498+00:00","overall_state_modified":"2020-02-04T11:11:01+00:00","overall_state":"Alert","type":"query
       alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.cpu.system{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15676753,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15676753,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
       > 100`","created":"2020-02-05T11:17:40.426480+00:00","created_at":1580901460000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-05T11:17:40.426480+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.cpu.system{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15678893,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15678893,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
       > 100`","created":"2020-02-05T13:55:49.392967+00:00","created_at":1580910949000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-05T13:55:49.392967+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.cpu.system{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15679537,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15679537,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
       > 100`","created":"2020-02-05T14:36:55.703843+00:00","created_at":1580913415000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-05T14:36:55.703843+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15687296,"multi":false,"name":"For
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15687296,"multi":false,"name":"For
       testing monitor SLO","created":"2020-02-05T22:29:29.131724+00:00","created_at":1580941769000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda","email":"slavek.kabrda@datadoghq.com"},"org_id":321813,"modified":"2020-02-05T22:29:29.131724+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15687297,"multi":false,"name":"For
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15687297,"multi":false,"name":"For
       testing monitor SLO","created":"2020-02-05T22:29:29.929769+00:00","created_at":1580941769000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda","email":"slavek.kabrda@datadoghq.com"},"org_id":321813,"modified":"2020-02-05T22:29:29.929769+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.cpu.system{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15698590,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15698590,"multi":false,"name":"`avg(last_1h):sum:system.cpu.system{host:host0}
       > 100`","created":"2020-02-06T15:42:50.354580+00:00","created_at":1581003770000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-06T15:42:50.354580+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15766125,"multi":false,"name":"**system.net.bytes_rcvd**
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15766125,"multi":false,"name":"**system.net.bytes_rcvd**
       over **host:host0** was **> 100.0** on average during the **last 1h**.","created":"2020-02-10T18:08:41.591806+00:00","created_at":1581358121000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-02-10T18:08:41.591806+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{host:host0}
-      > 100","message":"","matching_downtimes":[],"id":15766126,"multi":false,"name":"**system.net.bytes_rcvd**
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15766126,"multi":false,"name":"**system.net.bytes_rcvd**
       over **host:host0** was **> 100.0** on average during the **last 1h**.","created":"2020-02-10T18:08:42.315894+00:00","created_at":1581358122000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-02-10T18:08:42.315894+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
-      message Notify: @hipchat-channel","matching_downtimes":[],"id":15842908,"multi":false,"name":"name
+      message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":15842908,"multi":false,"name":"name
       for Go client monitor foo","created":"2020-02-14T17:17:13.175060+00:00","created_at":1581700633000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda","email":"slavek.kabrda@datadoghq.com"},"org_id":321813,"modified":"2020-02-14T17:17:13.175060+00:00","overall_state_modified":"2020-02-14T17:18:29+00:00","overall_state":"OK","type":"log
       alert","options":{"include_tags":true,"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"enable_logs_sample":true,"thresholds":{"critical":2.0,"warning":1.0},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"renotify_interval":60,"evaluation_delay":700,"escalation_message":"the
-      situation has escalated"}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+      situation has escalated"}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):avg:aws.ec2.cpu{environment:foo,host:foo}
+      by {host} > 2","message":"some message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452},{"end":null,"monitor_id":16261774,"start":1583426962,"groups":[],"active":true,"scope":["*"],"id":756132700}],"id":16261774,"multi":true,"name":"name
+      for monitor foo","created":"2020-03-05T16:49:22.137018+00:00","created_at":1583426962000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-05T16:49:22.137018+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{"*":null},"include_tags":true,"new_host_delay":300,"require_full_window":true,"notify_no_data":false}},{"restricted_roles":null,"tags":["bar:baz","foo:bar"],"deleted":null,"query":"avg(last_1h):avg:aws.ec2.cpu{environment:foo,host:foo}
+      by {host} > 2","message":"some message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16262236,"multi":true,"name":"name
+      for monitor foo","created":"2020-03-05T17:10:47.884812+00:00","created_at":1583428247000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-05T17:10:47.884812+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"include_tags":true,"require_full_window":true,"new_host_delay":300,"notify_no_data":false,"renotify_interval":60,"escalation_message":"the
+      situation has escalated @pagerduty"}},{"restricted_roles":null,"tags":["bar:baz","foo:bar"],"deleted":null,"query":"avg(last_1h):avg:aws.ec2.cpu{environment:foo,host:foo}
+      by {host} > 2","message":"some message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16262516,"multi":true,"name":"name
+      for monitor foo","created":"2020-03-05T17:27:23.272680+00:00","created_at":1583429243000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-05T17:27:23.272680+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"include_tags":true,"require_full_window":true,"new_host_delay":300,"notify_no_data":false,"renotify_interval":60,"escalation_message":"the
+      situation has escalated @pagerduty"}},{"restricted_roles":null,"tags":["bar:baz","foo:bar"],"deleted":null,"query":"avg(last_1h):avg:aws.ec2.cpu{environment:foo,host:foo}
+      by {host} > 2","message":"some message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16262606,"multi":true,"name":"name
+      for monitor foo","created":"2020-03-05T17:32:06.438167+00:00","created_at":1583429526000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-05T17:32:06.438167+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"include_tags":true,"require_full_window":true,"new_host_delay":300,"notify_no_data":false,"renotify_interval":60,"escalation_message":"the
+      situation has escalated @pagerduty"}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"change(min(last_1m),last_5m):sum:org.eclipse.jetty.servlet.ServletContextHandler.5xx_responses{example,framework:chronos}
+      + sum:org.eclipse.jetty.servlet.ServletContextHandler.4xx_responses{example,framework:chronos}
+      + sum:org.eclipse.jetty.servlet.ServletContextHandler.3xx_responses{example,framework:chronos}
+      > 5","message":"a message","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16297340,"multi":false,"name":"Terraform
+      provider datadog complex metrics example Monitor","created":"2020-03-06T15:12:19.578468+00:00","created_at":1583507539000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-06T15:12:19.578468+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"require_full_window":true,"notify_no_data":false}},{"restricted_roles":null,"tags":["baz","foo:bar"],"deleted":null,"query":"avg(last_1h):avg:aws.ec2.cpu{environment:foo,host:foo}
+      by {host} > 2","message":"some message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16297341,"multi":true,"name":"name
+      for monitor foo","created":"2020-03-06T15:12:20.134325+00:00","created_at":1583507540000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-06T15:12:20.134325+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"include_tags":true,"thresholds":{"critical":2.0,"warning":1.0,"warning_recovery":0.5,"critical_recovery":1.5},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"renotify_interval":60,"evaluation_delay":700,"escalation_message":"the
+      situation has escalated @pagerduty"}},{"restricted_roles":null,"tags":["app:webserver","frontend"],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100","message":"We may need to add web hosts if this is consistently high.","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16836847,"multi":false,"name":"New
+      name Nick Check","created":"2020-03-13T02:27:25.804138+00:00","created_at":1584066445000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-03-13T02:27:26.279012+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true,"thresholds":{"critical":100.0}}},{"restricted_roles":null,"tags":["app:webserver","frontend"],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100","message":"We may need to add web hosts if this is consistently high.","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16836857,"multi":false,"name":"New
+      name Nick Check","created":"2020-03-13T02:29:27.619983+00:00","created_at":1584066567000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-03-13T02:29:27.979817+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true,"thresholds":{"critical":100.0}}},{"restricted_roles":null,"tags":["app:webserver","frontend"],"deleted":null,"query":"avg(last_4h):anomalies(ewma_20(avg:system.cpu.system{env:prod,service:website}.as_rate()),
+      ''robust'', 3, direction=''below'', alert_window=''last_15m'', interval=60,
+      count_default_zero=''true'', seasonality=''weekly'') >= 1","message":"We may
+      need to add web hosts if this is consistently high.","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16850355,"multi":false,"name":"Test
+      Anomaly Monitor - Updated","created":"2020-03-13T14:52:45.316098+00:00","created_at":1584111165000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-03-13T14:52:45.799654+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true,"threshold_windows":{"trigger_window":"last_15m"}}},{"restricted_roles":null,"tags":["app:webserver","frontend"],"deleted":null,"query":"avg(last_4h):anomalies(ewma_20(avg:system.cpu.system{env:prod,service:website}.as_rate()),
+      ''robust'', 3, direction=''below'', alert_window=''last_15m'', interval=60,
+      count_default_zero=''true'', seasonality=''weekly'') >= 1","message":"We may
+      need to add web hosts if this is consistently high.","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16850358,"multi":false,"name":"Test
+      Anomaly Monitor - Updated","created":"2020-03-13T14:53:30.705530+00:00","created_at":1584111210000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-03-13T14:53:31.133633+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true,"threshold_windows":{"trigger_window":"last_15m"}}},{"restricted_roles":null,"tags":["bar:baz","foo:bar"],"deleted":null,"query":"avg(last_1h):avg:aws.ec2.cpu{environment:foo,host:foo}
+      by {host} > 2.5","message":"some message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16885864,"multi":true,"name":"name
+      for monitor foo","created":"2020-03-16T12:49:12.170347+00:00","created_at":1584362952000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-16T12:49:12.170347+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"include_tags":true,"thresholds":{"warning":2.3,"ok":1.5,"critical":2.5,"warning_recovery":2.2,"critical_recovery":2.4},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"renotify_interval":60,"escalation_message":"the
+      situation has escalated @pagerduty"}},{"restricted_roles":null,"tags":["bar:baz","foo:bar"],"deleted":null,"query":"avg(last_1h):avg:aws.ec2.cpu{environment:foo,host:foo}
+      by {host} > 2.5","message":"some message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":16885866,"multi":true,"name":"name
+      for monitor foo","created":"2020-03-16T12:49:12.811249+00:00","created_at":1584362952000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-03-16T12:49:12.811249+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"include_tags":true,"thresholds":{"warning":2.3,"ok":1.5,"critical":2.5},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"renotify_interval":60,"escalation_message":"the
+      situation has escalated @pagerduty"}},{"restricted_roles":null,"tags":["app:webserver","frontend"],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100","message":"We may need to add web hosts if this is consistently high.","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":17182593,"multi":false,"name":"Bytes
+      received on host0","created":"2020-03-24T18:16:26.971616+00:00","created_at":1585073786000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
+      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-03-24T18:16:26.971616+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"no_data_timeframe":20,"new_host_delay":300,"notify_no_data":true}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_15m):avg:system.disk.in_use{*}
+      by {host,device} > 0.8","message":"Test message","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":17377935,"multi":true,"name":"Test
+      monitor","created":"2020-04-01T12:56:33.370832+00:00","created_at":1585745793000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-01T12:56:33.370832+00:00","overall_state_modified":"2020-04-01T12:58:15+00:00","overall_state":"Alert","type":"metric
+      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":false,"no_data_timeframe":60,"new_host_delay":600,"require_full_window":true,"notify_no_data":true}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":17418620,"multi":false,"name":"`avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100`","created":"2020-04-02T10:38:32.991094+00:00","created_at":1585823912000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-02T10:38:32.991094+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100","message":"","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":17418655,"multi":false,"name":"`avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100`","created":"2020-04-02T10:40:36.132106+00:00","created_at":1585824036000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-02T10:40:36.132106+00:00","overall_state_modified":null,"overall_state":"No
+      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_15m):avg:system.disk.in_use{*}
+      by {host,device} > 0.8","message":"Test message","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":17485198,"multi":true,"name":"Test
+      monitor","created":"2020-04-06T13:26:30.888347+00:00","created_at":1586179590000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-06T13:26:30.888347+00:00","overall_state_modified":"2020-04-06T13:29:01+00:00","overall_state":"Alert","type":"metric
+      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":false,"no_data_timeframe":60,"new_host_delay":600,"require_full_window":true,"notify_no_data":true}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
-      message Notify: @hipchat-channel","matching_downtimes":[],"id":15961481,"multi":false,"name":"updated
-      name","created":"2020-02-21T17:14:37.394417+00:00","created_at":1582305277000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
-      Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-02-21T17:14:37.628139+00:00","overall_state_modified":null,"overall_state":"No
+      message Notify: @hipchat-channel","matching_downtimes":[{"end":null,"monitor_id":null,"start":1585929722,"groups":[],"active":true,"scope":["*"],"id":786779334},{"end":null,"monitor_id":null,"start":1585930466,"groups":[],"active":true,"scope":["*"],"id":786789452}],"id":17546219,"multi":false,"name":"updated
+      name","created":"2020-04-08T13:10:38.914281+00:00","created_at":1586351438000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-08T13:10:39.172817+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":null,"silenced":{},"include_tags":true,"thresholds":{"critical":2.0},"new_host_delay":null,"notify_no_data":false,"renotify_interval":null,"evaluation_delay":null}}]'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "48667"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:14:38 GMT
-      Dd-Pool:
-      - dogweb
+      - Wed, 08 Apr 2020 13:10:39 GMT
       Etag:
-      - W/"05c112e74384abf0ffe67187ae4a9e90"
+      - W/"e4c06d409484686bc63b248cc636f9e5"
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:38 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 15-Apr-2020 13:10:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - tC9U8NM0Z/kvHE2H14k1U3spiHbXz72rh5O3tOqhQhVPC3nlvooY3TRyCaI/gIdt
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2368852"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -353,7 +403,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "999"
       X-Ratelimit-Reset:
-      - "2"
+      - "1"
     status: 200 OK
     code: 200
     duration: ""
@@ -365,38 +415,34 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/monitor/15961481
-    method: DELETE
+    url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=17546219
+    method: GET
   response:
-    body: '{"deleted_monitor_id":15961481}'
+    body: '{"errors":null,"data":{"ok":[17546219]}}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "40"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
-      - application/json; charset=utf-8
+      - application/json
       Date:
-      - Fri, 21 Feb 2020 17:14:38 GMT
-      Dd-Pool:
-      - dogweb
+      - Wed, 08 Apr 2020 13:10:40 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:38 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 15-Apr-2020 13:10:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - aswcxBk1J00Iy18+kQFKF6EQfzLy4sWD4ILciesVMX5rWDYniffEYH6qbK0qwOgw
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2368852"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -410,7 +456,48 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/monitor/15961481
+    url: https://api.datadoghq.com/api/v1/monitor/17546219
+    method: DELETE
+  response:
+    body: '{"deleted_monitor_id":17546219}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "31"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 08 Apr 2020 13:10:40 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 15-Apr-2020 13:10:40 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2368852"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/monitor/17546219
     method: DELETE
   response:
     body: '{"errors":["Monitor not found"]}'
@@ -419,24 +506,22 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "32"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:14:38 GMT
-      Dd-Pool:
-      - dogweb
+      - Wed, 08 Apr 2020 13:10:40 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2368852"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
