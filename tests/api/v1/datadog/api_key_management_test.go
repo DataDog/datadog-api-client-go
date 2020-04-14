@@ -447,14 +447,14 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 
 	// Create an app key to trigger the 409 conflict
 	testAPPKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	appKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPIKeyName}).Execute()
+	appKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
 	if err != nil {
-		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating api key %v: Response %s: %v", testAPPKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPIKeyName}).Execute()
+	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
 	assert.Equal(t, 409, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)

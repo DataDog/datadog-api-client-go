@@ -152,7 +152,6 @@ func TestUserCreateErrors(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-
 	testCases := []struct {
 		Name               string
 		Ctx                context.Context
@@ -160,7 +159,7 @@ func TestUserCreateErrors(t *testing.T) {
 		ExpectedStatusCode int
 	}{
 		{"400 Bad Request", TESTAUTH, datadog.User{}, 400},
-		{"403 Forbidden", fake_auth, testUser, 403},
+		{"403 Forbidden", fake_auth, datadog.User{}, 403},
 	}
 
 	for _, tc := range testCases {
