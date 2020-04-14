@@ -18,6 +18,11 @@ This project does not have a strict release schedule. However, we would make a r
 ## Release
 Note that once the release process is started, nobody should be merging/pushing anything.
 
+### Bumping Major Versions
+When moving this package from one major semver version to the next, there's a couple extra steps needed:
+1) Bump the `module` line in `go.mod`. E.g. from `module github.com/DataDog/datadog-api-client-go` to `module github.com/DataDog/datadog-api-client-go/v2`
+2) Update all imports in `.go` files to utilize this new import path. 
+
 ### Commands
 
 - See changes ready for release by running `ddev release show changes .` at the root of this project. Add any missing labels to PRs if needed.
@@ -36,4 +41,3 @@ After merging the above PR, create a release on the [releases page](https://gith
 Check that the release is available by running:
 `go get github.com/Datadog/datadog-api-client-go@<VERSION>`
 where `VERSION` is the version that was just tagged (e.g. `v0.1.0`)
-
