@@ -20,6 +20,7 @@ const (
 	ACCESSROLE_STANDARD  AccessRole = "st"
 	ACCESSROLE_ADMIN     AccessRole = "adm"
 	ACCESSROLE_READ_ONLY AccessRole = "ro"
+	ACCESSROLE_ERROR     AccessRole = "ERROR"
 )
 
 // Ptr returns reference to AccessRole value
