@@ -701,7 +701,6 @@ func TestSyntheticsCreateTest402Error(t *testing.T) {
 	gock.New("https://api.datadoghq.com").Post("/api/v1/synthetics/test").Reply(402).JSON(res)
 	defer gock.Off()
 
-	// 402 Bad Request
 	_, httpresp, err := TESTAPICLIENT.SyntheticsApi.CreateTest(TESTAUTH).Body(datadog.SyntheticsTestDetails{}).Execute()
 	assert.Equal(t, 402, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
