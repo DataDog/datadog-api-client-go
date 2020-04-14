@@ -24,27 +24,27 @@ var (
 // DashboardListsApiService DashboardListsApi service
 type DashboardListsApiService service
 
-type apiAddDashboardListItemsRequest struct {
+type apiCreateDashboardListItemsRequest struct {
 	ctx             _context.Context
 	apiService      *DashboardListsApiService
 	dashboardListId int64
 	body            *DashboardListItems
 }
 
-func (r apiAddDashboardListItemsRequest) Body(body DashboardListItems) apiAddDashboardListItemsRequest {
+func (r apiCreateDashboardListItemsRequest) Body(body DashboardListItems) apiCreateDashboardListItemsRequest {
 	r.body = &body
 	return r
 }
 
 /*
-AddDashboardListItems Add Items to a Dashboard List
+CreateDashboardListItems Add Items to a Dashboard List
 Add dashboards to an existing dashboard list.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param dashboardListId ID of the dashboard list to add items to.
-@return apiAddDashboardListItemsRequest
+@return apiCreateDashboardListItemsRequest
 */
-func (a *DashboardListsApiService) AddDashboardListItems(ctx _context.Context, dashboardListId int64) apiAddDashboardListItemsRequest {
-	return apiAddDashboardListItemsRequest{
+func (a *DashboardListsApiService) CreateDashboardListItems(ctx _context.Context, dashboardListId int64) apiCreateDashboardListItemsRequest {
+	return apiCreateDashboardListItemsRequest{
 		apiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
@@ -55,7 +55,7 @@ func (a *DashboardListsApiService) AddDashboardListItems(ctx _context.Context, d
 Execute executes the request
  @return DashboardListAddItemsResponse
 */
-func (r apiAddDashboardListItemsRequest) Execute() (DashboardListAddItemsResponse, *_nethttp.Response, error) {
+func (r apiCreateDashboardListItemsRequest) Execute() (DashboardListAddItemsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -65,7 +65,7 @@ func (r apiAddDashboardListItemsRequest) Execute() (DashboardListAddItemsRespons
 		localVarReturnValue  DashboardListAddItemsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.AddDashboardListItems")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.CreateDashboardListItems")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

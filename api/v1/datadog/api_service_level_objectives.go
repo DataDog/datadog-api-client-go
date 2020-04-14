@@ -51,16 +51,16 @@ func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLO(ctx _context.Contex
 
 /*
 Execute executes the request
- @return CheckCanDeleteServiceLevelObjectiveResponse
+ @return CheckCanDeleteSLOResponse
 */
-func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteServiceLevelObjectiveResponse, *_nethttp.Response, error) {
+func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CheckCanDeleteServiceLevelObjectiveResponse
+		localVarReturnValue  CheckCanDeleteSLOResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.CheckCanDeleteSLO")
@@ -146,7 +146,7 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteServiceLevelObject
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v CheckCanDeleteServiceLevelObjectiveResponse
+			var v CheckCanDeleteSLOResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -165,7 +165,7 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteServiceLevelObject
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -175,8 +175,8 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteServiceLevelObject
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v APIErrorResponse
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v CheckCanDeleteSLOResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -225,16 +225,16 @@ func (a *ServiceLevelObjectivesApiService) CreateSLO(ctx _context.Context) apiCr
 
 /*
 Execute executes the request
- @return ServiceLevelObjectiveListResponse
+ @return SLOListResponse
 */
-func (r apiCreateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_nethttp.Response, error) {
+func (r apiCreateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ServiceLevelObjectiveListResponse
+		localVarReturnValue  SLOListResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.CreateSLO")
@@ -321,7 +321,7 @@ func (r apiCreateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_net
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v ServiceLevelObjectiveListResponse
+			var v SLOListResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -331,16 +331,6 @@ func (r apiCreateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_net
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -400,16 +390,16 @@ func (a *ServiceLevelObjectivesApiService) DeleteSLO(ctx _context.Context, sloId
 
 /*
 Execute executes the request
- @return ServiceLevelObjectiveDeleted
+ @return SLODeleteResponse
 */
-func (r apiDeleteSLORequest) Execute() (ServiceLevelObjectiveDeleted, *_nethttp.Response, error) {
+func (r apiDeleteSLORequest) Execute() (SLODeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ServiceLevelObjectiveDeleted
+		localVarReturnValue  SLODeleteResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.DeleteSLO")
@@ -491,27 +481,7 @@ func (r apiDeleteSLORequest) Execute() (ServiceLevelObjectiveDeleted, *_nethttp.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v ServiceLevelObjectiveDeleted
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v APIErrorResponse
+			var v SLODeleteResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -532,6 +502,16 @@ func (r apiDeleteSLORequest) Execute() (ServiceLevelObjectiveDeleted, *_nethttp.
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v SLODeleteResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -584,16 +564,16 @@ func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulk(ctx _context
 
 /*
 Execute executes the request
- @return ServiceLevelObjectivesBulkDeleted
+ @return SLOBulkDeleteResponse
 */
-func (r apiDeleteSLOTimeframeInBulkRequest) Execute() (ServiceLevelObjectivesBulkDeleted, *_nethttp.Response, error) {
+func (r apiDeleteSLOTimeframeInBulkRequest) Execute() (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ServiceLevelObjectivesBulkDeleted
+		localVarReturnValue  SLOBulkDeleteResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.DeleteSLOTimeframeInBulk")
@@ -680,7 +660,7 @@ func (r apiDeleteSLOTimeframeInBulkRequest) Execute() (ServiceLevelObjectivesBul
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v ServiceLevelObjectivesBulkDeleted
+			var v SLOBulkDeleteResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -690,16 +670,6 @@ func (r apiDeleteSLOTimeframeInBulkRequest) Execute() (ServiceLevelObjectivesBul
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -756,16 +726,16 @@ func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId st
 
 /*
 Execute executes the request
- @return ServiceLevelObjectiveResponse
+ @return SLOResponse
 */
-func (r apiGetSLORequest) Execute() (ServiceLevelObjectiveResponse, *_nethttp.Response, error) {
+func (r apiGetSLORequest) Execute() (SLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ServiceLevelObjectiveResponse
+		localVarReturnValue  SLOResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLO")
@@ -847,27 +817,7 @@ func (r apiGetSLORequest) Execute() (ServiceLevelObjectiveResponse, *_nethttp.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v ServiceLevelObjectiveResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v APIErrorResponse
+			var v SLOResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -914,16 +864,16 @@ type apiGetSLOHistoryRequest struct {
 	ctx        _context.Context
 	apiService *ServiceLevelObjectivesApiService
 	sloId      string
-	fromTs     *string
-	toTs       *string
+	fromTs     *int64
+	toTs       *int64
 }
 
-func (r apiGetSLOHistoryRequest) FromTs(fromTs string) apiGetSLOHistoryRequest {
+func (r apiGetSLOHistoryRequest) FromTs(fromTs int64) apiGetSLOHistoryRequest {
 	r.fromTs = &fromTs
 	return r
 }
 
-func (r apiGetSLOHistoryRequest) ToTs(toTs string) apiGetSLOHistoryRequest {
+func (r apiGetSLOHistoryRequest) ToTs(toTs int64) apiGetSLOHistoryRequest {
 	r.toTs = &toTs
 	return r
 }
@@ -952,16 +902,16 @@ func (a *ServiceLevelObjectivesApiService) GetSLOHistory(ctx _context.Context, s
 
 /*
 Execute executes the request
- @return HistoryServiceLevelObjectiveResponse
+ @return SLOHistoryResponse
 */
-func (r apiGetSLOHistoryRequest) Execute() (HistoryServiceLevelObjectiveResponse, *_nethttp.Response, error) {
+func (r apiGetSLOHistoryRequest) Execute() (SLOHistoryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  HistoryServiceLevelObjectiveResponse
+		localVarReturnValue  SLOHistoryResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLOHistory")
@@ -1053,7 +1003,7 @@ func (r apiGetSLOHistoryRequest) Execute() (HistoryServiceLevelObjectiveResponse
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v HistoryServiceLevelObjectiveResponse
+			var v SLOHistoryResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1072,7 +1022,7 @@ func (r apiGetSLOHistoryRequest) Execute() (HistoryServiceLevelObjectiveResponse
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1082,7 +1032,7 @@ func (r apiGetSLOHistoryRequest) Execute() (HistoryServiceLevelObjectiveResponse
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1106,25 +1056,25 @@ func (r apiGetSLOHistoryRequest) Execute() (HistoryServiceLevelObjectiveResponse
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiGetSLOsRequest struct {
+type apiListSLOsRequest struct {
 	ctx        _context.Context
 	apiService *ServiceLevelObjectivesApiService
 	ids        *string
 }
 
-func (r apiGetSLOsRequest) Ids(ids string) apiGetSLOsRequest {
+func (r apiListSLOsRequest) Ids(ids string) apiListSLOsRequest {
 	r.ids = &ids
 	return r
 }
 
 /*
-GetSLOs Search SLOs
+ListSLOs Search SLOs
 Get multiple service level objective objects by their IDs.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiGetSLOsRequest
+@return apiListSLOsRequest
 */
-func (a *ServiceLevelObjectivesApiService) GetSLOs(ctx _context.Context) apiGetSLOsRequest {
-	return apiGetSLOsRequest{
+func (a *ServiceLevelObjectivesApiService) ListSLOs(ctx _context.Context) apiListSLOsRequest {
+	return apiListSLOsRequest{
 		apiService: a,
 		ctx:        ctx,
 	}
@@ -1132,19 +1082,19 @@ func (a *ServiceLevelObjectivesApiService) GetSLOs(ctx _context.Context) apiGetS
 
 /*
 Execute executes the request
- @return ServiceLevelObjectiveListResponse
+ @return SLOListResponse
 */
-func (r apiGetSLOsRequest) Execute() (ServiceLevelObjectiveListResponse, *_nethttp.Response, error) {
+func (r apiListSLOsRequest) Execute() (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ServiceLevelObjectiveListResponse
+		localVarReturnValue  SLOListResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLOs")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.ListSLOs")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1227,7 +1177,7 @@ func (r apiGetSLOsRequest) Execute() (ServiceLevelObjectiveListResponse, *_netht
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v ServiceLevelObjectiveListResponse
+			var v SLOListResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1237,16 +1187,6 @@ func (r apiGetSLOsRequest) Execute() (ServiceLevelObjectiveListResponse, *_netht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1309,16 +1249,16 @@ func (a *ServiceLevelObjectivesApiService) UpdateSLO(ctx _context.Context, sloId
 
 /*
 Execute executes the request
- @return ServiceLevelObjectiveListResponse
+ @return SLOListResponse
 */
-func (r apiUpdateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_nethttp.Response, error) {
+func (r apiUpdateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ServiceLevelObjectiveListResponse
+		localVarReturnValue  SLOListResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.UpdateSLO")
@@ -1406,7 +1346,7 @@ func (r apiUpdateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_net
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v ServiceLevelObjectiveListResponse
+			var v SLOListResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1416,16 +1356,6 @@ func (r apiUpdateSLORequest) Execute() (ServiceLevelObjectiveListResponse, *_net
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

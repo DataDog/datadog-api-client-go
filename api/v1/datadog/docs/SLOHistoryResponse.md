@@ -1,73 +1,78 @@
-# HistoryServiceLevelObjectiveResponse
+# SLOHistoryResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**HistoryServiceLevelObjectiveResponseData**](HistoryServiceLevelObjectiveResponse_data.md) |  | 
+**Data** | Pointer to [**SLOHistoryResponseData**](SLOHistoryResponse_data.md) |  | [optional] 
 **Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level obective. | [optional] 
 
 ## Methods
 
-### NewHistoryServiceLevelObjectiveResponse
+### NewSLOHistoryResponse
 
-`func NewHistoryServiceLevelObjectiveResponse(data HistoryServiceLevelObjectiveResponseData, ) *HistoryServiceLevelObjectiveResponse`
+`func NewSLOHistoryResponse() *SLOHistoryResponse`
 
-NewHistoryServiceLevelObjectiveResponse instantiates a new HistoryServiceLevelObjectiveResponse object
+NewSLOHistoryResponse instantiates a new SLOHistoryResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewHistoryServiceLevelObjectiveResponseWithDefaults
+### NewSLOHistoryResponseWithDefaults
 
-`func NewHistoryServiceLevelObjectiveResponseWithDefaults() *HistoryServiceLevelObjectiveResponse`
+`func NewSLOHistoryResponseWithDefaults() *SLOHistoryResponse`
 
-NewHistoryServiceLevelObjectiveResponseWithDefaults instantiates a new HistoryServiceLevelObjectiveResponse object
+NewSLOHistoryResponseWithDefaults instantiates a new SLOHistoryResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *HistoryServiceLevelObjectiveResponse) GetData() HistoryServiceLevelObjectiveResponseData`
+`func (o *SLOHistoryResponse) GetData() SLOHistoryResponseData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *HistoryServiceLevelObjectiveResponse) GetDataOk() (*HistoryServiceLevelObjectiveResponseData, bool)`
+`func (o *SLOHistoryResponse) GetDataOk() (*SLOHistoryResponseData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *HistoryServiceLevelObjectiveResponse) SetData(v HistoryServiceLevelObjectiveResponseData)`
+`func (o *SLOHistoryResponse) SetData(v SLOHistoryResponseData)`
 
 SetData sets Data field to given value.
 
+### HasData
+
+`func (o *SLOHistoryResponse) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 ### GetErrors
 
-`func (o *HistoryServiceLevelObjectiveResponse) GetErrors() []SLOHistoryResponseError`
+`func (o *SLOHistoryResponse) GetErrors() []SLOHistoryResponseError`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *HistoryServiceLevelObjectiveResponse) GetErrorsOk() (*[]SLOHistoryResponseError, bool)`
+`func (o *SLOHistoryResponse) GetErrorsOk() (*[]SLOHistoryResponseError, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *HistoryServiceLevelObjectiveResponse) SetErrors(v []SLOHistoryResponseError)`
+`func (o *SLOHistoryResponse) SetErrors(v []SLOHistoryResponseError)`
 
 SetErrors sets Errors field to given value.
 
 ### HasErrors
 
-`func (o *HistoryServiceLevelObjectiveResponse) HasErrors() bool`
+`func (o *SLOHistoryResponse) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
 

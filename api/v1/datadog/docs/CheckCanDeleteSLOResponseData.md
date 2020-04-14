@@ -1,4 +1,4 @@
-# CheckCanDeleteServiceLevelObjectiveResponseData
+# CheckCanDeleteSLOResponseData
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCheckCanDeleteServiceLevelObjectiveResponseData
+### NewCheckCanDeleteSLOResponseData
 
-`func NewCheckCanDeleteServiceLevelObjectiveResponseData() *CheckCanDeleteServiceLevelObjectiveResponseData`
+`func NewCheckCanDeleteSLOResponseData() *CheckCanDeleteSLOResponseData`
 
-NewCheckCanDeleteServiceLevelObjectiveResponseData instantiates a new CheckCanDeleteServiceLevelObjectiveResponseData object
+NewCheckCanDeleteSLOResponseData instantiates a new CheckCanDeleteSLOResponseData object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCheckCanDeleteServiceLevelObjectiveResponseDataWithDefaults
+### NewCheckCanDeleteSLOResponseDataWithDefaults
 
-`func NewCheckCanDeleteServiceLevelObjectiveResponseDataWithDefaults() *CheckCanDeleteServiceLevelObjectiveResponseData`
+`func NewCheckCanDeleteSLOResponseDataWithDefaults() *CheckCanDeleteSLOResponseData`
 
-NewCheckCanDeleteServiceLevelObjectiveResponseDataWithDefaults instantiates a new CheckCanDeleteServiceLevelObjectiveResponseData object
+NewCheckCanDeleteSLOResponseDataWithDefaults instantiates a new CheckCanDeleteSLOResponseData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetOk
 
-`func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOk() []string`
+`func (o *CheckCanDeleteSLOResponseData) GetOk() []string`
 
 GetOk returns the Ok field if non-nil, zero value otherwise.
 
 ### GetOkOk
 
-`func (o *CheckCanDeleteServiceLevelObjectiveResponseData) GetOkOk() (*[]string, bool)`
+`func (o *CheckCanDeleteSLOResponseData) GetOkOk() (*[]string, bool)`
 
 GetOkOk returns a tuple with the Ok field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOk
 
-`func (o *CheckCanDeleteServiceLevelObjectiveResponseData) SetOk(v []string)`
+`func (o *CheckCanDeleteSLOResponseData) SetOk(v []string)`
 
 SetOk sets Ok field to given value.
 
 ### HasOk
 
-`func (o *CheckCanDeleteServiceLevelObjectiveResponseData) HasOk() bool`
+`func (o *CheckCanDeleteSLOResponseData) HasOk() bool`
 
 HasOk returns a boolean if a field has been set.
 

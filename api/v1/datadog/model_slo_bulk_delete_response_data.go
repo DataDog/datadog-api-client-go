@@ -12,33 +12,33 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectivesBulkDeletedData An array of service level objective objects.
-type ServiceLevelObjectivesBulkDeletedData struct {
+// SLOBulkDeleteResponseData An array of service level objective objects.
+type SLOBulkDeleteResponseData struct {
 	// An array of service level objective object IDs that indicates which objects that were completely deleted.
 	Deleted *[]string `json:"deleted,omitempty"`
 	// An array of service level objective object IDs that indicates which objects that were modified (objects for which at least one threshold was deleted, but that were not completely deleted).
 	Updated *[]string `json:"updated,omitempty"`
 }
 
-// NewServiceLevelObjectivesBulkDeletedData instantiates a new ServiceLevelObjectivesBulkDeletedData object
+// NewSLOBulkDeleteResponseData instantiates a new SLOBulkDeleteResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjectivesBulkDeletedData() *ServiceLevelObjectivesBulkDeletedData {
-	this := ServiceLevelObjectivesBulkDeletedData{}
+func NewSLOBulkDeleteResponseData() *SLOBulkDeleteResponseData {
+	this := SLOBulkDeleteResponseData{}
 	return &this
 }
 
-// NewServiceLevelObjectivesBulkDeletedDataWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedData object
+// NewSLOBulkDeleteResponseDataWithDefaults instantiates a new SLOBulkDeleteResponseData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewServiceLevelObjectivesBulkDeletedDataWithDefaults() *ServiceLevelObjectivesBulkDeletedData {
-	this := ServiceLevelObjectivesBulkDeletedData{}
+func NewSLOBulkDeleteResponseDataWithDefaults() *SLOBulkDeleteResponseData {
+	this := SLOBulkDeleteResponseData{}
 	return &this
 }
 
 // GetDeleted returns the Deleted field value if set, zero value otherwise.
-func (o *ServiceLevelObjectivesBulkDeletedData) GetDeleted() []string {
+func (o *SLOBulkDeleteResponseData) GetDeleted() []string {
 	if o == nil || o.Deleted == nil {
 		var ret []string
 		return ret
@@ -48,7 +48,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetDeleted() []string {
 
 // GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedData) GetDeletedOk() (*[]string, bool) {
+func (o *SLOBulkDeleteResponseData) GetDeletedOk() (*[]string, bool) {
 	if o == nil || o.Deleted == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetDeletedOk() (*[]string, bool)
 }
 
 // HasDeleted returns a boolean if a field has been set.
-func (o *ServiceLevelObjectivesBulkDeletedData) HasDeleted() bool {
+func (o *SLOBulkDeleteResponseData) HasDeleted() bool {
 	if o != nil && o.Deleted != nil {
 		return true
 	}
@@ -65,12 +65,12 @@ func (o *ServiceLevelObjectivesBulkDeletedData) HasDeleted() bool {
 }
 
 // SetDeleted gets a reference to the given []string and assigns it to the Deleted field.
-func (o *ServiceLevelObjectivesBulkDeletedData) SetDeleted(v []string) {
+func (o *SLOBulkDeleteResponseData) SetDeleted(v []string) {
 	o.Deleted = &v
 }
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
-func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdated() []string {
+func (o *SLOBulkDeleteResponseData) GetUpdated() []string {
 	if o == nil || o.Updated == nil {
 		var ret []string
 		return ret
@@ -80,7 +80,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdated() []string {
 
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdatedOk() (*[]string, bool) {
+func (o *SLOBulkDeleteResponseData) GetUpdatedOk() (*[]string, bool) {
 	if o == nil || o.Updated == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdatedOk() (*[]string, bool)
 }
 
 // HasUpdated returns a boolean if a field has been set.
-func (o *ServiceLevelObjectivesBulkDeletedData) HasUpdated() bool {
+func (o *SLOBulkDeleteResponseData) HasUpdated() bool {
 	if o != nil && o.Updated != nil {
 		return true
 	}
@@ -97,11 +97,11 @@ func (o *ServiceLevelObjectivesBulkDeletedData) HasUpdated() bool {
 }
 
 // SetUpdated gets a reference to the given []string and assigns it to the Updated field.
-func (o *ServiceLevelObjectivesBulkDeletedData) SetUpdated(v []string) {
+func (o *SLOBulkDeleteResponseData) SetUpdated(v []string) {
 	o.Updated = &v
 }
 
-func (o ServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
+func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Deleted != nil {
 		toSerialize["deleted"] = o.Deleted
@@ -112,38 +112,38 @@ func (o ServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableServiceLevelObjectivesBulkDeletedData struct {
-	value *ServiceLevelObjectivesBulkDeletedData
+type NullableSLOBulkDeleteResponseData struct {
+	value *SLOBulkDeleteResponseData
 	isSet bool
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedData) Get() *ServiceLevelObjectivesBulkDeletedData {
+func (v NullableSLOBulkDeleteResponseData) Get() *SLOBulkDeleteResponseData {
 	return v.value
 }
 
-func (v *NullableServiceLevelObjectivesBulkDeletedData) Set(val *ServiceLevelObjectivesBulkDeletedData) {
+func (v *NullableSLOBulkDeleteResponseData) Set(val *SLOBulkDeleteResponseData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedData) IsSet() bool {
+func (v NullableSLOBulkDeleteResponseData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableServiceLevelObjectivesBulkDeletedData) Unset() {
+func (v *NullableSLOBulkDeleteResponseData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableServiceLevelObjectivesBulkDeletedData(val *ServiceLevelObjectivesBulkDeletedData) *NullableServiceLevelObjectivesBulkDeletedData {
-	return &NullableServiceLevelObjectivesBulkDeletedData{value: val, isSet: true}
+func NewNullableSLOBulkDeleteResponseData(val *SLOBulkDeleteResponseData) *NullableSLOBulkDeleteResponseData {
+	return &NullableSLOBulkDeleteResponseData{value: val, isSet: true}
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedData) MarshalJSON() ([]byte, error) {
+func (v NullableSLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableServiceLevelObjectivesBulkDeletedData) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOBulkDeleteResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

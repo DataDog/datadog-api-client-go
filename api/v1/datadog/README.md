@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
 *MetricsApi* | [**ListMetrics**](docs/MetricsApi.md#listmetrics) | **Get** /api/v1/search | Search metrics
 *MetricsApi* | [**QueryMetrics**](docs/MetricsApi.md#querymetrics) | **Get** /api/v1/query | Query timeseries points
 *MetricsApi* | [**UpdateMetricMetadata**](docs/MetricsApi.md#updatemetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
+*MonitorsApi* | [**CheckCanDeleteMonitor**](docs/MonitorsApi.md#checkcandeletemonitor) | **Get** /api/v1/monitor/can_delete | Check if the given monitors can be deleted
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a monitor
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
@@ -153,7 +154,8 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**UpdateMonitor**](docs/MonitorsApi.md#updatemonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
 *OrganizationsApi* | [**CreateChildOrg**](docs/OrganizationsApi.md#createchildorg) | **Post** /api/v1/org | Create a child organization
-*OrganizationsApi* | [**GetOrg**](docs/OrganizationsApi.md#getorg) | **Get** /api/v1/org | Get organization information
+*OrganizationsApi* | [**GetOrg**](docs/OrganizationsApi.md#getorg) | **Get** /api/v1/org/{public_id} | Get organization information
+*OrganizationsApi* | [**ListOrgs**](docs/OrganizationsApi.md#listorgs) | **Get** /api/v1/org | List your managed organizations
 *OrganizationsApi* | [**UpdateOrg**](docs/OrganizationsApi.md#updateorg) | **Put** /api/v1/org/{public_id} | Update your organization
 *OrganizationsApi* | [**UploadIdPForOrg**](docs/OrganizationsApi.md#uploadidpfororg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 *PagerDutyIntegrationApi* | [**CreatePagerDutyIntegration**](docs/PagerDutyIntegrationApi.md#createpagerdutyintegration) | **Put** /api/v1/integration/pagerduty | Create a PagerDuty integration
@@ -170,7 +172,7 @@ Class | Method | HTTP request | Description
 *ServiceLevelObjectivesApi* | [**DeleteSLOTimeframeInBulk**](docs/ServiceLevelObjectivesApi.md#deleteslotimeframeinbulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *ServiceLevelObjectivesApi* | [**GetSLO**](docs/ServiceLevelObjectivesApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
 *ServiceLevelObjectivesApi* | [**GetSLOHistory**](docs/ServiceLevelObjectivesApi.md#getslohistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-*ServiceLevelObjectivesApi* | [**GetSLOs**](docs/ServiceLevelObjectivesApi.md#getslos) | **Get** /api/v1/slo | Search SLOs
+*ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Search SLOs
 *ServiceLevelObjectivesApi* | [**UpdateSLO**](docs/ServiceLevelObjectivesApi.md#updateslo) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateTest**](docs/SyntheticsApi.md#createtest) | **Post** /api/v1/synthetics/tests | Create or clone test
@@ -237,8 +239,10 @@ Class | Method | HTTP request | Description
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
  - [ChangeWidgetDefinition](docs/ChangeWidgetDefinition.md)
  - [ChangeWidgetRequest](docs/ChangeWidgetRequest.md)
- - [CheckCanDeleteServiceLevelObjectiveResponse](docs/CheckCanDeleteServiceLevelObjectiveResponse.md)
- - [CheckCanDeleteServiceLevelObjectiveResponseData](docs/CheckCanDeleteServiceLevelObjectiveResponseData.md)
+ - [CheckCanDeleteMonitorResponse](docs/CheckCanDeleteMonitorResponse.md)
+ - [CheckCanDeleteMonitorResponseData](docs/CheckCanDeleteMonitorResponseData.md)
+ - [CheckCanDeleteSLOResponse](docs/CheckCanDeleteSLOResponse.md)
+ - [CheckCanDeleteSLOResponseData](docs/CheckCanDeleteSLOResponseData.md)
  - [CheckStatusWidgetDefinition](docs/CheckStatusWidgetDefinition.md)
  - [Creator](docs/Creator.md)
  - [Dashboard](docs/Dashboard.md)
@@ -272,8 +276,6 @@ Class | Method | HTTP request | Description
  - [HTTPMethod](docs/HTTPMethod.md)
  - [HeatMapWidgetDefinition](docs/HeatMapWidgetDefinition.md)
  - [HeatMapWidgetRequest](docs/HeatMapWidgetRequest.md)
- - [HistoryServiceLevelObjectiveResponse](docs/HistoryServiceLevelObjectiveResponse.md)
- - [HistoryServiceLevelObjectiveResponseData](docs/HistoryServiceLevelObjectiveResponseData.md)
  - [Host](docs/Host.md)
  - [HostListResponse](docs/HostListResponse.md)
  - [HostMapRequest](docs/HostMapRequest.md)
@@ -375,12 +377,20 @@ Class | Method | HTTP request | Description
  - [ProcessQueryDefinition](docs/ProcessQueryDefinition.md)
  - [QueryValueWidgetDefinition](docs/QueryValueWidgetDefinition.md)
  - [QueryValueWidgetRequest](docs/QueryValueWidgetRequest.md)
+ - [SLOBulkDeleteResponse](docs/SLOBulkDeleteResponse.md)
+ - [SLOBulkDeleteResponseData](docs/SLOBulkDeleteResponseData.md)
+ - [SLOBulkDeleteResponseErrors](docs/SLOBulkDeleteResponseErrors.md)
+ - [SLODeleteResponse](docs/SLODeleteResponse.md)
  - [SLOErrorTimeframe](docs/SLOErrorTimeframe.md)
  - [SLOHistoryMetrics](docs/SLOHistoryMetrics.md)
  - [SLOHistoryMetricsSeries](docs/SLOHistoryMetricsSeries.md)
  - [SLOHistoryMetricsSeriesMetadata](docs/SLOHistoryMetricsSeriesMetadata.md)
+ - [SLOHistoryResponse](docs/SLOHistoryResponse.md)
+ - [SLOHistoryResponseData](docs/SLOHistoryResponseData.md)
  - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)
  - [SLOHistorySLIData](docs/SLOHistorySLIData.md)
+ - [SLOListResponse](docs/SLOListResponse.md)
+ - [SLOResponse](docs/SLOResponse.md)
  - [SLOThreshold](docs/SLOThreshold.md)
  - [SLOTimeframe](docs/SLOTimeframe.md)
  - [SLOType](docs/SLOType.md)
@@ -390,13 +400,7 @@ Class | Method | HTTP request | Description
  - [ScatterPlotWidgetDefinition](docs/ScatterPlotWidgetDefinition.md)
  - [ScatterPlotWidgetDefinitionRequests](docs/ScatterPlotWidgetDefinitionRequests.md)
  - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
- - [ServiceLevelObjectiveDeleted](docs/ServiceLevelObjectiveDeleted.md)
- - [ServiceLevelObjectiveListResponse](docs/ServiceLevelObjectiveListResponse.md)
  - [ServiceLevelObjectiveQuery](docs/ServiceLevelObjectiveQuery.md)
- - [ServiceLevelObjectiveResponse](docs/ServiceLevelObjectiveResponse.md)
- - [ServiceLevelObjectivesBulkDeleted](docs/ServiceLevelObjectivesBulkDeleted.md)
- - [ServiceLevelObjectivesBulkDeletedData](docs/ServiceLevelObjectivesBulkDeletedData.md)
- - [ServiceLevelObjectivesBulkDeletedErrors](docs/ServiceLevelObjectivesBulkDeletedErrors.md)
  - [ServiceMapWidgetDefinition](docs/ServiceMapWidgetDefinition.md)
  - [ServiceSummaryWidgetDefinition](docs/ServiceSummaryWidgetDefinition.md)
  - [SyntheticsAPITestResultData](docs/SyntheticsAPITestResultData.md)
@@ -424,7 +428,6 @@ Class | Method | HTTP request | Description
  - [SyntheticsErrorCode](docs/SyntheticsErrorCode.md)
  - [SyntheticsGetAPITestLatestResultsResponse](docs/SyntheticsGetAPITestLatestResultsResponse.md)
  - [SyntheticsGetBrowserTestLatestResultsResponse](docs/SyntheticsGetBrowserTestLatestResultsResponse.md)
- - [SyntheticsGetTestLatestResultsPayload](docs/SyntheticsGetTestLatestResultsPayload.md)
  - [SyntheticsListTestsResponse](docs/SyntheticsListTestsResponse.md)
  - [SyntheticsPlayingTab](docs/SyntheticsPlayingTab.md)
  - [SyntheticsResource](docs/SyntheticsResource.md)

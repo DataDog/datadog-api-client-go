@@ -1,73 +1,73 @@
-# ServiceLevelObjectiveResponse
+# CheckCanDeleteMonitorResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**ServiceLevelObjective**](ServiceLevelObjective.md) |  | 
-**Errors** | Pointer to **[]string** | An array of error messages. Each endpoint documents how/whether this field is used. | [optional] 
+**Data** | Pointer to [**CheckCanDeleteMonitorResponseData**](CheckCanDeleteMonitorResponse_data.md) |  | 
+**Errors** | Pointer to [**map[string][]string**](array.md) | A mapping of Monitor ID to strings denoting where it&#39;s used. | [optional] 
 
 ## Methods
 
-### NewServiceLevelObjectiveResponse
+### NewCheckCanDeleteMonitorResponse
 
-`func NewServiceLevelObjectiveResponse(data ServiceLevelObjective, ) *ServiceLevelObjectiveResponse`
+`func NewCheckCanDeleteMonitorResponse(data CheckCanDeleteMonitorResponseData, ) *CheckCanDeleteMonitorResponse`
 
-NewServiceLevelObjectiveResponse instantiates a new ServiceLevelObjectiveResponse object
+NewCheckCanDeleteMonitorResponse instantiates a new CheckCanDeleteMonitorResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewServiceLevelObjectiveResponseWithDefaults
+### NewCheckCanDeleteMonitorResponseWithDefaults
 
-`func NewServiceLevelObjectiveResponseWithDefaults() *ServiceLevelObjectiveResponse`
+`func NewCheckCanDeleteMonitorResponseWithDefaults() *CheckCanDeleteMonitorResponse`
 
-NewServiceLevelObjectiveResponseWithDefaults instantiates a new ServiceLevelObjectiveResponse object
+NewCheckCanDeleteMonitorResponseWithDefaults instantiates a new CheckCanDeleteMonitorResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *ServiceLevelObjectiveResponse) GetData() ServiceLevelObjective`
+`func (o *CheckCanDeleteMonitorResponse) GetData() CheckCanDeleteMonitorResponseData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ServiceLevelObjectiveResponse) GetDataOk() (*ServiceLevelObjective, bool)`
+`func (o *CheckCanDeleteMonitorResponse) GetDataOk() (*CheckCanDeleteMonitorResponseData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ServiceLevelObjectiveResponse) SetData(v ServiceLevelObjective)`
+`func (o *CheckCanDeleteMonitorResponse) SetData(v CheckCanDeleteMonitorResponseData)`
 
 SetData sets Data field to given value.
 
 
 ### GetErrors
 
-`func (o *ServiceLevelObjectiveResponse) GetErrors() []string`
+`func (o *CheckCanDeleteMonitorResponse) GetErrors() map[string][]string`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *ServiceLevelObjectiveResponse) GetErrorsOk() (*[]string, bool)`
+`func (o *CheckCanDeleteMonitorResponse) GetErrorsOk() (*map[string][]string, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *ServiceLevelObjectiveResponse) SetErrors(v []string)`
+`func (o *CheckCanDeleteMonitorResponse) SetErrors(v map[string][]string)`
 
 SetErrors sets Errors field to given value.
 
 ### HasErrors
 
-`func (o *ServiceLevelObjectiveResponse) HasErrors() bool`
+`func (o *CheckCanDeleteMonitorResponse) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
 

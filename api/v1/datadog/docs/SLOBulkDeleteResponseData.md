@@ -1,4 +1,4 @@
-# ServiceLevelObjectivesBulkDeletedData
+# SLOBulkDeleteResponseData
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewServiceLevelObjectivesBulkDeletedData
+### NewSLOBulkDeleteResponseData
 
-`func NewServiceLevelObjectivesBulkDeletedData() *ServiceLevelObjectivesBulkDeletedData`
+`func NewSLOBulkDeleteResponseData() *SLOBulkDeleteResponseData`
 
-NewServiceLevelObjectivesBulkDeletedData instantiates a new ServiceLevelObjectivesBulkDeletedData object
+NewSLOBulkDeleteResponseData instantiates a new SLOBulkDeleteResponseData object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewServiceLevelObjectivesBulkDeletedDataWithDefaults
+### NewSLOBulkDeleteResponseDataWithDefaults
 
-`func NewServiceLevelObjectivesBulkDeletedDataWithDefaults() *ServiceLevelObjectivesBulkDeletedData`
+`func NewSLOBulkDeleteResponseDataWithDefaults() *SLOBulkDeleteResponseData`
 
-NewServiceLevelObjectivesBulkDeletedDataWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedData object
+NewSLOBulkDeleteResponseDataWithDefaults instantiates a new SLOBulkDeleteResponseData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetDeleted
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) GetDeleted() []string`
+`func (o *SLOBulkDeleteResponseData) GetDeleted() []string`
 
 GetDeleted returns the Deleted field if non-nil, zero value otherwise.
 
 ### GetDeletedOk
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) GetDeletedOk() (*[]string, bool)`
+`func (o *SLOBulkDeleteResponseData) GetDeletedOk() (*[]string, bool)`
 
 GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeleted
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) SetDeleted(v []string)`
+`func (o *SLOBulkDeleteResponseData) SetDeleted(v []string)`
 
 SetDeleted sets Deleted field to given value.
 
 ### HasDeleted
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) HasDeleted() bool`
+`func (o *SLOBulkDeleteResponseData) HasDeleted() bool`
 
 HasDeleted returns a boolean if a field has been set.
 
 ### GetUpdated
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdated() []string`
+`func (o *SLOBulkDeleteResponseData) GetUpdated() []string`
 
 GetUpdated returns the Updated field if non-nil, zero value otherwise.
 
 ### GetUpdatedOk
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) GetUpdatedOk() (*[]string, bool)`
+`func (o *SLOBulkDeleteResponseData) GetUpdatedOk() (*[]string, bool)`
 
 GetUpdatedOk returns a tuple with the Updated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdated
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) SetUpdated(v []string)`
+`func (o *SLOBulkDeleteResponseData) SetUpdated(v []string)`
 
 SetUpdated sets Updated field to given value.
 
 ### HasUpdated
 
-`func (o *ServiceLevelObjectivesBulkDeletedData) HasUpdated() bool`
+`func (o *SLOBulkDeleteResponseData) HasUpdated() bool`
 
 HasUpdated returns a boolean if a field has been set.
 

@@ -10,14 +10,14 @@ Method | HTTP request | Description
 [**DeleteSLOTimeframeInBulk**](ServiceLevelObjectivesApi.md#DeleteSLOTimeframeInBulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 [**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
 [**GetSLOHistory**](ServiceLevelObjectivesApi.md#GetSLOHistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-[**GetSLOs**](ServiceLevelObjectivesApi.md#GetSLOs) | **Get** /api/v1/slo | Search SLOs
+[**ListSLOs**](ServiceLevelObjectivesApi.md#ListSLOs) | **Get** /api/v1/slo | Search SLOs
 [**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 
 
 
 ## CheckCanDeleteSLO
 
-> CheckCanDeleteServiceLevelObjectiveResponse CheckCanDeleteSLO(ctx).Ids(ids).Execute()
+> CheckCanDeleteSLOResponse CheckCanDeleteSLO(ctx).Ids(ids).Execute()
 
 Check if SLOs can be safely deleted
 
@@ -38,7 +38,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CheckCanDeleteServiceLevelObjectiveResponse**](CheckCanDeleteServiceLevelObjectiveResponse.md)
+[**CheckCanDeleteSLOResponse**](CheckCanDeleteSLOResponse.md)
 
 ### Authorization
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ## CreateSLO
 
-> ServiceLevelObjectiveListResponse CreateSLO(ctx).Body(body).Execute()
+> SLOListResponse CreateSLO(ctx).Body(body).Execute()
 
 Create a SLO object
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceLevelObjectiveListResponse**](ServiceLevelObjectiveListResponse.md)
+[**SLOListResponse**](SLOListResponse.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSLO
 
-> ServiceLevelObjectiveDeleted DeleteSLO(ctx, sloId).Execute()
+> SLODeleteResponse DeleteSLO(ctx, sloId).Execute()
 
 Delete a SLO
 
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceLevelObjectiveDeleted**](ServiceLevelObjectiveDeleted.md)
+[**SLODeleteResponse**](SLODeleteResponse.md)
 
 ### Authorization
 
@@ -138,7 +138,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSLOTimeframeInBulk
 
-> ServiceLevelObjectivesBulkDeleted DeleteSLOTimeframeInBulk(ctx).Body(body).Execute()
+> SLOBulkDeleteResponse DeleteSLOTimeframeInBulk(ctx).Body(body).Execute()
 
 Bulk Delete SLO Timeframes
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceLevelObjectivesBulkDeleted**](ServiceLevelObjectivesBulkDeleted.md)
+[**SLOBulkDeleteResponse**](SLOBulkDeleteResponse.md)
 
 ### Authorization
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ## GetSLO
 
-> ServiceLevelObjectiveResponse GetSLO(ctx, sloId).Execute()
+> SLOResponse GetSLO(ctx, sloId).Execute()
 
 Get a SLO's details
 
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceLevelObjectiveResponse**](ServiceLevelObjectiveResponse.md)
+[**SLOResponse**](SLOResponse.md)
 
 ### Authorization
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ## GetSLOHistory
 
-> HistoryServiceLevelObjectiveResponse GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Execute()
+> SLOHistoryResponse GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Execute()
 
 Get an SLO's history
 
@@ -242,12 +242,12 @@ Other parameters are passed through a pointer to a apiGetSLOHistoryRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fromTs** | **string** | The &#x60;from&#x60; timestamp for the query window in epoch seconds. | 
- **toTs** | **string** | The &#x60;to&#x60; timestamp for the query window in epoch seconds. | 
+ **fromTs** | **int64** | The &#x60;from&#x60; timestamp for the query window in epoch seconds. | 
+ **toTs** | **int64** | The &#x60;to&#x60; timestamp for the query window in epoch seconds. | 
 
 ### Return type
 
-[**HistoryServiceLevelObjectiveResponse**](HistoryServiceLevelObjectiveResponse.md)
+[**SLOHistoryResponse**](SLOHistoryResponse.md)
 
 ### Authorization
 
@@ -263,9 +263,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetSLOs
+## ListSLOs
 
-> ServiceLevelObjectiveListResponse GetSLOs(ctx).Ids(ids).Execute()
+> SLOListResponse ListSLOs(ctx).Ids(ids).Execute()
 
 Search SLOs
 
@@ -277,7 +277,7 @@ Search SLOs
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetSLOsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListSLOsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceLevelObjectiveListResponse**](ServiceLevelObjectiveListResponse.md)
+[**SLOListResponse**](SLOListResponse.md)
 
 ### Authorization
 
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSLO
 
-> ServiceLevelObjectiveListResponse UpdateSLO(ctx, sloId).Body(body).Execute()
+> SLOListResponse UpdateSLO(ctx, sloId).Body(body).Execute()
 
 Update a SLO
 
@@ -330,7 +330,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceLevelObjectiveListResponse**](ServiceLevelObjectiveListResponse.md)
+[**SLOListResponse**](SLOListResponse.md)
 
 ### Authorization
 

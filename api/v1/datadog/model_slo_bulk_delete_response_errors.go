@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// ServiceLevelObjectivesBulkDeletedErrors TODO.
-type ServiceLevelObjectivesBulkDeletedErrors struct {
+// SLOBulkDeleteResponseErrors TODO.
+type SLOBulkDeleteResponseErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`
 	// The error message
@@ -21,28 +21,28 @@ type ServiceLevelObjectivesBulkDeletedErrors struct {
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 }
 
-// NewServiceLevelObjectivesBulkDeletedErrors instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// NewSLOBulkDeleteResponseErrors instantiates a new SLOBulkDeleteResponseErrors object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjectivesBulkDeletedErrors(id string, message string, timeframe SLOErrorTimeframe) *ServiceLevelObjectivesBulkDeletedErrors {
-	this := ServiceLevelObjectivesBulkDeletedErrors{}
+func NewSLOBulkDeleteResponseErrors(id string, message string, timeframe SLOErrorTimeframe) *SLOBulkDeleteResponseErrors {
+	this := SLOBulkDeleteResponseErrors{}
 	this.Id = id
 	this.Message = message
 	this.Timeframe = timeframe
 	return &this
 }
 
-// NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults instantiates a new ServiceLevelObjectivesBulkDeletedErrors object
+// NewSLOBulkDeleteResponseErrorsWithDefaults instantiates a new SLOBulkDeleteResponseErrors object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewServiceLevelObjectivesBulkDeletedErrorsWithDefaults() *ServiceLevelObjectivesBulkDeletedErrors {
-	this := ServiceLevelObjectivesBulkDeletedErrors{}
+func NewSLOBulkDeleteResponseErrorsWithDefaults() *SLOBulkDeleteResponseErrors {
+	this := SLOBulkDeleteResponseErrors{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetId() string {
+func (o *SLOBulkDeleteResponseErrors) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetIdOk() (*string, bool) {
+func (o *SLOBulkDeleteResponseErrors) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,12 +61,12 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) SetId(v string) {
+func (o *SLOBulkDeleteResponseErrors) SetId(v string) {
 	o.Id = v
 }
 
 // GetMessage returns the Message field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessage() string {
+func (o *SLOBulkDeleteResponseErrors) GetMessage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessageOk() (*string, bool) {
+func (o *SLOBulkDeleteResponseErrors) GetMessageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,12 +85,12 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetMessageOk() (*string, bool)
 }
 
 // SetMessage sets field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) SetMessage(v string) {
+func (o *SLOBulkDeleteResponseErrors) SetMessage(v string) {
 	o.Message = v
 }
 
 // GetTimeframe returns the Timeframe field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SLOErrorTimeframe {
+func (o *SLOBulkDeleteResponseErrors) GetTimeframe() SLOErrorTimeframe {
 	if o == nil {
 		var ret SLOErrorTimeframe
 		return ret
@@ -101,7 +101,7 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframe() SLOErrorTimefra
 
 // GetTimeframeOk returns a tuple with the Timeframe field value
 // and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframeOk() (*SLOErrorTimeframe, bool) {
+func (o *SLOBulkDeleteResponseErrors) GetTimeframeOk() (*SLOErrorTimeframe, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,11 +109,11 @@ func (o *ServiceLevelObjectivesBulkDeletedErrors) GetTimeframeOk() (*SLOErrorTim
 }
 
 // SetTimeframe sets field value
-func (o *ServiceLevelObjectivesBulkDeletedErrors) SetTimeframe(v SLOErrorTimeframe) {
+func (o *SLOBulkDeleteResponseErrors) SetTimeframe(v SLOErrorTimeframe) {
 	o.Timeframe = v
 }
 
-func (o ServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
+func (o SLOBulkDeleteResponseErrors) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
@@ -127,38 +127,38 @@ func (o ServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableServiceLevelObjectivesBulkDeletedErrors struct {
-	value *ServiceLevelObjectivesBulkDeletedErrors
+type NullableSLOBulkDeleteResponseErrors struct {
+	value *SLOBulkDeleteResponseErrors
 	isSet bool
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedErrors) Get() *ServiceLevelObjectivesBulkDeletedErrors {
+func (v NullableSLOBulkDeleteResponseErrors) Get() *SLOBulkDeleteResponseErrors {
 	return v.value
 }
 
-func (v *NullableServiceLevelObjectivesBulkDeletedErrors) Set(val *ServiceLevelObjectivesBulkDeletedErrors) {
+func (v *NullableSLOBulkDeleteResponseErrors) Set(val *SLOBulkDeleteResponseErrors) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedErrors) IsSet() bool {
+func (v NullableSLOBulkDeleteResponseErrors) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableServiceLevelObjectivesBulkDeletedErrors) Unset() {
+func (v *NullableSLOBulkDeleteResponseErrors) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableServiceLevelObjectivesBulkDeletedErrors(val *ServiceLevelObjectivesBulkDeletedErrors) *NullableServiceLevelObjectivesBulkDeletedErrors {
-	return &NullableServiceLevelObjectivesBulkDeletedErrors{value: val, isSet: true}
+func NewNullableSLOBulkDeleteResponseErrors(val *SLOBulkDeleteResponseErrors) *NullableSLOBulkDeleteResponseErrors {
+	return &NullableSLOBulkDeleteResponseErrors{value: val, isSet: true}
 }
 
-func (v NullableServiceLevelObjectivesBulkDeletedErrors) MarshalJSON() ([]byte, error) {
+func (v NullableSLOBulkDeleteResponseErrors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableServiceLevelObjectivesBulkDeletedErrors) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOBulkDeleteResponseErrors) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

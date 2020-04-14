@@ -4,16 +4,16 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddDashboardListItems**](DashboardListsApi.md#AddDashboardListItems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
+[**CreateDashboardListItems**](DashboardListsApi.md#CreateDashboardListItems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
 [**DeleteDashboardListItems**](DashboardListsApi.md#DeleteDashboardListItems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
 [**GetDashboardListItems**](DashboardListsApi.md#GetDashboardListItems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
 [**UpdateDashboardListItems**](DashboardListsApi.md#UpdateDashboardListItems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update items of a dashboard list
 
 
 
-## AddDashboardListItems
+## CreateDashboardListItems
 
-> DashboardListAddItemsResponse AddDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+> DashboardListAddItemsResponse CreateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
 
 Add Items to a Dashboard List
 
@@ -29,7 +29,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAddDashboardListItemsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateDashboardListItemsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// HistoryServiceLevelObjectiveResponseData An array of service level objective objects.
-type HistoryServiceLevelObjectiveResponseData struct {
+// SLOHistoryResponseData An array of service level objective objects.
+type SLOHistoryResponseData struct {
 	// The `from` timestamp in epoch seconds.
 	FromTs  *int64             `json:"from_ts,omitempty"`
 	Groups  *SLOHistorySLIData `json:"groups,omitempty"`
@@ -27,25 +27,25 @@ type HistoryServiceLevelObjectiveResponseData struct {
 	TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
 }
 
-// NewHistoryServiceLevelObjectiveResponseData instantiates a new HistoryServiceLevelObjectiveResponseData object
+// NewSLOHistoryResponseData instantiates a new SLOHistoryResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHistoryServiceLevelObjectiveResponseData() *HistoryServiceLevelObjectiveResponseData {
-	this := HistoryServiceLevelObjectiveResponseData{}
+func NewSLOHistoryResponseData() *SLOHistoryResponseData {
+	this := SLOHistoryResponseData{}
 	return &this
 }
 
-// NewHistoryServiceLevelObjectiveResponseDataWithDefaults instantiates a new HistoryServiceLevelObjectiveResponseData object
+// NewSLOHistoryResponseDataWithDefaults instantiates a new SLOHistoryResponseData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHistoryServiceLevelObjectiveResponseDataWithDefaults() *HistoryServiceLevelObjectiveResponseData {
-	this := HistoryServiceLevelObjectiveResponseData{}
+func NewSLOHistoryResponseDataWithDefaults() *SLOHistoryResponseData {
+	this := SLOHistoryResponseData{}
 	return &this
 }
 
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetFromTs() int64 {
+func (o *SLOHistoryResponseData) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {
 		var ret int64
 		return ret
@@ -55,7 +55,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetFromTs() int64 {
 
 // GetFromTsOk returns a tuple with the FromTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetFromTsOk() (*int64, bool) {
+func (o *SLOHistoryResponseData) GetFromTsOk() (*int64, bool) {
 	if o == nil || o.FromTs == nil {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetFromTsOk() (*int64, bool) 
 }
 
 // HasFromTs returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasFromTs() bool {
+func (o *SLOHistoryResponseData) HasFromTs() bool {
 	if o != nil && o.FromTs != nil {
 		return true
 	}
@@ -72,12 +72,12 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasFromTs() bool {
 }
 
 // SetFromTs gets a reference to the given int64 and assigns it to the FromTs field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetFromTs(v int64) {
+func (o *SLOHistoryResponseData) SetFromTs(v int64) {
 	o.FromTs = &v
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() SLOHistorySLIData {
+func (o *SLOHistoryResponseData) GetGroups() SLOHistorySLIData {
 	if o == nil || o.Groups == nil {
 		var ret SLOHistorySLIData
 		return ret
@@ -87,7 +87,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetGroups() SLOHistorySLIData
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (*SLOHistorySLIData, bool) {
+func (o *SLOHistoryResponseData) GetGroupsOk() (*SLOHistorySLIData, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetGroupsOk() (*SLOHistorySLI
 }
 
 // HasGroups returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasGroups() bool {
+func (o *SLOHistoryResponseData) HasGroups() bool {
 	if o != nil && o.Groups != nil {
 		return true
 	}
@@ -104,12 +104,12 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasGroups() bool {
 }
 
 // SetGroups gets a reference to the given SLOHistorySLIData and assigns it to the Groups field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetGroups(v SLOHistorySLIData) {
+func (o *SLOHistoryResponseData) SetGroups(v SLOHistorySLIData) {
 	o.Groups = &v
 }
 
 // GetOverall returns the Overall field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() SLOHistorySLIData {
+func (o *SLOHistoryResponseData) GetOverall() SLOHistorySLIData {
 	if o == nil || o.Overall == nil {
 		var ret SLOHistorySLIData
 		return ret
@@ -119,7 +119,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetOverall() SLOHistorySLIDat
 
 // GetOverallOk returns a tuple with the Overall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (*SLOHistorySLIData, bool) {
+func (o *SLOHistoryResponseData) GetOverallOk() (*SLOHistorySLIData, bool) {
 	if o == nil || o.Overall == nil {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetOverallOk() (*SLOHistorySL
 }
 
 // HasOverall returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasOverall() bool {
+func (o *SLOHistoryResponseData) HasOverall() bool {
 	if o != nil && o.Overall != nil {
 		return true
 	}
@@ -136,12 +136,12 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasOverall() bool {
 }
 
 // SetOverall gets a reference to the given SLOHistorySLIData and assigns it to the Overall field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetOverall(v SLOHistorySLIData) {
+func (o *SLOHistoryResponseData) SetOverall(v SLOHistorySLIData) {
 	o.Overall = &v
 }
 
 // GetSeries returns the Series field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() SLOHistoryMetrics {
+func (o *SLOHistoryResponseData) GetSeries() SLOHistoryMetrics {
 	if o == nil || o.Series == nil {
 		var ret SLOHistoryMetrics
 		return ret
@@ -151,7 +151,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetSeries() SLOHistoryMetrics
 
 // GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (*SLOHistoryMetrics, bool) {
+func (o *SLOHistoryResponseData) GetSeriesOk() (*SLOHistoryMetrics, bool) {
 	if o == nil || o.Series == nil {
 		return nil, false
 	}
@@ -159,7 +159,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetSeriesOk() (*SLOHistoryMet
 }
 
 // HasSeries returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasSeries() bool {
+func (o *SLOHistoryResponseData) HasSeries() bool {
 	if o != nil && o.Series != nil {
 		return true
 	}
@@ -168,12 +168,12 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasSeries() bool {
 }
 
 // SetSeries gets a reference to the given SLOHistoryMetrics and assigns it to the Series field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetSeries(v SLOHistoryMetrics) {
+func (o *SLOHistoryResponseData) SetSeries(v SLOHistoryMetrics) {
 	o.Series = &v
 }
 
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SLOThreshold {
+func (o *SLOHistoryResponseData) GetThresholds() map[string]SLOThreshold {
 	if o == nil || o.Thresholds == nil {
 		var ret map[string]SLOThreshold
 		return ret
@@ -183,7 +183,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetThresholds() map[string]SL
 
 // GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (*map[string]SLOThreshold, bool) {
+func (o *SLOHistoryResponseData) GetThresholdsOk() (*map[string]SLOThreshold, bool) {
 	if o == nil || o.Thresholds == nil {
 		return nil, false
 	}
@@ -191,7 +191,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetThresholdsOk() (*map[strin
 }
 
 // HasThresholds returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasThresholds() bool {
+func (o *SLOHistoryResponseData) HasThresholds() bool {
 	if o != nil && o.Thresholds != nil {
 		return true
 	}
@@ -200,12 +200,12 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasThresholds() bool {
 }
 
 // SetThresholds gets a reference to the given map[string]SLOThreshold and assigns it to the Thresholds field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetThresholds(v map[string]SLOThreshold) {
+func (o *SLOHistoryResponseData) SetThresholds(v map[string]SLOThreshold) {
 	o.Thresholds = &v
 }
 
 // GetToTs returns the ToTs field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetToTs() int64 {
+func (o *SLOHistoryResponseData) GetToTs() int64 {
 	if o == nil || o.ToTs == nil {
 		var ret int64
 		return ret
@@ -215,7 +215,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetToTs() int64 {
 
 // GetToTsOk returns a tuple with the ToTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetToTsOk() (*int64, bool) {
+func (o *SLOHistoryResponseData) GetToTsOk() (*int64, bool) {
 	if o == nil || o.ToTs == nil {
 		return nil, false
 	}
@@ -223,7 +223,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetToTsOk() (*int64, bool) {
 }
 
 // HasToTs returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasToTs() bool {
+func (o *SLOHistoryResponseData) HasToTs() bool {
 	if o != nil && o.ToTs != nil {
 		return true
 	}
@@ -232,12 +232,12 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasToTs() bool {
 }
 
 // SetToTs gets a reference to the given int64 and assigns it to the ToTs field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetToTs(v int64) {
+func (o *SLOHistoryResponseData) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetType() SLOType {
+func (o *SLOHistoryResponseData) GetType() SLOType {
 	if o == nil || o.Type == nil {
 		var ret SLOType
 		return ret
@@ -247,7 +247,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetType() SLOType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (*SLOType, bool) {
+func (o *SLOHistoryResponseData) GetTypeOk() (*SLOType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetTypeOk() (*SLOType, bool) 
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasType() bool {
+func (o *SLOHistoryResponseData) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -264,12 +264,12 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasType() bool {
 }
 
 // SetType gets a reference to the given SLOType and assigns it to the Type field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetType(v SLOType) {
+func (o *SLOHistoryResponseData) SetType(v SLOType) {
 	o.Type = &v
 }
 
 // GetTypeId returns the TypeId field value if set, zero value otherwise.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() SLOTypeNumeric {
+func (o *SLOHistoryResponseData) GetTypeId() SLOTypeNumeric {
 	if o == nil || o.TypeId == nil {
 		var ret SLOTypeNumeric
 		return ret
@@ -279,7 +279,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetTypeId() SLOTypeNumeric {
 
 // GetTypeIdOk returns a tuple with the TypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (*SLOTypeNumeric, bool) {
+func (o *SLOHistoryResponseData) GetTypeIdOk() (*SLOTypeNumeric, bool) {
 	if o == nil || o.TypeId == nil {
 		return nil, false
 	}
@@ -287,7 +287,7 @@ func (o *HistoryServiceLevelObjectiveResponseData) GetTypeIdOk() (*SLOTypeNumeri
 }
 
 // HasTypeId returns a boolean if a field has been set.
-func (o *HistoryServiceLevelObjectiveResponseData) HasTypeId() bool {
+func (o *SLOHistoryResponseData) HasTypeId() bool {
 	if o != nil && o.TypeId != nil {
 		return true
 	}
@@ -296,11 +296,11 @@ func (o *HistoryServiceLevelObjectiveResponseData) HasTypeId() bool {
 }
 
 // SetTypeId gets a reference to the given SLOTypeNumeric and assigns it to the TypeId field.
-func (o *HistoryServiceLevelObjectiveResponseData) SetTypeId(v SLOTypeNumeric) {
+func (o *SLOHistoryResponseData) SetTypeId(v SLOTypeNumeric) {
 	o.TypeId = &v
 }
 
-func (o HistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
+func (o SLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.FromTs != nil {
 		toSerialize["from_ts"] = o.FromTs
@@ -329,38 +329,38 @@ func (o HistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-type NullableHistoryServiceLevelObjectiveResponseData struct {
-	value *HistoryServiceLevelObjectiveResponseData
+type NullableSLOHistoryResponseData struct {
+	value *SLOHistoryResponseData
 	isSet bool
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponseData) Get() *HistoryServiceLevelObjectiveResponseData {
+func (v NullableSLOHistoryResponseData) Get() *SLOHistoryResponseData {
 	return v.value
 }
 
-func (v *NullableHistoryServiceLevelObjectiveResponseData) Set(val *HistoryServiceLevelObjectiveResponseData) {
+func (v *NullableSLOHistoryResponseData) Set(val *SLOHistoryResponseData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponseData) IsSet() bool {
+func (v NullableSLOHistoryResponseData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHistoryServiceLevelObjectiveResponseData) Unset() {
+func (v *NullableSLOHistoryResponseData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHistoryServiceLevelObjectiveResponseData(val *HistoryServiceLevelObjectiveResponseData) *NullableHistoryServiceLevelObjectiveResponseData {
-	return &NullableHistoryServiceLevelObjectiveResponseData{value: val, isSet: true}
+func NewNullableSLOHistoryResponseData(val *SLOHistoryResponseData) *NullableSLOHistoryResponseData {
+	return &NullableSLOHistoryResponseData{value: val, isSet: true}
 }
 
-func (v NullableHistoryServiceLevelObjectiveResponseData) MarshalJSON() ([]byte, error) {
+func (v NullableSLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHistoryServiceLevelObjectiveResponseData) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOHistoryResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
