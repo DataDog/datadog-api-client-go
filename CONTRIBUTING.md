@@ -77,6 +77,7 @@ This section lists the labels we use to help us track and manage issues and pull
 | `changelog/no-changelog`      | Pull Request Only        | Changes don't appear in changelog.
 | `changelog/Removed`           | Pull Request Only        | Deprecated features results into a major version bump.
 | `changelog/Security`          | Pull Request Only        | Fixed features results into a bug fix version bump.
+| `ci/skip`                     | Pull Request Only        | Skip Github action running tests.
 | `community/help-wanted`       | Issue Only               | Community help wanted.
 | `community`                   | Issues and Pull Requests | Community driven changes.
 | `dev/testing`                 | Issues and Pull Requests | Tests related changes.
