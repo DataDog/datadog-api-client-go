@@ -6096,12 +6096,14 @@ components:
       - st
       - adm
       - ro
+      - ERROR
       example: st
       type: string
       x-enum-varnames:
       - STANDARD
       - ADMIN
       - READ_ONLY
+      - ERROR
     AlertGraphWidgetDefinition:
       description: Alert graphs are timeseries graphs showing the current status of
         any monitor defined on your system
