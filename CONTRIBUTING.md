@@ -16,42 +16,32 @@ This document provides some basic guidelines for contributing to this repository
 
 ## Suggesting an enhancements - Pull Requests
 
-Have you fixed an issue? Many thanks!
+Client source code is generated using [apigentool](https://apigentools.readthedocs.io/en/latest/).
+ 
+While you can create an issue to suggest an client enhancement, you won't be able to make a Pull Request for it.
+
+This is true except if you intent to:
+- Improve tests
+- Improve dev tooling
+- Improve non client usage doc. 
+
+If that's the case, many thanks!
 
 Read the [development guide](DEVELOPMENT.md) for more information on how to get started.
 
 In order to ease/speed up our review, here are some items you can check/improve when submitting your PR:
 * **Ensure an [Issue has been created](#reporting)**.
-* Avoid changing too many things at once.
-  - Make sure that your Pull Requests only fixes one Issue at the time.
-* **Write tests** for the code you wrote.
+* Avoid changing too many things at once. Make sure that your Pull Requests only fixes one Issue at the time.
 * Make sure that **all tests pass locally**.
 * Summarize your PR with a **meaningful title** and **fill out the pull request description template completely!**
-* Add the most suitable changelog label choosing one of the following:
-  * `changelog/Added` for new features.
-  * `changelog/Changed` for changes in existing functionality.
-  * `changelog/Deprecated` for soon-to-be removed features.
-  * `changelog/Removed` for now removed features.
-  * `changelog/Fixed` for any bug fixes.
-  * `changelog/Security` in case of vulnerabilities.
-  * `changelog/no-changelog` in case this PR should not appear in the changelog at all.
 
-See [here][4] for more details about changelogs.
-
-Your pull request must pass all CI tests. If you're seeing
-an error and don't think it's your fault, it may not be! [Join us on Slack][5] or send us an email, and together we'll
-get it sorted out.
+Your pull request must pass all CI tests. If you're seeing an error and don't think it's your fault, it may not be! 
+[Join us on Slack][5] or send us an email, and together we'llget it sorted out.
 
 ### Keep it small, focused
 
 Avoid changing too many things at once. For instance if you're fixing two different
 issues at once, it makes reviewing harder and the _time-to-release_ longer.
-
-### Pull Request title
-
-Unless the PR is marked with the proper exclusion label, the title will be used
-to automatically fill the changelog entries. For this reason the title must be
-concise but explanatory.
 
 ### Commit Messages
 
@@ -65,6 +55,7 @@ working on for a day.
 ### Releasing
 
 The release procedure is managed by Datadog, instructions can be found in the [RELEASING](/RELEASING.md) document.
+However, note that improvements to tests and doc doesn't end up in changelogs. Only client improvements do.
 
 ## Asking a questions
 
