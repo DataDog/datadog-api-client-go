@@ -281,17 +281,6 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 	enableLogsIndexesUnstableOperations()
 	defer disableLogsIndexesUnstableOperations()
 
-	index := *datadog.NewLogsIndexWithDefaults()
-	filter := *datadog.NewLogsFilterWithDefaults()
-	filter.SetQuery("query")
-	exclusion := *datadog.NewLogsExclusionWithDefaults()
-	exclusionFilter := *datadog.NewLogsExclusionFilterWithDefaults()
-	exclusionFilter.SetQuery("query")
-	exclusion.SetFilter(exclusionFilter)
-	exclusion.SetName("exclusion")
-	index.SetFilter(filter)
-	index.SetExclusionFilters([]datadog.LogsExclusion{exclusion})
-
 	testCases := []struct {
 		Name               string
 		Ctx                context.Context
@@ -300,7 +289,6 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 	}{
 		{"400 Bad Request", TESTAUTH, datadog.LogsIndex{}, 400},
 		{"403 Forbidden", fake_auth, datadog.LogsIndex{}, 403},
-		{"429 Too Many Requests", TESTAUTH, index, 429},
 	}
 
 	for _, tc := range testCases {
@@ -318,6 +306,31 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestLogsIndexesUpdate429Error(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+	enableLogsIndexesUnstableOperations()
+	defer disableLogsIndexesUnstableOperations()
+
+	data, err := tests.ReadFixture("fixtures/logs-indexes/error_429.json")
+	if err != nil {
+		t.Errorf("Failed to read fixture: %s", err)
+	}
+
+	gock.New("https://api.datadoghq.com").
+		Put("/api/v1/logs/config/indexes/name").
+		Reply(429).
+		JSON(data)
+	defer gock.Off()
+
+	_, httpresp, err := TESTAPICLIENT.LogsIndexesApi.UpdateLogsIndex(TESTAUTH, "name").Body(datadog.LogsIndex{}).Execute()
+	assert.Equal(t, 429, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.LogsAPIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetError())
+
 }
 
 func TestLogsIndexesOrderGetErrors(t *testing.T) {

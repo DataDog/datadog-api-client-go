@@ -28,9 +28,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 07 Apr 2020 14:17:15 GMT
-      Dd-Pool:
-      - dogweb
+      - Tue, 14 Apr 2020 17:21:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -38,7 +36,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2364400"
+      - "35.2389980"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -46,9 +44,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "97"
+      - "89"
       X-Ratelimit-Reset:
-      - "2565"
+      - "2306"
     status: 400 Bad Request
     code: 400
     duration: ""
@@ -73,69 +71,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 07 Apr 2020 14:17:15 GMT
+      - Tue, 14 Apr 2020 17:21:34 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
-    duration: ""
-- request:
-    body: |
-      {"exclusion_filters":[{"filter":{"query":"query","sample_rate":0},"name":"exclusion"}],"filter":{"query":"query"}}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/logs/config/indexes/shrugs
-    method: PUT
-  response:
-    body: '{"error":{"code":"ResourceExhausted","message":"Limit reached. Cannot create
-      new index."}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - "90"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Tue, 07 Apr 2020 14:17:16 GMT
-      Dd-Pool:
-      - dogweb
-      Pragma:
-      - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 14-Apr-2020 14:17:16 GMT;
-        secure; HttpOnly
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.2364400"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "100"
-      X-Ratelimit-Period:
-      - "3600"
-      X-Ratelimit-Remaining:
-      - "96"
-      X-Ratelimit-Reset:
-      - "2564"
-    status: 429 Too Many Requests
-    code: 429
     duration: ""
