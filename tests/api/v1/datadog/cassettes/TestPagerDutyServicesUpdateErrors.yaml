@@ -12,7 +12,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/aservice
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/qoisdfhanniq
     method: PUT
   response:
     body: '{"errors": ["service_key cannot be blank"]}'
@@ -28,7 +28,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:43:44 GMT
+      - Tue, 14 Apr 2020 09:37:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -36,7 +36,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2378719"
+      - "35.2388017"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -53,7 +53,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/aservice
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/qoisdfhanniq
     method: PUT
   response:
     body: |
@@ -68,7 +68,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:43:44 GMT
+      - Tue, 14 Apr 2020 09:37:35 GMT
       Via:
       - haproxy
     status: 403 Forbidden
@@ -85,7 +85,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/aservice
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/qoisdfhanniq
     method: PUT
   response:
     body: '{"errors": ["Pagerduty Integration not found"]}'
@@ -101,7 +101,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:43:44 GMT
+      - Tue, 14 Apr 2020 09:37:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -109,7 +109,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2378719"
+      - "35.2388017"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

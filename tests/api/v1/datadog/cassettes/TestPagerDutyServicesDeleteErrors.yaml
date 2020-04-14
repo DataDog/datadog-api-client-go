@@ -9,7 +9,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/aservice
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/lqnioiuyzbefnkje
     method: DELETE
   response:
     body: |
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 09 Apr 2020 12:21:49 GMT
+      - Tue, 14 Apr 2020 09:37:56 GMT
       Via:
       - haproxy
     status: 403 Forbidden
@@ -38,7 +38,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/aservice
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/lqnioiuyzbefnkje
     method: DELETE
   response:
     body: '{"errors": ["Pagerduty Integration not found"]}'
@@ -54,7 +54,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 09 Apr 2020 12:21:49 GMT
+      - Tue, 14 Apr 2020 09:37:56 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -62,7 +62,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2373368"
+      - "35.2388017"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
