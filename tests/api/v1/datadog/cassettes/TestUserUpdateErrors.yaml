@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"testuserupdateerrors-1586534887712569000@integration-tests-accnt-for-sdk-ci.com","handle":"testuserupdateerrors-1586534887712569000@integration-tests-accnt-for-sdk-ci.com","name":"TestUserUpdateErrors-1586534887712569000"}
+      {"access_role":"ro","email":"testuserupdateerrors-1586867918193952000@integration-tests-accnt-for-sdk-ci.com","handle":"testuserupdateerrors-1586867918193952000@integration-tests-accnt-for-sdk-ci.com","name":"TestUserUpdateErrors-1586867918193952000"}
     form: {}
     headers:
       Accept:
@@ -15,7 +15,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"testuserupdateerrors-1586534887712569000@integration-tests-accnt-for-sdk-ci.com","name":"TestUserUpdateErrors-1586534887712569000","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"testuserupdateerrors-1586534887712569000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b2afd5b19c263d6a075a0dcdd8cf1c15?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"testuserupdateerrors-1586867918193952000@integration-tests-accnt-for-sdk-ci.com","name":"TestUserUpdateErrors-1586867918193952000","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"testuserupdateerrors-1586867918193952000@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/d91d8927814ae0308f99a243c5ee0ca9?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -28,18 +28,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:08:09 GMT
+      - Tue, 14 Apr 2020 12:38:39 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 17-Apr-2020 16:08:08 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 21-Apr-2020 12:38:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2378719"
+      - "35.2388719"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -56,7 +56,7 @@ interactions:
       - application/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/user/testuserupdateerrors-1586534887712569000%40integration-tests-accnt-for-sdk-ci.com
+    url: https://api.datadoghq.com/api/v1/user/testuserupdateerrors-1586867918193952000%40integration-tests-accnt-for-sdk-ci.com
     method: PUT
   response:
     body: '{"errors": ["Format of ''email'' should be email"]}'
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:08:09 GMT
+      - Tue, 14 Apr 2020 12:38:39 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -80,7 +80,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2378719"
+      - "35.2388719"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -112,7 +112,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:08:09 GMT
+      - Tue, 14 Apr 2020 12:38:40 GMT
       Via:
       - haproxy
     status: 403 Forbidden
@@ -145,7 +145,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:08:10 GMT
+      - Tue, 14 Apr 2020 12:38:40 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -153,7 +153,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2378719"
+      - "35.2388719"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -167,10 +167,10 @@ interactions:
       - applcation/json
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/user/testuserupdateerrors-1586534887712569000%40integration-tests-accnt-for-sdk-ci.com
+    url: https://api.datadoghq.com/api/v1/user/testuserupdateerrors-1586867918193952000%40integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
-    body: '{"message":"User testuserupdateerrors-1586534887712569000@integration-tests-accnt-for-sdk-ci.com
+    body: '{"message":"User testuserupdateerrors-1586867918193952000@integration-tests-accnt-for-sdk-ci.com
       disabled"}'
     headers:
       Cache-Control:
@@ -184,18 +184,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Apr 2020 16:08:10 GMT
+      - Tue, 14 Apr 2020 12:38:40 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 17-Apr-2020 16:08:10 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 21-Apr-2020 12:38:40 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2378719"
+      - "35.2388719"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
