@@ -36,6 +36,20 @@ var TESTAUTH context.Context
 // TESTCLOCK is the time module to use in tests
 var TESTCLOCK clockwork.FakeClock
 
+// Create fake auth to avoid issue of API returning `text/html` instead of `application/json`
+var fake_auth = context.WithValue(
+	context.Background(),
+	datadog.ContextAPIKeys,
+	map[string]datadog.APIKey{
+		"apiKeyAuth": {
+			Key: "FAKE_KEY",
+		},
+		"appKeyAuth": {
+			Key: "FAKE_KEY",
+		},
+	},
+)
+
 func setClock(t *testing.T) {
 	os.MkdirAll("cassettes", 0755)
 	f, err := os.Create(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
@@ -71,14 +85,14 @@ func removeURLSecrets(u *url.URL) *url.URL {
 func sendRequest(method, url string, payload []byte) (*http.Response, []byte, error) {
 	baseURL := ""
 	if !strings.HasPrefix(url, "https://") {
-        var err error
+		var err error
 		baseURL, err = TESTAPICLIENT.GetConfig().ServerURLWithContext(TESTAUTH, "")
 		if err != nil {
 			return nil, []byte{}, fmt.Errorf("Failed to get base URL for Datadog API: %s", err.Error())
 		}
 	}
 
-	request, err := http.NewRequest(method, baseURL + url, bytes.NewBuffer(payload))
+	request, err := http.NewRequest(method, baseURL+url, bytes.NewBuffer(payload))
 	if err != nil {
 		return nil, []byte{}, fmt.Errorf("Failed to create request for Datadog API: %s", err.Error())
 	}
@@ -158,18 +172,7 @@ func setupTest(t *testing.T) func(t *testing.T) {
 
 func setupUnitTest(t *testing.T) func(t *testing.T) {
 	// SETUP testing
-	TESTAUTH = context.WithValue(
-		context.Background(),
-		datadog.ContextAPIKeys,
-		map[string]datadog.APIKey{
-			"apiKeyAuth": {
-				Key: "FAKE_KEY",
-			},
-			"appKeyAuth": {
-				Key: "FAKE_KEY",
-			},
-		},
-	)
+	TESTAUTH = fake_auth
 	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
 	TESTAPICLIENT = datadog.NewAPIClient(config)

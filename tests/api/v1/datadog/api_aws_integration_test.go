@@ -7,15 +7,16 @@
 package test
 
 import (
+	"context"
 	"fmt"
 	"math/rand"
-	"reflect"
 	"testing"
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
-	"gotest.tools/assert"
+	"github.com/stretchr/testify/assert"
+	"gopkg.in/h2non/gock.v1"
 )
 
 func generateUniqueAWSAccount() datadog.AWSAccount {
@@ -43,7 +44,6 @@ var TESTUPDATEAWSACCWITHEXCLUDEDREGION = datadog.AWSAccount{
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
 	HostTags:                      &[]string{"filter:foo", "bar"},
 	ExcludedRegions:               &[]string{"us-east-1", "us-west-1"},
-
 }
 
 func TestCreateAWSAccount(t *testing.T) {
@@ -65,19 +65,19 @@ func TestCreateAWSAccount(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	awsAccounts := awsAccts.GetAccounts()
-	assert.Assert(t, len(awsAccounts) > 0, "No AWS accounts found")
+	assert.True(t, len(awsAccounts) > 0, "No AWS accounts found")
 
 	awsAcct := awsAccounts[0]
-	assert.Equal(t, awsAcct.GetAccountId(), testAWSAccount.GetAccountId())
-	assert.Equal(t, awsAcct.GetRoleName(), testAWSAccount.GetRoleName())
+	assert.Equal(t, testAWSAccount.GetAccountId(), awsAcct.GetAccountId())
+	assert.Equal(t, testAWSAccount.GetRoleName(), awsAcct.GetRoleName())
 	// Golang doesn't have an equality operator defined for slices
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetHostTags(), testAWSAccount.GetHostTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetFilterTags(), testAWSAccount.GetFilterTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetExcludedRegions(), testAWSAccount.GetExcludedRegions()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetAccountSpecificNamespaceRules(), testAWSAccount.GetAccountSpecificNamespaceRules()), true)
+	assert.Equal(t, testAWSAccount.GetHostTags(), awsAcct.GetHostTags())
+	assert.Equal(t, testAWSAccount.GetFilterTags(), awsAcct.GetFilterTags())
+	assert.Equal(t, testAWSAccount.GetExcludedRegions(), awsAcct.GetExcludedRegions())
+	assert.Equal(t, testAWSAccount.GetAccountSpecificNamespaceRules(), awsAcct.GetAccountSpecificNamespaceRules())
 }
 
 func TestUpdateAWSAccount(t *testing.T) {
@@ -106,19 +106,19 @@ func TestUpdateAWSAccount(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	awsAccounts := awsAccts.GetAccounts()
-	assert.Assert(t, len(awsAccounts) > 0, "No AWS accounts found")
+	assert.True(t, len(awsAccounts) > 0, "No AWS accounts found")
 
 	awsAcct := awsAccounts[0]
 	// Test fields were updated
-	assert.Equal(t, awsAcct.GetRoleName(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetRoleName())
+	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetRoleName(), awsAcct.GetRoleName())
 	// Golang doesn't have an equality operator defined for slices
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetHostTags(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetHostTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetFilterTags(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetFilterTags()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetExcludedRegions(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetExcludedRegions()), true)
-	assert.Equal(t, reflect.DeepEqual(awsAcct.GetAccountSpecificNamespaceRules(), TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetAccountSpecificNamespaceRules()), true)
+	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetHostTags(), awsAcct.GetHostTags())
+	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetFilterTags(), awsAcct.GetFilterTags())
+	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetExcludedRegions(), awsAcct.GetExcludedRegions())
+	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetAccountSpecificNamespaceRules(), awsAcct.GetAccountSpecificNamespaceRules())
 }
 
 func TestDisableAWSAcct(t *testing.T) {
@@ -149,8 +149,8 @@ func TestGenerateNewExternalId(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error generating new AWS External ID: Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Assert(t, apiResp.GetExternalId() != "")
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.NotEmpty(t, apiResp.GetExternalId())
 }
 
 func TestListNamespaces(t *testing.T) {
@@ -162,7 +162,7 @@ func TestListNamespaces(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error listing AWS Namespaces: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 	namespacesCheck := make(map[string]bool)
 	for _, namespace := range namespaces {
 		namespacesCheck[namespace] = true
@@ -170,10 +170,155 @@ func TestListNamespaces(t *testing.T) {
 
 	// Check that a few examples are in the response
 	// Full list - https://docs.datadoghq.com/api/?lang=bash#list-namespace-rules
-	assert.Assert(t, namespacesCheck["api_gateway"], true)
-	assert.Assert(t, namespacesCheck["cloudsearch"], true)
-	assert.Assert(t, namespacesCheck["directconnect"], true)
-	assert.Assert(t, namespacesCheck["xray"], true)
+	assert.True(t, namespacesCheck["api_gateway"])
+	assert.True(t, namespacesCheck["cloudsearch"])
+	assert.True(t, namespacesCheck["directconnect"])
+	assert.True(t, namespacesCheck["xray"])
+}
+
+func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateNewAWSExternalID(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAWSIntegrationCreateErrors(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.CreateAWSAccount(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAWSIntegrationDeleteErrors(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.DeleteAWSAccount(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAWSIntegrationGetAll403Error(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// 403 Forbidden
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAWSAccounts(context.Background()).Execute()
+	assert.Equal(t, 403, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSIntegrationGetAll400Error(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
+	// and it can't be done through the API
+	gock.New("https://api.datadoghq.com").Get("/api/v1/integration/aws").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Bad Request
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAWSAccounts(TESTAUTH).Execute()
+	assert.Equal(t, 400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSIntegrationListNamespacesErrors(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// 403 Forbidden
+	_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.ListAvailableAWSNamespaces(context.Background()).Execute()
+	assert.Equal(t, 403, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSIntegrationUpdateErrors(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSAccount
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSAccount{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSAccount{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSIntegrationApi.UpdateAWSAccount(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func retryDeleteAccount(t *testing.T, awsAccount datadog.AWSAccount) {

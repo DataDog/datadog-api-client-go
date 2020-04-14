@@ -1,0 +1,6 @@
+{
+  "errors": {
+      "id3": "slo 'id3' is referenced in a dashboard"
+  },
+  "data": {"ok": ["id1", "id2"]}
+}

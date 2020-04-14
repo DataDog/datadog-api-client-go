@@ -7,14 +7,16 @@
 package test
 
 import (
+	"context"
 	"fmt"
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/stretchr/testify/assert"
+	"gopkg.in/h2non/gock.v1"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"gotest.tools/assert"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 func generateUniqueAWSLambdaAccounts() (datadog.AWSAccount, datadog.AWSAccountAndLambdaRequest, datadog.AWSLogsServicesRequest) {
@@ -55,13 +57,13 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error adding lamda ARN: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	_, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH).Body(testServices).Execute()
 	if err != nil {
 		t.Fatalf("Error enabling log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 }
 
 func TestListAWSLogsServices(t *testing.T) {
@@ -72,11 +74,11 @@ func TestListAWSLogsServices(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// There are currently 6 supported AWS Logs services as noted in the docs
 	// https://docs.datadoghq.com/api/?lang=bash#get-list-of-aws-log-ready-services
-	assert.Check(t, len(listServicesOutput) >= 6)
+	assert.True(t, len(listServicesOutput) >= 6)
 }
 
 func TestListAndDeleteAWSLogs(t *testing.T) {
@@ -94,21 +96,21 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error Adding Lambda %v: Response %s: %v", addOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Enable services for Lambda
 	_, httpresp, err = TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(TESTAUTH).Body(testServices).Execute()
 	if err != nil {
 		t.Fatalf("Error enabling log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// List AWS Logs integrations before deleting
 	listOutput1, _, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 	// Iterate over output and list Lambdas
 	var accountExists = false
 	for _, Account := range listOutput1 {
@@ -119,21 +121,21 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 		}
 	}
 	// Test that variable is true as expected
-	assert.Equal(t, accountExists, true)
+	assert.True(t, accountExists)
 
 	// Delete newly added Lambda
 	deleteOutput, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH).Body(testLambdaAcc).Execute()
 	if err != nil {
 		t.Fatalf("Error deleting Lambda %v: Response %s: %v", deleteOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// List AWS logs integrations after deleting
 	listOutput2, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(TESTAUTH).Execute()
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	var listOfARNs2 []datadog.AWSLogsListResponseLambdas
 	var accountExistsAfterDelete = false
@@ -148,7 +150,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 		}
 	}
 	// Check that ARN no longer exists after delete
-	assert.Assert(t, accountExistsAfterDelete != true)
+	assert.False(t, accountExistsAfterDelete)
 }
 
 func TestCheckLambdaAsync(t *testing.T) {
@@ -166,10 +168,10 @@ func TestCheckLambdaAsync(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error checking the AWS Lambda Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
-	assert.Equal(t, len(status.GetErrors()), 0)
-	assert.Equal(t, status.GetStatus(), "created")
+	assert.Equal(t, 0, len(status.GetErrors()))
+	assert.Equal(t, "created", status.GetStatus())
 
 	// Give the async call time to finish
 	tests.Retry(time.Duration(5*time.Second), 10, func() bool {
@@ -181,9 +183,9 @@ func TestCheckLambdaAsync(t *testing.T) {
 		return httpresp.StatusCode == 200 && len(status.GetErrors()) > 0
 	})
 
-	assert.Assert(t, status.GetErrors()[0].GetCode() != "")
-	assert.Assert(t, status.GetErrors()[0].GetMessage() != "")
-	assert.Equal(t, status.GetStatus(), "error")
+	assert.NotEmpty(t, status.GetErrors()[0].GetCode())
+	assert.NotEmpty(t, status.GetErrors()[0].GetMessage())
+	assert.Equal(t, "error", status.GetStatus())
 }
 
 func TestCheckServicesAsync(t *testing.T) {
@@ -202,6 +204,201 @@ func TestCheckServicesAsync(t *testing.T) {
 	}
 	assert.Equal(t, httpresp.StatusCode, 200)
 
-	assert.Assert(t, status.GetErrors()[0].GetCode() != "")
-	assert.Assert(t, status.GetErrors()[0].GetMessage() != "")
+	assert.NotEmpty(t, status.GetErrors()[0].GetCode())
+	assert.NotEmpty(t, status.GetErrors()[0].GetMessage())
+}
+
+func TestAWSLogsList400Error(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
+	// and it can't be done through the API
+	gock.New("https://api.datadoghq.com").Get("/api/v1/integration/aws/logs").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Bad Request
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(TESTAUTH).Execute()
+	assert.Equal(t, 400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSLogsList403Error(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// 403 Forbidden
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsIntegrations(context.Background()).Execute()
+	assert.Equal(t, 403, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSLogsAdd400Error(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
+	// and it can't be done through the API
+	gock.New("https://api.datadoghq.com").Post("/api/v1/integration/aws/logs").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Bad Request
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CreateAWSLambdaARN(TESTAUTH).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	assert.Equal(t, 400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSLogsAdd403Error(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// 403 Forbidden
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CreateAWSLambdaARN(context.Background()).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	assert.Equal(t, 403, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSLogsDelete400Error(t *testing.T) {
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
+	// and it can't be done through the API
+	gock.New("https://api.datadoghq.com").Delete("/api/v1/integration/aws/logs").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Bad Request
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(TESTAUTH).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	assert.Equal(t, 400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSLogsDelete403Error(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// 403 Forbidden
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.DeleteAWSLambdaARN(context.Background()).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	assert.Equal(t, 403, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSLogsServicesListErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// 403 Forbidden
+	_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.ListAWSLogsServices(context.Background()).Execute()
+	assert.Equal(t, 403, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAWSLogsServicesEnableErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSLogsServicesRequest
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSLogsServicesRequest{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSLogsServicesRequest{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.EnableAWSLogServices(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAWSLogsServicesCheckErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.AWSLogsServicesRequest
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.AWSLogsServicesRequest{}, 400},
+		{"403 Forbidden", context.Background(), datadog.AWSLogsServicesRequest{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+// FIXME: Right now we get 502s for these request instead of 400 or 403.
+func TestAWSLogsLambdaCheckErrors(t *testing.T) {
+	t.Skip("Receiving 502 instead of 400 or 403, so skipping")
+	//// Setup the Client we'll use to interact with the Test account
+	//teardownTest := setupTest(t)
+	//defer teardownTest(t)
+
+	//testCases := []struct {
+	//	Name               string
+	//	Ctx                context.Context
+	//	Body               datadog.AWSAccountAndLambdaRequest
+	//	ExpectedStatusCode int
+	//}{
+	//	{"400 Bad Request", TESTAUTH, datadog.AWSAccountAndLambdaRequest{}, 400},
+	//	{"403 Forbidden", context.Background(), datadog.AWSAccountAndLambdaRequest{}, 403},
+	//}
+
+	//for _, tc := range testCases {
+	//	t.Run(tc.Name, func(t *testing.T) {
+	//		_, httpresp, err := TESTAPICLIENT.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(tc.Ctx).Body(tc.Body).Execute()
+	//		assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+	//		apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	//		assert.True(t, ok)
+	//		assert.NotEmpty(t, apiError.GetErrors())
+	//	})
+	//}
 }

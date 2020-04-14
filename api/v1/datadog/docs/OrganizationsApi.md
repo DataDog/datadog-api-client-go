@@ -5,7 +5,8 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateChildOrg**](OrganizationsApi.md#CreateChildOrg) | **Post** /api/v1/org | Create a child organization
-[**GetOrg**](OrganizationsApi.md#GetOrg) | **Get** /api/v1/org | Get organization information
+[**GetOrg**](OrganizationsApi.md#GetOrg) | **Get** /api/v1/org/{public_id} | Get organization information
+[**ListOrgs**](OrganizationsApi.md#ListOrgs) | **Get** /api/v1/org | List your managed organizations
 [**UpdateOrg**](OrganizationsApi.md#UpdateOrg) | **Put** /api/v1/org/{public_id} | Update your organization
 [**UploadIdPForOrg**](OrganizationsApi.md#UploadIdPForOrg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
 
@@ -52,9 +53,52 @@ Name | Type | Description  | Notes
 
 ## GetOrg
 
-> OrganizationListResponse GetOrg(ctx).Execute()
+> OrganizationResponse GetOrg(ctx, publicId).Execute()
 
 Get organization information
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**publicId** | **string** | The public_id of the org you are operating within. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrgRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**OrganizationResponse**](OrganizationResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListOrgs
+
+> OrganizationListResponse ListOrgs(ctx).Execute()
+
+List your managed organizations
 
 
 
@@ -64,7 +108,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetOrgRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListOrgsRequest struct via the builder pattern
 
 
 ### Return type
