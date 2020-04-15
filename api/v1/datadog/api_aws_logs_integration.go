@@ -97,6 +97,10 @@ func (r apiCheckAWSLogsLambdaAsyncRequest) Execute() (AWSLogsAsyncResponse, *_ne
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CheckAWSLogsLambdaAsync"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -268,6 +272,10 @@ func (r apiCheckAWSLogsServicesAsyncRequest) Execute() (AWSLogsAsyncResponse, *_
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CheckAWSLogsServicesAsync"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -433,6 +441,10 @@ func (r apiCreateAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreateAWSLambdaARN"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -598,6 +610,10 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteAWSLambdaARN"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -763,6 +779,10 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "EnableAWSLogServices"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -918,6 +938,10 @@ func (r apiListAWSLogsIntegrationsRequest) Execute() ([]AWSLogsListResponse, *_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListAWSLogsIntegrations"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1071,6 +1095,10 @@ func (r apiListAWSLogsServicesRequest) Execute() ([]AWSLogsListServicesResponse,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListAWSLogsServices"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -94,6 +94,10 @@ func (r apiCreatePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreatePagerDutyIntegration"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -240,6 +244,10 @@ func (r apiCreatePagerDutyIntegrationServiceRequest) Execute() (PagerDutyService
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreatePagerDutyIntegrationService"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -404,6 +412,10 @@ func (r apiDeletePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeletePagerDutyIntegration"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -531,6 +543,10 @@ func (r apiDeletePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeletePagerDutyIntegrationService"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -665,6 +681,10 @@ func (r apiGetPagerDutyIntegrationRequest) Execute() (PagerDutyIntegration, *_ne
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetPagerDutyIntegration"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -822,6 +842,10 @@ func (r apiGetPagerDutyIntegrationServiceRequest) Execute() (PagerDutyServiceNam
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetPagerDutyIntegrationService"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -984,6 +1008,10 @@ func (r apiUpdatePagerDutyIntegrationRequest) Execute() (*_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdatePagerDutyIntegration"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -1133,6 +1161,10 @@ func (r apiUpdatePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdatePagerDutyIntegrationService"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
