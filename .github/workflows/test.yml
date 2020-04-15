@@ -18,7 +18,7 @@ jobs:
       with:
         path: ~/.cache/pre-commit
         key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
-    - uses: jirikuncar/action
+    - uses: jirikuncar/action@master
       with:
         source: ${{ github.event.pull_request.base.ref }}
         origin: ${{ github.event.pull_request.head.ref }}
