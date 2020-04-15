@@ -104,6 +104,10 @@ func (r apiCreateTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreateTest"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -279,6 +283,10 @@ func (r apiDeleteTestsRequest) Execute() (SyntheticsDeleteTestsResponse, *_netht
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteTests"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -483,6 +491,10 @@ func (r apiGetAPITestLatestResultsRequest) Execute() (SyntheticsGetAPITestLatest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetAPITestLatestResults"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -644,6 +656,10 @@ func (r apiGetAPITestResultRequest) Execute() (SyntheticsAPITestResultFull, *_ne
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetAPITestResult"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -836,6 +852,10 @@ func (r apiGetBrowserTestLatestResultsRequest) Execute() (SyntheticsGetBrowserTe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetBrowserTestLatestResults"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -997,6 +1017,10 @@ func (r apiGetBrowserTestResultRequest) Execute() (SyntheticsBrowserTestResultFu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetBrowserTestResult"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1154,6 +1178,10 @@ func (r apiGetTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Response,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetTest"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1316,6 +1344,10 @@ func (r apiListTestsRequest) Execute() (SyntheticsListTestsResponse, *_nethttp.R
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListTests"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1483,6 +1515,10 @@ func (r apiUpdateTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateTest"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -1662,6 +1698,10 @@ func (r apiUpdateTestPauseStatusRequest) Execute() (bool, *_nethttp.Response, er
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateTestPauseStatus"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {

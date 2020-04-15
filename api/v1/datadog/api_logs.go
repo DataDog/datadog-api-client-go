@@ -101,6 +101,10 @@ func (r apiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListLogs"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {

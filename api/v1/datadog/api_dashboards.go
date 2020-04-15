@@ -97,6 +97,10 @@ func (r apiCreateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreateDashboard"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -259,6 +263,10 @@ func (r apiDeleteDashboardRequest) Execute() (DashboardDeleteResponse, *_nethttp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteDashboard"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -419,6 +427,10 @@ func (r apiGetDashboardRequest) Execute() (Dashboard, *_nethttp.Response, error)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetDashboard"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -573,6 +585,10 @@ func (r apiListDashboardsRequest) Execute() (DashboardSummary, *_nethttp.Respons
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListDashboards"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -733,6 +749,10 @@ func (r apiUpdateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateDashboard"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {

@@ -99,6 +99,10 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreateAzureIntegration"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -264,6 +268,10 @@ func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteAzureIntegration"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -419,6 +427,10 @@ func (r apiListAzureIntegrationRequest) Execute() ([]AzureAccount, *_nethttp.Res
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListAzureIntegration"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -582,6 +594,10 @@ func (r apiUpdateAzureHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateAzureHostFilters"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -749,6 +765,10 @@ func (r apiUpdateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateAzureIntegration"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
