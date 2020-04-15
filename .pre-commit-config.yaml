@@ -5,5 +5,5 @@ repos:
     name: Do not commit generated files
     language: fail
     entry: Unstage generated files with 'git reset --' command
-    files: '(api/.*(?<!\_test.go)|\.apigentools-info)$'
+    files: '^api/.*(?<!\_test.go)$'
     verbose: true
