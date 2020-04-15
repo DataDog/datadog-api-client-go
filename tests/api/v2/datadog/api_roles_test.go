@@ -5,7 +5,7 @@ import (
 	"log"
 	"testing"
 
-	"gotest.tools/assert"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
@@ -31,7 +31,7 @@ func TestRoleLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
-	// first, test creating a user
+	// first, test creating a role
 	rca := testingRoleCreateAttributes()
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -90,13 +90,13 @@ func TestRoleLifecycle(t *testing.T) {
 		t.Fatalf("Error listing roles %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, 1, len(rsrp.GetData()))
+	assert.NotEmpty(t, rsrp.GetData())
 	rrAttributes = rsrp.GetData()[0].GetAttributes()
 	assert.Equal(t, rua.GetName(), rrAttributes.GetName())
 	rrMetaAttributes := rsrp.GetMeta()
 	page := rrMetaAttributes.GetPage()
-	assert.Assert(t, page.GetTotalCount() >= 1)
-	assert.Assert(t, page.GetTotalFilteredCount() >= 1)
+	assert.GreaterOrEqual(t, page.GetTotalCount(), int64(1))
+	assert.GreaterOrEqual(t, page.GetTotalFilteredCount(), int64(1))
 
 	// now, test deleting it
 	// no response payload
@@ -107,51 +107,64 @@ func TestRoleLifecycle(t *testing.T) {
 	assert.Equal(t, 204, httpresp.StatusCode)
 }
 
-/*
-func xxestRoleInvitation(t *testing.T) {
+func TestRolePermissionsLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
+	// first, create a role
 	rca := testingRoleCreateAttributes()
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
-	ucp := datadog.NewRoleCreatePayload()
-	ucp.SetData(*rcd)
-	ur, httpresp, err := TestAPIClient.RolesApi.CreateRole(TestAuth).Body(*ucp).Execute()
+	rcp := datadog.NewRoleCreatePayload()
+	rcp.SetData(*rcd)
+	rr, httpresp, err := TestAPIClient.RolesApi.CreateRole(TestAuth).Body(*rcp).Execute()
 	if err != nil {
-		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 201)
+	assert.Equal(t, 200, httpresp.StatusCode)
 	rrData := rr.GetData()
-	id := rrData.GetId()
-	defer disableRole(id)
+	rid := rrData.GetId()
+	defer deleteRole(rid)
 
-	// first, create the user invitation
-	rtud := datadog.NewRelationshipToRoleData()
-	rtud.SetId(id)
-	rtu := datadog.NewRelationshipToRole()
-	rtu.SetData(*rtud)
-	uir := datadog.NewRoleInvitationRelationships()
-	uir.SetRole(*rtu)
-	rid := datadog.NewRoleInvitationData()
-	rid.SetRelationships(*uir)
-	uip := datadog.NewRoleInvitationPayload()
-	uip.SetData([]datadog.RoleInvitationData{*rid})
-
-	resp, httpresp, err := TestAPIClient.RolesApi.SendInvitations(TestAuth).Body(*uip).Execute()
+	// find a permission
+	permissions, httpresp, err := TestAPIClient.RolesApi.ListPermissions(TestAuth).Execute()
 	if err != nil {
-		t.Fatalf("Error sending invitation for %s: Response %s: %v", rca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing permissions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 201)
-	respID := resp.GetData()[0].GetId()
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.True(t, permissions.HasData())
+	assert.NotEmpty(t, permissions.GetData())
 
-	// now, test getting the invitation
-	oneresp, httpresp, err := TestAPIClient.RolesApi.GetInvitation(TestAuth, respID).Execute()
+	permission := permissions.GetData()[0]
+	pid := permission.GetId()
+
+	// add a permission to the role
+	rtp := datadog.NewRelationshipToPermissionWithDefaults()
+	rtpd := datadog.NewRelationshipToPermissionDataWithDefaults()
+	rtpd.SetId(pid)
+	rtp.SetData(*rtpd)
+
+	crrtps, httpresp, err := TestAPIClient.RolesApi.CreateRoleRelationshipToPermission(TestAuth, rid).Body(*rtp).Execute()
 	if err != nil {
-		t.Fatalf("Error getting invitation %s: Response %s: %v", respID, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
-	data := oneresp.GetData()
-	assert.Equal(t, data.GetId(), respID)
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Contains(t, crrtps.GetData(), permission)
+
+	// get all permission for the role
+	lrrtps, httpresp, err := TestAPIClient.RolesApi.ListRoleRelationshipToPermission(TestAuth, rid).Execute()
+	if err != nil {
+		t.Fatalf("Error listing permission relations: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Contains(t, lrrtps.GetData(), permission)
+
+	// remove the permission from the role
+	drrtps, httpresp, err := TestAPIClient.RolesApi.DeleteRoleRelationshipToPermission(TestAuth, rid).Body(*rtp).Execute()
+	if err != nil {
+		t.Fatalf("Error remove permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.NotContains(t, drrtps.GetData(), permission)
+
 }
-*/
