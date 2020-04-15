@@ -106,6 +106,10 @@ func (r apiCheckCanDeleteMonitorRequest) Execute() (CheckCanDeleteMonitorRespons
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CheckCanDeleteMonitor"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -279,6 +283,10 @@ func (r apiCreateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreateMonitor"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -438,6 +446,10 @@ func (r apiDeleteMonitorRequest) Execute() (DeletedMonitor, *_nethttp.Response, 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteMonitor"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -624,6 +636,10 @@ func (r apiGetMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetMonitor"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -832,6 +848,10 @@ func (r apiListMonitorsRequest) Execute() ([]Monitor, *_nethttp.Response, error)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListMonitors"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -999,6 +1019,10 @@ func (r apiUpdateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateMonitor"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -1184,6 +1208,10 @@ func (r apiValidateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ValidateMonitor"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {

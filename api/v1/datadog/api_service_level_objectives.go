@@ -96,6 +96,10 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteSLOResponse, *_net
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CheckCanDeleteSLO"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -269,6 +273,10 @@ func (r apiCreateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreateSLO"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -431,6 +439,10 @@ func (r apiDeleteSLORequest) Execute() (SLODeleteResponse, *_nethttp.Response, e
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteSLO"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -608,6 +620,10 @@ func (r apiDeleteSLOTimeframeInBulkRequest) Execute() (SLOBulkDeleteResponse, *_
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteSLOTimeframeInBulk"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -767,6 +783,10 @@ func (r apiGetSLORequest) Execute() (SLOResponse, *_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetSLO"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -953,6 +973,10 @@ func (r apiGetSLOHistoryRequest) Execute() (SLOHistoryResponse, *_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetSLOHistory"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1127,6 +1151,10 @@ func (r apiListSLOsRequest) Execute() (SLOListResponse, *_nethttp.Response, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListSLOs"
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1294,6 +1322,10 @@ func (r apiUpdateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateSLO"
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
