@@ -7,6 +7,7 @@
 package test
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -15,7 +16,8 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
-	"gotest.tools/assert"
+	"github.com/stretchr/testify/assert"
+	"gopkg.in/h2non/gock.v1"
 )
 
 func TestApiKeyFunctions(t *testing.T) {
@@ -39,7 +41,7 @@ func TestApiKeyFunctions(t *testing.T) {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteAPIKey(apiKeyData.ApiKey.GetKey())
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	createAPIKeyReturned := apiKeyData.GetApiKey()
 	createAPIKeyName := createAPIKeyReturned.GetName()
@@ -48,11 +50,11 @@ func TestApiKeyFunctions(t *testing.T) {
 	createAPIKeyValue := createAPIKeyReturned.GetKey()
 
 	// none of these values should be empty
-	assert.Assert(t, createAPIKeyName != "")
-	assert.Assert(t, createAPIKeyCreated != "")
-	assert.Assert(t, createAPIKeyCreatedBy != "")
-	assert.Assert(t, createAPIKeyValue != "")
-	assert.Equal(t, createAPIKeyName, testAPIKeyName)
+	assert.NotEmpty(t, createAPIKeyName)
+	assert.NotEmpty(t, createAPIKeyCreated)
+	assert.NotEmpty(t, createAPIKeyCreatedBy)
+	assert.NotEmpty(t, createAPIKeyValue)
+	assert.Equal(t, testAPIKeyName, createAPIKeyName)
 
 	// Get API Key
 	// ----------------------------------
@@ -60,7 +62,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error getting api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	getAPIKeyReturned := apiKeyData.GetApiKey()
 	getAPIKeyName := getAPIKeyReturned.GetName()
@@ -80,12 +82,12 @@ func TestApiKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error getting all api keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	getAllAPIKeyReturned := respListData.GetApiKeys()
 
 	// should have more than 1 at least
-	assert.Assert(t, len(getAllAPIKeyReturned) > 1)
+	assert.True(t, len(getAllAPIKeyReturned) > 1)
 
 	// Edit API Key
 	// ----------------------------------
@@ -94,7 +96,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	editAPIKeyReturned := apiKeyData.GetApiKey()
 	editAPIKeyName := editAPIKeyReturned.GetName()
@@ -103,10 +105,10 @@ func TestApiKeyFunctions(t *testing.T) {
 	editAPIKeyValue := editAPIKeyReturned.GetKey()
 
 	// everything should be the same except the name
-	assert.Assert(t, editAPIKeyName != getAPIKeyName)
-	assert.Equal(t, editAPIKeyCreated, getAPIKeyCreated)
-	assert.Equal(t, editAPIKeyCreatedBy, getAPIKeyCreatedBy)
-	assert.Equal(t, editAPIKeyValue, getAPIKeyValue)
+	assert.NotEqual(t, getAPIKeyName, editAPIKeyName)
+	assert.Equal(t, getAPIKeyCreated, editAPIKeyCreated)
+	assert.Equal(t, getAPIKeyCreatedBy, editAPIKeyCreatedBy)
+	assert.Equal(t, getAPIKeyValue, editAPIKeyValue)
 
 	// Delete API Key
 	// ----------------------------------
@@ -114,7 +116,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error deleting api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	deleteAPIKeyReturned := apiKeyData.GetApiKey()
 	deleteAPIKeyName := deleteAPIKeyReturned.GetName()
@@ -123,10 +125,10 @@ func TestApiKeyFunctions(t *testing.T) {
 	deleteAPIKeyValue := deleteAPIKeyReturned.GetKey()
 
 	// should return the key thats been deleted
-	assert.Equal(t, deleteAPIKeyName, editAPIKeyName)
-	assert.Equal(t, deleteAPIKeyCreated, editAPIKeyCreated)
-	assert.Equal(t, deleteAPIKeyCreatedBy, editAPIKeyCreatedBy)
-	assert.Equal(t, deleteAPIKeyValue, editAPIKeyValue)
+	assert.Equal(t, editAPIKeyName, deleteAPIKeyName)
+	assert.Equal(t, editAPIKeyCreated, deleteAPIKeyCreated)
+	assert.Equal(t, editAPIKeyCreatedBy, deleteAPIKeyCreatedBy)
+	assert.Equal(t, editAPIKeyValue, deleteAPIKeyValue)
 }
 
 func TestApplicationKeyFunctions(t *testing.T) {
@@ -150,7 +152,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAppKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	createAppKeyReturned := appKeyData.GetApplicationKey()
 	createAppKeyOwner := createAppKeyReturned.GetOwner()
@@ -158,10 +160,10 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	createAppKeyName := createAppKeyReturned.GetName()
 
 	// all values should not be nil
-	assert.Assert(t, createAppKeyOwner != "")
-	assert.Assert(t, createAppKeyHash != "")
-	assert.Assert(t, createAppKeyName != "")
-	assert.Equal(t, createAppKeyName, testAppKeyName)
+	assert.NotEmpty(t, createAppKeyOwner)
+	assert.NotEmpty(t, createAppKeyHash)
+	assert.NotEmpty(t, createAppKeyName)
+	assert.Equal(t, testAppKeyName, createAppKeyName)
 
 	// Get Application Key
 	// ----------------------------------
@@ -169,7 +171,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error getting app key %v: Response %s: %v", createAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	getAppKeyReturned := appKeyData.GetApplicationKey()
 	getAppKeyOwner := getAppKeyReturned.GetOwner()
@@ -187,12 +189,12 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error getting all app keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	getAllAppKeyReturned := respListData.GetApplicationKeys()
 
 	// should have more than one at least
-	assert.Assert(t, len(getAllAppKeyReturned) > 1)
+	assert.True(t, len(getAllAppKeyReturned) > 1)
 
 	// Edit Application Key
 	// ----------------------------------
@@ -201,7 +203,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	editAppKeyReturned := appKeyData.GetApplicationKey()
 	editAppKeyOwner := editAppKeyReturned.GetOwner()
@@ -209,9 +211,9 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	editAppKeyName := editAppKeyReturned.GetName()
 
 	// everything should be the same except the name
-	assert.Assert(t, editAppKeyName != getAppKeyName)
-	assert.Equal(t, editAppKeyOwner, getAppKeyOwner)
-	assert.Equal(t, editAppKeyHash, getAppKeyHash)
+	assert.NotEqual(t, getAppKeyName, editAppKeyName)
+	assert.Equal(t, getAppKeyOwner, editAppKeyOwner)
+	assert.Equal(t, getAppKeyHash, editAppKeyHash)
 
 	// Delete Application Key
 	// ----------------------------------
@@ -219,7 +221,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error deleting app key %v: Response %s: %v", createAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	deleteAppKeyReturned := appKeyData.GetApplicationKey()
 	deleteAppKeyOwner := deleteAppKeyReturned.GetOwner()
@@ -227,9 +229,347 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	deleteAppKeyName := deleteAppKeyReturned.GetName()
 
 	// should return the deleted app key
-	assert.Equal(t, deleteAppKeyOwner, editAppKeyOwner)
-	assert.Equal(t, deleteAppKeyHash, editAppKeyHash)
-	assert.Equal(t, deleteAppKeyName, editAppKeyName)
+	assert.Equal(t, editAppKeyOwner, deleteAppKeyOwner)
+	assert.Equal(t, editAppKeyHash, deleteAppKeyHash)
+	assert.Equal(t, editAppKeyName, deleteAppKeyName)
+}
+
+func TestAPIKeysMgmtListErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListAPIKeys(tc.Ctx).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAPIKeysMgmtCreateErrors(t *testing.T) {
+
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.ApiKey
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.ApiKey{}, 400},
+		{"403 Forbidden", fake_auth, datadog.ApiKey{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateAPIKey(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAPIKeysMgmtGetErrors(t *testing.T) {
+
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+		{"404 Not Found", TESTAUTH, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAPIKey(tc.Ctx, "whatever").Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
+
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	name := "nonexistent key"
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.ApiKey
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.ApiKey{}, 400},
+		{"403 Forbidden", fake_auth, datadog.ApiKey{}, 403},
+		{"404 Not Found", TESTAUTH, datadog.ApiKey{Name: &name}, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.UpdateAPIKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAPIKeysMgmtDelete400Error(t *testing.T) {
+
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupUnitTest(t)
+	defer teardownTest(t)
+
+	res, err := tests.ReadFixture("fixtures/key-mgmt/invalid_number_of_keys_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	// Mocked because we need 0 API keys to trigger the 400
+	gock.New("https://api.datadoghq.com").Delete("/api/v1/api_key/whatever").Reply(400).JSON(res)
+	defer gock.Off()
+
+	_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(TESTAUTH, "whatever").Execute()
+	assert.Equal(t, 400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+		{"404 Not Found", TESTAUTH, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(tc.Ctx, "whatever").Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAppKeysMgmtListErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListApplicationKeys(tc.Ctx).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAppKeysMgmtCreateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.ApplicationKey
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.ApplicationKey{}, 400},
+		{"403 Forbidden", fake_auth, datadog.ApplicationKey{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAppKeysMgmtCreate409Error(t *testing.T) {
+	if !tests.IsRecording() {
+		t.Skip("This test case does not support reply from recording")
+	}
+
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Create an app key to trigger the 409 conflict
+	testAPPKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	appKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
+	if err != nil {
+		t.Fatalf("Error creating api key %v: Response %s: %v", testAPPKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
+	assert.Equal(t, 200, httpresp.StatusCode)
+
+	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
+	assert.Equal(t, 409, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAppKeysMgmtGetErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+		{"404 Not Found", TESTAUTH, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetApplicationKey(tc.Ctx, "whatever").Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAppKeysMgmtUpdateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	name := "nonexistent key"
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.ApplicationKey
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.ApplicationKey{}, 400},
+		{"403 Forbidden", fake_auth, datadog.ApplicationKey{}, 403},
+		{"404 Not Found", TESTAUTH, datadog.ApplicationKey{Name: &name}, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestAppKeysMgmtUpdate409Error(t *testing.T) {
+	if !tests.IsRecording() {
+		t.Skip("This test case does not support reply from recording")
+	}
+
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Create two app keys to trigger the 409 conflict
+	testAPPKeyName1 := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	appKeyData1, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName1}).Execute()
+	if err != nil {
+		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName1, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteAppKey(appKeyData1.ApplicationKey.GetHash())
+	assert.Equal(t, 200, httpresp.StatusCode)
+
+	testAPPKeyName2 := fmt.Sprintf("%s:%d2", t.Name(), time.Now().UnixNano())
+	appKeyData2, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
+	if err != nil {
+		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName2, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteAppKey(appKeyData2.ApplicationKey.GetHash())
+	assert.Equal(t, 200, httpresp.StatusCode)
+
+	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(TESTAUTH, appKeyData1.ApplicationKey.GetHash()).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
+	assert.Equal(t, 409, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(t, ok)
+	assert.NotEmpty(t, apiError.GetErrors())
+}
+
+func TestAppKeysMgmtDeleteErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+		{"404 Not Found", TESTAUTH, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteApplicationKey(tc.Ctx, "whatever").Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }
 
 func deleteAPIKey(apiKeyValue string) {

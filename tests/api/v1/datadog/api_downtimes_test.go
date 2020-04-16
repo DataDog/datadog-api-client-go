@@ -7,6 +7,8 @@
 package test
 
 import (
+	"context"
+	"fmt"
 	"log"
 	"testing"
 
@@ -26,10 +28,10 @@ func TestDowntimeLifecycle(t *testing.T) {
 		Scope:    &[]string{"*"},
 		Recurrence: *datadog.NewNullableDowntimeRecurrence(
 			&datadog.DowntimeRecurrence{
-				Type: datadog.PtrString("weeks"),
-				Period: datadog.PtrInt32(1),
-				WeekDays: &[]string{"Mon", "Tue", "Wed", "Thu", "Fri"},
-				UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() +  21*24*60*60)), // +21d
+				Type:      datadog.PtrString("weeks"),
+				Period:    datadog.PtrInt32(1),
+				WeekDays:  &[]string{"Mon", "Tue", "Wed", "Thu", "Fri"},
+				UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 21*24*60*60)), // +21d
 			}),
 	}
 
@@ -106,10 +108,10 @@ func TestMonitorDowntime(t *testing.T) {
 
 	start := TESTCLOCK.Now()
 	testDowntime := datadog.Downtime{
-		Message:  datadog.PtrString("Testing downtime with monitor from Go client"),
-		Start:    datadog.PtrInt64(start.Unix()),
-		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{"*"},
+		Message:   datadog.PtrString("Testing downtime with monitor from Go client"),
+		Start:     datadog.PtrInt64(start.Unix()),
+		Timezone:  datadog.PtrString("Etc/UTC"),
+		Scope:     &[]string{"*"},
 		MonitorId: *datadog.NewNullableInt64(datadog.PtrInt64(monitorID)),
 	}
 
@@ -258,6 +260,168 @@ func TestDowntimeRecurrence(t *testing.T) {
 			}
 
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
+		})
+	}
+}
+
+func TestDowntimeListErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.DowntimesApi.ListDowntimes(tc.Ctx).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDowntimeCreateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.Downtime
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.Downtime{}, 400},
+		{"403 Forbidden", fake_auth, datadog.Downtime{}, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.DowntimesApi.CreateDowntime(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDowntimeCancelByScopeErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.CancelDowntimesByScopeRequest
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, datadog.CancelDowntimesByScopeRequest{}, 400},
+		{"403 Forbidden", fake_auth, datadog.CancelDowntimesByScopeRequest{}, 403},
+		{"404 Not Found", TESTAUTH, datadog.CancelDowntimesByScopeRequest{Scope: "nonexistent"}, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntimesByScope(tc.Ctx).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDowntimeCancelErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+		{"404 Not Found", TESTAUTH, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntime(tc.Ctx, 1234).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDowntimeGetErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+		{"404 Not Found", TESTAUTH, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.DowntimesApi.GetDowntime(tc.Ctx, 1234).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestDowntimeUpdateErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Endpoint will 400 if there are too many tags
+	badDowntime := *datadog.NewDowntimeWithDefaults()
+	tags := make([]string, 50)
+	for i := 0; i < 50; i++ {
+		tags[i] = fmt.Sprintf("tag%d", i)
+	}
+	badDowntime.MonitorTags = &tags
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		Body               datadog.Downtime
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, badDowntime, 400},
+		{"403 Forbidden", fake_auth, datadog.Downtime{}, 403},
+		{"404 Not Found", TESTAUTH, datadog.Downtime{}, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.DowntimesApi.UpdateDowntime(tc.Ctx, 1234).Body(tc.Body).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
 		})
 	}
 }

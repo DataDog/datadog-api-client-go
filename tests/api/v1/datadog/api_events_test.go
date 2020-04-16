@@ -7,6 +7,7 @@
 package test
 
 import (
+	"context"
 	"encoding/json"
 	"testing"
 	"time"
@@ -14,8 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"gotest.tools/assert"
-	is "gotest.tools/assert/cmp"
+	"github.com/stretchr/testify/assert"
 )
 
 var testEvent = datadog.Event{
@@ -43,7 +43,7 @@ func TestEventLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, string(respBody), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 202)
+	assert.Equal(t, 202, httpresp.StatusCode)
 	var unmarshaledBody createEventResponse
 	err = json.Unmarshal(respBody, &unmarshaledBody)
 	if err != nil {
@@ -64,11 +64,11 @@ func TestEventLifecycle(t *testing.T) {
 	})
 
 	fetchedEvent := fetchedEventResponse.GetEvent()
-	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Equal(t, testEvent.GetTitle(), fetchedEvent.GetTitle())
-	assert.Equal(t, testEvent.GetText(), fetchedEvent.GetText())
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(t, fetchedEvent.GetTitle(), testEvent.GetTitle())
+	assert.Equal(t, fetchedEvent.GetText(), testEvent.GetText())
 	// not the same!!! assert.Equal(t, testEvent.GetUrl(), fetchedEvent.GetUrl())
-	assert.Assert(t, fetchedEvent.GetUrl() != "")
+	assert.NotEmpty(t, fetchedEvent.GetUrl())
 
 	// Find our event in the full list
 	start := event.GetDateHappened() - 10
@@ -95,8 +95,58 @@ func TestEventLifecycle(t *testing.T) {
 		return matchedEvent
 	})
 
-	assert.Equal(t, httpresp.StatusCode, 200)
+	assert.Equal(t, 200, httpresp.StatusCode)
 
 	events := eventListResponse.GetEvents()
-	assert.Assert(t, is.Contains(events, fetchedEvent))
+	assert.Contains(t, events, fetchedEvent)
+}
+
+func TestEventListErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"400 Bad Request", TESTAUTH, 400},
+		{"403 Forbidden", fake_auth, 403},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.EventsApi.ListEvents(tc.Ctx).Start(345).End(123).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
+}
+
+func TestEventGetErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	testCases := []struct {
+		Name               string
+		Ctx                context.Context
+		ExpectedStatusCode int
+	}{
+		{"403 Forbidden", fake_auth, 403},
+		{"404 Not Found", TESTAUTH, 404},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			_, httpresp, err := TESTAPICLIENT.EventsApi.GetEvent(tc.Ctx, 1234).Execute()
+			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(t, ok)
+			assert.NotEmpty(t, apiError.GetErrors())
+		})
+	}
 }

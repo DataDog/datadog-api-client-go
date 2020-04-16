@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## GetAPITestLatestResults
 
-> SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).Body(body).Execute()
+> SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
 Get test latest results (as summaries)
 
@@ -120,7 +120,9 @@ Other parameters are passed through a pointer to a apiGetAPITestLatestResultsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsGetTestLatestResultsPayload**](SyntheticsGetTestLatestResultsPayload.md) | Pause/live status to set the given Synthetics test to. | 
+ **fromTs** | **int64** | Timestamp from which to start querying results. | 
+ **toTs** | **int64** | Timestamp up to which to query results. | 
+ **probeDc** | [**[]string**](string.md) | Locations for which to query results. | 
 
 ### Return type
 
@@ -132,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -187,7 +189,7 @@ Name | Type | Description  | Notes
 
 ## GetBrowserTestLatestResults
 
-> SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).Body(body).Execute()
+> SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
 Get test latest results (as summaries)
 
@@ -209,7 +211,9 @@ Other parameters are passed through a pointer to a apiGetBrowserTestLatestResult
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsGetTestLatestResultsPayload**](SyntheticsGetTestLatestResultsPayload.md) | Pause/live status to set the given Synthetics test to. | 
+ **fromTs** | **int64** | Timestamp from which to start querying results. | 
+ **toTs** | **int64** | Timestamp up to which to query results. | 
+ **probeDc** | [**[]string**](string.md) | Locations for which to query results. | 
 
 ### Return type
 
@@ -221,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
