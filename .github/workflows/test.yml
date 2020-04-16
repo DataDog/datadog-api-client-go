@@ -8,7 +8,7 @@ on:
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
-    if: false == startsWith(github.event.pull_request.head.ref, 'datadog-api-spec/pr/')
+    if: false == startsWith(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
