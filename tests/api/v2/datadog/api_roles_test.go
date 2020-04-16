@@ -59,27 +59,27 @@ func TestRoleLifecycle(t *testing.T) {
 	rup := datadog.NewRoleUpdatePayload()
 	rup.SetData(*rud)
 
-	urp, httpresp, err := TestAPIClient.RolesApi.UpdateRole(TestAuth, rid).Body(*rup).Execute()
+	urr, httpresp, err := TestAPIClient.RolesApi.UpdateRole(TestAuth, rid).Body(*rup).Execute()
 	if err != nil {
 		t.Fatalf("Error updating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	urData := urp.GetData()
+	urData := urr.GetData()
 	urAttributes := urData.GetAttributes()
 	assert.Equal(t, rua.GetName(), urAttributes.GetName())
 
 	// now, test getting it
-	rrp, httpresp, err := TestAPIClient.RolesApi.GetRole(TestAuth, rid).Execute()
+	grr, httpresp, err := TestAPIClient.RolesApi.GetRole(TestAuth, rid).Execute()
 	if err != nil {
 		t.Fatalf("Error getting Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	rrData = rrp.GetData()
+	rrData = grr.GetData()
 	rrAttributes = rrData.GetAttributes()
 	assert.Equal(t, updatedRoleName, rrAttributes.GetName())
 
 	// now, test filtering for it in the list call
-	rsrp, httpresp, err := TestAPIClient.RolesApi.
+	rsr, httpresp, err := TestAPIClient.RolesApi.
 		ListRoles(TestAuth).
 		Filter(updatedRoleName).
 		PageSize(1).
@@ -90,10 +90,10 @@ func TestRoleLifecycle(t *testing.T) {
 		t.Fatalf("Error listing roles %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.NotEmpty(t, rsrp.GetData())
-	rrAttributes = rsrp.GetData()[0].GetAttributes()
+	assert.NotEmpty(t, rsr.GetData())
+	rrAttributes = rsr.GetData()[0].GetAttributes()
 	assert.Equal(t, rua.GetName(), rrAttributes.GetName())
-	rrMetaAttributes := rsrp.GetMeta()
+	rrMetaAttributes := rsr.GetMeta()
 	page := rrMetaAttributes.GetPage()
 	assert.GreaterOrEqual(t, page.GetTotalCount(), int64(1))
 	assert.GreaterOrEqual(t, page.GetTotalFilteredCount(), int64(1))
