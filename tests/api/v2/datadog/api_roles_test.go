@@ -151,8 +151,8 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Contains(t, crrtps.GetData(), permission)
 
-	// get all permission for the role
-	lrrtps, httpresp, err := TestAPIClient.RolesApi.ListRoleRelationshipToPermission(TestAuth, rid).Execute()
+	// get all permissions for the role
+	lrrtps, httpresp, err := TestAPIClient.RolesApi.ListRoleRelationshipsToPermissions(TestAuth, rid).Execute()
 	if err != nil {
 		t.Fatalf("Error listing permission relations: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -166,5 +166,88 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.NotContains(t, drrtps.GetData(), permission)
+}
 
+func TestRoleUsersLifecycle(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// first, create a role
+	rca := testingRoleCreateAttributes()
+	rcd := datadog.NewRoleCreateData()
+	rcd.SetAttributes(*rca)
+	rcp := datadog.NewRoleCreatePayload()
+	rcp.SetData(*rcd)
+	rr, httpresp, err := TestAPIClient.RolesApi.CreateRole(TestAuth).Body(*rcp).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	rrData := rr.GetData()
+	rid := rrData.GetId()
+	defer deleteRole(rid)
+
+	// create a user
+	uca := testingUserCreateAttributes()
+	ucd := datadog.NewUserCreateData()
+	ucd.SetAttributes(*uca)
+	ucp := datadog.NewUserCreatePayload()
+	ucp.SetData(*ucd)
+	ur, httpresp, err := TestAPIClient.UsersApi.CreateUser(TestAuth).Body(*ucp).Execute()
+	if err != nil {
+		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, httpresp.StatusCode, 201)
+	urData := ur.GetData()
+	uid := urData.GetId()
+	defer disableUser(uid)
+
+	// add a user to the role
+	rtu := datadog.NewRelationshipToUserWithDefaults()
+	rtud := datadog.NewRelationshipToUserDataWithDefaults()
+	rtud.SetId(uid)
+	rtu.SetData(*rtud)
+
+	crrtus, httpresp, err := TestAPIClient.RolesApi.CreateRoleRelationshipToUser(TestAuth, rid).Body(*rtu).Execute()
+	if err != nil {
+		t.Fatalf("Error creating user relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+
+	found := false
+	for _, ua := range crrtus.GetData() {
+		if uid == ua.GetId() {
+			found = true
+			break
+		}
+	}
+	assert.True(t, found, "user %s not found in relation to role %s", uid, rid)
+
+	// get all users for the role
+	lrrtus, httpresp, err := TestAPIClient.RolesApi.ListRoleRelationshipsToUsers(TestAuth, rid).Execute()
+	if err != nil {
+		t.Fatalf("Error listing permission relations: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+
+	found = false
+	for _, ua := range lrrtus.GetData() {
+		if uid == ua.GetId() {
+			found = true
+			break
+		}
+	}
+	assert.True(t, found, "user %s not found in relation to role %s", uid, rid)
+
+	// remove the permission from the role
+	drrtus, httpresp, err := TestAPIClient.RolesApi.DeleteRoleRelationshipToUser(TestAuth, rid).Body(*rtu).Execute()
+	if err != nil {
+		t.Fatalf("Error remove permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	for _, ua := range drrtus.GetData() {
+		if uid == ua.GetId() {
+			t.Fatalf("User %s must not exist in the relation %s", uid, rid)
+		}
+	}
 }

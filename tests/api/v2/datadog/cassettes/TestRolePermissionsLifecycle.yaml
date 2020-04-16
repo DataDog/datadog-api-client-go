@@ -3,19 +3,21 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"test-role-datadog-client-go-1586971782967735000"},"type":"roles"}}
+      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587034030779776000"},"type":"roles"}}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CreateRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"b1df36ac-7f3e-11ea-93dd-af643ae5e5c9","attributes":{"name":"test-role-datadog-client-go-1586971782967735000","created_at":"2020-04-15T17:29:43.710753+00:00","modified_at":"2020-04-15T17:29:43.710753+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
+    body: '{"data":{"type":"roles","id":"a070cb38-7fcf-11ea-93dd-77ffcf581406","attributes":{"name":"test-role-datadog-client-go-1587034030779776000","created_at":"2020-04-16T10:47:11.491473+00:00","modified_at":"2020-04-16T10:47:11.491473+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -28,18 +30,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 15 Apr 2020 17:29:43 GMT
+      - Thu, 16 Apr 2020 10:47:11 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 22-Apr-2020 17:29:43 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 10:47:11 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2395005"
+      - "35.2397784"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -51,6 +53,8 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - ListPermissions
       User-Agent:
       - DataDog/0.1.0/go-experimental
     url: https://api.datadoghq.com/api/v2/permissions
@@ -110,18 +114,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 15 Apr 2020 17:29:43 GMT
+      - Thu, 16 Apr 2020 10:47:11 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 22-Apr-2020 17:29:43 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 10:47:11 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2395005"
+      - "35.2397784"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -136,9 +140,11 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CreateRoleRelationshipToPermission
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/b1df36ac-7f3e-11ea-93dd-af643ae5e5c9/permissions
+    url: https://api.datadoghq.com/api/v2/roles/a070cb38-7fcf-11ea-93dd-77ffcf581406/permissions
     method: POST
   response:
     body: '{"data":[{"type":"permissions","id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","attributes":{"name":"admin","display_name":"Privileged
@@ -160,18 +166,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 15 Apr 2020 17:29:44 GMT
+      - Thu, 16 Apr 2020 10:47:11 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 22-Apr-2020 17:29:44 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 10:47:11 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2395005"
+      - "35.2397784"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -183,9 +189,108 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - ListRoleRelationshipsToPermissions
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/b1df36ac-7f3e-11ea-93dd-af643ae5e5c9
+    url: https://api.datadoghq.com/api/v2/roles/a070cb38-7fcf-11ea-93dd-77ffcf581406/permissions
+    method: GET
+  response:
+    body: '{"data":[{"type":"permissions","id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","attributes":{"name":"admin","display_name":"Privileged
+      Access","description":"This permission gives you the ability to view and edit
+      everything in your Datadog organization that does not have an explicitly defined
+      permission. This includes billing and usage, user, key, and organization management.
+      This permission is inclusive of all Standard access permissions.","created":"2018-10-19T15:35:23.734317+00:00","group_name":"General","display_type":"other","restricted":false}},{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2","attributes":{"name":"dashboards_read","display_name":"Dashboards","description":"The
+      ability to view dashboards.","created":"2019-09-10T14:39:51.955175+00:00","group_name":"Dashboards","display_type":"read","restricted":true}},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304","attributes":{"name":"monitors_read","display_name":"Monitors","description":"The
+      ability to view monitors.","created":"2019-09-16T18:39:07.744297+00:00","group_name":"Monitors","display_type":"read","restricted":true}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "1134"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 16 Apr 2020 10:47:12 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 10:47:12 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2397784"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"data":{"id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","type":"permissions"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteRoleRelationshipToPermission
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v2/roles/a070cb38-7fcf-11ea-93dd-77ffcf581406/permissions
+    method: DELETE
+  response:
+    body: '{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2","attributes":{"name":"dashboards_read","display_name":"Dashboards","description":"The
+      ability to view dashboards.","created":"2019-09-10T14:39:51.955175+00:00","group_name":"Dashboards","display_type":"read","restricted":true}},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304","attributes":{"name":"monitors_read","display_name":"Monitors","description":"The
+      ability to view monitors.","created":"2019-09-16T18:39:07.744297+00:00","group_name":"Monitors","display_type":"read","restricted":true}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "590"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 16 Apr 2020 10:47:12 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 10:47:12 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2397784"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteRole
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v2/roles/a070cb38-7fcf-11ea-93dd-77ffcf581406
     method: DELETE
   response:
     body: ""
@@ -201,18 +306,18 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Wed, 15 Apr 2020 17:29:44 GMT
+      - Thu, 16 Apr 2020 10:47:12 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 22-Apr-2020 17:29:44 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 10:47:12 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2395005"
+      - "35.2397784"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
