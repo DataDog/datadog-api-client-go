@@ -19,11 +19,11 @@ func testingRoleCreateAttributes() *datadog.RoleCreateAttributes {
 func deleteRole(roleID string) {
 	httpresp, err := TestAPIClient.RolesApi.DeleteRole(TestAuth, roleID).Execute()
 	if httpresp.StatusCode == 404 {
-		// doesn't exist any more => no need to disable
+		// doesn't exist any more => no need to delete
 		return
 	}
 	if httpresp.StatusCode != 204 || err != nil {
-		log.Printf("Error disabling Role: %v, Another test may have already disabled this user: %s", roleID, err.Error())
+		log.Printf("Error disabling Role: %v, Another test may have already deleted this role: %s", roleID, err.Error())
 	}
 }
 
