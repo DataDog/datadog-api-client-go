@@ -144,7 +144,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	rtpd.SetId(pid)
 	rtp.SetData(*rtpd)
 
-	crrtps, httpresp, err := TestAPIClient.RolesApi.CreateRoleRelationshipToPermission(TestAuth, rid).Body(*rtp).Execute()
+	crrtps, httpresp, err := TestAPIClient.RolesApi.CreateRolePermission(TestAuth, rid).Body(*rtp).Execute()
 	if err != nil {
 		t.Fatalf("Error creating permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -152,7 +152,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	assert.Contains(t, crrtps.GetData(), permission)
 
 	// get all permissions for the role
-	lrrtps, httpresp, err := TestAPIClient.RolesApi.ListRoleRelationshipsToPermissions(TestAuth, rid).Execute()
+	lrrtps, httpresp, err := TestAPIClient.RolesApi.ListRolePermissions(TestAuth, rid).Execute()
 	if err != nil {
 		t.Fatalf("Error listing permission relations: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -160,7 +160,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	assert.Contains(t, lrrtps.GetData(), permission)
 
 	// remove the permission from the role
-	drrtps, httpresp, err := TestAPIClient.RolesApi.DeleteRoleRelationshipToPermission(TestAuth, rid).Body(*rtp).Execute()
+	drrtps, httpresp, err := TestAPIClient.RolesApi.DeleteRolePermission(TestAuth, rid).Body(*rtp).Execute()
 	if err != nil {
 		t.Fatalf("Error remove permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -208,7 +208,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	rtud.SetId(uid)
 	rtu.SetData(*rtud)
 
-	crrtus, httpresp, err := TestAPIClient.RolesApi.CreateRoleRelationshipToUser(TestAuth, rid).Body(*rtu).Execute()
+	crrtus, httpresp, err := TestAPIClient.RolesApi.CreateRoleUser(TestAuth, rid).Body(*rtu).Execute()
 	if err != nil {
 		t.Fatalf("Error creating user relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -224,7 +224,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	assert.True(t, found, "user %s not found in relation to role %s", uid, rid)
 
 	// get all users for the role
-	lrrtus, httpresp, err := TestAPIClient.RolesApi.ListRoleRelationshipsToUsers(TestAuth, rid).Execute()
+	lrrtus, httpresp, err := TestAPIClient.RolesApi.ListRoleUsers(TestAuth, rid).Execute()
 	if err != nil {
 		t.Fatalf("Error listing permission relations: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -240,7 +240,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	assert.True(t, found, "user %s not found in relation to role %s", uid, rid)
 
 	// remove the permission from the role
-	drrtus, httpresp, err := TestAPIClient.RolesApi.DeleteRoleRelationshipToUser(TestAuth, rid).Body(*rtu).Execute()
+	drrtus, httpresp, err := TestAPIClient.RolesApi.DeleteRoleUser(TestAuth, rid).Body(*rtu).Execute()
 	if err != nil {
 		t.Fatalf("Error remove permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
