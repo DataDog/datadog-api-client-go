@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v2/users/{user_id} | Disable user
 [**GetInvitation**](UsersApi.md#GetInvitation) | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation
 [**GetUser**](UsersApi.md#GetUser) | **Get** /api/v2/users/{user_id} | Get a user
-[**GetUserOrganization**](UsersApi.md#GetUserOrganization) | **Get** /api/v2/users/{user_id}/orgs | Get a user organization
-[**GetUserPermissions**](UsersApi.md#GetUserPermissions) | **Get** /api/v2/users/{user_id}/permissions | Get a user permissions
+[**ListUserOrganizations**](UsersApi.md#ListUserOrganizations) | **Get** /api/v2/users/{user_id}/orgs | Get a user organization
+[**ListUserPermissions**](UsersApi.md#ListUserPermissions) | **Get** /api/v2/users/{user_id}/permissions | Get a user permissions
 [**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v2/users | List all users
 [**SendInvitations**](UsersApi.md#SendInvitations) | **Post** /api/v2/user_invitations | Send invitation emails
 [**UpdateUser**](UsersApi.md#UpdateUser) | **Patch** /api/v2/users/{user_id} | Update a user
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> UserResponsePayload CreateUser(ctx).Body(body).Execute()
+> UserResponse CreateUser(ctx).Body(body).Execute()
 
 Create user
 
@@ -39,7 +39,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserResponsePayload**](UserResponsePayload.md)
+[**UserResponse**](UserResponse.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ## GetUser
 
-> UserResponsePayload GetUser(ctx, userId).Execute()
+> UserResponse GetUser(ctx, userId).Execute()
 
 Get a user
 
@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserResponsePayload**](UserResponsePayload.md)
+[**UserResponse**](UserResponse.md)
 
 ### Authorization
 
@@ -184,9 +184,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetUserOrganization
+## ListUserOrganizations
 
-> UserResponsePayload GetUserOrganization(ctx, userId).Execute()
+> UserResponse ListUserOrganizations(ctx, userId).Execute()
 
 Get a user organization
 
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetUserOrganizationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListUserOrganizationsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserResponsePayload**](UserResponsePayload.md)
+[**UserResponse**](UserResponse.md)
 
 ### Authorization
 
@@ -227,9 +227,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetUserPermissions
+## ListUserPermissions
 
-> Permissions GetUserPermissions(ctx, userId).Execute()
+> PermissionsResponse ListUserPermissions(ctx, userId).Execute()
 
 Get a user permissions
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetUserPermissionsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListUserPermissionsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Permissions**](Permissions.md)
+[**PermissionsResponse**](PermissionsResponse.md)
 
 ### Authorization
 
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ## ListUsers
 
-> UsersResponsePayload ListUsers(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).SortDir(sortDir).Filter(filter).FilterStatus(filterStatus).Execute()
+> UsersResponse ListUsers(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).SortDir(sortDir).Filter(filter).FilterStatus(filterStatus).Execute()
 
 List all users
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UsersResponsePayload**](UsersResponsePayload.md)
+[**UsersResponse**](UsersResponse.md)
 
 ### Authorization
 
