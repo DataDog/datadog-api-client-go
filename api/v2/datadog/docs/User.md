@@ -1,139 +1,133 @@
-# Role
+# User
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**RoleAttributes**](RoleAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the role. | [optional] 
-**Relationships** | Pointer to [**RoleResponseRelationships**](RoleResponseRelationships.md) |  | [optional] 
-**Type** | Pointer to **string** | Roles type. | [optional] [readonly] [default to "roles"]
+**Attributes** | Pointer to [**UserAttributes**](UserAttributes.md) |  | [optional] 
+**Id** | Pointer to **string** | ID of the user. | [optional] 
+**Relationships** | Pointer to [**UserResponseRelationships**](UserResponseRelationships.md) |  | [optional] 
+**Type** | Pointer to **string** | Users type. | [optional] [readonly] [default to "users"]
 
 ## Methods
 
-### NewRole
+### NewUser
 
-`func NewRole() *Role`
+`func NewUser() *User`
 
-NewRole instantiates a new Role object
+NewUser instantiates a new User object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewRoleWithDefaults
+### NewUserWithDefaults
 
-`func NewRoleWithDefaults() *Role`
+`func NewUserWithDefaults() *User`
 
-NewRoleWithDefaults instantiates a new Role object
+NewUserWithDefaults instantiates a new User object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAttributes
 
-`func (o *Role) GetAttributes() RoleAttributes`
+`func (o *User) GetAttributes() UserAttributes`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *Role) GetAttributesOk() (*RoleAttributes, bool)`
+`func (o *User) GetAttributesOk() (*UserAttributes, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *Role) SetAttributes(v RoleAttributes)`
+`func (o *User) SetAttributes(v UserAttributes)`
 
 SetAttributes sets Attributes field to given value.
 
 ### HasAttributes
 
-`func (o *Role) HasAttributes() bool`
+`func (o *User) HasAttributes() bool`
 
 HasAttributes returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *Role) GetId() string`
+`func (o *User) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Role) GetIdOk() (*string, bool)`
+`func (o *User) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Role) SetId(v string)`
+`func (o *User) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *Role) HasId() bool`
+`func (o *User) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetRelationships
 
-`func (o *Role) GetRelationships() RoleResponseRelationships`
+`func (o *User) GetRelationships() UserResponseRelationships`
 
 GetRelationships returns the Relationships field if non-nil, zero value otherwise.
 
 ### GetRelationshipsOk
 
-`func (o *Role) GetRelationshipsOk() (*RoleResponseRelationships, bool)`
+`func (o *User) GetRelationshipsOk() (*UserResponseRelationships, bool)`
 
 GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRelationships
 
-`func (o *Role) SetRelationships(v RoleResponseRelationships)`
+`func (o *User) SetRelationships(v UserResponseRelationships)`
 
 SetRelationships sets Relationships field to given value.
 
 ### HasRelationships
 
-`func (o *Role) HasRelationships() bool`
+`func (o *User) HasRelationships() bool`
 
 HasRelationships returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Role) GetType() string`
+`func (o *User) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Role) GetTypeOk() (*string, bool)`
+`func (o *User) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Role) SetType(v string)`
+`func (o *User) SetType(v string)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *Role) HasType() bool`
+`func (o *User) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 
-
-### AsUserResponseIncludedItem
-
-`func (s *Role) AsUserResponseIncludedItem() UserResponseIncludedItem`
-
-Convenience method to wrap this instance of Role in UserResponseIncludedItem
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

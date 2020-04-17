@@ -12,9 +12,10 @@ import (
 	"encoding/json"
 )
 
-// RoleRelationships Role relationships object.
+// RoleRelationships Relationships of the role object.
 type RoleRelationships struct {
 	Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
+	Users       *RelationshipToUsers       `json:"users,omitempty"`
 }
 
 // NewRoleRelationships instantiates a new RoleRelationships object
@@ -66,10 +67,45 @@ func (o *RoleRelationships) SetPermissions(v RelationshipToPermissions) {
 	o.Permissions = &v
 }
 
+// GetUsers returns the Users field value if set, zero value otherwise.
+func (o *RoleRelationships) GetUsers() RelationshipToUsers {
+	if o == nil || o.Users == nil {
+		var ret RelationshipToUsers
+		return ret
+	}
+	return *o.Users
+}
+
+// GetUsersOk returns a tuple with the Users field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleRelationships) GetUsersOk() (*RelationshipToUsers, bool) {
+	if o == nil || o.Users == nil {
+		return nil, false
+	}
+	return o.Users, true
+}
+
+// HasUsers returns a boolean if a field has been set.
+func (o *RoleRelationships) HasUsers() bool {
+	if o != nil && o.Users != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUsers gets a reference to the given RelationshipToUsers and assigns it to the Users field.
+func (o *RoleRelationships) SetUsers(v RelationshipToUsers) {
+	o.Users = &v
+}
+
 func (o RoleRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
+	}
+	if o.Users != nil {
+		toSerialize["users"] = o.Users
 	}
 	return json.Marshal(toSerialize)
 }

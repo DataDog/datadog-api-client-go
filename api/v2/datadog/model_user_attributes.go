@@ -13,8 +13,8 @@ import (
 	"time"
 )
 
-// UserResponseAttributes Attributes of user object returned by the API.
-type UserResponseAttributes struct {
+// UserAttributes Attributes of user object returned by the API.
+type UserAttributes struct {
 	// Creation time of the user.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Whether the user is disabled.
@@ -35,25 +35,25 @@ type UserResponseAttributes struct {
 	Verified *bool `json:"verified,omitempty"`
 }
 
-// NewUserResponseAttributes instantiates a new UserResponseAttributes object
+// NewUserAttributes instantiates a new UserAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserResponseAttributes() *UserResponseAttributes {
-	this := UserResponseAttributes{}
+func NewUserAttributes() *UserAttributes {
+	this := UserAttributes{}
 	return &this
 }
 
-// NewUserResponseAttributesWithDefaults instantiates a new UserResponseAttributes object
+// NewUserAttributesWithDefaults instantiates a new UserAttributes object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUserResponseAttributesWithDefaults() *UserResponseAttributes {
-	this := UserResponseAttributes{}
+func NewUserAttributesWithDefaults() *UserAttributes {
+	this := UserAttributes{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetCreatedAt() time.Time {
+func (o *UserAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
 		var ret time.Time
 		return ret
@@ -63,7 +63,7 @@ func (o *UserResponseAttributes) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetCreatedAtOk() (*time.Time, bool) {
+func (o *UserAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *UserResponseAttributes) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasCreatedAt() bool {
+func (o *UserAttributes) HasCreatedAt() bool {
 	if o != nil && o.CreatedAt != nil {
 		return true
 	}
@@ -80,12 +80,12 @@ func (o *UserResponseAttributes) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *UserResponseAttributes) SetCreatedAt(v time.Time) {
+func (o *UserAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetDisabled() bool {
+func (o *UserAttributes) GetDisabled() bool {
 	if o == nil || o.Disabled == nil {
 		var ret bool
 		return ret
@@ -95,7 +95,7 @@ func (o *UserResponseAttributes) GetDisabled() bool {
 
 // GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetDisabledOk() (*bool, bool) {
+func (o *UserAttributes) GetDisabledOk() (*bool, bool) {
 	if o == nil || o.Disabled == nil {
 		return nil, false
 	}
@@ -103,7 +103,7 @@ func (o *UserResponseAttributes) GetDisabledOk() (*bool, bool) {
 }
 
 // HasDisabled returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasDisabled() bool {
+func (o *UserAttributes) HasDisabled() bool {
 	if o != nil && o.Disabled != nil {
 		return true
 	}
@@ -112,12 +112,12 @@ func (o *UserResponseAttributes) HasDisabled() bool {
 }
 
 // SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
-func (o *UserResponseAttributes) SetDisabled(v bool) {
+func (o *UserAttributes) SetDisabled(v bool) {
 	o.Disabled = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetEmail() string {
+func (o *UserAttributes) GetEmail() string {
 	if o == nil || o.Email == nil {
 		var ret string
 		return ret
@@ -127,7 +127,7 @@ func (o *UserResponseAttributes) GetEmail() string {
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetEmailOk() (*string, bool) {
+func (o *UserAttributes) GetEmailOk() (*string, bool) {
 	if o == nil || o.Email == nil {
 		return nil, false
 	}
@@ -135,7 +135,7 @@ func (o *UserResponseAttributes) GetEmailOk() (*string, bool) {
 }
 
 // HasEmail returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasEmail() bool {
+func (o *UserAttributes) HasEmail() bool {
 	if o != nil && o.Email != nil {
 		return true
 	}
@@ -144,12 +144,12 @@ func (o *UserResponseAttributes) HasEmail() bool {
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *UserResponseAttributes) SetEmail(v string) {
+func (o *UserAttributes) SetEmail(v string) {
 	o.Email = &v
 }
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetHandle() string {
+func (o *UserAttributes) GetHandle() string {
 	if o == nil || o.Handle == nil {
 		var ret string
 		return ret
@@ -159,7 +159,7 @@ func (o *UserResponseAttributes) GetHandle() string {
 
 // GetHandleOk returns a tuple with the Handle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetHandleOk() (*string, bool) {
+func (o *UserAttributes) GetHandleOk() (*string, bool) {
 	if o == nil || o.Handle == nil {
 		return nil, false
 	}
@@ -167,7 +167,7 @@ func (o *UserResponseAttributes) GetHandleOk() (*string, bool) {
 }
 
 // HasHandle returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasHandle() bool {
+func (o *UserAttributes) HasHandle() bool {
 	if o != nil && o.Handle != nil {
 		return true
 	}
@@ -176,12 +176,12 @@ func (o *UserResponseAttributes) HasHandle() bool {
 }
 
 // SetHandle gets a reference to the given string and assigns it to the Handle field.
-func (o *UserResponseAttributes) SetHandle(v string) {
+func (o *UserAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
 
 // GetIcon returns the Icon field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetIcon() string {
+func (o *UserAttributes) GetIcon() string {
 	if o == nil || o.Icon == nil {
 		var ret string
 		return ret
@@ -191,7 +191,7 @@ func (o *UserResponseAttributes) GetIcon() string {
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetIconOk() (*string, bool) {
+func (o *UserAttributes) GetIconOk() (*string, bool) {
 	if o == nil || o.Icon == nil {
 		return nil, false
 	}
@@ -199,7 +199,7 @@ func (o *UserResponseAttributes) GetIconOk() (*string, bool) {
 }
 
 // HasIcon returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasIcon() bool {
+func (o *UserAttributes) HasIcon() bool {
 	if o != nil && o.Icon != nil {
 		return true
 	}
@@ -208,12 +208,12 @@ func (o *UserResponseAttributes) HasIcon() bool {
 }
 
 // SetIcon gets a reference to the given string and assigns it to the Icon field.
-func (o *UserResponseAttributes) SetIcon(v string) {
+func (o *UserAttributes) SetIcon(v string) {
 	o.Icon = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetName() string {
+func (o *UserAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -223,7 +223,7 @@ func (o *UserResponseAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetNameOk() (*string, bool) {
+func (o *UserAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -231,7 +231,7 @@ func (o *UserResponseAttributes) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasName() bool {
+func (o *UserAttributes) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -240,12 +240,12 @@ func (o *UserResponseAttributes) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UserResponseAttributes) SetName(v string) {
+func (o *UserAttributes) SetName(v string) {
 	o.Name = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetStatus() string {
+func (o *UserAttributes) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -255,7 +255,7 @@ func (o *UserResponseAttributes) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetStatusOk() (*string, bool) {
+func (o *UserAttributes) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -263,7 +263,7 @@ func (o *UserResponseAttributes) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasStatus() bool {
+func (o *UserAttributes) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -272,12 +272,12 @@ func (o *UserResponseAttributes) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *UserResponseAttributes) SetStatus(v string) {
+func (o *UserAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetTitle() string {
+func (o *UserAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -287,7 +287,7 @@ func (o *UserResponseAttributes) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetTitleOk() (*string, bool) {
+func (o *UserAttributes) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -295,7 +295,7 @@ func (o *UserResponseAttributes) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasTitle() bool {
+func (o *UserAttributes) HasTitle() bool {
 	if o != nil && o.Title != nil {
 		return true
 	}
@@ -304,12 +304,12 @@ func (o *UserResponseAttributes) HasTitle() bool {
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *UserResponseAttributes) SetTitle(v string) {
+func (o *UserAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
 // GetVerified returns the Verified field value if set, zero value otherwise.
-func (o *UserResponseAttributes) GetVerified() bool {
+func (o *UserAttributes) GetVerified() bool {
 	if o == nil || o.Verified == nil {
 		var ret bool
 		return ret
@@ -319,7 +319,7 @@ func (o *UserResponseAttributes) GetVerified() bool {
 
 // GetVerifiedOk returns a tuple with the Verified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponseAttributes) GetVerifiedOk() (*bool, bool) {
+func (o *UserAttributes) GetVerifiedOk() (*bool, bool) {
 	if o == nil || o.Verified == nil {
 		return nil, false
 	}
@@ -327,7 +327,7 @@ func (o *UserResponseAttributes) GetVerifiedOk() (*bool, bool) {
 }
 
 // HasVerified returns a boolean if a field has been set.
-func (o *UserResponseAttributes) HasVerified() bool {
+func (o *UserAttributes) HasVerified() bool {
 	if o != nil && o.Verified != nil {
 		return true
 	}
@@ -336,11 +336,11 @@ func (o *UserResponseAttributes) HasVerified() bool {
 }
 
 // SetVerified gets a reference to the given bool and assigns it to the Verified field.
-func (o *UserResponseAttributes) SetVerified(v bool) {
+func (o *UserAttributes) SetVerified(v bool) {
 	o.Verified = &v
 }
 
-func (o UserResponseAttributes) MarshalJSON() ([]byte, error) {
+func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
@@ -372,38 +372,38 @@ func (o UserResponseAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUserResponseAttributes struct {
-	value *UserResponseAttributes
+type NullableUserAttributes struct {
+	value *UserAttributes
 	isSet bool
 }
 
-func (v NullableUserResponseAttributes) Get() *UserResponseAttributes {
+func (v NullableUserAttributes) Get() *UserAttributes {
 	return v.value
 }
 
-func (v *NullableUserResponseAttributes) Set(val *UserResponseAttributes) {
+func (v *NullableUserAttributes) Set(val *UserAttributes) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUserResponseAttributes) IsSet() bool {
+func (v NullableUserAttributes) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUserResponseAttributes) Unset() {
+func (v *NullableUserAttributes) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUserResponseAttributes(val *UserResponseAttributes) *NullableUserResponseAttributes {
-	return &NullableUserResponseAttributes{value: val, isSet: true}
+func NewNullableUserAttributes(val *UserAttributes) *NullableUserAttributes {
+	return &NullableUserAttributes{value: val, isSet: true}
 }
 
-func (v NullableUserResponseAttributes) MarshalJSON() ([]byte, error) {
+func (v NullableUserAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUserResponseAttributes) UnmarshalJSON(src []byte) error {
+func (v *NullableUserAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -12,36 +12,36 @@ import (
 	"encoding/json"
 )
 
-// UsersResponsePayload Response containing information about multiple users.
-type UsersResponsePayload struct {
+// UsersResponse Response containing information about multiple users.
+type UsersResponse struct {
 	// Array of returned users.
-	Data *[]UserResponse `json:"data,omitempty"`
+	Data *[]User `json:"data,omitempty"`
 	// Array of objects related to the users.
 	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
 	Meta     *ResponseMetaAttributes     `json:"meta,omitempty"`
 }
 
-// NewUsersResponsePayload instantiates a new UsersResponsePayload object
+// NewUsersResponse instantiates a new UsersResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsersResponsePayload() *UsersResponsePayload {
-	this := UsersResponsePayload{}
+func NewUsersResponse() *UsersResponse {
+	this := UsersResponse{}
 	return &this
 }
 
-// NewUsersResponsePayloadWithDefaults instantiates a new UsersResponsePayload object
+// NewUsersResponseWithDefaults instantiates a new UsersResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUsersResponsePayloadWithDefaults() *UsersResponsePayload {
-	this := UsersResponsePayload{}
+func NewUsersResponseWithDefaults() *UsersResponse {
+	this := UsersResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *UsersResponsePayload) GetData() []UserResponse {
+func (o *UsersResponse) GetData() []User {
 	if o == nil || o.Data == nil {
-		var ret []UserResponse
+		var ret []User
 		return ret
 	}
 	return *o.Data
@@ -49,7 +49,7 @@ func (o *UsersResponsePayload) GetData() []UserResponse {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersResponsePayload) GetDataOk() (*[]UserResponse, bool) {
+func (o *UsersResponse) GetDataOk() (*[]User, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *UsersResponsePayload) GetDataOk() (*[]UserResponse, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *UsersResponsePayload) HasData() bool {
+func (o *UsersResponse) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -65,13 +65,13 @@ func (o *UsersResponsePayload) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []UserResponse and assigns it to the Data field.
-func (o *UsersResponsePayload) SetData(v []UserResponse) {
+// SetData gets a reference to the given []User and assigns it to the Data field.
+func (o *UsersResponse) SetData(v []User) {
 	o.Data = &v
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *UsersResponsePayload) GetIncluded() []UserResponseIncludedItem {
+func (o *UsersResponse) GetIncluded() []UserResponseIncludedItem {
 	if o == nil || o.Included == nil {
 		var ret []UserResponseIncludedItem
 		return ret
@@ -81,7 +81,7 @@ func (o *UsersResponsePayload) GetIncluded() []UserResponseIncludedItem {
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersResponsePayload) GetIncludedOk() (*[]UserResponseIncludedItem, bool) {
+func (o *UsersResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *UsersResponsePayload) GetIncludedOk() (*[]UserResponseIncludedItem, boo
 }
 
 // HasIncluded returns a boolean if a field has been set.
-func (o *UsersResponsePayload) HasIncluded() bool {
+func (o *UsersResponse) HasIncluded() bool {
 	if o != nil && o.Included != nil {
 		return true
 	}
@@ -98,12 +98,12 @@ func (o *UsersResponsePayload) HasIncluded() bool {
 }
 
 // SetIncluded gets a reference to the given []UserResponseIncludedItem and assigns it to the Included field.
-func (o *UsersResponsePayload) SetIncluded(v []UserResponseIncludedItem) {
+func (o *UsersResponse) SetIncluded(v []UserResponseIncludedItem) {
 	o.Included = &v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *UsersResponsePayload) GetMeta() ResponseMetaAttributes {
+func (o *UsersResponse) GetMeta() ResponseMetaAttributes {
 	if o == nil || o.Meta == nil {
 		var ret ResponseMetaAttributes
 		return ret
@@ -113,7 +113,7 @@ func (o *UsersResponsePayload) GetMeta() ResponseMetaAttributes {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersResponsePayload) GetMetaOk() (*ResponseMetaAttributes, bool) {
+func (o *UsersResponse) GetMetaOk() (*ResponseMetaAttributes, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -121,7 +121,7 @@ func (o *UsersResponsePayload) GetMetaOk() (*ResponseMetaAttributes, bool) {
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *UsersResponsePayload) HasMeta() bool {
+func (o *UsersResponse) HasMeta() bool {
 	if o != nil && o.Meta != nil {
 		return true
 	}
@@ -130,11 +130,11 @@ func (o *UsersResponsePayload) HasMeta() bool {
 }
 
 // SetMeta gets a reference to the given ResponseMetaAttributes and assigns it to the Meta field.
-func (o *UsersResponsePayload) SetMeta(v ResponseMetaAttributes) {
+func (o *UsersResponse) SetMeta(v ResponseMetaAttributes) {
 	o.Meta = &v
 }
 
-func (o UsersResponsePayload) MarshalJSON() ([]byte, error) {
+func (o UsersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
@@ -148,38 +148,38 @@ func (o UsersResponsePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUsersResponsePayload struct {
-	value *UsersResponsePayload
+type NullableUsersResponse struct {
+	value *UsersResponse
 	isSet bool
 }
 
-func (v NullableUsersResponsePayload) Get() *UsersResponsePayload {
+func (v NullableUsersResponse) Get() *UsersResponse {
 	return v.value
 }
 
-func (v *NullableUsersResponsePayload) Set(val *UsersResponsePayload) {
+func (v *NullableUsersResponse) Set(val *UsersResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUsersResponsePayload) IsSet() bool {
+func (v NullableUsersResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUsersResponsePayload) Unset() {
+func (v *NullableUsersResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUsersResponsePayload(val *UsersResponsePayload) *NullableUsersResponsePayload {
-	return &NullableUsersResponsePayload{value: val, isSet: true}
+func NewNullableUsersResponse(val *UsersResponse) *NullableUsersResponse {
+	return &NullableUsersResponse{value: val, isSet: true}
 }
 
-func (v NullableUsersResponsePayload) MarshalJSON() ([]byte, error) {
+func (v NullableUsersResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUsersResponsePayload) UnmarshalJSON(src []byte) error {
+func (v *NullableUsersResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

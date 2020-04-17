@@ -12,14 +12,11 @@ import (
 	"encoding/json"
 )
 
-// UserResponse User object returned by the API.
+// UserResponse Response containing information about a single user.
 type UserResponse struct {
-	Attributes *UserResponseAttributes `json:"attributes,omitempty"`
-	// ID of the user.
-	Id            *string                    `json:"id,omitempty"`
-	Relationships *UserResponseRelationships `json:"relationships,omitempty"`
-	// Users type.
-	Type *string `json:"type,omitempty"`
+	Data *User `json:"data,omitempty"`
+	// Array of objects related to the user.
+	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
 }
 
 // NewUserResponse instantiates a new UserResponse object
@@ -28,8 +25,6 @@ type UserResponse struct {
 // will change when the set of required properties is changed
 func NewUserResponse() *UserResponse {
 	this := UserResponse{}
-	var type_ string = "users"
-	this.Type = &type_
 	return &this
 }
 
@@ -38,152 +33,80 @@ func NewUserResponse() *UserResponse {
 // but it doesn't guarantee that properties required by API are set
 func NewUserResponseWithDefaults() *UserResponse {
 	this := UserResponse{}
-	var type_ string = "users"
-	this.Type = &type_
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *UserResponse) GetAttributes() UserResponseAttributes {
-	if o == nil || o.Attributes == nil {
-		var ret UserResponseAttributes
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *UserResponse) GetData() User {
+	if o == nil || o.Data == nil {
+		var ret User
 		return ret
 	}
-	return *o.Attributes
+	return *o.Data
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponse) GetAttributesOk() (*UserResponseAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+func (o *UserResponse) GetDataOk() (*User, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return o.Data, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *UserResponse) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
+// HasData returns a boolean if a field has been set.
+func (o *UserResponse) HasData() bool {
+	if o != nil && o.Data != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetAttributes gets a reference to the given UserResponseAttributes and assigns it to the Attributes field.
-func (o *UserResponse) SetAttributes(v UserResponseAttributes) {
-	o.Attributes = &v
+// SetData gets a reference to the given User and assigns it to the Data field.
+func (o *UserResponse) SetData(v User) {
+	o.Data = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *UserResponse) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
+// GetIncluded returns the Included field value if set, zero value otherwise.
+func (o *UserResponse) GetIncluded() []UserResponseIncludedItem {
+	if o == nil || o.Included == nil {
+		var ret []UserResponseIncludedItem
 		return ret
 	}
-	return *o.Id
+	return *o.Included
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponse) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *UserResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool) {
+	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Included, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *UserResponse) HasId() bool {
-	if o != nil && o.Id != nil {
+// HasIncluded returns a boolean if a field has been set.
+func (o *UserResponse) HasIncluded() bool {
+	if o != nil && o.Included != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *UserResponse) SetId(v string) {
-	o.Id = &v
-}
-
-// GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *UserResponse) GetRelationships() UserResponseRelationships {
-	if o == nil || o.Relationships == nil {
-		var ret UserResponseRelationships
-		return ret
-	}
-	return *o.Relationships
-}
-
-// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserResponse) GetRelationshipsOk() (*UserResponseRelationships, bool) {
-	if o == nil || o.Relationships == nil {
-		return nil, false
-	}
-	return o.Relationships, true
-}
-
-// HasRelationships returns a boolean if a field has been set.
-func (o *UserResponse) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRelationships gets a reference to the given UserResponseRelationships and assigns it to the Relationships field.
-func (o *UserResponse) SetRelationships(v UserResponseRelationships) {
-	o.Relationships = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *UserResponse) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserResponse) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *UserResponse) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *UserResponse) SetType(v string) {
-	o.Type = &v
+// SetIncluded gets a reference to the given []UserResponseIncludedItem and assigns it to the Included field.
+func (o *UserResponse) SetIncluded(v []UserResponseIncludedItem) {
+	o.Included = &v
 }
 
 func (o UserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Relationships != nil {
-		toSerialize["relationships"] = o.Relationships
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	if o.Included != nil {
+		toSerialize["included"] = o.Included
 	}
 	return json.Marshal(toSerialize)
 }

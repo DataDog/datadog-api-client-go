@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Permissions** | Pointer to [**RelationshipToPermissions**](RelationshipToPermissions.md) |  | [optional] 
+**Users** | Pointer to [**RelationshipToUsers**](RelationshipToUsers.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetPermissions sets Permissions field to given value.
 `func (o *RoleRelationships) HasPermissions() bool`
 
 HasPermissions returns a boolean if a field has been set.
+
+### GetUsers
+
+`func (o *RoleRelationships) GetUsers() RelationshipToUsers`
+
+GetUsers returns the Users field if non-nil, zero value otherwise.
+
+### GetUsersOk
+
+`func (o *RoleRelationships) GetUsersOk() (*RelationshipToUsers, bool)`
+
+GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsers
+
+`func (o *RoleRelationships) SetUsers(v RelationshipToUsers)`
+
+SetUsers sets Users field to given value.
+
+### HasUsers
+
+`func (o *RoleRelationships) HasUsers() bool`
+
+HasUsers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
