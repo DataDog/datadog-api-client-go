@@ -36,6 +36,16 @@ tags:
     through the API to make it easier to organize, find, and share all of your dashboards
     with your team and organization.
   name: Dashboard Lists
+- description: |-
+    The Roles API is used to create and manage Datadog roles, what
+    [global permissions](https://docs.datadoghq.com/account_management/rbac/)
+    they grant, and which users belong to them.
+
+    Permissions related to specific account assets can be granted to roles
+    in the Datadog application without using this API. For example, granting
+    read access on a specific log index to a role can be done in Datadog from the
+    [Pipelines page](https://app.datadoghq.com/logs/pipelines).
+  name: Roles
 - description: Create, edit, and disable users.
   externalDocs:
     url: https://docs.datadoghq.com/account_management/users
@@ -224,6 +234,527 @@ paths:
       tags:
       - Dashboard Lists
       x-codegen-request-body-name: body
+  /api/v2/permissions:
+    get:
+      description: Returns a list of all permissions, including name, description,
+        and ID.
+      operationId: ListPermissions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionsResponse'
+          description: OK
+        "400":
+          content:
+            applcation/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            applcation/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+      summary: List permissions
+      tags:
+      - Roles
+  /api/v2/roles:
+    get:
+      description: Returns all roles, including their names and IDs.
+      operationId: ListRoles
+      parameters:
+      - description: Number of users to return for a given page.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          default: 10
+          format: int64
+          type: integer
+        style: form
+      - description: Specific page number to return.
+        explode: true
+        in: query
+        name: page[number]
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+        style: form
+      - description: |-
+          Sort roles depending on the given field. Sort order is **ascending** by default.
+          Sort order is **descending** if the field is prefixed by a negative sign, for example:
+          `sort=-name`.
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          $ref: '#/components/schemas/RolesSort'
+        style: form
+      - description: Filter all roles by the given string.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RolesResponse'
+          description: OK
+        "400":
+          content:
+            applcation/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            applcation/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+      summary: List roles
+      tags:
+      - Roles
+    post:
+      description: Create a new role for your organization.
+      operationId: CreateRole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleCreatePayload'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+      summary: Create role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+  /api/v2/roles/{role_id}:
+    delete:
+      description: Disables a role.
+      operationId: DeleteRole
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Delete role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+    get:
+      description: Get a role in the organization specified by the role’s `role_id`.
+      operationId: GetRole
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+          description: OK for get role
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Get a role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+    patch:
+      description: Edit a role. Can only be used with application keys belonging to
+        administrators.
+      operationId: UpdateRole
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleUpdatePayload'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Update a role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+  /api/v2/roles/{role_id}/permissions:
+    delete:
+      description: Removes a permission from a role.
+      operationId: RemovePermissionFromRole
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipToPermission'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionsResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Revoke permission
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+    get:
+      description: Returns a list of all permissions for a single role.
+      operationId: ListRolePermissions
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionsResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: List permissions for a role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+    post:
+      description: Adds a permission to a role.
+      operationId: AddPermissionToRole
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipToPermission'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Grant permission to a role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+  /api/v2/roles/{role_id}/users:
+    delete:
+      description: Removes a user from a role.
+      operationId: RemoveUserFromRole
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipToUser'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Remove a user from a role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
+    get:
+      description: Gets all users of a role.
+      operationId: ListRoleUsers
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Number of users to return for a given page.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          default: 10
+          format: int64
+          type: integer
+        style: form
+      - description: Specific page number to return.
+        explode: true
+        in: query
+        name: page[number]
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+        style: form
+      - description: |-
+          User attribute to order results by. Sort order is **ascending** by default.
+          Sort order is **descending** if the field is prefixed by a negative sign,
+          for example `sort=-name`. Options: `name`, `email`, `status`.
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: name
+          type: string
+        style: form
+      - description: Filter all users by the given string. Defaults to no filtering.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Get all users of a role
+      tags:
+      - Roles
+    post:
+      description: Adds a user to a role.
+      operationId: AddUserToRole
+      parameters:
+      - description: The ID of the role.
+        explode: false
+        in: path
+        name: role_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipToUser'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Add a user to a role
+      tags:
+      - Roles
+      x-codegen-request-body-name: body
   /api/v2/user_invitations:
     post:
       description: Sends emails to one or more users inviting them to join the organization.
@@ -359,7 +890,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UsersResponsePayload'
+                $ref: '#/components/schemas/UsersResponse'
           description: OK
         "400":
           content:
@@ -390,7 +921,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponsePayload'
+                $ref: '#/components/schemas/UserResponse'
           description: OK
         "400":
           content:
@@ -458,7 +989,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponsePayload'
+                $ref: '#/components/schemas/UserResponse'
           description: OK for get user
         "403":
           content:
@@ -523,7 +1054,7 @@ paths:
     get:
       description: Get a user organization. Returns the user information and all organizations
         joined by this user.
-      operationId: GetUserOrganization
+      operationId: ListUserOrganizations
       parameters:
       - description: The ID of the user.
         explode: false
@@ -538,7 +1069,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponsePayload'
+                $ref: '#/components/schemas/UserResponse'
           description: OK
         "403":
           content:
@@ -560,7 +1091,7 @@ paths:
     get:
       description: Get a user permission set. Returns a list of the user’s permissions
         granted by the associated user's roles.
-      operationId: GetUserPermissions
+      operationId: ListUserPermissions
       parameters:
       - description: The ID of the user.
         explode: false
@@ -575,7 +1106,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Permissions'
+                $ref: '#/components/schemas/PermissionsResponse'
           description: OK
         "403":
           content:
@@ -621,6 +1152,15 @@ components:
         format: int64
         type: integer
       style: form
+    RoleID:
+      description: The ID of the role.
+      explode: false
+      in: path
+      name: role_id
+      required: true
+      schema:
+        type: string
+      style: simple
     UserID:
       description: The ID of the user.
       explode: false
@@ -990,7 +1530,7 @@ components:
           description: Whether or not the permission is restricted.
           type: boolean
       type: object
-    Permissions:
+    PermissionsResponse:
       description: Payload with API-returned permissions.
       example:
         data:
@@ -1071,8 +1611,21 @@ components:
             $ref: '#/components/schemas/RelationshipToOrganizationData'
           type: array
       type: object
+    RelationshipToPermission:
+      description: Relationship to a permissions object.
+      example:
+        data:
+          id: id
+          type: permissions
+      properties:
+        data:
+          $ref: '#/components/schemas/RelationshipToPermissionData'
+      type: object
     RelationshipToPermissionData:
       description: Relationship to permission object.
+      example:
+        id: id
+        type: permissions
       properties:
         id:
           description: ID of the permission.
@@ -1085,6 +1638,12 @@ components:
       type: object
     RelationshipToPermissions:
       description: Relationship to multiple permissions objects.
+      example:
+        data:
+        - id: id
+          type: permissions
+        - id: id
+          type: permissions
       properties:
         data:
           description: Relationships to permission objects.
@@ -1172,40 +1731,453 @@ components:
           $ref: '#/components/schemas/Pagination'
       type: object
     Role:
-      description: Role object.
+      description: Role object returned by the API.
+      example:
+        relationships:
+          org:
+            data:
+              id: id
+              type: orgs
+          roles:
+            data:
+            - id: id
+              type: roles
+            - id: id
+              type: roles
+          other_orgs:
+            data:
+            - id: id
+              type: orgs
+            - id: id
+              type: orgs
+          other_roles:
+            data:
+            - id: id
+              type: roles
+            - id: id
+              type: roles
+        attributes:
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        type: roles
       properties:
         attributes:
           $ref: '#/components/schemas/RoleAttributes'
         id:
-          description: Role ID.
+          description: ID of the role.
           type: string
         relationships:
-          $ref: '#/components/schemas/RoleRelationships'
+          $ref: '#/components/schemas/RoleResponseRelationships'
         type:
           default: roles
-          description: TODO
+          description: Roles type.
+          readOnly: true
           type: string
       type: object
     RoleAttributes:
       description: Attributes of the role.
+      example:
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        modified_at: 2000-01-23T04:56:07.000+00:00
       properties:
         created_at:
           description: Creation time of the role.
           format: date-time
+          readOnly: true
           type: string
         modified_at:
           description: Time of last role modification.
           format: date-time
+          readOnly: true
           type: string
         name:
           description: Name of the role.
           type: string
       type: object
+    RoleCreateAttributes:
+      description: Attributes of the created role.
+      example:
+        name: name
+      properties:
+        name:
+          description: The name of the role.
+          type: string
+      type: object
+    RoleCreateData:
+      description: TODO
+      example:
+        relationships:
+          permissions:
+            data:
+            - id: id
+              type: permissions
+            - id: id
+              type: permissions
+          users:
+            data:
+            - id: id
+              type: users
+            - id: id
+              type: users
+        attributes:
+          name: name
+        type: roles
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RoleCreateAttributes'
+        relationships:
+          $ref: '#/components/schemas/RoleRelationships'
+        type:
+          default: roles
+          description: Roles resource type.
+          readOnly: true
+          type: string
+      type: object
+    RoleCreatePayload:
+      description: Create a role.
+      example:
+        data:
+          relationships:
+            permissions:
+              data:
+              - id: id
+                type: permissions
+              - id: id
+                type: permissions
+            users:
+              data:
+              - id: id
+                type: users
+              - id: id
+                type: users
+          attributes:
+            name: name
+          type: roles
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleCreateData'
+      type: object
     RoleRelationships:
-      description: Role relationships object.
+      description: Relationships of the role object.
+      example:
+        permissions:
+          data:
+          - id: id
+            type: permissions
+          - id: id
+            type: permissions
+        users:
+          data:
+          - id: id
+            type: users
+          - id: id
+            type: users
       properties:
         permissions:
           $ref: '#/components/schemas/RelationshipToPermissions'
+        users:
+          $ref: '#/components/schemas/RelationshipToUsers'
+      type: object
+    RoleResponse:
+      description: Response containing information about a single role.
+      example:
+        data:
+          relationships:
+            org:
+              data:
+                id: id
+                type: orgs
+            roles:
+              data:
+              - id: id
+                type: roles
+              - id: id
+                type: roles
+            other_orgs:
+              data:
+              - id: id
+                type: orgs
+              - id: id
+                type: orgs
+            other_roles:
+              data:
+              - id: id
+                type: roles
+              - id: id
+                type: roles
+          attributes:
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            modified_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: roles
+      properties:
+        data:
+          $ref: '#/components/schemas/Role'
+      type: object
+    RoleResponseRelationships:
+      description: Relationships of the role object returned by the API.
+      example:
+        org:
+          data:
+            id: id
+            type: orgs
+        roles:
+          data:
+          - id: id
+            type: roles
+          - id: id
+            type: roles
+        other_orgs:
+          data:
+          - id: id
+            type: orgs
+          - id: id
+            type: orgs
+        other_roles:
+          data:
+          - id: id
+            type: roles
+          - id: id
+            type: roles
+      properties:
+        org:
+          $ref: '#/components/schemas/RelationshipToOrganization'
+        other_orgs:
+          $ref: '#/components/schemas/RelationshipToOrganizations'
+        other_roles:
+          $ref: '#/components/schemas/RelationshipToRoles'
+        roles:
+          $ref: '#/components/schemas/RelationshipToRoles'
+      type: object
+    RoleUpdateAttributes:
+      description: Attributes of the edited role.
+      example:
+        name: name
+      properties:
+        name:
+          description: The name of the role.
+          type: string
+      type: object
+    RoleUpdateData:
+      description: TODO
+      example:
+        attributes:
+          name: name
+        id: id
+        type: roles
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RoleUpdateAttributes'
+        id:
+          description: ID of the role.
+          type: string
+        type:
+          default: roles
+          description: TODO
+          type: string
+      type: object
+    RoleUpdatePayload:
+      description: Update a role.
+      example:
+        data:
+          attributes:
+            name: name
+          id: id
+          type: roles
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleUpdateData'
+      type: object
+    RolesResponse:
+      description: Response containing information about multiple roles.
+      example:
+        data:
+        - relationships:
+            org:
+              data:
+                id: id
+                type: orgs
+            roles:
+              data:
+              - id: id
+                type: roles
+              - id: id
+                type: roles
+            other_orgs:
+              data:
+              - id: id
+                type: orgs
+              - id: id
+                type: orgs
+            other_roles:
+              data:
+              - id: id
+                type: roles
+              - id: id
+                type: roles
+          attributes:
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            modified_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: roles
+        - relationships:
+            org:
+              data:
+                id: id
+                type: orgs
+            roles:
+              data:
+              - id: id
+                type: roles
+              - id: id
+                type: roles
+            other_orgs:
+              data:
+              - id: id
+                type: orgs
+              - id: id
+                type: orgs
+            other_roles:
+              data:
+              - id: id
+                type: roles
+              - id: id
+                type: roles
+          attributes:
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            modified_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: roles
+        meta:
+          page:
+            total_count: 0
+            total_filtered_count: 6
+      properties:
+        data:
+          description: Array of returned roles.
+          items:
+            $ref: '#/components/schemas/Role'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMetaAttributes'
+      type: object
+    RolesSort:
+      default: name
+      description: Sorting options for roles.
+      enum:
+      - name
+      - -name
+      - modified_at
+      - -modified_at
+      - user_count
+      - -user_count
+      type: string
+      x-enum-varnames:
+      - NAME_ASCENDING
+      - NAME_DESCENDING
+      - MODIFIED_AT_ASCENDING
+      - MODIFIED_AT_DESCENDING
+      - USER_COUNT_ASCENDING
+      - USER_COUNT_DESCENDING
+    User:
+      description: User object returned by the API.
+      example:
+        relationships:
+          other_users:
+            data:
+            - id: id
+              type: users
+            - id: id
+              type: users
+          org:
+            data:
+              id: id
+              type: orgs
+          roles:
+            data:
+            - id: id
+              type: roles
+            - id: id
+              type: roles
+          other_orgs:
+            data:
+            - id: id
+              type: orgs
+            - id: id
+              type: orgs
+        attributes:
+          icon: icon
+          name: name
+          verified: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          disabled: true
+          handle: handle
+          title: title
+          email: email
+          status: status
+        id: id
+        type: users
+      properties:
+        attributes:
+          $ref: '#/components/schemas/UserAttributes'
+        id:
+          description: ID of the user.
+          type: string
+        relationships:
+          $ref: '#/components/schemas/UserResponseRelationships'
+        type:
+          default: users
+          description: Users type.
+          readOnly: true
+          type: string
+      type: object
+    UserAttributes:
+      description: Attributes of user object returned by the API.
+      example:
+        icon: icon
+        name: name
+        verified: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        disabled: true
+        handle: handle
+        title: title
+        email: email
+        status: status
+      properties:
+        created_at:
+          description: Creation time of the user.
+          format: date-time
+          type: string
+        disabled:
+          description: Whether the user is disabled.
+          type: boolean
+        email:
+          description: Email of the user.
+          type: string
+        handle:
+          description: Handle of the user.
+          type: string
+        icon:
+          description: URL of the user's icon.
+          type: string
+        name:
+          description: Name of the user.
+          type: string
+        status:
+          description: Status of the user.
+          type: string
+        title:
+          description: Title of the user.
+          type: string
+        verified:
+          description: Whether the user is verified.
+          type: boolean
       type: object
     UserCreateAttributes:
       description: Attributes of the created user.
@@ -1419,114 +2391,6 @@ components:
           $ref: '#/components/schemas/RelationshipToRoles'
       type: object
     UserResponse:
-      description: User object returned by the API.
-      example:
-        relationships:
-          other_users:
-            data:
-            - id: id
-              type: users
-            - id: id
-              type: users
-          org:
-            data:
-              id: id
-              type: orgs
-          roles:
-            data:
-            - id: id
-              type: roles
-            - id: id
-              type: roles
-          other_orgs:
-            data:
-            - id: id
-              type: orgs
-            - id: id
-              type: orgs
-        attributes:
-          icon: icon
-          name: name
-          verified: true
-          created_at: 2000-01-23T04:56:07.000+00:00
-          disabled: true
-          handle: handle
-          title: title
-          email: email
-          status: status
-        id: id
-        type: users
-      properties:
-        attributes:
-          $ref: '#/components/schemas/UserResponseAttributes'
-        id:
-          description: ID of the user.
-          type: string
-        relationships:
-          $ref: '#/components/schemas/UserResponseRelationships'
-        type:
-          default: users
-          description: Users type.
-          readOnly: true
-          type: string
-      type: object
-    UserResponseAttributes:
-      description: Attributes of user object returned by the API.
-      example:
-        icon: icon
-        name: name
-        verified: true
-        created_at: 2000-01-23T04:56:07.000+00:00
-        disabled: true
-        handle: handle
-        title: title
-        email: email
-        status: status
-      properties:
-        created_at:
-          description: Creation time of the user.
-          format: date-time
-          type: string
-        disabled:
-          description: Whether the user is disabled.
-          type: boolean
-        email:
-          description: Email of the user.
-          type: string
-        handle:
-          description: Handle of the user.
-          type: string
-        icon:
-          description: URL of the user's icon.
-          type: string
-        name:
-          description: Name of the user.
-          type: string
-        status:
-          description: Status of the user.
-          type: string
-        title:
-          description: Title of the user.
-          type: string
-        verified:
-          description: Whether the user is verified.
-          type: boolean
-      type: object
-    UserResponseIncludedItem:
-      description: An object related to a user.
-      discriminator:
-        mapping:
-          orgs: '#/components/schemas/Organization'
-          permissions: '#/components/schemas/Permission'
-          roles: '#/components/schemas/Role'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/Organization'
-      - $ref: '#/components/schemas/Permission'
-      - $ref: '#/components/schemas/Role'
-      type: object
-      x-oneOf-name: UserResponseIncludedItem
-    UserResponsePayload:
       description: Response containing information about a single user.
       example:
         data:
@@ -1570,13 +2434,27 @@ components:
         - null
       properties:
         data:
-          $ref: '#/components/schemas/UserResponse'
+          $ref: '#/components/schemas/User'
         included:
           description: Array of objects related to the user.
           items:
             $ref: '#/components/schemas/UserResponseIncludedItem'
           type: array
       type: object
+    UserResponseIncludedItem:
+      description: An object related to a user.
+      discriminator:
+        mapping:
+          orgs: '#/components/schemas/Organization'
+          permissions: '#/components/schemas/Permission'
+          roles: '#/components/schemas/Role'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/Organization'
+      - $ref: '#/components/schemas/Permission'
+      - $ref: '#/components/schemas/Role'
+      type: object
+      x-oneOf-name: UserResponseIncludedItem
     UserResponseRelationships:
       description: Relationships of the user object returned by the API.
       example:
@@ -1664,7 +2542,7 @@ components:
         data:
           $ref: '#/components/schemas/UserUpdateData'
       type: object
-    UsersResponsePayload:
+    UsersResponse:
       description: Response containing information about multiple users.
       example:
         data:
@@ -1749,7 +2627,7 @@ components:
         data:
           description: Array of returned users.
           items:
-            $ref: '#/components/schemas/UserResponse'
+            $ref: '#/components/schemas/User'
           type: array
         included:
           description: Array of objects related to the users.

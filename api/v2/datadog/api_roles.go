@@ -21,53 +21,57 @@ var (
 	_ _context.Context
 )
 
-// UsersApiService UsersApi service
-type UsersApiService service
+// RolesApiService RolesApi service
+type RolesApiService service
 
-type apiCreateUserRequest struct {
+type apiAddPermissionToRoleRequest struct {
 	ctx        _context.Context
-	apiService *UsersApiService
-	body       *UserCreatePayload
+	apiService *RolesApiService
+	roleId     string
+	body       *RelationshipToPermission
 }
 
-func (r apiCreateUserRequest) Body(body UserCreatePayload) apiCreateUserRequest {
+func (r apiAddPermissionToRoleRequest) Body(body RelationshipToPermission) apiAddPermissionToRoleRequest {
 	r.body = &body
 	return r
 }
 
 /*
-CreateUser Create user
-Create a user for your organization.
+AddPermissionToRole Grant permission to a role
+Adds a permission to a role.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiCreateUserRequest
+ * @param roleId The ID of the role.
+@return apiAddPermissionToRoleRequest
 */
-func (a *UsersApiService) CreateUser(ctx _context.Context) apiCreateUserRequest {
-	return apiCreateUserRequest{
+func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId string) apiAddPermissionToRoleRequest {
+	return apiAddPermissionToRoleRequest{
 		apiService: a,
 		ctx:        ctx,
+		roleId:     roleId,
 	}
 }
 
 /*
 Execute executes the request
- @return UserResponse
+ @return PermissionsResponse
 */
-func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
+func (r apiAddPermissionToRoleRequest) Execute() (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserResponse
+		localVarReturnValue  PermissionsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.CreateUser")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddPermissionToRole")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/users"
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}/permissions"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -92,7 +96,7 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 	}
 
 	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateUser"
+	localVarHeaderParams["DD-OPERATION-ID"] = "AddPermissionToRole"
 
 	// body params
 	localVarPostBody = r.body
@@ -145,8 +149,362 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v UserResponse
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v PermissionsResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiAddUserToRoleRequest struct {
+	ctx        _context.Context
+	apiService *RolesApiService
+	roleId     string
+	body       *RelationshipToUser
+}
+
+func (r apiAddUserToRoleRequest) Body(body RelationshipToUser) apiAddUserToRoleRequest {
+	r.body = &body
+	return r
+}
+
+/*
+AddUserToRole Add a user to a role
+Adds a user to a role.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param roleId The ID of the role.
+@return apiAddUserToRoleRequest
+*/
+func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string) apiAddUserToRoleRequest {
+	return apiAddUserToRoleRequest{
+		apiService: a,
+		ctx:        ctx,
+		roleId:     roleId,
+	}
+}
+
+/*
+Execute executes the request
+ @return UsersResponse
+*/
+func (r apiAddUserToRoleRequest) Execute() (UsersResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  UsersResponse
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddUserToRole")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "AddUserToRole"
+
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v UsersResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiCreateRoleRequest struct {
+	ctx        _context.Context
+	apiService *RolesApiService
+	body       *RoleCreatePayload
+}
+
+func (r apiCreateRoleRequest) Body(body RoleCreatePayload) apiCreateRoleRequest {
+	r.body = &body
+	return r
+}
+
+/*
+CreateRole Create role
+Create a new role for your organization.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return apiCreateRoleRequest
+*/
+func (a *RolesApiService) CreateRole(ctx _context.Context) apiCreateRoleRequest {
+	return apiCreateRoleRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return RoleResponse
+*/
+func (r apiCreateRoleRequest) Execute() (RoleResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  RoleResponse
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.CreateRole")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/roles"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "CreateRole"
+
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v RoleResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -189,24 +547,24 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiDisableUserRequest struct {
+type apiDeleteRoleRequest struct {
 	ctx        _context.Context
-	apiService *UsersApiService
-	userId     string
+	apiService *RolesApiService
+	roleId     string
 }
 
 /*
-DisableUser Disable user
-Disable user. Can only be used with an application key belonging to an administrator user.
+DeleteRole Delete role
+Disables a role.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
-@return apiDisableUserRequest
+ * @param roleId The ID of the role.
+@return apiDeleteRoleRequest
 */
-func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) apiDisableUserRequest {
-	return apiDisableUserRequest{
+func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) apiDeleteRoleRequest {
+	return apiDeleteRoleRequest{
 		apiService: a,
 		ctx:        ctx,
-		userId:     userId,
+		roleId:     roleId,
 	}
 }
 
@@ -214,7 +572,7 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) apiDi
 Execute executes the request
 
 */
-func (r apiDisableUserRequest) Execute() (*_nethttp.Response, error) {
+func (r apiDeleteRoleRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -223,13 +581,13 @@ func (r apiDisableUserRequest) Execute() (*_nethttp.Response, error) {
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.DisableUser")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.DeleteRole")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/users/{user_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", _neturl.QueryEscape(parameterToString(r.userId, "")), -1)
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -254,7 +612,7 @@ func (r apiDisableUserRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DisableUser"
+	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteRole"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -330,48 +688,48 @@ func (r apiDisableUserRequest) Execute() (*_nethttp.Response, error) {
 	return localVarHTTPResponse, nil
 }
 
-type apiGetInvitationRequest struct {
-	ctx                _context.Context
-	apiService         *UsersApiService
-	userInvitationUuid string
+type apiGetRoleRequest struct {
+	ctx        _context.Context
+	apiService *RolesApiService
+	roleId     string
 }
 
 /*
-GetInvitation Get a user invitation
-Returns a single user invitation by its UUID.
+GetRole Get a role
+Get a role in the organization specified by the role’s `role_id`.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userInvitationUuid The UUID of the user invitation.
-@return apiGetInvitationRequest
+ * @param roleId The ID of the role.
+@return apiGetRoleRequest
 */
-func (a *UsersApiService) GetInvitation(ctx _context.Context, userInvitationUuid string) apiGetInvitationRequest {
-	return apiGetInvitationRequest{
-		apiService:         a,
-		ctx:                ctx,
-		userInvitationUuid: userInvitationUuid,
+func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) apiGetRoleRequest {
+	return apiGetRoleRequest{
+		apiService: a,
+		ctx:        ctx,
+		roleId:     roleId,
 	}
 }
 
 /*
 Execute executes the request
- @return UserInvitationResponse
+ @return RoleResponse
 */
-func (r apiGetInvitationRequest) Execute() (UserInvitationResponse, *_nethttp.Response, error) {
+func (r apiGetRoleRequest) Execute() (RoleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserInvitationResponse
+		localVarReturnValue  RoleResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetInvitation")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.GetRole")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/user_invitations/{user_invitation_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_invitation_uuid"+"}", _neturl.QueryEscape(parameterToString(r.userInvitationUuid, "")), -1)
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -396,7 +754,7 @@ func (r apiGetInvitationRequest) Execute() (UserInvitationResponse, *_nethttp.Re
 	}
 
 	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetInvitation"
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetRole"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -448,7 +806,7 @@ func (r apiGetInvitationRequest) Execute() (UserInvitationResponse, *_nethttp.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserInvitationResponse
+			var v RoleResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -491,346 +849,21 @@ func (r apiGetInvitationRequest) Execute() (UserInvitationResponse, *_nethttp.Re
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiGetUserRequest struct {
+type apiListPermissionsRequest struct {
 	ctx        _context.Context
-	apiService *UsersApiService
-	userId     string
+	apiService *RolesApiService
 }
 
 /*
-GetUser Get a user
-Get a user in the organization specified by the user’s `user_id`.
+ListPermissions List permissions
+Returns a list of all permissions, including name, description, and ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
-@return apiGetUserRequest
+@return apiListPermissionsRequest
 */
-func (a *UsersApiService) GetUser(ctx _context.Context, userId string) apiGetUserRequest {
-	return apiGetUserRequest{
+func (a *RolesApiService) ListPermissions(ctx _context.Context) apiListPermissionsRequest {
+	return apiListPermissionsRequest{
 		apiService: a,
 		ctx:        ctx,
-		userId:     userId,
-	}
-}
-
-/*
-Execute executes the request
- @return UserResponse
-*/
-func (r apiGetUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  UserResponse
-	)
-
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetUser")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/users/{user_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", _neturl.QueryEscape(parameterToString(r.userId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUser"
-
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["apiKeyAuth"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["DD-API-KEY"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["appKeyAuth"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["DD-APPLICATION-KEY"] = key
-			}
-		}
-	}
-	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type apiListUserOrganizationsRequest struct {
-	ctx        _context.Context
-	apiService *UsersApiService
-	userId     string
-}
-
-/*
-ListUserOrganizations Get a user organization
-Get a user organization. Returns the user information and all organizations joined by this user.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
-@return apiListUserOrganizationsRequest
-*/
-func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) apiListUserOrganizationsRequest {
-	return apiListUserOrganizationsRequest{
-		apiService: a,
-		ctx:        ctx,
-		userId:     userId,
-	}
-}
-
-/*
-Execute executes the request
- @return UserResponse
-*/
-func (r apiListUserOrganizationsRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  UserResponse
-	)
-
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUserOrganizations")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/users/{user_id}/orgs"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", _neturl.QueryEscape(parameterToString(r.userId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListUserOrganizations"
-
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["apiKeyAuth"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["DD-API-KEY"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["appKeyAuth"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["DD-APPLICATION-KEY"] = key
-			}
-		}
-	}
-	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v APIErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type apiListUserPermissionsRequest struct {
-	ctx        _context.Context
-	apiService *UsersApiService
-	userId     string
-}
-
-/*
-ListUserPermissions Get a user permissions
-Get a user permission set. Returns a list of the user’s permissions granted by the associated user's roles.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
-@return apiListUserPermissionsRequest
-*/
-func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId string) apiListUserPermissionsRequest {
-	return apiListUserPermissionsRequest{
-		apiService: a,
-		ctx:        ctx,
-		userId:     userId,
 	}
 }
 
@@ -838,7 +871,7 @@ func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId strin
 Execute executes the request
  @return PermissionsResponse
 */
-func (r apiListUserPermissionsRequest) Execute() (PermissionsResponse, *_nethttp.Response, error) {
+func (r apiListPermissionsRequest) Execute() (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -848,13 +881,173 @@ func (r apiListUserPermissionsRequest) Execute() (PermissionsResponse, *_nethttp
 		localVarReturnValue  PermissionsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUserPermissions")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/users/{user_id}/permissions"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", _neturl.QueryEscape(parameterToString(r.userId, "")), -1)
+	localVarPath := localBasePath + "/api/v2/permissions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "applcation/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListPermissions"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v PermissionsResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiListRolePermissionsRequest struct {
+	ctx        _context.Context
+	apiService *RolesApiService
+	roleId     string
+}
+
+/*
+ListRolePermissions List permissions for a role
+Returns a list of all permissions for a single role.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param roleId The ID of the role.
+@return apiListRolePermissionsRequest
+*/
+func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId string) apiListRolePermissionsRequest {
+	return apiListRolePermissionsRequest{
+		apiService: a,
+		ctx:        ctx,
+		roleId:     roleId,
+	}
+}
+
+/*
+Execute executes the request
+ @return PermissionsResponse
+*/
+func (r apiListRolePermissionsRequest) Execute() (PermissionsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  PermissionsResponse
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRolePermissions")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}/permissions"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -879,7 +1072,7 @@ func (r apiListUserPermissionsRequest) Execute() (PermissionsResponse, *_nethttp
 	}
 
 	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListUserPermissions"
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListRolePermissions"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -974,57 +1167,48 @@ func (r apiListUserPermissionsRequest) Execute() (PermissionsResponse, *_nethttp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiListUsersRequest struct {
-	ctx          _context.Context
-	apiService   *UsersApiService
-	pageSize     *int64
-	pageNumber   *int64
-	sort         *string
-	sortDir      *QuerySortOrder
-	filter       *string
-	filterStatus *string
+type apiListRoleUsersRequest struct {
+	ctx        _context.Context
+	apiService *RolesApiService
+	roleId     string
+	pageSize   *int64
+	pageNumber *int64
+	sort       *string
+	filter     *string
 }
 
-func (r apiListUsersRequest) PageSize(pageSize int64) apiListUsersRequest {
+func (r apiListRoleUsersRequest) PageSize(pageSize int64) apiListRoleUsersRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiListUsersRequest) PageNumber(pageNumber int64) apiListUsersRequest {
+func (r apiListRoleUsersRequest) PageNumber(pageNumber int64) apiListRoleUsersRequest {
 	r.pageNumber = &pageNumber
 	return r
 }
 
-func (r apiListUsersRequest) Sort(sort string) apiListUsersRequest {
+func (r apiListRoleUsersRequest) Sort(sort string) apiListRoleUsersRequest {
 	r.sort = &sort
 	return r
 }
 
-func (r apiListUsersRequest) SortDir(sortDir QuerySortOrder) apiListUsersRequest {
-	r.sortDir = &sortDir
-	return r
-}
-
-func (r apiListUsersRequest) Filter(filter string) apiListUsersRequest {
+func (r apiListRoleUsersRequest) Filter(filter string) apiListRoleUsersRequest {
 	r.filter = &filter
 	return r
 }
 
-func (r apiListUsersRequest) FilterStatus(filterStatus string) apiListUsersRequest {
-	r.filterStatus = &filterStatus
-	return r
-}
-
 /*
-ListUsers List all users
-Get the list of all users in the organization. This list includes all users even if they are disabled or unverified.
+ListRoleUsers Get all users of a role
+Gets all users of a role.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiListUsersRequest
+ * @param roleId The ID of the role.
+@return apiListRoleUsersRequest
 */
-func (a *UsersApiService) ListUsers(ctx _context.Context) apiListUsersRequest {
-	return apiListUsersRequest{
+func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string) apiListRoleUsersRequest {
+	return apiListRoleUsersRequest{
 		apiService: a,
 		ctx:        ctx,
+		roleId:     roleId,
 	}
 }
 
@@ -1032,7 +1216,7 @@ func (a *UsersApiService) ListUsers(ctx _context.Context) apiListUsersRequest {
 Execute executes the request
  @return UsersResponse
 */
-func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error) {
+func (r apiListRoleUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1042,12 +1226,13 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 		localVarReturnValue  UsersResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUsers")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoleUsers")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/users"
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1062,14 +1247,8 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 	if r.sort != nil {
 		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
 	}
-	if r.sortDir != nil {
-		localVarQueryParams.Add("sort_dir", parameterToString(*r.sortDir, ""))
-	}
 	if r.filter != nil {
 		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
-	}
-	if r.filterStatus != nil {
-		localVarQueryParams.Add("filter[status]", parameterToString(*r.filterStatus, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1081,7 +1260,7 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "applcation/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1090,7 +1269,7 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 	}
 
 	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListUsers"
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListRoleUsers"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1151,6 +1330,199 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiListRolesRequest struct {
+	ctx        _context.Context
+	apiService *RolesApiService
+	pageSize   *int64
+	pageNumber *int64
+	sort       *RolesSort
+	filter     *string
+}
+
+func (r apiListRolesRequest) PageSize(pageSize int64) apiListRolesRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r apiListRolesRequest) PageNumber(pageNumber int64) apiListRolesRequest {
+	r.pageNumber = &pageNumber
+	return r
+}
+
+func (r apiListRolesRequest) Sort(sort RolesSort) apiListRolesRequest {
+	r.sort = &sort
+	return r
+}
+
+func (r apiListRolesRequest) Filter(filter string) apiListRolesRequest {
+	r.filter = &filter
+	return r
+}
+
+/*
+ListRoles List roles
+Returns all roles, including their names and IDs.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return apiListRolesRequest
+*/
+func (a *RolesApiService) ListRoles(ctx _context.Context) apiListRolesRequest {
+	return apiListRolesRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return RolesResponse
+*/
+func (r apiListRolesRequest) Execute() (RolesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  RolesResponse
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoles")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/roles"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+	}
+	if r.pageNumber != nil {
+		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
+	}
+	if r.sort != nil {
+		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+	}
+	if r.filter != nil {
+		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "applcation/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "ListRoles"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v RolesResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1185,50 +1557,54 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiSendInvitationsRequest struct {
+type apiRemovePermissionFromRoleRequest struct {
 	ctx        _context.Context
-	apiService *UsersApiService
-	body       *UserInvitationPayload
+	apiService *RolesApiService
+	roleId     string
+	body       *RelationshipToPermission
 }
 
-func (r apiSendInvitationsRequest) Body(body UserInvitationPayload) apiSendInvitationsRequest {
+func (r apiRemovePermissionFromRoleRequest) Body(body RelationshipToPermission) apiRemovePermissionFromRoleRequest {
 	r.body = &body
 	return r
 }
 
 /*
-SendInvitations Send invitation emails
-Sends emails to one or more users inviting them to join the organization.
+RemovePermissionFromRole Revoke permission
+Removes a permission from a role.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiSendInvitationsRequest
+ * @param roleId The ID of the role.
+@return apiRemovePermissionFromRoleRequest
 */
-func (a *UsersApiService) SendInvitations(ctx _context.Context) apiSendInvitationsRequest {
-	return apiSendInvitationsRequest{
+func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId string) apiRemovePermissionFromRoleRequest {
+	return apiRemovePermissionFromRoleRequest{
 		apiService: a,
 		ctx:        ctx,
+		roleId:     roleId,
 	}
 }
 
 /*
 Execute executes the request
- @return UserInvitationsResponse
+ @return PermissionsResponse
 */
-func (r apiSendInvitationsRequest) Execute() (UserInvitationsResponse, *_nethttp.Response, error) {
+func (r apiRemovePermissionFromRoleRequest) Execute() (PermissionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserInvitationsResponse
+		localVarReturnValue  PermissionsResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.SendInvitations")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemovePermissionFromRole")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/user_invitations"
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}/permissions"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1253,7 +1629,7 @@ func (r apiSendInvitationsRequest) Execute() (UserInvitationsResponse, *_nethttp
 	}
 
 	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "SendInvitations"
+	localVarHeaderParams["DD-OPERATION-ID"] = "RemovePermissionFromRole"
 
 	// body params
 	localVarPostBody = r.body
@@ -1306,18 +1682,8 @@ func (r apiSendInvitationsRequest) Execute() (UserInvitationsResponse, *_nethttp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v UserInvitationsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v PermissionsResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1327,6 +1693,16 @@ func (r apiSendInvitationsRequest) Execute() (UserInvitationsResponse, *_nethttp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1350,53 +1726,54 @@ func (r apiSendInvitationsRequest) Execute() (UserInvitationsResponse, *_nethttp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateUserRequest struct {
+type apiRemoveUserFromRoleRequest struct {
 	ctx        _context.Context
-	apiService *UsersApiService
-	userId     string
-	body       *UserUpdatePayload
+	apiService *RolesApiService
+	roleId     string
+	body       *RelationshipToUser
 }
 
-func (r apiUpdateUserRequest) Body(body UserUpdatePayload) apiUpdateUserRequest {
+func (r apiRemoveUserFromRoleRequest) Body(body RelationshipToUser) apiRemoveUserFromRoleRequest {
 	r.body = &body
 	return r
 }
 
 /*
-UpdateUser Update a user
-Edit a user. Can only be used with an application key belonging to an administrator user.
+RemoveUserFromRole Remove a user from a role
+Removes a user from a role.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
-@return apiUpdateUserRequest
+ * @param roleId The ID of the role.
+@return apiRemoveUserFromRoleRequest
 */
-func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string) apiUpdateUserRequest {
-	return apiUpdateUserRequest{
+func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string) apiRemoveUserFromRoleRequest {
+	return apiRemoveUserFromRoleRequest{
 		apiService: a,
 		ctx:        ctx,
-		userId:     userId,
+		roleId:     roleId,
 	}
 }
 
 /*
 Execute executes the request
-
+ @return UsersResponse
 */
-func (r apiUpdateUserRequest) Execute() (*_nethttp.Response, error) {
+func (r apiRemoveUserFromRoleRequest) Execute() (UsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  UsersResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.UpdateUser")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemoveUserFromRole")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/users/{user_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", _neturl.QueryEscape(parameterToString(r.userId, "")), -1)
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1421,7 +1798,7 @@ func (r apiUpdateUserRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateUser"
+	localVarHeaderParams["DD-OPERATION-ID"] = "RemoveUserFromRole"
 
 	// body params
 	localVarPostBody = r.body
@@ -1455,18 +1832,18 @@ func (r apiUpdateUserRequest) Execute() (*_nethttp.Response, error) {
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1474,37 +1851,225 @@ func (r apiUpdateUserRequest) Execute() (*_nethttp.Response, error) {
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v UsersResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiUpdateRoleRequest struct {
+	ctx        _context.Context
+	apiService *RolesApiService
+	roleId     string
+	body       *RoleUpdatePayload
+}
+
+func (r apiUpdateRoleRequest) Body(body RoleUpdatePayload) apiUpdateRoleRequest {
+	r.body = &body
+	return r
+}
+
+/*
+UpdateRole Update a role
+Edit a role. Can only be used with application keys belonging to administrators.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param roleId The ID of the role.
+@return apiUpdateRoleRequest
+*/
+func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string) apiUpdateRoleRequest {
+	return apiUpdateRoleRequest{
+		apiService: a,
+		ctx:        ctx,
+		roleId:     roleId,
+	}
+}
+
+/*
+Execute executes the request
+ @return RoleResponse
+*/
+func (r apiUpdateRoleRequest) Execute() (RoleResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  RoleResponse
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.UpdateRole")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/roles/{role_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"role_id"+"}", _neturl.QueryEscape(parameterToString(r.roleId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateRole"
+
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v RoleResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

@@ -1,4 +1,4 @@
-# UserResponseAttributes
+# UserAttributes
 
 ## Properties
 
@@ -16,245 +16,245 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUserResponseAttributes
+### NewUserAttributes
 
-`func NewUserResponseAttributes() *UserResponseAttributes`
+`func NewUserAttributes() *UserAttributes`
 
-NewUserResponseAttributes instantiates a new UserResponseAttributes object
+NewUserAttributes instantiates a new UserAttributes object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUserResponseAttributesWithDefaults
+### NewUserAttributesWithDefaults
 
-`func NewUserResponseAttributesWithDefaults() *UserResponseAttributes`
+`func NewUserAttributesWithDefaults() *UserAttributes`
 
-NewUserResponseAttributesWithDefaults instantiates a new UserResponseAttributes object
+NewUserAttributesWithDefaults instantiates a new UserAttributes object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetCreatedAt
 
-`func (o *UserResponseAttributes) GetCreatedAt() time.Time`
+`func (o *UserAttributes) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *UserResponseAttributes) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *UserAttributes) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *UserResponseAttributes) SetCreatedAt(v time.Time)`
+`func (o *UserAttributes) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 ### HasCreatedAt
 
-`func (o *UserResponseAttributes) HasCreatedAt() bool`
+`func (o *UserAttributes) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDisabled
 
-`func (o *UserResponseAttributes) GetDisabled() bool`
+`func (o *UserAttributes) GetDisabled() bool`
 
 GetDisabled returns the Disabled field if non-nil, zero value otherwise.
 
 ### GetDisabledOk
 
-`func (o *UserResponseAttributes) GetDisabledOk() (*bool, bool)`
+`func (o *UserAttributes) GetDisabledOk() (*bool, bool)`
 
 GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDisabled
 
-`func (o *UserResponseAttributes) SetDisabled(v bool)`
+`func (o *UserAttributes) SetDisabled(v bool)`
 
 SetDisabled sets Disabled field to given value.
 
 ### HasDisabled
 
-`func (o *UserResponseAttributes) HasDisabled() bool`
+`func (o *UserAttributes) HasDisabled() bool`
 
 HasDisabled returns a boolean if a field has been set.
 
 ### GetEmail
 
-`func (o *UserResponseAttributes) GetEmail() string`
+`func (o *UserAttributes) GetEmail() string`
 
 GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *UserResponseAttributes) GetEmailOk() (*string, bool)`
+`func (o *UserAttributes) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmail
 
-`func (o *UserResponseAttributes) SetEmail(v string)`
+`func (o *UserAttributes) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
 
 ### HasEmail
 
-`func (o *UserResponseAttributes) HasEmail() bool`
+`func (o *UserAttributes) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
 
 ### GetHandle
 
-`func (o *UserResponseAttributes) GetHandle() string`
+`func (o *UserAttributes) GetHandle() string`
 
 GetHandle returns the Handle field if non-nil, zero value otherwise.
 
 ### GetHandleOk
 
-`func (o *UserResponseAttributes) GetHandleOk() (*string, bool)`
+`func (o *UserAttributes) GetHandleOk() (*string, bool)`
 
 GetHandleOk returns a tuple with the Handle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHandle
 
-`func (o *UserResponseAttributes) SetHandle(v string)`
+`func (o *UserAttributes) SetHandle(v string)`
 
 SetHandle sets Handle field to given value.
 
 ### HasHandle
 
-`func (o *UserResponseAttributes) HasHandle() bool`
+`func (o *UserAttributes) HasHandle() bool`
 
 HasHandle returns a boolean if a field has been set.
 
 ### GetIcon
 
-`func (o *UserResponseAttributes) GetIcon() string`
+`func (o *UserAttributes) GetIcon() string`
 
 GetIcon returns the Icon field if non-nil, zero value otherwise.
 
 ### GetIconOk
 
-`func (o *UserResponseAttributes) GetIconOk() (*string, bool)`
+`func (o *UserAttributes) GetIconOk() (*string, bool)`
 
 GetIconOk returns a tuple with the Icon field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIcon
 
-`func (o *UserResponseAttributes) SetIcon(v string)`
+`func (o *UserAttributes) SetIcon(v string)`
 
 SetIcon sets Icon field to given value.
 
 ### HasIcon
 
-`func (o *UserResponseAttributes) HasIcon() bool`
+`func (o *UserAttributes) HasIcon() bool`
 
 HasIcon returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *UserResponseAttributes) GetName() string`
+`func (o *UserAttributes) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *UserResponseAttributes) GetNameOk() (*string, bool)`
+`func (o *UserAttributes) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *UserResponseAttributes) SetName(v string)`
+`func (o *UserAttributes) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *UserResponseAttributes) HasName() bool`
+`func (o *UserAttributes) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *UserResponseAttributes) GetStatus() string`
+`func (o *UserAttributes) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *UserResponseAttributes) GetStatusOk() (*string, bool)`
+`func (o *UserAttributes) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *UserResponseAttributes) SetStatus(v string)`
+`func (o *UserAttributes) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
 ### HasStatus
 
-`func (o *UserResponseAttributes) HasStatus() bool`
+`func (o *UserAttributes) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### GetTitle
 
-`func (o *UserResponseAttributes) GetTitle() string`
+`func (o *UserAttributes) GetTitle() string`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *UserResponseAttributes) GetTitleOk() (*string, bool)`
+`func (o *UserAttributes) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *UserResponseAttributes) SetTitle(v string)`
+`func (o *UserAttributes) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
 
 ### HasTitle
 
-`func (o *UserResponseAttributes) HasTitle() bool`
+`func (o *UserAttributes) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
 
 ### GetVerified
 
-`func (o *UserResponseAttributes) GetVerified() bool`
+`func (o *UserAttributes) GetVerified() bool`
 
 GetVerified returns the Verified field if non-nil, zero value otherwise.
 
 ### GetVerifiedOk
 
-`func (o *UserResponseAttributes) GetVerifiedOk() (*bool, bool)`
+`func (o *UserAttributes) GetVerifiedOk() (*bool, bool)`
 
 GetVerifiedOk returns a tuple with the Verified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVerified
 
-`func (o *UserResponseAttributes) SetVerified(v bool)`
+`func (o *UserAttributes) SetVerified(v bool)`
 
 SetVerified sets Verified field to given value.
 
 ### HasVerified
 
-`func (o *UserResponseAttributes) HasVerified() bool`
+`func (o *UserAttributes) HasVerified() bool`
 
 HasVerified returns a boolean if a field has been set.
 
