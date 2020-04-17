@@ -4,7 +4,7 @@ First of all, thanks for contributing!
 
 This document provides some basic guidelines for contributing to this repository. To propose improvements, feel free to submit a PR.
 
-## Reporting a Bug - Requesting a feature - Github Issues
+## Reporting a Bug - Requesting a feature - GitHub Issues
 
 * **Ensure the bug was not already reported** by searching on GitHub under [Issues][1].
 * If you're unable to find an open issue addressing the problem, [open a new one][2].
@@ -55,7 +55,8 @@ working on for a day.
 ### Releasing
 
 The release procedure is managed by Datadog, instructions can be found in the [RELEASING](/RELEASING.md) document.
-However, note that improvements to tests and doc don't end up in changelogs. Only client improvements do.
+However, note that improvements to tests and documentation do not end up in changelogs. Only client improvements do.
+
 
 ## Asking a questions
 

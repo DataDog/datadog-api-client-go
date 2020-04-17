@@ -40,7 +40,7 @@ Run test with `DEBUG=true` to display api server calls being made during test ex
 
 ### CI Setup
 
-This project utilizes Azure Pipelines and Github Actions to perform CI test steps.
+This project utilizes Azure Pipelines and GitHub Actions to perform CI test steps.
 
 This repository contains a few types of tests:
 
@@ -56,13 +56,15 @@ We utilize a couple CI Providers to accomplish testing this project:
 |----------------------------------|-------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Integration Tests                | [Azure Pipelines](https://github.com/DataDog/datadog-api-client-go/blob/master/.azure-pipelines/all.yml)    | We require Datadog credentials to access the real Datadog API environment, for this reason we use Azure Pipelines to control the triggering mechanism.   |
 | Integration Tests with Cassettes | [Github Actions](https://github.com/DataDog/datadog-api-client-go/blob/master/.github/workflows/test.yml)   | Adding an extended matrix to quickly test multiple OS and language versions is quick in Github Actions.                                                  |
-| Unit Tests                       | Azure Pipelines and Github Actions                                                                          | Unit tests run fast with fixture data and are part of the regular test suite. This is run on each test command invocation in both providers. |
+| Unit Tests                       | Azure Pipelines and GitHub Actions                                                                          | Unit tests run fast with fixture data and are part of the regular test suite. This is run on each test command invocation in both providers.             |
+
 
 You can skip GitHub action test execution by adding the `ci/skip` label to your PR.
 
 See the CI Provider links above for the full matrix this project tests against. Minimum Golang version supported is `1.13`.
 
 
-Tests running in Github Actions are those that __require no__ secrets, to allow for PRs created from forks to run as expected. These are the unit tests and Integration tests with cassettes. These tests are run on each commit from a PR. 
+Tests running in GitHub Actions are those that __require no__ secrets, to allow for PRs created from forks to run as expected. These are the unit tests and Integration tests with cassettes. These tests are run on each commit from a PR. 
 
-Tests running in Azure Pipelines are those that __do require__ secrets to connect to the Datadog API. These tests run only when a maintainer provides a Github comment on the PR after performing a review. 
+Tests running in Azure Pipelines are those that __do require__ secrets to connect to the Datadog API. These tests run only when a maintainer provides a GitHub comment on the PR after performing a review. 
+
