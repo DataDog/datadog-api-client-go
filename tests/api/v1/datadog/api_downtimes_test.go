@@ -131,21 +131,25 @@ func TestScopedDowntime(t *testing.T) {
 	defer teardownTest(t)
 
 	start := TESTCLOCK.Now()
+
+	scopeClient := fmt.Sprintf("test:client-%s-%d", t.Name(), TESTCLOCK.Now().UnixNano())
+	scopeGo := fmt.Sprintf("test:go-%s-%d", t.Name(), TESTCLOCK.Now().UnixNano())
+
 	testDowntimes := []datadog.Downtime{{
 		Message:  datadog.PtrString("Testing scope downtime: client, go"),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{"test:client", "test:go"},
+		Scope:    &[]string{scopeClient, scopeGo},
 	}, {
 		Message:  datadog.PtrString("Testing scope downtime: go"),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{"test:go"},
+		Scope:    &[]string{scopeGo},
 	}, {
 		Message:  datadog.PtrString("Testing scope downtime: client"),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{"test:client"},
+		Scope:    &[]string{scopeClient},
 	},
 	}
 
@@ -163,20 +167,19 @@ func TestScopedDowntime(t *testing.T) {
 		downtimes[i] = downtime
 	}
 
-	// Cancel downtimes with a scope "test:go"
-	scope := "test:go"
+	// Cancel downtimes with the scopeGo
 	cancelDowntimesByScopeRequest := datadog.CancelDowntimesByScopeRequest{
-		Scope: scope,
+		Scope: scopeGo,
 	}
 	canceledDowntimesIds, httpresp, err := TESTAPICLIENT.DowntimesApi.CancelDowntimesByScope(TESTAUTH).Body(cancelDowntimesByScopeRequest).Execute()
 	if err != nil {
-		t.Fatalf("Error canceling downtimes by scope %s: Response: %s: %v", scope, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error canceling downtimes by scope %s: Response: %s: %v", scopeGo, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	canceledIds := canceledDowntimesIds.GetCancelledIds()
 	expectedCanceledIds := []int64{downtimes[1].GetId()}
-	assert.Equal(t, canceledIds, expectedCanceledIds)
+	assert.Equal(t, expectedCanceledIds, canceledIds)
 }
 
 func TestDowntimeRecurrence(t *testing.T) {
