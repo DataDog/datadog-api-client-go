@@ -10,7 +10,7 @@ This project does not have a strict release schedule. However, we would make a r
 
 ### Prerequisites
 - Install [datadog_checks_dev](https://datadog-checks-base.readthedocs.io/en/latest/datadog_checks_dev.cli.html#installation) using Python 3
-- Have [Golang 1.13+](https://golang.org/doc/install) (since this process requires go mod commands)
+- Have [Golang 1.13+](https://golang.org/doc/install) (since this process requires `go mod` command)
 - Have the latest [godoc](https://github.com/golang/tools/tree/master/godoc) version.
     - *NOTE* With go 1.13, this isn't the binary included with Go and must be installed separately, otherwise it won't include module support.
 - Ensure all CIs are passing on the master branch that we're about to release. 
@@ -30,7 +30,7 @@ When moving this package from one major semver version to the next, there's a co
 - Run `go mod tidy` to clean up the dependencies defined in `go.mod` and `go.sum`
 - Commit the changes to the repository in a release branch and get it approved/merged after you:
     - Make sure that all CIs are passing, as this is the commit we will be releasing!
-    - Sanity checking the built godoc looks OK by running `godoc -http=:<PORT_NUM>` and opening in your browser.
+    - Check the built godoc looks OK by running `godoc -http=:<PORT_NUM>` and opening in your browser.
 
 ## Release
 After merging the above PR, create a release on the [releases page](https://github.com/DataDog/datadog-api-client-go/releases).

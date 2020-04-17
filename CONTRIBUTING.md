@@ -23,7 +23,7 @@ While you can create an issue to suggest a client enhancement, you won't be able
 Changes can only be made to:
 - Improve tests
 - Improve dev tooling
-- Improve non client usage doc. 
+- Improve documentation. 
 
 If that's the case, many thanks!
 
@@ -55,7 +55,7 @@ working on for a day.
 ### Releasing
 
 The release procedure is managed by Datadog, instructions can be found in the [RELEASING](/RELEASING.md) document.
-However, note that improvements to tests and doc doesn't end up in changelogs. Only client improvements do.
+However, note that improvements to tests and doc don't end up in changelogs. Only client improvements do.
 
 ## Asking a questions
 
@@ -77,7 +77,7 @@ This section lists the labels we use to help us track and manage issues and pull
 | `changelog/no-changelog`      | Pull Request Only        | Changes don't appear in changelog.
 | `changelog/Removed`           | Pull Request Only        | Deprecated features results into a major version bump.
 | `changelog/Security`          | Pull Request Only        | Fixed features results into a bug fix version bump.
-| `ci/skip`                     | Pull Request Only        | Skip Github action running tests.
+| `ci/skip`                     | Pull Request Only        | Skip GitHub action running tests.
 | `community/help-wanted`       | Issue Only               | Community help wanted.
 | `community`                   | Issues and Pull Requests | Community driven changes.
 | `dev/testing`                 | Issues and Pull Requests | Tests related changes.

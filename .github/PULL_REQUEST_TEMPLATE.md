@@ -33,7 +33,6 @@ Keep in mind that the maintainer reviewing this PR may not be familiar with or h
 
 - [ ] Feature or bug fix MUST have appropriate tests (unit, integration, etc...)
 - [ ] Files changes must correspond to the primary purpose of the PR as described in the title (small unrelated changes should have their own PR)
-- [ ] PR must have one `changelog/` label attached. It should have the `backward-incompatible` label attached.
 - [ ] If applicable, PR should have label `dev/testing`, `dev/tooling` or `documentation`.
 - [ ] PR should not have `do-not-merge/` label attached.
 - [ ] If Applicable, issue must have `kind/` and `severity/` labels attached at least.
