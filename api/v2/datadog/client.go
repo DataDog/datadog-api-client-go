@@ -48,6 +48,8 @@ type APIClient struct {
 
 	DashboardListsApi *DashboardListsApiService
 
+	RolesApi *RolesApiService
+
 	UsersApi *UsersApiService
 }
 
@@ -68,6 +70,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
+	c.RolesApi = (*RolesApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c

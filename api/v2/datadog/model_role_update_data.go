@@ -12,41 +12,40 @@ import (
 	"encoding/json"
 )
 
-// Role Role object returned by the API.
-type Role struct {
-	Attributes *RoleAttributes `json:"attributes,omitempty"`
+// RoleUpdateData TODO
+type RoleUpdateData struct {
+	Attributes *RoleUpdateAttributes `json:"attributes,omitempty"`
 	// ID of the role.
-	Id            *string                    `json:"id,omitempty"`
-	Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
-	// Roles type.
+	Id *string `json:"id,omitempty"`
+	// TODO
 	Type *string `json:"type,omitempty"`
 }
 
-// NewRole instantiates a new Role object
+// NewRoleUpdateData instantiates a new RoleUpdateData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRole() *Role {
-	this := Role{}
+func NewRoleUpdateData() *RoleUpdateData {
+	this := RoleUpdateData{}
 	var type_ string = "roles"
 	this.Type = &type_
 	return &this
 }
 
-// NewRoleWithDefaults instantiates a new Role object
+// NewRoleUpdateDataWithDefaults instantiates a new RoleUpdateData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRoleWithDefaults() *Role {
-	this := Role{}
+func NewRoleUpdateDataWithDefaults() *RoleUpdateData {
+	this := RoleUpdateData{}
 	var type_ string = "roles"
 	this.Type = &type_
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *Role) GetAttributes() RoleAttributes {
+func (o *RoleUpdateData) GetAttributes() RoleUpdateAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret RoleAttributes
+		var ret RoleUpdateAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -54,7 +53,7 @@ func (o *Role) GetAttributes() RoleAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetAttributesOk() (*RoleAttributes, bool) {
+func (o *RoleUpdateData) GetAttributesOk() (*RoleUpdateAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -62,7 +61,7 @@ func (o *Role) GetAttributesOk() (*RoleAttributes, bool) {
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *Role) HasAttributes() bool {
+func (o *RoleUpdateData) HasAttributes() bool {
 	if o != nil && o.Attributes != nil {
 		return true
 	}
@@ -70,13 +69,13 @@ func (o *Role) HasAttributes() bool {
 	return false
 }
 
-// SetAttributes gets a reference to the given RoleAttributes and assigns it to the Attributes field.
-func (o *Role) SetAttributes(v RoleAttributes) {
+// SetAttributes gets a reference to the given RoleUpdateAttributes and assigns it to the Attributes field.
+func (o *RoleUpdateData) SetAttributes(v RoleUpdateAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Role) GetId() string {
+func (o *RoleUpdateData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -86,7 +85,7 @@ func (o *Role) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetIdOk() (*string, bool) {
+func (o *RoleUpdateData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -94,7 +93,7 @@ func (o *Role) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Role) HasId() bool {
+func (o *RoleUpdateData) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -103,44 +102,12 @@ func (o *Role) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Role) SetId(v string) {
+func (o *RoleUpdateData) SetId(v string) {
 	o.Id = &v
 }
 
-// GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *Role) GetRelationships() RoleResponseRelationships {
-	if o == nil || o.Relationships == nil {
-		var ret RoleResponseRelationships
-		return ret
-	}
-	return *o.Relationships
-}
-
-// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Role) GetRelationshipsOk() (*RoleResponseRelationships, bool) {
-	if o == nil || o.Relationships == nil {
-		return nil, false
-	}
-	return o.Relationships, true
-}
-
-// HasRelationships returns a boolean if a field has been set.
-func (o *Role) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRelationships gets a reference to the given RoleResponseRelationships and assigns it to the Relationships field.
-func (o *Role) SetRelationships(v RoleResponseRelationships) {
-	o.Relationships = &v
-}
-
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Role) GetType() string {
+func (o *RoleUpdateData) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -150,7 +117,7 @@ func (o *Role) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetTypeOk() (*string, bool) {
+func (o *RoleUpdateData) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -158,7 +125,7 @@ func (o *Role) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *Role) HasType() bool {
+func (o *RoleUpdateData) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -167,11 +134,11 @@ func (o *Role) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Role) SetType(v string) {
+func (o *RoleUpdateData) SetType(v string) {
 	o.Type = &v
 }
 
-func (o Role) MarshalJSON() ([]byte, error) {
+func (o RoleUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
@@ -179,52 +146,44 @@ func (o Role) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Relationships != nil {
-		toSerialize["relationships"] = o.Relationships
-	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }
 
-// AsUserResponseIncludedItem wraps this instance of Role in UserResponseIncludedItem
-func (s *Role) AsUserResponseIncludedItem() UserResponseIncludedItem {
-	return UserResponseIncludedItem{UserResponseIncludedItemInterface: s}
-}
-
-type NullableRole struct {
-	value *Role
+type NullableRoleUpdateData struct {
+	value *RoleUpdateData
 	isSet bool
 }
 
-func (v NullableRole) Get() *Role {
+func (v NullableRoleUpdateData) Get() *RoleUpdateData {
 	return v.value
 }
 
-func (v *NullableRole) Set(val *Role) {
+func (v *NullableRoleUpdateData) Set(val *RoleUpdateData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRole) IsSet() bool {
+func (v NullableRoleUpdateData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRole) Unset() {
+func (v *NullableRoleUpdateData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRole(val *Role) *NullableRole {
-	return &NullableRole{value: val, isSet: true}
+func NewNullableRoleUpdateData(val *RoleUpdateData) *NullableRoleUpdateData {
+	return &NullableRoleUpdateData{value: val, isSet: true}
 }
 
-func (v NullableRole) MarshalJSON() ([]byte, error) {
+func (v NullableRoleUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableRole) UnmarshalJSON(src []byte) error {
+func (v *NullableRoleUpdateData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

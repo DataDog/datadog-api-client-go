@@ -12,31 +12,31 @@ import (
 	"encoding/json"
 )
 
-// Permissions Payload with API-returned permissions.
-type Permissions struct {
+// PermissionsResponse Payload with API-returned permissions.
+type PermissionsResponse struct {
 	// Array of permissions.
 	Data *[]Permission `json:"data,omitempty"`
 }
 
-// NewPermissions instantiates a new Permissions object
+// NewPermissionsResponse instantiates a new PermissionsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPermissions() *Permissions {
-	this := Permissions{}
+func NewPermissionsResponse() *PermissionsResponse {
+	this := PermissionsResponse{}
 	return &this
 }
 
-// NewPermissionsWithDefaults instantiates a new Permissions object
+// NewPermissionsResponseWithDefaults instantiates a new PermissionsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPermissionsWithDefaults() *Permissions {
-	this := Permissions{}
+func NewPermissionsResponseWithDefaults() *PermissionsResponse {
+	this := PermissionsResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *Permissions) GetData() []Permission {
+func (o *PermissionsResponse) GetData() []Permission {
 	if o == nil || o.Data == nil {
 		var ret []Permission
 		return ret
@@ -46,7 +46,7 @@ func (o *Permissions) GetData() []Permission {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Permissions) GetDataOk() (*[]Permission, bool) {
+func (o *PermissionsResponse) GetDataOk() (*[]Permission, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -54,7 +54,7 @@ func (o *Permissions) GetDataOk() (*[]Permission, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *Permissions) HasData() bool {
+func (o *PermissionsResponse) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -63,11 +63,11 @@ func (o *Permissions) HasData() bool {
 }
 
 // SetData gets a reference to the given []Permission and assigns it to the Data field.
-func (o *Permissions) SetData(v []Permission) {
+func (o *PermissionsResponse) SetData(v []Permission) {
 	o.Data = &v
 }
 
-func (o Permissions) MarshalJSON() ([]byte, error) {
+func (o PermissionsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
@@ -75,38 +75,38 @@ func (o Permissions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullablePermissions struct {
-	value *Permissions
+type NullablePermissionsResponse struct {
+	value *PermissionsResponse
 	isSet bool
 }
 
-func (v NullablePermissions) Get() *Permissions {
+func (v NullablePermissionsResponse) Get() *PermissionsResponse {
 	return v.value
 }
 
-func (v *NullablePermissions) Set(val *Permissions) {
+func (v *NullablePermissionsResponse) Set(val *PermissionsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePermissions) IsSet() bool {
+func (v NullablePermissionsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePermissions) Unset() {
+func (v *NullablePermissionsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePermissions(val *Permissions) *NullablePermissions {
-	return &NullablePermissions{value: val, isSet: true}
+func NewNullablePermissionsResponse(val *PermissionsResponse) *NullablePermissionsResponse {
+	return &NullablePermissionsResponse{value: val, isSet: true}
 }
 
-func (v NullablePermissions) MarshalJSON() ([]byte, error) {
+func (v NullablePermissionsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePermissions) UnmarshalJSON(src []byte) error {
+func (v *NullablePermissionsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

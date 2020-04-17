@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**UserResponseAttributes**](UserResponseAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the user. | [optional] 
-**Relationships** | Pointer to [**UserResponseRelationships**](UserResponseRelationships.md) |  | [optional] 
-**Type** | Pointer to **string** | Users type. | [optional] [readonly] [default to "users"]
+**Data** | Pointer to [**User**](User.md) |  | [optional] 
+**Included** | Pointer to [**[]UserResponseIncludedItem**](UserResponseIncludedItem.md) | Array of objects related to the user. | [optional] 
 
 ## Methods
 
@@ -28,105 +26,55 @@ NewUserResponseWithDefaults instantiates a new UserResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAttributes
+### GetData
 
-`func (o *UserResponse) GetAttributes() UserResponseAttributes`
+`func (o *UserResponse) GetData() User`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetDataOk
 
-`func (o *UserResponse) GetAttributesOk() (*UserResponseAttributes, bool)`
+`func (o *UserResponse) GetDataOk() (*User, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttributes
+### SetData
 
-`func (o *UserResponse) SetAttributes(v UserResponseAttributes)`
+`func (o *UserResponse) SetData(v User)`
 
-SetAttributes sets Attributes field to given value.
+SetData sets Data field to given value.
 
-### HasAttributes
+### HasData
 
-`func (o *UserResponse) HasAttributes() bool`
+`func (o *UserResponse) HasData() bool`
 
-HasAttributes returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
-### GetId
+### GetIncluded
 
-`func (o *UserResponse) GetId() string`
+`func (o *UserResponse) GetIncluded() []UserResponseIncludedItem`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetIncluded returns the Included field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetIncludedOk
 
-`func (o *UserResponse) GetIdOk() (*string, bool)`
+`func (o *UserResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetIncludedOk returns a tuple with the Included field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetIncluded
 
-`func (o *UserResponse) SetId(v string)`
+`func (o *UserResponse) SetIncluded(v []UserResponseIncludedItem)`
 
-SetId sets Id field to given value.
+SetIncluded sets Included field to given value.
 
-### HasId
+### HasIncluded
 
-`func (o *UserResponse) HasId() bool`
+`func (o *UserResponse) HasIncluded() bool`
 
-HasId returns a boolean if a field has been set.
-
-### GetRelationships
-
-`func (o *UserResponse) GetRelationships() UserResponseRelationships`
-
-GetRelationships returns the Relationships field if non-nil, zero value otherwise.
-
-### GetRelationshipsOk
-
-`func (o *UserResponse) GetRelationshipsOk() (*UserResponseRelationships, bool)`
-
-GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRelationships
-
-`func (o *UserResponse) SetRelationships(v UserResponseRelationships)`
-
-SetRelationships sets Relationships field to given value.
-
-### HasRelationships
-
-`func (o *UserResponse) HasRelationships() bool`
-
-HasRelationships returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *UserResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *UserResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *UserResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *UserResponse) HasType() bool`
-
-HasType returns a boolean if a field has been set.
+HasIncluded returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

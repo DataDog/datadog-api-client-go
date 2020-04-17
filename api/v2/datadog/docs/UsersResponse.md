@@ -1,104 +1,104 @@
-# UsersResponsePayload
+# UsersResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]UserResponse**](UserResponse.md) | Array of returned users. | [optional] 
+**Data** | Pointer to [**[]User**](User.md) | Array of returned users. | [optional] 
 **Included** | Pointer to [**[]UserResponseIncludedItem**](UserResponseIncludedItem.md) | Array of objects related to the users. | [optional] 
 **Meta** | Pointer to [**ResponseMetaAttributes**](ResponseMetaAttributes.md) |  | [optional] 
 
 ## Methods
 
-### NewUsersResponsePayload
+### NewUsersResponse
 
-`func NewUsersResponsePayload() *UsersResponsePayload`
+`func NewUsersResponse() *UsersResponse`
 
-NewUsersResponsePayload instantiates a new UsersResponsePayload object
+NewUsersResponse instantiates a new UsersResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUsersResponsePayloadWithDefaults
+### NewUsersResponseWithDefaults
 
-`func NewUsersResponsePayloadWithDefaults() *UsersResponsePayload`
+`func NewUsersResponseWithDefaults() *UsersResponse`
 
-NewUsersResponsePayloadWithDefaults instantiates a new UsersResponsePayload object
+NewUsersResponseWithDefaults instantiates a new UsersResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *UsersResponsePayload) GetData() []UserResponse`
+`func (o *UsersResponse) GetData() []User`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *UsersResponsePayload) GetDataOk() (*[]UserResponse, bool)`
+`func (o *UsersResponse) GetDataOk() (*[]User, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *UsersResponsePayload) SetData(v []UserResponse)`
+`func (o *UsersResponse) SetData(v []User)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *UsersResponsePayload) HasData() bool`
+`func (o *UsersResponse) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 
 ### GetIncluded
 
-`func (o *UsersResponsePayload) GetIncluded() []UserResponseIncludedItem`
+`func (o *UsersResponse) GetIncluded() []UserResponseIncludedItem`
 
 GetIncluded returns the Included field if non-nil, zero value otherwise.
 
 ### GetIncludedOk
 
-`func (o *UsersResponsePayload) GetIncludedOk() (*[]UserResponseIncludedItem, bool)`
+`func (o *UsersResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool)`
 
 GetIncludedOk returns a tuple with the Included field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIncluded
 
-`func (o *UsersResponsePayload) SetIncluded(v []UserResponseIncludedItem)`
+`func (o *UsersResponse) SetIncluded(v []UserResponseIncludedItem)`
 
 SetIncluded sets Included field to given value.
 
 ### HasIncluded
 
-`func (o *UsersResponsePayload) HasIncluded() bool`
+`func (o *UsersResponse) HasIncluded() bool`
 
 HasIncluded returns a boolean if a field has been set.
 
 ### GetMeta
 
-`func (o *UsersResponsePayload) GetMeta() ResponseMetaAttributes`
+`func (o *UsersResponse) GetMeta() ResponseMetaAttributes`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *UsersResponsePayload) GetMetaOk() (*ResponseMetaAttributes, bool)`
+`func (o *UsersResponse) GetMetaOk() (*ResponseMetaAttributes, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *UsersResponsePayload) SetMeta(v ResponseMetaAttributes)`
+`func (o *UsersResponse) SetMeta(v ResponseMetaAttributes)`
 
 SetMeta sets Meta field to given value.
 
 ### HasMeta
 
-`func (o *UsersResponsePayload) HasMeta() bool`
+`func (o *UsersResponse) HasMeta() bool`
 
 HasMeta returns a boolean if a field has been set.
 
