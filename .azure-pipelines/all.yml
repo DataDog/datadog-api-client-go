@@ -9,8 +9,9 @@ pr:
     include:
     - master
 schedules:
-  - cron: "0 13 * * *"
-    displayName: Daily UTC 1pm build
+  - cron: "0 */6 * * *"
+    displayName: Scheduled CI run every 6 hours
+    always: true
     branches:
       include:
         - master
