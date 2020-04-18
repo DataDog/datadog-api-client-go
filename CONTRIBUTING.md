@@ -4,7 +4,7 @@ First of all, thanks for contributing!
 
 This document provides some basic guidelines for contributing to this repository. To propose improvements, feel free to submit a PR.
 
-## Reporting a Bug - Requesting a feature - Github Issues
+## Reporting a Bug - Requesting a feature - GitHub Issues
 
 * **Ensure the bug was not already reported** by searching on GitHub under [Issues][1].
 * If you're unable to find an open issue addressing the problem, [open a new one][2].
@@ -16,42 +16,32 @@ This document provides some basic guidelines for contributing to this repository
 
 ## Suggesting an enhancements - Pull Requests
 
-Have you fixed an issue? Many thanks!
+Client source code is generated using [apigentools](https://apigentools.readthedocs.io/en/latest/).
+ 
+While you can create an issue to suggest a client enhancement, you won't be able to make a Pull Request for it.
+
+Changes can only be made to:
+- Improve tests
+- Improve dev tooling
+- Improve documentation. 
+
+If that's the case, many thanks!
 
 Read the [development guide](DEVELOPMENT.md) for more information on how to get started.
 
 In order to ease/speed up our review, here are some items you can check/improve when submitting your PR:
 * **Ensure an [Issue has been created](#reporting)**.
-* Avoid changing too many things at once.
-  - Make sure that your Pull Requests only fixes one Issue at the time.
-* **Write tests** for the code you wrote.
+* Avoid changing too many things at once. Make sure that your Pull Requests only fixes one Issue at the time.
 * Make sure that **all tests pass locally**.
 * Summarize your PR with a **meaningful title** and **fill out the pull request description template completely!**
-* Add the most suitable changelog label choosing one of the following:
-  * `changelog/Added` for new features.
-  * `changelog/Changed` for changes in existing functionality.
-  * `changelog/Deprecated` for soon-to-be removed features.
-  * `changelog/Removed` for now removed features.
-  * `changelog/Fixed` for any bug fixes.
-  * `changelog/Security` in case of vulnerabilities.
-  * `changelog/no-changelog` in case this PR should not appear in the changelog at all.
 
-See [here][4] for more details about changelogs.
-
-Your pull request must pass all CI tests. If you're seeing
-an error and don't think it's your fault, it may not be! [Join us on Slack][5] or send us an email, and together we'll
-get it sorted out.
+Your pull request must pass all CI tests. If you're seeing an error and don't think it's your fault, it may not be! 
+[Join us on Slack][5] or send us an email, and together we'll get it sorted out.
 
 ### Keep it small, focused
 
 Avoid changing too many things at once. For instance if you're fixing two different
 issues at once, it makes reviewing harder and the _time-to-release_ longer.
-
-### Pull Request title
-
-Unless the PR is marked with the proper exclusion label, the title will be used
-to automatically fill the changelog entries. For this reason the title must be
-concise but explanatory.
 
 ### Commit Messages
 
@@ -65,6 +55,8 @@ working on for a day.
 ### Releasing
 
 The release procedure is managed by Datadog, instructions can be found in the [RELEASING](/RELEASING.md) document.
+However, note that improvements to tests and documentation do not end up in changelogs. Only client improvements do.
+
 
 ## Asking a questions
 
@@ -86,6 +78,7 @@ This section lists the labels we use to help us track and manage issues and pull
 | `changelog/no-changelog`      | Pull Request Only        | Changes don't appear in changelog.
 | `changelog/Removed`           | Pull Request Only        | Deprecated features results into a major version bump.
 | `changelog/Security`          | Pull Request Only        | Fixed features results into a bug fix version bump.
+| `ci/skip`                     | Pull Request Only        | Skip GitHub action running tests.
 | `community/help-wanted`       | Issue Only               | Community help wanted.
 | `community`                   | Issues and Pull Requests | Community driven changes.
 | `dev/testing`                 | Issues and Pull Requests | Tests related changes.
