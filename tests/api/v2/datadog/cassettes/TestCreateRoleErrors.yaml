@@ -31,7 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 14:37:52 GMT
+      - Mon, 20 Apr 2020 21:38:22 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2411151"
+      - "35.2412922"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -47,7 +47,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587393471295240000"},"type":"roles"}}
+      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587418701247127000"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -73,7 +73,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 14:37:52 GMT
+      - Mon, 20 Apr 2020 21:38:22 GMT
       Via:
       - haproxy
     status: 403 Forbidden

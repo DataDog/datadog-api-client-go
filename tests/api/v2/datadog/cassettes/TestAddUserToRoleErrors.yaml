@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587391187074082000"},"type":"roles"}}
+      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587418653682961000"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -17,7 +17,7 @@ interactions:
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"322f1826-830f-11ea-93de-1322933ef5e7","attributes":{"name":"test-role-datadog-client-go-1587391187074082000","created_at":"2020-04-20T13:59:47.790882+00:00","modified_at":"2020-04-20T13:59:47.790882+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
+    body: '{"data":{"type":"roles","id":"258fc850-834f-11ea-93de-536d02689971","attributes":{"name":"test-role-datadog-client-go-1587418653682961000","created_at":"2020-04-20T21:37:34.404885+00:00","modified_at":"2020-04-20T21:37:34.404885+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -28,11 +28,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 13:59:47 GMT
+      - Mon, 20 Apr 2020 21:37:34 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 27-Apr-2020 13:59:47 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 27-Apr-2020 21:37:34 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -41,54 +41,11 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2410752"
+      - "35.2412922"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
-    duration: ""
-- request:
-    body: |
-      {"data":{"id":"00000000-dead-beef-dead-ffffffffffff","type":"users"}}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Dd-Operation-Id:
-      - AddUserToRole
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/322f1826-830f-11ea-93de-1322933ef5e7/users
-    method: POST
-  response:
-    body: '{"errors": [" not found"]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 20 Apr 2020 13:59:48 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.2410752"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 404 Not Found
-    code: 404
     duration: ""
 - request:
     body: |
@@ -103,7 +60,7 @@ interactions:
       - AddUserToRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/322f1826-830f-11ea-93de-1322933ef5e7/users
+    url: https://api.datadoghq.com/api/v2/roles/258fc850-834f-11ea-93de-536d02689971/users
     method: POST
   response:
     body: '{"errors": ["API input validation failed: {''_schema'': [{''source'': {''pointer'':
@@ -120,7 +77,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 13:59:48 GMT
+      - Mon, 20 Apr 2020 21:37:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -128,7 +85,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2410752"
+      - "35.2412922"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -147,7 +104,7 @@ interactions:
       - AddUserToRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/322f1826-830f-11ea-93de-1322933ef5e7/users
+    url: https://api.datadoghq.com/api/v2/roles/258fc850-834f-11ea-93de-536d02689971/users
     method: POST
   response:
     body: |
@@ -162,11 +119,54 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 13:59:48 GMT
+      - Mon, 20 Apr 2020 21:37:34 GMT
       Via:
       - haproxy
     status: 403 Forbidden
     code: 403
+    duration: ""
+- request:
+    body: |
+      {"data":{"id":"00000000-dead-beef-dead-ffffffffffff","type":"users"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - AddUserToRole
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v2/roles/258fc850-834f-11ea-93de-536d02689971/users
+    method: POST
+  response:
+    body: '{"errors": [" not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 20 Apr 2020 21:37:34 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2412922"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+    code: 404
     duration: ""
 - request:
     body: ""
@@ -178,7 +178,7 @@ interactions:
       - DeleteRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/322f1826-830f-11ea-93de-1322933ef5e7
+    url: https://api.datadoghq.com/api/v2/roles/258fc850-834f-11ea-93de-536d02689971
     method: DELETE
   response:
     body: ""
@@ -194,18 +194,18 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Mon, 20 Apr 2020 13:59:48 GMT
+      - Mon, 20 Apr 2020 21:37:35 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 27-Apr-2020 13:59:48 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 27-Apr-2020 21:37:35 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2410752"
+      - "35.2412922"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
