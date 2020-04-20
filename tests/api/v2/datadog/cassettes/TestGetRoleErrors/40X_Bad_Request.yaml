@@ -1,0 +1,44 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetRole
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v2/roles/this-is-an-invalid-role-id-for-get-endpoint-because-it-is-too-long-to-be-a-uuid
+    method: GET
+  response:
+    body: '{"errors": ["The role this-is-an-invalid-role-id-for-get-endpoint-because-it-is-too-long-to-be-a-uuid
+      does not exist not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 20 Apr 2020 22:11:05 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2413239"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+    code: 404
+    duration: ""

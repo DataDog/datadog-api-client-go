@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587418526939673000"},"type":"roles"}}
+      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587420664581919000"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -17,7 +17,7 @@ interactions:
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"da058884-834e-11ea-93de-d36c5c4e04a0","attributes":{"name":"test-role-datadog-client-go-1587418526939673000","created_at":"2020-04-20T21:35:27.669761+00:00","modified_at":"2020-04-20T21:35:27.669761+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
+    body: '{"data":{"type":"roles","id":"d3d2703a-8353-11ea-93de-2f8ceae27e5a","attributes":{"name":"test-role-datadog-client-go-1587420664581919000","created_at":"2020-04-20T22:11:04.752240+00:00","modified_at":"2020-04-20T22:11:04.752240+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -28,11 +28,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 21:35:27 GMT
+      - Mon, 20 Apr 2020 22:11:04 GMT
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 27-Apr-2020 21:35:27 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 27-Apr-2020 22:11:04 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -41,7 +41,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2412922"
+      - "35.2413239"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 21:35:27 GMT
+      - Mon, 20 Apr 2020 22:11:05 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -82,165 +82,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2412922"
+      - "35.2413239"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
     code: 404
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetRole
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/this-is-an-invalid-role-id-for-get-endpoint-because-it-is-too-long-to-be-a-uuid
-    method: GET
-  response:
-    body: '{"errors": ["The role this-is-an-invalid-role-id-for-get-endpoint-because-it-is-too-long-to-be-a-uuid
-      does not exist not found"]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 20 Apr 2020 21:35:28 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.2412922"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 404 Not Found
-    code: 404
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetRole
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/da058884-834e-11ea-93de-d36c5c4e04a0
-    method: GET
-  response:
-    body: |
-      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "170"
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 20 Apr 2020 21:35:28 GMT
-      Via:
-      - haproxy
-    status: 403 Forbidden
-    code: 403
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetRole
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff
-    method: GET
-  response:
-    body: '{"errors": ["The role 00000000-dead-beef-dead-ffffffffffff does not exist
-      not found"]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 20 Apr 2020 21:35:28 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.2412922"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 404 Not Found
-    code: 404
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteRole
-      User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/da058884-834e-11ea-93de-d36c5c4e04a0
-    method: DELETE
-  response:
-    body: ""
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "0"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - text/html; charset=UTF-8
-      Date:
-      - Mon, 20 Apr 2020 21:35:28 GMT
-      Pragma:
-      - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 27-Apr-2020 21:35:28 GMT;
-        secure; HttpOnly
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.2412922"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 204 No Content
-    code: 204
     duration: ""

@@ -1,0 +1,47 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - AddPermissionToRole
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v2/roles/d611a12c-8353-11ea-93de-8bf73e9bebb2/permissions
+    method: POST
+  response:
+    body: '{"errors": ["API input validation failed: {''_schema'': [{''source'': {''pointer'':
+      ''/''}, ''detail'': ''Object must include `data` key.''}]}"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "133"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 20 Apr 2020 22:11:08 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2413239"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 400 Bad Request
+    code: 400
+    duration: ""

@@ -49,15 +49,15 @@ var TestClock clockwork.FakeClock
 
 func createWithDir(path string) (*os.File, error) {
 	dirName := filepath.Dir(path)
-	if _, err := os.Stat(dirName); err != nil {
-		err := os.MkdirAll(dirName, os.ModePerm)
-		if err != nil {
-			return nil, err
-		}
-		return os.Create(path)
-	} else {
+	_, err := os.Stat(dirName)
+	if err != nil {
 		return nil, err
 	}
+	err = os.MkdirAll(dirName, os.ModePerm)
+	if err != nil {
+		return nil, err
+	}
+	return os.Create(path)
 }
 
 func setClock(t *testing.T) {
