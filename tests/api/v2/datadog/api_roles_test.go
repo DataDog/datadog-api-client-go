@@ -267,6 +267,9 @@ func TestListRolesErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.ListRoles(tc.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -302,6 +305,9 @@ func TestCreateRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			rr, httpresp, err := TestAPIClient.RolesApi.CreateRole(tc.Ctx).Body(*tc.Body).Execute()
 			// make sure that we clean everything on error
 			if 200 == httpresp.StatusCode {
@@ -355,6 +361,9 @@ func TestGetRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.GetRole(tc.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -422,6 +431,9 @@ func TestUpdateRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.UpdateRole(tc.Ctx, tc.RoleID).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -467,6 +479,9 @@ func TestDeleteRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			httpresp, err := TestAPIClient.RolesApi.DeleteRole(tc.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -507,6 +522,9 @@ func TestListRolePermissionsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.ListRolePermissions(tc.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -553,6 +571,9 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.AddPermissionToRole(tc.Ctx, rid).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -613,6 +634,9 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.RemovePermissionFromRole(tc.Ctx, tc.RoleID).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -653,6 +677,9 @@ func TestListRoleUsersErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.ListRoleUsers(tc.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -699,6 +726,9 @@ func TestAddUserToRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.AddUserToRole(tc.Ctx, rid).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -766,6 +796,9 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			teardownTest := setupTest(t)
+			defer teardownTest(t)
+
 			_, httpresp, err := TestAPIClient.RolesApi.RemoveUserFromRole(tc.Ctx, tc.RoleID).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

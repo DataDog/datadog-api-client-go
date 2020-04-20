@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"path/filepath"
 	"testing"
 	"time"
 
@@ -46,9 +47,23 @@ var FakeAuth = context.WithValue(
 // TestClock is the time module to use in tests
 var TestClock clockwork.FakeClock
 
+func createWithDir(path string) (*os.File, error) {
+	dirName := filepath.Dir(path)
+	if _, err := os.Stat(dirName); err != nil {
+		err := os.MkdirAll(dirName, os.ModePerm)
+		if err != nil {
+			return nil, err
+		}
+		return os.Create(path)
+	} else {
+		return nil, err
+	}
+}
+
 func setClock(t *testing.T) {
 	os.MkdirAll("cassettes", 0755)
-	f, err := os.Create(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
+
+	f, err := createWithDir(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
 	if err != nil {
 		t.Fatalf("Could not set clock: %v", err)
 	}
