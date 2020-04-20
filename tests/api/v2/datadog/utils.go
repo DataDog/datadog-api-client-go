@@ -29,6 +29,20 @@ var TestAPIClient *datadog.APIClient
 // TestAuth is the authentication context to use with each test API call
 var TestAuth context.Context
 
+// FakeAuth avoids issue of API returning `text/html` instead of `application/json`
+var FakeAuth = context.WithValue(
+	context.Background(),
+	datadog.ContextAPIKeys,
+	map[string]datadog.APIKey{
+		"apiKeyAuth": {
+			Key: "FAKE_KEY",
+		},
+		"appKeyAuth": {
+			Key: "FAKE_KEY",
+		},
+	},
+)
+
 // TestClock is the time module to use in tests
 var TestClock clockwork.FakeClock
 
