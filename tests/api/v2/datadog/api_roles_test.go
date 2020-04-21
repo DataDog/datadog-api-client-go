@@ -644,7 +644,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// first, create a role
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
