@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// IFrameWidgetDefinition The iframe widget allows you to embed a portion of any other web page on your dashboard. Only available on FREE layout dashboards
+// IFrameWidgetDefinition The iframe widget allows you to embed a portion of any other web page on your dashboard. Only available on FREE layout dashboards.
 type IFrameWidgetDefinition struct {
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
-	// URL of the iframe
+	// URL of the iframe.
 	Url string `json:"url"`
 }
 

@@ -13,25 +13,24 @@ import (
 	"time"
 )
 
-// DashboardSummaryDashboards TODO.
+// DashboardSummaryDashboards Dashboard definition.
 type DashboardSummaryDashboards struct {
-	// TODO.
+	// Identifier of the dashboard author.
 	AuthorHandle *string `json:"author_handle,omitempty"`
-	// TODO.
+	// Creation date of the dashboard.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// TODO.
+	// Description of the dashboard.
 	Description *string `json:"description,omitempty"`
-	// TODO.
+	// Dashboard identifier.
 	Id *string `json:"id,omitempty"`
-	// TODO.
-	IsReadOnly *bool `json:"is_read_only,omitempty"`
-	// TODO.
-	LayoutType *string `json:"layout_type,omitempty"`
-	// TODO.
+	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
+	IsReadOnly *bool                `json:"is_read_only,omitempty"`
+	LayoutType *DashboardLayoutType `json:"layout_type,omitempty"`
+	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
-	// TODO.
+	// Title of the dashboard.
 	Title *string `json:"title,omitempty"`
-	// TODO.
+	// URL of the dashboard.
 	Url *string `json:"url,omitempty"`
 }
 
@@ -213,9 +212,9 @@ func (o *DashboardSummaryDashboards) SetIsReadOnly(v bool) {
 }
 
 // GetLayoutType returns the LayoutType field value if set, zero value otherwise.
-func (o *DashboardSummaryDashboards) GetLayoutType() string {
+func (o *DashboardSummaryDashboards) GetLayoutType() DashboardLayoutType {
 	if o == nil || o.LayoutType == nil {
-		var ret string
+		var ret DashboardLayoutType
 		return ret
 	}
 	return *o.LayoutType
@@ -223,7 +222,7 @@ func (o *DashboardSummaryDashboards) GetLayoutType() string {
 
 // GetLayoutTypeOk returns a tuple with the LayoutType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardSummaryDashboards) GetLayoutTypeOk() (*string, bool) {
+func (o *DashboardSummaryDashboards) GetLayoutTypeOk() (*DashboardLayoutType, bool) {
 	if o == nil || o.LayoutType == nil {
 		return nil, false
 	}
@@ -239,8 +238,8 @@ func (o *DashboardSummaryDashboards) HasLayoutType() bool {
 	return false
 }
 
-// SetLayoutType gets a reference to the given string and assigns it to the LayoutType field.
-func (o *DashboardSummaryDashboards) SetLayoutType(v string) {
+// SetLayoutType gets a reference to the given DashboardLayoutType and assigns it to the LayoutType field.
+func (o *DashboardSummaryDashboards) SetLayoutType(v DashboardLayoutType) {
 	o.LayoutType = &v
 }
 

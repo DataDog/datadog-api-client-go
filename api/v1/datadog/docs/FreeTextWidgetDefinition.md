@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Color** | Pointer to **string** | Color of the text | [optional] 
-**FontSize** | Pointer to **string** | Size of the text | [optional] 
-**Text** | Pointer to **string** | Text to display | 
+**Color** | Pointer to **string** | Color of the text. | [optional] 
+**FontSize** | Pointer to **string** | Size of the text. | [optional] 
+**Text** | Pointer to **string** | Text to display. | 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "free_text"]
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "free_text"]
 
 ## Methods
 

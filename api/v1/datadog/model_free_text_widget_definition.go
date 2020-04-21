@@ -12,16 +12,16 @@ import (
 	"encoding/json"
 )
 
-// FreeTextWidgetDefinition Free text is a widget that allows you to add headings to your screenboard. Commonly used to state the overall purpose of the dashboard. Only available on FREE layout dashboards
+// FreeTextWidgetDefinition Free text is a widget that allows you to add headings to your screenboard. Commonly used to state the overall purpose of the dashboard. Only available on FREE layout dashboards.
 type FreeTextWidgetDefinition struct {
-	// Color of the text
+	// Color of the text.
 	Color *string `json:"color,omitempty"`
-	// Size of the text
+	// Size of the text.
 	FontSize *string `json:"font_size,omitempty"`
-	// Text to display
+	// Text to display.
 	Text      string           `json:"text"`
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

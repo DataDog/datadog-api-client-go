@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetTickEdge How to align the text on the widget
+// WidgetTickEdge Define how you want to align the text on the widget.
 type WidgetTickEdge string
 
 // List of WidgetTickEdge

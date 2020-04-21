@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Facet** | Pointer to **string** | TODO. | 
+**Facet** | Pointer to **string** | Facet name. | 
 **Limit** | Pointer to **int64** | TODO. | [optional] 
 **Sort** | Pointer to [**LogQueryDefinitionSort**](LogQueryDefinition_sort.md) |  | [optional] 
 

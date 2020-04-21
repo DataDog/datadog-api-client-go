@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetServiceSummaryDisplayFormat Number of columns to display. Available values are one_column, two_column, or three_column
+// WidgetServiceSummaryDisplayFormat Number of columns to display.
 type WidgetServiceSummaryDisplayFormat string
 
 // List of WidgetServiceSummaryDisplayFormat

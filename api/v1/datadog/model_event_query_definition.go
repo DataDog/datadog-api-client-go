@@ -16,7 +16,7 @@ import (
 type EventQueryDefinition struct {
 	// TODO.
 	Search string `json:"search"`
-	// The execution method for multi-value filters. Can be either and or or
+	// The execution method for multi-value filters. Can be either and or or.
 	TagsExecution string `json:"tags_execution"`
 }
 

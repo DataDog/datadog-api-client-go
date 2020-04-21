@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetLayoutType Layout type of the group
+// WidgetLayoutType Layout type of the group.
 type WidgetLayoutType string
 
 // List of WidgetLayoutType

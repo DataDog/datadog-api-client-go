@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetStyle TODO.
+// WidgetStyle Widget style definition.
 type WidgetStyle struct {
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`

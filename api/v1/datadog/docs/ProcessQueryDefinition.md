@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FilterBy** | Pointer to **[]string** | TODO. | [optional] 
 **Limit** | Pointer to **int64** | TODO. | [optional] 
-**Metric** | Pointer to **string** | TODO. | 
+**Metric** | Pointer to **string** | Your chosen metric. | 
 **SearchBy** | Pointer to **string** | TODO. | [optional] 
 
 ## Methods

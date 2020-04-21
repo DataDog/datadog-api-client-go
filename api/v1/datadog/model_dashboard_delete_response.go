@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// DashboardDeleteResponse Response from the DeleteDashboard call
+// DashboardDeleteResponse Response from the DeleteDashboard call.
 type DashboardDeleteResponse struct {
-	// ID of the deleted dashboard
+	// ID of the deleted dashboard.
 	DeletedDashboardId *string `json:"deleted_dashboard_id,omitempty"`
 }
 

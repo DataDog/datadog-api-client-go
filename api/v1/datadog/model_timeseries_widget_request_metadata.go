@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// TimeseriesWidgetRequestMetadata TODO.
+// TimeseriesWidgetRequestMetadata Define an expression alias.
 type TimeseriesWidgetRequestMetadata struct {
-	// TODO.
+	// Expression alias.
 	AliasName *string `json:"alias_name,omitempty"`
-	// TODO.
+	// Expression name.
 	Expression string `json:"expression"`
 }
 

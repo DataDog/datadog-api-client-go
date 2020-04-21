@@ -19,7 +19,7 @@ type LogQueryDefinition struct {
 	GroupBy *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
 	// TODO.
 	Index *string `json:"index,omitempty"`
-	// This field is mutually exclusive with `compute`
+	// This field is mutually exclusive with `compute`.
 	MultiCompute *[]LogsQueryCompute       `json:"multi_compute,omitempty"`
 	Search       *LogQueryDefinitionSearch `json:"search,omitempty"`
 }

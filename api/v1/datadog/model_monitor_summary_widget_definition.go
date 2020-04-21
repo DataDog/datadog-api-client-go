@@ -12,24 +12,24 @@ import (
 	"encoding/json"
 )
 
-// MonitorSummaryWidgetDefinition The monitor summary widget displays a summary view of all your Datadog monitors, or a subset based on a query. Only available on FREE layout dashboards
+// MonitorSummaryWidgetDefinition The monitor summary widget displays a summary view of all your Datadog monitors, or a subset based on a query. Only available on FREE layout dashboards.
 type MonitorSummaryWidgetDefinition struct {
 	ColorPreference *WidgetColorPreference             `json:"color_preference,omitempty"`
 	DisplayFormat   *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
-	// Whether to show counts of 0 or not
+	// Whether to show counts of 0 or not.
 	HideZeroCounts *bool `json:"hide_zero_counts,omitempty"`
-	// Query to filter the monitors with
+	// Query to filter the monitors with.
 	Query string `json:"query"`
-	// Whether to show the time that has elapsed since the monitor/group triggered
+	// Whether to show the time that has elapsed since the monitor/group triggered.
 	ShowLastTriggered *bool              `json:"show_last_triggered,omitempty"`
 	Sort              *WidgetSort        `json:"sort,omitempty"`
 	SummaryType       *WidgetSummaryType `json:"summary_type,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

@@ -12,21 +12,21 @@ import (
 	"encoding/json"
 )
 
-// AlertValueWidgetDefinition Alert values are query values showing the current value of the metric in any monitor defined on your system
+// AlertValueWidgetDefinition Alert values are query values showing the current value of the metric in any monitor defined on your system.
 type AlertValueWidgetDefinition struct {
-	// ID of the alert to use in the widget
+	// ID of the alert to use in the widget.
 	AlertId string `json:"alert_id"`
-	// Number of decimal to show. If not defined, will use the raw value
+	// Number of decimal to show. If not defined, will use the raw value.
 	Precision *int64           `json:"precision,omitempty"`
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of value in the widget
+	// Size of value in the widget.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
-	// Unit to display with the value
+	// Unit to display with the value.
 	Unit *string `json:"unit,omitempty"`
 }
 

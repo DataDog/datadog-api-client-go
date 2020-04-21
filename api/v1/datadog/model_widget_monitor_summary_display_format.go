@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetMonitorSummaryDisplayFormat What to display on the widget. Available values are counts, countsAndList or list
+// WidgetMonitorSummaryDisplayFormat What to display on the widget.
 type WidgetMonitorSummaryDisplayFormat string
 
 // List of WidgetMonitorSummaryDisplayFormat

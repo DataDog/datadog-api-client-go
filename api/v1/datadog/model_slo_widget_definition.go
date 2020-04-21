@@ -20,12 +20,12 @@ type SLOWidgetDefinition struct {
 	SloId *string `json:"slo_id,omitempty"`
 	// TODO.
 	TimeWindows *[]WidgetTimeWindows `json:"time_windows,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type     string          `json:"type"`
 	ViewMode *WidgetViewMode `json:"view_mode,omitempty"`
 	// TODO.

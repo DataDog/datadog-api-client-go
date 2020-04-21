@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HostMapWidgetDefinitionStyle The style to apply to the widget
+// HostMapWidgetDefinitionStyle The style to apply to the widget.
 type HostMapWidgetDefinitionStyle struct {
 	// Max value to use to color the map.
 	FillMax *string `json:"fill_max,omitempty"`
