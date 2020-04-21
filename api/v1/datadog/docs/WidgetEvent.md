@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Q** | Pointer to **string** | TODO. | 
-**TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or | [optional] 
+**Q** | Pointer to **string** | Query definition. | 
+**TagsExecution** | Pointer to **string** | The execution method for multi-value filters. | [optional] 
 
 ## Methods
 

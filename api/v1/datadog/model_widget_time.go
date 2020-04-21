@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetTime Time setting for the widget
+// WidgetTime Time setting for the widget.
 type WidgetTime struct {
 	LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
 }

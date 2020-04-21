@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetTimeWindows TODO.
+// WidgetTimeWindows Define a time window.
 type WidgetTimeWindows string
 
 // List of WidgetTimeWindows

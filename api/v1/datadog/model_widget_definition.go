@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// WidgetDefinition Definition of the widget
+// WidgetDefinition Definition of the widget.
 type WidgetDefinition struct {
 	WidgetDefinitionInterface interface{ GetType() string }
 }

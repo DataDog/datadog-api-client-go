@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetImageSizing How to size the image on the widget. Available values are zoom, fit or center
+// WidgetImageSizing How to size the image on the widget.
 type WidgetImageSizing string
 
 // List of WidgetImageSizing

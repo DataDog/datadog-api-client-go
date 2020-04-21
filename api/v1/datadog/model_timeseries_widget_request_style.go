@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// TimeseriesWidgetRequestStyle TODO.
+// TimeseriesWidgetRequestStyle Define widget style.
 type TimeseriesWidgetRequestStyle struct {
 	LineType  *WidgetLineType  `json:"line_type,omitempty"`
 	LineWidth *WidgetLineWidth `json:"line_width,omitempty"`

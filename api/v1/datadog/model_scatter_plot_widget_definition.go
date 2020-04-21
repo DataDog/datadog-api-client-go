@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ScatterPlotWidgetDefinition The scatter plot visualization allows you to graph a chosen scope over two different metrics with their respective aggregation
+// ScatterPlotWidgetDefinition The scatter plot visualization allows you to graph a chosen scope over two different metrics with their respective aggregation.
 type ScatterPlotWidgetDefinition struct {
 	// List of groups used for colors.
 	ColorByGroups *[]string                           `json:"color_by_groups,omitempty"`
@@ -21,9 +21,9 @@ type ScatterPlotWidgetDefinition struct {
 	// Title of your widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type  string      `json:"type"`
 	Xaxis *WidgetAxis `json:"xaxis,omitempty"`
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`

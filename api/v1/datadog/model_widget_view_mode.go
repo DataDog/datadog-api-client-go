@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetViewMode TODO.
+// WidgetViewMode Define how you want the SLO to be displayed.
 type WidgetViewMode string
 
 // List of WidgetViewMode

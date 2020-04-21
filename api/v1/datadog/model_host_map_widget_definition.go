@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// HostMapWidgetDefinition The host map widget graphs any metric across your hosts using the same visualization available from the main Host Map page
+// HostMapWidgetDefinition The host map widget graphs any metric across your hosts using the same visualization available from the main Host Map page.
 type HostMapWidgetDefinition struct {
 	// List of tag prefixes to group by.
 	Group *[]string `json:"group,omitempty"`
@@ -27,12 +27,12 @@ type HostMapWidgetDefinition struct {
 	// List of tags used to filter the map.
 	Scope *[]string                     `json:"scope,omitempty"`
 	Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

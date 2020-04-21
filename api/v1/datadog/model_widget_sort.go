@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetSort TODO.
+// WidgetSort Widget sorting methods.
 type WidgetSort string
 
 // List of WidgetSort

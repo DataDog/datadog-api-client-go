@@ -12,35 +12,35 @@ import (
 	"encoding/json"
 )
 
-// ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your screenboard. Only available on FREE layout dashboards
+// ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your screenboard. Only available on FREE layout dashboards.
 type ServiceSummaryWidgetDefinition struct {
 	DisplayFormat *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
-	// APM environment
+	// APM environment.
 	Env string `json:"env"`
-	// APM service
+	// APM service.
 	Service string `json:"service"`
-	// Whether to show the latency breakdown or not
+	// Whether to show the latency breakdown or not.
 	ShowBreakdown *bool `json:"show_breakdown,omitempty"`
-	// Whether to show the latency distribution or not
+	// Whether to show the latency distribution or not.
 	ShowDistribution *bool `json:"show_distribution,omitempty"`
-	// Whether to show the error metrics or not
+	// Whether to show the error metrics or not.
 	ShowErrors *bool `json:"show_errors,omitempty"`
-	// Whether to show the hits metrics or not
+	// Whether to show the hits metrics or not.
 	ShowHits *bool `json:"show_hits,omitempty"`
-	// Whether to show the latency metrics or not
+	// Whether to show the latency metrics or not.
 	ShowLatency *bool `json:"show_latency,omitempty"`
-	// Whether to show the resource list or not
+	// Whether to show the resource list or not.
 	ShowResourceList *bool             `json:"show_resource_list,omitempty"`
 	SizeFormat       *WidgetSizeFormat `json:"size_format,omitempty"`
-	// APM span name
+	// APM span name.
 	SpanName string      `json:"span_name"`
 	Time     *WidgetTime `json:"time,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 
