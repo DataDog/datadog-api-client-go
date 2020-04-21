@@ -162,6 +162,25 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(t, monitor.GetId(), deletedMonitor.GetDeletedMonitorId())
 }
 
+func TestMonitorPagination(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	// Create monitor
+	monitor, _, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(testMonitor).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteMonitor(monitor.GetId())
+
+	monitors, httpresp, err := TESTAPICLIENT.MonitorsApi.ListMonitors(TESTAUTH).Page(0).PageSize(1).Execute()
+	if err != nil {
+		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(t, 1, len(monitors))
+}
+
 func TestMonitorsCreateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
