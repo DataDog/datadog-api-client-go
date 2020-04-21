@@ -12,17 +12,17 @@ import (
 	"encoding/json"
 )
 
-// AlertGraphWidgetDefinition Alert graphs are timeseries graphs showing the current status of any monitor defined on your system
+// AlertGraphWidgetDefinition Alert graphs are timeseries graphs showing the current status of any monitor defined on your system.
 type AlertGraphWidgetDefinition struct {
-	// ID of the alert to use in the widget
+	// ID of the alert to use in the widget.
 	AlertId string      `json:"alert_id"`
 	Time    *WidgetTime `json:"time,omitempty"`
-	// The title of the widget
+	// The title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type    string        `json:"type"`
 	VizType WidgetVizType `json:"viz_type"`
 }

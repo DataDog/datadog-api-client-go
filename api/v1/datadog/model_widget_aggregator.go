@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetAggregator Aggregator used for the request, available values are avg, last, max, min, or sum.
+// WidgetAggregator Aggregator used for the request.
 type WidgetAggregator string
 
 // List of WidgetAggregator

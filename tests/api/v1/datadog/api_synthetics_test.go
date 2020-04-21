@@ -55,7 +55,7 @@ var testSyntheticsAPI = datadog.SyntheticsTestDetails{
 		FollowRedirects:   datadog.PtrBool(true),
 		MinLocationFailed: datadog.PtrInt64(10),
 		Retry: &datadog.SyntheticsTestOptionsRetry{
-			Count:    datadog.PtrInt64(5),
+			Count:    datadog.PtrInt64(3),
 			Interval: datadog.PtrFloat64(10),
 		},
 		TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
@@ -82,7 +82,7 @@ var testSyntheticsBrowser = datadog.SyntheticsTestDetails{
 		FollowRedirects:   datadog.PtrBool(true),
 		MinLocationFailed: datadog.PtrInt64(10),
 		Retry: &datadog.SyntheticsTestOptionsRetry{
-			Count:    datadog.PtrInt64(5),
+			Count:    datadog.PtrInt64(3),
 			Interval: datadog.PtrFloat64(10),
 		},
 		TickEvery: datadog.SYNTHETICSTICKINTERVAL_FIVE_MINUTES.Ptr(),

@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **Requests** | Pointer to [**HostMapWidgetDefinitionRequests**](HostMapWidgetDefinition_requests.md) |  | 
 **Scope** | Pointer to **[]string** | List of tags used to filter the map. | [optional] 
 **Style** | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinition_style.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget | [optional] 
+**Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "hostmap"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "hostmap"]
 
 ## Methods
 

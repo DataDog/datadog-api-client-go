@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **CustomFgColor** | Pointer to **string** | Color palette to apply to the foreground, same values available as palette. | [optional] 
 **HideValue** | Pointer to **bool** | TODO. | [optional] 
 **ImageUrl** | Pointer to **string** | Displays an image as the background. | [optional] 
-**Metric** | Pointer to **string** | Metric from the request to correlate this conditional format with | [optional] 
+**Metric** | Pointer to **string** | Metric from the request to correlate this conditional format with. | [optional] 
 **Palette** | Pointer to [**WidgetPalette**](WidgetPalette.md) |  | 
 **Timeframe** | Pointer to **string** | TODO. | [optional] 
 **Value** | Pointer to **float64** | Value for the comparator. | 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aggregator** | Pointer to [**WidgetAggregator**](WidgetAggregator.md) |  | [optional] 
-**Alias** | Pointer to **string** | The column name (defaults to the metric name) | [optional] 
+**Alias** | Pointer to **string** | The column name (defaults to the metric name). | [optional] 
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | TODO. | [optional] 
 **EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetLiveSpan The available timeframes depend on the widget you are using
+// WidgetLiveSpan The available timeframes depend on the widget you are using.
 type WidgetLiveSpan string
 
 // List of WidgetLiveSpan

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetGrouping The kind of grouping to use (single check vs. cluster of checks)
+// WidgetGrouping The kind of grouping to use.
 type WidgetGrouping string
 
 // List of WidgetGrouping

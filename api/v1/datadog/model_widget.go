@@ -12,10 +12,10 @@ import (
 	"encoding/json"
 )
 
-// Widget TODO.
+// Widget Information about widget.  Note: The `layout` property is required for widgets in dashboards with `free` `layout_type` only.
 type Widget struct {
 	Definition WidgetDefinition `json:"definition"`
-	// ID of the widget
+	// ID of the widget.
 	Id     *int64        `json:"id,omitempty"`
 	Layout *WidgetLayout `json:"layout,omitempty"`
 }

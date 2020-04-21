@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// WidgetEvent TODO.
+// WidgetEvent Event overlay control options.  See the dedicated [Events JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/widget_json/#events-schema) to learn how to build the `<EVENTS_SCHEMA>`.
 type WidgetEvent struct {
-	// TODO.
+	// Query definition.
 	Q string `json:"q"`
-	// The execution method for multi-value filters. Can be either and or or
+	// The execution method for multi-value filters.
 	TagsExecution *string `json:"tags_execution,omitempty"`
 }
 

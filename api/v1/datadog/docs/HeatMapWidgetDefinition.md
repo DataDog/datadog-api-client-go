@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | TODO. | [optional] 
 **LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
 **Requests** | Pointer to [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md) | TODO. | 
-**ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget | [optional] 
+**ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget | [optional] 
+**Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "heatmap"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "heatmap"]
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods
