@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetEventSize Size to use to display an event (small or large). Available values are s or l
+// WidgetEventSize Size to use to display an event.
 type WidgetEventSize string
 
 // List of WidgetEventSize

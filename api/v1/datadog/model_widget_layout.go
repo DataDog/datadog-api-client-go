@@ -12,15 +12,15 @@ import (
 	"encoding/json"
 )
 
-// WidgetLayout the layout for a widget on a free dashboard
+// WidgetLayout The layout for a widget on a free dashboard.
 type WidgetLayout struct {
-	// The height of the widget
+	// The height of the widget. Should be a non-negative integer.
 	Height int64 `json:"height"`
-	// The width of the widget
+	// The width of the widget. Should be a non-negative integer.
 	Width int64 `json:"width"`
-	// The position of the widget on the X axis
+	// The position of the widget on the x (horizontal) axis. Should be a non-negative integer.
 	X int64 `json:"x"`
-	// The position of the widget on the Y axis
+	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
 	Y int64 `json:"y"`
 }
 

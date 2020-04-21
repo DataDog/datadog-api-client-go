@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// DashboardSummary TODO.
+// DashboardSummary Dashboard summary response.
 type DashboardSummary struct {
-	// TODO.
+	// List of dashboard definitions.
 	Dashboards *[]DashboardSummaryDashboards `json:"dashboards,omitempty"`
 }
 

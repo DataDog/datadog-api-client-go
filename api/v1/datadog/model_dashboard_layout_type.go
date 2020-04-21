@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// DashboardLayoutType Layout type of the dashboard (ordered or free)
+// DashboardLayoutType Layout type of the dashboard.
 type DashboardLayoutType string
 
 // List of DashboardLayoutType

@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ColorPreference** | Pointer to [**WidgetColorPreference**](WidgetColorPreference.md) |  | [optional] 
 **DisplayFormat** | Pointer to [**WidgetMonitorSummaryDisplayFormat**](WidgetMonitorSummaryDisplayFormat.md) |  | [optional] 
-**HideZeroCounts** | Pointer to **bool** | Whether to show counts of 0 or not | [optional] 
-**Query** | Pointer to **string** | Query to filter the monitors with | 
-**ShowLastTriggered** | Pointer to **bool** | Whether to show the time that has elapsed since the monitor/group triggered | [optional] 
+**HideZeroCounts** | Pointer to **bool** | Whether to show counts of 0 or not. | [optional] 
+**Query** | Pointer to **string** | Query to filter the monitors with. | 
+**ShowLastTriggered** | Pointer to **bool** | Whether to show the time that has elapsed since the monitor/group triggered. | [optional] 
 **Sort** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
 **SummaryType** | Pointer to [**WidgetSummaryType**](WidgetSummaryType.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget | [optional] 
+**Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "manage_status"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "manage_status"]
 
 ## Methods
 

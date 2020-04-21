@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AlertId** | Pointer to **string** | ID of the alert to use in the widget | 
+**AlertId** | Pointer to **string** | ID of the alert to use in the widget. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | The title of the widget | [optional] 
+**Title** | Pointer to **string** | The title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "alert_graph"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "alert_graph"]
 **VizType** | Pointer to [**WidgetVizType**](WidgetVizType.md) |  | 
 
 ## Methods

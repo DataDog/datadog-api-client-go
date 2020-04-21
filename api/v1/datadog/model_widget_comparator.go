@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetComparator Comparator to apply from >, >=, <, or <=
+// WidgetComparator Comparator to apply.
 type WidgetComparator string
 
 // List of WidgetComparator

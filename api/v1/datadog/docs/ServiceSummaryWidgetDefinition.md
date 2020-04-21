@@ -5,21 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DisplayFormat** | Pointer to [**WidgetServiceSummaryDisplayFormat**](WidgetServiceSummaryDisplayFormat.md) |  | [optional] 
-**Env** | Pointer to **string** | APM environment | 
-**Service** | Pointer to **string** | APM service | 
-**ShowBreakdown** | Pointer to **bool** | Whether to show the latency breakdown or not | [optional] 
-**ShowDistribution** | Pointer to **bool** | Whether to show the latency distribution or not | [optional] 
-**ShowErrors** | Pointer to **bool** | Whether to show the error metrics or not | [optional] 
-**ShowHits** | Pointer to **bool** | Whether to show the hits metrics or not | [optional] 
-**ShowLatency** | Pointer to **bool** | Whether to show the latency metrics or not | [optional] 
-**ShowResourceList** | Pointer to **bool** | Whether to show the resource list or not | [optional] 
+**Env** | Pointer to **string** | APM environment. | 
+**Service** | Pointer to **string** | APM service. | 
+**ShowBreakdown** | Pointer to **bool** | Whether to show the latency breakdown or not. | [optional] 
+**ShowDistribution** | Pointer to **bool** | Whether to show the latency distribution or not. | [optional] 
+**ShowErrors** | Pointer to **bool** | Whether to show the error metrics or not. | [optional] 
+**ShowHits** | Pointer to **bool** | Whether to show the hits metrics or not. | [optional] 
+**ShowLatency** | Pointer to **bool** | Whether to show the latency metrics or not. | [optional] 
+**ShowResourceList** | Pointer to **bool** | Whether to show the resource list or not. | [optional] 
 **SizeFormat** | Pointer to [**WidgetSizeFormat**](WidgetSizeFormat.md) |  | [optional] 
-**SpanName** | Pointer to **string** | APM span name | 
+**SpanName** | Pointer to **string** | APM span name. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget | [optional] 
+**Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "trace_service"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "trace_service"]
 
 ## Methods
 

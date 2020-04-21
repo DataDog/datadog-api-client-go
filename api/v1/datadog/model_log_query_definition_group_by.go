@@ -14,7 +14,7 @@ import (
 
 // LogQueryDefinitionGroupBy TODO.
 type LogQueryDefinitionGroupBy struct {
-	// TODO.
+	// Facet name.
 	Facet string `json:"facet"`
 	// TODO.
 	Limit *int64                  `json:"limit,omitempty"`
