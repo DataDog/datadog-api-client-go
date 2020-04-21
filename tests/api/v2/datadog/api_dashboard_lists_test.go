@@ -29,7 +29,7 @@ var (
 	testAPIClientV1 *datadogV1.APIClient
 )
 
-func initializeClientV1(c Client) {
+func initializeClientV1(c *Client) {
 	testAuthV1 = context.WithValue(
 		context.Background(),
 		datadogV1.ContextAPIKeys,
@@ -48,7 +48,7 @@ func initializeClientV1(c Client) {
 	testAPIClientV1 = datadogV1.NewAPIClient(config)
 }
 
-func createDashboardList(c Client) error {
+func createDashboardList(c *Client) error {
 	initializeClientV1(c)
 	res, httpresp, err := testAPIClientV1.DashboardListsApi.CreateDashboardList(testAuthV1).
 		Body(datadogV1.DashboardList{Name: fmt.Sprintf("go-client-test-v2-%d", c.Clock.Now().Unix())}).

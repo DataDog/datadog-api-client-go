@@ -11,13 +11,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
-func testingRoleCreateAttributes(c Client) *datadog.RoleCreateAttributes {
+func testingRoleCreateAttributes(c *Client) *datadog.RoleCreateAttributes {
 	rca := datadog.NewRoleCreateAttributes()
 	rca.SetName(fmt.Sprintf("test-role-datadog-client-go-%d", c.Clock.Now().UnixNano()))
 	return rca
 }
 
-func deleteRole(c Client, roleID string) {
+func deleteRole(c *Client, roleID string) {
 	_, err := c.Client.RolesApi.DeleteRole(c.Ctx, roleID).Execute()
 	if err == nil {
 		return

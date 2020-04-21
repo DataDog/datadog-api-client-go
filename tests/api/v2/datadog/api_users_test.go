@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
-func testingUserCreateAttributes(c Client) *datadog.UserCreateAttributes {
+func testingUserCreateAttributes(c *Client) *datadog.UserCreateAttributes {
 	uca := datadog.NewUserCreateAttributes()
 	uca.SetEmail(fmt.Sprintf("test-datadog-client-go-%d@datadoghq.com", c.Clock.Now().UnixNano()))
 	uca.SetName("Test Datadog Client Go")
@@ -18,7 +18,7 @@ func testingUserCreateAttributes(c Client) *datadog.UserCreateAttributes {
 	return uca
 }
 
-func disableUser(c Client, userID string) {
+func disableUser(c *Client, userID string) {
 	_, err := c.Client.UsersApi.DisableUser(c.Ctx, userID).Execute()
 	if err == nil {
 		return

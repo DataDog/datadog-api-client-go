@@ -116,15 +116,15 @@ type Client struct {
 }
 
 // NewClient returns client for unit tests.
-func NewClient() Client {
+func NewClient() *Client {
 	c := Client{}
 	c.Ctx = FakeAuth
 	c.Client = datadog.NewAPIClient(NewConfiguration())
-	return c
+	return &c
 }
 
 // NewClientWithRecording returns configured client with recorder.
-func NewClientWithRecording(t *testing.T) Client {
+func NewClientWithRecording(t *testing.T) *Client {
 	// Configure recorder
 	var mode recorder.Mode
 	if os.Getenv("RECORD") == "true" {
@@ -172,11 +172,11 @@ func NewClientWithRecording(t *testing.T) Client {
 		c.Clock = restoreClock(t)
 	}
 
-	return c
+	return &c
 }
 
 // Close open resources.
-func (c Client) Close() {
+func (c *Client) Close() {
 	if c.close == nil {
 		return
 	}
