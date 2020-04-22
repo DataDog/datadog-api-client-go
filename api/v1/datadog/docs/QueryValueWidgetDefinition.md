@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "query_value"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "query_value"]
 
 ## Methods
 

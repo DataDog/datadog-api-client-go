@@ -12,14 +12,14 @@ import (
 	"encoding/json"
 )
 
-// LogStreamWidgetDefinition The Log Stream displays a log flow matching the defined query. Only available on FREE layout dashboards
+// LogStreamWidgetDefinition The Log Stream displays a log flow matching the defined query. Only available on FREE layout dashboards.
 type LogStreamWidgetDefinition struct {
-	// Which columns to display on the widget
+	// Which columns to display on the widget.
 	Columns *[]string `json:"columns,omitempty"`
-	// An array of index names to query in the stream.
+	// An array of index names to query in the stream. Use [] to query all indexes at once.
 	Indexes        *[]string             `json:"indexes,omitempty"`
 	MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
-	// Query to filter the log stream with
+	// Query to filter the log stream with.
 	Query *string `json:"query,omitempty"`
 	// Whether to show the date column or not
 	ShowDateColumn *bool `json:"show_date_column,omitempty"`
@@ -27,12 +27,12 @@ type LogStreamWidgetDefinition struct {
 	ShowMessageColumn *bool            `json:"show_message_column,omitempty"`
 	Sort              *WidgetFieldSort `json:"sort,omitempty"`
 	Time              *WidgetTime      `json:"time,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

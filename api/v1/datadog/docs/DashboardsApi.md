@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Dashboard**](Dashboard.md) | Dashboard request object | 
+ **body** | [**Dashboard**](Dashboard.md) | Dashboard request object. | 
 
 ### Return type
 
@@ -65,7 +65,7 @@ Delete a Dashboard
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** | The id of the dashboard | 
+**dashboardId** | **string** | The ID of the dashboard. | 
 
 ### Other Parameters
 
@@ -108,7 +108,7 @@ Get a Dashboard
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** | The id of the dashboard | 
+**dashboardId** | **string** | The ID of the dashboard. | 
 
 ### Other Parameters
 
@@ -186,7 +186,7 @@ Update a Dashboard
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** | The id of the dashboard | 
+**dashboardId** | **string** | The ID of the dashboard. | 
 
 ### Other Parameters
 

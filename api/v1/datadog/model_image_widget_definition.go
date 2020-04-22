@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// ImageWidgetDefinition The image widget allows you to embed an image on your dashboard. An image can be a PNG, JPG, or animated GIF. Only available on FREE layout dashboards
+// ImageWidgetDefinition The image widget allows you to embed an image on your dashboard. An image can be a PNG, JPG, or animated GIF. Only available on FREE layout dashboards.
 type ImageWidgetDefinition struct {
 	Margin *WidgetMargin      `json:"margin,omitempty"`
 	Sizing *WidgetImageSizing `json:"sizing,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
-	// URL of the image
+	// URL of the image.
 	Url string `json:"url"`
 }
 

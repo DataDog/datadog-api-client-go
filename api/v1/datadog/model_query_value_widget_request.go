@@ -16,7 +16,7 @@ import (
 type QueryValueWidgetRequest struct {
 	Aggregator *WidgetAggregator   `json:"aggregator,omitempty"`
 	ApmQuery   *LogQueryDefinition `json:"apm_query,omitempty"`
-	// TODO.
+	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	EventQuery         *EventQueryDefinition      `json:"event_query,omitempty"`
 	LogQuery           *LogQueryDefinition        `json:"log_query,omitempty"`

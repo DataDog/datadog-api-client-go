@@ -21,7 +21,7 @@ type ToplistWidgetRequest struct {
 	LogQuery           *LogQueryDefinition        `json:"log_query,omitempty"`
 	NetworkQuery       *LogQueryDefinition        `json:"network_query,omitempty"`
 	ProcessQuery       *ProcessQueryDefinition    `json:"process_query,omitempty"`
-	// TODO.
+	// Widget query.
 	Q        *string                       `json:"q,omitempty"`
 	RumQuery *LogQueryDefinition           `json:"rum_query,omitempty"`
 	Style    *TimeseriesWidgetRequestStyle `json:"style,omitempty"`

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// ToplistWidgetDefinition The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc
+// ToplistWidgetDefinition The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc.
 type ToplistWidgetDefinition struct {
 	// TODO.
 	Requests []ToplistWidgetRequest `json:"requests"`
@@ -20,9 +20,9 @@ type ToplistWidgetDefinition struct {
 	// Title of your widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

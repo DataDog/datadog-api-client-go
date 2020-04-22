@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetSummaryType Which summary type should be used
+// WidgetSummaryType Which summary type should be used.
 type WidgetSummaryType string
 
 // List of WidgetSummaryType

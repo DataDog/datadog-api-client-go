@@ -12,12 +12,12 @@ import (
 	"encoding/json"
 )
 
-// GroupWidgetDefinition The groups widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible
+// GroupWidgetDefinition The groups widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible.
 type GroupWidgetDefinition struct {
 	LayoutType WidgetLayoutType `json:"layout_type"`
-	// Title of the widget
+	// Title of the widget.
 	Title *string `json:"title,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 	// TODO.
 	Widgets []Widget `json:"widgets"`

@@ -12,17 +12,17 @@ import (
 	"encoding/json"
 )
 
-// ChangeWidgetDefinition The Change graph shows you the change in a value over the time period chosen
+// ChangeWidgetDefinition The Change graph shows you the change in a value over the time period chosen.
 type ChangeWidgetDefinition struct {
-	// TODO.
+	// Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the `REQUEST_SCHEMA`.
 	Requests []ChangeWidgetRequest `json:"requests"`
 	Time     *WidgetTime           `json:"time,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

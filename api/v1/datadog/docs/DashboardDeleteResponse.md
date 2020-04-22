@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedDashboardId** | Pointer to **string** | ID of the deleted dashboard | [optional] 
+**DeletedDashboardId** | Pointer to **string** | ID of the deleted dashboard. | [optional] 
 
 ## Methods
 

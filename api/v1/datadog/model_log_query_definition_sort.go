@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// LogQueryDefinitionSort TODO.
+// LogQueryDefinitionSort Define a sorting method.
 type LogQueryDefinitionSort struct {
-	// TODO.
+	// The aggregation method.
 	Aggregation string `json:"aggregation"`
-	// TODO.
+	// Facet name.
 	Facet *string    `json:"facet,omitempty"`
 	Order WidgetSort `json:"order"`
 }

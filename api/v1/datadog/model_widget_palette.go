@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetPalette Color palette to apply; choose from blue, custom_bg, custom_image, custom_text, gray_on_white, green, green_on_white, grey, orange, red, red_on_white, white_on_gray, white_on_green, white_on_red, white_on_yellow, or yellow_on_white
+// WidgetPalette Color palette to apply.
 type WidgetPalette string
 
 // List of WidgetPalette

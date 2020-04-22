@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AlertId** | Pointer to **string** | ID of the alert to use in the widget | 
-**Precision** | Pointer to **int64** | Number of decimal to show. If not defined, will use the raw value | [optional] 
+**AlertId** | Pointer to **string** | ID of the alert to use in the widget. | 
+**Precision** | Pointer to **int64** | Number of decimal to show. If not defined, will use the raw value. | [optional] 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget | [optional] 
+**Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of value in the widget | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "alert_value"]
-**Unit** | Pointer to **string** | Unit to display with the value | [optional] 
+**TitleSize** | Pointer to **string** | Size of value in the widget. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "alert_value"]
+**Unit** | Pointer to **string** | Unit to display with the value. | [optional] 
 
 ## Methods
 
