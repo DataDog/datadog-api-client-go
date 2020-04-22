@@ -21,3 +21,10 @@ go.sum,gopkg.in/check.v1,BSD-2-Clause,2010-2013 Gustavo Niemeyer <gustavo@niemey
 go.sum,gopkg.in/h2non/gock.v1,MIT,2016-2019 Tomas Aparicio
 go.sum,gopkg.in/yaml.v2,Apache-2.0,2011-2016 Canonical Ltd.
 go.sum,gotest.tools,Apache-2.0,2018 gotest.tools authors
+go.sum,gopkg.in/DataDog/dd-trace-go.v1,Apache-2.0,2016-Present Datadog, Inc.
+go.sum,github.com/DataDog/datadog-go,Apache-2.0,2016-Present Datadog, Inc.
+go.sum,github.com/opentracing/opentracing-go,Apache-2.0,Copyright 2016-2017 The OpenTracing Authors
+go.sum,github.com/philhofer/fwd,<LICENSE>,<COPYRIGHT>
+go.sum,github.com/tinylib/msgp,<LICENSE>,<COPYRIGHT>
+go.sum,golang.org/x/sys,<LICENSE>,<COPYRIGHT>
+go.sum,golang.org/x/time,<LICENSE>,<COPYRIGHT>

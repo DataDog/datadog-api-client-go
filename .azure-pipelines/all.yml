@@ -16,10 +16,23 @@ schedules:
       include:
         - master
 
+resources:
+  containers:
+  - container: datadog-agent
+    image: datadog/agent:7
+    ports:
+    - 8126:8126
+    env:
+      DD_API_KEY: $(datadogAPIKey)
+      DD_APM_ENABLED: true
+      DD_APM_NON_LOCAL_TRAFFIC: true
+
 jobs:
 - job: IntegrationTests
   pool:
     vmImage: "Ubuntu-16.04"
+  services:
+    datadog-agent: datadog-agent
   steps:
     - task: Docker@2
       displayName: Build the Image
@@ -31,14 +44,15 @@ jobs:
       displayName: Run integration tests
       inputs:
         command: run
-        arguments: --volume /home/vsts/work/1/s:/datadog-api-client-go --env RECORD --env DD_TEST_CLIENT_API_KEY --env DD_TEST_CLIENT_APP_KEY datadog-go-integration-test
+        arguments: --volume /home/vsts/work/1/s:/datadog-api-client-go --env DD_AGENT_HOST --env RECORD --env DD_TEST_CLIENT_API_KEY --env DD_TEST_CLIENT_APP_KEY datadog-go-integration-test
       env:
+        DD_AGENT_HOST: datadog-agent
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
         RECORD: "true"
     - script: |
         bash <(curl -s https://codecov.io/bash) -F integration -v
- 
+
       displayName: Upload to codecov.io
       env:
         CODECOV_TOKEN: $(codecovToken)

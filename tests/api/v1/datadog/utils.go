@@ -24,6 +24,10 @@ import (
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
+	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -111,8 +115,10 @@ func sendRequest(method, url string, payload []byte) (*http.Response, []byte, er
 
 func setupTest(t *testing.T) func(t *testing.T) {
 	// SETUP testing
+	span := tracer.StartSpan(t.Name())
+	spanCtx := tracer.ContextWithSpan(context.Background(), span)
 	TESTAUTH = context.WithValue(
-		context.Background(),
+		spanCtx,
 		datadog.ContextAPIKeys,
 		map[string]datadog.APIKey{
 			"apiKeyAuth": {
@@ -133,6 +139,8 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	} else {
 		mode = recorder.ModeReplaying
 	}
+	span.SetTag("recorder.mode", mode)
+
 	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", t.Name()), mode, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -159,14 +167,17 @@ func setupTest(t *testing.T) func(t *testing.T) {
 		restoreClock(t)
 	}
 
-	config.HTTPClient = &http.Client{
+	config.HTTPClient = ddhttp.WrapClient(&http.Client{
 		Transport: r, // Inject as transport!
-	}
+	}, ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
+		span.SetTag(ext.ServiceName, r.Header.Get("DD-OPERATION-ID"))
+	}))
 
 	TESTAPICLIENT = datadog.NewAPIClient(config)
 
 	return func(t *testing.T) {
 		r.Stop()
+		span.Finish()
 	}
 }
 
