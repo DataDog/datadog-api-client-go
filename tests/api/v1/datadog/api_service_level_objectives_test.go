@@ -303,8 +303,6 @@ func TestSLOListErrors(t *testing.T) {
 			_, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.ListSLOs(tc.Ctx).Ids(tc.Ids).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			fmt.Println("hello", httpresp.StatusCode)
-			fmt.Println("hello", ok)
 			assert.True(t, ok)
 			assert.NotEmpty(t, apiError.GetErrors())
 		})
