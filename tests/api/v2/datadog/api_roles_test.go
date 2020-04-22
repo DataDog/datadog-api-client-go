@@ -644,7 +644,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, create a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -659,13 +659,18 @@ func TestListRoleUsersErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
+	// bad role ID
+	rid404 := "00000000-dead-beef-dead-ffffffffffff"
+	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
+	assert.Equal(t, 404, httpresp.StatusCode)
+
 	testCases := map[string]struct {
 		Ctx                context.Context
 		ExpectedStatusCode int
 		RoleID             string
 	}{
 		"403 Forbidden": {FakeAuth, 403, rid},
-		// !FIXME "404 Not found": {c.Ctx, 404, "10000000-dead-beef-dead-ffffffffffff"},
+		"404 Not found": {c.Ctx, 404, rid404},
 	}
 
 	for name, tc := range testCases {
