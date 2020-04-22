@@ -12,21 +12,21 @@ import (
 	"encoding/json"
 )
 
-// NoteWidgetDefinition The notes and links widget is similar to free text widget, but allows for more formatting options
+// NoteWidgetDefinition The notes and links widget is similar to free text widget, but allows for more formatting options.
 type NoteWidgetDefinition struct {
-	// Background color of the note
+	// Background color of the note.
 	BackgroundColor *string `json:"background_color,omitempty"`
-	// Content of the note
+	// Content of the note.
 	Content string `json:"content"`
-	// Size of the text
+	// Size of the text.
 	FontSize *string `json:"font_size,omitempty"`
-	// Whether to show a tick or not
+	// Whether to show a tick or not.
 	ShowTick  *bool            `json:"show_tick,omitempty"`
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
 	TickEdge  *WidgetTickEdge  `json:"tick_edge,omitempty"`
-	// Where to position the tick on an edge
+	// Where to position the tick on an edge.
 	TickPos *string `json:"tick_pos,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

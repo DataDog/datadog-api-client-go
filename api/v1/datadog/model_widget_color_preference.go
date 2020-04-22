@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetColorPreference Which color to use on the widget. Available values are background or text
+// WidgetColorPreference Which color to use on the widget.
 type WidgetColorPreference string
 
 // List of WidgetColorPreference

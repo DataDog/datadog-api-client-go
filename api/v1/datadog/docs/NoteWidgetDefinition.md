@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BackgroundColor** | Pointer to **string** | Background color of the note | [optional] 
-**Content** | Pointer to **string** | Content of the note | 
-**FontSize** | Pointer to **string** | Size of the text | [optional] 
-**ShowTick** | Pointer to **bool** | Whether to show a tick or not | [optional] 
+**BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
+**Content** | Pointer to **string** | Content of the note. | 
+**FontSize** | Pointer to **string** | Size of the text. | [optional] 
+**ShowTick** | Pointer to **bool** | Whether to show a tick or not. | [optional] 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TickEdge** | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md) |  | [optional] 
-**TickPos** | Pointer to **string** | Where to position the tick on an edge | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "note"]
+**TickPos** | Pointer to **string** | Where to position the tick on an edge. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "note"]
 
 ## Methods
 

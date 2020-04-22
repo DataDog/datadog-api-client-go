@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// LogsQueryCompute TODO.
+// LogsQueryCompute Define computation for a log query.
 type LogsQueryCompute struct {
-	// TODO.
+	// The aggregation method.
 	Aggregation string `json:"aggregation"`
-	// TODO.
+	// Facet name.
 	Facet *string `json:"facet,omitempty"`
-	// TODO.
+	// Define a time interval in seconds.
 	Interval *int64 `json:"interval,omitempty"`
 }
 

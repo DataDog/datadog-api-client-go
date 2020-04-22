@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetLineWidth Width of line displayed. Available values are normal, thick, or thin.
+// WidgetLineWidth Width of line displayed.
 type WidgetLineWidth string
 
 // List of WidgetLineWidth

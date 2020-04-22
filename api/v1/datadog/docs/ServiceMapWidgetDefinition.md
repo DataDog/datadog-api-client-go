@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Service** | Pointer to **string** | The ID of the service you want to map. | 
 **Title** | Pointer to **string** | The title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "servicemap"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "servicemap"]
 
 ## Methods
 

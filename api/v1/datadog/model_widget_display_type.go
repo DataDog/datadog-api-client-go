@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetDisplayType Type of display to use for the request. Available values are area, bars, or line.
+// WidgetDisplayType Type of display to use for the request.
 type WidgetDisplayType string
 
 // List of WidgetDisplayType

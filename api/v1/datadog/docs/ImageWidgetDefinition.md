@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Margin** | Pointer to [**WidgetMargin**](WidgetMargin.md) |  | [optional] 
 **Sizing** | Pointer to [**WidgetImageSizing**](WidgetImageSizing.md) |  | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "image"]
-**Url** | Pointer to **string** | URL of the image | 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "image"]
+**Url** | Pointer to **string** | URL of the image. | 
 
 ## Methods
 

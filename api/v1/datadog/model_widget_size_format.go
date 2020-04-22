@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetSizeFormat Size of the widget. Available values are small, medium, or large
+// WidgetSizeFormat Size of the widget.
 type WidgetSizeFormat string
 
 // List of WidgetSizeFormat

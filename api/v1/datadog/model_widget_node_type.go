@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetNodeType Which type of node to use in the map
+// WidgetNodeType Which type of node to use in the map.
 type WidgetNodeType string
 
 // List of WidgetNodeType

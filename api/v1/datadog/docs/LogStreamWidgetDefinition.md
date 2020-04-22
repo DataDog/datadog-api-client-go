@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Columns** | Pointer to **[]string** | Which columns to display on the widget | [optional] 
-**Indexes** | Pointer to **[]string** | An array of index names to query in the stream. | [optional] 
+**Columns** | Pointer to **[]string** | Which columns to display on the widget. | [optional] 
+**Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Use [] to query all indexes at once. | [optional] 
 **MessageDisplay** | Pointer to [**WidgetMessageDisplay**](WidgetMessageDisplay.md) |  | [optional] 
-**Query** | Pointer to **string** | Query to filter the log stream with | [optional] 
+**Query** | Pointer to **string** | Query to filter the log stream with. | [optional] 
 **ShowDateColumn** | Pointer to **bool** | Whether to show the date column or not | [optional] 
 **ShowMessageColumn** | Pointer to **bool** | Whether to show the message column or not | [optional] 
 **Sort** | Pointer to [**WidgetFieldSort**](WidgetFieldSort.md) |  | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget | [optional] 
+**Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title | [optional] 
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "log_stream"]
+**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "log_stream"]
 
 ## Methods
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequest_metadata.md) | Used to define expression aliases. | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
-**Q** | Pointer to **string** | TODO. | [optional] 
+**Q** | Pointer to **string** | Widget query. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Style** | Pointer to [**TimeseriesWidgetRequestStyle**](TimeseriesWidgetRequest_style.md) |  | [optional] 
 

@@ -13,7 +13,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"runtime"
 	"strings"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // contextKeys are used to identify the type of value in the context.
@@ -101,7 +104,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "DataDog/0.1.0/go-experimental",
+		UserAgent:     getUserAgent(),
 		Debug:         false,
 		Servers: ServerConfigurations{
 			{
@@ -334,4 +337,14 @@ func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
 		log.Printf("WARNING: '%s' is not an unstable operation, is always enabled", operation)
 	}
 	return false
+}
+
+func getUserAgent() string {
+	return fmt.Sprintf(
+		"datadog-api-client-go/%s (go %s; os %s; arch %s)",
+		client.Version,
+		runtime.Version(),
+		runtime.GOOS,
+		runtime.GOARCH,
+	)
 }

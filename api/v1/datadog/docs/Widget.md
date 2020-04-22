@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Definition** | Pointer to [**WidgetDefinition**](WidgetDefinition.md) |  | 
-**Id** | Pointer to **int64** | ID of the widget | [optional] 
+**Id** | Pointer to **int64** | ID of the widget. | [optional] 
 **Layout** | Pointer to [**WidgetLayout**](WidgetLayout.md) |  | [optional] 
 
 ## Methods

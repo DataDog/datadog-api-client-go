@@ -12,24 +12,24 @@ import (
 	"encoding/json"
 )
 
-// CheckStatusWidgetDefinition Check status shows the current status or number of results for any check performed
+// CheckStatusWidgetDefinition Check status shows the current status or number of results for any check performed.
 type CheckStatusWidgetDefinition struct {
-	// Name of the check to use in the widget
+	// Name of the check to use in the widget.
 	Check string `json:"check"`
-	// Group reporting a single check
+	// Group reporting a single check.
 	Group *string `json:"group,omitempty"`
-	// List of tag prefixes to group by in the case of a cluster check
+	// List of tag prefixes to group by in the case of a cluster check.
 	GroupBy  *[]string      `json:"group_by,omitempty"`
 	Grouping WidgetGrouping `json:"grouping"`
-	// List of tags used to filter the groups reporting a cluster check
+	// List of tags used to filter the groups reporting a cluster check.
 	Tags *[]string   `json:"tags,omitempty"`
 	Time *WidgetTime `json:"time,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

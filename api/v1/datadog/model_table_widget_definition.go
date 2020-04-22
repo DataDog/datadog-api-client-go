@@ -12,17 +12,17 @@ import (
 	"encoding/json"
 )
 
-// TableWidgetDefinition The table visualization is available on timeboards and screenboards. It displays columns of metrics grouped by tag key
+// TableWidgetDefinition The table visualization is available on timeboards and screenboards. It displays columns of metrics grouped by tag key.
 type TableWidgetDefinition struct {
 	// TODO.
 	Requests []TableWidgetRequest `json:"requests"`
 	Time     *WidgetTime          `json:"time,omitempty"`
-	// Title of your widget
+	// Title of your widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 

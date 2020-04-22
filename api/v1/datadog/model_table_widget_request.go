@@ -15,7 +15,7 @@ import (
 // TableWidgetRequest TODO.
 type TableWidgetRequest struct {
 	Aggregator *WidgetAggregator `json:"aggregator,omitempty"`
-	// The column name (defaults to the metric name)
+	// The column name (defaults to the metric name).
 	Alias    *string             `json:"alias,omitempty"`
 	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
 	// TODO.

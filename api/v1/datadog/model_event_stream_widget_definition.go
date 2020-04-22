@@ -12,20 +12,20 @@ import (
 	"encoding/json"
 )
 
-// EventStreamWidgetDefinition The event stream is a widget version of the stream of events on the Event Stream view. Only available on FREE layout dashboards
+// EventStreamWidgetDefinition The event stream is a widget version of the stream of events on the Event Stream view. Only available on FREE layout dashboards.
 type EventStreamWidgetDefinition struct {
 	EventSize *WidgetEventSize `json:"event_size,omitempty"`
-	// Query to filter the event stream with
+	// Query to filter the event stream with.
 	Query string `json:"query"`
-	// The execution method for multi-value filters. Can be either and or or
+	// The execution method for multi-value filters. Can be either and or or.
 	TagsExecution *string     `json:"tags_execution,omitempty"`
 	Time          *WidgetTime `json:"time,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type string `json:"type"`
 }
 
