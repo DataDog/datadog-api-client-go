@@ -16,7 +16,7 @@ import (
 type LogStreamWidgetDefinition struct {
 	// Which columns to display on the widget.
 	Columns *[]string `json:"columns,omitempty"`
-	// An array of index names to query in the stream.
+	// An array of index names to query in the stream. Use [] to query all indexes at once.
 	Indexes        *[]string             `json:"indexes,omitempty"`
 	MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
 	// Query to filter the log stream with.
