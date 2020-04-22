@@ -14,7 +14,7 @@ interactions:
       - AddUserToRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/d7727f46-8353-11ea-93de-93c50559b03f/users
+    url: https://api.datadoghq.com/api/v2/roles/5c1f302a-8469-11ea-93de-737fe5b76d3e/users
     method: POST
   response:
     body: '{"errors": [" not found"]}'
@@ -28,7 +28,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 22:11:11 GMT
+      - Wed, 22 Apr 2020 07:17:44 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -38,7 +40,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2413239"
+      - "35.2417977"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

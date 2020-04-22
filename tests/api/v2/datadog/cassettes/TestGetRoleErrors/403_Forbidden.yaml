@@ -11,7 +11,7 @@ interactions:
       - GetRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/24aa6992-835c-11ea-93de-b30e9e11d791
+    url: https://api.datadoghq.com/api/v2/roles/577aacc0-8469-11ea-93de-a7ff03aaf0cd
     method: GET
   response:
     body: |
@@ -21,14 +21,12 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "170"
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 23:10:36 GMT
+      - Wed, 22 Apr 2020 07:17:36 GMT
       Via:
-      - haproxy
+      - 1.1 haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

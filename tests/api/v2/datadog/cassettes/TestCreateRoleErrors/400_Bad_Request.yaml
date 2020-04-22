@@ -31,7 +31,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 22:11:04 GMT
+      - Wed, 22 Apr 2020 07:17:36 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,7 +41,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2413239"
+      - "35.2417977"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

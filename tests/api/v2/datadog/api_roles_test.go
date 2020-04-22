@@ -321,7 +321,7 @@ func TestGetRoleErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -336,7 +336,7 @@ func TestGetRoleErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
-	// bad role id
+	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
 	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
 	assert.Equal(t, 404, httpresp.StatusCode)
@@ -348,7 +348,7 @@ func TestGetRoleErrors(t *testing.T) {
 	}{
 
 		// "40X Bad Request": {c.Ctx, 404 /* FIXME invalid uuid should be 400 rather then 404 */, "this-is-an-invalid-role-id-for-get-endpoint-because-it-is-too-long-to-be-a-uuid"},
-		// "403 Forbidden": {FakeAuth, 403, rid},
+		"403 Forbidden": {FakeAuth, 403, rid},
 		"404 Not found": {c.Ctx, 404, rid404},
 	}
 
@@ -371,7 +371,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, create a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -386,7 +386,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
-	// bad role id
+	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
 	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
 	assert.Equal(t, 404, httpresp.StatusCode)
@@ -441,7 +441,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -456,7 +456,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
-	// bad role id
+	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
 	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
 	assert.Equal(t, 404, httpresp.StatusCode)
@@ -489,7 +489,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -504,13 +504,18 @@ func TestListRolePermissionsErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
+	// bad role ID
+	rid404 := "00000000-dead-beef-dead-ffffffffffff"
+	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
+	assert.Equal(t, 404, httpresp.StatusCode)
+
 	testCases := map[string]struct {
 		Ctx                context.Context
 		ExpectedStatusCode int
 		RoleID             string
 	}{
 		"403 Forbidden": {FakeAuth, 403, rid},
-		"404 Not found": {c.Ctx, 404, "00000000-dead-beef-dead-ffffffffffff"},
+		"404 Not found": {c.Ctx, 404, rid404},
 	}
 
 	for name, tc := range testCases {
@@ -532,7 +537,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -547,9 +552,14 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
+	// bad role ID
+	rid404 := "00000000-dead-beef-dead-ffffffffffff"
+	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
+	assert.Equal(t, 404, httpresp.StatusCode)
+
 	rtp := datadog.NewRelationshipToPermissionWithDefaults()
 	rtpd := datadog.NewRelationshipToPermissionDataWithDefaults()
-	rtpd.SetId("00000000-dead-beef-dead-ffffffffffff")
+	rtpd.SetId(rid404)
 	rtp.SetData(*rtpd)
 
 	testCases := map[string]struct {
@@ -703,7 +713,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -718,9 +728,14 @@ func TestAddUserToRoleErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
+	// bad role ID
+	rid404 := "00000000-dead-beef-dead-ffffffffffff"
+	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
+	assert.Equal(t, 404, httpresp.StatusCode)
+
 	rtu := datadog.NewRelationshipToUserWithDefaults()
 	rtud := datadog.NewRelationshipToUserDataWithDefaults()
-	rtud.SetId("00000000-dead-beef-dead-ffffffffffff")
+	rtud.SetId(rid404)
 	rtu.SetData(*rtud)
 
 	testCases := map[string]struct {
@@ -752,7 +767,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -767,7 +782,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
 
-	// bad role id
+	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
 	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
 	assert.Equal(t, 404, httpresp.StatusCode)

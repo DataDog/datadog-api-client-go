@@ -11,7 +11,7 @@ interactions:
       - DeleteRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/d50f60fc-8353-11ea-93de-831f2ccea55f
+    url: https://api.datadoghq.com/api/v2/roles/58ed1ab6-8469-11ea-93de-53caf3cb9359
     method: DELETE
   response:
     body: |
@@ -21,14 +21,12 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "170"
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 22:11:07 GMT
+      - Wed, 22 Apr 2020 07:17:39 GMT
       Via:
-      - haproxy
+      - 1.1 haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

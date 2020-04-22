@@ -21,14 +21,12 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "170"
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 22:11:04 GMT
+      - Wed, 22 Apr 2020 07:17:35 GMT
       Via:
-      - haproxy
+      - 1.1 haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

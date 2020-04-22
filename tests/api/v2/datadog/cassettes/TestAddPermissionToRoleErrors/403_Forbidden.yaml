@@ -14,7 +14,7 @@ interactions:
       - AddPermissionToRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/d611a12c-8353-11ea-93de-8bf73e9bebb2/permissions
+    url: https://api.datadoghq.com/api/v2/roles/5a0b69f2-8469-11ea-93de-a7918c196b9d/permissions
     method: POST
   response:
     body: |
@@ -24,14 +24,12 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "170"
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Apr 2020 22:11:08 GMT
+      - Wed, 22 Apr 2020 07:17:41 GMT
       Via:
-      - haproxy
+      - 1.1 haproxy
     status: 403 Forbidden
     code: 403
     duration: ""
