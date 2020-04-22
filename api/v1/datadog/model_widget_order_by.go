@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetOrderBy What to order by; values available are change, name, present, or past.
+// WidgetOrderBy What to order by.
 type WidgetOrderBy string
 
 // List of WidgetOrderBy

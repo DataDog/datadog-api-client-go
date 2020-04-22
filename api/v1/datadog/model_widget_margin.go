@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetMargin Size of the margins around the image. Available values are small or large
+// WidgetMargin Size of the margins around the image.
 type WidgetMargin string
 
 // List of WidgetMargin

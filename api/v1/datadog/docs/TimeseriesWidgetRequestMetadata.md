@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AliasName** | Pointer to **string** | TODO. | [optional] 
-**Expression** | Pointer to **string** | TODO. | 
+**AliasName** | Pointer to **string** | Expression alias. | [optional] 
+**Expression** | Pointer to **string** | Expression name. | 
 
 ## Methods
 

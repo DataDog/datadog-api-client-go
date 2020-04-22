@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetConditionalFormat TODO.
+// WidgetConditionalFormat Define a conditional format for the widget.
 type WidgetConditionalFormat struct {
 	Comparator WidgetComparator `json:"comparator"`
 	// Color palette to apply to the background, same values available as palette.
@@ -23,7 +23,7 @@ type WidgetConditionalFormat struct {
 	HideValue *bool `json:"hide_value,omitempty"`
 	// Displays an image as the background.
 	ImageUrl *string `json:"image_url,omitempty"`
-	// Metric from the request to correlate this conditional format with
+	// Metric from the request to correlate this conditional format with.
 	Metric  *string       `json:"metric,omitempty"`
 	Palette WidgetPalette `json:"palette"`
 	// TODO.

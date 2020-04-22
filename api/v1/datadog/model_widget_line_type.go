@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetLineType Type of lines displayed. Available values are dashed, dotted, or solid.
+// WidgetLineType Type of lines displayed.
 type WidgetLineType string
 
 // List of WidgetLineType

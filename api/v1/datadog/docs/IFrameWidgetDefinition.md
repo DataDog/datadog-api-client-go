@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | Type of the widget | [readonly] [default to "iframe"]
-**Url** | Pointer to **string** | URL of the iframe | 
+**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "iframe"]
+**Url** | Pointer to **string** | URL of the iframe. | 
 
 ## Methods
 

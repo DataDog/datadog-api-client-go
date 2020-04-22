@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetChangeType Show the absolute or the relative change; values available are absolute or relative
+// WidgetChangeType Show the absolute or the relative change.
 type WidgetChangeType string
 
 // List of WidgetChangeType

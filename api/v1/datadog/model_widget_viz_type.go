@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetVizType Whether to display the Alert Graph as a timeseries or a top list. Available values are timeseries or toplist
+// WidgetVizType Whether to display the Alert Graph as a timeseries or a top list.
 type WidgetVizType string
 
 // List of WidgetVizType

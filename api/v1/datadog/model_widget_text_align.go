@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// WidgetTextAlign How to align the text on the widget
+// WidgetTextAlign How to align the text on the widget.
 type WidgetTextAlign string
 
 // List of WidgetTextAlign

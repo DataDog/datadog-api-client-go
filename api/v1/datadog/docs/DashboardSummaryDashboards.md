@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorHandle** | Pointer to **string** | TODO. | [optional] 
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
-**Description** | Pointer to **string** | TODO. | [optional] 
-**Id** | Pointer to **string** | TODO. | [optional] 
-**IsReadOnly** | Pointer to **bool** | TODO. | [optional] 
-**LayoutType** | Pointer to **string** | TODO. | [optional] 
-**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
-**Title** | Pointer to **string** | TODO. | [optional] 
-**Url** | Pointer to **string** | TODO. | [optional] 
+**AuthorHandle** | Pointer to **string** | Identifier of the dashboard author. | [optional] 
+**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Creation date of the dashboard. | [optional] 
+**Description** | Pointer to **string** | Description of the dashboard. | [optional] 
+**Id** | Pointer to **string** | Dashboard identifier. | [optional] 
+**IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] 
+**LayoutType** | Pointer to [**DashboardLayoutType**](DashboardLayoutType.md) |  | [optional] 
+**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Modification date of the dashboard. | [optional] 
+**Title** | Pointer to **string** | Title of the dashboard. | [optional] 
+**Url** | Pointer to **string** | URL of the dashboard. | [optional] 
 
 ## Methods
 
@@ -160,20 +160,20 @@ HasIsReadOnly returns a boolean if a field has been set.
 
 ### GetLayoutType
 
-`func (o *DashboardSummaryDashboards) GetLayoutType() string`
+`func (o *DashboardSummaryDashboards) GetLayoutType() DashboardLayoutType`
 
 GetLayoutType returns the LayoutType field if non-nil, zero value otherwise.
 
 ### GetLayoutTypeOk
 
-`func (o *DashboardSummaryDashboards) GetLayoutTypeOk() (*string, bool)`
+`func (o *DashboardSummaryDashboards) GetLayoutTypeOk() (*DashboardLayoutType, bool)`
 
 GetLayoutTypeOk returns a tuple with the LayoutType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLayoutType
 
-`func (o *DashboardSummaryDashboards) SetLayoutType(v string)`
+`func (o *DashboardSummaryDashboards) SetLayoutType(v DashboardLayoutType)`
 
 SetLayoutType sets LayoutType field to given value.
 

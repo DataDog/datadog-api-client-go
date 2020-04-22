@@ -19,15 +19,15 @@ type HeatMapWidgetDefinition struct {
 	LegendSize *WidgetLegendSize `json:"legend_size,omitempty"`
 	// TODO.
 	Requests []HeatMapWidgetRequest `json:"requests"`
-	// Whether or not to display the legend on this widget
+	// Whether or not to display the legend on this widget.
 	ShowLegend *bool       `json:"show_legend,omitempty"`
 	Time       *WidgetTime `json:"time,omitempty"`
-	// Title of the widget
+	// Title of the widget.
 	Title      *string          `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-	// Size of the title
+	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget
+	// Type of the widget.
 	Type  string      `json:"type"`
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 }
