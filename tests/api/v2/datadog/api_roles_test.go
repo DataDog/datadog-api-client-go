@@ -346,8 +346,6 @@ func TestGetRoleErrors(t *testing.T) {
 		ExpectedStatusCode int
 		RoleID             string
 	}{
-
-		// "40X Bad Request": {c.Ctx, 404 /* FIXME invalid uuid should be 400 rather then 404 */, "this-is-an-invalid-role-id-for-get-endpoint-because-it-is-too-long-to-be-a-uuid"},
 		"403 Forbidden": {FakeAuth, 403, rid},
 		"404 Not found": {c.Ctx, 404, rid404},
 	}
@@ -419,7 +417,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 		"400 Bad Request":         {c.Ctx, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
 		"403 Forbidden":           {FakeAuth, 403, rid, rup},
 		"404 Bad Role ID in Path": {c.Ctx, 404, rid404, rup},
-		// FIXME should be 400 "400 Bad Role ID in Request": {c.Ctx, 400, rid, rup400},
+		// FIXME AAA-1540: should be 400 "400 Bad Role ID in Request": {c.Ctx, 400, rid, rup400},
 	}
 
 	for name, tc := range testCases {
