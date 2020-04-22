@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {}
+      {"data":{"id":"11111111-dead-beef-dead-ffffffffffff","type":"permissions"}}
     form: {}
     headers:
       Accept:
@@ -17,15 +17,14 @@ interactions:
     url: https://api.datadoghq.com/api/v2/roles/49ab0726-8468-11ea-93de-d7832f3455e3/permissions
     method: DELETE
   response:
-    body: '{"errors": ["API input validation failed: {''_schema'': [{''source'': {''pointer'':
-      ''/''}, ''detail'': ''Object must include `data` key.''}]}"]}'
+    body: '{"errors": ["Invalid permission id: 11111111-dead-beef-dead-ffffffffffff"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "133"
+      - "75"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:

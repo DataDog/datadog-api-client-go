@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {}
+      {"data":{"id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","type":"permissions"}}
     form: {}
     headers:
       Accept:
@@ -14,18 +14,15 @@ interactions:
       - RemovePermissionFromRole
       User-Agent:
       - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/49ab0726-8468-11ea-93de-d7832f3455e3/permissions
+    url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff/permissions
     method: DELETE
   response:
-    body: '{"errors": ["API input validation failed: {''_schema'': [{''source'': {''pointer'':
-      ''/''}, ''detail'': ''Object must include `data` key.''}]}"]}'
+    body: '{"errors": ["Missing Role 00000000-dead-beef-dead-ffffffffffff not found"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "133"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
@@ -38,12 +35,14 @@ interactions:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
       - "35.2417977"
       X-Frame-Options:
       - SAMEORIGIN
-    status: 400 Bad Request
-    code: 400
+    status: 404 Not Found
+    code: 404
     duration: ""

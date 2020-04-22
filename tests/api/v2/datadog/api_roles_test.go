@@ -581,7 +581,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	c := NewClientWithRecording(t)
 	defer c.Close()
 
-	// first, test creating a role
+	// valid role ID
 	rca := testingRoleCreateAttributes(c)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
@@ -595,6 +595,11 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	rrData := rr.GetData()
 	rid := rrData.GetId()
 	defer deleteRole(c, rid)
+
+	// bad role ID
+	rid404 := "00000000-dead-beef-dead-ffffffffffff"
+	_, httpresp, err = c.Client.RolesApi.GetRole(c.Ctx, rid404).Execute()
+	assert.Equal(t, 404, httpresp.StatusCode)
 
 	// find a permission
 	permissions, httpresp, err := c.Client.RolesApi.ListPermissions(c.Ctx).Execute()
@@ -613,16 +618,22 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	rtpd.SetId(pid)
 	rtp.SetData(*rtpd)
 
+	// invalid permission data
+	rtp400 := datadog.NewRelationshipToPermissionWithDefaults()
+	rtpd400 := datadog.NewRelationshipToPermissionDataWithDefaults()
+	rtpd400.SetId("11111111-dead-beef-dead-ffffffffffff")
+	rtp400.SetData(*rtpd400)
+
 	testCases := map[string]struct {
 		Ctx                context.Context
 		ExpectedStatusCode int
 		RoleID             string
 		Body               *datadog.RelationshipToPermission
 	}{
-		"400 Bad Request": {c.Ctx, 400, rid, datadog.NewRelationshipToPermissionWithDefaults()},
-		"403 Forbidden":   {FakeAuth, 403, rid, rtp},
-		// TODO this should be probably 404
-		"40X Bad role": {c.Ctx, 400, "00000000-dead-beef-dead-ffffffffffff", rtp},
+		"400 Bad Request":        {c.Ctx, 400, rid, datadog.NewRelationshipToPermissionWithDefaults()},
+		"400 Invalid Permission": {c.Ctx, 400, rid, rtp400},
+		"403 Forbidden":          {FakeAuth, 403, rid, rtp},
+		"404 Role Not Found":     {c.Ctx, 404, rid404, rtp},
 	}
 
 	for name, tc := range testCases {
