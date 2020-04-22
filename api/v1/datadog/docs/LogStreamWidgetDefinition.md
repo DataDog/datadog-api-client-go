@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Columns** | Pointer to **[]string** | Which columns to display on the widget. | [optional] 
-**Indexes** | Pointer to **[]string** | An array of index names to query in the stream. | [optional] 
+**Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Use [] to query all indexes at once. | [optional] 
 **MessageDisplay** | Pointer to [**WidgetMessageDisplay**](WidgetMessageDisplay.md) |  | [optional] 
 **Query** | Pointer to **string** | Query to filter the log stream with. | [optional] 
 **ShowDateColumn** | Pointer to **bool** | Whether to show the date column or not | [optional] 
