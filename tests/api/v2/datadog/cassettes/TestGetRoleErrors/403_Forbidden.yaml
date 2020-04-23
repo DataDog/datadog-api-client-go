@@ -1,0 +1,32 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetRole
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v2/roles/577aacc0-8469-11ea-93de-a7ff03aaf0cd
+    method: GET
+  response:
+    body: |
+      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 22 Apr 2020 07:17:36 GMT
+      Via:
+      - 1.1 haproxy
+    status: 403 Forbidden
+    code: 403
+    duration: ""

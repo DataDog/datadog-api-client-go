@@ -3856,6 +3856,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
       summary: Search SLOs
       tags:
       - Service Level Objectives
@@ -5932,7 +5938,7 @@ components:
       - lambda_arn
       type: object
     AWSAccountCreateResponse:
-      description: TODO.
+      description: The Response returned by the AWS Create Account call.
       example:
         external_id: external_id
       properties:

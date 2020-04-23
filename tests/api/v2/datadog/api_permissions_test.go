@@ -9,10 +9,10 @@ import (
 )
 
 func TestPermissionList(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	c := NewClientWithRecording(t)
+	defer c.Close()
 
-	psr, httpresp, err := TestAPIClient.RolesApi.ListPermissions(TestAuth).Execute()
+	psr, httpresp, err := c.Client.RolesApi.ListPermissions(c.Ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error listing permissions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
