@@ -26,12 +26,18 @@ resources:
       DD_API_KEY: $(datadogAPIKey)
       DD_APM_ENABLED: true
       DD_APM_NON_LOCAL_TRAFFIC: true
+      DD_LOGS_ENABLED: true
+      DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: true
+      DD_AC_EXCLUDE: "name:datadog-agent"
 
 jobs:
 - job: IntegrationTests
   pool:
     vmImage: "Ubuntu-16.04"
-  container: golang:latest
+  container:
+    image: golang:latest
+    options: >-
+      -l com.datadoghq.ad.logs="[{\"source\": \"Azure Pipeline\", \"service\": \"datadog-api-client-go\"}]"
   services:
     datadog-agent: datadog-agent
   steps:
