@@ -1,5 +1,5 @@
 # datadog-api-client-go
-
+Test
 [![codecov](https://codecov.io/gh/DataDog/datadog-api-client-go/branch/master/graph/badge.svg?token=9Vx8eU0VlA)](https://codecov.io/gh/DataDog/datadog-api-client-go)
 
 This repository contains a Go API client for the [Datadog API](https://docs.datadoghq.com/api/).
@@ -31,4 +31,3 @@ would get overwritten). We happily accept contributions to files that are listed
 
 
 as well as tests files:
-
