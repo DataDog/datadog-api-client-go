@@ -17,10 +17,11 @@ import (
 // TestMain starts the tracer.
 func TestMain(m *testing.M) {
 	tracer.Start(
-		tracer.WithServiceName("datadog-api-client-go"),
-		tracer.WithGlobalTag("version", api.Version),
+		tracer.WithService("datadog-api-client-go"),
+		tracer.WithServiceVersion(api.Version),
 	)
 	code := m.Run()
+
 	tracer.Stop()
 	os.Exit(code)
 }

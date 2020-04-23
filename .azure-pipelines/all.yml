@@ -51,6 +51,7 @@ jobs:
     - script: ./run-tests.sh
       displayName: Run integration tests
       env:
+        DD_ENV: azp
         DD_AGENT_HOST: datadog-agent
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
