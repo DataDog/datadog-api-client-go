@@ -1,0 +1,35 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","type":"permissions"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - RemovePermissionFromRole
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v2/roles/5ab62036-8469-11ea-93de-77ee9977f629/permissions
+    method: DELETE
+  response:
+    body: |
+      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 22 Apr 2020 07:17:42 GMT
+      Via:
+      - 1.1 haproxy
+    status: 403 Forbidden
+    code: 403
+    duration: ""
