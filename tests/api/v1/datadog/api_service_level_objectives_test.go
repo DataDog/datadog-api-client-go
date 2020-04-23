@@ -290,15 +290,17 @@ func TestSLOListErrors(t *testing.T) {
 	testCases := []struct {
 		Name               string
 		Ctx                context.Context
+		Ids                string
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, 400},
-		{"403 Forbidden", context.Background(), 403},
+		{"400 Bad Request", TESTAUTH, "id1,id1", 400},
+		{"403 Forbidden", context.Background(), "id1,id1", 403},
+		{"404 Not Found", TESTAUTH, "id1,id2", 404},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.ListSLOs(tc.Ctx).Ids("id1,id1").Execute()
+			_, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.ListSLOs(tc.Ctx).Ids(tc.Ids).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
