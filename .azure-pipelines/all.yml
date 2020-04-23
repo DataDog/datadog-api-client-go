@@ -28,7 +28,15 @@ resources:
       DD_APM_NON_LOCAL_TRAFFIC: "true"
       DD_LOGS_ENABLED: "true"
       DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "true"
-      # DD_AC_EXCLUDE: "name:datadog-agent"
+      DD_AC_EXCLUDE: "name:datadog-agent"
+      DD_DOCKER_ENV_AS_TAGS: >-
+        {
+          "BUILD_REQUESTEDFOREMAIL": "build.requested_by",
+          "SYSTEM_STAGEATTEMPT": "build.attempt",
+          "SYSTEM_PULLREQUEST_SOURCEBRANCH": "pull_request.head.ref",
+          "SYSTEM_PULLREQUEST_SOURCECOMMITID": "pull_request.head.sha",
+          "SYSTEM_PULLREQUEST_PULLREQUESTNUMBER": "pull_request.number"
+        }
 jobs:
 - job: IntegrationTests
   pool:
