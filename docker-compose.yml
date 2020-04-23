@@ -27,7 +27,7 @@ services:
       DD_APM_NON_LOCAL_TRAFFIC: "true"
       DD_LOGS_ENABLED: "true"
       DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "true"
-      # DD_AC_EXCLUDE: "name:datadog"
+      DD_AC_EXCLUDE: "name:datadog"
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - /proc/:/host/proc/:ro
