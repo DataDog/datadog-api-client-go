@@ -126,7 +126,7 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	config.HTTPClient = ddhttp.WrapClient(&http.Client{
 		Transport: r, // Inject as transport!
 	}, ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
-		span.SetTag(ext.ResourceName, r.Header.Get("DD-OPERATION-ID"))
+		span.SetTag(ext.SpanName, r.Header.Get("DD-OPERATION-ID"))
 	}))
 
 	TestAPIClient = datadog.NewAPIClient(config)

@@ -44,7 +44,7 @@ jobs:
       displayName: Run integration tests
       inputs:
         command: run
-        arguments: --volume /home/vsts/work/1/s:/datadog-api-client-go --env DD_AGENT_HOST --env RECORD --env DD_TEST_CLIENT_API_KEY --env DD_TEST_CLIENT_APP_KEY datadog-go-integration-test
+        arguments: --network datadog-agent --volume /home/vsts/work/1/s:/datadog-api-client-go --env DD_AGENT_HOST --env RECORD --env DD_TEST_CLIENT_API_KEY --env DD_TEST_CLIENT_APP_KEY datadog-go-integration-test
       env:
         DD_AGENT_HOST: datadog-agent
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)

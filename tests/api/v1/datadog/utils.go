@@ -170,7 +170,13 @@ func setupTest(t *testing.T) func(t *testing.T) {
 	config.HTTPClient = ddhttp.WrapClient(&http.Client{
 		Transport: r, // Inject as transport!
 	}, ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
-		span.SetTag(ext.ServiceName, r.Header.Get("DD-OPERATION-ID"))
+		span.SetTag(ext.SpanName, r.Header.Get("DD-OPERATION-ID"))
+		/*
+			err := tracer.Inject(span.Context(), tracer.HTTPHeadersCarrier(r.Header))
+			if err != nil {
+				t.Errorf("Failed to inject headers: %s", err)
+			}
+		*/
 	}))
 
 	TESTAPICLIENT = datadog.NewAPIClient(config)
