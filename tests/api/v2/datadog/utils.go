@@ -115,6 +115,14 @@ type Client struct {
 	close  *func()
 }
 
+// NewClient returns client for unit tests.
+func NewClient() *Client {
+	c := Client{}
+	c.Ctx = FakeAuth
+	c.Client = datadog.NewAPIClient(NewConfiguration())
+	return &c
+}
+
 // NewClientWithRecording returns configured client with recorder.
 func NewClientWithRecording(t *testing.T) *Client {
 	// Configure recorder
