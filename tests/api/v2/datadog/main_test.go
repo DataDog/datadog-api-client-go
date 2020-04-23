@@ -10,12 +10,16 @@ import (
 	"os"
 	"testing"
 
+	api "github.com/DataDog/datadog-api-client-go"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // TestMain starts the tracer.
 func TestMain(m *testing.M) {
-	tracer.Start(tracer.WithServiceName("datadog-api-client-go"))
+	tracer.Start(
+		tracer.WithServiceName("datadog-api-client-go"),
+		tracer.WithGlobalTag("version", api.Version),
+	)
 	code := m.Run()
 	tracer.Stop()
 	os.Exit(code)
