@@ -11,7 +11,11 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"testing"
 	"time"
+
+	api "github.com/DataDog/datadog-api-client-go"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // IsRecording returns true if the recording mode is enabled
@@ -43,4 +47,16 @@ func ReadFixture(path string) (string, error) {
 		return "", fmt.Errorf("failed to open fixture file: %v", err)
 	}
 	return string(data), nil
+}
+
+// ConfigureTracer starts the tracer.
+func ConfigureTracer(m *testing.M) {
+	tracer.Start(
+		tracer.WithService("datadog-api-client-go"),
+		tracer.WithServiceVersion(api.Version),
+	)
+	code := m.Run()
+
+	tracer.Stop()
+	os.Exit(code)
 }
