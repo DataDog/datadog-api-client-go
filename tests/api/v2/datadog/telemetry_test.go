@@ -8,8 +8,8 @@ import (
 )
 
 func TestTelemetryHeaders(t *testing.T) {
-	teardownTest := setupUnitTest(t)
-	defer teardownTest(t)
+	c := NewClient(t)
+	defer c.Close()
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
 	gock.New("https://api.datadoghq.com").
@@ -19,7 +19,7 @@ func TestTelemetryHeaders(t *testing.T) {
 		Reply(299)
 	defer gock.Off()
 
-	_, httpresp, err := TestAPIClient.DashboardListsApi.GetDashboardListItems(TestAuth, 1234).Execute()
+	_, httpresp, err := c.Client.DashboardListsApi.GetDashboardListItems(c.Ctx, 1234).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 299, httpresp.StatusCode)
 }

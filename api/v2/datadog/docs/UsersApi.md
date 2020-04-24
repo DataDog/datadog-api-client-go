@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
  **sort** | **string** | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;modified_at&#x60;, &#x60;user_count&#x60;. | [default to &quot;name&quot;]
  **sortDir** | [**QuerySortOrder**](.md) | Direction of sort. Options: &#x60;asc&#x60;, &#x60;desc&#x60;. | [default to &quot;desc&quot;]
  **filter** | **string** | Filter all users by the given string. Defaults to no filtering. | 
- **filterStatus** | **string** | Filter on status attribute. Comma separated list: Active, Pending, and Disabled. Defaults to no filtering. | 
+ **filterStatus** | **string** | Filter on status attribute. Comma separated list, with possible values &#x60;Active&#x60;, &#x60;Pending&#x60;, and &#x60;Disabled&#x60;. Defaults to no filtering. | 
 
 ### Return type
 

@@ -18,33 +18,35 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-var testMonitor = datadog.Monitor{
-	Name:    datadog.PtrString("name for Go client monitor foo"),
-	Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
-	Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2"),
-	Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-	Tags: &[]string{
-		"test",
-		"client:go",
-	},
-	Options: &datadog.MonitorOptions{
-		NotifyAudit:       datadog.PtrBool(false),
-		Locked:            datadog.PtrBool(false),
-		TimeoutH:          *datadog.NewNullableInt64(datadog.PtrInt64(60)),
-		RenotifyInterval:  *datadog.NewNullableInt64(datadog.PtrInt64(60)),
-		EnableLogsSample:  datadog.PtrBool(true),
-		NoDataTimeframe:   *datadog.NewNullableInt64(nil),
-		NewHostDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(600)),
-		RequireFullWindow: datadog.PtrBool(true),
-		NotifyNoData:      datadog.PtrBool(false),
-		IncludeTags:       datadog.PtrBool(true),
-		EvaluationDelay:   *datadog.NewNullableInt64(datadog.PtrInt64(700)),
-		EscalationMessage: datadog.PtrString("the situation has escalated"),
-		Thresholds: &datadog.MonitorThresholds{
-			Critical: datadog.PtrFloat64(2),
-			Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
+func testMonitor(t *testing.T) datadog.Monitor {
+	return datadog.Monitor{
+		Name:    datadog.PtrString(fmt.Sprintf("datadog-api-client-go: %s %d", t.Name(), TESTCLOCK.Now().UnixNano())),
+		Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
+		Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2"),
+		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Tags: &[]string{
+			"test",
+			"client:go",
 		},
-	},
+		Options: &datadog.MonitorOptions{
+			NotifyAudit:       datadog.PtrBool(false),
+			Locked:            datadog.PtrBool(false),
+			TimeoutH:          *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+			RenotifyInterval:  *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+			EnableLogsSample:  datadog.PtrBool(true),
+			NoDataTimeframe:   *datadog.NewNullableInt64(nil),
+			NewHostDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(600)),
+			RequireFullWindow: datadog.PtrBool(true),
+			NotifyNoData:      datadog.PtrBool(false),
+			IncludeTags:       datadog.PtrBool(true),
+			EvaluationDelay:   *datadog.NewNullableInt64(datadog.PtrInt64(700)),
+			EscalationMessage: datadog.PtrString("the situation has escalated"),
+			Thresholds: &datadog.MonitorThresholds{
+				Critical: datadog.PtrFloat64(2),
+				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
+			},
+		},
+	}
 }
 
 var testUpdateMonitor = datadog.Monitor{
@@ -71,7 +73,7 @@ func TestMonitorValidation(t *testing.T) {
 		ExpectedStatusCode int
 	}{
 		{"empty monitor", datadog.Monitor{}, 400},
-		{"example monitor", testMonitor, 200},
+		{"example monitor", testMonitor(t), 200},
 	}
 
 	for _, tc := range testCases {
@@ -86,14 +88,16 @@ func TestMonitorLifecycle(t *testing.T) {
 	teardownTest := setupTest(t)
 	defer teardownTest(t)
 
+	tm := testMonitor(t)
+
 	// Create monitor
-	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(testMonitor).Execute()
+	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(tm).Execute()
 	if err != nil {
-		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteMonitor(monitor.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, testMonitor.GetName(), monitor.GetName())
+	assert.Equal(t, tm.GetName(), monitor.GetName())
 	val, set := monitor.GetDeletedOk()
 	assert.True(t, set)
 	assert.Nil(t, val)
@@ -162,6 +166,35 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(t, monitor.GetId(), deletedMonitor.GetDeletedMonitorId())
 }
 
+func TestMonitorPagination(t *testing.T) {
+	teardownTest := setupTest(t)
+	defer teardownTest(t)
+
+	tm := testMonitor(t)
+
+	// Create monitor
+	monitor, _, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(tm).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteMonitor(monitor.GetId())
+
+	monitors, httpresp, err := TESTAPICLIENT.MonitorsApi.ListMonitors(TESTAUTH).Page(0).PageSize(1).Execute()
+	if err != nil {
+		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(t, 1, len(monitors))
+
+	monitors, httpresp, err = TESTAPICLIENT.MonitorsApi.ListMonitors(TESTAUTH).IdOffset(monitor.GetId() - 1).PageSize(1).Execute()
+	if err != nil {
+		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(t, 1, len(monitors))
+	assert.Equal(t, monitor.GetId(), monitors[0].GetId())
+}
+
 func TestMonitorsCreateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	teardownTest := setupTest(t)
@@ -219,9 +252,10 @@ func TestMonitorUpdateErrors(t *testing.T) {
 	defer teardownTest(t)
 
 	// Create monitor
-	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(testMonitor).Execute()
+	tm := testMonitor(t)
+	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(tm).Execute()
 	if err != nil {
-		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteMonitor(monitor.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
@@ -280,9 +314,10 @@ func TestMonitorsGetErrors(t *testing.T) {
 	defer teardownTest(t)
 
 	// Create monitor
-	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(testMonitor).Execute()
+	tm := testMonitor(t)
+	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(tm).Execute()
 	if err != nil {
-		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteMonitor(monitor.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
@@ -386,12 +421,13 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 	defer teardownTest(t)
 
 	// Create monitor that can't be deleted
+	tm := testMonitor(t)
 	monitor := *datadog.NewMonitorWithDefaults()
 	monitor.SetType(datadog.MONITORTYPE_QUERY_ALERT)
 	monitor.SetQuery("avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100")
 	monitor, _, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(monitor).Execute()
 	if err != nil {
-		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteMonitor(monitor.GetId())
 	composite := *datadog.NewMonitorWithDefaults()
@@ -399,7 +435,7 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 	composite.SetQuery(fmt.Sprintf("%d", monitor.GetId()))
 	composite, _, err = TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(composite).Execute()
 	if err != nil {
-		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteMonitor(composite.GetId())
 

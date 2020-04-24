@@ -7,8 +7,10 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - ListMonitors
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
     url: https://api.datadoghq.com/api/v1/monitor?group_states=notagroupstate
     method: GET
   response:
@@ -25,7 +27,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 08 Apr 2020 13:15:54 GMT
+      - Wed, 22 Apr 2020 16:18:04 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -33,7 +37,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2368852"
+      - "35.2420861"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -41,7 +45,7 @@ interactions:
       X-Ratelimit-Period:
       - "10"
       X-Ratelimit-Remaining:
-      - "999"
+      - "996"
       X-Ratelimit-Reset:
       - "6"
     status: 400 Bad Request
@@ -53,8 +57,10 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - ListMonitors
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
     url: https://api.datadoghq.com/api/v1/monitor?group_states=notagroupstate
     method: GET
   response:
@@ -65,14 +71,12 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "170"
       Content-Type:
       - application/json
       Date:
-      - Wed, 08 Apr 2020 13:15:54 GMT
+      - Wed, 22 Apr 2020 16:18:04 GMT
       Via:
-      - haproxy
+      - 1.1 haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

@@ -3251,6 +3251,38 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: TODO.
+        explode: true
+        in: query
+        name: id_offset
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The page to start paginating from. If this argument is not specified,
+          the request returns all monitors without pagination.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The number of monitors to return per page. If the page argument
+          is not specified, the default behavior returns all monitors without a `page_size`
+          limit. However, if page is specified and `page_size` is not, the argument
+          defaults to 100.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int32
+          maximum: 1000
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -5938,7 +5970,7 @@ components:
       - lambda_arn
       type: object
     AWSAccountCreateResponse:
-      description: TODO.
+      description: The Response returned by the AWS Create Account call.
       example:
         external_id: external_id
       properties:

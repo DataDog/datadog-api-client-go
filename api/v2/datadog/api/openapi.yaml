@@ -312,12 +312,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/RolesResponse'
           description: OK
-        "400":
-          content:
-            applcation/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Bad Request
         "403":
           content:
             applcation/json:
@@ -497,6 +491,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/PermissionsResponse'
           description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
         "403":
           content:
             application/json:
@@ -619,6 +619,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/UsersResponse'
           description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
         "403":
           content:
             application/json:
@@ -876,8 +882,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: 'Filter on status attribute. Comma separated list: Active, Pending,
-          and Disabled. Defaults to no filtering.'
+      - description: |-
+          Filter on status attribute.
+          Comma separated list, with possible values `Active`, `Pending`, and `Disabled`.
+          Defaults to no filtering.
         explode: true
         in: query
         name: filter[status]
