@@ -98,9 +98,10 @@ func TestMonitorDowntime(t *testing.T) {
 	defer teardownTest(t)
 
 	// Create monitor
-	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(testMonitor).Execute()
+	tm := testMonitor(t)
+	monitor, httpresp, err := TESTAPICLIENT.MonitorsApi.CreateMonitor(TESTAUTH).Body(tm).Execute()
 	if err != nil {
-		t.Fatalf("Error creating Monitor %v: Response %s: %v", testMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(t, 200, httpresp.StatusCode)
 	monitorID := monitor.GetId()
