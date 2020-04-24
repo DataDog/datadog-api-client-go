@@ -27,7 +27,7 @@ func disableUser(c *Client, userID string) {
 }
 
 func TestUserLifecycle(t *testing.T) {
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// first, test creating a user
@@ -113,7 +113,7 @@ func TestUserLifecycle(t *testing.T) {
 }
 
 func TestUserInvitation(t *testing.T) {
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	uca := testingUserCreateAttributes(c)

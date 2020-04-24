@@ -26,7 +26,7 @@ func deleteRole(c *Client, roleID string) {
 }
 
 func TestRoleLifecycle(t *testing.T) {
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// first, test creating a role
@@ -106,7 +106,7 @@ func TestRoleLifecycle(t *testing.T) {
 }
 
 func TestRolePermissionsLifecycle(t *testing.T) {
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// first, create a role
@@ -167,7 +167,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 }
 
 func TestRoleUsersLifecycle(t *testing.T) {
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// first, create a role
@@ -251,6 +251,9 @@ func TestRoleUsersLifecycle(t *testing.T) {
 }
 
 func TestListRolesErrors(t *testing.T) {
+	c := NewClientWithRecording(context.Background(), t)
+	defer c.Close()
+
 	testCases := map[string]struct {
 		Ctx                context.Context
 		ExpectedStatusCode int
@@ -260,10 +263,10 @@ func TestListRolesErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.ListRoles(tc.Ctx).Execute()
+			_, httpresp, err := c.Client.RolesApi.ListRoles(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -274,7 +277,7 @@ func TestListRolesErrors(t *testing.T) {
 
 func TestCreateRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// first, test creating a role
@@ -298,10 +301,10 @@ func TestCreateRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			rr, httpresp, err := c.Client.RolesApi.CreateRole(tc.Ctx).Body(*tc.Body).Execute()
+			rr, httpresp, err := c.Client.RolesApi.CreateRole(c.Ctx).Body(*tc.Body).Execute()
 			// make sure that we clean everything on error
 			if 200 == httpresp.StatusCode {
 				rrData := rr.GetData()
@@ -318,7 +321,7 @@ func TestCreateRoleErrors(t *testing.T) {
 
 func TestGetRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -352,10 +355,10 @@ func TestGetRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.GetRole(tc.Ctx, tc.RoleID).Execute()
+			_, httpresp, err := c.Client.RolesApi.GetRole(c.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -366,7 +369,7 @@ func TestGetRoleErrors(t *testing.T) {
 
 func TestUpdateRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -422,10 +425,10 @@ func TestUpdateRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.UpdateRole(tc.Ctx, tc.RoleID).Body(*tc.Body).Execute()
+			_, httpresp, err := c.Client.RolesApi.UpdateRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -436,7 +439,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 
 func TestDeleteRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -470,10 +473,10 @@ func TestDeleteRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			httpresp, err := c.Client.RolesApi.DeleteRole(tc.Ctx, tc.RoleID).Execute()
+			httpresp, err := c.Client.RolesApi.DeleteRole(c.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -484,7 +487,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 
 func TestListRolePermissionsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -518,10 +521,10 @@ func TestListRolePermissionsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.ListRolePermissions(tc.Ctx, tc.RoleID).Execute()
+			_, httpresp, err := c.Client.RolesApi.ListRolePermissions(c.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -532,7 +535,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 
 func TestAddPermissionToRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -572,10 +575,10 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.AddPermissionToRole(tc.Ctx, rid).Body(*tc.Body).Execute()
+			_, httpresp, err := c.Client.RolesApi.AddPermissionToRole(c.Ctx, rid).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -586,7 +589,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 
 func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -646,10 +649,10 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.RemovePermissionFromRole(tc.Ctx, tc.RoleID).Body(*tc.Body).Execute()
+			_, httpresp, err := c.Client.RolesApi.RemovePermissionFromRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -660,7 +663,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 
 func TestListRoleUsersErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -694,10 +697,10 @@ func TestListRoleUsersErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.ListRoleUsers(tc.Ctx, tc.RoleID).Execute()
+			_, httpresp, err := c.Client.RolesApi.ListRoleUsers(c.Ctx, tc.RoleID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -708,7 +711,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 
 func TestAddUserToRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -748,10 +751,10 @@ func TestAddUserToRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.AddUserToRole(tc.Ctx, rid).Body(*tc.Body).Execute()
+			_, httpresp, err := c.Client.RolesApi.AddUserToRole(c.Ctx, rid).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -762,7 +765,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 
 func TestRemoveUserFromRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	// valid role ID
@@ -818,10 +821,10 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(t)
+			c := NewClientWithRecording(tc.Ctx, t)
 			defer c.Close()
 
-			_, httpresp, err := c.Client.RolesApi.RemoveUserFromRole(tc.Ctx, tc.RoleID).Body(*tc.Body).Execute()
+			_, httpresp, err := c.Client.RolesApi.RemoveUserFromRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

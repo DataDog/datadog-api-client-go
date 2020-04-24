@@ -112,9 +112,9 @@ func NewClientAuthContext() context.Context {
 }
 
 // ContextWithTestSpan starts new span with test information.
-func ContextWithTestSpan(ctx context.Context, t *testing.T) context.Context {
-	span := tracer.StartSpan(t.Name())
-	return tracer.ContextWithSpan(ctx, span)
+func ContextWithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
+	span, ctx := tracer.StartSpanFromContext(ctx, t.Name())
+	return tracer.ContextWithSpan(ctx, span), func() { span.Finish() }
 }
 
 // Client keeps track for APIClient and Auth Context
@@ -126,22 +126,15 @@ type Client struct {
 }
 
 // NewClient returns client for unit tests.
-func NewClient(t *testing.T) *Client {
-	c := Client{}
-	c.Ctx = ContextWithTestSpan(FakeAuth, t)
-	c.Client = datadog.NewAPIClient(NewConfiguration())
-	close = func() {
-		if span, ok := tracer.SpanFromContext(c.Ctx); ok {
-			span.Finish()
-		}
-	}
-	c.close = &close
-	return &c
+func NewClient(ctx context.Context, t *testing.T) *Client {
+	ctx, close := ContextWithTestSpan(ctx, t)
+	return &Client{Ctx: ctx, Client: datadog.NewAPIClient(NewConfiguration()), close: &close}
 }
 
 // NewClientWithRecording returns configured client with recorder.
-func NewClientWithRecording(t *testing.T) *Client {
-	ctx := ContextWithTestSpan(NewClientAuthContext(), t)
+func NewClientWithRecording(ctx context.Context, t *testing.T) *Client {
+	ctx, ctxClose := ContextWithTestSpan(ctx, t)
+
 	// Configure recorder
 	var mode recorder.Mode
 	if os.Getenv("RECORD") == "true" {
@@ -160,9 +153,7 @@ func NewClientWithRecording(t *testing.T) *Client {
 	}
 	close := func() {
 		r.Stop()
-		if span, ok := tracer.SpanFromContext(ctx); ok {
-			span.Finish()
-		}
+		ctxClose()
 	}
 
 	r.SetMatcher(func(r *http.Request, i cassette.Request) bool {

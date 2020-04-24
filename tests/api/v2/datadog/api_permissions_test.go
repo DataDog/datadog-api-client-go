@@ -9,7 +9,7 @@ import (
 )
 
 func TestPermissionList(t *testing.T) {
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	psr, httpresp, err := c.Client.RolesApi.ListPermissions(c.Ctx).Execute()

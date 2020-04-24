@@ -65,7 +65,7 @@ func deleteDashboardList() {
 }
 
 func TestDashboardListItemCRUD(t *testing.T) {
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 	err := createDashboardList(c)
 	defer deleteDashboardList()
@@ -156,7 +156,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 
 func TestDashboardListGetItemsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	testCases := []struct {
@@ -181,7 +181,7 @@ func TestDashboardListGetItemsErrors(t *testing.T) {
 
 func TestDashboardListCreateItemsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	err := createDashboardList(c)
@@ -214,7 +214,7 @@ func TestDashboardListCreateItemsErrors(t *testing.T) {
 
 func TestDashboardListUpdateItemsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	err := createDashboardList(c)
@@ -247,7 +247,7 @@ func TestDashboardListUpdateItemsErrors(t *testing.T) {
 
 func TestDashboardListDeleteItemsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(t)
+	c := NewClientWithRecording(NewClientAuthContext(), t)
 	defer c.Close()
 
 	err := createDashboardList(c)

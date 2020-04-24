@@ -8,7 +8,7 @@ import (
 )
 
 func TestTelemetryHeaders(t *testing.T) {
-	c := NewClient(t)
+	c := NewClient(FakeAuth, t)
 	defer c.Close()
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
