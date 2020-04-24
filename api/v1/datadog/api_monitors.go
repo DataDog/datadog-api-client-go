@@ -751,6 +751,9 @@ type apiListMonitorsRequest struct {
 	tags          *string
 	monitorTags   *string
 	withDowntimes *bool
+	idOffset      *int64
+	page          *int64
+	pageSize      *int32
 }
 
 func (r apiListMonitorsRequest) GroupStates(groupStates string) apiListMonitorsRequest {
@@ -775,6 +778,21 @@ func (r apiListMonitorsRequest) MonitorTags(monitorTags string) apiListMonitorsR
 
 func (r apiListMonitorsRequest) WithDowntimes(withDowntimes bool) apiListMonitorsRequest {
 	r.withDowntimes = &withDowntimes
+	return r
+}
+
+func (r apiListMonitorsRequest) IdOffset(idOffset int64) apiListMonitorsRequest {
+	r.idOffset = &idOffset
+	return r
+}
+
+func (r apiListMonitorsRequest) Page(page int64) apiListMonitorsRequest {
+	r.page = &page
+	return r
+}
+
+func (r apiListMonitorsRequest) PageSize(pageSize int32) apiListMonitorsRequest {
+	r.pageSize = &pageSize
 	return r
 }
 
@@ -830,6 +848,15 @@ func (r apiListMonitorsRequest) Execute() ([]Monitor, *_nethttp.Response, error)
 	}
 	if r.withDowntimes != nil {
 		localVarQueryParams.Add("with_downtimes", parameterToString(*r.withDowntimes, ""))
+	}
+	if r.idOffset != nil {
+		localVarQueryParams.Add("id_offset", parameterToString(*r.idOffset, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
