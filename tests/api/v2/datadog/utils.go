@@ -130,11 +130,12 @@ func NewClient(t *testing.T) *Client {
 	c := Client{}
 	c.Ctx = ContextWithTestSpan(FakeAuth, t)
 	c.Client = datadog.NewAPIClient(NewConfiguration())
-	c.close = &func() {
+	close = func() {
 		if span, ok := tracer.SpanFromContext(c.Ctx); ok {
 			span.Finish()
 		}
 	}
+	c.close = &close
 	return &c
 }
 
@@ -148,7 +149,10 @@ func NewClientWithRecording(t *testing.T) *Client {
 	} else {
 		mode = recorder.ModeReplaying
 	}
-	span.SetTag("recorder.mode", mode)
+
+	if span, ok := tracer.SpanFromContext(ctx); ok {
+		span.SetTag("recorder.mode", mode)
+	}
 
 	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", t.Name()), mode, nil)
 	if err != nil {
