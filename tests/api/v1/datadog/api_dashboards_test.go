@@ -18,11 +18,11 @@ import (
 )
 
 func TestDashboardLifecycle(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
 
 	// create SLO for referencing in SLO widget (we're borrowing these from api_slo_test.go)
-	sloResp, httpresp, err := TESTAPICLIENT.ServiceLevelObjectivesApi.CreateSLO(TESTAUTH).Body(testEventSLO).Execute()
+	sloResp, httpresp, err := c.Client.ServiceLevelObjectivesApi.CreateSLO(c.Ctx).Body(testEventSLO).Execute()
 	if err != nil {
 		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testMonitorSLO, err.Error(), err)
 	}
@@ -646,14 +646,14 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard.SetTemplateVariablePresets([]datadog.DashboardTemplateVariablePreset{*dashboardTemplateVariablePreset})
 	dashboard.SetNotifyList([]string{"test@datadoghq.com"})
 
-	createdDashboard, httpresp, err := TESTAPICLIENT.DashboardsApi.CreateDashboard(TESTAUTH).Body(*dashboard).Execute()
+	createdDashboard, httpresp, err := c.Client.DashboardsApi.CreateDashboard(c.Ctx).Body(*dashboard).Execute()
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteDashboard(createdDashboard.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	getDashboard, httpresp, err := TESTAPICLIENT.DashboardsApi.GetDashboard(TESTAUTH, createdDashboard.GetId()).Execute()
+	getDashboard, httpresp, err := c.Client.DashboardsApi.GetDashboard(c.Ctx, createdDashboard.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -716,14 +716,14 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeDashboard.SetIsReadOnly(false)
 	freeDashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
 
-	createdFreeDashboard, httpresp, err := TESTAPICLIENT.DashboardsApi.CreateDashboard(TESTAUTH).Body(*freeDashboard).Execute()
+	createdFreeDashboard, httpresp, err := c.Client.DashboardsApi.CreateDashboard(c.Ctx).Body(*freeDashboard).Execute()
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteDashboard(createdFreeDashboard.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	getFreeDashboard, httpresp, err := TESTAPICLIENT.DashboardsApi.GetDashboard(TESTAUTH, createdFreeDashboard.GetId()).Execute()
+	getFreeDashboard, httpresp, err := c.Client.DashboardsApi.GetDashboard(c.Ctx, createdFreeDashboard.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -749,7 +749,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboardWidgets[noteWidgetIndex] = *noteWidget
 	dashboard.SetWidgets(dashboardWidgets)
 
-	updateResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.UpdateDashboard(TESTAUTH, createdDashboard.GetId()).Body(*dashboard).Execute()
+	updateResponse, httpresp, err := c.Client.DashboardsApi.UpdateDashboard(c.Ctx, createdDashboard.GetId()).Body(*dashboard).Execute()
 	if err != nil {
 		t.Fatalf("Error updating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -785,7 +785,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	assert.True(t, foundWidget)
 	assert.True(t, len(updateResponse.GetWidgets()) > 1)
 
-	deleteResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.DeleteDashboard(TESTAUTH, createdFreeDashboard.GetId()).Execute()
+	deleteResponse, httpresp, err := c.Client.DashboardsApi.DeleteDashboard(c.Ctx, createdFreeDashboard.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error deleting dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -795,9 +795,9 @@ func TestDashboardLifecycle(t *testing.T) {
 }
 
 func TestDashboardGetAll(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
-	getAllResponse, httpresp, err := TESTAPICLIENT.DashboardsApi.ListDashboards(TESTAUTH).Execute()
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
+	getAllResponse, httpresp, err := c.Client.DashboardsApi.ListDashboards(c.Ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all dashboards: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -807,8 +807,8 @@ func TestDashboardGetAll(t *testing.T) {
 
 func TestDashboardCreateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
 
 	testCases := []struct {
 		Name               string
@@ -816,13 +816,13 @@ func TestDashboardCreateErrors(t *testing.T) {
 		Body               datadog.Dashboard
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.Dashboard{}, 400},
+		{"400 Bad Request", c.Ctx, datadog.Dashboard{}, 400},
 		{"403 Forbidden", context.Background(), datadog.Dashboard{}, 403},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.DashboardsApi.CreateDashboard(tc.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := c.Client.DashboardsApi.CreateDashboard(tc.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -833,8 +833,8 @@ func TestDashboardCreateErrors(t *testing.T) {
 
 func TestDashboardListErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
 
 	testCases := []struct {
 		Name               string
@@ -846,7 +846,7 @@ func TestDashboardListErrors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.DashboardsApi.ListDashboards(tc.Ctx).Execute()
+			_, httpresp, err := c.Client.DashboardsApi.ListDashboards(tc.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -857,8 +857,8 @@ func TestDashboardListErrors(t *testing.T) {
 
 func TestDashboardDeleteErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
 
 	testCases := []struct {
 		Name               string
@@ -866,12 +866,12 @@ func TestDashboardDeleteErrors(t *testing.T) {
 		ExpectedStatusCode int
 	}{
 		{"403 Forbidden", context.Background(), 403},
-		{"404 Not Found", TESTAUTH, 404},
+		{"404 Not Found", c.Ctx, 404},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.DashboardsApi.DeleteDashboard(tc.Ctx, "random").Execute()
+			_, httpresp, err := c.Client.DashboardsApi.DeleteDashboard(tc.Ctx, "random").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -882,8 +882,8 @@ func TestDashboardDeleteErrors(t *testing.T) {
 
 func TestDashboardUpdateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
 
 	dashboardOK := *datadog.NewDashboardWithDefaults()
 	dashboardOK.SetWidgets([]datadog.Widget{})
@@ -895,14 +895,14 @@ func TestDashboardUpdateErrors(t *testing.T) {
 		Body               datadog.Dashboard
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.Dashboard{}, 400},
+		{"400 Bad Request", c.Ctx, datadog.Dashboard{}, 400},
 		{"403 Forbidden", context.Background(), datadog.Dashboard{}, 403},
-		{"404 Not Found", TESTAUTH, dashboardOK, 404},
+		{"404 Not Found", c.Ctx, dashboardOK, 404},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.DashboardsApi.UpdateDashboard(tc.Ctx, "random").Body(tc.Body).Execute()
+			_, httpresp, err := c.Client.DashboardsApi.UpdateDashboard(tc.Ctx, "random").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -913,8 +913,8 @@ func TestDashboardUpdateErrors(t *testing.T) {
 
 func TestDashboardGetErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
 
 	testCases := []struct {
 		Name               string
@@ -922,12 +922,12 @@ func TestDashboardGetErrors(t *testing.T) {
 		ExpectedStatusCode int
 	}{
 		{"403 Forbidden", context.Background(), 403},
-		{"404 Not Found", TESTAUTH, 404},
+		{"404 Not Found", c.Ctx, 404},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.DashboardsApi.GetDashboard(tc.Ctx, "random").Execute()
+			_, httpresp, err := c.Client.DashboardsApi.GetDashboard(tc.Ctx, "random").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -937,7 +937,7 @@ func TestDashboardGetErrors(t *testing.T) {
 }
 
 func deleteDashboard(dashboardID string) {
-	_, httpresp, err := TESTAPICLIENT.DashboardsApi.DeleteDashboard(TESTAUTH, dashboardID).Execute()
+	_, httpresp, err := c.Client.DashboardsApi.DeleteDashboard(c.Ctx, dashboardID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
 		log.Printf("Error deleting Dashboard: %v, Another test may have already deleted this dashboard.", dashboardID)
 	}

@@ -81,11 +81,7 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 
 func createWithDir(path string) (*os.File, error) {
 	dirName := filepath.Dir(path)
-	_, err := os.Stat(dirName)
-	if err != nil {
-		return nil, err
-	}
-	err = os.MkdirAll(dirName, os.ModePerm)
+	err := os.MkdirAll(dirName, os.ModePerm)
 	if err != nil {
 		return nil, err
 	}

@@ -2,24 +2,29 @@
 version: 1
 interactions:
 - request:
-    body: ""
+    body: |
+      {}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Type:
+      - application/json
       Dd-Operation-Id:
-      - ListAvailableAWSNamespaces
+      - CreateAWSAccount
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
-    url: https://api.datadoghq.com/api/v1/integration/aws/available_namespace_rules
-    method: GET
+    url: https://api.datadoghq.com/api/v1/integration/aws
+    method: POST
   response:
-    body: '{"errors": ["API key required"]}'
+    body: '{"errors": ["Required parameter ''account_id'' is missing"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "58"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
@@ -32,14 +37,12 @@ interactions:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
       - "35.2432369"
       X-Frame-Options:
       - SAMEORIGIN
-    status: 403 Forbidden
-    code: 403
+    status: 400 Bad Request
+    code: 400
     duration: ""
