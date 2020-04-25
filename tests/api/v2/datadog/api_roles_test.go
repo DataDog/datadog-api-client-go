@@ -26,7 +26,7 @@ func deleteRole(c *Client, roleID string) {
 }
 
 func TestRoleLifecycle(t *testing.T) {
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// first, test creating a role
@@ -106,7 +106,7 @@ func TestRoleLifecycle(t *testing.T) {
 }
 
 func TestRolePermissionsLifecycle(t *testing.T) {
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// first, create a role
@@ -167,7 +167,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 }
 
 func TestRoleUsersLifecycle(t *testing.T) {
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// first, create a role
@@ -255,15 +255,15 @@ func TestListRolesErrors(t *testing.T) {
 	defer c.Close()
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		"403 Forbidden": {FakeAuth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.ListRoles(c.Ctx).Execute()
@@ -277,7 +277,7 @@ func TestListRolesErrors(t *testing.T) {
 
 func TestCreateRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// first, test creating a role
@@ -291,17 +291,17 @@ func TestCreateRoleErrors(t *testing.T) {
 	rcp400 := datadog.NewRoleCreatePayload()
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		Body               *datadog.RoleCreatePayload
 	}{
-		"400 Bad Request": {c.Ctx, 400, rcp400},
-		"403 Forbidden":   {FakeAuth, 403, rcp},
+		"400 Bad Request": {WithTestAuth, 400, rcp400},
+		"403 Forbidden":   {WithFakeAuth, 403, rcp},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			rr, httpresp, err := c.Client.RolesApi.CreateRole(c.Ctx).Body(*tc.Body).Execute()
@@ -321,7 +321,7 @@ func TestCreateRoleErrors(t *testing.T) {
 
 func TestGetRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -345,17 +345,17 @@ func TestGetRoleErrors(t *testing.T) {
 	assert.Equal(t, 404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		RoleID             string
 	}{
-		"403 Forbidden": {FakeAuth, 403, rid},
-		"404 Not found": {c.Ctx, 404, rid404},
+		"403 Forbidden": {WithFakeAuth, 403, rid},
+		"404 Not found": {WithTestAuth, 404, rid404},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.GetRole(c.Ctx, tc.RoleID).Execute()
@@ -369,7 +369,7 @@ func TestGetRoleErrors(t *testing.T) {
 
 func TestUpdateRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -412,20 +412,20 @@ func TestUpdateRoleErrors(t *testing.T) {
 	*/
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		RoleID             string
 		Body               *datadog.RoleUpdatePayload
 	}{
-		"400 Bad Request":         {c.Ctx, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
-		"403 Forbidden":           {FakeAuth, 403, rid, rup},
-		"404 Bad Role ID in Path": {c.Ctx, 404, rid404, rup},
-		// FIXME AAA-1540: should be 400 "400 Bad Role ID in Request": {c.Ctx, 400, rid, rup400},
+		"400 Bad Request":         {WithTestAuth, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
+		"403 Forbidden":           {WithFakeAuth, 403, rid, rup},
+		"404 Bad Role ID in Path": {WithTestAuth, 404, rid404, rup},
+		// FIXME AAA-1540: should be 400 "400 Bad Role ID in Request": {WithTestAuth, 400, rid, rup400},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.UpdateRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()
@@ -439,7 +439,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 
 func TestDeleteRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -463,17 +463,17 @@ func TestDeleteRoleErrors(t *testing.T) {
 	assert.Equal(t, 404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		RoleID             string
 	}{
-		"403 Forbidden": {FakeAuth, 403, rid},
-		"404 Not found": {c.Ctx, 404, rid404},
+		"403 Forbidden": {WithFakeAuth, 403, rid},
+		"404 Not found": {WithTestAuth, 404, rid404},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			httpresp, err := c.Client.RolesApi.DeleteRole(c.Ctx, tc.RoleID).Execute()
@@ -487,7 +487,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 
 func TestListRolePermissionsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -511,17 +511,17 @@ func TestListRolePermissionsErrors(t *testing.T) {
 	assert.Equal(t, 404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		RoleID             string
 	}{
-		"403 Forbidden": {FakeAuth, 403, rid},
-		"404 Not found": {c.Ctx, 404, rid404},
+		"403 Forbidden": {WithFakeAuth, 403, rid},
+		"404 Not found": {WithTestAuth, 404, rid404},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.ListRolePermissions(c.Ctx, tc.RoleID).Execute()
@@ -535,7 +535,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 
 func TestAddPermissionToRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -564,18 +564,18 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 	rtp.SetData(*rtpd)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		Body               *datadog.RelationshipToPermission
 	}{
-		"400 Bad Request": {c.Ctx, 400, datadog.NewRelationshipToPermissionWithDefaults()},
-		"403 Forbidden":   {FakeAuth, 403, rtp},
-		"404 Not found":   {c.Ctx, 404, rtp},
+		"400 Bad Request": {WithTestAuth, 400, datadog.NewRelationshipToPermissionWithDefaults()},
+		"403 Forbidden":   {WithFakeAuth, 403, rtp},
+		"404 Not found":   {WithTestAuth, 404, rtp},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.AddPermissionToRole(c.Ctx, rid).Body(*tc.Body).Execute()
@@ -589,7 +589,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 
 func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -636,20 +636,20 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	rtp400.SetData(*rtpd400)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		RoleID             string
 		Body               *datadog.RelationshipToPermission
 	}{
-		"400 Bad Request":        {c.Ctx, 400, rid, datadog.NewRelationshipToPermissionWithDefaults()},
-		"400 Invalid Permission": {c.Ctx, 400, rid, rtp400},
-		"403 Forbidden":          {FakeAuth, 403, rid, rtp},
-		"404 Role Not Found":     {c.Ctx, 404, rid404, rtp},
+		"400 Bad Request":        {WithTestAuth, 400, rid, datadog.NewRelationshipToPermissionWithDefaults()},
+		"400 Invalid Permission": {WithTestAuth, 400, rid, rtp400},
+		"403 Forbidden":          {WithFakeAuth, 403, rid, rtp},
+		"404 Role Not Found":     {WithTestAuth, 404, rid404, rtp},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.RemovePermissionFromRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()
@@ -663,7 +663,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 
 func TestListRoleUsersErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -687,17 +687,17 @@ func TestListRoleUsersErrors(t *testing.T) {
 	assert.Equal(t, 404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		RoleID             string
 	}{
-		"403 Forbidden": {FakeAuth, 403, rid},
-		"404 Not found": {c.Ctx, 404, rid404},
+		"403 Forbidden": {WithFakeAuth, 403, rid},
+		"404 Not found": {WithTestAuth, 404, rid404},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.ListRoleUsers(c.Ctx, tc.RoleID).Execute()
@@ -711,7 +711,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 
 func TestAddUserToRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -740,18 +740,18 @@ func TestAddUserToRoleErrors(t *testing.T) {
 	rtu.SetData(*rtud)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		Body               *datadog.RelationshipToUser
 	}{
-		"400 Bad Request": {c.Ctx, 400, datadog.NewRelationshipToUserWithDefaults()},
-		"403 Forbidden":   {FakeAuth, 403, rtu},
-		"404 Not found":   {c.Ctx, 404, rtu},
+		"400 Bad Request": {WithTestAuth, 400, datadog.NewRelationshipToUserWithDefaults()},
+		"403 Forbidden":   {WithFakeAuth, 403, rtu},
+		"404 Not found":   {WithTestAuth, 404, rtu},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.AddUserToRole(c.Ctx, rid).Body(*tc.Body).Execute()
@@ -765,7 +765,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 
 func TestRemoveUserFromRoleErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// valid role ID
@@ -809,19 +809,19 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	rtu.SetData(*rtud)
 
 	testCases := map[string]struct {
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		RoleID             string
 		Body               *datadog.RelationshipToUser
 	}{
-		"400 Bad Request": {c.Ctx, 400, rid, datadog.NewRelationshipToUserWithDefaults()},
-		"403 Forbidden":   {FakeAuth, 403, rid, rtu},
-		"404 Bad role":    {c.Ctx, 404, rid404, rtu},
+		"400 Bad Request": {WithTestAuth, 400, rid, datadog.NewRelationshipToUserWithDefaults()},
+		"403 Forbidden":   {WithFakeAuth, 403, rid, rtu},
+		"404 Bad role":    {WithTestAuth, 404, rid404, rtu},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx, t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.RemoveUserFromRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()

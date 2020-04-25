@@ -1,6 +1,7 @@
 package test
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"testing"
@@ -27,7 +28,7 @@ func disableUser(c *Client, userID string) {
 }
 
 func TestUserLifecycle(t *testing.T) {
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	// first, test creating a user
@@ -113,7 +114,7 @@ func TestUserLifecycle(t *testing.T) {
 }
 
 func TestUserInvitation(t *testing.T) {
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	uca := testingUserCreateAttributes(c)

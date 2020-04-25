@@ -1,6 +1,7 @@
 package test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,7 +10,7 @@ import (
 )
 
 func TestPermissionList(t *testing.T) {
-	c := NewClientWithRecording(NewClientAuthContext(), t)
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
 	psr, httpresp, err := c.Client.RolesApi.ListPermissions(c.Ctx).Execute()
