@@ -177,6 +177,7 @@ func setupTest(t *testing.T) func(t *testing.T) {
 
 	return func(t *testing.T) {
 		r.Stop()
+		span.SetTag(ext.Error, t.Failed())
 		span.Finish()
 	}
 }

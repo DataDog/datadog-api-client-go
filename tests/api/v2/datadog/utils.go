@@ -114,7 +114,10 @@ func NewClientAuthContext() context.Context {
 // ContextWithTestSpan starts new span with test information.
 func ContextWithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	span, ctx := tracer.StartSpanFromContext(ctx, t.Name())
-	return tracer.ContextWithSpan(ctx, span), func() { span.Finish() }
+	return tracer.ContextWithSpan(ctx, span), func() {
+		span.SetTag(ext.Error, t.Failed())
+		span.Finish()
+	}
 }
 
 // Client keeps track for APIClient and Auth Context
