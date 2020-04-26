@@ -14,6 +14,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -27,7 +28,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testMonitorSLO, err.Error(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(slo.GetId())
+	defer deleteSLOIfExists(c, slo.GetId())
 	assert.Equal(t, httpresp.StatusCode, 200)
 
 	widgetTime := datadog.NewWidgetTimeWithDefaults()
@@ -650,7 +651,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteDashboard(createdDashboard.GetId())
+	defer deleteDashboard(c, createdDashboard.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	getDashboard, httpresp, err := c.Client.DashboardsApi.GetDashboard(c.Ctx, createdDashboard.GetId()).Execute()
@@ -720,7 +721,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteDashboard(createdFreeDashboard.GetId())
+	defer deleteDashboard(c, createdFreeDashboard.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	getFreeDashboard, httpresp, err := c.Client.DashboardsApi.GetDashboard(c.Ctx, createdFreeDashboard.GetId()).Execute()
@@ -806,12 +807,10 @@ func TestDashboardGetAll(t *testing.T) {
 }
 
 func TestDashboardCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		Body               datadog.Dashboard
 		ExpectedStatusCode int
@@ -822,6 +821,9 @@ func TestDashboardCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardsApi.CreateDashboard(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -832,12 +834,10 @@ func TestDashboardCreateErrors(t *testing.T) {
 }
 
 func TestDashboardListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -846,6 +846,9 @@ func TestDashboardListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardsApi.ListDashboards(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -856,12 +859,10 @@ func TestDashboardListErrors(t *testing.T) {
 }
 
 func TestDashboardDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -871,6 +872,9 @@ func TestDashboardDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardsApi.DeleteDashboard(c.Ctx, "random").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -881,16 +885,14 @@ func TestDashboardDeleteErrors(t *testing.T) {
 }
 
 func TestDashboardUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	dashboardOK := *datadog.NewDashboardWithDefaults()
 	dashboardOK.SetWidgets([]datadog.Widget{})
 	dashboardOK.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_FREE)
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		Body               datadog.Dashboard
 		ExpectedStatusCode int
@@ -902,6 +904,9 @@ func TestDashboardUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardsApi.UpdateDashboard(c.Ctx, "random").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -912,12 +917,10 @@ func TestDashboardUpdateErrors(t *testing.T) {
 }
 
 func TestDashboardGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -927,6 +930,9 @@ func TestDashboardGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardsApi.GetDashboard(c.Ctx, "random").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -936,7 +942,7 @@ func TestDashboardGetErrors(t *testing.T) {
 	}
 }
 
-func deleteDashboard(dashboardID string) {
+func deleteDashboard(c *Client, dashboardID string) {
 	_, httpresp, err := c.Client.DashboardsApi.DeleteDashboard(c.Ctx, dashboardID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
 		log.Printf("Error deleting Dashboard: %v, Another test may have already deleted this dashboard.", dashboardID)

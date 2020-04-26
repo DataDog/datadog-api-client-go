@@ -18,13 +18,14 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func enableLogsIndexesUnstableOperations() {
+func enableLogsIndexesUnstableOperations(c *Client) func() {
 	c.Client.GetConfig().SetUnstableOperationEnabled("GetLogsIndex", true)
 	c.Client.GetConfig().SetUnstableOperationEnabled("ListLogIndexes", true)
 	c.Client.GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", true)
+	return func() { disableLogsIndexesUnstableOperations(c) }
 }
 
-func disableLogsIndexesUnstableOperations() {
+func disableLogsIndexesUnstableOperations(c *Client) {
 	c.Client.GetConfig().SetUnstableOperationEnabled("GetLogsIndex", false)
 	c.Client.GetConfig().SetUnstableOperationEnabled("ListLogIndexes", false)
 	c.Client.GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", false)
@@ -34,8 +35,7 @@ func TestGetAllLogsIndexes(t *testing.T) {
 	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer gock.Off()
 	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	defer enableLogsIndexesUnstableOperations(c)()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-indexes.json")
 	if err != nil {
@@ -59,8 +59,7 @@ func TestGetLogsIndex(t *testing.T) {
 	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer gock.Off()
 	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	defer enableLogsIndexesUnstableOperations(c)()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {
@@ -118,8 +117,7 @@ func TestUpdateLogsIndex(t *testing.T) {
 	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer gock.Off()
 	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	defer enableLogsIndexesUnstableOperations(c)()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {
@@ -214,11 +212,8 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 }
 
 func TestLogsIndexesListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -229,6 +224,11 @@ func TestLogsIndexesListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			defer enableLogsIndexesUnstableOperations(c)()
+
 			_, httpresp, err := c.Client.LogsIndexesApi.ListLogIndexes(c.Ctx).Execute()
 			fmt.Println(err)
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -240,11 +240,8 @@ func TestLogsIndexesListErrors(t *testing.T) {
 }
 
 func TestLogsIndexesGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -256,6 +253,11 @@ func TestLogsIndexesGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			defer enableLogsIndexesUnstableOperations(c)()
+
 			_, httpresp, err := c.Client.LogsIndexesApi.GetLogsIndex(c.Ctx, "shrugs").Execute()
 			fmt.Println(err)
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -273,11 +275,8 @@ func TestLogsIndexesGetErrors(t *testing.T) {
 }
 
 func TestLogsIndexesUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -290,6 +289,11 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			defer enableLogsIndexesUnstableOperations(c)()
+
 			_, httpresp, err := c.Client.LogsIndexesApi.UpdateLogsIndex(c.Ctx, "shrugs").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
@@ -308,8 +312,7 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 func TestLogsIndexesUpdate429Error(t *testing.T) {
 	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	defer enableLogsIndexesUnstableOperations(c)()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/error_429.json")
 	if err != nil {
@@ -331,11 +334,8 @@ func TestLogsIndexesUpdate429Error(t *testing.T) {
 }
 
 func TestLogsIndexesOrderGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -346,6 +346,11 @@ func TestLogsIndexesOrderGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			defer enableLogsIndexesUnstableOperations(c)()
+
 			_, httpresp, err := c.Client.LogsIndexesApi.GetLogsIndexOrder(c.Ctx).Execute()
 			fmt.Println(err)
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -357,11 +362,8 @@ func TestLogsIndexesOrderGetErrors(t *testing.T) {
 }
 
 func TestLogsIndexesOrderUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
-	enableLogsIndexesUnstableOperations()
-	defer disableLogsIndexesUnstableOperations()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -374,6 +376,11 @@ func TestLogsIndexesOrderUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			defer enableLogsIndexesUnstableOperations(c)()
+
 			_, httpresp, err := c.Client.LogsIndexesApi.UpdateLogsIndexOrder(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {

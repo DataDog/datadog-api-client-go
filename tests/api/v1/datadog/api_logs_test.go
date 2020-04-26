@@ -103,9 +103,8 @@ func TestLogsList(t *testing.T) {
 }
 
 func TestLogsListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	req := *datadog.NewLogsListRequestWithDefaults()
 	req.SetStartAt("notanid")
@@ -120,6 +119,9 @@ func TestLogsListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.LogsApi.ListLogs(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {

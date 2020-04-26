@@ -14,6 +14,7 @@ import (
 
 	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -155,9 +156,8 @@ func TestDashboardListItemCRUD(t *testing.T) {
 }
 
 func TestDashboardListGetItemsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -169,6 +169,9 @@ func TestDashboardListGetItemsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardListsApi.GetDashboardListItems(c.Ctx, 1234).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -201,6 +204,9 @@ func TestDashboardListCreateItemsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardListsApi.CreateDashboardListItems(c.Ctx, tc.ID).Body(datadog.DashboardListItems{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -233,6 +239,9 @@ func TestDashboardListUpdateItemsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardListsApi.UpdateDashboardListItems(c.Ctx, tc.ID).Body(datadog.DashboardListItems{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -265,6 +274,9 @@ func TestDashboardListDeleteItemsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.DashboardListsApi.DeleteDashboardListItems(c.Ctx, tc.ID).Body(datadog.DashboardListItems{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

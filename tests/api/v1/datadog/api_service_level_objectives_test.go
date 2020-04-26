@@ -66,7 +66,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", testServiceCheckMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(monitor.GetId())
+	defer deleteMonitor(c, monitor.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
@@ -77,7 +77,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(slo.GetId())
+	defer deleteSLOIfExists(c, slo.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, testMonitorSLO.GetName(), slo.GetName())
 
@@ -142,7 +142,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(slo.GetId())
+	defer deleteSLOIfExists(c, slo.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, testEventSLO.GetName(), slo.GetName())
 
@@ -206,7 +206,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", testServiceCheckMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(monitor.GetId())
+	defer deleteMonitor(c, monitor.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
@@ -217,7 +217,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	monitorSLO := sloResp.GetData()[0]
-	defer deleteSLOIfExists(monitorSLO.GetId())
+	defer deleteSLOIfExists(c, monitorSLO.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Create event SLO
@@ -226,7 +226,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	eventSLO := sloResp.GetData()[0]
-	defer deleteSLOIfExists(eventSLO.GetId())
+	defer deleteSLOIfExists(c, eventSLO.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Get multiple SLOs
@@ -258,12 +258,10 @@ func TestSLOMultipleInstances(t *testing.T) {
 }
 
 func TestSLOCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -273,6 +271,9 @@ func TestSLOCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.CreateSLO(c.Ctx).Body(datadog.ServiceLevelObjective{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -283,23 +284,24 @@ func TestSLOCreateErrors(t *testing.T) {
 }
 
 func TestSLOListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		Ids                string
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request", c.Ctx, "id1,id1": {400},
-		"403 Forbidden", context.Background(), "id1,id1": {403},
-		"404 Not Found", c.Ctx, "id1,id2": {404},
+		"400 Bad Request": {WithTestAuth, "id1,id1", 400},
+		"403 Forbidden":   {WithFakeAuth, "id1,id1", 403},
+		"404 Not Found":   {WithTestAuth, "id1,id2", 404},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.ListSLOs(c.Ctx).Ids(tc.Ids).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -310,12 +312,10 @@ func TestSLOListErrors(t *testing.T) {
 }
 
 func TestSLOUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		Body               datadog.ServiceLevelObjective
 		ExpectedStatusCode int
@@ -327,6 +327,9 @@ func TestSLOUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.UpdateSLO(c.Ctx, "id").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -337,12 +340,10 @@ func TestSLOUpdateErrors(t *testing.T) {
 }
 
 func TestSLOGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -352,6 +353,9 @@ func TestSLOGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.GetSLO(c.Ctx, "id").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -362,12 +366,10 @@ func TestSLOGetErrors(t *testing.T) {
 }
 
 func TestSLODeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -377,6 +379,9 @@ func TestSLODeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.DeleteSLO(c.Ctx, "id").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -406,7 +411,7 @@ func TestSLODelete409Error(t *testing.T) {
 	//	t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	//}
 	//slo := sloResp.GetData()[0]
-	//defer deleteSLOIfExists(slo.GetId())
+	//defer deleteSLOIfExists(c, slo.GetId())
 	//assert.Equal(t, 200, httpresp.StatusCode)
 	//
 	//// SLO Widget
@@ -449,22 +454,24 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(slo.GetId())
+	defer deleteSLOIfExists(c, slo.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
 		"400 Bad Request": {WithTestAuth, slo.GetId(), 400},
-		"403 Forbidden", context.Background(), "id": {403},
-		"404 Not Found", c.Ctx, "id": {404},
+		"403 Forbidden":   {WithFakeAuth, "id", 403},
+		"404 Not Found":   {WithTestAuth, "id", 404},
 	}
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.GetSLOHistory(c.Ctx, tc.ID).FromTs(123).ToTs(12).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -475,12 +482,10 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 }
 
 func TestSLOCanDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -490,6 +495,9 @@ func TestSLOCanDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.CheckCanDeleteSLO(c.Ctx).Ids("").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -521,12 +529,10 @@ func TestSLOCanDelete409Error(t *testing.T) {
 }
 
 func TestSLOBulkDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -536,6 +542,9 @@ func TestSLOBulkDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(c.Ctx).Body(map[string][]datadog.SLOTimeframe{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -554,7 +563,7 @@ func assertSLOIDPresent(t *testing.T, sloID string, slos []datadog.ServiceLevelO
 	assert.Nil(t, fmt.Errorf("SLO %s expected but not found", sloID))
 }
 
-func deleteSLOIfExists(sloID string) {
+func deleteSLOIfExists(c *Client, sloID string) {
 	_, httpresp, err := c.Client.ServiceLevelObjectivesApi.DeleteSLO(c.Ctx, sloID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
 		log.Printf("Deleting SLO: %v failed with %v, Another test may have already deleted this SLO: %v",

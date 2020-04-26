@@ -11,7 +11,7 @@ import (
 func TestConfigurationServers(t *testing.T) {
 	configuration := datadog.NewConfiguration()
 
-	testCases := map[string]struct {
+	testCases := []struct {
 		URL       string
 		Variables map[string]string
 	}{{

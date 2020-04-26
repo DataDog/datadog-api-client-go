@@ -40,7 +40,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAPIKey(apiKeyData.ApiKey.GetKey())
+	defer deleteAPIKey(c, apiKeyData.ApiKey.GetKey())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	createAPIKeyReturned := apiKeyData.GetApiKey()
@@ -151,7 +151,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAppKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
+	defer deleteAppKey(c, appKeyData.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	createAppKeyReturned := appKeyData.GetApplicationKey()
@@ -235,9 +235,8 @@ func TestApplicationKeyFunctions(t *testing.T) {
 }
 
 func TestAPIKeysMgmtListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -248,6 +247,9 @@ func TestAPIKeysMgmtListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.ListAPIKeys(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -259,9 +261,8 @@ func TestAPIKeysMgmtListErrors(t *testing.T) {
 
 func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -274,6 +275,9 @@ func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.CreateAPIKey(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -285,9 +289,8 @@ func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 
 func TestAPIKeysMgmtGetErrors(t *testing.T) {
 
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -299,6 +302,9 @@ func TestAPIKeysMgmtGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.GetAPIKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -310,9 +316,8 @@ func TestAPIKeysMgmtGetErrors(t *testing.T) {
 
 func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	name := "nonexistent key"
 	testCases := map[string]struct {
@@ -327,6 +332,9 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.UpdateAPIKey(c.Ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -358,9 +366,8 @@ func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 }
 
 func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -372,6 +379,9 @@ func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.DeleteAPIKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -382,9 +392,8 @@ func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -395,6 +404,9 @@ func TestAppKeysMgmtListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.ListApplicationKeys(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -405,9 +417,8 @@ func TestAppKeysMgmtListErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -420,6 +431,9 @@ func TestAppKeysMgmtCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.CreateApplicationKey(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -444,7 +458,7 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating api key %v: Response %s: %v", testAPPKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
+	defer deleteAppKey(c, appKeyData.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	_, httpresp, err = c.Client.KeyManagementApi.CreateApplicationKey(c.Ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
@@ -455,9 +469,8 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 }
 
 func TestAppKeysMgmtGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -469,6 +482,9 @@ func TestAppKeysMgmtGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.GetApplicationKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -479,9 +495,8 @@ func TestAppKeysMgmtGetErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	name := "nonexistent key"
 	testCases := map[string]struct {
@@ -496,6 +511,9 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.UpdateApplicationKey(c.Ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -520,7 +538,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName1, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData1.ApplicationKey.GetHash())
+	defer deleteAppKey(c, appKeyData1.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	testAPPKeyName2 := fmt.Sprintf("%s:%d2", t.Name(), time.Now().UnixNano())
@@ -528,7 +546,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName2, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData2.ApplicationKey.GetHash())
+	defer deleteAppKey(c, appKeyData2.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	_, httpresp, err = c.Client.KeyManagementApi.UpdateApplicationKey(c.Ctx, appKeyData1.ApplicationKey.GetHash()).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
@@ -539,9 +557,8 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 }
 
 func TestAppKeysMgmtDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -553,6 +570,9 @@ func TestAppKeysMgmtDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.KeyManagementApi.DeleteApplicationKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -562,14 +582,14 @@ func TestAppKeysMgmtDeleteErrors(t *testing.T) {
 	}
 }
 
-func deleteAPIKey(apiKeyValue string) {
+func deleteAPIKey(c *Client, apiKeyValue string) {
 	_, httpresp, err := c.Client.KeyManagementApi.DeleteAPIKey(c.Ctx, apiKeyValue).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue[len(apiKeyValue)-4:], httpresp.StatusCode)
 	}
 }
 
-func deleteAppKey(appKeyHash string) {
+func deleteAppKey(c *Client, appKeyHash string) {
 	_, httpresp, err := c.Client.KeyManagementApi.DeleteApplicationKey(c.Ctx, appKeyHash).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)

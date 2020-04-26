@@ -121,12 +121,10 @@ func TestTags(t *testing.T) {
 }
 
 func TestTagsListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -136,6 +134,9 @@ func TestTagsListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.TagsApi.ListHostTags(c.Ctx).Source("nosource").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -146,12 +147,10 @@ func TestTagsListErrors(t *testing.T) {
 }
 
 func TestTagsGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -161,6 +160,9 @@ func TestTagsGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.TagsApi.GetHostTags(c.Ctx, "notahostname1234").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -171,12 +173,10 @@ func TestTagsGetErrors(t *testing.T) {
 }
 
 func TestTagsCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -186,6 +186,9 @@ func TestTagsCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.TagsApi.CreateHostTags(c.Ctx, "notahostname1234").Body(datadog.HostTags{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -196,12 +199,10 @@ func TestTagsCreateErrors(t *testing.T) {
 }
 
 func TestTagsUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -211,6 +212,9 @@ func TestTagsUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.TagsApi.UpdateHostTags(c.Ctx, "notahostname1234").Body(datadog.HostTags{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -221,12 +225,10 @@ func TestTagsUpdateErrors(t *testing.T) {
 }
 
 func TestTagsDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
-		Name               string
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
@@ -236,6 +238,9 @@ func TestTagsDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			httpresp, err := c.Client.TagsApi.DeleteHostTags(c.Ctx, "notahostname1234").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

@@ -22,14 +22,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func getStartEndHr() (time.Time, time.Time) {
+func getStartEndHr(c *Client) (time.Time, time.Time) {
 	year, month, _ := c.Clock.Now().Date()
 	start := time.Date(year, month-1, 12, 0, 0, 0, 0, time.UTC)
 	end := time.Date(year, month-1, 13, 0, 0, 0, 0, time.UTC)
 	return start, end
 }
 
-func getStartEndMonth() (time.Time, time.Time) {
+func getStartEndMonth(c *Client) (time.Time, time.Time) {
 	year, month, _ := c.Clock.Now().Date()
 	start := time.Date(year, month-2, 1, 0, 0, 0, 0, time.UTC)
 	end := time.Date(year, month-1, 1, 0, 0, 0, 0, time.UTC)
@@ -40,7 +40,7 @@ func TestUsageFargate(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageFargate(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Fargate: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -53,7 +53,7 @@ func TestUsageHosts(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageHosts(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -66,7 +66,7 @@ func TestUsageLogs(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogs(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -79,7 +79,7 @@ func TestUsageSynthetics(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageSynthetics(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Synthetics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -92,7 +92,7 @@ func TestUsageSyntheticsAPI(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsAPI(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Synthetics API: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -105,7 +105,7 @@ func TestUsageSyntheticsBrowser(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsBrowser(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Synthetics Browser: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -118,7 +118,7 @@ func TestUsageTimeseries(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageTimeseries(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Timeseries: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -143,7 +143,7 @@ func TestUsageTrace(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageTrace(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Trace: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -156,7 +156,7 @@ func TestUsageLogsByIndex(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogsByIndex(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Logs by Index: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -169,7 +169,7 @@ func TestUsageLambda(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageLambda(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Lambda: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -182,7 +182,7 @@ func TestUsageNetworkHosts(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkHosts(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Network Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -195,7 +195,7 @@ func TestUsageNetworkFlows(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkFlows(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Network Flows: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -208,7 +208,7 @@ func TestUsageRumSessions(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	startHr, endHr := getStartEndHr()
+	startHr, endHr := getStartEndHr(c)
 	usage, httpresp, err := c.Client.UsageMeteringApi.GetUsageRumSessions(c.Ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -287,9 +287,8 @@ func TestUsageSummary(t *testing.T) {
 }
 
 func TestUsageGetHostsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -301,6 +300,9 @@ func TestUsageGetHostsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageHosts(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -311,9 +313,8 @@ func TestUsageGetHostsErrors(t *testing.T) {
 }
 
 func TestUsageGetLogsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -325,6 +326,9 @@ func TestUsageGetLogsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogs(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -335,9 +339,8 @@ func TestUsageGetLogsErrors(t *testing.T) {
 }
 
 func TestUsageGetLogsByIndexErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -349,6 +352,9 @@ func TestUsageGetLogsByIndexErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogsByIndex(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -359,9 +365,8 @@ func TestUsageGetLogsByIndexErrors(t *testing.T) {
 }
 
 func TestUsageTimeSeriesErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -373,6 +378,9 @@ func TestUsageTimeSeriesErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTimeseries(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -383,9 +391,8 @@ func TestUsageTimeSeriesErrors(t *testing.T) {
 }
 
 func TestUsageTopAvgMetricsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -397,6 +404,9 @@ func TestUsageTopAvgMetricsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTopAvgMetrics(c.Ctx).Month(c.Clock.Now().AddDate(-2, 0, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -407,9 +417,8 @@ func TestUsageTopAvgMetricsErrors(t *testing.T) {
 }
 
 func TestUsageTraceErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -421,6 +430,9 @@ func TestUsageTraceErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTrace(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -431,9 +443,8 @@ func TestUsageTraceErrors(t *testing.T) {
 }
 
 func TestUsageSyntheticsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -445,6 +456,9 @@ func TestUsageSyntheticsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSynthetics(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -455,9 +469,8 @@ func TestUsageSyntheticsErrors(t *testing.T) {
 }
 
 func TestUsageSyntheticsAPIErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -469,6 +482,9 @@ func TestUsageSyntheticsAPIErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsAPI(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -479,9 +495,8 @@ func TestUsageSyntheticsAPIErrors(t *testing.T) {
 }
 
 func TestUsageSyntheticsBrowserErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -493,6 +508,9 @@ func TestUsageSyntheticsBrowserErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsBrowser(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -503,9 +521,8 @@ func TestUsageSyntheticsBrowserErrors(t *testing.T) {
 }
 
 func TestUsageFargateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -517,6 +534,9 @@ func TestUsageFargateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageFargate(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -527,9 +547,8 @@ func TestUsageFargateErrors(t *testing.T) {
 }
 
 func TestUsageLambdaErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -541,6 +560,9 @@ func TestUsageLambdaErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLambda(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -551,9 +573,8 @@ func TestUsageLambdaErrors(t *testing.T) {
 }
 
 func TestUsageRumSessionErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -565,6 +586,9 @@ func TestUsageRumSessionErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageRumSessions(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -575,9 +599,8 @@ func TestUsageRumSessionErrors(t *testing.T) {
 }
 
 func TestUsageNetworkHostsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -589,6 +612,9 @@ func TestUsageNetworkHostsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkHosts(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -599,9 +625,8 @@ func TestUsageNetworkHostsErrors(t *testing.T) {
 }
 
 func TestUsageNetworkFlowsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -613,6 +638,9 @@ func TestUsageNetworkFlowsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkFlows(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -623,9 +651,8 @@ func TestUsageNetworkFlowsErrors(t *testing.T) {
 }
 
 func TestUsageSummaryErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -638,6 +665,9 @@ func TestUsageSummaryErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
 			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSummary(c.Ctx).StartMonth(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

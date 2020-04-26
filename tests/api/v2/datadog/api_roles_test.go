@@ -263,7 +263,7 @@ func TestListRolesErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.ListRoles(c.Ctx).Execute()
@@ -301,7 +301,7 @@ func TestCreateRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			rr, httpresp, err := c.Client.RolesApi.CreateRole(c.Ctx).Body(*tc.Body).Execute()
@@ -355,7 +355,7 @@ func TestGetRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.GetRole(c.Ctx, tc.RoleID).Execute()
@@ -425,7 +425,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.UpdateRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()
@@ -473,7 +473,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			httpresp, err := c.Client.RolesApi.DeleteRole(c.Ctx, tc.RoleID).Execute()
@@ -521,7 +521,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.ListRolePermissions(c.Ctx, tc.RoleID).Execute()
@@ -575,7 +575,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.AddPermissionToRole(c.Ctx, rid).Body(*tc.Body).Execute()
@@ -649,7 +649,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.RemovePermissionFromRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()
@@ -697,7 +697,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.ListRoleUsers(c.Ctx, tc.RoleID).Execute()
@@ -751,7 +751,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.AddUserToRole(c.Ctx, rid).Body(*tc.Body).Execute()
@@ -821,7 +821,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording((c.Ctx)(c.Ctx), t)
+			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
 			defer c.Close()
 
 			_, httpresp, err := c.Client.RolesApi.RemoveUserFromRole(c.Ctx, tc.RoleID).Body(*tc.Body).Execute()

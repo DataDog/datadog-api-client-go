@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -47,6 +48,9 @@ func TestGetGraphSnapshot(t *testing.T) {
 }
 
 func TestGetGraphSnapshotRequiredParams(t *testing.T) {
+	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
+	defer c.Close()
+
 	var start int64 = 1
 	var end int64 = 2
 	metricQuery := "query"
@@ -58,9 +62,8 @@ func TestGetGraphSnapshotRequiredParams(t *testing.T) {
 }
 
 func TestGraphGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -72,7 +75,10 @@ func TestGraphGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SnapshotsApi.GetGraphSnapshot(c.Ctx).Start(345).End(123).Execute()
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.SnapshotsApi.GetGraphSnapshot((c.Ctx)).Start(345).End(123).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
