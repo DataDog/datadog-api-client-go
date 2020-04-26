@@ -21,8 +21,8 @@ import (
 
 func TestListOrgs(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClient(WithFakeAuth(context.Background()), t)
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 	defer gock.Off()
 
 	// Setup fixture data
@@ -31,7 +31,7 @@ func TestListOrgs(t *testing.T) {
 	orgFixture := orgsFixture.GetOrgs()[0]
 
 	// Get mocked request data
-	orgs, _, err := c.Client.OrganizationsApi.ListOrgs(c.Ctx).Execute()
+	orgs, _, err := Client(ctx).OrganizationsApi.ListOrgs(ctx).Execute()
 	if err != nil {
 		t.Errorf("Failed to Get the test org %s", err)
 	}
@@ -53,8 +53,8 @@ func TestListOrgs(t *testing.T) {
 
 func TestCreateOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClient(WithFakeAuth(context.Background()), t)
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 	defer gock.Off()
 
 	// Setup fixture data
@@ -68,7 +68,7 @@ func TestCreateOrg(t *testing.T) {
 	}
 	createBody.SetSubscription(orgCreateBody.GetSubscription())
 	createBody.SetBilling(orgCreateBody.GetBilling())
-	getOrgResp, _, err := c.Client.OrganizationsApi.CreateChildOrg(c.Ctx).Body(createBody).Execute()
+	getOrgResp, _, err := Client(ctx).OrganizationsApi.CreateChildOrg(ctx).Body(createBody).Execute()
 	if err != nil {
 		t.Errorf("Failed to create the test org %s", err)
 	}
@@ -111,8 +111,8 @@ func TestCreateOrg(t *testing.T) {
 
 func TestUpdateOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClient(WithFakeAuth(context.Background()), t)
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 	defer gock.Off()
 
 	// Setup fixture data
@@ -120,7 +120,7 @@ func TestUpdateOrg(t *testing.T) {
 	json.Unmarshal(setupGock(t, "orgs/org_update.json", "put", "/org"), &orgsFixture)
 
 	// Get mocked request data
-	updateOrgResp, _, err := c.Client.OrganizationsApi.UpdateOrg(c.Ctx, *orgsFixture.GetOrg().PublicId).Body(datadog.Organization{Settings: orgsFixture.GetOrg().Settings}).Execute()
+	updateOrgResp, _, err := Client(ctx).OrganizationsApi.UpdateOrg(ctx, *orgsFixture.GetOrg().PublicId).Body(datadog.Organization{Settings: orgsFixture.GetOrg().Settings}).Execute()
 	if err != nil {
 		t.Errorf("Failed to update the test org %s", err)
 	}
@@ -159,8 +159,8 @@ func TestUpdateOrg(t *testing.T) {
 
 func TestGetOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClient(WithFakeAuth(context.Background()), t)
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 	defer gock.Off()
 
 	// Setup fixture data
@@ -168,7 +168,7 @@ func TestGetOrg(t *testing.T) {
 	json.Unmarshal(setupGock(t, "orgs/org_get.json", "get", "/org"), &orgsFixture)
 
 	// Get mocked request data
-	getOrgResp, _, err := c.Client.OrganizationsApi.GetOrg(c.Ctx, *orgsFixture.GetOrg().PublicId).Execute()
+	getOrgResp, _, err := Client(ctx).OrganizationsApi.GetOrg(ctx, *orgsFixture.GetOrg().PublicId).Execute()
 	if err != nil {
 		t.Errorf("Failed to get the test org %s", err)
 	}
@@ -207,8 +207,8 @@ func TestGetOrg(t *testing.T) {
 
 func TestUploadOrgIdpMeta(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClient(WithFakeAuth(context.Background()), t)
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 	defer gock.Off()
 
 	// Setup fixture data
@@ -219,7 +219,7 @@ func TestUploadOrgIdpMeta(t *testing.T) {
 	// Get empty file object. This fixture doesn't exist since we don't need it to.
 	file, _ := os.Open("test_go/idp_data.xml")
 
-	idpResp, _, err := c.Client.OrganizationsApi.UploadIdPForOrg(c.Ctx, orgPubID).IdpFile(file).Execute()
+	idpResp, _, err := Client(ctx).OrganizationsApi.UploadIdPForOrg(ctx, orgPubID).IdpFile(file).Execute()
 	if err != nil {
 		t.Fatalf("Failed to update the test org's IDP meta %s", err)
 	}
@@ -242,10 +242,10 @@ func TestOrgsCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.OrganizationsApi.CreateChildOrg(c.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).OrganizationsApi.CreateChildOrg(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -267,10 +267,10 @@ func TestOrgsListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.OrganizationsApi.ListOrgs(c.Ctx).Execute()
+			_, httpresp, err := Client(ctx).OrganizationsApi.ListOrgs(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -293,10 +293,10 @@ func TestOrgsGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.OrganizationsApi.GetOrg(c.Ctx, "lsqdkjf").Execute()
+			_, httpresp, err := Client(ctx).OrganizationsApi.GetOrg(ctx, "lsqdkjf").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -319,10 +319,10 @@ func TestOrgsUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.OrganizationsApi.UpdateOrg(c.Ctx, "lsqdkjf").Body(datadog.Organization{}).Execute()
+			_, httpresp, err := Client(ctx).OrganizationsApi.UpdateOrg(ctx, "lsqdkjf").Body(datadog.Organization{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -348,10 +348,10 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.OrganizationsApi.UploadIdPForOrg(c.Ctx, "lsqdkjf").IdpFile(file).Execute()
+			_, httpresp, err := Client(ctx).OrganizationsApi.UploadIdPForOrg(ctx, "lsqdkjf").IdpFile(file).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -362,8 +362,8 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 
 func TestOrgsUploadIdp415Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClient(WithFakeAuth(context.Background()), t)
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 
 	res, err := tests.ReadFixture("fixtures/orgs/error_415.json")
 	if err != nil {
@@ -375,7 +375,7 @@ func TestOrgsUploadIdp415Error(t *testing.T) {
 	// Get empty file object. This fixture doesn't exist since we don't need it to.
 	file, _ := os.Open("test_go/idp_data.xml")
 
-	_, httpresp, err := c.Client.OrganizationsApi.UploadIdPForOrg(c.Ctx, "id").IdpFile(file).Execute()
+	_, httpresp, err := Client(ctx).OrganizationsApi.UploadIdPForOrg(ctx, "id").IdpFile(file).Execute()
 	assert.Equal(t, 415, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)

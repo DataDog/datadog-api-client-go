@@ -9,8 +9,8 @@ import (
 )
 
 func TestTelemetryHeaders(t *testing.T) {
-	c := NewClient(WithFakeAuth(context.Background()), t)
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
 	gock.New("https://api.datadoghq.com").
@@ -20,7 +20,7 @@ func TestTelemetryHeaders(t *testing.T) {
 		Reply(299)
 	defer gock.Off()
 
-	_, httpresp, err := c.Client.AWSIntegrationApi.ListAWSAccounts(c.Ctx).Execute()
+	_, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 299, httpresp.StatusCode)
 }

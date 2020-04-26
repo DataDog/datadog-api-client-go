@@ -34,12 +34,12 @@ type createEventResponse struct {
 }
 
 func TestEventLifecycle(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	// Create event
 	marshalledEvent, _ := json.Marshal(testEvent)
-	httpresp, respBody, err := c.SendRequest("POST", "/api/v1/events", marshalledEvent)
+	httpresp, respBody, err := SendRequest(ctx, "POST", "/api/v1/events", marshalledEvent)
 	if err != nil {
 		t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, string(respBody), err)
 	}
@@ -55,7 +55,7 @@ func TestEventLifecycle(t *testing.T) {
 
 	tests.Retry(time.Duration(5*time.Second), 20, func() bool {
 		// Check event existence
-		fetchedEventResponse, httpresp, err = c.Client.EventsApi.GetEvent(c.Ctx, event.GetId()).Execute()
+		fetchedEventResponse, httpresp, err = Client(ctx).EventsApi.GetEvent(ctx, event.GetId()).Execute()
 		if err != nil {
 			t.Logf("Error fetching Event %v: Response %s: %v", event.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 			return false
@@ -81,7 +81,7 @@ func TestEventLifecycle(t *testing.T) {
 	// some time for our event to show up in the response
 	tests.Retry(time.Duration(5*time.Second), 20, func() bool {
 		var matchedEvent = false
-		eventListResponse, httpresp, err = c.Client.EventsApi.ListEvents(c.Ctx).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
+		eventListResponse, httpresp, err = Client(ctx).EventsApi.ListEvents(ctx).Start(start).End(end).Priority("normal").Sources("datadog-api-client-go").Tags("test,client:go").Unaggregated(true).Execute()
 		if err != nil {
 			t.Logf("Error fetching events: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		} else {
@@ -115,10 +115,10 @@ func TestEventListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.EventsApi.ListEvents(c.Ctx).Start(345).End(123).Execute()
+			_, httpresp, err := Client(ctx).EventsApi.ListEvents(ctx).Start(345).End(123).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -141,10 +141,10 @@ func TestEventGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.EventsApi.GetEvent(c.Ctx, 1234).Execute()
+			_, httpresp, err := Client(ctx).EventsApi.GetEvent(ctx, 1234).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

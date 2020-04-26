@@ -20,7 +20,6 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
-	"github.com/jonboulle/clockwork"
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -63,63 +62,65 @@ func NewConfiguration() *datadog.Configuration {
 	return config
 }
 
-// Client keeps track for APIClient and Auth Context
-type Client struct {
-	Client *datadog.APIClient
-	Ctx    context.Context
-	Clock  clockwork.FakeClock
-	close  *func()
+type contextKey string
+
+var (
+	clientKey = contextKey("client")
+)
+
+// WithClient sets client for unit tests in context.
+func WithClient(ctx context.Context, t *testing.T) (context.Context, func()) {
+	ctx, finish := tests.WithTestSpan(ctx, t)
+	ctx = context.WithValue(ctx, clientKey, datadog.NewAPIClient(NewConfiguration()))
+	return ctx, finish
 }
 
-// NewClient returns client for unit tests.
-func NewClient(ctx context.Context, t *testing.T) *Client {
-	ctx, close := tests.WithTestSpan(ctx, t)
-	return &Client{Ctx: ctx, Client: datadog.NewAPIClient(NewConfiguration()), close: &close}
+// ClientFromContext returns client and indication if it was successful.
+func ClientFromContext(ctx context.Context) (*datadog.APIClient, bool) {
+	if ctx == nil {
+		return nil, false
+	}
+	v := ctx.Value(clientKey)
+	if c, ok := v.(*datadog.APIClient); ok {
+		return c, true
+	}
+	return nil, false
 }
 
-// NewClientWithRecording returns configured client with recorder.
-func NewClientWithRecording(ctx context.Context, t *testing.T) *Client {
-	ctx, close := tests.WithTestSpan(ctx, t)
+// Client returns client from context.
+func Client(ctx context.Context) *datadog.APIClient {
+	c, ok := ClientFromContext(ctx)
+	if !ok {
+		log.Fatal("client is not configured")
+	}
+	return c
+}
+
+// WithRecorder configures client with recorder.
+func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
+	ctx, finish := WithClient(ctx, t)
+	client := Client(ctx)
+
+	ctx = tests.WithClock(ctx, t)
+
 	r, err := tests.Recorder(ctx, t)
 	if err != nil {
 		log.Fatal(err)
 	}
-	closeRecording := func() {
+	client.GetConfig().HTTPClient = &http.Client{Transport: tests.WrapRoundTripper(r)}
+
+	return ctx, func() {
 		r.Stop()
-		close()
+		finish()
 	}
-
-	// Create configuration
-	config := NewConfiguration()
-	config.HTTPClient = &http.Client{Transport: tests.WrapRoundTripper(r)}
-
-	// Configure client
-	c := Client{Ctx: ctx, Client: datadog.NewAPIClient(config), close: &closeRecording}
-
-	// Configure clock
-	if tests.IsRecording() {
-		c.Clock = tests.SetClock(t)
-	} else {
-		c.Clock = tests.RestoreClock(t)
-	}
-
-	return &c
-}
-
-// Close open resources.
-func (c *Client) Close() {
-	if c.close == nil {
-		return
-	}
-	(*c.close)()
 }
 
 // SendRequest sends request to endpoints without specification.
-func (c *Client) SendRequest(method, url string, payload []byte) (*http.Response, []byte, error) {
+func SendRequest(ctx context.Context, method, url string, payload []byte) (*http.Response, []byte, error) {
 	baseURL := ""
 	if !strings.HasPrefix(url, "https://") {
 		var err error
-		baseURL, err = c.Client.GetConfig().ServerURLWithContext(c.Ctx, "")
+		baseURL, err = Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
 		if err != nil {
 			return nil, []byte{}, fmt.Errorf("Failed to get base URL for Datadog API: %s", err.Error())
 		}
@@ -129,12 +130,12 @@ func (c *Client) SendRequest(method, url string, payload []byte) (*http.Response
 	if err != nil {
 		return nil, []byte{}, fmt.Errorf("Failed to create request for Datadog API: %s", err.Error())
 	}
-	keys := c.Ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey)
+	keys := ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey)
 	request.Header.Add("DD-API-KEY", keys["apiKeyAuth"].Key)
 	request.Header.Add("DD-APPLICATION-KEY", keys["appKeyAuth"].Key)
 	request.Header.Set("Content-Type", "application/json")
 
-	resp, respErr := c.Client.GetConfig().HTTPClient.Do(request)
+	resp, respErr := Client(ctx).GetConfig().HTTPClient.Do(request)
 	body, rerr := ioutil.ReadAll(resp.Body)
 	if rerr != nil {
 		respErr = fmt.Errorf("Failed reading response body: %s", rerr.Error())

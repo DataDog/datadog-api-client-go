@@ -10,6 +10,7 @@ import (
 	"context"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -113,6 +114,36 @@ func RestoreClock(t *testing.T) clockwork.FakeClock {
 		t.Fatalf("Could not parse clock date: %v", err)
 	}
 	return clockwork.NewFakeClockAt(now)
+}
+
+type contextKey string
+
+var (
+	clockKey = contextKey("clock")
+)
+
+// WithClock sets clock to context.
+func WithClock(ctx context.Context, t *testing.T) context.Context {
+	var fc clockwork.FakeClock
+	if IsRecording() {
+		fc = SetClock(t)
+	} else {
+		fc = RestoreClock(t)
+	}
+	return context.WithValue(ctx, clockKey, fc)
+}
+
+// ClockFromContext returns clock or panics.
+func ClockFromContext(ctx context.Context) clockwork.FakeClock {
+	if ctx == nil {
+		log.Fatal("ctx is required")
+	}
+	v := ctx.Value(clockKey)
+	fc, ok := v.(clockwork.FakeClock)
+	if !ok {
+		log.Fatalf("invalid value %v should be clockwork.FakeClock{}", v)
+	}
+	return fc
 }
 
 func removeURLSecrets(u *url.URL) string {

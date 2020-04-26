@@ -18,27 +18,27 @@ import (
 )
 
 func TestDashboardListLifecycle(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	start := c.Clock.Now().Unix()
+	start := tests.ClockFromContext(ctx).Now().Unix()
 	testDashboardList := datadog.DashboardList{
 		Name: fmt.Sprintf("go dashboard list %d", start),
 	}
 
 	// Create downtime
-	dashboardList, httpresp, err := c.Client.DashboardListsApi.CreateDashboardList(c.Ctx).Body(testDashboardList).Execute()
+	dashboardList, httpresp, err := Client(ctx).DashboardListsApi.CreateDashboardList(ctx).Body(testDashboardList).Execute()
 	if err != nil {
 		t.Fatalf("Error creating dashboard list %v: Response %s: %v", testDashboardList, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteDashboardList(c, dashboardList.GetId())
+	defer deleteDashboardList(ctx, dashboardList.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	assert.Equal(t, testDashboardList.GetName(), dashboardList.GetName())
 
 	// Edit a downtime
 	editedDashboardList := datadog.DashboardList{Name: fmt.Sprintf("go dashboard list updated %d", start)}
-	updatedDashboardList, httpresp, err := c.Client.DashboardListsApi.UpdateDashboardList(c.Ctx, dashboardList.GetId()).Body(editedDashboardList).Execute()
+	updatedDashboardList, httpresp, err := Client(ctx).DashboardListsApi.UpdateDashboardList(ctx, dashboardList.GetId()).Body(editedDashboardList).Execute()
 	if err != nil {
 		t.Errorf("Error updating dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -46,7 +46,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Equal(t, editedDashboardList.GetName(), updatedDashboardList.GetName())
 
 	// Check downtime existence
-	fetchedDashboardList, httpresp, err := c.Client.DashboardListsApi.GetDashboardList(c.Ctx, dashboardList.GetId()).Execute()
+	fetchedDashboardList, httpresp, err := Client(ctx).DashboardListsApi.GetDashboardList(ctx, dashboardList.GetId()).Execute()
 	if err != nil {
 		t.Errorf("Error fetching dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -54,7 +54,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Equal(t, editedDashboardList.GetName(), fetchedDashboardList.GetName())
 
 	// Find our downtime in the full list
-	dashboardLists, httpresp, err := c.Client.DashboardListsApi.ListDashboardLists(c.Ctx).Execute()
+	dashboardLists, httpresp, err := Client(ctx).DashboardListsApi.ListDashboardLists(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error fetching dashboard lists: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -62,7 +62,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	assert.Contains(t, dashboardLists.GetDashboardLists(), fetchedDashboardList)
 
 	// Cancel downtime
-	deletedDashboardListResponse, httpresp, err := c.Client.DashboardListsApi.DeleteDashboardList(c.Ctx, dashboardList.GetId()).Execute()
+	deletedDashboardListResponse, httpresp, err := Client(ctx).DashboardListsApi.DeleteDashboardList(ctx, dashboardList.GetId()).Execute()
 	if err != nil {
 		t.Errorf("Error deleting dashboard list %v: Response %s: %v", dashboardList.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -83,10 +83,10 @@ func TestDashboardListListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.DashboardListsApi.ListDashboardLists(c.Ctx).Execute()
+			_, httpresp, err := Client(ctx).DashboardListsApi.ListDashboardLists(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -110,10 +110,10 @@ func TestDashboardListCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.DashboardListsApi.CreateDashboardList(c.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).DashboardListsApi.CreateDashboardList(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -136,10 +136,10 @@ func TestDashboardListGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.DashboardListsApi.GetDashboardList(c.Ctx, 1234).Execute()
+			_, httpresp, err := Client(ctx).DashboardListsApi.GetDashboardList(ctx, 1234).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -164,10 +164,10 @@ func TestDashboardListUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.DashboardListsApi.UpdateDashboardList(c.Ctx, 1234).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).DashboardListsApi.UpdateDashboardList(ctx, 1234).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -190,10 +190,10 @@ func TestDashboardListDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.DashboardListsApi.DeleteDashboardList(c.Ctx, 1234).Execute()
+			_, httpresp, err := Client(ctx).DashboardListsApi.DeleteDashboardList(ctx, 1234).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -202,8 +202,8 @@ func TestDashboardListDeleteErrors(t *testing.T) {
 	}
 }
 
-func deleteDashboardList(c *Client, dashboardListID int64) {
-	_, httpresp, err := c.Client.DashboardListsApi.DeleteDashboardList(c.Ctx, dashboardListID).Execute()
+func deleteDashboardList(ctx context.Context, dashboardListID int64) {
+	_, httpresp, err := Client(ctx).DashboardListsApi.DeleteDashboardList(ctx, dashboardListID).Execute()
 	if err != nil {
 		log.Printf("Deleting dashboard list: %v failed with %v, Another test may have already deleted this dashboard list: %v", dashboardListID, httpresp.StatusCode, err)
 	}

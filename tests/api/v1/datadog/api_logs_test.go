@@ -12,10 +12,10 @@ import (
 )
 
 func TestLogsList(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	now := c.Clock.Now()
+	now := tests.ClockFromContext(ctx).Now()
 	nanoNow := now.UnixNano()
 	source := fmt.Sprintf("go-client-test-%d", nanoNow)
 	message := fmt.Sprintf("test-log-list-%d", nanoNow)
@@ -26,7 +26,7 @@ func TestLogsList(t *testing.T) {
 		`{"ddsource": "%s", "ddtags": "go,test,list", "hostname": "%s", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
 		source, hostname, (now.Unix()-1)*1000, message,
 	)
-	httpresp, respBody, err := c.SendRequest("POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
+	httpresp, respBody, err := SendRequest(ctx, "POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
 	if err != nil {
 		t.Fatalf("Error creating log: Response %s: %v", respBody, err)
 	}
@@ -40,7 +40,7 @@ func TestLogsList(t *testing.T) {
 	)
 
 	// Create second log entry
-	httpresp, respBody, err = c.SendRequest("POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
+	httpresp, respBody, err = SendRequest(ctx, "POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
 	if err != nil {
 		t.Fatalf("Error creating log: Response %s: %v", respBody, err)
 	}
@@ -60,7 +60,7 @@ func TestLogsList(t *testing.T) {
 
 	// Make sure that both log items are indexed
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		logsResponse, httpresp, err = c.Client.LogsApi.ListLogs(c.Ctx).Body(logsRequest).Execute()
+		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
@@ -73,7 +73,7 @@ func TestLogsList(t *testing.T) {
 	// Find first log item
 	logsRequest.SetLimit(1)
 
-	logsResponse, httpresp, err = c.Client.LogsApi.ListLogs(c.Ctx).Body(logsRequest).Execute()
+	logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
 	if err != nil {
 		t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -89,7 +89,7 @@ func TestLogsList(t *testing.T) {
 	assert.True(t, len(*logsResponse.NextLogId) > 0)
 	logsRequest.SetStartAt(logsResponse.GetNextLogId())
 
-	logsResponse, httpresp, err = c.Client.LogsApi.ListLogs(c.Ctx).Body(logsRequest).Execute()
+	logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
 	if err != nil {
 		t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -119,10 +119,10 @@ func TestLogsListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.LogsApi.ListLogs(c.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).LogsApi.ListLogs(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

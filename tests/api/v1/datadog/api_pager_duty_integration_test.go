@@ -17,31 +17,31 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func ensureNoPagerDuty(c *Client, t *testing.T) {
+func ensureNoPagerDuty(ctx context.Context, t *testing.T) {
 	// Make sure that there is not parallel execution
 	err := tests.Retry(time.Duration(5)*time.Second, 10, func() bool {
-		_, httpresp, _ := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegration(c.Ctx).Execute()
+		_, httpresp, _ := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 		return httpresp.StatusCode != 200
 	})
 	assert.Nil(t, err)
 }
 
 func TestPagerDutyDelete204(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	ensureNoPagerDuty(c, t)
+	ensureNoPagerDuty(ctx, t)
 
-	httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegration(c.Ctx).Execute()
+	httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 }
 
 func TestPagerDutyLifecycle(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	ensureNoPagerDuty(c, t)
+	ensureNoPagerDuty(ctx, t)
 
 	pagerDutyRequest := datadog.PagerDutyIntegration{
 		Subdomain: datadog.PtrString("_deadbeef"),
@@ -49,13 +49,13 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	}
 
 	// Create a new PagerDuty integration
-	httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegration(c.Ctx).Body(pagerDutyRequest).Execute()
-	defer deletePagerDuty(c)
+	httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegration(ctx).Body(pagerDutyRequest).Execute()
+	defer deletePagerDuty(ctx)
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 
 	// Get PagerDuty integration
-	pagerDuty, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegration(c.Ctx).Execute()
+	pagerDuty, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, pagerDutyRequest.GetSubdomain(), pagerDuty.GetSubdomain())
@@ -71,12 +71,12 @@ func TestPagerDutyLifecycle(t *testing.T) {
 		Schedules: &[]string{"https://_deadbeef.pagerduty.com/schedules#DEAD3F"},
 	}
 	// Add a Service and Schedules items by updating the PagerDuty Integration
-	httpresp, err = c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(c.Ctx).Body(servicesAndSchedules).Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegration(ctx).Body(servicesAndSchedules).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 
 	// Get PagerDuty Integration
-	updatedPagerDuty, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegration(c.Ctx).Execute()
+	updatedPagerDuty, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, pagerDutyRequest.GetSubdomain(), updatedPagerDuty.GetSubdomain())
@@ -92,19 +92,19 @@ func TestPagerDutyLifecycle(t *testing.T) {
 		ServiceKey:  "deadbeef",
 		ServiceName: "test_go_2",
 	}
-	serviceNameResponse, httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(c.Ctx).Body(serviceBody).Execute()
+	serviceNameResponse, httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(serviceBody).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 201, httpresp.StatusCode)
 	assert.Equal(t, serviceBody.GetServiceName(), serviceNameResponse.GetServiceName())
 
 	// Get created Service object
-	serviceName, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(c.Ctx, "test_go_2").Execute()
+	serviceName, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, "test_go_2").Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, serviceBody.GetServiceName(), serviceName.GetServiceName())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Get previously added service item
-	serviceName, httpresp, err = c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(c.Ctx, "test_go").Execute()
+	serviceName, httpresp, err = Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, "test_go").Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, "test_go", serviceName.GetServiceName())
 	assert.Equal(t, 200, httpresp.StatusCode)
@@ -113,17 +113,17 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	serviceKey := datadog.PagerDutyServiceKey{
 		ServiceKey: "newkey",
 	}
-	httpresp, err = c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(c.Ctx, "test_go_2").Body(serviceKey).Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, "test_go_2").Body(serviceKey).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Delete Service Object
-	httpresp, err = c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(c.Ctx, "test_go").Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, "test_go").Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Get created Service object
-	pagerDuty, httpresp, err = c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegration(c.Ctx).Execute()
+	pagerDuty, httpresp, err = Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, 1, len(pagerDuty.GetSchedules()))
@@ -133,7 +133,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	assert.Equal(t, "*****", pagerDuty.GetServices()[0].GetServiceKey())
 
 	// Delete Pager Duty Integration
-	httpresp, err = c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegration(c.Ctx).Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 }
@@ -152,12 +152,12 @@ func TestPagerDutyGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			ensureNoPagerDuty(c, t)
+			ensureNoPagerDuty(ctx, t)
 
-			_, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegration(c.Ctx).Execute()
+			_, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -168,8 +168,8 @@ func TestPagerDutyGetErrors(t *testing.T) {
 
 func TestPagerDutyCreateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	pg := *datadog.NewPagerDutyIntegrationWithDefaults()
 	pg.SetApiToken("apitoken")
@@ -187,10 +187,10 @@ func TestPagerDutyCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(c.Ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegration(c.Ctx).Body(pg).Execute()
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegration(ctx).Body(pg).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -216,10 +216,10 @@ func TestPagerDutyUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			httpresp, err := c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(c.Ctx).Body(pg).Execute()
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegration(ctx).Body(pg).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -241,10 +241,10 @@ func TestPagerDutyDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegration(c.Ctx).Execute()
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -273,12 +273,12 @@ func TestPagerDutyServicesCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			ensureNoPagerDuty(c, t)
+			ensureNoPagerDuty(ctx, t)
 
-			_, httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(c.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -305,10 +305,10 @@ func TestPagerDutyServicesGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(c.Ctx, "service").Execute()
+			_, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, "service").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -336,10 +336,10 @@ func TestPagerDutyServicesUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			httpresp, err := c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(c.Ctx, "qoisdfhanniq").Body(tc.Body).Execute()
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, "qoisdfhanniq").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -362,10 +362,10 @@ func TestPagerDutyServicesDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(c.Ctx, "lqnioiuyzbefnkje").Execute()
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, "lqnioiuyzbefnkje").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -374,8 +374,8 @@ func TestPagerDutyServicesDeleteErrors(t *testing.T) {
 	}
 }
 
-func deletePagerDuty(c *Client) {
-	httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegration(c.Ctx).Execute()
+func deletePagerDuty(ctx context.Context) {
+	httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 	if httpresp.StatusCode != 204 || err != nil {
 		log.Printf("Error uninstalling PagerDuty integration: Another test may have already removed this account: %v", err)
 	}

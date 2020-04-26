@@ -18,11 +18,11 @@ import (
 )
 
 func TestIPRanges(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	// Get IP ranges
-	ipRanges, httpresp, err := c.Client.IPRangesApi.GetIPRanges(c.Ctx).Execute()
+	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -37,9 +37,9 @@ func TestIPRanges(t *testing.T) {
 }
 
 func TestIPRangesMocked(t *testing.T) {
-	c := NewClient(WithFakeAuth(context.Background()), t)
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
 	defer gock.Off()
-	defer c.Close()
+	defer stop()
 
 	data, err := tests.ReadFixture("fixtures/ip-ranges/ip-ranges.json")
 	if err != nil {
@@ -52,7 +52,7 @@ func TestIPRangesMocked(t *testing.T) {
 		JSON(data)
 
 	// Get IP ranges
-	ipRanges, httpresp, err := c.Client.IPRangesApi.GetIPRanges(c.Ctx).Execute()
+	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

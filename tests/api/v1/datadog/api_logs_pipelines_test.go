@@ -18,10 +18,10 @@ import (
 )
 
 func TestLogsPipelinesLifecycle(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	now := c.Clock.Now()
+	now := tests.ClockFromContext(ctx).Now()
 
 	// Create a pipeline
 	grokParser := datadog.NewLogsGrokParserWithDefaults()
@@ -130,11 +130,11 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	pipelineName := fmt.Sprintf("go-client-test-pipeline-%d", now.Unix())
 	pipeline.SetName(pipelineName)
 
-	createdPipeline, httpresp, err := c.Client.LogsPipelinesApi.CreateLogsPipeline(c.Ctx).Body(pipeline).Execute()
+	createdPipeline, httpresp, err := Client(ctx).LogsPipelinesApi.CreateLogsPipeline(ctx).Body(pipeline).Execute()
 	if err != nil {
 		t.Fatalf("Error creating logs pipeline: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteLogsPipeline(c, createdPipeline.GetId())
+	defer deleteLogsPipeline(ctx, createdPipeline.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	assert.Equal(t, pipelineName, createdPipeline.GetName())
@@ -158,7 +158,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Equal(t, traceRemapper.GetType(), processors[13].LogsProcessorInterface.GetType())
 
 	// Get all pipelines and assert our freshly created one is part of the result
-	pipelines, httpresp, err := c.Client.LogsPipelinesApi.ListLogsPipelines(c.Ctx).Execute()
+	pipelines, httpresp, err := Client(ctx).LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all logs pipelines: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -166,7 +166,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Contains(t, pipelines, createdPipeline)
 
 	// Get the freshly created pipeline
-	pipe, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipeline(c.Ctx, createdPipeline.GetId()).Execute()
+	pipe, httpresp, err := Client(ctx).LogsPipelinesApi.GetLogsPipeline(ctx, createdPipeline.GetId()).Execute()
 	if err != nil {
 		t.Fatalf("Error getting log pipeline: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -181,7 +181,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	pipeline.SetFilter(datadog.LogsFilter{Query: datadog.PtrString("updated query")})
 	pipeline.SetName(pipeline.GetName() + "-updated")
 
-	updatedPipeline, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipeline(c.Ctx, createdPipeline.GetId()).Body(pipeline).Execute()
+	updatedPipeline, httpresp, err := Client(ctx).LogsPipelinesApi.UpdateLogsPipeline(ctx, createdPipeline.GetId()).Body(pipeline).Execute()
 	if err != nil {
 		t.Fatalf("Error updating logs pipeline: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -208,15 +208,15 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Equal(t, traceRemapper.GetType(), processors[12].LogsProcessorInterface.GetType())
 
 	// Delete the pipeline
-	httpresp, err = c.Client.LogsPipelinesApi.DeleteLogsPipeline(c.Ctx, createdPipeline.GetId()).Execute()
+	httpresp, err = Client(ctx).LogsPipelinesApi.DeleteLogsPipeline(ctx, createdPipeline.GetId()).Execute()
 	assert.Nil(t, err)
 }
 
 func TestUpdateLogsPipelineOrder(t *testing.T) {
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	pipelineOrder, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipelineOrder(c.Ctx).Execute()
+	pipelineOrder, httpresp, err := Client(ctx).LogsPipelinesApi.GetLogsPipelineOrder(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting pipeline order: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -226,7 +226,7 @@ func TestUpdateLogsPipelineOrder(t *testing.T) {
 	newOrder = append(newOrder[1:], newOrder[:1]...)
 	pipelineOrder.SetPipelineIds(newOrder)
 
-	newPipelineOrder, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipelineOrder(c.Ctx).Body(pipelineOrder).Execute()
+	newPipelineOrder, httpresp, err := Client(ctx).LogsPipelinesApi.UpdateLogsPipelineOrder(ctx).Body(pipelineOrder).Execute()
 	if err != nil {
 		t.Fatalf("Error updating with new order %v: Response %s: %v", newOrder, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -247,10 +247,10 @@ func TestLogsPipelinesOrderGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipelineOrder(c.Ctx).Execute()
+			_, httpresp, err := Client(ctx).LogsPipelinesApi.GetLogsPipelineOrder(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -275,10 +275,10 @@ func TestLogsPipelinesOrderUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipelineOrder(c.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).LogsPipelinesApi.UpdateLogsPipelineOrder(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -306,10 +306,10 @@ func TestLogsPipelinesListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.LogsPipelinesApi.ListLogsPipelines(c.Ctx).Execute()
+			_, httpresp, err := Client(ctx).LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -333,10 +333,10 @@ func TestLogsPipelinesCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.LogsPipelinesApi.CreateLogsPipeline(c.Ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).LogsPipelinesApi.CreateLogsPipeline(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -365,10 +365,10 @@ func TestLogsPipelinesGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipeline(c.Ctx, "id").Execute()
+			_, httpresp, err := Client(ctx).LogsPipelinesApi.GetLogsPipeline(ctx, "id").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -397,10 +397,10 @@ func TestLogsPipelinesDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			httpresp, err := c.Client.LogsPipelinesApi.DeleteLogsPipeline(c.Ctx, "id").Execute()
+			httpresp, err := Client(ctx).LogsPipelinesApi.DeleteLogsPipeline(ctx, "id").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -430,10 +430,10 @@ func TestLogsPipelinesUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			c := NewClientWithRecording(tc.Ctx(ctx), t)
-			defer c.Close()
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
 
-			_, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipeline(c.Ctx, "id").Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).LogsPipelinesApi.UpdateLogsPipeline(ctx, "id").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -448,8 +448,8 @@ func TestLogsPipelinesUpdateErrors(t *testing.T) {
 	}
 }
 
-func deleteLogsPipeline(c *Client, pipelineID string) {
-	httpresp, err := c.Client.LogsPipelinesApi.DeleteLogsPipeline(c.Ctx, pipelineID).Execute()
+func deleteLogsPipeline(ctx context.Context, pipelineID string) {
+	httpresp, err := Client(ctx).LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
 		log.Printf("Error deleting Logs Pipeline: %v, Another test may have already deleted this pipeline.", pipelineID)
 	}
