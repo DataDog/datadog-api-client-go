@@ -19,10 +19,10 @@ func TestConfigurationServers(t *testing.T) {
 		Variables: nil,
 	}, {
 		URL:       "https://api.datadoghq.eu",
-		Variables: map[string]string{"site": "datadoghq.eu"},
+		Variables: {"site": "datadoghq.eu"},
 	}, {
 		URL: "https://http-intake.logs.datadoghq.eu",
-		Variables: map[string]string{
+		Variables: {
 			"subdomain": "http-intake.logs",
 			"site":      "datadoghq.eu",
 		},
@@ -42,7 +42,7 @@ func TestConfigurationServers(t *testing.T) {
 
 func TestConfigurationServersAccess(t *testing.T) {
 	configuration := datadog.NewConfiguration()
-	testCases := map[string]struct {
+	testCases := []struct {
 		Index int
 		Err   string
 	}{{
