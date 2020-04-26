@@ -238,17 +238,16 @@ func TestLogsPipelinesOrderGetErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipelineOrder(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipelineOrder(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -262,20 +261,19 @@ func TestLogsPipelinesOrderUpdateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.LogsPipelinesOrder
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.LogsPipelinesOrder{}, 400},
-		{"403 Forbidden", fake_auth, datadog.LogsPipelinesOrder{}, 403},
-		{"422 Unprocessable Entity", c.Ctx, datadog.LogsPipelinesOrder{PipelineIds: []string{"id"}}, 422},
+		"400 Bad Request":          {WithTestAuth, datadog.LogsPipelinesOrder{}, 400},
+		"403 Forbidden":            {WithFakeAuth, datadog.LogsPipelinesOrder{}, 403},
+		"422 Unprocessable Entity": {WithTestAuth, datadog.LogsPipelinesOrder{PipelineIds: []string{"id"}}, 422},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipelineOrder(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipelineOrder(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -295,17 +293,16 @@ func TestLogsPipelinesListErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.LogsPipelinesApi.ListLogsPipelines(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.LogsPipelinesApi.ListLogsPipelines(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -319,19 +316,18 @@ func TestLogsPipelinesCreateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.LogsPipeline
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.LogsPipeline{}, 400},
-		{"403 Forbidden", fake_auth, datadog.LogsPipeline{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.LogsPipeline{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.LogsPipeline{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.LogsPipelinesApi.CreateLogsPipeline(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.LogsPipelinesApi.CreateLogsPipeline(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -351,18 +347,17 @@ func TestLogsPipelinesGetErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipeline(tc.Ctx, "id").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.LogsPipelinesApi.GetLogsPipeline(c.Ctx, "id").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -382,18 +377,17 @@ func TestLogsPipelinesDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := c.Client.LogsPipelinesApi.DeleteLogsPipeline(tc.Ctx, "id").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			httpresp, err := c.Client.LogsPipelinesApi.DeleteLogsPipeline(c.Ctx, "id").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -413,19 +407,18 @@ func TestLogsPipelinesUpdateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.LogsPipeline
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.LogsPipeline{}, 400},
-		{"403 Forbidden", fake_auth, datadog.LogsPipeline{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.LogsPipeline{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.LogsPipeline{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipeline(tc.Ctx, "id").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.LogsPipelinesApi.UpdateLogsPipeline(c.Ctx, "id").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

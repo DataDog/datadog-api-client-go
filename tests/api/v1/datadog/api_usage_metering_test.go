@@ -219,7 +219,7 @@ func TestUsageRumSessions(t *testing.T) {
 
 // This test needs multi-org token so make it a unit test
 func TestUsageSummary(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	startMonth := time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC)
@@ -291,18 +291,17 @@ func TestUsageGetHostsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageHosts(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageHosts(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -316,18 +315,17 @@ func TestUsageGetLogsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogs(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogs(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -341,18 +339,17 @@ func TestUsageGetLogsByIndexErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogsByIndex(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLogsByIndex(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -366,18 +363,17 @@ func TestUsageTimeSeriesErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTimeseries(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTimeseries(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -391,18 +387,17 @@ func TestUsageTopAvgMetricsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTopAvgMetrics(tc.Ctx).Month(c.Clock.Now().AddDate(-2, 0, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTopAvgMetrics(c.Ctx).Month(c.Clock.Now().AddDate(-2, 0, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -416,18 +411,17 @@ func TestUsageTraceErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTrace(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageTrace(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -441,18 +435,17 @@ func TestUsageSyntheticsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSynthetics(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSynthetics(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -466,18 +459,17 @@ func TestUsageSyntheticsAPIErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsAPI(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsAPI(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -491,18 +483,17 @@ func TestUsageSyntheticsBrowserErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsBrowser(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSyntheticsBrowser(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -516,18 +507,17 @@ func TestUsageFargateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageFargate(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageFargate(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -541,18 +531,17 @@ func TestUsageLambdaErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLambda(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageLambda(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -566,18 +555,17 @@ func TestUsageRumSessionErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageRumSessions(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageRumSessions(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -591,18 +579,17 @@ func TestUsageNetworkHostsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkHosts(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkHosts(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -616,18 +603,17 @@ func TestUsageNetworkFlowsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkFlows(tc.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageNetworkFlows(c.Ctx).StartHr(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -641,19 +627,18 @@ func TestUsageSummaryErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
 		// Mocked because requires multi org feature
-		// {"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		// "400 Bad Request": {WithTestAuth,400},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSummary(tc.Ctx).StartMonth(c.Clock.Now().AddDate(0, 1, 0)).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsageMeteringApi.GetUsageSummary(c.Ctx).StartMonth(c.Clock.Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -663,7 +648,7 @@ func TestUsageSummaryErrors(t *testing.T) {
 }
 
 func TestUsageGetSummary400Error(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/usage/error_400.json")

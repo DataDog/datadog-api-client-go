@@ -109,19 +109,18 @@ func TestLogsListErrors(t *testing.T) {
 
 	req := *datadog.NewLogsListRequestWithDefaults()
 	req.SetStartAt("notanid")
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.LogsListRequest
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, req, 400},
-		{"403 Forbidden", fake_auth, req, 403},
+		"400 Bad Request": {WithTestAuth, req, 400},
+		"403 Forbidden":   {WithFakeAuth, req, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.LogsApi.ListLogs(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.LogsApi.ListLogs(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

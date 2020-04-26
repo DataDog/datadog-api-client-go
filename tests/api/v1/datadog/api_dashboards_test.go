@@ -810,19 +810,19 @@ func TestDashboardCreateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
+	testCases := map[string]struct {
 		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		Body               datadog.Dashboard
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.Dashboard{}, 400},
-		{"403 Forbidden", context.Background(), datadog.Dashboard{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.Dashboard{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.Dashboard{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardsApi.CreateDashboard(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.DashboardsApi.CreateDashboard(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -836,17 +836,17 @@ func TestDashboardListErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
+	testCases := map[string]struct {
 		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", context.Background(), 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardsApi.ListDashboards(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.DashboardsApi.ListDashboards(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -860,18 +860,18 @@ func TestDashboardDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
+	testCases := map[string]struct {
 		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", context.Background(), 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardsApi.DeleteDashboard(tc.Ctx, "random").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.DashboardsApi.DeleteDashboard(c.Ctx, "random").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -889,20 +889,20 @@ func TestDashboardUpdateErrors(t *testing.T) {
 	dashboardOK.SetWidgets([]datadog.Widget{})
 	dashboardOK.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_FREE)
 
-	testCases := []struct {
+	testCases := map[string]struct {
 		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		Body               datadog.Dashboard
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.Dashboard{}, 400},
-		{"403 Forbidden", context.Background(), datadog.Dashboard{}, 403},
-		{"404 Not Found", c.Ctx, dashboardOK, 404},
+		"400 Bad Request": {WithTestAuth, datadog.Dashboard{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.Dashboard{}, 403},
+		"404 Not Found":   {WithTestAuth, dashboardOK, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardsApi.UpdateDashboard(tc.Ctx, "random").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.DashboardsApi.UpdateDashboard(c.Ctx, "random").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -916,18 +916,18 @@ func TestDashboardGetErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
+	testCases := map[string]struct {
 		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", context.Background(), 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardsApi.GetDashboard(tc.Ctx, "random").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.DashboardsApi.GetDashboard(c.Ctx, "random").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

@@ -18,7 +18,7 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func generateUniqueAzureAccount() (datadog.AzureAccount, datadog.AzureAccount, datadog.AzureAccount) {
+func generateUniqueAzureAccount(c *Client) (datadog.AzureAccount, datadog.AzureAccount, datadog.AzureAccount) {
 	tenantName := fmt.Sprintf("go_test-1234-5678-9101-%d", c.Clock.Now().Unix())
 	var testAzureAcct = datadog.AzureAccount{
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
@@ -48,8 +48,8 @@ func TestAzureCreate(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
-	testAzureAcct, _, _ := generateUniqueAzureAccount()
-	defer uninstallAzureIntegration(testAzureAcct)
+	testAzureAcct, _, _ := generateUniqueAzureAccount(c)
+	defer uninstallAzureIntegration(c, testAzureAcct)
 
 	_, httpresp, err := c.Client.AzureIntegrationApi.CreateAzureIntegration(c.Ctx).Body(testAzureAcct).Execute()
 	if err != nil {
@@ -62,9 +62,9 @@ func TestAzureListandDelete(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
-	testAzureAcct, _, testUpdateAzureHostFilters := generateUniqueAzureAccount()
-	defer uninstallAzureIntegration(testAzureAcct)
-	defer uninstallAzureIntegration(testUpdateAzureHostFilters)
+	testAzureAcct, _, testUpdateAzureHostFilters := generateUniqueAzureAccount(c)
+	defer uninstallAzureIntegration(c, testAzureAcct)
+	defer uninstallAzureIntegration(c, testUpdateAzureHostFilters)
 
 	// Setup Azure Account to List
 	_, httpresp, err := c.Client.AzureIntegrationApi.CreateAzureIntegration(c.Ctx).Body(testAzureAcct).Execute()
@@ -102,8 +102,8 @@ func TestUpdateAzureAccount(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
-	testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters := generateUniqueAzureAccount()
-	defer uninstallAzureIntegration(testAzureAcct)
+	testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters := generateUniqueAzureAccount(c)
+	defer uninstallAzureIntegration(c, testAzureAcct)
 
 	// Setup Azure Account to Update
 	_, httpresp, err := c.Client.AzureIntegrationApi.CreateAzureIntegration(c.Ctx).Body(testAzureAcct).Execute()
@@ -113,7 +113,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	_, httpresp, err = c.Client.AzureIntegrationApi.UpdateAzureIntegration(c.Ctx).Body(testUpdateAzureAcct).Execute()
-	defer uninstallAzureIntegration(testUpdateAzureAcct)
+	defer uninstallAzureIntegration(c, testUpdateAzureAcct)
 	if err != nil {
 		t.Fatalf("Error updating Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -157,7 +157,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 }
 
 func TestAzureList400Error(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/azure/error_400.json")
@@ -191,23 +191,24 @@ func TestAzure403Error(t *testing.T) {
 }
 
 func TestAzureCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.AzureAccount
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.AzureAccount{}, 400},
-		{"403 Forbidden", context.Background(), datadog.AzureAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.AzureAccount{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.AzureAccount{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.AzureIntegrationApi.CreateAzureIntegration(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.AzureIntegrationApi.CreateAzureIntegration(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -217,23 +218,24 @@ func TestAzureCreateErrors(t *testing.T) {
 }
 
 func TestAzureDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.AzureAccount
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.AzureAccount{}, 400},
-		{"403 Forbidden", context.Background(), datadog.AzureAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.AzureAccount{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.AzureAccount{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.AzureIntegrationApi.DeleteAzureIntegration(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.AzureIntegrationApi.DeleteAzureIntegration(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -243,23 +245,24 @@ func TestAzureDeleteErrors(t *testing.T) {
 }
 
 func TestAzureUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.AzureAccount
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.AzureAccount{}, 400},
-		{"403 Forbidden", context.Background(), datadog.AzureAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.AzureAccount{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.AzureAccount{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.AzureIntegrationApi.UpdateAzureIntegration(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.AzureIntegrationApi.UpdateAzureIntegration(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -269,23 +272,24 @@ func TestAzureUpdateErrors(t *testing.T) {
 }
 
 func TestAzureUpdateHostFiltersErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.AzureAccount
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.AzureAccount{}, 400},
-		{"403 Forbidden", context.Background(), datadog.AzureAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.AzureAccount{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.AzureAccount{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.AzureIntegrationApi.UpdateAzureHostFilters(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.AzureIntegrationApi.UpdateAzureHostFilters(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -294,7 +298,7 @@ func TestAzureUpdateHostFiltersErrors(t *testing.T) {
 	}
 }
 
-func uninstallAzureIntegration(account datadog.AzureAccount) {
+func uninstallAzureIntegration(c *Client, account datadog.AzureAccount) {
 	_, httpresp, err := c.Client.AzureIntegrationApi.DeleteAzureIntegration(c.Ctx).Body(account).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Error uninstalling Azure Account: %v, Another test may have already removed this account.", account)

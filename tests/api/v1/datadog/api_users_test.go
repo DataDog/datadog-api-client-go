@@ -153,18 +153,17 @@ func TestUserCreateErrors(t *testing.T) {
 	defer c.Close()
 
 	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		Body               datadog.User
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.User{}, 400},
-		{"403 Forbidden", fake_auth, datadog.User{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.User{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.User{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsersApi.CreateUser(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsersApi.CreateUser(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -198,16 +197,15 @@ func TestUserListErrors(t *testing.T) {
 	defer c.Close()
 
 	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsersApi.ListUsers(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsersApi.ListUsers(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -222,17 +220,16 @@ func TestUserGetErrors(t *testing.T) {
 	defer c.Close()
 
 	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsersApi.GetUser(tc.Ctx, "notahandle").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsersApi.GetUser(c.Ctx, "notahandle").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -258,19 +255,18 @@ func TestUserUpdateErrors(t *testing.T) {
 	badUser.SetEmail("notanemail")
 
 	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, testUser.GetHandle(), 400},
-		{"403 Forbidden", fake_auth, "notahandle", 403},
-		{"404 Not Found", c.Ctx, "notahandle", 404},
+		"400 Bad Request": {WithTestAuth, testUser.GetHandle(), 400},
+		"403 Forbidden":   {WithFakeAuth, "notahandle", 403},
+		"404 Not Found":   {WithTestAuth, "notahandle", 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsersApi.UpdateUser(tc.Ctx, tc.ID).Body(badUser).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsersApi.UpdateUser(c.Ctx, tc.ID).Body(badUser).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -293,19 +289,18 @@ func TestUserDisableErrors(t *testing.T) {
 	disableUser(testUser.GetHandle())
 
 	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, testUser.GetHandle(), 400},
-		{"403 Forbidden", fake_auth, "notahandle", 403},
-		{"404 Not Found", c.Ctx, "notahandle", 404},
+		"400 Bad Request": {WithTestAuth, testUser.GetHandle(), 400},
+		"403 Forbidden":   {WithFakeAuth, "notahandle", 403},
+		"404 Not Found":   {WithTestAuth, "notahandle", 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.UsersApi.DisableUser(tc.Ctx, tc.ID).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.UsersApi.DisableUser(c.Ctx, tc.ID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

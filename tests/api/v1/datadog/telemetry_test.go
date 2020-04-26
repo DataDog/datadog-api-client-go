@@ -1,6 +1,7 @@
 package test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -8,7 +9,7 @@ import (
 )
 
 func TestTelemetryHeaders(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.

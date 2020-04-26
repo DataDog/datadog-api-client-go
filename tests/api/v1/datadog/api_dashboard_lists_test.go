@@ -13,6 +13,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -30,7 +31,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating dashboard list %v: Response %s: %v", testDashboardList, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteDashboardList(dashboardList.GetId())
+	defer deleteDashboardList(c, dashboardList.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	assert.Equal(t, testDashboardList.GetName(), dashboardList.GetName())
@@ -70,21 +71,22 @@ func TestDashboardListLifecycle(t *testing.T) {
 }
 
 func TestDashboardListListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", context.Background(), 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardListsApi.ListDashboardLists(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.DashboardListsApi.ListDashboardLists(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -94,23 +96,24 @@ func TestDashboardListListErrors(t *testing.T) {
 }
 
 func TestDashboardListCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.DashboardList
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.DashboardList{}, 400},
-		{"403 Forbidden", context.Background(), datadog.DashboardList{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.DashboardList{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.DashboardList{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardListsApi.CreateDashboardList(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.DashboardListsApi.CreateDashboardList(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -120,22 +123,23 @@ func TestDashboardListCreateErrors(t *testing.T) {
 }
 
 func TestDashboardListGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", context.Background(), 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardListsApi.GetDashboardList(tc.Ctx, 1234).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.DashboardListsApi.GetDashboardList(c.Ctx, 1234).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -145,24 +149,25 @@ func TestDashboardListGetErrors(t *testing.T) {
 }
 
 func TestDashboardListUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.DashboardList
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.DashboardList{}, 400},
-		{"403 Forbidden", context.Background(), datadog.DashboardList{}, 403},
-		{"404 Not Found", c.Ctx, datadog.DashboardList{Name: "nonexistent"}, 404},
+		"400 Bad Request": {WithTestAuth, datadog.DashboardList{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.DashboardList{}, 403},
+		"404 Not Found":   {WithTestAuth, datadog.DashboardList{Name: "nonexistent"}, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardListsApi.UpdateDashboardList(tc.Ctx, 1234).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.DashboardListsApi.UpdateDashboardList(c.Ctx, 1234).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -172,22 +177,23 @@ func TestDashboardListUpdateErrors(t *testing.T) {
 }
 
 func TestDashboardListDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
-	defer c.Close()
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", context.Background(), 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.DashboardListsApi.DeleteDashboardList(tc.Ctx, 1234).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			c := NewClientWithRecording(tc.Ctx(ctx), t)
+			defer c.Close()
+
+			_, httpresp, err := c.Client.DashboardListsApi.DeleteDashboardList(c.Ctx, 1234).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -196,7 +202,7 @@ func TestDashboardListDeleteErrors(t *testing.T) {
 	}
 }
 
-func deleteDashboardList(dashboardListID int64) {
+func deleteDashboardList(c *Client, dashboardListID int64) {
 	_, httpresp, err := c.Client.DashboardListsApi.DeleteDashboardList(c.Ctx, dashboardListID).Execute()
 	if err != nil {
 		log.Printf("Deleting dashboard list: %v failed with %v, Another test may have already deleted this dashboard list: %v", dashboardListID, httpresp.StatusCode, err)

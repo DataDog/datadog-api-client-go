@@ -21,7 +21,7 @@ import (
 
 func TestListOrgs(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 	defer gock.Off()
 
@@ -53,7 +53,7 @@ func TestListOrgs(t *testing.T) {
 
 func TestCreateOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 	defer gock.Off()
 
@@ -111,7 +111,7 @@ func TestCreateOrg(t *testing.T) {
 
 func TestUpdateOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 	defer gock.Off()
 
@@ -159,7 +159,7 @@ func TestUpdateOrg(t *testing.T) {
 
 func TestGetOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 	defer gock.Off()
 
@@ -207,7 +207,7 @@ func TestGetOrg(t *testing.T) {
 
 func TestUploadOrgIdpMeta(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 	defer gock.Off()
 
@@ -232,19 +232,18 @@ func TestOrgsCreateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.OrganizationCreateBody
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.OrganizationCreateBody{}, 400},
-		{"403 Forbidden", fake_auth, datadog.OrganizationCreateBody{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.OrganizationCreateBody{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.OrganizationCreateBody{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.OrganizationsApi.CreateChildOrg(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.OrganizationsApi.CreateChildOrg(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -258,17 +257,16 @@ func TestOrgsListErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.OrganizationsApi.ListOrgs(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.OrganizationsApi.ListOrgs(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -282,18 +280,17 @@ func TestOrgsGetErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.OrganizationsApi.GetOrg(tc.Ctx, "lsqdkjf").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.OrganizationsApi.GetOrg(c.Ctx, "lsqdkjf").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -307,18 +304,17 @@ func TestOrgsUpdateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.OrganizationsApi.UpdateOrg(tc.Ctx, "lsqdkjf").Body(datadog.Organization{}).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.OrganizationsApi.UpdateOrg(c.Ctx, "lsqdkjf").Body(datadog.Organization{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -335,18 +331,17 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 	// Get random file
 	file, _ := os.Open("fixtures/orgs/error_415.json")
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.OrganizationsApi.UploadIdPForOrg(tc.Ctx, "lsqdkjf").IdpFile(file).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.OrganizationsApi.UploadIdPForOrg(c.Ctx, "lsqdkjf").IdpFile(file).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -357,7 +352,7 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 
 func TestOrgsUploadIdp415Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/orgs/error_415.json")

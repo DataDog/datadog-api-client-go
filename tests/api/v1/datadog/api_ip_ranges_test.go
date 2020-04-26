@@ -37,7 +37,7 @@ func TestIPRanges(t *testing.T) {
 }
 
 func TestIPRangesMocked(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer gock.Off()
 	defer c.Close()
 

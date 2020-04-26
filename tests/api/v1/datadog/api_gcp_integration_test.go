@@ -130,7 +130,7 @@ func TestUpdateGCPAccount(t *testing.T) {
 }
 
 func TestGCPList400Error(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/gcp/error_400.json")
@@ -155,17 +155,16 @@ func TestGCPListErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.GCPIntegrationApi.ListGCPIntegration(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.GCPIntegrationApi.ListGCPIntegration(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -179,19 +178,18 @@ func TestGCPCreateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.GCPAccount
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.GCPAccount{}, 400},
-		{"403 Forbidden", fake_auth, datadog.GCPAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.GCPAccount{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.GCPAccount{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.GCPIntegrationApi.CreateGCPIntegration(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.GCPIntegrationApi.CreateGCPIntegration(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -205,19 +203,18 @@ func TestGCPDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.GCPAccount
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.GCPAccount{}, 400},
-		{"403 Forbidden", fake_auth, datadog.GCPAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.GCPAccount{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.GCPAccount{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.GCPIntegrationApi.DeleteGCPIntegration(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.GCPIntegrationApi.DeleteGCPIntegration(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -231,19 +228,18 @@ func TestGCPUpdateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.GCPAccount
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.GCPAccount{}, 400},
-		{"403 Forbidden", fake_auth, datadog.GCPAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.GCPAccount{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.GCPAccount{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.GCPIntegrationApi.UpdateGCPIntegration(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.GCPIntegrationApi.UpdateGCPIntegration(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

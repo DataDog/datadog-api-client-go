@@ -67,8 +67,7 @@ func TestMonitorValidation(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
+	testCases := map[string]struct {
 		Monitor            datadog.Monitor
 		ExpectedStatusCode int
 	}{
@@ -76,8 +75,8 @@ func TestMonitorValidation(t *testing.T) {
 		{"example monitor", testMonitor(t), 200},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
 			_, httpresp, err := c.Client.MonitorsApi.ValidateMonitor(c.Ctx).Body(tc.Monitor).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
 		})
@@ -200,19 +199,18 @@ func TestMonitorsCreateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.Monitor
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.Monitor{}, 400},
-		{"403 Forbidden", fake_auth, datadog.Monitor{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.Monitor{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.Monitor{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.MonitorsApi.CreateMonitor(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.MonitorsApi.CreateMonitor(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -226,18 +224,17 @@ func TestMonitorsListErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.MonitorsApi.ListMonitors(tc.Ctx).GroupStates("notagroupstate").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.MonitorsApi.ListMonitors(c.Ctx).GroupStates("notagroupstate").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -263,23 +260,22 @@ func TestMonitorUpdateErrors(t *testing.T) {
 	updateMonitor := *datadog.NewMonitorWithDefaults()
 	updateMonitor.SetType(datadog.MONITORTYPE_COMPOSITE)
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 int64
 		Body               datadog.Monitor
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, monitor.GetId(), updateMonitor, 400},
+		"400 Bad Request": {WithTestAuth, monitor.GetId(), updateMonitor, 400},
 		// Cannot trigger 401 for client. Need underrestricted creds.
-		// {"401 Unauthorized", c.Ctx, 1234, datadog.Monitor{}, 401},
-		{"403 Forbidden", fake_auth, 1234, datadog.Monitor{}, 403},
-		{"404 Not Found", c.Ctx, 1234, datadog.Monitor{}, 404},
+		// "401 Unauthorized": {WithTestAuth,1234, datadog.Monitor{}, 401},
+		"403 Forbidden": {WithFakeAuth, 1234, datadog.Monitor{}, 403},
+		"404 Not Found": {WithTestAuth, 1234, datadog.Monitor{}, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.MonitorsApi.UpdateMonitor(tc.Ctx, tc.ID).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.MonitorsApi.UpdateMonitor(c.Ctx, tc.ID).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -290,7 +286,7 @@ func TestMonitorUpdateErrors(t *testing.T) {
 
 func TestMonitorUpdate401Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	// Cannot trigger 401 for client. Need underrestricted creds. Mock it.
@@ -322,20 +318,19 @@ func TestMonitorsGetErrors(t *testing.T) {
 	defer deleteMonitor(monitor.GetId())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 int64
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, monitor.GetId(), 400},
-		{"403 Forbidden", fake_auth, 1234, 403},
-		{"404 Not Found", c.Ctx, 1234, 404},
+		"400 Bad Request": {WithTestAuth, monitor.GetId(), 400},
+		"403 Forbidden":   {WithFakeAuth, 1234, 403},
+		"404 Not Found":   {WithTestAuth, 1234, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.MonitorsApi.GetMonitor(tc.Ctx, tc.ID).GroupStates("notagroupstate").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.MonitorsApi.GetMonitor(c.Ctx, tc.ID).GroupStates("notagroupstate").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -349,24 +344,23 @@ func TestMonitorDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 int64
 		Body               datadog.Monitor
 		ExpectedStatusCode int
 	}{
 		// Cannot trigger 400 due to client side validations
-		// {"400 Bad Request", c.Ctx, monitor.GetId(), updateMonitor, 400},
+		// "400 Bad Request": {WithTestAuth,monitor.GetId(), updateMonitor, 400},
 		// Cannot trigger 401 for client. Need underrestricted creds.
-		// {"401 Unauthorized", c.Ctx, 1234, datadog.Monitor{}, 401},
-		{"403 Forbidden", fake_auth, 1234, datadog.Monitor{}, 403},
-		{"404 Not Found", c.Ctx, 1234, datadog.Monitor{}, 404},
+		// "401 Unauthorized": {WithTestAuth,1234, datadog.Monitor{}, 401},
+		"403 Forbidden": {WithFakeAuth, 1234, datadog.Monitor{}, 403},
+		"404 Not Found": {WithTestAuth, 1234, datadog.Monitor{}, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.MonitorsApi.UpdateMonitor(tc.Ctx, tc.ID).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.MonitorsApi.UpdateMonitor(c.Ctx, tc.ID).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -377,7 +371,7 @@ func TestMonitorDeleteErrors(t *testing.T) {
 
 func TestMonitorDelete400Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	// Cannot trigger 400 due to client side validations, so mock it
@@ -397,7 +391,7 @@ func TestMonitorDelete400Error(t *testing.T) {
 
 func TestMonitorDelete401Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	// Cannot trigger 401 for client. Need underrestricted creds. Mock it.
@@ -439,20 +433,19 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 	}
 	defer deleteMonitor(composite.GetId())
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		IDs                []int64
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, []int64{}, 400},
-		{"403 Forbidden", fake_auth, []int64{1234}, 403},
-		{"409 Conflict", c.Ctx, []int64{monitor.GetId()}, 409},
+		"400 Bad Request": {WithTestAuth, []int64{}, 400},
+		"403 Forbidden":   {WithFakeAuth, []int64{1234}, 403},
+		"409 Conflict":    {WithTestAuth, []int64{monitor.GetId()}, 409},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.MonitorsApi.CheckCanDeleteMonitor(tc.Ctx).MonitorIds(tc.IDs).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.MonitorsApi.CheckCanDeleteMonitor(c.Ctx).MonitorIds(tc.IDs).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 409 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.CheckCanDeleteMonitorResponse)
@@ -472,19 +465,18 @@ func TestMonitorValidateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.Monitor
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.Monitor{}, 400},
-		{"403 Forbidden", fake_auth, datadog.Monitor{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.Monitor{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.Monitor{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.MonitorsApi.ValidateMonitor(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.MonitorsApi.ValidateMonitor(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

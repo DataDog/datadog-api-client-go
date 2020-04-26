@@ -379,19 +379,18 @@ func TestSyntheticsDeleteTestErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.SyntheticsDeleteTestsPayload
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.SyntheticsDeleteTestsPayload{}, 400},
-		{"403 Forbidden", fake_auth, datadog.SyntheticsDeleteTestsPayload{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.SyntheticsDeleteTestsPayload{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.SyntheticsDeleteTestsPayload{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.DeleteTests(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.DeleteTests(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -402,7 +401,7 @@ func TestSyntheticsDeleteTestErrors(t *testing.T) {
 
 func TestSyntheticsDeleteTest404Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/synthetics/error_404.json")
@@ -433,20 +432,19 @@ func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
 	publicIDAPI := syntAPI.GetPublicId()
 	defer deleteSyntheticsTestIfExists(publicIDAPI)
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, publicIDAPI, 400},
-		{"403 Forbidden", fake_auth, "id", 403},
-		{"404 Not Found", c.Ctx, "aaa-aaa-aaa", 404},
+		"400 Bad Request": {WithTestAuth, publicIDAPI, 400},
+		"403 Forbidden", WithFakeAuth, "id": {403},
+		"404 Not Found", c.Ctx, "aaa-aaa-aaa": {404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.UpdateTestPauseStatus(tc.Ctx, tc.ID).Body(datadog.SyntheticsUpdateTestPauseStatusPayload{}).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.UpdateTestPauseStatus(c.Ctx, tc.ID).Body(datadog.SyntheticsUpdateTestPauseStatusPayload{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -460,19 +458,18 @@ func TestSyntheticsBrowserResultsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, "id", 403},
-		{"404 Not Found", c.Ctx, "aaa-aaa-aaa", 404},
+		"403 Forbidden", WithFakeAuth, "id": {403},
+		"404 Not Found", c.Ctx, "aaa-aaa-aaa": {404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.GetBrowserTestLatestResults(tc.Ctx, tc.ID).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.GetBrowserTestLatestResults(c.Ctx, tc.ID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -486,19 +483,18 @@ func TestSyntheticsGetAPIResultsErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, "id", 403},
-		{"404 Not Found", c.Ctx, "aaa-aaa-aaa", 404},
+		"403 Forbidden", WithFakeAuth, "id": {403},
+		"404 Not Found", c.Ctx, "aaa-aaa-aaa": {404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.GetAPITestLatestResults(tc.Ctx, tc.ID).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.GetAPITestLatestResults(c.Ctx, tc.ID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -512,19 +508,18 @@ func TestSyntheticsBrowserSpecificResultErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, "id", 403},
-		{"404 Not Found", c.Ctx, "aaa-aaa-aaa", 404},
+		"403 Forbidden", WithFakeAuth, "id": {403},
+		"404 Not Found", c.Ctx, "aaa-aaa-aaa": {404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.GetBrowserTestResult(tc.Ctx, tc.ID, "resultid").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.GetBrowserTestResult(c.Ctx, tc.ID, "resultid").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -538,19 +533,18 @@ func TestSyntheticsGetAPISpecificResultErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, "id", 403},
-		{"404 Not Found", c.Ctx, "aaa-aaa-aaa", 404},
+		"403 Forbidden", WithFakeAuth, "id": {403},
+		"404 Not Found", c.Ctx, "aaa-aaa-aaa": {404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.GetAPITestResult(tc.Ctx, tc.ID, "resultid").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.GetAPITestResult(c.Ctx, tc.ID, "resultid").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -564,19 +558,18 @@ func TestSyntheticsGetTestErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, "id", 403},
-		{"404 Not Found", c.Ctx, "aaa-aaa-aaa", 404},
+		"403 Forbidden", WithFakeAuth, "id": {403},
+		"404 Not Found", c.Ctx, "aaa-aaa-aaa": {404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.GetTest(tc.Ctx, tc.ID).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.GetTest(c.Ctx, tc.ID).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -598,20 +591,19 @@ func TestSyntheticsUpdateTestErrors(t *testing.T) {
 	publicIDAPI := syntAPI.GetPublicId()
 	defer deleteSyntheticsTestIfExists(publicIDAPI)
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ID                 string
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, publicIDAPI, 400},
-		{"403 Forbidden", fake_auth, "id", 403},
-		{"404 Not Found", c.Ctx, "aaa-aaa-aaa", 404},
+		"400 Bad Request": {WithTestAuth, publicIDAPI, 400},
+		"403 Forbidden", WithFakeAuth, "id": {403},
+		"404 Not Found", c.Ctx, "aaa-aaa-aaa": {404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.UpdateTest(tc.Ctx, tc.ID).Body(datadog.SyntheticsTestDetails{}).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.UpdateTest(c.Ctx, tc.ID).Body(datadog.SyntheticsTestDetails{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -625,18 +617,17 @@ func TestSyntheticsListTestErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 		// Mock 404 because it's returned when synthetics is not enabled for the org
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.ListTests(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.ListTests(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -646,7 +637,7 @@ func TestSyntheticsListTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsListTest404Error(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/synthetics/error_404.json")
@@ -669,18 +660,17 @@ func TestSyntheticsCreateTestErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.SyntheticsApi.CreateTest(tc.Ctx).Body(datadog.SyntheticsTestDetails{}).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.SyntheticsApi.CreateTest(c.Ctx).Body(datadog.SyntheticsTestDetails{}).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -690,7 +680,7 @@ func TestSyntheticsCreateTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsCreateTest402Error(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/synthetics/error_402.json")

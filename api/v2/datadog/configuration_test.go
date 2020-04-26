@@ -11,7 +11,7 @@ import (
 func TestConfigurationServers(t *testing.T) {
 	configuration := datadog.NewConfiguration()
 
-	testCases := []struct {
+	testCases := map[string]struct {
 		URL       string
 		Variables map[string]string
 	}{{
@@ -29,7 +29,7 @@ func TestConfigurationServers(t *testing.T) {
 	},
 	}
 
-	for _, tc := range testCases {
+	for name, tc := range testCases {
 		t.Run(tc.URL, func(t *testing.T) {
 			url, err := configuration.ServerURL(0, tc.Variables)
 			if err != nil {
@@ -42,7 +42,7 @@ func TestConfigurationServers(t *testing.T) {
 
 func TestConfigurationServersAccess(t *testing.T) {
 	configuration := datadog.NewConfiguration()
-	testCases := []struct {
+	testCases := map[string]struct {
 		Index int
 		Err   string
 	}{{
@@ -53,7 +53,7 @@ func TestConfigurationServersAccess(t *testing.T) {
 		Err:   "Index 2 out of range 1",
 	}}
 
-	for _, tc := range testCases {
+	for name, tc := range testCases {
 		t.Run(fmt.Sprintf("Index %v", tc.Index), func(t *testing.T) {
 			_, err := configuration.ServerURL(tc.Index, nil)
 			assert.Error(t, err, tc.Err)

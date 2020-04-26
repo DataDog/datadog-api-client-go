@@ -239,17 +239,16 @@ func TestAPIKeysMgmtListErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.ListAPIKeys(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.ListAPIKeys(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -264,19 +263,18 @@ func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApiKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.ApiKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApiKey{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.ApiKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApiKey{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.CreateAPIKey(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.CreateAPIKey(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -291,18 +289,17 @@ func TestAPIKeysMgmtGetErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.GetAPIKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.GetAPIKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -318,20 +315,19 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 	defer c.Close()
 
 	name := "nonexistent key"
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApiKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.ApiKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApiKey{}, 403},
-		{"404 Not Found", c.Ctx, datadog.ApiKey{Name: &name}, 404},
+		"400 Bad Request": {WithTestAuth, datadog.ApiKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApiKey{}, 403},
+		"404 Not Found":   {WithTestAuth, datadog.ApiKey{Name: &name}, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.UpdateAPIKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.UpdateAPIKey(c.Ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -343,7 +339,7 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
+	c := NewClient(WithFakeAuth(context.Background()), t)
 	defer c.Close()
 
 	res, err := tests.ReadFixture("fixtures/key-mgmt/invalid_number_of_keys_400.json")
@@ -366,18 +362,17 @@ func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.DeleteAPIKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.DeleteAPIKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -391,17 +386,16 @@ func TestAppKeysMgmtListErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.ListApplicationKeys(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.ListApplicationKeys(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -415,19 +409,18 @@ func TestAppKeysMgmtCreateErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApplicationKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.ApplicationKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApplicationKey{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.ApplicationKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApplicationKey{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.CreateApplicationKey(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.CreateApplicationKey(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -466,18 +459,17 @@ func TestAppKeysMgmtGetErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.GetApplicationKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.GetApplicationKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -492,20 +484,19 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 	defer c.Close()
 
 	name := "nonexistent key"
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApplicationKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.ApplicationKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApplicationKey{}, 403},
-		{"404 Not Found", c.Ctx, datadog.ApplicationKey{Name: &name}, 404},
+		"400 Bad Request": {WithTestAuth, datadog.ApplicationKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApplicationKey{}, 403},
+		"404 Not Found":   {WithTestAuth, datadog.ApplicationKey{Name: &name}, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.UpdateApplicationKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.UpdateApplicationKey(c.Ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -552,18 +543,17 @@ func TestAppKeysMgmtDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.KeyManagementApi.DeleteApplicationKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.KeyManagementApi.DeleteApplicationKey(c.Ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)

@@ -145,18 +145,17 @@ func TestPagerDutyGetErrors(t *testing.T) {
 
 	ensureNoPagerDuty(t)
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegration(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegration(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -176,18 +175,17 @@ func TestPagerDutyCreateErrors(t *testing.T) {
 	pg.SetSubdomain("subdomain")
 	pg.SetServices([]datadog.PagerDutyService{})
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegration(tc.Ctx).Body(pg).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegration(c.Ctx).Body(pg).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -204,18 +202,17 @@ func TestPagerDutyUpdateErrors(t *testing.T) {
 	pg := *datadog.NewPagerDutyServicesAndSchedulesWithDefaults()
 	pg.SetSchedules([]string{"schedule"})
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(tc.Ctx).Body(pg).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			httpresp, err := c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(c.Ctx).Body(pg).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -229,17 +226,16 @@ func TestPagerDutyDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegration(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegration(c.Ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -259,20 +255,19 @@ func TestPagerDutyServicesCreateErrors(t *testing.T) {
 	pgService.SetServiceKey("lalaa")
 	pgService.SetServiceName("lalasa")
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.PagerDutyService
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.PagerDutyService{}, 400},
-		{"403 Forbidden", fake_auth, pgService, 403},
-		{"404 Not Found", c.Ctx, pgService, 404},
+		"400 Bad Request": {WithTestAuth, datadog.PagerDutyService{}, 400},
+		"403 Forbidden":   {WithFakeAuth, pgService, 403},
+		"404 Not Found":   {WithTestAuth, pgService, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(c.Ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -290,18 +285,17 @@ func TestPagerDutyServicesGetErrors(t *testing.T) {
 	pgService.SetServiceKey("lalaa")
 	pgService.SetServiceName("lalasa")
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(tc.Ctx, "service").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			_, httpresp, err := c.Client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(c.Ctx, "service").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -318,20 +312,19 @@ func TestPagerDutyServicesUpdateErrors(t *testing.T) {
 	pgService := *datadog.NewPagerDutyServiceKeyWithDefaults()
 	pgService.SetServiceKey("lalaa")
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.PagerDutyServiceKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", c.Ctx, datadog.PagerDutyServiceKey{}, 400},
-		{"403 Forbidden", fake_auth, pgService, 403},
-		{"404 Not Found", c.Ctx, pgService, 404},
+		"400 Bad Request": {WithTestAuth, datadog.PagerDutyServiceKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, pgService, 403},
+		"404 Not Found":   {WithTestAuth, pgService, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(tc.Ctx, "qoisdfhanniq").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			httpresp, err := c.Client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(c.Ctx, "qoisdfhanniq").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -345,18 +338,17 @@ func TestPagerDutyServicesDeleteErrors(t *testing.T) {
 	c := NewClientWithRecording(WithTestAuth(context.Background()), t)
 	defer c.Close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", c.Ctx, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(tc.Ctx, "lqnioiuyzbefnkje").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			httpresp, err := c.Client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(c.Ctx, "lqnioiuyzbefnkje").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
