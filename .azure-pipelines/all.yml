@@ -45,7 +45,7 @@ jobs:
       env:
         DD_ENV: azp
         DD_AGENT_HOST: datadog-agent
-        DD_TAGS: "build.requested_by:$(Build.RequestedForEmail),build.attempt:$(System.StageAttempt),pull_request.number:$(System.PullRequest.PullRequestNumber)"
+        DD_TAGS: "build.requested_by:$(Build.RequestedForId),build.attempt:$(System.StageAttempt),pull_request.number:$(System.PullRequest.PullRequestNumber)"
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
         RECORD: "true"
