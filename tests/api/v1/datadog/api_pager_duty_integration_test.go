@@ -17,31 +17,31 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func ensureNoPagerDuty(t *testing.T) {
+func ensureNoPagerDuty(ctx context.Context, t *testing.T) {
 	// Make sure that there is not parallel execution
 	err := tests.Retry(time.Duration(5)*time.Second, 10, func() bool {
-		_, httpresp, _ := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegration(TESTAUTH).Execute()
+		_, httpresp, _ := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 		return httpresp.StatusCode != 200
 	})
 	assert.Nil(t, err)
 }
 
 func TestPagerDutyDelete204(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	ensureNoPagerDuty(t)
+	ensureNoPagerDuty(ctx, t)
 
-	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(TESTAUTH).Execute()
+	httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 }
 
 func TestPagerDutyLifecycle(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	ensureNoPagerDuty(t)
+	ensureNoPagerDuty(ctx, t)
 
 	pagerDutyRequest := datadog.PagerDutyIntegration{
 		Subdomain: datadog.PtrString("_deadbeef"),
@@ -49,13 +49,13 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	}
 
 	// Create a new PagerDuty integration
-	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegration(TESTAUTH).Body(pagerDutyRequest).Execute()
-	defer deletePagerDuty()
+	httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegration(ctx).Body(pagerDutyRequest).Execute()
+	defer deletePagerDuty(ctx)
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 
 	// Get PagerDuty integration
-	pagerDuty, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegration(TESTAUTH).Execute()
+	pagerDuty, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, pagerDutyRequest.GetSubdomain(), pagerDuty.GetSubdomain())
@@ -71,12 +71,12 @@ func TestPagerDutyLifecycle(t *testing.T) {
 		Schedules: &[]string{"https://_deadbeef.pagerduty.com/schedules#DEAD3F"},
 	}
 	// Add a Service and Schedules items by updating the PagerDuty Integration
-	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(TESTAUTH).Body(servicesAndSchedules).Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegration(ctx).Body(servicesAndSchedules).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 
 	// Get PagerDuty Integration
-	updatedPagerDuty, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegration(TESTAUTH).Execute()
+	updatedPagerDuty, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, pagerDutyRequest.GetSubdomain(), updatedPagerDuty.GetSubdomain())
@@ -92,19 +92,19 @@ func TestPagerDutyLifecycle(t *testing.T) {
 		ServiceKey:  "deadbeef",
 		ServiceName: "test_go_2",
 	}
-	serviceNameResponse, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(TESTAUTH).Body(serviceBody).Execute()
+	serviceNameResponse, httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(serviceBody).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 201, httpresp.StatusCode)
 	assert.Equal(t, serviceBody.GetServiceName(), serviceNameResponse.GetServiceName())
 
 	// Get created Service object
-	serviceName, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(TESTAUTH, "test_go_2").Execute()
+	serviceName, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, "test_go_2").Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, serviceBody.GetServiceName(), serviceName.GetServiceName())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Get previously added service item
-	serviceName, httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(TESTAUTH, "test_go").Execute()
+	serviceName, httpresp, err = Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, "test_go").Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, "test_go", serviceName.GetServiceName())
 	assert.Equal(t, 200, httpresp.StatusCode)
@@ -113,17 +113,17 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	serviceKey := datadog.PagerDutyServiceKey{
 		ServiceKey: "newkey",
 	}
-	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(TESTAUTH, "test_go_2").Body(serviceKey).Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, "test_go_2").Body(serviceKey).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Delete Service Object
-	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(TESTAUTH, "test_go").Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, "test_go").Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	// Get created Service object
-	pagerDuty, httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegration(TESTAUTH).Execute()
+	pagerDuty, httpresp, err = Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 200, httpresp.StatusCode)
 	assert.Equal(t, 1, len(pagerDuty.GetSchedules()))
@@ -133,30 +133,31 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	assert.Equal(t, "*****", pagerDuty.GetServices()[0].GetServiceKey())
 
 	// Delete Pager Duty Integration
-	httpresp, err = TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(TESTAUTH).Execute()
+	httpresp, err = Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 204, httpresp.StatusCode)
 }
 
 func TestPagerDutyGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	ensureNoPagerDuty(t)
-
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegration(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			ensureNoPagerDuty(ctx, t)
+
+			_, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegration(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -167,8 +168,8 @@ func TestPagerDutyGetErrors(t *testing.T) {
 
 func TestPagerDutyCreateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	pg := *datadog.NewPagerDutyIntegrationWithDefaults()
 	pg.SetApiToken("apitoken")
@@ -176,18 +177,20 @@ func TestPagerDutyCreateErrors(t *testing.T) {
 	pg.SetSubdomain("subdomain")
 	pg.SetServices([]datadog.PagerDutyService{})
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegration(tc.Ctx).Body(pg).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegration(ctx).Body(pg).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -197,25 +200,26 @@ func TestPagerDutyCreateErrors(t *testing.T) {
 }
 
 func TestPagerDutyUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	pg := *datadog.NewPagerDutyServicesAndSchedulesWithDefaults()
 	pg.SetSchedules([]string{"schedule"})
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, 400},
-		{"403 Forbidden", fake_auth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegration(tc.Ctx).Body(pg).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegration(ctx).Body(pg).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -225,21 +229,22 @@ func TestPagerDutyUpdateErrors(t *testing.T) {
 }
 
 func TestPagerDutyDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -249,30 +254,31 @@ func TestPagerDutyDeleteErrors(t *testing.T) {
 }
 
 func TestPagerDutyServicesCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
-
-	ensureNoPagerDuty(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	pgService := *datadog.NewPagerDutyServiceWithDefaults()
 	pgService.SetServiceKey("lalaa")
 	pgService.SetServiceName("lalasa")
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.PagerDutyService
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.PagerDutyService{}, 400},
-		{"403 Forbidden", fake_auth, pgService, 403},
-		{"404 Not Found", TESTAUTH, pgService, 404},
+		"400 Bad Request": {WithTestAuth, datadog.PagerDutyService{}, 400},
+		"403 Forbidden":   {WithFakeAuth, pgService, 403},
+		"404 Not Found":   {WithTestAuth, pgService, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			ensureNoPagerDuty(ctx, t)
+
+			_, httpresp, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -282,26 +288,27 @@ func TestPagerDutyServicesCreateErrors(t *testing.T) {
 }
 
 func TestPagerDutyServicesGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	pgService := *datadog.NewPagerDutyServiceWithDefaults()
 	pgService.SetServiceKey("lalaa")
 	pgService.SetServiceName("lalasa")
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(tc.Ctx, "service").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, "service").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -311,27 +318,28 @@ func TestPagerDutyServicesGetErrors(t *testing.T) {
 }
 
 func TestPagerDutyServicesUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	pgService := *datadog.NewPagerDutyServiceKeyWithDefaults()
 	pgService.SetServiceKey("lalaa")
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.PagerDutyServiceKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.PagerDutyServiceKey{}, 400},
-		{"403 Forbidden", fake_auth, pgService, 403},
-		{"404 Not Found", TESTAUTH, pgService, 404},
+		"400 Bad Request": {WithTestAuth, datadog.PagerDutyServiceKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, pgService, 403},
+		"404 Not Found":   {WithTestAuth, pgService, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(tc.Ctx, "qoisdfhanniq").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, "qoisdfhanniq").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -341,22 +349,23 @@ func TestPagerDutyServicesUpdateErrors(t *testing.T) {
 }
 
 func TestPagerDutyServicesDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(tc.Ctx, "lqnioiuyzbefnkje").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, "lqnioiuyzbefnkje").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -365,8 +374,8 @@ func TestPagerDutyServicesDeleteErrors(t *testing.T) {
 	}
 }
 
-func deletePagerDuty() {
-	httpresp, err := TESTAPICLIENT.PagerDutyIntegrationApi.DeletePagerDutyIntegration(TESTAUTH).Execute()
+func deletePagerDuty(ctx context.Context) {
+	httpresp, err := Client(ctx).PagerDutyIntegrationApi.DeletePagerDutyIntegration(ctx).Execute()
 	if httpresp.StatusCode != 204 || err != nil {
 		log.Printf("Error uninstalling PagerDuty integration: Another test may have already removed this account: %v", err)
 	}

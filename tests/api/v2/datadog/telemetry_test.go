@@ -1,6 +1,7 @@
 package test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -8,8 +9,8 @@ import (
 )
 
 func TestTelemetryHeaders(t *testing.T) {
-	c := NewClient()
-	defer c.Close()
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
 	gock.New("https://api.datadoghq.com").
@@ -19,7 +20,7 @@ func TestTelemetryHeaders(t *testing.T) {
 		Reply(299)
 	defer gock.Off()
 
-	_, httpresp, err := c.Client.DashboardListsApi.GetDashboardListItems(c.Ctx, 1234).Execute()
+	_, httpresp, err := Client(ctx).DashboardListsApi.GetDashboardListItems(ctx, 1234).Execute()
 	assert.Nil(t, err)
 	assert.Equal(t, 299, httpresp.StatusCode)
 }

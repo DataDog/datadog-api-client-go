@@ -1,6 +1,7 @@
 package test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,10 +10,10 @@ import (
 )
 
 func TestPermissionList(t *testing.T) {
-	c := NewClientWithRecording(t)
-	defer c.Close()
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
-	psr, httpresp, err := c.Client.RolesApi.ListPermissions(c.Ctx).Execute()
+	psr, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error listing permissions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

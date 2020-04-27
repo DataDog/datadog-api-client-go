@@ -1,0 +1,62 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"query":"","startAt":"notanid","time":{"from":"0001-01-01T00:00:00Z","to":"0001-01-01T00:00:00Z"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - ListLogs
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5326588092411158677"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4950485767480228498"
+    url: https://api.datadoghq.com/api/v1/logs-queries/list
+    method: POST
+  response:
+    body: '{"error":{"code":"InvalidArgument","message":"Invalid event id ''notanid''"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "75"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 26 Apr 2020 21:38:56 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2432369"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "300"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "299"
+      X-Ratelimit-Reset:
+      - "1264"
+    status: 400 Bad Request
+    code: 400
+    duration: ""

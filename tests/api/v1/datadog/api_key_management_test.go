@@ -26,21 +26,21 @@ func TestApiKeyFunctions(t *testing.T) {
 	}
 
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	// TODO remove when API keys support non secret primary identifiers
-	// NOTE do not forget to replace time -> TESTCLOCK
-	TESTAPICLIENT.GetConfig().HTTPClient = http.DefaultClient
+	// NOTE do not forget to replace time -> c.Clock
+	Client(ctx).GetConfig().HTTPClient = http.DefaultClient
 
 	// Create API Key
 	// ----------------------------------
 	testAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	apiKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateAPIKey(TESTAUTH).Body(datadog.ApiKey{Name: &testAPIKeyName}).Execute()
+	apiKeyData, httpresp, err := Client(ctx).KeyManagementApi.CreateAPIKey(ctx).Body(datadog.ApiKey{Name: &testAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAPIKey(apiKeyData.ApiKey.GetKey())
+	defer deleteAPIKey(ctx, apiKeyData.ApiKey.GetKey())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	createAPIKeyReturned := apiKeyData.GetApiKey()
@@ -58,7 +58,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Get API Key
 	// ----------------------------------
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.GetAPIKey(TESTAUTH, createAPIKeyValue).Execute()
+	apiKeyData, httpresp, err = Client(ctx).KeyManagementApi.GetAPIKey(ctx, createAPIKeyValue).Execute()
 	if err != nil {
 		t.Errorf("Error getting api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -78,7 +78,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Get All API Keys
 	// ----------------------------------
-	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListAPIKeys(TESTAUTH).Execute()
+	respListData, httpresp, err := Client(ctx).KeyManagementApi.ListAPIKeys(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting all api keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -92,7 +92,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	// Edit API Key
 	// ----------------------------------
 	newAPIKeyName := fmt.Sprintf("new-%s", testAPIKeyName)
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.UpdateAPIKey(TESTAUTH, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
+	apiKeyData, httpresp, err = Client(ctx).KeyManagementApi.UpdateAPIKey(ctx, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -112,7 +112,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Delete API Key
 	// ----------------------------------
-	apiKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(TESTAUTH, createAPIKeyValue).Execute()
+	apiKeyData, httpresp, err = Client(ctx).KeyManagementApi.DeleteAPIKey(ctx, createAPIKeyValue).Execute()
 	if err != nil {
 		t.Errorf("Error deleting api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -137,21 +137,21 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	}
 
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	// TODO remove when API keys support non secret primary identifiers
-	// NOTE do not forget to replace time -> TESTCLOCK
-	TESTAPICLIENT.GetConfig().HTTPClient = http.DefaultClient
+	// NOTE do not forget to replace time -> c.Clock
+	Client(ctx).GetConfig().HTTPClient = http.DefaultClient
 
 	// Create Application Key
 	// ----------------------------------
 	testAppKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	appKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAppKeyName}).Execute()
+	appKeyData, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAppKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, appKeyData.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	createAppKeyReturned := appKeyData.GetApplicationKey()
@@ -167,7 +167,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Get Application Key
 	// ----------------------------------
-	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.GetApplicationKey(TESTAUTH, createAppKeyHash).Execute()
+	appKeyData, httpresp, err = Client(ctx).KeyManagementApi.GetApplicationKey(ctx, createAppKeyHash).Execute()
 	if err != nil {
 		t.Errorf("Error getting app key %v: Response %s: %v", createAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -185,7 +185,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Get All Application Keys
 	// ----------------------------------
-	respListData, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListApplicationKeys(TESTAUTH).Execute()
+	respListData, httpresp, err := Client(ctx).KeyManagementApi.ListApplicationKeys(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting all app keys: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -199,7 +199,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	// Edit Application Key
 	// ----------------------------------
 	newAppKeyName := fmt.Sprintf("New %s", testAppKeyName)
-	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(TESTAUTH, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
+	appKeyData, httpresp, err = Client(ctx).KeyManagementApi.UpdateApplicationKey(ctx, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -217,7 +217,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Delete Application Key
 	// ----------------------------------
-	appKeyData, httpresp, err = TESTAPICLIENT.KeyManagementApi.DeleteApplicationKey(TESTAUTH, createAppKeyHash).Execute()
+	appKeyData, httpresp, err = Client(ctx).KeyManagementApi.DeleteApplicationKey(ctx, createAppKeyHash).Execute()
 	if err != nil {
 		t.Errorf("Error deleting app key %v: Response %s: %v", createAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -235,21 +235,22 @@ func TestApplicationKeyFunctions(t *testing.T) {
 }
 
 func TestAPIKeysMgmtListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListAPIKeys(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.ListAPIKeys(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -260,23 +261,24 @@ func TestAPIKeysMgmtListErrors(t *testing.T) {
 
 func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApiKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.ApiKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApiKey{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.ApiKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApiKey{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateAPIKey(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.CreateAPIKey(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -287,22 +289,23 @@ func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 
 func TestAPIKeysMgmtGetErrors(t *testing.T) {
 
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetAPIKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.GetAPIKey(ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -313,25 +316,26 @@ func TestAPIKeysMgmtGetErrors(t *testing.T) {
 
 func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	name := "nonexistent key"
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApiKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.ApiKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApiKey{}, 403},
-		{"404 Not Found", TESTAUTH, datadog.ApiKey{Name: &name}, 404},
+		"400 Bad Request": {WithTestAuth, datadog.ApiKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApiKey{}, 403},
+		"404 Not Found":   {WithTestAuth, datadog.ApiKey{Name: &name}, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.UpdateAPIKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.UpdateAPIKey(ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -343,8 +347,8 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupUnitTest(t)
-	defer teardownTest(t)
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	defer stop()
 
 	res, err := tests.ReadFixture("fixtures/key-mgmt/invalid_number_of_keys_400.json")
 	if err != nil {
@@ -354,7 +358,7 @@ func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 	gock.New("https://api.datadoghq.com").Delete("/api/v1/api_key/whatever").Reply(400).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(TESTAUTH, "whatever").Execute()
+	_, httpresp, err := Client(ctx).KeyManagementApi.DeleteAPIKey(ctx, "whatever").Execute()
 	assert.Equal(t, 400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -362,22 +366,23 @@ func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 }
 
 func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.DeleteAPIKey(ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -387,21 +392,22 @@ func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtListErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.ListApplicationKeys(tc.Ctx).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.ListApplicationKeys(ctx).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -411,23 +417,24 @@ func TestAppKeysMgmtListErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtCreateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApplicationKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.ApplicationKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApplicationKey{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.ApplicationKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApplicationKey{}, 403},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(tc.Ctx).Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -442,19 +449,19 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 	}
 
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	// Create an app key to trigger the 409 conflict
 	testAPPKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	appKeyData, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
+	appKeyData, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
 	if err != nil {
 		t.Fatalf("Error creating api key %v: Response %s: %v", testAPPKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, appKeyData.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
+	_, httpresp, err = Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
 	assert.Equal(t, 409, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -462,22 +469,23 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 }
 
 func TestAppKeysMgmtGetErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.GetApplicationKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.GetApplicationKey(ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -487,25 +495,26 @@ func TestAppKeysMgmtGetErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtUpdateErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
 	name := "nonexistent key"
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		Body               datadog.ApplicationKey
 		ExpectedStatusCode int
 	}{
-		{"400 Bad Request", TESTAUTH, datadog.ApplicationKey{}, 400},
-		{"403 Forbidden", fake_auth, datadog.ApplicationKey{}, 403},
-		{"404 Not Found", TESTAUTH, datadog.ApplicationKey{Name: &name}, 404},
+		"400 Bad Request": {WithTestAuth, datadog.ApplicationKey{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.ApplicationKey{}, 403},
+		"404 Not Found":   {WithTestAuth, datadog.ApplicationKey{Name: &name}, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(tc.Ctx, "whatever").Body(tc.Body).Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.UpdateApplicationKey(ctx, "whatever").Body(tc.Body).Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -520,27 +529,27 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	}
 
 	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	// Create two app keys to trigger the 409 conflict
 	testAPPKeyName1 := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
-	appKeyData1, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName1}).Execute()
+	appKeyData1, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName1}).Execute()
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName1, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData1.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, appKeyData1.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
 	testAPPKeyName2 := fmt.Sprintf("%s:%d2", t.Name(), time.Now().UnixNano())
-	appKeyData2, httpresp, err := TESTAPICLIENT.KeyManagementApi.CreateApplicationKey(TESTAUTH).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
+	appKeyData2, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName2, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(appKeyData2.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, appKeyData2.ApplicationKey.GetHash())
 	assert.Equal(t, 200, httpresp.StatusCode)
 
-	_, httpresp, err = TESTAPICLIENT.KeyManagementApi.UpdateApplicationKey(TESTAUTH, appKeyData1.ApplicationKey.GetHash()).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
+	_, httpresp, err = Client(ctx).KeyManagementApi.UpdateApplicationKey(ctx, appKeyData1.ApplicationKey.GetHash()).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
 	assert.Equal(t, 409, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(t, ok)
@@ -548,22 +557,23 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 }
 
 func TestAppKeysMgmtDeleteErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
 
-	testCases := []struct {
-		Name               string
-		Ctx                context.Context
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		{"403 Forbidden", fake_auth, 403},
-		{"404 Not Found", TESTAUTH, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.Name, func(t *testing.T) {
-			_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteApplicationKey(tc.Ctx, "whatever").Execute()
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
+			defer stop()
+
+			_, httpresp, err := Client(ctx).KeyManagementApi.DeleteApplicationKey(ctx, "whatever").Execute()
 			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(t, ok)
@@ -572,15 +582,15 @@ func TestAppKeysMgmtDeleteErrors(t *testing.T) {
 	}
 }
 
-func deleteAPIKey(apiKeyValue string) {
-	_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteAPIKey(TESTAUTH, apiKeyValue).Execute()
+func deleteAPIKey(ctx context.Context, apiKeyValue string) {
+	_, httpresp, err := Client(ctx).KeyManagementApi.DeleteAPIKey(ctx, apiKeyValue).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue[len(apiKeyValue)-4:], httpresp.StatusCode)
 	}
 }
 
-func deleteAppKey(appKeyHash string) {
-	_, httpresp, err := TESTAPICLIENT.KeyManagementApi.DeleteApplicationKey(TESTAUTH, appKeyHash).Execute()
+func deleteAppKey(ctx context.Context, appKeyHash string) {
+	_, httpresp, err := Client(ctx).KeyManagementApi.DeleteApplicationKey(ctx, appKeyHash).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)
 	}

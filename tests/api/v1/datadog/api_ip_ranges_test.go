@@ -7,6 +7,7 @@
 package test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -17,11 +18,11 @@ import (
 )
 
 func TestIPRanges(t *testing.T) {
-	teardownTest := setupTest(t)
-	defer teardownTest(t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
 
 	// Get IP ranges
-	ipRanges, httpresp, err := TESTAPICLIENT.IPRangesApi.GetIPRanges(TESTAUTH).Execute()
+	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -36,9 +37,9 @@ func TestIPRanges(t *testing.T) {
 }
 
 func TestIPRangesMocked(t *testing.T) {
-	teardownTest := setupUnitTest(t)
+	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
 	defer gock.Off()
-	defer teardownTest(t)
+	defer stop()
 
 	data, err := tests.ReadFixture("fixtures/ip-ranges/ip-ranges.json")
 	if err != nil {
@@ -51,7 +52,7 @@ func TestIPRangesMocked(t *testing.T) {
 		JSON(data)
 
 	// Get IP ranges
-	ipRanges, httpresp, err := TESTAPICLIENT.IPRangesApi.GetIPRanges(TESTAUTH).Execute()
+	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
