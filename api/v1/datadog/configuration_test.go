@@ -29,7 +29,7 @@ func TestConfigurationServers(t *testing.T) {
 	},
 	}
 
-	for name, tc := range testCases {
+	for _, tc := range testCases {
 		t.Run(tc.URL, func(t *testing.T) {
 			url, err := configuration.ServerURL(0, tc.Variables)
 			if err != nil {
@@ -53,7 +53,7 @@ func TestConfigurationServersAccess(t *testing.T) {
 		Err:   "Index 2 out of range 1",
 	}}
 
-	for name, tc := range testCases {
+	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("Index %v", tc.Index), func(t *testing.T) {
 			_, err := configuration.ServerURL(tc.Index, nil)
 			assert.Error(t, err, tc.Err)
