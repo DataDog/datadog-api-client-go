@@ -29,14 +29,6 @@ resources:
       DD_LOGS_ENABLED: "true"
       DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "true"
       DD_AC_EXCLUDE: "name:datadog-agent"
-      DD_DOCKER_ENV_AS_TAGS: >-
-        {
-          "BUILD_REQUESTEDFOREMAIL": "build.requested_by",
-          "SYSTEM_STAGEATTEMPT": "build.attempt",
-          "SYSTEM_PULLREQUEST_SOURCEBRANCH": "pull_request.head.ref",
-          "SYSTEM_PULLREQUEST_SOURCECOMMITID": "pull_request.head.sha",
-          "SYSTEM_PULLREQUEST_PULLREQUESTNUMBER": "pull_request.number"
-        }
 jobs:
 - job: IntegrationTests
   pool:
@@ -53,6 +45,7 @@ jobs:
       env:
         DD_ENV: azp
         DD_AGENT_HOST: datadog-agent
+        DD_TAGS: "build.requested_by:$(Build.RequestedForEmail),build.attempt:$(System.StageAttempt),pull_request.number:$(System.PullRequest.PullRequestNumber)"
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
         RECORD: "true"
