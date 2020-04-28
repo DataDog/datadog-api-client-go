@@ -26,7 +26,7 @@ All the documentation for this package is available through `api/v1/datadog/READ
 
 ### Unstable Endpoints
 
-This client includes access to Datadog API endpoints while they are in an unstable state and subject to change. To utilize these endpoints, with the knowledge that they may undergo breaking changes while becoming stable, an extra configuration step is required.
+This client includes access to Datadog API endpoints while they are in an unstable state and may undergo breaking changes. An extra configuration step is required to enable these endpoints:
 
 ```go
 Client(ctx).GetConfig().SetUnstableOperationEnabled("<OperationName>", true)
