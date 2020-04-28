@@ -4,13 +4,14 @@ import (
 	"context"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"gopkg.in/h2non/gock.v1"
 )
 
 func TestTelemetryHeaders(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
-	defer stop()
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
 	gock.New("https://api.datadoghq.com").
@@ -21,6 +22,6 @@ func TestTelemetryHeaders(t *testing.T) {
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).DashboardListsApi.GetDashboardListItems(ctx, 1234).Execute()
-	assert.Nil(t, err)
-	assert.Equal(t, 299, httpresp.StatusCode)
+	assert.Nil(err)
+	assert.Equal(299, httpresp.StatusCode)
 }

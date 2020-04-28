@@ -15,13 +15,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/stretchr/testify/assert"
 	is "gotest.tools/assert/cmp"
 )
 
 func TestTags(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	api := Client(ctx).TagsApi
 	now := tests.ClockFromContext(ctx).Now().Unix()
@@ -37,8 +37,8 @@ func TestTags(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error submitting metric: Response %s: %v", string(respBody), err)
 	}
-	assert.Equal(t, 202, httpresp.StatusCode)
-	assert.Equal(t, `{"status": "ok"}`, string(respBody))
+	assert.Equal(202, httpresp.StatusCode)
+	assert.Equal(`{"status": "ok"}`, string(respBody))
 
 	// wait for host to appear
 	err = tests.Retry(10*time.Second, 10, func() bool {
@@ -60,23 +60,23 @@ func TestTags(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error adding tags to %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 201, httpresp.StatusCode)
-	assert.Equal(t, hostname, sentHostTags.GetHost())
-	assert.Equal(t, hostTags.GetTags(), sentHostTags.GetTags())
+	assert.Equal(201, httpresp.StatusCode)
+	assert.Equal(hostname, sentHostTags.GetHost())
+	assert.Equal(hostTags.GetTags(), sentHostTags.GetTags())
 
 	getHostTags, httpresp, err := api.GetHostTags(ctx, hostname).Source("datadog").Execute()
 	if err != nil {
 		t.Errorf("Error getting tags from %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, hostTags.GetTags(), getHostTags.GetTags())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(hostTags.GetTags(), getHostTags.GetTags())
 
 	getHostTags, httpresp, err = api.GetHostTags(ctx, hostname).Source("users").Execute()
 	if err != nil {
 		t.Errorf("Error getting tags from %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, 0, len(getHostTags.GetTags())) // filtering on a different source gives 0 tags
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(0, len(getHostTags.GetTags())) // filtering on a different source gives 0 tags
 
 	err = tests.Retry(10*time.Second, 10, func() bool {
 		hostTagsList, httpresp, err := api.ListHostTags(ctx).Source("datadog").Execute()
@@ -100,24 +100,24 @@ func TestTags(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error getting all tags: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.NotContains(t, hostTagsList.GetTags(), "test:client_go") // filtering on a different source gives 0 tags
+	assert.Equal(200, httpresp.StatusCode)
+	assert.NotContains(hostTagsList.GetTags(), "test:client_go") // filtering on a different source gives 0 tags
 
 	hostTags.Tags = &[]string{"foo:bar", "toto:tata"}
 	updatedHostTags, httpresp, err := api.UpdateHostTags(ctx, hostname).Body(hostTags).Source("datadog").Execute()
 	if err != nil {
 		t.Errorf("Error updating tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 201, httpresp.StatusCode)
-	assert.Equal(t, hostTags.GetTags(), updatedHostTags.GetTags())
-	assert.Equal(t, hostname, updatedHostTags.GetHost())
+	assert.Equal(201, httpresp.StatusCode)
+	assert.Equal(hostTags.GetTags(), updatedHostTags.GetTags())
+	assert.Equal(hostname, updatedHostTags.GetHost())
 
 	hostTags.Tags = &[]string{"foo:bar", "toto:tata"}
 	httpresp, err = api.DeleteHostTags(ctx, hostname).Source("datadog").Execute()
 	if err != nil {
 		t.Errorf("Error deleting tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 204, httpresp.StatusCode)
+	assert.Equal(204, httpresp.StatusCode)
 }
 
 func TestTagsListErrors(t *testing.T) {
@@ -134,14 +134,15 @@ func TestTagsListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).TagsApi.ListHostTags(ctx).Source("nosource").Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -160,14 +161,15 @@ func TestTagsGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).TagsApi.GetHostTags(ctx, "notahostname1234").Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -186,14 +188,15 @@ func TestTagsCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).TagsApi.CreateHostTags(ctx, "notahostname1234").Body(datadog.HostTags{}).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -212,14 +215,15 @@ func TestTagsUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).TagsApi.UpdateHostTags(ctx, "notahostname1234").Body(datadog.HostTags{}).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -238,14 +242,15 @@ func TestTagsDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			httpresp, err := Client(ctx).TagsApi.DeleteHostTags(ctx, "notahostname1234").Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }

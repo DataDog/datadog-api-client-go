@@ -15,7 +15,6 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/stretchr/testify/assert"
 )
 
 var testEvent = datadog.Event{
@@ -36,6 +35,7 @@ type createEventResponse struct {
 func TestEventLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	// Create event
 	marshalledEvent, _ := json.Marshal(testEvent)
@@ -43,7 +43,7 @@ func TestEventLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, string(respBody), err)
 	}
-	assert.Equal(t, 202, httpresp.StatusCode)
+	assert.Equal(202, httpresp.StatusCode)
 	var unmarshaledBody createEventResponse
 	err = json.Unmarshal(respBody, &unmarshaledBody)
 	if err != nil {
@@ -64,11 +64,11 @@ func TestEventLifecycle(t *testing.T) {
 	})
 
 	fetchedEvent := fetchedEventResponse.GetEvent()
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, fetchedEvent.GetTitle(), testEvent.GetTitle())
-	assert.Equal(t, fetchedEvent.GetText(), testEvent.GetText())
-	// not the same!!! assert.Equal(t, testEvent.GetUrl(), fetchedEvent.GetUrl())
-	assert.NotEmpty(t, fetchedEvent.GetUrl())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(fetchedEvent.GetTitle(), testEvent.GetTitle())
+	assert.Equal(fetchedEvent.GetText(), testEvent.GetText())
+	// not the same!!! assert.Equal(testEvent.GetUrl(), fetchedEvent.GetUrl())
+	assert.NotEmpty(fetchedEvent.GetUrl())
 
 	// Find our event in the full list
 	start := event.GetDateHappened() - 10
@@ -95,10 +95,10 @@ func TestEventLifecycle(t *testing.T) {
 		return matchedEvent
 	})
 
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 
 	events := eventListResponse.GetEvents()
-	assert.Contains(t, events, fetchedEvent)
+	assert.Contains(events, fetchedEvent)
 }
 
 func TestEventListErrors(t *testing.T) {
@@ -115,14 +115,15 @@ func TestEventListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).EventsApi.ListEvents(ctx).Start(345).End(123).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -141,14 +142,15 @@ func TestEventGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).EventsApi.GetEvent(ctx, 1234).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }

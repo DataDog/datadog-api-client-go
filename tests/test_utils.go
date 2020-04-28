@@ -22,6 +22,7 @@ import (
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
+	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
@@ -73,6 +74,7 @@ func ConfigureTracer(m *testing.M) {
 
 // WithTestSpan starts new span with test information.
 func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
+	t.Helper()
 	span, ctx := tracer.StartSpanFromContext(ctx, t.Name())
 	return tracer.ContextWithSpan(ctx, span), func() {
 		span.SetTag(ext.Error, t.Failed())
@@ -91,6 +93,7 @@ func createWithDir(path string) (*os.File, error) {
 
 // SetClock stores current time in .freeze file.
 func SetClock(t *testing.T) clockwork.FakeClock {
+	t.Helper()
 	os.MkdirAll("cassettes", 0755)
 
 	f, err := createWithDir(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
@@ -105,6 +108,7 @@ func SetClock(t *testing.T) clockwork.FakeClock {
 
 // RestoreClock restore current time from .freeze file.
 func RestoreClock(t *testing.T) clockwork.FakeClock {
+	t.Helper()
 	data, err := ioutil.ReadFile(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
 	if err != nil {
 		t.Fatalf("Could not load clock: %v", err)
@@ -124,6 +128,7 @@ var (
 
 // WithClock sets clock to context.
 func WithClock(ctx context.Context, t *testing.T) context.Context {
+	t.Helper()
 	var fc clockwork.FakeClock
 	if IsRecording() {
 		fc = SetClock(t)
@@ -173,6 +178,7 @@ func FilterInteraction(i *cassette.Interaction) error {
 
 // Recorder intercepts HTTP requests.
 func Recorder(ctx context.Context, t *testing.T) (*recorder.Recorder, error) {
+	t.Helper()
 	// Configure recorder
 	var mode recorder.Mode
 	if IsRecording() {
@@ -201,4 +207,29 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 	return ddhttp.WrapRoundTripper(rt, ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
 		span.SetTag(ext.SpanName, r.Header.Get("DD-OPERATION-ID"))
 	}))
+}
+
+// Assertions wrapper
+type Assertions struct {
+	require.Assertions
+}
+
+// TestingT keeps track of a context.
+type TestingT struct {
+	*testing.T
+	ctx context.Context
+}
+
+// Errorf format error message.
+func (t *TestingT) Errorf(format string, args ...interface{}) {
+	t.T.Helper()
+	span, _ := tracer.StartSpanFromContext(t.ctx, "testing.error")
+	defer span.Finish()
+	span.SetTag(ext.Error, fmt.Errorf(format, args...))
+	t.T.Errorf(format, args...)
+}
+
+// Assert wraps context and testing object.
+func Assert(ctx context.Context, t *testing.T) *Assertions {
+	return &Assertions{*require.New(&TestingT{t, ctx})}
 }
