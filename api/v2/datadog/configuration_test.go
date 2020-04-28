@@ -1,11 +1,12 @@
 package datadog_test
 
 import (
+	"context"
 	"fmt"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
-	"gotest.tools/assert"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 func TestConfigurationServers(t *testing.T) {
@@ -31,11 +32,12 @@ func TestConfigurationServers(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.URL, func(t *testing.T) {
+			assert := tests.Assert(context.Background(), t)
 			url, err := configuration.ServerURL(0, tc.Variables)
 			if err != nil {
 				t.Errorf("Could not format URL: %v", err)
 			}
-			assert.Equal(t, url, tc.URL)
+			assert.Equal(url, tc.URL)
 		})
 	}
 }
@@ -55,8 +57,9 @@ func TestConfigurationServersAccess(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("Index %v", tc.Index), func(t *testing.T) {
+			assert := tests.Assert(context.Background(), t)
 			_, err := configuration.ServerURL(tc.Index, nil)
-			assert.Error(t, err, tc.Err)
+			assert.Error(err, tc.Err)
 		})
 	}
 }

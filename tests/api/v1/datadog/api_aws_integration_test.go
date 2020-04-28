@@ -15,7 +15,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
-	"github.com/stretchr/testify/assert"
+
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -50,6 +50,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	testAWSAccount := generateUniqueAWSAccount(ctx)
 
@@ -65,25 +66,26 @@ func TestCreateAWSAccount(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 
 	awsAccounts := awsAccts.GetAccounts()
-	assert.True(t, len(awsAccounts) > 0, "No AWS accounts found")
+	assert.True(len(awsAccounts) > 0, "No AWS accounts found")
 
 	awsAcct := awsAccounts[0]
-	assert.Equal(t, testAWSAccount.GetAccountId(), awsAcct.GetAccountId())
-	assert.Equal(t, testAWSAccount.GetRoleName(), awsAcct.GetRoleName())
+	assert.Equal(testAWSAccount.GetAccountId(), awsAcct.GetAccountId())
+	assert.Equal(testAWSAccount.GetRoleName(), awsAcct.GetRoleName())
 	// Golang doesn't have an equality operator defined for slices
-	assert.Equal(t, testAWSAccount.GetHostTags(), awsAcct.GetHostTags())
-	assert.Equal(t, testAWSAccount.GetFilterTags(), awsAcct.GetFilterTags())
-	assert.Equal(t, testAWSAccount.GetExcludedRegions(), awsAcct.GetExcludedRegions())
-	assert.Equal(t, testAWSAccount.GetAccountSpecificNamespaceRules(), awsAcct.GetAccountSpecificNamespaceRules())
+	assert.Equal(testAWSAccount.GetHostTags(), awsAcct.GetHostTags())
+	assert.Equal(testAWSAccount.GetFilterTags(), awsAcct.GetFilterTags())
+	assert.Equal(testAWSAccount.GetExcludedRegions(), awsAcct.GetExcludedRegions())
+	assert.Equal(testAWSAccount.GetAccountSpecificNamespaceRules(), awsAcct.GetAccountSpecificNamespaceRules())
 }
 
 func TestUpdateAWSAccount(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	testAWSAccount := generateUniqueAWSAccount(ctx)
 
@@ -106,19 +108,19 @@ func TestUpdateAWSAccount(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 
 	awsAccounts := awsAccts.GetAccounts()
-	assert.True(t, len(awsAccounts) > 0, "No AWS accounts found")
+	assert.True(len(awsAccounts) > 0, "No AWS accounts found")
 
 	awsAcct := awsAccounts[0]
 	// Test fields were updated
-	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetRoleName(), awsAcct.GetRoleName())
+	assert.Equal(TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetRoleName(), awsAcct.GetRoleName())
 	// Golang doesn't have an equality operator defined for slices
-	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetHostTags(), awsAcct.GetHostTags())
-	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetFilterTags(), awsAcct.GetFilterTags())
-	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetExcludedRegions(), awsAcct.GetExcludedRegions())
-	assert.Equal(t, TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetAccountSpecificNamespaceRules(), awsAcct.GetAccountSpecificNamespaceRules())
+	assert.Equal(TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetHostTags(), awsAcct.GetHostTags())
+	assert.Equal(TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetFilterTags(), awsAcct.GetFilterTags())
+	assert.Equal(TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetExcludedRegions(), awsAcct.GetExcludedRegions())
+	assert.Equal(TESTUPDATEAWSACCWITHEXCLUDEDREGION.GetAccountSpecificNamespaceRules(), awsAcct.GetAccountSpecificNamespaceRules())
 }
 
 func TestDisableAWSAcct(t *testing.T) {
@@ -139,6 +141,7 @@ func TestGenerateNewExternalId(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	testAWSAccount := generateUniqueAWSAccount(ctx)
 	// Lets first create the account for us to generate a new id against
@@ -149,20 +152,21 @@ func TestGenerateNewExternalId(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error generating new AWS External ID: Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.NotEmpty(t, apiResp.GetExternalId())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.NotEmpty(apiResp.GetExternalId())
 }
 
 func TestListNamespaces(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	namespaces, httpresp, err := Client(ctx).AWSIntegrationApi.ListAvailableAWSNamespaces(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error listing AWS Namespaces: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 	namespacesCheck := make(map[string]bool)
 	for _, namespace := range namespaces {
 		namespacesCheck[namespace] = true
@@ -170,10 +174,10 @@ func TestListNamespaces(t *testing.T) {
 
 	// Check that a few examples are in the response
 	// Full list - https://docs.datadoghq.com/api/?lang=bash#list-namespace-rules
-	assert.True(t, namespacesCheck["api_gateway"])
-	assert.True(t, namespacesCheck["cloudsearch"])
-	assert.True(t, namespacesCheck["directconnect"])
-	assert.True(t, namespacesCheck["xray"])
+	assert.True(namespacesCheck["api_gateway"])
+	assert.True(namespacesCheck["cloudsearch"])
+	assert.True(namespacesCheck["directconnect"])
+	assert.True(namespacesCheck["xray"])
 }
 
 func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
@@ -191,14 +195,15 @@ func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).AWSIntegrationApi.CreateNewAWSExternalID(ctx).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -218,14 +223,15 @@ func TestAWSIntegrationCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).AWSIntegrationApi.CreateAWSAccount(ctx).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -245,14 +251,15 @@ func TestAWSIntegrationDeleteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).AWSIntegrationApi.DeleteAWSAccount(ctx).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -260,18 +267,20 @@ func TestAWSIntegrationDeleteErrors(t *testing.T) {
 func TestAWSIntegrationGetAll403Error(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	// 403 Forbidden
 	_, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(context.Background()).Execute()
-	assert.Equal(t, 403, httpresp.StatusCode)
+	assert.Equal(403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	assert.True(ok)
+	assert.NotEmpty(apiError.GetErrors())
 }
 
 func TestAWSIntegrationGetAll400Error(t *testing.T) {
-	ctx, stop := WithClient(context.Background(), t)
-	defer stop()
+	ctx, finish := WithClient(context.Background(), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
 	if err != nil {
@@ -284,22 +293,23 @@ func TestAWSIntegrationGetAll400Error(t *testing.T) {
 
 	// 400 Bad Request
 	_, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(ctx).Execute()
-	assert.Equal(t, 400, httpresp.StatusCode)
+	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	assert.True(ok)
+	assert.NotEmpty(apiError.GetErrors())
 }
 
 func TestAWSIntegrationListNamespacesErrors(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	// 403 Forbidden
 	_, httpresp, err := Client(ctx).AWSIntegrationApi.ListAvailableAWSNamespaces(context.Background()).Execute()
-	assert.Equal(t, 403, httpresp.StatusCode)
+	assert.Equal(403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(t, ok)
-	assert.NotEmpty(t, apiError.GetErrors())
+	assert.True(ok)
+	assert.NotEmpty(apiError.GetErrors())
 }
 
 func TestAWSIntegrationUpdateErrors(t *testing.T) {
@@ -317,14 +327,15 @@ func TestAWSIntegrationUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).AWSIntegrationApi.UpdateAWSAccount(ctx).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }

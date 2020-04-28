@@ -14,12 +14,12 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestDowntimeLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	start := tests.ClockFromContext(ctx).Now()
 	testDowntime := datadog.Downtime{
@@ -42,13 +42,13 @@ func TestDowntimeLifecycle(t *testing.T) {
 		t.Fatalf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer cancelDowntime(ctx, downtime.GetId())
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 
-	assert.Equal(t, testDowntime.GetMessage(), downtime.GetMessage())
-	assert.True(t, downtime.GetActive())
+	assert.Equal(testDowntime.GetMessage(), downtime.GetMessage())
+	assert.True(downtime.GetActive())
 	val, set := downtime.GetUpdaterIdOk()
-	assert.True(t, set)
-	assert.Nil(t, val)
+	assert.True(set)
+	assert.Nil(val)
 
 	// Edit a downtime
 	editedDowntime := datadog.Downtime{Message: datadog.PtrString("updated message")}
@@ -56,47 +56,48 @@ func TestDowntimeLifecycle(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error updating Downtime %v: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, editedDowntime.GetMessage(), updatedDowntime.GetMessage())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(editedDowntime.GetMessage(), updatedDowntime.GetMessage())
 	val, set = updatedDowntime.GetUpdaterIdOk()
-	assert.True(t, set)
-	assert.NotNil(t, val)
+	assert.True(set)
+	assert.NotNil(val)
 
 	// Check downtime existence
 	fetchedDowntime, httpresp, err := Client(ctx).DowntimesApi.GetDowntime(ctx, downtime.GetId()).Execute()
 	if err != nil {
 		t.Errorf("Error fetching Downtime %v: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, updatedDowntime.GetMessage(), fetchedDowntime.GetMessage())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedDowntime.GetMessage(), fetchedDowntime.GetMessage())
 
 	// Find our downtime in the full list
 	downtimes, httpresp, err := Client(ctx).DowntimesApi.ListDowntimes(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error fetching downtimes: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Contains(t, downtimes, fetchedDowntime)
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Contains(downtimes, fetchedDowntime)
 
 	// Cancel downtime
 	httpresp, err = Client(ctx).DowntimesApi.CancelDowntime(ctx, downtime.GetId()).Execute()
 	if err != nil {
 		t.Errorf("Error canceling Downtime %v: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 204, httpresp.StatusCode)
+	assert.Equal(204, httpresp.StatusCode)
 
 	// Check downtime status
 	fetchedDowntime, httpresp, err = Client(ctx).DowntimesApi.GetDowntime(ctx, downtime.GetId()).Execute()
 	if httpresp.StatusCode != 200 {
 		t.Errorf("Downtime %v should still exist: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.False(t, fetchedDowntime.GetActive())
-	assert.True(t, fetchedDowntime.GetDisabled())
+	assert.False(fetchedDowntime.GetActive())
+	assert.True(fetchedDowntime.GetDisabled())
 }
 
 func TestMonitorDowntime(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	// Create monitor
 	tm := testMonitor(ctx, t)
@@ -104,7 +105,7 @@ func TestMonitorDowntime(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 	monitorID := monitor.GetId()
 	defer deleteMonitor(ctx, monitorID)
 
@@ -123,14 +124,15 @@ func TestMonitorDowntime(t *testing.T) {
 		t.Fatalf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer cancelDowntime(ctx, downtime.GetId())
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 
-	assert.Equal(t, monitorID, downtime.GetMonitorId())
+	assert.Equal(monitorID, downtime.GetMonitorId())
 }
 
 func TestScopedDowntime(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	start := tests.ClockFromContext(ctx).Now()
 
@@ -163,9 +165,9 @@ func TestScopedDowntime(t *testing.T) {
 			t.Fatalf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 		}
 		defer cancelDowntime(ctx, downtime.GetId())
-		assert.Equal(t, 200, httpresp.StatusCode)
+		assert.Equal(200, httpresp.StatusCode)
 
-		assert.False(t, downtime.GetDisabled())
+		assert.False(downtime.GetDisabled())
 		downtimes[i] = downtime
 	}
 
@@ -177,11 +179,11 @@ func TestScopedDowntime(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error canceling downtimes by scope %s: Response: %s: %v", scopeGo, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 
 	canceledIds := canceledDowntimesIds.GetCancelledIds()
 	expectedCanceledIds := []int64{downtimes[1].GetId()}
-	assert.Equal(t, expectedCanceledIds, canceledIds)
+	assert.Equal(expectedCanceledIds, canceledIds)
 }
 
 func TestDowntimeRecurrence(t *testing.T) {
@@ -252,6 +254,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			ctx, finish := WithRecorder(ctx, t)
 			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			testDowntime := datadog.Downtime{
 				Message:    datadog.PtrString(name),
@@ -266,7 +269,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 				defer cancelDowntime(ctx, downtime.GetId())
 			}
 
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
 		})
 	}
 }
@@ -284,14 +287,15 @@ func TestDowntimeListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).DowntimesApi.ListDowntimes(ctx).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -311,14 +315,15 @@ func TestDowntimeCreateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).DowntimesApi.CreateDowntime(ctx).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -339,14 +344,15 @@ func TestDowntimeCancelByScopeErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).DowntimesApi.CancelDowntimesByScope(ctx).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -365,14 +371,15 @@ func TestDowntimeCancelErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			httpresp, err := Client(ctx).DowntimesApi.CancelDowntime(ctx, 1234).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -391,14 +398,15 @@ func TestDowntimeGetErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).DowntimesApi.GetDowntime(ctx, 1234).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -427,14 +435,15 @@ func TestDowntimeUpdateErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).DowntimesApi.UpdateDowntime(ctx, 1234).Body(tc.Body).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }

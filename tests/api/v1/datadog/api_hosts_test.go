@@ -18,7 +18,6 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/stretchr/testify/assert"
 	"gopkg.in/h2non/gock.v1"
 	is "gotest.tools/assert/cmp"
 )
@@ -26,6 +25,7 @@ import (
 func TestHosts(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	api := Client(ctx).HostsApi
 	now := tests.ClockFromContext(ctx).Now().Unix()
@@ -41,8 +41,8 @@ func TestHosts(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error submitting metric: Response %s: %v", string(respBody), err)
 	}
-	assert.Equal(t, 202, httpresp.StatusCode)
-	assert.Equal(t, `{"status": "ok"}`, string(respBody))
+	assert.Equal(202, httpresp.StatusCode)
+	assert.Equal(`{"status": "ok"}`, string(respBody))
 
 	// wait for host to appear
 	err = tests.Retry(10*time.Second, 10, func() bool {
@@ -65,42 +65,43 @@ func TestHosts(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error muting host %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, "muting for test", muteHostResp.GetMessage())
-	assert.Equal(t, hostname, muteHostResp.GetHostname())
-	assert.Equal(t, now+60, muteHostResp.GetEnd())
-	assert.Equal(t, "Muted", muteHostResp.GetAction())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal("muting for test", muteHostResp.GetMessage())
+	assert.Equal(hostname, muteHostResp.GetHostname())
+	assert.Equal(now+60, muteHostResp.GetEnd())
+	assert.Equal("Muted", muteHostResp.GetAction())
 
 	hostMuteSettings = datadog.HostMuteSettings{
 		Message: datadog.PtrString("muting for test override"),
 		End:     datadog.PtrInt64(now + 120),
 	}
 	muteHostResp, httpresp, err = api.MuteHost(ctx, hostname).Body(hostMuteSettings).Execute()
-	assert.NotNil(t, err)
-	assert.Equal(t, 400, httpresp.StatusCode)
+	assert.NotNil(err)
+	assert.Equal(400, httpresp.StatusCode)
 	hostMuteSettings.SetOverride(true)
 	muteHostResp, httpresp, err = api.MuteHost(ctx, hostname).Body(hostMuteSettings).Execute()
 	if err != nil {
 		t.Errorf("Error muting host %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, "muting for test override", muteHostResp.GetMessage())
-	assert.Equal(t, hostname, muteHostResp.GetHostname())
-	assert.Equal(t, now+120, muteHostResp.GetEnd())
-	assert.Equal(t, "Muted", muteHostResp.GetAction())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal("muting for test override", muteHostResp.GetMessage())
+	assert.Equal(hostname, muteHostResp.GetHostname())
+	assert.Equal(now+120, muteHostResp.GetEnd())
+	assert.Equal("Muted", muteHostResp.GetAction())
 
 	muteHostResp, httpresp, err = api.UnmuteHost(ctx, hostname).Execute()
 	if err != nil {
 		t.Errorf("Error unmuting host %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.Equal(t, "Unmuted", muteHostResp.GetAction())
-	assert.Equal(t, hostname, muteHostResp.GetHostname())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal("Unmuted", muteHostResp.GetAction())
+	assert.Equal(hostname, muteHostResp.GetHostname())
 }
 
 func TestHostTotalsMocked(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
-	defer stop()
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
 	fixturePath, err := filepath.Abs("fixtures/hosts/host_totals.json")
@@ -126,13 +127,14 @@ func TestHostTotalsMocked(t *testing.T) {
 	if err != nil {
 		t.Errorf("Failed to get host totals: %v", err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.True(t, is.DeepEqual(expected, hostListResp)().Success())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
 }
 
 func TestHostsSearchMocked(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
-	defer stop()
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
 	data, err := tests.ReadFixture("fixtures/hosts/host_search.json")
@@ -162,8 +164,8 @@ func TestHostsSearchMocked(t *testing.T) {
 	if err != nil {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
-	assert.Equal(t, 200, httpresp.StatusCode)
-	assert.True(t, is.DeepEqual(expected, hostListResp)().Success())
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
 }
 
 func TestHostsListErrors(t *testing.T) {
@@ -180,14 +182,15 @@ func TestHostsListErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).HostsApi.ListHosts(ctx).Count(-1).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -206,14 +209,15 @@ func TestHostsGetTotalsErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).HostsApi.GetHostTotals(ctx).From(tests.ClockFromContext(ctx).Now().Unix() + 60).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -222,6 +226,7 @@ func TestHostsMuteErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	// Mute host a first time in order to trigger a 400
 	hostname := fmt.Sprintf("go-client-test-hostname-%d", tests.ClockFromContext(ctx).Now().Unix())
@@ -232,7 +237,7 @@ func TestHostsMuteErrors(t *testing.T) {
 		t.Fatalf("Error muting host %s: Response: %s", hostname, err.(datadog.GenericOpenAPIError).Body())
 	}
 	defer Client(ctx).HostsApi.UnmuteHost(ctx, hostname).Execute()
-	assert.Equal(t, 200, httpresp.StatusCode)
+	assert.Equal(200, httpresp.StatusCode)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -244,14 +249,15 @@ func TestHostsMuteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).HostsApi.MuteHost(ctx, hostname).Body(datadog.HostMuteSettings{}).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
@@ -270,15 +276,16 @@ func TestHostsUnmuteErrors(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
-			defer stop()
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
 
 			hostname := fmt.Sprintf("go-client-test-hostname-%d", tests.ClockFromContext(ctx).Now().Unix())
 			_, httpresp, err := Client(ctx).HostsApi.UnmuteHost(ctx, hostname).Execute()
-			assert.Equal(t, tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(t, ok)
-			assert.NotEmpty(t, apiError.GetErrors())
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
 }
