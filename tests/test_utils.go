@@ -7,6 +7,7 @@
 package tests
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"io/ioutil"
@@ -63,7 +64,6 @@ func ReadFixture(path string) (string, error) {
 // ConfigureTracer starts the tracer.
 func ConfigureTracer(m *testing.M) {
 	tracer.Start(
-		tracer.WithService("datadog-api-client-go"),
 		tracer.WithServiceVersion(api.Version),
 	)
 	code := m.Run()
@@ -205,9 +205,22 @@ func Recorder(ctx context.Context, t *testing.T) (*recorder.Recorder, error) {
 
 // WrapRoundTripper includes tracing information.
 func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) http.RoundTripper {
-	return ddhttp.WrapRoundTripper(rt, ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
-		span.SetTag(ext.SpanName, r.Header.Get("DD-OPERATION-ID"))
-	}))
+	return ddhttp.WrapRoundTripper(
+		rt,
+		ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
+			span.SetTag(ext.SpanName, r.Header.Get("DD-OPERATION-ID"))
+		}),
+		ddhttp.WithAfter(func(r *http.Response, span ddtrace.Span) {
+			if 500 <= r.StatusCode && r.StatusCode < 600 {
+				bodyBytes, _ := ioutil.ReadAll(r.Body)
+				r.Body.Close() // must close
+				r.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+				span.SetTag(ext.Error, true)
+				span.SetTag(ext.ErrorMsg, string(bodyBytes))
+				span.SetTag(ext.ErrorDetails, r.Status)
+			}
+		}),
+	)
 }
 
 // Assertions wrapper
@@ -232,5 +245,6 @@ func (t *TestingT) Errorf(format string, args ...interface{}) {
 
 // Assert wraps context and testing object.
 func Assert(ctx context.Context, t *testing.T) *Assertions {
+	t.Helper()
 	return &Assertions{*require.New(&TestingT{t, ctx})}
 }
