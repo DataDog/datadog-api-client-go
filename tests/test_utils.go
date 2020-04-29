@@ -63,11 +63,15 @@ func ReadFixture(path string) (string, error) {
 
 // ConfigureTracer starts the tracer.
 func ConfigureTracer(m *testing.M) {
+	service, ok := os.LookupEnv("DD_SERVICE")
+	if !ok {
+		service = "datadog-api-client-go"
+	}
 	tracer.Start(
+		tracer.WithService(service),
 		tracer.WithServiceVersion(api.Version),
 	)
 	code := m.Run()
-
 	tracer.Stop()
 	os.Exit(code)
 }
