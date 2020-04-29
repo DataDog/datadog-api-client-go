@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"config":{"assertions":[{"operator":"is","property":"content-type","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"}],"request":{"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"Go client testing Synthetics API test","options":{"accept_self_signed":false,"follow_redirects":true,"min_location_failed":10,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"http","tags":["testing:api"],"type":"api"}
+      {"config":{"assertions":[{"operator":"is","property":"content-type","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"}],"request":{"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"Go client testing Synthetics API test","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":10,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"http","tags":["testing:api"],"type":"api"}
     form: {}
     headers:
       Accept:
@@ -13,13 +13,19 @@ interactions:
       Dd-Operation-Id:
       - CreateTest
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5011200460454975116"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
     url: https://api.datadoghq.com/api/v1/synthetics/tests
     method: POST
   response:
-    body: '{"status":"live","public_id":"2d8-ci5-v23","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
+    body: '{"status":"live","public_id":"rjt-xcn-bsn","tags":["testing:api"],"org_id":293319,"locations":["aws:us-east-2"],"message":"Go
       client testing Synthetics API test - this is message","deleted_at":null,"name":"Go
-      client testing Synthetics API test","monitor_id":17852834,"type":"api","created_at":"2020-04-21T20:56:36.211457+00:00","modified_at":"2020-04-21T20:56:36.211457+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"content-type","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"follow_redirects":true,"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":10,"tick_every":60}}'
+      client testing Synthetics API test","monitor_id":18104077,"type":"api","created_at":"2020-04-29T15:37:46.343024+00:00","modified_at":"2020-04-29T15:37:46.343024+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"content-type","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":10,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"tick_every":60}}'
     headers:
       Cache-Control:
       - no-cache
@@ -30,11 +36,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:36 GMT
+      - Wed, 29 Apr 2020 15:37:46 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 28-Apr-2020 20:56:36 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 15:37:46 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -42,8 +50,10 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - QO3HutZQjgMDp/HqClcLon+qq5lEghb3LRV+gXMIQ2Jivd1m1eEGCh0RxplUQMIV
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,15 +61,15 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "119"
+      - "112"
       X-Ratelimit-Reset:
-      - "24"
+      - "14"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"config":{"assertions":[{"operator":"is","property":"content-type","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"}],"request":{"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"go client updated name","options":{"accept_self_signed":false,"follow_redirects":true,"min_location_failed":10,"retry":{"count":3,"interval":10},"tick_every":60},"status":"live","subtype":"http","tags":["testing:api"],"type":"api"}
+      {"config":{"assertions":[{"operator":"is","property":"content-type","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"}],"request":{"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"go client updated name","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":10,"retry":{"count":3,"interval":10},"tick_every":60},"status":"live","subtype":"http","tags":["testing:api"],"type":"api"}
     form: {}
     headers:
       Accept:
@@ -69,13 +79,19 @@ interactions:
       Dd-Operation-Id:
       - UpdateTest
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/synthetics/tests/2d8-ci5-v23
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6938190553138102912"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/rjt-xcn-bsn
     method: PUT
   response:
-    body: '{"status":"live","public_id":"2d8-ci5-v23","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
+    body: '{"status":"live","public_id":"rjt-xcn-bsn","tags":["testing:api"],"org_id":293319,"locations":["aws:us-east-2"],"message":"Go
       client testing Synthetics API test - this is message","deleted_at":null,"name":"go
-      client updated name","monitor_id":17852834,"type":"api","created_at":"2020-04-21T20:56:36.211457+00:00","modified_at":"2020-04-21T20:56:36.583234+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"content-type","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"follow_redirects":true,"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":10,"tick_every":60}}'
+      client updated name","monitor_id":18104077,"type":"api","created_at":"2020-04-29T15:37:46.343024+00:00","modified_at":"2020-04-29T15:37:46.736975+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"content-type","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":10,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"tick_every":60}}'
     headers:
       Cache-Control:
       - no-cache
@@ -86,11 +102,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:36 GMT
+      - Wed, 29 Apr 2020 15:37:46 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 28-Apr-2020 20:56:36 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 15:37:46 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -98,8 +116,10 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - btzHvL7Rg/f/n1wMP2CFVXsuErrwOO9p2hvsBofLQbxzRkmZbfvXcB18pURNtIOI
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -107,9 +127,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "499"
+      - "491"
       X-Ratelimit-Reset:
-      - "24"
+      - "14"
     status: 200 OK
     code: 200
     duration: ""
@@ -122,13 +142,20 @@ interactions:
       Dd-Operation-Id:
       - GetTest
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/synthetics/tests/2d8-ci5-v23
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3407463689316807765"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/rjt-xcn-bsn
     method: GET
   response:
-    body: '{"status":"live","public_id":"2d8-ci5-v23","tags":["testing:api"],"locations":["aws:us-east-2"],"message":"Go
-      client testing Synthetics API test - this is message","modified_by":{"email":"frog@datadoghq.com","handle":"frog@datadoghq.com","id":1445416,"name":null},"name":"go
-      client updated name","monitor_id":17852834,"type":"api","created_at":"2020-04-21T20:56:36.211457+00:00","modified_at":"2020-04-21T20:56:36.583234+00:00","created_by":{"email":"frog@datadoghq.com","handle":"frog@datadoghq.com","id":1445416,"name":null},"subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"content-type","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"follow_redirects":true,"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":10,"tick_every":60}}'
+    body: '{"status":"live","public_id":"rjt-xcn-bsn","tags":["testing:api"],"locations":["aws:us-east-2"],"message":"Go
+      client testing Synthetics API test - this is message","modified_by":{"email":"slavek.kabrda@datadoghq.com","handle":"slavek.kabrda@datadoghq.com","id":1240446,"name":"Slavek
+      Kabrda"},"name":"go client updated name","monitor_id":18104077,"type":"api","created_at":"2020-04-29T15:37:46.343024+00:00","modified_at":"2020-04-29T15:37:46.736975+00:00","created_by":{"email":"slavek.kabrda@datadoghq.com","handle":"slavek.kabrda@datadoghq.com","id":1240446,"name":"Slavek
+      Kabrda"},"subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"content-type","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":10,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"tick_every":60}}'
     headers:
       Cache-Control:
       - no-cache
@@ -139,11 +166,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:36 GMT
+      - Wed, 29 Apr 2020 15:37:47 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 28-Apr-2020 20:56:36 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 15:37:47 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -151,8 +180,10 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - pxuY3ZnSwE+rCP/MLubWk3EuAMlxxciIsQ2EBSRxZafCu9H4+UEVULDCm144bb3W
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -160,9 +191,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "999"
+      - "997"
       X-Ratelimit-Reset:
-      - "24"
+      - "13"
     status: 200 OK
     code: 200
     duration: ""
@@ -178,8 +209,14 @@ interactions:
       Dd-Operation-Id:
       - UpdateTestPauseStatus
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/synthetics/tests/2d8-ci5-v23/status
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3729096745820887661"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/rjt-xcn-bsn/status
     method: PUT
   response:
     body: "true"
@@ -195,18 +232,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:37 GMT
+      - Wed, 29 Apr 2020 15:37:47 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 28-Apr-2020 20:56:36 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 15:37:47 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - hABsPq9DIvV7yAEiU7rMxs7UCRuTbRH/kYpwue4a0q9qmwd4SUh9bBZ5SHPkBLc6
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -214,9 +255,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "118"
+      - "110"
       X-Ratelimit-Reset:
-      - "23"
+      - "13"
     status: 200 OK
     code: 200
     duration: ""
@@ -232,8 +273,14 @@ interactions:
       Dd-Operation-Id:
       - UpdateTestPauseStatus
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/synthetics/tests/2d8-ci5-v23/status
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1716876695661917832"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/rjt-xcn-bsn/status
     method: PUT
   response:
     body: "true"
@@ -249,18 +296,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:37 GMT
+      - Wed, 29 Apr 2020 15:37:48 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 28-Apr-2020 20:56:37 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 15:37:47 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - jety+2H6BA1H4x31+wzy5BjqI2NDwh54fgbjSYyrLU0p2tWQPCCTKspX7sHO7u1n
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -268,9 +319,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "117"
+      - "109"
       X-Ratelimit-Reset:
-      - "23"
+      - "13"
     status: 200 OK
     code: 200
     duration: ""
@@ -283,11 +334,17 @@ interactions:
       Dd-Operation-Id:
       - GetAPITestLatestResults
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/synthetics/tests/2d8-ci5-v23/results?from_ts=0&probe_dc=aws%3Aus-east-2&to_ts=1587502595000
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7680710448552842703"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/rjt-xcn-bsn/results?from_ts=0&probe_dc=aws%3Aus-east-2&to_ts=1588174665000
     method: GET
   response:
-    body: '{"last_timestamp_fetched":1582318597000,"results":[]}'
+    body: '{"last_timestamp_fetched":1582990668000,"results":[]}'
     headers:
       Cache-Control:
       - no-cache
@@ -298,11 +355,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:37 GMT
+      - Wed, 29 Apr 2020 15:37:48 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 28-Apr-2020 20:56:37 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 15:37:48 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -310,8 +369,10 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - SxoanfhUZNcxsD3lnA3j+up2jAgZV05RpnWjR/qtgMkjy5UIlkbs0WqFT6yaBwwR
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -319,15 +380,15 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "999"
+      - "996"
       X-Ratelimit-Reset:
-      - "23"
+      - "12"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"public_ids":["2d8-ci5-v23"]}
+      {"public_ids":["rjt-xcn-bsn"]}
     form: {}
     headers:
       Accept:
@@ -337,11 +398,17 @@ interactions:
       Dd-Operation-Id:
       - DeleteTests
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5904923940726928749"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
     method: POST
   response:
-    body: '{"deleted_tests":[{"deleted_at":"2020-04-21T20:56:37.863073+00:00","public_id":"2d8-ci5-v23"}]}'
+    body: '{"deleted_tests":[{"deleted_at":"2020-04-29T15:37:48.731396+00:00","public_id":"rjt-xcn-bsn"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -352,11 +419,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:38 GMT
+      - Wed, 29 Apr 2020 15:37:49 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 28-Apr-2020 20:56:37 GMT;
+      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Wed, 06-May-2020 15:37:48 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -364,8 +433,10 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - JbIYRXbRMsAVaKGy+d2H1ud8Z295ghodOPi6eELPzhmBKrZI3+dlseyrUY1cqOAd
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -373,15 +444,15 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "119"
+      - "111"
       X-Ratelimit-Reset:
-      - "23"
+      - "12"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"public_ids":["2d8-ci5-v23"]}
+      {"public_ids":["rjt-xcn-bsn"]}
     form: {}
     headers:
       Accept:
@@ -391,7 +462,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteTests
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3498290829942385945"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8003399176387180236"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
     method: POST
   response:
@@ -406,7 +483,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Apr 2020 20:56:38 GMT
+      - Wed, 29 Apr 2020 15:37:49 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -416,7 +495,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2417263"
+      - "35.2448147"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -424,9 +503,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "118"
+      - "110"
       X-Ratelimit-Reset:
-      - "22"
+      - "11"
     status: 404 Not Found
     code: 404
     duration: ""
