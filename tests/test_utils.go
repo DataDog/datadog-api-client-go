@@ -76,6 +76,7 @@ func ConfigureTracer(m *testing.M) {
 func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	t.Helper()
 	span, ctx := tracer.StartSpanFromContext(ctx, t.Name())
+	span.SetTag(ext.AnalyticsEvent, true)
 	return tracer.ContextWithSpan(ctx, span), func() {
 		span.SetTag(ext.Error, t.Failed())
 		span.Finish()
