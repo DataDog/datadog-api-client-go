@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | TODO. | [optional] 
 **ModifiedAt** | Pointer to **string** | TODO. | [optional] 
 **ModifiedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
+**MonitorId** | Pointer to **int64** | TODO. | [optional] 
 **Name** | Pointer to **string** | TODO. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
 **PublicId** | Pointer to **string** | TODO. | [optional] 
@@ -212,6 +213,31 @@ SetModifiedBy sets ModifiedBy field to given value.
 `func (o *SyntheticsTestDetails) HasModifiedBy() bool`
 
 HasModifiedBy returns a boolean if a field has been set.
+
+### GetMonitorId
+
+`func (o *SyntheticsTestDetails) GetMonitorId() int64`
+
+GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
+
+### GetMonitorIdOk
+
+`func (o *SyntheticsTestDetails) GetMonitorIdOk() (*int64, bool)`
+
+GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitorId
+
+`func (o *SyntheticsTestDetails) SetMonitorId(v int64)`
+
+SetMonitorId sets MonitorId field to given value.
+
+### HasMonitorId
+
+`func (o *SyntheticsTestDetails) HasMonitorId() bool`
+
+HasMonitorId returns a boolean if a field has been set.
 
 ### GetName
 

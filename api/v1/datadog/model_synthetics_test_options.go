@@ -17,9 +17,13 @@ type SyntheticsTestOptions struct {
 	// TODO.
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
 	// TODO.
+	AllowInsecure *bool `json:"allow_insecure,omitempty"`
+	// TODO.
 	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
 	// TODO.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
+	// TODO.
+	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
 	// TODO.
 	MinLocationFailed *int64                      `json:"min_location_failed,omitempty"`
 	Retry             *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
@@ -73,6 +77,38 @@ func (o *SyntheticsTestOptions) HasAcceptSelfSigned() bool {
 // SetAcceptSelfSigned gets a reference to the given bool and assigns it to the AcceptSelfSigned field.
 func (o *SyntheticsTestOptions) SetAcceptSelfSigned(v bool) {
 	o.AcceptSelfSigned = &v
+}
+
+// GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetAllowInsecure() bool {
+	if o == nil || o.AllowInsecure == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AllowInsecure
+}
+
+// GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetAllowInsecureOk() (*bool, bool) {
+	if o == nil || o.AllowInsecure == nil {
+		return nil, false
+	}
+	return o.AllowInsecure, true
+}
+
+// HasAllowInsecure returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasAllowInsecure() bool {
+	if o != nil && o.AllowInsecure != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.
+func (o *SyntheticsTestOptions) SetAllowInsecure(v bool) {
+	o.AllowInsecure = &v
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
@@ -137,6 +173,38 @@ func (o *SyntheticsTestOptions) HasFollowRedirects() bool {
 // SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.
 func (o *SyntheticsTestOptions) SetFollowRedirects(v bool) {
 	o.FollowRedirects = &v
+}
+
+// GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetMinFailureDuration() int64 {
+	if o == nil || o.MinFailureDuration == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MinFailureDuration
+}
+
+// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetMinFailureDurationOk() (*int64, bool) {
+	if o == nil || o.MinFailureDuration == nil {
+		return nil, false
+	}
+	return o.MinFailureDuration, true
+}
+
+// HasMinFailureDuration returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasMinFailureDuration() bool {
+	if o != nil && o.MinFailureDuration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMinFailureDuration gets a reference to the given int64 and assigns it to the MinFailureDuration field.
+func (o *SyntheticsTestOptions) SetMinFailureDuration(v int64) {
+	o.MinFailureDuration = &v
 }
 
 // GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise.
@@ -240,11 +308,17 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.AcceptSelfSigned != nil {
 		toSerialize["accept_self_signed"] = o.AcceptSelfSigned
 	}
+	if o.AllowInsecure != nil {
+		toSerialize["allow_insecure"] = o.AllowInsecure
+	}
 	if o.DeviceIds != nil {
 		toSerialize["device_ids"] = o.DeviceIds
 	}
 	if o.FollowRedirects != nil {
 		toSerialize["follow_redirects"] = o.FollowRedirects
+	}
+	if o.MinFailureDuration != nil {
+		toSerialize["min_failure_duration"] = o.MinFailureDuration
 	}
 	if o.MinLocationFailed != nil {
 		toSerialize["min_location_failed"] = o.MinLocationFailed

@@ -26,6 +26,8 @@ type SyntheticsTestDetails struct {
 	ModifiedAt *string               `json:"modified_at,omitempty"`
 	ModifiedBy *SyntheticsTestAuthor `json:"modified_by,omitempty"`
 	// TODO.
+	MonitorId *int64 `json:"monitor_id,omitempty"`
+	// TODO.
 	Name    *string                `json:"name,omitempty"`
 	Options *SyntheticsTestOptions `json:"options,omitempty"`
 	// TODO.
@@ -278,6 +280,38 @@ func (o *SyntheticsTestDetails) SetModifiedBy(v SyntheticsTestAuthor) {
 	o.ModifiedBy = &v
 }
 
+// GetMonitorId returns the MonitorId field value if set, zero value otherwise.
+func (o *SyntheticsTestDetails) GetMonitorId() int64 {
+	if o == nil || o.MonitorId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MonitorId
+}
+
+// GetMonitorIdOk returns a tuple with the MonitorId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestDetails) GetMonitorIdOk() (*int64, bool) {
+	if o == nil || o.MonitorId == nil {
+		return nil, false
+	}
+	return o.MonitorId, true
+}
+
+// HasMonitorId returns a boolean if a field has been set.
+func (o *SyntheticsTestDetails) HasMonitorId() bool {
+	if o != nil && o.MonitorId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
+func (o *SyntheticsTestDetails) SetMonitorId(v int64) {
+	o.MonitorId = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetName() string {
 	if o == nil || o.Name == nil {
@@ -524,6 +558,9 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 	}
 	if o.ModifiedBy != nil {
 		toSerialize["modified_by"] = o.ModifiedBy
+	}
+	if o.MonitorId != nil {
+		toSerialize["monitor_id"] = o.MonitorId
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
