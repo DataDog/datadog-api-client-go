@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DashboardLists** | Pointer to [**[]DashboardList**](DashboardList.md) | List of all your dashboard lists | [optional] 
+**DashboardLists** | Pointer to [**[]DashboardList**](DashboardList.md) | List of all your dashboard lists. | [optional] 
 
 ## Methods
 

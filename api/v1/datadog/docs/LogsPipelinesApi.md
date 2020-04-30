@@ -7,10 +7,10 @@ Method | HTTP request | Description
 [**CreateLogsPipeline**](LogsPipelinesApi.md#CreateLogsPipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline
 [**DeleteLogsPipeline**](LogsPipelinesApi.md#DeleteLogsPipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline
 [**GetLogsPipeline**](LogsPipelinesApi.md#GetLogsPipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a pipeline
-[**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
-[**ListLogsPipelines**](LogsPipelinesApi.md#ListLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
+[**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get pipeline order
+[**ListLogsPipelines**](LogsPipelinesApi.md#ListLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all pipelines
 [**UpdateLogsPipeline**](LogsPipelinesApi.md#UpdateLogsPipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline
-[**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
+[**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update pipeline order
 
 
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 > LogsPipelinesOrder GetLogsPipelineOrder(ctx).Execute()
 
-Get Pipeline Order
+Get pipeline order
 
 
 
@@ -178,7 +178,7 @@ Other parameters are passed through a pointer to a apiGetLogsPipelineOrderReques
 
 > []LogsPipeline ListLogsPipelines(ctx).Execute()
 
-Get all Pipeline
+Get all pipelines
 
 
 
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 > LogsPipelinesOrder UpdateLogsPipelineOrder(ctx).Body(body).Execute()
 
-Update Pipeline Order
+Update pipeline order
 
 
 

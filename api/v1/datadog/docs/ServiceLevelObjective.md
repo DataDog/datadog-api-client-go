@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **int64** | Creation timestamp (unix time in seconds)  Always included in service level objective responses. | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Description** | Pointer to **NullableString** | A user-defined description of the service level objective.  Always included in service level objective responses (but may be null). Optional in create/update requests. | [optional] 
-**Groups** | Pointer to **[]string** | A list of (up to 20) monitor groups (e.g. [\&quot;env:prod,role:mysql\&quot;]) that narrows the scope of a monitor service level objective.  Included in service level objective responses if it is nonempty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the \&quot;monitor_ids\&quot; field is one. | [optional] 
+**Description** | Pointer to **NullableString** | A user-defined description of the service level objective.  Always included in service level objective responses (but may be &#x60;null&#x60;). Optional in create/update requests. | [optional] 
+**Groups** | Pointer to **[]string** | A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.  Included in service level objective responses if it is not empty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the &#x60;monitor_ids&#x60; field is one. | [optional] 
 **Id** | Pointer to **string** | A unique identifier for the service level objective object.  Always included in service level objective responses. | [optional] [readonly] 
 **ModifiedAt** | Pointer to **int64** | Modification timestamp (unix time in seconds)  Always included in service level objective responses. | [optional] [readonly] 
-**MonitorIds** | Pointer to **[]int64** | A list of monitor ids that defines the scope of a monitor service level objective.  Required if type is \&quot;monitor\&quot;. | [optional] 
-**MonitorTags** | Pointer to **[]string** | The union of monitor tags for all monitors referenced by the \&quot;monitor_ids\&quot; field.  Always included in service level objective responses for monitor service level objectives (but may be empty). Ignored in create/update requests. Does not affect which monitors are included in the service level objective (that is determined entirely by the monitor_ids field). | [optional] 
+**MonitorIds** | Pointer to **[]int64** | A list of monitor ids that defines the scope of a monitor service level objective. **Required if type is &#x60;monitor&#x60;**. | [optional] 
+**MonitorTags** | Pointer to **[]string** | The union of monitor tags for all monitors referenced by the &#x60;monitor_ids&#x60; field.  Always included in service level objective responses for monitor service level objectives (but may be empty). Ignored in create/update requests. Does not affect which monitors are included in the service level objective (that is determined entirely by the &#x60;monitor_ids&#x60; field). | [optional] 
 **Name** | Pointer to **string** | The name of the service level objective object. | 
 **Query** | Pointer to [**ServiceLevelObjectiveQuery**](ServiceLevelObjective_query.md) |  | [optional] 
-**Tags** | Pointer to **[]string** | A list of tags (e.g. \&quot;env:prod\&quot;) associated with this service level objective.  Always included in service level objective responses (but may be empty). Optional in create/update requests. | [optional] 
+**Tags** | Pointer to **[]string** | A list of tags associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests. | [optional] 
 **Thresholds** | Pointer to [**[]SLOThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
 **Type** | Pointer to [**SLOType**](SLOType.md) |  | 
 **TypeId** | Pointer to [**SLOTypeNumeric**](SLOTypeNumeric.md) |  | [optional] 

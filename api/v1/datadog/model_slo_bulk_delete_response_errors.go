@@ -16,7 +16,7 @@ import (
 type SLOBulkDeleteResponseErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`
-	// The error message
+	// The error message.
 	Message   string            `json:"message"`
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 }

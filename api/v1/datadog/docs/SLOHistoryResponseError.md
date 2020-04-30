@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | Pointer to **string** | human readable error | [optional] 
+**Error** | Pointer to **string** | Human readable error. | [optional] 
 
 ## Methods
 

@@ -36,8 +36,8 @@ Other parameters are passed through a pointer to a apiCreateHostTagsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**HostTags**](HostTags.md) | Add tags to host | 
- **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | 
+ **body** | [**HostTags**](HostTags.md) | Update host tags request body. | 
+ **source** | **string** | The source of the tags. [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
 
 ### Return type
 
@@ -125,7 +125,7 @@ Other parameters are passed through a pointer to a apiGetHostTagsRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **source** | **string** | Source to filter | 
+ **source** | **string** | Source to filter. | 
 
 ### Return type
 

@@ -4,11 +4,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v1/user | Create user
-[**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v1/user/{user_handle} | Disable user
-[**GetUser**](UsersApi.md#GetUser) | **Get** /api/v1/user/{user_handle} | Get user
+[**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v1/user | Create a user
+[**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v1/user/{user_handle} | Disable a user
+[**GetUser**](UsersApi.md#GetUser) | **Get** /api/v1/user/{user_handle} | Get user details
 [**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v1/user | Get all users
-[**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /api/v1/user/{user_handle} | Update user
+[**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /api/v1/user/{user_handle} | Update a user
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > UserResponse CreateUser(ctx).Body(body).Execute()
 
-Create user
+Create a user
 
 
 
@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**User**](User.md) | User object that needs to be created | 
+ **body** | [**User**](User.md) | User object that needs to be created. | 
 
 ### Return type
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 > UserDisableResponse DisableUser(ctx, userHandle).Execute()
 
-Disable user
+Disable a user
 
 
 
@@ -65,7 +65,7 @@ Disable user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | [**string**](.md) | The handle of the user | 
+**userHandle** | [**string**](.md) | The handle of the user. | 
 
 ### Other Parameters
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 > UserResponse GetUser(ctx, userHandle).Execute()
 
-Get user
+Get user details
 
 
 
@@ -176,7 +176,7 @@ Other parameters are passed through a pointer to a apiListUsersRequest struct vi
 
 > UserResponse UpdateUser(ctx, userHandle).Body(body).Execute()
 
-Update user
+Update a user
 
 
 

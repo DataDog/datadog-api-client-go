@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to **string** | Date of the organization creation. | [optional] [readonly] 
 **Description** | Pointer to **string** | Description of the organization. | [optional] 
 **Name** | Pointer to **string** | The name of the new child-organization, limited to 32 characters. | [optional] 
-**PublicId** | Pointer to **string** | The public_id of the org you are operating within. | [optional] 
+**PublicId** | Pointer to **string** | The &#x60;public_id&#x60; of the org you are operating within. | [optional] 
 **Settings** | Pointer to [**OrganizationSettings**](Organization_settings.md) |  | [optional] 
 **Subscription** | Pointer to [**OrganizationSubscription**](Organization_subscription.md) |  | [optional] 
 

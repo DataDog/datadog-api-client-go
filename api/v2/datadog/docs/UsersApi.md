@@ -4,8 +4,8 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v2/users | Create user
-[**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v2/users/{user_id} | Disable user
+[**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v2/users | Create a user
+[**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v2/users/{user_id} | Disable a user
 [**GetInvitation**](UsersApi.md#GetInvitation) | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation
 [**GetUser**](UsersApi.md#GetUser) | **Get** /api/v2/users/{user_id} | Get a user
 [**ListUserOrganizations**](UsersApi.md#ListUserOrganizations) | **Get** /api/v2/users/{user_id}/orgs | Get a user organization
@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 > UserResponse CreateUser(ctx).Body(body).Execute()
 
-Create user
+Create a user
 
 
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 > DisableUser(ctx, userId).Execute()
 
-Disable user
+Disable a user
 
 
 

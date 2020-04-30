@@ -208,14 +208,17 @@ func (r apiCheckAWSLogsServicesAsyncRequest) Body(body AWSLogsServicesRequest) a
 }
 
 /*
-CheckAWSLogsServicesAsync Check permissions for Log Services
-Test if permissions are present to add log-forwarding triggers for the given services + AWS account. Input is the same as for EnableAWSLogServices. Done async, so can be repeatedly polled in a non-blocking fashion until the async request completes.
-- Returns a status of 'created' when it's checking if the permissions exists
-  in the AWS account.
+CheckAWSLogsServicesAsync Check permissions for log services
+Test if permissions are present to add log-forwarding triggers for the
+given services and AWS account. Input is the same as for `EnableAWSLogServices`.
+Done async, so can be repeatedly polled in a non-blocking fashion until
+the async request completes.
 
-- Returns a status of 'waiting' while checking.
-- Returns a status of 'checked and ok' if the Lambda exists.
-- Returns a status of 'error' if the Lambda does not exist.
+- Returns a status of `created` when it's checking if the permissions exists
+  in the AWS account.
+- Returns a status of `waiting` while checking.
+- Returns a status of `checked and ok` if the Lambda exists.
+- Returns a status of `error` if the Lambda does not exist.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCheckAWSLogsServicesAsyncRequest
 */
@@ -722,7 +725,7 @@ func (r apiEnableAWSLogServicesRequest) Body(body AWSLogsServicesRequest) apiEna
 
 /*
 EnableAWSLogServices Enable an AWS Logs integration
-Enable automatic log collection for a list of services. This should be run after running 'CreateAWSLambdaARN' to save the config.
+Enable automatic log collection for a list of services. This should be run after running `CreateAWSLambdaARN` to save the config.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiEnableAWSLogServicesRequest
 */
@@ -884,7 +887,7 @@ type apiListAWSLogsIntegrationsRequest struct {
 }
 
 /*
-ListAWSLogsIntegrations List all AWS Logs Integrations
+ListAWSLogsIntegrations List all AWS Logs integrations
 List all Datadog-AWS Logs integrations configured in your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListAWSLogsIntegrationsRequest

@@ -344,7 +344,7 @@ type apiGetPagerDutyIntegrationServiceRequest struct {
 GetPagerDutyIntegrationService Get a single service object
 Get service name in the Datadog-PagerDuty integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceName The service name
+ * @param serviceName The service name.
 @return apiGetPagerDutyIntegrationServiceRequest
 */
 func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) apiGetPagerDutyIntegrationServiceRequest {
@@ -509,7 +509,7 @@ func (r apiUpdatePagerDutyIntegrationServiceRequest) Body(body PagerDutyServiceK
 
 /*
 UpdatePagerDutyIntegrationService Update a single service object
-Update a single service object in the Datadog-PagerDuty integration
+Update a single service object in the Datadog-PagerDuty integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param serviceName The service name
 @return apiUpdatePagerDutyIntegrationServiceRequest

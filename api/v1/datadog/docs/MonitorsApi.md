@@ -4,7 +4,7 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CheckCanDeleteMonitor**](MonitorsApi.md#CheckCanDeleteMonitor) | **Get** /api/v1/monitor/can_delete | Check if the given monitors can be deleted
+[**CheckCanDeleteMonitor**](MonitorsApi.md#CheckCanDeleteMonitor) | **Get** /api/v1/monitor/can_delete | Check if a monitor can be deleted
 [**CreateMonitor**](MonitorsApi.md#CreateMonitor) | **Post** /api/v1/monitor | Create a monitor
 [**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
 [**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 > CheckCanDeleteMonitorResponse CheckCanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
 
-Check if the given monitors can be deleted
+Check if a monitor can be deleted
 
 
 
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiCreateMonitorRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Monitor**](Monitor.md) | Monitor request object. | 
+ **body** | [**Monitor**](Monitor.md) | Create a monitor request body. | 
 
 ### Return type
 
@@ -149,7 +149,7 @@ Get a monitor's details
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The id of the monitor | 
+**monitorId** | **int64** | The ID of the monitor | 
 
 ### Other Parameters
 
@@ -239,7 +239,7 @@ Edit a monitor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The id of the monitor. | 
+**monitorId** | **int64** | The ID of the monitor. | 
 
 ### Other Parameters
 
@@ -249,7 +249,7 @@ Other parameters are passed through a pointer to a apiUpdateMonitorRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Monitor**](Monitor.md) | Monitor request object. | 
+ **body** | [**Monitor**](Monitor.md) | Edit a monitor request body. | 
 
 ### Return type
 

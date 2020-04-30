@@ -114,7 +114,7 @@ Other parameters are passed through a pointer to a apiCreateDowntimeRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Downtime**](Downtime.md) | Downtime request object | 
+ **body** | [**Downtime**](Downtime.md) | Schedule a downtime request body. | 
 
 ### Return type
 
@@ -240,7 +240,7 @@ Other parameters are passed through a pointer to a apiUpdateDowntimeRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Downtime**](Downtime.md) | Downtime request object. | 
+ **body** | [**Downtime**](Downtime.md) | Update a downtime request body. | 
 
 ### Return type
 
