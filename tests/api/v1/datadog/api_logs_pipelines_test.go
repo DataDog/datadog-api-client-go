@@ -170,7 +170,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Equal(traceRemapper.GetType(), processors[13].LogsProcessorInterface.GetType())
 	assert.Equal(pipelineProcessor.GetType(), processors[14].LogsProcessorInterface.GetType())
 
-	// Nested Pipeline Assertion
+	// Nested Pipeline Assertions
 	nestedPipeline := processors[14].LogsProcessorInterface.(*datadog.LogsPipelineProcessor)
 	nestedPipelineFitler := nestedPipeline.GetFilter()
 	assert.Equal("query", nestedPipelineFitler.GetQuery())
