@@ -5,8 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AcceptSelfSigned** | Pointer to **bool** | TODO. | [optional] 
+**AllowInsecure** | Pointer to **bool** | TODO. | [optional] 
 **DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) | TODO. | [optional] 
 **FollowRedirects** | Pointer to **bool** | TODO. | [optional] 
+**MinFailureDuration** | Pointer to **int64** | TODO. | [optional] 
 **MinLocationFailed** | Pointer to **int64** | TODO. | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptions_retry.md) |  | [optional] 
 **TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
@@ -54,6 +56,31 @@ SetAcceptSelfSigned sets AcceptSelfSigned field to given value.
 `func (o *SyntheticsTestOptions) HasAcceptSelfSigned() bool`
 
 HasAcceptSelfSigned returns a boolean if a field has been set.
+
+### GetAllowInsecure
+
+`func (o *SyntheticsTestOptions) GetAllowInsecure() bool`
+
+GetAllowInsecure returns the AllowInsecure field if non-nil, zero value otherwise.
+
+### GetAllowInsecureOk
+
+`func (o *SyntheticsTestOptions) GetAllowInsecureOk() (*bool, bool)`
+
+GetAllowInsecureOk returns a tuple with the AllowInsecure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowInsecure
+
+`func (o *SyntheticsTestOptions) SetAllowInsecure(v bool)`
+
+SetAllowInsecure sets AllowInsecure field to given value.
+
+### HasAllowInsecure
+
+`func (o *SyntheticsTestOptions) HasAllowInsecure() bool`
+
+HasAllowInsecure returns a boolean if a field has been set.
 
 ### GetDeviceIds
 
@@ -104,6 +131,31 @@ SetFollowRedirects sets FollowRedirects field to given value.
 `func (o *SyntheticsTestOptions) HasFollowRedirects() bool`
 
 HasFollowRedirects returns a boolean if a field has been set.
+
+### GetMinFailureDuration
+
+`func (o *SyntheticsTestOptions) GetMinFailureDuration() int64`
+
+GetMinFailureDuration returns the MinFailureDuration field if non-nil, zero value otherwise.
+
+### GetMinFailureDurationOk
+
+`func (o *SyntheticsTestOptions) GetMinFailureDurationOk() (*int64, bool)`
+
+GetMinFailureDurationOk returns a tuple with the MinFailureDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinFailureDuration
+
+`func (o *SyntheticsTestOptions) SetMinFailureDuration(v int64)`
+
+SetMinFailureDuration sets MinFailureDuration field to given value.
+
+### HasMinFailureDuration
+
+`func (o *SyntheticsTestOptions) HasMinFailureDuration() bool`
+
+HasMinFailureDuration returns a boolean if a field has been set.
 
 ### GetMinLocationFailed
 
