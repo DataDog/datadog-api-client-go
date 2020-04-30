@@ -2,56 +2,8 @@
 version: 1
 interactions:
 - request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetPagerDutyIntegration
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "3351712689570589376"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "5945420169236094323"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty
-    method: GET
-  response:
-    body: '{"errors": ["pagerduty not found"]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - application/json
-      Date:
-      - Sun, 26 Apr 2020 21:39:13 GMT
-      Dd-Pool:
-      - dogweb
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.2432369"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 404 Not Found
-    code: 404
-    duration: ""
-- request:
     body: |
-      {"service_key":"lalaa","service_name":"lalasa"}
+      {"service_key":"deadbeef","service_name":"test-datadog-api-client-go-TestPagerDutyServicesUpdateErrors-1588246168362594000"}
     form: {}
     headers:
       Accept:
@@ -63,40 +15,98 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1434748980890722033"
+      - "975363113182697426"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5945420169236094323"
+      - "3665853093949750621"
     url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services
     method: POST
   response:
-    body: '{"errors": ["Pagerduty Integration not found"]}'
+    body: '{"service_name":"test-datadog-api-client-go-TestPagerDutyServicesUpdateErrors-1588246168362594000"}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "99"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:13 GMT
+      - Thu, 30 Apr 2020 11:29:28 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 11:29:28 GMT;
+        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - TAg/qKywM5rz/AUGkmt8+wB4wzGMJfSiHOrBzxBctPLsV/erSD5TChi/uo5ZlVXK
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2451841"
       X-Frame-Options:
       - SAMEORIGIN
-    status: 404 Not Found
-    code: 404
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeletePagerDutyIntegrationService
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "552518483436170390"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3665853093949750621"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/test-datadog-api-client-go-TestPagerDutyServicesUpdateErrors-1588246168362594000
+    method: DELETE
+  response:
+    body: "null"
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "4"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 30 Apr 2020 11:29:29 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 11:29:29 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - nfUJgEhoI/RZ8GJVApSQj6s2TfLYXQ1qvePMFw8ZmKB2iBVwiNegJAc5RNY4ZZbI
+      X-Dd-Version:
+      - "35.2451590"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
     duration: ""
