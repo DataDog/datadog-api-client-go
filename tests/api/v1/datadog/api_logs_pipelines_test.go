@@ -108,6 +108,17 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	traceRemapper.SetSources([]string{"source"})
 	traceRemapper.SetName("trace remapper")
 
+	// Nested Pipelines
+	pipelineProcessor := datadog.NewLogsPipelineProcessorWithDefaults()
+	pipelineProcessor.SetName("Test")
+	pipelineProcessor.SetFilter(datadog.LogsFilter{
+		Query: datadog.PtrString("query"),
+	})
+	pipelineProcessor.SetProcessors([]datadog.LogsProcessor{
+		grokParser.AsLogsProcessor(),
+		logDateRemapper.AsLogsProcessor(),
+	})
+
 	pipeline := datadog.LogsPipeline{}
 	pipeline.SetIsEnabled(true)
 	pipeline.SetFilter(datadog.LogsFilter{Query: datadog.PtrString("query")})
@@ -126,6 +137,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 		geoIPParser.AsLogsProcessor(),
 		lookupProcessor.AsLogsProcessor(),
 		traceRemapper.AsLogsProcessor(),
+		pipelineProcessor.AsLogsProcessor(),
 	})
 	pipelineName := fmt.Sprintf("go-client-test-pipeline-%d", now.Unix())
 	pipeline.SetName(pipelineName)
@@ -156,6 +168,12 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Equal(geoIPParser.GetType(), processors[11].LogsProcessorInterface.GetType())
 	assert.Equal(lookupProcessor.GetType(), processors[12].LogsProcessorInterface.GetType())
 	assert.Equal(traceRemapper.GetType(), processors[13].LogsProcessorInterface.GetType())
+	assert.Equal(pipelineProcessor.GetType(), processors[14].LogsProcessorInterface.GetType())
+
+	// Nested Pipeline
+	nestedPipeline := processors[14].LogsProcessorInterface.(*datadog.LogsPipelineProcessor)
+	assert.Equal(grokParser.GetType(), nestedPipeline.GetProcessors()[0].LogsProcessorInterface.GetType())
+	assert.Equal(logDateRemapper.GetType(), nestedPipeline.GetProcessors()[1].LogsProcessorInterface.GetType())
 
 	// Get all pipelines and assert our freshly created one is part of the result
 	pipelines, httpresp, err := Client(ctx).LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
@@ -192,7 +210,8 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	filter = updatedPipeline.GetFilter()
 	assert.Equal("updated query", filter.GetQuery())
 	processors = updatedPipeline.GetProcessors()
-	assert.Equal(grokParser.GetType(), processors[13].LogsProcessorInterface.GetType())
+	assert.Equal(grokParser.GetType(), processors[14].LogsProcessorInterface.GetType())
+	assert.Equal(pipelineProcessor.GetType(), processors[13].LogsProcessorInterface.GetType())
 	assert.Equal(logDateRemapper.GetType(), processors[0].LogsProcessorInterface.GetType())
 	assert.Equal(logStatusRemapper.GetType(), processors[1].LogsProcessorInterface.GetType())
 	assert.Equal(serviceRemapper.GetType(), processors[2].LogsProcessorInterface.GetType())
