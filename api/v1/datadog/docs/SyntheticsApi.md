@@ -4,14 +4,14 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTest**](SyntheticsApi.md#CreateTest) | **Post** /api/v1/synthetics/tests | Create or clone test
+[**CreateTest**](SyntheticsApi.md#CreateTest) | **Post** /api/v1/synthetics/tests | Create or clone a test
 [**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete multiple tests
 [**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get test latest results (as summaries)
 [**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get test result (API)
 [**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
 [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
-[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
-[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get all test
+[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get details of a test
+[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get a list of all tests
 [**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
 [**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 > SyntheticsTestDetails CreateTest(ctx).Body(body).FromTestId(fromTestId).Execute()
 
-Create or clone test
+Create or clone a test
 
 
 
@@ -37,7 +37,7 @@ Other parameters are passed through a pointer to a apiCreateTestRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | Details of the test to create. | 
- **fromTestId** | **string** | Public id of the test to clone, undefined if the test is created ex nihilo. | 
+ **fromTestId** | **string** | Public ID of the test to clone, undefined if the test is newly created. | 
 
 ### Return type
 
@@ -76,7 +76,7 @@ Other parameters are passed through a pointer to a apiDeleteTestsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public id list of the Synthetics tests to be deleted | 
+ **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetics tests to be deleted. | 
 
 ### Return type
 
@@ -110,7 +110,7 @@ Get test latest results (as summaries)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test for which to search results for. | 
+**publicId** | **string** | The public ID of the test for which to search results for. | 
 
 ### Other Parameters
 
@@ -156,8 +156,8 @@ Get test result (API)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the API test to which the target result belongs. | 
-**resultId** | **string** | The id of the result to get. | 
+**publicId** | **string** | The public ID of the API test to which the target result belongs. | 
+**resultId** | **string** | The ID of the result to get. | 
 
 ### Other Parameters
 
@@ -201,7 +201,7 @@ Get test latest results (as summaries)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the browser test for which to search results for. | 
+**publicId** | **string** | The public ID of the browser test for which to search results for. | 
 
 ### Other Parameters
 
@@ -247,8 +247,8 @@ Get test result (browser)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the browser test to which the target result belongs. | 
-**resultId** | **string** | The id of the result to get. | 
+**publicId** | **string** | The public ID of the browser test to which the target result belongs. | 
+**resultId** | **string** | The ID of the result to get. | 
 
 ### Other Parameters
 
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails GetTest(ctx, publicId).Execute()
 
-Get test
+Get details of a test
 
 
 
@@ -292,7 +292,7 @@ Get test
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test to get details from. | 
+**publicId** | **string** | The public ID of the test to get details from. | 
 
 ### Other Parameters
 
@@ -325,7 +325,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsListTestsResponse ListTests(ctx).CheckType(checkType).Execute()
 
-Get all test
+Get a list of all tests
 
 
 
@@ -374,7 +374,7 @@ Update test
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test to get details from. | 
+**publicId** | **string** | The public ID of the test to get details from. | 
 
 ### Other Parameters
 
@@ -418,7 +418,7 @@ Change test pause/live status
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the Synthetics test to update | 
+**publicId** | **string** | The public ID of the Synthetics test to update. | 
 
 ### Other Parameters
 
@@ -428,7 +428,7 @@ Other parameters are passed through a pointer to a apiUpdateTestPauseStatusReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Pause/live status to set the given Synthetics test to | 
+ **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Pause/live status to set the given Synthetics test to. | 
 
 ### Return type
 

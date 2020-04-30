@@ -22,7 +22,7 @@ type MetricMetadata struct {
 	PerUnit *string `json:"per_unit,omitempty"`
 	// A more human-readable and abbreviated version of the metric name.
 	ShortName *string `json:"short_name,omitempty"`
-	// Statsd flush interval of the metric in seconds if applicable.
+	// StatsD flush interval of the metric in seconds if applicable.
 	StatsdInterval *int64 `json:"statsd_interval,omitempty"`
 	// Metric type such as `gauge` or `rate`.
 	Type *string `json:"type,omitempty"`

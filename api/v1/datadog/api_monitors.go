@@ -37,7 +37,7 @@ func (r apiCheckCanDeleteMonitorRequest) MonitorIds(monitorIds []int64) apiCheck
 }
 
 /*
-CheckCanDeleteMonitor Check if the given monitors can be deleted
+CheckCanDeleteMonitor Check if a monitor can be deleted
 Check if the given monitors can be deleted.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCheckCanDeleteMonitorRequest
@@ -579,7 +579,7 @@ func (r apiGetMonitorRequest) GroupStates(groupStates string) apiGetMonitorReque
 GetMonitor Get a monitor's details
 Get details about the specified monitor from your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param monitorId The id of the monitor
+ * @param monitorId The ID of the monitor
 @return apiGetMonitorRequest
 */
 func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64) apiGetMonitorRequest {
@@ -988,7 +988,7 @@ func (r apiUpdateMonitorRequest) Body(body Monitor) apiUpdateMonitorRequest {
 UpdateMonitor Edit a monitor
 Edit the specified monitor.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param monitorId The id of the monitor.
+ * @param monitorId The ID of the monitor.
 @return apiUpdateMonitorRequest
 */
 func (a *MonitorsApiService) UpdateMonitor(ctx _context.Context, monitorId int64) apiUpdateMonitorRequest {

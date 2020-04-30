@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | The ID of the service level objective object associated with this error. | 
-**Message** | Pointer to **string** | The error message | 
+**Message** | Pointer to **string** | The error message. | 
 **Timeframe** | Pointer to [**SLOErrorTimeframe**](SLOErrorTimeframe.md) |  | 
 
 ## Methods
