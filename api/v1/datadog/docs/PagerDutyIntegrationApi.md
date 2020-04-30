@@ -30,7 +30,7 @@ Other parameters are passed through a pointer to a apiCreatePagerDutyIntegration
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PagerDutyService**](PagerDutyService.md) | Create a new service object in the Datadog-PagerDuty integration. | 
+ **body** | [**PagerDutyService**](PagerDutyService.md) | Create a new service object request body. | 
 
 ### Return type
 
@@ -107,7 +107,7 @@ Get a single service object
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceName** | **string** | The service name | 
+**serviceName** | **string** | The service name. | 
 
 ### Other Parameters
 
@@ -160,7 +160,7 @@ Other parameters are passed through a pointer to a apiUpdatePagerDutyIntegration
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**PagerDutyServiceKey**](PagerDutyServiceKey.md) | Update an existing service object in the Datadog-PagerDuty integration. | 
+ **body** | [**PagerDutyServiceKey**](PagerDutyServiceKey.md) | Update an existing service object request body. | 
 
 ### Return type
 

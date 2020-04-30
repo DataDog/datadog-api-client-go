@@ -4,12 +4,12 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS Integration
-[**CreateNewAWSExternalID**](AWSIntegrationApi.md#CreateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
-[**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS Integration
-[**ListAWSAccounts**](AWSIntegrationApi.md#ListAWSAccounts) | **Get** /api/v1/integration/aws | List all AWS Integrations
+[**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS integration
+[**CreateNewAWSExternalID**](AWSIntegrationApi.md#CreateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate a new external ID
+[**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS integration
+[**ListAWSAccounts**](AWSIntegrationApi.md#ListAWSAccounts) | **Get** /api/v1/integration/aws | List all AWS integrations
 [**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
-[**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS Integration
+[**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS integration
 
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > AWSAccountCreateResponse CreateAWSAccount(ctx).Body(body).Execute()
 
-Create an AWS Integration
+Create an AWS integration
 
 
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 > AWSAccountCreateResponse CreateNewAWSExternalID(ctx).Body(body).Execute()
 
-Generate New External ID
+Generate a new external ID
 
 
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteAWSAccount(ctx).Body(body).Execute()
 
-Delete an AWS Integration
+Delete an AWS integration
 
 
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 > AWSAccountListResponse ListAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
-List all AWS Integrations
+List all AWS integrations
 
 
 
@@ -149,9 +149,9 @@ Other parameters are passed through a pointer to a apiListAWSAccountsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **string** | Only return AWS accounts that matches this account_id. | 
+ **accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
  **roleName** | **string** | Only return AWS accounts that matches this role_name. | 
- **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. | 
+ **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. | 
 
 ### Return type
 
@@ -210,7 +210,7 @@ Other parameters are passed through a pointer to a apiListAvailableAWSNamespaces
 
 > interface{} UpdateAWSAccount(ctx).Body(body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
-Update an AWS Integration
+Update an AWS integration
 
 
 
@@ -226,9 +226,9 @@ Other parameters are passed through a pointer to a apiUpdateAWSAccountRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
- **accountId** | **string** | Only return AWS accounts that matches this account_id. | 
- **roleName** | **string** | Only return AWS accounts that matches this role_name. *It is required if account_id is specified.* | 
- **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. *It is required if none of the other two options are specified.* | 
+ **accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
+ **roleName** | **string** | Only return AWS accounts that match this &#x60;role_name&#x60;. Required if &#x60;account_id&#x60; is specified. | 
+ **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. Required if none of the other two options are specified. | 
 
 ### Return type
 

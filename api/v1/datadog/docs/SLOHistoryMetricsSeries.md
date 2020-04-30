@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Count** | Pointer to **int64** | Count of submitted metrics. | 
 **Metadata** | Pointer to [**SLOHistoryMetricsSeriesMetadata**](SLOHistoryMetricsSeries_metadata.md) |  | 
-**Sum** | Pointer to **float64** | Total Sum of the query. | 
+**Sum** | Pointer to **float64** | Total sum of the query. | 
 **Values** | Pointer to **[]float64** | The query values. | 
 
 ## Methods

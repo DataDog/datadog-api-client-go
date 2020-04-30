@@ -74,7 +74,7 @@ Other parameters are passed through a pointer to a apiListActiveMetricsRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Seconds since the Unix epoch | 
+ **from** | **int64** | Seconds since the Unix epoch. | 
  **host** | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
 
 ### Return type
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **from** | **int64** | Start of the queried time period, seconds since the Unix epoch. | 
  **to** | **int64** | End of the queried time period, seconds since the Unix epoch. | 
- **query** | **string** | Query string | 
+ **query** | **string** | Query string. | 
 
 ### Return type
 

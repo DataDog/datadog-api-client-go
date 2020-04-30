@@ -118,7 +118,7 @@ Other parameters are passed through a pointer to a apiMuteHostRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**HostMuteSettings**](HostMuteSettings.md) | Mute a host. | 
+ **body** | [**HostMuteSettings**](HostMuteSettings.md) | Mute a host request body. | 
 
 ### Return type
 

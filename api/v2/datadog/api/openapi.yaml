@@ -943,13 +943,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
-      summary: Create user
+      summary: Create a user
       tags:
       - Users
       x-codegen-request-body-name: body
   /api/v2/users/{user_id}:
     delete:
-      description: Disable user. Can only be used with an application key belonging
+      description: Disable a user. Can only be used with an application key belonging
         to an administrator user.
       operationId: DisableUser
       parameters:
@@ -976,7 +976,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
-      summary: Disable user
+      summary: Disable a user
       tags:
       - Users
       x-codegen-request-body-name: body
@@ -1195,7 +1195,7 @@ components:
       - errors
       type: object
     Creator:
-      description: Creator of the object
+      description: Creator of the object.
       example:
         name: name
         handle: handle

@@ -4,11 +4,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDashboard**](DashboardsApi.md#CreateDashboard) | **Post** /api/v1/dashboard | Create a new Dashboard
-[**DeleteDashboard**](DashboardsApi.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a Dashboard
-[**GetDashboard**](DashboardsApi.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboard_id} | Get a Dashboard
-[**ListDashboards**](DashboardsApi.md#ListDashboards) | **Get** /api/v1/dashboard | Get all Dashboards
-[**UpdateDashboard**](DashboardsApi.md#UpdateDashboard) | **Put** /api/v1/dashboard/{dashboard_id} | Update a Dashboard
+[**CreateDashboard**](DashboardsApi.md#CreateDashboard) | **Post** /api/v1/dashboard | Create a new dashboard
+[**DeleteDashboard**](DashboardsApi.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a dashboard
+[**GetDashboard**](DashboardsApi.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboard_id} | Get a dashboard
+[**ListDashboards**](DashboardsApi.md#ListDashboards) | **Get** /api/v1/dashboard | Get all dashboards
+[**UpdateDashboard**](DashboardsApi.md#UpdateDashboard) | **Put** /api/v1/dashboard/{dashboard_id} | Update a dashboard
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > Dashboard CreateDashboard(ctx).Body(body).Execute()
 
-Create a new Dashboard
+Create a new dashboard
 
 
 
@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Dashboard**](Dashboard.md) | Dashboard request object. | 
+ **body** | [**Dashboard**](Dashboard.md) | Create a dashboard request body. | 
 
 ### Return type
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 > DashboardDeleteResponse DeleteDashboard(ctx, dashboardId).Execute()
 
-Delete a Dashboard
+Delete a dashboard
 
 
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 > Dashboard GetDashboard(ctx, dashboardId).Execute()
 
-Get a Dashboard
+Get a dashboard
 
 
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 > DashboardSummary ListDashboards(ctx).Execute()
 
-Get all Dashboards
+Get all dashboards
 
 
 
@@ -176,7 +176,7 @@ Other parameters are passed through a pointer to a apiListDashboardsRequest stru
 
 > Dashboard UpdateDashboard(ctx, dashboardId).Body(body).Execute()
 
-Update a Dashboard
+Update a dashboard
 
 
 

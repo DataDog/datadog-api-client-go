@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServiceKey** | Pointer to **string** | Your Service key in PagerDuty. | 
+**ServiceKey** | Pointer to **string** | Your service key in PagerDuty. | 
 
 ## Methods
 

@@ -23,7 +23,7 @@ Get an event
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **int64** | The id of the event. | 
+**eventId** | **int64** | The ID of the event. | 
 
 ### Other Parameters
 
