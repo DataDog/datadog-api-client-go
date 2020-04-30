@@ -63,6 +63,9 @@ func ReadFixture(path string) (string, error) {
 
 // ConfigureTracer starts the tracer.
 func ConfigureTracer(m *testing.M) {
+	if !IsRecording() {
+		os.Exit(m.Run())
+	}
 	service, ok := os.LookupEnv("DD_SERVICE")
 	if !ok {
 		service = "datadog-api-client-go"
@@ -209,6 +212,9 @@ func Recorder(ctx context.Context, t *testing.T) (*recorder.Recorder, error) {
 
 // WrapRoundTripper includes tracing information.
 func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) http.RoundTripper {
+	if !IsRecording() {
+		return rt
+	}
 	return ddhttp.WrapRoundTripper(
 		rt,
 		ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {

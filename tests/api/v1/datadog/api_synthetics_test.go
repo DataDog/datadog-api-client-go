@@ -42,9 +42,9 @@ var testSyntheticsAPI = datadog.SyntheticsTestDetails{
 		},
 		Request: datadog.SyntheticsTestRequest{
 			Headers: &map[string]string{"testingGoClient": "true"},
-			Method:  datadog.HTTPMETHOD_GET,
+			Method:  datadog.HTTPMETHOD_GET.Ptr(),
 			Timeout: datadog.PtrFloat64(10),
-			Url:     "https://datadoghq.com",
+			Url:     datadog.PtrString("https://datadoghq.com"),
 		},
 	},
 	Locations: &[]string{"aws:us-east-2"},
@@ -71,8 +71,8 @@ var testSyntheticsBrowser = datadog.SyntheticsTestDetails{
 	Config: &datadog.SyntheticsTestConfig{
 		Assertions: []datadog.SyntheticsAssertion{},
 		Request: datadog.SyntheticsTestRequest{
-			Method: datadog.HTTPMETHOD_GET,
-			Url:    "https://datadoghq.com",
+			Method: datadog.HTTPMETHOD_GET.Ptr(),
+			Url:    datadog.PtrString("https://datadoghq.com"),
 		},
 	},
 	Locations: &[]string{"aws:us-east-2"},
