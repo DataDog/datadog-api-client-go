@@ -2,43 +2,8 @@
 version: 1
 interactions:
 - request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetPagerDutyIntegration
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "7199450131811751710"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "5945420169236094323"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty
-    method: GET
-  response:
     body: |
-      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Sun, 26 Apr 2020 21:39:13 GMT
-      Via:
-      - 1.1 haproxy
-    status: 403 Forbidden
-    code: 403
-    duration: ""
-- request:
-    body: |
-      {"service_key":"lalaa","service_name":"lalasa"}
+      {"service_key":"deadbeef","service_name":"test-datadog-api-client-go-TestPagerDutyServicesCreateErrors-1588246167890372000"}
     form: {}
     headers:
       Accept:
@@ -50,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7731945801256343561"
+      - "3469722043483954398"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5945420169236094323"
+      - "1228934781944269497"
     url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services
     method: POST
   response:
@@ -68,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:13 GMT
+      - Thu, 30 Apr 2020 11:29:28 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden
