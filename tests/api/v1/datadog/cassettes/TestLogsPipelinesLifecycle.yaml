@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"filter":{"query":"query"},"is_enabled":true,"name":"go-client-test-pipeline-1588269419","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log message remapper","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"Test","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"}]}
+      {"filter":{"query":"query"},"is_enabled":true,"name":"go-client-test-pipeline-1588276674","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log message remapper","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"pipeline processor","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"}]}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.13.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8605377419020200351"
+      - "145116089403179701"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "25082008154375994"
+      - "4162295343177203401"
     url: https://api.datadoghq.com/api/v1/logs/config/pipelines
     method: POST
   response:
-    body: '{"id":"Gl0i6IpdS7m4Mx8pb4rYcg","type":"pipeline","name":"go-client-test-pipeline-1588269419","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
+    body: '{"id":"_R8wClb8T0ijvEnwmSE1jQ","type":"pipeline","name":"go-client-test-pipeline-1588276674","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
@@ -38,7 +38,8 @@ interactions:
       builder processor","is_enabled":false,"template":"template","target":"target","is_replace_missing":true,"type":"string-builder-processor"},{"name":"geo
       IP parser","is_enabled":false,"sources":["source"],"target":"target","ip_processing_behavior":"do-nothing","type":"geo-ip-parser"},{"name":"lookup
       processor","is_enabled":false,"source":"source","target":"target","lookup_table":["key,value"],"default_lookup":"default_lookup","type":"lookup-processor"},{"name":"trace
-      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"Test","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
+      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"pipeline
+      processor","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"}]}]}'
@@ -54,13 +55,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Thu, 30 Apr 2020 17:56:59 GMT
+      - Thu, 30 Apr 2020 19:57:54 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 17:56:59 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 19:57:54 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -69,9 +70,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - aiFdvD+ESSGWQuLeXGShIAaySBrTSq6aZf+crfPnDVFrMRUU9f0HobLUCBopvakz
+      - /Ib6MMQTHlX0/jTb6tlEMzSZs2crLqjkGjYkoQ/zb0RHtMaXT744DZRFpy23W0oi
       X-Dd-Version:
-      - "35.2453376"
+      - "35.2453853"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -79,9 +80,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "47"
+      - "99"
       X-Ratelimit-Reset:
-      - "181"
+      - "126"
     status: 200 OK
     code: 200
     duration: ""
@@ -96,27 +97,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.13.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5494884483159630593"
+      - "3683866705820489113"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "25082008154375994"
+      - "4162295343177203401"
     url: https://api.datadoghq.com/api/v1/logs/config/pipelines
     method: GET
   response:
-    body: '[{"id":"4I6FNy5GToqi2fKVAqNZJw","type":"pipeline","name":"Datadog Agent","is_enabled":true,"is_read_only":true,"filter":{"query":"source:agent"},"processors":[{"name":"Parsing
-      Datadog Agent logs","is_enabled":true,"source":"message","samples":["2019-04-08
-      13:53:48 UTC | CORE | INFO | (pkg/collector/runner/runner.go:264 in work) |
-      Running check load","2019-04-08 13:53:48 UTC | TRACE | INFO | (pkg/trace/agent/agent.go:145
-      in loop) | exiting","2019-02-01 16:59:41 UTC | INFO | (connection_manager.go:124
-      in CloseConnection) | Connection closed","2019-02-01 16:58:54 UTC | INFO | (serializer.go:263
-      in SendJSONToV1Intake) | Sent processes metadata payload, size: 1422 bytes."],"grok":{"support_rules":"","match_rules":"agent_rule
-      %{date(\"yyyy-MM-dd HH:mm:ss z\"):timestamp} \\|\\s+%{notSpace:agent}\\s+\\|\\s+%{word:level}\\s+\\|\\s+\\(%{notSpace:filename}:%{number:lineno}
-      in %{word:process}\\)\\s+\\|.*\n\nagent_rule_pre_611 %{date(\"yyyy-MM-dd HH:mm:ss
-      z\"):timestamp} \\|\\s+%{word:level}\\s+\\|\\s+\\(%{notSpace:filename}:%{number:lineno}
-      in %{word:process}\\)\\s+\\|.*\n"},"type":"grok-parser"},{"name":"Define timestamp
-      as the official timestamp of the log","is_enabled":true,"sources":["timestamp"],"type":"date-remapper"},{"name":"Define
-      level as the official log status","is_enabled":true,"sources":["level"],"type":"status-remapper"}]},{"id":"rTxbr2MpQsSCEtn66XmwnQ","type":"pipeline","name":"python","is_enabled":true,"is_read_only":true,"filter":{"query":"source:python"},"processors":[{"name":"Parsing
+    body: '[{"id":"rTxbr2MpQsSCEtn66XmwnQ","type":"pipeline","name":"python","is_enabled":true,"is_read_only":true,"filter":{"query":"source:python"},"processors":[{"name":"Parsing
       python default format","is_enabled":true,"source":"message","samples":["2017-12-19T14:37:58,995
       INFO  [process.name] [20081] this is my python log","2019-01-07 15:20:15,972
       DEBUG [flask.app] [app.py:100] [dd.trace_id=5688176451479556031 dd.span_id=4663104081780224235]
@@ -204,7 +193,20 @@ interactions:
       GC memory freed","is_enabled":true,"expression":"(heap.memory_before - heap.memory_after)","target":"gc.memory_freed","is_replace_missing":false,"type":"arithmetic-processor"},{"name":"Set
       the datadog environemnt tag","is_enabled":true,"sources":["dd.env","contextMap.dd.env"],"source_type":"attribute","target":"env","target_type":"tag","preserve_source":false,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"Set
       the datadog version tag","is_enabled":true,"sources":["dd.version","contextMap.dd.version"],"source_type":"attribute","target":"version","target_type":"tag","preserve_source":false,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"Define
-      app as the official service of the log","is_enabled":true,"sources":["dd.service","contextMap.dd.service"],"type":"service-remapper"}]},{"id":"Gl0i6IpdS7m4Mx8pb4rYcg","type":"pipeline","name":"go-client-test-pipeline-1588269419","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
+      app as the official service of the log","is_enabled":true,"sources":["dd.service","contextMap.dd.service"],"type":"service-remapper"}]},{"id":"4I6FNy5GToqi2fKVAqNZJw","type":"pipeline","name":"Datadog
+      Agent","is_enabled":true,"is_read_only":true,"filter":{"query":"source:agent"},"processors":[{"name":"Parsing
+      Datadog Agent logs","is_enabled":true,"source":"message","samples":["2019-04-08
+      13:53:48 UTC | CORE | INFO | (pkg/collector/runner/runner.go:264 in work) |
+      Running check load","2019-04-08 13:53:48 UTC | TRACE | INFO | (pkg/trace/agent/agent.go:145
+      in loop) | exiting","2019-02-01 16:59:41 UTC | INFO | (connection_manager.go:124
+      in CloseConnection) | Connection closed","2019-02-01 16:58:54 UTC | INFO | (serializer.go:263
+      in SendJSONToV1Intake) | Sent processes metadata payload, size: 1422 bytes."],"grok":{"support_rules":"","match_rules":"agent_rule
+      %{date(\"yyyy-MM-dd HH:mm:ss z\"):timestamp} \\|\\s+%{notSpace:agent}\\s+\\|\\s+%{word:level}\\s+\\|\\s+\\(%{notSpace:filename}:%{number:lineno}
+      in %{word:process}\\)\\s+\\|.*\n\nagent_rule_pre_611 %{date(\"yyyy-MM-dd HH:mm:ss
+      z\"):timestamp} \\|\\s+%{word:level}\\s+\\|\\s+\\(%{notSpace:filename}:%{number:lineno}
+      in %{word:process}\\)\\s+\\|.*\n"},"type":"grok-parser"},{"name":"Define timestamp
+      as the official timestamp of the log","is_enabled":true,"sources":["timestamp"],"type":"date-remapper"},{"name":"Define
+      level as the official log status","is_enabled":true,"sources":["level"],"type":"status-remapper"}]},{"id":"_R8wClb8T0ijvEnwmSE1jQ","type":"pipeline","name":"go-client-test-pipeline-1588276674","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
@@ -219,7 +221,8 @@ interactions:
       builder processor","is_enabled":false,"template":"template","target":"target","is_replace_missing":true,"type":"string-builder-processor"},{"name":"geo
       IP parser","is_enabled":false,"sources":["source"],"target":"target","ip_processing_behavior":"do-nothing","type":"geo-ip-parser"},{"name":"lookup
       processor","is_enabled":false,"source":"source","target":"target","lookup_table":["key,value"],"default_lookup":"default_lookup","type":"lookup-processor"},{"name":"trace
-      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"Test","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
+      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"pipeline
+      processor","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"}]}]}]'
@@ -235,13 +238,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Thu, 30 Apr 2020 17:57:00 GMT
+      - Thu, 30 Apr 2020 19:57:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 17:56:59 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 19:57:54 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -250,9 +253,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - nwn8Akm+cp12Jtby9xyfYjHWK2KZDWf5LxY+SMa+2NK6hVIBcKsVHXjynaTEG+o0
+      - 1bzfAqb/6TIngEeU7r7YcGGp2+NaI+ne9J3bzgQrdB0qTrgVrMtd4iKXr1zCNOHr
       X-Dd-Version:
-      - "35.2453376"
+      - "35.2453853"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -260,9 +263,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "4932"
+      - "4999"
       X-Ratelimit-Reset:
-      - "181"
+      - "126"
     status: 200 OK
     code: 200
     duration: ""
@@ -277,15 +280,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.13.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4817588243538034504"
+      - "1948018591299044831"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "25082008154375994"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/Gl0i6IpdS7m4Mx8pb4rYcg
+      - "4162295343177203401"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/_R8wClb8T0ijvEnwmSE1jQ
     method: GET
   response:
-    body: '{"id":"Gl0i6IpdS7m4Mx8pb4rYcg","type":"pipeline","name":"go-client-test-pipeline-1588269419","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
+    body: '{"id":"_R8wClb8T0ijvEnwmSE1jQ","type":"pipeline","name":"go-client-test-pipeline-1588276674","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
@@ -300,7 +303,8 @@ interactions:
       builder processor","is_enabled":false,"template":"template","target":"target","is_replace_missing":true,"type":"string-builder-processor"},{"name":"geo
       IP parser","is_enabled":false,"sources":["source"],"target":"target","ip_processing_behavior":"do-nothing","type":"geo-ip-parser"},{"name":"lookup
       processor","is_enabled":false,"source":"source","target":"target","lookup_table":["key,value"],"default_lookup":"default_lookup","type":"lookup-processor"},{"name":"trace
-      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"Test","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
+      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"pipeline
+      processor","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"}]}]}'
@@ -316,13 +320,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Thu, 30 Apr 2020 17:57:00 GMT
+      - Thu, 30 Apr 2020 19:57:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 17:57:00 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 19:57:55 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -331,9 +335,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - OGWvqyuIWnbl6WkXpkkRXBvKLURJhdDx+xXZ6vxnnyjZzYdefkAlNGOfG85GcOUu
+      - rpB/2GMZHvzTHZxhwmnNa1XnSQuif7FV+gIndoDc8IvUeRNb65r4x+P7Djp1119C
       X-Dd-Version:
-      - "35.2453376"
+      - "35.2453853"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -341,15 +345,15 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "4931"
+      - "4998"
       X-Ratelimit-Reset:
-      - "180"
+      - "125"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"filter":{"query":"updated query"},"is_enabled":false,"name":"go-client-test-pipeline-1588269419-updated","processors":[{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log message remapper","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"Test","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"},{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"}]}
+      {"filter":{"query":"updated query"},"is_enabled":false,"name":"go-client-test-pipeline-1588276674-updated","processors":[{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log message remapper","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"pipeline processor","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"},{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"}]}
     form: {}
     headers:
       Accept:
@@ -361,15 +365,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.13.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3182718513838159676"
+      - "4237942431870577296"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "25082008154375994"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/Gl0i6IpdS7m4Mx8pb4rYcg
+      - "4162295343177203401"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/_R8wClb8T0ijvEnwmSE1jQ
     method: PUT
   response:
-    body: '{"id":"Gl0i6IpdS7m4Mx8pb4rYcg","type":"pipeline","name":"go-client-test-pipeline-1588269419-updated","is_enabled":false,"is_read_only":false,"filter":{"query":"updated
+    body: '{"id":"_R8wClb8T0ijvEnwmSE1jQ","type":"pipeline","name":"go-client-test-pipeline-1588276674-updated","is_enabled":false,"is_read_only":false,"filter":{"query":"updated
       query"},"processors":[{"name":"log date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
       status remapper","is_enabled":false,"sources":["source"],"type":"status-remapper"},{"name":"service
       remapper","is_enabled":false,"sources":["source"],"type":"service-remapper"},{"name":"log
@@ -382,7 +386,8 @@ interactions:
       builder processor","is_enabled":false,"template":"template","target":"target","is_replace_missing":true,"type":"string-builder-processor"},{"name":"geo
       IP parser","is_enabled":false,"sources":["source"],"target":"target","ip_processing_behavior":"do-nothing","type":"geo-ip-parser"},{"name":"lookup
       processor","is_enabled":false,"source":"source","target":"target","lookup_table":["key,value"],"default_lookup":"default_lookup","type":"lookup-processor"},{"name":"trace
-      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"Test","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
+      remapper","is_enabled":false,"sources":["source"],"type":"trace-id-remapper"},{"type":"pipeline","name":"pipeline
+      processor","is_enabled":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"}]},{"name":"grok
@@ -400,13 +405,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Thu, 30 Apr 2020 17:57:00 GMT
+      - Thu, 30 Apr 2020 19:57:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 17:57:00 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 19:57:55 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -415,9 +420,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - e/PzE6y8JJ1tlF66uEI2h0RElcpoaXRe9TzYMeQVIADcqTHrHUqcUgRemfbYKGMv
+      - xDB9TwFteerR1wCiwj8/TgXRHM8VsESQxiCQvltAxyn4fse47E64CquSvdpyvFXM
       X-Dd-Version:
-      - "35.2453376"
+      - "35.2453853"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -425,9 +430,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "46"
+      - "98"
       X-Ratelimit-Reset:
-      - "180"
+      - "125"
     status: 200 OK
     code: 200
     duration: ""
@@ -442,12 +447,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.13.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8784613724820061722"
+      - "7731776343673359621"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "25082008154375994"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/Gl0i6IpdS7m4Mx8pb4rYcg
+      - "4162295343177203401"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/_R8wClb8T0ijvEnwmSE1jQ
     method: DELETE
   response:
     body: '{}'
@@ -465,22 +470,22 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Thu, 30 Apr 2020 17:57:00 GMT
+      - Thu, 30 Apr 2020 19:57:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 17:57:00 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 07-May-2020 19:57:55 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - IWbeot5NPPjwzkLRJwJSrhKxooUYWPiItYmeOu7MvfpEU9kI8879nM2EukYnEnom
+      - IkXBg4ZNMRmDsobzMjEa2v35+NuPiQI0gFmho/o6e7+hfyyJl3rjuklsE4uVJo7l
       X-Dd-Version:
-      - "35.2453376"
+      - "35.2453853"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -488,9 +493,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "45"
+      - "97"
       X-Ratelimit-Reset:
-      - "180"
+      - "125"
     status: 200 OK
     code: 200
     duration: ""
@@ -505,12 +510,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.13.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5674259008967439642"
+      - "8949547170620093062"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "25082008154375994"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/Gl0i6IpdS7m4Mx8pb4rYcg
+      - "4162295343177203401"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/_R8wClb8T0ijvEnwmSE1jQ
     method: DELETE
   response:
     body: '{"error":{"code":"InvalidArgument","message":"This pipeline does not exist"}}'
@@ -526,7 +531,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 30 Apr 2020 17:57:00 GMT
+      - Thu, 30 Apr 2020 19:57:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -536,7 +541,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2453376"
+      - "35.2453853"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -544,9 +549,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "44"
+      - "96"
       X-Ratelimit-Reset:
-      - "180"
+      - "125"
     status: 400 Bad Request
     code: 400
     duration: ""

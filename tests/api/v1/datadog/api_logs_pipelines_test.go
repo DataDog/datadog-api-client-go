@@ -110,7 +110,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 
 	// Nested Pipelines
 	pipelineProcessor := datadog.NewLogsPipelineProcessorWithDefaults()
-	pipelineProcessor.SetName("Test")
+	pipelineProcessor.SetName("pipeline processor")
 	pipelineProcessor.SetFilter(datadog.LogsFilter{
 		Query: datadog.PtrString("query"),
 	})
@@ -170,8 +170,10 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Equal(traceRemapper.GetType(), processors[13].LogsProcessorInterface.GetType())
 	assert.Equal(pipelineProcessor.GetType(), processors[14].LogsProcessorInterface.GetType())
 
-	// Nested Pipeline
+	// Nested Pipeline Assertion
 	nestedPipeline := processors[14].LogsProcessorInterface.(*datadog.LogsPipelineProcessor)
+	nestedPipelineFitler := nestedPipeline.GetFilter()
+	assert.Equal("query", nestedPipelineFitler.GetQuery())
 	assert.Equal(grokParser.GetType(), nestedPipeline.GetProcessors()[0].LogsProcessorInterface.GetType())
 	assert.Equal(logDateRemapper.GetType(), nestedPipeline.GetProcessors()[1].LogsProcessorInterface.GetType())
 
