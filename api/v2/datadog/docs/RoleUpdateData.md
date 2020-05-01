@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**RoleUpdateAttributes**](RoleUpdateAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the role. | [optional] 
-**Type** | Pointer to **string** | TODO | [optional] [default to "roles"]
+**Type** | Pointer to **string** | Type of role. | [optional] [default to "roles"]
 
 ## Methods
 

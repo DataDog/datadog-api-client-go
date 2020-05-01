@@ -20,7 +20,7 @@ type MonitorThresholds struct {
 	CriticalRecovery NullableFloat64 `json:"critical_recovery,omitempty"`
 	// The monitor `OK` threshold.
 	Ok NullableFloat64 `json:"ok,omitempty"`
-	// TODO.
+	// The monitor UNKNOWN threshold.
 	Unknown NullableFloat64 `json:"unknown,omitempty"`
 	// The monitor `WARNING` threshold.
 	Warning NullableFloat64 `json:"warning,omitempty"`

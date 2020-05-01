@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Arn** | Pointer to **string** | TODO. | [optional] 
+**Arn** | Pointer to **string** | Available ARN IDs. | [optional] 
 
 ## Methods
 

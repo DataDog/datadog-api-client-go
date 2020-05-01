@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// DashboardTemplateVariables TODO.
+// DashboardTemplateVariables Template variable.
 type DashboardTemplateVariables struct {
 	// The default value for the template variable on dashboard load.
 	Default NullableString `json:"default,omitempty"`

@@ -19,7 +19,7 @@ type SLOHistoryMetricsSeries struct {
 	Metadata SLOHistoryMetricsSeriesMetadata `json:"metadata"`
 	// Total sum of the query.
 	Sum float64 `json:"sum"`
-	// The query values.
+	// The query values for each metric.
 	Values []float64 `json:"values"`
 }
 

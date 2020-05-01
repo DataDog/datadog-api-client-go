@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Search** | Pointer to **string** | TODO. | 
+**Search** | Pointer to **string** | The query being made on the event. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or. | 
 
 ## Methods

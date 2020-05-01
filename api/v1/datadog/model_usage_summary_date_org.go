@@ -32,7 +32,7 @@ type UsageSummaryDateOrg struct {
 	ContainerHwm *int64 `json:"container_hwm,omitempty"`
 	// Shows the average number of distinct custom metrics over all hours in the current date for the given org.
 	CustomTsAvg *int64 `json:"custom_ts_avg,omitempty"`
-	// TODO.
+	// The average task count for Fargate.
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the high watermark of all Fargate tasks over all hours in the current date for the given org.
 	FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`

@@ -12,19 +12,19 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestOptions TODO.
+// SyntheticsTestOptions Object describing the extra options for a Synthetic test.
 type SyntheticsTestOptions struct {
-	// TODO.
+	// For browser test, whether or not the test should allow self signed certificate.
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
 	// TODO.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
-	// TODO.
+	// Array with the different device IDs used to run the test.
 	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
-	// TODO.
+	// For API SSL test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
 	// TODO.
 	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
-	// TODO.
+	// Minimum amount of locations that are allowed to fail for the test.
 	MinLocationFailed *int64                      `json:"min_location_failed,omitempty"`
 	Retry             *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	TickEvery         *SyntheticsTickInterval     `json:"tick_every,omitempty"`

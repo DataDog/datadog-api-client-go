@@ -12,23 +12,23 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestRequest TODO.
+// SyntheticsTestRequest Object describing the Synthetic test request.
 type SyntheticsTestRequest struct {
 	BasicAuth *SyntheticsTestRequestBasicAuth `json:"basicAuth,omitempty"`
-	// TODO.
+	// Body to include in the test.
 	Body *string `json:"body,omitempty"`
-	// TODO.
+	// Headers to include when performing the test.
 	Headers *map[string]string `json:"headers,omitempty"`
-	// TODO.
+	// Host name to perfrom the test with.
 	Host   *string     `json:"host,omitempty"`
 	Method *HTTPMethod `json:"method,omitempty"`
-	// TODO.
+	// Port to use when performing the test.
 	Port *int64 `json:"port,omitempty"`
-	// TODO.
+	// Query to use for the test.
 	Query *interface{} `json:"query,omitempty"`
-	// TODO.
+	// Timeout in millisecond for the test.
 	Timeout *float64 `json:"timeout,omitempty"`
-	// TODO.
+	// URL to perform the test with.
 	Url *string `json:"url,omitempty"`
 }
 

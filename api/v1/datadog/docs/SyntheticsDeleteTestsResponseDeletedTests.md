@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedAt** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
-**PublicId** | Pointer to **string** | TODO. | [optional] 
+**DeletedAt** | Pointer to [**time.Time**](time.Time.md) | Deletion timestamp of the Synthetic test ID. | [optional] 
+**PublicId** | Pointer to **string** | The Synthetic test ID deleted. | [optional] 
 
 ## Methods
 

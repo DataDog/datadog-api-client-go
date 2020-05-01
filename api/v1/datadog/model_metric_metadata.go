@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MetricMetadata TODO.
+// MetricMetadata Object with all metric related metadata.
 type MetricMetadata struct {
 	// Metric description.
 	Description *string `json:"description,omitempty"`

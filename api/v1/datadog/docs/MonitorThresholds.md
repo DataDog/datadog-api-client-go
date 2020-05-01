@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Critical** | Pointer to **float64** | The monitor &#x60;CRITICAL&#x60; threshold. | [optional] 
 **CriticalRecovery** | Pointer to **NullableFloat64** | The monitor &#x60;CRITICAL&#x60; recovery threshold. | [optional] 
 **Ok** | Pointer to **NullableFloat64** | The monitor &#x60;OK&#x60; threshold. | [optional] 
-**Unknown** | Pointer to **NullableFloat64** | TODO. | [optional] 
+**Unknown** | Pointer to **NullableFloat64** | The monitor UNKNOWN threshold. | [optional] 
 **Warning** | Pointer to **NullableFloat64** | The monitor &#x60;WARNING&#x60; threshold. | [optional] 
 **WarningRecovery** | Pointer to **NullableFloat64** | The monitor &#x60;WARNING&#x60; recovery threshold. | [optional] 
 

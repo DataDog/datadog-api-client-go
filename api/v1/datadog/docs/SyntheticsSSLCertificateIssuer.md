@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**C** | Pointer to **string** | TODO. | [optional] 
-**CN** | Pointer to **string** | TODO. | [optional] 
-**L** | Pointer to **string** | TODO. | [optional] 
-**O** | Pointer to **string** | TODO. | [optional] 
-**OU** | Pointer to **string** | TODO. | [optional] 
-**ST** | Pointer to **string** | TODO. | [optional] 
+**C** | Pointer to **string** | Country Name that issued the certificate. | [optional] 
+**CN** | Pointer to **string** | Common Name that issued certificate. | [optional] 
+**L** | Pointer to **string** | Locality that issued the certificate. | [optional] 
+**O** | Pointer to **string** | Organization that issued the certificate. | [optional] 
+**OU** | Pointer to **string** | Organizational Unit that issued the certificate. | [optional] 
+**ST** | Pointer to **string** | State Or Province Name that issued the certificate. | [optional] 
 
 ## Methods
 

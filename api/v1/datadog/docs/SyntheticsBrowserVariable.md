@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Example** | Pointer to **string** | TODO. | [optional] 
-**Id** | Pointer to **string** | TODO. | [optional] 
-**Name** | Pointer to **string** | TODO. | 
-**Pattern** | Pointer to **string** | TODO. | [optional] 
+**Example** | Pointer to **string** | Example for the variable. | [optional] 
+**Id** | Pointer to **string** | ID for the variable. | [optional] 
+**Name** | Pointer to **string** | Name of the variable. | 
+**Pattern** | Pointer to **string** | Pattern of the variable. | [optional] 
 **Type** | Pointer to [**SyntheticsBrowserVariableType**](SyntheticsBrowserVariableType.md) |  | 
 
 ## Methods

@@ -14,7 +14,7 @@ import (
 
 // AWSAccountCreateResponse The Response returned by the AWS Create Account call.
 type AWSAccountCreateResponse struct {
-	// TODO.
+	// AWS external_id.
 	ExternalId *string `json:"external_id,omitempty"`
 }
 

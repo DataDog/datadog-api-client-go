@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PublicIds** | Pointer to **[]string** | TODO. | [optional] 
+**PublicIds** | Pointer to **[]string** | An array of Synthetic test IDs you want to delete. | [optional] 
 
 ## Methods
 

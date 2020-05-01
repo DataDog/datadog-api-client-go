@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateChildOrgRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Create child organization body request. | 
+ **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organisation object that needs to be created | 
 
 ### Return type
 
@@ -65,7 +65,7 @@ Get organization information
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the org you are operating within. | 
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
 
 ### Other Parameters
 
@@ -143,7 +143,7 @@ Update your organization
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the org you are operating within. | 
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
 
 ### Other Parameters
 
@@ -187,7 +187,7 @@ Upload IdP metadata
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the org you are operating within. | 
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating with | 
 
 ### Other Parameters
 

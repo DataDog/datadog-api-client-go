@@ -5,19 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | [optional] 
-**CreatedAt** | Pointer to **string** | TODO. | [optional] 
+**CreatedAt** | Pointer to **string** | The test creation date. | [optional] 
 **CreatedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
-**Locations** | Pointer to **[]string** | TODO. | [optional] 
-**Message** | Pointer to **string** | TODO. | [optional] 
-**ModifiedAt** | Pointer to **string** | TODO. | [optional] 
+**Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
+**Message** | Pointer to **string** | Notification message associated with the test. | [optional] 
+**ModifiedAt** | Pointer to **string** | Last timestamp the test was modified. | [optional] 
 **ModifiedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
 **MonitorId** | Pointer to **int64** | TODO. | [optional] 
-**Name** | Pointer to **string** | TODO. | [optional] 
+**Name** | Pointer to **string** | Name of the test. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
-**PublicId** | Pointer to **string** | TODO. | [optional] 
+**PublicId** | Pointer to **string** | The test public ID. | [optional] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
-**Tags** | Pointer to **[]string** | TODO. | [optional] 
+**Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
 **Type** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
 
 ## Methods
