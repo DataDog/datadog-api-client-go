@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationKeys** | Pointer to [**[]ApplicationKey**](ApplicationKey.md) | TODO. | [optional] 
+**ApplicationKeys** | Pointer to [**[]ApplicationKey**](ApplicationKey.md) | Array of application keys. | [optional] 
 
 ## Methods
 

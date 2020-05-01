@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserErrors** | Pointer to [**[]SyntheticsBrowserError**](SyntheticsBrowserError.md) | TODO. | [optional] 
+**BrowserErrors** | Pointer to [**[]SyntheticsBrowserError**](SyntheticsBrowserError.md) | Array of errors collected for a browser test. | [optional] 
 **CheckType** | Pointer to [**SyntheticsCheckType**](SyntheticsCheckType.md) |  | [optional] 
-**Description** | Pointer to **string** | TODO. | [optional] 
-**Duration** | Pointer to **float64** | TODO. | [optional] 
-**Error** | Pointer to **string** | TODO. | [optional] 
+**Description** | Pointer to **string** | Description of the test. | [optional] 
+**Duration** | Pointer to **float64** | Total duration in millisecond of the test. | [optional] 
+**Error** | Pointer to **string** | Error returned by the test. | [optional] 
 **PlayingTab** | Pointer to [**SyntheticsPlayingTab**](SyntheticsPlayingTab.md) |  | [optional] 
-**Resources** | Pointer to [**[]SyntheticsResource**](SyntheticsResource.md) | TODO. | [optional] 
-**ScreenshotBucketKey** | Pointer to **bool** | TODO. | [optional] 
-**Skipped** | Pointer to **bool** | TODO. | [optional] 
-**SnapshotBucketKey** | Pointer to **bool** | TODO. | [optional] 
-**StepId** | Pointer to **int64** | TODO. | [optional] 
-**SubTestStepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | TODO. | [optional] 
-**TimeToInteractive** | Pointer to **float64** | TODO. | [optional] 
+**Resources** | Pointer to [**[]SyntheticsResource**](SyntheticsResource.md) | Array of resources collected by the test. | [optional] 
+**ScreenshotBucketKey** | Pointer to **bool** | Whether or not screenshots where collected by the test. | [optional] 
+**Skipped** | Pointer to **bool** | Whether or not to skip this step. | [optional] 
+**SnapshotBucketKey** | Pointer to **bool** | Whether or not snapshots where colelcted by the test. | [optional] 
+**StepId** | Pointer to **int64** | The step ID. | [optional] 
+**SubTestStepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | If this steps include a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests). | [optional] 
+**TimeToInteractive** | Pointer to **float64** | Time before starting the step. | [optional] 
 **Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
-**Url** | Pointer to **string** | TODO. | [optional] 
-**Value** | Pointer to [**interface{}**](.md) | TODO. | [optional] 
-**Warnings** | Pointer to [**[]SyntheticsStepDetailWarnings**](SyntheticsStepDetail_warnings.md) | TODO. | [optional] 
+**Url** | Pointer to **string** | URL to perform the step against. | [optional] 
+**Value** | Pointer to [**interface{}**](.md) | Value for the step. | [optional] 
+**Warnings** | Pointer to [**[]SyntheticsStepDetailWarnings**](SyntheticsStepDetail_warnings.md) | Warning collected that didn&#39;t failed the step. | [optional] 
 
 ## Methods
 

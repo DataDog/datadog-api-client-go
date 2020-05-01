@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** | TODO. | [optional] 
+**Enabled** | Pointer to **bool** | Wether or not SAML is enabled for this organization. | [optional] 
 
 ## Methods
 

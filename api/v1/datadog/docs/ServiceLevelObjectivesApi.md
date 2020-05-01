@@ -34,7 +34,7 @@ Other parameters are passed through a pointer to a apiCheckCanDeleteSLORequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **string** | A comma separated list of the IDs of the service level objectives objects (e.g. \&quot;id1,id2,id3\&quot;). | 
+ **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
 
 ### Return type
 
@@ -107,7 +107,7 @@ Delete a SLO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The id of the service level objective. | 
+**sloId** | **string** | The ID of the service level objective. | 
 
 ### Other Parameters
 
@@ -155,7 +155,7 @@ Other parameters are passed through a pointer to a apiDeleteSLOTimeframeInBulkRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**map[string][]SLOTimeframe**](array.md) | Thresholds by service level objective object ID. | 
+ **body** | [**map[string][]SLOTimeframe**](array.md) | Delete multiple service level objective objects request body. | 
 
 ### Return type
 
@@ -282,7 +282,7 @@ Other parameters are passed through a pointer to a apiListSLOsRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. For example, \&quot;id1,id2,id3\&quot;. | 
+ **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
 
 ### Return type
 

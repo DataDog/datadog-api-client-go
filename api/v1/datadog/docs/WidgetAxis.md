@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IncludeZero** | Pointer to **bool** | TODO. | [optional] 
+**IncludeZero** | Pointer to **bool** | True includes zero. | [optional] 
 **Label** | Pointer to **string** | The label of the axis to display on the graph. | [optional] 
 **Max** | Pointer to **string** | Specifies the maximum value to show on the y-axis. It takes a number, or auto for default behavior. | [optional] [default to "auto"]
 **Min** | Pointer to **string** | Specifies minimum value to show on the y-axis. It takes a number, or auto for default behavior. | [optional] [default to "auto"]

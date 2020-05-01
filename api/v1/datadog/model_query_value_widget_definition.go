@@ -20,7 +20,7 @@ type QueryValueWidgetDefinition struct {
 	CustomUnit *string `json:"custom_unit,omitempty"`
 	// Number of decimals to show. If not defined, the widget uses the raw value.
 	Precision *int64 `json:"precision,omitempty"`
-	// TODO.
+	// Widget definition.
 	Requests  []QueryValueWidgetRequest `json:"requests"`
 	TextAlign *WidgetTextAlign          `json:"text_align,omitempty"`
 	Time      *WidgetTime               `json:"time,omitempty"`
@@ -29,7 +29,7 @@ type QueryValueWidgetDefinition struct {
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
 	TitleSize *string `json:"title_size,omitempty"`
-	// Type of the widget.
+	// Type of widget.
 	Type string `json:"type"`
 }
 

@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardListRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
+ **body** | [**DashboardList**](DashboardList.md) | Create a dashboard list request body. | 
 
 ### Return type
 
@@ -65,7 +65,7 @@ Delete a dashboard list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to delete | 
+**listId** | **int64** | ID of the dashboard list to delete. | 
 
 ### Other Parameters
 
@@ -108,7 +108,7 @@ Get a dashboard list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to fetch | 
+**listId** | **int64** | ID of the dashboard list to fetch. | 
 
 ### Other Parameters
 
@@ -186,7 +186,7 @@ Update a dashboard list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to update | 
+**listId** | **int64** | ID of the dashboard list to update. | 
 
 ### Other Parameters
 
@@ -196,7 +196,7 @@ Other parameters are passed through a pointer to a apiUpdateDashboardListRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
+ **body** | [**DashboardList**](DashboardList.md) | Update a dashboard list request body. | 
 
 ### Return type
 

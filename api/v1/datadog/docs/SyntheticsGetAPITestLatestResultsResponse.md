@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastTimestampFetched** | Pointer to **int64** | TODO. | [optional] 
-**Results** | Pointer to [**[]SyntheticsAPITestResultShort**](SyntheticsAPITestResultShort.md) | TODO. | [optional] 
+**LastTimestampFetched** | Pointer to **int64** | Timestamp of the latest API test run. | [optional] 
+**Results** | Pointer to [**[]SyntheticsAPITestResultShort**](SyntheticsAPITestResultShort.md) | Result of the latest API test run. | [optional] 
 
 ## Methods
 

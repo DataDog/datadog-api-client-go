@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateAzureIntegrationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account request body. | 
 
 ### Return type
 
@@ -70,7 +70,7 @@ Other parameters are passed through a pointer to a apiDeleteAzureIntegrationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration request body. | 
 
 ### Return type
 
@@ -144,7 +144,7 @@ Other parameters are passed through a pointer to a apiUpdateAzureHostFiltersRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters request body. | 
 
 ### Return type
 
@@ -183,7 +183,7 @@ Other parameters are passed through a pointer to a apiUpdateAzureIntegrationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration. | 
+ **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration request body. | 
 
 ### Return type
 

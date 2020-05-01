@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Duration** | Pointer to **float64** | TODO. | [optional] 
-**Method** | Pointer to **string** | TODO. | [optional] 
-**Size** | Pointer to **int64** | TODO. | [optional] 
-**Status** | Pointer to **int64** | TODO. | [optional] 
-**Timestamp** | Pointer to **float64** | TODO. | [optional] 
-**TraceId** | Pointer to **string** | TODO. | [optional] 
+**Duration** | Pointer to **float64** | Number of time the resource was collected. | [optional] 
+**Method** | Pointer to **string** | HTTP methode associated to the resource. | [optional] 
+**Size** | Pointer to **int64** | Size of the resource in bytes. | [optional] 
+**Status** | Pointer to **int64** | Status Code of the resource. | [optional] 
+**Timestamp** | Pointer to **float64** | Timestamp of the resource collection. | [optional] 
+**TraceId** | Pointer to **string** | Trace ID associated with the resource if any. | [optional] 
 **Type** | Pointer to [**SyntheticsResourceType**](SyntheticsResourceType.md) |  | [optional] 
-**Url** | Pointer to **string** | TODO. | [optional] 
+**Url** | Pointer to **string** | URL of the resource. | [optional] 
 
 ## Methods
 

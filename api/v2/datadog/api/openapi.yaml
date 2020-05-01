@@ -943,13 +943,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
-      summary: Create user
+      summary: Create a user
       tags:
       - Users
       x-codegen-request-body-name: body
   /api/v2/users/{user_id}:
     delete:
-      description: Disable user. Can only be used with an application key belonging
+      description: Disable a user. Can only be used with an application key belonging
         to an administrator user.
       operationId: DisableUser
       parameters:
@@ -976,7 +976,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
-      summary: Disable user
+      summary: Disable a user
       tags:
       - Users
       x-codegen-request-body-name: body
@@ -1182,12 +1182,12 @@ components:
   responses: {}
   schemas:
     APIErrorResponse:
-      description: TODO.
+      description: API error response.
       properties:
         errors:
-          description: TODO.
+          description: A list of errors.
           items:
-            description: TODO.
+            description: A list of items.
             example: Bad Request
             type: string
           type: array
@@ -1195,24 +1195,24 @@ components:
       - errors
       type: object
     Creator:
-      description: Creator of the object
+      description: Creator of the object.
       example:
         name: name
         handle: handle
         email: email
       properties:
         email:
-          description: TODO.
+          description: Email of the creator.
           type: string
         handle:
-          description: TODO.
+          description: Handle of the creator.
           type: string
         name:
-          description: TODO.
+          description: Name of the creator.
           type: string
       type: object
     DashboardListAddItemsResponse:
-      description: TODO.
+      description: Response containing a list of added dashboards.
       example:
         added_dashboards_to_list:
         - is_favorite: true
@@ -1251,7 +1251,7 @@ components:
           type: array
       type: object
     DashboardListDeleteItemsResponse:
-      description: TODO.
+      description: Response containing a list of deleted dashboards.
       example:
         deleted_dashboards_from_list:
         - is_favorite: true
@@ -1290,7 +1290,7 @@ components:
           type: array
       type: object
     DashboardListItem:
-      description: TODO.
+      description: A dashboard within a list.
       example:
         is_favorite: true
         author:
@@ -1359,7 +1359,7 @@ components:
       - type
       type: object
     DashboardListItems:
-      description: TODO.
+      description: Dashboards within a list.
       example:
         total: 6
         dashboards:
@@ -1670,7 +1670,7 @@ components:
           type: string
         type:
           default: roles
-          description: TODO
+          description: Type of role.
           type: string
       type: object
     RelationshipToRoles:
@@ -1683,7 +1683,7 @@ components:
           type: roles
       properties:
         data:
-          description: TODO.
+          description: An array containing type and ID of a role.
           items:
             $ref: '#/components/schemas/RelationshipToRoleData'
           type: array
@@ -1815,7 +1815,7 @@ components:
           type: string
       type: object
     RoleCreateData:
-      description: TODO
+      description: Data related to the creation of a role.
       example:
         relationships:
           permissions:
@@ -1971,7 +1971,7 @@ components:
           type: string
       type: object
     RoleUpdateData:
-      description: TODO
+      description: Data related to the update of a role.
       example:
         attributes:
           name: name
@@ -1985,7 +1985,7 @@ components:
           type: string
         type:
           default: roles
-          description: TODO
+          description: Type of role.
           type: string
       type: object
     RoleUpdatePayload:
@@ -2647,13 +2647,15 @@ components:
       type: object
   securitySchemes:
     apiKeyAuth:
-      description: API Key
+      description: Your Datadog API Key.
       in: header
       name: DD-API-KEY
       type: apiKey
+      x-env-name: DD_CLIENT_API_KEY
     appKeyAuth:
-      description: APP Key
+      description: Your Datadog APP Key.
       in: header
       name: DD-APPLICATION-KEY
       type: apiKey
+      x-env-name: DD_CLIENT_APP_KEY
 x-group-parameters: true

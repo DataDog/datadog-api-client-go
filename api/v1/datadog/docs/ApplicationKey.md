@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | Pointer to **string** | TODO. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of your application key. | [optional] 
-**Owner** | Pointer to **string** | TODO. | [optional] [readonly] 
+**Hash** | Pointer to **string** | Hash of an application key. | [optional] [readonly] 
+**Name** | Pointer to **string** | Name of an application key. | [optional] 
+**Owner** | Pointer to **string** | Owner of an application key. | [optional] [readonly] 
 
 ## Methods
 

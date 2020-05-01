@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for the given org. | [optional] 
 **ContainerHwm** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current date for the given org. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for the given org. | [optional] 
-**FargateTasksCountAvg** | Pointer to **int64** | TODO. | [optional] 
+**FargateTasksCountAvg** | Pointer to **int64** | The average task count for Fargate. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the high watermark of all Fargate tasks over all hours in the current date for the given org. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for the given org. | [optional] 
 **Id** | Pointer to **string** | The organization id. | [optional] 

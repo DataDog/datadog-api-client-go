@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **Interval** | Pointer to **int64** | The aggregated query interval for the series data. It&#39;s implicit based on the query time window. | 
 **Message** | Pointer to **string** | Optional message if there are specific query issues/warnings. | [optional] 
 **Numerator** | Pointer to [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |  | 
-**Query** | Pointer to **string** | The combined numerator &amp;&amp; denominator query CSV. | 
+**Query** | Pointer to **string** | The combined numerator and denominator query CSV. | 
 **ResType** | Pointer to **string** | The series result type. This mimics &#x60;batch_query&#x60; response type. | 
 **RespVersion** | Pointer to **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type. | 
-**Times** | Pointer to **[]float64** | The query timestamps in epoch milliseconds | 
+**Times** | Pointer to **[]float64** | An array of query timestamps in EPOCH milliseconds | 
 
 ## Methods
 

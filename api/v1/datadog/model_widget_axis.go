@@ -14,7 +14,7 @@ import (
 
 // WidgetAxis Axis controls for the widget.
 type WidgetAxis struct {
-	// TODO.
+	// True includes zero.
 	IncludeZero *bool `json:"include_zero,omitempty"`
 	// The label of the axis to display on the graph.
 	Label *string `json:"label,omitempty"`

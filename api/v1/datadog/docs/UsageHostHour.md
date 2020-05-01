@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostCount** | Pointer to **int64** | Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent. | [optional] 
-**AlibabaHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog). | [optional] 
+**AlibabaHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog Agent). | [optional] 
 **ApmHostCount** | Pointer to **int64** | Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods). | [optional] 
 **AwsHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent). | [optional] 
 **AzureHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent). | [optional] 

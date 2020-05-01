@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Event** | Pointer to [**Event**](Event.md) |  | [optional] 
-**Status** | Pointer to **string** | TODO. | [optional] 
+**Status** | Pointer to **string** | A status. | [optional] 
 
 ## Methods
 

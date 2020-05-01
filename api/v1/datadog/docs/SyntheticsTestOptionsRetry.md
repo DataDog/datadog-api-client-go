@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int64** | TODO. | [optional] 
-**Interval** | Pointer to **float64** | TODO. | [optional] 
+**Count** | Pointer to **int64** | The amount of location that needs to fail for the test to be retried. | [optional] 
+**Interval** | Pointer to **float64** | The interval over which the amount of location needed to fail for the test to be retried. | [optional] 
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExternalId** | Pointer to **string** | TODO. | [optional] 
+**ExternalId** | Pointer to **string** | AWS external_id. | [optional] 
 
 ## Methods
 

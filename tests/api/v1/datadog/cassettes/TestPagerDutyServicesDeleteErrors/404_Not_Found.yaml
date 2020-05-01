@@ -12,38 +12,38 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "428473923764351058"
+      - "8447432184583807729"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7076319034158358016"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/lqnioiuyzbefnkje
+      - "3835386984520477009"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/test-datadog-api-client-go-TestPagerDutyServicesDeleteErrors%2F404_Not_Found-1588246169295832000
     method: DELETE
   response:
-    body: '{"errors": ["Pagerduty Integration not found"]}'
+    body: ""
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "0"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
-      - application/json
+      - text/html; charset=utf-8
       Date:
-      - Sun, 26 Apr 2020 21:39:15 GMT
+      - Thu, 30 Apr 2020 11:29:29 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2451590"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

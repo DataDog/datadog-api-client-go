@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// GraphSnapshot TODO.
+// GraphSnapshot Object representing a graph snapshot.
 type GraphSnapshot struct {
 	// A JSON document defining the graph. `graph_def` can be used instead of `metric_query`. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URLEncoded.
 	GraphDef *string `json:"graph_def,omitempty"`

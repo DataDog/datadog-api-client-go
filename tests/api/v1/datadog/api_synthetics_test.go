@@ -42,9 +42,9 @@ var testSyntheticsAPI = datadog.SyntheticsTestDetails{
 		},
 		Request: datadog.SyntheticsTestRequest{
 			Headers: &map[string]string{"testingGoClient": "true"},
-			Method:  datadog.HTTPMETHOD_GET,
+			Method:  datadog.HTTPMETHOD_GET.Ptr(),
 			Timeout: datadog.PtrFloat64(10),
-			Url:     "https://datadoghq.com",
+			Url:     datadog.PtrString("https://datadoghq.com"),
 		},
 	},
 	Locations: &[]string{"aws:us-east-2"},
@@ -52,7 +52,9 @@ var testSyntheticsAPI = datadog.SyntheticsTestDetails{
 	Name:      datadog.PtrString("Go client testing Synthetics API test"),
 	Options: &datadog.SyntheticsTestOptions{
 		AcceptSelfSigned:  datadog.PtrBool(false),
+		AllowInsecure:     datadog.PtrBool(true),
 		FollowRedirects:   datadog.PtrBool(true),
+		MinFailureDuration: datadog.PtrInt64(10),
 		MinLocationFailed: datadog.PtrInt64(10),
 		Retry: &datadog.SyntheticsTestOptionsRetry{
 			Count:    datadog.PtrInt64(3),
@@ -69,8 +71,8 @@ var testSyntheticsBrowser = datadog.SyntheticsTestDetails{
 	Config: &datadog.SyntheticsTestConfig{
 		Assertions: []datadog.SyntheticsAssertion{},
 		Request: datadog.SyntheticsTestRequest{
-			Method: datadog.HTTPMETHOD_GET,
-			Url:    "https://datadoghq.com",
+			Method: datadog.HTTPMETHOD_GET.Ptr(),
+			Url:    datadog.PtrString("https://datadoghq.com"),
 		},
 	},
 	Locations: &[]string{"aws:us-east-2"},
@@ -78,8 +80,10 @@ var testSyntheticsBrowser = datadog.SyntheticsTestDetails{
 	Name:      datadog.PtrString("Go client testing Synthetics Browser test"),
 	Options: &datadog.SyntheticsTestOptions{
 		AcceptSelfSigned:  datadog.PtrBool(false),
+		AllowInsecure:     datadog.PtrBool(true),
 		DeviceIds:         &[]datadog.SyntheticsDeviceID{datadog.SYNTHETICSDEVICEID_TABLET},
 		FollowRedirects:   datadog.PtrBool(true),
+		MinFailureDuration: datadog.PtrInt64(10),
 		MinLocationFailed: datadog.PtrInt64(10),
 		Retry: &datadog.SyntheticsTestOptionsRetry{
 			Count:    datadog.PtrInt64(3),
@@ -113,6 +117,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	synt.CreatedAt = nil
 	synt.CreatedBy = nil
 	synt.ModifiedAt = nil
+	synt.MonitorId = nil
 	synt.PublicId = nil
 	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
 	if err != nil {
@@ -205,6 +210,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	synt.CreatedAt = nil
 	synt.CreatedBy = nil
 	synt.ModifiedAt = nil
+	synt.MonitorId = nil
 	synt.PublicId = nil
 	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
 	if err != nil {

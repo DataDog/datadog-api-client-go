@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CheckTime** | Pointer to **float64** | TODO. | [optional] 
-**ProbeDc** | Pointer to **string** | TODO. | [optional] 
+**CheckTime** | Pointer to **float64** | Last time the browser test was performed. | [optional] 
+**ProbeDc** | Pointer to **string** | Location from which the Browser test was performed. | [optional] 
 **Result** | Pointer to [**SyntheticsBrowserTestResultShortResult**](SyntheticsBrowserTestResultShort_result.md) |  | [optional] 
-**ResultId** | Pointer to **string** | TODO. | [optional] 
+**ResultId** | Pointer to **string** | ID of the browser test result. | [optional] 
 **Status** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
 
 ## Methods
