@@ -325,6 +325,7 @@ Class | Method | HTTP request | Description
  - [LogsLookupProcessor](docs/LogsLookupProcessor.md)
  - [LogsMessageRemapper](docs/LogsMessageRemapper.md)
  - [LogsPipeline](docs/LogsPipeline.md)
+ - [LogsPipelineProcessor](docs/LogsPipelineProcessor.md)
  - [LogsPipelinesOrder](docs/LogsPipelinesOrder.md)
  - [LogsProcessor](docs/LogsProcessor.md)
  - [LogsQueryCompute](docs/LogsQueryCompute.md)
