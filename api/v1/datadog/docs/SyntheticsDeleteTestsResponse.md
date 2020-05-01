@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedTests** | Pointer to [**[]SyntheticsDeleteTestsResponseDeletedTests**](SyntheticsDeleteTestsResponse_deleted_tests.md) | TODO. | [optional] 
+**DeletedTests** | Pointer to [**[]SyntheticsDeleteTestsResponseDeletedTests**](SyntheticsDeleteTestsResponse_deleted_tests.md) | Array of objects containing a deleted Synthetic test ID with the associated deletion timestamp. | [optional] 
 
 ## Methods
 

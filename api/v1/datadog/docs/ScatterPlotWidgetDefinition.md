@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "scatterplot"]
+**Type** | Pointer to **string** | Type of widget. | [readonly] [default to "scatterplot"]
 **Xaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 

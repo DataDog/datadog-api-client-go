@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOBulkDeleteResponseErrors TODO.
+// SLOBulkDeleteResponseErrors Object describing the error.
 type SLOBulkDeleteResponseErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get test result (API)
 [**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
 [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
-[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get details of a test
+[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get a list of all tests
 [**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
 [**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails GetTest(ctx, publicId).Execute()
 
-Get details of a test
+Get test
 
 
 
@@ -418,7 +418,7 @@ Change test pause/live status
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public ID of the Synthetics test to update. | 
+**publicId** | **string** | The public ID of the Synthetic test to update. | 
 
 ### Other Parameters
 
@@ -428,7 +428,7 @@ Other parameters are passed through a pointer to a apiUpdateTestPauseStatusReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Pause/live status to set the given Synthetics test to. | 
+ **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Pause/live status to set the given Synthetic test to. | 
 
 ### Return type
 

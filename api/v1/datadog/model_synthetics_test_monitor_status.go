@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestMonitorStatus TODO.
+// SyntheticsTestMonitorStatus The status of your Synthetic monitor. * `O` for un-triggered * `1` for triggered * `2` for no data
 type SyntheticsTestMonitorStatus int64
 
 // List of SyntheticsTestMonitorStatus

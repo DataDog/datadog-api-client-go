@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Requests** | Pointer to [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | TODO. | 
+**Requests** | Pointer to [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of toplist widget requests. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 

@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// UsageHostsResponse TODO.
+// UsageHostsResponse Host useage response.
 type UsageHostsResponse struct {
-	// TODO.
+	// An array of objects related to host usage.
 	Usage *[]UsageHostHour `json:"usage,omitempty"`
 }
 

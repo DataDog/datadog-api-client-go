@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Check** | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFull_check.md) |  | [optional] 
-**CheckTime** | Pointer to **float64** | TODO. | [optional] 
-**CheckVersion** | Pointer to **int64** | TODO. | [optional] 
-**ProbeDc** | Pointer to **string** | TODO. | [optional] 
+**Check** | Pointer to [**SyntheticsBrowserTestResultFullCheck**](SyntheticsBrowserTestResultFull_check.md) |  | [optional] 
+**CheckTime** | Pointer to **float64** | When the browser test was conducted. | [optional] 
+**CheckVersion** | Pointer to **int64** | Version of the browser test used. | [optional] 
+**ProbeDc** | Pointer to **string** | Location from which the browser test was performed. | [optional] 
 **Result** | Pointer to [**SyntheticsBrowserTestResultData**](SyntheticsBrowserTestResultData.md) |  | [optional] 
-**ResultId** | Pointer to **string** | TODO. | [optional] 
+**ResultId** | Pointer to **string** | ID of the browser test result. | [optional] 
 **Status** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
 
 ## Methods
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCheck
 
-`func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsAPITestResultFullCheck`
+`func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsBrowserTestResultFullCheck`
 
 GetCheck returns the Check field if non-nil, zero value otherwise.
 
 ### GetCheckOk
 
-`func (o *SyntheticsBrowserTestResultFull) GetCheckOk() (*SyntheticsAPITestResultFullCheck, bool)`
+`func (o *SyntheticsBrowserTestResultFull) GetCheckOk() (*SyntheticsBrowserTestResultFullCheck, bool)`
 
 GetCheckOk returns a tuple with the Check field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCheck
 
-`func (o *SyntheticsBrowserTestResultFull) SetCheck(v SyntheticsAPITestResultFullCheck)`
+`func (o *SyntheticsBrowserTestResultFull) SetCheck(v SyntheticsBrowserTestResultFullCheck)`
 
 SetCheck sets Check field to given value.
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | TODO. | 
-**Name** | Pointer to **string** | TODO. | 
-**StatusCode** | Pointer to **int64** | TODO. | [optional] 
+**Description** | Pointer to **string** | Description of the error. | 
+**Name** | Pointer to **string** | Name of the error. | 
+**StatusCode** | Pointer to **int64** | Status Code of the error. | [optional] 
 **Type** | Pointer to [**SyntheticsBrowserErrorType**](SyntheticsBrowserErrorType.md) |  | 
 
 ## Methods

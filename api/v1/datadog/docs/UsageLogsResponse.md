@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageLogsHour**](UsageLogsHour.md) | TODO. | [optional] 
+**Usage** | Pointer to [**[]UsageLogsHour**](UsageLogsHour.md) | An array of objects regarding hourly useage of logs. | [optional] 
 
 ## Methods
 

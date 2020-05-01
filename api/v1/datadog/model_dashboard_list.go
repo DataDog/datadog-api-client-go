@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// DashboardList TODO.
+// DashboardList Your Datadog Dashboards.
 type DashboardList struct {
 	Author *Creator `json:"author,omitempty"`
 	// Date of creation of the dashboard list.

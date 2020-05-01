@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cipher** | Pointer to **string** | TODO. | [optional] 
-**Exponent** | Pointer to **float64** | TODO. | [optional] 
-**ExtKeyUsage** | Pointer to **[]string** | TODO. | [optional] 
-**Fingerprint** | Pointer to **string** | TODO. | [optional] 
-**Fingerprint256** | Pointer to **string** | TODO. | [optional] 
+**Cipher** | Pointer to **string** | Cipher used for the connection. | [optional] 
+**Exponent** | Pointer to **float64** | Exponent associated to the certificate. | [optional] 
+**ExtKeyUsage** | Pointer to **[]string** | Array of extensions and details used for the certificate. | [optional] 
+**Fingerprint** | Pointer to **string** | MD5 digest of the der-encoded Certificate informations. | [optional] 
+**Fingerprint256** | Pointer to **string** | SHA-1 digest of the der-encoded Certificate informations. | [optional] 
 **Issuer** | Pointer to [**SyntheticsSSLCertificateIssuer**](SyntheticsSSLCertificate_issuer.md) |  | [optional] 
-**Modulus** | Pointer to **string** | TODO. | [optional] 
-**Protocol** | Pointer to **string** | TODO. | [optional] 
-**SerialNumber** | Pointer to **string** | TODO. | [optional] 
+**Modulus** | Pointer to **string** | Modulus associated to the SSL certificate private key. | [optional] 
+**Protocol** | Pointer to **string** | TLS protocol used for the test. | [optional] 
+**SerialNumber** | Pointer to **string** | Serial Number assigned by Symantec to the SSL certificate. | [optional] 
 **Subject** | Pointer to [**SyntheticsSSLCertificateSubject**](SyntheticsSSLCertificate_subject.md) |  | [optional] 
-**ValidFrom** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
-**ValidTo** | Pointer to [**time.Time**](time.Time.md) | TODO. | [optional] 
+**ValidFrom** | Pointer to [**time.Time**](time.Time.md) | Date from which the SSL certificate is valid. | [optional] 
+**ValidTo** | Pointer to [**time.Time**](time.Time.md) | Date until which the SSL certificate is valid. | [optional] 
 
 ## Methods
 

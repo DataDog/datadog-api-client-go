@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to **[]string** | TODO. | 
+**Errors** | Pointer to **[]string** | Array of errors returned by the API. | 
 
 ## Methods
 

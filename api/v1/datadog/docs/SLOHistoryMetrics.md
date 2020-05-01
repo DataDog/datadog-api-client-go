@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Query** | Pointer to **string** | The combined numerator and denominator query CSV. | 
 **ResType** | Pointer to **string** | The series result type. This mimics &#x60;batch_query&#x60; response type. | 
 **RespVersion** | Pointer to **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type. | 
-**Times** | Pointer to **[]float64** | The query timestamps in epoch milliseconds. | 
+**Times** | Pointer to **[]float64** | An array of query timestamps in EPOCH milliseconds | 
 
 ## Methods
 

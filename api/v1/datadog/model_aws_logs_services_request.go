@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// AWSLogsServicesRequest TODO.
+// AWSLogsServicesRequest A list of current AWS services for which Datadog offers automatic log collection.
 type AWSLogsServicesRequest struct {
 	// Your AWS Account ID without dashes.
 	AccountId string `json:"account_id"`

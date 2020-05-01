@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dns** | Pointer to **float64** | TODO. | [optional] 
-**Download** | Pointer to **float64** | TODO. | [optional] 
-**FirstByte** | Pointer to **float64** | TODO. | [optional] 
-**Handshake** | Pointer to **float64** | TODO. | [optional] 
-**Redirect** | Pointer to **float64** | TODO. | [optional] 
-**Ssl** | Pointer to **float64** | TODO. | [optional] 
-**Tcp** | Pointer to **float64** | TODO. | [optional] 
-**Total** | Pointer to **float64** | TODO. | [optional] 
-**Wait** | Pointer to **float64** | TODO. | [optional] 
+**Dns** | Pointer to **float64** | The duration in millisecond of the DNS lookup. | [optional] 
+**Download** | Pointer to **float64** | The time in millisecond to download the response. | [optional] 
+**FirstByte** | Pointer to **float64** | The time in millisecond to first byte. | [optional] 
+**Handshake** | Pointer to **float64** | The duration in millisecond of the TLS handshake. | [optional] 
+**Redirect** | Pointer to **float64** | The time in millisecond spent during redirections. | [optional] 
+**Ssl** | Pointer to **float64** | The duration in millisecond of the TLS handshake. | [optional] 
+**Tcp** | Pointer to **float64** | Time in millisecond to establish the TCP connection. | [optional] 
+**Total** | Pointer to **float64** | The overall time in millisecond the request took to be processed. | [optional] 
+**Wait** | Pointer to **float64** | Time spent in millisecond waiting for a response. | [optional] 
 
 ## Methods
 

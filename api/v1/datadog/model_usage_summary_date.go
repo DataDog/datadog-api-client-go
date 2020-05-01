@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageSummaryDate TODO.
+// UsageSummaryDate Response with hourly report of all data billed by Datadog all organizations.
 type UsageSummaryDate struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current date for all orgs.
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
@@ -51,7 +51,7 @@ type UsageSummaryDate struct {
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all orgs.
 	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
-	// TODO.
+	// Organizations associated with a user.
 	Orgs *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
 	// Shows the sum of all RUM Sessions over all hours in the current date for all orgs
 	RumSessionCountSum *int64 `json:"rum_session_count_sum,omitempty"`

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | Pointer to **string** | TODO. | 
-**Username** | Pointer to **string** | TODO. | 
+**Password** | Pointer to **string** | Password to use for the basic authentication. | 
+**Username** | Pointer to **string** | Username to use for the basic authentication. | 
 
 ## Methods
 

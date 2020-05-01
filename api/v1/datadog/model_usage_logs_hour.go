@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageLogsHour TODO.
+// UsageLogsHour Hour useage for logs.
 type UsageLogsHour struct {
 	// Contains the number of billable log bytes ingested.
 	BillableIngestedBytes *int64 `json:"billable_ingested_bytes,omitempty"`

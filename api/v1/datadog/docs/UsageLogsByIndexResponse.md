@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**[]UsageLogsByIndexHour**](UsageLogsByIndexHour.md) | TODO. | [optional] 
+**Usage** | Pointer to [**[]UsageLogsByIndexHour**](UsageLogsByIndexHour.md) | An array of objects regarding hourly useage of logs by index response. | [optional] 
 
 ## Methods
 

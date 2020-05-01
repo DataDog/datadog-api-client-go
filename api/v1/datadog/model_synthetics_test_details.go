@@ -12,29 +12,29 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestDetails TODO.
+// SyntheticsTestDetails Object containing details about your Synthetic test.
 type SyntheticsTestDetails struct {
 	Config *SyntheticsTestConfig `json:"config,omitempty"`
-	// TODO.
+	// The test creation date.
 	CreatedAt *string               `json:"created_at,omitempty"`
 	CreatedBy *SyntheticsTestAuthor `json:"created_by,omitempty"`
-	// TODO.
+	// Array of locations used to run the test.
 	Locations *[]string `json:"locations,omitempty"`
-	// TODO.
+	// Notification message associated with the test.
 	Message *string `json:"message,omitempty"`
-	// TODO.
+	// Last timestamp the test was modified.
 	ModifiedAt *string               `json:"modified_at,omitempty"`
 	ModifiedBy *SyntheticsTestAuthor `json:"modified_by,omitempty"`
 	// TODO.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
-	// TODO.
+	// Name of the test.
 	Name    *string                `json:"name,omitempty"`
 	Options *SyntheticsTestOptions `json:"options,omitempty"`
-	// TODO.
+	// The test public ID.
 	PublicId *string                       `json:"public_id,omitempty"`
 	Status   *SyntheticsTestPauseStatus    `json:"status,omitempty"`
 	Subtype  *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-	// TODO.
+	// Array of tags attached to the test.
 	Tags *[]string                  `json:"tags,omitempty"`
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 }

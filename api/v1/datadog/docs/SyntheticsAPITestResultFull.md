@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Check** | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFull_check.md) |  | [optional] 
-**CheckTime** | Pointer to **float64** | TODO. | [optional] 
-**CheckVersion** | Pointer to **int64** | TODO. | [optional] 
-**ProbeDc** | Pointer to **string** | TODO. | [optional] 
+**CheckTime** | Pointer to **float64** | When the API test was conducted. | [optional] 
+**CheckVersion** | Pointer to **int64** | Version of the API test used. | [optional] 
+**ProbeDc** | Pointer to **string** | Locations for which to query the API test results. | [optional] 
 **Result** | Pointer to [**SyntheticsAPITestResultData**](SyntheticsAPITestResultData.md) |  | [optional] 
-**ResultId** | Pointer to **string** | TODO. | [optional] 
+**ResultId** | Pointer to **string** | ID of the API test result. | [optional] 
 **Status** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
 
 ## Methods

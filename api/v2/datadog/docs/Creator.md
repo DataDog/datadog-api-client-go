@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** | TODO. | [optional] 
-**Handle** | Pointer to **string** | TODO. | [optional] 
-**Name** | Pointer to **string** | TODO. | [optional] 
+**Email** | Pointer to **string** | Email of the creator. | [optional] 
+**Handle** | Pointer to **string** | Handle of the creator. | [optional] 
+**Name** | Pointer to **string** | Name of the creator. | [optional] 
 
 ## Methods
 

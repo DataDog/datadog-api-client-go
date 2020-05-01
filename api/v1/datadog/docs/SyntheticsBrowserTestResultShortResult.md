@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Device** | Pointer to [**SyntheticsDevice**](SyntheticsDevice.md) |  | [optional] 
-**Duration** | Pointer to **float64** | TODO. | [optional] 
-**ErrorCount** | Pointer to **int64** | TODO. | [optional] 
-**StepCountCompleted** | Pointer to **int64** | TODO. | [optional] 
-**StepCountTotal** | Pointer to **int64** | TODO. | [optional] 
+**Duration** | Pointer to **float64** | Length in second of the browser test run. | [optional] 
+**ErrorCount** | Pointer to **int64** | Amount of errors collected for a single browser test run. | [optional] 
+**StepCountCompleted** | Pointer to **int64** | Amount of browser test steps completed before failing. | [optional] 
+**StepCountTotal** | Pointer to **int64** | Total amount of browser test steps. | [optional] 
 
 ## Methods
 

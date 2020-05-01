@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Filter** | Pointer to [**LogsExclusionFilter**](LogsExclusionFilter.md) |  | [optional] 
-**IsEnabled** | Pointer to **bool** | TODO. | [optional] 
-**Name** | Pointer to **string** | TODO. | 
+**IsEnabled** | Pointer to **bool** | Whether or not the exclusion filter is active. | [optional] 
+**Name** | Pointer to **string** | Name of the index exclusion filter. | 
 
 ## Methods
 
