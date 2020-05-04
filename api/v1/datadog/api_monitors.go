@@ -231,8 +231,9 @@ Create a monitor using the specified options.
 #### Monitor Types
 
 The type of monitor chosen from:
+
 - anomaly: `query alert`
-- apm: `query alert`
+- APM: `query alert`
 - composite: `composite`
 - custom: `service check`
 - event: `event alert`
@@ -277,7 +278,7 @@ Use this to create an outlier monitor using the following query:
 
 Example: `"check".over(tags).last(count).count_by_status()`
 
-- **`check`** name of the check, e.g. datadog.agent.up
+- **`check`** name of the check, e.g. `datadog.agent.up`
 - **`tags`** one or more quoted tags (comma-separated), or "*". e.g.: `.over("env:prod", "role:db")`
 - **`count`** must be at >= your max threshold (defined in the `options`).
 e.g. if you want to notify on 1 critical, 3 ok and 2 warn statuses count should be 3. It is limited to 100.
@@ -293,8 +294,8 @@ Example: `events('sources:nagios status:error,warning priority:normal tags: "str
 - **`priority`** event priorities (comma-separated). Valid options: low, normal, all.
 - **`host`** event reporting host (comma-separated).
 - **`tags`** event tags (comma-separated).
-- **`excluded_tags`** exluded event tags (comma-separated).
-- **`rollup`** the stats rollup method. `count` is the only supported method now.
+- **`excluded_tags`** excluded event tags (comma-separated).
+- **`rollup`** the stats roll-up method. `count` is the only supported method now.
 - **`last`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d.
 
 **Process Alert Query**
@@ -314,7 +315,7 @@ Example: `logs(query).index(index_name).rollup(rollup_method[, measure]).last(ti
 
 - **`query`** The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
 - **`index_name`** For multi-index organizations, the log index in which the request is performed.
-- **`rollup_method`** The stats rollup method - supports `count`, `avg` and `cardinality`.
+- **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
 - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
 - **`time_window`** #m (5, 10, 15, or 30), #h (1, 2, or 4, 24)
 - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
