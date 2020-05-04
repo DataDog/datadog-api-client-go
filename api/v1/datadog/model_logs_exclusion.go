@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// LogsExclusion Represents the index exclusion filter object from config API.
+// LogsExclusion Represents the index exclusion filter object from configuration API.
 type LogsExclusion struct {
 	Filter *LogsExclusionFilter `json:"filter,omitempty"`
 	// Whether or not the exclusion filter is active.

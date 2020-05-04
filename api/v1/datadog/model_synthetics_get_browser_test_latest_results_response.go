@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsGetBrowserTestLatestResultsResponse Object with the latest Synthetic broser test run.
+// SyntheticsGetBrowserTestLatestResultsResponse Object with the latest Synthetic browser test run.
 type SyntheticsGetBrowserTestLatestResultsResponse struct {
 	// Timestamp of the latest browser test run.
 	LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`

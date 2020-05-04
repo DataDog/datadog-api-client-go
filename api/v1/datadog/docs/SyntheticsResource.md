@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Duration** | Pointer to **float64** | Number of time the resource was collected. | [optional] 
-**Method** | Pointer to **string** | HTTP methode associated to the resource. | [optional] 
+**Method** | Pointer to **string** | HTTP method associated to the resource. | [optional] 
 **Size** | Pointer to **int64** | Size of the resource in bytes. | [optional] 
 **Status** | Pointer to **int64** | Status Code of the resource. | [optional] 
 **Timestamp** | Pointer to **float64** | Timestamp of the resource collection. | [optional] 

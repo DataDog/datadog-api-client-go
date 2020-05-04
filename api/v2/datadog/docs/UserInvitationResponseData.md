@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**UserInvitationDataAttributes**](UserInvitationDataAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the user invitiation. | [optional] 
+**Id** | Pointer to **string** | ID of the user invitation. | [optional] 
 **Type** | Pointer to **string** | User invitations type. | [optional] [default to "user_invitations"]
 
 ## Methods

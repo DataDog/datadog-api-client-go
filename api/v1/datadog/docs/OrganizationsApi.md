@@ -31,7 +31,7 @@ Other parameters are passed through a pointer to a apiCreateChildOrgRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organisation object that needs to be created | 
+ **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
 
 ### Return type
 

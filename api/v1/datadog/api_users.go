@@ -702,7 +702,7 @@ func (r apiUpdateUserRequest) Body(body User) apiUpdateUserRequest {
 
 /*
 UpdateUser Update a user
-Update a user informations.
+Update a user information.
 
 **Note**: It can only be used with application keys belonging to administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

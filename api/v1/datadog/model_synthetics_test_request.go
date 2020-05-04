@@ -19,7 +19,7 @@ type SyntheticsTestRequest struct {
 	Body *string `json:"body,omitempty"`
 	// Headers to include when performing the test.
 	Headers *map[string]string `json:"headers,omitempty"`
-	// Host name to perfrom the test with.
+	// Host name to perform the test with.
 	Host   *string     `json:"host,omitempty"`
 	Method *HTTPMethod `json:"method,omitempty"`
 	// Port to use when performing the test.

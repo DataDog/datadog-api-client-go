@@ -16,7 +16,7 @@ import (
 type Downtime struct {
 	// If a scheduled downtime currently exists.
 	Active *bool `json:"active,omitempty"`
-	// If a scheduled downtime is cancelled.
+	// If a scheduled downtime is canceled.
 	Canceled NullableInt64 `json:"canceled,omitempty"`
 	// User ID of the downtime creator.
 	CreatorId *int32 `json:"creator_id,omitempty"`

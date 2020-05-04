@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Resources** | Pointer to [**[]SyntheticsResource**](SyntheticsResource.md) | Array of resources collected by the test. | [optional] 
 **ScreenshotBucketKey** | Pointer to **bool** | Whether or not screenshots where collected by the test. | [optional] 
 **Skipped** | Pointer to **bool** | Whether or not to skip this step. | [optional] 
-**SnapshotBucketKey** | Pointer to **bool** | Whether or not snapshots where colelcted by the test. | [optional] 
+**SnapshotBucketKey** | Pointer to **bool** | Whether or not snapshots where collected by the test. | [optional] 
 **StepId** | Pointer to **int64** | The step ID. | [optional] 
 **SubTestStepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | If this steps include a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests). | [optional] 
 **TimeToInteractive** | Pointer to **float64** | Time before starting the step. | [optional] 

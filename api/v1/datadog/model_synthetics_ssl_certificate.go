@@ -21,9 +21,9 @@ type SyntheticsSSLCertificate struct {
 	Exponent *float64 `json:"exponent,omitempty"`
 	// Array of extensions and details used for the certificate.
 	ExtKeyUsage *[]string `json:"extKeyUsage,omitempty"`
-	// MD5 digest of the der-encoded Certificate informations.
+	// MD5 digest of the DER-encoded Certificate information.
 	Fingerprint *string `json:"fingerprint,omitempty"`
-	// SHA-1 digest of the der-encoded Certificate informations.
+	// SHA-1 digest of the DER-encoded Certificate information.
 	Fingerprint256 *string                         `json:"fingerprint256,omitempty"`
 	Issuer         *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
 	// Modulus associated to the SSL certificate private key.
