@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LastNodataTs** | Pointer to **int64** | Latest timestamp the monitor was in NO_DATA state. | [optional] 
 **LastNotifiedTs** | Pointer to **int64** | Latest timestamp of the notification sent for this monitor group. | [optional] 
-**LastResolvedTs** | Pointer to **int64** | Lastest timestamp the monitor group was resolved. | [optional] 
+**LastResolvedTs** | Pointer to **int64** | Latest timestamp the monitor group was resolved. | [optional] 
 **LastTriggeredTs** | Pointer to **int64** | Latest timestamp the monitor group triggered. | [optional] 
 **Name** | Pointer to **string** | The name of the monitor. | [optional] 
 **Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 

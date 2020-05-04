@@ -26,7 +26,7 @@ type OrganizationSettings struct {
 	SamlIdpInitiatedLogin *OrganizationSettingsSamlIdpInitiatedLogin `json:"saml_idp_initiated_login,omitempty"`
 	// Whether or not a SAML identity provider metadata file was provided to the Datadog organization.
 	SamlIdpMetadataUploaded *bool `json:"saml_idp_metadata_uploaded,omitempty"`
-	// URL for SAML loging.
+	// URL for SAML logging.
 	SamlLoginUrl   *string                             `json:"saml_login_url,omitempty"`
 	SamlStrictMode *OrganizationSettingsSamlStrictMode `json:"saml_strict_mode,omitempty"`
 }

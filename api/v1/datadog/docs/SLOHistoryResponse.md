@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**SLOHistoryResponseData**](SLOHistoryResponse_data.md) |  | [optional] 
-**Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level obective. | [optional] 
+**Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level objective. | [optional] 
 
 ## Methods
 

@@ -149,7 +149,7 @@ Other parameters are passed through a pointer to a apiUpdateLogsIndexRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new LogsIndex. | 
+ **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new &#x60;LogsIndex&#x60;. | 
 
 ### Return type
 

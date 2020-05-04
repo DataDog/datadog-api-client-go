@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **bool** | If a scheduled downtime currently exists. | [optional] [readonly] 
-**Canceled** | Pointer to **NullableInt64** | If a scheduled downtime is cancelled. | [optional] [readonly] 
+**Canceled** | Pointer to **NullableInt64** | If a scheduled downtime is canceled. | [optional] [readonly] 
 **CreatorId** | Pointer to **int32** | User ID of the downtime creator. | [optional] [readonly] 
 **Disabled** | Pointer to **bool** | If a downtime has been disabled. | [optional] 
 **DowntimeType** | Pointer to **int32** | &#x60;0&#x60; for a downtime applied on &#x60;*&#x60; or all, &#x60;1&#x60; when the downtime is only scoped to hosts, or &#x60;2&#x60; when the downtime is scoped to anything but hosts. | [optional] [readonly] 

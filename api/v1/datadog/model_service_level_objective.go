@@ -14,7 +14,7 @@ import (
 
 // ServiceLevelObjective A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
 type ServiceLevelObjective struct {
-	// Creation timestamp (unix time in seconds)  Always included in service level objective responses.
+	// Creation timestamp (UNIX time in seconds)  Always included in service level objective responses.
 	CreatedAt *int64   `json:"created_at,omitempty"`
 	Creator   *Creator `json:"creator,omitempty"`
 	// A user-defined description of the service level objective.  Always included in service level objective responses (but may be `null`). Optional in create/update requests.
@@ -23,7 +23,7 @@ type ServiceLevelObjective struct {
 	Groups *[]string `json:"groups,omitempty"`
 	// A unique identifier for the service level objective object.  Always included in service level objective responses.
 	Id *string `json:"id,omitempty"`
-	// Modification timestamp (unix time in seconds)  Always included in service level objective responses.
+	// Modification timestamp (UNIX time in seconds)  Always included in service level objective responses.
 	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// A list of monitor ids that defines the scope of a monitor service level objective. **Required if type is `monitor`**.
 	MonitorIds *[]int64 `json:"monitor_ids,omitempty"`

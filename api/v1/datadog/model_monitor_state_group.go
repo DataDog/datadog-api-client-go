@@ -18,7 +18,7 @@ type MonitorStateGroup struct {
 	LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
 	// Latest timestamp of the notification sent for this monitor group.
 	LastNotifiedTs *int64 `json:"last_notified_ts,omitempty"`
-	// Lastest timestamp the monitor group was resolved.
+	// Latest timestamp the monitor group was resolved.
 	LastResolvedTs *int64 `json:"last_resolved_ts,omitempty"`
 	// Latest timestamp the monitor group triggered.
 	LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`

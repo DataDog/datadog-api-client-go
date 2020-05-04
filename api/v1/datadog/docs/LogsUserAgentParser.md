@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsEncoded** | Pointer to **bool** | Define if the source attribute is url encoded or not. | [optional] [default to false]
+**IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
 **Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["http.useragent"]]
 **Target** | Pointer to **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.useragent_details"]
 **Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "user-agent-parser"]
