@@ -9,7 +9,7 @@ pr:
     include:
     - master
 schedules:
-  - cron: "0 */6 * * *"
+  - cron: "0 */3 * * *"
     displayName: Scheduled CI run every 6 hours
     always: true
     branches:
