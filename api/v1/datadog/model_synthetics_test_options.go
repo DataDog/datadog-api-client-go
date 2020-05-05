@@ -16,13 +16,13 @@ import (
 type SyntheticsTestOptions struct {
 	// For browser test, whether or not the test should allow self signed certificate.
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
-	// TODO.
+	// Allows loading insecure content for an HTTP request.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
 	// Array with the different device IDs used to run the test.
 	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
 	// For API SSL test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
-	// TODO.
+	// Minimum amount of time before declaring the test has failed.
 	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
 	// Minimum amount of locations that are allowed to fail for the test.
 	MinLocationFailed *int64                      `json:"min_location_failed,omitempty"`

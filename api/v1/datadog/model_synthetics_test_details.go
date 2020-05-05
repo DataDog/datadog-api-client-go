@@ -25,7 +25,7 @@ type SyntheticsTestDetails struct {
 	// Last timestamp the test was modified.
 	ModifiedAt *string               `json:"modified_at,omitempty"`
 	ModifiedBy *SyntheticsTestAuthor `json:"modified_by,omitempty"`
-	// TODO.
+	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
 	Name    *string                `json:"name,omitempty"`

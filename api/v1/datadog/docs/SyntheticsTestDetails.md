@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | Notification message associated with the test. | [optional] 
 **ModifiedAt** | Pointer to **string** | Last timestamp the test was modified. | [optional] 
 **ModifiedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
-**MonitorId** | Pointer to **int64** | TODO. | [optional] 
+**MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] 
 **Name** | Pointer to **string** | Name of the test. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
 **PublicId** | Pointer to **string** | The test public ID. | [optional] 
