@@ -1928,10 +1928,7 @@ paths:
     post:
       description: |-
         Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
-        - Returns a status of 'created' when it's checking if the Lambda exists in the account.
-        - Returns a status of 'waiting' while checking.
-        - Returns a status of 'checked and ok' if the Lambda exists.
-        - Returns a status of 'error' if the Lambda does not exist.
+        - Returns a status of 'created' when it's checking if the Lambda exists in the account. - Returns a status of 'waiting' while checking. - Returns a status of 'checked and ok' if the Lambda exists. - Returns a status of 'error' if the Lambda does not exist.
       operationId: CheckAWSLogsLambdaAsync
       requestBody:
         content:
@@ -12787,7 +12784,7 @@ components:
         modified_by:
           $ref: '#/components/schemas/SyntheticsTestAuthor'
         monitor_id:
-          description: TODO.
+          description: The associated monitor ID.
           format: int64
           type: integer
         name:
@@ -12865,7 +12862,7 @@ components:
             signed certificate.
           type: boolean
         allow_insecure:
-          description: TODO.
+          description: Allows loading insecure content for an HTTP request.
           type: boolean
         device_ids:
           description: Array with the different device IDs used to run the test.
@@ -12876,7 +12873,7 @@ components:
           description: For API SSL test, whether or not the test should follow redirects.
           type: boolean
         min_failure_duration:
-          description: TODO.
+          description: Minimum amount of time before declaring the test has failed.
           format: int64
           type: integer
         min_location_failed:
@@ -14450,7 +14447,7 @@ components:
           type: array
       type: object
     UsageTraceHour:
-      description: TODO.
+      description: The hours of trace usage.
       example:
         indexed_events_count: 0
         hour: 2000-01-23T04:56:07.000+00:00
@@ -14465,7 +14462,7 @@ components:
           type: integer
       type: object
     UsageTraceResponse:
-      description: TODO.
+      description: A response containing trace usage.
       example:
         usage:
         - indexed_events_count: 0
@@ -14715,7 +14712,7 @@ components:
       - value
       type: object
     WidgetDefinition:
-      description: Definition of the widget.
+      description: '[Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).'
       discriminator:
         mapping:
           alert_graph: '#/components/schemas/AlertGraphWidgetDefinition'
