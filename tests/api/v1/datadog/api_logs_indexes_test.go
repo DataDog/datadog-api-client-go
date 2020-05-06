@@ -110,6 +110,7 @@ func TestLogsIndexOrder(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
+	defer enableLogsIndexesUnstableOperations(ctx)()
 	indexOrder, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting index order: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -191,6 +192,7 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
+	defer enableLogsIndexesUnstableOperations(ctx)()
 	indexOrder, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting index order: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
