@@ -180,6 +180,7 @@ func NewConfiguration() *Configuration {
 			"GetLogsIndex":    false,
 			"ListLogIndexes":  false,
 			"UpdateLogsIndex": false,
+			"GetSLOHistory":   false,
 		},
 	}
 	return cfg

@@ -36,8 +36,14 @@ func (r apiCheckAWSLogsLambdaAsyncRequest) Body(body AWSAccountAndLambdaRequest)
 
 /*
 CheckAWSLogsLambdaAsync Check that an AWS Lambda Function exists
-Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
-- Returns a status of 'created' when it's checking if the Lambda exists in the account. - Returns a status of 'waiting' while checking. - Returns a status of 'checked and ok' if the Lambda exists. - Returns a status of 'error' if the Lambda does not exist.
+Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input
+is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this
+endpoint can be polled intermittently instead of blocking.
+
+- Returns a status of 'created' when it's checking if the Lambda exists in the account.
+- Returns a status of 'waiting' while checking.
+- Returns a status of 'checked and ok' if the Lambda exists.
+- Returns a status of 'error' if the Lambda does not exist.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCheckAWSLogsLambdaAsyncRequest
 */
