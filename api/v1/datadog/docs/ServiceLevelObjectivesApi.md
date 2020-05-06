@@ -73,7 +73,7 @@ Other parameters are passed through a pointer to a apiCreateSLORequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | Service level objective request object. | 
+ **body** | [**ServiceLevelObjectiveRequest**](ServiceLevelObjectiveRequest.md) | Service level objective request object. | 
 
 ### Return type
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSLO
 
-> SLODeleteResponse DeleteSLO(ctx, sloId).Execute()
+> SLODeleteResponse DeleteSLO(ctx, sloId).Force(force).Execute()
 
 Delete a SLO
 
@@ -117,6 +117,7 @@ Other parameters are passed through a pointer to a apiDeleteSLORequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
 
 ### Return type
 

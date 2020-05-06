@@ -296,7 +296,7 @@ Example: `events('sources:nagios status:error,warning priority:normal tags: "str
 - **`tags`** event tags (comma-separated).
 - **`excluded_tags`** excluded event tags (comma-separated).
 - **`rollup`** the stats roll-up method. `count` is the only supported method now.
-- **`last`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d.
+- **`last`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d. This value should not exceed 48 hours.
 
 **Process Alert Query**
 
@@ -490,6 +490,12 @@ type apiDeleteMonitorRequest struct {
 	ctx        _context.Context
 	apiService *MonitorsApiService
 	monitorId  int64
+	force      *string
+}
+
+func (r apiDeleteMonitorRequest) Force(force string) apiDeleteMonitorRequest {
+	r.force = &force
+	return r
 }
 
 /*
@@ -533,6 +539,9 @@ func (r apiDeleteMonitorRequest) Execute() (DeletedMonitor, *_nethttp.Response, 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.force != nil {
+		localVarQueryParams.Add("force", parameterToString(*r.force, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1080,10 +1089,10 @@ type apiUpdateMonitorRequest struct {
 	ctx        _context.Context
 	apiService *MonitorsApiService
 	monitorId  int64
-	body       *Monitor
+	body       *MonitorUpdateRequest
 }
 
-func (r apiUpdateMonitorRequest) Body(body Monitor) apiUpdateMonitorRequest {
+func (r apiUpdateMonitorRequest) Body(body MonitorUpdateRequest) apiUpdateMonitorRequest {
 	r.body = &body
 	return r
 }

@@ -1927,8 +1927,14 @@ paths:
   /api/v1/integration/aws/logs/check_async:
     post:
       description: |-
-        Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
-        - Returns a status of 'created' when it's checking if the Lambda exists in the account. - Returns a status of 'waiting' while checking. - Returns a status of 'checked and ok' if the Lambda exists. - Returns a status of 'error' if the Lambda does not exist.
+        Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input
+        is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this
+        endpoint can be polled intermittently instead of blocking.
+
+        - Returns a status of 'created' when it's checking if the Lambda exists in the account.
+        - Returns a status of 'waiting' while checking.
+        - Returns a status of 'checked and ok' if the Lambda exists.
+        - Returns a status of 'error' if the Lambda does not exist.
       operationId: CheckAWSLogsLambdaAsync
       requestBody:
         content:
@@ -3297,7 +3303,7 @@ paths:
         - **`tags`** event tags (comma-separated).
         - **`excluded_tags`** excluded event tags (comma-separated).
         - **`rollup`** the stats roll-up method. `count` is the only supported method now.
-        - **`last`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d.
+        - **`last`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d. This value should not exceed 48 hours.
 
         **Process Alert Query**
 
@@ -3455,6 +3461,15 @@ paths:
           format: int64
           type: integer
         style: simple
+      - description: Delete the monitor even if it's referenced by other resources
+          (e.g. SLO, composite monitor).
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3556,7 +3571,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Monitor'
+              $ref: '#/components/schemas/MonitorUpdateRequest'
         description: Edit a monitor request body.
         required: true
       responses:
@@ -3927,7 +3942,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceLevelObjective'
+              $ref: '#/components/schemas/ServiceLevelObjectiveRequest'
         description: Service level objective request object.
         required: true
       responses:
@@ -4054,6 +4069,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Delete the monitor even if it's referenced by other resources
+          (e.g. SLO, composite monitor).
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4231,6 +4255,9 @@ paths:
       summary: Get an SLO's history
       tags:
       - Service Level Objectives
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/synthetics/tests:
     get:
       description: Get the list of all Synthetic tests (can be filtered by type).
@@ -9696,9 +9723,11 @@ components:
         aggregation:
           $ref: '#/components/schemas/MonitorOptions_aggregation'
         device_ids:
+          deprecated: true
           description: IDs of the device the Synthetics monitor is running on.
           items:
             $ref: '#/components/schemas/MonitorDeviceID'
+          readOnly: true
           type: array
         enable_logs_sample:
           description: Whether or not to send a log sample when the log monitor triggers.
@@ -9800,6 +9829,7 @@ components:
           description: Information about the downtime applied to the monitor.
           type: object
         synthetics_check_id:
+          deprecated: true
           description: ID of the corresponding Synthetic check.
           format: int64
           nullable: true
@@ -9985,7 +10015,9 @@ components:
           type: number
       type: object
     MonitorType:
-      description: The type of the monitor.
+      description: The type of the monitor. For more information about `type`, see
+        the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/)
+        docs.
       enum:
       - composite
       - event alert
@@ -10009,6 +10041,119 @@ components:
       - SERVICE_CHECK
       - SYNTHETICS_ALERT
       - TRACE_ANALYTICS_ALERT
+    MonitorUpdateRequest:
+      description: Object describing a monitor.
+      example:
+        creator:
+          name: name
+          handle: handle
+          email: email
+        created: 2000-01-23T04:56:07.000+00:00
+        query: query
+        message: message
+        multi: true
+        tags:
+        - tags
+        - tags
+        deleted: 2000-01-23T04:56:07.000+00:00
+        name: name
+        options:
+          no_data_timeframe: 2
+          silenced:
+            key: 9
+          synthetics_check_id: 3
+          notify_no_data: false
+          enable_logs_sample: true
+          aggregation:
+            metric: metrics.name
+            group_by: host
+            type: count
+          evaluation_delay: 6
+          notify_audit: false
+          min_location_failed: 5
+          new_host_delay: 5
+          renotify_interval: 7
+          thresholds:
+            critical: 2.027123023002322
+            warning: 1.0246457001441578
+            warning_recovery: 1.4894159098541704
+            ok: 7.386281948385884
+            critical_recovery: 4.145608029883936
+            unknown: 1.2315135367772556
+          min_failure_duration: 1055
+          threshold_windows:
+            trigger_window: trigger_window
+            recovery_window: recovery_window
+          include_tags: true
+          require_full_window: true
+          device_ids:
+          - null
+          - null
+          escalation_message: none
+          timeout_h: 6
+          locked: true
+        modified: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        state:
+          groups:
+            key:
+              last_triggered_ts: 5
+              last_notified_ts: 1
+              name: name
+              last_resolved_ts: 4
+              last_nodata_ts: 7
+      properties:
+        created:
+          description: Timestamp of the monitor creation.
+          format: date-time
+          readOnly: true
+          type: string
+        creator:
+          $ref: '#/components/schemas/Creator'
+        deleted:
+          description: Whether or not the monitor is deleted. (Always `null`)
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        id:
+          description: ID of this monitor.
+          format: int64
+          readOnly: true
+          type: integer
+        message:
+          description: A message to include with notifications for this monitor.
+          type: string
+        modified:
+          description: Last timestamp when the monitor was edited.
+          format: date-time
+          readOnly: true
+          type: string
+        multi:
+          description: Whether or not the monitor is broken down on different groups.
+          readOnly: true
+          type: boolean
+        name:
+          description: The monitor name.
+          type: string
+        options:
+          $ref: '#/components/schemas/MonitorOptions'
+        overall_state:
+          $ref: '#/components/schemas/MonitorOverallStates'
+        query:
+          description: The monitor query.
+          type: string
+        state:
+          $ref: '#/components/schemas/MonitorState'
+        tags:
+          description: Tags associated to your monitor.
+          items:
+            description: A Datadog tag.
+            type: string
+          type: array
+        type:
+          $ref: '#/components/schemas/MonitorType'
+      type: object
     NoteWidgetDefinition:
       description: The notes and links widget is similar to free text widget, but
         allows for more formatting options.
@@ -10784,7 +10929,6 @@ components:
             name: name
             handle: handle
             email: email
-          type_id: 0
           query:
             denominator: denominator
             numerator: numerator
@@ -10818,7 +10962,6 @@ components:
             name: name
             handle: handle
             email: email
-          type_id: 0
           query:
             denominator: denominator
             numerator: numerator
@@ -10875,7 +11018,6 @@ components:
             name: name
             handle: handle
             email: email
-          type_id: 0
           query:
             denominator: denominator
             numerator: numerator
@@ -11099,7 +11241,6 @@ components:
           name: name
           handle: handle
           email: email
-        type_id: 0
         query:
           denominator: denominator
           numerator: numerator
@@ -11190,7 +11331,6 @@ components:
           description: |-
             The union of monitor tags for all monitors referenced by the `monitor_ids`
             field.
-
             Always included in service level objective responses for monitor service level
             objectives (but may be empty). Ignored in create/update requests. Does not
             affect which monitors are included in the service level objective (that is
@@ -11225,8 +11365,128 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/SLOType'
-        type_id:
-          $ref: '#/components/schemas/SLOTypeNumeric'
+      required:
+      - name
+      - thresholds
+      - type
+    ServiceLevelObjectiveRequest:
+      description: |-
+        A service level objective object includes a service level indicator, thresholds
+        for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
+      example:
+        creator:
+          name: name
+          handle: handle
+          email: email
+        thresholds:
+        - warning_display: warning_display
+          target_display: "99.9"
+          warning: 5.637376656633329
+          target: 5.962133916683182
+        - warning_display: warning_display
+          target_display: "99.9"
+          warning: 5.637376656633329
+          target: 5.962133916683182
+        query:
+          denominator: denominator
+          numerator: numerator
+        monitor_ids:
+        - 1
+        - 1
+        name: name
+        created_at: 0
+        description: description
+        groups:
+        - env:prod
+        - role:mysql
+        id: id
+        modified_at: 6
+        tags:
+        - env:prod
+        - app:core
+      properties:
+        created_at:
+          description: |-
+            Creation timestamp (UNIX time in seconds)
+
+            Always included in service level objective responses.
+          format: int64
+          readOnly: true
+          type: integer
+        creator:
+          $ref: '#/components/schemas/Creator'
+        description:
+          description: |-
+            A user-defined description of the service level objective.
+
+            Always included in service level objective responses (but may be `null`).
+            Optional in create/update requests.
+          nullable: true
+          type: string
+        groups:
+          description: |-
+            A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.
+
+            Included in service level objective responses if it is not empty. Optional in
+            create/update requests for monitor service level objectives, but may only be
+            used when then length of the `monitor_ids` field is one.
+          example:
+          - env:prod
+          - role:mysql
+          items:
+            description: A group name, for instance `env:prod`.
+            type: string
+          type: array
+        id:
+          description: |-
+            A unique identifier for the service level objective object.
+
+            Always included in service level objective responses.
+          readOnly: true
+          type: string
+        modified_at:
+          description: |-
+            Modification timestamp (UNIX time in seconds)
+
+            Always included in service level objective responses.
+          format: int64
+          readOnly: true
+          type: integer
+        monitor_ids:
+          description: |-
+            A list of monitor ids that defines the scope of a monitor service level
+            objective. **Required if type is `monitor`**.
+          items:
+            description: A monitor ID.
+            format: int64
+            type: integer
+          type: array
+        name:
+          description: The name of the service level objective object.
+          type: string
+        query:
+          $ref: '#/components/schemas/ServiceLevelObjective_query'
+        tags:
+          description: |-
+            A list of tags associated with this service level objective.
+            Always included in service level objective responses (but may be empty).
+            Optional in create/update requests.
+          example:
+          - env:prod
+          - app:core
+          items:
+            description: A tag to apply to your SLO.
+            type: string
+          type: array
+        thresholds:
+          description: |-
+            The thresholds (timeframes and associated targets) for this service level
+            objective object.
+          items:
+            $ref: '#/components/schemas/SLOThreshold'
+          type: array
+        type:
+          $ref: '#/components/schemas/SLOType'
       required:
       - name
       - thresholds

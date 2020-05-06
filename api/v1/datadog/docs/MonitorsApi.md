@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ## DeleteMonitor
 
-> DeletedMonitor DeleteMonitor(ctx, monitorId).Execute()
+> DeletedMonitor DeleteMonitor(ctx, monitorId).Force(force).Execute()
 
 Delete a monitor
 
@@ -116,6 +116,7 @@ Other parameters are passed through a pointer to a apiDeleteMonitorRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
 
 ### Return type
 
@@ -249,7 +250,7 @@ Other parameters are passed through a pointer to a apiUpdateMonitorRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Monitor**](Monitor.md) | Edit a monitor request body. | 
+ **body** | [**MonitorUpdateRequest**](MonitorUpdateRequest.md) | Edit a monitor request body. | 
 
 ### Return type
 

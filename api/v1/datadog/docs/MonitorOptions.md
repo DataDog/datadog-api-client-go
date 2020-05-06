@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptions_aggregation.md) |  | [optional] 
-**DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) | IDs of the device the Synthetics monitor is running on. | [optional] 
+**DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) | IDs of the device the Synthetics monitor is running on. | [optional] [readonly] 
 **EnableLogsSample** | Pointer to **bool** | Whether or not to send a log sample when the log monitor triggers. | [optional] 
 **EscalationMessage** | Pointer to **string** | A message to include with a re-notification. Supports the &#x60;@username&#x60; notification we allow elsewhere. Not applicable if &#x60;renotify_interval&#x60; is &#x60;None&#x60;. | [optional] [default to "none"]
 **EvaluationDelay** | Pointer to **NullableInt64** | Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to &#x60;300&#x60; (5min), the timeframe is set to &#x60;last_5m&#x60; and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation. | [optional] 
