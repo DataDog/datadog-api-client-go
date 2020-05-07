@@ -2577,11 +2577,8 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/logs/config/index-order:
     get:
-      description: |-
-        Get the current order of your log indexes. This endpoint takes no JSON arguments.
-
-        **Note: This endpoint is in public beta.**
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+      description: Get the current order of your log indexes. This endpoint takes
+        no JSON arguments.
       operationId: GetLogsIndexOrder
       responses:
         "200":
@@ -2599,13 +2596,13 @@ paths:
       summary: Get indexes order
       tags:
       - Logs Indexes
+      x-unstable: |-
+        **Note: This endpoint is in public beta.**
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     put:
       description: |-
         This endpoint updates the index order of your organization.
         It returns the index order object passed in the request body when the request is successful.
-
-        **Note: This endpoint is in public beta.**
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
       operationId: UpdateLogsIndexOrder
       requestBody:
         content:
@@ -2636,6 +2633,9 @@ paths:
       tags:
       - Logs Indexes
       x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note: This endpoint is in public beta.**
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/logs/config/indexes:
     get:
       description: |-
