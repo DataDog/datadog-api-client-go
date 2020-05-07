@@ -255,6 +255,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	// LogStream ONLY AVAILABLE ON FREE LAYOUTS
 	logStreamWidgetDefinition := datadog.NewLogStreamWidgetDefinitionWithDefaults()
 	logStreamWidgetDefinition.SetIndexes([]string{"main"})
+	logStreamWidgetDefinition.SetLogset("106")
 	logStreamWidgetDefinition.SetQuery("Route XYZ failed")
 	logStreamWidgetDefinition.SetColumns([]string{"Route"})
 	logStreamWidgetDefinition.SetTitle("Test Logstream Widget")
@@ -281,6 +282,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	monitorSummaryWidgetDefiniton.SetTitle("Test Monitor Summary Widget")
 	monitorSummaryWidgetDefiniton.SetTitleSize("16")
 	monitorSummaryWidgetDefiniton.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	monitorSummaryWidgetDefiniton.SetStart(0)
+	monitorSummaryWidgetDefiniton.SetCount(5)
+
 
 	monitorSummaryWidget := datadog.NewWidget(monitorSummaryWidgetDefiniton.AsWidgetDefinition())
 	monitorSummaryWidget.SetLayout(*widgetLayout)

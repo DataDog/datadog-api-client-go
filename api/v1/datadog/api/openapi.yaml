@@ -8417,6 +8417,10 @@ components:
               Indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes)
             type: string
           type: array
+        logset:
+          deprecated: true
+          description: ID of the log set to use.
+          type: string
         message_display:
           $ref: '#/components/schemas/WidgetMessageDisplay'
         query:
@@ -9941,6 +9945,11 @@ components:
       properties:
         color_preference:
           $ref: '#/components/schemas/WidgetColorPreference'
+        count:
+          deprecated: true
+          description: The number of monitors to display.
+          format: int64
+          type: integer
         display_format:
           $ref: '#/components/schemas/WidgetMonitorSummaryDisplayFormat'
         hide_zero_counts:
@@ -9955,6 +9964,11 @@ components:
           type: boolean
         sort:
           $ref: '#/components/schemas/WidgetSort'
+        start:
+          deprecated: true
+          description: The start of the list. Typically 0.
+          format: int64
+          type: integer
         summary_type:
           $ref: '#/components/schemas/WidgetSummaryType'
         title:
