@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
 **Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "pipeline"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "pipeline"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewLogsPipelineProcessor
 
-`func NewLogsPipelineProcessor() *LogsPipelineProcessor`
+`func NewLogsPipelineProcessor(type_ string, ) *LogsPipelineProcessor`
 
 NewLogsPipelineProcessor instantiates a new LogsPipelineProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -98,11 +98,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsPipelineProcessor) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

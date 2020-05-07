@@ -20,6 +20,33 @@ Create a dashboard list
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.DashboardList{Author: openapiclient.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Create a dashboard list request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.CreateDashboardList(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateDashboardList`: DashboardList
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.CreateDashboardList`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -58,6 +85,33 @@ Name | Type | Description  | Notes
 Delete a dashboard list
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    listId := 987 // int64 | ID of the dashboard list to delete.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.DeleteDashboardList(context.Background(), listId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteDashboardList`: DashboardListDeleteResponse
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.DeleteDashboardList`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -102,6 +156,33 @@ Get a dashboard list
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    listId := 987 // int64 | ID of the dashboard list to fetch.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.GetDashboardList(context.Background(), listId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDashboardList`: DashboardList
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.GetDashboardList`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -145,6 +226,32 @@ Get all dashboard lists
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.ListDashboardLists(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.ListDashboardLists``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListDashboardLists`: DashboardListListResponse
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.ListDashboardLists`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -179,6 +286,34 @@ Other parameters are passed through a pointer to a apiListDashboardListsRequest 
 Update a dashboard list
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    listId := 987 // int64 | ID of the dashboard list to update.
+    body := openapiclient.DashboardList{Author: openapiclient.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Update a dashboard list request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.UpdateDashboardList(context.Background(), listId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateDashboardList`: DashboardList
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.UpdateDashboardList`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

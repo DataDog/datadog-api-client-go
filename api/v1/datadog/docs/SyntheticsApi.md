@@ -25,6 +25,34 @@ Create or clone a test
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.SyntheticsTestDetails{Config: openapiclient.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{openapiclient.SyntheticsAssertion{Operator: openapiclient.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: openapiclient.SyntheticsAssertionType{}}), Request: openapiclient.SyntheticsTestRequest{BasicAuth: openapiclient.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: openapiclient.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{openapiclient.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: openapiclient.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: openapiclient.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: openapiclient.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, MonitorId: int64(123), Name: "Name_example", Options: openapiclient.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{openapiclient.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: openapiclient.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: openapiclient.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: openapiclient.SyntheticsTestPauseStatus{}, Subtype: openapiclient.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: openapiclient.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | Details of the test to create.
+    fromTestId := "fromTestId_example" // string | Public ID of the test to clone, undefined if the test is newly created. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.CreateTest(context.Background(), body).FromTestId(fromTestId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateTest`: SyntheticsTestDetails
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.CreateTest`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -65,6 +93,33 @@ Delete multiple tests
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.SyntheticsDeleteTestsPayload{PublicIds: []string{"PublicIds_example")} // SyntheticsDeleteTestsPayload | Public ID list of the Synthetics tests to be deleted.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.DeleteTests(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteTests`: SyntheticsDeleteTestsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.DeleteTests`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -103,6 +158,36 @@ Name | Type | Description  | Notes
 Get test latest results (as summaries)
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the test for which to search results for.
+    fromTs := 987 // int64 | Timestamp from which to start querying results. (optional)
+    toTs := 987 // int64 | Timestamp up to which to query results. (optional)
+    probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetAPITestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestLatestResults``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAPITestLatestResults`: SyntheticsGetAPITestLatestResultsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetAPITestLatestResults`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -150,6 +235,34 @@ Get test result (API)
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the API test to which the target result belongs.
+    resultId := "resultId_example" // string | The ID of the result to get.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetAPITestResult(context.Background(), publicId, resultId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAPITestResult`: SyntheticsAPITestResultFull
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetAPITestResult`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -194,6 +307,36 @@ Name | Type | Description  | Notes
 Get test latest results (as summaries)
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the browser test for which to search results for.
+    fromTs := 987 // int64 | Timestamp from which to start querying results. (optional)
+    toTs := 987 // int64 | Timestamp up to which to query results. (optional)
+    probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBrowserTestLatestResults`: SyntheticsGetBrowserTestLatestResultsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTestLatestResults`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -241,6 +384,34 @@ Get test result (browser)
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the browser test to which the target result belongs.
+    resultId := "resultId_example" // string | The ID of the result to get.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTestResult(context.Background(), publicId, resultId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBrowserTestResult`: SyntheticsBrowserTestResultFull
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTestResult`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -286,6 +457,33 @@ Get test
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the test to get details from.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetTest(context.Background(), publicId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetTest`: SyntheticsTestDetails
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetTest`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -329,6 +527,33 @@ Get a list of all tests
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    checkType := "checkType_example" // string | API or browser to filter the list by type, undefined to get the unfiltered list. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.ListTests(context.Background(), ).CheckType(checkType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListTests`: SyntheticsListTestsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.ListTests`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -367,6 +592,34 @@ Name | Type | Description  | Notes
 Update test
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the test to get details from.
+    body := openapiclient.SyntheticsTestDetails{Config: openapiclient.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{openapiclient.SyntheticsAssertion{Operator: openapiclient.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: openapiclient.SyntheticsAssertionType{}}), Request: openapiclient.SyntheticsTestRequest{BasicAuth: openapiclient.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: openapiclient.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{openapiclient.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: openapiclient.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: , Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: , MonitorId: int64(123), Name: "Name_example", Options: openapiclient.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{openapiclient.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: openapiclient.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: openapiclient.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: openapiclient.SyntheticsTestPauseStatus{}, Subtype: openapiclient.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: openapiclient.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | New test details to be saved.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.UpdateTest(context.Background(), publicId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateTest`: SyntheticsTestDetails
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.UpdateTest`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -411,6 +664,34 @@ Name | Type | Description  | Notes
 Change test pause/live status
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the Synthetic test to update.
+    body := openapiclient.SyntheticsUpdateTestPauseStatusPayload{NewStatus: } // SyntheticsUpdateTestPauseStatusPayload | Pause/live status to set the given Synthetic test to.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(context.Background(), publicId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateTestPauseStatus`: bool
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.UpdateTestPauseStatus`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

@@ -21,6 +21,33 @@ Create an AWS integration
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | AWS Request Object
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.CreateAWSAccount(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateAWSAccount`: AWSAccountCreateResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateAWSAccount`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -59,6 +86,33 @@ Name | Type | Description  | Notes
 Generate a new external ID
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation).
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.CreateNewAWSExternalID(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateNewAWSExternalID``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateNewAWSExternalID`: AWSAccountCreateResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateNewAWSExternalID`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -99,6 +153,33 @@ Delete an AWS integration
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body :=  // AWSAccount | AWS request object
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.DeleteAWSAccount(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAWSAccount`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.DeleteAWSAccount`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -137,6 +218,35 @@ Name | Type | Description  | Notes
 List all AWS integrations
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
+    roleName := "roleName_example" // string | Only return AWS accounts that matches this role_name. (optional)
+    accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.ListAWSAccounts(context.Background(), ).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAWSAccounts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAWSAccounts`: AWSAccountListResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAWSAccounts`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -179,6 +289,32 @@ List namespace rules
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.ListAvailableAWSNamespaces(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAvailableAWSNamespaces``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAvailableAWSNamespaces`: []string
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAvailableAWSNamespaces`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -213,6 +349,36 @@ Other parameters are passed through a pointer to a apiListAvailableAWSNamespaces
 Update an AWS integration
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body :=  // AWSAccount | AWS request object
+    accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
+    roleName := "roleName_example" // string | Only return AWS accounts that match this `role_name`. Required if `account_id` is specified. (optional)
+    accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. Required if none of the other two options are specified. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.UpdateAWSAccount(context.Background(), body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.UpdateAWSAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateAWSAccount`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.UpdateAWSAccount`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

@@ -25,6 +25,33 @@ Create an API key
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.CreateAPIKey(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateAPIKey`: ApiKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.CreateAPIKey`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -64,6 +91,33 @@ Create an application key
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.CreateApplicationKey(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateApplicationKey`: ApplicationKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.CreateApplicationKey`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -102,6 +156,33 @@ Name | Type | Description  | Notes
 Delete an API key
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    key := "key_example" // string | The specific API key you are working with.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.DeleteAPIKey(context.Background(), key).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAPIKey`: ApiKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.DeleteAPIKey`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -146,6 +227,33 @@ Delete an application key
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    key := "key_example" // string | The specific APP key you are working with.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.DeleteApplicationKey(context.Background(), key).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteApplicationKey`: ApplicationKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.DeleteApplicationKey`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -188,6 +296,33 @@ Name | Type | Description  | Notes
 Get API key
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    key := "key_example" // string | The specific API key you are working with.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.GetAPIKey(context.Background(), key).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAPIKey`: ApiKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.GetAPIKey`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -232,6 +367,33 @@ Get an application key
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    key := "key_example" // string | The specific APP key you are working with.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.GetApplicationKey(context.Background(), key).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetApplicationKey`: ApplicationKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.GetApplicationKey`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -275,6 +437,32 @@ Get all API keys
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.ListAPIKeys(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAPIKeys`: ApiKeyListResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.ListAPIKeys`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -310,6 +498,32 @@ Get all application keys
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.ListApplicationKeys(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListApplicationKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListApplicationKeys`: ApplicationKeyListResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.ListApplicationKeys`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -344,6 +558,34 @@ Other parameters are passed through a pointer to a apiListApplicationKeysRequest
 Edit an API key
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    key := "key_example" // string | The specific API key you are working with.
+    body := openapiclient.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.UpdateAPIKey(context.Background(), key, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateAPIKey`: ApiKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.UpdateAPIKey`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -388,6 +630,34 @@ Name | Type | Description  | Notes
 Edit an application key
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    key := "key_example" // string | The specific APP key you are working with.
+    body := openapiclient.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.KeyManagementApi.UpdateApplicationKey(context.Background(), key, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateApplicationKey`: ApplicationKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.UpdateApplicationKey`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

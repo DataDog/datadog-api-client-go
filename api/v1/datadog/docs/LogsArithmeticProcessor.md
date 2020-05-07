@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Expression** | Pointer to **string** | Arithmetic operation between one or more log attributes. | 
 **IsReplaceMissing** | Pointer to **bool** | If &#x60;true&#x60;, it replaces all missing attributes of expression by &#x60;0&#x60;, &#x60;false&#x60; skip the operation if an attribute is missing. | [optional] [default to false]
 **Target** | Pointer to **string** | Name of the attribute that contains the result of the arithmetic operation. | 
-**Type** | Pointer to **string** | Type of processor | [optional] [readonly] [default to "arithmetic-processor"]
+**Type** | Pointer to **string** | Type of processor | [readonly] [default to "arithmetic-processor"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewLogsArithmeticProcessor
 
-`func NewLogsArithmeticProcessor(expression string, target string, ) *LogsArithmeticProcessor`
+`func NewLogsArithmeticProcessor(expression string, target string, type_ string, ) *LogsArithmeticProcessor`
 
 NewLogsArithmeticProcessor instantiates a new LogsArithmeticProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -114,11 +114,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsArithmeticProcessor) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 
