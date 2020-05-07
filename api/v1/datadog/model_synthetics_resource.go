@@ -12,11 +12,11 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsResource Object describing a resource which is the combination of requests (fetch, xhr) and Assets (HTML, CSS, JS, images).
+// SyntheticsResource Object describing a resource which is the combination of requests (fetch, XHR) and Assets (HTML, CSS, JS, images).
 type SyntheticsResource struct {
 	// Number of time the resource was collected.
 	Duration *float64 `json:"duration,omitempty"`
-	// HTTP methode associated to the resource.
+	// HTTP method associated to the resource.
 	Method *string `json:"method,omitempty"`
 	// Size of the resource in bytes.
 	Size *int64 `json:"size,omitempty"`

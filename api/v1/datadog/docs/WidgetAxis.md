@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The label of the axis to display on the graph. | [optional] 
 **Max** | Pointer to **string** | Specifies the maximum value to show on the y-axis. It takes a number, or auto for default behavior. | [optional] [default to "auto"]
 **Min** | Pointer to **string** | Specifies minimum value to show on the y-axis. It takes a number, or auto for default behavior. | [optional] [default to "auto"]
-**Scale** | Pointer to **string** | Specifies the scale type. Possible values are linear, log, sqrt, pow## (eg. pow2, pow0.5..). | [optional] [default to "linear"]
+**Scale** | Pointer to **string** | Specifies the scale type. Possible values are &#x60;linear&#x60;, &#x60;log&#x60;, &#x60;sqrt&#x60;, &#x60;pow##&#x60; (e.g. &#x60;pow2&#x60;, &#x60;pow0.5&#x60; etc.). | [optional] [default to "linear"]
 
 ## Methods
 

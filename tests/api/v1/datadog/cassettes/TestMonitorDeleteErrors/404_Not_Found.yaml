@@ -2,26 +2,23 @@
 version: 1
 interactions:
 - request:
-    body: |
-      {}
+    body: ""
     form: {}
     headers:
       Accept:
       - application/json
-      Content-Type:
-      - application/json
       Dd-Operation-Id:
-      - UpdateMonitor
+      - DeleteMonitor
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5238150092486320229"
+      - "1368062122583102612"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "109086571968833785"
+      - "4848297695300415836"
     url: https://api.datadoghq.com/api/v1/monitor/1234
-    method: PUT
+    method: DELETE
   response:
     body: '{"errors":["Monitor not found"]}'
     headers:
@@ -34,7 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:02 GMT
+      - Tue, 05 May 2020 14:24:22 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -46,17 +43,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2467871"
       X-Frame-Options:
       - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "500"
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "497"
-      X-Ratelimit-Reset:
-      - "8"
     status: 404 Not Found
     code: 404
     duration: ""

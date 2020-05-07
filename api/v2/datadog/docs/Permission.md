@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**PermissionAttributes**](PermissionAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the permission. | [optional] 
-**Type** | Pointer to **string** | Permissions resource type. | [optional] [readonly] [default to "permissions"]
+**Type** | Pointer to **string** | Permissions resource type. | [readonly] [default to "permissions"]
 
 ## Methods
 
 ### NewPermission
 
-`func NewPermission() *Permission`
+`func NewPermission(type_ string, ) *Permission`
 
 NewPermission instantiates a new Permission object
 This constructor will assign default values to properties that have it defined,
@@ -96,11 +96,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *Permission) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 ### AsUserResponseIncludedItem

@@ -20,6 +20,33 @@ Create a child organization
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.OrganizationCreateBody{Billing: openapiclient.Organization_billing{Type: "Type_example"}, Name: "Name_example", Subscription: openapiclient.Organization_subscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.CreateChildOrg(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateChildOrg`: OrganizationCreateResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateChildOrg`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -31,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateChildOrgRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organisation object that needs to be created | 
+ **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
 
 ### Return type
 
@@ -58,6 +85,33 @@ Name | Type | Description  | Notes
 Get organization information
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.GetOrg(context.Background(), publicId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrg`: OrganizationResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.GetOrg`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -102,6 +156,32 @@ List your managed organizations
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.ListOrgs(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListOrgs`: OrganizationListResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.ListOrgs`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -136,6 +216,34 @@ Other parameters are passed through a pointer to a apiListOrgsRequest struct via
 Update your organization
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
+    body := openapiclient.Organization{Billing: openapiclient.Organization_billing{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: openapiclient.Organization_settings{PrivateWidgetShare: false, Saml: openapiclient.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: openapiclient.AccessRole{}, SamlAutocreateUsersDomains: openapiclient.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: openapiclient.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: openapiclient.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: openapiclient.Organization_subscription{Type: "Type_example"}} // Organization | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.UpdateOrg(context.Background(), publicId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateOrg`: OrganizationResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UpdateOrg`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -180,6 +288,34 @@ Name | Type | Description  | Notes
 Upload IdP metadata
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The `public_id` of the organization you are operating with
+    idpFile := 987 // *os.File | The path to the XML metadata file you wish to upload.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.UploadIdPForOrg(context.Background(), publicId, idpFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UploadIdPForOrg`: IdpResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UploadIdPForOrg`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

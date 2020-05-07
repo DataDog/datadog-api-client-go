@@ -21,6 +21,31 @@ Cancel a downtime
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    downtimeId := 987 // int64 | ID of the downtime to cancel.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DowntimesApi.CancelDowntime(context.Background(), downtimeId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
 ### Path Parameters
 
 
@@ -64,6 +89,33 @@ Cancel downtimes by scope
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.CancelDowntimesByScopeRequest{Scope: "Scope_example"} // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DowntimesApi.CancelDowntimesByScope(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CancelDowntimesByScope`: CanceledDowntimesIds
+    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.CancelDowntimesByScope`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -103,6 +155,33 @@ Schedule a downtime
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.Downtime{Active: true, Canceled: int64(123), CreatorId: 123, Disabled: false, DowntimeType: 123, End: int64(123), Id: int64(123), Message: "Message_example", MonitorId: int64(123), MonitorTags: []string{"MonitorTags_example"), ParentId: int64(123), Recurrence: openapiclient.DowntimeRecurrence{Period: 123, Type: "Type_example", UntilDate: int64(123), UntilOccurrences: 123, WeekDays: []string{"WeekDays_example")}, Scope: []string{"Scope_example"), Start: int64(123), Timezone: "Timezone_example", UpdaterId: 123} // Downtime | Schedule a downtime request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DowntimesApi.CreateDowntime(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateDowntime`: Downtime
+    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.CreateDowntime`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -141,6 +220,33 @@ Name | Type | Description  | Notes
 Get a downtime
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    downtimeId := 987 // int64 | ID of the downtime to fetch.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DowntimesApi.GetDowntime(context.Background(), downtimeId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDowntime`: Downtime
+    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.GetDowntime`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -185,6 +291,33 @@ Get all downtimes
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    currentOnly := true // bool | Only return downtimes that are active when the request is made. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DowntimesApi.ListDowntimes(context.Background(), ).CurrentOnly(currentOnly).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListDowntimes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListDowntimes`: []Downtime
+    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.ListDowntimes`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -223,6 +356,34 @@ Name | Type | Description  | Notes
 Update a downtime
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    downtimeId := 987 // int64 | ID of the downtime to update.
+    body := openapiclient.Downtime{Active: true, Canceled: int64(123), CreatorId: 123, Disabled: false, DowntimeType: 123, End: int64(123), Id: int64(123), Message: "Message_example", MonitorId: int64(123), MonitorTags: []string{"MonitorTags_example"), ParentId: int64(123), Recurrence: openapiclient.DowntimeRecurrence{Period: 123, Type: "Type_example", UntilDate: int64(123), UntilOccurrences: 123, WeekDays: []string{"WeekDays_example")}, Scope: []string{"Scope_example"), Start: int64(123), Timezone: "Timezone_example", UpdaterId: 123} // Downtime | Update a downtime request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DowntimesApi.UpdateDowntime(context.Background(), downtimeId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateDowntime`: Downtime
+    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.UpdateDowntime`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

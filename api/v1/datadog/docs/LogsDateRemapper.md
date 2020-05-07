@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sources** | Pointer to **[]string** | Array of source attributes. | 
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "date-remapper"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "date-remapper"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewLogsDateRemapper
 
-`func NewLogsDateRemapper(sources []string, ) *LogsDateRemapper`
+`func NewLogsDateRemapper(sources []string, type_ string, ) *LogsDateRemapper`
 
 NewLogsDateRemapper instantiates a new LogsDateRemapper object
 This constructor will assign default values to properties that have it defined,
@@ -67,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsDateRemapper) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

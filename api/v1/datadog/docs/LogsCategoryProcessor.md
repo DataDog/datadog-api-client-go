@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Categories** | Pointer to [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessor_categories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
 **Target** | Pointer to **string** | Name of the target attribute which value is defined by the matching category. | 
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "category-processor"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "category-processor"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewLogsCategoryProcessor
 
-`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategories, target string, ) *LogsCategoryProcessor`
+`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategories, target string, type_ string, ) *LogsCategoryProcessor`
 
 NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -88,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsCategoryProcessor) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

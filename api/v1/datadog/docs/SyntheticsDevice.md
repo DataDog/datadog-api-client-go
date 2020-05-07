@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Height** | Pointer to **int64** | Screen height of the device. | 
 **Id** | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | 
-**IsMobile** | Pointer to **bool** | Wether or not the device is a mobile. | [optional] 
+**IsMobile** | Pointer to **bool** | Whether or not the device is a mobile. | [optional] 
 **Name** | Pointer to **string** | The device name. | 
 **Width** | Pointer to **int64** | Screen width of the device. | 
 

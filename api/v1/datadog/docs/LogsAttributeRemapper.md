@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Sources** | Pointer to **[]string** | Array of source attributes. | 
 **Target** | Pointer to **string** | Final attribute or tag name to remap the sources to. | 
 **TargetType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "attribute-remapper"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "attribute-remapper"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewLogsAttributeRemapper
 
-`func NewLogsAttributeRemapper(sources []string, target string, ) *LogsAttributeRemapper`
+`func NewLogsAttributeRemapper(sources []string, target string, type_ string, ) *LogsAttributeRemapper`
 
 NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
 This constructor will assign default values to properties that have it defined,
@@ -192,11 +192,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsAttributeRemapper) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

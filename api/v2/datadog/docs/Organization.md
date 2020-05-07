@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**OrganizationAttributes**](OrganizationAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the organization. | [optional] 
-**Type** | Pointer to **string** | Organizations resource type. | [optional] [readonly] [default to "orgs"]
+**Type** | Pointer to **string** | Organizations resource type. | [readonly] [default to "orgs"]
 
 ## Methods
 
 ### NewOrganization
 
-`func NewOrganization() *Organization`
+`func NewOrganization(type_ string, ) *Organization`
 
 NewOrganization instantiates a new Organization object
 This constructor will assign default values to properties that have it defined,
@@ -96,11 +96,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *Organization) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 ### AsUserResponseIncludedItem

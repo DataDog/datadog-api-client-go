@@ -29,7 +29,7 @@ var testServiceCheckMonitor = datadog.Monitor{
 	},
 }
 
-var testMonitorSLO = datadog.ServiceLevelObjective{
+var testMonitorSLO = datadog.ServiceLevelObjectiveRequest{
 	Type:        "monitor",
 	Name:        "Go client Critical Foo Host Uptime",
 	Description: *datadog.NewNullableString(datadog.PtrString("Track the uptime of host foo which is critical to us.")),
@@ -41,7 +41,7 @@ var testMonitorSLO = datadog.ServiceLevelObjective{
 	}},
 }
 
-var testEventSLO = datadog.ServiceLevelObjective{
+var testEventSLO = datadog.ServiceLevelObjectiveRequest{
 	Type:        "metric",
 	Name:        "Go client HTTP Return Codes",
 	Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
@@ -122,6 +122,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	assert.Equal(slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId()).
 		FromTs(now - 11).ToTs(now - 1).Execute()
@@ -188,6 +189,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 	assert.Equal(slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId()).
 		FromTs(now - 11).ToTs(now - 1).Execute()
@@ -287,7 +289,7 @@ func TestSLOCreateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(datadog.ServiceLevelObjective{}).Execute()
+			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(datadog.ServiceLevelObjectiveRequest{}).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -336,7 +338,21 @@ func TestSLOUpdateErrors(t *testing.T) {
 	}{
 		"400 Bad Request": {WithTestAuth, datadog.ServiceLevelObjective{}, 400},
 		"403 Forbidden":   {WithFakeAuth, datadog.ServiceLevelObjective{}, 403},
-		"404 Not Found":   {WithTestAuth, testEventSLO, 404},
+		"404 Not Found": {WithTestAuth, datadog.ServiceLevelObjective{
+			Type:        "metric",
+			Name:        "Go client HTTP Return Codes",
+			Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
+			Tags:        &[]string{"app:httpd"},
+			Thresholds: []datadog.SLOThreshold{{
+				Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
+				Target:    95.0,
+				Warning:   datadog.PtrFloat64(98.0),
+			}},
+			Query: &datadog.ServiceLevelObjectiveQuery{
+				Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
+				Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
+			},
+		}, 404},
 	}
 
 	for name, tc := range testCases {
@@ -472,6 +488,7 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.GreaterOrEqual(len(sloResp.GetData()), 1)
 	slo := sloResp.GetData()[0]
 	defer deleteSLOIfExists(ctx, slo.GetId())
 	assert.Equal(200, httpresp.StatusCode)
@@ -491,8 +508,11 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 
 			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, tc.ID).FromTs(123).ToTs(12).Execute()
+			assert.Error(err)
+			assert.NotNil(httpresp, err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

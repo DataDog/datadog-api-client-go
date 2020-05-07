@@ -61,7 +61,7 @@ tags:
     end times, prevent all alerting related to specified Datadog tags.
   name: Downtimes
 - description: |-
-    The events service allows you to programatically post events to the event stream
+    The events service allows you to programmatically post events to the event stream
     and fetch events from the event stream. Events are limited to 4000 characters. If an event is sent out with a message
     containing more than 4000 characters only the 4000 first characters are displayed.
   name: Events
@@ -179,7 +179,7 @@ tags:
     The tag endpoint allows you to tag hosts with keywords
     meaningful to you, like `role:database`. All metrics sent
     from a host have its tags applied. When fetching and applying
-    tags to a particular host, refer to hosts by name (yourhost.example.com).
+    tags to a particular host, refer to hosts by name (`yourhost.example.com`).
 
     The component of your infrastructure responsible for a tag is identified
     by a source. For example, some valid sources include nagios, hudson, jenkins,
@@ -189,8 +189,8 @@ tags:
     [documentation page](https://docs.datadoghq.com/tagging).
   name: Tags
 - description: |-
-    The useage metering API allows you to get hourly, daily, and
-    monthly useage across multiple facets of Datadog.
+    The usage metering API allows you to get hourly, daily, and
+    monthly usage across multiple facets of Datadog.
     This API is available to all Pro and Enterprise customers.
     Usage is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
 
@@ -1330,7 +1330,7 @@ paths:
       - description: |-
           A JSON document defining the graph. `graph_def` can be used instead of `metric_query`.
           The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
-          and should be formatted to a single line then URLEncoded.
+          and should be formatted to a single line then URL encoded.
         explode: true
         in: query
         name: graph_def
@@ -1338,8 +1338,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: A title for the graph. If no title is specified, the graph doesn’t
-          have a title.
+      - description: A title for the graph. If no title is specified, the graph does
+          not have a title.
         explode: true
         in: query
         name: title
@@ -1927,7 +1927,10 @@ paths:
   /api/v1/integration/aws/logs/check_async:
     post:
       description: |-
-        Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
+        Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input
+        is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this
+        endpoint can be polled intermittently instead of blocking.
+
         - Returns a status of 'created' when it's checking if the Lambda exists in the account.
         - Returns a status of 'waiting' while checking.
         - Returns a status of 'checked and ok' if the Lambda exists.
@@ -2002,7 +2005,7 @@ paths:
       - AWS Logs Integration
     post:
       description: Enable automatic log collection for a list of services. This should
-        be run after running `CreateAWSLambdaARN` to save the config.
+        be run after running `CreateAWSLambdaARN` to save the configuration.
       operationId: EnableAWSLogServices
       requestBody:
         content:
@@ -2350,7 +2353,7 @@ paths:
       x-codegen-request-body-name: body
     put:
       description: |-
-        Update a Datadog-GCP integrations host_filters and/or automute.
+        Update a Datadog-GCP integrations host_filters and/or auto-mute.
         Requires a `project_id` and `client_email`, however these fields cannot be updated.
         If you need to update these fields, delete and use the create (`POST`) endpoint.
         The unspecified fields will keep their original values.
@@ -2574,11 +2577,8 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/logs/config/index-order:
     get:
-      description: |-
-        Get the current order of your log indexes. This endpoint takes no JSON arguments.
-
-        **Note: This endpoint is in public beta.**
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+      description: Get the current order of your log indexes. This endpoint takes
+        no JSON arguments.
       operationId: GetLogsIndexOrder
       responses:
         "200":
@@ -2596,13 +2596,13 @@ paths:
       summary: Get indexes order
       tags:
       - Logs Indexes
+      x-unstable: |-
+        **Note: This endpoint is in public beta.**
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     put:
       description: |-
         This endpoint updates the index order of your organization.
         It returns the index order object passed in the request body when the request is successful.
-
-        **Note: This endpoint is in public beta.**
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
       operationId: UpdateLogsIndexOrder
       requestBody:
         content:
@@ -2633,6 +2633,9 @@ paths:
       tags:
       - Logs Indexes
       x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note: This endpoint is in public beta.**
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/logs/config/indexes:
     get:
       description: |-
@@ -2719,7 +2722,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LogsIndex'
-        description: Object containing the new LogsIndex.
+        description: Object containing the new `LogsIndex`.
       responses:
         "200":
           content:
@@ -3143,7 +3146,7 @@ paths:
           type: string
         style: form
       - description: |-
-          A comma separated list indicating what tags, if any, should be used to filter the list of monitorsby scope.
+          A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope.
           For example, `host:host0`.
         explode: true
         in: query
@@ -3229,7 +3232,112 @@ paths:
       tags:
       - Monitors
     post:
-      description: Create a monitor using the specified options.
+      description: |-
+        Create a monitor using the specified options.
+
+        #### Monitor Types
+
+        The type of monitor chosen from:
+
+        - anomaly: `query alert`
+        - APM: `query alert`
+        - composite: `composite`
+        - custom: `service check`
+        - event: `event alert`
+        - forecast: `query alert`
+        - host: `service check`
+        - integration: `query alert` or `service check`
+        - live process: `process alert`
+        - logs: `logs alert`
+        - metric: `metric alert`
+        - network: `service check`
+        - outlier: `query alert`
+        - process: `service query`
+        - rum: `alert`
+        - watchdog: `event alert`
+
+        #### Query Types
+
+        **Metric Alert Query**
+
+        Example: `time_aggr(time_window):space_aggr:metric{tags} [by {key}] operator #`
+
+        - `time_aggr`: avg, sum, max, min, change, or pct_change
+        - `time_window`: `last_#m` (with `#` being 5, 10, 15, or 30) or `last_#h`(with `#` being 1, 2, or 4), or `last_1d`
+        - `space_aggr`: avg, sum, min, or max
+        - `tags`: one or more tags (comma-separated), or *
+        - `key`: a 'key' in key:value tag syntax; defines a separate alert for each tag in the group (multi-alert)
+        - `operator`: <, <=, >, >=, ==, or !=
+        - `#`: an integer or decimal number used to set the threshold
+
+        If you are using the `_change_` or `_pct_change_` time aggregator, instead use `change_aggr(time_aggr(time_window),
+        timeshift):space_aggr:metric{tags} [by {key}] operator #` with:
+
+        - `change_aggr` change, pct_change
+        - `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/monitor_types/#define-the-conditions)
+        - `time_window` last\_#m (1, 5, 10, 15, or 30), last\_#h (1, 2, or 4), or last_#d (1 or 2)
+        - `timeshift` #m_ago (5, 10, 15, or 30), #h_ago (1, 2, or 4), or 1d_ago
+
+        Use this to create an outlier monitor using the following query:
+        `avg(last_30m):outliers(avg:system.cpu.user{role:es-events-data} by {host}, 'dbscan', 7) > 0`
+
+        **Service Check Query**
+
+        Example: `"check".over(tags).last(count).count_by_status()`
+
+        - **`check`** name of the check, e.g. `datadog.agent.up`
+        - **`tags`** one or more quoted tags (comma-separated), or "*". e.g.: `.over("env:prod", "role:db")`
+        - **`count`** must be at >= your max threshold (defined in the `options`).
+        e.g. if you want to notify on 1 critical, 3 ok and 2 warn statuses count should be 3. It is limited to 100.
+
+        **Event Alert Query**
+
+        Example: `events('sources:nagios status:error,warning priority:normal tags: "string query"').rollup("count").last("1h")"`
+
+        - **`event`**, the event query string:
+        - **`string_query`** free text query to match against event title and text.
+        - **`sources`** event sources (comma-separated).
+        - **`status`** event statuses (comma-separated). Valid options: error, warn, and info.
+        - **`priority`** event priorities (comma-separated). Valid options: low, normal, all.
+        - **`host`** event reporting host (comma-separated).
+        - **`tags`** event tags (comma-separated).
+        - **`excluded_tags`** excluded event tags (comma-separated).
+        - **`rollup`** the stats roll-up method. `count` is the only supported method now.
+        - **`last`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d. This value should not exceed 48 hours.
+
+        **Process Alert Query**
+
+        Example: `processes(search).over(tags).rollup('count').last(timeframe) operator #`
+
+        - **`search`** free text search string for querying processes.
+        Matching processes match results on the [Live Processes](https://docs.datadoghq.com/infrastructure/process/?tab=linuxwindows) page.
+        - **`tags`** one or more tags (comma-separated)
+        - **`timeframe`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d
+        - **`operator`** <, <=, >, >=, ==, or !=
+        - **`#`** an integer or decimal number used to set the threshold
+
+        **Logs Alert Query**
+
+        Example: `logs(query).index(index_name).rollup(rollup_method[, measure]).last(time_window) operator #`
+
+        - **`query`** The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
+        - **`index_name`** For multi-index organizations, the log index in which the request is performed.
+        - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
+        - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
+        - **`time_window`** #m (5, 10, 15, or 30), #h (1, 2, or 4, 24)
+        - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
+        - **`#`** an integer or decimal number used to set the threshold.
+
+        **Composite Query**
+
+        Example: `12345 && 67890`, where `12345` and `67890` are the IDs of non-composite monitors
+
+        * **`name`** [*required*, *default* = **dynamic, based on query**]: The name of the alert.
+        * **`message`** [*required*, *default* = **dynamic, based on query**]: A message to include with notifications for this monitor.
+        Email notifications can be sent to specific users by using the same '@username' notation as events.
+        * **`tags`** [*optional*, *default* = **empty list**]: A list of tags to associate with your monitor.
+        When getting all monitor details via the API, use the `monitor_tags` argument to filter results by these tags.
+        It is only available via the API and isn't visible or editable in the Datadog UI.
       operationId: CreateMonitor
       requestBody:
         content:
@@ -3353,6 +3461,15 @@ paths:
           format: int64
           type: integer
         style: simple
+      - description: Delete the monitor even if it's referenced by other resources
+          (e.g. SLO, composite monitor).
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3454,7 +3571,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Monitor'
+              $ref: '#/components/schemas/MonitorUpdateRequest'
         description: Edit a monitor request body.
         required: true
       responses:
@@ -3530,7 +3647,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrganizationCreateBody'
-        description: Organisation object that needs to be created
+        description: Organization object that needs to be created
         required: true
       responses:
         "200":
@@ -3825,7 +3942,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceLevelObjective'
+              $ref: '#/components/schemas/ServiceLevelObjectiveRequest'
         description: Service level objective request object.
         required: true
       responses:
@@ -3952,6 +4069,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Delete the monitor even if it's referenced by other resources
+          (e.g. SLO, composite monitor).
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4129,6 +4255,9 @@ paths:
       summary: Get an SLO's history
       tags:
       - Service Level Objectives
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/synthetics/tests:
     get:
       description: Get the list of all Synthetic tests (can be filtered by type).
@@ -4356,7 +4485,7 @@ paths:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: |-
             - JSON format is wrong
-            - Test cannot be deleted as it's used elsewhere (as a subtest or in an uptime widget)
+            - Test cannot be deleted as it's used elsewhere (as a sub-test or in an uptime widget)
             - Some IDs are not owned by the user
         "403":
           content:
@@ -4446,7 +4575,7 @@ paths:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: |-
             - JSON format is wrong
-            - Updating subtype is forbidden
+            - Updating sub-type is forbidden
         "403":
           content:
             application/json:
@@ -5739,7 +5868,7 @@ paths:
       - Users
     put:
       description: |-
-        Update a user informations.
+        Update a user information.
 
         **Note**: It can only be used with application keys belonging to administrators.
       operationId: UpdateUser
@@ -6625,7 +6754,7 @@ components:
       - widgets
       type: object
     DashboardDeleteResponse:
-      description: Response from the DeleteDashboard call.
+      description: Response from the delete dashboard call.
       example:
         deleted_dashboard_id: deleted_dashboard_id
       properties:
@@ -6908,7 +7037,7 @@ components:
           readOnly: true
           type: boolean
         canceled:
-          description: If a scheduled downtime is cancelled.
+          description: If a scheduled downtime is canceled.
           example: 1412799983
           format: int64
           nullable: true
@@ -7041,7 +7170,7 @@ components:
           type: string
         until_date:
           description: |-
-            The date at which the recurrence should end as a POSIX timestmap.
+            The date at which the recurrence should end as a POSIX timestamp.
             `until_occurences` and `until_date` are mutually exclusive.
           example: 1447786293
           format: int64
@@ -7391,11 +7520,11 @@ components:
         - '*'
       properties:
         auth_provider_x509_cert_url:
-          description: Should be https://www.googleapis.com/oauth2/v1/certs.
+          description: Should be `https://www.googleapis.com/oauth2/v1/certs`.
           example: https://www.googleapis.com/oauth2/v1/certs
           type: string
         auth_uri:
-          description: Should be https://accounts.google.com/o/oauth2/auth.
+          description: Should be `https://accounts.google.com/o/oauth2/auth`.
           example: https://accounts.google.com/o/oauth2/auth
           type: string
         automute:
@@ -7411,8 +7540,8 @@ components:
           type: string
         client_x509_cert_url:
           description: |-
-            Should be https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
-            where <CLIENT_EMAIL> is the email found in your JSON service account key.
+            Should be `https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>`
+            where `<CLIENT_EMAIL>` is the email found in your JSON service account key.
           example: https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
           type: string
         errors:
@@ -7444,7 +7573,7 @@ components:
           example: datadog-apitest
           type: string
         token_uri:
-          description: Should be https://accounts.google.com/o/oauth2/token.
+          description: Should be `https://accounts.google.com/o/oauth2/token`.
           example: https://accounts.google.com/o/oauth2/token
           type: string
         type:
@@ -7469,7 +7598,7 @@ components:
           description: |-
             A JSON document defining the graph. `graph_def` can be used instead of `metric_query`.
             The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
-            and should be formatted to a single line then URLEncoded.
+            and should be formatted to a single line then URL encoded.
           type: string
         metric_query:
           description: The metric query. One of `metric_query` or `graph_def` is required.
@@ -8284,7 +8413,7 @@ components:
           - days-3
           - days-7
           items:
-            description: One of the log indexes set up for your organisation. [Multiple
+            description: One of the log indexes set up for your organization. [Multiple
               Indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes)
             type: string
           type: array
@@ -8385,6 +8514,7 @@ components:
       required:
       - expression
       - target
+      - type
       type: object
     LogsAttributeRemapper:
       description: |-
@@ -8426,6 +8556,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     LogsCategoryProcessor:
       description: |-
@@ -8462,6 +8593,7 @@ components:
       required:
       - categories
       - target
+      - type
       type: object
     LogsDateRemapper:
       description: |-
@@ -8498,9 +8630,11 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsExclusion:
-      description: Represents the index exclusion filter object from config API.
+      description: Represents the index exclusion filter object from configuration
+        API.
       example:
         filter:
           sample_rate: 1
@@ -8562,7 +8696,7 @@ components:
           - network.client.ip
           description: Array of source attributes.
           items:
-            description: Attribute to geo-localise the IP from.
+            description: Attribute to geo-localize the IP from.
             type: string
           type: array
         target:
@@ -8578,6 +8712,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     LogsGrokParser:
       description: |-
@@ -8606,6 +8741,7 @@ components:
       required:
       - grok
       - source
+      - type
       type: object
     LogsGrokParserRules:
       description: Set of rules for the grok parser.
@@ -8871,6 +9007,7 @@ components:
       - lookup_table
       - source
       - target
+      - type
       type: object
     LogsMessageRemapper:
       description: |-
@@ -8896,6 +9033,7 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsPipeline:
       description: |-
@@ -8972,6 +9110,8 @@ components:
           description: Type of processor.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     LogsPipelinesOrder:
       description: Object containing the ordered list of pipeline IDs.
@@ -9039,7 +9179,7 @@ components:
           description: Name of the processor.
           type: string
       type: object
-      x-oneOf-name: LogsProcessor
+      x-one-of-name: LogsProcessor
     LogsQueryCompute:
       description: Define computation for a log query.
       properties:
@@ -9079,6 +9219,7 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsSort:
       description: Time-ascending `asc` or time-descending `desc`results.
@@ -9096,16 +9237,16 @@ components:
         Each incoming status value is mapped as follows.
 
           - Integers from 0 to 7 map to the Syslog severity standards
-          - Strings beginning with emerg or f (case-insensitive) map to emerg (0)
-          - Strings beginning with a (case-insensitive) map to alert (1)
-          - Strings beginning with c (case-insensitive) map to critical (2)
-          - Strings beginning with err (case-insensitive) map to error (3)
-          - Strings beginning with w (case-insensitive) map to warning (4)
-          - Strings beginning with n (case-insensitive) map to notice (5)
-          - Strings beginning with i (case-insensitive) map to info (6)
-          - Strings beginning with d, trace or verbose (case-insensitive) map to debug (7)
-          - Strings beginning with o or matching OK or Success (case-insensitive) map to OK
-          - All others map to info (6)
+          - Strings beginning with `emerg` or f (case-insensitive) map to `emerg` (0)
+          - Strings beginning with `a` (case-insensitive) map to `alert` (1)
+          - Strings beginning with `c` (case-insensitive) map to `critical` (2)
+          - Strings beginning with `err` (case-insensitive) map to `error` (3)
+          - Strings beginning with `w` (case-insensitive) map to `warning` (4)
+          - Strings beginning with `n` (case-insensitive) map to `notice` (5)
+          - Strings beginning with `i` (case-insensitive) map to `info` (6)
+          - Strings beginning with `d`, `trace` or `verbose` (case-insensitive) map to `debug` (7)
+          - Strings beginning with `o` or matching `OK` or `Success` (case-insensitive) map to OK
+          - All others map to `info` (6)
 
           **Note:** If multiple log status remapper processors can be applied to a given log,
           only the first one (according to the pipelines order) is taken into account.
@@ -9123,6 +9264,7 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsStringBuilderProcessor:
       description: |-
@@ -9160,6 +9302,7 @@ components:
       required:
       - target
       - template
+      - type
       type: object
     LogsTraceRemapper:
       description: |-
@@ -9183,6 +9326,8 @@ components:
           description: Type of processor.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     LogsURLParser:
       description: This processor extracts query parameters and other important parameters
@@ -9214,6 +9359,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     LogsUserAgentParser:
       description: |-
@@ -9222,7 +9368,7 @@ components:
       properties:
         is_encoded:
           default: false
-          description: Define if the source attribute is url encoded or not.
+          description: Define if the source attribute is URL encoded or not.
           type: boolean
         sources:
           default:
@@ -9245,6 +9391,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     MetricMetadata:
       description: Object with all metric related metadata.
@@ -9542,7 +9689,7 @@ components:
       type: object
     MonitorDeviceID:
       description: ID of the device the Synthetics monitor is running on. Same as
-        SyntheticsDeviceID.
+        `SyntheticsDeviceID`.
       enum:
       - laptop_large
       - tablet
@@ -9593,9 +9740,11 @@ components:
         aggregation:
           $ref: '#/components/schemas/MonitorOptions_aggregation'
         device_ids:
+          deprecated: true
           description: IDs of the device the Synthetics monitor is running on.
           items:
             $ref: '#/components/schemas/MonitorDeviceID'
+          readOnly: true
           type: array
         enable_logs_sample:
           description: Whether or not to send a log sample when the log monitor triggers.
@@ -9624,7 +9773,7 @@ components:
             - If `False`, `[Triggered] Monitor Title`
           type: boolean
         locked:
-          description: Wether or not the monitor is locked (only editable by creator
+          description: Whether or not the monitor is locked (only editable by creator
             and admins).
           type: boolean
         min_failure_duration:
@@ -9697,6 +9846,7 @@ components:
           description: Information about the downtime applied to the monitor.
           type: object
         synthetics_check_id:
+          deprecated: true
           description: ID of the corresponding Synthetic check.
           format: int64
           nullable: true
@@ -9771,7 +9921,7 @@ components:
           format: int64
           type: integer
         last_resolved_ts:
-          description: Lastest timestamp the monitor group was resolved.
+          description: Latest timestamp the monitor group was resolved.
           format: int64
           type: integer
         last_triggered_ts:
@@ -9882,7 +10032,9 @@ components:
           type: number
       type: object
     MonitorType:
-      description: The type of the monitor.
+      description: The type of the monitor. For more information about `type`, see
+        the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/)
+        docs.
       enum:
       - composite
       - event alert
@@ -9890,6 +10042,7 @@ components:
       - metric alert
       - process alert
       - query alert
+      - rum alert
       - service check
       - synthetics alert
       - trace-analytics alert
@@ -9901,9 +10054,123 @@ components:
       - METRIC_ALERT
       - PROCESS_ALERT
       - QUERY_ALERT
+      - RUM_ALERT
       - SERVICE_CHECK
       - SYNTHETICS_ALERT
       - TRACE_ANALYTICS_ALERT
+    MonitorUpdateRequest:
+      description: Object describing a monitor.
+      example:
+        creator:
+          name: name
+          handle: handle
+          email: email
+        created: 2000-01-23T04:56:07.000+00:00
+        query: query
+        message: message
+        multi: true
+        tags:
+        - tags
+        - tags
+        deleted: 2000-01-23T04:56:07.000+00:00
+        name: name
+        options:
+          no_data_timeframe: 2
+          silenced:
+            key: 9
+          synthetics_check_id: 3
+          notify_no_data: false
+          enable_logs_sample: true
+          aggregation:
+            metric: metrics.name
+            group_by: host
+            type: count
+          evaluation_delay: 6
+          notify_audit: false
+          min_location_failed: 5
+          new_host_delay: 5
+          renotify_interval: 7
+          thresholds:
+            critical: 2.027123023002322
+            warning: 1.0246457001441578
+            warning_recovery: 1.4894159098541704
+            ok: 7.386281948385884
+            critical_recovery: 4.145608029883936
+            unknown: 1.2315135367772556
+          min_failure_duration: 1055
+          threshold_windows:
+            trigger_window: trigger_window
+            recovery_window: recovery_window
+          include_tags: true
+          require_full_window: true
+          device_ids:
+          - null
+          - null
+          escalation_message: none
+          timeout_h: 6
+          locked: true
+        modified: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        state:
+          groups:
+            key:
+              last_triggered_ts: 5
+              last_notified_ts: 1
+              name: name
+              last_resolved_ts: 4
+              last_nodata_ts: 7
+      properties:
+        created:
+          description: Timestamp of the monitor creation.
+          format: date-time
+          readOnly: true
+          type: string
+        creator:
+          $ref: '#/components/schemas/Creator'
+        deleted:
+          description: Whether or not the monitor is deleted. (Always `null`)
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        id:
+          description: ID of this monitor.
+          format: int64
+          readOnly: true
+          type: integer
+        message:
+          description: A message to include with notifications for this monitor.
+          type: string
+        modified:
+          description: Last timestamp when the monitor was edited.
+          format: date-time
+          readOnly: true
+          type: string
+        multi:
+          description: Whether or not the monitor is broken down on different groups.
+          readOnly: true
+          type: boolean
+        name:
+          description: The monitor name.
+          type: string
+        options:
+          $ref: '#/components/schemas/MonitorOptions'
+        overall_state:
+          $ref: '#/components/schemas/MonitorOverallStates'
+        query:
+          description: The monitor query.
+          type: string
+        state:
+          $ref: '#/components/schemas/MonitorState'
+        tags:
+          description: Tags associated to your monitor.
+          items:
+            description: A Datadog tag.
+            type: string
+          type: array
+        type:
+          $ref: '#/components/schemas/MonitorType'
+      type: object
     NoteWidgetDefinition:
       description: The notes and links widget is similar to free text widget, but
         allows for more formatting options.
@@ -10195,7 +10462,7 @@ components:
       - service_name
       type: object
     Point:
-      description: Array of timeserie points.
+      description: Array of timeseries points.
       example:
       - 1575317847
       - 0.5
@@ -10238,7 +10505,7 @@ components:
         or log query.
       properties:
         autoscale:
-          description: Whether to use autoscaling or not.
+          description: Whether to use auto-scaling or not.
           type: boolean
         custom_unit:
           description: Display a unit of your choice on the widget.
@@ -10591,7 +10858,7 @@ components:
           $ref: '#/components/schemas/SLOHistoryResponse_data'
         errors:
           description: A list of errors while querying the history data for the service
-            level obective.
+            level objective.
           items:
             $ref: '#/components/schemas/SLOHistoryResponseError'
           type: array
@@ -10679,7 +10946,6 @@ components:
             name: name
             handle: handle
             email: email
-          type_id: 0
           query:
             denominator: denominator
             numerator: numerator
@@ -10713,7 +10979,6 @@ components:
             name: name
             handle: handle
             email: email
-          type_id: 0
           query:
             denominator: denominator
             numerator: numerator
@@ -10770,7 +11035,6 @@ components:
             name: name
             handle: handle
             email: email
-          type_id: 0
           query:
             denominator: denominator
             numerator: numerator
@@ -10994,7 +11258,6 @@ components:
           name: name
           handle: handle
           email: email
-        type_id: 0
         query:
           denominator: denominator
           numerator: numerator
@@ -11027,7 +11290,7 @@ components:
       properties:
         created_at:
           description: |-
-            Creation timestamp (unix time in seconds)
+            Creation timestamp (UNIX time in seconds)
 
             Always included in service level objective responses.
           format: int64
@@ -11054,7 +11317,7 @@ components:
           - env:prod
           - role:mysql
           items:
-            description: A group name, for instance "env:prod".
+            description: A group name, for instance `env:prod`.
             type: string
           type: array
         id:
@@ -11066,7 +11329,7 @@ components:
           type: string
         modified_at:
           description: |-
-            Modification timestamp (unix time in seconds)
+            Modification timestamp (UNIX time in seconds)
 
             Always included in service level objective responses.
           format: int64
@@ -11085,7 +11348,6 @@ components:
           description: |-
             The union of monitor tags for all monitors referenced by the `monitor_ids`
             field.
-
             Always included in service level objective responses for monitor service level
             objectives (but may be empty). Ignored in create/update requests. Does not
             affect which monitors are included in the service level objective (that is
@@ -11120,8 +11382,128 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/SLOType'
-        type_id:
-          $ref: '#/components/schemas/SLOTypeNumeric'
+      required:
+      - name
+      - thresholds
+      - type
+    ServiceLevelObjectiveRequest:
+      description: |-
+        A service level objective object includes a service level indicator, thresholds
+        for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
+      example:
+        creator:
+          name: name
+          handle: handle
+          email: email
+        thresholds:
+        - warning_display: warning_display
+          target_display: "99.9"
+          warning: 5.637376656633329
+          target: 5.962133916683182
+        - warning_display: warning_display
+          target_display: "99.9"
+          warning: 5.637376656633329
+          target: 5.962133916683182
+        query:
+          denominator: denominator
+          numerator: numerator
+        monitor_ids:
+        - 1
+        - 1
+        name: name
+        created_at: 0
+        description: description
+        groups:
+        - env:prod
+        - role:mysql
+        id: id
+        modified_at: 6
+        tags:
+        - env:prod
+        - app:core
+      properties:
+        created_at:
+          description: |-
+            Creation timestamp (UNIX time in seconds)
+
+            Always included in service level objective responses.
+          format: int64
+          readOnly: true
+          type: integer
+        creator:
+          $ref: '#/components/schemas/Creator'
+        description:
+          description: |-
+            A user-defined description of the service level objective.
+
+            Always included in service level objective responses (but may be `null`).
+            Optional in create/update requests.
+          nullable: true
+          type: string
+        groups:
+          description: |-
+            A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.
+
+            Included in service level objective responses if it is not empty. Optional in
+            create/update requests for monitor service level objectives, but may only be
+            used when then length of the `monitor_ids` field is one.
+          example:
+          - env:prod
+          - role:mysql
+          items:
+            description: A group name, for instance `env:prod`.
+            type: string
+          type: array
+        id:
+          description: |-
+            A unique identifier for the service level objective object.
+
+            Always included in service level objective responses.
+          readOnly: true
+          type: string
+        modified_at:
+          description: |-
+            Modification timestamp (UNIX time in seconds)
+
+            Always included in service level objective responses.
+          format: int64
+          readOnly: true
+          type: integer
+        monitor_ids:
+          description: |-
+            A list of monitor ids that defines the scope of a monitor service level
+            objective. **Required if type is `monitor`**.
+          items:
+            description: A monitor ID.
+            format: int64
+            type: integer
+          type: array
+        name:
+          description: The name of the service level objective object.
+          type: string
+        query:
+          $ref: '#/components/schemas/ServiceLevelObjective_query'
+        tags:
+          description: |-
+            A list of tags associated with this service level objective.
+            Always included in service level objective responses (but may be empty).
+            Optional in create/update requests.
+          example:
+          - env:prod
+          - app:core
+          items:
+            description: A tag to apply to your SLO.
+            type: string
+          type: array
+        thresholds:
+          description: |-
+            The thresholds (timeframes and associated targets) for this service level
+            objective object.
+          items:
+            $ref: '#/components/schemas/SLOThreshold'
+          type: array
+        type:
+          $ref: '#/components/schemas/SLOType'
       required:
       - name
       - thresholds
@@ -11131,7 +11513,8 @@ components:
         that call it, and all of the services that it calls.
       properties:
         filters:
-          description: Your env and primary tag (or * if enabled for your account).
+          description: Your environment and primary tag (or * if enabled for your
+            account).
           items:
             description: Filter name.
             type: string
@@ -11964,7 +12347,7 @@ components:
         id:
           $ref: '#/components/schemas/SyntheticsDeviceID'
         isMobile:
-          description: Wether or not the device is a mobile.
+          description: Whether or not the device is a mobile.
           type: boolean
         name:
           description: The device name.
@@ -12054,7 +12437,7 @@ components:
           type: array
       type: object
     SyntheticsGetBrowserTestLatestResultsResponse:
-      description: Object with the latest Synthetic broser test run.
+      description: Object with the latest Synthetic browser test run.
       example:
         last_timestamp_fetched: 0
         results:
@@ -12246,7 +12629,7 @@ components:
       - TAB_3
     SyntheticsResource:
       description: Object describing a resource which is the combination of requests
-        (fetch, xhr) and Assets (HTML, CSS, JS, images).
+        (fetch, XHR) and Assets (HTML, CSS, JS, images).
       example:
         duration: 7.061401241503109
         traceId: traceId
@@ -12261,7 +12644,7 @@ components:
           format: double
           type: number
         method:
-          description: HTTP methode associated to the resource.
+          description: HTTP method associated to the resource.
           type: string
         size:
           description: Size of the resource in bytes.
@@ -12348,10 +12731,10 @@ components:
             type: string
           type: array
         fingerprint:
-          description: MD5 digest of the der-encoded Certificate informations.
+          description: MD5 digest of the DER-encoded Certificate information.
           type: string
         fingerprint256:
-          description: SHA-1 digest of the der-encoded Certificate informations.
+          description: SHA-1 digest of the DER-encoded Certificate information.
           type: string
         issuer:
           $ref: '#/components/schemas/SyntheticsSSLCertificate_issuer'
@@ -12448,7 +12831,7 @@ components:
           description: Whether or not to skip this step.
           type: boolean
         snapshotBucketKey:
-          description: Whether or not snapshots where colelcted by the test.
+          description: Whether or not snapshots where collected by the test.
           type: boolean
         stepId:
           description: The step ID.
@@ -12678,7 +13061,7 @@ components:
         modified_by:
           $ref: '#/components/schemas/SyntheticsTestAuthor'
         monitor_id:
-          description: TODO.
+          description: The associated monitor ID.
           format: int64
           type: integer
         name:
@@ -12723,7 +13106,7 @@ components:
     SyntheticsTestMonitorStatus:
       description: |-
         The status of your Synthetic monitor.
-        * `O` for un-triggered
+        * `O` for not triggered
         * `1` for triggered
         * `2` for no data
       enum:
@@ -12756,7 +13139,7 @@ components:
             signed certificate.
           type: boolean
         allow_insecure:
-          description: TODO.
+          description: Allows loading insecure content for an HTTP request.
           type: boolean
         device_ids:
           description: Array with the different device IDs used to run the test.
@@ -12767,7 +13150,7 @@ components:
           description: For API SSL test, whether or not the test should follow redirects.
           type: boolean
         min_failure_duration:
-          description: TODO.
+          description: Minimum amount of time before declaring the test has failed.
           format: int64
           type: integer
         min_location_failed:
@@ -12832,7 +13215,7 @@ components:
           description: Headers to include when performing the test.
           type: object
         host:
-          description: Host name to perfrom the test with.
+          description: Host name to perform the test with.
           type: string
         method:
           $ref: '#/components/schemas/HTTPMethod'
@@ -13109,7 +13492,7 @@ components:
         such as highest consumers of CPU, hosts with the least disk space, etc.
       properties:
         requests:
-          description: List of toplist widget requests.
+          description: List of top list widget requests.
           items:
             $ref: '#/components/schemas/ToplistWidgetRequest'
           type: array
@@ -13160,7 +13543,7 @@ components:
           $ref: '#/components/schemas/TimeseriesWidgetRequest_style'
       type: object
     UsageFargateHour:
-      description: Number of Fargate tasks run and hourly useage.
+      description: Number of Fargate tasks run and hourly usage.
       example:
         hour: 2000-01-23T04:56:07.000+00:00
         tasks_count: 0
@@ -13176,7 +13559,7 @@ components:
       type: object
     UsageFargateResponse:
       description: Response containing the number of Fargate tasks run and hourly
-        useage.
+        usage.
       example:
         usage:
         - hour: 2000-01-23T04:56:07.000+00:00
@@ -13257,7 +13640,7 @@ components:
           type: string
       type: object
     UsageHostsResponse:
-      description: Host useage response.
+      description: Host usage response.
       example:
         usage:
         - apm_host_count: 1
@@ -13310,7 +13693,7 @@ components:
       type: object
     UsageLambdaResponse:
       description: |-
-        Reponse containing the number of lambda functions and sum of the invocations of all lambda functions
+        Response containing the number of lambda functions and sum of the invocations of all lambda functions
         for each hour for a given organization.
       example:
         usage:
@@ -13372,14 +13755,14 @@ components:
           retention: 6
       properties:
         usage:
-          description: An array of objects regarding hourly useage of logs by index
+          description: An array of objects regarding hourly usage of logs by index
             response.
           items:
             $ref: '#/components/schemas/UsageLogsByIndexHour'
           type: array
       type: object
     UsageLogsHour:
-      description: Hour useage for logs.
+      description: Hour usage for logs.
       example:
         indexed_events_count: 6
         hour: 2000-01-23T04:56:07.000+00:00
@@ -13417,7 +13800,7 @@ components:
           ingested_events_bytes: 1
       properties:
         usage:
-          description: An array of objects regarding hourly useage of logs.
+          description: An array of objects regarding hourly usage of logs.
           items:
             $ref: '#/components/schemas/UsageLogsHour'
           type: array
@@ -13478,7 +13861,7 @@ components:
           type: string
       type: object
     UsageNetworkHostsResponse:
-      description: Response containting the number of active NPM hosts for each hour
+      description: Response containing the number of active NPM hosts for each hour
         for a given organization.
       example:
         usage:
@@ -13601,47 +13984,47 @@ components:
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
-            in the current date for all orgs.
+            in the current date for all organizations.
           format: int64
           type: integer
         apm_host_top99p:
           description: Shows the 99th percentile of all distinct APM hosts over all
-            hours in the current date for all orgs.
+            hours in the current date for all organizations.
           format: int64
           type: integer
         aws_host_top99p:
           description: Shows the 99th percentile of all AWS hosts over all hours in
-            the current date for all orgs.
+            the current date for all organizations.
           format: int64
           type: integer
         aws_lambda_func_count:
           description: Shows the average of the number of functions that executed
-            1 or more times each hour in the current date for all orgs.
+            1 or more times each hour in the current date for all organizations.
           format: int64
           type: integer
         aws_lambda_invocations_sum:
-          description: Shows the sum of all AWS Labmda invocations over all hours
-            in the current date for all orgs.
+          description: Shows the sum of all AWS Lambda invocations over all hours
+            in the current date for all organizations.
           format: int64
           type: integer
         billable_ingested_bytes_sum:
           description: Shows the sum of all log bytes ingested over all hours in the
-            current date for all orgs.
+            current date for all organizations.
           format: int64
           type: integer
         container_avg:
           description: Shows the average of all distinct containers over all hours
-            in the current date for all orgs.
+            in the current date for all organizations.
           format: int64
           type: integer
         container_hwm:
           description: Shows the high watermark of all distinct containers over all
-            hours in the current date for all orgs.
+            hours in the current date for all organizations.
           format: int64
           type: integer
         custom_ts_avg:
           description: Shows the average number of distinct custom metrics over all
-            hours in the current date for all orgs.
+            hours in the current date for all organizations.
           format: int64
           type: integer
         date:
@@ -13650,42 +14033,42 @@ components:
           type: string
         fargate_tasks_count_avg:
           description: Shows the high watermark of all Fargate tasks over all hours
-            in the current date for all orgs.
+            in the current date for all organizations.
           format: int64
           type: integer
         fargate_tasks_count_hwm:
           description: Shows the average of all Fargate tasks over all hours in the
-            current date for all orgs.
+            current date for all organizations.
           format: int64
           type: integer
         gcp_host_top99p:
           description: Shows the 99th percentile of all GCP hosts over all hours in
-            the current date for all orgs.
+            the current date for all organizations.
           format: int64
           type: integer
         indexed_events_count_sum:
           description: Shows the sum of all log events indexed over all hours in the
-            current date for all orgs.
+            current date for all organizations.
           format: int64
           type: integer
         infra_host_top99p:
           description: Shows the 99th percentile of all distinct infrastructure hosts
-            over all hours in the current date for all orgs.
+            over all hours in the current date for all organizations.
           format: int64
           type: integer
         ingested_events_bytes_sum:
           description: Shows the sum of all log bytes ingested over all hours in the
-            current date for all orgs.
+            current date for all organizations.
           format: int64
           type: integer
         netflow_indexed_events_count_sum:
           description: Shows the sum of all Network flows indexed over all hours in
-            the current date for all orgs.
+            the current date for all organizations.
           format: int64
           type: integer
         npm_host_top99p:
           description: Shows the 99th percentile of all distinct Networks hosts over
-            all hours in the current date for all orgs.
+            all hours in the current date for all organizations.
           format: int64
           type: integer
         orgs:
@@ -13695,22 +14078,22 @@ components:
           type: array
         rum_session_count_sum:
           description: Shows the sum of all RUM Sessions over all hours in the current
-            date for all orgs
+            date for all organizations
           format: int64
           type: integer
         synthetics_browser_check_calls_count_sum:
           description: Shows the sum of all Synthetic browser tests over all hours
-            in the current date for all orgs.
+            in the current date for all organizations.
           format: int64
           type: integer
         synthetics_check_calls_count_sum:
           description: Shows the sum of all Synthetic API tests over all hours in
-            the current date for all orgs.
+            the current date for all organizations.
           format: int64
           type: integer
         trace_search_indexed_events_count_sum:
           description: Shows the sum of all analyzed spans indexed over all hours
-            in the current date for all orgs.
+            in the current date for all organizations.
           format: int64
           type: integer
       type: object
@@ -13759,12 +14142,12 @@ components:
           format: int64
           type: integer
         aws_lambda_func_count:
-          description: Shows the sum of all AWS Labmda invocations over all hours
+          description: Shows the sum of all AWS Lambda invocations over all hours
             in the current date for the given org.
           format: int64
           type: integer
         aws_lambda_invocations_sum:
-          description: Shows the sum of all AWS Labmda invocations over all hours
+          description: Shows the sum of all AWS Lambda invocations over all hours
             in the current date for the given org.
           format: int64
           type: integer
@@ -14031,131 +14414,131 @@ components:
       properties:
         agent_host_top99p_sum:
           description: Shows the 99th percentile of all agent hosts over all hours
-            in the current month(s) for all orgs.
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         apm_host_top99p_sum:
           description: Shows the 99th percentile of all distinct APM hosts over all
-            hours in the current month(s) for all orgs.
+            hours in the current month(s) for all organizations.
           format: int64
           type: integer
         aws_host_top99p_sum:
           description: Shows the 99th percentile of all AWS hosts over all hours in
-            the current month(s) for all orgs.
+            the current month(s) for all organizations.
           format: int64
           type: integer
         aws_lambda_func_count:
           description: Shows the average of the number of functions that executed
-            1 or more times each hour in the current month(s) for all orgs.
+            1 or more times each hour in the current month(s) for all organizations.
           format: int64
           type: integer
         aws_lambda_invocations_sum:
-          description: Shows the sum of all AWS Labmda invocations over all hours
-            in the current month(s) for all orgs.
+          description: Shows the sum of all AWS Lambda invocations over all hours
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         azure_host_top99p_sum:
           description: Shows the 99th percentile of all Azure hosts over all hours
-            in the current month(s) for all orgs.
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         billable_ingested_bytes_agg_sum:
           description: Shows the sum of all log bytes ingested over all hours in the
-            current month(s) for all orgs.
+            current month(s) for all organizations.
           format: int64
           type: integer
         container_avg_sum:
           description: Shows the average of all distinct containers over all hours
-            in the current month(s) for all orgs.
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         container_hwm_sum:
           description: Shows the high watermark of all distinct containers over all
-            hours in the current month(s) for all orgs.
+            hours in the current month(s) for all organizations.
           format: int64
           type: integer
         custom_ts_sum:
           description: Shows the average number of distinct custom metrics over all
-            hours in the current month(s) for all orgs.
+            hours in the current month(s) for all organizations.
           format: int64
           type: integer
         end_date:
           description: Shows the last date of usage in the current month(s) for all
-            orgs.
+            organizations.
           format: date-time
           type: string
         fargate_tasks_count_avg_sum:
           description: Shows the average of all Fargate tasks over all hours in the
-            current month(s) for all orgs.
+            current month(s) for all organizations.
           format: int64
           type: integer
         fargate_tasks_count_hwm_sum:
           description: Shows the high watermark of all Fargate tasks over all hours
-            in the current month(s) for all orgs.
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         gcp_host_top99p_sum:
           description: Shows the 99th percentile of all GCP hosts over all hours in
-            the current month(s) for all orgs.
+            the current month(s) for all organizations.
           format: int64
           type: integer
         indexed_events_count_agg_sum:
           description: Shows the sum of all log events indexed over all hours in the
-            current month(s) for all orgs.
+            current month(s) for all organizations.
           format: int64
           type: integer
         infra_host_top99p_sum:
           description: Shows the 99th percentile of all distinct infrastructure hosts
-            over all hours in the current month(s) for all orgs.
+            over all hours in the current month(s) for all organizations.
           format: int64
           type: integer
         ingested_events_bytes_agg_sum:
           description: Shows the sum of all log bytes ingested over all hours in the
-            current month(s) for all orgs.
+            current month(s) for all organizations.
           format: int64
           type: integer
         last_updated:
           description: Shows the the most recent hour in the current month(s) for
-            all orgs for which all usages were calculated.
+            all organizations for which all usages were calculated.
           format: date-time
           type: string
         netflow_indexed_events_count_agg_sum:
           description: Shows the sum of all Network flows indexed over all hours in
-            the current month(s) for all orgs.
+            the current month(s) for all organizations.
           format: int64
           type: integer
         npm_host_top99p_sum:
           description: Shows the 99th percentile of all distinct Networks hosts over
-            all hours in the current month(s) for all orgs.
+            all hours in the current month(s) for all organizations.
           format: int64
           type: integer
         rum_session_count_agg_sum:
           description: Shows the sum of all RUM Sessions over all hours in the current
-            month(s) for all orgs.
+            month(s) for all organizations.
           format: int64
           type: integer
         start_date:
           description: Shows the first date of usage in the current month(s) for all
-            orgs.
+            organizations.
           format: date-time
           type: string
         synthetics_browser_check_calls_count_agg_sum:
           description: Shows the sum of all Synthetic browser tests over all hours
-            in the current month(s) for all orgs.
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         synthetics_check_calls_count_agg_sum:
           description: Shows the sum of all Synthetic API tests over all hours in
-            the current month(s) for all orgs.
+            the current month(s) for all organizations.
           format: int64
           type: integer
         trace_search_indexed_events_count_agg_sum:
           description: Shows the sum of all analyzed spans indexed over all hours
-            in the current month(s) for all orgs.
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         usage:
-          description: An array of objects regarding hourly useage.
+          description: An array of objects regarding hourly usage.
           items:
             $ref: '#/components/schemas/UsageSummaryDate'
           type: array
@@ -14341,7 +14724,7 @@ components:
           type: array
       type: object
     UsageTraceHour:
-      description: TODO.
+      description: The hours of trace usage.
       example:
         indexed_events_count: 0
         hour: 2000-01-23T04:56:07.000+00:00
@@ -14356,7 +14739,7 @@ components:
           type: integer
       type: object
     UsageTraceResponse:
-      description: TODO.
+      description: A response containing trace usage.
       example:
         usage:
         - indexed_events_count: 0
@@ -14520,8 +14903,8 @@ components:
           type: string
         scale:
           default: linear
-          description: Specifies the scale type. Possible values are linear, log,
-            sqrt, pow## (eg. pow2, pow0.5..).
+          description: Specifies the scale type. Possible values are `linear`, `log`,
+            `sqrt`, `pow##` (e.g. `pow2`, `pow0.5` etc.).
           type: string
       type: object
     WidgetChangeType:
@@ -14606,7 +14989,7 @@ components:
       - value
       type: object
     WidgetDefinition:
-      description: Definition of the widget.
+      description: '[Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).'
       discriminator:
         mapping:
           alert_graph: '#/components/schemas/AlertGraphWidgetDefinition'
@@ -14660,7 +15043,7 @@ components:
       - $ref: '#/components/schemas/TimeseriesWidgetDefinition'
       - $ref: '#/components/schemas/ToplistWidgetDefinition'
       type: object
-      x-oneOf-name: WidgetDefinition
+      x-one-of-name: WidgetDefinition
     WidgetDisplayType:
       description: Type of display to use for the request.
       enum:
@@ -14773,7 +15156,7 @@ components:
       x-enum-varnames:
       - ORDERED
     WidgetLegendSize:
-      description: Available legent sizes for a widget.
+      description: Available legend sizes for a widget.
       enum:
       - "2"
       - "4"
@@ -15142,7 +15525,7 @@ components:
           type: string
         prefix:
           description: The tag prefix associated with the variable. Only tags with
-            this prefix appear in the variable dropdown.
+            this prefix appear in the variable drop-down.
           example: host
           nullable: true
           type: string
@@ -15548,7 +15931,7 @@ components:
         enabled: false
       properties:
         enabled:
-          description: Wether or not SAML is enabled for this organization.
+          description: Whether or not SAML is enabled for this organization.
           example: false
           type: boolean
     Organization_settings_saml_autocreate_users_domains:
@@ -15579,7 +15962,7 @@ components:
       properties:
         enabled:
           description: |-
-            Wether SAML IdP initiated login is enabled, learn more
+            Whether SAML IdP initiated login is enabled, learn more
             in the [SAML documentation](https://docs.datadoghq.com/account_management/saml/#idp-initiated-login).
           example: false
           type: boolean
@@ -15590,7 +15973,7 @@ components:
       properties:
         enabled:
           description: |-
-            Wether or not the SAML strict mode is enabled. If true, all users must log in with SAML.
+            Whether or not the SAML strict mode is enabled. If true, all users must log in with SAML.
             Learn more on the [SAML Strict documentation](https://docs.datadoghq.com/account_management/saml/#saml-strict).
           example: false
           type: boolean
@@ -15642,7 +16025,7 @@ components:
           example: false
           type: boolean
         saml_login_url:
-          description: URL for SAML loging.
+          description: URL for SAML logging.
           example: https://my.saml.login.url
           type: string
         saml_strict_mode:
