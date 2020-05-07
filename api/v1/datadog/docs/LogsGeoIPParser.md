@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["network.client.ip"]]
 **Target** | Pointer to **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "network.client.geoip"]
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "geo-ip-parser"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "geo-ip-parser"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewLogsGeoIPParser
 
-`func NewLogsGeoIPParser(sources []string, target string, ) *LogsGeoIPParser`
+`func NewLogsGeoIPParser(sources []string, target string, type_ string, ) *LogsGeoIPParser`
 
 NewLogsGeoIPParser instantiates a new LogsGeoIPParser object
 This constructor will assign default values to properties that have it defined,
@@ -88,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsGeoIPParser) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

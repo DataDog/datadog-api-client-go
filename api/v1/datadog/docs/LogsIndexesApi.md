@@ -20,6 +20,33 @@ Get an index
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    name := "name_example" // string | Name of the log index.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsIndexesApi.GetLogsIndex(context.Background(), name).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetLogsIndex`: LogsIndex
+    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.GetLogsIndex`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -63,6 +90,32 @@ Get indexes order
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsIndexesApi.GetLogsIndexOrder(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndexOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetLogsIndexOrder`: LogsIndexesOrder
+    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.GetLogsIndexOrder`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -98,6 +151,32 @@ Get all indexes
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsIndexesApi.ListLogIndexes(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.ListLogIndexes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListLogIndexes`: LogsIndexListResponse
+    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.ListLogIndexes`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -132,6 +211,34 @@ Other parameters are passed through a pointer to a apiListLogIndexesRequest stru
 Update an index
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    name := "name_example" // string | Name of the log index.
+    body := openapiclient.LogsIndex{DailyLimit: int64(123), ExclusionFilters: []LogsExclusion{openapiclient.LogsExclusion{Filter: openapiclient.LogsExclusionFilter{Query: "Query_example", SampleRate: 123}, IsEnabled: false, Name: "Name_example"}), Filter: openapiclient.LogsFilter{Query: "Query_example"}, IsRateLimited: false, Name: "Name_example", NumRetentionDays: int64(123)} // LogsIndex | Object containing the new `LogsIndex`. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndex(context.Background(), name).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateLogsIndex`: LogsIndex
+    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.UpdateLogsIndex`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -176,6 +283,33 @@ Name | Type | Description  | Notes
 Update indexes order
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.LogsIndexesOrder{IndexNames: []string{"IndexNames_example")} // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndexOrder(context.Background(), ).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndexOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateLogsIndexOrder`: LogsIndexesOrder
+    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.UpdateLogsIndexOrder`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

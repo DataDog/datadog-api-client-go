@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sources** | Pointer to **[]string** | Array of source attributes. | [optional] [default to ["dd.trace_id"]]
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "trace-id-remapper"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "trace-id-remapper"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewLogsTraceRemapper
 
-`func NewLogsTraceRemapper() *LogsTraceRemapper`
+`func NewLogsTraceRemapper(type_ string, ) *LogsTraceRemapper`
 
 NewLogsTraceRemapper instantiates a new LogsTraceRemapper object
 This constructor will assign default values to properties that have it defined,
@@ -72,11 +72,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsTraceRemapper) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 
