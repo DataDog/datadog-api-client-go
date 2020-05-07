@@ -30,7 +30,7 @@ type SyntheticsStepDetail struct {
 	ScreenshotBucketKey *bool `json:"screenshotBucketKey,omitempty"`
 	// Whether or not to skip this step.
 	Skipped *bool `json:"skipped,omitempty"`
-	// Whether or not snapshots where colelcted by the test.
+	// Whether or not snapshots where collected by the test.
 	SnapshotBucketKey *bool `json:"snapshotBucketKey,omitempty"`
 	// The step ID.
 	StepId *int64 `json:"stepId,omitempty"`

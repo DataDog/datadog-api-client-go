@@ -24,6 +24,33 @@ Create a user
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.UserCreatePayload{Data: openapiclient.UserCreateData{Attributes: openapiclient.UserCreateAttributes{Email: "Email_example", Name: "Name_example", Title: "Title_example"}, Relationships: openapiclient.UserRelationships{Roles: openapiclient.RelationshipToRoles{Data: []RelationshipToRoleData{openapiclient.RelationshipToRoleData{Id: "Id_example", Type: "Type_example"})}}, Type: "Type_example"}} // UserCreatePayload |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.CreateUser(context.Background(), ).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateUser`: UserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateUser`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -62,6 +89,31 @@ Name | Type | Description  | Notes
 Disable a user
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | The ID of the user.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.DisableUser(context.Background(), userId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
 
 ### Path Parameters
 
@@ -106,6 +158,33 @@ Get a user invitation
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userInvitationUuid := "userInvitationUuid_example" // string | The UUID of the user invitation.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.GetInvitation(context.Background(), userInvitationUuid).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetInvitation`: UserInvitationResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.GetInvitation`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -148,6 +227,33 @@ Name | Type | Description  | Notes
 Get a user
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | The ID of the user.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.GetUser(context.Background(), userId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUser`: UserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.GetUser`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -192,6 +298,33 @@ Get a user organization
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | The ID of the user.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.ListUserOrganizations(context.Background(), userId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserOrganizations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUserOrganizations`: UserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.ListUserOrganizations`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -235,6 +368,33 @@ Get a user permissions
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | The ID of the user.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.ListUserPermissions(context.Background(), userId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserPermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUserPermissions`: PermissionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.ListUserPermissions`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -277,6 +437,38 @@ Name | Type | Description  | Notes
 List all users
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageSize := 987 // int64 | Number of users to return for a given page. (optional) (default to 10)
+    pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
+    sort := "sort_example" // string | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `modified_at`, `user_count`. (optional) (default to "name")
+    sortDir := openapiclient.QuerySortOrder{} // QuerySortOrder | Direction of sort. Options: `asc`, `desc`. (optional) (default to "desc")
+    filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
+    filterStatus := "filterStatus_example" // string | Filter on status attribute. Comma separated list, with possible values `Active`, `Pending`, and `Disabled`. Defaults to no filtering. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.ListUsers(context.Background(), ).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).SortDir(sortDir).Filter(filter).FilterStatus(filterStatus).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsers`: UsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.ListUsers`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -322,6 +514,33 @@ Send invitation emails
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.UserInvitationPayload{Data: []UserInvitationData{openapiclient.UserInvitationData{Relationships: openapiclient.UserInvitationRelationships{User: openapiclient.RelationshipToUser{Data: openapiclient.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}}}, Type: "Type_example"})} // UserInvitationPayload |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.SendInvitations(context.Background(), ).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.SendInvitations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SendInvitations`: UserInvitationsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.SendInvitations`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -360,6 +579,32 @@ Name | Type | Description  | Notes
 Update a user
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | The ID of the user.
+    body := openapiclient.UserUpdatePayload{Data: openapiclient.UserUpdateData{Attributes: openapiclient.UserUpdateAttributes{Disabled: false, Email: "Email_example", Name: "Name_example"}, Id: "Id_example", Type: "Type_example"}} // UserUpdatePayload |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.UpdateUser(context.Background(), userId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
 
 ### Path Parameters
 

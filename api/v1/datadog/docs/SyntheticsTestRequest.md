@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **BasicAuth** | Pointer to [**SyntheticsTestRequestBasicAuth**](SyntheticsTestRequest_basicAuth.md) |  | [optional] 
 **Body** | Pointer to **string** | Body to include in the test. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
-**Host** | Pointer to **string** | Host name to perfrom the test with. | [optional] 
+**Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
 **Port** | Pointer to **int64** | Port to use when performing the test. | [optional] 
 **Query** | Pointer to [**interface{}**](.md) | Query to use for the test. | [optional] 

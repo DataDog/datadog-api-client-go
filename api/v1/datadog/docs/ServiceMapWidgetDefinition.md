@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filters** | Pointer to **[]string** | Your env and primary tag (or * if enabled for your account). | 
+**Filters** | Pointer to **[]string** | Your environment and primary tag (or * if enabled for your account). | 
 **Service** | Pointer to **string** | The ID of the service you want to map. | 
 **Title** | Pointer to **string** | The title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 

@@ -5,11 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ColorPreference** | Pointer to [**WidgetColorPreference**](WidgetColorPreference.md) |  | [optional] 
+**Count** | Pointer to **int64** | The number of monitors to display. | [optional] 
 **DisplayFormat** | Pointer to [**WidgetMonitorSummaryDisplayFormat**](WidgetMonitorSummaryDisplayFormat.md) |  | [optional] 
 **HideZeroCounts** | Pointer to **bool** | Whether to show counts of 0 or not. | [optional] 
 **Query** | Pointer to **string** | Query to filter the monitors with. | 
 **ShowLastTriggered** | Pointer to **bool** | Whether to show the time that has elapsed since the monitor/group triggered. | [optional] 
 **Sort** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
+**Start** | Pointer to **int64** | The start of the list. Typically 0. | [optional] 
 **SummaryType** | Pointer to [**WidgetSummaryType**](WidgetSummaryType.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
@@ -59,6 +61,31 @@ SetColorPreference sets ColorPreference field to given value.
 `func (o *MonitorSummaryWidgetDefinition) HasColorPreference() bool`
 
 HasColorPreference returns a boolean if a field has been set.
+
+### GetCount
+
+`func (o *MonitorSummaryWidgetDefinition) GetCount() int64`
+
+GetCount returns the Count field if non-nil, zero value otherwise.
+
+### GetCountOk
+
+`func (o *MonitorSummaryWidgetDefinition) GetCountOk() (*int64, bool)`
+
+GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCount
+
+`func (o *MonitorSummaryWidgetDefinition) SetCount(v int64)`
+
+SetCount sets Count field to given value.
+
+### HasCount
+
+`func (o *MonitorSummaryWidgetDefinition) HasCount() bool`
+
+HasCount returns a boolean if a field has been set.
 
 ### GetDisplayFormat
 
@@ -179,6 +206,31 @@ SetSort sets Sort field to given value.
 `func (o *MonitorSummaryWidgetDefinition) HasSort() bool`
 
 HasSort returns a boolean if a field has been set.
+
+### GetStart
+
+`func (o *MonitorSummaryWidgetDefinition) GetStart() int64`
+
+GetStart returns the Start field if non-nil, zero value otherwise.
+
+### GetStartOk
+
+`func (o *MonitorSummaryWidgetDefinition) GetStartOk() (*int64, bool)`
+
+GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStart
+
+`func (o *MonitorSummaryWidgetDefinition) SetStart(v int64)`
+
+SetStart sets Start field to given value.
+
+### HasStart
+
+`func (o *MonitorSummaryWidgetDefinition) HasStart() bool`
+
+HasStart returns a boolean if a field has been set.
 
 ### GetSummaryType
 

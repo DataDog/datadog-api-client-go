@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// MonitorType The type of the monitor.
+// MonitorType The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 type MonitorType string
 
 // List of MonitorType
@@ -23,6 +23,7 @@ const (
 	MONITORTYPE_METRIC_ALERT          MonitorType = "metric alert"
 	MONITORTYPE_PROCESS_ALERT         MonitorType = "process alert"
 	MONITORTYPE_QUERY_ALERT           MonitorType = "query alert"
+	MONITORTYPE_RUM_ALERT             MonitorType = "rum alert"
 	MONITORTYPE_SERVICE_CHECK         MonitorType = "service check"
 	MONITORTYPE_SYNTHETICS_ALERT      MonitorType = "synthetics alert"
 	MONITORTYPE_TRACE_ANALYTICS_ALERT MonitorType = "trace-analytics alert"

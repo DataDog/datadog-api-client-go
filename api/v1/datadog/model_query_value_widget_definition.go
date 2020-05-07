@@ -14,7 +14,7 @@ import (
 
 // QueryValueWidgetDefinition Query values display the current value of a given metric, APM, or log query.
 type QueryValueWidgetDefinition struct {
-	// Whether to use autoscaling or not.
+	// Whether to use auto-scaling or not.
 	Autoscale *bool `json:"autoscale,omitempty"`
 	// Display a unit of your choice on the widget.
 	CustomUnit *string `json:"custom_unit,omitempty"`

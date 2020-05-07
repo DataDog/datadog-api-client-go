@@ -21,6 +21,8 @@ func enableLogsIndexesUnstableOperations(ctx context.Context) func() {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndex", true)
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogIndexes", true)
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndexOrder", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndexOrder", true)
 	return func() { disableLogsIndexesUnstableOperations(ctx) }
 }
 
@@ -28,6 +30,8 @@ func disableLogsIndexesUnstableOperations(ctx context.Context) {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndex", false)
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogIndexes", false)
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", false)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndexOrder", false)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndexOrder", false)
 }
 
 func TestGetAllLogsIndexes(t *testing.T) {
@@ -106,6 +110,7 @@ func TestLogsIndexOrder(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
+	defer enableLogsIndexesUnstableOperations(ctx)()
 	indexOrder, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting index order: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -187,6 +192,7 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
+	defer enableLogsIndexesUnstableOperations(ctx)()
 	indexOrder, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting index order: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)

@@ -18,7 +18,7 @@ type DashboardTemplateVariables struct {
 	Default NullableString `json:"default,omitempty"`
 	// The name of the variable.
 	Name string `json:"name"`
-	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable dropdown.
+	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down.
 	Prefix NullableString `json:"prefix,omitempty"`
 }
 

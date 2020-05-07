@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
 **Target** | Pointer to **string** | The name of the attribute that contains the result of the template. | 
 **Template** | Pointer to **string** | A formula with one or more attributes and raw text. | 
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "string-builder-processor"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "string-builder-processor"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewLogsStringBuilderProcessor
 
-`func NewLogsStringBuilderProcessor(target string, template string, ) *LogsStringBuilderProcessor`
+`func NewLogsStringBuilderProcessor(target string, template string, type_ string, ) *LogsStringBuilderProcessor`
 
 NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -114,11 +114,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsStringBuilderProcessor) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

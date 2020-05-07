@@ -19,6 +19,33 @@ Get the total number of active hosts
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    from := 987 // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.HostsApi.GetHostTotals(context.Background(), ).From(from).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetHostTotals`: HostTotals
+    fmt.Fprintf(os.Stdout, "Response from `HostsApi.GetHostTotals`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -57,6 +84,38 @@ Name | Type | Description  | Notes
 Get all hosts for your organization
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    filter := "filter_example" // string | String to filter search results. (optional)
+    sortField := "sortField_example" // string | Sort hosts by this field. (optional)
+    sortDir := "sortDir_example" // string | Direction of sort. Options include `asc` and `desc`. (optional)
+    start := 987 // int64 | Host result to start search from. (optional)
+    count := 987 // int64 | Number of hosts to return. Max 1000. (optional)
+    from := 987 // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.HostsApi.ListHosts(context.Background(), ).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListHosts`: HostListResponse
+    fmt.Fprintf(os.Stdout, "Response from `HostsApi.ListHosts`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -102,6 +161,34 @@ Mute a host
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    hostName := "hostName_example" // string | Name of the host to mute.
+    body := openapiclient.HostMuteSettings{End: int64(123), Message: "Message_example", Override: false} // HostMuteSettings | Mute a host request body. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.HostsApi.MuteHost(context.Background(), hostName).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MuteHost`: HostMuteResponse
+    fmt.Fprintf(os.Stdout, "Response from `HostsApi.MuteHost`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -145,6 +232,33 @@ Name | Type | Description  | Notes
 Unmute a host
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    hostName := "hostName_example" // string | Name of the host to unmute.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.HostsApi.UnmuteHost(context.Background(), hostName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UnmuteHost`: HostMuteResponse
+    fmt.Fprintf(os.Stdout, "Response from `HostsApi.UnmuteHost`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Grok** | Pointer to [**LogsGrokParserRules**](LogsGrokParserRules.md) |  | 
 **Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
 **Source** | Pointer to **string** | Name of the log attribute to parse. | [default to "message"]
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "grok-parser"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "grok-parser"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewLogsGrokParser
 
-`func NewLogsGrokParser(grok LogsGrokParserRules, source string, ) *LogsGrokParser`
+`func NewLogsGrokParser(grok LogsGrokParserRules, source string, type_ string, ) *LogsGrokParser`
 
 NewLogsGrokParser instantiates a new LogsGrokParser object
 This constructor will assign default values to properties that have it defined,
@@ -114,11 +114,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsGrokParser) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

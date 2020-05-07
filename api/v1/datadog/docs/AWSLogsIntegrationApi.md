@@ -22,6 +22,33 @@ Check that an AWS Lambda Function exists
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CheckAWSLogsLambdaAsync`: AWSLogsAsyncResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -60,6 +87,33 @@ Name | Type | Description  | Notes
 Check permissions for log services
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CheckAWSLogsServicesAsync`: AWSLogsAsyncResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -100,6 +154,33 @@ Add AWS Log Lambda ARN
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSLogsIntegrationApi.CreateAWSLambdaARN(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CreateAWSLambdaARN``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateAWSLambdaARN`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CreateAWSLambdaARN`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -138,6 +219,33 @@ Name | Type | Description  | Notes
 Delete an AWS Logs integration
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body :=  // AWSAccountAndLambdaRequest | Delete AWS Lambda ARN request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSLogsIntegrationApi.DeleteAWSLambdaARN(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.DeleteAWSLambdaARN``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAWSLambdaARN`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.DeleteAWSLambdaARN`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -178,6 +286,33 @@ Enable an AWS Logs integration
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := openapiclient.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Enable AWS Log Services request body.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSLogsIntegrationApi.EnableAWSLogServices(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.EnableAWSLogServices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EnableAWSLogServices`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.EnableAWSLogServices`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -217,6 +352,32 @@ List all AWS Logs integrations
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsIntegrations(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsIntegrations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAWSLogsIntegrations`: []AWSLogsListResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.ListAWSLogsIntegrations`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -251,6 +412,32 @@ Other parameters are passed through a pointer to a apiListAWSLogsIntegrationsReq
 Get list of AWS log ready services
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsServices(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsServices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAWSLogsServices`: []AWSLogsListServicesResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.ListAWSLogsServices`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

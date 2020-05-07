@@ -17,7 +17,7 @@ type SyntheticsDevice struct {
 	// Screen height of the device.
 	Height int64              `json:"height"`
 	Id     SyntheticsDeviceID `json:"id"`
-	// Wether or not the device is a mobile.
+	// Whether or not the device is a mobile.
 	IsMobile *bool `json:"isMobile,omitempty"`
 	// The device name.
 	Name string `json:"name"`
