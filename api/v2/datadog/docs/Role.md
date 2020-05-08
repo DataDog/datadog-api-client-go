@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**RoleAttributes**](RoleAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the role. | [optional] 
 **Relationships** | Pointer to [**RoleResponseRelationships**](RoleResponseRelationships.md) |  | [optional] 
-**Type** | Pointer to **string** | Roles type. | [optional] [readonly] [default to "roles"]
+**Type** | Pointer to **string** | Roles type. | [readonly] [default to "roles"]
 
 ## Methods
 
 ### NewRole
 
-`func NewRole() *Role`
+`func NewRole(type_ string, ) *Role`
 
 NewRole instantiates a new Role object
 This constructor will assign default values to properties that have it defined,
@@ -122,11 +122,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *Role) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 ### AsUserResponseIncludedItem

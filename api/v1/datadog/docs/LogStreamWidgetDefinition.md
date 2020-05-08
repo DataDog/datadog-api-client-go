@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Columns** | Pointer to **[]string** | Which columns to display on the widget. | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Use [] to query all indexes at once. | [optional] 
+**Logset** | Pointer to **string** | ID of the log set to use. | [optional] 
 **MessageDisplay** | Pointer to [**WidgetMessageDisplay**](WidgetMessageDisplay.md) |  | [optional] 
 **Query** | Pointer to **string** | Query to filter the log stream with. | [optional] 
 **ShowDateColumn** | Pointer to **bool** | Whether to show the date column or not | [optional] 
@@ -85,6 +86,31 @@ SetIndexes sets Indexes field to given value.
 `func (o *LogStreamWidgetDefinition) HasIndexes() bool`
 
 HasIndexes returns a boolean if a field has been set.
+
+### GetLogset
+
+`func (o *LogStreamWidgetDefinition) GetLogset() string`
+
+GetLogset returns the Logset field if non-nil, zero value otherwise.
+
+### GetLogsetOk
+
+`func (o *LogStreamWidgetDefinition) GetLogsetOk() (*string, bool)`
+
+GetLogsetOk returns a tuple with the Logset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogset
+
+`func (o *LogStreamWidgetDefinition) SetLogset(v string)`
+
+SetLogset sets Logset field to given value.
+
+### HasLogset
+
+`func (o *LogStreamWidgetDefinition) HasLogset() bool`
+
+HasLogset returns a boolean if a field has been set.
 
 ### GetMessageDisplay
 

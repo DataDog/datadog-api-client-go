@@ -16,6 +16,38 @@ Take graph snapshots
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    start := 987 // int64 | The POSIX timestamp of the start of the query.
+    end := 987 // int64 | The POSIX timestamp of the end of the query.
+    metricQuery := "metricQuery_example" // string | The metric query. (optional)
+    eventQuery := "eventQuery_example" // string | A query that adds event bands to the graph. (optional)
+    graphDef := "graphDef_example" // string | A JSON document defining the graph. `graph_def` can be used instead of `metric_query`. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded. (optional)
+    title := "title_example" // string | A title for the graph. If no title is specified, the graph does not have a title. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SnapshotsApi.GetGraphSnapshot(context.Background(), start, end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.GetGraphSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGraphSnapshot`: GraphSnapshot
+    fmt.Fprintf(os.Stdout, "Response from `SnapshotsApi.GetGraphSnapshot`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 

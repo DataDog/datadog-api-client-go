@@ -1433,6 +1433,8 @@ components:
           description: Organizations resource type.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     OrganizationAttributes:
       description: Attributes of the organization.
@@ -1503,6 +1505,8 @@ components:
           description: Permissions resource type.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     PermissionAttributes:
       description: Attributes of a permission.
@@ -1783,6 +1787,8 @@ components:
           description: Roles type.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     RoleAttributes:
       description: Attributes of the role.
@@ -2462,7 +2468,7 @@ components:
       - $ref: '#/components/schemas/Permission'
       - $ref: '#/components/schemas/Role'
       type: object
-      x-oneOf-name: UserResponseIncludedItem
+      x-one-of-name: UserResponseIncludedItem
     UserResponseRelationships:
       description: Relationships of the user object returned by the API.
       example:

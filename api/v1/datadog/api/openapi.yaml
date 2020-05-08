@@ -8417,6 +8417,10 @@ components:
               Indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes)
             type: string
           type: array
+        logset:
+          deprecated: true
+          description: ID of the log set to use.
+          type: string
         message_display:
           $ref: '#/components/schemas/WidgetMessageDisplay'
         query:
@@ -8514,6 +8518,7 @@ components:
       required:
       - expression
       - target
+      - type
       type: object
     LogsAttributeRemapper:
       description: |-
@@ -8555,6 +8560,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     LogsCategoryProcessor:
       description: |-
@@ -8591,6 +8597,7 @@ components:
       required:
       - categories
       - target
+      - type
       type: object
     LogsDateRemapper:
       description: |-
@@ -8627,6 +8634,7 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsExclusion:
       description: Represents the index exclusion filter object from configuration
@@ -8708,6 +8716,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     LogsGrokParser:
       description: |-
@@ -8736,6 +8745,7 @@ components:
       required:
       - grok
       - source
+      - type
       type: object
     LogsGrokParserRules:
       description: Set of rules for the grok parser.
@@ -9001,6 +9011,7 @@ components:
       - lookup_table
       - source
       - target
+      - type
       type: object
     LogsMessageRemapper:
       description: |-
@@ -9026,6 +9037,7 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsPipeline:
       description: |-
@@ -9102,6 +9114,8 @@ components:
           description: Type of processor.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     LogsPipelinesOrder:
       description: Object containing the ordered list of pipeline IDs.
@@ -9169,7 +9183,7 @@ components:
           description: Name of the processor.
           type: string
       type: object
-      x-oneOf-name: LogsProcessor
+      x-one-of-name: LogsProcessor
     LogsQueryCompute:
       description: Define computation for a log query.
       properties:
@@ -9209,6 +9223,7 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsSort:
       description: Time-ascending `asc` or time-descending `desc`results.
@@ -9253,6 +9268,7 @@ components:
           type: string
       required:
       - sources
+      - type
       type: object
     LogsStringBuilderProcessor:
       description: |-
@@ -9290,6 +9306,7 @@ components:
       required:
       - target
       - template
+      - type
       type: object
     LogsTraceRemapper:
       description: |-
@@ -9313,6 +9330,8 @@ components:
           description: Type of processor.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     LogsURLParser:
       description: This processor extracts query parameters and other important parameters
@@ -9344,6 +9363,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     LogsUserAgentParser:
       description: |-
@@ -9375,6 +9395,7 @@ components:
       required:
       - sources
       - target
+      - type
       type: object
     MetricMetadata:
       description: Object with all metric related metadata.
@@ -9924,6 +9945,11 @@ components:
       properties:
         color_preference:
           $ref: '#/components/schemas/WidgetColorPreference'
+        count:
+          deprecated: true
+          description: The number of monitors to display.
+          format: int64
+          type: integer
         display_format:
           $ref: '#/components/schemas/WidgetMonitorSummaryDisplayFormat'
         hide_zero_counts:
@@ -9938,6 +9964,11 @@ components:
           type: boolean
         sort:
           $ref: '#/components/schemas/WidgetSort'
+        start:
+          deprecated: true
+          description: The start of the list. Typically 0.
+          format: int64
+          type: integer
         summary_type:
           $ref: '#/components/schemas/WidgetSummaryType'
         title:
@@ -15026,7 +15057,7 @@ components:
       - $ref: '#/components/schemas/TimeseriesWidgetDefinition'
       - $ref: '#/components/schemas/ToplistWidgetDefinition'
       type: object
-      x-oneOf-name: WidgetDefinition
+      x-one-of-name: WidgetDefinition
     WidgetDisplayType:
       description: Type of display to use for the request.
       enum:
