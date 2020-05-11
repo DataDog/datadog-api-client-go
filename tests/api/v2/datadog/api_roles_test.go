@@ -410,13 +410,11 @@ func TestUpdateRoleErrors(t *testing.T) {
 	rup.SetData(*rud)
 
 	// invalid role ID in the payload
-	/*
-		rud400 := datadog.NewRoleUpdateDataWithDefaults()
-		rud400.SetAttributes(*rua)
-		rud400.SetId(rid404)
-		rup400 := datadog.NewRoleUpdatePayloadWithDefaults()
-		rup400.SetData(*rud400)
-	*/
+	rud400 := datadog.NewRoleUpdateDataWithDefaults()
+	rud400.SetAttributes(*rua)
+	rud400.SetId(rid404)
+	rup400 := datadog.NewRoleUpdatePayloadWithDefaults()
+	rup400.SetData(*rud400)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -424,10 +422,10 @@ func TestUpdateRoleErrors(t *testing.T) {
 		RoleID             string
 		Body               *datadog.RoleUpdatePayload
 	}{
-		"400 Bad Request":         {WithTestAuth, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
-		"403 Forbidden":           {WithFakeAuth, 403, rid, rup},
-		"404 Bad Role ID in Path": {WithTestAuth, 404, rid404, rup},
-		// FIXME AAA-1540: should be 400 "400 Bad Role ID in Request": {WithTestAuth, 400, rid, rup400},
+		"400 Bad Request":            {WithTestAuth, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
+		"403 Forbidden":              {WithFakeAuth, 403, rid, rup},
+		"404 Bad Role ID in Path":    {WithTestAuth, 404, rid404, rup},
+		"422 Bad Role ID in Request": {WithTestAuth, 422, rid, rup400},
 	}
 
 	for name, tc := range testCases {
