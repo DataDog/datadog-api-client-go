@@ -10071,7 +10071,7 @@ components:
       - SYNTHETICS_ALERT
       - TRACE_ANALYTICS_ALERT
     MonitorUpdateRequest:
-      description: Object describing a monitor.
+      description: Object describing a monitor update request.
       example:
         creator:
           name: name
@@ -10239,12 +10239,14 @@ components:
         created: 2019-09-26 17:28:28
         name: New child org
         description: some description
-        subscription: '{"type":"pro"}'
-        billing: '{"type":"parent_billing"}'
+        subscription:
+          type: pro
+        billing:
+          type: parent_billing
         public_id: abcdef12345
       properties:
         billing:
-          $ref: '#/components/schemas/Organization_billing'
+          $ref: '#/components/schemas/OrganizationBilling'
         created:
           description: Date of the organization creation.
           example: 2019-09-26 17:28:28
@@ -10266,24 +10268,35 @@ components:
         settings:
           $ref: '#/components/schemas/Organization_settings'
         subscription:
-          $ref: '#/components/schemas/Organization_subscription'
+          $ref: '#/components/schemas/OrganizationSubscription'
+      type: object
+    OrganizationBilling:
+      description: A JSON array of billing type.
+      example:
+        type: parent_billing
+      properties:
+        type:
+          description: The type of billing. Only `parent_billing` is supported.
+          type: string
       type: object
     OrganizationCreateBody:
       description: Object describing an organization to create.
       example:
         name: New child org
-        subscription: '{"type":"pro"}'
-        billing: '{"type":"parent_billing"}'
+        subscription:
+          type: pro
+        billing:
+          type: parent_billing
       properties:
         billing:
-          $ref: '#/components/schemas/Organization_billing'
+          $ref: '#/components/schemas/OrganizationBilling'
         name:
           description: The name of the new child-organization, limited to 32 characters.
           example: New child org
           maximum: 32
           type: string
         subscription:
-          $ref: '#/components/schemas/Organization_subscription'
+          $ref: '#/components/schemas/OrganizationSubscription'
       required:
       - billing
       - name
@@ -10319,8 +10332,10 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
         application_key:
           owner: example.com
@@ -10369,8 +10384,10 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
         - settings:
             saml_idp_initiated_login:
@@ -10393,8 +10410,10 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
       properties:
         orgs:
@@ -10428,12 +10447,24 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
       properties:
         org:
           $ref: '#/components/schemas/Organization'
+      type: object
+    OrganizationSubscription:
+      description: Subscription definition.
+      example:
+        type: pro
+      properties:
+        type:
+          description: The subscription type. Types available are `trial`, `free`,
+            and `pro`.
+          type: string
       type: object
     PagerDutyService:
       description: The PagerDuty service that is available for integration with Datadog.
@@ -11372,7 +11403,7 @@ components:
           description: The name of the service level objective object.
           type: string
         query:
-          $ref: '#/components/schemas/ServiceLevelObjective_query'
+          $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
         tags:
           description: |-
             A list of tags associated with this service level objective.
@@ -11398,6 +11429,22 @@ components:
       - name
       - thresholds
       - type
+    ServiceLevelObjectiveQuery:
+      description: A metric SLI query. **Required if type is `metric`**.
+      example:
+        denominator: denominator
+        numerator: numerator
+      properties:
+        denominator:
+          description: A Datadog metric query for total (valid) events.
+          type: string
+        numerator:
+          description: A Datadog metric query for good events.
+          type: string
+      required:
+      - denominator
+      - numerator
+      type: object
     ServiceLevelObjectiveRequest:
       description: |-
         A service level objective object includes a service level indicator, thresholds
@@ -11494,7 +11541,7 @@ components:
           description: The name of the service level objective object.
           type: string
         query:
-          $ref: '#/components/schemas/ServiceLevelObjective_query'
+          $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
         tags:
           description: |-
             A list of tags associated with this service level objective.
@@ -13496,7 +13543,7 @@ components:
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
-          $ref: '#/components/schemas/TimeseriesWidgetRequest_style'
+          $ref: '#/components/schemas/WidgetRequestStyle'
       type: object
     ToplistWidgetDefinition:
       description: The top list visualization enables you to display a list of Tag
@@ -13552,7 +13599,7 @@ components:
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
-          $ref: '#/components/schemas/TimeseriesWidgetRequest_style'
+          $ref: '#/components/schemas/WidgetRequestStyle'
       type: object
     UsageFargateHour:
       description: Number of Fargate tasks run and hourly usage.
@@ -14619,7 +14666,7 @@ components:
           type: array
       type: object
     UsageSyntheticsHour:
-      description: Number of Synthetics API tests run for each hour for a given organization.
+      description: The number of synthetics tests run for each hour for a given organization.
       example:
         check_calls_count: 0
         hour: 2000-01-23T04:56:07.000+00:00
@@ -15355,6 +15402,17 @@ components:
       - WHITE_ON_RED
       - WHITE_ON_YELLOW
       - YELLOW_ON_WHITE
+    WidgetRequestStyle:
+      description: Define request widget style.
+      properties:
+        line_type:
+          $ref: '#/components/schemas/WidgetLineType'
+        line_width:
+          $ref: '#/components/schemas/WidgetLineWidth'
+        palette:
+          description: Color palette to apply to the widget.
+          type: string
+      type: object
     WidgetServiceSummaryDisplayFormat:
       description: Number of columns to display.
       enum:
@@ -15928,13 +15986,6 @@ components:
           description: Metric type used in the monitor.
           example: count
           type: string
-    Organization_billing:
-      description: A JSON array of billing type.
-      example: '{"type":"parent_billing"}'
-      properties:
-        type:
-          description: The type of billing. Only `parent_billing` is supported.
-          type: string
     Organization_settings_saml:
       description: |-
         Set the boolean property enabled to enable or disable single sign on with SAML.
@@ -16042,14 +16093,6 @@ components:
           type: string
         saml_strict_mode:
           $ref: '#/components/schemas/Organization_settings_saml_strict_mode'
-    Organization_subscription:
-      description: A JSON array of subscription type.
-      example: '{"type":"pro"}'
-      properties:
-        type:
-          description: The subscription type. Types available are `trial`, `free`,
-            and `pro`.
-          type: string
     SLOBulkDeleteResponse_data:
       description: An array of service level objective objects.
       example:
@@ -16233,21 +16276,6 @@ components:
       required:
       - x
       - "y"
-    ServiceLevelObjective_query:
-      description: A metric SLI query. **Required if type is `metric`**.
-      example:
-        denominator: denominator
-        numerator: numerator
-      properties:
-        denominator:
-          description: A Datadog metric query for total (valid) events.
-          type: string
-        numerator:
-          description: A Datadog metric query for good events.
-          type: string
-      required:
-      - denominator
-      - numerator
     SyntheticsAPITestResultFull_check:
       description: Object describing the API test configuration.
       example:
@@ -16494,16 +16522,6 @@ components:
           type: string
       required:
       - expression
-    TimeseriesWidgetRequest_style:
-      description: Define widget style.
-      properties:
-        line_type:
-          $ref: '#/components/schemas/WidgetLineType'
-        line_width:
-          $ref: '#/components/schemas/WidgetLineWidth'
-        palette:
-          description: Color palette to apply to the widget.
-          type: string
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.

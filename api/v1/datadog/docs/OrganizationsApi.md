@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    body := openapiclient.OrganizationCreateBody{Billing: openapiclient.Organization_billing{Type: "Type_example"}, Name: "Name_example", Subscription: openapiclient.Organization_subscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
+    body := openapiclient.OrganizationCreateBody{Billing: openapiclient.OrganizationBilling{Type: "Type_example"}, Name: "Name_example", Subscription: openapiclient.OrganizationSubscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -231,7 +231,7 @@ import (
 
 func main() {
     publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
-    body := openapiclient.Organization{Billing: openapiclient.Organization_billing{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: openapiclient.Organization_settings{PrivateWidgetShare: false, Saml: openapiclient.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: openapiclient.AccessRole{}, SamlAutocreateUsersDomains: openapiclient.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: openapiclient.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: openapiclient.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: openapiclient.Organization_subscription{Type: "Type_example"}} // Organization | 
+    body := openapiclient.Organization{Billing: openapiclient.OrganizationBilling{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: openapiclient.Organization_settings{PrivateWidgetShare: false, Saml: openapiclient.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: openapiclient.AccessRole{}, SamlAutocreateUsersDomains: openapiclient.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: openapiclient.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: openapiclient.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: openapiclient.OrganizationSubscription{Type: "Type_example"}} // Organization | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
