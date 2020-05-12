@@ -422,10 +422,10 @@ func TestUpdateRoleErrors(t *testing.T) {
 		RoleID             string
 		Body               *datadog.RoleUpdatePayload
 	}{
-		"400 Bad Request":            {WithTestAuth, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
-		"403 Forbidden":              {WithFakeAuth, 403, rid, rup},
-		"404 Bad Role ID in Path":    {WithTestAuth, 404, rid404, rup},
-		"422 Bad Role ID in Request": {WithTestAuth, 422, rid, rup400},
+		"400 Bad Request":          {WithTestAuth, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
+		"403 Forbidden":            {WithFakeAuth, 403, rid, rup},
+		"404 Bad Role ID in Path":  {WithTestAuth, 404, rid404, rup},
+		"422 Unprocessable Entity": {WithTestAuth, 422, rid, rup400},
 	}
 
 	for name, tc := range testCases {

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"test-role-datadog-client-go-1589225319041559294"},"type":"roles"}}
+      {"data":{"attributes":{"name":"test-role-datadog-client-go-1589309174905144148"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "5227859265654489699"
+      - "6599942852618442444"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2648918108860505776"
+      - "8479872727333961512"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"errors": ["Custom RBAC is not enabled for this account"]}'
+    body: '{"data":{"type":"roles","id":"dbbf7a20-9480-11ea-93e2-97a4525ca8c7","attributes":{"name":"test-role-datadog-client-go-1589309174905144148","created_at":"2020-05-12T18:46:15.168924+00:00","modified_at":"2020-05-12T18:46:15.168924+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,61 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 11 May 2020 19:28:40 GMT
+      - Tue, 12 May 2020 18:46:15 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=88; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 18:46:15 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - kqXz3OvR7iajEJOdRFWpzJtcDHRumYwGfjdF12Vd65Xt1uV9T6lEO/K0lkxmcRvl
+      X-Dd-Version:
+      - "35.2494332"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7011652946715151157"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8479872727333961512"
+    url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff
+    method: GET
+  response:
+    body: '{"errors": ["The role 00000000-dead-beef-dead-ffffffffffff does not exist
+      not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 12 May 2020 18:46:15 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -46,9 +100,62 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2489912"
+      - "35.2494332"
       X-Frame-Options:
       - SAMEORIGIN
-    status: 403 Forbidden
-    code: 403
+    status: 404 Not Found
+    code: 404
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6011666550722210351"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8479872727333961512"
+    url: https://api.datadoghq.com/api/v2/roles/dbbf7a20-9480-11ea-93e2-97a4525ca8c7
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Tue, 12 May 2020 18:46:15 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=88; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 18:46:15 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - QgRGXxkxV9A4PZPYRoesCGgupw+m7xaD1r9nbJHgAaPeprYV0FnzI0EYYO7x6f4+
+      X-Dd-Version:
+      - "35.2494332"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
     duration: ""
