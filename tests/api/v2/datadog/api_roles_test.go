@@ -394,11 +394,6 @@ func TestUpdateRoleErrors(t *testing.T) {
 	rid := rrData.GetId()
 	defer deleteRole(ctx, rid)
 
-	// bad role ID
-	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
-	assert.Equal(404, httpresp.StatusCode)
-
 	// working update payload
 	updatedRoleName := "updated-" + rca.GetName()
 	rua := datadog.NewRoleUpdateAttributesWithDefaults()
@@ -409,12 +404,15 @@ func TestUpdateRoleErrors(t *testing.T) {
 	rup := datadog.NewRoleUpdatePayloadWithDefaults()
 	rup.SetData(*rud)
 
-	// invalid role ID in the payload
-	rud400 := datadog.NewRoleUpdateDataWithDefaults()
-	rud400.SetAttributes(*rua)
-	rud400.SetId(rid404)
-	rup400 := datadog.NewRoleUpdatePayloadWithDefaults()
-	rup400.SetData(*rud400)
+	// bad role ID
+	rid404 := "00000000-dead-beef-dead-ffffffffffff"
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	assert.Equal(404, httpresp.StatusCode)
+	rud404 := datadog.NewRoleUpdateDataWithDefaults()
+	rud404.SetAttributes(*rua)
+	rud404.SetId(rid404)
+	rup404 := datadog.NewRoleUpdatePayloadWithDefaults()
+	rup404.SetData(*rud404)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -424,8 +422,8 @@ func TestUpdateRoleErrors(t *testing.T) {
 	}{
 		"400 Bad Request":          {WithTestAuth, 400, rid, datadog.NewRoleUpdatePayloadWithDefaults()},
 		"403 Forbidden":            {WithFakeAuth, 403, rid, rup},
-		"404 Bad Role ID in Path":  {WithTestAuth, 404, rid404, rup},
-		"422 Unprocessable Entity": {WithTestAuth, 422, rid, rup400},
+		"404 Bad Role ID in Path":  {WithTestAuth, 404, rid404, rup404},
+		"422 Unprocessable Entity": {WithTestAuth, 422, rid, rup404},
 	}
 
 	for name, tc := range testCases {
