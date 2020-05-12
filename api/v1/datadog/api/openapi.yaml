@@ -42,6 +42,17 @@ tags:
     url: https://docs.datadoghq.com/api/?lang=bash#integration-aws-logs
   name: AWS Logs Integration
 - description: |-
+    All requests to Datadog’s API must be authenticated.
+    Requests that write data require reporting access and require an `API key`.
+    Requests that read data require full access and also require an `application key`.
+
+    **Note:** All Datadog API clients are configured by default to consume Datadog US site APIs.
+    If you are on the Datadog EU site, set the environment variable `DATADOG_HOST` to
+    `https://api.datadoghq.eu` or override this value directly when creating your client.
+
+    [Manage your account’s API and application keys](https://app.datadoghq.com/account/settings#api).
+  name: Authentication
+- description: |-
     Configure your Datadog-Azure integration directly through the Datadog API.
     For more information, see the [Datadog-Azure integration page](https://docs.datadoghq.com/integrations/azure).
   externalDocs:
@@ -166,12 +177,10 @@ tags:
   name: Snapshots
 - description: |-
     Datadog Synthetics uses simulated user requests and browser rendering to help you ensure uptime,
-    identify regional issues, and track your application performance. You can use Datadog’s API to
-    create Synthetics API and browser tests programmatically. Synthetics tests are HTTP requests executed by Datadog to
-    your web properties or application endpoints at configurable periodic intervals from multiple
-    locations around the world. These tests verify that your applications are responding to requests,
-    as well as that they meet any conditions you define—such as response time, HTTP status code, and
-    header or body contents.
+    identify regional issues, and track your application performance. Datadog Synthetics tests come in
+    two different flavors, [API tests](https://docs.datadoghq.com/synthetics/api_tests/?tab=httptest)
+    and [browser tests](https://docs.datadoghq.com/synthetics/browser_tests). You can use Datadog’s API to
+    manage both test types programmatically.
 
     For more information about Synthetics, see the [Synthetics overview](https://docs.datadoghq.com/synthetics/).
   name: Synthetics
@@ -4263,8 +4272,8 @@ paths:
       description: Get the list of all Synthetic tests (can be filtered by type).
       operationId: ListTests
       parameters:
-      - description: API or browser to filter the list by type, undefined to get the
-          unfiltered list.
+      - description: API or browser to filter the list by test type, undefined to
+          get the unfiltered list.
         explode: true
         in: query
         name: check_type
@@ -4278,7 +4287,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SyntheticsListTestsResponse'
-          description: OK - Returns the list of all Synthetic test (properly filtered
+          description: OK - Returns the list of all Synthetic tests (properly filtered
             by type).
         "403":
           content:
@@ -4291,12 +4300,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Synthetic is not activated for the user.
-      summary: Get a list of all tests
+          description: Synthetics is not activated for the user.
+      summary: Get a list of tests
       tags:
       - Synthetics
     post:
-      description: Create (or clone) a Synthetics test.
+      description: Create a Synthetic test.
       operationId: CreateTest
       parameters:
       - description: Public ID of the test to clone, undefined if the test is newly
@@ -4321,7 +4330,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SyntheticsTestDetails'
-          description: OK - Returns the created/cloned test details.
+          description: OK - Returns the created test details.
         "400":
           content:
             application/json:
@@ -4329,7 +4338,7 @@ paths:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: |-
             - JSON format is wrong
-            - Creation/cloning failed
+            - Creation failed
         "402":
           content:
             application/json:
@@ -4342,13 +4351,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
-      summary: Create or clone a test
+      summary: Create a test
       tags:
       - Synthetics
       x-codegen-request-body-name: body
   /api/v1/synthetics/tests/browser/{public_id}/results:
     get:
-      description: Get the latest results (as summaries) from a given browser Synthetic
+      description: Get the last 50 test results summaries for a given Synthetics Browser
         test.
       operationId: GetBrowserTestLatestResults
       parameters:
@@ -4410,7 +4419,7 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
-      summary: Get test latest results (as summaries)
+      summary: Get the test's latest results summaries (browser)
       tags:
       - Synthetics
       x-codegen-request-body-name: body
@@ -4457,7 +4466,7 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test or result is not owned by the user
-      summary: Get test result (browser)
+      summary: Get a test result (browser)
       tags:
       - Synthetics
   /api/v1/synthetics/tests/delete:
@@ -4469,7 +4478,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SyntheticsDeleteTestsPayload'
-        description: Public ID list of the Synthetics tests to be deleted.
+        description: Public ID list of the Synthetic tests to be deleted.
         required: true
       responses:
         "200":
@@ -4501,13 +4510,13 @@ paths:
           description: |-
             - Tests to be deleted can't be found
             - Synthetics is not activated for the user
-      summary: Delete multiple tests
+      summary: Delete tests
       tags:
       - Synthetics
       x-codegen-request-body-name: body
   /api/v1/synthetics/tests/{public_id}:
     get:
-      description: Get the details of a specific Synthetic test.
+      description: Get the detailed configuration associated with a Synthetics test.
       operationId: GetTest
       parameters:
       - description: The public ID of the test to get details from.
@@ -4539,11 +4548,11 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
-      summary: Get test
+      summary: Get a test configuration
       tags:
       - Synthetics
     put:
-      description: Update the details of a specific Synthetic test.
+      description: Edit the configuration of a Synthetic test.
       operationId: UpdateTest
       parameters:
       - description: The public ID of the test to get details from.
@@ -4591,13 +4600,13 @@ paths:
             - Synthetic is not activated for the user
             - Test is not owned by the user
             - Test can't be found
-      summary: Update test
+      summary: Edit a test
       tags:
       - Synthetics
       x-codegen-request-body-name: body
   /api/v1/synthetics/tests/{public_id}/results:
     get:
-      description: Get the latest results (as summaries) from a given API Synthetic
+      description: Get the last 50 test results summaries for a given Synthetics API
         test.
       operationId: GetAPITestLatestResults
       parameters:
@@ -4658,7 +4667,7 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
-      summary: Get test latest results (as summaries)
+      summary: Get the test's latest results summaries (API)
       tags:
       - Synthetics
       x-codegen-request-body-name: body
@@ -4704,12 +4713,12 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test or result is not owned by the user
-      summary: Get test result (API)
+      summary: Get a test result (API)
       tags:
       - Synthetics
   /api/v1/synthetics/tests/{public_id}/status:
     put:
-      description: Change pause/live status of a given Synthetic test.
+      description: Pause or start a Synthetics test by changing the status.
       operationId: UpdateTestPauseStatus
       parameters:
       - description: The public ID of the Synthetic test to update.
@@ -4725,7 +4734,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SyntheticsUpdateTestPauseStatusPayload'
-        description: Pause/live status to set the given Synthetic test to.
+        description: Status to set the given Synthetic test to.
         required: true
       responses:
         "200":
@@ -4754,7 +4763,7 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
-      summary: Change test pause/live status
+      summary: Pause or start a test
       tags:
       - Synthetics
       x-codegen-request-body-name: body
@@ -5919,6 +5928,29 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
+  /api/v1/validate:
+    get:
+      description: Check if the API key (not the APP key) is valid. If invalid, a
+        403 is returned.
+      operationId: Validate
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationValidationResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+      security:
+      - apiKeyAuth: []
+      summary: Validate API key
+      tags:
+      - Authentication
 components:
   callbacks: {}
   examples: {}
@@ -6369,6 +6401,17 @@ components:
       properties:
         application_key:
           $ref: '#/components/schemas/ApplicationKey'
+      type: object
+    AuthenticationValidationResponse:
+      description: Represent validation endpoint responses.
+      example:
+        valid: true
+      properties:
+        valid:
+          description: Return `true` if the authentication response is valid.
+          example: true
+          readOnly: true
+          type: boolean
       type: object
     AzureAccount:
       description: Datadog-Azure integrations configured for your organization.
@@ -10073,7 +10116,7 @@ components:
       - SYNTHETICS_ALERT
       - TRACE_ANALYTICS_ALERT
     MonitorUpdateRequest:
-      description: Object describing a monitor.
+      description: Object describing a monitor update request.
       example:
         creator:
           name: name
@@ -10241,12 +10284,14 @@ components:
         created: 2019-09-26 17:28:28
         name: New child org
         description: some description
-        subscription: '{"type":"pro"}'
-        billing: '{"type":"parent_billing"}'
+        subscription:
+          type: pro
+        billing:
+          type: parent_billing
         public_id: abcdef12345
       properties:
         billing:
-          $ref: '#/components/schemas/Organization_billing'
+          $ref: '#/components/schemas/OrganizationBilling'
         created:
           description: Date of the organization creation.
           example: 2019-09-26 17:28:28
@@ -10268,24 +10313,35 @@ components:
         settings:
           $ref: '#/components/schemas/Organization_settings'
         subscription:
-          $ref: '#/components/schemas/Organization_subscription'
+          $ref: '#/components/schemas/OrganizationSubscription'
+      type: object
+    OrganizationBilling:
+      description: A JSON array of billing type.
+      example:
+        type: parent_billing
+      properties:
+        type:
+          description: The type of billing. Only `parent_billing` is supported.
+          type: string
       type: object
     OrganizationCreateBody:
       description: Object describing an organization to create.
       example:
         name: New child org
-        subscription: '{"type":"pro"}'
-        billing: '{"type":"parent_billing"}'
+        subscription:
+          type: pro
+        billing:
+          type: parent_billing
       properties:
         billing:
-          $ref: '#/components/schemas/Organization_billing'
+          $ref: '#/components/schemas/OrganizationBilling'
         name:
           description: The name of the new child-organization, limited to 32 characters.
           example: New child org
           maximum: 32
           type: string
         subscription:
-          $ref: '#/components/schemas/Organization_subscription'
+          $ref: '#/components/schemas/OrganizationSubscription'
       required:
       - billing
       - name
@@ -10321,8 +10377,10 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
         application_key:
           owner: example.com
@@ -10371,8 +10429,10 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
         - settings:
             saml_idp_initiated_login:
@@ -10395,8 +10455,10 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
       properties:
         orgs:
@@ -10430,12 +10492,24 @@ components:
           created: 2019-09-26 17:28:28
           name: New child org
           description: some description
-          subscription: '{"type":"pro"}'
-          billing: '{"type":"parent_billing"}'
+          subscription:
+            type: pro
+          billing:
+            type: parent_billing
           public_id: abcdef12345
       properties:
         org:
           $ref: '#/components/schemas/Organization'
+      type: object
+    OrganizationSubscription:
+      description: Subscription definition.
+      example:
+        type: pro
+      properties:
+        type:
+          description: The subscription type. Types available are `trial`, `free`,
+            and `pro`.
+          type: string
       type: object
     PagerDutyService:
       description: The PagerDuty service that is available for integration with Datadog.
@@ -11374,7 +11448,7 @@ components:
           description: The name of the service level objective object.
           type: string
         query:
-          $ref: '#/components/schemas/ServiceLevelObjective_query'
+          $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
         tags:
           description: |-
             A list of tags associated with this service level objective.
@@ -11400,6 +11474,22 @@ components:
       - name
       - thresholds
       - type
+    ServiceLevelObjectiveQuery:
+      description: A metric SLI query. **Required if type is `metric`**.
+      example:
+        denominator: denominator
+        numerator: numerator
+      properties:
+        denominator:
+          description: A Datadog metric query for total (valid) events.
+          type: string
+        numerator:
+          description: A Datadog metric query for good events.
+          type: string
+      required:
+      - denominator
+      - numerator
+      type: object
     ServiceLevelObjectiveRequest:
       description: |-
         A service level objective object includes a service level indicator, thresholds
@@ -11496,7 +11586,7 @@ components:
           description: The name of the service level objective object.
           type: string
         query:
-          $ref: '#/components/schemas/ServiceLevelObjective_query'
+          $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
         tags:
           description: |-
             A list of tags associated with this service level objective.
@@ -12331,7 +12421,7 @@ components:
           type: array
       type: object
     SyntheticsDeleteTestsResponse:
-      description: Response object for deleting Synthetic test.
+      description: Response object for deleting Synthetic tests.
       example:
         deleted_tests:
         - deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -13498,7 +13588,7 @@ components:
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
-          $ref: '#/components/schemas/TimeseriesWidgetRequest_style'
+          $ref: '#/components/schemas/WidgetRequestStyle'
       type: object
     ToplistWidgetDefinition:
       description: The top list visualization enables you to display a list of Tag
@@ -13554,7 +13644,7 @@ components:
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
-          $ref: '#/components/schemas/TimeseriesWidgetRequest_style'
+          $ref: '#/components/schemas/WidgetRequestStyle'
       type: object
     UsageFargateHour:
       description: Number of Fargate tasks run and hourly usage.
@@ -14621,7 +14711,7 @@ components:
           type: array
       type: object
     UsageSyntheticsHour:
-      description: Number of Synthetics API tests run for each hour for a given organization.
+      description: The number of synthetics tests run for each hour for a given organization.
       example:
         check_calls_count: 0
         hour: 2000-01-23T04:56:07.000+00:00
@@ -15357,6 +15447,17 @@ components:
       - WHITE_ON_RED
       - WHITE_ON_YELLOW
       - YELLOW_ON_WHITE
+    WidgetRequestStyle:
+      description: Define request widget style.
+      properties:
+        line_type:
+          $ref: '#/components/schemas/WidgetLineType'
+        line_width:
+          $ref: '#/components/schemas/WidgetLineWidth'
+        palette:
+          description: Color palette to apply to the widget.
+          type: string
+      type: object
     WidgetServiceSummaryDisplayFormat:
       description: Number of columns to display.
       enum:
@@ -15930,13 +16031,6 @@ components:
           description: Metric type used in the monitor.
           example: count
           type: string
-    Organization_billing:
-      description: A JSON array of billing type.
-      example: '{"type":"parent_billing"}'
-      properties:
-        type:
-          description: The type of billing. Only `parent_billing` is supported.
-          type: string
     Organization_settings_saml:
       description: |-
         Set the boolean property enabled to enable or disable single sign on with SAML.
@@ -16044,14 +16138,6 @@ components:
           type: string
         saml_strict_mode:
           $ref: '#/components/schemas/Organization_settings_saml_strict_mode'
-    Organization_subscription:
-      description: A JSON array of subscription type.
-      example: '{"type":"pro"}'
-      properties:
-        type:
-          description: The subscription type. Types available are `trial`, `free`,
-            and `pro`.
-          type: string
     SLOBulkDeleteResponse_data:
       description: An array of service level objective objects.
       example:
@@ -16235,21 +16321,6 @@ components:
       required:
       - x
       - "y"
-    ServiceLevelObjective_query:
-      description: A metric SLI query. **Required if type is `metric`**.
-      example:
-        denominator: denominator
-        numerator: numerator
-      properties:
-        denominator:
-          description: A Datadog metric query for total (valid) events.
-          type: string
-        numerator:
-          description: A Datadog metric query for good events.
-          type: string
-      required:
-      - denominator
-      - numerator
     SyntheticsAPITestResultFull_check:
       description: Object describing the API test configuration.
       example:
@@ -16496,16 +16567,6 @@ components:
           type: string
       required:
       - expression
-    TimeseriesWidgetRequest_style:
-      description: Define widget style.
-      properties:
-        line_type:
-          $ref: '#/components/schemas/WidgetLineType'
-        line_width:
-          $ref: '#/components/schemas/WidgetLineWidth'
-        palette:
-          description: Color palette to apply to the widget.
-          type: string
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.
