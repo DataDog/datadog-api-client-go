@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {}
+      {"data":{"attributes":{"name":"updated-test-role-datadog-client-go-1589320589959153671"},"id":"00000000-dead-beef-dead-ffffffffffff","type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "8420615931081244005"
+      - "8491549601758402603"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
@@ -23,15 +23,15 @@ interactions:
     url: https://api.datadoghq.com/api/v2/roles/6facfa90-949b-11ea-93e2-2b17ebaeaaf0
     method: PATCH
   response:
-    body: '{"errors": ["API input validation failed: {''_schema'': [{''source'': {''pointer'':
-      ''/''}, ''detail'': ''Object must include `data` key.''}]}"]}'
+    body: '{"errors": ["The id attribute in the request body does not match the role_id
+      in the URL"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "133"
+      - "90"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
@@ -42,6 +42,9 @@ interactions:
       - dogweb
       Pragma:
       - no-cache
+      Set-Cookie:
+      - DD-PSHARD=88; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 21:56:30 GMT;
+        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -50,6 +53,6 @@ interactions:
       - "35.2495552"
       X-Frame-Options:
       - SAMEORIGIN
-    status: 400 Bad Request
-    code: 400
+    status: 422 Unprocessable Entity
+    code: 422
     duration: ""
