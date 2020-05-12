@@ -151,7 +151,7 @@ func WithClock(ctx context.Context, t *testing.T) context.Context {
 // of an API entity. When used in Azure Pipelines, it will include BuildId to enable mapping resources
 // that weren't deleted to builds.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
-	buildID, present := os.LookupEnv("Build.BuildId")
+	buildID, present := os.LookupEnv("BUILD_BUILDID")
 	if !present {
 		buildID = "local"
 	}
