@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetGraphSnapshot
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8990265980791096761"
+      - "6776014872236057346"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1834649384348409024"
+      - "2959941650673427083"
     url: https://api.datadoghq.com/api/v1/graph/snapshot?end=123&start=345
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:18 GMT
+      - Tue, 12 May 2020 13:33:27 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

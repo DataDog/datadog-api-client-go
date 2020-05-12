@@ -16,6 +16,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -144,6 +145,23 @@ func WithClock(ctx context.Context, t *testing.T) context.Context {
 		fc = RestoreClock(t)
 	}
 	return context.WithValue(ctx, clockKey, fc)
+}
+
+// UniqueEntityName will return a unique string that can be used as a title/description/summary/...
+// of an API entity. When used in Azure Pipelines, it will include BuildId to enable mapping resources
+// that weren't deleted to builds.
+func UniqueEntityName(ctx context.Context, t *testing.T) *string {
+	buildID, present := os.LookupEnv("Build.BuildId")
+	if !present {
+		buildID = "local"
+	}
+
+	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
+	// so we need to keep this short
+    result := fmt.Sprintf("go-%s-%s-%d", t.Name(), buildID, ClockFromContext(ctx).Now().Unix())
+    // In case this is used in URL, make sure we replace the slash that is added by subtests
+    result = strings.ReplaceAll(result, "/", "-")
+    return &result
 }
 
 // ClockFromContext returns clock or panics.

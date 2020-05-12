@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: "--005735e52e246e91a0630dfcf770877dba9940e6ffdca4560ec2dcacfbd2\r\nContent-Disposition:
+    body: "--1d76693157d37a63a8836fcbd87e6eb6b0f1b3a81a02d850108b6851ddc3\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
-      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--005735e52e246e91a0630dfcf770877dba9940e6ffdca4560ec2dcacfbd2--\r\n"
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--1d76693157d37a63a8836fcbd87e6eb6b0f1b3a81a02d850108b6851ddc3--\r\n"
     form: {}
     headers:
       Accept:
@@ -12,17 +12,17 @@ interactions:
       Content-Length:
       - "262"
       Content-Type:
-      - multipart/form-data; boundary=005735e52e246e91a0630dfcf770877dba9940e6ffdca4560ec2dcacfbd2
+      - multipart/form-data; boundary=1d76693157d37a63a8836fcbd87e6eb6b0f1b3a81a02d850108b6851ddc3
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7604165944170186326"
+      - "6256725549008361374"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8136796758054601754"
+      - "8867440071354334626"
     url: https://api.datadoghq.com/api/v1/org/lsqdkjf/idp_metadata
     method: POST
   response:
@@ -39,7 +39,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:11 GMT
+      - Tue, 12 May 2020 13:33:10 GMT
       Dd-Pool:
       - dogweb_wallace
       Pragma:
@@ -49,7 +49,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

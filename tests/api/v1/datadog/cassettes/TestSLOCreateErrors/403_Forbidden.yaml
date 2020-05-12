@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateSLO
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1914368291571685440"
+      - "5894780596837801034"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3349683892839331839"
+      - "8150709416891091176"
     url: https://api.datadoghq.com/api/v1/slo
     method: POST
   response:
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:15 GMT
+      - Tue, 12 May 2020 13:33:22 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateMetricMetadata
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "845149426378099325"
+      - "5183365678995185000"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4263641135236062501"
+      - "8188437642866257725"
     url: https://api.datadoghq.com/api/v1/metrics/ametric
     method: PUT
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:38:57 GMT
+      - Tue, 12 May 2020 13:32:42 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
@@ -46,7 +46,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,9 +54,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "1999"
+      - "1998"
       X-Ratelimit-Reset:
-      - "3"
+      - "18"
     status: 404 Not Found
     code: 404
     duration: ""

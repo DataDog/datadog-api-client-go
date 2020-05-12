@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetUsageSyntheticsBrowser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7648419219544498622"
+      - "580600117680057485"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1305997528110065835"
-    url: https://api.datadoghq.com/api/v1/usage/synthetics_browser?start_hr=2020-05-26T23%3A39%3A28%2B02%3A00
+      - "521073501976108117"
+    url: https://api.datadoghq.com/api/v1/usage/synthetics_browser?start_hr=2020-06-12T15%3A34%3A21%2B02%3A00
     method: GET
   response:
     body: |
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:28 GMT
+      - Tue, 12 May 2020 13:34:21 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

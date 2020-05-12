@@ -10,10 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
-func testingUserCreateAttributes(ctx context.Context) *datadog.UserCreateAttributes {
+func testingUserCreateAttributes(ctx context.Context, t *testing.T) *datadog.UserCreateAttributes {
 	uca := datadog.NewUserCreateAttributes()
-	uca.SetEmail(fmt.Sprintf("test-datadog-client-go-%d@datadoghq.com", tests.ClockFromContext(ctx).Now().UnixNano()))
-	uca.SetName("Test Datadog Client Go")
+	name := *tests.UniqueEntityName(ctx, t)
+	uca.SetEmail(fmt.Sprintf("%s@datadoghq.com", name))
+	uca.SetName(name)
 	uca.SetTitle("Big boss")
 	return uca
 }
@@ -32,7 +33,7 @@ func TestUserLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// first, test creating a user
-	uca := testingUserCreateAttributes(ctx)
+	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
 	ucp := datadog.NewUserCreatePayload()
@@ -54,7 +55,7 @@ func TestUserLifecycle(t *testing.T) {
 	// now, test updating it
 	uua := datadog.NewUserUpdateAttributes()
 	uua.SetDisabled(false)
-	uua.SetName("Joe Doe")
+	uua.SetName(uca.GetName() + "-updated")
 	uud := datadog.NewUserUpdateData()
 	uud.SetAttributes(*uua)
 	uud.SetId(uid)
@@ -76,7 +77,7 @@ func TestUserLifecycle(t *testing.T) {
 	urData = urp.GetData()
 	urAttributes = urData.GetAttributes()
 	assert.Equal(urAttributes.GetEmail(), uca.GetEmail())
-	assert.Equal(urAttributes.GetName(), "Joe Doe")
+	assert.Equal(urAttributes.GetName(), uca.GetName() + "-updated")
 	assert.Equal(urAttributes.GetTitle(), uca.GetTitle())
 	assert.Equal(urAttributes.GetDisabled(), false)
 
@@ -118,7 +119,7 @@ func TestUserInvitation(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	uca := testingUserCreateAttributes(ctx)
+	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
 	ucp := datadog.NewUserCreatePayload()

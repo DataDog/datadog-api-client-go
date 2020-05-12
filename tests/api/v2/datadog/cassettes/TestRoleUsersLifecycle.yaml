@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"test-role-datadog-client-go-1587035358397633000"},"type":"roles"}}
+      {"data":{"attributes":{"name":"go-TestRoleUsersLifecycle-local-1589290182"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -13,35 +13,45 @@ interactions:
       Dd-Operation-Id:
       - CreateRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6673796129175108355"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7552191880228599023"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"b7d381dc-7fd2-11ea-93dd-432318f072c0","attributes":{"name":"test-role-datadog-client-go-1587035358397633000","created_at":"2020-04-16T11:09:19.216420+00:00","modified_at":"2020-04-16T11:09:19.216420+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
+    body: '{"data":{"type":"roles","id":"a368cd2e-9454-11ea-93e2-23ef49505ec5","attributes":{"name":"go-TestRoleUsersLifecycle-local-1589290182","created_at":"2020-05-12T13:29:42.792796+00:00","modified_at":"2020-05-12T13:29:42.792796+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "415"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Apr 2020 11:09:19 GMT
+      - Tue, 12 May 2020 13:29:42 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 11:09:19 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:42 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - mIWJPPM06xs5rSGFgggpdD5UbOnt6ntntAO8/8YDsVuXnSmp/k0aZ5dEUtAKB7Td
       X-Dd-Version:
-      - "35.2397926"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -49,7 +59,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"data":{"attributes":{"email":"test-datadog-client-go-1587035358397633000@datadoghq.com","name":"Test Datadog Client Go","title":"Big boss"},"type":"users"}}
+      {"data":{"attributes":{"email":"go-TestRoleUsersLifecycle-local-1589290182@datadoghq.com","name":"go-TestRoleUsersLifecycle-local-1589290182","title":"Big boss"},"type":"users"}}
     form: {}
     headers:
       Accept:
@@ -59,12 +69,17 @@ interactions:
       Dd-Operation-Id:
       - CreateUser
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6427199032676314675"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7552191880228599023"
     url: https://api.datadoghq.com/api/v2/users
     method: POST
   response:
-    body: '{"data":{"type":"users","id":"b7f779c0-7fd2-11ea-93dd-9b76d1d01572","attributes":{"name":"Test
-      Datadog Client Go","handle":"test-datadog-client-go-1587035358397633000@datadoghq.com","created_at":"2020-04-16T11:09:19.451234+00:00","email":"test-datadog-client-go-1587035358397633000@datadoghq.com","icon":"https://secure.gravatar.com/avatar/d2499d5025c34d3b2b345ecea92b64e6?s=48&d=retro","title":"Big
+    body: '{"data":{"type":"users","id":"a392eb86-9454-11ea-93e2-273881bbd9c6","attributes":{"name":"go-TestRoleUsersLifecycle-local-1589290182","handle":"go-testroleuserslifecycle-local-1589290182@datadoghq.com","created_at":"2020-05-12T13:29:43.067860+00:00","email":"go-TestRoleUsersLifecycle-local-1589290182@datadoghq.com","icon":"https://secure.gravatar.com/avatar/cad524d9bb5c5ae9bae0ea7a595e6eea?s=48&d=retro","title":"Big
       boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     headers:
       Cache-Control:
@@ -72,24 +87,28 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "601"
+      - "621"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Apr 2020 11:09:19 GMT
+      - Tue, 12 May 2020 13:29:43 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 11:09:19 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:42 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - Xj/PwLDKe3Ll1QwGP2SdQuyUcOtG0YD60hQDJ9tPEhK9OEMHkSCPXdZRvPX0YYGO
       X-Dd-Version:
-      - "35.2397926"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
@@ -97,7 +116,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"data":{"id":"b7f779c0-7fd2-11ea-93dd-9b76d1d01572","type":"users"}}
+      {"data":{"id":"a392eb86-9454-11ea-93e2-273881bbd9c6","type":"users"}}
     form: {}
     headers:
       Accept:
@@ -105,39 +124,48 @@ interactions:
       Content-Type:
       - application/json
       Dd-Operation-Id:
-      - CreateRoleRelationshipToUser
+      - AddUserToRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/b7d381dc-7fd2-11ea-93dd-432318f072c0/users
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "140620712130409056"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7552191880228599023"
+    url: https://api.datadoghq.com/api/v2/roles/a368cd2e-9454-11ea-93e2-23ef49505ec5/users
     method: POST
   response:
-    body: '{"meta":{"page":{"total_count":1}},"data":[{"type":"users","id":"b7f779c0-7fd2-11ea-93dd-9b76d1d01572","attributes":{"name":"Test
-      Datadog Client Go","handle":"test-datadog-client-go-1587035358397633000@datadoghq.com","created_at":"2020-04-16T11:09:19.451234+00:00","email":"test-datadog-client-go-1587035358397633000@datadoghq.com","icon":"https://secure.gravatar.com/avatar/d2499d5025c34d3b2b345ecea92b64e6?s=48&d=retro","title":"Big
-      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"b7d381dc-7fd2-11ea-93dd-432318f072c0"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
+    body: '{"meta":{"page":{"total_count":1}},"data":[{"type":"users","id":"a392eb86-9454-11ea-93e2-273881bbd9c6","attributes":{"name":"go-TestRoleUsersLifecycle-local-1589290182","handle":"go-testroleuserslifecycle-local-1589290182@datadoghq.com","created_at":"2020-05-12T13:29:43.067860+00:00","email":"go-TestRoleUsersLifecycle-local-1589290182@datadoghq.com","icon":"https://secure.gravatar.com/avatar/cad524d9bb5c5ae9bae0ea7a595e6eea?s=48&d=retro","title":"Big
+      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"a368cd2e-9454-11ea-93e2-23ef49505ec5"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "697"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Apr 2020 11:09:19 GMT
+      - Tue, 12 May 2020 13:29:43 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 11:09:19 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - PmDXJXCpOnq24qtagNCLPTUoILSRgi3DGaXUca70kUEAM8DZBLYkwSVilYSYEHCG
       X-Dd-Version:
-      - "35.2397926"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -150,14 +178,22 @@ interactions:
       Accept:
       - application/json
       Dd-Operation-Id:
-      - ListRoleRelationshipsToUsers
+      - ListRoleUsers
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/b7d381dc-7fd2-11ea-93dd-432318f072c0/users
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8450712075557769762"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7552191880228599023"
+    url: https://api.datadoghq.com/api/v2/roles/a368cd2e-9454-11ea-93e2-23ef49505ec5/users
     method: GET
   response:
-    body: '{"included":[{"type":"permissions","id":"d90f6832-d3d8-11e9-a77a-bf8a2607f864","attributes":{"name":"dashboards_public_share","display_name":"Dashboards
-      Share","description":"The ability to share dashboards externally.","created":"2019-09-10T14:39:51.967094+00:00","group_name":"Dashboards","display_type":"other","restricted":false}},{"type":"permissions","id":"811ac4ca-dd12-11e8-9e57-676a7f0beef9","attributes":{"name":"logs_write_pipelines","display_name":"Logs
+    body: '{"included":[{"type":"permissions","id":"984d2f00-d3b4-11e8-a200-bb47109e9987","attributes":{"name":"standard","display_name":"Standard
+      Access","description":"This permission gives you the ability to view and edit
+      components in your Datadog organization that do not have explicitly defined
+      permissions. This includes APM, Events, and other non-Account Management functionality.","created":"2018-10-19T15:35:23.756736+00:00","group_name":"General","display_type":"other","restricted":false}},{"type":"permissions","id":"811ac4ca-dd12-11e8-9e57-676a7f0beef9","attributes":{"name":"logs_write_pipelines","display_name":"Logs
       Write Pipelines","description":"The ability to add and change log pipeline configurations,
       including the ability to grant the Logs Write Processors permission to other
       roles, for some or all pipelines. This permission also grants global Log Processor
@@ -165,57 +201,50 @@ interactions:
       Generate Metrics","description":"The ability to create custom metrics from logs.","created":"2019-07-25T12:27:39.640758+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"permissions","id":"4d87d5f8-d8b1-11e9-a77a-eb9c8350d04f","attributes":{"name":"monitors_downtime","display_name":"Monitors
       Manage Downtimes","description":"The ability to set downtimes for your organization.
       A user with this permission can suppress alerts from any monitor using a downtime,
-      even if they do not have permission to edit those monitors explicitly.","created":"2019-09-16T18:39:23.306702+00:00","group_name":"Monitors","display_type":"other","restricted":false}},{"type":"permissions","id":"5e605652-dd12-11e8-9e53-375565b8970e","attributes":{"name":"logs_read_index_data","display_name":"Logs
-      Read Index Data","description":"The ability to read all or some log indexes.
-      Can be granted in a limited capacity per index from the Logs interface or APIs.
-      If granted via the Roles interface or API the permission has global scope.","created":"2018-10-31T13:39:19.727450+00:00","group_name":"Logs","display_type":"read","restricted":false}},{"type":"permissions","id":"d90f6831-d3d8-11e9-a77a-4fd230ddbc6a","attributes":{"name":"dashboards_write","display_name":"Dashboards","description":"The
-      ability to create and change dashboards.","created":"2019-09-10T14:39:51.962944+00:00","group_name":"Dashboards","display_type":"write","restricted":false}},{"type":"roles","id":"b7d381dc-7fd2-11ea-93dd-432318f072c0","attributes":{"name":"test-role-datadog-client-go-1587035358397633000","created_at":"2020-04-16T11:09:19.216420+00:00","modified_at":"2020-04-16T11:09:19.216420+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}},{"type":"permissions","id":"48ef71ea-d8b1-11e9-a77a-93f408470ad0","attributes":{"name":"monitors_write","display_name":"Monitors","description":"The
-      ability to change, mute, and delete individual monitors.","created":"2019-09-16T18:39:15.597109+00:00","group_name":"Monitors","display_type":"write","restricted":false}},{"type":"permissions","id":"984d2f00-d3b4-11e8-a200-bb47109e9987","attributes":{"name":"standard","display_name":"Standard
-      Access","description":"This permission gives you the ability to view and edit
-      components in your Datadog organization that do not have explicitly defined
-      permissions. This includes APM, Events, and other non-Account Management functionality.","created":"2018-10-19T15:35:23.756736+00:00","group_name":"General","display_type":"other","restricted":false}},{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2","attributes":{"name":"dashboards_read","display_name":"Dashboards","description":"The
-      ability to view dashboards.","created":"2019-09-10T14:39:51.955175+00:00","group_name":"Dashboards","display_type":"read","restricted":true}},{"type":"permissions","id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","attributes":{"name":"admin","display_name":"Privileged
-      Access","description":"This permission gives you the ability to view and edit
-      everything in your Datadog organization that does not have an explicitly defined
-      permission. This includes billing and usage, user, key, and organization management.
-      This permission is inclusive of all Standard access permissions.","created":"2018-10-19T15:35:23.734317+00:00","group_name":"General","display_type":"other","restricted":false}},{"type":"permissions","id":"62cc036c-dd12-11e8-9e54-db9995643092","attributes":{"name":"logs_modify_indexes","display_name":"Logs
+      even if they do not have permission to edit those monitors explicitly.","created":"2019-09-16T18:39:23.306702+00:00","group_name":"Monitors","display_type":"other","restricted":false}},{"type":"permissions","id":"d90f6831-d3d8-11e9-a77a-4fd230ddbc6a","attributes":{"name":"dashboards_write","display_name":"Dashboards","description":"The
+      ability to create and change dashboards.","created":"2019-09-10T14:39:51.962944+00:00","group_name":"Dashboards","display_type":"write","restricted":false}},{"type":"permissions","id":"1af86ce4-7823-11ea-93dc-d7cad1b1c6cb","attributes":{"name":"logs_read_data","display_name":"Logs
+      Read Data","description":"The ability to read log data. Can be restricted with
+      restriction queries.","created":"2020-04-06T16:24:35.989108+00:00","group_name":"Logs","display_type":"read","restricted":false}},{"type":"permissions","id":"6f66600e-dd12-11e8-9e55-7f30fbb45e73","attributes":{"name":"logs_live_tail","display_name":"Logs
+      Live Tail Access","description":"The ability to view the live tail feed for
+      all log indexes, even if otherwise specifically restricted.","created":"2018-10-31T13:39:48.292879+00:00","group_name":"Logs","display_type":"read","restricted":false}},{"type":"permissions","id":"48ef71ea-d8b1-11e9-a77a-93f408470ad0","attributes":{"name":"monitors_write","display_name":"Monitors","description":"The
+      ability to change, mute, and delete individual monitors.","created":"2019-09-16T18:39:15.597109+00:00","group_name":"Monitors","display_type":"write","restricted":false}},{"type":"permissions","id":"d90f6832-d3d8-11e9-a77a-bf8a2607f864","attributes":{"name":"dashboards_public_share","display_name":"Dashboards
+      Share","description":"The ability to share dashboards externally.","created":"2019-09-10T14:39:51.967094+00:00","group_name":"Dashboards","display_type":"other","restricted":false}},{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2","attributes":{"name":"dashboards_read","display_name":"Dashboards","description":"The
+      ability to view dashboards.","created":"2019-09-10T14:39:51.955175+00:00","group_name":"Dashboards","display_type":"read","restricted":true}},{"type":"permissions","id":"62cc036c-dd12-11e8-9e54-db9995643092","attributes":{"name":"logs_modify_indexes","display_name":"Logs
       Modify Indexes","description":"The ability to read and modify all indexes in
       your account. This includes the ability to grant the Logs Read Index Data and
       Logs Write Exclusion Filter permission to other roles, for some or all indexes.
       This permission also grants global Log Index Read and Log Exclusion Filter Write
-      implicitly.","created":"2018-10-31T13:39:27.148615+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"permissions","id":"1a92ede2-6cb2-11e9-99c6-2b3a4a0cdf0a","attributes":{"name":"logs_public_config_api","display_name":"Logs
-      Public Config API","description":"The ability to access and edit logs configurations
-      via the API.","created":"2019-05-02T08:13:01.731092+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"permissions","id":"87b00304-dd12-11e8-9e59-cbeb5f71f72f","attributes":{"name":"logs_write_archives","display_name":"Log
-      Write Archives","description":"The ability to add and edit log archive locations.","created":"2018-10-31T13:40:29.040786+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"permissions","id":"6f66600e-dd12-11e8-9e55-7f30fbb45e73","attributes":{"name":"logs_live_tail","display_name":"Logs
-      Live Tail Access","description":"The ability to view the live tail feed for
-      all log indexes, even if otherwise specifically restricted.","created":"2018-10-31T13:39:48.292879+00:00","group_name":"Logs","display_type":"read","restricted":false}},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304","attributes":{"name":"monitors_read","display_name":"Monitors","description":"The
-      ability to view monitors.","created":"2019-09-16T18:39:07.744297+00:00","group_name":"Monitors","display_type":"read","restricted":true}}],"meta":{"page":{"total_filtered_count":1,"total_count":1}},"data":[{"type":"users","id":"b7f779c0-7fd2-11ea-93dd-9b76d1d01572","attributes":{"name":"Test
-      Datadog Client Go","handle":"test-datadog-client-go-1587035358397633000@datadoghq.com","created_at":"2020-04-16T11:09:19.451234+00:00","email":"test-datadog-client-go-1587035358397633000@datadoghq.com","icon":"https://secure.gravatar.com/avatar/d2499d5025c34d3b2b345ecea92b64e6?s=48&d=retro","title":"Big
-      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"b7d381dc-7fd2-11ea-93dd-432318f072c0"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
+      implicitly.","created":"2018-10-31T13:39:27.148615+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"roles","id":"a368cd2e-9454-11ea-93e2-23ef49505ec5","attributes":{"name":"go-TestRoleUsersLifecycle-local-1589290182","created_at":"2020-05-12T13:29:42.792796+00:00","modified_at":"2020-05-12T13:29:42.792796+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304","attributes":{"name":"monitors_read","display_name":"Monitors","description":"The
+      ability to view monitors.","created":"2019-09-16T18:39:07.744297+00:00","group_name":"Monitors","display_type":"read","restricted":true}}],"meta":{"page":{"total_filtered_count":1,"total_count":1}},"data":[{"type":"users","id":"a392eb86-9454-11ea-93e2-273881bbd9c6","attributes":{"name":"go-TestRoleUsersLifecycle-local-1589290182","handle":"go-testroleuserslifecycle-local-1589290182@datadoghq.com","created_at":"2020-05-12T13:29:43.067860+00:00","email":"go-TestRoleUsersLifecycle-local-1589290182@datadoghq.com","icon":"https://secure.gravatar.com/avatar/cad524d9bb5c5ae9bae0ea7a595e6eea?s=48&d=retro","title":"Big
+      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"a368cd2e-9454-11ea-93e2-23ef49505ec5"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "7085"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Apr 2020 11:09:19 GMT
+      - Tue, 12 May 2020 13:29:43 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 11:09:19 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - wB7h0Rt2IYxDUBLtoJ4y0ZOq10ZaMdDZiRuFZ3d/FUUtC7gfBEZWTs0Y6dZhoLZS
       X-Dd-Version:
-      - "35.2397926"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -223,7 +252,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"data":{"id":"b7f779c0-7fd2-11ea-93dd-9b76d1d01572","type":"users"}}
+      {"data":{"id":"a392eb86-9454-11ea-93e2-273881bbd9c6","type":"users"}}
     form: {}
     headers:
       Accept:
@@ -231,10 +260,16 @@ interactions:
       Content-Type:
       - application/json
       Dd-Operation-Id:
-      - DeleteRoleRelationshipToUser
+      - RemoveUserFromRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/b7d381dc-7fd2-11ea-93dd-432318f072c0/users
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5603557853906620747"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7552191880228599023"
+    url: https://api.datadoghq.com/api/v2/roles/a368cd2e-9454-11ea-93e2-23ef49505ec5/users
     method: DELETE
   response:
     body: '{"meta":{"page":{"total_count":0}},"data":[]}'
@@ -243,25 +278,29 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "45"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Apr 2020 11:09:20 GMT
+      - Tue, 12 May 2020 13:29:43 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 11:09:20 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - kqXz3OvR7iajEJOdRFWpzJtcDHRumYwGfjdF12Vd65Xt1uV9T6lEO/K0lkxmcRvl
       X-Dd-Version:
-      - "35.2397926"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -276,8 +315,14 @@ interactions:
       Dd-Operation-Id:
       - DisableUser
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/users/b7f779c0-7fd2-11ea-93dd-9b76d1d01572
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2856140946334413260"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7552191880228599023"
+    url: https://api.datadoghq.com/api/v2/users/a392eb86-9454-11ea-93e2-273881bbd9c6
     method: DELETE
   response:
     body: ""
@@ -293,18 +338,22 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Thu, 16 Apr 2020 11:09:20 GMT
+      - Tue, 12 May 2020 13:29:44 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 11:09:20 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - DAk/CQntZmry+u4cYsuVOELuKFo1I3NzKRNwPlY9WvlbH+rffk5VylB8tKDaSRWP
       X-Dd-Version:
-      - "35.2397926"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -319,8 +368,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/b7d381dc-7fd2-11ea-93dd-432318f072c0
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4295993792905294690"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7552191880228599023"
+    url: https://api.datadoghq.com/api/v2/roles/a368cd2e-9454-11ea-93e2-23ef49505ec5
     method: DELETE
   response:
     body: ""
@@ -336,18 +391,22 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Thu, 16 Apr 2020 11:09:20 GMT
+      - Tue, 12 May 2020 13:29:44 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Apr-2020 11:09:20 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:44 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - SaHvyR/hQzhMjBxXmmuM76vwlwfocpgL0LhX3u6R0CFONYqUGm7Xe/7/HyTliTFX
       X-Dd-Version:
-      - "35.2397926"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content

@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListEvents
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1899626209308807936"
+      - "1998098026093989849"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2962399479186781462"
+      - "6828225313764750264"
     url: https://api.datadoghq.com/api/v1/events?end=123&start=345
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:38:46 GMT
+      - Tue, 12 May 2020 13:31:10 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden
