@@ -31,33 +31,33 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
-type RecordingType string
+type RecordingMode string
 
 const (
-	RecordingFalse = "false"
-	RecordingNone = "none"
-	RecordingTrue = "true"
+	ModeIgnore = "none"
+	ModeReplaying = "false"
+	ModeRecording = "true"
 )
 
 // GetRecording returns the value of RECORD environment variable
-func GetRecording() RecordingType {
+func GetRecording() RecordingMode {
 	if value, exists := os.LookupEnv("RECORD"); exists {
 		switch value {
-		case RecordingNone:
-			return RecordingNone
-		case RecordingTrue:
-			return RecordingTrue
+		case ModeIgnore:
+			return ModeIgnore
+		case ModeRecording:
+			return ModeRecording
 		default:
-			return RecordingFalse
+			return ModeReplaying
 		}
 	} else {
-		return RecordingFalse
+		return ModeReplaying
 	}
 }
 
 // IsRecording returns true if the recording mode is enabled
 func IsRecording() bool {
-	return GetRecording() == RecordingTrue
+	return GetRecording() == ModeRecording
 }
 
 // IsCIRun returns true if the CI environment variable is set to "true"
@@ -181,7 +181,7 @@ func WithClock(ctx context.Context, t *testing.T) context.Context {
 // BuildId to enable mapping resources that weren't deleted to builds.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
 	buildID, present := os.LookupEnv("BUILD_BUILDID")
-	if !present || !IsCIRun() || GetRecording() == RecordingFalse {
+	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
 		buildID = "local"
 	}
 
