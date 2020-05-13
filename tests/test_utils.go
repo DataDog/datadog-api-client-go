@@ -31,9 +31,38 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
+type RecordingType string
+
+const (
+	RecordingFalse = "false"
+	RecordingNone = "none"
+	RecordingTrue = "true"
+)
+
+// GetRecording returns the value of RECORD environment variable
+func GetRecording() RecordingType {
+	if value, exists := os.LookupEnv("RECORD"); exists {
+		switch value {
+		case RecordingNone:
+			return RecordingNone
+		case RecordingTrue:
+			return RecordingTrue
+		default:
+			return RecordingFalse
+		}
+	} else {
+		return RecordingFalse
+	}
+}
+
 // IsRecording returns true if the recording mode is enabled
 func IsRecording() bool {
-	return os.Getenv("RECORD") == "true"
+	return GetRecording() == RecordingTrue
+}
+
+// IsCIRun returns true if the CI environment variable is set to "true"
+func IsCIRun() bool {
+	return os.Getenv("CI") == "true"
 }
 
 // Retry calls the call function for count times every interval while it returns false
@@ -148,20 +177,20 @@ func WithClock(ctx context.Context, t *testing.T) context.Context {
 }
 
 // UniqueEntityName will return a unique string that can be used as a title/description/summary/...
-// of an API entity. When used in Azure Pipelines, it will include BuildId to enable mapping resources
-// that weren't deleted to builds.
+// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
+// BuildId to enable mapping resources that weren't deleted to builds.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
 	buildID, present := os.LookupEnv("BUILD_BUILDID")
-	if !present {
+	if !present || !IsCIRun() || GetRecording() == RecordingFalse {
 		buildID = "local"
 	}
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-    result := fmt.Sprintf("go-%s-%s-%d", t.Name(), buildID, ClockFromContext(ctx).Now().Unix())
-    // In case this is used in URL, make sure we replace the slash that is added by subtests
-    result = strings.ReplaceAll(result, "/", "-")
-    return &result
+	result := fmt.Sprintf("go-%s-%s-%d", t.Name(), buildID, ClockFromContext(ctx).Now().Unix())
+	// In case this is used in URL, make sure we replace the slash that is added by subtests
+	result = strings.ReplaceAll(result, "/", "-")
+	return &result
 }
 
 // ClockFromContext returns clock or panics.
