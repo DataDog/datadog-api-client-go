@@ -32,14 +32,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.CheckCanDeleteSLO(context.Background(), ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CheckCanDeleteSLO``: %v\n", err)
@@ -98,14 +98,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.ServiceLevelObjectiveRequest{CreatedAt: int64(123), Creator: openapiclient.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), Name: "Name_example", Query: openapiclient.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{openapiclient.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: openapiclient.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: openapiclient.SLOType{}} // ServiceLevelObjectiveRequest | Service level objective request object.
+    body := datadog.ServiceLevelObjectiveRequest{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjectiveRequest | Service level objective request object.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.CreateSLO(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CreateSLO``: %v\n", err)
@@ -164,15 +164,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     sloId := "sloId_example" // string | The ID of the service level objective.
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLO(context.Background(), sloId).Force(force).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLO``: %v\n", err)
@@ -236,14 +236,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     body := map[string]string{ "Key" = "Value" } // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk``: %v\n", err)
@@ -302,14 +302,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     sloId := "sloId_example" // string | The ID of the service level objective object.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLO(context.Background(), sloId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLO``: %v\n", err)
@@ -372,7 +372,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
@@ -380,8 +380,8 @@ func main() {
     fromTs := 987 // int64 | The `from` timestamp for the query window in epoch seconds.
     toTs := 987 // int64 | The `to` timestamp for the query window in epoch seconds.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLOHistory(context.Background(), sloId, fromTs, toTs).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOHistory``: %v\n", err)
@@ -446,14 +446,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(context.Background(), ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.ListSLOs``: %v\n", err)
@@ -512,15 +512,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     sloId := "sloId_example" // string | The ID of the service level objective object.
-    body := openapiclient.ServiceLevelObjective{CreatedAt: int64(123), Creator: openapiclient.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), MonitorTags: []string{"MonitorTags_example"), Name: "Name_example", Query: openapiclient.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{openapiclient.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: openapiclient.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: openapiclient.SLOType{}} // ServiceLevelObjective | The edited service level objective request object.
+    body := datadog.ServiceLevelObjective{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), MonitorTags: []string{"MonitorTags_example"), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjective | The edited service level objective request object.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectivesApi.UpdateSLO(context.Background(), sloId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.UpdateSLO``: %v\n", err)

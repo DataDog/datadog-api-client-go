@@ -28,14 +28,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     from := 987 // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.GetHostTotals(context.Background(), ).From(from).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals``: %v\n", err)
@@ -94,7 +94,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
@@ -105,8 +105,8 @@ func main() {
     count := 987 // int64 | Number of hosts to return. Max 1000. (optional)
     from := 987 // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.ListHosts(context.Background(), ).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
@@ -170,15 +170,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     hostName := "hostName_example" // string | Name of the host to mute.
-    body := openapiclient.HostMuteSettings{End: int64(123), Message: "Message_example", Override: false} // HostMuteSettings | Mute a host request body. (optional)
+    body := datadog.HostMuteSettings{End: int64(123), Message: "Message_example", Override: false} // HostMuteSettings | Mute a host request body. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.MuteHost(context.Background(), hostName).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost``: %v\n", err)
@@ -242,14 +242,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     hostName := "hostName_example" // string | Name of the host to unmute.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.UnmuteHost(context.Background(), hostName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost``: %v\n", err)

@@ -31,14 +31,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
+    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync``: %v\n", err)
@@ -97,14 +97,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
+    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync``: %v\n", err)
@@ -163,14 +163,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
+    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.CreateAWSLambdaARN(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CreateAWSLambdaARN``: %v\n", err)
@@ -229,14 +229,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     body :=  // AWSAccountAndLambdaRequest | Delete AWS Lambda ARN request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.DeleteAWSLambdaARN(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.DeleteAWSLambdaARN``: %v\n", err)
@@ -295,14 +295,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Enable AWS Log Services request body.
+    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Enable AWS Log Services request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.EnableAWSLogServices(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.EnableAWSLogServices``: %v\n", err)
@@ -361,13 +361,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsIntegrations(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsIntegrations``: %v\n", err)
@@ -422,13 +422,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsServices(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsServices``: %v\n", err)
