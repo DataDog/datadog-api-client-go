@@ -34,18 +34,18 @@ import (
 type RecordingMode string
 
 const (
-	ModeIgnore = "none"
-	ModeReplaying = "false"
-	ModeRecording = "true"
+	ModeIgnore RecordingMode = "none"
+	ModeReplaying RecordingMode = "false"
+	ModeRecording RecordingMode = "true"
 )
 
 // GetRecording returns the value of RECORD environment variable
 func GetRecording() RecordingMode {
 	if value, exists := os.LookupEnv("RECORD"); exists {
 		switch value {
-		case ModeIgnore:
+		case string(ModeIgnore):
 			return ModeIgnore
-		case ModeRecording:
+		case string(ModeRecording):
 			return ModeRecording
 		default:
 			return ModeReplaying
