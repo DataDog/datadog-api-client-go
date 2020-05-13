@@ -19,7 +19,7 @@ import (
 )
 
 func TestApiKeyFunctions(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
@@ -131,7 +131,7 @@ func TestApiKeyFunctions(t *testing.T) {
 }
 
 func TestApplicationKeyFunctions(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
@@ -452,7 +452,7 @@ func TestAppKeysMgmtCreateErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtCreate409Error(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
@@ -535,7 +535,7 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtUpdate409Error(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 

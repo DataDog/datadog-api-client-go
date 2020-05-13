@@ -133,7 +133,7 @@ func TestDisableUser(t *testing.T) {
 }
 
 func TestListUsers(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
