@@ -20,7 +20,7 @@ resources:
   containers:
   - container: datadog-agent
     image: datadog/agent:7
-    options: --no-healthcheck
+    options: --health-cmd="exit 0"
     ports:
     - 8125:8125
     - 8126:8126
