@@ -45,6 +45,7 @@ jobs:
     - script: ./run-tests.sh
       displayName: Run integration tests
       env:
+        CI: "true"
         DD_AGENT_HOST: datadog-agent
         DD_ENV: prod
         DD_SERVICE: datadog-api-client-go

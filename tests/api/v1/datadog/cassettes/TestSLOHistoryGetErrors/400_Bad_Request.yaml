@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetSLOHistory
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7632529274683495055"
+      - "4508899047210053333"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5769326962593545515"
-    url: https://api.datadoghq.com/api/v1/slo/1aefdf5aac11551fabf92a196695a6b1/history?from_ts=123&to_ts=12
+      - "292846022901459996"
+    url: https://api.datadoghq.com/api/v1/slo/f461914b99e55cb9916cd8d5fc2339eb/history?from_ts=123&to_ts=12
     method: GET
   response:
     body: '{"errors": ["The timeframe is incorrect: invalid from 123 or to 12 timestamp"]}'
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:17 GMT
+      - Tue, 12 May 2020 13:33:24 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -43,7 +43,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

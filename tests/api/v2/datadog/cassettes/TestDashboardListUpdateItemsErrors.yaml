@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"name":"go-client-test-v2-1587937007"}
+      {"name":"go-TestDashboardListUpdateItemsErrors-local-1589290166"}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,18 @@ interactions:
       Dd-Operation-Id:
       - CreateDashboardList
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7538559779458843553"
+      - "3846315530544620467"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7538559779458843553"
+      - "3846315530544620467"
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
     method: POST
   response:
-    body: '{"is_favorite":false,"name":"go-client-test-v2-1587937007","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2020-04-26T21:36:48.151163+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-04-26T21:36:48.151181+00:00","id":93204}'
+    body: '{"is_favorite":false,"name":"go-TestDashboardListUpdateItemsErrors-local-1589290166","dashboard_count":0,"author":{"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
+      Kabrda"},"created":"2020-05-12T13:29:26.566829+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-05-12T13:29:26.566842+00:00","id":97370}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,13 +35,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:36:48 GMT
+      - Tue, 12 May 2020 13:29:26 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Sun, 03-May-2020 21:36:48 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:26 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -49,9 +50,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - yqCkAb2Y8/4OgTSGYvedTl/k5gsPukDI7OLTlGSm9adIbRDVlGb00Ve5DDv9ImFD
+      - wNaVyRyNliLxKeX4pqFHOJTBG1dRCwo1/ihrnAf0GXtGNGahc1XK8Xzj/ssA3R20
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -66,17 +67,17 @@ interactions:
       Dd-Operation-Id:
       - DeleteDashboardList
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6397032125980115061"
+      - "8581189823639132936"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6397032125980115061"
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/93204
+      - "8581189823639132936"
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/97370
     method: DELETE
   response:
-    body: '{"deleted_dashboard_list_id":93204}'
+    body: '{"deleted_dashboard_list_id":97370}'
     headers:
       Cache-Control:
       - no-cache
@@ -87,13 +88,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:36:52 GMT
+      - Tue, 12 May 2020 13:29:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Sun, 03-May-2020 21:36:48 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:27 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -102,9 +103,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vG5kxpR47Wd0uZGIzWkStfMxs3cmVIjKYEHLQf0xQiHS0P2BwlwJHwTESUSKlcdO
+      - ADT0ms9dQnbDHbbduv4c09ChngZrYY7A/Pgms/qacMOruS4mPwZ1GJWq74I7G11W
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

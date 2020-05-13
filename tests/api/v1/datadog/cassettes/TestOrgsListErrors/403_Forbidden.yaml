@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListOrgs
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2266190016574633975"
+      - "4633084556289611948"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1962537858479238217"
+      - "3576926395508295034"
     url: https://api.datadoghq.com/api/v1/org
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:06 GMT
+      - Tue, 12 May 2020 13:33:01 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

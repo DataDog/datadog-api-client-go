@@ -16,6 +16,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -30,9 +31,38 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
+type RecordingMode string
+
+const (
+	ModeIgnore RecordingMode = "none"
+	ModeReplaying RecordingMode = "false"
+	ModeRecording RecordingMode = "true"
+)
+
+// GetRecording returns the value of RECORD environment variable
+func GetRecording() RecordingMode {
+	if value, exists := os.LookupEnv("RECORD"); exists {
+		switch value {
+		case string(ModeIgnore):
+			return ModeIgnore
+		case string(ModeRecording):
+			return ModeRecording
+		default:
+			return ModeReplaying
+		}
+	} else {
+		return ModeReplaying
+	}
+}
+
 // IsRecording returns true if the recording mode is enabled
 func IsRecording() bool {
-	return os.Getenv("RECORD") == "true"
+	return GetRecording() == ModeRecording
+}
+
+// IsCIRun returns true if the CI environment variable is set to "true"
+func IsCIRun() bool {
+	return os.Getenv("CI") == "true"
 }
 
 // Retry calls the call function for count times every interval while it returns false
@@ -144,6 +174,23 @@ func WithClock(ctx context.Context, t *testing.T) context.Context {
 		fc = RestoreClock(t)
 	}
 	return context.WithValue(ctx, clockKey, fc)
+}
+
+// UniqueEntityName will return a unique string that can be used as a title/description/summary/...
+// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
+// BuildId to enable mapping resources that weren't deleted to builds.
+func UniqueEntityName(ctx context.Context, t *testing.T) *string {
+	buildID, present := os.LookupEnv("BUILD_BUILDID")
+	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
+		buildID = "local"
+	}
+
+	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
+	// so we need to keep this short
+	result := fmt.Sprintf("go-%s-%s-%d", t.Name(), buildID, ClockFromContext(ctx).Now().Unix())
+	// In case this is used in URL, make sure we replace the slash that is added by subtests
+	result = strings.ReplaceAll(result, "/", "-")
+	return &result
 }
 
 // ClockFromContext returns clock or panics.

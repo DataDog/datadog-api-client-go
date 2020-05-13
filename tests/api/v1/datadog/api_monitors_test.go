@@ -20,7 +20,7 @@ import (
 
 func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 	return datadog.Monitor{
-		Name:    datadog.PtrString(fmt.Sprintf("datadog-api-client-go: %s %d", t.Name(), tests.ClockFromContext(ctx).Now().UnixNano())),
+		Name:    tests.UniqueEntityName(ctx, t),
 		Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
 		Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2"),
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
@@ -50,7 +50,6 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 }
 
 var testUpdateMonitor = datadog.MonitorUpdateRequest{
-	Name: datadog.PtrString("updated name"),
 	Options: &datadog.MonitorOptions{
 		TimeoutH:         *datadog.NewNullableInt64(nil),
 		RenotifyInterval: *datadog.NewNullableInt64(nil),
@@ -107,6 +106,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Nil(val)
 
 	// Edit a monitor
+	testUpdateMonitor.SetName(fmt.Sprintf("%s-updated", tm.GetName()))
 	updatedMonitor, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, monitor.GetId()).Body(testUpdateMonitor).Execute()
 	if err != nil {
 		t.Errorf("Error updating Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)

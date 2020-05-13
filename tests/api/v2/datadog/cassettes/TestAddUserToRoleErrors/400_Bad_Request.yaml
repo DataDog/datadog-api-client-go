@@ -13,8 +13,14 @@ interactions:
       Dd-Operation-Id:
       - AddUserToRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/5c1f302a-8469-11ea-93de-737fe5b76d3e/users
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3093879817343341215"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4383851894947004411"
+    url: https://api.datadoghq.com/api/v2/roles/a9c88358-9454-11ea-93e2-87d7bfca9196/users
     method: POST
   response:
     body: '{"errors": ["API input validation failed: {''_schema'': [{''source'': {''pointer'':
@@ -31,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 22 Apr 2020 07:17:44 GMT
+      - Tue, 12 May 2020 13:29:54 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -41,7 +47,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2417977"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

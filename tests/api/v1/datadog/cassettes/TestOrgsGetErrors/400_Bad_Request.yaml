@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetOrg
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6752446979942853152"
+      - "6992171334603716324"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "610772141094308607"
+      - "8114738776523793171"
     url: https://api.datadoghq.com/api/v1/org/lsqdkjf
     method: GET
   response:
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:08 GMT
+      - Tue, 12 May 2020 13:33:07 GMT
       Dd-Pool:
       - dogweb_wallace
       Pragma:
@@ -43,7 +43,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
