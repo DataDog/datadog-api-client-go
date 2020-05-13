@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"testing"
 	"time"
 
@@ -18,10 +17,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
-func generateUniqueAWSLambdaAccounts(ctx context.Context) (datadog.AWSAccount, datadog.AWSAccountAndLambdaRequest, datadog.AWSLogsServicesRequest) {
-	accountID := fmt.Sprintf("go_%09d", tests.ClockFromContext(ctx).Now().UnixNano()%1000000000)
+func generateUniqueAWSLambdaAccounts(ctx context.Context, t *testing.T) (datadog.AWSAccount, datadog.AWSAccountAndLambdaRequest, datadog.AWSLogsServicesRequest) {
 	var uniqueAWSAccount = datadog.AWSAccount{
-		AccountId:                     &accountID,
+		AccountId:                     tests.UniqueEntityName(ctx, t),
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
@@ -48,7 +46,7 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testawsacc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts(ctx)
+	testawsacc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testawsacc)
 
 	// Assert AWS Integration Created with proper fields
@@ -90,7 +88,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAWSAcc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts(ctx)
+	testAWSAcc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testAWSAcc)
 
 	// Create the AWS integration.
@@ -164,7 +162,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAWSAcc, testLambdaAcc, _ := generateUniqueAWSLambdaAccounts(ctx)
+	testAWSAcc, testLambdaAcc, _ := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testAWSAcc)
 
 	// Assert AWS Integration Created with proper fields
@@ -200,7 +198,7 @@ func TestCheckServicesAsync(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAWSAcc, _, testServices := generateUniqueAWSLambdaAccounts(ctx)
+	testAWSAcc, _, testServices := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testAWSAcc)
 
 	// Assert AWS Integration Created with proper fields

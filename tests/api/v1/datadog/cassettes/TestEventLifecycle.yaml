@@ -3,25 +3,33 @@ version: 1
 interactions:
 - request:
     body: '{"priority":"normal","source_type_name":"datadog-api-client-go","tags":["test","client:go"],"text":"example
-      text","title":"test event from go client"}'
+      text","title":"go-TestEventLifecycle-local-1589290252"}'
     form: {}
-    headers: {}
+    headers:
+      Content-Type:
+      - application/json
+      X-Datadog-Parent-Id:
+      - "1059734773099296429"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1059734773099296429"
     url: https://api.datadoghq.com/api/v1/events
     method: POST
   response:
-    body: '{"status":"ok","event":{"id":5392096511175887101,"title":"test event from
-      go client","text":"example text","date_happened":1585656863,"handle":null,"priority":"normal","related_event_id":null,"tags":["test","client:go"],"url":"https://app.datadoghq.com/event/event?id=5392096511175887101"}}'
+    body: '{"status":"ok","event":{"id":5453054678476418724,"title":"go-TestEventLifecycle-local-1589290252","text":"example
+      text","date_happened":1589290253,"handle":null,"priority":"normal","related_event_id":null,"tags":["test","client:go"],"url":"https://app.datadoghq.com/event/event?id=5453054678476418724"}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - "290"
+      - "303"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 31 Mar 2020 12:14:23 GMT
+      - Tue, 12 May 2020 13:30:53 GMT
       Dd-Pool:
       - propjoe
       Strict-Transport-Security:
@@ -39,9 +47,17 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - GetEvent
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8627271467935410496"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1595351616358147188"
+    url: https://api.datadoghq.com/api/v1/events/5453054678476418724
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -55,7 +71,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 31 Mar 2020 12:14:25 GMT
+      - Tue, 12 May 2020 13:30:53 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
@@ -67,7 +83,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2338533"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -79,9 +95,17 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - GetEvent
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2009278304047597835"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1595351616358147188"
+    url: https://api.datadoghq.com/api/v1/events/5453054678476418724
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -95,7 +119,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 31 Mar 2020 12:14:31 GMT
+      - Tue, 12 May 2020 13:30:58 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
@@ -107,7 +131,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2338533"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -119,9 +143,17 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - GetEvent
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7199776776568710857"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1595351616358147188"
+    url: https://api.datadoghq.com/api/v1/events/5453054678476418724
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -135,7 +167,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 31 Mar 2020 12:14:36 GMT
+      - Tue, 12 May 2020 13:31:04 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
@@ -147,7 +179,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2338533"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -159,14 +191,21 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - GetEvent
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events/5392096511175887101
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2943658340438005311"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1595351616358147188"
+    url: https://api.datadoghq.com/api/v1/events/5453054678476418724
     method: GET
   response:
-    body: '{"event":{"date_happened":1585656863,"alert_type":"info","resource":"/api/v1/events/5392096511175887101","title":"test
-      event from go client","url":"/event/event?id=5392096511175887101","text":"example
-      text","tags":["client:go","test"],"device_name":null,"priority":"normal","host":null,"id":5392096511175887101}}'
+    body: '{"event":{"date_happened":1589290253,"alert_type":"info","resource":"/api/v1/events/5453054678476418724","title":"go-TestEventLifecycle-local-1589290252","url":"/event/event?id=5453054678476418724","text":"example
+      text","tags":["client:go","test"],"device_name":null,"priority":"normal","host":null,"id":5453054678476418724}}'
     headers:
       Cache-Control:
       - no-cache
@@ -177,13 +216,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 31 Mar 2020 12:14:41 GMT
+      - Tue, 12 May 2020 13:31:09 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Tue, 07-Apr-2020 12:14:41 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:09 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -192,9 +231,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - JmURFv3QT6gKRDSrfK4zcwdS9yrmaSKXEiqT0M3mIuybXnIAJULvb1NuwEtOiZfR
+      - 3HdHD6wWiRfiP8hQjUNTx9zkEc5LUHfck4mpCo8hdcK7VOwtwatSX4gx0lRj+FOI
       X-Dd-Version:
-      - "35.2338533"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -206,15 +245,22 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - ListEvents
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/events?end=1585656873&priority=normal&sources=datadog-api-client-go&start=1585656853&tags=test%2Cclient%3Ago&unaggregated=true
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8806478855036444975"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1595351616358147188"
+    url: https://api.datadoghq.com/api/v1/events?end=1589290263&priority=normal&sources=datadog-api-client-go&start=1589290243&tags=test%2Cclient%3Ago&unaggregated=true
     method: GET
   response:
-    body: '{"events":[{"date_happened":1585656863,"alert_type":"info","is_aggregate":false,"title":"test
-      event from go client","url":"/event/event?id=5392096511175887101","text":"example
+    body: '{"events":[{"date_happened":1589290253,"alert_type":"info","is_aggregate":false,"title":"go-TestEventLifecycle-local-1589290252","url":"/event/event?id=5453054678476418724","text":"example
       text","tags":["client:go","test"],"comments":[],"device_name":null,"priority":"normal","source":"My
-      Apps","host":null,"resource":"/api/v1/events/5392096511175887101","id":5392096511175887101}]}'
+      Apps","host":null,"resource":"/api/v1/events/5453054678476418724","id":5453054678476418724}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -225,13 +271,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 31 Mar 2020 12:14:41 GMT
+      - Tue, 12 May 2020 13:31:09 GMT
       Dd-Pool:
       - dogweb_events
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=89; Max-Age=604800; Path=/; expires=Tue, 07-Apr-2020 12:14:41 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:09 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -240,9 +286,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 4gUJbYgxcQ+p2ofawO9+IERpoKwOhs/G1IiKposiUPGB8X8RcTlvyCAUL6+ZWfKr
+      - CLxfRZm50m7zpGL0ZTUIbg21HZwIebJJcJd7PIRqgZ8SikrMUg6zn8vhED9JlpCm
       X-Dd-Version:
-      - "35.2338533"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

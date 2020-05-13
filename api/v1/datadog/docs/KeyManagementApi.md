@@ -34,14 +34,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.CreateAPIKey(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey``: %v\n", err)
@@ -100,14 +100,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.CreateApplicationKey(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateApplicationKey``: %v\n", err)
@@ -166,14 +166,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     key := "key_example" // string | The specific API key you are working with.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.DeleteAPIKey(context.Background(), key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey``: %v\n", err)
@@ -236,14 +236,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     key := "key_example" // string | The specific APP key you are working with.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.DeleteApplicationKey(context.Background(), key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey``: %v\n", err)
@@ -306,14 +306,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     key := "key_example" // string | The specific API key you are working with.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.GetAPIKey(context.Background(), key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey``: %v\n", err)
@@ -376,14 +376,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     key := "key_example" // string | The specific APP key you are working with.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.GetApplicationKey(context.Background(), key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetApplicationKey``: %v\n", err)
@@ -446,13 +446,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.ListAPIKeys(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys``: %v\n", err)
@@ -507,13 +507,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.ListApplicationKeys(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListApplicationKeys``: %v\n", err)
@@ -568,15 +568,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     key := "key_example" // string | The specific API key you are working with.
-    body := openapiclient.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.UpdateAPIKey(context.Background(), key, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey``: %v\n", err)
@@ -640,15 +640,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     key := "key_example" // string | The specific APP key you are working with.
-    body := openapiclient.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.UpdateApplicationKey(context.Background(), key, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey``: %v\n", err)

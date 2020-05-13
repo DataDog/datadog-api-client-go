@@ -3,43 +3,55 @@ version: 1
 interactions:
 - request:
     body: |
-      {"name":"TestAppKeysMgmtCreate409Error:1586247647383833000"}
+      {"name":"go-TestAppKeysMgmtCreate409Error-local-1589290299"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CreateApplicationKey
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "9039091905441378551"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7134437175682633500"
     url: https://api.datadoghq.com/api/v1/application_key
     method: POST
   response:
-    body: '{"application_key":{"owner":"frog@datadoghq.com","hash":"ed6c5c2565bab12ef980b1d037e8a300a0568f63","name":"TestAppKeysMgmtCreate409Error:1586247647383833000"}}'
+    body: '{"application_key":{"owner":"slavek.kabrda@datadoghq.com","org_id":321813,"hash":"83ce8d563850280472add857884a4e9c0e4dbef7","name":"go-TestAppKeysMgmtCreate409Error-local-1589290299","revoked":false}}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "159"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 07 Apr 2020 08:20:48 GMT
+      - Tue, 12 May 2020 13:31:39 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 14-Apr-2020 08:20:47 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - pNNj5PhODCVJlRBPEhZP3s9KL9kvFYv//TnGsiPp+3AqL7R5kIW2JlCWtfMcXeFn
       X-Dd-Version:
-      - "35.2363222"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -47,19 +59,27 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"name":"TestAppKeysMgmtCreate409Error:1586247647383833000"}
+      {"name":"go-TestAppKeysMgmtCreate409Error-local-1589290299"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CreateApplicationKey
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2543377778789991777"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7134437175682633500"
     url: https://api.datadoghq.com/api/v1/application_key
     method: POST
   response:
-    body: '{"errors": ["An application key with the name TestAppKeysMgmtCreate409Error:1586247647383833000
+    body: '{"errors": ["An application key with the name go-TestAppKeysMgmtCreate409Error-local-1589290299
       already exists"]}'
     headers:
       Cache-Control:
@@ -73,18 +93,20 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 07 Apr 2020 08:20:48 GMT
+      - Tue, 12 May 2020 13:31:39 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 14-Apr-2020 08:20:48 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2363222"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
     status: 409 Conflict
@@ -96,36 +118,48 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - DeleteApplicationKey
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/application_key/ed6c5c2565bab12ef980b1d037e8a300a0568f63
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1926917428523006274"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7134437175682633500"
+    url: https://api.datadoghq.com/api/v1/application_key/83ce8d563850280472add857884a4e9c0e4dbef7
     method: DELETE
   response:
-    body: '{"application_key":{"owner":"frog@datadoghq.com","hash":"ed6c5c2565bab12ef980b1d037e8a300a0568f63","name":"TestAppKeysMgmtCreate409Error:1586247647383833000"}}'
+    body: '{"application_key":{"owner":"slavek.kabrda@datadoghq.com","org_id":321813,"hash":"83ce8d563850280472add857884a4e9c0e4dbef7","name":"go-TestAppKeysMgmtCreate409Error-local-1589290299","revoked":true}}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "159"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 07 Apr 2020 08:20:48 GMT
+      - Tue, 12 May 2020 13:31:40 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 14-Apr-2020 08:20:48 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - FB5oGxuL9E/cplxahdQnU5Nw5E7KX0Smq18it9qYKIt8BXsSloE0IpDRA39tfQwn
       X-Dd-Version:
-      - "35.2363222"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

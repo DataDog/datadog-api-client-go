@@ -23,9 +23,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// create SLO for referencing in SLO widget (we're borrowing these from api_slo_test.go)
+	testEventSLO := getTestEventSLO(ctx, t)
 	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(testEventSLO).Execute()
 	if err != nil {
-		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testMonitorSLO, err.Error(), err)
+		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testEventSLO, err.Error(), err)
 	}
 	slo := sloResp.GetData()[0]
 	defer deleteSLOIfExists(ctx, slo.GetId())
@@ -255,6 +256,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	// LogStream ONLY AVAILABLE ON FREE LAYOUTS
 	logStreamWidgetDefinition := datadog.NewLogStreamWidgetDefinitionWithDefaults()
 	logStreamWidgetDefinition.SetIndexes([]string{"main"})
+	logStreamWidgetDefinition.SetLogset("106")
 	logStreamWidgetDefinition.SetQuery("Route XYZ failed")
 	logStreamWidgetDefinition.SetColumns([]string{"Route"})
 	logStreamWidgetDefinition.SetTitle("Test Logstream Widget")
@@ -281,6 +283,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	monitorSummaryWidgetDefiniton.SetTitle("Test Monitor Summary Widget")
 	monitorSummaryWidgetDefiniton.SetTitleSize("16")
 	monitorSummaryWidgetDefiniton.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	monitorSummaryWidgetDefiniton.SetStart(0)
+	monitorSummaryWidgetDefiniton.SetCount(5)
+
 
 	monitorSummaryWidget := datadog.NewWidget(monitorSummaryWidgetDefiniton.AsWidgetDefinition())
 	monitorSummaryWidget.SetLayout(*widgetLayout)
@@ -417,7 +422,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinition.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		Q: datadog.PtrString("avg:system.load.1{*}"),
-		Style: &datadog.TimeseriesWidgetRequestStyle{
+		Style: &datadog.WidgetRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
@@ -461,7 +466,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			Limit:    datadog.PtrInt64(10),
 			SearchBy: datadog.PtrString("editor"),
 		},
-		Style: &datadog.TimeseriesWidgetRequestStyle{
+		Style: &datadog.WidgetRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
@@ -515,7 +520,7 @@ func TestDashboardLifecycle(t *testing.T) {
 				},
 			}},
 		},
-		Style: &datadog.TimeseriesWidgetRequestStyle{
+		Style: &datadog.WidgetRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
@@ -552,7 +557,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			Search:        "Build failure",
 			TagsExecution: "build",
 		},
-		Style: &datadog.TimeseriesWidgetRequestStyle{
+		Style: &datadog.WidgetRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr()},
@@ -640,7 +645,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard := datadog.NewDashboardWithDefaults()
 	dashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_ORDERED)
 	dashboard.SetWidgets(orderedWidgetList)
-	dashboard.SetTitle("Go Client Test ORDERED Dashboard")
+	dashboard.SetTitle(fmt.Sprintf("%s-ordered", *tests.UniqueEntityName(ctx, t)))
 	dashboard.SetDescription("Test dashboard for Go client")
 	dashboard.SetIsReadOnly(false)
 	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
@@ -712,7 +717,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeDashboard := datadog.NewDashboardWithDefaults()
 	freeDashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_FREE)
 	freeDashboard.SetWidgets(freeWidgetList)
-	freeDashboard.SetTitle("Go Client Test Free Dashboard")
+	freeDashboard.SetTitle(fmt.Sprintf("%s-free", *tests.UniqueEntityName(ctx, t)))
 	freeDashboard.SetDescription("Test Free layout dashboard for Go client")
 	freeDashboard.SetIsReadOnly(false)
 	freeDashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})

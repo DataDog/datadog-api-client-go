@@ -10,40 +10,40 @@ interactions:
       Dd-Operation-Id:
       - GetPagerDutyIntegrationService
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9046250357478971121"
+      - "991606186226445990"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7779225816804721337"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/test-datadog-api-client-go-TestPagerDutyServicesGetErrors%2F404_Not_Found-1588246168244562000
+      - "4468497926155230688"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/go-TestPagerDutyServicesGetErrors-404_Not_Found-local-1589290392
     method: GET
   response:
-    body: ""
+    body: '{"errors": ["Service not found"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "0"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
-      - text/html; charset=utf-8
+      - application/json
       Date:
-      - Thu, 30 Apr 2020 11:29:28 GMT
+      - Tue, 12 May 2020 13:33:13 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2451590"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

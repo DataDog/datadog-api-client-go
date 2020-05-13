@@ -29,14 +29,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.OrganizationCreateBody{Billing: openapiclient.Organization_billing{Type: "Type_example"}, Name: "Name_example", Subscription: openapiclient.Organization_subscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
+    body := datadog.OrganizationCreateBody{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Name: "Name_example", Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.CreateChildOrg(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg``: %v\n", err)
@@ -95,14 +95,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.GetOrg(context.Background(), publicId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg``: %v\n", err)
@@ -165,13 +165,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.ListOrgs(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs``: %v\n", err)
@@ -226,15 +226,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
-    body := openapiclient.Organization{Billing: openapiclient.Organization_billing{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: openapiclient.Organization_settings{PrivateWidgetShare: false, Saml: openapiclient.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: openapiclient.AccessRole{}, SamlAutocreateUsersDomains: openapiclient.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: openapiclient.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: openapiclient.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: openapiclient.Organization_subscription{Type: "Type_example"}} // Organization | 
+    body := datadog.Organization{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: datadog.Organization_settings{PrivateWidgetShare: false, Saml: datadog.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: datadog.AccessRole{}, SamlAutocreateUsersDomains: datadog.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: datadog.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: datadog.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // Organization | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.UpdateOrg(context.Background(), publicId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg``: %v\n", err)
@@ -298,15 +298,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The `public_id` of the organization you are operating with
     idpFile := 987 // *os.File | The path to the XML metadata file you wish to upload.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.UploadIdPForOrg(context.Background(), publicId, idpFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg``: %v\n", err)

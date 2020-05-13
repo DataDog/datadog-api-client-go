@@ -29,14 +29,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.User{AccessRole: openapiclient.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | User object that needs to be created.
+    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | User object that needs to be created.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.CreateUser(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
@@ -95,14 +95,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     userHandle := TODO // string | The handle of the user.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.DisableUser(context.Background(), userHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser``: %v\n", err)
@@ -165,14 +165,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     userHandle := TODO // string | The ID of the user.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.GetUser(context.Background(), userHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser``: %v\n", err)
@@ -235,13 +235,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.ListUsers(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUsers``: %v\n", err)
@@ -296,15 +296,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     userHandle := TODO // string | The ID of the user.
-    body := openapiclient.User{AccessRole: openapiclient.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | Description of the update.
+    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | Description of the update.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.UpdateUser(context.Background(), userHandle, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)

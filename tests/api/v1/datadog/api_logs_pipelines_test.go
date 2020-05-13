@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"testing"
 
@@ -20,8 +19,6 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-
-	now := tests.ClockFromContext(ctx).Now()
 
 	// Create a pipeline
 	grokParser := datadog.NewLogsGrokParserWithDefaults()
@@ -139,7 +136,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 		traceRemapper.AsLogsProcessor(),
 		pipelineProcessor.AsLogsProcessor(),
 	})
-	pipelineName := fmt.Sprintf("go-client-test-pipeline-%d", now.Unix())
+	pipelineName := *tests.UniqueEntityName(ctx, t)
 	pipeline.SetName(pipelineName)
 
 	createdPipeline, httpresp, err := Client(ctx).LogsPipelinesApi.CreateLogsPipeline(ctx).Body(pipeline).Execute()

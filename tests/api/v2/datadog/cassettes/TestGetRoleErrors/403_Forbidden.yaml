@@ -10,8 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/577aacc0-8469-11ea-93de-a7ff03aaf0cd
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2059575253327022472"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "19510966879043112"
+    url: https://api.datadoghq.com/api/v2/roles/a4bbdac2-9454-11ea-93e2-0776b3a346d4
     method: GET
   response:
     body: |
@@ -24,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 22 Apr 2020 07:17:36 GMT
+      - Tue, 12 May 2020 13:29:45 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

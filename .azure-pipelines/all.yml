@@ -20,7 +20,9 @@ resources:
   containers:
   - container: datadog-agent
     image: datadog/agent:7
+    options: --health-cmd="exit 0" --health-interval=1s
     ports:
+    - 8125:8125
     - 8126:8126
     env:
       DD_API_KEY: $(ddAPIKey)
@@ -43,6 +45,7 @@ jobs:
     - script: ./run-tests.sh
       displayName: Run integration tests
       env:
+        CI: "true"
         DD_AGENT_HOST: datadog-agent
         DD_ENV: prod
         DD_SERVICE: datadog-api-client-go

@@ -10,6 +10,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 	"testing"
 	"time"
 
@@ -27,7 +28,9 @@ func TestMetrics(t *testing.T) {
 	api := Client(ctx).MetricsApi
 	now := tests.ClockFromContext(ctx).Now().Unix()
 
-	testMetric := fmt.Sprintf("go.client.test.%d", now)
+	// the API would replace everything by underscores anyway, making us unable to search for metric by this value
+	// in the tests.Retry loop below
+	testMetric := strings.ReplaceAll(*tests.UniqueEntityName(ctx, t), "-", "_")
 	testQuery := fmt.Sprintf("avg:%s{bar:baz}by{host}", testMetric)
 
 	metricsPayload := fmt.Sprintf(

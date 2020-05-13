@@ -4,16 +4,16 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTest**](SyntheticsApi.md#CreateTest) | **Post** /api/v1/synthetics/tests | Create or clone a test
-[**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete multiple tests
-[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get test latest results (as summaries)
-[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get test result (API)
-[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
-[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
-[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
-[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get a list of all tests
-[**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
-[**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
+[**CreateTest**](SyntheticsApi.md#CreateTest) | **Post** /api/v1/synthetics/tests | Create a test
+[**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
+[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
+[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
+[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
+[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
+[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
+[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get a list of tests
+[**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
+[**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
 
 
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 > SyntheticsTestDetails CreateTest(ctx).Body(body).FromTestId(fromTestId).Execute()
 
-Create or clone a test
+Create a test
 
 
 
@@ -34,15 +34,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.SyntheticsTestDetails{Config: openapiclient.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{openapiclient.SyntheticsAssertion{Operator: openapiclient.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: openapiclient.SyntheticsAssertionType{}}), Request: openapiclient.SyntheticsTestRequest{BasicAuth: openapiclient.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: openapiclient.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{openapiclient.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: openapiclient.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: openapiclient.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: openapiclient.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, MonitorId: int64(123), Name: "Name_example", Options: openapiclient.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{openapiclient.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: openapiclient.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: openapiclient.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: openapiclient.SyntheticsTestPauseStatus{}, Subtype: openapiclient.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: openapiclient.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | Details of the test to create.
+    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: datadog.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: datadog.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | Details of the test to create.
     fromTestId := "fromTestId_example" // string | Public ID of the test to clone, undefined if the test is newly created. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.CreateTest(context.Background(), body).FromTestId(fromTestId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateTest``: %v\n", err)
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsDeleteTestsResponse DeleteTests(ctx).Body(body).Execute()
 
-Delete multiple tests
+Delete tests
 
 
 
@@ -102,14 +102,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.SyntheticsDeleteTestsPayload{PublicIds: []string{"PublicIds_example")} // SyntheticsDeleteTestsPayload | Public ID list of the Synthetics tests to be deleted.
+    body := datadog.SyntheticsDeleteTestsPayload{PublicIds: []string{"PublicIds_example")} // SyntheticsDeleteTestsPayload | Public ID list of the Synthetic tests to be deleted.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.DeleteTests(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests``: %v\n", err)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiDeleteTestsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetics tests to be deleted. | 
+ **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetic tests to be deleted. | 
 
 ### Return type
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get test latest results (as summaries)
+Get the test's latest results summaries (API)
 
 
 
@@ -168,7 +168,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
@@ -177,8 +177,8 @@ func main() {
     toTs := 987 // int64 | Timestamp up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetAPITestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestLatestResults``: %v\n", err)
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId).Execute()
 
-Get test result (API)
+Get a test result (API)
 
 
 
@@ -244,15 +244,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The public ID of the API test to which the target result belongs.
     resultId := "resultId_example" // string | The ID of the result to get.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetAPITestResult(context.Background(), publicId, resultId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult``: %v\n", err)
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get test latest results (as summaries)
+Get the test's latest results summaries (browser)
 
 
 
@@ -317,7 +317,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
@@ -326,8 +326,8 @@ func main() {
     toTs := 987 // int64 | Timestamp up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetBrowserTestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults``: %v\n", err)
@@ -380,7 +380,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsBrowserTestResultFull GetBrowserTestResult(ctx, publicId, resultId).Execute()
 
-Get test result (browser)
+Get a test result (browser)
 
 
 
@@ -393,15 +393,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The public ID of the browser test to which the target result belongs.
     resultId := "resultId_example" // string | The ID of the result to get.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetBrowserTestResult(context.Background(), publicId, resultId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult``: %v\n", err)
@@ -453,7 +453,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails GetTest(ctx, publicId).Execute()
 
-Get test
+Get a test configuration
 
 
 
@@ -466,14 +466,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The public ID of the test to get details from.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetTest(context.Background(), publicId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetTest``: %v\n", err)
@@ -523,7 +523,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsListTestsResponse ListTests(ctx).CheckType(checkType).Execute()
 
-Get a list of all tests
+Get a list of tests
 
 
 
@@ -536,14 +536,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    checkType := "checkType_example" // string | API or browser to filter the list by type, undefined to get the unfiltered list. (optional)
+    checkType := "checkType_example" // string | API or browser to filter the list by test type, undefined to get the unfiltered list. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.ListTests(context.Background(), ).CheckType(checkType).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests``: %v\n", err)
@@ -565,7 +565,7 @@ Other parameters are passed through a pointer to a apiListTestsRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkType** | **string** | API or browser to filter the list by type, undefined to get the unfiltered list. | 
+ **checkType** | **string** | API or browser to filter the list by test type, undefined to get the unfiltered list. | 
 
 ### Return type
 
@@ -589,7 +589,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails UpdateTest(ctx, publicId).Body(body).Execute()
 
-Update test
+Edit a test
 
 
 
@@ -602,15 +602,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := openapiclient.SyntheticsTestDetails{Config: openapiclient.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{openapiclient.SyntheticsAssertion{Operator: openapiclient.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: openapiclient.SyntheticsAssertionType{}}), Request: openapiclient.SyntheticsTestRequest{BasicAuth: openapiclient.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: openapiclient.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{openapiclient.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: openapiclient.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: , Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: , MonitorId: int64(123), Name: "Name_example", Options: openapiclient.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{openapiclient.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: openapiclient.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: openapiclient.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: openapiclient.SyntheticsTestPauseStatus{}, Subtype: openapiclient.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: openapiclient.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | New test details to be saved.
+    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: , Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: , MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | New test details to be saved.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.UpdateTest(context.Background(), publicId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTest``: %v\n", err)
@@ -661,7 +661,7 @@ Name | Type | Description  | Notes
 
 > bool UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
 
-Change test pause/live status
+Pause or start a test
 
 
 
@@ -674,15 +674,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     publicId := "publicId_example" // string | The public ID of the Synthetic test to update.
-    body := openapiclient.SyntheticsUpdateTestPauseStatusPayload{NewStatus: } // SyntheticsUpdateTestPauseStatusPayload | Pause/live status to set the given Synthetic test to.
+    body := datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: } // SyntheticsUpdateTestPauseStatusPayload | Status to set the given Synthetic test to.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(context.Background(), publicId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus``: %v\n", err)
@@ -709,7 +709,7 @@ Other parameters are passed through a pointer to a apiUpdateTestPauseStatusReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Pause/live status to set the given Synthetic test to. | 
+ **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Status to set the given Synthetic test to. | 
 
 ### Return type
 

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Style** | Pointer to [**TimeseriesWidgetRequestStyle**](TimeseriesWidgetRequest_style.md) |  | [optional] 
+**Style** | Pointer to [**WidgetRequestStyle**](WidgetRequestStyle.md) |  | [optional] 
 
 ## Methods
 
@@ -261,20 +261,20 @@ HasRumQuery returns a boolean if a field has been set.
 
 ### GetStyle
 
-`func (o *TimeseriesWidgetRequest) GetStyle() TimeseriesWidgetRequestStyle`
+`func (o *TimeseriesWidgetRequest) GetStyle() WidgetRequestStyle`
 
 GetStyle returns the Style field if non-nil, zero value otherwise.
 
 ### GetStyleOk
 
-`func (o *TimeseriesWidgetRequest) GetStyleOk() (*TimeseriesWidgetRequestStyle, bool)`
+`func (o *TimeseriesWidgetRequest) GetStyleOk() (*WidgetRequestStyle, bool)`
 
 GetStyleOk returns a tuple with the Style field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStyle
 
-`func (o *TimeseriesWidgetRequest) SetStyle(v TimeseriesWidgetRequestStyle)`
+`func (o *TimeseriesWidgetRequest) SetStyle(v WidgetRequestStyle)`
 
 SetStyle sets Style field to given value.
 

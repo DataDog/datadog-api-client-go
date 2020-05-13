@@ -7,8 +7,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - GetIPRanges
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8697477142097508159"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2427671557462661597"
     url: https://ip-ranges.datadoghq.com/
     method: GET
   response:
@@ -898,7 +906,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 10:01:12 GMT
+      - Tue, 12 May 2020 13:31:32 GMT
       Last-Modified:
       - Wed, 13 Nov 2019 16:02:25 GMT
       Server:
@@ -906,13 +914,13 @@ interactions:
       Vary:
       - Accept-Encoding
       Via:
-      - 1.1 90515c29ffc08c36814da3b1fe9d04e8.cloudfront.net (CloudFront)
+      - 1.1 34ef900fc796e5d1cba16bcb77acbff5.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - Wzj-Ce23TVHYstj36elgu5uJh5Gopn80b1Kvh6rzZ82BI_l-1C-Wmg==
+      - 4qwzkCQRoRlV8qYr4mGLC0IyH5szysKOZDGj7ktGJnrM8j-1E0k_Fg==
       X-Amz-Cf-Pop:
-      - CDG53-C1
+      - PRG50
       X-Cache:
-      - RefreshHit from cloudfront
+      - Miss from cloudfront
     status: 200 OK
     code: 200
     duration: ""

@@ -25,14 +25,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.LogsListRequest{Index: "Index_example", Limit: 123, Query: "Query_example", Sort: openapiclient.LogsSort{}, StartAt: "StartAt_example", Time: openapiclient.LogsListRequest_time{From: "TODO", Timezone: "Timezone_example", To: "TODO"}} // LogsListRequest | Logs filter
+    body := datadog.LogsListRequest{Index: "Index_example", Limit: 123, Query: "Query_example", Sort: datadog.LogsSort{}, StartAt: "StartAt_example", Time: datadog.LogsListRequest_time{From: "TODO", Timezone: "Timezone_example", To: "TODO"}} // LogsListRequest | Logs filter
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.ListLogs(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)

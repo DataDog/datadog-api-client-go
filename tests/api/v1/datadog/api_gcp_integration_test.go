@@ -18,14 +18,14 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func generateUniqueGCPAccount(ctx context.Context) (datadog.GCPAccount, datadog.GCPAccount) {
-	projectID := fmt.Sprintf("go_%d", tests.ClockFromContext(ctx).Now().Unix())
+func generateUniqueGCPAccount(ctx context.Context, t *testing.T) (datadog.GCPAccount, datadog.GCPAccount) {
+	name := tests.UniqueEntityName(ctx, t)
 	var testGCPAccount = datadog.GCPAccount{
 		Type:                    datadog.PtrString("service_account"),
-		ProjectId:               datadog.PtrString(projectID),
+		ProjectId:               name,
 		PrivateKeyId:            datadog.PtrString("fake_private_key_id"),
 		PrivateKey:              datadog.PtrString("fake_key"),
-		ClientEmail:             datadog.PtrString("api-test@fake-sandbox.iam.gserviceaccount.com"),
+		ClientEmail:             datadog.PtrString(fmt.Sprintf("%s@fake-sandbox.iam.gserviceaccount.com", *name)),
 		ClientId:                datadog.PtrString("123456712345671234567"),
 		AuthUri:                 datadog.PtrString("fake_uri"),
 		TokenUri:                datadog.PtrString("fake_uri"),
@@ -36,7 +36,7 @@ func generateUniqueGCPAccount(ctx context.Context) (datadog.GCPAccount, datadog.
 	}
 
 	var testUpdateGCPAccount = datadog.GCPAccount{
-		ProjectId:   datadog.PtrString(projectID),
+		ProjectId:   datadog.PtrString(testGCPAccount.GetProjectId()),
 		ClientEmail: testGCPAccount.ClientEmail,
 		HostFilters: datadog.PtrString("fake:update,example:update"),
 		Automute:    datadog.PtrBool(true),
@@ -50,7 +50,7 @@ func TestGCPCreate(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testGCPAcct, _ := generateUniqueGCPAccount(ctx)
+	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, testGCPAcct)
 
 	_, httpresp, err := Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx).Body(testGCPAcct).Execute()
@@ -66,7 +66,7 @@ func TestGCPListandDelete(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testGCPAcct, _ := generateUniqueGCPAccount(ctx)
+	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, testGCPAcct)
 
 	// Setup GCP Account to List
@@ -103,7 +103,7 @@ func TestUpdateGCPAccount(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testGCPAcct, testGCPUpdateAcct := generateUniqueGCPAccount(ctx)
+	testGCPAcct, testGCPUpdateAcct := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, testGCPAcct)
 
 	// Setup GCP Account to Update

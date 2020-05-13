@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4948566271371513895"
+      - "4162319183701647574"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8139493784935430322"
+      - "7346625148721226744"
     url: https://api.datadoghq.com/api/v1/monitor/1234
     method: PUT
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:00 GMT
+      - Tue, 12 May 2020 13:32:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -46,7 +46,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -56,7 +56,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "498"
       X-Ratelimit-Reset:
-      - "10"
+      - "5"
     status: 404 Not Found
     code: 404
     duration: ""

@@ -26,7 +26,7 @@ func TestTags(t *testing.T) {
 	api := Client(ctx).TagsApi
 	now := tests.ClockFromContext(ctx).Now().Unix()
 
-	hostname := fmt.Sprintf("go-client-test-host-%d", now)
+	hostname := *tests.UniqueEntityName(ctx, t)
 
 	// create host by sending a metric
 	metricsPayload := fmt.Sprintf(

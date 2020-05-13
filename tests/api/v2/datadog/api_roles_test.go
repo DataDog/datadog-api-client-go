@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"testing"
 
@@ -10,9 +9,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
-func testingRoleCreateAttributes(ctx context.Context) *datadog.RoleCreateAttributes {
+func testingRoleCreateAttributes(ctx context.Context, t *testing.T) *datadog.RoleCreateAttributes {
 	rca := datadog.NewRoleCreateAttributes()
-	rca.SetName(fmt.Sprintf("test-role-datadog-client-go-%d", tests.ClockFromContext(ctx).Now().UnixNano()))
+	rca.SetName(*tests.UniqueEntityName(ctx, t))
 	return rca
 }
 
@@ -30,7 +29,7 @@ func TestRoleLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// first, test creating a role
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -48,7 +47,7 @@ func TestRoleLifecycle(t *testing.T) {
 	assert.Equal(rca.GetName(), rrAttributes.GetName())
 
 	// now, test updating it
-	updatedRoleName := "updated-" + rca.GetName()
+	updatedRoleName := rca.GetName() + "-updated"
 	rua := datadog.NewRoleUpdateAttributes()
 	rua.SetName(updatedRoleName)
 	rud := datadog.NewRoleUpdateData()
@@ -111,7 +110,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// first, create a role
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -173,7 +172,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// first, create a role
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -188,7 +187,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	defer deleteRole(ctx, rid)
 
 	// create a user
-	uca := testingUserCreateAttributes(ctx)
+	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
 	ucp := datadog.NewUserCreatePayload()
@@ -284,7 +283,7 @@ func TestCreateRoleErrors(t *testing.T) {
 	defer finish()
 
 	// first, test creating a role
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -330,7 +329,7 @@ func TestGetRoleErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -380,7 +379,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -400,7 +399,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 	assert.Equal(404, httpresp.StatusCode)
 
 	// working update payload
-	updatedRoleName := "updated-" + rca.GetName()
+	updatedRoleName := rca.GetName() + "-updated"
 	rua := datadog.NewRoleUpdateAttributesWithDefaults()
 	rua.SetName(updatedRoleName)
 	rud := datadog.NewRoleUpdateDataWithDefaults()
@@ -452,7 +451,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -502,7 +501,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -552,7 +551,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -608,7 +607,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -684,7 +683,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -734,7 +733,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -790,7 +789,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// valid role ID
-	rca := testingRoleCreateAttributes(ctx)
+	rca := testingRoleCreateAttributes(ctx, t)
 	rcd := datadog.NewRoleCreateData()
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreatePayload()
@@ -810,7 +809,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	assert.Equal(404, httpresp.StatusCode)
 
 	// create a user
-	uca := testingUserCreateAttributes(ctx)
+	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
 	ucp := datadog.NewUserCreatePayload()

@@ -29,7 +29,7 @@ Tests for a single file or method can be executed via:
  go test -v -run <NAME_OF_FAILING_TEST> ./tests/api/v1/datadog
 ```
 
-By default integration tests use recorded API responses stored in cassettes. To record new API responses run the tests with `RECORD=true`.
+By default integration tests use recorded API responses stored in cassettes. To record new API responses run the tests with `RECORD=true`. To run integration tests against API without recording cassettes, run the tests with `RECORD=none`.
 
 **IMPORTANT**: 
 When creating a PR that adds or updates a test, __never__ commit 

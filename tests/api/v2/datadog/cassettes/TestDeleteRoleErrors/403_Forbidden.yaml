@@ -10,8 +10,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/58ed1ab6-8469-11ea-93de-53caf3cb9359
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4127361866511608955"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "6775663623970038420"
+    url: https://api.datadoghq.com/api/v2/roles/a64585dc-9454-11ea-93e2-0742742b78bd
     method: DELETE
   response:
     body: |
@@ -24,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 22 Apr 2020 07:17:39 GMT
+      - Tue, 12 May 2020 13:29:48 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

@@ -7,8 +7,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - ListAzureIntegration
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2573354570904782685"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2573354570904782685"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: GET
   response:
@@ -18,22 +26,24 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "32"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 03 Apr 2020 12:24:44 GMT
+      - Tue, 12 May 2020 13:30:07 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2351992"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 403 Forbidden

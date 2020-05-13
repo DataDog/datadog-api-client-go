@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListDowntimes
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1640882601111717595"
+      - "8977820338053936263"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5710105293005872295"
+      - "5861095701081107848"
     url: https://api.datadoghq.com/api/v1/downtime
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:38:44 GMT
+      - Tue, 12 May 2020 13:30:50 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

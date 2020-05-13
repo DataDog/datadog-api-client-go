@@ -30,7 +30,7 @@ func TestHosts(t *testing.T) {
 	api := Client(ctx).HostsApi
 	now := tests.ClockFromContext(ctx).Now().Unix()
 
-	hostname := fmt.Sprintf("go-client-test-host-%d", now)
+	hostname := *tests.UniqueEntityName(ctx, t)
 
 	// create host by sending a metric
 	metricsPayload := fmt.Sprintf(
@@ -229,7 +229,7 @@ func TestHostsMuteErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Mute host a first time in order to trigger a 400
-	hostname := fmt.Sprintf("go-client-test-hostname-%d", tests.ClockFromContext(ctx).Now().Unix())
+	hostname := *tests.UniqueEntityName(ctx, t)
 	muteSettings := *datadog.NewHostMuteSettingsWithDefaults()
 	muteSettings.SetOverride(true)
 	_, httpresp, err := Client(ctx).HostsApi.MuteHost(ctx, hostname).Body(muteSettings).Execute()
@@ -280,7 +280,7 @@ func TestHostsUnmuteErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			hostname := fmt.Sprintf("go-client-test-hostname-%d", tests.ClockFromContext(ctx).Now().Unix())
+			hostname := *tests.UniqueEntityName(ctx, t)
 			_, httpresp, err := Client(ctx).HostsApi.UnmuteHost(ctx, hostname).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

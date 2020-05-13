@@ -7,8 +7,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - ListAWSAccounts
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8440158088926583274"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8440158088926583274"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: GET
   response:
@@ -18,22 +26,24 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "32"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 02 Apr 2020 17:07:09 GMT
+      - Tue, 12 May 2020 13:29:30 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2349084"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 403 Forbidden
