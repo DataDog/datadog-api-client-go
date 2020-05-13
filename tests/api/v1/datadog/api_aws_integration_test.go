@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"math/rand"
 	"testing"
 	"time"
@@ -19,10 +18,9 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func generateUniqueAWSAccount(ctx context.Context) datadog.AWSAccount {
-	accountID := fmt.Sprintf("go_%09d", tests.ClockFromContext(ctx).Now().UnixNano()%1000000000)
+func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadog.AWSAccount {
 	return datadog.AWSAccount{
-		AccountId:                     &accountID,
+		AccountId:                     tests.UniqueEntityName(ctx, t),
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
@@ -52,7 +50,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAWSAccount := generateUniqueAWSAccount(ctx)
+	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(ctx, t, testAWSAccount)
@@ -87,7 +85,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAWSAccount := generateUniqueAWSAccount(ctx)
+	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(ctx, t, testAWSAccount)
@@ -129,7 +127,7 @@ func TestDisableAWSAcct(t *testing.T) {
 	defer finish()
 
 	// We already test this in the disableAWSAccount cleanup function, but good to have an explicit test
-	testAWSAccount := generateUniqueAWSAccount(ctx)
+	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 
 	// Lets first create the account of us to delete
 	retryCreateAccount(ctx, t, testAWSAccount)
@@ -143,7 +141,7 @@ func TestGenerateNewExternalId(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAWSAccount := generateUniqueAWSAccount(ctx)
+	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 	// Lets first create the account for us to generate a new id against
 	retryCreateAccount(ctx, t, testAWSAccount)
 	defer retryDeleteAccount(ctx, t, testAWSAccount)

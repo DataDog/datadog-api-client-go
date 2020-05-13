@@ -28,14 +28,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.PagerDutyService{ServiceKey: "ServiceKey_example", ServiceName: "ServiceName_example"} // PagerDutyService | Create a new service object request body.
+    body := datadog.PagerDutyService{ServiceKey: "ServiceKey_example", ServiceName: "ServiceName_example"} // PagerDutyService | Create a new service object request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService``: %v\n", err)
@@ -94,14 +94,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     serviceName := "serviceName_example" // string | The service name
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(context.Background(), serviceName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.DeletePagerDutyIntegrationService``: %v\n", err)
@@ -162,14 +162,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     serviceName := "serviceName_example" // string | The service name.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(context.Background(), serviceName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.GetPagerDutyIntegrationService``: %v\n", err)
@@ -232,15 +232,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     serviceName := "serviceName_example" // string | The service name
-    body := openapiclient.PagerDutyServiceKey{ServiceKey: "ServiceKey_example"} // PagerDutyServiceKey | Update an existing service object request body.
+    body := datadog.PagerDutyServiceKey{ServiceKey: "ServiceKey_example"} // PagerDutyServiceKey | Update an existing service object request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(context.Background(), serviceName, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService``: %v\n", err)

@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -16,7 +15,7 @@ import (
 )
 
 func generatePagerDutyService(ctx context.Context, t *testing.T) datadog.PagerDutyService {
-	serviceName := fmt.Sprintf("test-datadog-api-client-go-%s-%d", t.Name(), tests.ClockFromContext(ctx).Now().UnixNano())
+	serviceName := *tests.UniqueEntityName(ctx, t)
 	return datadog.PagerDutyService{
 		ServiceName: serviceName,
 		ServiceKey:  "deadbeef",

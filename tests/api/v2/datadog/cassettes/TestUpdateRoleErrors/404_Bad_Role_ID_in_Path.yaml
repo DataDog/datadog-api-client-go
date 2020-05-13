@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"updated-test-role-datadog-client-go-1589320589959153671"},"id":"00000000-dead-beef-dead-ffffffffffff","type":"roles"}}
+      {"data":{"attributes":{"name":"go-TestUpdateRoleErrors-local-1589290185-updated"},"id":"a55b9b16-9454-11ea-93e2-5b889a3abb0f","type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -13,18 +13,18 @@ interactions:
       Dd-Operation-Id:
       - UpdateRole
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5700626343935543671"
+      - "6970095683673435392"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3170077496274630327"
+      - "9159942988193818741"
     url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff
     method: PATCH
   response:
     body: '{"errors": ["Invalid role id 00000000-dead-beef-dead-ffffffffffff for org
-      414226 not found"]}'
+      321813 not found"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 21:56:30 GMT
+      - Tue, 12 May 2020 13:29:46 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -47,7 +47,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2495552"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

@@ -7,12 +7,20 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - GetGraphSnapshot
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1583728566&event_query=successful+builds&metric_query=system.load.1%7B%2A%7D&start=1583642166
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4190678320187468315"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8797081322308102100"
+    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1589376806&event_query=successful+builds&metric_query=system.load.1%7B%2A%7D&start=1589290406
     method: GET
   response:
-    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2020-03-08/d9aa1b13c00152eb0f70267379ba6f69b0daefa4.png","event_query":"successful
+    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2020-05-12/24244f939f30b4967c1ea1981c37674f9b5c240a.png","event_query":"successful
       builds","metric_query":"system.load.1{*}"}'
     headers:
       Cache-Control:
@@ -24,13 +32,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 08 Mar 2020 04:36:07 GMT
+      - Tue, 12 May 2020 13:33:26 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Sun, 15-Mar-2020 04:36:07 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:33:26 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -39,9 +47,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - aJ6GOq3zw1bWl+5n1TKdeAvWSB1g5Zer85qbkQ07UFNZhgfVh/zeqVhNb8FjtbN9
+      - hABsPq9DIvV7yAEiU7rMxs7UCRuTbRH/kYpwue4a0q9qmwd4SUh9bBZ5SHPkBLc6
       X-Dd-Version:
-      - "35.2251913"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -49,9 +57,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "57"
+      - "56"
       X-Ratelimit-Reset:
-      - "1433"
+      - "1594"
     status: 200 OK
     code: 200
     duration: ""
@@ -61,12 +69,20 @@ interactions:
     headers:
       Accept:
       - application/json
+      Dd-Operation-Id:
+      - GetGraphSnapshot
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1583728566&graph_def=%7B%22requests%22%3A+%5B%7B%22q%22%3A+%22system.load.1%7B%2A%7D%22%7D%5D%7D&start=1583642166
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5202064973581006366"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8797081322308102100"
+    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1589376806&graph_def=%7B%22requests%22%3A+%5B%7B%22q%22%3A+%22system.load.1%7B%2A%7D%22%7D%5D%7D&start=1589290406
     method: GET
   response:
-    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2020-03-08/75963e66dcf0a31a75448a82a92d41979d5e51ad.png"}'
+    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2020-05-12/ed29926320237dc4e22493d6094e063963e521e2.png"}'
     headers:
       Cache-Control:
       - no-cache
@@ -77,13 +93,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 08 Mar 2020 04:36:07 GMT
+      - Tue, 12 May 2020 13:33:26 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Sun, 15-Mar-2020 04:36:07 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:33:26 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -92,9 +108,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - ADT0ms9dQnbDHbbduv4c09ChngZrYY7A/Pgms/qacMOruS4mPwZ1GJWq74I7G11W
+      - gCSZ7BDMU1GjNFaR6hO6ZgwcgG3iOVugDLAlbR+YVBEuMFHhC330JIFkvjLveHm3
       X-Dd-Version:
-      - "35.2251913"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -102,9 +118,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "56"
+      - "55"
       X-Ratelimit-Reset:
-      - "1433"
+      - "1594"
     status: 200 OK
     code: 200
     duration: ""

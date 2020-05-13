@@ -29,14 +29,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Create a Datadog-Azure integration for your Datadog account request body.
+    body := datadog.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Create a Datadog-Azure integration for your Datadog account request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AzureIntegrationApi.CreateAzureIntegration(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration``: %v\n", err)
@@ -95,14 +95,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-    body := openapiclient.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Delete a given Datadog-Azure integration request body.
+    body := datadog.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Delete a given Datadog-Azure integration request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AzureIntegrationApi.DeleteAzureIntegration(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.DeleteAzureIntegration``: %v\n", err)
@@ -161,13 +161,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AzureIntegrationApi.ListAzureIntegration(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.ListAzureIntegration``: %v\n", err)
@@ -222,14 +222,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     body :=  // AzureAccount | Update a Datadog-Azure integration's host filters request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AzureIntegrationApi.UpdateAzureHostFilters(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters``: %v\n", err)
@@ -288,14 +288,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
     body :=  // AzureAccount | Update a Datadog-Azure integration request body.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AzureIntegrationApi.UpdateAzureIntegration(context.Background(), body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureIntegration``: %v\n", err)

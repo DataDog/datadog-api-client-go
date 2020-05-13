@@ -13,7 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4395761946921237736"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3973839532437760638"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: PUT
   response:
@@ -27,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 25 Apr 2020 15:44:33 GMT
+      - Tue, 12 May 2020 13:29:31 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListActiveMetrics
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5163289599963819402"
+      - "4873603530425231672"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4091813854181646148"
+      - "9002227094811984236"
     url: https://api.datadoghq.com/api/v1/metrics?from=-1
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:38:57 GMT
+      - Tue, 12 May 2020 13:32:41 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

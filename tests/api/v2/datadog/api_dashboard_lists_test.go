@@ -48,10 +48,10 @@ func initializeClientV1(ctx context.Context) {
 	testAPIClientV1 = datadogV1.NewAPIClient(config)
 }
 
-func createDashboardList(ctx context.Context) error {
+func createDashboardList(ctx context.Context, t *testing.T) error {
 	initializeClientV1(ctx)
 	res, httpresp, err := testAPIClientV1.DashboardListsApi.CreateDashboardList(testAuthV1).
-		Body(datadogV1.DashboardList{Name: fmt.Sprintf("go-client-test-v2-%d", tests.ClockFromContext(ctx).Now().Unix())}).
+		Body(datadogV1.DashboardList{Name: *tests.UniqueEntityName(ctx, t)}).
 		Execute()
 	if err != nil || httpresp.StatusCode != 200 {
 		return fmt.Errorf("error creating dashboard list: %v", err.(datadogV1.GenericOpenAPIError).Body())
@@ -69,7 +69,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	err := createDashboardList(ctx)
+	err := createDashboardList(ctx, t)
 	defer deleteDashboardList()
 	if err != nil {
 		t.Fatal(err)
@@ -188,7 +188,7 @@ func TestDashboardListCreateItemsErrors(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 
-	err := createDashboardList(ctx)
+	err := createDashboardList(ctx, t)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -224,7 +224,7 @@ func TestDashboardListUpdateItemsErrors(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 
-	err := createDashboardList(ctx)
+	err := createDashboardList(ctx, t)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -260,7 +260,7 @@ func TestDashboardListDeleteItemsErrors(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 
-	err := createDashboardList(ctx)
+	err := createDashboardList(ctx, t)
 	if err != nil {
 		t.Fatal(err)
 	}

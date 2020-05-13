@@ -7,36 +7,48 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageHosts
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v1/usage/hosts?end_hr=2020-02-13T00%3A00%3A00Z&start_hr=2020-02-12T00%3A00%3A00Z
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5143746383307741954"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "6691477842005390471"
+    url: https://api.datadoghq.com/api/v1/usage/hosts?end_hr=2020-04-13T00%3A00%3A00Z&start_hr=2020-04-12T00%3A00%3A00Z
     method: GET
   response:
-    body: '{"usage":[{"host_count":30435,"container_count":16203,"hour":"2020-02-12T00:00:00+00:00","alibaba_host_count":12,"agent_host_count":30059,"apm_host_count":19430,"gcp_host_count":42,"azure_host_count":86,"aws_host_count":236},{"host_count":30475,"container_count":16260,"hour":"2020-02-12T01:00:00+00:00","alibaba_host_count":12,"agent_host_count":30098,"apm_host_count":19459,"gcp_host_count":42,"azure_host_count":86,"aws_host_count":237},{"host_count":30443,"container_count":16172,"hour":"2020-02-12T02:00:00+00:00","alibaba_host_count":12,"agent_host_count":30067,"apm_host_count":19439,"gcp_host_count":42,"azure_host_count":86,"aws_host_count":236},{"host_count":30386,"container_count":16137,"hour":"2020-02-12T03:00:00+00:00","alibaba_host_count":12,"agent_host_count":30009,"apm_host_count":19282,"gcp_host_count":42,"azure_host_count":86,"aws_host_count":237},{"host_count":30357,"container_count":16173,"hour":"2020-02-12T04:00:00+00:00","alibaba_host_count":12,"agent_host_count":29968,"apm_host_count":19261,"gcp_host_count":42,"azure_host_count":98,"aws_host_count":237},{"host_count":30697,"container_count":16216,"hour":"2020-02-12T05:00:00+00:00","alibaba_host_count":12,"agent_host_count":30309,"apm_host_count":19646,"gcp_host_count":42,"azure_host_count":94,"aws_host_count":240},{"host_count":30938,"container_count":16197,"hour":"2020-02-12T06:00:00+00:00","alibaba_host_count":12,"agent_host_count":30447,"apm_host_count":19612,"gcp_host_count":42,"azure_host_count":195,"aws_host_count":242},{"host_count":30901,"container_count":16161,"hour":"2020-02-12T07:00:00+00:00","alibaba_host_count":12,"agent_host_count":30475,"apm_host_count":19537,"gcp_host_count":42,"azure_host_count":126,"aws_host_count":246},{"host_count":31079,"container_count":16438,"hour":"2020-02-12T08:00:00+00:00","alibaba_host_count":12,"agent_host_count":30614,"apm_host_count":19543,"gcp_host_count":42,"azure_host_count":169,"aws_host_count":242},{"host_count":31227,"container_count":16546,"hour":"2020-02-12T09:00:00+00:00","alibaba_host_count":12,"agent_host_count":30596,"apm_host_count":19490,"gcp_host_count":43,"azure_host_count":335,"aws_host_count":241},{"host_count":31173,"container_count":16482,"hour":"2020-02-12T10:00:00+00:00","alibaba_host_count":12,"agent_host_count":30594,"apm_host_count":19516,"gcp_host_count":42,"azure_host_count":289,"aws_host_count":236},{"host_count":31139,"container_count":16515,"hour":"2020-02-12T11:00:00+00:00","alibaba_host_count":12,"agent_host_count":30597,"apm_host_count":19499,"gcp_host_count":46,"azure_host_count":246,"aws_host_count":238},{"host_count":31083,"container_count":16401,"hour":"2020-02-12T12:00:00+00:00","alibaba_host_count":12,"agent_host_count":30580,"apm_host_count":19551,"gcp_host_count":44,"azure_host_count":195,"aws_host_count":252},{"host_count":30919,"container_count":16530,"hour":"2020-02-12T13:00:00+00:00","alibaba_host_count":12,"agent_host_count":30432,"apm_host_count":19523,"gcp_host_count":42,"azure_host_count":188,"aws_host_count":245},{"host_count":31348,"container_count":16563,"hour":"2020-02-12T14:00:00+00:00","alibaba_host_count":12,"agent_host_count":30740,"apm_host_count":19558,"gcp_host_count":42,"azure_host_count":316,"aws_host_count":238},{"host_count":31687,"container_count":16636,"hour":"2020-02-12T15:00:00+00:00","alibaba_host_count":12,"agent_host_count":30992,"apm_host_count":19603,"gcp_host_count":42,"azure_host_count":402,"aws_host_count":239},{"host_count":31350,"container_count":16651,"hour":"2020-02-12T16:00:00+00:00","alibaba_host_count":12,"agent_host_count":30732,"apm_host_count":19682,"gcp_host_count":44,"azure_host_count":300,"aws_host_count":262},{"host_count":31193,"container_count":16559,"hour":"2020-02-12T17:00:00+00:00","alibaba_host_count":12,"agent_host_count":30751,"apm_host_count":19721,"gcp_host_count":42,"azure_host_count":136,"aws_host_count":252},{"host_count":30768,"container_count":16517,"hour":"2020-02-12T18:00:00+00:00","alibaba_host_count":12,"agent_host_count":30353,"apm_host_count":19414,"gcp_host_count":43,"azure_host_count":96,"aws_host_count":264},{"host_count":31084,"container_count":16582,"hour":"2020-02-12T19:00:00+00:00","alibaba_host_count":12,"agent_host_count":30668,"apm_host_count":19677,"gcp_host_count":43,"azure_host_count":96,"aws_host_count":265},{"host_count":31163,"container_count":16522,"hour":"2020-02-12T20:00:00+00:00","alibaba_host_count":12,"agent_host_count":30696,"apm_host_count":19666,"gcp_host_count":43,"azure_host_count":174,"aws_host_count":238},{"host_count":31163,"container_count":16523,"hour":"2020-02-12T21:00:00+00:00","alibaba_host_count":12,"agent_host_count":30673,"apm_host_count":19691,"gcp_host_count":47,"azure_host_count":181,"aws_host_count":250},{"host_count":30721,"container_count":16467,"hour":"2020-02-12T22:00:00+00:00","alibaba_host_count":12,"agent_host_count":30268,"apm_host_count":19285,"gcp_host_count":42,"azure_host_count":162,"aws_host_count":237},{"host_count":30655,"container_count":16317,"hour":"2020-02-12T23:00:00+00:00","alibaba_host_count":12,"agent_host_count":30167,"apm_host_count":19329,"gcp_host_count":42,"azure_host_count":197,"aws_host_count":237}]}'
+    body: '{"usage":[{"host_count":10,"container_count":null,"hour":"2020-04-12T00:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T01:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T02:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T03:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T04:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T05:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T06:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T07:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T08:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T09:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T10:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T11:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T12:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T13:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T14:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T15:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T16:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T17:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T18:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T19:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T20:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T21:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T22:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0},{"host_count":10,"container_count":null,"hour":"2020-04-12T23:00:00+00:00","alibaba_host_count":0,"agent_host_count":10,"apm_host_count":null,"gcp_host_count":0,"azure_host_count":0,"aws_host_count":0}]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "5187"
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 30 Mar 2020 21:01:05 GMT
+      - Tue, 12 May 2020 13:34:15 GMT
+      Dd-Pool:
+      - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Mon, 06-Apr-2020 21:01:05 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:34:14 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Dd-Debug:
+      - kg+/Cls6zaJcT2blJLlU62BwgGePGdpqSwWrJ0xEIvzmSMWHXxGNsiyEzBPJ1a96
       X-Dd-Version:
-      - "35.2336355"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -44,9 +56,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "199"
+      - "170"
       X-Ratelimit-Reset:
-      - "3535"
+      - "1546"
     status: 200 OK
     code: 200
     duration: ""

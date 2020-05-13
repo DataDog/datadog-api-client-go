@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetHostTags
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1543560779532810443"
+      - "1022091053010140093"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5702800270409510521"
+      - "8742031858973865577"
     url: https://api.datadoghq.com/api/v1/tags/hosts/notahostname1234
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:24 GMT
+      - Tue, 12 May 2020 13:34:13 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

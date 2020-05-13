@@ -13,7 +13,13 @@ interactions:
       Dd-Operation-Id:
       - RemovePermissionFromRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6730396466399265089"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "41416430718862732"
     url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff/permissions
     method: DELETE
   response:
@@ -28,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 22 Apr 2020 07:17:42 GMT
+      - Tue, 12 May 2020 13:29:52 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -40,7 +46,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2417977"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

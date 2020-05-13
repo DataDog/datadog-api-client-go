@@ -9,19 +9,17 @@ package test
 import (
 	"context"
 	"fmt"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"log"
 	"net/http"
 	"testing"
-	"time"
-
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"gopkg.in/h2non/gock.v1"
 )
 
 func TestApiKeyFunctions(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
@@ -36,7 +34,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Create API Key
 	// ----------------------------------
-	testAPIKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	testAPIKeyName := *tests.UniqueEntityName(ctx, t)
 	apiKeyData, httpresp, err := Client(ctx).KeyManagementApi.CreateAPIKey(ctx).Body(datadog.ApiKey{Name: &testAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -92,7 +90,7 @@ func TestApiKeyFunctions(t *testing.T) {
 
 	// Edit API Key
 	// ----------------------------------
-	newAPIKeyName := fmt.Sprintf("new-%s", testAPIKeyName)
+	newAPIKeyName := fmt.Sprintf("%s-new", testAPIKeyName)
 	apiKeyData, httpresp, err = Client(ctx).KeyManagementApi.UpdateAPIKey(ctx, createAPIKeyValue).Body(datadog.ApiKey{Name: &newAPIKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing api key %v: Response %s: %v", createAPIKeyValue, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -133,7 +131,7 @@ func TestApiKeyFunctions(t *testing.T) {
 }
 
 func TestApplicationKeyFunctions(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
@@ -148,7 +146,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Create Application Key
 	// ----------------------------------
-	testAppKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	testAppKeyName := *tests.UniqueEntityName(ctx, t)
 	appKeyData, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAppKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -200,7 +198,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 
 	// Edit Application Key
 	// ----------------------------------
-	newAppKeyName := fmt.Sprintf("New %s", testAppKeyName)
+	newAppKeyName := fmt.Sprintf("%s-new", testAppKeyName)
 	appKeyData, httpresp, err = Client(ctx).KeyManagementApi.UpdateApplicationKey(ctx, getAppKeyHash).Body(datadog.ApplicationKey{Name: &newAppKeyName}).Execute()
 	if err != nil {
 		t.Errorf("Error editing app key %v: Response %s: %v", getAppKeyHash, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -454,7 +452,7 @@ func TestAppKeysMgmtCreateErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtCreate409Error(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
@@ -464,7 +462,7 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create an app key to trigger the 409 conflict
-	testAPPKeyName := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	testAPPKeyName := *tests.UniqueEntityName(ctx, t)
 	appKeyData, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
 	if err != nil {
 		t.Fatalf("Error creating api key %v: Response %s: %v", testAPPKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -537,7 +535,7 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtUpdate409Error(t *testing.T) {
-	if !tests.IsRecording() {
+	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
@@ -547,7 +545,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create two app keys to trigger the 409 conflict
-	testAPPKeyName1 := fmt.Sprintf("%s:%d", t.Name(), time.Now().UnixNano())
+	testAPPKeyName1 := *tests.UniqueEntityName(ctx, t)
 	appKeyData1, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName1}).Execute()
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName1, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -555,7 +553,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	defer deleteAppKey(ctx, appKeyData1.ApplicationKey.GetHash())
 	assert.Equal(200, httpresp.StatusCode)
 
-	testAPPKeyName2 := fmt.Sprintf("%s:%d2", t.Name(), time.Now().UnixNano())
+	testAPPKeyName2 := fmt.Sprintf("%s-2", testAPPKeyName1)
 	appKeyData2, httpresp, err := Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName2, err.(datadog.GenericOpenAPIError).Body(), err)

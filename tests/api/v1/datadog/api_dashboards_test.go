@@ -23,9 +23,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// create SLO for referencing in SLO widget (we're borrowing these from api_slo_test.go)
+	testEventSLO := getTestEventSLO(ctx, t)
 	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(testEventSLO).Execute()
 	if err != nil {
-		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testMonitorSLO, err.Error(), err)
+		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testEventSLO, err.Error(), err)
 	}
 	slo := sloResp.GetData()[0]
 	defer deleteSLOIfExists(ctx, slo.GetId())
@@ -644,7 +645,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard := datadog.NewDashboardWithDefaults()
 	dashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_ORDERED)
 	dashboard.SetWidgets(orderedWidgetList)
-	dashboard.SetTitle("Go Client Test ORDERED Dashboard")
+	dashboard.SetTitle(fmt.Sprintf("%s-ordered", *tests.UniqueEntityName(ctx, t)))
 	dashboard.SetDescription("Test dashboard for Go client")
 	dashboard.SetIsReadOnly(false)
 	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
@@ -716,7 +717,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeDashboard := datadog.NewDashboardWithDefaults()
 	freeDashboard.SetLayoutType(datadog.DASHBOARDLAYOUTTYPE_FREE)
 	freeDashboard.SetWidgets(freeWidgetList)
-	freeDashboard.SetTitle("Go Client Test Free Dashboard")
+	freeDashboard.SetTitle(fmt.Sprintf("%s-free", *tests.UniqueEntityName(ctx, t)))
 	freeDashboard.SetDescription("Test Free layout dashboard for Go client")
 	freeDashboard.SetIsReadOnly(false)
 	freeDashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})

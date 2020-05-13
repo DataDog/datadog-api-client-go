@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateDashboardListItems
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9155928476006828521"
+      - "4382316859255325818"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6290028706470993989"
+      - "8644649210445531796"
     url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/0/dashboards
     method: PUT
   response:
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:36:48 GMT
+      - Tue, 12 May 2020 13:29:27 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

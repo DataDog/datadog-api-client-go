@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7248457693393343304"
+      - "7615980795256830884"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4848297695300415836"
+      - "1677314321158351694"
     url: https://api.datadoghq.com/api/v1/monitor/1234
     method: DELETE
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 05 May 2020 14:24:22 GMT
+      - Tue, 12 May 2020 13:32:57 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

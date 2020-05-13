@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateLogsPipeline
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1860935672630278201"
+      - "3830446760314193983"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8272877267898785298"
+      - "8131134888951016847"
     url: https://api.datadoghq.com/api/v1/logs/config/pipelines
     method: POST
   response:
@@ -37,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:38:55 GMT
+      - Tue, 12 May 2020 13:31:49 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -47,7 +47,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2493025"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -55,9 +55,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "95"
+      - "78"
       X-Ratelimit-Reset:
-      - "1265"
+      - "1691"
     status: 400 Bad Request
     code: 400
     duration: ""

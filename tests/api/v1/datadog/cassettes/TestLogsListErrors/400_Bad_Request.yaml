@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - ListLogs
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5326588092411158677"
+      - "6383796567001829942"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4950485767480228498"
+      - "7137901680228674083"
     url: https://api.datadoghq.com/api/v1/logs-queries/list
     method: POST
   response:
@@ -36,7 +36,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:38:56 GMT
+      - Tue, 12 May 2020 13:32:18 GMT
       Dd-Pool:
       - dogweb_query
       Pragma:
@@ -46,7 +46,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,9 +54,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "299"
+      - "280"
       X-Ratelimit-Reset:
-      - "1264"
+      - "1662"
     status: 400 Bad Request
     code: 400
     duration: ""
