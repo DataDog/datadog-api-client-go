@@ -20,7 +20,9 @@ resources:
   containers:
   - container: datadog-agent
     image: datadog/agent:7
+    options: --no-healthcheck
     ports:
+    - 8125:8125
     - 8126:8126
     env:
       DD_API_KEY: $(ddAPIKey)
