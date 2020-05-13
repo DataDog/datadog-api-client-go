@@ -20,7 +20,7 @@ resources:
   containers:
   - container: datadog-agent
     image: datadog/agent:7
-    options: --health-cmd="exit 0"
+    options: --health-cmd="exit 0" --health-interval: 10s
     ports:
     - 8125:8125
     - 8126:8126
