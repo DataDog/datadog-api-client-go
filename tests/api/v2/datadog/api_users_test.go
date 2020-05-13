@@ -113,6 +113,54 @@ func TestUserLifecycle(t *testing.T) {
 	// (a user can only get organization for itself, never for a different user)
 }
 
+func TestUpdateUserErrors(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+
+	// Build update payload
+	uid := "00000000-dead-beef-dead-ffffffffffff"
+	uua := datadog.NewUserUpdateAttributes()
+	uua.SetDisabled(false)
+	uua.SetName("Joe Doe")
+	uud := datadog.NewUserUpdateData()
+	uud.SetAttributes(*uua)
+	uud.SetId(uid)
+	uup := datadog.NewUserUpdatePayload()
+	uup.SetData(*uud)
+
+	// 422 needs a mismatched id, shallow copy is fine here
+	uud422 := uud
+	uud422.SetId("00000000-mismatch-body-id-ffffffffffff")
+	uup422 := datadog.NewUserUpdatePayload()
+	uup422.SetData(*uud)
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+		UserID             string
+		Body               *datadog.UserUpdatePayload
+	}{
+		"400 Bad Request":            {WithTestAuth, 400, uid, datadog.NewUserUpdatePayloadWithDefaults()},
+		"403 Forbidden":              {WithFakeAuth, 403, uid, uup},
+		"404 Bad User ID in Path":    {WithTestAuth, 404, uid, uup},
+		"422 Bad User ID in Request": {WithTestAuth, 422, uid, uup422},
+	}
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			httpresp, err := Client(ctx).UsersApi.UpdateUser(ctx, tc.UserID).Body(*tc.Body).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
 func TestUserInvitation(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
