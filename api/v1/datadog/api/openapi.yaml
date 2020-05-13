@@ -42,6 +42,17 @@ tags:
     url: https://docs.datadoghq.com/api/?lang=bash#integration-aws-logs
   name: AWS Logs Integration
 - description: |-
+    All requests to Datadog’s API must be authenticated.
+    Requests that write data require reporting access and require an `API key`.
+    Requests that read data require full access and also require an `application key`.
+
+    **Note:** All Datadog API clients are configured by default to consume Datadog US site APIs.
+    If you are on the Datadog EU site, set the environment variable `DATADOG_HOST` to
+    `https://api.datadoghq.eu` or override this value directly when creating your client.
+
+    [Manage your account’s API and application keys](https://app.datadoghq.com/account/settings#api).
+  name: Authentication
+- description: |-
     Configure your Datadog-Azure integration directly through the Datadog API.
     For more information, see the [Datadog-Azure integration page](https://docs.datadoghq.com/integrations/azure).
   externalDocs:
@@ -5917,6 +5928,29 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
+  /api/v1/validate:
+    get:
+      description: Check if the API key (not the APP key) is valid. If invalid, a
+        403 is returned.
+      operationId: Validate
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationValidationResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication error
+      security:
+      - apiKeyAuth: []
+      summary: Validate API key
+      tags:
+      - Authentication
 components:
   callbacks: {}
   examples: {}
@@ -6367,6 +6401,17 @@ components:
       properties:
         application_key:
           $ref: '#/components/schemas/ApplicationKey'
+      type: object
+    AuthenticationValidationResponse:
+      description: Represent validation endpoint responses.
+      example:
+        valid: true
+      properties:
+        valid:
+          description: Return `true` if the authentication response is valid.
+          example: true
+          readOnly: true
+          type: boolean
       type: object
     AzureAccount:
       description: Datadog-Azure integrations configured for your organization.

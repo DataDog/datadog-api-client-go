@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 *AWSLogsIntegrationApi* | [**EnableAWSLogServices**](docs/AWSLogsIntegrationApi.md#enableawslogservices) | **Post** /api/v1/integration/aws/logs/services | Enable an AWS Logs integration
 *AWSLogsIntegrationApi* | [**ListAWSLogsIntegrations**](docs/AWSLogsIntegrationApi.md#listawslogsintegrations) | **Get** /api/v1/integration/aws/logs | List all AWS Logs integrations
 *AWSLogsIntegrationApi* | [**ListAWSLogsServices**](docs/AWSLogsIntegrationApi.md#listawslogsservices) | **Get** /api/v1/integration/aws/logs/services | Get list of AWS log ready services
+*AuthenticationApi* | [**Validate**](docs/AuthenticationApi.md#validate) | **Get** /api/v1/validate | Validate API key
 *AzureIntegrationApi* | [**CreateAzureIntegration**](docs/AzureIntegrationApi.md#createazureintegration) | **Post** /api/v1/integration/azure | Create an Azure integration
 *AzureIntegrationApi* | [**DeleteAzureIntegration**](docs/AzureIntegrationApi.md#deleteazureintegration) | **Delete** /api/v1/integration/azure | Delete an Azure integration
 *AzureIntegrationApi* | [**ListAzureIntegration**](docs/AzureIntegrationApi.md#listazureintegration) | **Get** /api/v1/integration/azure | List all Azure integrations
@@ -230,6 +231,7 @@ Class | Method | HTTP request | Description
  - [ApplicationKey](docs/ApplicationKey.md)
  - [ApplicationKeyListResponse](docs/ApplicationKeyListResponse.md)
  - [ApplicationKeyResponse](docs/ApplicationKeyResponse.md)
+ - [AuthenticationValidationResponse](docs/AuthenticationValidationResponse.md)
  - [AzureAccount](docs/AzureAccount.md)
  - [CancelDowntimesByScopeRequest](docs/CancelDowntimesByScopeRequest.md)
  - [CanceledDowntimesIds](docs/CanceledDowntimesIds.md)
