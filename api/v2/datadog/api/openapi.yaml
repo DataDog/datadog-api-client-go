@@ -266,7 +266,7 @@ paths:
       description: Returns all roles, including their names and IDs.
       operationId: ListRoles
       parameters:
-      - description: Number of users to return for a given page.
+      - description: Size for a given page.
         explode: true
         in: query
         name: page[size]
@@ -653,7 +653,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Number of users to return for a given page.
+      - description: Size for a given page.
         explode: true
         in: query
         name: page[size]
@@ -835,7 +835,7 @@ paths:
         all users even if they are disabled or unverified.
       operationId: ListUsers
       parameters:
-      - description: Number of users to return for a given page.
+      - description: Size for a given page.
         explode: true
         in: query
         name: page[size]
@@ -1150,7 +1150,7 @@ components:
         type: integer
       style: form
     PageSize:
-      description: Number of users to return for a given page.
+      description: Size for a given page.
       explode: true
       in: query
       name: page[size]
@@ -1179,7 +1179,31 @@ components:
         type: string
       style: simple
   requestBodies: {}
-  responses: {}
+  responses:
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Bad Request
+    ConcurrentModificationResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Concurrent Modification
+    NotAuthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Not Authorized
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Not Found
   schemas:
     APIErrorResponse:
       description: API error response.
@@ -1473,11 +1497,11 @@ components:
         total_filtered_count: 6
       properties:
         total_count:
-          description: Total count of pages.
+          description: Total count.
           format: int64
           type: integer
         total_filtered_count:
-          description: Total count of filtered pages.
+          description: Total count of elements matched by the filter.
           format: int64
           type: integer
       type: object

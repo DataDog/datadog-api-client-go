@@ -36,15 +36,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
-    body := openapiclient.RelationshipToPermission{Data: openapiclient.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"}} // RelationshipToPermission |  (optional)
+    body := datadog.RelationshipToPermission{Data: datadog.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"}} // RelationshipToPermission |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.AddPermissionToRole(context.Background(), roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddPermissionToRole``: %v\n", err)
@@ -108,15 +108,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
-    body := openapiclient.RelationshipToUser{Data: openapiclient.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}} // RelationshipToUser |  (optional)
+    body := datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}} // RelationshipToUser |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.AddUserToRole(context.Background(), roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddUserToRole``: %v\n", err)
@@ -180,14 +180,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
-    body := openapiclient.RoleCreatePayload{Data: openapiclient.RoleCreateData{Attributes: openapiclient.RoleCreateAttributes{Name: "Name_example"}, Relationships: openapiclient.RoleRelationships{Permissions: openapiclient.RelationshipToPermissions{Data: []RelationshipToPermissionData{openapiclient.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"})}, Users: openapiclient.RelationshipToUsers{Data: []RelationshipToUserData{openapiclient.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: "Type_example"}} // RoleCreatePayload |  (optional)
+    body := datadog.RoleCreatePayload{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: "Type_example"}} // RoleCreatePayload |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.CreateRole(context.Background(), ).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CreateRole``: %v\n", err)
@@ -246,14 +246,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.DeleteRole(context.Background(), roleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.DeleteRole``: %v\n", err)
@@ -314,14 +314,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.GetRole(context.Background(), roleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.GetRole``: %v\n", err)
@@ -384,13 +384,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.ListPermissions(context.Background(), ).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListPermissions``: %v\n", err)
@@ -445,14 +445,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.ListRolePermissions(context.Background(), roleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRolePermissions``: %v\n", err)
@@ -515,18 +515,18 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
-    pageSize := 987 // int64 | Number of users to return for a given page. (optional) (default to 10)
+    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
     sort := "sort_example" // string | User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `email`, `status`. (optional) (default to "name")
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.ListRoleUsers(context.Background(), roleId).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoleUsers``: %v\n", err)
@@ -553,7 +553,7 @@ Other parameters are passed through a pointer to a apiListRoleUsersRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int64** | Number of users to return for a given page. | [default to 10]
+ **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
  **sort** | **string** | User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;email&#x60;, &#x60;status&#x60;. | [default to &quot;name&quot;]
  **filter** | **string** | Filter all users by the given string. Defaults to no filtering. | 
@@ -593,17 +593,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
-    pageSize := 987 // int64 | Number of users to return for a given page. (optional) (default to 10)
+    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
-    sort := openapiclient.RolesSort{} // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
+    sort := datadog.RolesSort{} // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
     filter := "filter_example" // string | Filter all roles by the given string. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.ListRoles(context.Background(), ).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoles``: %v\n", err)
@@ -625,7 +625,7 @@ Other parameters are passed through a pointer to a apiListRolesRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int64** | Number of users to return for a given page. | [default to 10]
+ **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
  **sort** | [**RolesSort**](.md) | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: &#x60;sort&#x3D;-name&#x60;. | [default to &quot;name&quot;]
  **filter** | **string** | Filter all roles by the given string. | 
@@ -665,15 +665,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
-    body := openapiclient.RelationshipToPermission{Data: } // RelationshipToPermission |  (optional)
+    body := datadog.RelationshipToPermission{Data: } // RelationshipToPermission |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.RemovePermissionFromRole(context.Background(), roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemovePermissionFromRole``: %v\n", err)
@@ -737,15 +737,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
-    body := openapiclient.RelationshipToUser{Data: } // RelationshipToUser |  (optional)
+    body := datadog.RelationshipToUser{Data: } // RelationshipToUser |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.RemoveUserFromRole(context.Background(), roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemoveUserFromRole``: %v\n", err)
@@ -809,15 +809,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     roleId := "roleId_example" // string | The ID of the role.
-    body := openapiclient.RoleUpdatePayload{Data: openapiclient.RoleUpdateData{Attributes: openapiclient.RoleUpdateAttributes{Name: "Name_example"}, Id: "Id_example", Type: "Type_example"}} // RoleUpdatePayload |  (optional)
+    body := datadog.RoleUpdatePayload{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{Name: "Name_example"}, Id: "Id_example", Type: "Type_example"}} // RoleUpdatePayload |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.RolesApi.UpdateRole(context.Background(), roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.UpdateRole``: %v\n", err)
