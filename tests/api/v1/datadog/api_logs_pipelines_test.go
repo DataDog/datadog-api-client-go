@@ -112,29 +112,29 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 		Query: datadog.PtrString("query"),
 	})
 	pipelineProcessor.SetProcessors([]datadog.LogsProcessor{
-		grokParser.AsLogsProcessor(),
-		logDateRemapper.AsLogsProcessor(),
+		datadog.LogsGrokParserAsLogsProcessor(grokParser),
+		datadog.LogsDateRemapperAsLogsProcessor(logDateRemapper),
 	})
 
 	pipeline := datadog.LogsPipeline{}
 	pipeline.SetIsEnabled(true)
 	pipeline.SetFilter(datadog.LogsFilter{Query: datadog.PtrString("query")})
 	pipeline.SetProcessors([]datadog.LogsProcessor{
-		grokParser.AsLogsProcessor(),
-		logDateRemapper.AsLogsProcessor(),
-		logStatusRemapper.AsLogsProcessor(),
-		serviceRemapper.AsLogsProcessor(),
-		logMessageRemapper.AsLogsProcessor(),
-		remapper.AsLogsProcessor(),
-		urlParser.AsLogsProcessor(),
-		userAgentParser.AsLogsProcessor(),
-		categoryProcessor.AsLogsProcessor(),
-		arithmeticProcessor.AsLogsProcessor(),
-		stringBuilderProcessor.AsLogsProcessor(),
-		geoIPParser.AsLogsProcessor(),
-		lookupProcessor.AsLogsProcessor(),
-		traceRemapper.AsLogsProcessor(),
-		pipelineProcessor.AsLogsProcessor(),
+		datadog.LogsGrokParserAsLogsProcessor(grokParser),
+		datadog.LogsDateRemapperAsLogsProcessor(logDateRemapper),
+		datadog.LogsStatusRemapperAsLogsProcessor(logStatusRemapper),
+		datadog.LogsServiceRemapperAsLogsProcessor(serviceRemapper),
+		datadog.LogsMessageRemapperAsLogsProcessor(logMessageRemapper),
+		datadog.LogsAttributeRemapperAsLogsProcessor(remapper),
+		datadog.LogsURLParserAsLogsProcessor(urlParser),
+		datadog.LogsUserAgentParserAsLogsProcessor(userAgentParser),
+		datadog.LogsCategoryProcessorAsLogsProcessor(categoryProcessor),
+		datadog.LogsArithmeticProcessorAsLogsProcessor(arithmeticProcessor),
+		datadog.LogsStringBuilderProcessorAsLogsProcessor(stringBuilderProcessor),
+		datadog.LogsGeoIPParserAsLogsProcessor(geoIPParser),
+		datadog.LogsLookupProcessorAsLogsProcessor(lookupProcessor),
+		datadog.LogsTraceRemapperAsLogsProcessor(traceRemapper),
+		datadog.LogsPipelineProcessorAsLogsProcessor(pipelineProcessor),
 	})
 	pipelineName := *tests.UniqueEntityName(ctx, t)
 	pipeline.SetName(pipelineName)
@@ -151,28 +151,45 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	filter := createdPipeline.GetFilter()
 	assert.Equal("query", filter.GetQuery())
 	processors := createdPipeline.GetProcessors()
-	assert.Equal(grokParser.GetType(), processors[0].LogsProcessorInterface.GetType())
-	assert.Equal(logDateRemapper.GetType(), processors[1].LogsProcessorInterface.GetType())
-	assert.Equal(logStatusRemapper.GetType(), processors[2].LogsProcessorInterface.GetType())
-	assert.Equal(serviceRemapper.GetType(), processors[3].LogsProcessorInterface.GetType())
-	assert.Equal(logMessageRemapper.GetType(), processors[4].LogsProcessorInterface.GetType())
-	assert.Equal(remapper.GetType(), processors[5].LogsProcessorInterface.GetType())
-	assert.Equal(urlParser.GetType(), processors[6].LogsProcessorInterface.GetType())
-	assert.Equal(userAgentParser.GetType(), processors[7].LogsProcessorInterface.GetType())
-	assert.Equal(categoryProcessor.GetType(), processors[8].LogsProcessorInterface.GetType())
-	assert.Equal(arithmeticProcessor.GetType(), processors[9].LogsProcessorInterface.GetType())
-	assert.Equal(stringBuilderProcessor.GetType(), processors[10].LogsProcessorInterface.GetType())
-	assert.Equal(geoIPParser.GetType(), processors[11].LogsProcessorInterface.GetType())
-	assert.Equal(lookupProcessor.GetType(), processors[12].LogsProcessorInterface.GetType())
-	assert.Equal(traceRemapper.GetType(), processors[13].LogsProcessorInterface.GetType())
-	assert.Equal(pipelineProcessor.GetType(), processors[14].LogsProcessorInterface.GetType())
+	_, ok := processors[0].GetActualInstance().(datadog.LogsGrokParser)
+	assert.True(ok)
+	_, ok = processors[1].GetActualInstance().(datadog.LogsDateRemapper)
+	assert.True(ok)
+	_, ok = processors[2].GetActualInstance().(datadog.LogsStatusRemapper)
+	assert.True(ok)
+	_, ok = processors[3].GetActualInstance().(datadog.LogsServiceRemapper)
+	assert.True(ok)
+	_, ok = processors[4].GetActualInstance().(datadog.LogsMessageRemapper)
+	assert.True(ok)
+	_, ok = processors[5].GetActualInstance().(datadog.LogsAttributeRemapper)
+	assert.True(ok)
+	_, ok = processors[6].GetActualInstance().(datadog.LogsURLParser)
+	assert.True(ok)
+	_, ok = processors[7].GetActualInstance().(datadog.LogsUserAgentParser)
+	assert.True(ok)
+	_, ok = processors[8].GetActualInstance().(datadog.LogsCategoryProcessor)
+	assert.True(ok)
+	_, ok = processors[9].GetActualInstance().(datadog.LogsArithmeticProcessor)
+	assert.True(ok)
+	_, ok = processors[10].GetActualInstance().(datadog.LogsStringBuilderProcessor)
+	assert.True(ok)
+	_, ok = processors[11].GetActualInstance().(datadog.LogsGeoIPParser)
+	assert.True(ok)
+	_, ok = processors[12].GetActualInstance().(datadog.LogsLookupProcessor)
+	assert.True(ok)
+	_, ok = processors[13].GetActualInstance().(datadog.LogsTraceRemapper)
+	assert.True(ok)
+	var nestedPipeline datadog.LogsPipelineProcessor
+	nestedPipeline, ok = processors[14].GetActualInstance().(datadog.LogsPipelineProcessor)
+	assert.True(ok)
 
 	// Nested Pipeline Assertions
-	nestedPipeline := processors[14].LogsProcessorInterface.(*datadog.LogsPipelineProcessor)
 	nestedPipelineFitler := nestedPipeline.GetFilter()
 	assert.Equal("query", nestedPipelineFitler.GetQuery())
-	assert.Equal(grokParser.GetType(), nestedPipeline.GetProcessors()[0].LogsProcessorInterface.GetType())
-	assert.Equal(logDateRemapper.GetType(), nestedPipeline.GetProcessors()[1].LogsProcessorInterface.GetType())
+	_, ok = nestedPipeline.GetProcessors()[0].GetActualInstance().(datadog.LogsGrokParser)
+	assert.True(ok)
+	_, ok = nestedPipeline.GetProcessors()[1].GetActualInstance().(datadog.LogsDateRemapper)
+	assert.True(ok)
 
 	// Get all pipelines and assert our freshly created one is part of the result
 	pipelines, httpresp, err := Client(ctx).LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
@@ -209,21 +226,37 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	filter = updatedPipeline.GetFilter()
 	assert.Equal("updated query", filter.GetQuery())
 	processors = updatedPipeline.GetProcessors()
-	assert.Equal(grokParser.GetType(), processors[14].LogsProcessorInterface.GetType())
-	assert.Equal(pipelineProcessor.GetType(), processors[13].LogsProcessorInterface.GetType())
-	assert.Equal(logDateRemapper.GetType(), processors[0].LogsProcessorInterface.GetType())
-	assert.Equal(logStatusRemapper.GetType(), processors[1].LogsProcessorInterface.GetType())
-	assert.Equal(serviceRemapper.GetType(), processors[2].LogsProcessorInterface.GetType())
-	assert.Equal(logMessageRemapper.GetType(), processors[3].LogsProcessorInterface.GetType())
-	assert.Equal(remapper.GetType(), processors[4].LogsProcessorInterface.GetType())
-	assert.Equal(urlParser.GetType(), processors[5].LogsProcessorInterface.GetType())
-	assert.Equal(userAgentParser.GetType(), processors[6].LogsProcessorInterface.GetType())
-	assert.Equal(categoryProcessor.GetType(), processors[7].LogsProcessorInterface.GetType())
-	assert.Equal(arithmeticProcessor.GetType(), processors[8].LogsProcessorInterface.GetType())
-	assert.Equal(stringBuilderProcessor.GetType(), processors[9].LogsProcessorInterface.GetType())
-	assert.Equal(geoIPParser.GetType(), processors[10].LogsProcessorInterface.GetType())
-	assert.Equal(lookupProcessor.GetType(), processors[11].LogsProcessorInterface.GetType())
-	assert.Equal(traceRemapper.GetType(), processors[12].LogsProcessorInterface.GetType())
+
+	_, ok = processors[14].GetActualInstance().(datadog.LogsGrokParser)
+	assert.True(ok)
+	_, ok = processors[13].GetActualInstance().(datadog.LogsPipelineProcessor)
+	assert.True(ok)
+	_, ok = processors[0].GetActualInstance().(datadog.LogsDateRemapper)
+	assert.True(ok)
+	_, ok = processors[1].GetActualInstance().(datadog.LogsStatusRemapper)
+	assert.True(ok)
+	_, ok = processors[2].GetActualInstance().(datadog.LogsServiceRemapper)
+	assert.True(ok)
+	_, ok = processors[3].GetActualInstance().(datadog.LogsMessageRemapper)
+	assert.True(ok)
+	_, ok = processors[4].GetActualInstance().(datadog.LogsAttributeRemapper)
+	assert.True(ok)
+	_, ok = processors[5].GetActualInstance().(datadog.LogsURLParser)
+	assert.True(ok)
+	_, ok = processors[6].GetActualInstance().(datadog.LogsUserAgentParser)
+	assert.True(ok)
+	_, ok = processors[7].GetActualInstance().(datadog.LogsCategoryProcessor)
+	assert.True(ok)
+	_, ok = processors[8].GetActualInstance().(datadog.LogsArithmeticProcessor)
+	assert.True(ok)
+	_, ok = processors[9].GetActualInstance().(datadog.LogsStringBuilderProcessor)
+	assert.True(ok)
+	_, ok = processors[10].GetActualInstance().(datadog.LogsGeoIPParser)
+	assert.True(ok)
+	_, ok = processors[11].GetActualInstance().(datadog.LogsLookupProcessor)
+	assert.True(ok)
+	_, ok = processors[12].GetActualInstance().(datadog.LogsTraceRemapper)
+	assert.True(ok)
 
 	// Delete the pipeline
 	httpresp, err = Client(ctx).LogsPipelinesApi.DeleteLogsPipeline(ctx, createdPipeline.GetId()).Execute()
