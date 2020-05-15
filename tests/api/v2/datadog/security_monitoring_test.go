@@ -55,10 +55,10 @@ func TestSecMonRulesCRUD(t *testing.T) {
 	api := Client(ctx).SecurityMonitoringApi
 
 	ruleResponses := []datadog.SecurityMonitoringRuleResponse{}
-	now := tests.ClockFromContext(ctx).Now().UnixNano()
+	uniqueName := *tests.UniqueEntityName(ctx, t)
 	// create rules
 	for i := 0; i < 5; i++ {
-		ruleName := fmt.Sprintf("test-rule-datadog-api-client-go-%d-%d", i, now)
+		ruleName := fmt.Sprintf("%s-%d", uniqueName, i)
 		ruleResponse, httpResponse, err := createRule(ctx, api, ruleName)
 		if err != nil {
 			t.Fatalf("Error creating rule %d: Response: %v", i, err)
@@ -67,7 +67,6 @@ func TestSecMonRulesCRUD(t *testing.T) {
 		ruleResponses = append(ruleResponses, ruleResponse)
 		defer deleteRule(t, ctx, api, ruleResponse.GetId())
 	}
-	assert.True(true)
 
 	// get single rule
 	ruleResponse := ruleResponses[0]
@@ -92,12 +91,13 @@ func TestSecMonRulesCRUD(t *testing.T) {
 	assert.Equal(1, len(listResponse.GetData()))
 
 	meta := listResponse.GetMeta()
-	ruleCount := meta.GetPage().TotalCount
-	assert.GreaterOrEqual(*ruleCount, int64(5))
+	page := meta.GetPage()
+	ruleCount := page.GetTotalCount()
+	assert.GreaterOrEqual(ruleCount, int64(5))
 
 	// check that all known rules are present in the response
 	// we are not asserting the size of getData as this could be flaky
-	listResponse, httpResponse, err = api.ListSecurityMonitoringRules(ctx).PageSize(*ruleCount).PageNumber(0).Execute()
+	listResponse, httpResponse, err = api.ListSecurityMonitoringRules(ctx).PageSize(ruleCount).PageNumber(0).Execute()
 	if err != nil {
 		t.Fatalf("Error listing rules: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
