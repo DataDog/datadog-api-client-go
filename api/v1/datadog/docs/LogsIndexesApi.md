@@ -33,11 +33,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     name := "name_example" // string | Name of the log index.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.GetLogsIndex(context.Background(), name).Execute()
+    resp, r, err := api_client.LogsIndexesApi.GetLogsIndex(ctx, name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,10 +116,23 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.GetLogsIndexOrder(context.Background(), ).Execute()
+    resp, r, err := api_client.LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndexOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -164,10 +190,23 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.ListLogIndexes(context.Background(), ).Execute()
+    resp, r, err := api_client.LogsIndexesApi.ListLogIndexes(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.ListLogIndexes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -225,12 +264,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     name := "name_example" // string | Name of the log index.
     body := datadog.LogsIndex{DailyLimit: int64(123), ExclusionFilters: []LogsExclusion{datadog.LogsExclusion{Filter: datadog.LogsExclusionFilter{Query: "Query_example", SampleRate: 123}, IsEnabled: false, Name: "Name_example"}), Filter: datadog.LogsFilter{Query: "Query_example"}, IsRateLimited: false, Name: "Name_example", NumRetentionDays: int64(123)} // LogsIndex | Object containing the new `LogsIndex`. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndex(context.Background(), name).Body(body).Execute()
+    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndex(ctx, name).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -297,11 +349,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.LogsIndexesOrder{IndexNames: []string{"IndexNames_example")} // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndexOrder(context.Background(), ).Body(body).Execute()
+    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndexOrder(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndexOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
