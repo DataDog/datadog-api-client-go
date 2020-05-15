@@ -32,11 +32,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     from := 987 // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.GetHostTotals(context.Background(), ).From(from).Execute()
+    resp, r, err := api_client.HostsApi.GetHostTotals(ctx).From(from).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -98,6 +111,19 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     filter := "filter_example" // string | String to filter search results. (optional)
     sortField := "sortField_example" // string | Sort hosts by this field. (optional)
     sortDir := "sortDir_example" // string | Direction of sort. Options include `asc` and `desc`. (optional)
@@ -107,7 +133,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.ListHosts(context.Background(), ).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
+    resp, r, err := api_client.HostsApi.ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -174,12 +200,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     hostName := "hostName_example" // string | Name of the host to mute.
     body := datadog.HostMuteSettings{End: int64(123), Message: "Message_example", Override: false} // HostMuteSettings | Mute a host request body. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.MuteHost(context.Background(), hostName).Body(body).Execute()
+    resp, r, err := api_client.HostsApi.MuteHost(ctx, hostName).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -246,11 +285,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     hostName := "hostName_example" // string | Name of the host to unmute.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.UnmuteHost(context.Background(), hostName).Execute()
+    resp, r, err := api_client.HostsApi.UnmuteHost(ctx, hostName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

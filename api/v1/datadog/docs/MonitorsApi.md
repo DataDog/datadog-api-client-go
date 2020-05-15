@@ -35,11 +35,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     monitorIds := []int64{int64(123)} // []int64 | The IDs of the monitor to check.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.CheckCanDeleteMonitor(context.Background(), monitorIds).Execute()
+    resp, r, err := api_client.MonitorsApi.CheckCanDeleteMonitor(ctx, monitorIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CheckCanDeleteMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -101,11 +114,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.Monitor{Created: "TODO", Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: datadog.MonitorOptions{Aggregation: datadog.MonitorOptions_aggregation{GroupBy: "GroupBy_example", Metric: "Metric_example", Type: "Type_example"}, DeviceIds: []MonitorDeviceID{datadog.MonitorDeviceID{}), EnableLogsSample: false, EscalationMessage: "EscalationMessage_example", EvaluationDelay: int64(123), IncludeTags: false, Locked: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), NewHostDelay: int64(123), NoDataTimeframe: int64(123), NotifyAudit: false, NotifyNoData: false, RenotifyInterval: int64(123), RequireFullWindow: false, Silenced: map[string]string{ "Key" = "Value" }, SyntheticsCheckId: int64(123), ThresholdWindows: datadog.MonitorThresholdWindowOptions{RecoveryWindow: "RecoveryWindow_example", TriggerWindow: "TriggerWindow_example"}, Thresholds: datadog.MonitorThresholds{Critical: 123, CriticalRecovery: 123, Ok: 123, Unknown: 123, Warning: 123, WarningRecovery: 123}, TimeoutH: int64(123)}, OverallState: datadog.MonitorOverallStates{}, Query: "Query_example", State: datadog.MonitorState{Groups: map[string]string{ "Key" = "Value" }}, Tags: []string{"Tags_example"), Type: datadog.MonitorType{}} // Monitor | Create a monitor request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.CreateMonitor(context.Background(), body).Execute()
+    resp, r, err := api_client.MonitorsApi.CreateMonitor(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -167,12 +193,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     monitorId := 987 // int64 | The ID of the monitor.
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.DeleteMonitor(context.Background(), monitorId).Force(force).Execute()
+    resp, r, err := api_client.MonitorsApi.DeleteMonitor(ctx, monitorId).Force(force).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.DeleteMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -239,12 +278,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     monitorId := 987 // int64 | The ID of the monitor
     groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.GetMonitor(context.Background(), monitorId).GroupStates(groupStates).Execute()
+    resp, r, err := api_client.MonitorsApi.GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.GetMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +363,19 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
     name := "name_example" // string | A string to filter monitors by name. (optional)
     tags := "tags_example" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, `host:host0`. (optional)
@@ -322,7 +387,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.ListMonitors(context.Background(), ).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
+    resp, r, err := api_client.MonitorsApi.ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ListMonitors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -391,12 +456,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     monitorId := 987 // int64 | The ID of the monitor.
     body := datadog.MonitorUpdateRequest{Created: "TODO", Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: datadog.MonitorOptions{Aggregation: datadog.MonitorOptions_aggregation{GroupBy: "GroupBy_example", Metric: "Metric_example", Type: "Type_example"}, DeviceIds: []MonitorDeviceID{datadog.MonitorDeviceID{}), EnableLogsSample: false, EscalationMessage: "EscalationMessage_example", EvaluationDelay: int64(123), IncludeTags: false, Locked: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), NewHostDelay: int64(123), NoDataTimeframe: int64(123), NotifyAudit: false, NotifyNoData: false, RenotifyInterval: int64(123), RequireFullWindow: false, Silenced: map[string]string{ "Key" = "Value" }, SyntheticsCheckId: int64(123), ThresholdWindows: datadog.MonitorThresholdWindowOptions{RecoveryWindow: "RecoveryWindow_example", TriggerWindow: "TriggerWindow_example"}, Thresholds: datadog.MonitorThresholds{Critical: 123, CriticalRecovery: 123, Ok: 123, Unknown: 123, Warning: 123, WarningRecovery: 123}, TimeoutH: int64(123)}, OverallState: datadog.MonitorOverallStates{}, Query: "Query_example", State: datadog.MonitorState{Groups: map[string]string{ "Key" = "Value" }}, Tags: []string{"Tags_example"), Type: datadog.MonitorType{}} // MonitorUpdateRequest | Edit a monitor request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.UpdateMonitor(context.Background(), monitorId, body).Execute()
+    resp, r, err := api_client.MonitorsApi.UpdateMonitor(ctx, monitorId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.UpdateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -463,11 +541,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.Monitor{Created: "TODO", Creator: , Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: , OverallState: , Query: "Query_example", State: , Tags: []string{"Tags_example"), Type: } // Monitor | Monitor request object
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.ValidateMonitor(context.Background(), body).Execute()
+    resp, r, err := api_client.MonitorsApi.ValidateMonitor(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

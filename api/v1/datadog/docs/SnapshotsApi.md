@@ -29,6 +29,19 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     start := 987 // int64 | The POSIX timestamp of the start of the query.
     end := 987 // int64 | The POSIX timestamp of the end of the query.
     metricQuery := "metricQuery_example" // string | The metric query. (optional)
@@ -38,7 +51,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SnapshotsApi.GetGraphSnapshot(context.Background(), start, end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
+    resp, r, err := api_client.SnapshotsApi.GetGraphSnapshot(ctx, start, end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.GetGraphSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

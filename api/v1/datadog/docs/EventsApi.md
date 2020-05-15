@@ -30,11 +30,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     eventId := 987 // int64 | The ID of the event.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.GetEvent(context.Background(), eventId).Execute()
+    resp, r, err := api_client.EventsApi.GetEvent(ctx, eventId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -100,6 +113,19 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     start := 987 // int64 | POSIX timestamp.
     end := 987 // int64 | POSIX timestamp.
     priority := datadog.EventPriority{} // EventPriority | Priority of your events, either `low` or `normal`. (optional)
@@ -109,7 +135,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.ListEvents(context.Background(), start, end).Priority(priority).Sources(sources).Tags(tags).Unaggregated(unaggregated).Execute()
+    resp, r, err := api_client.EventsApi.ListEvents(ctx, start, end).Priority(priority).Sources(sources).Tags(tags).Unaggregated(unaggregated).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -29,11 +29,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.LogsListRequest{Index: "Index_example", Limit: 123, Query: "Query_example", Sort: datadog.LogsSort{}, StartAt: "StartAt_example", Time: datadog.LogsListRequest_time{From: "TODO", Timezone: "Timezone_example", To: "TODO"}} // LogsListRequest | Logs filter
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.ListLogs(context.Background(), body).Execute()
+    resp, r, err := api_client.LogsApi.ListLogs(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

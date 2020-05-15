@@ -34,11 +34,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | AWS Request Object
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSIntegrationApi.CreateAWSAccount(context.Background(), body).Execute()
+    resp, r, err := api_client.AWSIntegrationApi.CreateAWSAccount(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -100,11 +113,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation).
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSIntegrationApi.CreateNewAWSExternalID(context.Background(), body).Execute()
+    resp, r, err := api_client.AWSIntegrationApi.CreateNewAWSExternalID(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateNewAWSExternalID``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -166,11 +192,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body :=  // AWSAccount | AWS request object
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSIntegrationApi.DeleteAWSAccount(context.Background(), body).Execute()
+    resp, r, err := api_client.AWSIntegrationApi.DeleteAWSAccount(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -232,13 +271,26 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
     roleName := "roleName_example" // string | Only return AWS accounts that matches this role_name. (optional)
     accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSIntegrationApi.ListAWSAccounts(context.Background(), ).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    resp, r, err := api_client.AWSIntegrationApi.ListAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAWSAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -302,10 +354,23 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSIntegrationApi.ListAvailableAWSNamespaces(context.Background(), ).Execute()
+    resp, r, err := api_client.AWSIntegrationApi.ListAvailableAWSNamespaces(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAvailableAWSNamespaces``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -363,6 +428,19 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body :=  // AWSAccount | AWS request object
     accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
     roleName := "roleName_example" // string | Only return AWS accounts that match this `role_name`. Required if `account_id` is specified. (optional)
@@ -370,7 +448,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSIntegrationApi.UpdateAWSAccount(context.Background(), body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    resp, r, err := api_client.AWSIntegrationApi.UpdateAWSAccount(ctx, body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.UpdateAWSAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -32,12 +32,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     dashboardListId := 987 // int64 | ID of the dashboard list to add items to.
     body := datadog.DashboardListItems{Dashboards: []DashboardListItem{datadog.DashboardListItem{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", Icon: "Icon_example", Id: "Id_example", IsFavorite: false, IsReadOnly: false, IsShared: false, Modified: "TODO", Popularity: 123, Title: "Title_example", Type: datadog.DashboardType{}, Url: "Url_example"}), Total: int64(123)} // DashboardListItems | Dashboards to add to the dashboard list.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.CreateDashboardListItems(context.Background(), dashboardListId, body).Execute()
+    resp, r, err := api_client.DashboardListsApi.CreateDashboardListItems(ctx, dashboardListId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,12 +117,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     dashboardListId := 987 // int64 | ID of the dashboard list to delete items from.
     body := datadog.DashboardListItems{Dashboards: []DashboardListItem{datadog.DashboardListItem{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", Icon: "Icon_example", Id: "Id_example", IsFavorite: false, IsReadOnly: false, IsShared: false, Modified: "TODO", Popularity: 123, Title: "Title_example", Type: datadog.DashboardType{}, Url: "Url_example"}), Total: int64(123)} // DashboardListItems | Dashboards to delete from the dashboard list.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.DeleteDashboardListItems(context.Background(), dashboardListId, body).Execute()
+    resp, r, err := api_client.DashboardListsApi.DeleteDashboardListItems(ctx, dashboardListId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -176,11 +202,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     dashboardListId := 987 // int64 | ID of the dashboard list to get items from.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.GetDashboardListItems(context.Background(), dashboardListId).Execute()
+    resp, r, err := api_client.DashboardListsApi.GetDashboardListItems(ctx, dashboardListId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -246,12 +285,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     dashboardListId := 987 // int64 | ID of the dashboard list to update items from.
     body :=  // DashboardListItems | New dashboards of the dashboard list.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.UpdateDashboardListItems(context.Background(), dashboardListId, body).Execute()
+    resp, r, err := api_client.DashboardListsApi.UpdateDashboardListItems(ctx, dashboardListId, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

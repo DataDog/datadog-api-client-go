@@ -33,11 +33,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     metricName := "metricName_example" // string | Name of the metric for which to get metadata.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetMetricMetadata(context.Background(), metricName).Execute()
+    resp, r, err := api_client.MetricsApi.GetMetricMetadata(ctx, metricName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetMetricMetadata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,12 +116,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     from := 987 // int64 | Seconds since the Unix epoch.
     host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListActiveMetrics(context.Background(), from).Host(host).Execute()
+    resp, r, err := api_client.MetricsApi.ListActiveMetrics(ctx, from).Host(host).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -171,11 +197,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     q := "q_example" // string | Query string to search metrics upon. Must be prefixed with `metrics:`.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListMetrics(context.Background(), q).Execute()
+    resp, r, err := api_client.MetricsApi.ListMetrics(ctx, q).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -237,13 +276,26 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     from := 987 // int64 | Start of the queried time period, seconds since the Unix epoch.
     to := 987 // int64 | End of the queried time period, seconds since the Unix epoch.
     query := "query_example" // string | Query string.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.QueryMetrics(context.Background(), from, to, query).Execute()
+    resp, r, err := api_client.MetricsApi.QueryMetrics(ctx, from, to, query).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.QueryMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -307,12 +359,25 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     metricName := "metricName_example" // string | Name of the metric for which to edit metadata.
     body := datadog.MetricMetadata{Description: "Description_example", Integration: "Integration_example", PerUnit: "PerUnit_example", ShortName: "ShortName_example", StatsdInterval: int64(123), Type: "Type_example", Unit: "Unit_example"} // MetricMetadata | New metadata.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.UpdateMetricMetadata(context.Background(), metricName, body).Execute()
+    resp, r, err := api_client.MetricsApi.UpdateMetricMetadata(ctx, metricName, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateMetricMetadata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
