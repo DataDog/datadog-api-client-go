@@ -4,16 +4,16 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTest**](SyntheticsApi.md#CreateTest) | **Post** /api/v1/synthetics/tests | Create or clone test
-[**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete multiple tests
-[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get test latest results (as summaries)
-[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get test result (API)
-[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get test latest results (as summaries)
-[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get test result (browser)
-[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get test
-[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get all test
-[**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Update test
-[**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Change test pause/live status
+[**CreateTest**](SyntheticsApi.md#CreateTest) | **Post** /api/v1/synthetics/tests | Create a test
+[**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
+[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
+[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
+[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
+[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
+[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
+[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get a list of tests
+[**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
+[**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
 
 
 
@@ -21,9 +21,37 @@ Method | HTTP request | Description
 
 > SyntheticsTestDetails CreateTest(ctx).Body(body).FromTestId(fromTestId).Execute()
 
-Create or clone test
+Create a test
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: datadog.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: datadog.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | Details of the test to create.
+    fromTestId := "fromTestId_example" // string | Public ID of the test to clone, undefined if the test is newly created. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.CreateTest(context.Background(), body).FromTestId(fromTestId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateTest`: SyntheticsTestDetails
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.CreateTest`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -37,7 +65,7 @@ Other parameters are passed through a pointer to a apiCreateTestRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | Details of the test to create. | 
- **fromTestId** | **string** | Public id of the test to clone, undefined if the test is created ex nihilo. | 
+ **fromTestId** | **string** | Public ID of the test to clone, undefined if the test is newly created. | 
 
 ### Return type
 
@@ -61,9 +89,36 @@ Name | Type | Description  | Notes
 
 > SyntheticsDeleteTestsResponse DeleteTests(ctx).Body(body).Execute()
 
-Delete multiple tests
+Delete tests
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.SyntheticsDeleteTestsPayload{PublicIds: []string{"PublicIds_example")} // SyntheticsDeleteTestsPayload | Public ID list of the Synthetic tests to be deleted.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.DeleteTests(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteTests`: SyntheticsDeleteTestsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.DeleteTests`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -76,7 +131,7 @@ Other parameters are passed through a pointer to a apiDeleteTestsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public id list of the Synthetics tests to be deleted | 
+ **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetic tests to be deleted. | 
 
 ### Return type
 
@@ -100,9 +155,39 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get test latest results (as summaries)
+Get the test's latest results summaries (API)
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the test for which to search results for.
+    fromTs := 987 // int64 | Timestamp from which to start querying results. (optional)
+    toTs := 987 // int64 | Timestamp up to which to query results. (optional)
+    probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetAPITestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestLatestResults``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAPITestLatestResults`: SyntheticsGetAPITestLatestResultsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetAPITestLatestResults`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -110,7 +195,7 @@ Get test latest results (as summaries)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test for which to search results for. | 
+**publicId** | **string** | The public ID of the test for which to search results for. | 
 
 ### Other Parameters
 
@@ -146,9 +231,37 @@ Name | Type | Description  | Notes
 
 > SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId).Execute()
 
-Get test result (API)
+Get a test result (API)
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the API test to which the target result belongs.
+    resultId := "resultId_example" // string | The ID of the result to get.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetAPITestResult(context.Background(), publicId, resultId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAPITestResult`: SyntheticsAPITestResultFull
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetAPITestResult`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -156,8 +269,8 @@ Get test result (API)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the API test to which the target result belongs. | 
-**resultId** | **string** | The id of the result to get. | 
+**publicId** | **string** | The public ID of the API test to which the target result belongs. | 
+**resultId** | **string** | The ID of the result to get. | 
 
 ### Other Parameters
 
@@ -191,9 +304,39 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get test latest results (as summaries)
+Get the test's latest results summaries (browser)
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the browser test for which to search results for.
+    fromTs := 987 // int64 | Timestamp from which to start querying results. (optional)
+    toTs := 987 // int64 | Timestamp up to which to query results. (optional)
+    probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBrowserTestLatestResults`: SyntheticsGetBrowserTestLatestResultsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTestLatestResults`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -201,7 +344,7 @@ Get test latest results (as summaries)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the browser test for which to search results for. | 
+**publicId** | **string** | The public ID of the browser test for which to search results for. | 
 
 ### Other Parameters
 
@@ -237,9 +380,37 @@ Name | Type | Description  | Notes
 
 > SyntheticsBrowserTestResultFull GetBrowserTestResult(ctx, publicId, resultId).Execute()
 
-Get test result (browser)
+Get a test result (browser)
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the browser test to which the target result belongs.
+    resultId := "resultId_example" // string | The ID of the result to get.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTestResult(context.Background(), publicId, resultId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBrowserTestResult`: SyntheticsBrowserTestResultFull
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTestResult`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -247,8 +418,8 @@ Get test result (browser)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the browser test to which the target result belongs. | 
-**resultId** | **string** | The id of the result to get. | 
+**publicId** | **string** | The public ID of the browser test to which the target result belongs. | 
+**resultId** | **string** | The ID of the result to get. | 
 
 ### Other Parameters
 
@@ -282,9 +453,36 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails GetTest(ctx, publicId).Execute()
 
-Get test
+Get a test configuration
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the test to get details from.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetTest(context.Background(), publicId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetTest`: SyntheticsTestDetails
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetTest`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -292,7 +490,7 @@ Get test
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test to get details from. | 
+**publicId** | **string** | The public ID of the test to get details from. | 
 
 ### Other Parameters
 
@@ -325,9 +523,36 @@ Name | Type | Description  | Notes
 
 > SyntheticsListTestsResponse ListTests(ctx).CheckType(checkType).Execute()
 
-Get all test
+Get a list of tests
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    checkType := "checkType_example" // string | API or browser to filter the list by test type, undefined to get the unfiltered list. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.ListTests(context.Background(), ).CheckType(checkType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListTests`: SyntheticsListTestsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.ListTests`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -340,7 +565,7 @@ Other parameters are passed through a pointer to a apiListTestsRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkType** | **string** | API or browser to filter the list by type, undefined to get the unfiltered list. | 
+ **checkType** | **string** | API or browser to filter the list by test type, undefined to get the unfiltered list. | 
 
 ### Return type
 
@@ -364,9 +589,37 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails UpdateTest(ctx, publicId).Body(body).Execute()
 
-Update test
+Edit a test
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the test to get details from.
+    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: "TODO", Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: "TODO", Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: , Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: , MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | New test details to be saved.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.UpdateTest(context.Background(), publicId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateTest`: SyntheticsTestDetails
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.UpdateTest`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -374,7 +627,7 @@ Update test
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the test to get details from. | 
+**publicId** | **string** | The public ID of the test to get details from. | 
 
 ### Other Parameters
 
@@ -408,9 +661,37 @@ Name | Type | Description  | Notes
 
 > bool UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
 
-Change test pause/live status
+Pause or start a test
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The public ID of the Synthetic test to update.
+    body := datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: } // SyntheticsUpdateTestPauseStatusPayload | Status to set the given Synthetic test to.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(context.Background(), publicId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateTestPauseStatus`: bool
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.UpdateTestPauseStatus`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -418,7 +699,7 @@ Change test pause/live status
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public id of the Synthetics test to update | 
+**publicId** | **string** | The public ID of the Synthetic test to update. | 
 
 ### Other Parameters
 
@@ -428,7 +709,7 @@ Other parameters are passed through a pointer to a apiUpdateTestPauseStatusReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Pause/live status to set the given Synthetics test to | 
+ **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Status to set the given Synthetic test to. | 
 
 ### Return type
 

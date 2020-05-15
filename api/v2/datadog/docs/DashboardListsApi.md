@@ -19,6 +19,34 @@ Add Items to a Dashboard List
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    dashboardListId := 987 // int64 | ID of the dashboard list to add items to.
+    body := datadog.DashboardListItems{Dashboards: []DashboardListItem{datadog.DashboardListItem{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", Icon: "Icon_example", Id: "Id_example", IsFavorite: false, IsReadOnly: false, IsShared: false, Modified: "TODO", Popularity: 123, Title: "Title_example", Type: datadog.DashboardType{}, Url: "Url_example"}), Total: int64(123)} // DashboardListItems | Dashboards to add to the dashboard list.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.CreateDashboardListItems(context.Background(), dashboardListId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateDashboardListItems`: DashboardListAddItemsResponse
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.CreateDashboardListItems`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -62,6 +90,34 @@ Name | Type | Description  | Notes
 Delete items from a dashboard list
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    dashboardListId := 987 // int64 | ID of the dashboard list to delete items from.
+    body := datadog.DashboardListItems{Dashboards: []DashboardListItem{datadog.DashboardListItem{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", Icon: "Icon_example", Id: "Id_example", IsFavorite: false, IsReadOnly: false, IsShared: false, Modified: "TODO", Popularity: 123, Title: "Title_example", Type: datadog.DashboardType{}, Url: "Url_example"}), Total: int64(123)} // DashboardListItems | Dashboards to delete from the dashboard list.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.DeleteDashboardListItems(context.Background(), dashboardListId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteDashboardListItems`: DashboardListDeleteItemsResponse
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.DeleteDashboardListItems`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -107,6 +163,33 @@ Get a Dashboard List
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    dashboardListId := 987 // int64 | ID of the dashboard list to get items from.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.GetDashboardListItems(context.Background(), dashboardListId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDashboardListItems`: DashboardListItems
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.GetDashboardListItems`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -149,6 +232,34 @@ Name | Type | Description  | Notes
 Update items of a dashboard list
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    dashboardListId := 987 // int64 | ID of the dashboard list to update items from.
+    body :=  // DashboardListItems | New dashboards of the dashboard list.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.UpdateDashboardListItems(context.Background(), dashboardListId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateDashboardListItems`: DashboardListItems
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.UpdateDashboardListItems`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** | TODO. | [optional] 
+**Message** | Pointer to **string** | Information pertaining to a user disabled for a given organization. | [optional] 
 
 ## Methods
 

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"once a year","recurrence":{"period":1,"type":"years"},"scope":["*"],"start":1587937121,"timezone":"Etc/UTC"}
+      {"message":"go-TestDowntimeRecurrence-once_a_year-local-1589290250; once a year","recurrence":{"period":1,"type":"years"},"scope":["*"],"start":1589290248,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -13,18 +13,18 @@ interactions:
       Dd-Operation-Id:
       - CreateDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5187473615457765277"
+      - "543721321004881404"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5335635932401740816"
+      - "2107215364500257571"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"recurrence":{"until_date":null,"until_occurrences":null,"week_days":null,"type":"years","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1587937121,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"once
-      a year","downtime_type":0,"id":810457874,"updater_id":null}'
+    body: '{"recurrence":{"until_date":null,"until_occurrences":null,"week_days":null,"type":"years","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1589290248,"creator_id":1379826,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"go-TestDowntimeRecurrence-once_a_year-local-1589290250;
+      once a year","downtime_type":0,"id":825972152,"updater_id":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -35,13 +35,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 26 Apr 2020 21:38:41 GMT
+      - Tue, 12 May 2020 13:30:50 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Sun, 03-May-2020 21:38:41 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:30:50 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -50,9 +50,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - QaEGvF++JqTbTiFomKhE21Fdnra2zinKOaCEqOgwcd7OtJatRLgvovBbCNyGqcpO
+      - DNJM9d0LaQZJbuEjasKEmgCwDoiLnJW9mPQJm+yWIlQRbFhX4Vzx4uuDCt38dWhb
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -67,14 +67,14 @@ interactions:
       Dd-Operation-Id:
       - CancelDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4571247628439200862"
+      - "8062560961873600530"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5335635932401740816"
-    url: https://api.datadoghq.com/api/v1/downtime/810457874
+      - "2107215364500257571"
+    url: https://api.datadoghq.com/api/v1/downtime/825972152
     method: DELETE
   response:
     body: ""
@@ -90,22 +90,22 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Sun, 26 Apr 2020 21:38:42 GMT
+      - Tue, 12 May 2020 13:30:50 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Sun, 03-May-2020 21:38:42 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:30:50 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - e/PzE6y8JJ1tlF66uEI2h0RElcpoaXRe9TzYMeQVIADcqTHrHUqcUgRemfbYKGMv
+      - nwn8Akm+cp12Jtby9xyfYjHWK2KZDWf5LxY+SMa+2NK6hVIBcKsVHXjynaTEG+o0
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content

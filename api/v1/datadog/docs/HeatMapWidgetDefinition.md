@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | TODO. | [optional] 
+**Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
 **LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
-**Requests** | Pointer to [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md) | TODO. | 
+**Requests** | Pointer to [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md) | List of widget types. | 
 **ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 

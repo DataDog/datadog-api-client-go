@@ -36,7 +36,7 @@ func (r apiCreateUserRequest) Body(body UserCreatePayload) apiCreateUserRequest 
 }
 
 /*
-CreateUser Create user
+CreateUser Create a user
 Create a user for your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateUserRequest
@@ -145,16 +145,6 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -196,8 +186,8 @@ type apiDisableUserRequest struct {
 }
 
 /*
-DisableUser Disable user
-Disable user. Can only be used with an application key belonging to an administrator user.
+DisableUser Disable a user
+Disable a user. Can only be used with an application key belonging to an administrator user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId The ID of the user.
 @return apiDisableUserRequest
@@ -447,16 +437,6 @@ func (r apiGetInvitationRequest) Execute() (UserInvitationResponse, *_nethttp.Re
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserInvitationResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -607,16 +587,6 @@ func (r apiGetUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
@@ -769,16 +739,6 @@ func (r apiListUserOrganizationsRequest) Execute() (UserResponse, *_nethttp.Resp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -929,16 +889,6 @@ func (r apiListUserPermissionsRequest) Execute() (PermissionsResponse, *_nethttp
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v PermissionsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
@@ -1141,16 +1091,6 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsersResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1305,16 +1245,6 @@ func (r apiSendInvitationsRequest) Execute() (UserInvitationsResponse, *_nethttp
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v UserInvitationsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -1495,6 +1425,16 @@ func (r apiUpdateUserRequest) Execute() (*_nethttp.Response, error) {
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

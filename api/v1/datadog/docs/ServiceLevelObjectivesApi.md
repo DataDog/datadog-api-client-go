@@ -23,6 +23,33 @@ Check if SLOs can be safely deleted
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.CheckCanDeleteSLO(context.Background(), ids).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CheckCanDeleteSLO``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CheckCanDeleteSLO`: CheckCanDeleteSLOResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.CheckCanDeleteSLO`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -34,7 +61,7 @@ Other parameters are passed through a pointer to a apiCheckCanDeleteSLORequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **string** | A comma separated list of the IDs of the service level objectives objects (e.g. \&quot;id1,id2,id3\&quot;). | 
+ **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
 
 ### Return type
 
@@ -62,6 +89,33 @@ Create a SLO object
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.ServiceLevelObjectiveRequest{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjectiveRequest | Service level objective request object.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.CreateSLO(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CreateSLO``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateSLO`: SLOListResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.CreateSLO`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -73,7 +127,7 @@ Other parameters are passed through a pointer to a apiCreateSLORequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | Service level objective request object. | 
+ **body** | [**ServiceLevelObjectiveRequest**](ServiceLevelObjectiveRequest.md) | Service level objective request object. | 
 
 ### Return type
 
@@ -95,11 +149,39 @@ Name | Type | Description  | Notes
 
 ## DeleteSLO
 
-> SLODeleteResponse DeleteSLO(ctx, sloId).Execute()
+> SLODeleteResponse DeleteSLO(ctx, sloId).Force(force).Execute()
 
 Delete a SLO
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    sloId := "sloId_example" // string | The ID of the service level objective.
+    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLO(context.Background(), sloId).Force(force).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLO``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteSLO`: SLODeleteResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.DeleteSLO`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -107,7 +189,7 @@ Delete a SLO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloId** | **string** | The id of the service level objective. | 
+**sloId** | **string** | The ID of the service level objective. | 
 
 ### Other Parameters
 
@@ -117,6 +199,7 @@ Other parameters are passed through a pointer to a apiDeleteSLORequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
 
 ### Return type
 
@@ -144,6 +227,33 @@ Bulk Delete SLO Timeframes
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := map[string]string{ "Key" = "Value" } // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteSLOTimeframeInBulk`: SLOBulkDeleteResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -155,7 +265,7 @@ Other parameters are passed through a pointer to a apiDeleteSLOTimeframeInBulkRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**map[string][]SLOTimeframe**](array.md) | Thresholds by service level objective object ID. | 
+ **body** | [**map[string][]SLOTimeframe**](array.md) | Delete multiple service level objective objects request body. | 
 
 ### Return type
 
@@ -182,6 +292,33 @@ Name | Type | Description  | Notes
 Get a SLO's details
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    sloId := "sloId_example" // string | The ID of the service level objective object.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLO(context.Background(), sloId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLO``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSLO`: SLOResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.GetSLO`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -225,6 +362,35 @@ Name | Type | Description  | Notes
 Get an SLO's history
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    sloId := "sloId_example" // string | The ID of the service level objective object.
+    fromTs := 987 // int64 | The `from` timestamp for the query window in epoch seconds.
+    toTs := 987 // int64 | The `to` timestamp for the query window in epoch seconds.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLOHistory(context.Background(), sloId, fromTs, toTs).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSLOHistory`: SLOHistoryResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.GetSLOHistory`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -271,6 +437,33 @@ Search SLOs
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(context.Background(), ids).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.ListSLOs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListSLOs`: SLOListResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.ListSLOs`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -282,7 +475,7 @@ Other parameters are passed through a pointer to a apiListSLOsRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. For example, \&quot;id1,id2,id3\&quot;. | 
+ **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
 
 ### Return type
 
@@ -309,6 +502,34 @@ Name | Type | Description  | Notes
 Update a SLO
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    sloId := "sloId_example" // string | The ID of the service level objective object.
+    body := datadog.ServiceLevelObjective{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), MonitorTags: []string{"MonitorTags_example"), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjective | The edited service level objective request object.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.ServiceLevelObjectivesApi.UpdateSLO(context.Background(), sloId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.UpdateSLO``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateSLO`: SLOListResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.UpdateSLO`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

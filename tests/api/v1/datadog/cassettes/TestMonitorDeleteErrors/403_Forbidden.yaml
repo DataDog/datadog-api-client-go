@@ -2,26 +2,23 @@
 version: 1
 interactions:
 - request:
-    body: |
-      {}
+    body: ""
     form: {}
     headers:
       Accept:
       - application/json
-      Content-Type:
-      - application/json
       Dd-Operation-Id:
-      - UpdateMonitor
+      - DeleteMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7755210310444889551"
+      - "7615980795256830884"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "109086571968833785"
+      - "1677314321158351694"
     url: https://api.datadoghq.com/api/v1/monitor/1234
-    method: PUT
+    method: DELETE
   response:
     body: |
       {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
@@ -33,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:02 GMT
+      - Tue, 12 May 2020 13:32:57 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

@@ -20,6 +20,33 @@ Create a dashboard list
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Create a dashboard list request body.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.CreateDashboardList(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateDashboardList`: DashboardList
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.CreateDashboardList`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -31,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardListRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
+ **body** | [**DashboardList**](DashboardList.md) | Create a dashboard list request body. | 
 
 ### Return type
 
@@ -59,13 +86,40 @@ Delete a dashboard list
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    listId := 987 // int64 | ID of the dashboard list to delete.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.DeleteDashboardList(context.Background(), listId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteDashboardList`: DashboardListDeleteResponse
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.DeleteDashboardList`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to delete | 
+**listId** | **int64** | ID of the dashboard list to delete. | 
 
 ### Other Parameters
 
@@ -102,13 +156,40 @@ Get a dashboard list
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    listId := 987 // int64 | ID of the dashboard list to fetch.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.GetDashboardList(context.Background(), listId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDashboardList`: DashboardList
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.GetDashboardList`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to fetch | 
+**listId** | **int64** | ID of the dashboard list to fetch. | 
 
 ### Other Parameters
 
@@ -145,6 +226,32 @@ Get all dashboard lists
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.ListDashboardLists(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.ListDashboardLists``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListDashboardLists`: DashboardListListResponse
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.ListDashboardLists`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -180,13 +287,41 @@ Update a dashboard list
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    listId := 987 // int64 | ID of the dashboard list to update.
+    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Update a dashboard list request body.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.DashboardListsApi.UpdateDashboardList(context.Background(), listId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateDashboardList`: DashboardList
+    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.UpdateDashboardList`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to update | 
+**listId** | **int64** | ID of the dashboard list to update. | 
 
 ### Other Parameters
 
@@ -196,7 +331,7 @@ Other parameters are passed through a pointer to a apiUpdateDashboardListRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardList**](DashboardList.md) | DashboardList request object | 
+ **body** | [**DashboardList**](DashboardList.md) | Update a dashboard list request body. | 
 
 ### Return type
 

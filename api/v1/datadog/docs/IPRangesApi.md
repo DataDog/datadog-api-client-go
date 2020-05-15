@@ -16,6 +16,32 @@ List IP Ranges
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.IPRangesApi.GetIPRanges(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `IPRangesApi.GetIPRanges``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetIPRanges`: IPRanges
+    fmt.Fprintf(os.Stdout, "Response from `IPRangesApi.GetIPRanges`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.

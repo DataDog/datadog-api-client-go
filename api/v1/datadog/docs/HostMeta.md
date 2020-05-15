@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NixV** | Pointer to **[]string** | TODO. | [optional] 
+**NixV** | Pointer to **[]string** | Array of Unix versions. | [optional] 
 
 ## Methods
 

@@ -3,19 +3,27 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"go_226512000","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"go-TestCheckLambdaAsync-local-1589290180","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CreateAWSAccount
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6079366922592904138"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2607640063614869813"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"a296c665b71b44ff9f99481a89c5727a"}'
+    body: '{"external_id":"58cd401af9614ada8e37395d3afbcdd8"}'
     headers:
       Cache-Control:
       - no-cache
@@ -26,13 +34,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:25 GMT
+      - Tue, 12 May 2020 13:29:40 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:24 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:40 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -41,9 +49,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - UmZMvwWLI5lgbGFBnw6J7jqO5hwyrvVF8Un8TwZ8TRQQ6jetE/6GVTSaoSUmQWRg
+      - 6qTaw+brNWWnKD6ULH8747/TVkPK0wedRsruOmMITJcYBkJ/Eac9bUO9jP1Btfl5
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -51,15 +59,23 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"go_226512000","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"go-TestCheckLambdaAsync-local-1589290180","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CheckAWSLogsLambdaAsync
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6936229597685449415"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2607640063614869813"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/check_async
     method: POST
   response:
@@ -74,13 +90,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:25 GMT
+      - Tue, 12 May 2020 13:29:41 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:25 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:40 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -89,9 +105,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - oQ/oy4ezTZ+/WzL4afBMlDjLd5w62e5H15hF5BJChw1Gte+Sq8B8tB7i6vlTiLL0
+      - cQFL4MaIw90DmTTH7z4Gqhr8PBtz47vyzddN9k7nXjUK2yrLiBjbdIgydUT8r1ut
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -99,15 +115,23 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"go_226512000","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"go-TestCheckLambdaAsync-local-1589290180","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CheckAWSLogsLambdaAsync
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6848879132792922935"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2607640063614869813"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/check_async
     method: POST
   response:
@@ -122,13 +146,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:26 GMT
+      - Tue, 12 May 2020 13:29:41 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:25 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:41 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -137,9 +161,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - F2g1vP9i37Cj4rH5vEufbSNzCmriMTDVzKKqVk/JOUesbIz8psR3R2945wO0PbTf
+      - IYH6Ubmq2MBSPq8ODr3BCv3hq6/qfjckWAQPmybeluQn4umf0be4fk6ceyy1pnBw
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -147,20 +171,27 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"go_226512000","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"go-TestCheckLambdaAsync-local-1589290180","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CheckAWSLogsLambdaAsync
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7671076129302271887"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2607640063614869813"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/check_async
     method: POST
   response:
-    body: '{"status":"error","errors":[{"message":"Missing permissions to list lambda
-      functions on account go_226512000","code":"lambda_permission_error","permission":"lambda:listfunctions"}]}'
+    body: '{"status":"waiting"}'
     headers:
       Cache-Control:
       - no-cache
@@ -171,13 +202,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:31 GMT
+      - Tue, 12 May 2020 13:29:46 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:31 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:46 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -186,9 +217,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - cYNsy3QDuOaYo2clO/PharSNtCykS9KtUfiNevH3xDbHJlRyddWkNpuDhMgHWZ43
+      - 6TICFxDFBNq65Lw6aA0hO1z7nxUSiTzUAT0k7ln4UasEU6/emXomwtYWMJdIuxUV
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -196,15 +227,80 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"go_226512000","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"go-TestCheckLambdaAsync-local-1589290180","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CheckAWSLogsLambdaAsync
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3711994379614413254"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2607640063614869813"
+    url: https://api.datadoghq.com/api/v1/integration/aws/logs/check_async
+    method: POST
+  response:
+    body: '{"status":"error","errors":[{"message":"Missing permissions to list lambda
+      functions on account go-TestCheckLambdaAsync-local-1589290180","code":"lambda_permission_error","permission":"lambda:listfunctions"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 12 May 2020 13:29:52 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:51 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - Dpx7DG2N4VEOVm8I4W97n4HwOzBXFJSj1QrKca/nHpAZ6o7/LrJ0o2qyQx0XjNXl
+      X-Dd-Version:
+      - "35.2492943"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"account_id":"go-TestCheckLambdaAsync-local-1589290180","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteAWSAccount
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7044174230434132616"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2607640063614869813"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -221,22 +317,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:32 GMT
+      - Tue, 12 May 2020 13:29:53 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:31 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:52 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - pEDVi2191MvoIMwusdL+COAxndBmcRhJtxAtWxDDnECWDI8Z99hIoBZbpR57tJKz
+      - o8MFmk+4Ge4vq85ax+5C1nfQs0lbtaPPYZrpqzeG6IsYGNLGMu/G7PbJElpjPS5i
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

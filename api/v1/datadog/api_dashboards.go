@@ -36,7 +36,7 @@ func (r apiCreateDashboardRequest) Body(body Dashboard) apiCreateDashboardReques
 }
 
 /*
-CreateDashboard Create a new Dashboard
+CreateDashboard Create a new dashboard
 Create a dashboard using the specified options.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateDashboardRequest
@@ -149,16 +149,6 @@ func (r apiCreateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, err
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v Dashboard
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -200,7 +190,7 @@ type apiDeleteDashboardRequest struct {
 }
 
 /*
-DeleteDashboard Delete a Dashboard
+DeleteDashboard Delete a dashboard
 Delete a dashboard using the specified ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param dashboardId The ID of the dashboard.
@@ -310,16 +300,6 @@ func (r apiDeleteDashboardRequest) Execute() (DashboardDeleteResponse, *_nethttp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v DashboardDeleteResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -361,7 +341,7 @@ type apiGetDashboardRequest struct {
 }
 
 /*
-GetDashboard Get a Dashboard
+GetDashboard Get a dashboard
 Get a dashboard using the specified ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param dashboardId The ID of the dashboard.
@@ -471,16 +451,6 @@ func (r apiGetDashboardRequest) Execute() (Dashboard, *_nethttp.Response, error)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v Dashboard
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -521,7 +491,7 @@ type apiListDashboardsRequest struct {
 }
 
 /*
-ListDashboards Get all Dashboards
+ListDashboards Get all dashboards
 Get all dashboards.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListDashboardsRequest
@@ -628,16 +598,6 @@ func (r apiListDashboardsRequest) Execute() (DashboardSummary, *_nethttp.Respons
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v DashboardSummary
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -675,7 +635,7 @@ func (r apiUpdateDashboardRequest) Body(body Dashboard) apiUpdateDashboardReques
 }
 
 /*
-UpdateDashboard Update a Dashboard
+UpdateDashboard Update a dashboard
 Update a dashboard using the specified ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param dashboardId The ID of the dashboard.
@@ -790,16 +750,6 @@ func (r apiUpdateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, err
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v Dashboard
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse

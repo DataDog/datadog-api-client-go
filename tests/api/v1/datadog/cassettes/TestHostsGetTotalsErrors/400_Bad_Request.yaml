@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetHostTotals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5909747171863747583"
+      - "2326609142654783525"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5789109189878435117"
-    url: https://api.datadoghq.com/api/v1/hosts/totals?from=1587937188
+      - "3784668696101122334"
+    url: https://api.datadoghq.com/api/v1/hosts/totals?from=1589290348
     method: GET
   response:
     body: '{"errors": ["The value provided for parameter ''from'' is invalid"]}'
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:38:48 GMT
+      - Tue, 12 May 2020 13:31:28 GMT
       Dd-Pool:
       - dogweb_query
       Pragma:
@@ -43,7 +43,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

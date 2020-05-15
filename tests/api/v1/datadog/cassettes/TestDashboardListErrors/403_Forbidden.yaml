@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListDashboards
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4517762378170083804"
+      - "831921156519785691"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8492914221367055377"
+      - "4107673021304130053"
     url: https://api.datadoghq.com/api/v1/dashboard
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:36:48 GMT
+      - Tue, 12 May 2020 13:30:39 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

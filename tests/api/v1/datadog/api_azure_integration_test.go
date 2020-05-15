@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"testing"
 
@@ -18,12 +17,11 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func generateUniqueAzureAccount(ctx context.Context) (datadog.AzureAccount, datadog.AzureAccount, datadog.AzureAccount) {
-	tenantName := fmt.Sprintf("go_test-1234-5678-9101-%d", tests.ClockFromContext(ctx).Now().Unix())
+func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadog.AzureAccount, datadog.AzureAccount, datadog.AzureAccount) {
 	var testAzureAcct = datadog.AzureAccount{
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
 		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
-		TenantName:   datadog.PtrString(tenantName),
+		TenantName:   tests.UniqueEntityName(ctx, t),
 	}
 
 	var testUpdateAzureAcct = datadog.AzureAccount{
@@ -50,7 +48,7 @@ func TestAzureCreate(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAzureAcct, _, _ := generateUniqueAzureAccount(ctx)
+	testAzureAcct, _, _ := generateUniqueAzureAccount(ctx, t)
 	defer uninstallAzureIntegration(ctx, testAzureAcct)
 
 	_, httpresp, err := Client(ctx).AzureIntegrationApi.CreateAzureIntegration(ctx).Body(testAzureAcct).Execute()
@@ -66,7 +64,7 @@ func TestAzureListandDelete(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAzureAcct, _, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx)
+	testAzureAcct, _, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx, t)
 	defer uninstallAzureIntegration(ctx, testAzureAcct)
 	defer uninstallAzureIntegration(ctx, testUpdateAzureHostFilters)
 
@@ -108,7 +106,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx)
+	testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx, t)
 	defer uninstallAzureIntegration(ctx, testAzureAcct)
 
 	// Setup Azure Account to Update

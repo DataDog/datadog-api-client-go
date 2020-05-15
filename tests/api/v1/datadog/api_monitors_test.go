@@ -20,7 +20,7 @@ import (
 
 func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 	return datadog.Monitor{
-		Name:    datadog.PtrString(fmt.Sprintf("datadog-api-client-go: %s %d", t.Name(), tests.ClockFromContext(ctx).Now().UnixNano())),
+		Name:    tests.UniqueEntityName(ctx, t),
 		Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
 		Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2"),
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
@@ -49,8 +49,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 	}
 }
 
-var testUpdateMonitor = datadog.Monitor{
-	Name: datadog.PtrString("updated name"),
+var testUpdateMonitor = datadog.MonitorUpdateRequest{
 	Options: &datadog.MonitorOptions{
 		TimeoutH:         *datadog.NewNullableInt64(nil),
 		RenotifyInterval: *datadog.NewNullableInt64(nil),
@@ -107,6 +106,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Nil(val)
 
 	// Edit a monitor
+	testUpdateMonitor.SetName(fmt.Sprintf("%s-updated", tm.GetName()))
 	updatedMonitor, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, monitor.GetId()).Body(testUpdateMonitor).Execute()
 	if err != nil {
 		t.Errorf("Error updating Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
@@ -270,20 +270,20 @@ func TestMonitorUpdateErrors(t *testing.T) {
 	defer deleteMonitor(ctx, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
-	updateMonitor := *datadog.NewMonitorWithDefaults()
+	updateMonitor := *datadog.NewMonitorUpdateRequestWithDefaults()
 	updateMonitor.SetType(datadog.MONITORTYPE_COMPOSITE)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
 		ID                 int64
-		Body               datadog.Monitor
+		Body               datadog.MonitorUpdateRequest
 		ExpectedStatusCode int
 	}{
 		"400 Bad Request": {WithTestAuth, monitor.GetId(), updateMonitor, 400},
 		// Cannot trigger 401 for client. Need underrestricted creds.
 		// "401 Unauthorized": {WithTestAuth,1234, datadog.Monitor{}, 401},
-		"403 Forbidden": {WithFakeAuth, 1234, datadog.Monitor{}, 403},
-		"404 Not Found": {WithTestAuth, 1234, datadog.Monitor{}, 404},
+		"403 Forbidden": {WithFakeAuth, 1234, datadog.MonitorUpdateRequest{}, 403},
+		"404 Not Found": {WithTestAuth, 1234, datadog.MonitorUpdateRequest{}, 404},
 	}
 
 	for name, tc := range testCases {
@@ -315,7 +315,7 @@ func TestMonitorUpdate401Error(t *testing.T) {
 	gock.New("https://api.datadoghq.com").Put("/api/v1/monitor/121").Reply(401).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, 121).Body(datadog.Monitor{}).Execute()
+	_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, 121).Body(datadog.MonitorUpdateRequest{}).Execute()
 	assert.Equal(401, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -369,15 +369,14 @@ func TestMonitorDeleteErrors(t *testing.T) {
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
 		ID                 int64
-		Body               datadog.Monitor
 		ExpectedStatusCode int
 	}{
 		// Cannot trigger 400 due to client side validations
 		// "400 Bad Request": {WithTestAuth,monitor.GetId(), updateMonitor, 400},
 		// Cannot trigger 401 for client. Need underrestricted creds.
 		// "401 Unauthorized": {WithTestAuth,1234, datadog.Monitor{}, 401},
-		"403 Forbidden": {WithFakeAuth, 1234, datadog.Monitor{}, 403},
-		"404 Not Found": {WithTestAuth, 1234, datadog.Monitor{}, 404},
+		"403 Forbidden": {WithFakeAuth, 1234, 403},
+		"404 Not Found": {WithTestAuth, 1234, 404},
 	}
 
 	for name, tc := range testCases {
@@ -386,7 +385,9 @@ func TestMonitorDeleteErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, tc.ID).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, tc.ID).Execute()
+			assert.Error(err)
+			assert.NotNil(httpresp, err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

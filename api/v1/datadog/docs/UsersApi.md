@@ -4,11 +4,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v1/user | Create user
-[**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v1/user/{user_handle} | Disable user
-[**GetUser**](UsersApi.md#GetUser) | **Get** /api/v1/user/{user_handle} | Get user
+[**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v1/user | Create a user
+[**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v1/user/{user_handle} | Disable a user
+[**GetUser**](UsersApi.md#GetUser) | **Get** /api/v1/user/{user_handle} | Get user details
 [**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v1/user | Get all users
-[**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /api/v1/user/{user_handle} | Update user
+[**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /api/v1/user/{user_handle} | Update a user
 
 
 
@@ -16,9 +16,36 @@ Method | HTTP request | Description
 
 > UserResponse CreateUser(ctx).Body(body).Execute()
 
-Create user
+Create a user
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | User object that needs to be created.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.CreateUser(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateUser`: UserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateUser`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -31,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**User**](User.md) | User object that needs to be created | 
+ **body** | [**User**](User.md) | User object that needs to be created. | 
 
 ### Return type
 
@@ -55,9 +82,36 @@ Name | Type | Description  | Notes
 
 > UserDisableResponse DisableUser(ctx, userHandle).Execute()
 
-Disable user
+Disable a user
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    userHandle := TODO // string | The handle of the user.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.DisableUser(context.Background(), userHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DisableUser`: UserDisableResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.DisableUser`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -65,7 +119,7 @@ Disable user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | [**string**](.md) | The handle of the user | 
+**userHandle** | [**string**](.md) | The handle of the user. | 
 
 ### Other Parameters
 
@@ -98,9 +152,36 @@ Name | Type | Description  | Notes
 
 > UserResponse GetUser(ctx, userHandle).Execute()
 
-Get user
+Get user details
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    userHandle := TODO // string | The ID of the user.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.GetUser(context.Background(), userHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUser`: UserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.GetUser`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -145,6 +226,32 @@ Get all users
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.ListUsers(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsers`: UserListResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.ListUsers`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -176,9 +283,37 @@ Other parameters are passed through a pointer to a apiListUsersRequest struct vi
 
 > UserResponse UpdateUser(ctx, userHandle).Body(body).Execute()
 
-Update user
+Update a user
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    userHandle := TODO // string | The ID of the user.
+    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | Description of the update.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersApi.UpdateUser(context.Background(), userHandle, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateUser`: UserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.UpdateUser`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

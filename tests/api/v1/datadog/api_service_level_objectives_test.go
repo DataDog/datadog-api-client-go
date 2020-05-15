@@ -18,43 +18,49 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-var testServiceCheckMonitor = datadog.Monitor{
-	Name:    datadog.PtrString("name for service check monitor in Go client"),
-	Type:    datadog.MONITORTYPE_SERVICE_CHECK.Ptr(),
-	Query:   datadog.PtrString("\"datadog.agent.check_status\".over(\"database\").last(2).count_by_status()"),
-	Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-	Tags: &[]string{
-		"test",
-		"client:go",
-	},
+func getTestServiceCheckMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
+	return datadog.Monitor{
+		Name:    tests.UniqueEntityName(ctx, t),
+		Type:    datadog.MONITORTYPE_SERVICE_CHECK.Ptr(),
+		Query:   datadog.PtrString("\"datadog.agent.check_status\".over(\"database\").last(2).count_by_status()"),
+		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Tags: &[]string{
+			"test",
+			"client:go",
+		},
+	}
 }
 
-var testMonitorSLO = datadog.ServiceLevelObjective{
-	Type:        "monitor",
-	Name:        "Go client Critical Foo Host Uptime",
-	Description: *datadog.NewNullableString(datadog.PtrString("Track the uptime of host foo which is critical to us.")),
-	Tags:        &[]string{"app:core", "kpi"},
-	Thresholds: []datadog.SLOThreshold{{
-		Timeframe: datadog.SLOTIMEFRAME_THIRTY_DAYS,
-		Target:    95.0,
-		Warning:   datadog.PtrFloat64(98.0),
-	}},
+func getTestMonitorSLO(ctx context.Context, t *testing.T) datadog.ServiceLevelObjectiveRequest {
+	return datadog.ServiceLevelObjectiveRequest{
+		Type:        "monitor",
+		Name:        *tests.UniqueEntityName(ctx, t),
+		Description: *datadog.NewNullableString(datadog.PtrString("Track the uptime of host foo which is critical to us.")),
+		Tags:        &[]string{"app:core", "kpi"},
+		Thresholds: []datadog.SLOThreshold{{
+			Timeframe: datadog.SLOTIMEFRAME_THIRTY_DAYS,
+			Target:    95.0,
+			Warning:   datadog.PtrFloat64(98.0),
+		}},
+	}
 }
 
-var testEventSLO = datadog.ServiceLevelObjective{
-	Type:        "metric",
-	Name:        "Go client HTTP Return Codes",
-	Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
-	Tags:        &[]string{"app:httpd"},
-	Thresholds: []datadog.SLOThreshold{{
-		Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
-		Target:    95.0,
-		Warning:   datadog.PtrFloat64(98.0),
-	}},
-	Query: &datadog.ServiceLevelObjectiveQuery{
-		Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
-		Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
-	},
+func getTestEventSLO(ctx context.Context, t *testing.T) datadog.ServiceLevelObjectiveRequest {
+	return datadog.ServiceLevelObjectiveRequest{
+		Type:        "metric",
+		Name:        *tests.UniqueEntityName(ctx, t),
+		Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
+		Tags:        &[]string{"app:httpd"},
+		Thresholds: []datadog.SLOThreshold{{
+			Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
+			Target:    95.0,
+			Warning:   datadog.PtrFloat64(98.0),
+		}},
+		Query: &datadog.ServiceLevelObjectiveQuery{
+			Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
+			Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
+		},
+	}
 }
 
 func isSLOIDPresent(sloID string, slos []datadog.ServiceLevelObjective) error {
@@ -72,6 +78,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create monitor to reference in the SLO
+	testServiceCheckMonitor := getTestServiceCheckMonitor(ctx, t)
 	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(testServiceCheckMonitor).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", testServiceCheckMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -79,6 +86,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	defer deleteMonitor(ctx, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
+	testMonitorSLO := getTestMonitorSLO(ctx, t)
 	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
 
 	// Create SLO
@@ -122,6 +130,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	assert.Equal(slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId()).
 		FromTs(now - 11).ToTs(now - 1).Execute()
@@ -148,9 +157,10 @@ func TestSLOEventLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create SLO
+	testEventSLO := getTestEventSLO(ctx, t)
 	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(testEventSLO).Execute()
 	if err != nil {
-		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating SLO %v: Response %s: %v", testEventSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	slo := sloResp.GetData()[0]
 	defer deleteSLOIfExists(ctx, slo.GetId())
@@ -188,6 +198,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 	assert.Equal(slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId()).
 		FromTs(now - 11).ToTs(now - 1).Execute()
@@ -214,6 +225,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create monitor to reference in the monitor SLO
+	testServiceCheckMonitor := getTestServiceCheckMonitor(ctx, t)
 	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(testServiceCheckMonitor).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", testServiceCheckMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -221,6 +233,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	defer deleteMonitor(ctx, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
+	testMonitorSLO := getTestMonitorSLO(ctx, t)
 	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
 
 	// Create monitor SLO
@@ -233,6 +246,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	// Create event SLO
+	testEventSLO := getTestEventSLO(ctx, t)
 	sloResp, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(testEventSLO).Execute()
 	if err != nil {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -287,7 +301,7 @@ func TestSLOCreateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(datadog.ServiceLevelObjective{}).Execute()
+			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(datadog.ServiceLevelObjectiveRequest{}).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -336,7 +350,21 @@ func TestSLOUpdateErrors(t *testing.T) {
 	}{
 		"400 Bad Request": {WithTestAuth, datadog.ServiceLevelObjective{}, 400},
 		"403 Forbidden":   {WithFakeAuth, datadog.ServiceLevelObjective{}, 403},
-		"404 Not Found":   {WithTestAuth, testEventSLO, 404},
+		"404 Not Found": {WithTestAuth, datadog.ServiceLevelObjective{
+			Type:        "metric",
+			Name:        "Go client HTTP Return Codes",
+			Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
+			Tags:        &[]string{"app:httpd"},
+			Thresholds: []datadog.SLOThreshold{{
+				Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
+				Target:    95.0,
+				Warning:   datadog.PtrFloat64(98.0),
+			}},
+			Query: &datadog.ServiceLevelObjectiveQuery{
+				Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
+				Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
+			},
+		}, 404},
 	}
 
 	for name, tc := range testCases {
@@ -468,10 +496,12 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
+	testEventSLO := getTestEventSLO(ctx, t)
 	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(testEventSLO).Execute()
 	if err != nil {
-		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating SLO %v: Response %s: %v", testEventSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+	assert.GreaterOrEqual(len(sloResp.GetData()), 1)
 	slo := sloResp.GetData()[0]
 	defer deleteSLOIfExists(ctx, slo.GetId())
 	assert.Equal(200, httpresp.StatusCode)
@@ -491,8 +521,11 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 
 			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, tc.ID).FromTs(123).ToTs(12).Execute()
+			assert.Error(err)
+			assert.NotNil(httpresp, err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

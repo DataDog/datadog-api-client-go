@@ -3,19 +3,27 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"go_801939000","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"go-TestGenerateNewExternalId-local-1589290162","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CreateAWSAccount
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5966934193210541825"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3684175723627615985"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"ef84fc70135b4349ad8332fa9c1a00de"}'
+    body: '{"external_id":"e9118acff5ca4dd59c7bceb1c27404ce"}'
     headers:
       Cache-Control:
       - no-cache
@@ -26,13 +34,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:13 GMT
+      - Tue, 12 May 2020 13:29:23 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:10 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:22 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -41,9 +49,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bZxgHnChon9vZm5xdRa4NrQAYSVWc7iQc54D228L4geTT/U2FwMh0nkSo8j+6vpL
+      - nRZqCODixwNZX0HLyT17WzYwenviVG0rmnZak57k5KsDWun3aWEsPedTsRpiFQxf
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -51,19 +59,27 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"go_801939000","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"go-TestGenerateNewExternalId-local-1589290162","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - CreateNewAWSExternalID
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5855841252007764626"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3684175723627615985"
     url: https://api.datadoghq.com/api/v1/integration/aws/generate_new_external_id
     method: PUT
   response:
-    body: '{"external_id":"a9be57534d53400aa0970b70b01fe7ca"}'
+    body: '{"external_id":"24578cf5226d4f7bb04c46fd84ef81dc"}'
     headers:
       Cache-Control:
       - no-cache
@@ -74,13 +90,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:15 GMT
+      - Tue, 12 May 2020 13:29:25 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:14 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:23 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -89,9 +105,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - QO3HutZQjgMDp/HqClcLon+qq5lEghb3LRV+gXMIQ2Jivd1m1eEGCh0RxplUQMIV
+      - ns395qtajdi4vImLC5PhByq3vzX3KV9r4kOaLqZ3Kb42AGxxpM06vNzB/Pdubr1b
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -99,15 +115,23 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"go_801939000","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"go-TestGenerateNewExternalId-local-1589290162","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
+      Dd-Operation-Id:
+      - DeleteAWSAccount
       User-Agent:
-      - DataDog/0.1.0/go-experimental
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4244731048975363227"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3684175723627615985"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -124,22 +148,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Feb 2020 17:13:16 GMT
+      - Tue, 12 May 2020 13:29:28 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:13:15 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:25 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - rk3iIRyevtXsTLLTMsm8PoHrVjRY2UIgJwOnYxasATpPihgg0ps3VPSw7zz+6jrL
+      - 562ySu37xnxKxbTr0NFd7oH3+L3JO3D7GcG/Lb1Dr0vgKuyocJBk1SrO7ogLRZuZ
       X-Dd-Version:
-      - "35.2200256"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

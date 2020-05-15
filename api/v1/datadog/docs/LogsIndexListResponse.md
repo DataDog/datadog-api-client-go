@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Indexes** | Pointer to [**[]LogsIndex**](LogsIndex.md) | TODO. | [optional] 
+**Indexes** | Pointer to [**[]LogsIndex**](LogsIndex.md) | Array of Log index configurations. | [optional] 
 
 ## Methods
 

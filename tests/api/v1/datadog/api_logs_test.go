@@ -19,7 +19,7 @@ func TestLogsList(t *testing.T) {
 	nanoNow := now.UnixNano()
 	source := fmt.Sprintf("go-client-test-%d", nanoNow)
 	message := fmt.Sprintf("test-log-list-%d", nanoNow)
-	hostname := fmt.Sprintf("datadog-api-client-go-test-%d", nanoNow)
+	hostname := *tests.UniqueEntityName(ctx, t)
 
 	// Create log entry
 	httpLog := fmt.Sprintf(

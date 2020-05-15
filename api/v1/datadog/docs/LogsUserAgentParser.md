@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsEncoded** | Pointer to **bool** | Define if the source attribute is url encoded or not. | [optional] [default to false]
+**IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
 **Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["http.useragent"]]
 **Target** | Pointer to **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.useragent_details"]
-**Type** | Pointer to **string** | Type of processor. | [optional] [readonly] [default to "user-agent-parser"]
+**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "user-agent-parser"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewLogsUserAgentParser
 
-`func NewLogsUserAgentParser(sources []string, target string, ) *LogsUserAgentParser`
+`func NewLogsUserAgentParser(sources []string, target string, type_ string, ) *LogsUserAgentParser`
 
 NewLogsUserAgentParser instantiates a new LogsUserAgentParser object
 This constructor will assign default values to properties that have it defined,
@@ -114,11 +114,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *LogsUserAgentParser) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

@@ -4,54 +4,11 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreatePagerDutyIntegration**](PagerDutyIntegrationApi.md#CreatePagerDutyIntegration) | **Put** /api/v1/integration/pagerduty | Create a PagerDuty integration
 [**CreatePagerDutyIntegrationService**](PagerDutyIntegrationApi.md#CreatePagerDutyIntegrationService) | **Post** /api/v1/integration/pagerduty/configuration/services | Create a new service object
-[**DeletePagerDutyIntegration**](PagerDutyIntegrationApi.md#DeletePagerDutyIntegration) | **Delete** /api/v1/integration/pagerduty | Delete a PagerDuty integration
 [**DeletePagerDutyIntegrationService**](PagerDutyIntegrationApi.md#DeletePagerDutyIntegrationService) | **Delete** /api/v1/integration/pagerduty/configuration/services/{service_name} | Delete a single service object
-[**GetPagerDutyIntegration**](PagerDutyIntegrationApi.md#GetPagerDutyIntegration) | **Get** /api/v1/integration/pagerduty | Get a PagerDuty integration
 [**GetPagerDutyIntegrationService**](PagerDutyIntegrationApi.md#GetPagerDutyIntegrationService) | **Get** /api/v1/integration/pagerduty/configuration/services/{service_name} | Get a single service object
-[**UpdatePagerDutyIntegration**](PagerDutyIntegrationApi.md#UpdatePagerDutyIntegration) | **Post** /api/v1/integration/pagerduty | Add new services and schedules
 [**UpdatePagerDutyIntegrationService**](PagerDutyIntegrationApi.md#UpdatePagerDutyIntegrationService) | **Put** /api/v1/integration/pagerduty/configuration/services/{service_name} | Update a single service object
 
-
-
-## CreatePagerDutyIntegration
-
-> CreatePagerDutyIntegration(ctx).Body(body).Execute()
-
-Create a PagerDuty integration
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreatePagerDutyIntegrationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**PagerDutyIntegration**](PagerDutyIntegration.md) | Create Datadog-PagerDuty integration. | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## CreatePagerDutyIntegrationService
@@ -61,6 +18,33 @@ Name | Type | Description  | Notes
 Create a new service object
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.PagerDutyService{ServiceKey: "ServiceKey_example", ServiceName: "ServiceName_example"} // PagerDutyService | Create a new service object request body.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreatePagerDutyIntegrationService`: PagerDutyServiceName
+    fmt.Fprintf(os.Stdout, "Response from `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -73,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreatePagerDutyIntegration
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PagerDutyService**](PagerDutyService.md) | Create a new service object in the Datadog-PagerDuty integration. | 
+ **body** | [**PagerDutyService**](PagerDutyService.md) | Create a new service object request body. | 
 
 ### Return type
 
@@ -93,41 +77,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeletePagerDutyIntegration
-
-> DeletePagerDutyIntegration(ctx).Execute()
-
-Delete a PagerDuty integration
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeletePagerDutyIntegrationRequest struct via the builder pattern
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## DeletePagerDutyIntegrationService
 
 > DeletePagerDutyIntegrationService(ctx, serviceName).Execute()
@@ -135,6 +84,31 @@ Other parameters are passed through a pointer to a apiDeletePagerDutyIntegration
 Delete a single service object
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    serviceName := "serviceName_example" // string | The service name
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(context.Background(), serviceName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.DeletePagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
 
 ### Path Parameters
 
@@ -171,41 +145,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetPagerDutyIntegration
-
-> PagerDutyIntegration GetPagerDutyIntegration(ctx).Execute()
-
-Get a PagerDuty integration
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetPagerDutyIntegrationRequest struct via the builder pattern
-
-
-### Return type
-
-[**PagerDutyIntegration**](PagerDutyIntegration.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetPagerDutyIntegrationService
 
 > PagerDutyServiceName GetPagerDutyIntegrationService(ctx, serviceName).Execute()
@@ -214,13 +153,40 @@ Get a single service object
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    serviceName := "serviceName_example" // string | The service name.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(context.Background(), serviceName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.GetPagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPagerDutyIntegrationService`: PagerDutyServiceName
+    fmt.Fprintf(os.Stdout, "Response from `PagerDutyIntegrationApi.GetPagerDutyIntegrationService`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceName** | **string** | The service name | 
+**serviceName** | **string** | The service name. | 
 
 ### Other Parameters
 
@@ -249,45 +215,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdatePagerDutyIntegration
-
-> UpdatePagerDutyIntegration(ctx).Body(body).Execute()
-
-Add new services and schedules
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdatePagerDutyIntegrationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**PagerDutyServicesAndSchedules**](PagerDutyServicesAndSchedules.md) | Update an existing Datadog-PagerDuty integration. | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## UpdatePagerDutyIntegrationService
 
 > UpdatePagerDutyIntegrationService(ctx, serviceName).Body(body).Execute()
@@ -295,6 +222,32 @@ Name | Type | Description  | Notes
 Update a single service object
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    serviceName := "serviceName_example" // string | The service name
+    body := datadog.PagerDutyServiceKey{ServiceKey: "ServiceKey_example"} // PagerDutyServiceKey | Update an existing service object request body.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(context.Background(), serviceName, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
 
 ### Path Parameters
 
@@ -312,7 +265,7 @@ Other parameters are passed through a pointer to a apiUpdatePagerDutyIntegration
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**PagerDutyServiceKey**](PagerDutyServiceKey.md) | Update an existing service object in the Datadog-PagerDuty integration. | 
+ **body** | [**PagerDutyServiceKey**](PagerDutyServiceKey.md) | Update an existing service object request body. | 
 
 ### Return type
 

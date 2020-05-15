@@ -36,7 +36,10 @@ func (r apiCheckAWSLogsLambdaAsyncRequest) Body(body AWSAccountAndLambdaRequest)
 
 /*
 CheckAWSLogsLambdaAsync Check that an AWS Lambda Function exists
-Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.
+Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input
+is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this
+endpoint can be polled intermittently instead of blocking.
+
 - Returns a status of 'created' when it's checking if the Lambda exists in the account.
 - Returns a status of 'waiting' while checking.
 - Returns a status of 'checked and ok' if the Lambda exists.
@@ -152,16 +155,6 @@ func (r apiCheckAWSLogsLambdaAsyncRequest) Execute() (AWSLogsAsyncResponse, *_ne
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v AWSLogsAsyncResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -208,14 +201,17 @@ func (r apiCheckAWSLogsServicesAsyncRequest) Body(body AWSLogsServicesRequest) a
 }
 
 /*
-CheckAWSLogsServicesAsync Check permissions for Log Services
-Test if permissions are present to add log-forwarding triggers for the given services + AWS account. Input is the same as for EnableAWSLogServices. Done async, so can be repeatedly polled in a non-blocking fashion until the async request completes.
-- Returns a status of 'created' when it's checking if the permissions exists
-  in the AWS account.
+CheckAWSLogsServicesAsync Check permissions for log services
+Test if permissions are present to add log-forwarding triggers for the
+given services and AWS account. Input is the same as for `EnableAWSLogServices`.
+Done async, so can be repeatedly polled in a non-blocking fashion until
+the async request completes.
 
-- Returns a status of 'waiting' while checking.
-- Returns a status of 'checked and ok' if the Lambda exists.
-- Returns a status of 'error' if the Lambda does not exist.
+- Returns a status of `created` when it's checking if the permissions exists
+  in the AWS account.
+- Returns a status of `waiting` while checking.
+- Returns a status of `checked and ok` if the Lambda exists.
+- Returns a status of `error` if the Lambda does not exist.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCheckAWSLogsServicesAsyncRequest
 */
@@ -326,16 +322,6 @@ func (r apiCheckAWSLogsServicesAsyncRequest) Execute() (AWSLogsAsyncResponse, *_
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v AWSLogsAsyncResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -496,16 +482,6 @@ func (r apiCreateAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v interface{}
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -665,16 +641,6 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v interface{}
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -722,7 +688,7 @@ func (r apiEnableAWSLogServicesRequest) Body(body AWSLogsServicesRequest) apiEna
 
 /*
 EnableAWSLogServices Enable an AWS Logs integration
-Enable automatic log collection for a list of services. This should be run after running 'CreateAWSLambdaARN' to save the config.
+Enable automatic log collection for a list of services. This should be run after running `CreateAWSLambdaARN` to save the configuration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiEnableAWSLogServicesRequest
 */
@@ -834,16 +800,6 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v interface{}
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -884,7 +840,7 @@ type apiListAWSLogsIntegrationsRequest struct {
 }
 
 /*
-ListAWSLogsIntegrations List all AWS Logs Integrations
+ListAWSLogsIntegrations List all AWS Logs integrations
 List all Datadog-AWS Logs integrations configured in your Datadog account.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListAWSLogsIntegrationsRequest
@@ -990,16 +946,6 @@ func (r apiListAWSLogsIntegrationsRequest) Execute() ([]AWSLogsListResponse, *_n
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v []AWSLogsListResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -1147,16 +1093,6 @@ func (r apiListAWSLogsServicesRequest) Execute() ([]AWSLogsListServicesResponse,
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v []AWSLogsListServicesResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse

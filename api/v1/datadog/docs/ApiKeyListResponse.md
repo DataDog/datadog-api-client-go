@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKeys** | Pointer to [**[]ApiKey**](ApiKey.md) | TODO. | [optional] 
+**ApiKeys** | Pointer to [**[]ApiKey**](ApiKey.md) | Array of API keys. | [optional] 
 
 ## Methods
 

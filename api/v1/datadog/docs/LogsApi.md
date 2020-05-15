@@ -16,6 +16,33 @@ Get a list of logs
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.LogsListRequest{Index: "Index_example", Limit: 123, Query: "Query_example", Sort: datadog.LogsSort{}, StartAt: "StartAt_example", Time: datadog.LogsListRequest_time{From: "TODO", Timezone: "Timezone_example", To: "TODO"}} // LogsListRequest | Logs filter
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsApi.ListLogs(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListLogs`: LogsListResponse
+    fmt.Fprintf(os.Stdout, "Response from `LogsApi.ListLogs`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 

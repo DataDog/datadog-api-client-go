@@ -266,7 +266,7 @@ paths:
       description: Returns all roles, including their names and IDs.
       operationId: ListRoles
       parameters:
-      - description: Number of users to return for a given page.
+      - description: Size for a given page.
         explode: true
         in: query
         name: page[size]
@@ -462,6 +462,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unprocessable Entity
       summary: Update a role
       tags:
       - Roles
@@ -653,7 +659,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Number of users to return for a given page.
+      - description: Size for a given page.
         explode: true
         in: query
         name: page[size]
@@ -835,7 +841,7 @@ paths:
         all users even if they are disabled or unverified.
       operationId: ListUsers
       parameters:
-      - description: Number of users to return for a given page.
+      - description: Size for a given page.
         explode: true
         in: query
         name: page[size]
@@ -943,13 +949,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
-      summary: Create user
+      summary: Create a user
       tags:
       - Users
       x-codegen-request-body-name: body
   /api/v2/users/{user_id}:
     delete:
-      description: Disable user. Can only be used with an application key belonging
+      description: Disable a user. Can only be used with an application key belonging
         to an administrator user.
       operationId: DisableUser
       parameters:
@@ -976,7 +982,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
-      summary: Disable user
+      summary: Disable a user
       tags:
       - Users
       x-codegen-request-body-name: body
@@ -1054,6 +1060,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unprocessable Entity
       summary: Update a user
       tags:
       - Users
@@ -1150,7 +1162,7 @@ components:
         type: integer
       style: form
     PageSize:
-      description: Number of users to return for a given page.
+      description: Size for a given page.
       explode: true
       in: query
       name: page[size]
@@ -1179,15 +1191,39 @@ components:
         type: string
       style: simple
   requestBodies: {}
-  responses: {}
+  responses:
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Bad Request
+    ConcurrentModificationResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Concurrent Modification
+    NotAuthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Not Authorized
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Not Found
   schemas:
     APIErrorResponse:
-      description: TODO.
+      description: API error response.
       properties:
         errors:
-          description: TODO.
+          description: A list of errors.
           items:
-            description: TODO.
+            description: A list of items.
             example: Bad Request
             type: string
           type: array
@@ -1195,24 +1231,24 @@ components:
       - errors
       type: object
     Creator:
-      description: Creator of the object
+      description: Creator of the object.
       example:
         name: name
         handle: handle
         email: email
       properties:
         email:
-          description: TODO.
+          description: Email of the creator.
           type: string
         handle:
-          description: TODO.
+          description: Handle of the creator.
           type: string
         name:
-          description: TODO.
+          description: Name of the creator.
           type: string
       type: object
     DashboardListAddItemsResponse:
-      description: TODO.
+      description: Response containing a list of added dashboards.
       example:
         added_dashboards_to_list:
         - is_favorite: true
@@ -1251,7 +1287,7 @@ components:
           type: array
       type: object
     DashboardListDeleteItemsResponse:
-      description: TODO.
+      description: Response containing a list of deleted dashboards.
       example:
         deleted_dashboards_from_list:
         - is_favorite: true
@@ -1290,7 +1326,7 @@ components:
           type: array
       type: object
     DashboardListItem:
-      description: TODO.
+      description: A dashboard within a list.
       example:
         is_favorite: true
         author:
@@ -1359,7 +1395,7 @@ components:
       - type
       type: object
     DashboardListItems:
-      description: TODO.
+      description: Dashboards within a list.
       example:
         total: 6
         dashboards:
@@ -1433,6 +1469,8 @@ components:
           description: Organizations resource type.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     OrganizationAttributes:
       description: Attributes of the organization.
@@ -1471,11 +1509,11 @@ components:
         total_filtered_count: 6
       properties:
         total_count:
-          description: Total count of pages.
+          description: Total count.
           format: int64
           type: integer
         total_filtered_count:
-          description: Total count of filtered pages.
+          description: Total count of elements matched by the filter.
           format: int64
           type: integer
       type: object
@@ -1503,6 +1541,8 @@ components:
           description: Permissions resource type.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     PermissionAttributes:
       description: Attributes of a permission.
@@ -1670,7 +1710,7 @@ components:
           type: string
         type:
           default: roles
-          description: TODO
+          description: Type of role.
           type: string
       type: object
     RelationshipToRoles:
@@ -1683,7 +1723,7 @@ components:
           type: roles
       properties:
         data:
-          description: TODO.
+          description: An array containing type and ID of a role.
           items:
             $ref: '#/components/schemas/RelationshipToRoleData'
           type: array
@@ -1783,6 +1823,8 @@ components:
           description: Roles type.
           readOnly: true
           type: string
+      required:
+      - type
       type: object
     RoleAttributes:
       description: Attributes of the role.
@@ -1815,7 +1857,7 @@ components:
           type: string
       type: object
     RoleCreateData:
-      description: TODO
+      description: Data related to the creation of a role.
       example:
         relationships:
           permissions:
@@ -1971,7 +2013,7 @@ components:
           type: string
       type: object
     RoleUpdateData:
-      description: TODO
+      description: Data related to the update of a role.
       example:
         attributes:
           name: name
@@ -1985,7 +2027,7 @@ components:
           type: string
         type:
           default: roles
-          description: TODO
+          description: Type of role.
           type: string
       type: object
     RoleUpdatePayload:
@@ -2353,7 +2395,7 @@ components:
         attributes:
           $ref: '#/components/schemas/UserInvitationDataAttributes'
         id:
-          description: ID of the user invitiation.
+          description: ID of the user invitation.
           type: string
         type:
           default: user_invitations
@@ -2462,7 +2504,7 @@ components:
       - $ref: '#/components/schemas/Permission'
       - $ref: '#/components/schemas/Role'
       type: object
-      x-oneOf-name: UserResponseIncludedItem
+      x-one-of-name: UserResponseIncludedItem
     UserResponseRelationships:
       description: Relationships of the user object returned by the API.
       example:
@@ -2647,13 +2689,15 @@ components:
       type: object
   securitySchemes:
     apiKeyAuth:
-      description: API Key
+      description: Your Datadog API Key.
       in: header
       name: DD-API-KEY
       type: apiKey
+      x-env-name: DD_CLIENT_API_KEY
     appKeyAuth:
-      description: APP Key
+      description: Your Datadog APP Key.
       in: header
       name: DD-APPLICATION-KEY
       type: apiKey
+      x-env-name: DD_CLIENT_APP_KEY
 x-group-parameters: true

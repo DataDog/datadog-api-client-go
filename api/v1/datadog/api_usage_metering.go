@@ -44,7 +44,7 @@ func (r apiGetUsageFargateRequest) EndHr(endHr time.Time) apiGetUsageFargateRequ
 
 /*
 GetUsageFargate Get hourly usage for Fargate
-Get hourly usage for [fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
+Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageFargateRequest
 */
@@ -157,16 +157,6 @@ func (r apiGetUsageFargateRequest) Execute() (UsageFargateResponse, *_nethttp.Re
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageFargateResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -335,16 +325,6 @@ func (r apiGetUsageHostsRequest) Execute() (UsageHostsResponse, *_nethttp.Respon
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageHostsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -512,16 +492,6 @@ func (r apiGetUsageLambdaRequest) Execute() (UsageLambdaResponse, *_nethttp.Resp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageLambdaResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -688,16 +658,6 @@ func (r apiGetUsageLogsRequest) Execute() (UsageLogsResponse, *_nethttp.Response
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageLogsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -883,16 +843,6 @@ func (r apiGetUsageLogsByIndexRequest) Execute() (UsageLogsByIndexResponse, *_ne
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageLogsByIndexResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1059,16 +1009,6 @@ func (r apiGetUsageNetworkFlowsRequest) Execute() (UsageNetworkFlowsResponse, *_
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageNetworkFlowsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -1237,16 +1177,6 @@ func (r apiGetUsageNetworkHostsRequest) Execute() (UsageNetworkHostsResponse, *_
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageNetworkHostsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1413,16 +1343,6 @@ func (r apiGetUsageRumSessionsRequest) Execute() (UsageRumSessionsResponse, *_ne
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageRumSessionsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -1600,16 +1520,6 @@ func (r apiGetUsageSummaryRequest) Execute() (UsageSummaryResponse, *_nethttp.Re
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageSummaryResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1663,7 +1573,7 @@ func (r apiGetUsageSyntheticsRequest) EndHr(endHr time.Time) apiGetUsageSyntheti
 
 /*
 GetUsageSynthetics Get hourly usage for Synthetics API Checks
-Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
+Get hourly usage for [Synthetics API checks](https://docs.datadoghq.com/synthetics/).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageSyntheticsRequest
 */
@@ -1776,16 +1686,6 @@ func (r apiGetUsageSyntheticsRequest) Execute() (UsageSyntheticsResponse, *_neth
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageSyntheticsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -1954,16 +1854,6 @@ func (r apiGetUsageSyntheticsAPIRequest) Execute() (UsageSyntheticsAPIResponse, 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageSyntheticsAPIResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2131,16 +2021,6 @@ func (r apiGetUsageSyntheticsBrowserRequest) Execute() (UsageSyntheticsBrowserRe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageSyntheticsBrowserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2307,16 +2187,6 @@ func (r apiGetUsageTimeseriesRequest) Execute() (UsageTimeseriesResponse, *_neth
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageTimeseriesResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -2493,16 +2363,6 @@ func (r apiGetUsageTopAvgMetricsRequest) Execute() (UsageTopAvgMetricsResponse, 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageTopAvgMetricsResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2669,16 +2529,6 @@ func (r apiGetUsageTraceRequest) Execute() (UsageTraceResponse, *_nethttp.Respon
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UsageTraceResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse

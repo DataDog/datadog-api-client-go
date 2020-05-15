@@ -67,6 +67,7 @@ func (r apiGetGraphSnapshotRequest) Title(title string) apiGetGraphSnapshotReque
 /*
 GetGraphSnapshot Take graph snapshots
 Take graph snapshots.
+**Note**: When a snapshot is created, there is some delay before it is available.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetGraphSnapshotRequest
 */
@@ -193,16 +194,6 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v GraphSnapshot
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse

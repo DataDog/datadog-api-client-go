@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | TODO. | [optional] 
+**ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Style** | Pointer to [**TimeseriesWidgetRequestStyle**](TimeseriesWidgetRequest_style.md) |  | [optional] 
+**Style** | Pointer to [**WidgetRequestStyle**](WidgetRequestStyle.md) |  | [optional] 
 
 ## Methods
 
@@ -235,20 +235,20 @@ HasRumQuery returns a boolean if a field has been set.
 
 ### GetStyle
 
-`func (o *ToplistWidgetRequest) GetStyle() TimeseriesWidgetRequestStyle`
+`func (o *ToplistWidgetRequest) GetStyle() WidgetRequestStyle`
 
 GetStyle returns the Style field if non-nil, zero value otherwise.
 
 ### GetStyleOk
 
-`func (o *ToplistWidgetRequest) GetStyleOk() (*TimeseriesWidgetRequestStyle, bool)`
+`func (o *ToplistWidgetRequest) GetStyleOk() (*WidgetRequestStyle, bool)`
 
 GetStyleOk returns a tuple with the Style field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStyle
 
-`func (o *ToplistWidgetRequest) SetStyle(v TimeseriesWidgetRequestStyle)`
+`func (o *ToplistWidgetRequest) SetStyle(v WidgetRequestStyle)`
 
 SetStyle sets Style field to given value.
 

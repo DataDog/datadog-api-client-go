@@ -36,11 +36,11 @@ func (r apiCreateUserRequest) Body(body User) apiCreateUserRequest {
 }
 
 /*
-CreateUser Create user
+CreateUser Create a user
 Create a user for your organization.
 
-**Note**: users can be created with admin access role
-only with application keys belonging to administrators.
+**Note**: Users can only be created with the admin access role
+if application keys belong to administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateUserRequest
 */
@@ -152,16 +152,6 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -213,13 +203,13 @@ type apiDisableUserRequest struct {
 }
 
 /*
-DisableUser Disable user
+DisableUser Disable a user
 Delete a user from an organization.
 
 **Note**: This endpoint can only be used with application keys belonging to
 administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userHandle The handle of the user
+ * @param userHandle The handle of the user.
 @return apiDisableUserRequest
 */
 func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) apiDisableUserRequest {
@@ -326,16 +316,6 @@ func (r apiDisableUserRequest) Execute() (UserDisableResponse, *_nethttp.Respons
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserDisableResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -387,8 +367,8 @@ type apiGetUserRequest struct {
 }
 
 /*
-GetUser Get user
-Get a user details.
+GetUser Get user details
+Get a user's details.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userHandle The ID of the user.
 @return apiGetUserRequest
@@ -496,16 +476,6 @@ func (r apiGetUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
@@ -654,16 +624,6 @@ func (r apiListUsersRequest) Execute() (UserListResponse, *_nethttp.Response, er
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserListResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -701,8 +661,8 @@ func (r apiUpdateUserRequest) Body(body User) apiUpdateUserRequest {
 }
 
 /*
-UpdateUser Update user
-Update a user informations.
+UpdateUser Update a user
+Update a user information.
 
 **Note**: It can only be used with application keys belonging to administrators.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -818,16 +778,6 @@ func (r apiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v UserResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse

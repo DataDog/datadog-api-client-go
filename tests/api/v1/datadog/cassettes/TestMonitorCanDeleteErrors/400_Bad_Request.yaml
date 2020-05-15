@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - CheckCanDeleteMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8715990488204262165"
+      - "8162768170427548397"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7851598592771146415"
+      - "7691005678295041044"
     url: https://api.datadoghq.com/api/v1/monitor/can_delete
     method: GET
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:03 GMT
+      - Tue, 12 May 2020 13:32:58 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -44,7 +44,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2432369"
+      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

@@ -35,7 +35,7 @@ func (r apiCreateAWSAccountRequest) Body(body AWSAccount) apiCreateAWSAccountReq
 }
 
 /*
-CreateAWSAccount Create an AWS Integration
+CreateAWSAccount Create an AWS integration
 Create a Datadog-Amazon Web Services integration.
 Using the `POST` method updates your integration configuration
 by adding your new configuration to the existing one in your Datadog organization.
@@ -150,16 +150,6 @@ func (r apiCreateAWSAccountRequest) Execute() (AWSAccountCreateResponse, *_netht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v AWSAccountCreateResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -206,7 +196,7 @@ func (r apiCreateNewAWSExternalIDRequest) Body(body AWSAccount) apiCreateNewAWSE
 }
 
 /*
-CreateNewAWSExternalID Generate New External ID
+CreateNewAWSExternalID Generate a new external ID
 Generate a new AWS external ID for a given AWS account ID and role name pair.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateNewAWSExternalIDRequest
@@ -319,16 +309,6 @@ func (r apiCreateNewAWSExternalIDRequest) Execute() (AWSAccountCreateResponse, *
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v AWSAccountCreateResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -375,8 +355,8 @@ func (r apiDeleteAWSAccountRequest) Body(body AWSAccount) apiDeleteAWSAccountReq
 }
 
 /*
-DeleteAWSAccount Delete an AWS Integration
-Delete a Datadog-AWS integration matching the specified account_id and role_name parameters.
+DeleteAWSAccount Delete an AWS integration
+Delete a Datadog-AWS integration matching the specified `account_id` and `role_name parameters`.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiDeleteAWSAccountRequest
 */
@@ -488,16 +468,6 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v interface{}
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -556,7 +526,7 @@ func (r apiListAWSAccountsRequest) AccessKeyId(accessKeyId string) apiListAWSAcc
 }
 
 /*
-ListAWSAccounts List all AWS Integrations
+ListAWSAccounts List all AWS integrations
 List all Datadog-AWS integrations available in your Datadog organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListAWSAccountsRequest
@@ -671,16 +641,6 @@ func (r apiListAWSAccountsRequest) Execute() (AWSAccountListResponse, *_nethttp.
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v AWSAccountListResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -829,16 +789,6 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v []string
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -893,7 +843,7 @@ func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWS
 }
 
 /*
-UpdateAWSAccount Update an AWS Integration
+UpdateAWSAccount Update an AWS integration
 Update a Datadog-Amazon Web Services integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateAWSAccountRequest
@@ -1014,16 +964,6 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v interface{}
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse

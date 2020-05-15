@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"updated-test-role-datadog-client-go-1587539857313826000"},"id":"583e2f1a-8469-11ea-93de-bbd22866fb55","type":"roles"}}
+      {"data":{"attributes":{"name":"go-TestUpdateRoleErrors-local-1589441854-updated"},"id":"c71e84e0-95b5-11ea-93e2-237436ecdf03","type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -13,8 +13,14 @@ interactions:
       Dd-Operation-Id:
       - UpdateRole
       User-Agent:
-      - DataDog/0.1.0/go-experimental
-    url: https://api.datadoghq.com/api/v2/roles/583e2f1a-8469-11ea-93de-bbd22866fb55
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6112107410803597251"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2735997447815667878"
+    url: https://api.datadoghq.com/api/v2/roles/c71e84e0-95b5-11ea-93e2-237436ecdf03
     method: PATCH
   response:
     body: |
@@ -27,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 22 Apr 2020 07:17:38 GMT
+      - Thu, 14 May 2020 07:37:35 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

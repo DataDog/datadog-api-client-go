@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BasicAuth** | Pointer to [**SyntheticsTestRequestBasicAuth**](SyntheticsTestRequest_basicAuth.md) |  | [optional] 
-**Body** | Pointer to **string** | TODO. | [optional] 
-**Headers** | Pointer to **map[string]string** | TODO. | [optional] 
-**Host** | Pointer to **string** | TODO. | [optional] 
-**Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | 
-**Port** | Pointer to **int64** | TODO. | [optional] 
-**Query** | Pointer to [**interface{}**](.md) | TODO. | [optional] 
-**Timeout** | Pointer to **float64** | TODO. | [optional] 
-**Url** | Pointer to **string** | TODO. | 
+**Body** | Pointer to **string** | Body to include in the test. | [optional] 
+**Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
+**Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
+**Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
+**Port** | Pointer to **int64** | Port to use when performing the test. | [optional] 
+**Query** | Pointer to [**interface{}**](.md) | Query to use for the test. | [optional] 
+**Timeout** | Pointer to **float64** | Timeout in millisecond for the test. | [optional] 
+**Url** | Pointer to **string** | URL to perform the test with. | [optional] 
 
 ## Methods
 
 ### NewSyntheticsTestRequest
 
-`func NewSyntheticsTestRequest(method HTTPMethod, url string, ) *SyntheticsTestRequest`
+`func NewSyntheticsTestRequest() *SyntheticsTestRequest`
 
 NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object
 This constructor will assign default values to properties that have it defined,
@@ -152,6 +152,11 @@ and a boolean to check if the value has been set.
 
 SetMethod sets Method field to given value.
 
+### HasMethod
+
+`func (o *SyntheticsTestRequest) HasMethod() bool`
+
+HasMethod returns a boolean if a field has been set.
 
 ### GetPort
 
@@ -247,6 +252,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *SyntheticsTestRequest) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

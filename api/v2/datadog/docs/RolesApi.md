@@ -27,6 +27,34 @@ Grant permission to a role
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+    body := datadog.RelationshipToPermission{Data: datadog.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"}} // RelationshipToPermission |  (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.AddPermissionToRole(context.Background(), roleId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddPermissionToRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddPermissionToRole`: PermissionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.AddPermissionToRole`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -70,6 +98,34 @@ Name | Type | Description  | Notes
 Add a user to a role
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+    body := datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}} // RelationshipToUser |  (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.AddUserToRole(context.Background(), roleId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddUserToRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddUserToRole`: UsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.AddUserToRole`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -115,6 +171,33 @@ Create role
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    body := datadog.RoleCreatePayload{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: "Type_example"}} // RoleCreatePayload |  (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.CreateRole(context.Background(), ).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CreateRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateRole`: RoleResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.CreateRole`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -153,6 +236,31 @@ Name | Type | Description  | Notes
 Delete role
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.DeleteRole(context.Background(), roleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.DeleteRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
 
 ### Path Parameters
 
@@ -197,6 +305,33 @@ Get a role
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.GetRole(context.Background(), roleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.GetRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetRole`: RoleResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.GetRole`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -240,6 +375,32 @@ List permissions
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.ListPermissions(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListPermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListPermissions`: PermissionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListPermissions`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -274,6 +435,33 @@ Other parameters are passed through a pointer to a apiListPermissionsRequest str
 List permissions for a role
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.ListRolePermissions(context.Background(), roleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRolePermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListRolePermissions`: PermissionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListRolePermissions`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -318,6 +506,37 @@ Get all users of a role
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
+    sort := "sort_example" // string | User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `email`, `status`. (optional) (default to "name")
+    filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.ListRoleUsers(context.Background(), roleId).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoleUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListRoleUsers`: UsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListRoleUsers`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -334,7 +553,7 @@ Other parameters are passed through a pointer to a apiListRoleUsersRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int64** | Number of users to return for a given page. | [default to 10]
+ **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
  **sort** | **string** | User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;email&#x60;, &#x60;status&#x60;. | [default to &quot;name&quot;]
  **filter** | **string** | Filter all users by the given string. Defaults to no filtering. | 
@@ -365,6 +584,36 @@ List roles
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
+    sort := datadog.RolesSort{} // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
+    filter := "filter_example" // string | Filter all roles by the given string. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.ListRoles(context.Background(), ).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListRoles`: RolesResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListRoles`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -376,7 +625,7 @@ Other parameters are passed through a pointer to a apiListRolesRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int64** | Number of users to return for a given page. | [default to 10]
+ **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
  **sort** | [**RolesSort**](.md) | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: &#x60;sort&#x3D;-name&#x60;. | [default to &quot;name&quot;]
  **filter** | **string** | Filter all roles by the given string. | 
@@ -406,6 +655,34 @@ Name | Type | Description  | Notes
 Revoke permission
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+    body := datadog.RelationshipToPermission{Data: } // RelationshipToPermission |  (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.RemovePermissionFromRole(context.Background(), roleId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemovePermissionFromRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RemovePermissionFromRole`: PermissionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.RemovePermissionFromRole`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -451,6 +728,34 @@ Remove a user from a role
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+    body := datadog.RelationshipToUser{Data: } // RelationshipToUser |  (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.RemoveUserFromRole(context.Background(), roleId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemoveUserFromRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RemoveUserFromRole`: UsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.RemoveUserFromRole`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -494,6 +799,34 @@ Name | Type | Description  | Notes
 Update a role
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    roleId := "roleId_example" // string | The ID of the role.
+    body := datadog.RoleUpdatePayload{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{Name: "Name_example"}, Id: "Id_example", Type: "Type_example"}} // RoleUpdatePayload |  (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.RolesApi.UpdateRole(context.Background(), roleId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.UpdateRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateRole`: RoleResponse
+    fmt.Fprintf(os.Stdout, "Response from `RolesApi.UpdateRole`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 

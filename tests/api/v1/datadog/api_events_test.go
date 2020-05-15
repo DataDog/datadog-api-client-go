@@ -18,7 +18,6 @@ import (
 )
 
 var testEvent = datadog.Event{
-	Title: "test event from go client",
 	Text:  "example text",
 	Tags: &[]string{
 		"test",
@@ -36,6 +35,7 @@ func TestEventLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	testEvent.SetTitle(*tests.UniqueEntityName(ctx, t))
 
 	// Create event
 	marshalledEvent, _ := json.Marshal(testEvent)

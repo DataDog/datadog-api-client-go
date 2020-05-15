@@ -4,12 +4,12 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS Integration
-[**CreateNewAWSExternalID**](AWSIntegrationApi.md#CreateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate New External ID
-[**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS Integration
-[**ListAWSAccounts**](AWSIntegrationApi.md#ListAWSAccounts) | **Get** /api/v1/integration/aws | List all AWS Integrations
+[**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS integration
+[**CreateNewAWSExternalID**](AWSIntegrationApi.md#CreateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate a new external ID
+[**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS integration
+[**ListAWSAccounts**](AWSIntegrationApi.md#ListAWSAccounts) | **Get** /api/v1/integration/aws | List all AWS integrations
 [**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
-[**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS Integration
+[**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS integration
 
 
 
@@ -17,9 +17,36 @@ Method | HTTP request | Description
 
 > AWSAccountCreateResponse CreateAWSAccount(ctx).Body(body).Execute()
 
-Create an AWS Integration
+Create an AWS integration
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | AWS Request Object
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.CreateAWSAccount(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateAWSAccount`: AWSAccountCreateResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateAWSAccount`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -56,9 +83,36 @@ Name | Type | Description  | Notes
 
 > AWSAccountCreateResponse CreateNewAWSExternalID(ctx).Body(body).Execute()
 
-Generate New External ID
+Generate a new external ID
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation).
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.CreateNewAWSExternalID(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateNewAWSExternalID``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateNewAWSExternalID`: AWSAccountCreateResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateNewAWSExternalID`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -95,9 +149,36 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteAWSAccount(ctx).Body(body).Execute()
 
-Delete an AWS Integration
+Delete an AWS integration
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body :=  // AWSAccount | AWS request object
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.DeleteAWSAccount(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAWSAccount`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.DeleteAWSAccount`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -134,9 +215,38 @@ Name | Type | Description  | Notes
 
 > AWSAccountListResponse ListAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
-List all AWS Integrations
+List all AWS integrations
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
+    roleName := "roleName_example" // string | Only return AWS accounts that matches this role_name. (optional)
+    accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.ListAWSAccounts(context.Background(), ).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAWSAccounts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAWSAccounts`: AWSAccountListResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAWSAccounts`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -149,9 +259,9 @@ Other parameters are passed through a pointer to a apiListAWSAccountsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **string** | Only return AWS accounts that matches this account_id. | 
+ **accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
  **roleName** | **string** | Only return AWS accounts that matches this role_name. | 
- **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. | 
+ **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. | 
 
 ### Return type
 
@@ -178,6 +288,32 @@ Name | Type | Description  | Notes
 List namespace rules
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.ListAvailableAWSNamespaces(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAvailableAWSNamespaces``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAvailableAWSNamespaces`: []string
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAvailableAWSNamespaces`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -210,9 +346,39 @@ Other parameters are passed through a pointer to a apiListAvailableAWSNamespaces
 
 > interface{} UpdateAWSAccount(ctx).Body(body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
 
-Update an AWS Integration
+Update an AWS integration
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body :=  // AWSAccount | AWS request object
+    accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
+    roleName := "roleName_example" // string | Only return AWS accounts that match this `role_name`. Required if `account_id` is specified. (optional)
+    accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. Required if none of the other two options are specified. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.UpdateAWSAccount(context.Background(), body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.UpdateAWSAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateAWSAccount`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.UpdateAWSAccount`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -226,9 +392,9 @@ Other parameters are passed through a pointer to a apiUpdateAWSAccountRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
- **accountId** | **string** | Only return AWS accounts that matches this account_id. | 
- **roleName** | **string** | Only return AWS accounts that matches this role_name. *It is required if account_id is specified.* | 
- **accessKeyId** | **string** | Only return AWS accounts that matches this access_key_id. *It is required if none of the other two options are specified.* | 
+ **accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
+ **roleName** | **string** | Only return AWS accounts that match this &#x60;role_name&#x60;. Required if &#x60;account_id&#x60; is specified. | 
+ **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. Required if none of the other two options are specified. | 
 
 ### Return type
 

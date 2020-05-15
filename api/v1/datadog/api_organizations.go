@@ -38,16 +38,16 @@ func (r apiCreateChildOrgRequest) Body(body OrganizationCreateBody) apiCreateChi
 
 /*
 CreateChildOrg Create a child organization
-You can create, edit, and manage organizations.
+Create a child organization.
 
 This endpoint requires the
-[multi-org account](https://docs.datadoghq.com/account_management/multi_organization/)
+[multi-organization account](https://docs.datadoghq.com/account_management/multi_organization/)
 feature and must be enabled by
 [contacting support](https://docs.datadoghq.com/help/).
 
 Once a new child organization is created, you can interact with it
 by using the `org.public_id`, `pi_key.key`, and
-**application_key.hash** provided in the response.
+`application_key.hash` provided in the response.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateChildOrgRequest
 */
@@ -159,16 +159,6 @@ func (r apiCreateChildOrgRequest) Execute() (OrganizationCreateResponse, *_netht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v OrganizationCreateResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -213,7 +203,7 @@ type apiGetOrgRequest struct {
 GetOrg Get organization information
 Get organization information.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public_id of the org you are operating within.
+ * @param publicId The `public_id` of the organization you are operating within.
 @return apiGetOrgRequest
 */
 func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) apiGetOrgRequest {
@@ -319,16 +309,6 @@ func (r apiGetOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response, e
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v OrganizationResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
@@ -477,16 +457,6 @@ func (r apiListOrgsRequest) Execute() (OrganizationListResponse, *_nethttp.Respo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v OrganizationListResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -527,7 +497,7 @@ func (r apiUpdateOrgRequest) Body(body Organization) apiUpdateOrgRequest {
 UpdateOrg Update your organization
 Update your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public_id of the org you are operating within.
+ * @param publicId The `public_id` of the organization you are operating within.
 @return apiUpdateOrgRequest
 */
 func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string) apiUpdateOrgRequest {
@@ -640,16 +610,6 @@ func (r apiUpdateOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v OrganizationResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -705,7 +665,7 @@ metadata from your SAML IdP.
 
 * **XML Body:** Post the IdP metadata file as the body of the request.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public_id of the org you are operating with
+ * @param publicId The `public_id` of the organization you are operating with
 @return apiUploadIdPForOrgRequest
 */
 func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string) apiUploadIdPForOrgRequest {
@@ -823,16 +783,6 @@ func (r apiUploadIdPForOrgRequest) Execute() (IdpResponse, *_nethttp.Response, e
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v IdpResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse

@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetUsageSummary
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.1+dev.1 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8939167290569274255"
+      - "1976842105382178132"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8578782284098522489"
-    url: https://api.datadoghq.com/api/v1/usage/summary?start_month=2020-05-26T23%3A39%3A30%2B02%3A00
+      - "3683712768572730154"
+    url: https://api.datadoghq.com/api/v1/usage/summary?start_month=2020-06-12T15%3A34%3A23%2B02%3A00
     method: GET
   response:
     body: |
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 26 Apr 2020 21:39:30 GMT
+      - Tue, 12 May 2020 13:34:23 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **SamlIdpEndpoint** | Pointer to **string** | Identity provider endpoint for SAML authentication. | [optional] 
 **SamlIdpInitiatedLogin** | Pointer to [**OrganizationSettingsSamlIdpInitiatedLogin**](Organization_settings_saml_idp_initiated_login.md) |  | [optional] 
 **SamlIdpMetadataUploaded** | Pointer to **bool** | Whether or not a SAML identity provider metadata file was provided to the Datadog organization. | [optional] 
-**SamlLoginUrl** | Pointer to **string** | URL for SAML loging. | [optional] 
-**SamlStrictMode** | Pointer to [**OrganizationSettingsSamlIdpInitiatedLogin**](Organization_settings_saml_idp_initiated_login.md) |  | [optional] 
+**SamlLoginUrl** | Pointer to **string** | URL for SAML logging. | [optional] 
+**SamlStrictMode** | Pointer to [**OrganizationSettingsSamlStrictMode**](Organization_settings_saml_strict_mode.md) |  | [optional] 
 
 ## Methods
 
@@ -261,20 +261,20 @@ HasSamlLoginUrl returns a boolean if a field has been set.
 
 ### GetSamlStrictMode
 
-`func (o *OrganizationSettings) GetSamlStrictMode() OrganizationSettingsSamlIdpInitiatedLogin`
+`func (o *OrganizationSettings) GetSamlStrictMode() OrganizationSettingsSamlStrictMode`
 
 GetSamlStrictMode returns the SamlStrictMode field if non-nil, zero value otherwise.
 
 ### GetSamlStrictModeOk
 
-`func (o *OrganizationSettings) GetSamlStrictModeOk() (*OrganizationSettingsSamlIdpInitiatedLogin, bool)`
+`func (o *OrganizationSettings) GetSamlStrictModeOk() (*OrganizationSettingsSamlStrictMode, bool)`
 
 GetSamlStrictModeOk returns a tuple with the SamlStrictMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSamlStrictMode
 
-`func (o *OrganizationSettings) SetSamlStrictMode(v OrganizationSettingsSamlIdpInitiatedLogin)`
+`func (o *OrganizationSettings) SetSamlStrictMode(v OrganizationSettingsSamlStrictMode)`
 
 SetSamlStrictMode sets SamlStrictMode field to given value.
 

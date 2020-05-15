@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"testing"
 
@@ -20,8 +19,6 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-
-	now := tests.ClockFromContext(ctx).Now()
 
 	// Create a pipeline
 	grokParser := datadog.NewLogsGrokParserWithDefaults()
@@ -108,6 +105,17 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	traceRemapper.SetSources([]string{"source"})
 	traceRemapper.SetName("trace remapper")
 
+	// Nested Pipelines
+	pipelineProcessor := datadog.NewLogsPipelineProcessorWithDefaults()
+	pipelineProcessor.SetName("pipeline processor")
+	pipelineProcessor.SetFilter(datadog.LogsFilter{
+		Query: datadog.PtrString("query"),
+	})
+	pipelineProcessor.SetProcessors([]datadog.LogsProcessor{
+		grokParser.AsLogsProcessor(),
+		logDateRemapper.AsLogsProcessor(),
+	})
+
 	pipeline := datadog.LogsPipeline{}
 	pipeline.SetIsEnabled(true)
 	pipeline.SetFilter(datadog.LogsFilter{Query: datadog.PtrString("query")})
@@ -126,8 +134,9 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 		geoIPParser.AsLogsProcessor(),
 		lookupProcessor.AsLogsProcessor(),
 		traceRemapper.AsLogsProcessor(),
+		pipelineProcessor.AsLogsProcessor(),
 	})
-	pipelineName := fmt.Sprintf("go-client-test-pipeline-%d", now.Unix())
+	pipelineName := *tests.UniqueEntityName(ctx, t)
 	pipeline.SetName(pipelineName)
 
 	createdPipeline, httpresp, err := Client(ctx).LogsPipelinesApi.CreateLogsPipeline(ctx).Body(pipeline).Execute()
@@ -156,6 +165,14 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.Equal(geoIPParser.GetType(), processors[11].LogsProcessorInterface.GetType())
 	assert.Equal(lookupProcessor.GetType(), processors[12].LogsProcessorInterface.GetType())
 	assert.Equal(traceRemapper.GetType(), processors[13].LogsProcessorInterface.GetType())
+	assert.Equal(pipelineProcessor.GetType(), processors[14].LogsProcessorInterface.GetType())
+
+	// Nested Pipeline Assertions
+	nestedPipeline := processors[14].LogsProcessorInterface.(*datadog.LogsPipelineProcessor)
+	nestedPipelineFitler := nestedPipeline.GetFilter()
+	assert.Equal("query", nestedPipelineFitler.GetQuery())
+	assert.Equal(grokParser.GetType(), nestedPipeline.GetProcessors()[0].LogsProcessorInterface.GetType())
+	assert.Equal(logDateRemapper.GetType(), nestedPipeline.GetProcessors()[1].LogsProcessorInterface.GetType())
 
 	// Get all pipelines and assert our freshly created one is part of the result
 	pipelines, httpresp, err := Client(ctx).LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
@@ -192,7 +209,8 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	filter = updatedPipeline.GetFilter()
 	assert.Equal("updated query", filter.GetQuery())
 	processors = updatedPipeline.GetProcessors()
-	assert.Equal(grokParser.GetType(), processors[13].LogsProcessorInterface.GetType())
+	assert.Equal(grokParser.GetType(), processors[14].LogsProcessorInterface.GetType())
+	assert.Equal(pipelineProcessor.GetType(), processors[13].LogsProcessorInterface.GetType())
 	assert.Equal(logDateRemapper.GetType(), processors[0].LogsProcessorInterface.GetType())
 	assert.Equal(logStatusRemapper.GetType(), processors[1].LogsProcessorInterface.GetType())
 	assert.Equal(serviceRemapper.GetType(), processors[2].LogsProcessorInterface.GetType())

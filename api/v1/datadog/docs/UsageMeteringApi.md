@@ -30,6 +30,34 @@ Get hourly usage for Fargate
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageFargate(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageFargate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageFargate`: UsageFargateResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageFargate`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -41,8 +69,8 @@ Other parameters are passed through a pointer to a apiGetUsageFargateRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -70,6 +98,34 @@ Get hourly usage for hosts and containers
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageHosts(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageHosts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageHosts`: UsageHostsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageHosts`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -81,8 +137,8 @@ Other parameters are passed through a pointer to a apiGetUsageHostsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -110,6 +166,34 @@ Get hourly usage for Lambda
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageLambda(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLambda``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageLambda`: UsageLambdaResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageLambda`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -121,8 +205,8 @@ Other parameters are passed through a pointer to a apiGetUsageLambdaRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -150,6 +234,34 @@ Get hourly usage for Logs
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageLogs(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageLogs`: UsageLogsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageLogs`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -161,8 +273,8 @@ Other parameters are passed through a pointer to a apiGetUsageLogsRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -190,6 +302,35 @@ Get hourly usage for Logs by Index
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+    indexName := []string{"Inner_example"} // []string | Comma-separated list of log index names. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageLogsByIndex(context.Background(), startHr).EndHr(endHr).IndexName(indexName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogsByIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageLogsByIndex`: UsageLogsByIndexResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageLogsByIndex`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -201,8 +342,8 @@ Other parameters are passed through a pointer to a apiGetUsageLogsByIndexRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
  **indexName** | [**[]string**](string.md) | Comma-separated list of log index names. | 
 
 ### Return type
@@ -231,6 +372,34 @@ Get hourly usage for Network Flows
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageNetworkFlows(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkFlows``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageNetworkFlows`: UsageNetworkFlowsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageNetworkFlows`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -242,8 +411,8 @@ Other parameters are passed through a pointer to a apiGetUsageNetworkFlowsReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -271,6 +440,34 @@ Get hourly usage for Network Hosts
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageNetworkHosts(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkHosts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageNetworkHosts`: UsageNetworkHostsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageNetworkHosts`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -282,8 +479,8 @@ Other parameters are passed through a pointer to a apiGetUsageNetworkHostsReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -311,6 +508,34 @@ Get hourly usage for RUM Sessions
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageRumSessions(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageRumSessions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageRumSessions`: UsageRumSessionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageRumSessions`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -322,8 +547,8 @@ Other parameters are passed through a pointer to a apiGetUsageRumSessionsRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -351,6 +576,35 @@ Get usage across your multi-org account
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startMonth := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage beginning in this month. Maximum of 15 months ago.
+    endMonth := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage ending this month. (optional)
+    includeOrgDetails := true // bool | Include usage summaries for each sub-org. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSummary(context.Background(), startMonth).EndMonth(endMonth).IncludeOrgDetails(includeOrgDetails).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSummary``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageSummary`: UsageSummaryResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSummary`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -362,8 +616,8 @@ Other parameters are passed through a pointer to a apiGetUsageSummaryRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning in this month. Maximum of 15 months ago. | 
- **endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage ending this month. | 
+ **startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. | 
+ **endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
  **includeOrgDetails** | **bool** | Include usage summaries for each sub-org. | 
 
 ### Return type
@@ -392,6 +646,34 @@ Get hourly usage for Synthetics API Checks
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSynthetics(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSynthetics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageSynthetics`: UsageSyntheticsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSynthetics`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -403,8 +685,8 @@ Other parameters are passed through a pointer to a apiGetUsageSyntheticsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -432,6 +714,34 @@ Get hourly usage for Synthetics API Checks
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSyntheticsAPI(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsAPI``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageSyntheticsAPI`: UsageSyntheticsAPIResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSyntheticsAPI`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -443,8 +753,8 @@ Other parameters are passed through a pointer to a apiGetUsageSyntheticsAPIReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -472,6 +782,34 @@ Get hourly usage for Synthetics Browser Checks
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSyntheticsBrowser(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsBrowser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageSyntheticsBrowser`: UsageSyntheticsBrowserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSyntheticsBrowser`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -483,8 +821,8 @@ Other parameters are passed through a pointer to a apiGetUsageSyntheticsBrowserR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -512,6 +850,34 @@ Get hourly usage for custom metrics
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTimeseries(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTimeseries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageTimeseries`: UsageTimeseriesResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageTimeseries`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -523,8 +889,8 @@ Other parameters are passed through a pointer to a apiGetUsageTimeseriesRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 
@@ -551,6 +917,34 @@ Name | Type | Description  | Notes
 Get top 500 custom metrics by hourly average
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    month := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour.
+    names := []string{"Inner_example"} // []string | Comma-separated list of metric names. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTopAvgMetrics(context.Background(), month).Names(names).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTopAvgMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageTopAvgMetrics`: UsageTopAvgMetricsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageTopAvgMetrics`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -592,6 +986,34 @@ Get hourly usage for Trace Search
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
+    endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTrace(context.Background(), startHr).EndHr(endHr).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTrace``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageTrace`: UsageTraceResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageTrace`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -603,8 +1025,8 @@ Other parameters are passed through a pointer to a apiGetUsageTraceRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour | 
- **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour | 
+ **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+ **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending BEFORE this hour. | 
 
 ### Return type
 

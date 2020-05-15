@@ -20,6 +20,33 @@ Create a child organization
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.OrganizationCreateBody{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Name: "Name_example", Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.CreateChildOrg(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateChildOrg`: OrganizationCreateResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateChildOrg`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -31,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateChildOrgRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Org object that needs to be created | 
+ **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
 
 ### Return type
 
@@ -59,13 +86,40 @@ Get organization information
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.GetOrg(context.Background(), publicId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrg`: OrganizationResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.GetOrg`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public_id of the org you are operating within. | 
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
 
 ### Other Parameters
 
@@ -102,6 +156,32 @@ List your managed organizations
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.ListOrgs(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListOrgs`: OrganizationListResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.ListOrgs`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 This endpoint does not need any parameter.
@@ -137,13 +217,41 @@ Update your organization
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
+    body := datadog.Organization{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: datadog.Organization_settings{PrivateWidgetShare: false, Saml: datadog.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: datadog.AccessRole{}, SamlAutocreateUsersDomains: datadog.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: datadog.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: datadog.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // Organization | 
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.UpdateOrg(context.Background(), publicId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateOrg`: OrganizationResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UpdateOrg`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public_id of the org you are operating within. | 
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
 
 ### Other Parameters
 
@@ -181,13 +289,41 @@ Upload IdP metadata
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    publicId := "publicId_example" // string | The `public_id` of the organization you are operating with
+    idpFile := 987 // *os.File | The path to the XML metadata file you wish to upload.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationsApi.UploadIdPForOrg(context.Background(), publicId, idpFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UploadIdPForOrg`: IdpResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UploadIdPForOrg`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public_id of the org you are operating with | 
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating with | 
 
 ### Other Parameters
 

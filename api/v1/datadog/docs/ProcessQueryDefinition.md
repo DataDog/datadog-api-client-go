@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FilterBy** | Pointer to **[]string** | TODO. | [optional] 
-**Limit** | Pointer to **int64** | TODO. | [optional] 
+**FilterBy** | Pointer to **[]string** | List of processes. | [optional] 
+**Limit** | Pointer to **int64** | Max number of items in the filter list. | [optional] 
 **Metric** | Pointer to **string** | Your chosen metric. | 
-**SearchBy** | Pointer to **string** | TODO. | [optional] 
+**SearchBy** | Pointer to **string** | Your chosen search term. | [optional] 
 
 ## Methods
 

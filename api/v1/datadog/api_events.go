@@ -34,10 +34,10 @@ type apiGetEventRequest struct {
 GetEvent Get an event
 This endpoint allows you to query for event details.
 
-Note: if the event you’re querying contains markdown formatting of any kind,
-you may see characters such as %,\,n in your output.
+**Note**: If the event you’re querying contains markdown formatting of any kind,
+you may see characters such as `%`,`\`,`n` in your output.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param eventId The id of the event.
+ * @param eventId The ID of the event.
 @return apiGetEventRequest
 */
 func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) apiGetEventRequest {
@@ -143,16 +143,6 @@ func (r apiGetEventRequest) Execute() (EventResponse, *_nethttp.Response, error)
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v EventResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
@@ -360,16 +350,6 @@ func (r apiListEventsRequest) Execute() (EventListResponse, *_nethttp.Response, 
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v EventListResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse

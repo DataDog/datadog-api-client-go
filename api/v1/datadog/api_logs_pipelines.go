@@ -37,7 +37,7 @@ func (r apiCreateLogsPipelineRequest) Body(body LogsPipeline) apiCreateLogsPipel
 
 /*
 CreateLogsPipeline Create a pipeline
-Create a Pipeline in your organization.
+Create a pipeline in your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateLogsPipelineRequest
 */
@@ -148,16 +148,6 @@ func (r apiCreateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LogsPipeline
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v LogsAPIErrorResponse
@@ -453,16 +443,6 @@ func (r apiGetLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LogsPipeline
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v LogsAPIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -503,7 +483,7 @@ type apiGetLogsPipelineOrderRequest struct {
 }
 
 /*
-GetLogsPipelineOrder Get Pipeline Order
+GetLogsPipelineOrder Get pipeline order
 Get the current order of your pipelines.
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -611,16 +591,6 @@ func (r apiGetLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_nethttp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LogsPipelinesOrder
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -651,7 +621,7 @@ type apiListLogsPipelinesRequest struct {
 }
 
 /*
-ListLogsPipelines Get all Pipeline
+ListLogsPipelines Get all pipelines
 Get all pipelines from your organization.
 This endpoint takes no JSON arguments.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -758,16 +728,6 @@ func (r apiListLogsPipelinesRequest) Execute() ([]LogsPipeline, *_nethttp.Respon
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v []LogsPipeline
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
@@ -925,16 +885,6 @@ func (r apiUpdateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LogsPipeline
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v LogsAPIErrorResponse
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -981,7 +931,7 @@ func (r apiUpdateLogsPipelineOrderRequest) Body(body LogsPipelinesOrder) apiUpda
 }
 
 /*
-UpdateLogsPipelineOrder Update Pipeline Order
+UpdateLogsPipelineOrder Update pipeline order
 Update the order of your pipelines. Since logs are processed sequentially, reordering a pipeline may change
 the structure and content of the data processed by other pipelines and their processors.
 
@@ -1097,16 +1047,6 @@ func (r apiUpdateLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_neth
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LogsPipelinesOrder
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v LogsAPIErrorResponse

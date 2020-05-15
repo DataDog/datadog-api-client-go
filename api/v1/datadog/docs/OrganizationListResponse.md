@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Orgs** | Pointer to [**[]Organization**](Organization.md) | TODO. | [optional] 
+**Orgs** | Pointer to [**[]Organization**](Organization.md) | Array of organization objects. | [optional] 
 
 ## Methods
 

@@ -7,10 +7,10 @@ Method | HTTP request | Description
 [**CreateLogsPipeline**](LogsPipelinesApi.md#CreateLogsPipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline
 [**DeleteLogsPipeline**](LogsPipelinesApi.md#DeleteLogsPipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline
 [**GetLogsPipeline**](LogsPipelinesApi.md#GetLogsPipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a pipeline
-[**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get Pipeline Order
-[**ListLogsPipelines**](LogsPipelinesApi.md#ListLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all Pipeline
+[**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get pipeline order
+[**ListLogsPipelines**](LogsPipelinesApi.md#ListLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all pipelines
 [**UpdateLogsPipeline**](LogsPipelinesApi.md#UpdateLogsPipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline
-[**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update Pipeline Order
+[**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update pipeline order
 
 
 
@@ -21,6 +21,33 @@ Method | HTTP request | Description
 Create a pipeline
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.LogsPipeline{Filter: datadog.LogsFilter{Query: "Query_example"}, Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, Samples: []string{"Samples_example"), Source: "Source_example", Type: "Type_example", Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: datadog.LogsFilter{Query: "Query_example"}, Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, Samples: []string{"Samples_example"), Source: "Source_example", Type: "Type_example", Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: , Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), Type: "Type_example"} // LogsPipeline | Definition of the new pipeline.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsPipelinesApi.CreateLogsPipeline(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.CreateLogsPipeline``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateLogsPipeline`: LogsPipeline
+    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.CreateLogsPipeline`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -60,6 +87,31 @@ Name | Type | Description  | Notes
 Delete a pipeline
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(context.Background(), pipelineId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.DeleteLogsPipeline``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
 
 ### Path Parameters
 
@@ -104,6 +156,33 @@ Get a pipeline
 
 
 
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    pipelineId := "pipelineId_example" // string | ID of the pipeline to get.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipeline(context.Background(), pipelineId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipeline``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetLogsPipeline`: LogsPipeline
+    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.GetLogsPipeline`: %v\n", resp)
+}
+```
+
 ### Path Parameters
 
 
@@ -143,9 +222,35 @@ Name | Type | Description  | Notes
 
 > LogsPipelinesOrder GetLogsPipelineOrder(ctx).Execute()
 
-Get Pipeline Order
+Get pipeline order
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipelineOrder(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipelineOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetLogsPipelineOrder`: LogsPipelinesOrder
+    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.GetLogsPipelineOrder`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -178,9 +283,35 @@ Other parameters are passed through a pointer to a apiGetLogsPipelineOrderReques
 
 > []LogsPipeline ListLogsPipelines(ctx).Execute()
 
-Get all Pipeline
+Get all pipelines
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsPipelinesApi.ListLogsPipelines(context.Background(), ).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.ListLogsPipelines``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListLogsPipelines`: []LogsPipeline
+    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.ListLogsPipelines`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -216,6 +347,34 @@ Other parameters are passed through a pointer to a apiListLogsPipelinesRequest s
 Update a pipeline
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
+    body := datadog.LogsPipeline{Filter: , Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{), Type: "Type_example"} // LogsPipeline | New definition of the pipeline.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipeline(context.Background(), pipelineId, body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipeline``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateLogsPipeline`: LogsPipeline
+    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.UpdateLogsPipeline`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
@@ -257,9 +416,36 @@ Name | Type | Description  | Notes
 
 > LogsPipelinesOrder UpdateLogsPipelineOrder(ctx).Body(body).Execute()
 
-Update Pipeline Order
+Update pipeline order
 
 
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    body := datadog.LogsPipelinesOrder{PipelineIds: []string{"PipelineIds_example")} // LogsPipelinesOrder | Object containing the new ordered list of pipeline IDs.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipelineOrder(context.Background(), body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipelineOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateLogsPipelineOrder`: LogsPipelinesOrder
+    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.UpdateLogsPipelineOrder`: %v\n", resp)
+}
+```
 
 ### Path Parameters
 
