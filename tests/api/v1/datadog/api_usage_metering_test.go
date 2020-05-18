@@ -36,6 +36,20 @@ func getStartEndMonth(ctx context.Context) (time.Time, time.Time) {
 	return start, end
 }
 
+func TestUsageAnalyzedLogs(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageAnalyzedLogs(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Analyzed Logs (Security Monitoring): Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
 func TestUsageFargate(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
@@ -226,6 +240,20 @@ func TestUsageRumSessions(t *testing.T) {
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
+func TestUsageSnmp(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSnmp(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage SNMP Devices: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasUsage())
