@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | ID of the role. | [optional] 
-**Type** | Pointer to **string** | Type of role. | [optional] [default to "roles"]
+**Type** | Pointer to **string** | The type of the resource. The value should always be roles. | [optional] [default to "roles"]
 
 ## Methods
 

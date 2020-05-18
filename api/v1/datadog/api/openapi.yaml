@@ -6255,6 +6255,7 @@ components:
         type:
           default: alert_graph
           description: Type of the widget.
+          example: alert_graph
           readOnly: true
           type: string
         viz_type:
@@ -6289,6 +6290,7 @@ components:
         type:
           default: alert_value
           description: Type of the widget.
+          example: alert_value
           readOnly: true
           type: string
         unit:
@@ -6529,6 +6531,7 @@ components:
         type:
           default: change
           description: Type of the widget.
+          example: change
           readOnly: true
           type: string
       required:
@@ -6651,6 +6654,7 @@ components:
         type:
           default: check_status
           description: Type of the widget.
+          example: check_status
           readOnly: true
           type: string
       required:
@@ -6824,7 +6828,7 @@ components:
           handle: handle
           email: email
         created: 2000-01-23T04:56:07.000+00:00
-        name: name
+        name: My Dashboard
         modified: 2000-01-23T04:56:07.000+00:00
         id: 6
         type: manual_dashboard_list
@@ -6857,6 +6861,7 @@ components:
           type: string
         name:
           description: The name of the dashboard list.
+          example: My Dashboard
           type: string
         type:
           description: The type of dashboard list.
@@ -6887,7 +6892,7 @@ components:
             handle: handle
             email: email
           created: 2000-01-23T04:56:07.000+00:00
-          name: name
+          name: My Dashboard
           modified: 2000-01-23T04:56:07.000+00:00
           id: 6
           type: manual_dashboard_list
@@ -6898,7 +6903,7 @@ components:
             handle: handle
             email: email
           created: 2000-01-23T04:56:07.000+00:00
-          name: name
+          name: My Dashboard
           modified: 2000-01-23T04:56:07.000+00:00
           id: 6
           type: manual_dashboard_list
@@ -7014,6 +7019,7 @@ components:
         type:
           default: distribution
           description: Type of the widget.
+          example: distribution
           readOnly: true
           type: string
       required:
@@ -7483,6 +7489,7 @@ components:
         type:
           default: event_stream
           description: Type of the widget.
+          example: event_stream
           readOnly: true
           type: string
       required:
@@ -7513,6 +7520,7 @@ components:
         type:
           default: event_timeline
           description: Type of the widget.
+          example: event_timeline
           readOnly: true
           type: string
       required:
@@ -7538,6 +7546,7 @@ components:
         type:
           default: free_text
           description: Type of the widget.
+          example: free_text
           readOnly: true
           type: string
       required:
@@ -7664,6 +7673,7 @@ components:
         type:
           default: group
           description: Type of the widget.
+          example: group
           readOnly: true
           type: string
         widgets:
@@ -7730,6 +7740,7 @@ components:
         type:
           default: heatmap
           description: Type of the widget.
+          example: heatmap
           readOnly: true
           type: string
         yaxis:
@@ -8005,6 +8016,7 @@ components:
         type:
           default: hostmap
           description: Type of the widget.
+          example: hostmap
           readOnly: true
           type: string
       required:
@@ -8102,6 +8114,7 @@ components:
         type:
           default: iframe
           description: Type of the widget.
+          example: iframe
           readOnly: true
           type: string
         url:
@@ -8385,6 +8398,7 @@ components:
         type:
           default: image
           description: Type of the widget.
+          example: image
           readOnly: true
           type: string
         url:
@@ -8490,6 +8504,7 @@ components:
         type:
           default: log_stream
           description: Type of the widget.
+          example: log_stream
           readOnly: true
           type: string
       required:
@@ -8556,6 +8571,7 @@ components:
         type:
           default: arithmetic-processor
           description: Type of processor
+          example: arithmetic-processor
           readOnly: true
           type: string
       required:
@@ -8583,6 +8599,9 @@ components:
           type: string
         sources:
           description: Array of source attributes.
+          example:
+          - web
+          - gateway
           items:
             description: Attribute used as a source to remap its value to the target
               attribute.
@@ -8590,6 +8609,7 @@ components:
           type: array
         target:
           description: Final attribute or tag name to remap the sources to.
+          example: operation_id
           type: string
         target_type:
           default: attribute
@@ -8598,6 +8618,7 @@ components:
         type:
           default: attribute-remapper
           description: Type of processor.
+          example: attribute-remapper
           readOnly: true
           type: string
       required:
@@ -8635,6 +8656,7 @@ components:
         type:
           default: category-processor
           description: Type of processor.
+          example: category-processor
           readOnly: true
           type: string
       required:
@@ -8666,6 +8688,9 @@ components:
       properties:
         sources:
           description: Array of source attributes.
+          example:
+          - web
+          - gateway
           items:
             description: Attribute used as a source to define the log associated date.
             type: string
@@ -8673,6 +8698,7 @@ components:
         type:
           default: date-remapper
           description: Type of processor.
+          example: date-remapper
           readOnly: true
           type: string
       required:
@@ -8687,7 +8713,7 @@ components:
           sample_rate: 1
           query: '*'
         is_enabled: true
-        name: name
+        name: payment
       properties:
         filter:
           $ref: '#/components/schemas/LogsExclusionFilter'
@@ -8696,6 +8722,7 @@ components:
           type: boolean
         name:
           description: Name of the index exclusion filter.
+          example: payment
           type: string
       required:
       - name
@@ -8742,6 +8769,8 @@ components:
           default:
           - network.client.ip
           description: Array of source attributes.
+          example:
+          - network.client.ip
           items:
             description: Attribute to geo-localize the IP from.
             type: string
@@ -8750,10 +8779,12 @@ components:
           default: network.client.geoip
           description: Name of the parent attribute that contains all the extracted
             details from the `sources`.
+          example: network.client.geoip
           type: string
         type:
           default: geo-ip-parser
           description: Type of processor.
+          example: geo-ip-parser
           readOnly: true
           type: string
       required:
@@ -8779,10 +8810,12 @@ components:
         source:
           default: message
           description: Name of the log attribute to parse.
+          example: message
           type: string
         type:
           default: grok-parser
           description: Type of processor.
+          example: grok-parser
           readOnly: true
           type: string
       required:
@@ -8821,12 +8854,12 @@ components:
             sample_rate: 1
             query: '*'
           is_enabled: true
-          name: name
+          name: payment
         - filter:
             sample_rate: 1
             query: '*'
           is_enabled: true
-          name: name
+          name: payment
         num_retention_days: 6
         is_rate_limited: true
         name: name
@@ -8877,12 +8910,12 @@ components:
               sample_rate: 1
               query: '*'
             is_enabled: true
-            name: name
+            name: payment
           - filter:
               sample_rate: 1
               query: '*'
             is_enabled: true
-            name: name
+            name: payment
           num_retention_days: 6
           is_rate_limited: true
           name: name
@@ -8894,12 +8927,12 @@ components:
               sample_rate: 1
               query: '*'
             is_enabled: true
-            name: name
+            name: payment
           - filter:
               sample_rate: 1
               query: '*'
             is_enabled: true
-            name: name
+            name: payment
           num_retention_days: 6
           is_rate_limited: true
           name: name
@@ -8915,14 +8948,19 @@ components:
       description: Object containing the ordered list of log index names.
       example:
         index_names:
-        - index_names
-        - index_names
+        - main
+        - payments
+        - web
       properties:
         index_names:
           description: |-
             Array of strings identifying by their name(s) the index(es) of your organization.
             Logs are tested against the query filter of each index one by one, following the order of the array.
             Logs are eventually stored in the first matching index.
+          example:
+          - main
+          - payments
+          - web
           items:
             description: An index name.
             type: string
@@ -8934,13 +8972,13 @@ components:
       description: Object to send with the request to retrieve a list of logs from
         your Organization.
       example:
-        query: query
+        query: service:web* AND @http.status_code:[200 TO 299]
         limit: 80
         index: index
         time:
           timezone: timezone
-          from: 2000-01-23T04:56:07.000+00:00
-          to: 2000-01-23T04:56:07.000+00:00
+          from: 2020-02-02T02:02:02Z
+          to: 2020-02-20T20:20:20Z
         startAt: startAt
       properties:
         index:
@@ -8954,6 +8992,7 @@ components:
           type: integer
         query:
           description: The search query - following the log search syntax.
+          example: service:web* AND @http.status_code:[200 TO 299]
           type: string
         sort:
           $ref: '#/components/schemas/LogsSort'
@@ -9048,6 +9087,7 @@ components:
         type:
           default: lookup-processor
           description: Type of processor.
+          example: lookup-processor
           readOnly: true
           type: string
       required:
@@ -9069,6 +9109,8 @@ components:
           default:
           - msg
           description: Array of source attributes.
+          example:
+          - msg
           items:
             description: Attribute used as a source to define the log associated message.
             type: string
@@ -9076,6 +9118,7 @@ components:
         type:
           default: message-remapper
           description: Type of processor.
+          example: message-remapper
           readOnly: true
           type: string
       required:
@@ -9155,6 +9198,7 @@ components:
         type:
           default: pipeline
           description: Type of processor.
+          example: pipeline
           readOnly: true
           type: string
       required:
@@ -9164,13 +9208,18 @@ components:
       description: Object containing the ordered list of pipeline IDs.
       example:
         pipeline_ids:
-        - pipeline_ids
-        - pipeline_ids
+        - tags
+        - org_ids
+        - products
       properties:
         pipeline_ids:
           description: |-
             Ordered Array of `<PIPELINE_ID>` strings, the order of pipeline IDs in the array
             define the overall Pipelines order for Datadog.
+          example:
+          - tags
+          - org_ids
+          - products
           items:
             description: A given pipeline ID.
             type: string
@@ -9255,6 +9304,9 @@ components:
       properties:
         sources:
           description: Array of source attributes.
+          example:
+          - web
+          - gateway
           items:
             description: Attribute used as a source to define the log associated service.
             type: string
@@ -9262,6 +9314,7 @@ components:
         type:
           default: service-remapper
           description: Type of processor.
+          example: service-remapper
           readOnly: true
           type: string
       required:
@@ -9307,6 +9360,7 @@ components:
         type:
           default: status-remapper
           description: Type of processor.
+          example: status-remapper
           readOnly: true
           type: string
       required:
@@ -9344,6 +9398,7 @@ components:
         type:
           default: string-builder-processor
           description: Type of processor.
+          example: string-builder-processor
           readOnly: true
           type: string
       required:
@@ -9371,6 +9426,7 @@ components:
         type:
           default: trace-id-remapper
           description: Type of processor.
+          example: trace-id-remapper
           readOnly: true
           type: string
       required:
@@ -9389,6 +9445,8 @@ components:
           default:
           - http.url
           description: Array of source attributes.
+          example:
+          - http.url
           items:
             description: Attribute to extract the URL from.
             type: string
@@ -9397,10 +9455,12 @@ components:
           default: http.url_details
           description: Name of the parent attribute that contains all the extracted
             details from the `sources`.
+          example: http.url_details
           type: string
         type:
           default: url-parser
           description: Type of processor.
+          example: url-parser
           readOnly: true
           type: string
       required:
@@ -9421,6 +9481,8 @@ components:
           default:
           - http.useragent
           description: Array of source attributes.
+          example:
+          - http.useragent
           items:
             description: Attribute to extract the User-Agent from.
             type: string
@@ -9429,10 +9491,12 @@ components:
           default: http.useragent_details
           description: Name of the parent attribute that contains all the extracted
             details from the `sources`.
+          example: http.useragent_details
           type: string
         type:
           default: user-agent-parser
           description: Type of processor.
+          example: user-agent-parser
           readOnly: true
           type: string
       required:
@@ -10025,6 +10089,7 @@ components:
         type:
           default: manage_status
           description: Type of the widget.
+          example: manage_status
           readOnly: true
           type: string
       required:
@@ -10254,6 +10319,7 @@ components:
         type:
           default: note
           description: Type of the widget.
+          example: note
           readOnly: true
           type: string
       required:
@@ -10627,6 +10693,7 @@ components:
         type:
           default: query_value
           description: Type of widget.
+          example: query_value
           readOnly: true
           type: string
       required:
@@ -11269,6 +11336,7 @@ components:
         type:
           default: slo
           description: Type of the widget.
+          example: slo
           readOnly: true
           type: string
         view_mode:
@@ -11276,6 +11344,7 @@ components:
         view_type:
           default: detail
           description: Type of view displayed by the widget.
+          example: detail
           type: string
       required:
       - type
@@ -11327,6 +11396,7 @@ components:
         type:
           default: scatterplot
           description: Type of widget.
+          example: scatterplot
           readOnly: true
           type: string
         xaxis:
@@ -11638,6 +11708,7 @@ components:
         type:
           default: servicemap
           description: Type of the widget.
+          example: servicemap
           readOnly: true
           type: string
       required:
@@ -11693,6 +11764,7 @@ components:
         type:
           default: trace_service
           description: Type of the widget.
+          example: trace_service
           readOnly: true
           type: string
       required:
@@ -11862,11 +11934,7 @@ components:
               pattern: pattern
               id: id
               example: example
-            assertions:
-            - property: property
-              target: '{}'
-            - property: property
-              target: '{}'
+            assertions: []
         check_time: 0.8008281904610115
       properties:
         check:
@@ -11927,9 +11995,6 @@ components:
       description: |-
         Object describing the assertions type, their associated operator,
         which property they apply , and upon which target.
-      example:
-        property: property
-        target: '{}'
       properties:
         operator:
           $ref: '#/components/schemas/SyntheticsAssertionOperator'
@@ -12274,11 +12339,7 @@ components:
               pattern: pattern
               id: id
               example: example
-            assertions:
-            - property: property
-              target: '{}'
-            - property: property
-              target: '{}'
+            assertions: []
         check_time: 0.8008281904610115
       properties:
         check:
@@ -12642,11 +12703,7 @@ components:
               pattern: pattern
               id: id
               example: example
-            assertions:
-            - property: property
-              target: '{}'
-            - property: property
-              target: '{}'
+            assertions: []
         - monitor_id: 5
           created_at: created_at
           message: message
@@ -12703,11 +12760,7 @@ components:
               pattern: pattern
               id: id
               example: example
-            assertions:
-            - property: property
-              target: '{}'
-            - property: property
-              target: '{}'
+            assertions: []
       properties:
         tests:
           description: Array of Synthetic tests configuration.
@@ -13055,15 +13108,12 @@ components:
           pattern: pattern
           id: id
           example: example
-        assertions:
-        - property: property
-          target: '{}'
-        - property: property
-          target: '{}'
+        assertions: []
       properties:
         assertions:
           default: []
           description: Array of assertions used for the test.
+          example: []
           items:
             $ref: '#/components/schemas/SyntheticsAssertion'
           type: array
@@ -13137,11 +13187,7 @@ components:
             pattern: pattern
             id: id
             example: example
-          assertions:
-          - property: property
-            target: '{}'
-          - property: property
-            target: '{}'
+          assertions: []
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
@@ -13452,6 +13498,7 @@ components:
         type:
           default: query_table
           description: Type of the widget.
+          example: query_table
           readOnly: true
           type: string
       required:
@@ -13554,6 +13601,7 @@ components:
         type:
           default: timeseries
           description: Type of the widget.
+          example: timeseries
           readOnly: true
           type: string
         yaxis:
@@ -13613,6 +13661,7 @@ components:
         type:
           default: toplist
           description: Type of the widget.
+          example: toplist
           readOnly: true
           type: string
       required:
@@ -15851,11 +15900,12 @@ components:
       description: Timeframe to retrieve the log from.
       example:
         timezone: timezone
-        from: 2000-01-23T04:56:07.000+00:00
-        to: 2000-01-23T04:56:07.000+00:00
+        from: 2020-02-02T02:02:02Z
+        to: 2020-02-20T20:20:20Z
       properties:
         from:
           description: Minimum timestamp for requested logs.
+          example: 2020-02-02T02:02:02Z
           format: date-time
           type: string
         timezone:
@@ -15865,6 +15915,7 @@ components:
           type: string
         to:
           description: Maximum timestamp for requested logs.
+          example: 2020-02-20T20:20:20Z
           format: date-time
           type: string
       required:
@@ -16346,11 +16397,7 @@ components:
             pattern: pattern
             id: id
             example: example
-          assertions:
-          - property: property
-            target: '{}'
-          - property: property
-            target: '{}'
+          assertions: []
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
@@ -16397,11 +16444,7 @@ components:
             pattern: pattern
             id: id
             example: example
-          assertions:
-          - property: property
-            target: '{}'
-          - property: property
-            target: '{}'
+          assertions: []
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
