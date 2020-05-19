@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Categories** | Pointer to [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessor_categories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
-**Target** | Pointer to **string** | Name of the target attribute which value is defined by the matching category. | 
-**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "category-processor"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
+**Target** | Pointer to **string** | Name of the target attribute which value is defined by the matching category. | 
+**Type** | Pointer to [**LogsCategoryProcessorType**](LogsCategoryProcessorType.md) |  | [default to "category-processor"]
 
 ## Methods
 
 ### NewLogsCategoryProcessor
 
-`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategories, target string, type_ string, ) *LogsCategoryProcessor`
+`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategories, target string, type_ LogsCategoryProcessorType, ) *LogsCategoryProcessor`
 
 NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -47,46 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategories)`
 
 SetCategories sets Categories field to given value.
-
-
-### GetTarget
-
-`func (o *LogsCategoryProcessor) GetTarget() string`
-
-GetTarget returns the Target field if non-nil, zero value otherwise.
-
-### GetTargetOk
-
-`func (o *LogsCategoryProcessor) GetTargetOk() (*string, bool)`
-
-GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTarget
-
-`func (o *LogsCategoryProcessor) SetTarget(v string)`
-
-SetTarget sets Target field to given value.
-
-
-### GetType
-
-`func (o *LogsCategoryProcessor) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *LogsCategoryProcessor) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *LogsCategoryProcessor) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 ### GetIsEnabled
@@ -139,12 +99,46 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetTarget
 
-### AsLogsProcessor
+`func (o *LogsCategoryProcessor) GetTarget() string`
 
-`func (s *LogsCategoryProcessor) AsLogsProcessor() LogsProcessor`
+GetTarget returns the Target field if non-nil, zero value otherwise.
 
-Convenience method to wrap this instance of LogsCategoryProcessor in LogsProcessor
+### GetTargetOk
+
+`func (o *LogsCategoryProcessor) GetTargetOk() (*string, bool)`
+
+GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTarget
+
+`func (o *LogsCategoryProcessor) SetTarget(v string)`
+
+SetTarget sets Target field to given value.
+
+
+### GetType
+
+`func (o *LogsCategoryProcessor) GetType() LogsCategoryProcessorType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LogsCategoryProcessor) GetTypeOk() (*LogsCategoryProcessorType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsCategoryProcessor) SetType(v LogsCategoryProcessorType)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetLineWidth Width of line displayed.
 type WidgetLineWidth string
 
@@ -21,6 +25,23 @@ const (
 	WIDGETLINEWIDTH_THICK  WidgetLineWidth = "thick"
 	WIDGETLINEWIDTH_THIN   WidgetLineWidth = "thin"
 )
+
+func (v *WidgetLineWidth) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetLineWidth(value)
+	for _, existing := range []WidgetLineWidth{"normal", "thick", "thin"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetLineWidth", *v)
+}
 
 // Ptr returns reference to WidgetLineWidth value
 func (v WidgetLineWidth) Ptr() *WidgetLineWidth {

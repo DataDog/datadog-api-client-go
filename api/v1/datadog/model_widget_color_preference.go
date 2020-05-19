@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetColorPreference Which color to use on the widget.
 type WidgetColorPreference string
 
@@ -20,6 +24,23 @@ const (
 	WIDGETCOLORPREFERENCE_BACKGROUND WidgetColorPreference = "background"
 	WIDGETCOLORPREFERENCE_TEXT       WidgetColorPreference = "text"
 )
+
+func (v *WidgetColorPreference) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetColorPreference(value)
+	for _, existing := range []WidgetColorPreference{"background", "text"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetColorPreference", *v)
+}
 
 // Ptr returns reference to WidgetColorPreference value
 func (v WidgetColorPreference) Ptr() *WidgetColorPreference {

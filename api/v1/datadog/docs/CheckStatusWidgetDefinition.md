@@ -13,13 +13,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "check_status"]
+**Type** | Pointer to [**CheckStatusWidgetDefinitionType**](CheckStatusWidgetDefinitionType.md) |  | [default to "check_status"]
 
 ## Methods
 
 ### NewCheckStatusWidgetDefinition
 
-`func NewCheckStatusWidgetDefinition(check string, grouping WidgetGrouping, type_ string, ) *CheckStatusWidgetDefinition`
+`func NewCheckStatusWidgetDefinition(check string, grouping WidgetGrouping, type_ CheckStatusWidgetDefinitionType, ) *CheckStatusWidgetDefinition`
 
 NewCheckStatusWidgetDefinition instantiates a new CheckStatusWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -251,30 +251,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *CheckStatusWidgetDefinition) GetType() string`
+`func (o *CheckStatusWidgetDefinition) GetType() CheckStatusWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *CheckStatusWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *CheckStatusWidgetDefinition) GetTypeOk() (*CheckStatusWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *CheckStatusWidgetDefinition) SetType(v string)`
+`func (o *CheckStatusWidgetDefinition) SetType(v CheckStatusWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *CheckStatusWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of CheckStatusWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // MonitorOverallStates The different states your monitor can be in.
 type MonitorOverallStates string
 
@@ -25,6 +29,23 @@ const (
 	MONITOROVERALLSTATES_UNKNOWN MonitorOverallStates = "Unknown"
 	MONITOROVERALLSTATES_WARN    MonitorOverallStates = "Warn"
 )
+
+func (v *MonitorOverallStates) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := MonitorOverallStates(value)
+	for _, existing := range []MonitorOverallStates{"Alert", "Ignored", "No Data", "OK", "Skipped", "Unknown", "Warn"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid MonitorOverallStates", *v)
+}
 
 // Ptr returns reference to MonitorOverallStates value
 func (v MonitorOverallStates) Ptr() *MonitorOverallStates {

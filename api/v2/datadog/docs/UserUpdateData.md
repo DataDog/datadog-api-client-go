@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**UserUpdateAttributes**](UserUpdateAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the user. | [optional] 
-**Type** | Pointer to **string** | Users resource type. | [optional] [readonly] [default to "users"]
+**Type** | Pointer to [**UsersType**](UsersType.md) |  | [optional] [default to "users"]
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *UserUpdateData) GetType() string`
+`func (o *UserUpdateData) GetType() UsersType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *UserUpdateData) GetTypeOk() (*string, bool)`
+`func (o *UserUpdateData) GetTypeOk() (*UsersType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *UserUpdateData) SetType(v string)`
+`func (o *UserUpdateData) SetType(v UsersType)`
 
 SetType sets Type field to given value.
 

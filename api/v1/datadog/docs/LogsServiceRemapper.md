@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sources** | Pointer to **[]string** | Array of source attributes. | 
-**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "service-remapper"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
+**Sources** | Pointer to **[]string** | Array of source attributes. | 
+**Type** | Pointer to [**LogsServiceRemapperType**](LogsServiceRemapperType.md) |  | [default to "service-remapper"]
 
 ## Methods
 
 ### NewLogsServiceRemapper
 
-`func NewLogsServiceRemapper(sources []string, type_ string, ) *LogsServiceRemapper`
+`func NewLogsServiceRemapper(sources []string, type_ LogsServiceRemapperType, ) *LogsServiceRemapper`
 
 NewLogsServiceRemapper instantiates a new LogsServiceRemapper object
 This constructor will assign default values to properties that have it defined,
@@ -27,46 +27,6 @@ will change when the set of required properties is changed
 NewLogsServiceRemapperWithDefaults instantiates a new LogsServiceRemapper object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSources
-
-`func (o *LogsServiceRemapper) GetSources() []string`
-
-GetSources returns the Sources field if non-nil, zero value otherwise.
-
-### GetSourcesOk
-
-`func (o *LogsServiceRemapper) GetSourcesOk() (*[]string, bool)`
-
-GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSources
-
-`func (o *LogsServiceRemapper) SetSources(v []string)`
-
-SetSources sets Sources field to given value.
-
-
-### GetType
-
-`func (o *LogsServiceRemapper) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *LogsServiceRemapper) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *LogsServiceRemapper) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetIsEnabled
 
@@ -118,12 +78,46 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetSources
 
-### AsLogsProcessor
+`func (o *LogsServiceRemapper) GetSources() []string`
 
-`func (s *LogsServiceRemapper) AsLogsProcessor() LogsProcessor`
+GetSources returns the Sources field if non-nil, zero value otherwise.
 
-Convenience method to wrap this instance of LogsServiceRemapper in LogsProcessor
+### GetSourcesOk
+
+`func (o *LogsServiceRemapper) GetSourcesOk() (*[]string, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *LogsServiceRemapper) SetSources(v []string)`
+
+SetSources sets Sources field to given value.
+
+
+### GetType
+
+`func (o *LogsServiceRemapper) GetType() LogsServiceRemapperType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LogsServiceRemapper) GetTypeOk() (*LogsServiceRemapperType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsServiceRemapper) SetType(v LogsServiceRemapperType)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

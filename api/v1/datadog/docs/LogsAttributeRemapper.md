@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 **OverrideOnConflict** | Pointer to **bool** | Override or not the target element if already set, | [optional] [default to false]
 **PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]
 **SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **Sources** | Pointer to **[]string** | Array of source attributes. | 
 **Target** | Pointer to **string** | Final attribute or tag name to remap the sources to. | 
 **TargetType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
-**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "attribute-remapper"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
+**Type** | Pointer to [**LogsAttributeRemapperType**](LogsAttributeRemapperType.md) |  | [default to "attribute-remapper"]
 
 ## Methods
 
 ### NewLogsAttributeRemapper
 
-`func NewLogsAttributeRemapper(sources []string, target string, type_ string, ) *LogsAttributeRemapper`
+`func NewLogsAttributeRemapper(sources []string, target string, type_ LogsAttributeRemapperType, ) *LogsAttributeRemapper`
 
 NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
 This constructor will assign default values to properties that have it defined,
@@ -32,6 +32,56 @@ will change when the set of required properties is changed
 NewLogsAttributeRemapperWithDefaults instantiates a new LogsAttributeRemapper object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetIsEnabled
+
+`func (o *LogsAttributeRemapper) GetIsEnabled() bool`
+
+GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
+
+### GetIsEnabledOk
+
+`func (o *LogsAttributeRemapper) GetIsEnabledOk() (*bool, bool)`
+
+GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEnabled
+
+`func (o *LogsAttributeRemapper) SetIsEnabled(v bool)`
+
+SetIsEnabled sets IsEnabled field to given value.
+
+### HasIsEnabled
+
+`func (o *LogsAttributeRemapper) HasIsEnabled() bool`
+
+HasIsEnabled returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *LogsAttributeRemapper) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *LogsAttributeRemapper) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsAttributeRemapper) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *LogsAttributeRemapper) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetOverrideOnConflict
 
@@ -175,80 +225,24 @@ HasTargetType returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *LogsAttributeRemapper) GetType() string`
+`func (o *LogsAttributeRemapper) GetType() LogsAttributeRemapperType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsAttributeRemapper) GetTypeOk() (*string, bool)`
+`func (o *LogsAttributeRemapper) GetTypeOk() (*LogsAttributeRemapperType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *LogsAttributeRemapper) SetType(v string)`
+`func (o *LogsAttributeRemapper) SetType(v LogsAttributeRemapperType)`
 
 SetType sets Type field to given value.
 
 
-### GetIsEnabled
-
-`func (o *LogsAttributeRemapper) GetIsEnabled() bool`
-
-GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
-
-### GetIsEnabledOk
-
-`func (o *LogsAttributeRemapper) GetIsEnabledOk() (*bool, bool)`
-
-GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsEnabled
-
-`func (o *LogsAttributeRemapper) SetIsEnabled(v bool)`
-
-SetIsEnabled sets IsEnabled field to given value.
-
-### HasIsEnabled
-
-`func (o *LogsAttributeRemapper) HasIsEnabled() bool`
-
-HasIsEnabled returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *LogsAttributeRemapper) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LogsAttributeRemapper) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LogsAttributeRemapper) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *LogsAttributeRemapper) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-
-### AsLogsProcessor
-
-`func (s *LogsAttributeRemapper) AsLogsProcessor() LogsProcessor`
-
-Convenience method to wrap this instance of LogsAttributeRemapper in LogsProcessor
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
