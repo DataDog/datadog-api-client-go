@@ -89,6 +89,11 @@ Class | Method | HTTP request | Description
 *RolesApi* | [**RemovePermissionFromRole**](docs/RolesApi.md#removepermissionfromrole) | **Delete** /api/v2/roles/{role_id}/permissions | Revoke permission
 *RolesApi* | [**RemoveUserFromRole**](docs/RolesApi.md#removeuserfromrole) | **Delete** /api/v2/roles/{role_id}/users | Remove a user from a role
 *RolesApi* | [**UpdateRole**](docs/RolesApi.md#updaterole) | **Patch** /api/v2/roles/{role_id} | Update a role
+*SecurityMonitoringApi* | [**CreateSecurityMonitoringRule**](docs/SecurityMonitoringApi.md#createsecuritymonitoringrule) | **Post** /api/v2/security_monitoring/rules | Create a detection rule
+*SecurityMonitoringApi* | [**DeleteSecurityMonitoringRule**](docs/SecurityMonitoringApi.md#deletesecuritymonitoringrule) | **Delete** /api/v2/security_monitoring/rules/{rule_id} | Delete an existing rule
+*SecurityMonitoringApi* | [**GetSecurityMonitoringRule**](docs/SecurityMonitoringApi.md#getsecuritymonitoringrule) | **Get** /api/v2/security_monitoring/rules/{rule_id} | Get a rule&#39;s details
+*SecurityMonitoringApi* | [**ListSecurityMonitoringRules**](docs/SecurityMonitoringApi.md#listsecuritymonitoringrules) | **Get** /api/v2/security_monitoring/rules | List rules
+*SecurityMonitoringApi* | [**UpdateSecurityMonitoringRule**](docs/SecurityMonitoringApi.md#updatesecuritymonitoringrule) | **Put** /api/v2/security_monitoring/rules/{rule_id} | Update an existing rule
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v2/users | Create a user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v2/users/{user_id} | Disable a user
 *UsersApi* | [**GetInvitation**](docs/UsersApi.md#getinvitation) | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation
@@ -144,6 +149,17 @@ Class | Method | HTTP request | Description
  - [RolesResponse](docs/RolesResponse.md)
  - [RolesSort](docs/RolesSort.md)
  - [RolesType](docs/RolesType.md)
+ - [SecurityMonitoringListRulesResponse](docs/SecurityMonitoringListRulesResponse.md)
+ - [SecurityMonitoringRuleCase](docs/SecurityMonitoringRuleCase.md)
+ - [SecurityMonitoringRuleCreatePayload](docs/SecurityMonitoringRuleCreatePayload.md)
+ - [SecurityMonitoringRuleEvaluationWindow](docs/SecurityMonitoringRuleEvaluationWindow.md)
+ - [SecurityMonitoringRuleKeepAlive](docs/SecurityMonitoringRuleKeepAlive.md)
+ - [SecurityMonitoringRuleMaxSignalDuration](docs/SecurityMonitoringRuleMaxSignalDuration.md)
+ - [SecurityMonitoringRuleOptions](docs/SecurityMonitoringRuleOptions.md)
+ - [SecurityMonitoringRuleQuery](docs/SecurityMonitoringRuleQuery.md)
+ - [SecurityMonitoringRuleResponse](docs/SecurityMonitoringRuleResponse.md)
+ - [SecurityMonitoringRuleSeverity](docs/SecurityMonitoringRuleSeverity.md)
+ - [SecurityMonitoringRuleUpdatePayload](docs/SecurityMonitoringRuleUpdatePayload.md)
  - [User](docs/User.md)
  - [UserAttributes](docs/UserAttributes.md)
  - [UserCreateAttributes](docs/UserCreateAttributes.md)
