@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // QuerySortOrder Direction of sort.
 type QuerySortOrder string
 
@@ -20,6 +24,23 @@ const (
 	QUERYSORTORDER_ASC  QuerySortOrder = "asc"
 	QUERYSORTORDER_DESC QuerySortOrder = "desc"
 )
+
+func (v *QuerySortOrder) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := QuerySortOrder(value)
+	for _, existing := range []QuerySortOrder{"asc", "desc"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid QuerySortOrder", *v)
+}
 
 // Ptr returns reference to QuerySortOrder value
 func (v QuerySortOrder) Ptr() *QuerySortOrder {

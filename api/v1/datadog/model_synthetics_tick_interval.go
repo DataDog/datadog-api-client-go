@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SyntheticsTickInterval The frequency at which to run the Synthetic test.
 type SyntheticsTickInterval int64
 
@@ -27,6 +31,23 @@ const (
 	SYNTHETICSTICKINTERVAL_DAY             SyntheticsTickInterval = 86400
 	SYNTHETICSTICKINTERVAL_WEEK            SyntheticsTickInterval = 604800
 )
+
+func (v *SyntheticsTickInterval) UnmarshalJSON(src []byte) error {
+	var value int64
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SyntheticsTickInterval(value)
+	for _, existing := range []SyntheticsTickInterval{60, 300, 900, 1800, 3600, 21600, 43200, 86400, 604800} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SyntheticsTickInterval", *v)
+}
 
 // Ptr returns reference to SyntheticsTickInterval value
 func (v SyntheticsTickInterval) Ptr() *SyntheticsTickInterval {

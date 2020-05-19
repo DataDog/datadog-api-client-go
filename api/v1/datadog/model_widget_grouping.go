@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetGrouping The kind of grouping to use.
 type WidgetGrouping string
 
@@ -20,6 +24,23 @@ const (
 	WIDGETGROUPING_CHECK   WidgetGrouping = "check"
 	WIDGETGROUPING_CLUSTER WidgetGrouping = "cluster"
 )
+
+func (v *WidgetGrouping) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetGrouping(value)
+	for _, existing := range []WidgetGrouping{"check", "cluster"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetGrouping", *v)
+}
 
 // Ptr returns reference to WidgetGrouping value
 func (v WidgetGrouping) Ptr() *WidgetGrouping {

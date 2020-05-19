@@ -16,13 +16,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "manage_status"]
+**Type** | Pointer to [**MonitorSummaryWidgetDefinitionType**](MonitorSummaryWidgetDefinitionType.md) |  | [default to "manage_status"]
 
 ## Methods
 
 ### NewMonitorSummaryWidgetDefinition
 
-`func NewMonitorSummaryWidgetDefinition(query string, type_ string, ) *MonitorSummaryWidgetDefinition`
+`func NewMonitorSummaryWidgetDefinition(query string, type_ MonitorSummaryWidgetDefinitionType, ) *MonitorSummaryWidgetDefinition`
 
 NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -334,30 +334,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *MonitorSummaryWidgetDefinition) GetType() string`
+`func (o *MonitorSummaryWidgetDefinition) GetType() MonitorSummaryWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (*MonitorSummaryWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *MonitorSummaryWidgetDefinition) SetType(v string)`
+`func (o *MonitorSummaryWidgetDefinition) SetType(v MonitorSummaryWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *MonitorSummaryWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of MonitorSummaryWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

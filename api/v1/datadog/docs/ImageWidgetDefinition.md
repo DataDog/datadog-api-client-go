@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Margin** | Pointer to [**WidgetMargin**](WidgetMargin.md) |  | [optional] 
 **Sizing** | Pointer to [**WidgetImageSizing**](WidgetImageSizing.md) |  | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "image"]
+**Type** | Pointer to [**ImageWidgetDefinitionType**](ImageWidgetDefinitionType.md) |  | [default to "image"]
 **Url** | Pointer to **string** | URL of the image. | 
 
 ## Methods
 
 ### NewImageWidgetDefinition
 
-`func NewImageWidgetDefinition(type_ string, url string, ) *ImageWidgetDefinition`
+`func NewImageWidgetDefinition(type_ ImageWidgetDefinitionType, url string, ) *ImageWidgetDefinition`
 
 NewImageWidgetDefinition instantiates a new ImageWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -80,20 +80,20 @@ HasSizing returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *ImageWidgetDefinition) GetType() string`
+`func (o *ImageWidgetDefinition) GetType() ImageWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ImageWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *ImageWidgetDefinition) GetTypeOk() (*ImageWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ImageWidgetDefinition) SetType(v string)`
+`func (o *ImageWidgetDefinition) SetType(v ImageWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -118,12 +118,6 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *ImageWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of ImageWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

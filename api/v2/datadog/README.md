@@ -111,10 +111,12 @@ Class | Method | HTTP request | Description
  - [DashboardType](docs/DashboardType.md)
  - [Organization](docs/Organization.md)
  - [OrganizationAttributes](docs/OrganizationAttributes.md)
+ - [OrganizationsType](docs/OrganizationsType.md)
  - [Pagination](docs/Pagination.md)
  - [Permission](docs/Permission.md)
  - [PermissionAttributes](docs/PermissionAttributes.md)
  - [PermissionsResponse](docs/PermissionsResponse.md)
+ - [PermissionsType](docs/PermissionsType.md)
  - [QuerySortOrder](docs/QuerySortOrder.md)
  - [RelationshipToOrganization](docs/RelationshipToOrganization.md)
  - [RelationshipToOrganizationData](docs/RelationshipToOrganizationData.md)
@@ -141,6 +143,7 @@ Class | Method | HTTP request | Description
  - [RoleUpdatePayload](docs/RoleUpdatePayload.md)
  - [RolesResponse](docs/RolesResponse.md)
  - [RolesSort](docs/RolesSort.md)
+ - [RolesType](docs/RolesType.md)
  - [User](docs/User.md)
  - [UserAttributes](docs/UserAttributes.md)
  - [UserCreateAttributes](docs/UserCreateAttributes.md)
@@ -153,6 +156,7 @@ Class | Method | HTTP request | Description
  - [UserInvitationResponse](docs/UserInvitationResponse.md)
  - [UserInvitationResponseData](docs/UserInvitationResponseData.md)
  - [UserInvitationsResponse](docs/UserInvitationsResponse.md)
+ - [UserInvitationsType](docs/UserInvitationsType.md)
  - [UserRelationships](docs/UserRelationships.md)
  - [UserResponse](docs/UserResponse.md)
  - [UserResponseIncludedItem](docs/UserResponseIncludedItem.md)
@@ -161,6 +165,7 @@ Class | Method | HTTP request | Description
  - [UserUpdateData](docs/UserUpdateData.md)
  - [UserUpdatePayload](docs/UserUpdatePayload.md)
  - [UsersResponse](docs/UsersResponse.md)
+ - [UsersType](docs/UsersType.md)
 
 
 ## Documentation For Authorization

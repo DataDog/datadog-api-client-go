@@ -11,13 +11,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "distribution"]
+**Type** | Pointer to [**DistributionWidgetDefinitionType**](DistributionWidgetDefinitionType.md) |  | [default to "distribution"]
 
 ## Methods
 
 ### NewDistributionWidgetDefinition
 
-`func NewDistributionWidgetDefinition(requests []DistributionWidgetRequest, type_ string, ) *DistributionWidgetDefinition`
+`func NewDistributionWidgetDefinition(requests []DistributionWidgetRequest, type_ DistributionWidgetDefinitionType, ) *DistributionWidgetDefinition`
 
 NewDistributionWidgetDefinition instantiates a new DistributionWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -204,30 +204,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *DistributionWidgetDefinition) GetType() string`
+`func (o *DistributionWidgetDefinition) GetType() DistributionWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *DistributionWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *DistributionWidgetDefinition) GetTypeOk() (*DistributionWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *DistributionWidgetDefinition) SetType(v string)`
+`func (o *DistributionWidgetDefinition) SetType(v DistributionWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *DistributionWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of DistributionWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

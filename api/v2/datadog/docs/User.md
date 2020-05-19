@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**UserAttributes**](UserAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the user. | [optional] 
 **Relationships** | Pointer to [**UserResponseRelationships**](UserResponseRelationships.md) |  | [optional] 
-**Type** | Pointer to **string** | Users type. | [optional] [readonly] [default to "users"]
+**Type** | Pointer to [**UsersType**](UsersType.md) |  | [optional] [default to "users"]
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasRelationships returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *User) GetType() string`
+`func (o *User) GetType() UsersType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *User) GetTypeOk() (*string, bool)`
+`func (o *User) GetTypeOk() (*UsersType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *User) SetType(v string)`
+`func (o *User) SetType(v UsersType)`
 
 SetType sets Type field to given value.
 

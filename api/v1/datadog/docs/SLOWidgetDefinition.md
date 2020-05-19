@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "slo"]
+**Type** | Pointer to [**SLOWidgetDefinitionType**](SLOWidgetDefinitionType.md) |  | [default to "slo"]
 **ViewMode** | Pointer to [**WidgetViewMode**](WidgetViewMode.md) |  | [optional] 
 **ViewType** | Pointer to **string** | Type of view displayed by the widget. | [default to "detail"]
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSLOWidgetDefinition
 
-`func NewSLOWidgetDefinition(type_ string, viewType string, ) *SLOWidgetDefinition`
+`func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string, ) *SLOWidgetDefinition`
 
 NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -185,20 +185,20 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *SLOWidgetDefinition) GetType() string`
+`func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SLOWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *SLOWidgetDefinition) GetTypeOk() (*SLOWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *SLOWidgetDefinition) SetType(v string)`
+`func (o *SLOWidgetDefinition) SetType(v SLOWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -248,12 +248,6 @@ and a boolean to check if the value has been set.
 SetViewType sets ViewType field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *SLOWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of SLOWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

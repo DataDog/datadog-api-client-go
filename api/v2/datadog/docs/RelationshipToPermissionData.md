@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | ID of the permission. | [optional] 
-**Type** | Pointer to **string** | Permissions resource type. | [optional] [readonly] [default to "permissions"]
+**Type** | Pointer to [**PermissionsType**](PermissionsType.md) |  | [optional] [default to "permissions"]
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *RelationshipToPermissionData) GetType() string`
+`func (o *RelationshipToPermissionData) GetType() PermissionsType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RelationshipToPermissionData) GetTypeOk() (*string, bool)`
+`func (o *RelationshipToPermissionData) GetTypeOk() (*PermissionsType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RelationshipToPermissionData) SetType(v string)`
+`func (o *RelationshipToPermissionData) SetType(v PermissionsType)`
 
 SetType sets Type field to given value.
 

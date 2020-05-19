@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
-**Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
-**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "pipeline"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
+**Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
+**Type** | Pointer to [**LogsPipelineProcessorType**](LogsPipelineProcessorType.md) |  | [default to "pipeline"]
 
 ## Methods
 
 ### NewLogsPipelineProcessor
 
-`func NewLogsPipelineProcessor(type_ string, ) *LogsPipelineProcessor`
+`func NewLogsPipelineProcessor(type_ LogsPipelineProcessorType, ) *LogsPipelineProcessor`
 
 NewLogsPipelineProcessor instantiates a new LogsPipelineProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -53,51 +53,6 @@ SetFilter sets Filter field to given value.
 `func (o *LogsPipelineProcessor) HasFilter() bool`
 
 HasFilter returns a boolean if a field has been set.
-
-### GetProcessors
-
-`func (o *LogsPipelineProcessor) GetProcessors() []LogsProcessor`
-
-GetProcessors returns the Processors field if non-nil, zero value otherwise.
-
-### GetProcessorsOk
-
-`func (o *LogsPipelineProcessor) GetProcessorsOk() (*[]LogsProcessor, bool)`
-
-GetProcessorsOk returns a tuple with the Processors field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProcessors
-
-`func (o *LogsPipelineProcessor) SetProcessors(v []LogsProcessor)`
-
-SetProcessors sets Processors field to given value.
-
-### HasProcessors
-
-`func (o *LogsPipelineProcessor) HasProcessors() bool`
-
-HasProcessors returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *LogsPipelineProcessor) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *LogsPipelineProcessor) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *LogsPipelineProcessor) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetIsEnabled
 
@@ -149,12 +104,51 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetProcessors
 
-### AsLogsProcessor
+`func (o *LogsPipelineProcessor) GetProcessors() []LogsProcessor`
 
-`func (s *LogsPipelineProcessor) AsLogsProcessor() LogsProcessor`
+GetProcessors returns the Processors field if non-nil, zero value otherwise.
 
-Convenience method to wrap this instance of LogsPipelineProcessor in LogsProcessor
+### GetProcessorsOk
+
+`func (o *LogsPipelineProcessor) GetProcessorsOk() (*[]LogsProcessor, bool)`
+
+GetProcessorsOk returns a tuple with the Processors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProcessors
+
+`func (o *LogsPipelineProcessor) SetProcessors(v []LogsProcessor)`
+
+SetProcessors sets Processors field to given value.
+
+### HasProcessors
+
+`func (o *LogsPipelineProcessor) HasProcessors() bool`
+
+HasProcessors returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *LogsPipelineProcessor) GetType() LogsPipelineProcessorType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LogsPipelineProcessor) GetTypeOk() (*LogsPipelineProcessorType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsPipelineProcessor) SetType(v LogsPipelineProcessorType)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

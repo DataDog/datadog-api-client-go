@@ -13,13 +13,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of widget. | [readonly] [default to "query_value"]
+**Type** | Pointer to [**QueryValueWidgetDefinitionType**](QueryValueWidgetDefinitionType.md) |  | [default to "query_value"]
 
 ## Methods
 
 ### NewQueryValueWidgetDefinition
 
-`func NewQueryValueWidgetDefinition(requests []QueryValueWidgetRequest, type_ string, ) *QueryValueWidgetDefinition`
+`func NewQueryValueWidgetDefinition(requests []QueryValueWidgetRequest, type_ QueryValueWidgetDefinitionType, ) *QueryValueWidgetDefinition`
 
 NewQueryValueWidgetDefinition instantiates a new QueryValueWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -256,30 +256,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *QueryValueWidgetDefinition) GetType() string`
+`func (o *QueryValueWidgetDefinition) GetType() QueryValueWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *QueryValueWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *QueryValueWidgetDefinition) GetTypeOk() (*QueryValueWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *QueryValueWidgetDefinition) SetType(v string)`
+`func (o *QueryValueWidgetDefinition) SetType(v QueryValueWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *QueryValueWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of QueryValueWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

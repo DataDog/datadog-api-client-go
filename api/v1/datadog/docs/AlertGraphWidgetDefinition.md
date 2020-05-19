@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | The title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "alert_graph"]
+**Type** | Pointer to [**AlertGraphWidgetDefinitionType**](AlertGraphWidgetDefinitionType.md) |  | [default to "alert_graph"]
 **VizType** | Pointer to [**WidgetVizType**](WidgetVizType.md) |  | 
 
 ## Methods
 
 ### NewAlertGraphWidgetDefinition
 
-`func NewAlertGraphWidgetDefinition(alertId string, type_ string, vizType WidgetVizType, ) *AlertGraphWidgetDefinition`
+`func NewAlertGraphWidgetDefinition(alertId string, type_ AlertGraphWidgetDefinitionType, vizType WidgetVizType, ) *AlertGraphWidgetDefinition`
 
 NewAlertGraphWidgetDefinition instantiates a new AlertGraphWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -153,20 +153,20 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *AlertGraphWidgetDefinition) GetType() string`
+`func (o *AlertGraphWidgetDefinition) GetType() AlertGraphWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *AlertGraphWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *AlertGraphWidgetDefinition) GetTypeOk() (*AlertGraphWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *AlertGraphWidgetDefinition) SetType(v string)`
+`func (o *AlertGraphWidgetDefinition) SetType(v AlertGraphWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -191,12 +191,6 @@ and a boolean to check if the value has been set.
 SetVizType sets VizType field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *AlertGraphWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of AlertGraphWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

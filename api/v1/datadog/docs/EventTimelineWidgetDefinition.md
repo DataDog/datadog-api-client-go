@@ -10,13 +10,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "event_timeline"]
+**Type** | Pointer to [**EventTimelineWidgetDefinitionType**](EventTimelineWidgetDefinitionType.md) |  | [default to "event_timeline"]
 
 ## Methods
 
 ### NewEventTimelineWidgetDefinition
 
-`func NewEventTimelineWidgetDefinition(query string, type_ string, ) *EventTimelineWidgetDefinition`
+`func NewEventTimelineWidgetDefinition(query string, type_ EventTimelineWidgetDefinitionType, ) *EventTimelineWidgetDefinition`
 
 NewEventTimelineWidgetDefinition instantiates a new EventTimelineWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -178,30 +178,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *EventTimelineWidgetDefinition) GetType() string`
+`func (o *EventTimelineWidgetDefinition) GetType() EventTimelineWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *EventTimelineWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *EventTimelineWidgetDefinition) GetTypeOk() (*EventTimelineWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *EventTimelineWidgetDefinition) SetType(v string)`
+`func (o *EventTimelineWidgetDefinition) SetType(v EventTimelineWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *EventTimelineWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of EventTimelineWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SLOType The type of the service level objective.
 type SLOType string
 
@@ -20,6 +24,23 @@ const (
 	SLOTYPE_METRIC  SLOType = "metric"
 	SLOTYPE_MONITOR SLOType = "monitor"
 )
+
+func (v *SLOType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SLOType(value)
+	for _, existing := range []SLOType{"metric", "monitor"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SLOType", *v)
+}
 
 // Ptr returns reference to SLOType value
 func (v SLOType) Ptr() *SLOType {

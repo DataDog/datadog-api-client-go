@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DefaultLookup** | Pointer to **string** | Value to set the target attribute if the source value is not found in the list. | [optional] 
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **LookupTable** | Pointer to **[]string** | Mapping table of values for the source attribute and their associated target attribute values, formatted as &#x60;[\&quot;source_key1,target_value1\&quot;, \&quot;source_key2,target_value2\&quot;]&#x60; | 
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Source** | Pointer to **string** | Source attribute used to perform the lookup. | 
 **Target** | Pointer to **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
-**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "lookup-processor"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
+**Type** | Pointer to [**LogsLookupProcessorType**](LogsLookupProcessorType.md) |  | [default to "lookup-processor"]
 
 ## Methods
 
 ### NewLogsLookupProcessor
 
-`func NewLogsLookupProcessor(lookupTable []string, source string, target string, type_ string, ) *LogsLookupProcessor`
+`func NewLogsLookupProcessor(lookupTable []string, source string, target string, type_ LogsLookupProcessorType, ) *LogsLookupProcessor`
 
 NewLogsLookupProcessor instantiates a new LogsLookupProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -56,6 +56,31 @@ SetDefaultLookup sets DefaultLookup field to given value.
 
 HasDefaultLookup returns a boolean if a field has been set.
 
+### GetIsEnabled
+
+`func (o *LogsLookupProcessor) GetIsEnabled() bool`
+
+GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
+
+### GetIsEnabledOk
+
+`func (o *LogsLookupProcessor) GetIsEnabledOk() (*bool, bool)`
+
+GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEnabled
+
+`func (o *LogsLookupProcessor) SetIsEnabled(v bool)`
+
+SetIsEnabled sets IsEnabled field to given value.
+
+### HasIsEnabled
+
+`func (o *LogsLookupProcessor) HasIsEnabled() bool`
+
+HasIsEnabled returns a boolean if a field has been set.
+
 ### GetLookupTable
 
 `func (o *LogsLookupProcessor) GetLookupTable() []string`
@@ -75,6 +100,31 @@ and a boolean to check if the value has been set.
 
 SetLookupTable sets LookupTable field to given value.
 
+
+### GetName
+
+`func (o *LogsLookupProcessor) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *LogsLookupProcessor) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsLookupProcessor) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *LogsLookupProcessor) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetSource
 
@@ -118,80 +168,24 @@ SetTarget sets Target field to given value.
 
 ### GetType
 
-`func (o *LogsLookupProcessor) GetType() string`
+`func (o *LogsLookupProcessor) GetType() LogsLookupProcessorType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsLookupProcessor) GetTypeOk() (*string, bool)`
+`func (o *LogsLookupProcessor) GetTypeOk() (*LogsLookupProcessorType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *LogsLookupProcessor) SetType(v string)`
+`func (o *LogsLookupProcessor) SetType(v LogsLookupProcessorType)`
 
 SetType sets Type field to given value.
 
 
-### GetIsEnabled
-
-`func (o *LogsLookupProcessor) GetIsEnabled() bool`
-
-GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
-
-### GetIsEnabledOk
-
-`func (o *LogsLookupProcessor) GetIsEnabledOk() (*bool, bool)`
-
-GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsEnabled
-
-`func (o *LogsLookupProcessor) SetIsEnabled(v bool)`
-
-SetIsEnabled sets IsEnabled field to given value.
-
-### HasIsEnabled
-
-`func (o *LogsLookupProcessor) HasIsEnabled() bool`
-
-HasIsEnabled returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *LogsLookupProcessor) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LogsLookupProcessor) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LogsLookupProcessor) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *LogsLookupProcessor) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-
-### AsLogsProcessor
-
-`func (s *LogsLookupProcessor) AsLogsProcessor() LogsProcessor`
-
-Convenience method to wrap this instance of LogsLookupProcessor in LogsProcessor
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

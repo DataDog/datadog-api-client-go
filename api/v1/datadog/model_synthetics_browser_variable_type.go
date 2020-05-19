@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SyntheticsBrowserVariableType Type of browser test variable.
 type SyntheticsBrowserVariableType string
 
@@ -22,6 +26,23 @@ const (
 	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL  SyntheticsBrowserVariableType = "global"
 	SYNTHETICSBROWSERVARIABLETYPE_TEXT    SyntheticsBrowserVariableType = "text"
 )
+
+func (v *SyntheticsBrowserVariableType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SyntheticsBrowserVariableType(value)
+	for _, existing := range []SyntheticsBrowserVariableType{"element", "email", "global", "text"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SyntheticsBrowserVariableType", *v)
+}
 
 // Ptr returns reference to SyntheticsBrowserVariableType value
 func (v SyntheticsBrowserVariableType) Ptr() *SyntheticsBrowserVariableType {

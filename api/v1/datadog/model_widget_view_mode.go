@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetViewMode Define how you want the SLO to be displayed.
 type WidgetViewMode string
 
@@ -21,6 +25,23 @@ const (
 	WIDGETVIEWMODE_COMPONENT WidgetViewMode = "component"
 	WIDGETVIEWMODE_BOTH      WidgetViewMode = "both"
 )
+
+func (v *WidgetViewMode) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetViewMode(value)
+	for _, existing := range []WidgetViewMode{"overall", "component", "both"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetViewMode", *v)
+}
 
 // Ptr returns reference to WidgetViewMode value
 func (v WidgetViewMode) Ptr() *WidgetViewMode {

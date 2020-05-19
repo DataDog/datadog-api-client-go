@@ -13,14 +13,14 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "timeseries"]
+**Type** | Pointer to [**TimeseriesWidgetDefinitionType**](TimeseriesWidgetDefinitionType.md) |  | [default to "timeseries"]
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods
 
 ### NewTimeseriesWidgetDefinition
 
-`func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ string, ) *TimeseriesWidgetDefinition`
+`func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ TimeseriesWidgetDefinitionType, ) *TimeseriesWidgetDefinition`
 
 NewTimeseriesWidgetDefinition instantiates a new TimeseriesWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -257,20 +257,20 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *TimeseriesWidgetDefinition) GetType() string`
+`func (o *TimeseriesWidgetDefinition) GetType() TimeseriesWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *TimeseriesWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *TimeseriesWidgetDefinition) GetTypeOk() (*TimeseriesWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *TimeseriesWidgetDefinition) SetType(v string)`
+`func (o *TimeseriesWidgetDefinition) SetType(v TimeseriesWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -300,12 +300,6 @@ SetYaxis sets Yaxis field to given value.
 
 HasYaxis returns a boolean if a field has been set.
 
-
-### AsWidgetDefinition
-
-`func (s *TimeseriesWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of TimeseriesWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

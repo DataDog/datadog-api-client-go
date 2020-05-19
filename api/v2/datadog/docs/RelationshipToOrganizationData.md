@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | ID of the organization. | [optional] 
-**Type** | Pointer to **string** | Organizations type. | [optional] [readonly] [default to "orgs"]
+**Type** | Pointer to [**OrganizationsType**](OrganizationsType.md) |  | [optional] [default to "orgs"]
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *RelationshipToOrganizationData) GetType() string`
+`func (o *RelationshipToOrganizationData) GetType() OrganizationsType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RelationshipToOrganizationData) GetTypeOk() (*string, bool)`
+`func (o *RelationshipToOrganizationData) GetTypeOk() (*OrganizationsType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RelationshipToOrganizationData) SetType(v string)`
+`func (o *RelationshipToOrganizationData) SetType(v OrganizationsType)`
 
 SetType sets Type field to given value.
 

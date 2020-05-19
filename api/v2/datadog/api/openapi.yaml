@@ -1465,11 +1465,7 @@ components:
           description: ID of the organization.
           type: string
         type:
-          default: orgs
-          description: Organizations resource type.
-          example: orgs
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/OrganizationsType'
       required:
       - type
       type: object
@@ -1503,6 +1499,15 @@ components:
           description: URL of the site that this organization exists at.
           type: string
       type: object
+    OrganizationsType:
+      default: orgs
+      description: Organizations resource type.
+      enum:
+      - orgs
+      example: orgs
+      type: string
+      x-enum-varnames:
+      - ORGS
     Pagination:
       description: Pagination object.
       example:
@@ -1538,11 +1543,7 @@ components:
           description: ID of the permission.
           type: string
         type:
-          default: permissions
-          description: Permissions resource type.
-          example: permissions
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/PermissionsType'
       required:
       - type
       type: object
@@ -1611,6 +1612,15 @@ components:
             $ref: '#/components/schemas/Permission'
           type: array
       type: object
+    PermissionsType:
+      default: permissions
+      description: Permissions resource type.
+      enum:
+      - permissions
+      example: permissions
+      type: string
+      x-enum-varnames:
+      - PERMISSIONS
     QuerySortOrder:
       default: desc
       description: Direction of sort.
@@ -1641,10 +1651,7 @@ components:
           description: ID of the organization.
           type: string
         type:
-          default: orgs
-          description: Organizations type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/OrganizationsType'
       type: object
     RelationshipToOrganizations:
       description: Relationship to organizations.
@@ -1681,10 +1688,7 @@ components:
           description: ID of the permission.
           type: string
         type:
-          default: permissions
-          description: Permissions resource type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/PermissionsType'
       type: object
     RelationshipToPermissions:
       description: Relationship to multiple permissions objects.
@@ -1712,10 +1716,7 @@ components:
           example: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
           type: string
         type:
-          default: roles
-          description: The type of the resource. The value should always be roles.
-          example: roles
-          type: string
+          $ref: '#/components/schemas/RolesType'
       type: object
     RelationshipToRoles:
       description: Relationship to roles.
@@ -1823,11 +1824,7 @@ components:
         relationships:
           $ref: '#/components/schemas/RoleResponseRelationships'
         type:
-          default: roles
-          description: Roles type.
-          example: roles
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/RolesType'
       required:
       - type
       type: object
@@ -1886,10 +1883,7 @@ components:
         relationships:
           $ref: '#/components/schemas/RoleRelationships'
         type:
-          default: roles
-          description: Roles resource type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/RolesType'
       type: object
     RoleCreatePayload:
       description: Create a role.
@@ -2031,9 +2025,7 @@ components:
           description: ID of the role.
           type: string
         type:
-          default: roles
-          description: Type of role.
-          type: string
+          $ref: '#/components/schemas/RolesType'
       type: object
     RoleUpdatePayload:
       description: Update a role.
@@ -2140,6 +2132,15 @@ components:
       - MODIFIED_AT_DESCENDING
       - USER_COUNT_ASCENDING
       - USER_COUNT_DESCENDING
+    RolesType:
+      default: roles
+      description: Roles type.
+      enum:
+      - roles
+      example: roles
+      type: string
+      x-enum-varnames:
+      - ROLES
     User:
       description: User object returned by the API.
       example:
@@ -2177,7 +2178,6 @@ components:
           email: email
           status: status
         id: id
-        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserAttributes'
@@ -2187,10 +2187,7 @@ components:
         relationships:
           $ref: '#/components/schemas/UserResponseRelationships'
         type:
-          default: users
-          description: Users type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/UsersType'
       type: object
     UserAttributes:
       description: Attributes of user object returned by the API.
@@ -2265,17 +2262,13 @@ components:
           name: name
           title: title
           email: email
-        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserCreateAttributes'
         relationships:
           $ref: '#/components/schemas/UserRelationships'
         type:
-          default: users
-          description: Users resource type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/UsersType'
       type: object
     UserCreatePayload:
       description: Create a user.
@@ -2292,7 +2285,6 @@ components:
             name: name
             title: title
             email: email
-          type: users
       properties:
         data:
           $ref: '#/components/schemas/UserCreateData'
@@ -2305,14 +2297,11 @@ components:
             data:
               id: id
               type: users
-        type: user_invitations
       properties:
         relationships:
           $ref: '#/components/schemas/UserInvitationRelationships'
         type:
-          default: user_invitations
-          description: User invitations type.
-          type: string
+          $ref: '#/components/schemas/UserInvitationsType'
       type: object
     UserInvitationDataAttributes:
       description: Attributes of a user invitation.
@@ -2346,13 +2335,11 @@ components:
               data:
                 id: id
                 type: users
-          type: user_invitations
         - relationships:
             user:
               data:
                 id: id
                 type: users
-          type: user_invitations
       properties:
         data:
           description: List of user invitations.
@@ -2381,7 +2368,6 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             uuid: uuid
           id: id
-          type: user_invitations
       properties:
         data:
           $ref: '#/components/schemas/UserInvitationResponseData'
@@ -2395,7 +2381,6 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           uuid: uuid
         id: id
-        type: user_invitations
       properties:
         attributes:
           $ref: '#/components/schemas/UserInvitationDataAttributes'
@@ -2403,9 +2388,7 @@ components:
           description: ID of the user invitation.
           type: string
         type:
-          default: user_invitations
-          description: User invitations type.
-          type: string
+          $ref: '#/components/schemas/UserInvitationsType'
       type: object
     UserInvitationsResponse:
       description: User invitations as returned by the API.
@@ -2417,14 +2400,12 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             uuid: uuid
           id: id
-          type: user_invitations
         - attributes:
             invite_type: invite_type
             expires_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
             uuid: uuid
           id: id
-          type: user_invitations
       properties:
         data:
           description: Array of user invitations.
@@ -2432,6 +2413,14 @@ components:
             $ref: '#/components/schemas/UserInvitationResponseData'
           type: array
       type: object
+    UserInvitationsType:
+      default: user_invitations
+      description: User invitations type.
+      enum:
+      - user_invitations
+      type: string
+      x-enum-varnames:
+      - USER_INVITATIONS
     UserRelationships:
       description: Relationships of the user object.
       example:
@@ -2483,7 +2472,6 @@ components:
             email: email
             status: status
           id: id
-          type: users
         included:
         - null
         - null
@@ -2498,18 +2486,11 @@ components:
       type: object
     UserResponseIncludedItem:
       description: An object related to a user.
-      discriminator:
-        mapping:
-          orgs: '#/components/schemas/Organization'
-          permissions: '#/components/schemas/Permission'
-          roles: '#/components/schemas/Role'
-        propertyName: type
       oneOf:
       - $ref: '#/components/schemas/Organization'
       - $ref: '#/components/schemas/Permission'
       - $ref: '#/components/schemas/Role'
       type: object
-      x-one-of-name: UserResponseIncludedItem
     UserResponseRelationships:
       description: Relationships of the user object returned by the API.
       example:
@@ -2570,7 +2551,6 @@ components:
           disabled: true
           email: email
         id: id
-        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserUpdateAttributes'
@@ -2578,10 +2558,7 @@ components:
           description: ID of the user.
           type: string
         type:
-          default: users
-          description: Users resource type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/UsersType'
       type: object
     UserUpdatePayload:
       description: Update a user.
@@ -2592,7 +2569,6 @@ components:
             disabled: true
             email: email
           id: id
-          type: users
       properties:
         data:
           $ref: '#/components/schemas/UserUpdateData'
@@ -2635,7 +2611,6 @@ components:
             email: email
             status: status
           id: id
-          type: users
         - relationships:
             other_users:
               data:
@@ -2670,7 +2645,6 @@ components:
             email: email
             status: status
           id: id
-          type: users
         meta:
           page:
             total_count: 0
@@ -2692,6 +2666,14 @@ components:
         meta:
           $ref: '#/components/schemas/ResponseMetaAttributes'
       type: object
+    UsersType:
+      default: users
+      description: Users resource type.
+      enum:
+      - users
+      type: string
+      x-enum-varnames:
+      - USERS
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**RoleCreateAttributes**](RoleCreateAttributes.md) |  | [optional] 
 **Relationships** | Pointer to [**RoleRelationships**](RoleRelationships.md) |  | [optional] 
-**Type** | Pointer to **string** | Roles resource type. | [optional] [readonly] [default to "roles"]
+**Type** | Pointer to [**RolesType**](RolesType.md) |  | [optional] [default to "roles"]
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasRelationships returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *RoleCreateData) GetType() string`
+`func (o *RoleCreateData) GetType() RolesType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RoleCreateData) GetTypeOk() (*string, bool)`
+`func (o *RoleCreateData) GetTypeOk() (*RolesType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RoleCreateData) SetType(v string)`
+`func (o *RoleCreateData) SetType(v RolesType)`
 
 SetType sets Type field to given value.
 
