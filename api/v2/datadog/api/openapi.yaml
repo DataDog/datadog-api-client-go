@@ -46,6 +46,8 @@ tags:
     read access on a specific log index to a role can be done in Datadog from the
     [Pipelines page](https://app.datadoghq.com/logs/pipelines).
   name: Roles
+- description: Detection Rules for generating signals
+  name: Security Monitoring
 - description: Create, edit, and disable users.
   externalDocs:
     url: https://docs.datadoghq.com/account_management/users
@@ -767,6 +769,192 @@ paths:
       tags:
       - Roles
       x-codegen-request-body-name: body
+  /api/v2/security_monitoring/rules:
+    get:
+      description: List rules.
+      operationId: ListSecurityMonitoringRules
+      parameters:
+      - description: Size for a given page.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          default: 10
+          format: int64
+          type: integer
+        style: form
+      - description: Specific page number to return.
+        explode: true
+        in: query
+        name: page[number]
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityMonitoringListRulesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+      summary: List rules
+      tags:
+      - Security Monitoring
+    post:
+      description: Create a detection rule.
+      operationId: CreateSecurityMonitoringRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityMonitoringRuleCreatePayload'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityMonitoringRuleResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+      summary: Create a detection rule
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+  /api/v2/security_monitoring/rules/{rule_id}:
+    delete:
+      description: Delete an existing rule. Default rules cannot be deleted.
+      operationId: DeleteSecurityMonitoringRule
+      parameters:
+      - description: The ID of the rule.
+        explode: false
+        in: path
+        name: rule_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Delete an existing rule
+      tags:
+      - Security Monitoring
+    get:
+      description: Get a rule's details.
+      operationId: GetSecurityMonitoringRule
+      parameters:
+      - description: The ID of the rule.
+        explode: false
+        in: path
+        name: rule_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityMonitoringRuleResponse'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Get a rule's details
+      tags:
+      - Security Monitoring
+    put:
+      description: |-
+        Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
+        must be included. For example, when modifying a query all queries must be included.
+        Default rules can only be updated to be enabled and to change notifications.
+      operationId: UpdateSecurityMonitoringRule
+      parameters:
+      - description: The ID of the rule.
+        explode: false
+        in: path
+        name: rule_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityMonitoringRuleUpdatePayload'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityMonitoringRuleResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Concurrent Modification
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Update an existing rule
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
   /api/v2/user_invitations:
     post:
       description: Sends emails to one or more users inviting them to join the organization.
@@ -1177,6 +1365,15 @@ components:
       explode: false
       in: path
       name: role_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    SecurityMonitoringRuleID:
+      description: The ID of the rule.
+      explode: false
+      in: path
+      name: rule_id
       required: true
       schema:
         type: string
@@ -2141,6 +2338,468 @@ components:
       type: string
       x-enum-varnames:
       - ROLES
+    SecurityMonitoringListRulesResponse:
+      description: List of rules
+      example:
+        data:
+        - cases:
+          - condition: condition
+            name: name
+            notifications:
+            - notifications
+            - notifications
+          - condition: condition
+            name: name
+            notifications:
+            - notifications
+            - notifications
+          message: message
+          queries:
+          - groupByFields:
+            - groupByFields
+            - groupByFields
+            query: query
+            name: name
+          - groupByFields:
+            - groupByFields
+            - groupByFields
+            query: query
+            name: name
+          version: 1
+          tags:
+          - tags
+          - tags
+          creationAuthorId: 6
+          createdAt: 0
+          isDefault: true
+          isDeleted: true
+          isEnabled: true
+          name: name
+          options: {}
+          id: id
+        - cases:
+          - condition: condition
+            name: name
+            notifications:
+            - notifications
+            - notifications
+          - condition: condition
+            name: name
+            notifications:
+            - notifications
+            - notifications
+          message: message
+          queries:
+          - groupByFields:
+            - groupByFields
+            - groupByFields
+            query: query
+            name: name
+          - groupByFields:
+            - groupByFields
+            - groupByFields
+            query: query
+            name: name
+          version: 1
+          tags:
+          - tags
+          - tags
+          creationAuthorId: 6
+          createdAt: 0
+          isDefault: true
+          isDeleted: true
+          isEnabled: true
+          name: name
+          options: {}
+          id: id
+        meta:
+          page:
+            total_count: 0
+            total_filtered_count: 6
+      properties:
+        data:
+          description: TODO.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleResponse'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMetaAttributes'
+      type: object
+    SecurityMonitoringRuleCase:
+      description: Case when signal is generated.
+      example:
+        condition: condition
+        name: name
+        notifications:
+        - notifications
+        - notifications
+      properties:
+        condition:
+          description: |-
+            A rule case contains logical operations (>, >=, &&, ||) to determine if a signal should be generated
+            based on the event counts in the previously defined queries.
+          type: string
+        name:
+          description: Name of the case.
+          type: string
+        notifications:
+          description: Notification targets for each rule case
+          items:
+            description: Notification
+            type: string
+          type: array
+        status:
+          $ref: '#/components/schemas/SecurityMonitoringRuleSeverity'
+      type: object
+    SecurityMonitoringRuleCreatePayload:
+      description: Create a new rule.
+      example:
+        cases:
+        - condition: condition
+          name: name
+          notifications:
+          - notifications
+          - notifications
+        - condition: condition
+          name: name
+          notifications:
+          - notifications
+          - notifications
+        name: name
+        options: {}
+        message: message
+        queries:
+        - groupByFields:
+          - groupByFields
+          - groupByFields
+          query: query
+          name: name
+        - groupByFields:
+          - groupByFields
+          - groupByFields
+          query: query
+          name: name
+        enabled: true
+        tags:
+        - env:prod
+        - team:security
+      properties:
+        cases:
+          description: Cases for generating signals.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleCase'
+          type: array
+        enabled:
+          description: Whether the rule is enabled.
+          example: true
+          type: boolean
+        message:
+          description: Message for generated signals.
+          type: string
+        name:
+          description: The name of the rule
+          type: string
+        options:
+          $ref: '#/components/schemas/SecurityMonitoringRuleOptions'
+        queries:
+          description: Queries for selecting logs which are part of the rule.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleQuery'
+          type: array
+        tags:
+          description: Tags for generated signals.
+          example:
+          - env:prod
+          - team:security
+          items:
+            description: Tag
+            type: string
+          type: array
+      required:
+      - cases
+      - enabled
+      - message
+      - name
+      - options
+      - queries
+      - tags
+      type: object
+    SecurityMonitoringRuleEvaluationWindow:
+      description: |-
+        A time window is specified to match when at least one of the cases matches true. This is a sliding window
+        and evaluates in real time.
+      enum:
+      - 0
+      - 60
+      - 300
+      - 600
+      - 900
+      - 1800
+      - 3600
+      - 7200
+      format: int32
+      type: integer
+      x-enum-varnames:
+      - ZERO_MINUTES
+      - ONE_MINUTE
+      - FIVE_MINUTES
+      - TEN_MINUTES
+      - FIFTEEN_MINUTES
+      - THIRTY_MINUTES
+      - ONE_HOUR
+      - TWO_HOURS
+    SecurityMonitoringRuleKeepAlive:
+      description: |-
+        Once a signal is generated, the signal will remain “open” if a case is matched at least once within
+        this keep alive window.
+      enum:
+      - 0
+      - 60
+      - 300
+      - 600
+      - 900
+      - 1800
+      - 3600
+      - 7200
+      format: int32
+      type: integer
+      x-enum-varnames:
+      - ZERO_MINUTES
+      - ONE_MINUTE
+      - FIVE_MINUTES
+      - TEN_MINUTES
+      - FIFTEEN_MINUTES
+      - THIRTY_MINUTES
+      - ONE_HOUR
+      - TWO_HOURS
+    SecurityMonitoringRuleMaxSignalDuration:
+      description: |-
+        A signal will “close” regardless of the query being matched once the time exceeds the maximum duration.
+        This time is calculated from the first seen timestamp.
+      enum:
+      - 0
+      - 60
+      - 300
+      - 600
+      - 900
+      - 1800
+      - 3600
+      - 7200
+      - 10800
+      - 21600
+      - 43200
+      - 86400
+      format: int32
+      type: integer
+      x-enum-varnames:
+      - ZERO_MINUTES
+      - ONE_MINUTE
+      - FIVE_MINUTES
+      - TEN_MINUTES
+      - FIFTEEN_MINUTES
+      - THIRTY_MINUTES
+      - ONE_HOUR
+      - TWO_HOURS
+      - THREE_HOURS
+      - SIX_HOURS
+      - TWELVE_HOURS
+      - ONE_DAY
+    SecurityMonitoringRuleOptions:
+      description: Options on rules.
+      example: {}
+      properties:
+        evaluationWindow:
+          $ref: '#/components/schemas/SecurityMonitoringRuleEvaluationWindow'
+        keepAlive:
+          $ref: '#/components/schemas/SecurityMonitoringRuleKeepAlive'
+        maxSignalDuration:
+          $ref: '#/components/schemas/SecurityMonitoringRuleMaxSignalDuration'
+      type: object
+    SecurityMonitoringRuleQuery:
+      description: Query for matching rule.
+      example:
+        groupByFields:
+        - groupByFields
+        - groupByFields
+        query: query
+        name: name
+      properties:
+        groupByFields:
+          description: Fields to group by.
+          items:
+            description: Field
+            type: string
+          type: array
+        name:
+          description: Name of the query
+          type: string
+        query:
+          description: Query to run on logs
+          type: string
+      type: object
+    SecurityMonitoringRuleResponse:
+      description: Detection rule
+      example:
+        cases:
+        - condition: condition
+          name: name
+          notifications:
+          - notifications
+          - notifications
+        - condition: condition
+          name: name
+          notifications:
+          - notifications
+          - notifications
+        message: message
+        queries:
+        - groupByFields:
+          - groupByFields
+          - groupByFields
+          query: query
+          name: name
+        - groupByFields:
+          - groupByFields
+          - groupByFields
+          query: query
+          name: name
+        version: 1
+        tags:
+        - tags
+        - tags
+        creationAuthorId: 6
+        createdAt: 0
+        isDefault: true
+        isDeleted: true
+        isEnabled: true
+        name: name
+        options: {}
+        id: id
+      properties:
+        cases:
+          description: Cases for generating signals.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleCase'
+          type: array
+        createdAt:
+          description: When the rule was created, timestamp in milliseconds.
+          format: int64
+          type: integer
+        creationAuthorId:
+          description: User ID of the user who created the rule.
+          format: int64
+          type: integer
+        id:
+          description: The ID of the rule.
+          type: string
+        isDefault:
+          description: Whether the rule is included by default.
+          type: boolean
+        isDeleted:
+          description: Whether the rule has been deleted.
+          type: boolean
+        isEnabled:
+          description: Whether the rule is enabled.
+          type: boolean
+        message:
+          description: Message for generated signals.
+          type: string
+        name:
+          description: The name of the rule.
+          type: string
+        options:
+          $ref: '#/components/schemas/SecurityMonitoringRuleOptions'
+        queries:
+          description: Queries for selecting logs which are part of the rule.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleQuery'
+          type: array
+        tags:
+          description: Tags for generated signals.
+          items:
+            description: Tag
+            type: string
+          type: array
+        version:
+          description: The version of the rule.
+          format: int64
+          type: integer
+    SecurityMonitoringRuleSeverity:
+      description: Severity of the Security Signal.
+      enum:
+      - info
+      - low
+      - medium
+      - high
+      - critical
+      type: string
+      x-enum-varnames:
+      - INFO
+      - LOW
+      - MEDIUM
+      - HIGH
+      - CRITICAL
+    SecurityMonitoringRuleUpdatePayload:
+      description: Update an existing rule.
+      example:
+        cases:
+        - condition: condition
+          name: name
+          notifications:
+          - notifications
+          - notifications
+        - condition: condition
+          name: name
+          notifications:
+          - notifications
+          - notifications
+        name: name
+        options: {}
+        message: message
+        queries:
+        - groupByFields:
+          - groupByFields
+          - groupByFields
+          query: query
+          name: name
+        - groupByFields:
+          - groupByFields
+          - groupByFields
+          query: query
+          name: name
+        enabled: true
+        tags:
+        - tags
+        - tags
+      properties:
+        cases:
+          description: Cases for generating signals.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleCase'
+          type: array
+        enabled:
+          description: Whether the rule is enabled.
+          type: boolean
+        message:
+          description: Message for generated signals.
+          type: string
+        name:
+          description: Name of the rule.
+          type: string
+        options:
+          $ref: '#/components/schemas/SecurityMonitoringRuleOptions'
+        queries:
+          description: Queries for selecting logs which are part of the rule.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleQuery'
+          type: array
+        tags:
+          description: Tags for generated signals.
+          items:
+            description: Tag
+            type: string
+          type: array
+      type: object
     User:
       description: User object returned by the API.
       example:

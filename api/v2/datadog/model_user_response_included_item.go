@@ -118,3 +118,39 @@ func (obj *UserResponseIncludedItem) GetActualInstance() interface{} {
 	// all schemas are nil
 	return nil
 }
+
+type NullableUserResponseIncludedItem struct {
+	value *UserResponseIncludedItem
+	isSet bool
+}
+
+func (v NullableUserResponseIncludedItem) Get() *UserResponseIncludedItem {
+	return v.value
+}
+
+func (v *NullableUserResponseIncludedItem) Set(val *UserResponseIncludedItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUserResponseIncludedItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUserResponseIncludedItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUserResponseIncludedItem(val *UserResponseIncludedItem) *NullableUserResponseIncludedItem {
+	return &NullableUserResponseIncludedItem{value: val, isSet: true}
+}
+
+func (v NullableUserResponseIncludedItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUserResponseIncludedItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
