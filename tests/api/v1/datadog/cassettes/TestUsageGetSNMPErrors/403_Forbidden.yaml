@@ -8,16 +8,16 @@ interactions:
       Accept:
       - application/json;datetime-format=rfc3339
       Dd-Operation-Id:
-      - GetUsageSnmp
+      - GetUsageSNMP
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7887383146896375738"
+      - "7798778839553636017"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3809321366251400176"
-    url: https://api.datadoghq.com/api/v1/usage/snmp?start_hr=2020-06-18T18%3A25%3A24-04%3A00
+      - "8775418216235122512"
+    url: https://api.datadoghq.com/api/v1/usage/snmp?start_hr=2020-06-19T10%3A18%3A37-04%3A00
     method: GET
   response:
     body: |
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 18 May 2020 22:25:24 GMT
+      - Tue, 19 May 2020 14:18:38 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

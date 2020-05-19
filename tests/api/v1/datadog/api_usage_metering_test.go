@@ -245,13 +245,13 @@ func TestUsageRumSessions(t *testing.T) {
 	assert.True(usage.HasUsage())
 }
 
-func TestUsageSnmp(t *testing.T) {
+func TestUsageSNMP(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSnmp(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSNMP(ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage SNMP Devices: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -437,7 +437,7 @@ func TestUsageGetLogsByIndexErrors(t *testing.T) {
 	}
 }
 
-func TestUsageGetSnmpErrors(t *testing.T) {
+func TestUsageGetSNMPErrors(t *testing.T) {
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
 
@@ -455,7 +455,7 @@ func TestUsageGetSnmpErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSnmp(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSNMP(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
