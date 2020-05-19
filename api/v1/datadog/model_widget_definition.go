@@ -664,3 +664,39 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 	// all schemas are nil
 	return nil
 }
+
+type NullableWidgetDefinition struct {
+	value *WidgetDefinition
+	isSet bool
+}
+
+func (v NullableWidgetDefinition) Get() *WidgetDefinition {
+	return v.value
+}
+
+func (v *NullableWidgetDefinition) Set(val *WidgetDefinition) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWidgetDefinition) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWidgetDefinition) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableWidgetDefinition(val *WidgetDefinition) *NullableWidgetDefinition {
+	return &NullableWidgetDefinition{value: val, isSet: true}
+}
+
+func (v NullableWidgetDefinition) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableWidgetDefinition) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}

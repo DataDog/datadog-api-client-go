@@ -430,3 +430,39 @@ func (obj *LogsProcessor) GetActualInstance() interface{} {
 	// all schemas are nil
 	return nil
 }
+
+type NullableLogsProcessor struct {
+	value *LogsProcessor
+	isSet bool
+}
+
+func (v NullableLogsProcessor) Get() *LogsProcessor {
+	return v.value
+}
+
+func (v *NullableLogsProcessor) Set(val *LogsProcessor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLogsProcessor) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLogsProcessor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLogsProcessor(val *LogsProcessor) *NullableLogsProcessor {
+	return &NullableLogsProcessor{value: val, isSet: true}
+}
+
+func (v NullableLogsProcessor) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableLogsProcessor) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
