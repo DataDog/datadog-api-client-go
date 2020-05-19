@@ -16,7 +16,7 @@ import (
 type RelationshipToRoleData struct {
 	// ID of the role.
 	Id *string `json:"id,omitempty"`
-	// Type of role.
+	// The type of the resource. The value should always be roles.
 	Type *string `json:"type,omitempty"`
 }
 

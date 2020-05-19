@@ -1467,6 +1467,7 @@ components:
         type:
           default: orgs
           description: Organizations resource type.
+          example: orgs
           readOnly: true
           type: string
       required:
@@ -1539,6 +1540,7 @@ components:
         type:
           default: permissions
           description: Permissions resource type.
+          example: permissions
           readOnly: true
           type: string
       required:
@@ -1702,24 +1704,26 @@ components:
     RelationshipToRoleData:
       description: Relationship to role object.
       example:
-        id: id
+        id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
         type: roles
       properties:
         id:
           description: ID of the role.
+          example: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
           type: string
         type:
           default: roles
-          description: Type of role.
+          description: The type of the resource. The value should always be roles.
+          example: roles
           type: string
       type: object
     RelationshipToRoles:
       description: Relationship to roles.
       example:
         data:
-        - id: id
+        - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
           type: roles
-        - id: id
+        - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
           type: roles
       properties:
         data:
@@ -1788,9 +1792,9 @@ components:
               type: orgs
           roles:
             data:
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
           other_orgs:
             data:
@@ -1800,9 +1804,9 @@ components:
               type: orgs
           other_roles:
             data:
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
         attributes:
           name: name
@@ -1821,6 +1825,7 @@ components:
         type:
           default: roles
           description: Roles type.
+          example: roles
           readOnly: true
           type: string
       required:
@@ -1942,9 +1947,9 @@ components:
                 type: orgs
             roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
             other_orgs:
               data:
@@ -1954,9 +1959,9 @@ components:
                 type: orgs
             other_roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
           attributes:
             name: name
@@ -1977,9 +1982,9 @@ components:
             type: orgs
         roles:
           data:
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
         other_orgs:
           data:
@@ -1989,9 +1994,9 @@ components:
             type: orgs
         other_roles:
           data:
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
       properties:
         org:
@@ -2053,9 +2058,9 @@ components:
                 type: orgs
             roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
             other_orgs:
               data:
@@ -2065,9 +2070,9 @@ components:
                 type: orgs
             other_roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
           attributes:
             name: name
@@ -2082,9 +2087,9 @@ components:
                 type: orgs
             roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
             other_orgs:
               data:
@@ -2094,9 +2099,9 @@ components:
                 type: orgs
             other_roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
           attributes:
             name: name
@@ -2151,9 +2156,9 @@ components:
               type: orgs
           roles:
             data:
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
           other_orgs:
             data:
@@ -2252,9 +2257,9 @@ components:
         relationships:
           roles:
             data:
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
-            - id: id
+            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
               type: roles
         attributes:
           name: name
@@ -2279,9 +2284,9 @@ components:
           relationships:
             roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
           attributes:
             name: name
@@ -2432,9 +2437,9 @@ components:
       example:
         roles:
           data:
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
       properties:
         roles:
@@ -2457,9 +2462,9 @@ components:
                 type: orgs
             roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
             other_orgs:
               data:
@@ -2520,9 +2525,9 @@ components:
             type: orgs
         roles:
           data:
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
-          - id: id
+          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
             type: roles
         other_orgs:
           data:
@@ -2609,9 +2614,9 @@ components:
                 type: orgs
             roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
             other_orgs:
               data:
@@ -2644,9 +2649,9 @@ components:
                 type: orgs
             roles:
               data:
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
-              - id: id
+              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
                 type: roles
             other_orgs:
               data:
