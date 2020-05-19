@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
+**Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Target** | Pointer to **string** | The name of the attribute that contains the result of the template. | 
 **Template** | Pointer to **string** | A formula with one or more attributes and raw text. | 
-**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "string-builder-processor"]
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
+**Type** | Pointer to [**LogsStringBuilderProcessorType**](LogsStringBuilderProcessorType.md) |  | [default to "string-builder-processor"]
 
 ## Methods
 
 ### NewLogsStringBuilderProcessor
 
-`func NewLogsStringBuilderProcessor(target string, template string, type_ string, ) *LogsStringBuilderProcessor`
+`func NewLogsStringBuilderProcessor(target string, template string, type_ LogsStringBuilderProcessorType, ) *LogsStringBuilderProcessor`
 
 NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +29,31 @@ will change when the set of required properties is changed
 NewLogsStringBuilderProcessorWithDefaults instantiates a new LogsStringBuilderProcessor object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetIsEnabled
+
+`func (o *LogsStringBuilderProcessor) GetIsEnabled() bool`
+
+GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
+
+### GetIsEnabledOk
+
+`func (o *LogsStringBuilderProcessor) GetIsEnabledOk() (*bool, bool)`
+
+GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEnabled
+
+`func (o *LogsStringBuilderProcessor) SetIsEnabled(v bool)`
+
+SetIsEnabled sets IsEnabled field to given value.
+
+### HasIsEnabled
+
+`func (o *LogsStringBuilderProcessor) HasIsEnabled() bool`
+
+HasIsEnabled returns a boolean if a field has been set.
 
 ### GetIsReplaceMissing
 
@@ -54,6 +79,31 @@ SetIsReplaceMissing sets IsReplaceMissing field to given value.
 `func (o *LogsStringBuilderProcessor) HasIsReplaceMissing() bool`
 
 HasIsReplaceMissing returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *LogsStringBuilderProcessor) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *LogsStringBuilderProcessor) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LogsStringBuilderProcessor) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *LogsStringBuilderProcessor) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetTarget
 
@@ -97,80 +147,24 @@ SetTemplate sets Template field to given value.
 
 ### GetType
 
-`func (o *LogsStringBuilderProcessor) GetType() string`
+`func (o *LogsStringBuilderProcessor) GetType() LogsStringBuilderProcessorType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogsStringBuilderProcessor) GetTypeOk() (*string, bool)`
+`func (o *LogsStringBuilderProcessor) GetTypeOk() (*LogsStringBuilderProcessorType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *LogsStringBuilderProcessor) SetType(v string)`
+`func (o *LogsStringBuilderProcessor) SetType(v LogsStringBuilderProcessorType)`
 
 SetType sets Type field to given value.
 
 
-### GetIsEnabled
-
-`func (o *LogsStringBuilderProcessor) GetIsEnabled() bool`
-
-GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
-
-### GetIsEnabledOk
-
-`func (o *LogsStringBuilderProcessor) GetIsEnabledOk() (*bool, bool)`
-
-GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsEnabled
-
-`func (o *LogsStringBuilderProcessor) SetIsEnabled(v bool)`
-
-SetIsEnabled sets IsEnabled field to given value.
-
-### HasIsEnabled
-
-`func (o *LogsStringBuilderProcessor) HasIsEnabled() bool`
-
-HasIsEnabled returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *LogsStringBuilderProcessor) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LogsStringBuilderProcessor) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LogsStringBuilderProcessor) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *LogsStringBuilderProcessor) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-
-### AsLogsProcessor
-
-`func (s *LogsStringBuilderProcessor) AsLogsProcessor() LogsProcessor`
-
-Convenience method to wrap this instance of LogsStringBuilderProcessor in LogsProcessor
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Relationships** | Pointer to [**UserInvitationRelationships**](UserInvitationRelationships.md) |  | [optional] 
-**Type** | Pointer to **string** | User invitations type. | [optional] [default to "user_invitations"]
+**Type** | Pointer to [**UserInvitationsType**](UserInvitationsType.md) |  | [optional] [default to "user_invitations"]
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasRelationships returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *UserInvitationData) GetType() string`
+`func (o *UserInvitationData) GetType() UserInvitationsType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *UserInvitationData) GetTypeOk() (*string, bool)`
+`func (o *UserInvitationData) GetTypeOk() (*UserInvitationsType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *UserInvitationData) SetType(v string)`
+`func (o *UserInvitationData) SetType(v UserInvitationsType)`
 
 SetType sets Type field to given value.
 

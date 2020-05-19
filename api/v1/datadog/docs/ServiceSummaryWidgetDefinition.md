@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "trace_service"]
+**Type** | Pointer to [**ServiceSummaryWidgetDefinitionType**](ServiceSummaryWidgetDefinitionType.md) |  | [default to "trace_service"]
 
 ## Methods
 
 ### NewServiceSummaryWidgetDefinition
 
-`func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, type_ string, ) *ServiceSummaryWidgetDefinition`
+`func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, type_ ServiceSummaryWidgetDefinitionType, ) *ServiceSummaryWidgetDefinition`
 
 NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -402,30 +402,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *ServiceSummaryWidgetDefinition) GetType() string`
+`func (o *ServiceSummaryWidgetDefinition) GetType() ServiceSummaryWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ServiceSummaryWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *ServiceSummaryWidgetDefinition) GetTypeOk() (*ServiceSummaryWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ServiceSummaryWidgetDefinition) SetType(v string)`
+`func (o *ServiceSummaryWidgetDefinition) SetType(v ServiceSummaryWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *ServiceSummaryWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of ServiceSummaryWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

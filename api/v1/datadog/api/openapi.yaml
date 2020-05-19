@@ -6253,11 +6253,7 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: alert_graph
-          description: Type of the widget.
-          example: alert_graph
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/AlertGraphWidgetDefinitionType'
         viz_type:
           $ref: '#/components/schemas/WidgetVizType'
       required:
@@ -6265,6 +6261,15 @@ components:
       - type
       - viz_type
       type: object
+    AlertGraphWidgetDefinitionType:
+      default: alert_graph
+      description: Type of the alert graph widget.
+      enum:
+      - alert_graph
+      example: alert_graph
+      type: string
+      x-enum-varnames:
+      - ALERT_GRAPH
     AlertValueWidgetDefinition:
       description: Alert values are query values showing the current value of the
         metric in any monitor defined on your system.
@@ -6288,11 +6293,7 @@ components:
           description: Size of value in the widget.
           type: string
         type:
-          default: alert_value
-          description: Type of the widget.
-          example: alert_value
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/AlertValueWidgetDefinitionType'
         unit:
           description: Unit to display with the value.
           type: string
@@ -6300,6 +6301,15 @@ components:
       - alert_id
       - type
       type: object
+    AlertValueWidgetDefinitionType:
+      default: alert_value
+      description: Type of the alert value widget.
+      enum:
+      - alert_value
+      example: alert_value
+      type: string
+      x-enum-varnames:
+      - ALERT_VALUE
     ApiKey:
       description: Datadog API key.
       example:
@@ -6529,15 +6539,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: change
-          description: Type of the widget.
-          example: change
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ChangeWidgetDefinitionType'
       required:
       - requests
       - type
       type: object
+    ChangeWidgetDefinitionType:
+      default: change
+      description: Type of the change widget.
+      enum:
+      - change
+      example: change
+      type: string
+      x-enum-varnames:
+      - CHANGE
     ChangeWidgetRequest:
       description: Updated change widget.
       properties:
@@ -6652,16 +6667,21 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: check_status
-          description: Type of the widget.
-          example: check_status
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/CheckStatusWidgetDefinitionType'
       required:
       - check
       - grouping
       - type
       type: object
+    CheckStatusWidgetDefinitionType:
+      default: check_status
+      description: Type of the check status widget.
+      enum:
+      - check_status
+      example: check_status
+      type: string
+      x-enum-varnames:
+      - CHECK_STATUS
     Creator:
       description: Object describing the creator of the shared element.
       example:
@@ -7017,15 +7037,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: distribution
-          description: Type of the widget.
-          example: distribution
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/DistributionWidgetDefinitionType'
       required:
       - requests
       - type
       type: object
+    DistributionWidgetDefinitionType:
+      default: distribution
+      description: Type of the distribution widget.
+      enum:
+      - distribution
+      example: distribution
+      type: string
+      x-enum-varnames:
+      - DISTRIBUTION
     DistributionWidgetRequest:
       description: Updated distribution widget.
       properties:
@@ -7487,15 +7512,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: event_stream
-          description: Type of the widget.
-          example: event_stream
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/EventStreamWidgetDefinitionType'
       required:
       - query
       - type
       type: object
+    EventStreamWidgetDefinitionType:
+      default: event_stream
+      description: Type of the event stream widget.
+      enum:
+      - event_stream
+      example: event_stream
+      type: string
+      x-enum-varnames:
+      - EVENT_STREAM
     EventTimelineWidgetDefinition:
       description: The event timeline is a widget version of the timeline that appears
         at the top of the Event Stream view. Only available on FREE layout dashboards.
@@ -7518,15 +7548,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: event_timeline
-          description: Type of the widget.
-          example: event_timeline
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/EventTimelineWidgetDefinitionType'
       required:
       - query
       - type
       type: object
+    EventTimelineWidgetDefinitionType:
+      default: event_timeline
+      description: Type of the event timeline widget.
+      enum:
+      - event_timeline
+      example: event_timeline
+      type: string
+      x-enum-varnames:
+      - EVENT_TIMELINE
     FreeTextWidgetDefinition:
       description: Free text is a widget that allows you to add headings to your screenboard.
         Commonly used to state the overall purpose of the dashboard. Only available
@@ -7544,15 +7579,20 @@ components:
         text_align:
           $ref: '#/components/schemas/WidgetTextAlign'
         type:
-          default: free_text
-          description: Type of the widget.
-          example: free_text
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/FreeTextWidgetDefinitionType'
       required:
       - text
       - type
       type: object
+    FreeTextWidgetDefinitionType:
+      default: free_text
+      description: Type of the free text widget.
+      enum:
+      - free_text
+      example: free_text
+      type: string
+      x-enum-varnames:
+      - FREE_TEXT
     GCPAccount:
       description: Your Google Cloud Platform Account.
       example:
@@ -7671,11 +7711,7 @@ components:
           description: Title of the widget.
           type: string
         type:
-          default: group
-          description: Type of the widget.
-          example: group
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/GroupWidgetDefinitionType'
         widgets:
           description: List of widget groups.
           items:
@@ -7686,6 +7722,15 @@ components:
       - type
       - widgets
       type: object
+    GroupWidgetDefinitionType:
+      default: group
+      description: Type of the group widget.
+      enum:
+      - group
+      example: group
+      type: string
+      x-enum-varnames:
+      - GROUP
     HTTPMethod:
       description: The HTTP method.
       enum:
@@ -7738,17 +7783,22 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: heatmap
-          description: Type of the widget.
-          example: heatmap
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/HeatMapWidgetDefinitionType'
         yaxis:
           $ref: '#/components/schemas/WidgetAxis'
       required:
       - requests
       - type
       type: object
+    HeatMapWidgetDefinitionType:
+      default: heatmap
+      description: Type of the heat map widget.
+      enum:
+      - heatmap
+      example: heatmap
+      type: string
+      x-enum-varnames:
+      - HEATMAP
     HeatMapWidgetRequest:
       description: Updated heat map widget.
       properties:
@@ -8014,15 +8064,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: hostmap
-          description: Type of the widget.
-          example: hostmap
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/HostMapWidgetDefinitionType'
       required:
       - requests
       - type
       type: object
+    HostMapWidgetDefinitionType:
+      default: hostmap
+      description: Type of the host map widget.
+      enum:
+      - hostmap
+      example: hostmap
+      type: string
+      x-enum-varnames:
+      - HOSTMAP
     HostMuteResponse:
       description: Response with the list of muted host for your organization.
       example:
@@ -8112,11 +8167,7 @@ components:
         page on your dashboard. Only available on FREE layout dashboards.
       properties:
         type:
-          default: iframe
-          description: Type of the widget.
-          example: iframe
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/IFrameWidgetDefinitionType'
         url:
           description: URL of the iframe.
           type: string
@@ -8124,6 +8175,15 @@ components:
       - type
       - url
       type: object
+    IFrameWidgetDefinitionType:
+      default: iframe
+      description: Type of the iframe widget.
+      enum:
+      - iframe
+      example: iframe
+      type: string
+      x-enum-varnames:
+      - IFRAME
     IPPrefixesAPI:
       description: Available prefix information for the API endpoints.
       example:
@@ -8396,11 +8456,7 @@ components:
         sizing:
           $ref: '#/components/schemas/WidgetImageSizing'
         type:
-          default: image
-          description: Type of the widget.
-          example: image
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ImageWidgetDefinitionType'
         url:
           description: URL of the image.
           type: string
@@ -8408,6 +8464,15 @@ components:
       - type
       - url
       type: object
+    ImageWidgetDefinitionType:
+      default: image
+      description: Type of the image widget.
+      enum:
+      - image
+      example: image
+      type: string
+      x-enum-varnames:
+      - IMAGE
     Log:
       description: Object describing a log after being processed and stored by Datadog.
       example:
@@ -8502,14 +8567,19 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: log_stream
-          description: Type of the widget.
-          example: log_stream
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogStreamWidgetDefinitionType'
       required:
       - type
       type: object
+    LogStreamWidgetDefinitionType:
+      default: log_stream
+      description: Type of the log stream widget.
+      enum:
+      - log_stream
+      example: log_stream
+      type: string
+      x-enum-varnames:
+      - LOG_STREAM
     LogsAPIError:
       description: Error returned by the Logs API
       properties:
@@ -8558,33 +8628,52 @@ components:
         expression:
           description: Arithmetic operation between one or more log attributes.
           type: string
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
         is_replace_missing:
           default: false
           description: |-
             If `true`, it replaces all missing attributes of expression by `0`, `false`
             skip the operation if an attribute is missing.
           type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         target:
           description: Name of the attribute that contains the result of the arithmetic
             operation.
           type: string
         type:
-          default: arithmetic-processor
-          description: Type of processor
-          example: arithmetic-processor
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsArithmeticProcessorType'
       required:
       - expression
       - target
       - type
       type: object
+    LogsArithmeticProcessorType:
+      default: arithmetic-processor
+      description: Type of logs arithmetic processor.
+      enum:
+      - arithmetic-processor
+      example: arithmetic-processor
+      type: string
+      x-enum-varnames:
+      - ARITHMETIC_PROCESSOR
     LogsAttributeRemapper:
       description: |-
         The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.
         Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice).
         Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         override_on_conflict:
           default: false
           description: Override or not the target element if already set,
@@ -8616,16 +8705,21 @@ components:
           description: Defines if the sources are from log `attribute` or `tag`.
           type: string
         type:
-          default: attribute-remapper
-          description: Type of processor.
-          example: attribute-remapper
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsAttributeRemapperType'
       required:
       - sources
       - target
       - type
       type: object
+    LogsAttributeRemapperType:
+      default: attribute-remapper
+      description: Type of logs attribute remapper.
+      enum:
+      - attribute-remapper
+      example: attribute-remapper
+      type: string
+      x-enum-varnames:
+      - ATTRIBUTE_REMAPPER
     LogsCategoryProcessor:
       description: |-
         Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name)
@@ -8649,21 +8743,33 @@ components:
           items:
             $ref: '#/components/schemas/LogsCategoryProcessor_categories'
           type: array
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         target:
           description: Name of the target attribute which value is defined by the
             matching category.
           type: string
         type:
-          default: category-processor
-          description: Type of processor.
-          example: category-processor
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsCategoryProcessorType'
       required:
       - categories
       - target
       - type
       type: object
+    LogsCategoryProcessorType:
+      default: category-processor
+      description: Type of logs category processor.
+      enum:
+      - category-processor
+      example: category-processor
+      type: string
+      x-enum-varnames:
+      - CATEGORY_PROCESSOR
     LogsDateRemapper:
       description: |-
         As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes.
@@ -8686,6 +8792,13 @@ components:
           If multiple log date remapper processors can be applied to a given log,
           only the first one (according to the pipelines order) is taken into account.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         sources:
           description: Array of source attributes.
           example:
@@ -8696,15 +8809,20 @@ components:
             type: string
           type: array
         type:
-          default: date-remapper
-          description: Type of processor.
-          example: date-remapper
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsDateRemapperType'
       required:
       - sources
       - type
       type: object
+    LogsDateRemapperType:
+      default: date-remapper
+      description: Type of logs date remapper.
+      enum:
+      - date-remapper
+      example: date-remapper
+      type: string
+      x-enum-varnames:
+      - DATE_REMAPPER
     LogsExclusion:
       description: Represents the index exclusion filter object from configuration
         API.
@@ -8765,6 +8883,13 @@ components:
         The GeoIP parser takes an IP address attribute and extracts if available
         the Continent, Country, Subdivision, and City information in the target attribute path.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         sources:
           default:
           - network.client.ip
@@ -8782,16 +8907,21 @@ components:
           example: network.client.geoip
           type: string
         type:
-          default: geo-ip-parser
-          description: Type of processor.
-          example: geo-ip-parser
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsGeoIPParserType'
       required:
       - sources
       - target
       - type
       type: object
+    LogsGeoIPParserType:
+      default: geo-ip-parser
+      description: Type of GeoIP parser.
+      enum:
+      - geo-ip-parser
+      example: geo-ip-parser
+      type: string
+      x-enum-varnames:
+      - GEO_IP_PARSER
     LogsGrokParser:
       description: |-
         Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/processing/parsing/#advanced-settings).
@@ -8799,6 +8929,13 @@ components:
       properties:
         grok:
           $ref: '#/components/schemas/LogsGrokParserRules'
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         samples:
           description: List of sample logs to test this grok parser.
           items:
@@ -8813,11 +8950,7 @@ components:
           example: message
           type: string
         type:
-          default: grok-parser
-          description: Type of processor.
-          example: grok-parser
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsGrokParserType'
       required:
       - grok
       - source
@@ -8844,6 +8977,15 @@ components:
       required:
       - match_rules
       type: object
+    LogsGrokParserType:
+      default: grok-parser
+      description: Type of logs grok parser.
+      enum:
+      - grok-parser
+      example: grok-parser
+      type: string
+      x-enum-varnames:
+      - GROK_PARSER
     LogsIndex:
       description: Object describing a Datadog Log index.
       example:
@@ -9067,6 +9209,10 @@ components:
           description: Value to set the target attribute if the source value is not
             found in the list.
           type: string
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
         lookup_table:
           description: |-
             Mapping table of values for the source attribute and their associated target attribute values,
@@ -9076,6 +9222,9 @@ components:
               format `"<SOURCE>,<VALUE>"`.
             type: string
           type: array
+        name:
+          description: Name of the processor.
+          type: string
         source:
           description: Source attribute used to perform the lookup.
           type: string
@@ -9085,17 +9234,22 @@ components:
             or the `default_lookup` if not found in the mapping list.
           type: string
         type:
-          default: lookup-processor
-          description: Type of processor.
-          example: lookup-processor
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsLookupProcessorType'
       required:
       - lookup_table
       - source
       - target
       - type
       type: object
+    LogsLookupProcessorType:
+      default: lookup-processor
+      description: Type of logs lookup processor.
+      enum:
+      - lookup-processor
+      example: lookup-processor
+      type: string
+      x-enum-varnames:
+      - LOOKUP_PROCESSOR
     LogsMessageRemapper:
       description: |-
         The message is a key attribute in Datadog.
@@ -9105,6 +9259,13 @@ components:
         **Note:** If multiple log message remapper processors can be applied to a given log,
         only the first one (according to the pipeline order) is taken into account.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         sources:
           default:
           - msg
@@ -9116,15 +9277,20 @@ components:
             type: string
           type: array
         type:
-          default: message-remapper
-          description: Type of processor.
-          example: message-remapper
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsMessageRemapperType'
       required:
       - sources
       - type
       type: object
+    LogsMessageRemapperType:
+      default: message-remapper
+      description: Type of logs message remapper.
+      enum:
+      - message-remapper
+      example: message-remapper
+      type: string
+      x-enum-varnames:
+      - MESSAGE_REMAPPER
     LogsPipeline:
       description: |-
         Pipelines and processors operate on incoming logs,
@@ -9140,10 +9306,8 @@ components:
         is_read_only: true
         id: id
         processors:
-        - is_enabled: false
-          name: name
-        - is_enabled: false
-          name: name
+        - null
+        - null
         type: pipeline
       properties:
         filter:
@@ -9190,20 +9354,32 @@ components:
       properties:
         filter:
           $ref: '#/components/schemas/LogsFilter'
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         processors:
           description: Ordered list of processors in this pipeline.
           items:
             $ref: '#/components/schemas/LogsProcessor'
           type: array
         type:
-          default: pipeline
-          description: Type of processor.
-          example: pipeline
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsPipelineProcessorType'
       required:
       - type
       type: object
+    LogsPipelineProcessorType:
+      default: pipeline
+      description: Type of logs pipeline processor.
+      enum:
+      - pipeline
+      example: pipeline
+      type: string
+      x-enum-varnames:
+      - PIPELINE
     LogsPipelinesOrder:
       description: Object containing the ordered list of pipeline IDs.
       example:
@@ -9229,27 +9405,6 @@ components:
       type: object
     LogsProcessor:
       description: Definition of a logs processor.
-      discriminator:
-        mapping:
-          arithmetic-processor: '#/components/schemas/LogsArithmeticProcessor'
-          attribute-remapper: '#/components/schemas/LogsAttributeRemapper'
-          category-processor: '#/components/schemas/LogsCategoryProcessor'
-          date-remapper: '#/components/schemas/LogsDateRemapper'
-          geo-ip-parser: '#/components/schemas/LogsGeoIPParser'
-          grok-parser: '#/components/schemas/LogsGrokParser'
-          lookup-processor: '#/components/schemas/LogsLookupProcessor'
-          message-remapper: '#/components/schemas/LogsMessageRemapper'
-          pipeline: '#/components/schemas/LogsPipelineProcessor'
-          service-remapper: '#/components/schemas/LogsServiceRemapper'
-          status-remapper: '#/components/schemas/LogsStatusRemapper'
-          string-builder-processor: '#/components/schemas/LogsStringBuilderProcessor'
-          trace-id-remapper: '#/components/schemas/LogsTraceRemapper'
-          url-parser: '#/components/schemas/LogsURLParser'
-          user-agent-parser: '#/components/schemas/LogsUserAgentParser'
-        propertyName: type
-      example:
-        is_enabled: false
-        name: name
       oneOf:
       - $ref: '#/components/schemas/LogsGrokParser'
       - $ref: '#/components/schemas/LogsDateRemapper'
@@ -9266,16 +9421,7 @@ components:
       - $ref: '#/components/schemas/LogsGeoIPParser'
       - $ref: '#/components/schemas/LogsLookupProcessor'
       - $ref: '#/components/schemas/LogsTraceRemapper'
-      properties:
-        is_enabled:
-          default: false
-          description: Whether or not the processor is enabled.
-          type: boolean
-        name:
-          description: Name of the processor.
-          type: string
       type: object
-      x-one-of-name: LogsProcessor
     LogsQueryCompute:
       description: Define computation for a log query.
       properties:
@@ -9302,6 +9448,13 @@ components:
         **Note:** If multiple service remapper processors can be applied to a given log,
         only the first one (according to the pipeline order) is taken into account.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         sources:
           description: Array of source attributes.
           example:
@@ -9312,15 +9465,20 @@ components:
             type: string
           type: array
         type:
-          default: service-remapper
-          description: Type of processor.
-          example: service-remapper
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsServiceRemapperType'
       required:
       - sources
       - type
       type: object
+    LogsServiceRemapperType:
+      default: service-remapper
+      description: Type of logs service remapper.
+      enum:
+      - service-remapper
+      example: service-remapper
+      type: string
+      x-enum-varnames:
+      - SERVICE_REMAPPER
     LogsSort:
       description: Time-ascending `asc` or time-descending `desc`results.
       enum:
@@ -9351,6 +9509,13 @@ components:
           **Note:** If multiple log status remapper processors can be applied to a given log,
           only the first one (according to the pipelines order) is taken into account.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         sources:
           description: Array of source attributes.
           items:
@@ -9358,15 +9523,20 @@ components:
             type: string
           type: array
         type:
-          default: status-remapper
-          description: Type of processor.
-          example: status-remapper
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsStatusRemapperType'
       required:
       - sources
       - type
       type: object
+    LogsStatusRemapperType:
+      default: status-remapper
+      description: Type of logs status remapper.
+      enum:
+      - status-remapper
+      example: status-remapper
+      type: string
+      x-enum-varnames:
+      - STATUS_REMAPPER
     LogsStringBuilderProcessor:
       description: |-
         Use the string builder processor to add a new attribute (without spaces or special characters)
@@ -9383,12 +9553,19 @@ components:
         - If the target attribute already exists, it is overwritten by the result of the template.
         - Results of the template cannot exceed 256 characters.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
         is_replace_missing:
           default: false
           description: |-
             If true, it replaces all missing attributes of `template` by an empty string.
             If `false` (default), skips the operation for missing attributes.
           type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         target:
           description: The name of the attribute that contains the result of the template.
           type: string
@@ -9396,16 +9573,21 @@ components:
           description: A formula with one or more attributes and raw text.
           type: string
         type:
-          default: string-builder-processor
-          description: Type of processor.
-          example: string-builder-processor
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsStringBuilderProcessorType'
       required:
       - target
       - template
       - type
       type: object
+    LogsStringBuilderProcessorType:
+      default: string-builder-processor
+      description: Type of logs string builder processor.
+      enum:
+      - string-builder-processor
+      example: string-builder-processor
+      type: string
+      x-enum-varnames:
+      - STRING_BUILDER_PROCESSOR
     LogsTraceRemapper:
       description: |-
         There are two ways to improve correlation between application traces and logs.
@@ -9415,6 +9597,13 @@ components:
 
           2. Use the Trace remapper processor to define a log attribute as its associated trace ID.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         sources:
           default:
           - dd.trace_id
@@ -9424,18 +9613,30 @@ components:
             type: string
           type: array
         type:
-          default: trace-id-remapper
-          description: Type of processor.
-          example: trace-id-remapper
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsTraceRemapperType'
       required:
       - type
       type: object
+    LogsTraceRemapperType:
+      default: trace-id-remapper
+      description: Type of logs trace remapper.
+      enum:
+      - trace-id-remapper
+      example: trace-id-remapper
+      type: string
+      x-enum-varnames:
+      - TRACE_ID_REMAPPER
     LogsURLParser:
       description: This processor extracts query parameters and other important parameters
         from a URL.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         normalize_ending_slashes:
           default: false
           description: Normalize the ending slashes or not.
@@ -9458,25 +9659,37 @@ components:
           example: http.url_details
           type: string
         type:
-          default: url-parser
-          description: Type of processor.
-          example: url-parser
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsURLParserType'
       required:
       - sources
       - target
       - type
       type: object
+    LogsURLParserType:
+      default: url-parser
+      description: Type of logs URL parser.
+      enum:
+      - url-parser
+      example: url-parser
+      type: string
+      x-enum-varnames:
+      - URL_PARSER
     LogsUserAgentParser:
       description: |-
         The User-Agent parser takes a User-Agent attribute and extracts the OS, browser, device, and other user data.
         It recognizes major bots like the Google Bot, Yahoo Slurp, and Bing.
       properties:
+        is_enabled:
+          default: false
+          description: Whether or not the processor is enabled.
+          type: boolean
         is_encoded:
           default: false
           description: Define if the source attribute is URL encoded or not.
           type: boolean
+        name:
+          description: Name of the processor.
+          type: string
         sources:
           default:
           - http.useragent
@@ -9494,16 +9707,21 @@ components:
           example: http.useragent_details
           type: string
         type:
-          default: user-agent-parser
-          description: Type of processor.
-          example: user-agent-parser
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/LogsUserAgentParserType'
       required:
       - sources
       - target
       - type
       type: object
+    LogsUserAgentParserType:
+      default: user-agent-parser
+      description: Type of logs User-Agent parser.
+      enum:
+      - user-agent-parser
+      example: user-agent-parser
+      type: string
+      x-enum-varnames:
+      - USER_AGENT_PARSER
     MetricMetadata:
       description: Object with all metric related metadata.
       example:
@@ -10087,15 +10305,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: manage_status
-          description: Type of the widget.
-          example: manage_status
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/MonitorSummaryWidgetDefinitionType'
       required:
       - query
       - type
       type: object
+    MonitorSummaryWidgetDefinitionType:
+      default: manage_status
+      description: Type of the monitor summary widget.
+      enum:
+      - manage_status
+      example: manage_status
+      type: string
+      x-enum-varnames:
+      - MANAGE_STATUS
     MonitorThresholdWindowOptions:
       description: Alerting time window options.
       example:
@@ -10317,15 +10540,20 @@ components:
           description: Where to position the tick on an edge.
           type: string
         type:
-          default: note
-          description: Type of the widget.
-          example: note
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/NoteWidgetDefinitionType'
       required:
       - content
       - type
       type: object
+    NoteWidgetDefinitionType:
+      default: note
+      description: Type of the note widget.
+      enum:
+      - note
+      example: note
+      type: string
+      x-enum-varnames:
+      - NOTE
     Organization:
       description: Create, edit, and manage organizations.
       example:
@@ -10691,15 +10919,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: query_value
-          description: Type of widget.
-          example: query_value
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/QueryValueWidgetDefinitionType'
       required:
       - requests
       - type
       type: object
+    QueryValueWidgetDefinitionType:
+      default: query_value
+      description: Type of the query value widget.
+      enum:
+      - query_value
+      example: query_value
+      type: string
+      x-enum-varnames:
+      - QUERY_VALUE
     QueryValueWidgetRequest:
       description: Updated query value widget.
       properties:
@@ -11334,11 +11567,7 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: slo
-          description: Type of the widget.
-          example: slo
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/SLOWidgetDefinitionType'
         view_mode:
           $ref: '#/components/schemas/WidgetViewMode'
         view_type:
@@ -11350,6 +11579,15 @@ components:
       - type
       - view_type
       type: object
+    SLOWidgetDefinitionType:
+      default: slo
+      description: Type of the SLO widget.
+      enum:
+      - slo
+      example: slo
+      type: string
+      x-enum-varnames:
+      - SLO
     ScatterPlotRequest:
       description: Updated scatter plot.
       properties:
@@ -11394,11 +11632,7 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: scatterplot
-          description: Type of widget.
-          example: scatterplot
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ScatterPlotWidgetDefinitionType'
         xaxis:
           $ref: '#/components/schemas/WidgetAxis'
         yaxis:
@@ -11407,6 +11641,15 @@ components:
       - requests
       - type
       type: object
+    ScatterPlotWidgetDefinitionType:
+      default: scatterplot
+      description: Type of the scatter plot widget.
+      enum:
+      - scatterplot
+      example: scatterplot
+      type: string
+      x-enum-varnames:
+      - SCATTERPLOT
     ServiceLevelObjective:
       description: |-
         A service level objective object includes a service level indicator, thresholds
@@ -11706,16 +11949,21 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: servicemap
-          description: Type of the widget.
-          example: servicemap
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ServiceMapWidgetDefinitionType'
       required:
       - filters
       - service
       - type
       type: object
+    ServiceMapWidgetDefinitionType:
+      default: servicemap
+      description: Type of the service map widget.
+      enum:
+      - servicemap
+      example: servicemap
+      type: string
+      x-enum-varnames:
+      - SERVICEMAP
     ServiceSummaryWidgetDefinition:
       description: The service summary displays the graphs of a chosen service in
         your screenboard. Only available on FREE layout dashboards.
@@ -11762,17 +12010,22 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: trace_service
-          description: Type of the widget.
-          example: trace_service
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ServiceSummaryWidgetDefinitionType'
       required:
       - env
       - service
       - span_name
       - type
       type: object
+    ServiceSummaryWidgetDefinitionType:
+      default: trace_service
+      description: Type of the service summary widget.
+      enum:
+      - trace_service
+      example: trace_service
+      type: string
+      x-enum-varnames:
+      - TRACE_SERVICE
     SyntheticsAPITestResultData:
       description: Object containing results for your Synthetic API test.
       example:
@@ -13496,15 +13749,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: query_table
-          description: Type of the widget.
-          example: query_table
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/TableWidgetDefinitionType'
       required:
       - requests
       - type
       type: object
+    TableWidgetDefinitionType:
+      default: query_table
+      description: Type of the table widget.
+      enum:
+      - query_table
+      example: query_table
+      type: string
+      x-enum-varnames:
+      - QUERY_TABLE
     TableWidgetRequest:
       description: Updated table widget.
       properties:
@@ -13599,17 +13857,22 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: timeseries
-          description: Type of the widget.
-          example: timeseries
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/TimeseriesWidgetDefinitionType'
         yaxis:
           $ref: '#/components/schemas/WidgetAxis'
       required:
       - requests
       - type
       type: object
+    TimeseriesWidgetDefinitionType:
+      default: timeseries
+      description: Type of the timeseries widget.
+      enum:
+      - timeseries
+      example: timeseries
+      type: string
+      x-enum-varnames:
+      - TIMESERIES
     TimeseriesWidgetRequest:
       description: Updated timeseries widget.
       properties:
@@ -13659,15 +13922,20 @@ components:
           description: Size of the title.
           type: string
         type:
-          default: toplist
-          description: Type of the widget.
-          example: toplist
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ToplistWidgetDefinitionType'
       required:
       - requests
       - type
       type: object
+    ToplistWidgetDefinitionType:
+      default: toplist
+      description: Type of the top list widget.
+      enum:
+      - toplist
+      example: toplist
+      type: string
+      x-enum-varnames:
+      - TOPLIST
     ToplistWidgetRequest:
       description: Updated top list widget.
       properties:
@@ -15143,33 +15411,6 @@ components:
       type: object
     WidgetDefinition:
       description: '[Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).'
-      discriminator:
-        mapping:
-          alert_graph: '#/components/schemas/AlertGraphWidgetDefinition'
-          alert_value: '#/components/schemas/AlertValueWidgetDefinition'
-          change: '#/components/schemas/ChangeWidgetDefinition'
-          check_status: '#/components/schemas/CheckStatusWidgetDefinition'
-          distribution: '#/components/schemas/DistributionWidgetDefinition'
-          event_stream: '#/components/schemas/EventStreamWidgetDefinition'
-          event_timeline: '#/components/schemas/EventTimelineWidgetDefinition'
-          free_text: '#/components/schemas/FreeTextWidgetDefinition'
-          group: '#/components/schemas/GroupWidgetDefinition'
-          heatmap: '#/components/schemas/HeatMapWidgetDefinition'
-          hostmap: '#/components/schemas/HostMapWidgetDefinition'
-          iframe: '#/components/schemas/IFrameWidgetDefinition'
-          image: '#/components/schemas/ImageWidgetDefinition'
-          log_stream: '#/components/schemas/LogStreamWidgetDefinition'
-          manage_status: '#/components/schemas/MonitorSummaryWidgetDefinition'
-          note: '#/components/schemas/NoteWidgetDefinition'
-          query_table: '#/components/schemas/TableWidgetDefinition'
-          query_value: '#/components/schemas/QueryValueWidgetDefinition'
-          scatterplot: '#/components/schemas/ScatterPlotWidgetDefinition'
-          servicemap: '#/components/schemas/ServiceMapWidgetDefinition'
-          slo: '#/components/schemas/SLOWidgetDefinition'
-          timeseries: '#/components/schemas/TimeseriesWidgetDefinition'
-          toplist: '#/components/schemas/ToplistWidgetDefinition'
-          trace_service: '#/components/schemas/ServiceSummaryWidgetDefinition'
-        propertyName: type
       oneOf:
       - $ref: '#/components/schemas/AlertGraphWidgetDefinition'
       - $ref: '#/components/schemas/AlertValueWidgetDefinition'
@@ -15196,7 +15437,6 @@ components:
       - $ref: '#/components/schemas/TimeseriesWidgetDefinition'
       - $ref: '#/components/schemas/ToplistWidgetDefinition'
       type: object
-      x-one-of-name: WidgetDefinition
     WidgetDisplayType:
       description: Type of display to use for the request.
       enum:

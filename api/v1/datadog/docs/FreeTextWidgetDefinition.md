@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
 **Text** | Pointer to **string** | Text to display. | 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "free_text"]
+**Type** | Pointer to [**FreeTextWidgetDefinitionType**](FreeTextWidgetDefinitionType.md) |  | [default to "free_text"]
 
 ## Methods
 
 ### NewFreeTextWidgetDefinition
 
-`func NewFreeTextWidgetDefinition(text string, type_ string, ) *FreeTextWidgetDefinition`
+`func NewFreeTextWidgetDefinition(text string, type_ FreeTextWidgetDefinitionType, ) *FreeTextWidgetDefinition`
 
 NewFreeTextWidgetDefinition instantiates a new FreeTextWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -126,30 +126,24 @@ HasTextAlign returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *FreeTextWidgetDefinition) GetType() string`
+`func (o *FreeTextWidgetDefinition) GetType() FreeTextWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *FreeTextWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *FreeTextWidgetDefinition) GetTypeOk() (*FreeTextWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *FreeTextWidgetDefinition) SetType(v string)`
+`func (o *FreeTextWidgetDefinition) SetType(v FreeTextWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *FreeTextWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of FreeTextWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

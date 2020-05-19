@@ -10,14 +10,14 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of value in the widget. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "alert_value"]
+**Type** | Pointer to [**AlertValueWidgetDefinitionType**](AlertValueWidgetDefinitionType.md) |  | [default to "alert_value"]
 **Unit** | Pointer to **string** | Unit to display with the value. | [optional] 
 
 ## Methods
 
 ### NewAlertValueWidgetDefinition
 
-`func NewAlertValueWidgetDefinition(alertId string, type_ string, ) *AlertValueWidgetDefinition`
+`func NewAlertValueWidgetDefinition(alertId string, type_ AlertValueWidgetDefinitionType, ) *AlertValueWidgetDefinition`
 
 NewAlertValueWidgetDefinition instantiates a new AlertValueWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -179,20 +179,20 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *AlertValueWidgetDefinition) GetType() string`
+`func (o *AlertValueWidgetDefinition) GetType() AlertValueWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *AlertValueWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *AlertValueWidgetDefinition) GetTypeOk() (*AlertValueWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *AlertValueWidgetDefinition) SetType(v string)`
+`func (o *AlertValueWidgetDefinition) SetType(v AlertValueWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -222,12 +222,6 @@ SetUnit sets Unit field to given value.
 
 HasUnit returns a boolean if a field has been set.
 
-
-### AsWidgetDefinition
-
-`func (s *AlertValueWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of AlertValueWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

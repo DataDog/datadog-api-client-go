@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**PermissionAttributes**](PermissionAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the permission. | [optional] 
-**Type** | Pointer to **string** | Permissions resource type. | [readonly] [default to "permissions"]
+**Type** | Pointer to [**PermissionsType**](PermissionsType.md) |  | [default to "permissions"]
 
 ## Methods
 
 ### NewPermission
 
-`func NewPermission(type_ string, ) *Permission`
+`func NewPermission(type_ PermissionsType, ) *Permission`
 
 NewPermission instantiates a new Permission object
 This constructor will assign default values to properties that have it defined,
@@ -79,30 +79,24 @@ HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Permission) GetType() string`
+`func (o *Permission) GetType() PermissionsType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Permission) GetTypeOk() (*string, bool)`
+`func (o *Permission) GetTypeOk() (*PermissionsType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Permission) SetType(v string)`
+`func (o *Permission) SetType(v PermissionsType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsUserResponseIncludedItem
-
-`func (s *Permission) AsUserResponseIncludedItem() UserResponseIncludedItem`
-
-Convenience method to wrap this instance of Permission in UserResponseIncludedItem
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

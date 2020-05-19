@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // UsageMetricCategory Contains the metric category.
 type UsageMetricCategory string
 
@@ -20,6 +24,23 @@ const (
 	USAGEMETRICCATEGORY_STANDARD UsageMetricCategory = "standard"
 	USAGEMETRICCATEGORY_CUSTOM   UsageMetricCategory = "custom"
 )
+
+func (v *UsageMetricCategory) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := UsageMetricCategory(value)
+	for _, existing := range []UsageMetricCategory{"standard", "custom"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid UsageMetricCategory", *v)
+}
 
 // Ptr returns reference to UsageMetricCategory value
 func (v UsageMetricCategory) Ptr() *UsageMetricCategory {

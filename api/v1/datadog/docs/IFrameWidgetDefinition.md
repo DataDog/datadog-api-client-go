@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "iframe"]
+**Type** | Pointer to [**IFrameWidgetDefinitionType**](IFrameWidgetDefinitionType.md) |  | [default to "iframe"]
 **Url** | Pointer to **string** | URL of the iframe. | 
 
 ## Methods
 
 ### NewIFrameWidgetDefinition
 
-`func NewIFrameWidgetDefinition(type_ string, url string, ) *IFrameWidgetDefinition`
+`func NewIFrameWidgetDefinition(type_ IFrameWidgetDefinitionType, url string, ) *IFrameWidgetDefinition`
 
 NewIFrameWidgetDefinition instantiates a new IFrameWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *IFrameWidgetDefinition) GetType() string`
+`func (o *IFrameWidgetDefinition) GetType() IFrameWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *IFrameWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *IFrameWidgetDefinition) GetTypeOk() (*IFrameWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *IFrameWidgetDefinition) SetType(v string)`
+`func (o *IFrameWidgetDefinition) SetType(v IFrameWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -66,12 +66,6 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *IFrameWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of IFrameWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

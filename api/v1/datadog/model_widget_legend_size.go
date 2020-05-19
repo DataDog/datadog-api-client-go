@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetLegendSize Available legend sizes for a widget.
 type WidgetLegendSize string
 
@@ -23,6 +27,23 @@ const (
 	WIDGETLEGENDSIZE_SIXTEEN WidgetLegendSize = "16"
 	WIDGETLEGENDSIZE_AUTO    WidgetLegendSize = "auto"
 )
+
+func (v *WidgetLegendSize) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetLegendSize(value)
+	for _, existing := range []WidgetLegendSize{"2", "4", "8", "16", "auto"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetLegendSize", *v)
+}
 
 // Ptr returns reference to WidgetLegendSize value
 func (v WidgetLegendSize) Ptr() *WidgetLegendSize {

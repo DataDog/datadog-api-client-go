@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetMessageDisplay Amount of log lines to display
 type WidgetMessageDisplay string
 
@@ -21,6 +25,23 @@ const (
 	WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM WidgetMessageDisplay = "expanded-md"
 	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE  WidgetMessageDisplay = "expanded-lg"
 )
+
+func (v *WidgetMessageDisplay) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetMessageDisplay(value)
+	for _, existing := range []WidgetMessageDisplay{"inline", "expanded-md", "expanded-lg"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetMessageDisplay", *v)
+}
 
 // Ptr returns reference to WidgetMessageDisplay value
 func (v WidgetMessageDisplay) Ptr() *WidgetMessageDisplay {

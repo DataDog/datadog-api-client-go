@@ -54,7 +54,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RelationshipToPermission{Data: datadog.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"}} // RelationshipToPermission |  (optional)
+    body := datadog.RelationshipToPermission{Data: datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}}} // RelationshipToPermission |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -223,7 +223,7 @@ func main() {
         },
     )
 
-    body := datadog.RoleCreatePayload{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: "Type_example"})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: "Type_example"}} // RoleCreatePayload |  (optional)
+    body := datadog.RoleCreatePayload{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: datadog.RolesType{}}} // RoleCreatePayload |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -970,7 +970,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RoleUpdatePayload{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{Name: "Name_example"}, Id: "Id_example", Type: "Type_example"}} // RoleUpdatePayload |  (optional)
+    body := datadog.RoleUpdatePayload{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{Name: "Name_example"}, Id: "Id_example", Type: datadog.RolesType{}}} // RoleUpdatePayload |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

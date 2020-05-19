@@ -15,13 +15,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "hostmap"]
+**Type** | Pointer to [**HostMapWidgetDefinitionType**](HostMapWidgetDefinitionType.md) |  | [default to "hostmap"]
 
 ## Methods
 
 ### NewHostMapWidgetDefinition
 
-`func NewHostMapWidgetDefinition(requests HostMapWidgetDefinitionRequests, type_ string, ) *HostMapWidgetDefinition`
+`func NewHostMapWidgetDefinition(requests HostMapWidgetDefinitionRequests, type_ HostMapWidgetDefinitionType, ) *HostMapWidgetDefinition`
 
 NewHostMapWidgetDefinition instantiates a new HostMapWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -308,30 +308,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *HostMapWidgetDefinition) GetType() string`
+`func (o *HostMapWidgetDefinition) GetType() HostMapWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *HostMapWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *HostMapWidgetDefinition) GetTypeOk() (*HostMapWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *HostMapWidgetDefinition) SetType(v string)`
+`func (o *HostMapWidgetDefinition) SetType(v HostMapWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *HostMapWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of HostMapWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

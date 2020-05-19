@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | The title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "servicemap"]
+**Type** | Pointer to [**ServiceMapWidgetDefinitionType**](ServiceMapWidgetDefinitionType.md) |  | [default to "servicemap"]
 
 ## Methods
 
 ### NewServiceMapWidgetDefinition
 
-`func NewServiceMapWidgetDefinition(filters []string, service string, type_ string, ) *ServiceMapWidgetDefinition`
+`func NewServiceMapWidgetDefinition(filters []string, service string, type_ ServiceMapWidgetDefinitionType, ) *ServiceMapWidgetDefinition`
 
 NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -147,30 +147,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *ServiceMapWidgetDefinition) GetType() string`
+`func (o *ServiceMapWidgetDefinition) GetType() ServiceMapWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ServiceMapWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *ServiceMapWidgetDefinition) GetTypeOk() (*ServiceMapWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ServiceMapWidgetDefinition) SetType(v string)`
+`func (o *ServiceMapWidgetDefinition) SetType(v ServiceMapWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *ServiceMapWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of ServiceMapWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

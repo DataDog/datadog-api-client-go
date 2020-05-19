@@ -16,13 +16,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "log_stream"]
+**Type** | Pointer to [**LogStreamWidgetDefinitionType**](LogStreamWidgetDefinitionType.md) |  | [default to "log_stream"]
 
 ## Methods
 
 ### NewLogStreamWidgetDefinition
 
-`func NewLogStreamWidgetDefinition(type_ string, ) *LogStreamWidgetDefinition`
+`func NewLogStreamWidgetDefinition(type_ LogStreamWidgetDefinitionType, ) *LogStreamWidgetDefinition`
 
 NewLogStreamWidgetDefinition instantiates a new LogStreamWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -339,30 +339,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *LogStreamWidgetDefinition) GetType() string`
+`func (o *LogStreamWidgetDefinition) GetType() LogStreamWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LogStreamWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *LogStreamWidgetDefinition) GetTypeOk() (*LogStreamWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *LogStreamWidgetDefinition) SetType(v string)`
+`func (o *LogStreamWidgetDefinition) SetType(v LogStreamWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *LogStreamWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of LogStreamWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Operator** | Pointer to [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
 **Property** | Pointer to **string** | The associated assertion property. | [optional] 
-**Target** | Pointer to [**interface{}**](.md) | Target to apply the assertion to. It can be a string, a number, or a Date. | [optional] 
+**Target** | Pointer to **interface{}** | Target to apply the assertion to. It can be a string, a number, or a Date. | [optional] 
 **Type** | Pointer to [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
 
 ## Methods

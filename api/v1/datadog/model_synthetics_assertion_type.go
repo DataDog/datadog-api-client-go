@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SyntheticsAssertionType Type of the assertion.
 type SyntheticsAssertionType string
 
@@ -24,6 +28,23 @@ const (
 	SYNTHETICSASSERTIONTYPE_RESPONSE_TIME SyntheticsAssertionType = "responseTime"
 	SYNTHETICSASSERTIONTYPE_PROPERTY      SyntheticsAssertionType = "property"
 )
+
+func (v *SyntheticsAssertionType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SyntheticsAssertionType(value)
+	for _, existing := range []SyntheticsAssertionType{"body", "header", "statusCode", "certificate", "responseTime", "property"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SyntheticsAssertionType", *v)
+}
 
 // Ptr returns reference to SyntheticsAssertionType value
 func (v SyntheticsAssertionType) Ptr() *SyntheticsAssertionType {
