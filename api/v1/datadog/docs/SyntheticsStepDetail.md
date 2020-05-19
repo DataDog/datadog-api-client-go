@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **TimeToInteractive** | Pointer to **float64** | Time before starting the step. | [optional] 
 **Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
 **Url** | Pointer to **string** | URL to perform the step against. | [optional] 
-**Value** | Pointer to [**interface{}**](.md) | Value for the step. | [optional] 
+**Value** | Pointer to **interface{}** | Value for the step. | [optional] 
 **Warnings** | Pointer to [**[]SyntheticsStepDetailWarnings**](SyntheticsStepDetail_warnings.md) | Warning collected that didn&#39;t failed the step. | [optional] 
 
 ## Methods

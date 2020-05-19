@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SLOTypeNumeric A numeric representation of the type of the service level objective (`0` for monitor, `1` for metric). Always included in service level objective responses. Ignored in create/update requests.
 type SLOTypeNumeric int32
 
@@ -20,6 +24,23 @@ const (
 	SLOTYPENUMERIC_MONITOR SLOTypeNumeric = 0
 	SLOTYPENUMERIC_METRIC  SLOTypeNumeric = 1
 )
+
+func (v *SLOTypeNumeric) UnmarshalJSON(src []byte) error {
+	var value int32
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SLOTypeNumeric(value)
+	for _, existing := range []SLOTypeNumeric{0, 1} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SLOTypeNumeric", *v)
+}
 
 // Ptr returns reference to SLOTypeNumeric value
 func (v SLOTypeNumeric) Ptr() *SLOTypeNumeric {

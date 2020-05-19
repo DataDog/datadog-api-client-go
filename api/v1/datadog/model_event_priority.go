@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // EventPriority The priority of the event. For example, `normal` or `low`.
 type EventPriority string
 
@@ -20,6 +24,23 @@ const (
 	EVENTPRIORITY_NORMAL EventPriority = "normal"
 	EVENTPRIORITY_LOW    EventPriority = "low"
 )
+
+func (v *EventPriority) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := EventPriority(value)
+	for _, existing := range []EventPriority{"normal", "low"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid EventPriority", *v)
+}
 
 // Ptr returns reference to EventPriority value
 func (v EventPriority) Ptr() *EventPriority {

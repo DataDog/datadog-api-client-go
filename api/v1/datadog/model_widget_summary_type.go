@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetSummaryType Which summary type should be used.
 type WidgetSummaryType string
 
@@ -21,6 +25,23 @@ const (
 	WIDGETSUMMARYTYPE_GROUPS   WidgetSummaryType = "groups"
 	WIDGETSUMMARYTYPE_COMBINED WidgetSummaryType = "combined"
 )
+
+func (v *WidgetSummaryType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetSummaryType(value)
+	for _, existing := range []WidgetSummaryType{"monitors", "groups", "combined"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetSummaryType", *v)
+}
 
 // Ptr returns reference to WidgetSummaryType value
 func (v WidgetSummaryType) Ptr() *WidgetSummaryType {

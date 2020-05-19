@@ -60,7 +60,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	alertGraphDefinition.SetTime(*widgetTime)
 
 	alertGraphWidget := datadog.NewWidgetWithDefaults()
-	alertGraphWidget.SetDefinition(alertGraphDefinition.AsWidgetDefinition())
+	alertGraphWidget.SetDefinition(datadog.AlertGraphWidgetDefinitionAsWidgetDefinition(alertGraphDefinition))
 
 	// Alert Value Widget
 	alertValueDefinition := datadog.NewAlertValueWidgetDefinitionWithDefaults()
@@ -73,7 +73,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	alertValueDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_RIGHT)
 
 	alertValueWidget := datadog.NewWidgetWithDefaults()
-	alertValueWidget.SetDefinition(alertValueDefinition.AsWidgetDefinition())
+	alertValueWidget.SetDefinition(datadog.AlertValueWidgetDefinitionAsWidgetDefinition(alertValueDefinition))
 
 	// Change Widget
 	changeWidgetRequest := datadog.NewChangeWidgetRequest()
@@ -95,7 +95,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	})
 
 	changeWidget := datadog.NewWidgetWithDefaults()
-	changeWidget.SetDefinition(changeWidgetDefinition.AsWidgetDefinition())
+	changeWidget.SetDefinition(datadog.ChangeWidgetDefinitionAsWidgetDefinition(changeWidgetDefinition))
 
 	// Check Status Widget
 	checkStatusWidgetDefinition := datadog.NewCheckStatusWidgetDefinitionWithDefaults()
@@ -110,7 +110,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	checkStatusWidgetDefinition.SetTime(*widgetTime)
 
 	checkStatusWidget := datadog.NewWidgetWithDefaults()
-	checkStatusWidget.SetDefinition(checkStatusWidgetDefinition.AsWidgetDefinition())
+	checkStatusWidget.SetDefinition(datadog.CheckStatusWidgetDefinitionAsWidgetDefinition(checkStatusWidgetDefinition))
 
 	// Distribution Widget
 	distributionWidgetDefinition := datadog.NewDistributionWidgetDefinitionWithDefaults()
@@ -132,7 +132,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	distributionWidgetDefinition.SetTitleSize("16")
 	distributionWidgetDefinition.SetTime(*widgetTime)
 
-	distributionWidget := datadog.NewWidget(distributionWidgetDefinition.AsWidgetDefinition())
+	distributionWidget := datadog.NewWidget(datadog.DistributionWidgetDefinitionAsWidgetDefinition(distributionWidgetDefinition))
 
 	// Event Stream Widget ONLY AVAILABLE ON FREE LAYOUTS
 	eventStreamWidgetDefinition := datadog.NewEventStreamWidgetDefinitionWithDefaults()
@@ -144,7 +144,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	eventStreamWidgetDefinition.SetTime(*widgetTimePastOneDay)
 
 	eventStreamWidget := datadog.NewWidgetWithDefaults()
-	eventStreamWidget.SetDefinition(eventStreamWidgetDefinition.AsWidgetDefinition())
+	eventStreamWidget.SetDefinition(datadog.EventStreamWidgetDefinitionAsWidgetDefinition(eventStreamWidgetDefinition))
 	eventStreamWidget.SetLayout(*widgetLayout)
 
 	// Event Timeline Widget ONLY AVAILABLE ON FREE LAYOUTS
@@ -156,7 +156,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	eventTimelineWidgetDefinition.SetTime(*widgetTimePastOneMonth)
 
 	eventTimelineWidget := datadog.NewWidgetWithDefaults()
-	eventTimelineWidget.SetDefinition(eventTimelineWidgetDefinition.AsWidgetDefinition())
+	eventTimelineWidget.SetDefinition(datadog.EventTimelineWidgetDefinitionAsWidgetDefinition(eventTimelineWidgetDefinition))
 	eventTimelineWidget.SetLayout(*widgetLayout)
 
 	// Free Text Widget ONLY AVAILABLE ON FREE LAYOUTS
@@ -167,7 +167,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeTextWidgetDefinition.SetTextAlign(datadog.WIDGETTEXTALIGN_CENTER)
 
 	freeTextWidget := datadog.NewWidgetWithDefaults()
-	freeTextWidget.SetDefinition(freeTextWidgetDefinition.AsWidgetDefinition())
+	freeTextWidget.SetDefinition(datadog.FreeTextWidgetDefinitionAsWidgetDefinition(freeTextWidgetDefinition))
 	freeTextWidget.SetLayout(*widgetLayout)
 
 	// Group Widget
@@ -178,10 +178,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	groupWidgetDefinition.SetLayoutType(datadog.WIDGETLAYOUTTYPE_ORDERED)
 	groupWidgetDefinition.SetTitle("Test Group Widget")
 	groupWidgetDefinition.SetWidgets([]datadog.Widget{
-		*datadog.NewWidget(groupNoteWidgetDefinition.AsWidgetDefinition()),
+		*datadog.NewWidget(datadog.NoteWidgetDefinitionAsWidgetDefinition(groupNoteWidgetDefinition)),
 	})
 
-	groupWidget := datadog.NewWidget(groupWidgetDefinition.AsWidgetDefinition())
+	groupWidget := datadog.NewWidget(datadog.GroupWidgetDefinitionAsWidgetDefinition(groupWidgetDefinition))
 
 	// HeatMap Widget
 	heatMapWidgetDefinition := datadog.NewHeatMapWidgetDefinitionWithDefaults()
@@ -212,7 +212,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	heatMapWidgetDefinition.SetShowLegend(true)
 	heatMapWidgetDefinition.SetLegendSize(datadog.WIDGETLEGENDSIZE_FOUR)
 
-	heatMapWidget := datadog.NewWidget(heatMapWidgetDefinition.AsWidgetDefinition())
+	heatMapWidget := datadog.NewWidget(datadog.HeatMapWidgetDefinitionAsWidgetDefinition(heatMapWidgetDefinition))
 
 	// HostMap Widget
 	hostMapWidgetDefinition := datadog.NewHostMapWidgetDefinitionWithDefaults()
@@ -235,13 +235,13 @@ func TestDashboardLifecycle(t *testing.T) {
 	hostMapWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	hostMapWidgetDefinition.SetTitleSize("16")
 
-	hostMapWidget := datadog.NewWidget(hostMapWidgetDefinition.AsWidgetDefinition())
+	hostMapWidget := datadog.NewWidget(datadog.HostMapWidgetDefinitionAsWidgetDefinition(hostMapWidgetDefinition))
 
 	// Iframe Widget ONLY AVAILABLE ON FREE LAYOUTS
 	iFrameWidgetDefinition := datadog.NewIFrameWidgetDefinitionWithDefaults()
 	iFrameWidgetDefinition.SetUrl("https://datadoghq.com")
 
-	iFrameWidget := datadog.NewWidget(iFrameWidgetDefinition.AsWidgetDefinition())
+	iFrameWidget := datadog.NewWidget(datadog.IFrameWidgetDefinitionAsWidgetDefinition(iFrameWidgetDefinition))
 	iFrameWidget.SetLayout(*widgetLayout)
 
 	// Image Widget ONLY AVAILABLE ON FREE LAYOUTS
@@ -250,7 +250,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	imageWidgetDefinition.SetSizing(datadog.WIDGETIMAGESIZING_CENTER)
 	imageWidgetDefinition.SetMargin(datadog.WIDGETMARGIN_LARGE)
 
-	imageWidget := datadog.NewWidget(imageWidgetDefinition.AsWidgetDefinition())
+	imageWidget := datadog.NewWidget(datadog.ImageWidgetDefinitionAsWidgetDefinition(imageWidgetDefinition))
 	imageWidget.SetLayout(*widgetLayout)
 
 	// LogStream ONLY AVAILABLE ON FREE LAYOUTS
@@ -268,7 +268,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	logStreamWidgetDefinition.SetShowMessageColumn(true)
 	logStreamWidgetDefinition.SetSort(datadog.WidgetFieldSort{Column: "Route", Order: datadog.WIDGETSORT_ASCENDING})
 
-	logStreamWidget := datadog.NewWidget(logStreamWidgetDefinition.AsWidgetDefinition())
+	logStreamWidget := datadog.NewWidget(datadog.LogStreamWidgetDefinitionAsWidgetDefinition(logStreamWidgetDefinition))
 	logStreamWidget.SetLayout(*widgetLayout)
 
 	// Monitor Summary ONLY AVAILABLE ON FREE LAYOUTS
@@ -287,7 +287,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	monitorSummaryWidgetDefiniton.SetCount(5)
 
 
-	monitorSummaryWidget := datadog.NewWidget(monitorSummaryWidgetDefiniton.AsWidgetDefinition())
+	monitorSummaryWidget := datadog.NewWidget(datadog.MonitorSummaryWidgetDefinitionAsWidgetDefinition(monitorSummaryWidgetDefiniton))
 	monitorSummaryWidget.SetLayout(*widgetLayout)
 
 	// Note Widget
@@ -300,7 +300,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	noteWidgetDefinition.SetTickPos("4")
 	noteWidgetDefinition.SetTickEdge(datadog.WIDGETTICKEDGE_BOTTOM)
 
-	noteWidget := datadog.NewWidget(noteWidgetDefinition.AsWidgetDefinition())
+	noteWidget := datadog.NewWidget(datadog.NoteWidgetDefinitionAsWidgetDefinition(noteWidgetDefinition))
 
 	// Query Value Widget
 	queryValueWidgetDefinition := datadog.NewQueryValueWidgetDefinitionWithDefaults()
@@ -325,7 +325,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinition.SetTitleSize("16")
 	queryValueWidgetDefinition.SetTime(*widgetTime)
 
-	queryValueWidget := datadog.NewWidget(queryValueWidgetDefinition.AsWidgetDefinition())
+	queryValueWidget := datadog.NewWidget(datadog.QueryValueWidgetDefinitionAsWidgetDefinition(queryValueWidgetDefinition))
 
 	// Scatter Plot Widget
 	scatterPlotWidgetDefinition := datadog.NewScatterPlotWidgetDefinitionWithDefaults()
@@ -346,7 +346,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	scatterPlotWidgetDefinition.SetTitleSize("16")
 	scatterPlotWidgetDefinition.SetTime(*widgetTime)
 
-	scatterPlotWidget := datadog.NewWidget(scatterPlotWidgetDefinition.AsWidgetDefinition())
+	scatterPlotWidget := datadog.NewWidget(datadog.ScatterPlotWidgetDefinitionAsWidgetDefinition(scatterPlotWidgetDefinition))
 
 	// SLO Widget
 	sloWidgetDefinition := datadog.NewSLOWidgetDefinitionWithDefaults()
@@ -361,7 +361,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		datadog.WIDGETTIMEWINDOWS_SEVEN_DAYS,
 	})
 
-	sloWidget := datadog.NewWidget(sloWidgetDefinition.AsWidgetDefinition())
+	sloWidget := datadog.NewWidget(datadog.SLOWidgetDefinitionAsWidgetDefinition(sloWidgetDefinition))
 
 	// Service Map Widget
 	serviceMapWidgetDefinition := datadog.NewServiceMapWidgetDefinitionWithDefaults()
@@ -371,7 +371,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	serviceMapWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	serviceMapWidgetDefinition.SetTitleSize("16")
 
-	serviceMapWidget := datadog.NewWidget(serviceMapWidgetDefinition.AsWidgetDefinition())
+	serviceMapWidget := datadog.NewWidget(datadog.ServiceMapWidgetDefinitionAsWidgetDefinition(serviceMapWidgetDefinition))
 
 	// Service Summary Widget
 	serviceSummaryWidgetDefinition := datadog.NewServiceSummaryWidgetDefinitionWithDefaults()
@@ -391,7 +391,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	serviceSummaryWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	serviceSummaryWidgetDefinition.SetTime(*widgetTimePastOneHour)
 
-	serviceSummaryWidget := datadog.NewWidget(serviceSummaryWidgetDefinition.AsWidgetDefinition())
+	serviceSummaryWidget := datadog.NewWidget(datadog.ServiceSummaryWidgetDefinitionAsWidgetDefinition(serviceSummaryWidgetDefinition))
 	serviceSummaryWidget.SetLayout(*widgetLayout)
 
 	// Table Widget
@@ -416,7 +416,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetDefinition.SetTitleSize("16")
 	tableWidgetDefinition.SetTime(*widgetTime)
 
-	tableWidget := datadog.NewWidget(tableWidgetDefinition.AsWidgetDefinition())
+	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
 
 	// Timeseries Widget
 	timeseriesWidgetDefinition := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
@@ -455,7 +455,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition.SetShowLegend(true)
 	timeseriesWidgetDefinition.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
 
-	timeseriesWidget := datadog.NewWidget(timeseriesWidgetDefinition.AsWidgetDefinition())
+	timeseriesWidget := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinition))
 
 	// Timeseries Widget with Process query
 	timeseriesWidgetDefinitionProcessQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
@@ -498,7 +498,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionProcessQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionProcessQuery.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
 
-	timeseriesWidgetProcessQuery := datadog.NewWidget(timeseriesWidgetDefinitionProcessQuery.AsWidgetDefinition())
+	timeseriesWidgetProcessQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionProcessQuery))
 
 	// Timeseries Widget with Log query (APM/Log/Network/Rum share schemas, so only test one)
 	timeseriesWidgetDefinitionLogQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
@@ -548,7 +548,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionLogQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionLogQuery.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
 
-	timeseriesWidgetLogQuery := datadog.NewWidget(timeseriesWidgetDefinitionLogQuery.AsWidgetDefinition())
+	timeseriesWidgetLogQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionLogQuery))
 
 	// Timeseries Widget with Event query
 	timeseriesWidgetDefinitionEventQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
@@ -584,7 +584,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionEventQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionEventQuery.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
 
-	timeseriesWidgetEventQuery := datadog.NewWidget(timeseriesWidgetDefinitionEventQuery.AsWidgetDefinition())
+	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
 
 	// Toplist Widget
 	toplistWidgetDefinition := datadog.NewToplistWidgetDefinitionWithDefaults()
@@ -604,7 +604,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinition.SetTitleSize("16")
 	toplistWidgetDefinition.SetTime(*widgetTime)
 
-	toplistWidget := datadog.NewWidget(toplistWidgetDefinition.AsWidgetDefinition())
+	toplistWidget := datadog.NewWidget(datadog.ToplistWidgetDefinitionAsWidgetDefinition(toplistWidgetDefinition))
 
 	// Template Variables
 	templateVariable := datadog.NewDashboardTemplateVariablesWithDefaults()
@@ -686,12 +686,9 @@ func TestDashboardLifecycle(t *testing.T) {
 		for index, checkWidget := range response.GetWidgets() {
 			assert.True(checkWidget.GetId() > 0)
 			checkWidget.Id = nil
-			checkWidgetDefinition := checkWidget.GetDefinition().WidgetDefinitionInterface
-			if checkWidgetDefinition.GetType() == "group" {
-				def, ok := checkWidgetDefinition.(*datadog.GroupWidgetDefinition)
-				if !ok {
-					t.Fatal("Cast fail for GroupWidgetDefinition")
-				}
+			checkWidgetDefinition := checkWidget.GetDefinition()
+			checkWidgetInstance := checkWidgetDefinition.GetActualInstance()
+			if def, ok := checkWidgetInstance.(*datadog.GroupWidgetDefinition); ok {
 				for index := range def.GetWidgets() {
 					def.Widgets[index].Id = nil
 				}
@@ -749,7 +746,7 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	noteWidgetDefinition.SetContent("Updated content")
 	noteWidgetDefinition.SetFontSize("30")
-	noteWidget.SetDefinition(noteWidgetDefinition.AsWidgetDefinition())
+	noteWidget.SetDefinition(datadog.NoteWidgetDefinitionAsWidgetDefinition(noteWidgetDefinition))
 
 	noteWidgetIndex := 8
 	dashboardWidgets[noteWidgetIndex] = *noteWidget
@@ -775,12 +772,9 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	foundWidget := false
 	for index, noteWidgetResponse := range updateResponse.GetWidgets() {
-		noteWidgetResponseDefinition := noteWidgetResponse.GetDefinition().WidgetDefinitionInterface
-		if noteWidgetResponseDefinition.GetType() == "note" {
-			def, ok := noteWidgetResponseDefinition.(*datadog.NoteWidgetDefinition)
-			if !ok {
-				t.Fatal("Cast fail for NoteWidgetDefinition")
-			}
+		noteWidgetResponseDefinition := noteWidgetResponse.GetDefinition()
+		noteWidgetResponseInstance := noteWidgetResponseDefinition.GetActualInstance()
+		if def, ok := noteWidgetResponseInstance.(*datadog.NoteWidgetDefinition); ok {
 			foundWidget = true
 			assert.Equal("Updated content", def.GetContent())
 			assert.Equal("30", def.GetFontSize())

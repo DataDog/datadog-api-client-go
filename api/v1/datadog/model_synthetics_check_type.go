@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SyntheticsCheckType Type of assertion to apply in an API test.
 type SyntheticsCheckType string
 
@@ -29,6 +33,23 @@ const (
 	SYNTHETICSCHECKTYPE_LOWER_EQUALS    SyntheticsCheckType = "lowerEquals"
 	SYNTHETICSCHECKTYPE_MATCH_REGEX     SyntheticsCheckType = "matchRegex"
 )
+
+func (v *SyntheticsCheckType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SyntheticsCheckType(value)
+	for _, existing := range []SyntheticsCheckType{"equals", "notEquals", "contains", "notContains", "startsWith", "notStartsWith", "greater", "lower", "greaterEquals", "lowerEquals", "matchRegex"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SyntheticsCheckType", *v)
+}
 
 // Ptr returns reference to SyntheticsCheckType value
 func (v SyntheticsCheckType) Ptr() *SyntheticsCheckType {

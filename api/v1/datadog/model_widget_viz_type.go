@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetVizType Whether to display the Alert Graph as a timeseries or a top list.
 type WidgetVizType string
 
@@ -20,6 +24,23 @@ const (
 	WIDGETVIZTYPE_TIMESERIES WidgetVizType = "timeseries"
 	WIDGETVIZTYPE_TOPLIST    WidgetVizType = "toplist"
 )
+
+func (v *WidgetVizType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetVizType(value)
+	for _, existing := range []WidgetVizType{"timeseries", "toplist"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetVizType", *v)
+}
 
 // Ptr returns reference to WidgetVizType value
 func (v WidgetVizType) Ptr() *WidgetVizType {

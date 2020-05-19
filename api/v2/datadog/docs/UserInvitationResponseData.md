@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**UserInvitationDataAttributes**](UserInvitationDataAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the user invitation. | [optional] 
-**Type** | Pointer to **string** | User invitations type. | [optional] [default to "user_invitations"]
+**Type** | Pointer to [**UserInvitationsType**](UserInvitationsType.md) |  | [optional] [default to "user_invitations"]
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *UserInvitationResponseData) GetType() string`
+`func (o *UserInvitationResponseData) GetType() UserInvitationsType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *UserInvitationResponseData) GetTypeOk() (*string, bool)`
+`func (o *UserInvitationResponseData) GetTypeOk() (*UserInvitationsType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *UserInvitationResponseData) SetType(v string)`
+`func (o *UserInvitationResponseData) SetType(v UserInvitationsType)`
 
 SetType sets Type field to given value.
 

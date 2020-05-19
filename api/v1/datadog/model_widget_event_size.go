@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetEventSize Size to use to display an event.
 type WidgetEventSize string
 
@@ -20,6 +24,23 @@ const (
 	WIDGETEVENTSIZE_SMALL WidgetEventSize = "s"
 	WIDGETEVENTSIZE_LARGE WidgetEventSize = "l"
 )
+
+func (v *WidgetEventSize) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetEventSize(value)
+	for _, existing := range []WidgetEventSize{"s", "l"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetEventSize", *v)
+}
 
 // Ptr returns reference to WidgetEventSize value
 func (v WidgetEventSize) Ptr() *WidgetEventSize {

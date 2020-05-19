@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // WidgetSort Widget sorting methods.
 type WidgetSort string
 
@@ -20,6 +24,23 @@ const (
 	WIDGETSORT_ASCENDING  WidgetSort = "asc"
 	WIDGETSORT_DESCENDING WidgetSort = "desc"
 )
+
+func (v *WidgetSort) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := WidgetSort(value)
+	for _, existing := range []WidgetSort{"asc", "desc"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WidgetSort", *v)
+}
 
 // Ptr returns reference to WidgetSort value
 func (v WidgetSort) Ptr() *WidgetSort {

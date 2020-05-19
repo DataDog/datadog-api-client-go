@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SLOErrorTimeframe The timeframe of the threshold associated with this error or \"all\" if all thresholds are affected.
 type SLOErrorTimeframe string
 
@@ -22,6 +26,23 @@ const (
 	SLOERRORTIMEFRAME_NINETY_DAYS SLOErrorTimeframe = "90d"
 	SLOERRORTIMEFRAME_ALL         SLOErrorTimeframe = "all"
 )
+
+func (v *SLOErrorTimeframe) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SLOErrorTimeframe(value)
+	for _, existing := range []SLOErrorTimeframe{"7d", "30d", "90d", "all"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SLOErrorTimeframe", *v)
+}
 
 // Ptr returns reference to SLOErrorTimeframe value
 func (v SLOErrorTimeframe) Ptr() *SLOErrorTimeframe {

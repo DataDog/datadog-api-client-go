@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**OrganizationAttributes**](OrganizationAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the organization. | [optional] 
-**Type** | Pointer to **string** | Organizations resource type. | [readonly] [default to "orgs"]
+**Type** | Pointer to [**OrganizationsType**](OrganizationsType.md) |  | [default to "orgs"]
 
 ## Methods
 
 ### NewOrganization
 
-`func NewOrganization(type_ string, ) *Organization`
+`func NewOrganization(type_ OrganizationsType, ) *Organization`
 
 NewOrganization instantiates a new Organization object
 This constructor will assign default values to properties that have it defined,
@@ -79,30 +79,24 @@ HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Organization) GetType() string`
+`func (o *Organization) GetType() OrganizationsType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Organization) GetTypeOk() (*string, bool)`
+`func (o *Organization) GetTypeOk() (*OrganizationsType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Organization) SetType(v string)`
+`func (o *Organization) SetType(v OrganizationsType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsUserResponseIncludedItem
-
-`func (s *Organization) AsUserResponseIncludedItem() UserResponseIncludedItem`
-
-Convenience method to wrap this instance of Organization in UserResponseIncludedItem
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
