@@ -5,7 +5,6 @@
 * [Added] Add security monitoring to clients. See [#304](https://github.com/DataDog/datadog-api-client-go/pull/304).
 * [Added] Add /v1/validate endpoint. See [#290](https://github.com/DataDog/datadog-api-client-go/pull/290).
 * [Added] Add generated_files file. See [#270](https://github.com/DataDog/datadog-api-client-go/pull/270).
-* [Added] Use openapi-generator 4.3.1. See [#282](https://github.com/DataDog/datadog-api-client-go/pull/282).
 * [Fixed] Add authentication to Go examples. See [#299](https://github.com/DataDog/datadog-api-client-go/pull/299).
 * [Fixed] Add 422 error codes to users and roles v2 endpoints. See [#296](https://github.com/DataDog/datadog-api-client-go/pull/296).
 * [Fixed] Update import in Go examples. See [#295](https://github.com/DataDog/datadog-api-client-go/pull/295).
