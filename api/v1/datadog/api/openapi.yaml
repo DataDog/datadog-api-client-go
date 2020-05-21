@@ -5001,6 +5001,54 @@ paths:
       tags:
       - Tags
       x-codegen-request-body-name: body
+  /api/v1/usage/analyzed_logs:
+    get:
+      description: Get hourly usage for analyzed logs (Security Monitoring).
+      operationId: GetUsageAnalyzedLogs
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageAnalyzedLogsResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for analyzed logs
+      tags:
+      - Usage Metering
   /api/v1/usage/aws_lambda:
     get:
       description: Get hourly usage for lambda.
@@ -5017,7 +5065,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5064,7 +5112,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5111,7 +5159,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5158,7 +5206,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5205,7 +5253,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5263,7 +5311,7 @@ paths:
         style: form
       - description: |-
           Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
-          BEFORE this hour.
+          **before** this hour.
         explode: true
         in: query
         name: end_hr
@@ -5310,7 +5358,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5358,7 +5406,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5387,6 +5435,54 @@ paths:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
       summary: Get hourly usage for RUM Sessions
+      tags:
+      - Usage Metering
+  /api/v1/usage/snmp:
+    get:
+      description: Get hourly usage for SNMP devices.
+      operationId: GetUsageSNMP
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageSNMPResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get hourly usage for SNMP devices
       tags:
       - Usage Metering
   /api/v1/usage/summary:
@@ -5462,7 +5558,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5509,7 +5605,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5556,7 +5652,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5603,7 +5699,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -5698,7 +5794,7 @@ paths:
           type: string
         style: form
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending BEFORE this hour.'
+          for usage ending **before** this hour.'
         explode: true
         in: query
         name: end_hr
@@ -13963,6 +14059,37 @@ components:
         style:
           $ref: '#/components/schemas/WidgetRequestStyle'
       type: object
+    UsageAnalyzedLogsHour:
+      description: The number of analyzed logs for each hour for a given organization.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        analyzed_logs: 0
+      properties:
+        analyzed_logs:
+          description: Contains the number of analyzed logs.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+      type: object
+    UsageAnalyzedLogsResponse:
+      description: A response containing the number of analyzed logs for each hour
+        for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          analyzed_logs: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          analyzed_logs: 0
+      properties:
+        usage:
+          description: Get hourly usage for analyzed logs.
+          items:
+            $ref: '#/components/schemas/UsageAnalyzedLogsHour'
+          type: array
+      type: object
     UsageFargateHour:
       description: Number of Fargate tasks run and hourly usage.
       example:
@@ -14326,6 +14453,37 @@ components:
           description: Get hourly usage for RUM Sessions.
           items:
             $ref: '#/components/schemas/UsageRumSessionsHour'
+          type: array
+      type: object
+    UsageSNMPHour:
+      description: The number of SNMP devices for each hour for a given organization.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        snmp_devices: 0
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        snmp_devices:
+          description: Contains the number of SNMP devices.
+          format: int64
+          type: integer
+      type: object
+    UsageSNMPResponse:
+      description: Response containing the number of SNMP devices for each hour for
+        a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          snmp_devices: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          snmp_devices: 0
+      properties:
+        usage:
+          description: Get hourly usage for SNMP devices.
+          items:
+            $ref: '#/components/schemas/UsageSNMPHour'
           type: array
       type: object
     UsageSummaryDate:
