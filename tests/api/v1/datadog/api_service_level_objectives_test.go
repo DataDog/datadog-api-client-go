@@ -447,7 +447,9 @@ func TestSLODelete409Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Delete("/api/v1/slo/id").Reply(409).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Delete("/api/v1/slo/id").Reply(409).JSON(res)
 	defer gock.Off()
 
 	// FIXME: Make it an integration test when feature is fixed
@@ -573,7 +575,9 @@ func TestSLOCanDelete409Error(t *testing.T) {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
 	// FIXME: Make it an integration test when feature is fixed
-	gock.New("https://api.datadoghq.com").Get("/api/v1/slo/can_delete").Reply(409).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/slo/can_delete").Reply(409).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CheckCanDeleteSLO(ctx).Ids("id").Execute()

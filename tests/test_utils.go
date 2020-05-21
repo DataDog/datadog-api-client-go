@@ -31,10 +31,12 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
+// RecordingMode defines valid usage of cassette recorder
 type RecordingMode string
 
+// Valid usage modes for cassette recorder
 const (
-	ModeIgnore RecordingMode = "none"
+	ModeIgnore    RecordingMode = "none"
 	ModeReplaying RecordingMode = "false"
 	ModeRecording RecordingMode = "true"
 )
@@ -208,6 +210,11 @@ func removeURLSecrets(u *url.URL) string {
 	q.Del("api_key")
 	q.Del("application_key")
 	u.RawQuery = q.Encode()
+	site, ok := os.LookupEnv("DD_TEST_SITE")
+	if ok {
+		fmt.Println("!!! WARN: Replacing DD_TEST_SITE by 'datadoghq.com' for request matching")
+		u.Host = strings.Replace(u.Host, site, "datadoghq.com", 1)
+	}
 	return u.String()
 }
 
@@ -225,6 +232,8 @@ func FilterInteraction(i *cassette.Interaction) error {
 	i.URL = removeURLSecrets(u)
 	i.Request.Headers.Del("Dd-Api-Key")
 	i.Request.Headers.Del("Dd-Application-Key")
+	// Remove custom URL in report-uri from response
+	i.Response.Headers.Del("Content-Security-Policy")
 	return nil
 }
 

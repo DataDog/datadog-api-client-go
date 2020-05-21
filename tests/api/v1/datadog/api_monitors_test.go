@@ -312,7 +312,9 @@ func TestMonitorUpdate401Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Put("/api/v1/monitor/121").Reply(401).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Put("/api/v1/monitor/121").Reply(401).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, 121).Body(datadog.MonitorUpdateRequest{}).Execute()
@@ -407,7 +409,9 @@ func TestMonitorDelete400Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Delete("/api/v1/monitor/121").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Delete("/api/v1/monitor/121").Reply(400).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, 121).Execute()
@@ -428,7 +432,9 @@ func TestMonitorDelete401Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Delete("/api/v1/monitor/121").Reply(401).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Delete("/api/v1/monitor/121").Reply(401).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, 121).Execute()

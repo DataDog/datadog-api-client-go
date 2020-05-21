@@ -53,6 +53,27 @@ func WithTestAuth(ctx context.Context) context.Context {
 func NewConfiguration() *datadog.Configuration {
 	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
+
+	// Set test site as default
+	testSite, ok := os.LookupEnv("DD_TEST_SITE")
+	if ok {
+		server := config.Servers[0]
+		site := server.Variables["site"]
+		site.DefaultValue = testSite
+		site.EnumValues = append(site.EnumValues, testSite)
+		server.Variables["site"] = site
+		config.Servers[0] = server
+
+		for operationID, servers := range config.OperationServers {
+			server := servers[0]
+			site := server.Variables["site"]
+			site.DefaultValue = testSite
+			site.EnumValues = append(site.EnumValues, testSite)
+			server.Variables["site"] = site
+			servers[0] = server
+			config.OperationServers[operationID] = servers
+		}
+	}
 	return config
 }
 

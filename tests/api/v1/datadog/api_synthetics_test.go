@@ -52,11 +52,11 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
 		Name:      tests.UniqueEntityName(ctx, t),
 		Options: &datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:  datadog.PtrBool(false),
-			AllowInsecure:     datadog.PtrBool(true),
-			FollowRedirects:   datadog.PtrBool(true),
+			AcceptSelfSigned:   datadog.PtrBool(false),
+			AllowInsecure:      datadog.PtrBool(true),
+			FollowRedirects:    datadog.PtrBool(true),
 			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed: datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(10),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),
@@ -301,8 +301,10 @@ func TestSyntheticsGetBrowserTestResult(t *testing.T) {
 		t.Fatalf("Failed deserializing Synthetics browser test single response: %v", err)
 	}
 
-	gock.New("https://api.datadoghq.com/api/v1").
-		Get("/synthetics/tests/browser/test-synthetics-id/results/test-result-id").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SyntheticsBrowserTestResultFullService.GetBrowserTestResult")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/synthetics/tests/browser/test-synthetics-id/results/test-result-id").
 		Reply(200).
 		JSON(data)
 	defer gock.Off()
@@ -333,8 +335,10 @@ func TestSyntheticsGetApiTestResult(t *testing.T) {
 		t.Fatalf("Failed deserializing Synthetics API test single response: %v", err)
 	}
 
-	gock.New("https://api.datadoghq.com/api/v1").
-		Get("/synthetics/tests/test-synthetics-id/results/test-result-id").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SyntheticsBrowserTestResultFullService.GetAPITestResult")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/synthetics/tests/test-synthetics-id/results/test-result-id").
 		Reply(200).
 		JSON(data)
 	defer gock.Off()
@@ -431,7 +435,9 @@ func TestSyntheticsDeleteTest404Error(t *testing.T) {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
 	// Mocked because not sure how to trigger the 404 response
-	gock.New("https://api.datadoghq.com").Post("/api/v1/synthetics/tests/delete").Reply(404).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Post("/api/v1/synthetics/tests/delete").Reply(404).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx).Body(datadog.SyntheticsDeleteTestsPayload{}).Execute()
@@ -695,7 +701,9 @@ func TestSyntheticsListTest404Error(t *testing.T) {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
 	// Mock 404 because it's returned when synthetics is not enabled for the org
-	gock.New("https://api.datadoghq.com").Get("/api/v1/synthetics/test").Reply(404).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/synthetics/test").Reply(404).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).SyntheticsApi.ListTests(ctx).Execute()
@@ -742,7 +750,9 @@ func TestSyntheticsCreateTest402Error(t *testing.T) {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
 	// Triggered when the synthetics test quota is reached. Need to mock.
-	gock.New("https://api.datadoghq.com").Post("/api/v1/synthetics/test").Reply(402).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Post("/api/v1/synthetics/test").Reply(402).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(datadog.SyntheticsTestDetails{}).Execute()
