@@ -187,6 +187,7 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**GetHostTags**](docs/TagsApi.md#gethosttags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
 *TagsApi* | [**ListHostTags**](docs/TagsApi.md#listhosttags) | **Get** /api/v1/tags/hosts | Get Tags
 *TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
+*UsageMeteringApi* | [**GetUsageAnalyzedLogs**](docs/UsageMeteringApi.md#getusageanalyzedlogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
 *UsageMeteringApi* | [**GetUsageLambda**](docs/UsageMeteringApi.md#getusagelambda) | **Get** /api/v1/usage/aws_lambda | Get hourly usage for Lambda
@@ -195,6 +196,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageNetworkFlows**](docs/UsageMeteringApi.md#getusagenetworkflows) | **Get** /api/v1/usage/network_flows | Get hourly usage for Network Flows
 *UsageMeteringApi* | [**GetUsageNetworkHosts**](docs/UsageMeteringApi.md#getusagenetworkhosts) | **Get** /api/v1/usage/network_hosts | Get hourly usage for Network Hosts
 *UsageMeteringApi* | [**GetUsageRumSessions**](docs/UsageMeteringApi.md#getusagerumsessions) | **Get** /api/v1/usage/rum_sessions | Get hourly usage for RUM Sessions
+*UsageMeteringApi* | [**GetUsageSNMP**](docs/UsageMeteringApi.md#getusagesnmp) | **Get** /api/v1/usage/snmp | Get hourly usage for SNMP devices
 *UsageMeteringApi* | [**GetUsageSummary**](docs/UsageMeteringApi.md#getusagesummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account
 *UsageMeteringApi* | [**GetUsageSynthetics**](docs/UsageMeteringApi.md#getusagesynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for Synthetics API Checks
 *UsageMeteringApi* | [**GetUsageSyntheticsAPI**](docs/UsageMeteringApi.md#getusagesyntheticsapi) | **Get** /api/v1/usage/synthetics_api | Get hourly usage for Synthetics API Checks
@@ -502,6 +504,8 @@ Class | Method | HTTP request | Description
  - [ToplistWidgetDefinition](docs/ToplistWidgetDefinition.md)
  - [ToplistWidgetDefinitionType](docs/ToplistWidgetDefinitionType.md)
  - [ToplistWidgetRequest](docs/ToplistWidgetRequest.md)
+ - [UsageAnalyzedLogsHour](docs/UsageAnalyzedLogsHour.md)
+ - [UsageAnalyzedLogsResponse](docs/UsageAnalyzedLogsResponse.md)
  - [UsageFargateHour](docs/UsageFargateHour.md)
  - [UsageFargateResponse](docs/UsageFargateResponse.md)
  - [UsageHostHour](docs/UsageHostHour.md)
@@ -519,6 +523,8 @@ Class | Method | HTTP request | Description
  - [UsageNetworkHostsResponse](docs/UsageNetworkHostsResponse.md)
  - [UsageRumSessionsHour](docs/UsageRumSessionsHour.md)
  - [UsageRumSessionsResponse](docs/UsageRumSessionsResponse.md)
+ - [UsageSNMPHour](docs/UsageSNMPHour.md)
+ - [UsageSNMPResponse](docs/UsageSNMPResponse.md)
  - [UsageSummaryDate](docs/UsageSummaryDate.md)
  - [UsageSummaryDateOrg](docs/UsageSummaryDateOrg.md)
  - [UsageSummaryResponse](docs/UsageSummaryResponse.md)

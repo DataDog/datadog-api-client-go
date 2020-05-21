@@ -1,0 +1,64 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageAnalyzedLogs
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1588604177997884376"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "354432206474712892"
+    url: https://api.datadoghq.com/api/v1/usage/analyzed_logs?end_hr=2020-04-13T00%3A00%3A00Z&start_hr=2020-04-12T00%3A00%3A00Z
+    method: GET
+  response:
+    body: '{"usage":[{"hour":"2020-04-12T00:00:00+00:00","analyzed_logs":2046575255442},{"hour":"2020-04-12T01:00:00+00:00","analyzed_logs":2030372873406},{"hour":"2020-04-12T02:00:00+00:00","analyzed_logs":2045899484507},{"hour":"2020-04-12T03:00:00+00:00","analyzed_logs":2047814718747},{"hour":"2020-04-12T04:00:00+00:00","analyzed_logs":2069487076235},{"hour":"2020-04-12T05:00:00+00:00","analyzed_logs":2083902452109},{"hour":"2020-04-12T06:00:00+00:00","analyzed_logs":2105584068695},{"hour":"2020-04-12T07:00:00+00:00","analyzed_logs":2112621964523},{"hour":"2020-04-12T08:00:00+00:00","analyzed_logs":2075290620997},{"hour":"2020-04-12T09:00:00+00:00","analyzed_logs":2092858385267},{"hour":"2020-04-12T10:00:00+00:00","analyzed_logs":2140239813915},{"hour":"2020-04-12T11:00:00+00:00","analyzed_logs":2134938238375},{"hour":"2020-04-12T12:00:00+00:00","analyzed_logs":2138641462620},{"hour":"2020-04-12T13:00:00+00:00","analyzed_logs":2216759995786},{"hour":"2020-04-12T14:00:00+00:00","analyzed_logs":2157705752482},{"hour":"2020-04-12T15:00:00+00:00","analyzed_logs":2141784337092},{"hour":"2020-04-12T16:00:00+00:00","analyzed_logs":2157981677980},{"hour":"2020-04-12T17:00:00+00:00","analyzed_logs":2132472255595},{"hour":"2020-04-12T18:00:00+00:00","analyzed_logs":2142832878311},{"hour":"2020-04-12T19:00:00+00:00","analyzed_logs":2159516783495},{"hour":"2020-04-12T20:00:00+00:00","analyzed_logs":2140461842749},{"hour":"2020-04-12T21:00:00+00:00","analyzed_logs":2114370099408},{"hour":"2020-04-12T22:00:00+00:00","analyzed_logs":2109364639429},{"hour":"2020-04-12T23:00:00+00:00","analyzed_logs":2108211643472}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 18 May 2020 22:15:04 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Mon, 25-May-2020 22:15:04 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - fGPsEOteKPqWrypJlOWIRpMZD2l0VjpTiFY5o5e56+jFb+ShdPzcenDH6s8Ah62s
+      X-Dd-Version:
+      - "35.2519533"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "200"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "165"
+      X-Ratelimit-Reset:
+      - "2696"
+    status: 200 OK
+    code: 200
+    duration: ""
