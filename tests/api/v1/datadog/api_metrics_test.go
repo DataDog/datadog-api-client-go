@@ -144,7 +144,7 @@ func TestMetricListActive(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	data := setupGock(t, "metrics/active_metrics.json", "GET", "metrics")
+	data := setupGock(ctx, t, "metrics/active_metrics.json", "GET", "metrics")
 	defer gock.Off()
 
 	var expected datadog.MetricsListResponse
@@ -172,7 +172,9 @@ func TestMetricsListActive400Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Get("/api/v1/metrics").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/metrics").Reply(400).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).MetricsApi.ListActiveMetrics(ctx).From(-1).Execute()
@@ -248,7 +250,9 @@ func TestMetricsMetadataUpdate400Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Put("/api/v1/metrics/ametric").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Put("/api/v1/metrics/ametric").Reply(400).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).MetricsApi.UpdateMetricMetadata(ctx, "ametric").Body(datadog.MetricMetadata{}).Execute()
@@ -297,7 +301,9 @@ func TestMetricsList400Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Get("/api/v1/search").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/search").Reply(400).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).MetricsApi.ListMetrics(ctx).Q("").Execute()
@@ -346,7 +352,9 @@ func TestMetricsQuery400Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	gock.New("https://api.datadoghq.com").Get("/api/v1/query").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/query").Reply(400).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).MetricsApi.QueryMetrics(ctx).Query("").From(0).To(0).Execute()

@@ -171,7 +171,9 @@ func TestAzureList400Error(t *testing.T) {
 	}
 	// Mocked because it is only returned when the azure integration is not installed, which is not the case on test org
 	// and it can't be done through the API
-	gock.New("https://api.datadoghq.com").Get("/api/v1/integration/azure").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "AzureIntegrationApiService.ListAzureIntegration")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/integration/azure").Reply(400).JSON(res)
 	defer gock.Off()
 
 	// 400 Bad Request

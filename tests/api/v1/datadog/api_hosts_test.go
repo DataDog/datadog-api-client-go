@@ -113,8 +113,10 @@ func TestHostTotalsMocked(t *testing.T) {
 		t.Errorf("Failed to open fixture file: %s", err)
 	}
 
-	gock.New("https://api.datadoghq.com/api/v1").
-		Get("/hosts/totals").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.GetHostTotals")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts/totals").
 		MatchParam("from", "123").
 		Reply(200).
 		JSON(data)
@@ -150,8 +152,10 @@ func TestHostsSearchMocked(t *testing.T) {
 		"sort_field": "status",
 		"start":      "3",
 	}
-	gock.New("https://api.datadoghq.com/api/v1").
-		Get("/hosts").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.ListHosts")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts").
 		MatchParams(params).
 		Reply(200).
 		JSON(data)
