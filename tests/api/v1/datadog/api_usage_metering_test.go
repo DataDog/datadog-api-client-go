@@ -36,6 +36,20 @@ func getStartEndMonth(ctx context.Context) (time.Time, time.Time) {
 	return start, end
 }
 
+func TestUsageAnalyzedLogs(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageAnalyzedLogs(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Analyzed Logs (Security Monitoring): Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
 func TestUsageFargate(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
@@ -231,6 +245,20 @@ func TestUsageRumSessions(t *testing.T) {
 	assert.True(usage.HasUsage())
 }
 
+func TestUsageSNMP(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSNMP(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage SNMP Devices: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
 // This test needs multi-org token so make it a unit test
 func TestUsageSummary(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
@@ -299,6 +327,33 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(7), usageOrgItem.GetGcpHostTop99p())
 	assert.Equal(int64(8), usageOrgItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageOrgItem.GetRumSessionCountSum())
+}
+
+func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageAnalyzedLogs(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
 }
 
 func TestUsageGetHostsErrors(t *testing.T) {
@@ -374,6 +429,33 @@ func TestUsageGetLogsByIndexErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLogsByIndex(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestUsageGetSNMPErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSNMP(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
