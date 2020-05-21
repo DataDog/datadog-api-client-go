@@ -9,11 +9,12 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
 	"log"
 	"net/http"
 	"testing"
+
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"gopkg.in/h2non/gock.v1"
 )
@@ -360,7 +361,9 @@ func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
 	// Mocked because we need 0 API keys to trigger the 400
-	gock.New("https://api.datadoghq.com").Delete("/api/v1/api_key/whatever").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "TODO")
+	assert.NoError(err)
+	gock.New(URL).Delete("/api/v1/api_key/whatever").Reply(400).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).KeyManagementApi.DeleteAPIKey(ctx, "whatever").Execute()

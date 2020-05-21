@@ -59,6 +59,27 @@ func WithTestAuth(ctx context.Context) context.Context {
 func NewConfiguration() *datadog.Configuration {
 	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
+
+	// Set test site as default
+	testSite, ok := os.LookupEnv("DD_TEST_SITE")
+	if ok {
+		server := config.Servers[0]
+		site := server.Variables["site"]
+		site.DefaultValue = testSite
+		site.EnumValues = append(site.EnumValues, testSite)
+		server.Variables["site"] = site
+		config.Servers[0] = server
+
+		for operationID, servers := range config.OperationServers {
+			server := servers[0]
+			site := server.Variables["site"]
+			site.DefaultValue = testSite
+			site.EnumValues = append(site.EnumValues, testSite)
+			server.Variables["site"] = site
+			servers[0] = server
+			config.OperationServers[operationID] = servers
+		}
+	}
 	return config
 }
 
@@ -143,13 +164,17 @@ func SendRequest(ctx context.Context, method, url string, payload []byte) (*http
 	return resp, body, respErr
 }
 
-func setupGock(t *testing.T, fixtureFile string, method string, uriPath string) []byte {
+func setupGock(ctx context.Context, t *testing.T, fixtureFile string, method string, uriPath string) []byte {
 	fixturePath, _ := filepath.Abs(fmt.Sprintf("fixtures/%s", fixtureFile))
 	dat, err := ioutil.ReadFile(fixturePath)
 	if err != nil {
 		t.Errorf("Failed to open fixture file: %s", err)
 	}
-	x := gock.New("https://api.datadoghq.com/api/v1")
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	if err != nil {
+		t.Errorf("Failed to generate URL: %s", err)
+	}
+	x := gock.New(URL)
 	switch strings.ToLower(method) {
 	case "get":
 		x.Get(uriPath)

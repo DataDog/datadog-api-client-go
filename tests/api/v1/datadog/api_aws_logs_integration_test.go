@@ -225,7 +225,9 @@ func TestAWSLogsList400Error(t *testing.T) {
 	}
 	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
 	// and it can't be done through the API
-	gock.New("https://api.datadoghq.com").Get("/api/v1/integration/aws/logs").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.ListAWSLogsIntegrations")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/integration/aws/logs").Reply(400).JSON(res)
 	defer gock.Off()
 
 	// 400 Bad Request
@@ -261,7 +263,9 @@ func TestAWSLogsAdd400Error(t *testing.T) {
 	}
 	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
 	// and it can't be done through the API
-	gock.New("https://api.datadoghq.com").Post("/api/v1/integration/aws/logs").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.CreateAWSLambdaARN")
+	assert.NoError(err)
+	gock.New(URL).Post("/api/v1/integration/aws/logs").Reply(400).JSON(res)
 	defer gock.Off()
 
 	// 400 Bad Request
@@ -297,7 +301,9 @@ func TestAWSLogsDelete400Error(t *testing.T) {
 	}
 	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
 	// and it can't be done through the API
-	gock.New("https://api.datadoghq.com").Delete("/api/v1/integration/aws/logs").Reply(400).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "AWSLogsIntegrationApiService.DeleteAWSLambdaARN")
+	assert.NoError(err)
+	gock.New(URL).Delete("/api/v1/integration/aws/logs").Reply(400).JSON(res)
 	defer gock.Off()
 
 	// 400 Bad Request

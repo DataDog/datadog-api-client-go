@@ -14,7 +14,9 @@ func TestTelemetryHeaders(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
-	gock.New("https://api.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "DashboardListsApiService.GetDashboardListItems")
+	assert.NoError(err)
+	gock.New(URL).
 		Get("dashboard/lists/manual/1234/dashboards").
 		MatchHeader("DD-OPERATION-ID", "GetDashboardListItems").
 		MatchHeader("User-Agent", "^datadog-api-client-go/\\d\\.\\d\\.\\d.*? \\(go .*?; os .*?; arch .*?\\)$").
