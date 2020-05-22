@@ -123,6 +123,9 @@ tags:
     - See the [pipelines configuration page](https://app.datadoghq.com/logs/pipelines)
       for a list of the pipelines and processors currently configured in our UI.
 
+    - Additional API-related information about processors can be found in the
+      [processors documentation](https://docs.datadoghq.com/logs/processing/processors/?tab=api#lookup-processor).
+
     - For more information about Pipelines, see the
       [pipeline documentation](https://docs.datadoghq.com/logs/processing).
 
