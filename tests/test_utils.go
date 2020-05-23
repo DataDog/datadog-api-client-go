@@ -111,9 +111,9 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	t.Helper()
 	span, ctx := tracer.StartSpanFromContext(
 		ctx,
-		t.Name(),
+		"test",
 		tracer.SpanType("test"),
-		tracer.ResourceName("test"), // TODO use subtest of paremt in test
+		tracer.ResourceName(t.Name()),
 		tracer.Tag(ext.AnalyticsEvent, true),
 		tracer.Measured(),
 	)
