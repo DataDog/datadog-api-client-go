@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Grok** | Pointer to [**LogsGrokParserRules**](LogsGrokParserRules.md) |  | 
-**Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
-**Source** | Pointer to **string** | Name of the log attribute to parse. | [default to "message"]
-**Type** | Pointer to **string** | Type of processor. | [readonly] [default to "grok-parser"]
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
+**Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
+**Source** | Pointer to **string** | Name of the log attribute to parse. | [default to "message"]
+**Type** | Pointer to [**LogsGrokParserType**](LogsGrokParserType.md) |  | [default to "grok-parser"]
 
 ## Methods
 
 ### NewLogsGrokParser
 
-`func NewLogsGrokParser(grok LogsGrokParserRules, source string, type_ string, ) *LogsGrokParser`
+`func NewLogsGrokParser(grok LogsGrokParserRules, source string, type_ LogsGrokParserType, ) *LogsGrokParser`
 
 NewLogsGrokParser instantiates a new LogsGrokParser object
 This constructor will assign default values to properties that have it defined,
@@ -48,71 +48,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsGrokParser) SetGrok(v LogsGrokParserRules)`
 
 SetGrok sets Grok field to given value.
-
-
-### GetSamples
-
-`func (o *LogsGrokParser) GetSamples() []string`
-
-GetSamples returns the Samples field if non-nil, zero value otherwise.
-
-### GetSamplesOk
-
-`func (o *LogsGrokParser) GetSamplesOk() (*[]string, bool)`
-
-GetSamplesOk returns a tuple with the Samples field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSamples
-
-`func (o *LogsGrokParser) SetSamples(v []string)`
-
-SetSamples sets Samples field to given value.
-
-### HasSamples
-
-`func (o *LogsGrokParser) HasSamples() bool`
-
-HasSamples returns a boolean if a field has been set.
-
-### GetSource
-
-`func (o *LogsGrokParser) GetSource() string`
-
-GetSource returns the Source field if non-nil, zero value otherwise.
-
-### GetSourceOk
-
-`func (o *LogsGrokParser) GetSourceOk() (*string, bool)`
-
-GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSource
-
-`func (o *LogsGrokParser) SetSource(v string)`
-
-SetSource sets Source field to given value.
-
-
-### GetType
-
-`func (o *LogsGrokParser) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *LogsGrokParser) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *LogsGrokParser) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 ### GetIsEnabled
@@ -165,12 +100,71 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetSamples
 
-### AsLogsProcessor
+`func (o *LogsGrokParser) GetSamples() []string`
 
-`func (s *LogsGrokParser) AsLogsProcessor() LogsProcessor`
+GetSamples returns the Samples field if non-nil, zero value otherwise.
 
-Convenience method to wrap this instance of LogsGrokParser in LogsProcessor
+### GetSamplesOk
+
+`func (o *LogsGrokParser) GetSamplesOk() (*[]string, bool)`
+
+GetSamplesOk returns a tuple with the Samples field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSamples
+
+`func (o *LogsGrokParser) SetSamples(v []string)`
+
+SetSamples sets Samples field to given value.
+
+### HasSamples
+
+`func (o *LogsGrokParser) HasSamples() bool`
+
+HasSamples returns a boolean if a field has been set.
+
+### GetSource
+
+`func (o *LogsGrokParser) GetSource() string`
+
+GetSource returns the Source field if non-nil, zero value otherwise.
+
+### GetSourceOk
+
+`func (o *LogsGrokParser) GetSourceOk() (*string, bool)`
+
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSource
+
+`func (o *LogsGrokParser) SetSource(v string)`
+
+SetSource sets Source field to given value.
+
+
+### GetType
+
+`func (o *LogsGrokParser) GetType() LogsGrokParserType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LogsGrokParser) GetTypeOk() (*LogsGrokParserType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LogsGrokParser) SetType(v LogsGrokParserType)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

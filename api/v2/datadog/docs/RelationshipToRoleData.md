@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | ID of the role. | [optional] 
-**Type** | Pointer to **string** | Type of role. | [optional] [default to "roles"]
+**Type** | Pointer to [**RolesType**](RolesType.md) |  | [optional] [default to "roles"]
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *RelationshipToRoleData) GetType() string`
+`func (o *RelationshipToRoleData) GetType() RolesType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RelationshipToRoleData) GetTypeOk() (*string, bool)`
+`func (o *RelationshipToRoleData) GetTypeOk() (*RolesType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RelationshipToRoleData) SetType(v string)`
+`func (o *RelationshipToRoleData) SetType(v RolesType)`
 
 SetType sets Type field to given value.
 

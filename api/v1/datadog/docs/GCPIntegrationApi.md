@@ -32,11 +32,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.GCPAccount{AuthProviderX509CertUrl: "AuthProviderX509CertUrl_example", AuthUri: "AuthUri_example", Automute: false, ClientEmail: "ClientEmail_example", ClientId: "ClientId_example", ClientX509CertUrl: "ClientX509CertUrl_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", PrivateKey: "PrivateKey_example", PrivateKeyId: "PrivateKeyId_example", ProjectId: "ProjectId_example", TokenUri: "TokenUri_example", Type: "Type_example"} // GCPAccount | Create a Datadog-Azure integration.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.CreateGCPIntegration(context.Background(), body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.CreateGCPIntegration(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.CreateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -98,11 +111,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body := datadog.GCPAccount{AuthProviderX509CertUrl: "AuthProviderX509CertUrl_example", AuthUri: "AuthUri_example", Automute: false, ClientEmail: "ClientEmail_example", ClientId: "ClientId_example", ClientX509CertUrl: "ClientX509CertUrl_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", PrivateKey: "PrivateKey_example", PrivateKeyId: "PrivateKeyId_example", ProjectId: "ProjectId_example", TokenUri: "TokenUri_example", Type: "Type_example"} // GCPAccount | Delete a given Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.DeleteGCPIntegration(context.Background(), body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.DeleteGCPIntegration(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.DeleteGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -164,10 +190,23 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.ListGCPIntegration(context.Background(), ).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.ListGCPIntegration(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.ListGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -225,11 +264,24 @@ import (
 )
 
 func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
     body :=  // GCPAccount | Update a Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.UpdateGCPIntegration(context.Background(), body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.UpdateGCPIntegration(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.UpdateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

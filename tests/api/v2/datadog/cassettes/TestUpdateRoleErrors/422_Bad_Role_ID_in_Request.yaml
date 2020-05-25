@@ -1,0 +1,58 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"go-TestUpdateRoleErrors-local-1589441854-updated"},"id":"00000000-dead-beef-dead-ffffffffffff","type":"roles"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - UpdateRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7167394667131393353"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2735997447815667878"
+    url: https://api.datadoghq.com/api/v2/roles/c71e84e0-95b5-11ea-93e2-237436ecdf03
+    method: PATCH
+  response:
+    body: '{"errors": ["The id attribute in the request body does not match the role_id
+      in the URL"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "90"
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 14 May 2020 07:37:35 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 21-May-2020 07:37:35 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2500631"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 422 Unprocessable Entity
+    code: 422
+    duration: ""

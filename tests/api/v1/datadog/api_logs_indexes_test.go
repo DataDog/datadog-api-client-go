@@ -45,8 +45,9 @@ func TestGetAllLogsIndexes(t *testing.T) {
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
-
-	gock.New("https://api.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsIndexesApiService.GetLogsIndexOrder")
+	assert.NoError(err)
+	gock.New(URL).
 		Get("/api/v1/logs/config/indexes").
 		Reply(200).
 		JSON(data)
@@ -73,7 +74,9 @@ func TestGetLogsIndex(t *testing.T) {
 
 	name := "main"
 
-	gock.New("https://api.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).
 		Get(fmt.Sprintf("/api/v1/logs/config/indexes/%s", name)).
 		Reply(200).
 		JSON(data)
@@ -105,7 +108,9 @@ func TestLogsIndexOrder(t *testing.T) {
 
 	name := "main"
 
-	gock.New("https://api.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsIndexesApiService.GetLogsIndexOrder")
+	assert.NoError(err)
+	gock.New(URL).
 		Get("/api/v1/logs/config/index-order").
 		Reply(200).
 		JSON(data)
@@ -134,7 +139,9 @@ func TestUpdateLogsIndex(t *testing.T) {
 
 	name := "main"
 
-	gock.New("https://api.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsIndexesApiService.GetLogsIndex")
+	assert.NoError(err)
+	gock.New(URL).
 		Get(fmt.Sprintf("/api/v1/logs/config/indexes/%s", name)).
 		Reply(200).
 		JSON(data)
@@ -163,7 +170,9 @@ func TestUpdateLogsIndex(t *testing.T) {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
 
-	gock.New("https://api.datadoghq.com").
+	URL, err = Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsIndexesApiService.UpdateLogsIndex")
+	assert.NoError(err)
+	gock.New(URL).
 		Put(fmt.Sprintf("/api/v1/logs/config/indexes/%s", name)).
 		Reply(200).
 		JSON(data)
@@ -187,7 +196,9 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
 
-	gock.New("https://api.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsIndexesApiService.GetLogsIndexOrder")
+	assert.NoError(err)
+	gock.New(URL).
 		Get("/api/v1/logs/config/index-order").
 		Reply(200).
 		JSON(data)
@@ -208,8 +219,10 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
 
-	gock.New("https://api.datadoghq.com").
-		Put("/api/v1/logs/config/index-orde").
+	URL, err = Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsIndexesApiService.UpdateLogsIndexOrder")
+	assert.NoError(err)
+	gock.New(URL).
+		Put("/api/v1/logs/config/index-order").
 		Reply(200).
 		JSON(data)
 
@@ -333,7 +346,9 @@ func TestLogsIndexesUpdate429Error(t *testing.T) {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
 
-	gock.New("https://api.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsIndexesApiService.UpdateLogsIndex")
+	assert.NoError(err)
+	gock.New(URL).
 		Put("/api/v1/logs/config/indexes/name").
 		Reply(429).
 		JSON(data)

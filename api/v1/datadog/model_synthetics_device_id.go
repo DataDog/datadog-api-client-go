@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SyntheticsDeviceID The device ID.
 type SyntheticsDeviceID string
 
@@ -21,6 +25,23 @@ const (
 	SYNTHETICSDEVICEID_TABLET       SyntheticsDeviceID = "tablet"
 	SYNTHETICSDEVICEID_MOBILE_SMALL SyntheticsDeviceID = "mobile_small"
 )
+
+func (v *SyntheticsDeviceID) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SyntheticsDeviceID(value)
+	for _, existing := range []SyntheticsDeviceID{"laptop_large", "tablet", "mobile_small"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SyntheticsDeviceID", *v)
+}
 
 // Ptr returns reference to SyntheticsDeviceID value
 func (v SyntheticsDeviceID) Ptr() *SyntheticsDeviceID {

@@ -47,7 +47,9 @@ func TestIPRangesMocked(t *testing.T) {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
 
-	gock.New("https://ip-ranges.datadoghq.com").
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "IPRangesApiService.GetIPRanges")
+	assert.NoError(err)
+	gock.New(URL).
 		Get("/").
 		Reply(200).
 		JSON(data)

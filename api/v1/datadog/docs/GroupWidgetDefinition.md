@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LayoutType** | Pointer to [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "group"]
+**Type** | Pointer to [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to "group"]
 **Widgets** | Pointer to [**[]Widget**](Widget.md) | List of widget groups. | 
 
 ## Methods
 
 ### NewGroupWidgetDefinition
 
-`func NewGroupWidgetDefinition(layoutType WidgetLayoutType, type_ string, widgets []Widget, ) *GroupWidgetDefinition`
+`func NewGroupWidgetDefinition(layoutType WidgetLayoutType, type_ GroupWidgetDefinitionType, widgets []Widget, ) *GroupWidgetDefinition`
 
 NewGroupWidgetDefinition instantiates a new GroupWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -75,20 +75,20 @@ HasTitle returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *GroupWidgetDefinition) GetType() string`
+`func (o *GroupWidgetDefinition) GetType() GroupWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *GroupWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *GroupWidgetDefinition) GetTypeOk() (*GroupWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *GroupWidgetDefinition) SetType(v string)`
+`func (o *GroupWidgetDefinition) SetType(v GroupWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -113,12 +113,6 @@ and a boolean to check if the value has been set.
 SetWidgets sets Widgets field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *GroupWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of GroupWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

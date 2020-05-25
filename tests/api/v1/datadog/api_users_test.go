@@ -191,7 +191,9 @@ func TestUserCreate409Error(t *testing.T) {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
 	// Mocked because it needs the user to be activated
-	gock.New("https://api.datadoghq.com").Post("/api/v1/user").Reply(409).JSON(res)
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "UsersApiService.CreateUser")
+	assert.NoError(err)
+	gock.New(URL).Post("/api/v1/user").Reply(409).JSON(res)
 	defer gock.Off()
 
 	_, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(datadog.User{}).Execute()

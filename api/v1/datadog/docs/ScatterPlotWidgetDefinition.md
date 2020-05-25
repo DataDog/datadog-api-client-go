@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of widget. | [readonly] [default to "scatterplot"]
+**Type** | Pointer to [**ScatterPlotWidgetDefinitionType**](ScatterPlotWidgetDefinitionType.md) |  | [default to "scatterplot"]
 **Xaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewScatterPlotWidgetDefinition
 
-`func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, type_ string, ) *ScatterPlotWidgetDefinition`
+`func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, type_ ScatterPlotWidgetDefinitionType, ) *ScatterPlotWidgetDefinition`
 
 NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -180,20 +180,20 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *ScatterPlotWidgetDefinition) GetType() string`
+`func (o *ScatterPlotWidgetDefinition) GetType() ScatterPlotWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*ScatterPlotWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ScatterPlotWidgetDefinition) SetType(v string)`
+`func (o *ScatterPlotWidgetDefinition) SetType(v ScatterPlotWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
@@ -248,12 +248,6 @@ SetYaxis sets Yaxis field to given value.
 
 HasYaxis returns a boolean if a field has been set.
 
-
-### AsWidgetDefinition
-
-`func (s *ScatterPlotWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of ScatterPlotWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

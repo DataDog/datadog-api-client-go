@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to **string** | Type of the widget. | [readonly] [default to "query_table"]
+**Type** | Pointer to [**TableWidgetDefinitionType**](TableWidgetDefinitionType.md) |  | [default to "query_table"]
 
 ## Methods
 
 ### NewTableWidgetDefinition
 
-`func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ string, ) *TableWidgetDefinition`
+`func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ TableWidgetDefinitionType, ) *TableWidgetDefinition`
 
 NewTableWidgetDefinition instantiates a new TableWidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -152,30 +152,24 @@ HasTitleSize returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *TableWidgetDefinition) GetType() string`
+`func (o *TableWidgetDefinition) GetType() TableWidgetDefinitionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *TableWidgetDefinition) GetTypeOk() (*string, bool)`
+`func (o *TableWidgetDefinition) GetTypeOk() (*TableWidgetDefinitionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *TableWidgetDefinition) SetType(v string)`
+`func (o *TableWidgetDefinition) SetType(v TableWidgetDefinitionType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsWidgetDefinition
-
-`func (s *TableWidgetDefinition) AsWidgetDefinition() WidgetDefinition`
-
-Convenience method to wrap this instance of TableWidgetDefinition in WidgetDefinition
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

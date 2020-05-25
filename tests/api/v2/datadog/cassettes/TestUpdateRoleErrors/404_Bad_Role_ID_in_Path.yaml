@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"go-TestUpdateRoleErrors-local-1589290185-updated"},"id":"a55b9b16-9454-11ea-93e2-5b889a3abb0f","type":"roles"}}
+      {"data":{"attributes":{"name":"go-TestUpdateRoleErrors-local-1589441854-updated"},"id":"00000000-dead-beef-dead-ffffffffffff","type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6970095683673435392"
+      - "479818617195486722"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9159942988193818741"
+      - "2735997447815667878"
     url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff
     method: PATCH
   response:
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:46 GMT
+      - Thu, 14 May 2020 07:37:35 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -47,7 +47,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.2500631"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

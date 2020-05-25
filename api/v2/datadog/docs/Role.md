@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**RoleAttributes**](RoleAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the role. | [optional] 
 **Relationships** | Pointer to [**RoleResponseRelationships**](RoleResponseRelationships.md) |  | [optional] 
-**Type** | Pointer to **string** | Roles type. | [readonly] [default to "roles"]
+**Type** | Pointer to [**RolesType**](RolesType.md) |  | [default to "roles"]
 
 ## Methods
 
 ### NewRole
 
-`func NewRole(type_ string, ) *Role`
+`func NewRole(type_ RolesType, ) *Role`
 
 NewRole instantiates a new Role object
 This constructor will assign default values to properties that have it defined,
@@ -105,30 +105,24 @@ HasRelationships returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Role) GetType() string`
+`func (o *Role) GetType() RolesType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Role) GetTypeOk() (*string, bool)`
+`func (o *Role) GetTypeOk() (*RolesType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Role) SetType(v string)`
+`func (o *Role) SetType(v RolesType)`
 
 SetType sets Type field to given value.
 
 
-
-### AsUserResponseIncludedItem
-
-`func (s *Role) AsUserResponseIncludedItem() UserResponseIncludedItem`
-
-Convenience method to wrap this instance of Role in UserResponseIncludedItem
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

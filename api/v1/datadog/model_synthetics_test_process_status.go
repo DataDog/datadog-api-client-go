@@ -12,6 +12,10 @@ import (
 	"encoding/json"
 )
 
+import (
+	"fmt"
+)
+
 // SyntheticsTestProcessStatus Status of a Synthetic test.
 type SyntheticsTestProcessStatus string
 
@@ -23,6 +27,23 @@ const (
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED            SyntheticsTestProcessStatus = "finished"
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR SyntheticsTestProcessStatus = "finished_with_error"
 )
+
+func (v *SyntheticsTestProcessStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := SyntheticsTestProcessStatus(value)
+	for _, existing := range []SyntheticsTestProcessStatus{"not_scheduled", "scheduled", "started", "finished", "finished_with_error"} {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid SyntheticsTestProcessStatus", *v)
+}
 
 // Ptr returns reference to SyntheticsTestProcessStatus value
 func (v SyntheticsTestProcessStatus) Ptr() *SyntheticsTestProcessStatus {
