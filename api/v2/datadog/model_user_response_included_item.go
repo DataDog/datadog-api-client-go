@@ -20,19 +20,22 @@ type UserResponseIncludedItem struct {
 	Role         *Role
 }
 
+// OrganizationAsUserResponseIncludedItem is a convenience function that returns Organization wrapped in UserResponseIncludedItem
 func OrganizationAsUserResponseIncludedItem(v *Organization) UserResponseIncludedItem {
 	return UserResponseIncludedItem{Organization: v}
 }
 
+// PermissionAsUserResponseIncludedItem is a convenience function that returns Permission wrapped in UserResponseIncludedItem
 func PermissionAsUserResponseIncludedItem(v *Permission) UserResponseIncludedItem {
 	return UserResponseIncludedItem{Permission: v}
 }
 
+// RoleAsUserResponseIncludedItem is a convenience function that returns Role wrapped in UserResponseIncludedItem
 func RoleAsUserResponseIncludedItem(v *Role) UserResponseIncludedItem {
 	return UserResponseIncludedItem{Role: v}
 }
 
-// Unmarshl JSON data into one of the pointers in the struct
+// Unmarshal JSON data into one of the pointers in the struct
 func (dst *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
@@ -76,6 +79,11 @@ func (dst *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.Organization = nil
+		dst.Permission = nil
+		dst.Role = nil
+
 		return fmt.Errorf("Data matches more than one schema in oneOf(UserResponseIncludedItem)")
 	} else if match == 1 {
 		return nil // exactly one match
@@ -84,7 +92,7 @@ func (dst *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Marshl data from the first non-nil pointers in the struct to JSON
+// Marshal data from the first non-nil pointers in the struct to JSON
 func (src UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 	if src.Organization != nil {
 		return json.Marshal(&src.Organization)

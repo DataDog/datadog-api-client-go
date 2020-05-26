@@ -32,67 +32,82 @@ type LogsProcessor struct {
 	LogsUserAgentParser        *LogsUserAgentParser
 }
 
+// LogsArithmeticProcessorAsLogsProcessor is a convenience function that returns LogsArithmeticProcessor wrapped in LogsProcessor
 func LogsArithmeticProcessorAsLogsProcessor(v *LogsArithmeticProcessor) LogsProcessor {
 	return LogsProcessor{LogsArithmeticProcessor: v}
 }
 
+// LogsAttributeRemapperAsLogsProcessor is a convenience function that returns LogsAttributeRemapper wrapped in LogsProcessor
 func LogsAttributeRemapperAsLogsProcessor(v *LogsAttributeRemapper) LogsProcessor {
 	return LogsProcessor{LogsAttributeRemapper: v}
 }
 
+// LogsCategoryProcessorAsLogsProcessor is a convenience function that returns LogsCategoryProcessor wrapped in LogsProcessor
 func LogsCategoryProcessorAsLogsProcessor(v *LogsCategoryProcessor) LogsProcessor {
 	return LogsProcessor{LogsCategoryProcessor: v}
 }
 
+// LogsDateRemapperAsLogsProcessor is a convenience function that returns LogsDateRemapper wrapped in LogsProcessor
 func LogsDateRemapperAsLogsProcessor(v *LogsDateRemapper) LogsProcessor {
 	return LogsProcessor{LogsDateRemapper: v}
 }
 
+// LogsGeoIPParserAsLogsProcessor is a convenience function that returns LogsGeoIPParser wrapped in LogsProcessor
 func LogsGeoIPParserAsLogsProcessor(v *LogsGeoIPParser) LogsProcessor {
 	return LogsProcessor{LogsGeoIPParser: v}
 }
 
+// LogsGrokParserAsLogsProcessor is a convenience function that returns LogsGrokParser wrapped in LogsProcessor
 func LogsGrokParserAsLogsProcessor(v *LogsGrokParser) LogsProcessor {
 	return LogsProcessor{LogsGrokParser: v}
 }
 
+// LogsLookupProcessorAsLogsProcessor is a convenience function that returns LogsLookupProcessor wrapped in LogsProcessor
 func LogsLookupProcessorAsLogsProcessor(v *LogsLookupProcessor) LogsProcessor {
 	return LogsProcessor{LogsLookupProcessor: v}
 }
 
+// LogsMessageRemapperAsLogsProcessor is a convenience function that returns LogsMessageRemapper wrapped in LogsProcessor
 func LogsMessageRemapperAsLogsProcessor(v *LogsMessageRemapper) LogsProcessor {
 	return LogsProcessor{LogsMessageRemapper: v}
 }
 
+// LogsPipelineProcessorAsLogsProcessor is a convenience function that returns LogsPipelineProcessor wrapped in LogsProcessor
 func LogsPipelineProcessorAsLogsProcessor(v *LogsPipelineProcessor) LogsProcessor {
 	return LogsProcessor{LogsPipelineProcessor: v}
 }
 
+// LogsServiceRemapperAsLogsProcessor is a convenience function that returns LogsServiceRemapper wrapped in LogsProcessor
 func LogsServiceRemapperAsLogsProcessor(v *LogsServiceRemapper) LogsProcessor {
 	return LogsProcessor{LogsServiceRemapper: v}
 }
 
+// LogsStatusRemapperAsLogsProcessor is a convenience function that returns LogsStatusRemapper wrapped in LogsProcessor
 func LogsStatusRemapperAsLogsProcessor(v *LogsStatusRemapper) LogsProcessor {
 	return LogsProcessor{LogsStatusRemapper: v}
 }
 
+// LogsStringBuilderProcessorAsLogsProcessor is a convenience function that returns LogsStringBuilderProcessor wrapped in LogsProcessor
 func LogsStringBuilderProcessorAsLogsProcessor(v *LogsStringBuilderProcessor) LogsProcessor {
 	return LogsProcessor{LogsStringBuilderProcessor: v}
 }
 
+// LogsTraceRemapperAsLogsProcessor is a convenience function that returns LogsTraceRemapper wrapped in LogsProcessor
 func LogsTraceRemapperAsLogsProcessor(v *LogsTraceRemapper) LogsProcessor {
 	return LogsProcessor{LogsTraceRemapper: v}
 }
 
+// LogsURLParserAsLogsProcessor is a convenience function that returns LogsURLParser wrapped in LogsProcessor
 func LogsURLParserAsLogsProcessor(v *LogsURLParser) LogsProcessor {
 	return LogsProcessor{LogsURLParser: v}
 }
 
+// LogsUserAgentParserAsLogsProcessor is a convenience function that returns LogsUserAgentParser wrapped in LogsProcessor
 func LogsUserAgentParserAsLogsProcessor(v *LogsUserAgentParser) LogsProcessor {
 	return LogsProcessor{LogsUserAgentParser: v}
 }
 
-// Unmarshl JSON data into one of the pointers in the struct
+// Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsProcessor) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
@@ -292,6 +307,23 @@ func (dst *LogsProcessor) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.LogsArithmeticProcessor = nil
+		dst.LogsAttributeRemapper = nil
+		dst.LogsCategoryProcessor = nil
+		dst.LogsDateRemapper = nil
+		dst.LogsGeoIPParser = nil
+		dst.LogsGrokParser = nil
+		dst.LogsLookupProcessor = nil
+		dst.LogsMessageRemapper = nil
+		dst.LogsPipelineProcessor = nil
+		dst.LogsServiceRemapper = nil
+		dst.LogsStatusRemapper = nil
+		dst.LogsStringBuilderProcessor = nil
+		dst.LogsTraceRemapper = nil
+		dst.LogsURLParser = nil
+		dst.LogsUserAgentParser = nil
+
 		return fmt.Errorf("Data matches more than one schema in oneOf(LogsProcessor)")
 	} else if match == 1 {
 		return nil // exactly one match
@@ -300,7 +332,7 @@ func (dst *LogsProcessor) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Marshl data from the first non-nil pointers in the struct to JSON
+// Marshal data from the first non-nil pointers in the struct to JSON
 func (src LogsProcessor) MarshalJSON() ([]byte, error) {
 	if src.LogsArithmeticProcessor != nil {
 		return json.Marshal(&src.LogsArithmeticProcessor)
