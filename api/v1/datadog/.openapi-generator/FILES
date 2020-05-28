@@ -313,10 +313,10 @@ docs/SyntheticsResourceType.md
 docs/SyntheticsSSLCertificate.md
 docs/SyntheticsSSLCertificateIssuer.md
 docs/SyntheticsSSLCertificateSubject.md
+docs/SyntheticsStep.md
 docs/SyntheticsStepDetail.md
 docs/SyntheticsStepDetailWarnings.md
 docs/SyntheticsStepType.md
-docs/SyntheticsTestAuthor.md
 docs/SyntheticsTestConfig.md
 docs/SyntheticsTestDetails.md
 docs/SyntheticsTestDetailsSubType.md
@@ -690,10 +690,10 @@ model_synthetics_resource_type.go
 model_synthetics_ssl_certificate.go
 model_synthetics_ssl_certificate_issuer.go
 model_synthetics_ssl_certificate_subject.go
+model_synthetics_step.go
 model_synthetics_step_detail.go
 model_synthetics_step_detail_warnings.go
 model_synthetics_step_type.go
-model_synthetics_test_author.go
 model_synthetics_test_config.go
 model_synthetics_test_details.go
 model_synthetics_test_details_sub_type.go

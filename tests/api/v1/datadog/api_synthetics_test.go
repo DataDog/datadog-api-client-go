@@ -119,9 +119,6 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
 	synt.SetName(updatedName)
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
-	synt.CreatedAt = nil
-	synt.CreatedBy = nil
-	synt.ModifiedAt = nil
 	synt.MonitorId = nil
 	synt.PublicId = nil
 	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
@@ -213,9 +210,6 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	updatedName := fmt.Sprintf("%s-updated", testSyntheticsBrowser.GetName())
 	synt.SetName(updatedName)
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
-	synt.CreatedAt = nil
-	synt.CreatedBy = nil
-	synt.ModifiedAt = nil
 	synt.MonitorId = nil
 	synt.PublicId = nil
 	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
