@@ -176,6 +176,7 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**DeleteTests**](docs/SyntheticsApi.md#deletetests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
 *SyntheticsApi* | [**GetAPITestLatestResults**](docs/SyntheticsApi.md#getapitestlatestresults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
 *SyntheticsApi* | [**GetAPITestResult**](docs/SyntheticsApi.md#getapitestresult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
+*SyntheticsApi* | [**GetBrowserTest**](docs/SyntheticsApi.md#getbrowsertest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a browser test configuration
 *SyntheticsApi* | [**GetBrowserTestLatestResults**](docs/SyntheticsApi.md#getbrowsertestlatestresults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
 *SyntheticsApi* | [**GetBrowserTestResult**](docs/SyntheticsApi.md#getbrowsertestresult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
 *SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
@@ -474,10 +475,10 @@ Class | Method | HTTP request | Description
  - [SyntheticsSSLCertificate](docs/SyntheticsSSLCertificate.md)
  - [SyntheticsSSLCertificateIssuer](docs/SyntheticsSSLCertificateIssuer.md)
  - [SyntheticsSSLCertificateSubject](docs/SyntheticsSSLCertificateSubject.md)
+ - [SyntheticsStep](docs/SyntheticsStep.md)
  - [SyntheticsStepDetail](docs/SyntheticsStepDetail.md)
  - [SyntheticsStepDetailWarnings](docs/SyntheticsStepDetailWarnings.md)
  - [SyntheticsStepType](docs/SyntheticsStepType.md)
- - [SyntheticsTestAuthor](docs/SyntheticsTestAuthor.md)
  - [SyntheticsTestConfig](docs/SyntheticsTestConfig.md)
  - [SyntheticsTestDetails](docs/SyntheticsTestDetails.md)
  - [SyntheticsTestDetailsSubType](docs/SyntheticsTestDetailsSubType.md)

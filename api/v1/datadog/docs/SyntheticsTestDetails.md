@@ -5,17 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | [optional] 
-**CreatedAt** | Pointer to **string** | The test creation date. | [optional] 
-**CreatedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
 **Message** | Pointer to **string** | Notification message associated with the test. | [optional] 
-**ModifiedAt** | Pointer to **string** | Last timestamp the test was modified. | [optional] 
-**ModifiedBy** | Pointer to [**SyntheticsTestAuthor**](SyntheticsTestAuthor.md) |  | [optional] 
 **MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] 
 **Name** | Pointer to **string** | Name of the test. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
 **PublicId** | Pointer to **string** | The test public ID. | [optional] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
+**Steps** | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md) | The steps of the test (only for browser tests). | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
 **Type** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
@@ -63,56 +60,6 @@ SetConfig sets Config field to given value.
 `func (o *SyntheticsTestDetails) HasConfig() bool`
 
 HasConfig returns a boolean if a field has been set.
-
-### GetCreatedAt
-
-`func (o *SyntheticsTestDetails) GetCreatedAt() string`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *SyntheticsTestDetails) GetCreatedAtOk() (*string, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *SyntheticsTestDetails) SetCreatedAt(v string)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *SyntheticsTestDetails) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
-
-### GetCreatedBy
-
-`func (o *SyntheticsTestDetails) GetCreatedBy() SyntheticsTestAuthor`
-
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
-
-### GetCreatedByOk
-
-`func (o *SyntheticsTestDetails) GetCreatedByOk() (*SyntheticsTestAuthor, bool)`
-
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedBy
-
-`func (o *SyntheticsTestDetails) SetCreatedBy(v SyntheticsTestAuthor)`
-
-SetCreatedBy sets CreatedBy field to given value.
-
-### HasCreatedBy
-
-`func (o *SyntheticsTestDetails) HasCreatedBy() bool`
-
-HasCreatedBy returns a boolean if a field has been set.
 
 ### GetLocations
 
@@ -163,56 +110,6 @@ SetMessage sets Message field to given value.
 `func (o *SyntheticsTestDetails) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
-
-### GetModifiedAt
-
-`func (o *SyntheticsTestDetails) GetModifiedAt() string`
-
-GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
-
-### GetModifiedAtOk
-
-`func (o *SyntheticsTestDetails) GetModifiedAtOk() (*string, bool)`
-
-GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModifiedAt
-
-`func (o *SyntheticsTestDetails) SetModifiedAt(v string)`
-
-SetModifiedAt sets ModifiedAt field to given value.
-
-### HasModifiedAt
-
-`func (o *SyntheticsTestDetails) HasModifiedAt() bool`
-
-HasModifiedAt returns a boolean if a field has been set.
-
-### GetModifiedBy
-
-`func (o *SyntheticsTestDetails) GetModifiedBy() SyntheticsTestAuthor`
-
-GetModifiedBy returns the ModifiedBy field if non-nil, zero value otherwise.
-
-### GetModifiedByOk
-
-`func (o *SyntheticsTestDetails) GetModifiedByOk() (*SyntheticsTestAuthor, bool)`
-
-GetModifiedByOk returns a tuple with the ModifiedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModifiedBy
-
-`func (o *SyntheticsTestDetails) SetModifiedBy(v SyntheticsTestAuthor)`
-
-SetModifiedBy sets ModifiedBy field to given value.
-
-### HasModifiedBy
-
-`func (o *SyntheticsTestDetails) HasModifiedBy() bool`
-
-HasModifiedBy returns a boolean if a field has been set.
 
 ### GetMonitorId
 
@@ -338,6 +235,31 @@ SetStatus sets Status field to given value.
 `func (o *SyntheticsTestDetails) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetSteps
+
+`func (o *SyntheticsTestDetails) GetSteps() []SyntheticsStep`
+
+GetSteps returns the Steps field if non-nil, zero value otherwise.
+
+### GetStepsOk
+
+`func (o *SyntheticsTestDetails) GetStepsOk() (*[]SyntheticsStep, bool)`
+
+GetStepsOk returns a tuple with the Steps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSteps
+
+`func (o *SyntheticsTestDetails) SetSteps(v []SyntheticsStep)`
+
+SetSteps sets Steps field to given value.
+
+### HasSteps
+
+`func (o *SyntheticsTestDetails) HasSteps() bool`
+
+HasSteps returns a boolean if a field has been set.
 
 ### GetSubtype
 
