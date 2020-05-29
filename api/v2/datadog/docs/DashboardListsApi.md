@@ -46,7 +46,7 @@ func main() {
     )
 
     dashboardListId := 987 // int64 | ID of the dashboard list to add items to.
-    body := datadog.DashboardListItems{Dashboards: []DashboardListItem{datadog.DashboardListItem{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", Icon: "Icon_example", Id: "Id_example", IsFavorite: false, IsReadOnly: false, IsShared: false, Modified: "TODO", Popularity: 123, Title: "Title_example", Type: datadog.DashboardType{}, Url: "Url_example"}), Total: int64(123)} // DashboardListItems | Dashboards to add to the dashboard list.
+    body := datadog.DashboardListAddItemsRequest{Dashboards: []DashboardListItemRequest{datadog.DashboardListItemRequest{Id: "Id_example", Type: datadog.DashboardType{}})} // DashboardListAddItemsRequest | Dashboards to add to the dashboard list.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -76,7 +76,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardListItemsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardListItems**](DashboardListItems.md) | Dashboards to add to the dashboard list. | 
+ **body** | [**DashboardListAddItemsRequest**](DashboardListAddItemsRequest.md) | Dashboards to add to the dashboard list. | 
 
 ### Return type
 
@@ -131,7 +131,7 @@ func main() {
     )
 
     dashboardListId := 987 // int64 | ID of the dashboard list to delete items from.
-    body := datadog.DashboardListItems{Dashboards: []DashboardListItem{datadog.DashboardListItem{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", Icon: "Icon_example", Id: "Id_example", IsFavorite: false, IsReadOnly: false, IsShared: false, Modified: "TODO", Popularity: 123, Title: "Title_example", Type: datadog.DashboardType{}, Url: "Url_example"}), Total: int64(123)} // DashboardListItems | Dashboards to delete from the dashboard list.
+    body := datadog.DashboardListDeleteItemsRequest{Dashboards: []DashboardListItemRequest{datadog.DashboardListItemRequest{Id: "Id_example", Type: datadog.DashboardType{}})} // DashboardListDeleteItemsRequest | Dashboards to delete from the dashboard list.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -161,7 +161,7 @@ Other parameters are passed through a pointer to a apiDeleteDashboardListItemsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardListItems**](DashboardListItems.md) | Dashboards to delete from the dashboard list. | 
+ **body** | [**DashboardListDeleteItemsRequest**](DashboardListDeleteItemsRequest.md) | Dashboards to delete from the dashboard list. | 
 
 ### Return type
 
@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDashboardListItems
 
-> DashboardListItems UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+> DashboardListUpdateItemsResponse UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
 
 Update items of a dashboard list
 
@@ -299,7 +299,7 @@ func main() {
     )
 
     dashboardListId := 987 // int64 | ID of the dashboard list to update items from.
-    body :=  // DashboardListItems | New dashboards of the dashboard list.
+    body := datadog.DashboardListUpdateItemsRequest{Dashboards: []DashboardListItemRequest{)} // DashboardListUpdateItemsRequest | New dashboards of the dashboard list.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -308,7 +308,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDashboardListItems`: DashboardListItems
+    // response from `UpdateDashboardListItems`: DashboardListUpdateItemsResponse
     fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.UpdateDashboardListItems`: %v\n", resp)
 }
 ```
@@ -329,11 +329,11 @@ Other parameters are passed through a pointer to a apiUpdateDashboardListItemsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**DashboardListItems**](DashboardListItems.md) | New dashboards of the dashboard list. | 
+ **body** | [**DashboardListUpdateItemsRequest**](DashboardListUpdateItemsRequest.md) | New dashboards of the dashboard list. | 
 
 ### Return type
 
-[**DashboardListItems**](DashboardListItems.md)
+[**DashboardListUpdateItemsResponse**](DashboardListUpdateItemsResponse.md)
 
 ### Authorization
 
