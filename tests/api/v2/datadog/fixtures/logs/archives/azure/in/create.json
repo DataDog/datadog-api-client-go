@@ -1,0 +1,1 @@
+{"data":{"attributes":{"destination":{"container":"my-container","integration":{"client_id":"aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa","tenant_id":"aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa"},"path":"/path/blou","region":"my-region","storage_account":"storageAccount","type":"azure"},"name":"datadog-api-client-go Tests Archive","query":"service:toto"},"type":"archives"}}
