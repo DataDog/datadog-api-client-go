@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
-	"github.com/stretchr/testify/assert"
 	"gopkg.in/h2non/gock.v1"
 	"reflect"
 	"testing"
@@ -53,7 +52,7 @@ func TestLogsArchivesCreateS3(t *testing.T) {
 		URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", c.action, c.archiveType))
 		assert.NoError(err)
 		gock.New(URL).Post("/api/v2/logs/config/archives").JSON(inputArchive).Reply(200).JSON(outputArchive)
-		archivesAreEqual(t, *inputArchive.Get().Data.Attributes, *outputArchive.Get().Data.Attributes)
+		archivesAreEqual(t, ctx, *inputArchive.Get().Data.Attributes, *outputArchive.Get().Data.Attributes)
 		assert.Equal(outputArchive.Get().Data.Type, "archives")
 		r := reflect.ValueOf(outputArchive.Get().Data.Attributes.Destination.Get().GetActualInstance())
 		assert.Equal(reflect.Indirect(r).FieldByName("Type").String(), c.archiveType)
@@ -81,7 +80,7 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).JSON(outputArchive)
 	result, httpresp, err := client.LogsArchivesApi.GetLogsArchive(ctx, id).Execute()
 	assert.Equal(httpresp.StatusCode, 200)
-	checkS3Archive(t, *outputArchive.Get().Data)
+	checkS3Archive(t, ctx, *outputArchive.Get().Data)
 	assert.Equal(result, *outputArchive.Get())
 	defer gock.Off()
 }
@@ -122,37 +121,40 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v2/logs/config/archives/").Reply(200).JSON(outputArchives)
 	assert.True(len(*outputArchives.Get().Data) > 0)
-	checkS3Archive(t, (*outputArchives.Get().Data)[0])
+	checkS3Archive(t, ctx, (*outputArchives.Get().Data)[0])
 }
 
-func checkS3Archive(t *testing.T, outputArchive datadog.LogsArchiveDefinition) {
-	assert.Equal(t, outputArchive.Type, "archives")
+func checkS3Archive(t *testing.T, ctx context.Context, outputArchive datadog.LogsArchiveDefinition) {
+	assert := tests.Assert(ctx, t)
+	assert.Equal(outputArchive.Type, "archives")
 	destination := outputArchive.Attributes.Destination.Get().LogsArchiveDestinationS3
-	assert.Equal(t, destination.Type, datadog.LOGSARCHIVEDESTINATIONS3TYPE_S3)
-	assert.Equal(t, destination.Integration.AccountId, "711111111111")
-	assert.Equal(t, destination.Integration.RoleName, "DatadogGoClientTestIntegrationRole")
-	assert.Equal(t, destination.Path, datadog.PtrString("/path/blou"))
-	assert.Equal(t, destination.Bucket, "dd-logs-test-datadog-api-client-go")
-	assert.Equal(t, outputArchive.Attributes.Name, "datadog-api-client-go Tests Archive")
-	assert.Equal(t, outputArchive.Attributes.Query, "source:tata")
-	assert.Equal(t, outputArchive.Id, datadog.PtrString("XVlBzgbaiC"))
+	assert.Equal(destination.Type, datadog.LOGSARCHIVEDESTINATIONS3TYPE_S3)
+	assert.Equal(destination.Integration.AccountId, "711111111111")
+	assert.Equal(destination.Integration.RoleName, "DatadogGoClientTestIntegrationRole")
+	assert.Equal(destination.Path, datadog.PtrString("/path/blou"))
+	assert.Equal(destination.Bucket, "dd-logs-test-datadog-api-client-go")
+	assert.Equal(outputArchive.Attributes.Name, "datadog-api-client-go Tests Archive")
+	assert.Equal(outputArchive.Attributes.Query, "source:tata")
+	assert.Equal(outputArchive.Id, datadog.PtrString("XVlBzgbaiC"))
 }
 
-func archivesAreEqual(t *testing.T, archiveRequest datadog.LogsArchiveCreateRequestAttributes, createdArchive datadog.LogsArchiveAttributes) {
-	assert.Equal(t, archiveRequest.Name, createdArchive.Name)
-	assert.Equal(t, archiveRequest.Query, createdArchive.Query)
+func archivesAreEqual(t *testing.T, ctx context.Context, archiveRequest datadog.LogsArchiveCreateRequestAttributes, createdArchive datadog.LogsArchiveAttributes) {
+	assert := tests.Assert(ctx, t)
+	assert.Equal(archiveRequest.Name, createdArchive.Name)
+	assert.Equal(archiveRequest.Query, createdArchive.Query)
 	s3DestinationReq := archiveRequest.Destination.LogsArchiveDestinationS3
 	s3DestinationCreated := createdArchive.Destination.Get().LogsArchiveDestinationS3
-	assert.Equal(t, s3DestinationReq, s3DestinationCreated)
+	assert.Equal(s3DestinationReq, s3DestinationCreated)
 	azureDestinationReq := archiveRequest.Destination.LogsArchiveDestinationAzure
 	azureDestinationCreated := createdArchive.Destination.Get().LogsArchiveDestinationAzure
-	assert.Equal(t, azureDestinationReq, azureDestinationCreated)
+	assert.Equal(azureDestinationReq, azureDestinationCreated)
 	gcsDestinationReq := archiveRequest.Destination.LogsArchiveDestinationGCS
 	gcsDestinationCreated := createdArchive.Destination.Get().LogsArchiveDestinationGCS
-	assert.Equal(t, gcsDestinationReq, gcsDestinationCreated)
+	assert.Equal(gcsDestinationReq, gcsDestinationCreated)
 }
 
 func readFixture(t *testing.T, path string) string {
+	t.Helper()
 	res, err := tests.ReadFixture(path)
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
