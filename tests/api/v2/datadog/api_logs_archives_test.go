@@ -47,11 +47,12 @@ func TestLogsArchivesCreate(t *testing.T) {
 		inputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", c.archiveType, c.action))
 		inputArchive := datadog.NullableLogsArchiveCreateRequest{}
 		inputArchive.UnmarshalJSON([]byte(inputArchiveStr))
+		outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", c.archiveType, c.action))
 		outputArchive := datadog.NullableLogsArchive{}
-		outputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", c.archiveType, c.action))))
+		outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
 		URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", c.action, c.archiveType))
 		assert.NoError(err)
-		gock.New(URL).Post("/api/v2/logs/config/archives").BodyString(inputArchiveStr).Reply(200).JSON(outputArchive)
+		gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").BodyString(inputArchiveStr).Reply(200).Type("json").BodyString(outputArchiveStr)
 		result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(*inputArchive.Get()).Execute()
 		assert.Equal(result, *outputArchive.Get())
 		assert.Equal(httpresp.StatusCode, 200)
@@ -70,11 +71,12 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	id := "XVlBzgbaiC"
 	action := "getbyid"
 	archiveType := "s3"
+	outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
 	outputArchive := datadog.NullableLogsArchive{}
-	outputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))))
+	outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
 	URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
 	assert.NoError(err)
-	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).JSON(outputArchive)
+	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).Type("json").BodyString(outputArchiveStr)
 	result, httpresp, err := client.LogsArchivesApi.GetLogsArchive(ctx, id).Execute()
 	assert.Equal(httpresp.StatusCode, 200)
 	checkS3Archive(t, ctx, *outputArchive.Get().Data)
@@ -112,11 +114,12 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	action := "getall"
 	archiveType := "s3"
+	outputArchivesStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
 	outputArchives := datadog.NullableLogsArchives{}
-	outputArchives.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))))
+	outputArchives.UnmarshalJSON([]byte(outputArchivesStr))
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
 	assert.NoError(err)
-	gock.New(URL).Get("/api/v2/logs/config/archives/").Reply(200).JSON(outputArchives)
+	gock.New(URL).Get("/api/v2/logs/config/archives/").Reply(200).Type("json").JSON(outputArchivesStr)
 	assert.True(len(*outputArchives.Get().Data) > 0)
 	checkS3Archive(t, ctx, (*outputArchives.Get().Data)[0])
 }
