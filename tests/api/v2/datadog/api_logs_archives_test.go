@@ -20,46 +20,47 @@ import (
 // This test uses mocking because: 1) it relies on private data. 2) It relies on external services
 
 func TestLogsArchivesCreateS3(t *testing.T) {
-	archiveType := "s3"
-	action := "create"
-	testLogArchivesCreate(t, archiveType, action)
-}
-
-func TestLogsArchivesCreateAzure(t *testing.T) {
-	archiveType := "azure"
-	action := "create"
-	testLogArchivesCreate(t, archiveType, action)
-}
-
-func TestLogsArchivesCreateGCS(t *testing.T) {
-	archiveType := "gcs"
-	action := "create"
-	testLogArchivesCreate(t, archiveType, action)
-}
-
-func testLogArchivesCreate(t *testing.T, archiveType string, action string) {
+	cases := []struct {
+		archiveType string
+		action      string
+	}{
+		{
+			archiveType: "s3",
+			action:      "create",
+		},
+		{
+			archiveType: "azure",
+			action:      "create",
+		},
+		{
+			archiveType: "gcs",
+			action:      "create",
+		},
+	}
 	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	defer gock.Off()
 	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
-	defer finish()
-	inputArchive := datadog.NullableLogsArchiveCreateRequest{}
-	inputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", archiveType, action))))
-	outputArchive := datadog.NullableLogsArchive{}
-	outputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))))
-	URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
-	assert.NoError(err)
-	gock.New(URL).Post("/api/v2/logs/config/archives").JSON(inputArchive).Reply(200).JSON(outputArchive)
-	archivesAreEqual(t, *inputArchive.Get().Data.Attributes, *outputArchive.Get().Data.Attributes)
-	assert.Equal(outputArchive.Get().Data.Type, "archives")
-	r := reflect.ValueOf(outputArchive.Get().Data.Attributes.Destination.Get().GetActualInstance())
-	assert.Equal(reflect.Indirect(r).FieldByName("Type").String(), archiveType)
-	result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(*inputArchive.Get()).Execute()
-	assert.Equal(httpresp.StatusCode, 200)
-	assert.Equal(result, *outputArchive.Get())
-	defer gock.Off()
+	for _, c := range cases {
+		inputArchive := datadog.NullableLogsArchiveCreateRequest{}
+		inputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", c.archiveType, c.action))))
+		outputArchive := datadog.NullableLogsArchive{}
+		outputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", c.archiveType, c.action))))
+		URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", c.action, c.archiveType))
+		assert.NoError(err)
+		gock.New(URL).Post("/api/v2/logs/config/archives").JSON(inputArchive).Reply(200).JSON(outputArchive)
+		archivesAreEqual(t, *inputArchive.Get().Data.Attributes, *outputArchive.Get().Data.Attributes)
+		assert.Equal(outputArchive.Get().Data.Type, "archives")
+		r := reflect.ValueOf(outputArchive.Get().Data.Attributes.Destination.Get().GetActualInstance())
+		assert.Equal(reflect.Indirect(r).FieldByName("Type").String(), c.archiveType)
+		result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(*inputArchive.Get()).Execute()
+		assert.Equal(httpresp.StatusCode, 200)
+		assert.Equal(result, *outputArchive.Get())
+	}
 }
 
 func TestLogsArchivesGetByID(t *testing.T) {
@@ -91,6 +92,7 @@ func TestLogsArchivesDelete(t *testing.T) {
 	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
+	defer gock.Off()
 	assert := tests.Assert(ctx, t)
 	id := "XVlBzgbaiC"
 	action := "deleteById"
@@ -102,7 +104,6 @@ func TestLogsArchivesDelete(t *testing.T) {
 	httpresp, err := client.LogsArchivesApi.DeleteLogsArchive(ctx, id).Execute()
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 204)
-	defer gock.Off()
 }
 
 func TestLogsArchivesGetAll(t *testing.T) {
@@ -111,6 +112,7 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
+	defer gock.Off()
 	assert := tests.Assert(ctx, t)
 	action := "getall"
 	archiveType := "s3"
@@ -121,7 +123,6 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	gock.New(URL).Get("/api/v2/logs/config/archives/").Reply(200).JSON(outputArchives)
 	assert.True(len(*outputArchives.Get().Data) > 0)
 	checkS3Archive(t, (*outputArchives.Get().Data)[0])
-	defer gock.Off()
 }
 
 func checkS3Archive(t *testing.T, outputArchive datadog.LogsArchiveDefinition) {
