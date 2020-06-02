@@ -12,13 +12,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"gopkg.in/h2non/gock.v1"
-	"reflect"
 	"testing"
 )
 
 // This test uses mocking because: 1) it relies on private data. 2) It relies on external services
 
-func TestLogsArchivesCreateS3(t *testing.T) {
+func TestLogsArchivesCreate(t *testing.T) {
 	cases := []struct {
 		archiveType string
 		action      string
@@ -45,18 +44,16 @@ func TestLogsArchivesCreateS3(t *testing.T) {
 	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
 	for _, c := range cases {
+		inputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", c.archiveType, c.action))
 		inputArchive := datadog.NullableLogsArchiveCreateRequest{}
-		inputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", c.archiveType, c.action))))
+		inputArchive.UnmarshalJSON([]byte(inputArchiveStr))
 		outputArchive := datadog.NullableLogsArchive{}
 		outputArchive.UnmarshalJSON([]byte(readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", c.archiveType, c.action))))
 		URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", c.action, c.archiveType))
 		assert.NoError(err)
-		gock.New(URL).Post("/api/v2/logs/config/archives").JSON(inputArchive).Reply(200).JSON(outputArchive)
-		archivesAreEqual(t, ctx, *inputArchive.Get().Data.Attributes, *outputArchive.Get().Data.Attributes)
-		assert.Equal(outputArchive.Get().Data.Type, "archives")
-		r := reflect.ValueOf(outputArchive.Get().Data.Attributes.Destination.Get().GetActualInstance())
-		assert.Equal(reflect.Indirect(r).FieldByName("Type").String(), c.archiveType)
+		gock.New(URL).Post("/api/v2/logs/config/archives").BodyString(inputArchiveStr).Reply(200).JSON(outputArchive)
 		result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(*inputArchive.Get()).Execute()
+		assert.Equal(result, *outputArchive.Get())
 		assert.Equal(httpresp.StatusCode, 200)
 		assert.Equal(result, *outputArchive.Get())
 	}
