@@ -60,6 +60,32 @@ func TestLogsArchivesCreate(t *testing.T) {
 	}
 }
 
+func TestLogsArchivesUpdate(t *testing.T) {
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skip("This test case does not support ignore mode")
+	}
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	client := Client(ctx)
+	archiveType := "s3"
+	action := "update"
+	inputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", archiveType, action))
+	inputArchive := datadog.NullableLogsArchiveCreateRequest{}
+	inputArchive.UnmarshalJSON([]byte(inputArchiveStr))
+	outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
+	outputArchive := datadog.NullableLogsArchive{}
+	outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
+	URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
+	assert.NoError(err)
+	id := "XVlBzgbaiC"
+	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").BodyString(inputArchiveStr).Reply(200).Type("json").BodyString(outputArchiveStr)
+	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id).Body(*inputArchive.Get()).Execute()
+	assert.Equal(result, *outputArchive.Get())
+	assert.Equal(httpresp.StatusCode, 200)
+	assert.Equal(result, *outputArchive.Get())
+}
+
 func TestLogsArchivesGetByID(t *testing.T) {
 	if tests.GetRecording() == tests.ModeIgnore {
 		t.Skip("This test case does not support ignore mode")
