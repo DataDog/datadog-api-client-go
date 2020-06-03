@@ -35,8 +35,8 @@ func TestLogsArchivesCreate(t *testing.T) {
 			action:      "create",
 		},
 	}
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("This test case does not support reply from recording")
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skip("This test case does not support ignore mode")
 	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
@@ -61,8 +61,8 @@ func TestLogsArchivesCreate(t *testing.T) {
 }
 
 func TestLogsArchivesGetByID(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("This test case does not support reply from recording")
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skip("This test case does not support ignore mode")
 	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
@@ -85,8 +85,8 @@ func TestLogsArchivesGetByID(t *testing.T) {
 }
 
 func TestLogsArchivesDelete(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("This test case does not support reply from recording")
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skip("This test case does not support ignore mode")
 	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
@@ -105,8 +105,8 @@ func TestLogsArchivesDelete(t *testing.T) {
 }
 
 func TestLogsArchivesGetAll(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("This test case does not support reply from recording")
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skip("This test case does not support ignore mode")
 	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
