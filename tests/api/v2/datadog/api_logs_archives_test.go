@@ -153,7 +153,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
 	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.UpdateLogsArchive")
 	assert.NoError(err)
-	id := "XVlBzgbaiC"
+	id := "FOObartotO"
 	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").JSON(inputArchive).Reply(200).Type("json").BodyString(outputArchiveStr)
 	defer gock.Off()
 	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id).Body(inputArchive).Execute()
@@ -166,7 +166,7 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
-	id := "XVlBzgbaiC"
+	id := "FOObartotO"
 	action := "getbyid"
 	archiveType := "s3"
 	outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
@@ -185,7 +185,7 @@ func TestLogsArchivesDelete(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	id := "XVlBzgbaiC"
+	id := "FOObartotO"
 	client := Client(ctx)
 	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.DeleteLogsArchive")
 	assert.NoError(err)
