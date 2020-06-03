@@ -155,8 +155,8 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	assert.NoError(err)
 	id := "XVlBzgbaiC"
 	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").JSON(inputArchive).Reply(200).Type("json").BodyString(outputArchiveStr)
+	defer gock.Off()
 	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id).Body(inputArchive).Execute()
-	assert.Equal(result, *outputArchive.Get())
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, *outputArchive.Get())
 }
@@ -175,23 +175,22 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.GetLogsArchive")
 	assert.NoError(err)
 	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).Type("json").BodyString(outputArchiveStr)
+	defer gock.Off()
 	result, httpresp, err := client.LogsArchivesApi.GetLogsArchive(ctx, id).Execute()
 	assert.Equal(httpresp.StatusCode, 200)
-	checkS3Archive(t, ctx, *outputArchive.Get().Data)
 	assert.Equal(result, *outputArchive.Get())
-	defer gock.Off()
 }
 
 func TestLogsArchivesDelete(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
-	defer gock.Off()
 	assert := tests.Assert(ctx, t)
 	id := "XVlBzgbaiC"
 	client := Client(ctx)
 	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.DeleteLogsArchive")
 	assert.NoError(err)
 	gock.New(URL).Delete(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(204)
+	defer gock.Off()
 	httpresp, err := client.LogsArchivesApi.DeleteLogsArchive(ctx, id).Execute()
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 204)
@@ -200,7 +199,6 @@ func TestLogsArchivesDelete(t *testing.T) {
 func TestLogsArchivesGetAll(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
-	defer gock.Off()
 	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
 	action := "getall"
@@ -211,26 +209,12 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.ListLogsArchives")
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v2/logs/config/archives").Reply(200).Type("json").JSON(outputArchivesStr)
+	defer gock.Off()
 	result, httpresp, err := client.LogsArchivesApi.ListLogsArchives(ctx).Execute()
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.True(len(*result.Data) > 0)
-	checkS3Archive(t, ctx, (*result.Data)[0])
 	assert.Equal(*outputArchives.Get(), result)
-}
-
-func checkS3Archive(t *testing.T, ctx context.Context, outputArchive datadog.LogsArchiveDefinition) {
-	assert := tests.Assert(ctx, t)
-	assert.Equal(outputArchive.Type, "archives")
-	destination := outputArchive.Attributes.Destination.Get().LogsArchiveDestinationS3
-	assert.Equal(destination.Type, datadog.LOGSARCHIVEDESTINATIONS3TYPE_S3)
-	assert.Equal(destination.Integration.AccountId, "711111111111")
-	assert.Equal(destination.Integration.RoleName, "DatadogGoClientTestIntegrationRole")
-	assert.Equal(destination.Path, datadog.PtrString("/path/blou"))
-	assert.Equal(destination.Bucket, "dd-logs-test-datadog-api-client-go")
-	assert.Equal(outputArchive.Attributes.Name, "datadog-api-client-go Tests Archive")
-	assert.Equal(outputArchive.Attributes.Query, "source:tata")
-	assert.Equal(outputArchive.Id, datadog.PtrString("XVlBzgbaiC"))
 }
 
 func archivesAreEqual(t *testing.T, ctx context.Context, archiveRequest datadog.LogsArchiveCreateRequestAttributes, createdArchive datadog.LogsArchiveAttributes) {
