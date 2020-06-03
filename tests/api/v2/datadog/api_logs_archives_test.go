@@ -1,24 +1,25 @@
-package test
-
 /*
  * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
  * This product includes software developed at Datadog (https://www.datadoghq.com/).
  * Copyright 2019-Present Datadog, Inc.
  */
 
+package test
+
 import (
 	"context"
 	"fmt"
+	"testing"
+
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"gopkg.in/h2non/gock.v1"
-	"testing"
 )
 
 // This test uses mocking because: 1) it relies on private data. 2) It relies on external services
 
 func TestLogsArchivesCreate(t *testing.T) {
-	cases := []struct {
+	testCases := []struct {
 		archiveType string
 		action      string
 	}{
@@ -35,35 +36,37 @@ func TestLogsArchivesCreate(t *testing.T) {
 			action:      "create",
 		},
 	}
-	if tests.GetRecording() == tests.ModeIgnore {
-		t.Skip("This test case does not support ignore mode")
-	}
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
-	defer finish()
-	defer gock.Off()
-	client := Client(ctx)
-	assert := tests.Assert(ctx, t)
-	for _, c := range cases {
-		inputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", c.archiveType, c.action))
-		inputArchive := datadog.NullableLogsArchiveCreateRequest{}
-		inputArchive.UnmarshalJSON([]byte(inputArchiveStr))
-		outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", c.archiveType, c.action))
-		outputArchive := datadog.NullableLogsArchive{}
-		outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
-		URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", c.action, c.archiveType))
-		assert.NoError(err)
-		gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").BodyString(inputArchiveStr).Reply(200).Type("json").BodyString(outputArchiveStr)
-		result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(*inputArchive.Get()).Execute()
-		assert.Equal(result, *outputArchive.Get())
-		assert.Equal(httpresp.StatusCode, 200)
-		assert.Equal(result, *outputArchive.Get())
+	for _, tc := range testCases {
+		t.Run(tc.archiveType, func(t *testing.T) {
+			ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+			defer finish()
+
+			client := Client(ctx)
+			assert := tests.Assert(ctx, t)
+
+			inputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", tc.archiveType, tc.action))
+			inputArchive := datadog.NullableLogsArchiveCreateRequest{}
+			inputArchive.UnmarshalJSON([]byte(inputArchiveStr))
+
+			outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", tc.archiveType, tc.action))
+			outputArchive := datadog.NullableLogsArchive{}
+			outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
+
+			URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", tc.action, tc.archiveType))
+			assert.NoError(err)
+
+			gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").BodyString(inputArchiveStr).Reply(200).Type("json").BodyString(outputArchiveStr)
+			defer gock.Off()
+
+			result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(*inputArchive.Get()).Execute()
+			assert.NoError(err)
+			assert.Equal(httpresp.StatusCode, 200)
+			assert.Equal(result, *outputArchive.Get())
+		})
 	}
 }
 
 func TestLogsArchivesUpdate(t *testing.T) {
-	if tests.GetRecording() == tests.ModeIgnore {
-		t.Skip("This test case does not support ignore mode")
-	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
