@@ -18,8 +18,9 @@ type WidgetServiceSummaryDisplayFormat string
 
 // List of WidgetServiceSummaryDisplayFormat
 const (
-	WIDGETSERVICESUMMARYDISPLAYFORMAT_ONE_COLUMN WidgetServiceSummaryDisplayFormat = "one_column"
-	WIDGETSERVICESUMMARYDISPLAYFORMAT_TWO_COLUMN WidgetServiceSummaryDisplayFormat = "two_column"
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_ONE_COLUMN   WidgetServiceSummaryDisplayFormat = "one_column"
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_TWO_COLUMN   WidgetServiceSummaryDisplayFormat = "two_column"
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_THREE_COLUMN WidgetServiceSummaryDisplayFormat = "three_column"
 )
 
 func (v *WidgetServiceSummaryDisplayFormat) UnmarshalJSON(src []byte) error {
@@ -29,7 +30,7 @@ func (v *WidgetServiceSummaryDisplayFormat) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetServiceSummaryDisplayFormat(value)
-	for _, existing := range []WidgetServiceSummaryDisplayFormat{"one_column", "two_column"} {
+	for _, existing := range []WidgetServiceSummaryDisplayFormat{"one_column", "two_column", "three_column"} {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil

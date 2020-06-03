@@ -411,6 +411,7 @@ docs/WidgetMargin.md
 docs/WidgetMarker.md
 docs/WidgetMessageDisplay.md
 docs/WidgetMonitorSummaryDisplayFormat.md
+docs/WidgetMonitorSummarySort.md
 docs/WidgetNodeType.md
 docs/WidgetOrderBy.md
 docs/WidgetPalette.md
@@ -785,6 +786,7 @@ model_widget_margin.go
 model_widget_marker.go
 model_widget_message_display.go
 model_widget_monitor_summary_display_format.go
+model_widget_monitor_summary_sort.go
 model_widget_node_type.go
 model_widget_order_by.go
 model_widget_palette.go
