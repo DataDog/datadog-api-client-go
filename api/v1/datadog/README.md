@@ -570,6 +570,7 @@ Class | Method | HTTP request | Description
  - [WidgetMarker](docs/WidgetMarker.md)
  - [WidgetMessageDisplay](docs/WidgetMessageDisplay.md)
  - [WidgetMonitorSummaryDisplayFormat](docs/WidgetMonitorSummaryDisplayFormat.md)
+ - [WidgetMonitorSummarySort](docs/WidgetMonitorSummarySort.md)
  - [WidgetNodeType](docs/WidgetNodeType.md)
  - [WidgetOrderBy](docs/WidgetOrderBy.md)
  - [WidgetPalette](docs/WidgetPalette.md)

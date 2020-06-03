@@ -47,7 +47,7 @@ Name | Type | Description | Notes
 **MessageDisplay** | Pointer to [**WidgetMessageDisplay**](WidgetMessageDisplay.md) |  | [optional] 
 **ShowDateColumn** | Pointer to **bool** | Whether to show the date column or not | [optional] 
 **ShowMessageColumn** | Pointer to **bool** | Whether to show the message column or not | [optional] 
-**Sort** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
+**Sort** | Pointer to [**WidgetMonitorSummarySort**](WidgetMonitorSummarySort.md) |  | [optional] 
 **ColorPreference** | Pointer to [**WidgetColorPreference**](WidgetColorPreference.md) |  | [optional] 
 **Count** | Pointer to **int64** | The number of monitors to display. | [optional] 
 **DisplayFormat** | Pointer to [**WidgetServiceSummaryDisplayFormat**](WidgetServiceSummaryDisplayFormat.md) |  | [optional] 
@@ -1123,20 +1123,20 @@ HasShowMessageColumn returns a boolean if a field has been set.
 
 ### GetSort
 
-`func (o *WidgetDefinition) GetSort() WidgetSort`
+`func (o *WidgetDefinition) GetSort() WidgetMonitorSummarySort`
 
 GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *WidgetDefinition) GetSortOk() (*WidgetSort, bool)`
+`func (o *WidgetDefinition) GetSortOk() (*WidgetMonitorSummarySort, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSort
 
-`func (o *WidgetDefinition) SetSort(v WidgetSort)`
+`func (o *WidgetDefinition) SetSort(v WidgetMonitorSummarySort)`
 
 SetSort sets Sort field to given value.
 
