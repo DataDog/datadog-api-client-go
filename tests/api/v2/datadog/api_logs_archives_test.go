@@ -21,19 +21,78 @@ import (
 func TestLogsArchivesCreate(t *testing.T) {
 	testCases := []struct {
 		archiveType string
-		action      string
+		archive     datadog.LogsArchiveCreateRequest
 	}{
 		{
 			archiveType: "s3",
-			action:      "create",
+			archive: datadog.LogsArchiveCreateRequest{
+				Data: &datadog.LogsArchiveCreateRequestDefinition{
+					Attributes: &datadog.LogsArchiveCreateRequestAttributes{
+						Destination: datadog.LogsArchiveCreateRequestDestination{
+							LogsArchiveDestinationS3: &datadog.LogsArchiveDestinationS3{
+								Bucket: "dd-logs-test-datadog-api-client-go",
+								Integration: datadog.LogsArchiveIntegrationS3{
+									AccountId: "711111111111",
+									RoleName:  "DatadogGoClientTestIntegrationRole",
+								},
+								Path: datadog.PtrString("/path/blou"),
+								Type: "s3",
+							},
+						},
+						Name:  "datadog-api-client-go Tests Archive",
+						Query: "service:toto",
+					},
+					Type: "archives",
+				},
+			},
 		},
 		{
 			archiveType: "azure",
-			action:      "create",
+			archive: datadog.LogsArchiveCreateRequest{
+				Data: &datadog.LogsArchiveCreateRequestDefinition{
+					Attributes: &datadog.LogsArchiveCreateRequestAttributes{
+						Destination: datadog.LogsArchiveCreateRequestDestination{
+							LogsArchiveDestinationAzure: &datadog.LogsArchiveDestinationAzure{
+								Container: "my-container",
+								Integration: datadog.LogsArchiveIntegrationAzure{
+									ClientId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
+									TenantId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
+								},
+								Path:           datadog.PtrString("/path/blou"),
+								Region:         datadog.PtrString("my-region"),
+								StorageAccount: "storageAccount",
+								Type:           "azure",
+							},
+						},
+						Name:  "datadog-api-client-go Tests Archive",
+						Query: "service:toto",
+					},
+					Type: "archives",
+				},
+			},
 		},
 		{
 			archiveType: "gcs",
-			action:      "create",
+			archive: datadog.LogsArchiveCreateRequest{
+				Data: &datadog.LogsArchiveCreateRequestDefinition{
+					Attributes: &datadog.LogsArchiveCreateRequestAttributes{
+						Destination: datadog.LogsArchiveCreateRequestDestination{
+							LogsArchiveDestinationGCS: &datadog.LogsArchiveDestinationGCS{
+								Bucket: "dd-logs-test-datadog-api-client-go",
+								Integration: datadog.LogsArchiveIntegrationGCS{
+									ClientEmail: "email@email.com",
+									ProjectId:   "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
+								},
+								Path: datadog.PtrString("/path/blou"),
+								Type: "gcs",
+							},
+						},
+						Name:  "datadog-api-client-go Tests Archive",
+						Query: "service:toto",
+					},
+					Type: "archives",
+				},
+			},
 		},
 	}
 	for _, tc := range testCases {
@@ -44,21 +103,17 @@ func TestLogsArchivesCreate(t *testing.T) {
 			client := Client(ctx)
 			assert := tests.Assert(ctx, t)
 
-			inputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", tc.archiveType, tc.action))
-			inputArchive := datadog.NullableLogsArchiveCreateRequest{}
-			inputArchive.UnmarshalJSON([]byte(inputArchiveStr))
-
-			outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", tc.archiveType, tc.action))
+			outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", tc.archiveType, "create"))
 			outputArchive := datadog.NullableLogsArchive{}
 			outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
 
-			URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", tc.action, tc.archiveType))
+			URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", "create", tc.archiveType))
 			assert.NoError(err)
 
-			gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").BodyString(inputArchiveStr).Reply(200).Type("json").BodyString(outputArchiveStr)
+			gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").JSON(tc.archive).Reply(200).Type("json").BodyString(outputArchiveStr)
 			defer gock.Off()
 
-			result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(*inputArchive.Get()).Execute()
+			result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(tc.archive).Execute()
 			assert.NoError(err)
 			assert.Equal(httpresp.StatusCode, 200)
 			assert.Equal(result, *outputArchive.Get())
@@ -73,26 +128,40 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	client := Client(ctx)
 	archiveType := "s3"
 	action := "update"
-	inputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/in/%s.json", archiveType, action))
-	inputArchive := datadog.NullableLogsArchiveCreateRequest{}
-	inputArchive.UnmarshalJSON([]byte(inputArchiveStr))
+	inputArchive := datadog.LogsArchiveCreateRequest{
+		Data: &datadog.LogsArchiveCreateRequestDefinition{
+			Attributes: &datadog.LogsArchiveCreateRequestAttributes{
+				Destination: datadog.LogsArchiveCreateRequestDestination{
+					LogsArchiveDestinationS3: &datadog.LogsArchiveDestinationS3{
+						Bucket: "dd-logs-test-datadog-api-client-go",
+						Integration: datadog.LogsArchiveIntegrationS3{
+							AccountId: "711111111111",
+							RoleName:  "DatadogGoClientTestIntegrationRole",
+						},
+						Path: datadog.PtrString("/path/blou"),
+						Type: "s3",
+					},
+				},
+				Name:  "datadog-api-client-go Tests Archive",
+				Query: "service:toto",
+			},
+			Type: "archives",
+		},
+	}
 	outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
 	outputArchive := datadog.NullableLogsArchive{}
 	outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
 	URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
 	assert.NoError(err)
 	id := "XVlBzgbaiC"
-	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").BodyString(inputArchiveStr).Reply(200).Type("json").BodyString(outputArchiveStr)
-	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id).Body(*inputArchive.Get()).Execute()
+	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").JSON(inputArchive).Reply(200).Type("json").BodyString(outputArchiveStr)
+	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id).Body(inputArchive).Execute()
 	assert.Equal(result, *outputArchive.Get())
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, *outputArchive.Get())
 }
 
 func TestLogsArchivesGetByID(t *testing.T) {
-	if tests.GetRecording() == tests.ModeIgnore {
-		t.Skip("This test case does not support ignore mode")
-	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -114,9 +183,6 @@ func TestLogsArchivesGetByID(t *testing.T) {
 }
 
 func TestLogsArchivesDelete(t *testing.T) {
-	if tests.GetRecording() == tests.ModeIgnore {
-		t.Skip("This test case does not support ignore mode")
-	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	defer gock.Off()
@@ -134,9 +200,6 @@ func TestLogsArchivesDelete(t *testing.T) {
 }
 
 func TestLogsArchivesGetAll(t *testing.T) {
-	if tests.GetRecording() == tests.ModeIgnore {
-		t.Skip("This test case does not support ignore mode")
-	}
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	defer gock.Off()
