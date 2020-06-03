@@ -217,21 +217,6 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	assert.Equal(*outputArchives.Get(), result)
 }
 
-func archivesAreEqual(t *testing.T, ctx context.Context, archiveRequest datadog.LogsArchiveCreateRequestAttributes, createdArchive datadog.LogsArchiveAttributes) {
-	assert := tests.Assert(ctx, t)
-	assert.Equal(archiveRequest.Name, createdArchive.Name)
-	assert.Equal(archiveRequest.Query, createdArchive.Query)
-	s3DestinationReq := archiveRequest.Destination.LogsArchiveDestinationS3
-	s3DestinationCreated := createdArchive.Destination.Get().LogsArchiveDestinationS3
-	assert.Equal(s3DestinationReq, s3DestinationCreated)
-	azureDestinationReq := archiveRequest.Destination.LogsArchiveDestinationAzure
-	azureDestinationCreated := createdArchive.Destination.Get().LogsArchiveDestinationAzure
-	assert.Equal(azureDestinationReq, azureDestinationCreated)
-	gcsDestinationReq := archiveRequest.Destination.LogsArchiveDestinationGCS
-	gcsDestinationCreated := createdArchive.Destination.Get().LogsArchiveDestinationGCS
-	assert.Equal(gcsDestinationReq, gcsDestinationCreated)
-}
-
 func readFixture(t *testing.T, path string) string {
 	t.Helper()
 	res, err := tests.ReadFixture(path)
