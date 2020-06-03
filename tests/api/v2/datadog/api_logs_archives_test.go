@@ -107,7 +107,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 			outputArchive := datadog.NullableLogsArchive{}
 			outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
 
-			URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", "create", tc.archiveType))
+			URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.CreateLogsArchive")
 			assert.NoError(err)
 
 			gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").JSON(tc.archive).Reply(200).Type("json").BodyString(outputArchiveStr)
@@ -151,7 +151,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
 	outputArchive := datadog.NullableLogsArchive{}
 	outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
-	URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
+	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.UpdateLogsArchive")
 	assert.NoError(err)
 	id := "XVlBzgbaiC"
 	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").JSON(inputArchive).Reply(200).Type("json").BodyString(outputArchiveStr)
@@ -172,7 +172,7 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
 	outputArchive := datadog.NullableLogsArchive{}
 	outputArchive.UnmarshalJSON([]byte(outputArchiveStr))
-	URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
+	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.GetLogsArchive")
 	assert.NoError(err)
 	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).Type("json").BodyString(outputArchiveStr)
 	result, httpresp, err := client.LogsArchivesApi.GetLogsArchive(ctx, id).Execute()
@@ -188,10 +188,8 @@ func TestLogsArchivesDelete(t *testing.T) {
 	defer gock.Off()
 	assert := tests.Assert(ctx, t)
 	id := "XVlBzgbaiC"
-	action := "deleteById"
-	archiveType := "s3"
 	client := Client(ctx)
-	URL, err := client.GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
+	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.DeleteLogsArchive")
 	assert.NoError(err)
 	gock.New(URL).Delete(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(204)
 	httpresp, err := client.LogsArchivesApi.DeleteLogsArchive(ctx, id).Execute()
@@ -203,17 +201,22 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	defer gock.Off()
+	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
 	action := "getall"
 	archiveType := "s3"
 	outputArchivesStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
 	outputArchives := datadog.NullableLogsArchives{}
 	outputArchives.UnmarshalJSON([]byte(outputArchivesStr))
-	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, fmt.Sprintf("LogsArchive.%s.%s", action, archiveType))
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.ListLogsArchives")
 	assert.NoError(err)
-	gock.New(URL).Get("/api/v2/logs/config/archives/").Reply(200).Type("json").JSON(outputArchivesStr)
-	assert.True(len(*outputArchives.Get().Data) > 0)
-	checkS3Archive(t, ctx, (*outputArchives.Get().Data)[0])
+	gock.New(URL).Get("/api/v2/logs/config/archives").Reply(200).Type("json").JSON(outputArchivesStr)
+	result, httpresp, err := client.LogsArchivesApi.ListLogsArchives(ctx).Execute()
+	assert.NoError(err)
+	assert.Equal(httpresp.StatusCode, 200)
+	assert.True(len(*result.Data) > 0)
+	checkS3Archive(t, ctx, (*result.Data)[0])
+	assert.Equal(*outputArchives.Get(), result)
 }
 
 func checkS3Archive(t *testing.T, ctx context.Context, outputArchive datadog.LogsArchiveDefinition) {
