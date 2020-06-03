@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **HideZeroCounts** | Pointer to **bool** | Whether to show counts of 0 or not. | [optional] 
 **Query** | Pointer to **string** | Query to filter the monitors with. | 
 **ShowLastTriggered** | Pointer to **bool** | Whether to show the time that has elapsed since the monitor/group triggered. | [optional] 
-**Sort** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
+**Sort** | Pointer to [**WidgetMonitorSummarySort**](WidgetMonitorSummarySort.md) |  | [optional] 
 **Start** | Pointer to **int64** | The start of the list. Typically 0. | [optional] 
 **SummaryType** | Pointer to [**WidgetSummaryType**](WidgetSummaryType.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
@@ -184,20 +184,20 @@ HasShowLastTriggered returns a boolean if a field has been set.
 
 ### GetSort
 
-`func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetSort`
+`func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetMonitorSummarySort`
 
 GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *MonitorSummaryWidgetDefinition) GetSortOk() (*WidgetSort, bool)`
+`func (o *MonitorSummaryWidgetDefinition) GetSortOk() (*WidgetMonitorSummarySort, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSort
 
-`func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetSort)`
+`func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetMonitorSummarySort)`
 
 SetSort sets Sort field to given value.
 

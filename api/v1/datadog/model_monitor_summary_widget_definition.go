@@ -23,8 +23,8 @@ type MonitorSummaryWidgetDefinition struct {
 	// Query to filter the monitors with.
 	Query string `json:"query"`
 	// Whether to show the time that has elapsed since the monitor/group triggered.
-	ShowLastTriggered *bool       `json:"show_last_triggered,omitempty"`
-	Sort              *WidgetSort `json:"sort,omitempty"`
+	ShowLastTriggered *bool                     `json:"show_last_triggered,omitempty"`
+	Sort              *WidgetMonitorSummarySort `json:"sort,omitempty"`
 	// The start of the list. Typically 0.
 	Start       *int64             `json:"start,omitempty"`
 	SummaryType *WidgetSummaryType `json:"summary_type,omitempty"`
@@ -242,9 +242,9 @@ func (o *MonitorSummaryWidgetDefinition) SetShowLastTriggered(v bool) {
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
-func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetSort {
+func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetMonitorSummarySort {
 	if o == nil || o.Sort == nil {
-		var ret WidgetSort
+		var ret WidgetMonitorSummarySort
 		return ret
 	}
 	return *o.Sort
@@ -252,7 +252,7 @@ func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetSort {
 
 // GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorSummaryWidgetDefinition) GetSortOk() (*WidgetSort, bool) {
+func (o *MonitorSummaryWidgetDefinition) GetSortOk() (*WidgetMonitorSummarySort, bool) {
 	if o == nil || o.Sort == nil {
 		return nil, false
 	}
@@ -268,8 +268,8 @@ func (o *MonitorSummaryWidgetDefinition) HasSort() bool {
 	return false
 }
 
-// SetSort gets a reference to the given WidgetSort and assigns it to the Sort field.
-func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetSort) {
+// SetSort gets a reference to the given WidgetMonitorSummarySort and assigns it to the Sort field.
+func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetMonitorSummarySort) {
 	o.Sort = &v
 }
 

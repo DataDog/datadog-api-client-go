@@ -275,7 +275,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	monitorSummaryWidgetDefiniton := datadog.NewMonitorSummaryWidgetDefinitionWithDefaults()
 	monitorSummaryWidgetDefiniton.SetQuery("Errors are increasing")
 	monitorSummaryWidgetDefiniton.SetSummaryType(datadog.WIDGETSUMMARYTYPE_COMBINED)
-	monitorSummaryWidgetDefiniton.SetSort(datadog.WIDGETSORT_ASCENDING)
+	monitorSummaryWidgetDefiniton.SetSort(datadog.WIDGETMONITORSUMMARYSORT_NAME_ASCENDING)
 	monitorSummaryWidgetDefiniton.SetDisplayFormat(datadog.WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS)
 	monitorSummaryWidgetDefiniton.SetColorPreference(datadog.WIDGETCOLORPREFERENCE_BACKGROUND)
 	monitorSummaryWidgetDefiniton.SetHideZeroCounts(false)
