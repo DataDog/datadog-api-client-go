@@ -107,6 +107,8 @@ tags:
     - For a single log request, the API truncates the log at 256KB and returns a 2xx.
     - For a multi-logs request, the API processes all logs, truncates only logs larger than 256KB, and returns a 2xx.
 
+    We encourage you to send your logs compressed.
+
     **Note**: If you are in the Datadog EU site (`app.datadoghq.eu`), the HTTP log endpoint is `http-intake.logs.datadoghq.eu`.
   name: Logs
 - description: |-
@@ -6717,10 +6719,7 @@ components:
     CheckCanDeleteMonitorResponse:
       description: Response of monitor IDs that can or can't be safely deleted.
       example:
-        data:
-          ok:
-          - 0
-          - 0
+        data: '{}'
         errors:
           key:
           - errors
@@ -6853,18 +6852,11 @@ components:
         - notify_list
         title: title
         widgets:
-        - layout:
-            width: 0
-            x: 0
-            y: 0
-            height: 0
-          id: 0
-        - layout:
-            width: 0
-            x: 0
-            y: 0
-            height: 0
-          id: 0
+        - definition:
+            requests:
+              fill:
+                q: system.cpu.user
+            type: hostmap
         author_handle: test@datadoghq.com
         template_variables:
         - default: my-host
@@ -6940,6 +6932,12 @@ components:
           type: string
         widgets:
           description: List of widgets to display on the dashboard.
+          example:
+          - definition:
+              requests:
+                fill:
+                  q: system.cpu.user
+              type: hostmap
           items:
             $ref: '#/components/schemas/Widget'
           type: array
@@ -7146,6 +7144,8 @@ components:
 
             See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
              to learn how to build the `REQUEST_SCHEMA`.
+          example:
+          - q: host:X tags:Y
           items:
             $ref: '#/components/schemas/DistributionWidgetRequest'
           maxItems: 1
@@ -7842,6 +7842,12 @@ components:
           $ref: '#/components/schemas/GroupWidgetDefinitionType'
         widgets:
           description: List of widget groups.
+          example:
+          - definition:
+              requests:
+                fill:
+                  q: system.cpu.user
+              type: hostmap
           items:
             $ref: '#/components/schemas/Widget'
           type: array
@@ -7892,6 +7898,8 @@ components:
           $ref: '#/components/schemas/WidgetLegendSize'
         requests:
           description: List of widget types.
+          example:
+          - q: jvm.heap.memory
           items:
             $ref: '#/components/schemas/HeatMapWidgetRequest'
           maxItems: 1
@@ -8614,7 +8622,7 @@ components:
           message: Host connected to remote
           tags:
           - team:A
-          timestamp: 2019-01-02T09:42:36.32Z
+          timestamp: 2020-05-26T13:36:14Z
       properties:
         content:
           $ref: '#/components/schemas/Log_content'
@@ -8868,6 +8876,7 @@ components:
           description: |-
             Array of filters to match or not a log and their
             corresponding `name`to assign a custom value to the log.
+          example: []
           items:
             $ref: '#/components/schemas/LogsCategoryProcessor_categories'
           type: array
@@ -9248,7 +9257,7 @@ components:
         time:
           timezone: timezone
           from: 2020-02-02T02:02:02Z
-          to: 2020-02-20T20:20:20Z
+          to: 2020-02-02T20:20:20Z
         startAt: startAt
       properties:
         index:
@@ -9296,7 +9305,7 @@ components:
             message: Host connected to remote
             tags:
             - team:A
-            timestamp: 2019-01-02T09:42:36.32Z
+            timestamp: 2020-05-26T13:36:14Z
         - id: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
           content:
             service: agent
@@ -9307,7 +9316,7 @@ components:
             message: Host connected to remote
             tags:
             - team:A
-            timestamp: 2019-01-02T09:42:36.32Z
+            timestamp: 2020-05-26T13:36:14Z
         status: status
       properties:
         logs:
@@ -9345,6 +9354,7 @@ components:
           description: |-
             Mapping table of values for the source attribute and their associated target attribute values,
             formatted as `["source_key1,target_value1", "source_key2,target_value2"]`
+          example: []
           items:
             description: Mapping between a source and a value, it should follow the
               format `"<SOURCE>,<VALUE>"`.
@@ -9646,6 +9656,7 @@ components:
           type: string
         sources:
           description: Array of source attributes.
+          example: []
           items:
             description: Attribute used as a source to define the log associated status.
             type: string
@@ -10703,7 +10714,7 @@ components:
           saml_strict_mode:
             enabled: false
           saml_autocreate_access_role: st
-        created: 2019-09-26 17:28:28
+        created: 2019-09-26T17:28:28Z
         name: New child org
         description: some description
         subscription:
@@ -10716,7 +10727,7 @@ components:
           $ref: '#/components/schemas/OrganizationBilling'
         created:
           description: Date of the organization creation.
-          example: 2019-09-26 17:28:28
+          example: 2019-09-26T17:28:28Z
           readOnly: true
           type: string
         description:
@@ -10796,7 +10807,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -10848,7 +10859,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -10874,7 +10885,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -10911,7 +10922,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -11177,45 +11188,28 @@ components:
       description: A `metric` based SLO history response.
       example:
         res_type: res_type
-        resp_version: 4
-        times:
-        - 7.386281948385884
-        - 7.386281948385884
+        resp_version: 0
+        times: []
         query: query
-        interval: 2
+        interval: 0
         message: message
         denominator:
-          metadata:
-            unit: unit
-            expression: expression
-            metric: metric
-            scope: scope
-            query_index: 7
-            aggr: aggr
-          values:
-          - 3.616076749251911
-          - 3.616076749251911
-          count: 2
-          sum: 9.301444243932576
+          metadata: '{}'
+          values: []
+          count: 0
+          sum: 0.0
         numerator:
-          metadata:
-            unit: unit
-            expression: expression
-            metric: metric
-            scope: scope
-            query_index: 7
-            aggr: aggr
-          values:
-          - 3.616076749251911
-          - 3.616076749251911
-          count: 2
-          sum: 9.301444243932576
+          metadata: '{}'
+          values: []
+          count: 0
+          sum: 0.0
       properties:
         denominator:
           $ref: '#/components/schemas/SLOHistoryMetricsSeries'
         interval:
           description: The aggregated query interval for the series data. It's implicit
             based on the query time window.
+          example: 0
           format: int64
           type: integer
         message:
@@ -11233,10 +11227,12 @@ components:
         resp_version:
           description: The series response version type. This mimics `batch_query`
             response type.
+          example: 0
           format: int64
           type: integer
         times:
           description: An array of query timestamps in EPOCH milliseconds
+          example: []
           items:
             description: A timestamp in EPOCH milliseconds.
             format: double
@@ -11256,31 +11252,26 @@ components:
         A representation of `metric` based SLO time series for the provided queries.
         This is the same response type from `batch_query` endpoint.
       example:
-        metadata:
-          unit: unit
-          expression: expression
-          metric: metric
-          scope: scope
-          query_index: 7
-          aggr: aggr
-        values:
-        - 3.616076749251911
-        - 3.616076749251911
-        count: 2
-        sum: 9.301444243932576
+        metadata: '{}'
+        values: []
+        count: 0
+        sum: 0.0
       properties:
         count:
           description: Count of submitted metrics.
+          example: 0
           format: int64
           type: integer
         metadata:
           $ref: '#/components/schemas/SLOHistoryMetricsSeries_metadata'
         sum:
           description: Total sum of the query.
+          example: 0.0
           format: double
           type: number
         values:
           description: The query values for each metric.
+          example: []
           items:
             description: A metric name and its value.
             format: double
@@ -11300,44 +11291,26 @@ components:
             key:
               warning_display: warning_display
               target_display: "99.9"
-              warning: 5.637376656633329
-              target: 5.962133916683182
-          to_ts: 1
+              warning: 2.3021358869347655
+              target: 0.0
+          to_ts: 7
           series:
             res_type: res_type
-            resp_version: 4
-            times:
-            - 7.386281948385884
-            - 7.386281948385884
+            resp_version: 0
+            times: []
             query: query
-            interval: 2
+            interval: 0
             message: message
             denominator:
-              metadata:
-                unit: unit
-                expression: expression
-                metric: metric
-                scope: scope
-                query_index: 7
-                aggr: aggr
-              values:
-              - 3.616076749251911
-              - 3.616076749251911
-              count: 2
-              sum: 9.301444243932576
+              metadata: '{}'
+              values: []
+              count: 0
+              sum: 0.0
             numerator:
-              metadata:
-                unit: unit
-                expression: expression
-                metric: metric
-                scope: scope
-                query_index: 7
-                aggr: aggr
-              values:
-              - 3.616076749251911
-              - 3.616076749251911
-              count: 2
-              sum: 9.301444243932576
+              metadata: '{}'
+              values: []
+              count: 0
+              sum: 0.0
           type_id: 0
           from_ts: 0
           groups:
@@ -11473,15 +11446,7 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds:
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
+          thresholds: []
           monitor_ids:
           - 1
           - 1
@@ -11506,15 +11471,7 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds:
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
+          thresholds: []
           monitor_ids:
           - 1
           - 1
@@ -11562,15 +11519,7 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds:
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
+          thresholds: []
           monitor_ids:
           - 1
           - 1
@@ -11601,13 +11550,14 @@ components:
       example:
         warning_display: warning_display
         target_display: "99.9"
-        warning: 5.637376656633329
-        target: 5.962133916683182
+        warning: 2.3021358869347655
+        target: 0.0
       properties:
         target:
           description: |-
             The target value for the service level indicator within the corresponding
             timeframe.
+          example: 0.0
           format: double
           type: number
         target_display:
@@ -11798,15 +11748,7 @@ components:
         tags:
         - env:prod
         - app:core
-        thresholds:
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
+        thresholds: []
         monitor_ids:
         - 1
         - 1
@@ -11906,6 +11848,7 @@ components:
           description: |-
             The thresholds (timeframes and associated targets) for this service level
             objective object.
+          example: []
           items:
             $ref: '#/components/schemas/SLOThreshold'
           type: array
@@ -11943,15 +11886,7 @@ components:
           name: name
           handle: handle
           email: email
-        thresholds:
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
+        thresholds: []
         query:
           denominator: denominator
           numerator: numerator
@@ -12047,6 +11982,7 @@ components:
           description: |-
             The thresholds (timeframes and associated targets) for this service level
             objective object.
+          example: []
           items:
             $ref: '#/components/schemas/SLOThreshold'
           type: array
@@ -12063,6 +11999,8 @@ components:
         filters:
           description: Your environment and primary tag (or * if enabled for your
             account).
+          example:
+          - '*'
           items:
             description: Filter name.
             type: string
@@ -12481,9 +12419,9 @@ components:
         error: error
         device:
           name: name
-          width: 5
+          width: 0
           isMobile: true
-          height: 1
+          height: 0
         stepDetails:
         - screenshotBucketKey: true
           snapshotBucketKey: true
@@ -12616,9 +12554,9 @@ components:
           error: error
           device:
             name: name
-            width: 5
+            width: 0
             isMobile: true
-            height: 1
+            height: 0
           stepDetails:
           - screenshotBucketKey: true
             snapshotBucketKey: true
@@ -12751,15 +12689,15 @@ components:
       description: Object with the results of a single Synthetic browser test.
       example:
         result:
-          duration: 5.637376656633329
-          stepCountTotal: 9
+          duration: 1.4658129805029452
+          stepCountTotal: 2
           device:
             name: name
-            width: 5
+            width: 0
             isMobile: true
-            height: 1
-          errorCount: 2
-          stepCountCompleted: 7
+            height: 0
+          errorCount: 5
+          stepCountCompleted: 5
         probe_dc: probe_dc
         result_id: result_id
         check_time: 6.027456183070403
@@ -12885,12 +12823,13 @@ components:
       description: Object describing the device used to perform the Synthetic test.
       example:
         name: name
-        width: 5
+        width: 0
         isMobile: true
-        height: 1
+        height: 0
       properties:
         height:
           description: Screen height of the device.
+          example: 0
           format: int64
           type: integer
         id:
@@ -12903,6 +12842,7 @@ components:
           type: string
         width:
           description: Screen width of the device.
+          example: 0
           format: int64
           type: integer
       required:
@@ -12991,28 +12931,28 @@ components:
         last_timestamp_fetched: 0
         results:
         - result:
-            duration: 5.637376656633329
-            stepCountTotal: 9
+            duration: 1.4658129805029452
+            stepCountTotal: 2
             device:
               name: name
-              width: 5
+              width: 0
               isMobile: true
-              height: 1
-            errorCount: 2
-            stepCountCompleted: 7
+              height: 0
+            errorCount: 5
+            stepCountCompleted: 5
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
         - result:
-            duration: 5.637376656633329
-            stepCountTotal: 9
+            duration: 1.4658129805029452
+            stepCountTotal: 2
             device:
               name: name
-              width: 5
+              width: 0
               isMobile: true
-              height: 1
-            errorCount: 2
-            stepCountCompleted: 7
+              height: 0
+            errorCount: 5
+            stepCountCompleted: 5
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
@@ -14026,6 +13966,8 @@ components:
       properties:
         requests:
           description: List of top list widget requests.
+          example:
+          - q: system.load.1
           items:
             $ref: '#/components/schemas/ToplistWidgetRequest'
           type: array
@@ -14061,6 +14003,10 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
           description: List of conditional formats.
+          example:
+          - comparator: '>='
+            palette: blue
+            value: 1.0
           items:
             $ref: '#/components/schemas/WidgetConditionalFormat'
           minItems: 1
@@ -15449,13 +15395,6 @@ components:
         Information about widget.
 
         Note: The `layout` property is required for widgets in dashboards with `free` `layout_type` only.
-      example:
-        layout:
-          width: 0
-          x: 0
-          y: 0
-          height: 0
-        id: 0
       properties:
         definition:
           $ref: '#/components/schemas/WidgetDefinition'
@@ -15582,6 +15521,7 @@ components:
           type: string
         value:
           description: Value for the comparator.
+          example: 0.0
           format: double
           type: number
       required:
@@ -15687,31 +15627,30 @@ components:
       - CENTER
     WidgetLayout:
       description: The layout for a widget on a free dashboard.
-      example:
-        width: 0
-        x: 0
-        y: 0
-        height: 0
       properties:
         height:
           description: The height of the widget. Should be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
         width:
           description: The width of the widget. Should be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
         x:
           description: The position of the widget on the x (horizontal) axis. Should
             be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
         y:
           description: The position of the widget on the y (vertical) axis. Should
             be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
@@ -16104,10 +16043,7 @@ components:
           type: string
     CheckCanDeleteMonitorResponse_data:
       description: Wrapper object with the list of monitor IDs.
-      example:
-        ok:
-        - 0
-        - 0
+      example: '{}'
       properties:
         ok:
           description: An array of of Monitor IDs that can be safely deleted.
@@ -16233,6 +16169,7 @@ components:
           type: number
     HostMapWidgetDefinition_requests:
       description: List of definitions.
+      example: '{}'
       properties:
         fill:
           $ref: '#/components/schemas/HostMapRequest'
@@ -16265,7 +16202,7 @@ components:
         message: Host connected to remote
         tags:
         - team:A
-        timestamp: 2019-01-02T09:42:36.32Z
+        timestamp: 2020-05-26T13:36:14Z
       properties:
         attributes:
           additionalProperties: {}
@@ -16303,7 +16240,7 @@ components:
           type: array
         timestamp:
           description: Timestamp of your log.
-          example: 2019-01-02T09:42:36.32Z
+          example: 2020-05-26T13:36:14Z
           format: date-time
           type: string
     LogQueryDefinition_sort:
@@ -16359,7 +16296,7 @@ components:
       example:
         timezone: timezone
         from: 2020-02-02T02:02:02Z
-        to: 2020-02-20T20:20:20Z
+        to: 2020-02-02T20:20:20Z
       properties:
         from:
           description: Minimum timestamp for requested logs.
@@ -16373,7 +16310,7 @@ components:
           type: string
         to:
           description: Maximum timestamp for requested logs.
-          example: 2020-02-20T20:20:20Z
+          example: 2020-02-02T20:20:20Z
           format: date-time
           type: string
       required:
@@ -16696,13 +16633,7 @@ components:
       - timeframe
     SLOHistoryMetricsSeries_metadata:
       description: Query metadata.
-      example:
-        unit: unit
-        expression: expression
-        metric: metric
-        scope: scope
-        query_index: 7
-        aggr: aggr
+      example: '{}'
       properties:
         aggr:
           description: Query aggregator function.
@@ -16730,44 +16661,26 @@ components:
           key:
             warning_display: warning_display
             target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-        to_ts: 1
+            warning: 2.3021358869347655
+            target: 0.0
+        to_ts: 7
         series:
           res_type: res_type
-          resp_version: 4
-          times:
-          - 7.386281948385884
-          - 7.386281948385884
+          resp_version: 0
+          times: []
           query: query
-          interval: 2
+          interval: 0
           message: message
           denominator:
-            metadata:
-              unit: unit
-              expression: expression
-              metric: metric
-              scope: scope
-              query_index: 7
-              aggr: aggr
-            values:
-            - 3.616076749251911
-            - 3.616076749251911
-            count: 2
-            sum: 9.301444243932576
+            metadata: '{}'
+            values: []
+            count: 0
+            sum: 0.0
           numerator:
-            metadata:
-              unit: unit
-              expression: expression
-              metric: metric
-              scope: scope
-              query_index: 7
-              aggr: aggr
-            values:
-            - 3.616076749251911
-            - 3.616076749251911
-            count: 2
-            sum: 9.301444243932576
+            metadata: '{}'
+            values: []
+            count: 0
+            sum: 0.0
         type_id: 0
         from_ts: 0
         groups:
@@ -16822,6 +16735,7 @@ components:
           $ref: '#/components/schemas/SLOTypeNumeric'
     ScatterPlotWidgetDefinition_requests:
       description: Widget definition.
+      example: '{"x":{"q":"system.cpu.user"},"y":{"q":"system.mem.used"}}'
       properties:
         x:
           $ref: '#/components/schemas/ScatterPlotRequest'
@@ -16911,15 +16825,15 @@ components:
     SyntheticsBrowserTestResultShort_result:
       description: Object with the result of the last browser test run.
       example:
-        duration: 5.637376656633329
-        stepCountTotal: 9
+        duration: 1.4658129805029452
+        stepCountTotal: 2
         device:
           name: name
-          width: 5
+          width: 0
           isMobile: true
-          height: 1
-        errorCount: 2
-        stepCountCompleted: 7
+          height: 0
+        errorCount: 5
+        stepCountCompleted: 5
       properties:
         device:
           $ref: '#/components/schemas/SyntheticsDevice'
