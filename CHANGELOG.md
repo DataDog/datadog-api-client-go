@@ -8,6 +8,7 @@
 * [Changed] Split schemas from DashboardList v2. See [#318](https://github.com/DataDog/datadog-api-client-go/pull/318).
     * This change includes backwards incompatible changes when using corresponding endpoints methods.
 * [Changed] Clean synthetics test CRUD endpoints. See [#317](https://github.com/DataDog/datadog-api-client-go/pull/317).
+    * This change includes backwards incompatible changes when using corresponding endpoints methods.
 
 ## v1.0.0-beta.3 / 2020-05-21
 
