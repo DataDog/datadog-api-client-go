@@ -86,8 +86,7 @@ func TestLogsList(t *testing.T) {
 	}
 
 	// Find second log item
-	assert.NotNil(*logsResponse.NextLogId)
-	assert.True(len(*logsResponse.NextLogId) > 0)
+	assert.True(len(logsResponse.GetNextLogId()) > 0)
 	logsRequest.SetStartAt(logsResponse.GetNextLogId())
 
 	logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
