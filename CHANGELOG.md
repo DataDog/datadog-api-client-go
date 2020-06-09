@@ -2,12 +2,13 @@
 
 ## v1.0.0-beta.4 / 2020-06-09
 
-* [Added] Add Logs Archives endpoints. See [#323](https://github.com/DataDog/datadog-api-client-go/pull/323).
-* [Changed] Add missing values to enums. See [#320](https://github.com/DataDog/datadog-api-client-go/pull/320).
+* [BREAKING] Add missing values to enums. See [#320](https://github.com/DataDog/datadog-api-client-go/pull/320).
     * This change includes backwards incompatible changes when using the `MonitorSummary` widget.
-* [Changed] Split schemas from DashboardList v2. See [#318](https://github.com/DataDog/datadog-api-client-go/pull/318).
+* [BREAKING] Split schemas from DashboardList v2. See [#318](https://github.com/DataDog/datadog-api-client-go/pull/318).
     * This change includes backwards incompatible changes when using corresponding endpoints methods.
-* [Changed] Clean synthetics test CRUD endpoints. See [#317](https://github.com/DataDog/datadog-api-client-go/pull/317).
+* [BREAKING] Clean synthetics test CRUD endpoints. See [#317](https://github.com/DataDog/datadog-api-client-go/pull/317).
+    * This change includes backwards incompatible changes when using corresponding endpoints methods.
+* [Added] Add Logs Archives endpoints. See [#323](https://github.com/DataDog/datadog-api-client-go/pull/323).
 
 ## v1.0.0-beta.3 / 2020-05-21
 
