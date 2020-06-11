@@ -1,0 +1,62 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - DataDog/0.1.0/go-experimental
+    url: https://api.datadoghq.com/api/v1/synthetics/locations
+    method: GET
+  response:
+    body: '{"locations":[
+        {"name":"Tokyo (AWS)","id":"aws:ap-northeast-1"},
+        {"name":"Seoul (AWS)",id":"aws:ap-northeast-2"},
+        {"name":"Mumbai (AWS)","id":"aws:ap-south-1"},
+        {"name":"Singapore (AWS)","id":"aws:ap-southeast-1"},
+        {"name":"Sydney (AWS)","id":"aws:ap-southeast-2"},
+        {"name":"Canada Central (AWS)","id":"aws:ca-central-1"},
+        {"name":"Frankfurt (AWS)","id":"aws:eu-central-1"},
+        {"name":"Ireland (AWS)","id":"aws:eu-west-1"},
+        {"name":"London (AWS)","id":"aws:eu-west-2"},
+        {"name":"S\u00e3o Paulo (AWS)","id":"aws:sa-east-1"},
+        {"name":"Ohio (AWS)","id":"aws:us-east-2"},
+        {"name":"N. California (AWS)","id":"aws:us-west-1"},
+        {"name":"Oregon (AWS)","id":"aws:us-west-2"}
+      ]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Feb 2020 17:14:52 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 28-Feb-2020 17:14:52 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 3OCRM/4FZbkllI4iloi1acHDABD1SJi2aj2fysEPLLsOVOk5Ki6mi6IOsVG7JIay
+      X-Dd-Version:
+      - "35.2200256"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""

@@ -307,6 +307,8 @@ docs/SyntheticsErrorCode.md
 docs/SyntheticsGetAPITestLatestResultsResponse.md
 docs/SyntheticsGetBrowserTestLatestResultsResponse.md
 docs/SyntheticsListTestsResponse.md
+docs/SyntheticsLocation.md
+docs/SyntheticsLocations.md
 docs/SyntheticsPlayingTab.md
 docs/SyntheticsResource.md
 docs/SyntheticsResourceType.md
@@ -685,6 +687,8 @@ model_synthetics_error_code.go
 model_synthetics_get_api_test_latest_results_response.go
 model_synthetics_get_browser_test_latest_results_response.go
 model_synthetics_list_tests_response.go
+model_synthetics_location.go
+model_synthetics_locations.go
 model_synthetics_playing_tab.go
 model_synthetics_resource.go
 model_synthetics_resource_type.go
