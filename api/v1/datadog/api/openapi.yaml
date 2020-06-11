@@ -9268,7 +9268,7 @@ components:
       example:
         query: service:web* AND @http.status_code:[200 TO 299]
         limit: 80
-        index: index
+        index: retention-3,retention-15
         time:
           timezone: timezone
           from: 2020-02-02T02:02:02Z
@@ -9277,7 +9277,8 @@ components:
       properties:
         index:
           description: For multi-index organizations, the log index in which the request
-            is performed.
+            is performed. Default to '*' (all indexes).
+          example: retention-3,retention-15
           type: string
         limit:
           description: Number of logs return in the response.
