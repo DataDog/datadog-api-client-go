@@ -12,32 +12,32 @@ import (
 	"encoding/json"
 )
 
-// RoleCreatePayload Create a role.
-type RoleCreatePayload struct {
-	Data *RoleCreateData `json:"data,omitempty"`
+// RoleCreateResponse Response containing information about a created role.
+type RoleCreateResponse struct {
+	Data *RoleCreateResponseData `json:"data,omitempty"`
 }
 
-// NewRoleCreatePayload instantiates a new RoleCreatePayload object
+// NewRoleCreateResponse instantiates a new RoleCreateResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRoleCreatePayload() *RoleCreatePayload {
-	this := RoleCreatePayload{}
+func NewRoleCreateResponse() *RoleCreateResponse {
+	this := RoleCreateResponse{}
 	return &this
 }
 
-// NewRoleCreatePayloadWithDefaults instantiates a new RoleCreatePayload object
+// NewRoleCreateResponseWithDefaults instantiates a new RoleCreateResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRoleCreatePayloadWithDefaults() *RoleCreatePayload {
-	this := RoleCreatePayload{}
+func NewRoleCreateResponseWithDefaults() *RoleCreateResponse {
+	this := RoleCreateResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RoleCreatePayload) GetData() RoleCreateData {
+func (o *RoleCreateResponse) GetData() RoleCreateResponseData {
 	if o == nil || o.Data == nil {
-		var ret RoleCreateData
+		var ret RoleCreateResponseData
 		return ret
 	}
 	return *o.Data
@@ -45,7 +45,7 @@ func (o *RoleCreatePayload) GetData() RoleCreateData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleCreatePayload) GetDataOk() (*RoleCreateData, bool) {
+func (o *RoleCreateResponse) GetDataOk() (*RoleCreateResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,7 +53,7 @@ func (o *RoleCreatePayload) GetDataOk() (*RoleCreateData, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *RoleCreatePayload) HasData() bool {
+func (o *RoleCreateResponse) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -61,12 +61,12 @@ func (o *RoleCreatePayload) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given RoleCreateData and assigns it to the Data field.
-func (o *RoleCreatePayload) SetData(v RoleCreateData) {
+// SetData gets a reference to the given RoleCreateResponseData and assigns it to the Data field.
+func (o *RoleCreateResponse) SetData(v RoleCreateResponseData) {
 	o.Data = &v
 }
 
-func (o RoleCreatePayload) MarshalJSON() ([]byte, error) {
+func (o RoleCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
@@ -74,38 +74,38 @@ func (o RoleCreatePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableRoleCreatePayload struct {
-	value *RoleCreatePayload
+type NullableRoleCreateResponse struct {
+	value *RoleCreateResponse
 	isSet bool
 }
 
-func (v NullableRoleCreatePayload) Get() *RoleCreatePayload {
+func (v NullableRoleCreateResponse) Get() *RoleCreateResponse {
 	return v.value
 }
 
-func (v *NullableRoleCreatePayload) Set(val *RoleCreatePayload) {
+func (v *NullableRoleCreateResponse) Set(val *RoleCreateResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRoleCreatePayload) IsSet() bool {
+func (v NullableRoleCreateResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRoleCreatePayload) Unset() {
+func (v *NullableRoleCreateResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRoleCreatePayload(val *RoleCreatePayload) *NullableRoleCreatePayload {
-	return &NullableRoleCreatePayload{value: val, isSet: true}
+func NewNullableRoleCreateResponse(val *RoleCreateResponse) *NullableRoleCreateResponse {
+	return &NullableRoleCreateResponse{value: val, isSet: true}
 }
 
-func (v NullableRoleCreatePayload) MarshalJSON() ([]byte, error) {
+func (v NullableRoleCreateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableRoleCreatePayload) UnmarshalJSON(src []byte) error {
+func (v *NullableRoleCreateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

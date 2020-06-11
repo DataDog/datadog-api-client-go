@@ -365,10 +365,10 @@ func (r apiAddUserToRoleRequest) Execute() (UsersResponse, *_nethttp.Response, e
 type apiCreateRoleRequest struct {
 	ctx        _context.Context
 	apiService *RolesApiService
-	body       *RoleCreatePayload
+	body       *RoleCreateRequest
 }
 
-func (r apiCreateRoleRequest) Body(body RoleCreatePayload) apiCreateRoleRequest {
+func (r apiCreateRoleRequest) Body(body RoleCreateRequest) apiCreateRoleRequest {
 	r.body = &body
 	return r
 }
@@ -388,16 +388,16 @@ func (a *RolesApiService) CreateRole(ctx _context.Context) apiCreateRoleRequest 
 
 /*
 Execute executes the request
- @return RoleResponse
+ @return RoleCreateResponse
 */
-func (r apiCreateRoleRequest) Execute() (RoleResponse, *_nethttp.Response, error) {
+func (r apiCreateRoleRequest) Execute() (RoleCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  RoleResponse
+		localVarReturnValue  RoleCreateResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.CreateRole")
@@ -1809,10 +1809,10 @@ type apiUpdateRoleRequest struct {
 	ctx        _context.Context
 	apiService *RolesApiService
 	roleId     string
-	body       *RoleUpdatePayload
+	body       *RoleUpdateRequest
 }
 
-func (r apiUpdateRoleRequest) Body(body RoleUpdatePayload) apiUpdateRoleRequest {
+func (r apiUpdateRoleRequest) Body(body RoleUpdateRequest) apiUpdateRoleRequest {
 	r.body = &body
 	return r
 }
@@ -1834,16 +1834,16 @@ func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string) apiUpd
 
 /*
 Execute executes the request
- @return RoleResponse
+ @return RoleUpdateResponse
 */
-func (r apiUpdateRoleRequest) Execute() (RoleResponse, *_nethttp.Response, error) {
+func (r apiUpdateRoleRequest) Execute() (RoleUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  RoleResponse
+		localVarReturnValue  RoleUpdateResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.UpdateRole")

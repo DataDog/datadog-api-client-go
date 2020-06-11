@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 
 ## CreateRole
 
-> RoleResponse CreateRole(ctx).Body(body).Execute()
+> RoleCreateResponse CreateRole(ctx).Body(body).Execute()
 
 Create role
 
@@ -223,7 +223,7 @@ func main() {
         },
     )
 
-    body := datadog.RoleCreatePayload{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: datadog.RolesType{}}} // RoleCreatePayload |  (optional)
+    body := datadog.RoleCreateRequest{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: datadog.RolesType{}}} // RoleCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -232,7 +232,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CreateRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateRole`: RoleResponse
+    // response from `CreateRole`: RoleCreateResponse
     fmt.Fprintf(os.Stdout, "Response from `RolesApi.CreateRole`: %v\n", resp)
 }
 ```
@@ -248,11 +248,11 @@ Other parameters are passed through a pointer to a apiCreateRoleRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RoleCreatePayload**](RoleCreatePayload.md) |  | 
+ **body** | [**RoleCreateRequest**](RoleCreateRequest.md) |  | 
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleCreateResponse**](RoleCreateResponse.md)
 
 ### Authorization
 
@@ -937,7 +937,7 @@ Name | Type | Description  | Notes
 
 ## UpdateRole
 
-> RoleResponse UpdateRole(ctx, roleId).Body(body).Execute()
+> RoleUpdateResponse UpdateRole(ctx, roleId).Body(body).Execute()
 
 Update a role
 
@@ -970,7 +970,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RoleUpdatePayload{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{Name: "Name_example"}, Id: "Id_example", Type: datadog.RolesType{}}} // RoleUpdatePayload |  (optional)
+    body := datadog.RoleUpdateRequest{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Id: "Id_example", Type: datadog.RolesType{}}} // RoleUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -979,7 +979,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.UpdateRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateRole`: RoleResponse
+    // response from `UpdateRole`: RoleUpdateResponse
     fmt.Fprintf(os.Stdout, "Response from `RolesApi.UpdateRole`: %v\n", resp)
 }
 ```
@@ -1000,11 +1000,11 @@ Other parameters are passed through a pointer to a apiUpdateRoleRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**RoleUpdatePayload**](RoleUpdatePayload.md) |  | 
+ **body** | [**RoleUpdateRequest**](RoleUpdateRequest.md) |  | 
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleUpdateResponse**](RoleUpdateResponse.md)
 
 ### Authorization
 

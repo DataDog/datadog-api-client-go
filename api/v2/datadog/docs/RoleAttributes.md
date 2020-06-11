@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Creation time of the role. | [optional] [readonly] 
 **ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Time of last role modification. | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the role. | [optional] 
+**UserCount** | Pointer to **int64** | Number of users with that role. | [optional] [readonly] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetName sets Name field to given value.
 `func (o *RoleAttributes) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetUserCount
+
+`func (o *RoleAttributes) GetUserCount() int64`
+
+GetUserCount returns the UserCount field if non-nil, zero value otherwise.
+
+### GetUserCountOk
+
+`func (o *RoleAttributes) GetUserCountOk() (*int64, bool)`
+
+GetUserCountOk returns a tuple with the UserCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserCount
+
+`func (o *RoleAttributes) SetUserCount(v int64)`
+
+SetUserCount sets UserCount field to given value.
+
+### HasUserCount
+
+`func (o *RoleAttributes) HasUserCount() bool`
+
+HasUserCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
