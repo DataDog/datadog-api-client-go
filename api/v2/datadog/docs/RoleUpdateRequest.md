@@ -1,52 +1,52 @@
-# RoleCreatePayload
+# RoleUpdateRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**RoleCreateData**](RoleCreateData.md) |  | [optional] 
+**Data** | Pointer to [**RoleUpdateData**](RoleUpdateData.md) |  | [optional] 
 
 ## Methods
 
-### NewRoleCreatePayload
+### NewRoleUpdateRequest
 
-`func NewRoleCreatePayload() *RoleCreatePayload`
+`func NewRoleUpdateRequest() *RoleUpdateRequest`
 
-NewRoleCreatePayload instantiates a new RoleCreatePayload object
+NewRoleUpdateRequest instantiates a new RoleUpdateRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewRoleCreatePayloadWithDefaults
+### NewRoleUpdateRequestWithDefaults
 
-`func NewRoleCreatePayloadWithDefaults() *RoleCreatePayload`
+`func NewRoleUpdateRequestWithDefaults() *RoleUpdateRequest`
 
-NewRoleCreatePayloadWithDefaults instantiates a new RoleCreatePayload object
+NewRoleUpdateRequestWithDefaults instantiates a new RoleUpdateRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *RoleCreatePayload) GetData() RoleCreateData`
+`func (o *RoleUpdateRequest) GetData() RoleUpdateData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *RoleCreatePayload) GetDataOk() (*RoleCreateData, bool)`
+`func (o *RoleUpdateRequest) GetDataOk() (*RoleUpdateData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *RoleCreatePayload) SetData(v RoleCreateData)`
+`func (o *RoleUpdateRequest) SetData(v RoleUpdateData)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *RoleCreatePayload) HasData() bool`
+`func (o *RoleUpdateRequest) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 

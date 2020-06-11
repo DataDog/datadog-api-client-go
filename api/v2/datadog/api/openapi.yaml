@@ -656,13 +656,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RoleCreatePayload'
+              $ref: '#/components/schemas/RoleCreateRequest'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RoleResponse'
+                $ref: '#/components/schemas/RoleCreateResponse'
           description: OK
         "400":
           content:
@@ -764,13 +764,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RoleUpdatePayload'
+              $ref: '#/components/schemas/RoleUpdateRequest'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RoleResponse'
+                $ref: '#/components/schemas/RoleUpdateResponse'
           description: OK
         "400":
           content:
@@ -2341,8 +2341,8 @@ components:
     Pagination:
       description: Pagination object.
       example:
-        total_count: 0
-        total_filtered_count: 6
+        total_count: 6
+        total_filtered_count: 1
       properties:
         total_count:
           description: Total count.
@@ -2617,8 +2617,8 @@ components:
       description: Object describing meta attributes of response.
       example:
         page:
-          total_count: 0
-          total_filtered_count: 6
+          total_count: 6
+          total_filtered_count: 1
       properties:
         page:
           $ref: '#/components/schemas/Pagination'
@@ -2627,29 +2627,14 @@ components:
       description: Role object returned by the API.
       example:
         relationships:
-          org:
-            data:
-              id: id
-              type: orgs
-          roles:
-            data:
-            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-              type: roles
-            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-              type: roles
-          other_orgs:
+          permissions:
             data:
             - id: id
-              type: orgs
+              type: permissions
             - id: id
-              type: orgs
-          other_roles:
-            data:
-            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-              type: roles
-            - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-              type: roles
+              type: permissions
         attributes:
+          user_count: 0
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
@@ -2671,6 +2656,7 @@ components:
     RoleAttributes:
       description: Attributes of the role.
       example:
+        user_count: 0
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
         modified_at: 2000-01-23T04:56:07.000+00:00
@@ -2688,14 +2674,31 @@ components:
         name:
           description: Name of the role.
           type: string
+        user_count:
+          description: Number of users with that role.
+          format: int64
+          readOnly: true
+          type: integer
       type: object
     RoleCreateAttributes:
       description: Attributes of the created role.
       example:
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        modified_at: 2000-01-23T04:56:07.000+00:00
       properties:
+        created_at:
+          description: Creation time of the role.
+          format: date-time
+          readOnly: true
+          type: string
+        modified_at:
+          description: Time of last role modification.
+          format: date-time
+          readOnly: true
+          type: string
         name:
-          description: The name of the role.
+          description: Name of the role.
           type: string
       type: object
     RoleCreateData:
@@ -2716,6 +2719,8 @@ components:
               type: users
         attributes:
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
         type: roles
       properties:
         attributes:
@@ -2725,7 +2730,7 @@ components:
         type:
           $ref: '#/components/schemas/RolesType'
       type: object
-    RoleCreatePayload:
+    RoleCreateRequest:
       description: Create a role.
       example:
         data:
@@ -2744,10 +2749,33 @@ components:
                 type: users
           attributes:
             name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            modified_at: 2000-01-23T04:56:07.000+00:00
           type: roles
       properties:
         data:
           $ref: '#/components/schemas/RoleCreateData'
+      type: object
+    RoleCreateResponse:
+      description: Response containing information about a created role.
+      example:
+        data:
+          relationships:
+            permissions:
+              data:
+              - id: id
+                type: permissions
+              - id: id
+                type: permissions
+          attributes:
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            modified_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: roles
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleCreateResponse_data'
       type: object
     RoleRelationships:
       description: Relationships of the role object.
@@ -2775,29 +2803,14 @@ components:
       example:
         data:
           relationships:
-            org:
-              data:
-                id: id
-                type: orgs
-            roles:
-              data:
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-            other_orgs:
+            permissions:
               data:
               - id: id
-                type: orgs
+                type: permissions
               - id: id
-                type: orgs
-            other_roles:
-              data:
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
+                type: permissions
           attributes:
+            user_count: 0
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
             modified_at: 2000-01-23T04:56:07.000+00:00
@@ -2810,45 +2823,35 @@ components:
     RoleResponseRelationships:
       description: Relationships of the role object returned by the API.
       example:
-        org:
-          data:
-            id: id
-            type: orgs
-        roles:
-          data:
-          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-            type: roles
-          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-            type: roles
-        other_orgs:
+        permissions:
           data:
           - id: id
-            type: orgs
+            type: permissions
           - id: id
-            type: orgs
-        other_roles:
-          data:
-          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-            type: roles
-          - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-            type: roles
+            type: permissions
       properties:
-        org:
-          $ref: '#/components/schemas/RelationshipToOrganization'
-        other_orgs:
-          $ref: '#/components/schemas/RelationshipToOrganizations'
-        other_roles:
-          $ref: '#/components/schemas/RelationshipToRoles'
-        roles:
-          $ref: '#/components/schemas/RelationshipToRoles'
+        permissions:
+          $ref: '#/components/schemas/RelationshipToPermissions'
       type: object
     RoleUpdateAttributes:
-      description: Attributes of the edited role.
+      description: Attributes of the role.
       example:
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        modified_at: 2000-01-23T04:56:07.000+00:00
       properties:
+        created_at:
+          description: Creation time of the role.
+          format: date-time
+          readOnly: true
+          type: string
+        modified_at:
+          description: Time of last role modification.
+          format: date-time
+          readOnly: true
+          type: string
         name:
-          description: The name of the role.
+          description: Name of the role.
           type: string
       type: object
     RoleUpdateData:
@@ -2856,6 +2859,8 @@ components:
       example:
         attributes:
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
         id: id
         type: roles
       properties:
@@ -2867,75 +2872,68 @@ components:
         type:
           $ref: '#/components/schemas/RolesType'
       type: object
-    RoleUpdatePayload:
+    RoleUpdateRequest:
       description: Update a role.
       example:
         data:
-          attributes:
-            name: name
-          id: id
-          type: roles
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleUpdateData'
-      type: object
-    RolesResponse:
-      description: Response containing information about multiple roles.
-      example:
-        data:
-        - relationships:
-            org:
-              data:
-                id: id
-                type: orgs
-            roles:
-              data:
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-            other_orgs:
-              data:
-              - id: id
-                type: orgs
-              - id: id
-                type: orgs
-            other_roles:
-              data:
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
           attributes:
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
             modified_at: 2000-01-23T04:56:07.000+00:00
           id: id
           type: roles
-        - relationships:
-            org:
-              data:
-                id: id
-                type: orgs
-            roles:
-              data:
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-            other_orgs:
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleUpdateData'
+      type: object
+    RoleUpdateResponse:
+      description: Response containing information about an updated role.
+      example:
+        data:
+          relationships:
+            permissions:
               data:
               - id: id
-                type: orgs
+                type: permissions
               - id: id
-                type: orgs
-            other_roles:
-              data:
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
-              - id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d
-                type: roles
+                type: permissions
           attributes:
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            modified_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: roles
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleUpdateResponse_data'
+      type: object
+    RolesResponse:
+      description: Response containing information about multiple roles.
+      example:
+        data:
+        - relationships:
+            permissions:
+              data:
+              - id: id
+                type: permissions
+              - id: id
+                type: permissions
+          attributes:
+            user_count: 0
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            modified_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: roles
+        - relationships:
+            permissions:
+              data:
+              - id: id
+                type: permissions
+              - id: id
+                type: permissions
+          attributes:
+            user_count: 0
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
             modified_at: 2000-01-23T04:56:07.000+00:00
@@ -2943,8 +2941,8 @@ components:
           type: roles
         meta:
           page:
-            total_count: 0
-            total_filtered_count: 6
+            total_count: 6
+            total_filtered_count: 1
       properties:
         data:
           description: Array of returned roles.
@@ -3057,8 +3055,8 @@ components:
           id: id
         meta:
           page:
-            total_count: 0
-            total_filtered_count: 6
+            total_count: 6
+            total_filtered_count: 1
       properties:
         data:
           description: TODO.
@@ -3931,8 +3929,8 @@ components:
           id: id
         meta:
           page:
-            total_count: 0
-            total_filtered_count: 6
+            total_count: 6
+            total_filtered_count: 1
         included:
         - null
         - null
@@ -3958,6 +3956,62 @@ components:
       type: string
       x-enum-varnames:
       - USERS
+    RoleCreateResponse_data:
+      description: Role object returned by the API.
+      example:
+        relationships:
+          permissions:
+            data:
+            - id: id
+              type: permissions
+            - id: id
+              type: permissions
+        attributes:
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        type: roles
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RoleCreateAttributes'
+        id:
+          description: ID of the role.
+          type: string
+        relationships:
+          $ref: '#/components/schemas/RoleResponseRelationships'
+        type:
+          $ref: '#/components/schemas/RolesType'
+      required:
+      - type
+    RoleUpdateResponse_data:
+      description: Role object returned by the API.
+      example:
+        relationships:
+          permissions:
+            data:
+            - id: id
+              type: permissions
+            - id: id
+              type: permissions
+        attributes:
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        type: roles
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RoleUpdateAttributes'
+        id:
+          description: ID of the role.
+          type: string
+        relationships:
+          $ref: '#/components/schemas/RoleResponseRelationships'
+        type:
+          $ref: '#/components/schemas/RolesType'
+      required:
+      - type
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.
