@@ -1764,10 +1764,6 @@ components:
       type: object
     Creator:
       description: Creator of the object.
-      example:
-        name: name
-        handle: handle
-        email: email
       properties:
         email:
           description: Email of the creator.
@@ -1833,21 +1829,6 @@ components:
       type: object
     DashboardListItem:
       description: A dashboard within a list.
-      example:
-        is_favorite: true
-        author:
-          name: name
-          handle: handle
-          email: email
-        created: 2000-01-23T04:56:07.000+00:00
-        is_shared: true
-        popularity: 0
-        icon: icon
-        modified: 2000-01-23T04:56:07.000+00:00
-        is_read_only: true
-        id: q5j-nti-fv6
-        title: title
-        url: url
       properties:
         author:
           $ref: '#/components/schemas/Creator'
@@ -1935,39 +1916,12 @@ components:
     DashboardListItems:
       description: Dashboards within a list.
       example:
-        total: 6
-        dashboards:
-        - is_favorite: true
-          author:
-            name: name
-            handle: handle
-            email: email
-          created: 2000-01-23T04:56:07.000+00:00
-          is_shared: true
-          popularity: 0
-          icon: icon
-          modified: 2000-01-23T04:56:07.000+00:00
-          is_read_only: true
-          id: q5j-nti-fv6
-          title: title
-          url: url
-        - is_favorite: true
-          author:
-            name: name
-            handle: handle
-            email: email
-          created: 2000-01-23T04:56:07.000+00:00
-          is_shared: true
-          popularity: 0
-          icon: icon
-          modified: 2000-01-23T04:56:07.000+00:00
-          is_read_only: true
-          id: q5j-nti-fv6
-          title: title
-          url: url
+        total: 0
+        dashboards: []
       properties:
         dashboards:
           description: List of dashboards in the dashboard list.
+          example: []
           items:
             $ref: '#/components/schemas/DashboardListItem'
           type: array
@@ -3143,31 +3097,11 @@ components:
     SecurityMonitoringRuleCreatePayload:
       description: Create a new rule.
       example:
-        cases:
-        - condition: condition
-          name: name
-          notifications:
-          - notifications
-          - notifications
-        - condition: condition
-          name: name
-          notifications:
-          - notifications
-          - notifications
+        cases: []
         name: name
         options: {}
         message: message
-        queries:
-        - groupByFields:
-          - groupByFields
-          - groupByFields
-          query: query
-          name: name
-        - groupByFields:
-          - groupByFields
-          - groupByFields
-          query: query
-          name: name
+        queries: []
         enabled: true
         tags:
         - env:prod
@@ -3175,6 +3109,7 @@ components:
       properties:
         cases:
           description: Cases for generating signals.
+          example: []
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCase'
           type: array
@@ -3192,6 +3127,7 @@ components:
           $ref: '#/components/schemas/SecurityMonitoringRuleOptions'
         queries:
           description: Queries for selecting logs which are part of the rule.
+          example: []
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleQuery'
           type: array
