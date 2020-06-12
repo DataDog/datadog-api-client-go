@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 echo "Ensuring all dependencies are present in LICENSE-3rdparty.csv ..."
 go mod tidy
 ALL_DEPS=`cat go.sum | awk '{print $1}' | uniq | sort | sed "s|^\(.*\)|go.sum,\1,|"`
@@ -21,7 +21,7 @@ fi
 # this might get solved in Go 1.14: https://github.com/golang/go/issues/30515
 cd `mktemp -d`
 GO111MODULE=on go get -u golang.org/x/lint/golint
-GO111MODULE=on go get -u gotest.tools/gotestsum@v0.4.1
+GO111MODULE=on go get -u gotest.tools/gotestsum@v0.4.2
 cd -
 
 golint ./...
