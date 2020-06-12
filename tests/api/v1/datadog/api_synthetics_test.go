@@ -777,11 +777,12 @@ func deleteSyntheticsTestIfExists(ctx context.Context, testID string) {
 func TestSyntheticsListLocations(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	assert := tests.Assert(ctx, t)
 
 	locs, httpresp, err := Client(ctx).SyntheticsApi.ListLocations(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all Synthetics locations: Response %s: %v", err.Error(), err)
 	}
-	assert.Equal(t, httpresp.StatusCode, 200)
-	assert.Assert(t, len(locs.GetLocations()) > 0)
+	assert.Equal(httpresp.StatusCode, 200)
+	assert.Greater(len(locs.GetLocations()), 0)
 }

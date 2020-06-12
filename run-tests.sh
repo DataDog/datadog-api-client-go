@@ -26,8 +26,10 @@ cd -
 
 golint ./...
 declare -i RESULT=0
-gotestsum --jsonfile gotestsum.json --format testname -- -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
+set -o pipefail # ensure that `tee` doesn't eat up test return code
+gotestsum --debug --jsonfile gotestsum.json --format testname -- -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...) | tee gotestsum.out
 RESULT+=$?
+set +o pipefail
 if [ "$CI" == "true" -a "$RESULT" -ne 0 ]; then
     RESULT=0
     echo "\n============= Rerunning failed tests =============\n"
@@ -40,6 +42,12 @@ if [ "$CI" == "true" -a "$RESULT" -ne 0 ]; then
     done <<EOF
         `cat gotestsum.json | jq -s -r -c '.[] | select(.Action=="fail") | select (.Test!=null) | "\(.Package) -run ^\(.Test)$"'`
 EOF
+    # because of https://github.com/gotestyourself/gotestsum/issues/16, gotestsum doesn't tell us if there were issues
+    # with *compiling* a test module, so we do manual inspection of the output
+    cat gotestsum.out | grep -q "^=== Errors$"
+    if [ $? -eq 0 ]; then
+        RESULT+=1
+    fi
 fi
 go mod tidy
 exit $RESULT
