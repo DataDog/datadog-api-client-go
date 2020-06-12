@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 echo "Ensuring all dependencies are present in LICENSE-3rdparty.csv ..."
 go mod tidy
 ALL_DEPS=`cat go.sum | awk '{print $1}' | uniq | sort | sed "s|^\(.*\)|go.sum,\1,|"`
@@ -21,13 +21,15 @@ fi
 # this might get solved in Go 1.14: https://github.com/golang/go/issues/30515
 cd `mktemp -d`
 GO111MODULE=on go get -u golang.org/x/lint/golint
-GO111MODULE=on go get -u gotest.tools/gotestsum@v0.4.1
+GO111MODULE=on go get -u gotest.tools/gotestsum@v0.4.2
 cd -
 
 golint ./...
 declare -i RESULT=0
-gotestsum --jsonfile gotestsum.json --format testname -- -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...)
+set -o pipefail # ensure that `tee` doesn't eat up test return code
+gotestsum --debug --jsonfile gotestsum.json --format testname -- -coverpkg=$(go list ./... | grep -v /test | paste -sd "," -) -coverprofile=coverage.txt -covermode=atomic -v $(go list ./...) | tee gotestsum.out
 RESULT+=$?
+set +o pipefail
 if [ "$CI" == "true" -a "$RESULT" -ne 0 ]; then
     RESULT=0
     echo "\n============= Rerunning failed tests =============\n"
@@ -40,6 +42,12 @@ if [ "$CI" == "true" -a "$RESULT" -ne 0 ]; then
     done <<EOF
         `cat gotestsum.json | jq -s -r -c '.[] | select(.Action=="fail") | select (.Test!=null) | "\(.Package) -run ^\(.Test)$"'`
 EOF
+    # because of https://github.com/gotestyourself/gotestsum/issues/16, gotestsum doesn't tell us if there were issues
+    # with *compiling* a test module, so we do manual inspection of the output
+    cat gotestsum.out | grep -q "^=== Errors$"
+    if [ $? -eq 0 ]; then
+        RESULT+=1
+    fi
 fi
 go mod tidy
 exit $RESULT

@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5849073158548624085"
+      - "4362661188454754742"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6891457741554595467"
+      - "7802428002979167663"
     url: https://api.datadoghq.com/api/v2/users/00000000-dead-beef-dead-ffffffffffff
     method: PATCH
   response:
@@ -29,12 +29,10 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Wed, 13 May 2020 15:05:57 GMT
+      - Fri, 12 Jun 2020 09:31:50 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -46,7 +44,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2498488"
+      - "35.2613383"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
