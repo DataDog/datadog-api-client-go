@@ -7,10 +7,14 @@
 package test
 
 import (
+	"bytes"
 	"context"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -128,4 +132,32 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 		r.Stop()
 		finish()
 	}
+}
+
+// SendRequest sends request to endpoints without specification.
+func SendRequest(ctx context.Context, method, url string, payload []byte) (*http.Response, []byte, error) {
+	baseURL := ""
+	if !strings.HasPrefix(url, "https://") {
+		var err error
+		baseURL, err = Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+		if err != nil {
+			return nil, []byte{}, fmt.Errorf("Failed to get base URL for Datadog API: %s", err.Error())
+		}
+	}
+
+	request, err := http.NewRequest(method, baseURL+url, bytes.NewBuffer(payload))
+	if err != nil {
+		return nil, []byte{}, fmt.Errorf("Failed to create request for Datadog API: %s", err.Error())
+	}
+	keys := ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey)
+	request.Header.Add("DD-API-KEY", keys["apiKeyAuth"].Key)
+	request.Header.Add("DD-APPLICATION-KEY", keys["appKeyAuth"].Key)
+	request.Header.Set("Content-Type", "application/json")
+
+	resp, respErr := Client(ctx).GetConfig().HTTPClient.Do(request)
+	body, rerr := ioutil.ReadAll(resp.Body)
+	if rerr != nil {
+		respErr = fmt.Errorf("Failed reading response body: %s", rerr.Error())
+	}
+	return resp, body, respErr
 }
