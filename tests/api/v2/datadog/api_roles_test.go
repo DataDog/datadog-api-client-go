@@ -190,7 +190,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
+	ucp := datadog.NewUserCreateRequest()
 	ucp.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
 	if err != nil {
@@ -808,7 +808,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
+	ucp := datadog.NewUserCreateRequest()
 	ucp.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
 	if err != nil {

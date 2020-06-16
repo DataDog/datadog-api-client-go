@@ -36,7 +36,7 @@ func TestUserLifecycle(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
+	ucp := datadog.NewUserCreateRequest()
 	ucp.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
 	if err != nil {
@@ -59,7 +59,7 @@ func TestUserLifecycle(t *testing.T) {
 	uud := datadog.NewUserUpdateData()
 	uud.SetAttributes(*uua)
 	uud.SetId(uid)
-	uup := datadog.NewUserUpdatePayload()
+	uup := datadog.NewUserUpdateRequest()
 	uup.SetData(*uud)
 	// no response payload
 	httpresp, err = Client(ctx).UsersApi.UpdateUser(ctx, uid).Body(*uup).Execute()
@@ -127,22 +127,22 @@ func TestUpdateUserErrors(t *testing.T) {
 	uud := datadog.NewUserUpdateData()
 	uud.SetAttributes(*uua)
 	uud.SetId(uid)
-	uup := datadog.NewUserUpdatePayload()
+	uup := datadog.NewUserUpdateRequest()
 	uup.SetData(*uud)
 
 	// 422 needs a mismatched id, shallow copy is fine here
 	uud422 := uud
 	uud422.SetId("00000000-mismatch-body-id-ffffffffffff")
-	uup422 := datadog.NewUserUpdatePayload()
+	uup422 := datadog.NewUserUpdateRequest()
 	uup422.SetData(*uud)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		UserID             string
-		Body               *datadog.UserUpdatePayload
+		Body               *datadog.UserUpdateRequest
 	}{
-		"400 Bad Request":            {WithTestAuth, 400, uid, datadog.NewUserUpdatePayloadWithDefaults()},
+		"400 Bad Request":            {WithTestAuth, 400, uid, datadog.NewUserUpdateRequestWithDefaults()},
 		"403 Forbidden":              {WithFakeAuth, 403, uid, uup},
 		"404 Bad User ID in Path":    {WithTestAuth, 404, uid, uup},
 		"422 Bad User ID in Request": {WithTestAuth, 422, uid, uup422},
@@ -170,7 +170,7 @@ func TestUserInvitation(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
+	ucp := datadog.NewUserCreateRequest()
 	ucp.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
 	if err != nil {
@@ -190,7 +190,7 @@ func TestUserInvitation(t *testing.T) {
 	uir.SetUser(*rtu)
 	uid := datadog.NewUserInvitationData()
 	uid.SetRelationships(*uir)
-	uip := datadog.NewUserInvitationPayload()
+	uip := datadog.NewUserInvitationsRequest()
 	uip.SetData([]datadog.UserInvitationData{*uid})
 
 	resp, httpresp, err := Client(ctx).UsersApi.SendInvitations(ctx).Body(*uip).Execute()
