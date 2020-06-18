@@ -32,7 +32,7 @@ RESULT+=$?
 set +o pipefail
 if [ "$CI" == "true" -a "$RESULT" -ne 0 ]; then
     RESULT=0
-    FAILED_TESTS=`cat gotestsum.json | jq -s -r -c '.[] | select(.Action=="fail") | select (.Test!=null) | "\(.Package) -run ^\(.Test)$"'`
+    FAILED_TESTS=`cat gotestsum.json | ${JQ:-jq} -s -r -c '.[] | select(.Action=="fail") | select (.Test!=null) | "\(.Package) -run ^\(.Test)$"'`
     if [ $? -ne 0 ]; then
         echo "Error while getting failed tests"
         exit 1
