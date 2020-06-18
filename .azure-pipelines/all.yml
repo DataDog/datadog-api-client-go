@@ -42,6 +42,8 @@ jobs:
   services:
     datadog-agent: datadog-agent
   steps:
+    - script: apt-get update
+    - script: apt-get install -y jq
     - script: ./run-tests.sh
       displayName: Run integration tests
       env:

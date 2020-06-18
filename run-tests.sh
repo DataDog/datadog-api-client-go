@@ -32,16 +32,19 @@ RESULT+=$?
 set +o pipefail
 if [ "$CI" == "true" -a "$RESULT" -ne 0 ]; then
     RESULT=0
-    echo "\n============= Rerunning failed tests =============\n"
+    FAILED_TESTS=`cat gotestsum.json | jq -s -r -c '.[] | select(.Action=="fail") | select (.Test!=null) | "\(.Package) -run ^\(.Test)$"'`
+    if [ $? -ne 0 ]; then
+        echo "Error while getting failed tests"
+        exit 1
+    fi
+    echo -e "\n============= Rerunning failed tests =============\n"
     # NOTE: since `go test` (and `gotestsum`) don't allow specifying multiple different test cases
     # from different test modules with `-run`, we run them one by one in form of:
     # gotestsum <arguments> github.com/DataDog/datadog-api-client-go/tests/api/v<version>/datadog -run ^TestCaseName$
     while read -r i ; do
         gotestsum --format testname -- -v $i
         RESULT+=$?
-    done <<EOF
-        `cat gotestsum.json | jq -s -r -c '.[] | select(.Action=="fail") | select (.Test!=null) | "\(.Package) -run ^\(.Test)$"'`
-EOF
+    done <<<$FAILED_TESTS
     # because of https://github.com/gotestyourself/gotestsum/issues/16, gotestsum doesn't tell us if there were issues
     # with *compiling* a test module, so we do manual inspection of the output
     cat gotestsum.out | grep -q "^=== Errors$"
