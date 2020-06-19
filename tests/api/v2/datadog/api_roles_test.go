@@ -190,9 +190,9 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
-	ucp.SetData(*ucd)
-	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
+	ucr := datadog.NewUserCreateRequest()
+	ucr.SetData(*ucd)
+	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -808,9 +808,9 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
-	ucp.SetData(*ucd)
-	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
+	ucr := datadog.NewUserCreateRequest()
+	ucr.SetData(*ucd)
+	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}

@@ -42,6 +42,8 @@ jobs:
   services:
     datadog-agent: datadog-agent
   steps:
+    - script: |
+        wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O jq && chmod a+x jq
     - script: ./run-tests.sh
       displayName: Run integration tests
       env:
@@ -52,7 +54,8 @@ jobs:
         DD_TAGS: "team:integration-tools-and-libraries,build.requested_by:$(Build.RequestedForId),build.attempt:$(System.StageAttempt),pull_request.number:$(System.PullRequest.PullRequestNumber)"
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
-        RECORD: "true"
+        JQ: ./jq
+        RECORD: "none"
     - script: |
         bash <(curl -s https://codecov.io/bash) -F integration -v
 

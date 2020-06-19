@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strings"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -12,7 +13,8 @@ import (
 
 func testingUserCreateAttributes(ctx context.Context, t *testing.T) *datadog.UserCreateAttributes {
 	uca := datadog.NewUserCreateAttributes()
-	name := *tests.UniqueEntityName(ctx, t)
+	// the API lowercases returned emails, so let's send a lowercase value in the first place
+	name := strings.ToLower(*tests.UniqueEntityName(ctx, t))
 	uca.SetEmail(fmt.Sprintf("%s@datadoghq.com", name))
 	uca.SetName(name)
 	uca.SetTitle("Big boss")
@@ -36,9 +38,9 @@ func TestUserLifecycle(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
-	ucp.SetData(*ucd)
-	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
+	ucr := datadog.NewUserCreateRequest()
+	ucr.SetData(*ucd)
+	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -59,10 +61,10 @@ func TestUserLifecycle(t *testing.T) {
 	uud := datadog.NewUserUpdateData()
 	uud.SetAttributes(*uua)
 	uud.SetId(uid)
-	uup := datadog.NewUserUpdatePayload()
-	uup.SetData(*uud)
+	uur := datadog.NewUserUpdateRequest()
+	uur.SetData(*uud)
 	// no response payload
-	httpresp, err = Client(ctx).UsersApi.UpdateUser(ctx, uid).Body(*uup).Execute()
+	httpresp, err = Client(ctx).UsersApi.UpdateUser(ctx, uid).Body(*uur).Execute()
 	if err != nil {
 		t.Fatalf("Error updating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -127,25 +129,25 @@ func TestUpdateUserErrors(t *testing.T) {
 	uud := datadog.NewUserUpdateData()
 	uud.SetAttributes(*uua)
 	uud.SetId(uid)
-	uup := datadog.NewUserUpdatePayload()
-	uup.SetData(*uud)
+	uur := datadog.NewUserUpdateRequest()
+	uur.SetData(*uud)
 
 	// 422 needs a mismatched id, shallow copy is fine here
 	uud422 := uud
 	uud422.SetId("00000000-mismatch-body-id-ffffffffffff")
-	uup422 := datadog.NewUserUpdatePayload()
-	uup422.SetData(*uud)
+	uur422 := datadog.NewUserUpdateRequest()
+	uur422.SetData(*uud)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 		UserID             string
-		Body               *datadog.UserUpdatePayload
+		Body               *datadog.UserUpdateRequest
 	}{
-		"400 Bad Request":            {WithTestAuth, 400, uid, datadog.NewUserUpdatePayloadWithDefaults()},
-		"403 Forbidden":              {WithFakeAuth, 403, uid, uup},
-		"404 Bad User ID in Path":    {WithTestAuth, 404, uid, uup},
-		"422 Bad User ID in Request": {WithTestAuth, 422, uid, uup422},
+		"400 Bad Request":            {WithTestAuth, 400, uid, datadog.NewUserUpdateRequestWithDefaults()},
+		"403 Forbidden":              {WithFakeAuth, 403, uid, uur},
+		"404 Bad User ID in Path":    {WithTestAuth, 404, uid, uur},
+		"422 Bad User ID in Request": {WithTestAuth, 422, uid, uur422},
 	}
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
@@ -170,9 +172,9 @@ func TestUserInvitation(t *testing.T) {
 	uca := testingUserCreateAttributes(ctx, t)
 	ucd := datadog.NewUserCreateData()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreatePayload()
-	ucp.SetData(*ucd)
-	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucp).Execute()
+	ucr := datadog.NewUserCreateRequest()
+	ucr.SetData(*ucd)
+	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -190,10 +192,10 @@ func TestUserInvitation(t *testing.T) {
 	uir.SetUser(*rtu)
 	uid := datadog.NewUserInvitationData()
 	uid.SetRelationships(*uir)
-	uip := datadog.NewUserInvitationPayload()
-	uip.SetData([]datadog.UserInvitationData{*uid})
+	uireq := datadog.NewUserInvitationsRequest()
+	uireq.SetData([]datadog.UserInvitationData{*uid})
 
-	resp, httpresp, err := Client(ctx).UsersApi.SendInvitations(ctx).Body(*uip).Execute()
+	resp, httpresp, err := Client(ctx).UsersApi.SendInvitations(ctx).Body(*uireq).Execute()
 	if err != nil {
 		t.Fatalf("Error sending invitation for %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
