@@ -1,52 +1,52 @@
-# UserCreatePayload
+# UserUpdateRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**UserCreateData**](UserCreateData.md) |  | [optional] 
+**Data** | Pointer to [**UserUpdateData**](UserUpdateData.md) |  | [optional] 
 
 ## Methods
 
-### NewUserCreatePayload
+### NewUserUpdateRequest
 
-`func NewUserCreatePayload() *UserCreatePayload`
+`func NewUserUpdateRequest() *UserUpdateRequest`
 
-NewUserCreatePayload instantiates a new UserCreatePayload object
+NewUserUpdateRequest instantiates a new UserUpdateRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUserCreatePayloadWithDefaults
+### NewUserUpdateRequestWithDefaults
 
-`func NewUserCreatePayloadWithDefaults() *UserCreatePayload`
+`func NewUserUpdateRequestWithDefaults() *UserUpdateRequest`
 
-NewUserCreatePayloadWithDefaults instantiates a new UserCreatePayload object
+NewUserUpdateRequestWithDefaults instantiates a new UserUpdateRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *UserCreatePayload) GetData() UserCreateData`
+`func (o *UserUpdateRequest) GetData() UserUpdateData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *UserCreatePayload) GetDataOk() (*UserCreateData, bool)`
+`func (o *UserUpdateRequest) GetDataOk() (*UserUpdateData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *UserCreatePayload) SetData(v UserCreateData)`
+`func (o *UserUpdateRequest) SetData(v UserUpdateData)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *UserCreatePayload) HasData() bool`
+`func (o *UserUpdateRequest) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 

@@ -50,7 +50,7 @@ func main() {
         },
     )
 
-    body := datadog.UserCreatePayload{Data: datadog.UserCreateData{Attributes: datadog.UserCreateAttributes{Email: "Email_example", Name: "Name_example", Title: "Title_example"}, Relationships: datadog.UserRelationships{Roles: datadog.RelationshipToRoles{Data: []RelationshipToRoleData{datadog.RelationshipToRoleData{Id: "Id_example", Type: datadog.RolesType{}})}}, Type: datadog.UsersType{}}} // UserCreatePayload |  (optional)
+    body := datadog.UserCreateRequest{Data: datadog.UserCreateData{Attributes: datadog.UserCreateAttributes{Email: "Email_example", Name: "Name_example", Title: "Title_example"}, Relationships: datadog.UserRelationships{Roles: datadog.RelationshipToRoles{Data: []RelationshipToRoleData{datadog.RelationshipToRoleData{Id: "Id_example", Type: datadog.RolesType{}})}}, Type: datadog.UsersType{}}} // UserCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -75,7 +75,7 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UserCreatePayload**](UserCreatePayload.md) |  | 
+ **body** | [**UserCreateRequest**](UserCreateRequest.md) |  | 
 
 ### Return type
 
@@ -631,7 +631,7 @@ func main() {
         },
     )
 
-    body := datadog.UserInvitationPayload{Data: []UserInvitationData{datadog.UserInvitationData{Relationships: datadog.UserInvitationRelationships{User: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}}}, Type: datadog.UserInvitationsType{}})} // UserInvitationPayload |  (optional)
+    body := datadog.UserInvitationsRequest{Data: []UserInvitationData{datadog.UserInvitationData{Relationships: datadog.UserInvitationRelationships{User: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}}}, Type: datadog.UserInvitationsType{}})} // UserInvitationsRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -656,7 +656,7 @@ Other parameters are passed through a pointer to a apiSendInvitationsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UserInvitationPayload**](UserInvitationPayload.md) |  | 
+ **body** | [**UserInvitationsRequest**](UserInvitationsRequest.md) |  | 
 
 ### Return type
 
@@ -711,7 +711,7 @@ func main() {
     )
 
     userId := "userId_example" // string | The ID of the user.
-    body := datadog.UserUpdatePayload{Data: datadog.UserUpdateData{Attributes: datadog.UserUpdateAttributes{Disabled: false, Email: "Email_example", Name: "Name_example"}, Id: "Id_example", Type: datadog.UsersType{}}} // UserUpdatePayload |  (optional)
+    body := datadog.UserUpdateRequest{Data: datadog.UserUpdateData{Attributes: datadog.UserUpdateAttributes{Disabled: false, Email: "Email_example", Name: "Name_example"}, Id: "Id_example", Type: datadog.UsersType{}}} // UserUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -739,7 +739,7 @@ Other parameters are passed through a pointer to a apiUpdateUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UserUpdatePayload**](UserUpdatePayload.md) |  | 
+ **body** | [**UserUpdateRequest**](UserUpdateRequest.md) |  | 
 
 ### Return type
 

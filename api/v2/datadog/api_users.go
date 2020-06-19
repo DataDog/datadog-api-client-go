@@ -27,10 +27,10 @@ type UsersApiService service
 type apiCreateUserRequest struct {
 	ctx        _context.Context
 	apiService *UsersApiService
-	body       *UserCreatePayload
+	body       *UserCreateRequest
 }
 
-func (r apiCreateUserRequest) Body(body UserCreatePayload) apiCreateUserRequest {
+func (r apiCreateUserRequest) Body(body UserCreateRequest) apiCreateUserRequest {
 	r.body = &body
 	return r
 }
@@ -1128,10 +1128,10 @@ func (r apiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 type apiSendInvitationsRequest struct {
 	ctx        _context.Context
 	apiService *UsersApiService
-	body       *UserInvitationPayload
+	body       *UserInvitationsRequest
 }
 
-func (r apiSendInvitationsRequest) Body(body UserInvitationPayload) apiSendInvitationsRequest {
+func (r apiSendInvitationsRequest) Body(body UserInvitationsRequest) apiSendInvitationsRequest {
 	r.body = &body
 	return r
 }
@@ -1284,10 +1284,10 @@ type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	apiService *UsersApiService
 	userId     string
-	body       *UserUpdatePayload
+	body       *UserUpdateRequest
 }
 
-func (r apiUpdateUserRequest) Body(body UserUpdatePayload) apiUpdateUserRequest {
+func (r apiUpdateUserRequest) Body(body UserUpdateRequest) apiUpdateUserRequest {
 	r.body = &body
 	return r
 }
