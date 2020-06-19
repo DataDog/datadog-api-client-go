@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v1.0.0-beta.5 / 2020-06-19
+
+* [Added] Update to the latest openapi-generator 5 snapshot. See [#338](https://github.com/DataDog/datadog-api-client-go/pull/338).
+* [Added] Add synthetics location endpoint. See [#334](https://github.com/DataDog/datadog-api-client-go/pull/334).
+* [Fixed] Widget legend size can also be "0". See [#336](https://github.com/DataDog/datadog-api-client-go/pull/336).
+* [Fixed] Log Index as an optional parameter (default to "*") for List Queries. See [#335](https://github.com/DataDog/datadog-api-client-go/pull/335).
+* [Changed] Rename payload objects to request. See [#346](https://github.com/DataDog/datadog-api-client-go/pull/346).
+  * This change includes backwards incompatible changes.
+* [Changed] Split schema for roles API. See [#337](https://github.com/DataDog/datadog-api-client-go/pull/337).
+  * This change includes backwards incompatible changes when using the `role` endpoint.
+
 ## v1.0.0-beta.4 / 2020-06-09
 
 * [BREAKING] Add missing values to enums. See [#320](https://github.com/DataDog/datadog-api-client-go/pull/320).
