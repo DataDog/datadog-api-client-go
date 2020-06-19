@@ -16988,7 +16988,9 @@ components:
       - message
       - type
     SyntheticsTestOptions_retry:
-      description: Object describing the retry strategy to apply to a Synthetic test.
+      description: |-
+        Object describing the retry strategy to apply to a Synthetic test.
+        By default, there is a 300ms wait before retrying a test that has failed.
       example:
         count: 2
         interval: 7.061401241503109
