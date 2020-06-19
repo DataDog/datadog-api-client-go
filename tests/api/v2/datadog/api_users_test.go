@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strings"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -12,7 +13,8 @@ import (
 
 func testingUserCreateAttributes(ctx context.Context, t *testing.T) *datadog.UserCreateAttributes {
 	uca := datadog.NewUserCreateAttributes()
-	name := *tests.UniqueEntityName(ctx, t)
+	// the API lowercases returned emails, so let's send a lowercase value in the first place
+	name := strings.ToLower(*tests.UniqueEntityName(ctx, t))
 	uca.SetEmail(fmt.Sprintf("%s@datadoghq.com", name))
 	uca.SetName(name)
 	uca.SetTitle("Big boss")
