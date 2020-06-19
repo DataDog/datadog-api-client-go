@@ -7,7 +7,7 @@
 * [Fixed] Widget legend size can also be "0". See [#336](https://github.com/DataDog/datadog-api-client-go/pull/336).
 * [Fixed] Log Index as an optional parameter (default to "*") for List Queries. See [#335](https://github.com/DataDog/datadog-api-client-go/pull/335).
 * [Changed] Rename payload objects to request. See [#346](https://github.com/DataDog/datadog-api-client-go/pull/346).
-  * This change includes backwards incompatible changes.
+  * This change includes backwards incompatible changes when using the `user` endpoint.
 * [Changed] Split schema for roles API. See [#337](https://github.com/DataDog/datadog-api-client-go/pull/337).
   * This change includes backwards incompatible changes when using the `role` endpoint.
 
