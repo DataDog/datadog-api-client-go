@@ -16,6 +16,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
@@ -40,6 +41,46 @@ const (
 	ModeReplaying RecordingMode = "false"
 	ModeRecording RecordingMode = "true"
 )
+
+var testFiles2EndpointTags = map[string]map[string]string{
+	"tests/api/v1/datadog": {
+		"api_authentication_test": "validation",
+		"api_aws_integration_test": "integration-aws",
+		"api_aws_logs_integration_test": "integration-aws",
+		"api_azure_integration_test": "integration-azure",
+		"api_dashboard_lists_test": "dashboard-lists",
+		"api_dashboards_test": "dashboards",
+		"api_downtimes_test": "downtimes",
+		"api_events_test": "events",
+		"api_gcp_integration_test": "integration-gcp",
+		"api_hosts_test": "hosts",
+		"api_ip_ranges_test": "ip-ranges",
+		"api_key_management_test": "key-management",
+		"api_logs_indexes_test": "logs-indexes",
+		"api_logs_pipelines_test": "logs-pipelines",
+		"api_logs_test": "logs",
+		"api_metrics_test": "metrics",
+		"api_monitors_test": "monitors",
+		"api_organizations_test": "organizations",
+		"api_pager_duty_integration_test": "integration-pagerduty",
+		"api_service_level_objectives_test": "service-level-objectives",
+		"api_snapshots_test": "snapshots",
+		"api_synthetics_test": "synthetics",
+		"api_tags_test": "tags",
+		"api_usage_metering_test": "usage-metering",
+		"api_users_test": "users",
+		"telemetry_test": "telemetry",
+	},
+	"tests/api/v2/datadog": {
+		"api_dashboard_lists_test": "dashboard-lists",
+		"api_logs_archives_test": "logs-archives",
+		"api_permissions_test": "permissions",
+		"api_roles_test": "roles",
+		"api_users_test": "users",
+		"security_monitoring_test": "security-monitoring",
+		"telemetry_test": "telemetry",
+	},
+}
 
 // GetRecording returns the value of RECORD environment variable
 func GetRecording() RecordingMode {
@@ -106,9 +147,51 @@ func ConfigureTracer(m *testing.M) {
 	os.Exit(code)
 }
 
+// getEndpointTagValue traverses callstack frames to find the test function that invoked this call;
+// it then matches the file defining this function against testFiles2EndpointTags to figure out
+// the tag value to set on span
+func getEndpointTagValue(t *testing.T) (string, error) {
+	var pcs [512]uintptr
+	var frame runtime.Frame
+	more := true
+	n := runtime.Callers(1, pcs[:])
+	frames := runtime.CallersFrames(pcs[:n])
+	functionFile := ""
+	for more {
+		frame, more = frames.Next()
+		// nested test functions like `TestAuthenticationValidate/200_Valid` will have frame.Function ending with
+		// ".funcX", `e.g. datadog.TestAuthenticationValidate.func1`, so trim everything after last "/" in test name
+		// and everything after last "." in frame function name
+		frameFunction := frame.Function
+		testName := t.Name()
+		if strings.Contains(testName, "/") {
+			testName = testName[:strings.LastIndex(testName, "/")]
+			frameFunction = frameFunction[:strings.LastIndex(frameFunction, ".")]
+		}
+		if strings.HasSuffix(frameFunction, "." + testName) {
+			functionFile = frame.File
+			// when we find the frame with the current test function, match it against testFiles2EndpointTags
+			for subdir, file2tag := range testFiles2EndpointTags {
+				for file, tag := range file2tag {
+					if strings.HasSuffix(frame.File, fmt.Sprintf("%s/%s.go", subdir, file)) {
+						return tag, nil
+					}
+				}
+			}
+		}
+	}
+	return "", fmt.Errorf(
+		"Endpoint tag for test file %s not found in tests/test_utils.go, please add it to `testFiles2EndpointTags`",
+		functionFile)
+}
+
 // WithTestSpan starts new span with test information.
 func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	t.Helper()
+	tag, err := getEndpointTagValue(t)
+	if err != nil {
+		panic(err.Error())
+	}
 	span, ctx := tracer.StartSpanFromContext(
 		ctx,
 		"test",
@@ -117,6 +200,12 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		tracer.Tag(ext.AnalyticsEvent, true),
 		tracer.Measured(),
 	)
+	// We need to make the tag be something that is then searchable in monitors
+	// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
+	// "version" is really the only one we can use here
+	// NOTE: version is treated in slightly different way, because it's a special tag;
+	// if we set it in StartSpanFromContext, it would get overwritten
+	span.SetTag("version", tag)
 	return tracer.ContextWithSpan(ctx, span), func() {
 		span.SetTag(ext.Error, t.Failed())
 		span.Finish()
