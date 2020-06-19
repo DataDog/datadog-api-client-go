@@ -1289,7 +1289,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserInvitationPayload'
+              $ref: '#/components/schemas/UserInvitationsRequest'
       responses:
         "201":
           content:
@@ -1443,7 +1443,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserCreatePayload'
+              $ref: '#/components/schemas/UserCreateRequest'
       responses:
         "201":
           content:
@@ -1552,7 +1552,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserUpdatePayload'
+              $ref: '#/components/schemas/UserUpdateRequest'
       responses:
         "204":
           description: OK
@@ -3552,7 +3552,7 @@ components:
         type:
           $ref: '#/components/schemas/UsersType'
       type: object
-    UserCreatePayload:
+    UserCreateRequest:
       description: Create a user.
       example:
         data:
@@ -3608,27 +3608,6 @@ components:
           description: UUID of the user invitation.
           type: string
       type: object
-    UserInvitationPayload:
-      description: Object to invite users to join the organization.
-      example:
-        data:
-        - relationships:
-            user:
-              data:
-                id: id
-                type: users
-        - relationships:
-            user:
-              data:
-                id: id
-                type: users
-      properties:
-        data:
-          description: List of user invitations.
-          items:
-            $ref: '#/components/schemas/UserInvitationData'
-          type: array
-      type: object
     UserInvitationRelationships:
       description: Relationships data for user invitation.
       example:
@@ -3671,6 +3650,27 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/UserInvitationsType'
+      type: object
+    UserInvitationsRequest:
+      description: Object to invite users to join the organization.
+      example:
+        data:
+        - relationships:
+            user:
+              data:
+                id: id
+                type: users
+        - relationships:
+            user:
+              data:
+                id: id
+                type: users
+      properties:
+        data:
+          description: List of user invitations.
+          items:
+            $ref: '#/components/schemas/UserInvitationData'
+          type: array
       type: object
     UserInvitationsResponse:
       description: User invitations as returned by the API.
@@ -3842,7 +3842,7 @@ components:
         type:
           $ref: '#/components/schemas/UsersType'
       type: object
-    UserUpdatePayload:
+    UserUpdateRequest:
       description: Update a user.
       example:
         data:
