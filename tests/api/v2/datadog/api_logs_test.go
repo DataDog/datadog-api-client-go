@@ -115,6 +115,112 @@ func TestLogsList(t *testing.T) {
 	assert.NotEqual(firstId, secondId)
 }
 
+func TestLogsListGet(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	enableLogsUnstableOperations(ctx)
+	client := Client(ctx)
+
+	now := tests.ClockFromContext(ctx).Now()
+	suffix := fmt.Sprintf("get-%v", now.Unix())
+
+	err := sendLogs(ctx, t, client, suffix)
+	if err != nil {
+		t.Fatalf("Error sending logs: %v", err)
+	}
+
+	var response datadog.LogsListResponse
+	var httpResp *http.Response
+
+	from := now.Add(time.Duration(-2) * time.Hour)
+	to := now.Add(time.Duration(2) * time.Hour)
+
+	// Make sure both logs are indexed
+	err = tests.Retry(time.Duration(5) * time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+			FilterQuery(suffix).
+			FilterFrom(from).
+			FilterTo(to).
+			Execute()
+		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
+
+	if err != nil {
+		t.Fatalf("Could not list sent logs: %v", err)
+	}
+
+	// Sort works correctly
+
+	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+		FilterQuery(suffix).
+		FilterFrom(from).
+		FilterTo(to).
+		Sort(datadog.LOGSSORT_TIMESTAMP_ASCENDING).
+		Execute()
+	if err != nil {
+		t.Fatalf("Could not list logs: %v", err)
+	}
+	assert.Equal(200, httpResp.StatusCode)
+	assert.Equal(2, len(response.GetData()))
+	attributes := response.GetData()[0].GetAttributes()
+	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
+
+	attributes = response.GetData()[1].GetAttributes()
+	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
+
+	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+		FilterQuery(suffix).
+		FilterFrom(from).
+		FilterTo(to).
+		Sort(datadog.LOGSSORT_TIMESTAMP_DESCENDING).
+		Execute()
+	if err != nil {
+		t.Fatalf("Could not list logs: %v", err)
+	}
+	assert.Equal(200, httpResp.StatusCode)
+	assert.Equal(2, len(response.GetData()))
+	attributes = response.GetData()[0].GetAttributes()
+	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
+
+	attributes = response.GetData()[1].GetAttributes()
+	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
+
+	// Paging
+	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+		FilterQuery(suffix).
+		FilterFrom(from).
+		FilterTo(to).
+		PageLimit(1).
+		Execute()
+	if err != nil {
+		t.Fatalf("Could not list logs: %v", err)
+	}
+
+	assert.Equal(200, httpResp.StatusCode)
+	assert.Equal(1, len(response.GetData()))
+	respMeta := response.GetMeta()
+	respPage := respMeta.GetPage()
+	cursor := respPage.GetAfter()
+	firstId := response.GetData()[0].GetId()
+
+	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+		FilterQuery(suffix).
+		FilterFrom(from).
+		FilterTo(to).
+		PageLimit(1).
+		PageCursor(cursor).
+		Execute()
+	if err != nil {
+		t.Fatalf("Could not list logs: %v", err)
+	}
+	assert.Equal(200, httpResp.StatusCode)
+	assert.Equal(1, len(response.GetData()))
+	secondId := response.GetData()[0].GetId()
+
+	assert.NotEqual(firstId, secondId)
+}
+
 func sendLogs(ctx context.Context, t *testing.T, client *datadog.APIClient, suffix string) error {
 	now := tests.ClockFromContext(ctx).Now()
 	source := fmt.Sprintf("go-client-test-%s", suffix)
