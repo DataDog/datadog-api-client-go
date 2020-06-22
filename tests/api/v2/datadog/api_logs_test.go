@@ -11,16 +11,28 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
+func enableLogsUnstableOperations(ctx context.Context) func() {
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogs", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogsGet", true)
+	return func() { disableLogsUnstableOperations(ctx) }
+}
+
+func disableLogsUnstableOperations(ctx context.Context) {
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogs", false)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogsGet", false)
+}
+
 func TestLogsList(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
-
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	enableLogsUnstableOperations(ctx)
+	client := Client(ctx)
 
 	now := tests.ClockFromContext(ctx).Now()
 	suffix := fmt.Sprintf("post-%v", now.Unix())
 
-	err := sendLogs(ctx, t, suffix)
+	err := sendLogs(ctx, t, client, suffix)
 	if err != nil {
 		t.Fatalf("Error sending logs: %v", err)
 	}
@@ -28,17 +40,17 @@ func TestLogsList(t *testing.T) {
 	var response datadog.LogsListResponse
 	var httpResp *http.Response
 
-	filter := datadog.NewLogsListPayloadFilter()
+	filter := datadog.NewLogsListRequestFilter()
 	filter.SetQuery(suffix)
 	filter.SetFrom(now.Add(time.Duration(-2)*time.Hour))
 	filter.SetTo(now.Add(time.Duration(2)*time.Hour))
 
-	request := datadog.NewLogsListPayloadWithDefaults()
+	request := datadog.NewLogsListRequestWithDefaults()
 	request.SetFilter(*filter)
 
 	// Make sure both logs are indexed
 	err = tests.Retry(time.Duration(5) * time.Second, 30, func() bool {
-		response, httpResp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(*request).Execute()
+		response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
 		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
 	})
 
@@ -49,37 +61,37 @@ func TestLogsList(t *testing.T) {
 	// Sort works correctly
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_ASCENDING)
 
-	response, httpResp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(*request).Execute()
+	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list logs: %v", err)
 	}
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
-	content := response.GetData()[0].GetContent()
-	assert.Equal("test-log-list-1 " + suffix, content.GetMessage())
+	attributes := response.GetData()[0].GetAttributes()
+	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
 
-	content = response.GetData()[1].GetContent()
-	assert.Equal("test-log-list-2 " + suffix, content.GetMessage())
+	attributes = response.GetData()[1].GetAttributes()
+	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
 
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_DESCENDING)
 
-	response, httpResp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(*request).Execute()
+	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list logs: %v", err)
 	}
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
-	content = response.GetData()[0].GetContent()
-	assert.Equal("test-log-list-2 " + suffix, content.GetMessage())
+	attributes = response.GetData()[0].GetAttributes()
+	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
 
-	content = response.GetData()[1].GetContent()
-	assert.Equal("test-log-list-1 " + suffix, content.GetMessage())
+	attributes = response.GetData()[1].GetAttributes()
+	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
 
 	// Paging
-	page := datadog.NewLogsListPayloadPage()
+	page := datadog.NewLogsListRequestPage()
 	page.SetLimit(1)
 	request.SetPage(*page)
-	response, httpResp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(*request).Execute()
+	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list logs: %v", err)
 	}
@@ -92,7 +104,7 @@ func TestLogsList(t *testing.T) {
 	firstId := response.GetData()[0].GetId()
 
 	request.Page.SetCursor(cursor)
-	response, httpResp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(*request).Execute()
+	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list logs: %v", err)
 	}
@@ -103,7 +115,7 @@ func TestLogsList(t *testing.T) {
 	assert.NotEqual(firstId, secondId)
 }
 
-func sendLogs(ctx context.Context, t *testing.T, suffix string) error {
+func sendLogs(ctx context.Context, t *testing.T, client *datadog.APIClient, suffix string) error {
 	now := tests.ClockFromContext(ctx).Now()
 	source := fmt.Sprintf("go-client-test-%s", suffix)
 	firstMessage := fmt.Sprintf("test-log-list-1 %s", suffix)
@@ -114,7 +126,14 @@ func sendLogs(ctx context.Context, t *testing.T, suffix string) error {
 		`{"ddsource": "%s", "ddtags": "go,test,list", "hostname": "%s", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
 		source, hostname, (now.Unix()-1000)*1000, firstMessage,
 	)
-	httpresp, respBody, err := SendRequest(ctx, "POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
+
+	domain, err := GetTestDomain(ctx, client)
+	if err != nil {
+		return fmt.Errorf("parsing domain: %v", err)
+	}
+	intakeUrl := fmt.Sprintf("https://http-intake.logs.%s/v1/input", domain)
+
+	httpresp, respBody, err := SendRequest(ctx, "POST", intakeUrl, []byte(httpLog))
 	if err != nil {
 		return fmt.Errorf("response %s: %v", respBody, err)
 	}
@@ -126,7 +145,8 @@ func sendLogs(ctx context.Context, t *testing.T, suffix string) error {
 		`{"ddsource": "%s", "ddtags": "go,test,list", "hostname": "%s", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
 		source, hostname, (now.Unix()-1)*1000, secondMessage,
 	)
-	httpresp, respBody, err = SendRequest(ctx, "POST", "https://http-intake.logs.datadoghq.com/v1/input", []byte(httpLog))
+
+	httpresp, respBody, err = SendRequest(ctx, "POST", intakeUrl, []byte(httpLog))
 	if err != nil {
 		return fmt.Errorf("error creating log: Response %s: %v", respBody, err)
 	}
@@ -134,5 +154,5 @@ func sendLogs(ctx context.Context, t *testing.T, suffix string) error {
 		return fmt.Errorf("unable to send log: Status=%d Response=%v", httpresp.StatusCode, respBody)
 	}
 
-	return  nil
+	return nil
 }

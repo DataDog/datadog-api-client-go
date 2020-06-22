@@ -151,9 +151,6 @@ func SendRequest(ctx context.Context, method, url string, payload []byte) (*http
 	if err != nil {
 		return nil, []byte{}, fmt.Errorf("Failed to create request for Datadog API: %s", err.Error())
 	}
-
-	fmt.Printf("%v\n", ctx.Value(datadog.ContextAPIKeys))
-
 	keys := ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey)
 	request.Header.Add("DD-API-KEY", keys["apiKeyAuth"].Key)
 	request.Header.Add("DD-APPLICATION-KEY", keys["appKeyAuth"].Key)

@@ -10,9 +10,11 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"golang.org/x/net/publicsuffix"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"testing"
@@ -132,6 +134,24 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 		r.Stop()
 		finish()
 	}
+}
+
+func GetTestDomain(ctx context.Context, client *datadog.APIClient) (string, error) {
+	baseUrl, err := client.GetConfig().ServerURLWithContext(ctx, "")
+	if err != nil {
+		return "", fmt.Errorf("could not generate base url: %v", err)
+	}
+
+	parsedUrl, err := url.Parse(baseUrl)
+	if err != nil {
+		return "", fmt.Errorf("could not parse base url: %v", err)
+	}
+
+	host, err := publicsuffix.EffectiveTLDPlusOne(parsedUrl.Host)
+	if err != nil {
+		return "", fmt.Errorf("could not parse TLD+1: %v", err)
+	}
+	return host, nil
 }
 
 // SendRequest sends request to endpoints without specification.
