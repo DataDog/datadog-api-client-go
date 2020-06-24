@@ -26,13 +26,13 @@ func TestLogsList(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	enableLogsUnstableOperations(ctx)
+	defer enableLogsUnstableOperations(ctx)()
 	client := Client(ctx)
 
 	now := tests.ClockFromContext(ctx).Now()
-	suffix := fmt.Sprintf("post-%v", now.Unix())
+	suffix := tests.UniqueEntityName(ctx, t)
 
-	err := sendLogs(ctx, t, client, suffix)
+	err := sendLogs(ctx, t, client, *suffix)
 	if err != nil {
 		t.Fatalf("Error sending logs: %v", err)
 	}
@@ -41,7 +41,7 @@ func TestLogsList(t *testing.T) {
 	var httpResp *http.Response
 
 	filter := datadog.NewLogsListRequestFilter()
-	filter.SetQuery(suffix)
+	filter.SetQuery(*suffix)
 	filter.SetFrom(now.Add(time.Duration(-2)*time.Hour))
 	filter.SetTo(now.Add(time.Duration(2)*time.Hour))
 
@@ -68,10 +68,10 @@ func TestLogsList(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes := response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
 
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_DESCENDING)
 
@@ -82,10 +82,10 @@ func TestLogsList(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes = response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
 
 	// Paging
 	page := datadog.NewLogsListRequestPage()
@@ -119,13 +119,13 @@ func TestLogsListGet(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	enableLogsUnstableOperations(ctx)
+	defer enableLogsUnstableOperations(ctx)()
 	client := Client(ctx)
 
 	now := tests.ClockFromContext(ctx).Now()
-	suffix := fmt.Sprintf("get-%v", now.Unix())
+	suffix := tests.UniqueEntityName(ctx, t)
 
-	err := sendLogs(ctx, t, client, suffix)
+	err := sendLogs(ctx, t, client, *suffix)
 	if err != nil {
 		t.Fatalf("Error sending logs: %v", err)
 	}
@@ -139,7 +139,7 @@ func TestLogsListGet(t *testing.T) {
 	// Make sure both logs are indexed
 	err = tests.Retry(time.Duration(5) * time.Second, 30, func() bool {
 		response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-			FilterQuery(suffix).
+			FilterQuery(*suffix).
 			FilterFrom(from).
 			FilterTo(to).
 			Execute()
@@ -153,7 +153,7 @@ func TestLogsListGet(t *testing.T) {
 	// Sort works correctly
 
 	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(suffix).
+		FilterQuery(*suffix).
 		FilterFrom(from).
 		FilterTo(to).
 		Sort(datadog.LOGSSORT_TIMESTAMP_ASCENDING).
@@ -164,13 +164,13 @@ func TestLogsListGet(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes := response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
 
 	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(suffix).
+		FilterQuery(*suffix).
 		FilterFrom(from).
 		FilterTo(to).
 		Sort(datadog.LOGSSORT_TIMESTAMP_DESCENDING).
@@ -181,14 +181,14 @@ func TestLogsListGet(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes = response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-2 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-1 " + suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
 
 	// Paging
 	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(suffix).
+		FilterQuery(*suffix).
 		FilterFrom(from).
 		FilterTo(to).
 		PageLimit(1).
@@ -205,7 +205,7 @@ func TestLogsListGet(t *testing.T) {
 	firstId := response.GetData()[0].GetId()
 
 	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(suffix).
+		FilterQuery(*suffix).
 		FilterFrom(from).
 		FilterTo(to).
 		PageLimit(1).
