@@ -22,24 +22,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
-var targetTextHTML interface{} = "text/html"
-var target2000 interface{} = 2000
-
 func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+	targetTextHTML := datadog.NewSyntheticsAssertionStringTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
+	targetTextHTML.Property = datadog.PtrString("content-type")
+	targetTextHTML.Target = datadog.PtrString("text/html")
+
+	target2000 := datadog.NewSyntheticsAssertionIntegerTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
+	target2000.Target = datadog.PtrInt32(2000)
+
 	return datadog.SyntheticsTestDetails{
 		Config: &datadog.SyntheticsTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
-				{
-					Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
-					Property: datadog.PtrString("content-type"),
-					Target:   &targetTextHTML,
-					Type:     datadog.SYNTHETICSASSERTIONTYPE_HEADER,
-				},
-				{
-					Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-					Target:   &target2000,
-					Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
-				},
+				datadog.SyntheticsAssertionStringTargetAsSyntheticsAssertion(targetTextHTML),
+				datadog.SyntheticsAssertionIntegerTargetAsSyntheticsAssertion(target2000),
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Headers: &map[string]string{"testingGoClient": "true"},
