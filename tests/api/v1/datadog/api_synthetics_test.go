@@ -22,13 +22,16 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
-func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
-	targetTextHTML := datadog.NewSyntheticsAssertionStringTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
-	targetTextHTML.Property = datadog.PtrString("content-type")
-	targetTextHTML.Target = datadog.PtrString("text/html")
+var targetTextHTML interface{} = "text/html"
+var target2000 interface{} = 2000
 
-	target2000 := datadog.NewSyntheticsAssertionIntegerTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
-	target2000.Target = datadog.PtrInt32(2000)
+func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
+	assertionTextHTML.Property = datadog.PtrString("content-type")
+	assertionTextHTML.Target = &targetTextHTML
+
+	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
+	assertion2000.Target = &target2000
 
 	targetJSONPath := datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SYNTHETICSASSERTIONOPERATOR_VALIDATES_JSON_PATH, datadog.SYNTHETICSASSERTIONTYPE_BODY)
 	targetJSONPath.SetTarget(
@@ -42,8 +45,8 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 	return datadog.SyntheticsTestDetails{
 		Config: &datadog.SyntheticsTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertionStringTargetAsSyntheticsAssertion(targetTextHTML),
-				datadog.SyntheticsAssertionIntegerTargetAsSyntheticsAssertion(target2000),
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
 			},
 			Request: datadog.SyntheticsTestRequest{
