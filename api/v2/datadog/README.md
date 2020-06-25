@@ -77,6 +77,14 @@ Class | Method | HTTP request | Description
 *DashboardListsApi* | [**DeleteDashboardListItems**](docs/DashboardListsApi.md#deletedashboardlistitems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
 *DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
 *DashboardListsApi* | [**UpdateDashboardListItems**](docs/DashboardListsApi.md#updatedashboardlistitems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update items of a dashboard list
+*LogsArchivesApi* | [**AddReadRoleToArchive**](docs/LogsArchivesApi.md#addreadroletoarchive) | **Post** /api/v2/logs/config/archives/{archive_id}/readers | Grant role to an archive
+*LogsArchivesApi* | [**CreateLogsArchive**](docs/LogsArchivesApi.md#createlogsarchive) | **Post** /api/v2/logs/config/archives | Create an archive
+*LogsArchivesApi* | [**DeleteLogsArchive**](docs/LogsArchivesApi.md#deletelogsarchive) | **Delete** /api/v2/logs/config/archives/{archive_id} | Delete an archive
+*LogsArchivesApi* | [**GetLogsArchive**](docs/LogsArchivesApi.md#getlogsarchive) | **Get** /api/v2/logs/config/archives/{archive_id} | Get an archive
+*LogsArchivesApi* | [**ListArchiveReadRoles**](docs/LogsArchivesApi.md#listarchivereadroles) | **Get** /api/v2/logs/config/archives/{archive_id}/readers | List read roles for an archive
+*LogsArchivesApi* | [**ListLogsArchives**](docs/LogsArchivesApi.md#listlogsarchives) | **Get** /api/v2/logs/config/archives | Get all archives
+*LogsArchivesApi* | [**RemoveRoleFromArchive**](docs/LogsArchivesApi.md#removerolefromarchive) | **Delete** /api/v2/logs/config/archives/{archive_id}/readers | Revoke role from an archive
+*LogsArchivesApi* | [**UpdateLogsArchive**](docs/LogsArchivesApi.md#updatelogsarchive) | **Put** /api/v2/logs/config/archives/{archive_id} | Update an archive
 *RolesApi* | [**AddPermissionToRole**](docs/RolesApi.md#addpermissiontorole) | **Post** /api/v2/roles/{role_id}/permissions | Grant permission to a role
 *RolesApi* | [**AddUserToRole**](docs/RolesApi.md#addusertorole) | **Post** /api/v2/roles/{role_id}/users | Add a user to a role
 *RolesApi* | [**CreateRole**](docs/RolesApi.md#createrole) | **Post** /api/v2/roles | Create role
@@ -109,11 +117,36 @@ Class | Method | HTTP request | Description
 
  - [APIErrorResponse](docs/APIErrorResponse.md)
  - [Creator](docs/Creator.md)
+ - [DashboardListAddItemsRequest](docs/DashboardListAddItemsRequest.md)
  - [DashboardListAddItemsResponse](docs/DashboardListAddItemsResponse.md)
+ - [DashboardListDeleteItemsRequest](docs/DashboardListDeleteItemsRequest.md)
  - [DashboardListDeleteItemsResponse](docs/DashboardListDeleteItemsResponse.md)
  - [DashboardListItem](docs/DashboardListItem.md)
+ - [DashboardListItemRequest](docs/DashboardListItemRequest.md)
+ - [DashboardListItemResponse](docs/DashboardListItemResponse.md)
  - [DashboardListItems](docs/DashboardListItems.md)
+ - [DashboardListUpdateItemsRequest](docs/DashboardListUpdateItemsRequest.md)
+ - [DashboardListUpdateItemsResponse](docs/DashboardListUpdateItemsResponse.md)
  - [DashboardType](docs/DashboardType.md)
+ - [LogsArchive](docs/LogsArchive.md)
+ - [LogsArchiveAttributes](docs/LogsArchiveAttributes.md)
+ - [LogsArchiveCreateRequest](docs/LogsArchiveCreateRequest.md)
+ - [LogsArchiveCreateRequestAttributes](docs/LogsArchiveCreateRequestAttributes.md)
+ - [LogsArchiveCreateRequestDefinition](docs/LogsArchiveCreateRequestDefinition.md)
+ - [LogsArchiveCreateRequestDestination](docs/LogsArchiveCreateRequestDestination.md)
+ - [LogsArchiveDefinition](docs/LogsArchiveDefinition.md)
+ - [LogsArchiveDestination](docs/LogsArchiveDestination.md)
+ - [LogsArchiveDestinationAzure](docs/LogsArchiveDestinationAzure.md)
+ - [LogsArchiveDestinationAzureType](docs/LogsArchiveDestinationAzureType.md)
+ - [LogsArchiveDestinationGCS](docs/LogsArchiveDestinationGCS.md)
+ - [LogsArchiveDestinationGCSType](docs/LogsArchiveDestinationGCSType.md)
+ - [LogsArchiveDestinationS3](docs/LogsArchiveDestinationS3.md)
+ - [LogsArchiveDestinationS3Type](docs/LogsArchiveDestinationS3Type.md)
+ - [LogsArchiveIntegrationAzure](docs/LogsArchiveIntegrationAzure.md)
+ - [LogsArchiveIntegrationGCS](docs/LogsArchiveIntegrationGCS.md)
+ - [LogsArchiveIntegrationS3](docs/LogsArchiveIntegrationS3.md)
+ - [LogsArchiveState](docs/LogsArchiveState.md)
+ - [LogsArchives](docs/LogsArchives.md)
  - [Organization](docs/Organization.md)
  - [OrganizationAttributes](docs/OrganizationAttributes.md)
  - [OrganizationsType](docs/OrganizationsType.md)
@@ -129,6 +162,7 @@ Class | Method | HTTP request | Description
  - [RelationshipToPermission](docs/RelationshipToPermission.md)
  - [RelationshipToPermissionData](docs/RelationshipToPermissionData.md)
  - [RelationshipToPermissions](docs/RelationshipToPermissions.md)
+ - [RelationshipToRole](docs/RelationshipToRole.md)
  - [RelationshipToRoleData](docs/RelationshipToRoleData.md)
  - [RelationshipToRoles](docs/RelationshipToRoles.md)
  - [RelationshipToUser](docs/RelationshipToUser.md)
@@ -139,13 +173,17 @@ Class | Method | HTTP request | Description
  - [RoleAttributes](docs/RoleAttributes.md)
  - [RoleCreateAttributes](docs/RoleCreateAttributes.md)
  - [RoleCreateData](docs/RoleCreateData.md)
- - [RoleCreatePayload](docs/RoleCreatePayload.md)
+ - [RoleCreateRequest](docs/RoleCreateRequest.md)
+ - [RoleCreateResponse](docs/RoleCreateResponse.md)
+ - [RoleCreateResponseData](docs/RoleCreateResponseData.md)
  - [RoleRelationships](docs/RoleRelationships.md)
  - [RoleResponse](docs/RoleResponse.md)
  - [RoleResponseRelationships](docs/RoleResponseRelationships.md)
  - [RoleUpdateAttributes](docs/RoleUpdateAttributes.md)
  - [RoleUpdateData](docs/RoleUpdateData.md)
- - [RoleUpdatePayload](docs/RoleUpdatePayload.md)
+ - [RoleUpdateRequest](docs/RoleUpdateRequest.md)
+ - [RoleUpdateResponse](docs/RoleUpdateResponse.md)
+ - [RoleUpdateResponseData](docs/RoleUpdateResponseData.md)
  - [RolesResponse](docs/RolesResponse.md)
  - [RolesSort](docs/RolesSort.md)
  - [RolesType](docs/RolesType.md)
@@ -164,13 +202,13 @@ Class | Method | HTTP request | Description
  - [UserAttributes](docs/UserAttributes.md)
  - [UserCreateAttributes](docs/UserCreateAttributes.md)
  - [UserCreateData](docs/UserCreateData.md)
- - [UserCreatePayload](docs/UserCreatePayload.md)
+ - [UserCreateRequest](docs/UserCreateRequest.md)
  - [UserInvitationData](docs/UserInvitationData.md)
  - [UserInvitationDataAttributes](docs/UserInvitationDataAttributes.md)
- - [UserInvitationPayload](docs/UserInvitationPayload.md)
  - [UserInvitationRelationships](docs/UserInvitationRelationships.md)
  - [UserInvitationResponse](docs/UserInvitationResponse.md)
  - [UserInvitationResponseData](docs/UserInvitationResponseData.md)
+ - [UserInvitationsRequest](docs/UserInvitationsRequest.md)
  - [UserInvitationsResponse](docs/UserInvitationsResponse.md)
  - [UserInvitationsType](docs/UserInvitationsType.md)
  - [UserRelationships](docs/UserRelationships.md)
@@ -179,7 +217,7 @@ Class | Method | HTTP request | Description
  - [UserResponseRelationships](docs/UserResponseRelationships.md)
  - [UserUpdateAttributes](docs/UserUpdateAttributes.md)
  - [UserUpdateData](docs/UserUpdateData.md)
- - [UserUpdatePayload](docs/UserUpdatePayload.md)
+ - [UserUpdateRequest](docs/UserUpdateRequest.md)
  - [UsersResponse](docs/UsersResponse.md)
  - [UsersType](docs/UsersType.md)
 

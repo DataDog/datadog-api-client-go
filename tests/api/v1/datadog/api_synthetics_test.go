@@ -119,9 +119,6 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
 	synt.SetName(updatedName)
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
-	synt.CreatedAt = nil
-	synt.CreatedBy = nil
-	synt.ModifiedAt = nil
 	synt.MonitorId = nil
 	synt.PublicId = nil
 	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
@@ -213,9 +210,6 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	updatedName := fmt.Sprintf("%s-updated", testSyntheticsBrowser.GetName())
 	synt.SetName(updatedName)
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
-	synt.CreatedAt = nil
-	synt.CreatedBy = nil
-	synt.ModifiedAt = nil
 	synt.MonitorId = nil
 	synt.PublicId = nil
 	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
@@ -778,4 +772,17 @@ func deleteSyntheticsTestIfExists(ctx context.Context, testID string) {
 		log.Printf("Deleting synthetics test %s failed with %v, Another test may have already deleted this entity: %v",
 			testID, httpresp.StatusCode, err)
 	}
+}
+
+func TestSyntheticsListLocations(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	locs, httpresp, err := Client(ctx).SyntheticsApi.ListLocations(ctx).Execute()
+	if err != nil {
+		t.Fatalf("Error getting all Synthetics locations: Response %s: %v", err.Error(), err)
+	}
+	assert.Equal(httpresp.StatusCode, 200)
+	assert.Greater(len(locs.GetLocations()), 0)
 }

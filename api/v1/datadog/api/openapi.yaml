@@ -107,6 +107,8 @@ tags:
     - For a single log request, the API truncates the log at 256KB and returns a 2xx.
     - For a multi-logs request, the API processes all logs, truncates only logs larger than 256KB, and returns a 2xx.
 
+    We encourage you to send your logs compressed.
+
     **Note**: If you are in the Datadog EU site (`app.datadoghq.eu`), the HTTP log endpoint is `http-intake.logs.datadoghq.eu`.
   name: Logs
 - description: |-
@@ -1463,7 +1465,8 @@ paths:
     get:
       description: |-
         This endpoint allows searching for hosts by name, alias, or tag.
-        Hosts live within the past 3 hours are included.
+        Hosts live within the past 3 hours are included by default.
+        Retention is 7 days.
         Results are paginated with a max of 1000 results at a time.
       operationId: ListHosts
       parameters:
@@ -4270,6 +4273,21 @@ paths:
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+  /api/v1/synthetics/locations:
+    get:
+      description: Get the list of public and private locations available for Synthetics
+        tests. No arguments required.
+      operationId: ListLocations
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsLocations'
+          description: OK
+      summary: Get all locations (public and private)
+      tags:
+      - Synthetics
   /api/v1/synthetics/tests:
     get:
       description: Get the list of all Synthetic tests (can be filtered by type).
@@ -4310,16 +4328,6 @@ paths:
     post:
       description: Create a Synthetic test.
       operationId: CreateTest
-      parameters:
-      - description: Public ID of the test to clone, undefined if the test is newly
-          created.
-        explode: true
-        in: query
-        name: from_test_id
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -4358,6 +4366,44 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+  /api/v1/synthetics/tests/browser/{public_id}:
+    get:
+      description: Get the detailed configuration (including steps) associated with
+        a Synthetics browser test.
+      operationId: GetBrowserTest
+      parameters:
+      - description: The public ID of the test to get details from.
+        explode: false
+        in: path
+        name: public_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsTestDetails'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: |-
+            - Synthetic is not activated for the user
+            - Test is not owned by the user
+      summary: Get a test configuration (browser)
+      tags:
+      - Synthetics
   /api/v1/synthetics/tests/browser/{public_id}/results:
     get:
       description: Get the last 50 test results summaries for a given Synthetics Browser
@@ -4551,7 +4597,7 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
-      summary: Get a test configuration
+      summary: Get a test configuration (API)
       tags:
       - Synthetics
     put:
@@ -6688,10 +6734,7 @@ components:
     CheckCanDeleteMonitorResponse:
       description: Response of monitor IDs that can or can't be safely deleted.
       example:
-        data:
-          ok:
-          - 0
-          - 0
+        data: '{}'
         errors:
           key:
           - errors
@@ -6824,18 +6867,11 @@ components:
         - notify_list
         title: title
         widgets:
-        - layout:
-            width: 0
-            x: 0
-            y: 0
-            height: 0
-          id: 0
-        - layout:
-            width: 0
-            x: 0
-            y: 0
-            height: 0
-          id: 0
+        - definition:
+            requests:
+              fill:
+                q: system.cpu.user
+            type: hostmap
         author_handle: test@datadoghq.com
         template_variables:
         - default: my-host
@@ -6911,6 +6947,12 @@ components:
           type: string
         widgets:
           description: List of widgets to display on the dashboard.
+          example:
+          - definition:
+              requests:
+                fill:
+                  q: system.cpu.user
+              type: hostmap
           items:
             $ref: '#/components/schemas/Widget'
           type: array
@@ -7117,6 +7159,8 @@ components:
 
             See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
              to learn how to build the `REQUEST_SCHEMA`.
+          example:
+          - q: host:X tags:Y
           items:
             $ref: '#/components/schemas/DistributionWidgetRequest'
           maxItems: 1
@@ -7813,6 +7857,12 @@ components:
           $ref: '#/components/schemas/GroupWidgetDefinitionType'
         widgets:
           description: List of widget groups.
+          example:
+          - definition:
+              requests:
+                fill:
+                  q: system.cpu.user
+              type: hostmap
           items:
             $ref: '#/components/schemas/Widget'
           type: array
@@ -7863,6 +7913,8 @@ components:
           $ref: '#/components/schemas/WidgetLegendSize'
         requests:
           description: List of widget types.
+          example:
+          - q: jvm.heap.memory
           items:
             $ref: '#/components/schemas/HeatMapWidgetRequest'
           maxItems: 1
@@ -8585,7 +8637,7 @@ components:
           message: Host connected to remote
           tags:
           - team:A
-          timestamp: 2019-01-02T09:42:36.32Z
+          timestamp: 2020-05-26T13:36:14Z
       properties:
         content:
           $ref: '#/components/schemas/Log_content'
@@ -8839,6 +8891,7 @@ components:
           description: |-
             Array of filters to match or not a log and their
             corresponding `name`to assign a custom value to the log.
+          example: []
           items:
             $ref: '#/components/schemas/LogsCategoryProcessor_categories'
           type: array
@@ -9215,16 +9268,17 @@ components:
       example:
         query: service:web* AND @http.status_code:[200 TO 299]
         limit: 80
-        index: index
+        index: retention-3,retention-15
         time:
           timezone: timezone
           from: 2020-02-02T02:02:02Z
-          to: 2020-02-20T20:20:20Z
+          to: 2020-02-02T20:20:20Z
         startAt: startAt
       properties:
         index:
           description: For multi-index organizations, the log index in which the request
-            is performed.
+            is performed. Default to '*' (all indexes).
+          example: retention-3,retention-15
           type: string
         limit:
           description: Number of logs return in the response.
@@ -9267,7 +9321,7 @@ components:
             message: Host connected to remote
             tags:
             - team:A
-            timestamp: 2019-01-02T09:42:36.32Z
+            timestamp: 2020-05-26T13:36:14Z
         - id: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
           content:
             service: agent
@@ -9278,7 +9332,7 @@ components:
             message: Host connected to remote
             tags:
             - team:A
-            timestamp: 2019-01-02T09:42:36.32Z
+            timestamp: 2020-05-26T13:36:14Z
         status: status
       properties:
         logs:
@@ -9316,6 +9370,7 @@ components:
           description: |-
             Mapping table of values for the source attribute and their associated target attribute values,
             formatted as `["source_key1,target_value1", "source_key2,target_value2"]`
+          example: []
           items:
             description: Mapping between a source and a value, it should follow the
               format `"<SOURCE>,<VALUE>"`.
@@ -9617,6 +9672,7 @@ components:
           type: string
         sources:
           description: Array of source attributes.
+          example: []
           items:
             description: Attribute used as a source to define the log associated status.
             type: string
@@ -10122,11 +10178,23 @@ components:
       - laptop_large
       - tablet
       - mobile_small
+      - chrome.laptop_large
+      - chrome.tablet
+      - chrome.mobile_small
+      - firefox.laptop_large
+      - firefox.tablet
+      - firefox.mobile_small
       type: string
       x-enum-varnames:
       - LAPTOP_LARGE
       - TABLET
       - MOBILE_SMALL
+      - CHROME_LAPTOP_LARGE
+      - CHROME_TABLET
+      - CHROME_MOBILE_SMALL
+      - FIREFOX_LAPTOP_LARGE
+      - FIREFOX_TABLET
+      - FIREFOX_MOBILE_SMALL
     MonitorOptions:
       description: List of options associated with your monitor.
       example:
@@ -10387,7 +10455,7 @@ components:
             triggered.
           type: boolean
         sort:
-          $ref: '#/components/schemas/WidgetSort'
+          $ref: '#/components/schemas/WidgetMonitorSummarySort'
         start:
           deprecated: true
           description: The start of the list. Typically 0.
@@ -10674,7 +10742,7 @@ components:
           saml_strict_mode:
             enabled: false
           saml_autocreate_access_role: st
-        created: 2019-09-26 17:28:28
+        created: 2019-09-26T17:28:28Z
         name: New child org
         description: some description
         subscription:
@@ -10687,7 +10755,7 @@ components:
           $ref: '#/components/schemas/OrganizationBilling'
         created:
           description: Date of the organization creation.
-          example: 2019-09-26 17:28:28
+          example: 2019-09-26T17:28:28Z
           readOnly: true
           type: string
         description:
@@ -10767,7 +10835,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -10819,7 +10887,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -10845,7 +10913,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -10882,7 +10950,7 @@ components:
             saml_strict_mode:
               enabled: false
             saml_autocreate_access_role: st
-          created: 2019-09-26 17:28:28
+          created: 2019-09-26T17:28:28Z
           name: New child org
           description: some description
           subscription:
@@ -11148,45 +11216,28 @@ components:
       description: A `metric` based SLO history response.
       example:
         res_type: res_type
-        resp_version: 4
-        times:
-        - 7.386281948385884
-        - 7.386281948385884
+        resp_version: 0
+        times: []
         query: query
-        interval: 2
+        interval: 0
         message: message
         denominator:
-          metadata:
-            unit: unit
-            expression: expression
-            metric: metric
-            scope: scope
-            query_index: 7
-            aggr: aggr
-          values:
-          - 3.616076749251911
-          - 3.616076749251911
-          count: 2
-          sum: 9.301444243932576
+          metadata: '{}'
+          values: []
+          count: 0
+          sum: 0.0
         numerator:
-          metadata:
-            unit: unit
-            expression: expression
-            metric: metric
-            scope: scope
-            query_index: 7
-            aggr: aggr
-          values:
-          - 3.616076749251911
-          - 3.616076749251911
-          count: 2
-          sum: 9.301444243932576
+          metadata: '{}'
+          values: []
+          count: 0
+          sum: 0.0
       properties:
         denominator:
           $ref: '#/components/schemas/SLOHistoryMetricsSeries'
         interval:
           description: The aggregated query interval for the series data. It's implicit
             based on the query time window.
+          example: 0
           format: int64
           type: integer
         message:
@@ -11204,10 +11255,12 @@ components:
         resp_version:
           description: The series response version type. This mimics `batch_query`
             response type.
+          example: 0
           format: int64
           type: integer
         times:
           description: An array of query timestamps in EPOCH milliseconds
+          example: []
           items:
             description: A timestamp in EPOCH milliseconds.
             format: double
@@ -11227,31 +11280,26 @@ components:
         A representation of `metric` based SLO time series for the provided queries.
         This is the same response type from `batch_query` endpoint.
       example:
-        metadata:
-          unit: unit
-          expression: expression
-          metric: metric
-          scope: scope
-          query_index: 7
-          aggr: aggr
-        values:
-        - 3.616076749251911
-        - 3.616076749251911
-        count: 2
-        sum: 9.301444243932576
+        metadata: '{}'
+        values: []
+        count: 0
+        sum: 0.0
       properties:
         count:
           description: Count of submitted metrics.
+          example: 0
           format: int64
           type: integer
         metadata:
           $ref: '#/components/schemas/SLOHistoryMetricsSeries_metadata'
         sum:
           description: Total sum of the query.
+          example: 0.0
           format: double
           type: number
         values:
           description: The query values for each metric.
+          example: []
           items:
             description: A metric name and its value.
             format: double
@@ -11271,44 +11319,26 @@ components:
             key:
               warning_display: warning_display
               target_display: "99.9"
-              warning: 5.637376656633329
-              target: 5.962133916683182
-          to_ts: 1
+              warning: 2.3021358869347655
+              target: 0.0
+          to_ts: 7
           series:
             res_type: res_type
-            resp_version: 4
-            times:
-            - 7.386281948385884
-            - 7.386281948385884
+            resp_version: 0
+            times: []
             query: query
-            interval: 2
+            interval: 0
             message: message
             denominator:
-              metadata:
-                unit: unit
-                expression: expression
-                metric: metric
-                scope: scope
-                query_index: 7
-                aggr: aggr
-              values:
-              - 3.616076749251911
-              - 3.616076749251911
-              count: 2
-              sum: 9.301444243932576
+              metadata: '{}'
+              values: []
+              count: 0
+              sum: 0.0
             numerator:
-              metadata:
-                unit: unit
-                expression: expression
-                metric: metric
-                scope: scope
-                query_index: 7
-                aggr: aggr
-              values:
-              - 3.616076749251911
-              - 3.616076749251911
-              count: 2
-              sum: 9.301444243932576
+              metadata: '{}'
+              values: []
+              count: 0
+              sum: 0.0
           type_id: 0
           from_ts: 0
           groups:
@@ -11444,15 +11474,7 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds:
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
+          thresholds: []
           monitor_ids:
           - 1
           - 1
@@ -11477,15 +11499,7 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds:
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
+          thresholds: []
           monitor_ids:
           - 1
           - 1
@@ -11533,15 +11547,7 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds:
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-          - warning_display: warning_display
-            target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
+          thresholds: []
           monitor_ids:
           - 1
           - 1
@@ -11572,13 +11578,14 @@ components:
       example:
         warning_display: warning_display
         target_display: "99.9"
-        warning: 5.637376656633329
-        target: 5.962133916683182
+        warning: 2.3021358869347655
+        target: 0.0
       properties:
         target:
           description: |-
             The target value for the service level indicator within the corresponding
             timeframe.
+          example: 0.0
           format: double
           type: number
         target_display:
@@ -11769,15 +11776,7 @@ components:
         tags:
         - env:prod
         - app:core
-        thresholds:
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
+        thresholds: []
         monitor_ids:
         - 1
         - 1
@@ -11877,6 +11876,7 @@ components:
           description: |-
             The thresholds (timeframes and associated targets) for this service level
             objective object.
+          example: []
           items:
             $ref: '#/components/schemas/SLOThreshold'
           type: array
@@ -11887,7 +11887,10 @@ components:
       - thresholds
       - type
     ServiceLevelObjectiveQuery:
-      description: A metric SLI query. **Required if type is `metric`**.
+      description: |-
+        A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
+        to be used because this will sum up all request counts instead of averaging them, or taking the max or
+        min of all of those requests.
       example:
         denominator: denominator
         numerator: numerator
@@ -11911,15 +11914,7 @@ components:
           name: name
           handle: handle
           email: email
-        thresholds:
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
-        - warning_display: warning_display
-          target_display: "99.9"
-          warning: 5.637376656633329
-          target: 5.962133916683182
+        thresholds: []
         query:
           denominator: denominator
           numerator: numerator
@@ -12015,6 +12010,7 @@ components:
           description: |-
             The thresholds (timeframes and associated targets) for this service level
             objective object.
+          example: []
           items:
             $ref: '#/components/schemas/SLOThreshold'
           type: array
@@ -12031,6 +12027,8 @@ components:
         filters:
           description: Your environment and primary tag (or * if enabled for your
             account).
+          example:
+          - '*'
           items:
             description: Filter name.
             type: string
@@ -12449,9 +12447,9 @@ components:
         error: error
         device:
           name: name
-          width: 5
+          width: 0
           isMobile: true
-          height: 1
+          height: 0
         stepDetails:
         - screenshotBucketKey: true
           snapshotBucketKey: true
@@ -12584,9 +12582,9 @@ components:
           error: error
           device:
             name: name
-            width: 5
+            width: 0
             isMobile: true
-            height: 1
+            height: 0
           stepDetails:
           - screenshotBucketKey: true
             snapshotBucketKey: true
@@ -12719,15 +12717,15 @@ components:
       description: Object with the results of a single Synthetic browser test.
       example:
         result:
-          duration: 5.637376656633329
-          stepCountTotal: 9
+          duration: 1.4658129805029452
+          stepCountTotal: 2
           device:
             name: name
-            width: 5
+            width: 0
             isMobile: true
-            height: 1
-          errorCount: 2
-          stepCountCompleted: 7
+            height: 0
+          errorCount: 5
+          stepCountCompleted: 5
         probe_dc: probe_dc
         result_id: result_id
         check_time: 6.027456183070403
@@ -12853,12 +12851,13 @@ components:
       description: Object describing the device used to perform the Synthetic test.
       example:
         name: name
-        width: 5
+        width: 0
         isMobile: true
-        height: 1
+        height: 0
       properties:
         height:
           description: Screen height of the device.
+          example: 0
           format: int64
           type: integer
         id:
@@ -12871,6 +12870,7 @@ components:
           type: string
         width:
           description: Screen width of the device.
+          example: 0
           format: int64
           type: integer
       required:
@@ -12885,11 +12885,23 @@ components:
       - laptop_large
       - tablet
       - mobile_small
+      - chrome.laptop_large
+      - chrome.tablet
+      - chrome.mobile_small
+      - firefox.laptop_large
+      - firefox.tablet
+      - firefox.mobile_small
       type: string
       x-enum-varnames:
       - LAPTOP_LARGE
       - TABLET
       - MOBILE_SMALL
+      - CHROME_LAPTOP_LARGE
+      - CHROME_TABLET
+      - CHROME_MOBILE_SMALL
+      - FIREFOX_LAPTOP_LARGE
+      - FIREFOX_TABLET
+      - FIREFOX_MOBILE_SMALL
     SyntheticsErrorCode:
       description: Error code that can be returned by a Synthetic test.
       enum:
@@ -12959,28 +12971,28 @@ components:
         last_timestamp_fetched: 0
         results:
         - result:
-            duration: 5.637376656633329
-            stepCountTotal: 9
+            duration: 1.4658129805029452
+            stepCountTotal: 2
             device:
               name: name
-              width: 5
+              width: 0
               isMobile: true
-              height: 1
-            errorCount: 2
-            stepCountCompleted: 7
+              height: 0
+            errorCount: 5
+            stepCountCompleted: 5
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
         - result:
-            duration: 5.637376656633329
-            stepCountTotal: 9
+            duration: 1.4658129805029452
+            stepCountTotal: 2
             device:
               name: name
-              width: 5
+              width: 0
               isMobile: true
-              height: 1
-            errorCount: 2
-            stepCountCompleted: 7
+              height: 0
+            errorCount: 5
+            stepCountCompleted: 5
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
@@ -12999,26 +13011,10 @@ components:
       description: Object containing an array of Synthetic tests configuration.
       example:
         tests:
-        - monitor_id: 5
-          created_at: created_at
-          message: message
-          created_by:
-            name: name
-            handle: handle
-            id: 1
-            email: email
-          public_id: public_id
-          tags:
-          - tags
-          - tags
-          modified_by:
-            name: name
-            handle: handle
-            id: 1
-            email: email
+        - monitor_id: 1
           name: name
           options:
-            min_location_failed: 2
+            min_location_failed: 5
             min_failure_duration: 5
             allow_insecure: true
             device_ids:
@@ -13027,12 +13023,12 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 7
-              interval: 9.301444243932576
+              count: 2
+              interval: 7.061401241503109
           locations:
           - locations
           - locations
-          modified_at: modified_at
+          message: message
           config:
             request:
               headers:
@@ -13056,26 +13052,23 @@ components:
               id: id
               example: example
             assertions: []
-        - monitor_id: 5
-          created_at: created_at
-          message: message
-          created_by:
+          steps:
+          - allowFailure: true
             name: name
-            handle: handle
-            id: 1
-            email: email
+            params: '{}'
+            timeout: 9.301444243932576
+          - allowFailure: true
+            name: name
+            params: '{}'
+            timeout: 9.301444243932576
           public_id: public_id
           tags:
           - tags
           - tags
-          modified_by:
-            name: name
-            handle: handle
-            id: 1
-            email: email
+        - monitor_id: 1
           name: name
           options:
-            min_location_failed: 2
+            min_location_failed: 5
             min_failure_duration: 5
             allow_insecure: true
             device_ids:
@@ -13084,12 +13077,12 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 7
-              interval: 9.301444243932576
+              count: 2
+              interval: 7.061401241503109
           locations:
           - locations
           - locations
-          modified_at: modified_at
+          message: message
           config:
             request:
               headers:
@@ -13113,11 +13106,53 @@ components:
               id: id
               example: example
             assertions: []
+          steps:
+          - allowFailure: true
+            name: name
+            params: '{}'
+            timeout: 9.301444243932576
+          - allowFailure: true
+            name: name
+            params: '{}'
+            timeout: 9.301444243932576
+          public_id: public_id
+          tags:
+          - tags
+          - tags
       properties:
         tests:
           description: Array of Synthetic tests configuration.
           items:
             $ref: '#/components/schemas/SyntheticsTestDetails'
+          type: array
+      type: object
+    SyntheticsLocation:
+      description: Synthetics location that can be used when creating or editing a
+        test.
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Unique identifier of the location.
+          type: string
+        name:
+          description: Name of the location.
+          type: string
+      type: object
+    SyntheticsLocations:
+      description: List of Synthetics locations.
+      example:
+        locations:
+        - name: name
+          id: id
+        - name: name
+          id: id
+      properties:
+        locations:
+          description: List of Synthetics locations.
+          items:
+            $ref: '#/components/schemas/SyntheticsLocation'
           type: array
       type: object
     SyntheticsPlayingTab:
@@ -13267,6 +13302,29 @@ components:
           format: date-time
           type: string
       type: object
+    SyntheticsStep:
+      description: The steps used in a Synthetics browser test.
+      example:
+        allowFailure: true
+        name: name
+        params: '{}'
+        timeout: 9.301444243932576
+      properties:
+        allowFailure:
+          description: A boolean set to allow this step to fail.
+          type: boolean
+        name:
+          description: The name of the step.
+          type: string
+        params:
+          description: The parameters of the step.
+          type: object
+        timeout:
+          description: The time before declaring a step failed.
+          type: number
+        type:
+          $ref: '#/components/schemas/SyntheticsStepType'
+      type: object
     SyntheticsStepDetail:
       description: Object describing a step for a Synthetic test.
       example:
@@ -13414,28 +13472,6 @@ components:
       - TYPE_TEXT
       - UPLOAD_FILES
       - WAIT
-    SyntheticsTestAuthor:
-      description: Object describing the author or a Synthetic test.
-      example:
-        name: name
-        handle: handle
-        id: 1
-        email: email
-      properties:
-        email:
-          description: Email of the author.
-          type: string
-        handle:
-          description: Handle of the author.
-          type: string
-        id:
-          description: Unique ID of the author.
-          format: int64
-          type: integer
-        name:
-          description: Name of the author.
-          type: string
-      type: object
     SyntheticsTestConfig:
       description: Configuration object for a Synthetic test.
       example:
@@ -13483,26 +13519,10 @@ components:
     SyntheticsTestDetails:
       description: Object containing details about your Synthetic test.
       example:
-        monitor_id: 5
-        created_at: created_at
-        message: message
-        created_by:
-          name: name
-          handle: handle
-          id: 1
-          email: email
-        public_id: public_id
-        tags:
-        - tags
-        - tags
-        modified_by:
-          name: name
-          handle: handle
-          id: 1
-          email: email
+        monitor_id: 1
         name: name
         options:
-          min_location_failed: 2
+          min_location_failed: 5
           min_failure_duration: 5
           allow_insecure: true
           device_ids:
@@ -13511,12 +13531,12 @@ components:
           follow_redirects: true
           accept_self_signed: true
           retry:
-            count: 7
-            interval: 9.301444243932576
+            count: 2
+            interval: 7.061401241503109
         locations:
         - locations
         - locations
-        modified_at: modified_at
+        message: message
         config:
           request:
             headers:
@@ -13540,14 +13560,22 @@ components:
             id: id
             example: example
           assertions: []
+        steps:
+        - allowFailure: true
+          name: name
+          params: '{}'
+          timeout: 9.301444243932576
+        - allowFailure: true
+          name: name
+          params: '{}'
+          timeout: 9.301444243932576
+        public_id: public_id
+        tags:
+        - tags
+        - tags
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
-        created_at:
-          description: The test creation date.
-          type: string
-        created_by:
-          $ref: '#/components/schemas/SyntheticsTestAuthor'
         locations:
           description: Array of locations used to run the test.
           items:
@@ -13557,11 +13585,6 @@ components:
         message:
           description: Notification message associated with the test.
           type: string
-        modified_at:
-          description: Last timestamp the test was modified.
-          type: string
-        modified_by:
-          $ref: '#/components/schemas/SyntheticsTestAuthor'
         monitor_id:
           description: The associated monitor ID.
           format: int64
@@ -13576,6 +13599,11 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
+        steps:
+          description: The steps of the test (only for browser tests).
+          items:
+            $ref: '#/components/schemas/SyntheticsStep'
+          type: array
         subtype:
           $ref: '#/components/schemas/SyntheticsTestDetailsSubType'
         tags:
@@ -13624,7 +13652,7 @@ components:
     SyntheticsTestOptions:
       description: Object describing the extra options for a Synthetic test.
       example:
-        min_location_failed: 2
+        min_location_failed: 5
         min_failure_duration: 5
         allow_insecure: true
         device_ids:
@@ -13633,8 +13661,8 @@ components:
         follow_redirects: true
         accept_self_signed: true
         retry:
-          count: 7
-          interval: 9.301444243932576
+          count: 2
+          interval: 7.061401241503109
       properties:
         accept_self_signed:
           description: For browser test, whether or not the test should allow self
@@ -14007,6 +14035,8 @@ components:
       properties:
         requests:
           description: List of top list widget requests.
+          example:
+          - q: system.load.1
           items:
             $ref: '#/components/schemas/ToplistWidgetRequest'
           type: array
@@ -14042,6 +14072,10 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
           description: List of conditional formats.
+          example:
+          - comparator: '>='
+            palette: blue
+            value: 1.0
           items:
             $ref: '#/components/schemas/WidgetConditionalFormat'
           minItems: 1
@@ -15430,13 +15464,6 @@ components:
         Information about widget.
 
         Note: The `layout` property is required for widgets in dashboards with `free` `layout_type` only.
-      example:
-        layout:
-          width: 0
-          x: 0
-          y: 0
-          height: 0
-        id: 0
       properties:
         definition:
           $ref: '#/components/schemas/WidgetDefinition'
@@ -15563,6 +15590,7 @@ components:
           type: string
         value:
           description: Value for the comparator.
+          example: 0.0
           format: double
           type: number
       required:
@@ -15668,31 +15696,30 @@ components:
       - CENTER
     WidgetLayout:
       description: The layout for a widget on a free dashboard.
-      example:
-        width: 0
-        x: 0
-        y: 0
-        height: 0
       properties:
         height:
           description: The height of the widget. Should be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
         width:
           description: The width of the widget. Should be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
         x:
           description: The position of the widget on the x (horizontal) axis. Should
             be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
         y:
           description: The position of the widget on the y (vertical) axis. Should
             be a non-negative integer.
+          example: 0
           format: int64
           minimum: 0
           type: integer
@@ -15712,6 +15739,7 @@ components:
     WidgetLegendSize:
       description: Available legend sizes for a widget.
       enum:
+      - "0"
       - "2"
       - "4"
       - "8"
@@ -15719,6 +15747,7 @@ components:
       - auto
       type: string
       x-enum-varnames:
+      - ZERO
       - TWO
       - FOUR
       - EIGHT
@@ -15838,6 +15867,42 @@ components:
       - COUNTS
       - COUNTS_AND_LIST
       - LIST
+    WidgetMonitorSummarySort:
+      description: Widget sorting methods.
+      enum:
+      - name
+      - group
+      - status
+      - tags
+      - triggered
+      - group,asc
+      - group,desc
+      - name,asc
+      - name,desc
+      - status,asc
+      - status,desc
+      - tags,asc
+      - tags,desc
+      - triggered,asc
+      - triggered,desc
+      example: name,asc
+      type: string
+      x-enum-varnames:
+      - NAME
+      - GROUP
+      - STATUS
+      - TAGS
+      - TRIGGERED
+      - GROUP_ASCENDING
+      - GROUP_DESCENDING
+      - NAME_ASCENDING
+      - NAME_DESCENDING
+      - STATUS_ASCENDING
+      - STATUS_DESCENDING
+      - TAGS_ASCENDING
+      - TAGS_DESCENDING
+      - TRIGGERED_ASCENDING
+      - TRIGGERED_DESCENDING
     WidgetNodeType:
       description: Which type of node to use in the map.
       enum:
@@ -15913,10 +15978,12 @@ components:
       enum:
       - one_column
       - two_column
+      - three_column
       type: string
       x-enum-varnames:
       - ONE_COLUMN
       - TWO_COLUMN
+      - THREE_COLUMN
     WidgetSizeFormat:
       description: Size of the widget.
       enum:
@@ -16047,10 +16114,7 @@ components:
           type: string
     CheckCanDeleteMonitorResponse_data:
       description: Wrapper object with the list of monitor IDs.
-      example:
-        ok:
-        - 0
-        - 0
+      example: '{}'
       properties:
         ok:
           description: An array of of Monitor IDs that can be safely deleted.
@@ -16176,6 +16240,7 @@ components:
           type: number
     HostMapWidgetDefinition_requests:
       description: List of definitions.
+      example: '{}'
       properties:
         fill:
           $ref: '#/components/schemas/HostMapRequest'
@@ -16208,7 +16273,7 @@ components:
         message: Host connected to remote
         tags:
         - team:A
-        timestamp: 2019-01-02T09:42:36.32Z
+        timestamp: 2020-05-26T13:36:14Z
       properties:
         attributes:
           additionalProperties: {}
@@ -16246,7 +16311,7 @@ components:
           type: array
         timestamp:
           description: Timestamp of your log.
-          example: 2019-01-02T09:42:36.32Z
+          example: 2020-05-26T13:36:14Z
           format: date-time
           type: string
     LogQueryDefinition_sort:
@@ -16302,7 +16367,7 @@ components:
       example:
         timezone: timezone
         from: 2020-02-02T02:02:02Z
-        to: 2020-02-20T20:20:20Z
+        to: 2020-02-02T20:20:20Z
       properties:
         from:
           description: Minimum timestamp for requested logs.
@@ -16316,7 +16381,7 @@ components:
           type: string
         to:
           description: Maximum timestamp for requested logs.
-          example: 2020-02-20T20:20:20Z
+          example: 2020-02-02T20:20:20Z
           format: date-time
           type: string
       required:
@@ -16639,13 +16704,7 @@ components:
       - timeframe
     SLOHistoryMetricsSeries_metadata:
       description: Query metadata.
-      example:
-        unit: unit
-        expression: expression
-        metric: metric
-        scope: scope
-        query_index: 7
-        aggr: aggr
+      example: '{}'
       properties:
         aggr:
           description: Query aggregator function.
@@ -16673,44 +16732,26 @@ components:
           key:
             warning_display: warning_display
             target_display: "99.9"
-            warning: 5.637376656633329
-            target: 5.962133916683182
-        to_ts: 1
+            warning: 2.3021358869347655
+            target: 0.0
+        to_ts: 7
         series:
           res_type: res_type
-          resp_version: 4
-          times:
-          - 7.386281948385884
-          - 7.386281948385884
+          resp_version: 0
+          times: []
           query: query
-          interval: 2
+          interval: 0
           message: message
           denominator:
-            metadata:
-              unit: unit
-              expression: expression
-              metric: metric
-              scope: scope
-              query_index: 7
-              aggr: aggr
-            values:
-            - 3.616076749251911
-            - 3.616076749251911
-            count: 2
-            sum: 9.301444243932576
+            metadata: '{}'
+            values: []
+            count: 0
+            sum: 0.0
           numerator:
-            metadata:
-              unit: unit
-              expression: expression
-              metric: metric
-              scope: scope
-              query_index: 7
-              aggr: aggr
-            values:
-            - 3.616076749251911
-            - 3.616076749251911
-            count: 2
-            sum: 9.301444243932576
+            metadata: '{}'
+            values: []
+            count: 0
+            sum: 0.0
         type_id: 0
         from_ts: 0
         groups:
@@ -16765,6 +16806,7 @@ components:
           $ref: '#/components/schemas/SLOTypeNumeric'
     ScatterPlotWidgetDefinition_requests:
       description: Widget definition.
+      example: '{"x":{"q":"system.cpu.user"},"y":{"q":"system.mem.used"}}'
       properties:
         x:
           $ref: '#/components/schemas/ScatterPlotRequest'
@@ -16854,15 +16896,15 @@ components:
     SyntheticsBrowserTestResultShort_result:
       description: Object with the result of the last browser test run.
       example:
-        duration: 5.637376656633329
-        stepCountTotal: 9
+        duration: 1.4658129805029452
+        stepCountTotal: 2
         device:
           name: name
-          width: 5
+          width: 0
           isMobile: true
-          height: 1
-        errorCount: 2
-        stepCountCompleted: 7
+          height: 0
+        errorCount: 5
+        stepCountCompleted: 5
       properties:
         device:
           $ref: '#/components/schemas/SyntheticsDevice'
@@ -16970,10 +17012,12 @@ components:
       - message
       - type
     SyntheticsTestOptions_retry:
-      description: Object describing the retry strategy to apply to a Synthetic test.
+      description: |-
+        Object describing the retry strategy to apply to a Synthetic test.
+        By default, there is a 300ms wait before retrying a test that has failed.
       example:
-        count: 7
-        interval: 9.301444243932576
+        count: 2
+        interval: 7.061401241503109
       properties:
         count:
           description: The amount of location that needs to fail for the test to be

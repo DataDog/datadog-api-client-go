@@ -1,0 +1,1 @@
+{"data":{"attributes":{"destination":{"bucket":"dd-logs-test-datadog-api-client-go","integration":{"account_id":"711111111111","role_name":"DatadogGoClientTestIntegrationRole"},"path":"/path/blou","type":"s3"},"name":"datadog-api-client-go Tests Archive","query":"source:tata"},"id":"FOObartotO","type":"archives"}}

@@ -8,9 +8,11 @@ Method | HTTP request | Description
 [**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
 [**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
 [**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
+[**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a test configuration (browser)
 [**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
 [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
-[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
+[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
+[**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get a list of tests
 [**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
 [**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
@@ -19,7 +21,7 @@ Method | HTTP request | Description
 
 ## CreateTest
 
-> SyntheticsTestDetails CreateTest(ctx).Body(body).FromTestId(fromTestId).Execute()
+> SyntheticsTestDetails CreateTest(ctx).Body(body).Execute()
 
 Create a test
 
@@ -51,12 +53,11 @@ func main() {
         },
     )
 
-    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: 123, Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: 123, Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: datadog.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: datadog.SyntheticsTestAuthor{Email: "Email_example", Handle: "Handle_example", Id: int64(123), Name: "Name_example"}, MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | Details of the test to create.
-    fromTestId := "fromTestId_example" // string | Public ID of the test to clone, undefined if the test is newly created. (optional)
+    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: 123, Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: 123, Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, Locations: []string{"Locations_example"), Message: "Message_example", MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Steps: []SyntheticsStep{datadog.SyntheticsStep{AllowFailure: false, Name: "Name_example", Params: 123, Timeout: 123, Type: datadog.SyntheticsStepType{}}), Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.CreateTest(ctx, body).FromTestId(fromTestId).Execute()
+    resp, r, err := api_client.SyntheticsApi.CreateTest(ctx, body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -78,7 +79,6 @@ Other parameters are passed through a pointer to a apiCreateTestRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | Details of the test to create. | 
- **fromTestId** | **string** | Public ID of the test to clone, undefined if the test is newly created. | 
 
 ### Return type
 
@@ -352,6 +352,89 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetBrowserTest
+
+> SyntheticsTestDetails GetBrowserTest(ctx, publicId).Execute()
+
+Get a test configuration (browser)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    publicId := "publicId_example" // string | The public ID of the test to get details from.
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTest(ctx, publicId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBrowserTest`: SyntheticsTestDetails
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**publicId** | **string** | The public ID of the test to get details from. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBrowserTestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**SyntheticsTestDetails**](SyntheticsTestDetails.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetBrowserTestLatestResults
 
 > SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
@@ -531,7 +614,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails GetTest(ctx, publicId).Execute()
 
-Get a test configuration
+Get a test configuration (API)
 
 
 
@@ -595,6 +678,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SyntheticsTestDetails**](SyntheticsTestDetails.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListLocations
+
+> SyntheticsLocations ListLocations(ctx).Execute()
+
+Get all locations (public and private)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.ListLocations(ctx).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListLocations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListLocations`: SyntheticsLocations
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.ListLocations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListLocationsRequest struct via the builder pattern
+
+
+### Return type
+
+[**SyntheticsLocations**](SyntheticsLocations.md)
 
 ### Authorization
 
@@ -724,7 +881,7 @@ func main() {
     )
 
     publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: 123, Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: 123, Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, CreatedAt: "CreatedAt_example", CreatedBy: , Locations: []string{"Locations_example"), Message: "Message_example", ModifiedAt: "ModifiedAt_example", ModifiedBy: , MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | New test details to be saved.
+    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionOperator{}, Property: "Property_example", Target: 123, Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsTestRequest_basicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: 123, Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, Locations: []string{"Locations_example"), Message: "Message_example", MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), Retry: datadog.SyntheticsTestOptions_retry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Steps: []SyntheticsStep{datadog.SyntheticsStep{AllowFailure: false, Name: "Name_example", Params: 123, Timeout: 123, Type: datadog.SyntheticsStepType{}}), Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | New test details to be saved.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

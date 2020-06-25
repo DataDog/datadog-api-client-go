@@ -10,9 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-)
-
-import (
 	"fmt"
 )
 

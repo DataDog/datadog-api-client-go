@@ -4,7 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the role. | [optional] 
+**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Creation time of the role. | [optional] [readonly] 
+**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Time of last role modification. | [optional] [readonly] 
+**Name** | Pointer to **string** | Name of the role. | [optional] 
 
 ## Methods
 
@@ -24,6 +26,56 @@ will change when the set of required properties is changed
 NewRoleCreateAttributesWithDefaults instantiates a new RoleCreateAttributes object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCreatedAt
+
+`func (o *RoleCreateAttributes) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *RoleCreateAttributes) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *RoleCreateAttributes) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *RoleCreateAttributes) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetModifiedAt
+
+`func (o *RoleCreateAttributes) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *RoleCreateAttributes) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *RoleCreateAttributes) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *RoleCreateAttributes) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
 
 ### GetName
 

@@ -225,7 +225,8 @@ func (r apiListHostsRequest) From(from int64) apiListHostsRequest {
 /*
 ListHosts Get all hosts for your organization
 This endpoint allows searching for hosts by name, alias, or tag.
-Hosts live within the past 3 hours are included.
+Hosts live within the past 3 hours are included by default.
+Retention is 7 days.
 Results are paginated with a max of 1000 results at a time.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiListHostsRequest
@@ -431,7 +432,7 @@ func (r apiMuteHostRequest) Execute() (HostMuteResponse, *_nethttp.Response, err
 	}
 
 	localVarPath := localBasePath + "/api/v1/host/{host_name}/mute"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.QueryEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -584,7 +585,7 @@ func (r apiUnmuteHostRequest) Execute() (HostMuteResponse, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/v1/host/{host_name}/unmute"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.QueryEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
