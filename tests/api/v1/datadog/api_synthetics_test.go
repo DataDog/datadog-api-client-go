@@ -30,11 +30,21 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 	target2000 := datadog.NewSyntheticsAssertionIntegerTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
 	target2000.Target = datadog.PtrInt32(2000)
 
+	targetJSONPath := datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SYNTHETICSASSERTIONOPERATOR_VALIDATES_JSON_PATH, datadog.SYNTHETICSASSERTIONTYPE_BODY)
+	targetJSONPath.SetTarget(
+		datadog.SyntheticsAssertionJSONPathTargetTarget{
+			JsonPath: datadog.PtrString("topKey"),
+			Operator: datadog.PtrString("isNot"),
+			TargetValue: datadog.PtrString("0"),
+		},
+	)
+
 	return datadog.SyntheticsTestDetails{
 		Config: &datadog.SyntheticsTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionStringTargetAsSyntheticsAssertion(targetTextHTML),
 				datadog.SyntheticsAssertionIntegerTargetAsSyntheticsAssertion(target2000),
+				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Headers: &map[string]string{"testingGoClient": "true"},
