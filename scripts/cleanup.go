@@ -25,7 +25,7 @@ const (
 )
 
 // unique test name will be e.g. go-testCaseName-12345-123456789 or go-testCaseName-local-123456789
-var uniqueTestNameRe, _ = regexp.Compile(`^[^-]+-[^-]+-(?:[\d]+|local)-[\d]+.*$`)
+var uniqueTestNameRe = regexp.MustCompile(`^[^-]+-[^-]+-(?:[\d]+|local)-[\d]+.*$`)
 var batch = false
 var dryRun = false
 
