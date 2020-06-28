@@ -10,56 +10,15 @@ Method | HTTP request | Description
 
 ## Validate
 
-> AuthenticationValidationResponse Validate(ctx).Execute()
+> AuthenticationValidationResponse Validate(ctx, )
 
 Validate API key
 
+Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AuthenticationApi.Validate(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.Validate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `Validate`: AuthenticationValidationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AuthenticationApi.Validate`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiValidateRequest struct via the builder pattern
-
 
 ### Return type
 

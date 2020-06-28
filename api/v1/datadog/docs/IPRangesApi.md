@@ -10,52 +10,19 @@ Method | HTTP request | Description
 
 ## GetIPRanges
 
-> IPRanges GetIPRanges(ctx).Execute()
+> IpRanges GetIPRanges(ctx, )
 
 List IP Ranges
 
+Get information about Datadog IP ranges.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.Background()
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IPRangesApi.GetIPRanges(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IPRangesApi.GetIPRanges``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetIPRanges`: IPRanges
-    fmt.Fprintf(os.Stdout, "Response from `IPRangesApi.GetIPRanges`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetIPRangesRequest struct via the builder pattern
-
-
 ### Return type
 
-[**IPRanges**](IPRanges.md)
+[**IpRanges**](IPRanges.md)
 
 ### Authorization
 

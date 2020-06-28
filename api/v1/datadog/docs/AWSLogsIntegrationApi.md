@@ -16,68 +16,23 @@ Method | HTTP request | Description
 
 ## CheckAWSLogsLambdaAsync
 
-> AWSLogsAsyncResponse CheckAWSLogsLambdaAsync(ctx).Body(body).Execute()
+> AwsLogsAsyncResponse CheckAWSLogsLambdaAsync(ctx, body)
 
 Check that an AWS Lambda Function exists
 
+Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this endpoint can be polled intermittently instead of blocking.  - Returns a status of 'created' when it's checking if the Lambda exists in the account. - Returns a status of 'waiting' while checking. - Returns a status of 'checked and ok' if the Lambda exists. - Returns a status of 'error' if the Lambda does not exist.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CheckAWSLogsLambdaAsync`: AWSLogsAsyncResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCheckAWSLogsLambdaAsyncRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md)| Check AWS Log Lambda Async request body. | 
 
 ### Return type
 
-[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
+[**AwsLogsAsyncResponse**](AWSLogsAsyncResponse.md)
 
 ### Authorization
 
@@ -95,68 +50,23 @@ Name | Type | Description  | Notes
 
 ## CheckAWSLogsServicesAsync
 
-> AWSLogsAsyncResponse CheckAWSLogsServicesAsync(ctx).Body(body).Execute()
+> AwsLogsAsyncResponse CheckAWSLogsServicesAsync(ctx, body)
 
 Check permissions for log services
 
+Test if permissions are present to add log-forwarding triggers for the given services and AWS account. Input is the same as for `EnableAWSLogServices`. Done async, so can be repeatedly polled in a non-blocking fashion until the async request completes.  - Returns a status of `created` when it's checking if the permissions exists   in the AWS account. - Returns a status of `waiting` while checking. - Returns a status of `checked and ok` if the Lambda exists. - Returns a status of `error` if the Lambda does not exist.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CheckAWSLogsServicesAsync`: AWSLogsAsyncResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCheckAWSLogsServicesAsyncRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | Check AWS Logs Async Services request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md)| Check AWS Logs Async Services request body. | 
 
 ### Return type
 
-[**AWSLogsAsyncResponse**](AWSLogsAsyncResponse.md)
+[**AwsLogsAsyncResponse**](AWSLogsAsyncResponse.md)
 
 ### Authorization
 
@@ -174,68 +84,23 @@ Name | Type | Description  | Notes
 
 ## CreateAWSLambdaARN
 
-> interface{} CreateAWSLambdaARN(ctx).Body(body).Execute()
+> map[string]interface{} CreateAWSLambdaARN(ctx, body)
 
 Add AWS Log Lambda ARN
 
+Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CreateAWSLambdaARN``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateAWSLambdaARN`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CreateAWSLambdaARN`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAWSLambdaARNRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | AWS Log Lambda Async request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md)| AWS Log Lambda Async request body. | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -253,68 +118,23 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSLambdaARN
 
-> interface{} DeleteAWSLambdaARN(ctx).Body(body).Execute()
+> map[string]interface{} DeleteAWSLambdaARN(ctx, body)
 
 Delete an AWS Logs integration
 
+Delete a Datadog-AWS logs configuration by removing the specific Lambda ARN associated with a given AWS account.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body :=  // AWSAccountAndLambdaRequest | Delete AWS Lambda ARN request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.DeleteAWSLambdaARN``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteAWSLambdaARN`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.DeleteAWSLambdaARN`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAWSLambdaARNRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Delete AWS Lambda ARN request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AwsAccountAndLambdaRequest**](AwsAccountAndLambdaRequest.md)| Delete AWS Lambda ARN request body. | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -332,68 +152,23 @@ Name | Type | Description  | Notes
 
 ## EnableAWSLogServices
 
-> interface{} EnableAWSLogServices(ctx).Body(body).Execute()
+> map[string]interface{} EnableAWSLogServices(ctx, body)
 
 Enable an AWS Logs integration
 
+Enable automatic log collection for a list of services. This should be run after running `CreateAWSLambdaARN` to save the configuration.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Enable AWS Log Services request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.EnableAWSLogServices(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.EnableAWSLogServices``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EnableAWSLogServices`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.EnableAWSLogServices`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEnableAWSLogServicesRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | Enable AWS Log Services request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AwsLogsServicesRequest**](AwsLogsServicesRequest.md)| Enable AWS Log Services request body. | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -411,63 +186,19 @@ Name | Type | Description  | Notes
 
 ## ListAWSLogsIntegrations
 
-> []AWSLogsListResponse ListAWSLogsIntegrations(ctx).Execute()
+> []AwsLogsListResponse ListAWSLogsIntegrations(ctx, )
 
 List all AWS Logs integrations
 
+List all Datadog-AWS Logs integrations configured in your Datadog account.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsIntegrations``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListAWSLogsIntegrations`: []AWSLogsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.ListAWSLogsIntegrations`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAWSLogsIntegrationsRequest struct via the builder pattern
-
-
 ### Return type
 
-[**[]AWSLogsListResponse**](AWSLogsListResponse.md)
+[**[]AwsLogsListResponse**](AWSLogsListResponse.md)
 
 ### Authorization
 
@@ -485,63 +216,19 @@ Other parameters are passed through a pointer to a apiListAWSLogsIntegrationsReq
 
 ## ListAWSLogsServices
 
-> []AWSLogsListServicesResponse ListAWSLogsServices(ctx).Execute()
+> []AwsLogsListServicesResponse ListAWSLogsServices(ctx, )
 
 Get list of AWS log ready services
 
+Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsServices(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsServices``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListAWSLogsServices`: []AWSLogsListServicesResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.ListAWSLogsServices`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAWSLogsServicesRequest struct via the builder pattern
-
-
 ### Return type
 
-[**[]AWSLogsListServicesResponse**](AWSLogsListServicesResponse.md)
+[**[]AwsLogsListServicesResponse**](AWSLogsListServicesResponse.md)
 
 ### Authorization
 

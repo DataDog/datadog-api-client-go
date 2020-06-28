@@ -4366,6 +4366,48 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+  /api/v1/synthetics/tests/trigger/ci:
+    post:
+      description: Trigger Synthetic CI tests.
+      operationId: TriggerTests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyntheticsTestsTrigger'
+        description: Details of the test to create.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsTestsTriggerResults'
+          description: OK - Returns the triggered test details.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: |-
+            - JSON format is wrong
+            - Creation failed
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Test quota is reached
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Create a test
+      tags:
+      - Synthetics
+      x-codegen-request-body-name: body
   /api/v1/synthetics/tests/browser/{public_id}:
     get:
       description: Get the detailed configuration (including steps) associated with
@@ -13428,6 +13470,118 @@ components:
           items:
             $ref: '#/components/schemas/SyntheticsStepDetail_warnings'
           type: array
+      type: object
+    SyntheticsTestsTrigger:
+      description: Object describing the the triggers for a Synthetic test.
+      example:
+        public_id: public_id
+        allowInsecureCertificates: true
+        basicAuth:
+          username: test
+          password: test
+        body: body
+        bodyType: application/json
+        cookies: name1=value1;name2=value2;
+        deviceIds:
+        - laptop_large
+        followRedirects: true
+        headers:
+          key: headers
+        locations:
+        - aws:us-west-1
+        retry:
+          count: 2
+          interval: 7.061401241503109
+        startUrl: http://new.url/
+        variables:
+          description: Array of variables used for the test.
+          items:
+            $ref: '#/components/schemas/SyntheticsBrowserVariable'
+          type: array
+      properties:
+        public_id:
+          description: The test public ID.
+          type: string
+        allowInsecureCertificates:
+          description: Allows loading insecure content for an HTTP request.
+          type: boolean
+        basicAuth:
+          $ref: '#/components/schemas/SyntheticsTestRequest_basicAuth'
+        body:
+          description: Body to include in the test.
+          type: string
+        bodyType:
+          description: Body to include in the test.
+          type: string
+        deviceIds:
+          description: Array with the different device IDs used to run the test.
+          items:
+            $ref: '#/components/schemas/SyntheticsDeviceID'
+          type: array
+        followRedirects:
+          description: For API SSL test, whether or not the test should follow redirects.
+          type: boolean
+        headers:
+          additionalProperties:
+            description: A single Header.
+            type: string
+          description: Headers to include when performing the test.
+          type: object
+        locations:
+          description: Array of locations used to run the test.
+          items:
+            description: A location from which the test was run.
+            type: string
+          type: array
+        retry:
+          $ref: '#/components/schemas/SyntheticsTestOptions_retry'
+        startUrl:
+          description: Starting URL for the browser test.
+          type: string
+        variables:
+          description: Array of variables used for the test.
+          items:
+            $ref: '#/components/schemas/SyntheticsBrowserVariable'
+          type: array
+      type: object
+    SyntheticsTestsTriggerResults:
+      description: Object describing the results from triggering a Synthetic test.
+      example:
+        results:
+        - result_id: "0123456789012345678"
+          public_id: abc-def-ghi
+          location: 1
+        triggered_check_ids:
+        - public_id
+      properties:
+        results:
+          description: Array of test trigger results.
+          items:
+            $ref: '#/components/schemas/SyntheticsTestsTriggerResult'
+          type: array
+        triggered_check_ids:
+          description: Triggered test checks
+          items:
+            description: The public_id of the tests
+            type: string
+          type: array
+      type: object
+    SyntheticsTestsTriggerResult:
+      description: Object describing the results from triggering a Synthetic test.
+      example:
+        result_id: "0123456789012345678"
+        public_id: public_id
+        location: 1
+      properties:
+        result_id:
+          description: Synthetic test trigger result id to poll.
+          type: string
+        public_id:
+          description: Public id of test that was triggered.
+          type: string
+        location:
+          description: Location of test result
+          type: int
       type: object
     SyntheticsStepType:
       description: Step type used in your Synthetic test.

@@ -14,68 +14,19 @@ Method | HTTP request | Description
 
 ## GetMetricMetadata
 
-> MetricMetadata GetMetricMetadata(ctx, metricName).Execute()
+> MetricMetadata GetMetricMetadata(ctx, metricName)
 
 Get metric metadata
 
+Get metadata about a specific metric.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    metricName := "metricName_example" // string | Name of the metric for which to get metadata.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetMetricMetadata(ctx, metricName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetMetricMetadata``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMetricMetadata`: MetricMetadata
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.GetMetricMetadata`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | Name of the metric for which to get metadata. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetMetricMetadataRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**metricName** | **string**| Name of the metric for which to get metadata. | 
 
 ### Return type
 
@@ -97,66 +48,30 @@ Name | Type | Description  | Notes
 
 ## ListActiveMetrics
 
-> MetricsListResponse ListActiveMetrics(ctx).From(from).Host(host).Execute()
+> MetricsListResponse ListActiveMetrics(ctx, from, optional)
 
 Get active metrics list
 
+Get the list of actively reporting metrics from a given time until now.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    from := 987 // int64 | Seconds since the Unix epoch.
-    host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListActiveMetrics(ctx, from).Host(host).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListActiveMetrics`: MetricsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.ListActiveMetrics`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListActiveMetricsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Seconds since the Unix epoch. | 
- **host** | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**from** | **int64**| Seconds since the Unix epoch. | 
+ **optional** | ***ListActiveMetricsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListActiveMetricsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **host** | **optional.String**| Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
 
 ### Return type
 
@@ -178,64 +93,19 @@ Name | Type | Description  | Notes
 
 ## ListMetrics
 
-> MetricSearchResponse ListMetrics(ctx).Q(q).Execute()
+> MetricSearchResponse ListMetrics(ctx, q)
 
 Search metrics
 
+Search for metrics from the last 24 hours in Datadog.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    q := "q_example" // string | Query string to search metrics upon. Must be prefixed with `metrics:`.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListMetrics(ctx, q).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListMetrics``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListMetrics`: MetricSearchResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.ListMetrics`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListMetricsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**q** | **string**| Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
 
 ### Return type
 
@@ -257,68 +127,21 @@ Name | Type | Description  | Notes
 
 ## QueryMetrics
 
-> MetricsQueryResponse QueryMetrics(ctx).From(from).To(to).Query(query).Execute()
+> MetricsQueryResponse QueryMetrics(ctx, from, to, query)
 
 Query timeseries points
 
+Query timeseries points.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    from := 987 // int64 | Start of the queried time period, seconds since the Unix epoch.
-    to := 987 // int64 | End of the queried time period, seconds since the Unix epoch.
-    query := "query_example" // string | Query string.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.QueryMetrics(ctx, from, to, query).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.QueryMetrics``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `QueryMetrics`: MetricsQueryResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.QueryMetrics`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiQueryMetricsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Start of the queried time period, seconds since the Unix epoch. | 
- **to** | **int64** | End of the queried time period, seconds since the Unix epoch. | 
- **query** | **string** | Query string. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**from** | **int64**| Start of the queried time period, seconds since the Unix epoch. | 
+**to** | **int64**| End of the queried time period, seconds since the Unix epoch. | 
+**query** | **string**| Query string. | 
 
 ### Return type
 
@@ -340,70 +163,20 @@ Name | Type | Description  | Notes
 
 ## UpdateMetricMetadata
 
-> MetricMetadata UpdateMetricMetadata(ctx, metricName).Body(body).Execute()
+> MetricMetadata UpdateMetricMetadata(ctx, metricName, body)
 
 Edit metric metadata
 
+Edit metadata of a specific metric. Find out more about [supported types](https://docs.datadoghq.com/developers/metrics).
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    metricName := "metricName_example" // string | Name of the metric for which to edit metadata.
-    body := datadog.MetricMetadata{Description: "Description_example", Integration: "Integration_example", PerUnit: "PerUnit_example", ShortName: "ShortName_example", StatsdInterval: int64(123), Type: "Type_example", Unit: "Unit_example"} // MetricMetadata | New metadata.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.UpdateMetricMetadata(ctx, metricName, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateMetricMetadata``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateMetricMetadata`: MetricMetadata
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.UpdateMetricMetadata`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | Name of the metric for which to edit metadata. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateMetricMetadataRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**MetricMetadata**](MetricMetadata.md) | New metadata. | 
+**metricName** | **string**| Name of the metric for which to edit metadata. | 
+**body** | [**MetricMetadata**](MetricMetadata.md)| New metadata. | 
 
 ### Return type
 

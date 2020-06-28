@@ -14,64 +14,19 @@ Method | HTTP request | Description
 
 ## CreateChildOrg
 
-> OrganizationCreateResponse CreateChildOrg(ctx).Body(body).Execute()
+> OrganizationCreateResponse CreateChildOrg(ctx, body)
 
 Create a child organization
 
+Create a child organization.  This endpoint requires the [multi-organization account](https://docs.datadoghq.com/account_management/multi_organization/) feature and must be enabled by [contacting support](https://docs.datadoghq.com/help/).  Once a new child organization is created, you can interact with it by using the `org.public_id`, `pi_key.key`, and `application_key.hash` provided in the response.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.OrganizationCreateBody{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Name: "Name_example", Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.CreateChildOrg(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateChildOrg`: OrganizationCreateResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateChildOrg`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateChildOrgRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**OrganizationCreateBody**](OrganizationCreateBody.md)| Organization object that needs to be created | 
 
 ### Return type
 
@@ -93,68 +48,19 @@ Name | Type | Description  | Notes
 
 ## GetOrg
 
-> OrganizationResponse GetOrg(ctx, publicId).Execute()
+> OrganizationResponse GetOrg(ctx, publicId)
 
 Get organization information
 
+Get organization information.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.GetOrg(ctx, publicId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetOrg`: OrganizationResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.GetOrg`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetOrgRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**publicId** | **string**| The &#x60;public_id&#x60; of the organization you are operating within. | 
 
 ### Return type
 
@@ -176,59 +82,15 @@ Name | Type | Description  | Notes
 
 ## ListOrgs
 
-> OrganizationListResponse ListOrgs(ctx).Execute()
+> OrganizationListResponse ListOrgs(ctx, )
 
 List your managed organizations
 
+List your managed organizations.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.ListOrgs(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListOrgs`: OrganizationListResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.ListOrgs`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListOrgsRequest struct via the builder pattern
-
 
 ### Return type
 
@@ -250,70 +112,20 @@ Other parameters are passed through a pointer to a apiListOrgsRequest struct via
 
 ## UpdateOrg
 
-> OrganizationResponse UpdateOrg(ctx, publicId).Body(body).Execute()
+> OrganizationResponse UpdateOrg(ctx, publicId, body)
 
 Update your organization
 
+Update your organization.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
-    body := datadog.Organization{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: datadog.Organization_settings{PrivateWidgetShare: false, Saml: datadog.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: datadog.AccessRole{}, SamlAutocreateUsersDomains: datadog.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: datadog.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: datadog.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // Organization | 
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.UpdateOrg(ctx, publicId, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateOrg`: OrganizationResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UpdateOrg`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateOrgRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**Organization**](Organization.md) |  | 
+**publicId** | **string**| The &#x60;public_id&#x60; of the organization you are operating within. | 
+**body** | [**Organization**](Organization.md)|  | 
 
 ### Return type
 
@@ -335,70 +147,20 @@ Name | Type | Description  | Notes
 
 ## UploadIdPForOrg
 
-> IdpResponse UploadIdPForOrg(ctx, publicId).IdpFile(idpFile).Execute()
+> IdpResponse UploadIdPForOrg(ctx, publicId, idpFile)
 
 Upload IdP metadata
 
+There are a couple of options for updating the Identity Provider (IdP) metadata from your SAML IdP.  * **Multipart Form-Data**: Post the IdP metadata file using a form post.  * **XML Body:** Post the IdP metadata file as the body of the request.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    publicId := "publicId_example" // string | The `public_id` of the organization you are operating with
-    idpFile := 987 // *os.File | The path to the XML metadata file you wish to upload.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.UploadIdPForOrg(ctx, publicId, idpFile).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadIdPForOrg`: IdpResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UploadIdPForOrg`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating with | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUploadIdPForOrgRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **idpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
+**publicId** | **string**| The &#x60;public_id&#x60; of the organization you are operating with | 
+**idpFile** | ***os.File*****os.File**| The path to the XML metadata file you wish to upload. | 
 
 ### Return type
 

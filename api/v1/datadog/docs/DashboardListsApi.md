@@ -14,64 +14,19 @@ Method | HTTP request | Description
 
 ## CreateDashboardList
 
-> DashboardList CreateDashboardList(ctx).Body(body).Execute()
+> DashboardList CreateDashboardList(ctx, body)
 
 Create a dashboard list
 
+Create an empty dashboard list.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Create a dashboard list request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.CreateDashboardList(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateDashboardList`: DashboardList
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.CreateDashboardList`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateDashboardListRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DashboardList**](DashboardList.md) | Create a dashboard list request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**DashboardList**](DashboardList.md)| Create a dashboard list request body. | 
 
 ### Return type
 
@@ -93,68 +48,19 @@ Name | Type | Description  | Notes
 
 ## DeleteDashboardList
 
-> DashboardListDeleteResponse DeleteDashboardList(ctx, listId).Execute()
+> DashboardListDeleteResponse DeleteDashboardList(ctx, listId)
 
 Delete a dashboard list
 
+Delete a dashboard list.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    listId := 987 // int64 | ID of the dashboard list to delete.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.DeleteDashboardList(ctx, listId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteDashboardList`: DashboardListDeleteResponse
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.DeleteDashboardList`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to delete. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteDashboardListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**listId** | **int64**| ID of the dashboard list to delete. | 
 
 ### Return type
 
@@ -176,68 +82,19 @@ Name | Type | Description  | Notes
 
 ## GetDashboardList
 
-> DashboardList GetDashboardList(ctx, listId).Execute()
+> DashboardList GetDashboardList(ctx, listId)
 
 Get a dashboard list
 
+Fetch an existing dashboard list's definition.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    listId := 987 // int64 | ID of the dashboard list to fetch.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.GetDashboardList(ctx, listId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetDashboardList`: DashboardList
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.GetDashboardList`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to fetch. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetDashboardListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**listId** | **int64**| ID of the dashboard list to fetch. | 
 
 ### Return type
 
@@ -259,59 +116,15 @@ Name | Type | Description  | Notes
 
 ## ListDashboardLists
 
-> DashboardListListResponse ListDashboardLists(ctx).Execute()
+> DashboardListListResponse ListDashboardLists(ctx, )
 
 Get all dashboard lists
 
+Fetch all of your existing dashboard list definitions.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.ListDashboardLists(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.ListDashboardLists``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListDashboardLists`: DashboardListListResponse
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.ListDashboardLists`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListDashboardListsRequest struct via the builder pattern
-
 
 ### Return type
 
@@ -333,70 +146,20 @@ Other parameters are passed through a pointer to a apiListDashboardListsRequest 
 
 ## UpdateDashboardList
 
-> DashboardList UpdateDashboardList(ctx, listId).Body(body).Execute()
+> DashboardList UpdateDashboardList(ctx, listId, body)
 
 Update a dashboard list
 
+Update the name of a dashboard list.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    listId := 987 // int64 | ID of the dashboard list to update.
-    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Update a dashboard list request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.UpdateDashboardList(ctx, listId, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateDashboardList`: DashboardList
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.UpdateDashboardList`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **int64** | ID of the dashboard list to update. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateDashboardListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**DashboardList**](DashboardList.md) | Update a dashboard list request body. | 
+**listId** | **int64**| ID of the dashboard list to update. | 
+**body** | [**DashboardList**](DashboardList.md)| Update a dashboard list request body. | 
 
 ### Return type
 

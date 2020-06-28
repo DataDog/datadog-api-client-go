@@ -19,64 +19,19 @@ Method | HTTP request | Description
 
 ## CreateAPIKey
 
-> ApiKeyResponse CreateAPIKey(ctx).Body(body).Execute()
+> ApiKeyResponse CreateAPIKey(ctx, body)
 
 Create an API key
 
+Creates an API key with a given name.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.CreateAPIKey(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.CreateAPIKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAPIKeyRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ApiKey**](ApiKey.md) |  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**ApiKey**](ApiKey.md)|  | 
 
 ### Return type
 
@@ -98,64 +53,19 @@ Name | Type | Description  | Notes
 
 ## CreateApplicationKey
 
-> ApplicationKeyResponse CreateApplicationKey(ctx).Body(body).Execute()
+> ApplicationKeyResponse CreateApplicationKey(ctx, body)
 
 Create an application key
 
+Create an application key with a given name.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.CreateApplicationKey(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateApplicationKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.CreateApplicationKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateApplicationKeyRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ApplicationKey**](ApplicationKey.md) |  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**ApplicationKey**](ApplicationKey.md)|  | 
 
 ### Return type
 
@@ -177,68 +87,19 @@ Name | Type | Description  | Notes
 
 ## DeleteAPIKey
 
-> ApiKeyResponse DeleteAPIKey(ctx, key).Execute()
+> ApiKeyResponse DeleteAPIKey(ctx, key)
 
 Delete an API key
 
+Delete a given API key.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    key := "key_example" // string | The specific API key you are working with.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.DeleteAPIKey(ctx, key).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.DeleteAPIKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific API key you are working with. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAPIKeyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**key** | **string**| The specific API key you are working with. | 
 
 ### Return type
 
@@ -260,68 +121,19 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationKey
 
-> ApplicationKeyResponse DeleteApplicationKey(ctx, key).Execute()
+> ApplicationKeyResponse DeleteApplicationKey(ctx, key)
 
 Delete an application key
 
+Delete a given application key.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    key := "key_example" // string | The specific APP key you are working with.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.DeleteApplicationKey(ctx, key).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.DeleteApplicationKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific APP key you are working with. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteApplicationKeyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**key** | **string**| The specific APP key you are working with. | 
 
 ### Return type
 
@@ -343,68 +155,19 @@ Name | Type | Description  | Notes
 
 ## GetAPIKey
 
-> ApiKeyResponse GetAPIKey(ctx, key).Execute()
+> ApiKeyResponse GetAPIKey(ctx, key)
 
 Get API key
 
+Get a given API key.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    key := "key_example" // string | The specific API key you are working with.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.GetAPIKey(ctx, key).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.GetAPIKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific API key you are working with. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAPIKeyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**key** | **string**| The specific API key you are working with. | 
 
 ### Return type
 
@@ -426,68 +189,19 @@ Name | Type | Description  | Notes
 
 ## GetApplicationKey
 
-> ApplicationKeyResponse GetApplicationKey(ctx, key).Execute()
+> ApplicationKeyResponse GetApplicationKey(ctx, key)
 
 Get an application key
 
+Get a given application key.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    key := "key_example" // string | The specific APP key you are working with.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.GetApplicationKey(ctx, key).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetApplicationKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.GetApplicationKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific APP key you are working with. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetApplicationKeyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**key** | **string**| The specific APP key you are working with. | 
 
 ### Return type
 
@@ -509,59 +223,15 @@ Name | Type | Description  | Notes
 
 ## ListAPIKeys
 
-> ApiKeyListResponse ListAPIKeys(ctx).Execute()
+> ApiKeyListResponse ListAPIKeys(ctx, )
 
 Get all API keys
 
+Get all API keys available for your account.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.ListAPIKeys(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListAPIKeys`: ApiKeyListResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.ListAPIKeys`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAPIKeysRequest struct via the builder pattern
-
 
 ### Return type
 
@@ -583,59 +253,15 @@ Other parameters are passed through a pointer to a apiListAPIKeysRequest struct 
 
 ## ListApplicationKeys
 
-> ApplicationKeyListResponse ListApplicationKeys(ctx).Execute()
+> ApplicationKeyListResponse ListApplicationKeys(ctx, )
 
 Get all application keys
 
+Get all application keys available for your Datadog account.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.ListApplicationKeys(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListApplicationKeys``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListApplicationKeys`: ApplicationKeyListResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.ListApplicationKeys`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListApplicationKeysRequest struct via the builder pattern
-
 
 ### Return type
 
@@ -657,70 +283,20 @@ Other parameters are passed through a pointer to a apiListApplicationKeysRequest
 
 ## UpdateAPIKey
 
-> ApiKeyResponse UpdateAPIKey(ctx, key).Body(body).Execute()
+> ApiKeyResponse UpdateAPIKey(ctx, key, body)
 
 Edit an API key
 
+Edit an API key name.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    key := "key_example" // string | The specific API key you are working with.
-    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.UpdateAPIKey(ctx, key, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.UpdateAPIKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific API key you are working with. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAPIKeyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**ApiKey**](ApiKey.md) |  | 
+**key** | **string**| The specific API key you are working with. | 
+**body** | [**ApiKey**](ApiKey.md)|  | 
 
 ### Return type
 
@@ -742,70 +318,20 @@ Name | Type | Description  | Notes
 
 ## UpdateApplicationKey
 
-> ApplicationKeyResponse UpdateApplicationKey(ctx, key).Body(body).Execute()
+> ApplicationKeyResponse UpdateApplicationKey(ctx, key, body)
 
 Edit an application key
 
+Edit an application key name.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    key := "key_example" // string | The specific APP key you are working with.
-    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.UpdateApplicationKey(ctx, key, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.UpdateApplicationKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific APP key you are working with. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApplicationKeyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**ApplicationKey**](ApplicationKey.md) |  | 
+**key** | **string**| The specific APP key you are working with. | 
+**body** | [**ApplicationKey**](ApplicationKey.md)|  | 
 
 ### Return type
 

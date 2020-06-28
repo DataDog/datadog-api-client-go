@@ -16,64 +16,19 @@ Method | HTTP request | Description
 
 ## CreateLogsPipeline
 
-> LogsPipeline CreateLogsPipeline(ctx).Body(body).Execute()
+> LogsPipeline CreateLogsPipeline(ctx, body)
 
 Create a pipeline
 
+Create a pipeline in your organization.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.LogsPipeline{Filter: datadog.LogsFilter{Query: "Query_example"}, Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, IsEnabled: false, Name: "Name_example", Samples: []string{"Samples_example"), Source: "Source_example", Type: datadog.LogsTraceRemapperType{}, Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: datadog.LogsFilter{Query: "Query_example"}, Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, IsEnabled: false, Name: "Name_example", Samples: []string{"Samples_example"), Source: "Source_example", Type: datadog.LogsTraceRemapperType{}, Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: , Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), Type: "Type_example"} // LogsPipeline | Definition of the new pipeline.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.CreateLogsPipeline(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.CreateLogsPipeline``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateLogsPipeline`: LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.CreateLogsPipeline`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateLogsPipelineRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsPipeline**](LogsPipeline.md) | Definition of the new pipeline. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsPipeline**](LogsPipeline.md)| Definition of the new pipeline. | 
 
 ### Return type
 
@@ -95,66 +50,19 @@ Name | Type | Description  | Notes
 
 ## DeleteLogsPipeline
 
-> DeleteLogsPipeline(ctx, pipelineId).Execute()
+> DeleteLogsPipeline(ctx, pipelineId)
 
 Delete a pipeline
 
+Delete a given pipeline from your organization. This endpoint takes no JSON arguments.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.DeleteLogsPipeline``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pipelineId** | **string** | ID of the pipeline to delete. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteLogsPipelineRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**pipelineId** | **string**| ID of the pipeline to delete. | 
 
 ### Return type
 
@@ -176,68 +84,19 @@ Name | Type | Description  | Notes
 
 ## GetLogsPipeline
 
-> LogsPipeline GetLogsPipeline(ctx, pipelineId).Execute()
+> LogsPipeline GetLogsPipeline(ctx, pipelineId)
 
 Get a pipeline
 
+Get a specific pipeline from your organization. This endpoint takes no JSON arguments.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    pipelineId := "pipelineId_example" // string | ID of the pipeline to get.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipeline(ctx, pipelineId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipeline``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetLogsPipeline`: LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.GetLogsPipeline`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pipelineId** | **string** | ID of the pipeline to get. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetLogsPipelineRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+**pipelineId** | **string**| ID of the pipeline to get. | 
 
 ### Return type
 
@@ -259,59 +118,15 @@ Name | Type | Description  | Notes
 
 ## GetLogsPipelineOrder
 
-> LogsPipelinesOrder GetLogsPipelineOrder(ctx).Execute()
+> LogsPipelinesOrder GetLogsPipelineOrder(ctx, )
 
 Get pipeline order
 
+Get the current order of your pipelines. This endpoint takes no JSON arguments.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipelineOrder(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipelineOrder``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetLogsPipelineOrder`: LogsPipelinesOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.GetLogsPipelineOrder`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetLogsPipelineOrderRequest struct via the builder pattern
-
 
 ### Return type
 
@@ -333,59 +148,15 @@ Other parameters are passed through a pointer to a apiGetLogsPipelineOrderReques
 
 ## ListLogsPipelines
 
-> []LogsPipeline ListLogsPipelines(ctx).Execute()
+> []LogsPipeline ListLogsPipelines(ctx, )
 
 Get all pipelines
 
+Get all pipelines from your organization. This endpoint takes no JSON arguments.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.ListLogsPipelines``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListLogsPipelines`: []LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.ListLogsPipelines`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListLogsPipelinesRequest struct via the builder pattern
-
 
 ### Return type
 
@@ -407,70 +178,20 @@ Other parameters are passed through a pointer to a apiListLogsPipelinesRequest s
 
 ## UpdateLogsPipeline
 
-> LogsPipeline UpdateLogsPipeline(ctx, pipelineId).Body(body).Execute()
+> LogsPipeline UpdateLogsPipeline(ctx, pipelineId, body)
 
 Update a pipeline
 
+Update a given pipeline configuration to change it’s processors or their order.  **Note**: Using this method updates your pipeline configuration by **replacing** your current configuration with the new one sent to your Datadog organization.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
-    body := datadog.LogsPipeline{Filter: , Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{), Type: "Type_example"} // LogsPipeline | New definition of the pipeline.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipeline(ctx, pipelineId, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipeline``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateLogsPipeline`: LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.UpdateLogsPipeline`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pipelineId** | **string** | ID of the pipeline to delete. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLogsPipelineRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**LogsPipeline**](LogsPipeline.md) | New definition of the pipeline. | 
+**pipelineId** | **string**| ID of the pipeline to delete. | 
+**body** | [**LogsPipeline**](LogsPipeline.md)| New definition of the pipeline. | 
 
 ### Return type
 
@@ -492,64 +213,19 @@ Name | Type | Description  | Notes
 
 ## UpdateLogsPipelineOrder
 
-> LogsPipelinesOrder UpdateLogsPipelineOrder(ctx).Body(body).Execute()
+> LogsPipelinesOrder UpdateLogsPipelineOrder(ctx, body)
 
 Update pipeline order
 
+Update the order of your pipelines. Since logs are processed sequentially, reordering a pipeline may change the structure and content of the data processed by other pipelines and their processors.  **Note**: Using the `PUT` method updates your pipeline order by replacing your current order with the new one sent to your Datadog organization.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.LogsPipelinesOrder{PipelineIds: []string{"PipelineIds_example")} // LogsPipelinesOrder | Object containing the new ordered list of pipeline IDs.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipelineOrder``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateLogsPipelineOrder`: LogsPipelinesOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.UpdateLogsPipelineOrder`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLogsPipelineOrderRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsPipelinesOrder**](LogsPipelinesOrder.md) | Object containing the new ordered list of pipeline IDs. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsPipelinesOrder**](LogsPipelinesOrder.md)| Object containing the new ordered list of pipeline IDs. | 
 
 ### Return type
 

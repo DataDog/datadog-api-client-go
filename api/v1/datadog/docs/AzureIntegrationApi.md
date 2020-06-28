@@ -14,68 +14,23 @@ Method | HTTP request | Description
 
 ## CreateAzureIntegration
 
-> interface{} CreateAzureIntegration(ctx).Body(body).Execute()
+> map[string]interface{} CreateAzureIntegration(ctx, body)
 
 Create an Azure integration
 
+Create a Datadog-Azure integration.  Using the `POST` method updates your integration configuration by adding your new configuration to the existing one in your Datadog organization.  Using the `PUT` method updates your integration configuration by replacing your current configuration with the new one sent to your Datadog organization.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Create a Datadog-Azure integration for your Datadog account request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.CreateAzureIntegration(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateAzureIntegration`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AzureIntegrationApi.CreateAzureIntegration`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAzureIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md)| Create a Datadog-Azure integration for your Datadog account request body. | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -93,68 +48,23 @@ Name | Type | Description  | Notes
 
 ## DeleteAzureIntegration
 
-> interface{} DeleteAzureIntegration(ctx).Body(body).Execute()
+> map[string]interface{} DeleteAzureIntegration(ctx, body)
 
 Delete an Azure integration
 
+Delete a given Datadog-Azure integration from your Datadog account.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Delete a given Datadog-Azure integration request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.DeleteAzureIntegration(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.DeleteAzureIntegration``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteAzureIntegration`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AzureIntegrationApi.DeleteAzureIntegration`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAzureIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md)| Delete a given Datadog-Azure integration request body. | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -172,59 +82,15 @@ Name | Type | Description  | Notes
 
 ## ListAzureIntegration
 
-> []AzureAccount ListAzureIntegration(ctx).Execute()
+> []AzureAccount ListAzureIntegration(ctx, )
 
 List all Azure integrations
 
+List all Datadog-Azure integrations configured in your Datadog account.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.ListAzureIntegration(ctx).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.ListAzureIntegration``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListAzureIntegration`: []AzureAccount
-    fmt.Fprintf(os.Stdout, "Response from `AzureIntegrationApi.ListAzureIntegration`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAzureIntegrationRequest struct via the builder pattern
-
 
 ### Return type
 
@@ -246,68 +112,23 @@ Other parameters are passed through a pointer to a apiListAzureIntegrationReques
 
 ## UpdateAzureHostFilters
 
-> interface{} UpdateAzureHostFilters(ctx).Body(body).Execute()
+> map[string]interface{} UpdateAzureHostFilters(ctx, body)
 
 Update Azure integration host filters
 
+Update the defined list of host filters for a given Datadog-Azure integration.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body :=  // AzureAccount | Update a Datadog-Azure integration's host filters request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureHostFilters(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateAzureHostFilters`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AzureIntegrationApi.UpdateAzureHostFilters`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAzureHostFiltersRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md)| Update a Datadog-Azure integration&#39;s host filters request body. | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -325,68 +146,23 @@ Name | Type | Description  | Notes
 
 ## UpdateAzureIntegration
 
-> interface{} UpdateAzureIntegration(ctx).Body(body).Execute()
+> map[string]interface{} UpdateAzureIntegration(ctx, body)
 
 Update an Azure integration
 
+Update a Datadog-Azure integration. Requires an existing `tenant_name` and `client_id`. Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`, use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body :=  // AzureAccount | Update a Datadog-Azure integration request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureIntegration(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureIntegration``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateAzureIntegration`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AzureIntegrationApi.UpdateAzureIntegration`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAzureIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md)| Update a Datadog-Azure integration request body. | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 

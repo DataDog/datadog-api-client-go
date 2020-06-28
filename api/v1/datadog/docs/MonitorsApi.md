@@ -16,64 +16,19 @@ Method | HTTP request | Description
 
 ## CheckCanDeleteMonitor
 
-> CheckCanDeleteMonitorResponse CheckCanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
+> CheckCanDeleteMonitorResponse CheckCanDeleteMonitor(ctx, monitorIds)
 
 Check if a monitor can be deleted
 
+Check if the given monitors can be deleted.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    monitorIds := []int64{int64(123)} // []int64 | The IDs of the monitor to check.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.CheckCanDeleteMonitor(ctx, monitorIds).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CheckCanDeleteMonitor``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CheckCanDeleteMonitor`: CheckCanDeleteMonitorResponse
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.CheckCanDeleteMonitor`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCheckCanDeleteMonitorRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **monitorIds** | [**[]int64**](int64.md) | The IDs of the monitor to check. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**monitorIds** | [**[]int64**](int64.md)| The IDs of the monitor to check. | 
 
 ### Return type
 
@@ -95,64 +50,19 @@ Name | Type | Description  | Notes
 
 ## CreateMonitor
 
-> Monitor CreateMonitor(ctx).Body(body).Execute()
+> Monitor CreateMonitor(ctx, body)
 
 Create a monitor
 
+Create a monitor using the specified options.  #### Monitor Types  The type of monitor chosen from:  - anomaly: `query alert` - APM: `query alert` - composite: `composite` - custom: `service check` - event: `event alert` - forecast: `query alert` - host: `service check` - integration: `query alert` or `service check` - live process: `process alert` - logs: `logs alert` - metric: `metric alert` - network: `service check` - outlier: `query alert` - process: `service query` - rum: `alert` - watchdog: `event alert`  #### Query Types  **Metric Alert Query**  Example: `time_aggr(time_window):space_aggr:metric{tags} [by {key}] operator #`  - `time_aggr`: avg, sum, max, min, change, or pct_change - `time_window`: `last_#m` (with `#` being 5, 10, 15, or 30) or `last_#h`(with `#` being 1, 2, or 4), or `last_1d` - `space_aggr`: avg, sum, min, or max - `tags`: one or more tags (comma-separated), or * - `key`: a 'key' in key:value tag syntax; defines a separate alert for each tag in the group (multi-alert) - `operator`: <, <=, >, >=, ==, or != - `#`: an integer or decimal number used to set the threshold  If you are using the `_change_` or `_pct_change_` time aggregator, instead use `change_aggr(time_aggr(time_window), timeshift):space_aggr:metric{tags} [by {key}] operator #` with:  - `change_aggr` change, pct_change - `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/monitor_types/#define-the-conditions) - `time_window` last\\_#m (1, 5, 10, 15, or 30), last\\_#h (1, 2, or 4), or last_#d (1 or 2) - `timeshift` #m_ago (5, 10, 15, or 30), #h_ago (1, 2, or 4), or 1d_ago  Use this to create an outlier monitor using the following query: `avg(last_30m):outliers(avg:system.cpu.user{role:es-events-data} by {host}, 'dbscan', 7) > 0`  **Service Check Query**  Example: `\"check\".over(tags).last(count).count_by_status()`  - **`check`** name of the check, e.g. `datadog.agent.up` - **`tags`** one or more quoted tags (comma-separated), or \"*\". e.g.: `.over(\"env:prod\", \"role:db\")` - **`count`** must be at >= your max threshold (defined in the `options`). e.g. if you want to notify on 1 critical, 3 ok and 2 warn statuses count should be 3. It is limited to 100.  **Event Alert Query**  Example: `events('sources:nagios status:error,warning priority:normal tags: \"string query\"').rollup(\"count\").last(\"1h\")\"`  - **`event`**, the event query string: - **`string_query`** free text query to match against event title and text. - **`sources`** event sources (comma-separated). - **`status`** event statuses (comma-separated). Valid options: error, warn, and info. - **`priority`** event priorities (comma-separated). Valid options: low, normal, all. - **`host`** event reporting host (comma-separated). - **`tags`** event tags (comma-separated). - **`excluded_tags`** excluded event tags (comma-separated). - **`rollup`** the stats roll-up method. `count` is the only supported method now. - **`last`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d. This value should not exceed 48 hours.  **Process Alert Query**  Example: `processes(search).over(tags).rollup('count').last(timeframe) operator #`  - **`search`** free text search string for querying processes. Matching processes match results on the [Live Processes](https://docs.datadoghq.com/infrastructure/process/?tab=linuxwindows) page. - **`tags`** one or more tags (comma-separated) - **`timeframe`** the timeframe to roll up the counts. Examples: 60s, 4h. Supported timeframes: s, m, h and d - **`operator`** <, <=, >, >=, ==, or != - **`#`** an integer or decimal number used to set the threshold  **Logs Alert Query**  Example: `logs(query).index(index_name).rollup(rollup_method[, measure]).last(time_window) operator #`  - **`query`** The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/). - **`index_name`** For multi-index organizations, the log index in which the request is performed. - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`. - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use. - **`time_window`** #m (5, 10, 15, or 30), #h (1, 2, or 4, 24) - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`. - **`#`** an integer or decimal number used to set the threshold.  **Composite Query**  Example: `12345 && 67890`, where `12345` and `67890` are the IDs of non-composite monitors  * **`name`** [*required*, *default* = **dynamic, based on query**]: The name of the alert. * **`message`** [*required*, *default* = **dynamic, based on query**]: A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same '@username' notation as events. * **`tags`** [*optional*, *default* = **empty list**]: A list of tags to associate with your monitor. When getting all monitor details via the API, use the `monitor_tags` argument to filter results by these tags. It is only available via the API and isn't visible or editable in the Datadog UI.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.Monitor{Created: "TODO", Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: datadog.MonitorOptions{Aggregation: datadog.MonitorOptions_aggregation{GroupBy: "GroupBy_example", Metric: "Metric_example", Type: "Type_example"}, DeviceIds: []MonitorDeviceID{datadog.MonitorDeviceID{}), EnableLogsSample: false, EscalationMessage: "EscalationMessage_example", EvaluationDelay: int64(123), IncludeTags: false, Locked: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), NewHostDelay: int64(123), NoDataTimeframe: int64(123), NotifyAudit: false, NotifyNoData: false, RenotifyInterval: int64(123), RequireFullWindow: false, Silenced: map[string]string{ "Key" = "Value" }, SyntheticsCheckId: int64(123), ThresholdWindows: datadog.MonitorThresholdWindowOptions{RecoveryWindow: "RecoveryWindow_example", TriggerWindow: "TriggerWindow_example"}, Thresholds: datadog.MonitorThresholds{Critical: 123, CriticalRecovery: 123, Ok: 123, Unknown: 123, Warning: 123, WarningRecovery: 123}, TimeoutH: int64(123)}, OverallState: datadog.MonitorOverallStates{}, Query: "Query_example", State: datadog.MonitorState{Groups: map[string]string{ "Key" = "Value" }}, Tags: []string{"Tags_example"), Type: datadog.MonitorType{}} // Monitor | Create a monitor request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.CreateMonitor(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.CreateMonitor`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateMonitorRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Monitor**](Monitor.md) | Create a monitor request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**Monitor**](Monitor.md)| Create a monitor request body. | 
 
 ### Return type
 
@@ -174,70 +84,30 @@ Name | Type | Description  | Notes
 
 ## DeleteMonitor
 
-> DeletedMonitor DeleteMonitor(ctx, monitorId).Force(force).Execute()
+> DeletedMonitor DeleteMonitor(ctx, monitorId, optional)
 
 Delete a monitor
 
+Delete the specified monitor
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    monitorId := 987 // int64 | The ID of the monitor.
-    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.DeleteMonitor(ctx, monitorId).Force(force).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.DeleteMonitor``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteMonitor`: DeletedMonitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.DeleteMonitor`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The ID of the monitor. | 
+**monitorId** | **int64**| The ID of the monitor. | 
+ **optional** | ***DeleteMonitorOpts** | optional parameters | nil if no parameters
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteMonitorRequest struct via the builder pattern
+Optional parameters are passed through a pointer to a DeleteMonitorOpts struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
+ **force** | **optional.String**| Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
 
 ### Return type
 
@@ -259,70 +129,30 @@ Name | Type | Description  | Notes
 
 ## GetMonitor
 
-> Monitor GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
+> Monitor GetMonitor(ctx, monitorId, optional)
 
 Get a monitor's details
 
+Get details about the specified monitor from your organization.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    monitorId := 987 // int64 | The ID of the monitor
-    groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.GetMonitor``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.GetMonitor`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The ID of the monitor | 
+**monitorId** | **int64**| The ID of the monitor | 
+ **optional** | ***GetMonitorOpts** | optional parameters | nil if no parameters
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetMonitorRequest struct via the builder pattern
+Optional parameters are passed through a pointer to a GetMonitorOpts struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
+ **groupStates** | **optional.String**| When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
 
 ### Return type
 
@@ -344,78 +174,35 @@ Name | Type | Description  | Notes
 
 ## ListMonitors
 
-> []Monitor ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
+> []Monitor ListMonitors(ctx, optional)
 
 Get all monitor details
 
+Get details about the specified monitor from your organization.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
-    name := "name_example" // string | A string to filter monitors by name. (optional)
-    tags := "tags_example" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, `host:host0`. (optional)
-    monitorTags := "monitorTags_example" // string | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, `service:my-app`. (optional)
-    withDowntimes := true // bool | If this argument is set to true, then the returned data includes all current downtimes for each monitor. (optional)
-    idOffset := 987 // int64 | The time (in seconds) to delay the monitor evaluation compared to the latest data timestamp received. (optional)
-    page := 987 // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
-    pageSize := 987 // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ListMonitors``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListMonitors`: []Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.ListMonitors`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListMonitorsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
- **name** | **string** | A string to filter monitors by name. | 
- **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, &#x60;host:host0&#x60;. | 
- **monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, &#x60;service:my-app&#x60;. | 
- **withDowntimes** | **bool** | If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
- **idOffset** | **int64** | The time (in seconds) to delay the monitor evaluation compared to the latest data timestamp received. | 
- **page** | **int64** | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. | 
- **pageSize** | **int32** | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a &#x60;page_size&#x60; limit. However, if page is specified and &#x60;page_size&#x60; is not, the argument defaults to 100. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListMonitorsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListMonitorsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupStates** | **optional.String**| When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
+ **name** | **optional.String**| A string to filter monitors by name. | 
+ **tags** | **optional.String**| A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, &#x60;host:host0&#x60;. | 
+ **monitorTags** | **optional.String**| A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, &#x60;service:my-app&#x60;. | 
+ **withDowntimes** | **optional.Bool**| If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
+ **idOffset** | **optional.Int64**| The time (in seconds) to delay the monitor evaluation compared to the latest data timestamp received. | 
+ **page** | **optional.Int64**| The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. | 
+ **pageSize** | **optional.Int32**| The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a &#x60;page_size&#x60; limit. However, if page is specified and &#x60;page_size&#x60; is not, the argument defaults to 100. | 
 
 ### Return type
 
@@ -437,70 +224,20 @@ Name | Type | Description  | Notes
 
 ## UpdateMonitor
 
-> Monitor UpdateMonitor(ctx, monitorId).Body(body).Execute()
+> Monitor UpdateMonitor(ctx, monitorId, body)
 
 Edit a monitor
 
+Edit the specified monitor.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    monitorId := 987 // int64 | The ID of the monitor.
-    body := datadog.MonitorUpdateRequest{Created: "TODO", Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: datadog.MonitorOptions{Aggregation: datadog.MonitorOptions_aggregation{GroupBy: "GroupBy_example", Metric: "Metric_example", Type: "Type_example"}, DeviceIds: []MonitorDeviceID{datadog.MonitorDeviceID{}), EnableLogsSample: false, EscalationMessage: "EscalationMessage_example", EvaluationDelay: int64(123), IncludeTags: false, Locked: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), NewHostDelay: int64(123), NoDataTimeframe: int64(123), NotifyAudit: false, NotifyNoData: false, RenotifyInterval: int64(123), RequireFullWindow: false, Silenced: map[string]string{ "Key" = "Value" }, SyntheticsCheckId: int64(123), ThresholdWindows: datadog.MonitorThresholdWindowOptions{RecoveryWindow: "RecoveryWindow_example", TriggerWindow: "TriggerWindow_example"}, Thresholds: datadog.MonitorThresholds{Critical: 123, CriticalRecovery: 123, Ok: 123, Unknown: 123, Warning: 123, WarningRecovery: 123}, TimeoutH: int64(123)}, OverallState: datadog.MonitorOverallStates{}, Query: "Query_example", State: datadog.MonitorState{Groups: map[string]string{ "Key" = "Value" }}, Tags: []string{"Tags_example"), Type: datadog.MonitorType{}} // MonitorUpdateRequest | Edit a monitor request body.
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.UpdateMonitor(ctx, monitorId, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.UpdateMonitor``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.UpdateMonitor`: %v\n", resp)
-}
-```
-
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**monitorId** | **int64** | The ID of the monitor. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateMonitorRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**MonitorUpdateRequest**](MonitorUpdateRequest.md) | Edit a monitor request body. | 
+**monitorId** | **int64**| The ID of the monitor. | 
+**body** | [**MonitorUpdateRequest**](MonitorUpdateRequest.md)| Edit a monitor request body. | 
 
 ### Return type
 
@@ -522,64 +259,19 @@ Name | Type | Description  | Notes
 
 ## ValidateMonitor
 
-> Monitor ValidateMonitor(ctx).Body(body).Execute()
+> Monitor ValidateMonitor(ctx, body)
 
 Validate a monitor
 
+Validate the monitor provided in the request.
 
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    body := datadog.Monitor{Created: "TODO", Creator: , Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: , OverallState: , Query: "Query_example", State: , Tags: []string{"Tags_example"), Type: } // Monitor | Monitor request object
-
-    configuration := datadog.NewConfiguration()
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.ValidateMonitor(ctx, body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateMonitor``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ValidateMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.ValidateMonitor`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiValidateMonitorRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Monitor**](Monitor.md) | Monitor request object | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**Monitor**](Monitor.md)| Monitor request object | 
 
 ### Return type
 
