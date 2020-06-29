@@ -122,9 +122,12 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 	ctx, finish := WithClient(ctx, t)
 	client := Client(ctx)
 
-	ctx = tests.WithClock(ctx, t)
+	ctx, err := tests.WithClock(ctx, t.Name())
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	r, err := tests.Recorder(ctx, t)
+	r, err := tests.Recorder(ctx, t.Name())
 	if err != nil {
 		log.Fatal(err)
 	}
