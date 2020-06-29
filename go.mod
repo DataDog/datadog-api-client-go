@@ -5,8 +5,10 @@ go 1.14
 require (
 	github.com/DataDog/datadog-go v3.6.0+incompatible // indirect
 	github.com/dnaeon/go-vcr v1.0.1
+	github.com/go-bdd/gobdd v1.1.0
 	github.com/google/go-cmp v0.4.0 // indirect
 	github.com/jonboulle/clockwork v0.1.0
+	github.com/mcuadros/go-lookup v0.0.0-20200513230334-5988786b5617
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/philhofer/fwd v1.0.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect

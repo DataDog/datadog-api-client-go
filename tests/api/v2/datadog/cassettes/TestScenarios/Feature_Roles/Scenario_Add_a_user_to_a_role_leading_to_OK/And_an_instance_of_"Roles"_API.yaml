@@ -1,0 +1,167 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Add_a_user_to_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593452302"},"type":"roles"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6804052837504945165"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "6804052837504945165"
+    url: https://api.datadoghq.com/api/v2/roles
+    method: POST
+  response:
+    body: '{"data":{"type":"roles","id":"5461694c-ba2f-11ea-9c6a-4b95a7d493d3","attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Add_a_user_to_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593452302","created_at":"2020-06-29T17:38:23.011350+00:00","modified_at":"2020-06-29T17:38:23.011350+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 29 Jun 2020 17:38:23 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:22 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - SaHvyR/hQzhMjBxXmmuM76vwlwfocpgL0LhX3u6R0CFONYqUGm7Xe/7/HyTliTFX
+      X-Dd-Version:
+      - "35.2679051"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"email":"go-testscenarios-feature_roles-scenario_add_a_user_to_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452302@datadoghq.com","name":"go-testscenarios-feature_roles-scenario_add_","title":"Big boss"},"type":"users"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateUser
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3094507178362063249"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3094507178362063249"
+    url: https://api.datadoghq.com/api/v2/users
+    method: POST
+  response:
+    body: '{"data":{"type":"users","id":"54807e2c-ba2f-11ea-9c6a-4b82ecdb48e6","attributes":{"name":"go-testscenarios-feature_roles-scenario_add_","handle":"go-testscenarios-feature_roles-scenario_add_a_user_to_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452302@datadoghq.com","created_at":"2020-06-29T17:38:23.214071+00:00","email":"go-testscenarios-feature_roles-scenario_add_a_user_to_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452302@datadoghq.com","icon":"https://secure.gravatar.com/avatar/1b588157d647fba04ef510cde2ec2e1a?s=48&d=retro","title":"Big
+      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "801"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 29 Jun 2020 17:38:23 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:23 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - wNaVyRyNliLxKeX4pqFHOJTBG1dRCwo1/ihrnAf0GXtGNGahc1XK8Xzj/ssA3R20
+      X-Dd-Version:
+      - "35.2679051"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"id":"54807e2c-ba2f-11ea-9c6a-4b82ecdb48e6","type":"users"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - AddUserToRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1929193472976802754"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1929193472976802754"
+    url: https://api.datadoghq.com/api/v2/roles/5461694c-ba2f-11ea-9c6a-4b95a7d493d3/users
+    method: POST
+  response:
+    body: '{"meta":{"page":{"total_count":1}},"data":[{"type":"users","id":"54807e2c-ba2f-11ea-9c6a-4b82ecdb48e6","attributes":{"name":"go-testscenarios-feature_roles-scenario_add_","handle":"go-testscenarios-feature_roles-scenario_add_a_user_to_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452302@datadoghq.com","created_at":"2020-06-29T17:38:23.214071+00:00","email":"go-testscenarios-feature_roles-scenario_add_a_user_to_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452302@datadoghq.com","icon":"https://secure.gravatar.com/avatar/1b588157d647fba04ef510cde2ec2e1a?s=48&d=retro","title":"Big
+      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"5461694c-ba2f-11ea-9c6a-4b95a7d493d3"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 29 Jun 2020 17:38:23 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:23 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 562ySu37xnxKxbTr0NFd7oH3+L3JO3D7GcG/Lb1Dr0vgKuyocJBk1SrO7ogLRZuZ
+      X-Dd-Version:
+      - "35.2679051"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
