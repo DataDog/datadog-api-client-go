@@ -9,6 +9,7 @@ package test
 import (
 	"context"
 	"log"
+	"strconv"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -20,8 +21,9 @@ import (
 func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadog.AzureAccount, datadog.AzureAccount, datadog.AzureAccount) {
 	tenantName := tests.UniqueEntityName(ctx, t)
 	updatedTenantName := *tenantName + "-updated"
+	clock := strconv.FormatInt(tests.ClockFromContext(ctx).Now().Unix(), 10)
 	var testAzureAcct = datadog.AzureAccount{
-		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
+		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-tt" + clock),
 		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
 		TenantName:   tenantName,
 	}
@@ -30,7 +32,7 @@ func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadog.Azur
 		ClientId:      testAzureAcct.ClientId,
 		ClientSecret:  testAzureAcct.ClientSecret,
 		TenantName:    testAzureAcct.TenantName,
-		NewClientId:   datadog.PtrString("testc7f6-1234-5678-9101-3fcbf4update"),
+		NewClientId:   datadog.PtrString("testc7f6-1234-5678-9101-uu" + clock),
 		NewTenantName: &updatedTenantName,
 		HostFilters:   datadog.PtrString("filter:foo,test:bar"),
 	}

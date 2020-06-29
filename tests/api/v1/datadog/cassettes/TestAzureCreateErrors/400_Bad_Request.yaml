@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7197041979989924272"
+      - "1119620755904047252"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6654799825587626817"
+      - "2971838846139106292"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: POST
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:01:49 GMT
+      - Mon, 29 Jun 2020 09:25:06 GMT
       Dd-Pool:
       - dogweb
       Pragma:
