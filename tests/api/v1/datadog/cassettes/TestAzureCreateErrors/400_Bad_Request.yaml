@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6063196910789358072"
+      - "7197041979989924272"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6381335559541856164"
+      - "6654799825587626817"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: POST
   response:
@@ -31,12 +31,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "59"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:30:07 GMT
+      - Mon, 29 Jun 2020 09:01:49 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -46,7 +44,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.2676641"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

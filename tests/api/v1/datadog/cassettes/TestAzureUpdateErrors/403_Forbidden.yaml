@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1881220431724787294"
+      - "6444232292521049432"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9008663123965291064"
+      - "4876086526355867115"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: PUT
   response:
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:30:08 GMT
+      - Mon, 29 Jun 2020 09:01:50 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

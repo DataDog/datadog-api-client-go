@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateAzureHostFilters
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "322788036132705002"
+      - "8164312398525309576"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7142371879897437429"
+      - "3731754619546361025"
     url: https://api.datadoghq.com/api/v1/integration/azure/host_filters
     method: POST
   response:
@@ -31,12 +31,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "59"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:30:08 GMT
+      - Mon, 29 Jun 2020 09:01:50 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -46,7 +44,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.2676641"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
