@@ -44,41 +44,41 @@ const (
 
 var testFiles2EndpointTags = map[string]map[string]string{
 	"tests/api/v1/datadog": {
-		"api_authentication_test": "validation",
-		"api_aws_integration_test": "integration-aws",
-		"api_aws_logs_integration_test": "integration-aws",
-		"api_azure_integration_test": "integration-azure",
-		"api_dashboard_lists_test": "dashboard-lists",
-		"api_dashboards_test": "dashboards",
-		"api_downtimes_test": "downtimes",
-		"api_events_test": "events",
-		"api_gcp_integration_test": "integration-gcp",
-		"api_hosts_test": "hosts",
-		"api_ip_ranges_test": "ip-ranges",
-		"api_key_management_test": "key-management",
-		"api_logs_indexes_test": "logs-indexes",
-		"api_logs_pipelines_test": "logs-pipelines",
-		"api_logs_test": "logs",
-		"api_metrics_test": "metrics",
-		"api_monitors_test": "monitors",
-		"api_organizations_test": "organizations",
-		"api_pager_duty_integration_test": "integration-pagerduty",
+		"api_authentication_test":           "validation",
+		"api_aws_integration_test":          "integration-aws",
+		"api_aws_logs_integration_test":     "integration-aws",
+		"api_azure_integration_test":        "integration-azure",
+		"api_dashboard_lists_test":          "dashboard-lists",
+		"api_dashboards_test":               "dashboards",
+		"api_downtimes_test":                "downtimes",
+		"api_events_test":                   "events",
+		"api_gcp_integration_test":          "integration-gcp",
+		"api_hosts_test":                    "hosts",
+		"api_ip_ranges_test":                "ip-ranges",
+		"api_key_management_test":           "key-management",
+		"api_logs_indexes_test":             "logs-indexes",
+		"api_logs_pipelines_test":           "logs-pipelines",
+		"api_logs_test":                     "logs",
+		"api_metrics_test":                  "metrics",
+		"api_monitors_test":                 "monitors",
+		"api_organizations_test":            "organizations",
+		"api_pager_duty_integration_test":   "integration-pagerduty",
 		"api_service_level_objectives_test": "service-level-objectives",
-		"api_snapshots_test": "snapshots",
-		"api_synthetics_test": "synthetics",
-		"api_tags_test": "tags",
-		"api_usage_metering_test": "usage-metering",
-		"api_users_test": "users",
-		"telemetry_test": "telemetry",
+		"api_snapshots_test":                "snapshots",
+		"api_synthetics_test":               "synthetics",
+		"api_tags_test":                     "tags",
+		"api_usage_metering_test":           "usage-metering",
+		"api_users_test":                    "users",
+		"telemetry_test":                    "telemetry",
 	},
 	"tests/api/v2/datadog": {
 		"api_dashboard_lists_test": "dashboard-lists",
-		"api_logs_archives_test": "logs-archives",
-		"api_permissions_test": "permissions",
-		"api_roles_test": "roles",
-		"api_users_test": "users",
+		"api_logs_archives_test":   "logs-archives",
+		"api_permissions_test":     "permissions",
+		"api_roles_test":           "roles",
+		"api_users_test":           "users",
 		"security_monitoring_test": "security-monitoring",
-		"telemetry_test": "telemetry",
+		"telemetry_test":           "telemetry",
 	},
 }
 
@@ -168,7 +168,7 @@ func getEndpointTagValue(t *testing.T) (string, error) {
 			testName = testName[:strings.LastIndex(testName, "/")]
 			frameFunction = frameFunction[:strings.LastIndex(frameFunction, ".")]
 		}
-		if strings.HasSuffix(frameFunction, "." + testName) {
+		if strings.HasSuffix(frameFunction, "."+testName) {
 			functionFile = frame.File
 			// when we find the frame with the current test function, match it against testFiles2EndpointTags
 			for subdir, file2tag := range testFiles2EndpointTags {
@@ -274,6 +274,14 @@ func WithClock(ctx context.Context, t *testing.T) context.Context {
 // of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
 // BuildId to enable mapping resources that weren't deleted to builds.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
+	name := WithUniqueSurrounding(ctx, t.Name())
+	return &name
+}
+
+// WithUniqueSurrounding will wrap a string that can be used as a title/description/summary/...
+// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
+// BuildId to enable mapping resources that weren't deleted to builds.
+func WithUniqueSurrounding(ctx context.Context, name string) string {
 	buildID, present := os.LookupEnv("BUILD_BUILDID")
 	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
 		buildID = "local"
@@ -281,10 +289,10 @@ func UniqueEntityName(ctx context.Context, t *testing.T) *string {
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-	result := fmt.Sprintf("go-%s-%s-%d", t.Name(), buildID, ClockFromContext(ctx).Now().Unix())
+	result := fmt.Sprintf("go-%s-%s-%d", name, buildID, ClockFromContext(ctx).Now().Unix())
 	// In case this is used in URL, make sure we replace the slash that is added by subtests
 	result = strings.ReplaceAll(result, "/", "-")
-	return &result
+	return result
 }
 
 // ClockFromContext returns clock or panics.
