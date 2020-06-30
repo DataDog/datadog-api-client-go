@@ -9,6 +9,7 @@ package test
 import (
 	"context"
 	"log"
+	"strconv"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -18,18 +19,21 @@ import (
 )
 
 func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadog.AzureAccount, datadog.AzureAccount, datadog.AzureAccount) {
+	tenantName := tests.UniqueEntityName(ctx, t)
+	updatedTenantName := *tenantName + "-updated"
+	clock := strconv.FormatInt(tests.ClockFromContext(ctx).Now().Unix(), 10)
 	var testAzureAcct = datadog.AzureAccount{
-		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
+		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-tt" + clock),
 		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
-		TenantName:   tests.UniqueEntityName(ctx, t),
+		TenantName:   tenantName,
 	}
 
 	var testUpdateAzureAcct = datadog.AzureAccount{
 		ClientId:      testAzureAcct.ClientId,
 		ClientSecret:  testAzureAcct.ClientSecret,
 		TenantName:    testAzureAcct.TenantName,
-		NewClientId:   datadog.PtrString("testc7f6-1234-5678-9101-3fcbf4update"),
-		NewTenantName: datadog.PtrString("testc44-1234-5678-9101-cc0073update"),
+		NewClientId:   datadog.PtrString("testc7f6-1234-5678-9101-uu" + clock),
+		NewTenantName: &updatedTenantName,
 		HostFilters:   datadog.PtrString("filter:foo,test:bar"),
 	}
 
@@ -311,7 +315,13 @@ func TestAzureUpdateHostFiltersErrors(t *testing.T) {
 }
 
 func uninstallAzureIntegration(ctx context.Context, account datadog.AzureAccount) {
-	_, httpresp, err := Client(ctx).AzureIntegrationApi.DeleteAzureIntegration(ctx).Body(account).Execute()
+	toDelete := datadog.AzureAccount{ClientId: account.ClientId, TenantName: account.TenantName}
+	if account.NewClientId != nil {
+		// when we call this on an update request, make sure we actually delete the updated entity, not the original one
+		toDelete.ClientId = account.NewClientId
+		toDelete.TenantName = account.NewTenantName
+	}
+	_, httpresp, err := Client(ctx).AzureIntegrationApi.DeleteAzureIntegration(ctx).Body(toDelete).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
 		log.Printf("Error uninstalling Azure Account: %v, Another test may have already removed this account.", account)
 	}
