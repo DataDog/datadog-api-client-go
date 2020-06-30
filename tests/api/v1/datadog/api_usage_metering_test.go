@@ -271,6 +271,25 @@ func TestUsageBillableSummary(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasUsage())
+
+	var usageItem = usage.GetUsage()[0]
+	assert.Equal("Logs Probe - Test", usageItem.GetOrgName())
+	assert.Equal("Pro", usageItem.GetBillingPlan())
+	assert.Equal("927176c4b", usageItem.GetPublicId())
+	assert.Equal(time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC), usageItem.GetStartDate().UTC())
+	assert.Equal(time.Date(2020, 06, 28, 0, 0, 0, 0, time.UTC), usageItem.GetEndDate().UTC())
+	assert.Equal(int64(1), usageItem.RatioInMonth())
+	assert.Equal(int64(2), usageItem.NumOrgs())
+
+	var usageUsageItem = usageItem.GetUsage()
+	var usageKeys = usageUsageItem.GetLogsIndexedSum()
+	assert.Equal(int64(1), usageKeys.OrgBillableUsage())
+	assert.Equal("logs", usageKeys.UsageUnit())
+	assert.Equal(int64(2), usageKeys.AccountBillableUsage())
+	assert.Equal(time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC), usageKeys.FirstBillableUsageHour().UTC())
+	assert.Equal(int64(3), usageKeys.ElapsedUsageHours())
+	assert.Equal(time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC), usageKeys.LastBillableUsageHour().UTC())
+	assert.Equal(int64(4), usageKeys.PercentageInAccount())
 }
 
 // This test needs multi-org token so make it a unit test
