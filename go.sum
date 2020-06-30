@@ -17,6 +17,8 @@ github.com/go-bdd/assert v0.0.0-20190820124234-20d47a68475d h1:zQazu3kApPoajWmXj
 github.com/go-bdd/assert v0.0.0-20190820124234-20d47a68475d/go.mod h1:dOoqt7g2I/fpR7/Pyz0P19J3xjDj5lsHn3v9EaFLRjM=
 github.com/go-bdd/gobdd v1.1.0 h1:5/cj3NFKYDEDPiLIQ18gx85UR8U3vAfF/JbgVrKSrVI=
 github.com/go-bdd/gobdd v1.1.0/go.mod h1:Q3mXpW/Qm9GJCPLxFCTXdTtRBdHzcTfrbeLlaqAPtXM=
+github.com/go-bdd/gobdd v1.1.1 h1:wtMQYtUX1903t8EZoRn4U87A3JAjFrO3IQDY/GVYQD0=
+github.com/go-bdd/gobdd v1.1.1/go.mod h1:Q3mXpW/Qm9GJCPLxFCTXdTtRBdHzcTfrbeLlaqAPtXM=
 github.com/gofrs/uuid v3.2.0+incompatible h1:y12jRkkFxsd7GpqdSZ+/KCs/fJbqpEXSGd4+jfEaewE=
 github.com/gofrs/uuid v3.2.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
 github.com/gogo/protobuf v1.3.1 h1:DqDEcV5aeaTmdFBePNpYsp3FlcVH/2ISVVM9Qf8PSls=
