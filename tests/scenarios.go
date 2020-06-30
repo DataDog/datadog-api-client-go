@@ -31,19 +31,6 @@ type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
 
-func Decorate(impl interface{}) interface{} {
-	fn := reflect.ValueOf(impl)
-
-	inner := func(in []reflect.Value) []reflect.Value {
-		f := reflect.ValueOf(impl)
-		ret := f.Call(in)
-		return ret
-	}
-
-	v := reflect.MakeFunc(fn.Type(), inner)
-	return v.Interface()
-}
-
 // Templated replaces {{ path }} in source with value from data[path].
 func Templated(data interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
@@ -58,6 +45,7 @@ func Templated(data interface{}, source string) string {
 	return re.ReplaceAllStringFunc(source, replace)
 }
 
+// GetCtx returns Go context.
 func GetCtx(ctx gobdd.Context) context.Context {
 	c, err := ctx.Get(ctxKey{})
 	if err != nil {
@@ -66,14 +54,17 @@ func GetCtx(ctx gobdd.Context) context.Context {
 	return c.(context.Context)
 }
 
+// SetCtx sets Go context in BDD context.
 func SetCtx(ctx gobdd.Context, value context.Context) {
 	ctx.Set(ctxKey{}, value)
 }
 
+// SetAPI sets client API.
 func SetAPI(ctx gobdd.Context, value interface{}) {
 	ctx.Set(apiKey{}, value)
 }
 
+// GetData returns feature context.
 func GetData(ctx gobdd.Context) map[string]interface{} {
 	c, err := ctx.Get(dataKey{})
 	if err != nil {
@@ -82,10 +73,12 @@ func GetData(ctx gobdd.Context) map[string]interface{} {
 	return c.(map[string]interface{})
 }
 
+// SetData sets feature context.
 func SetData(ctx gobdd.Context, value map[string]interface{}) {
 	ctx.Set(dataKey{}, value)
 }
 
+// GetRequestParameters helps to build a request.
 func GetRequestParameters(ctx gobdd.Context) map[string]interface{} {
 	c, err := ctx.Get(requestParamsKey{})
 	if err != nil {
@@ -94,6 +87,7 @@ func GetRequestParameters(ctx gobdd.Context) map[string]interface{} {
 	return c.(map[string]interface{})
 }
 
+// GetRequestArguments helps to build a request.
 func GetRequestArguments(ctx gobdd.Context) []interface{} {
 	c, err := ctx.Get(requestArgsKey{})
 	if err != nil {
@@ -102,10 +96,12 @@ func GetRequestArguments(ctx gobdd.Context) []interface{} {
 	return c.([]interface{})
 }
 
+// SetCleanup functions.
 func SetCleanup(ctx gobdd.Context, value map[string]func()) {
 	ctx.Set(cleanupKey{}, value)
 }
 
+// GetCleanup functions.
 func GetCleanup(ctx gobdd.Context) map[string]func() {
 	c, err := ctx.Get(cleanupKey{})
 	if err != nil {
