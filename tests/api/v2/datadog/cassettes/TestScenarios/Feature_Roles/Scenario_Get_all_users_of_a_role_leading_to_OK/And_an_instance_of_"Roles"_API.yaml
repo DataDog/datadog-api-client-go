@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Get_all_users_of_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593452301"},"type":"roles"}}
+      {"data":{"attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Get_all_users_of_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593513640"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "263990362872746366"
+      - "6671407396418650535"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "263990362872746366"
+      - "6671407396418650535"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"53a432c8-ba2f-11ea-9c6a-e3e0da9228d8","attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Get_all_users_of_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593452301","created_at":"2020-06-29T17:38:21.770771+00:00","modified_at":"2020-06-29T17:38:21.770771+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
+    body: '{"data":{"type":"roles","id":"246a965c-babe-11ea-9c85-1fe16cc540c4","attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Get_all_users_of_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593513640","created_at":"2020-06-30T10:40:40.573718+00:00","modified_at":"2020-06-30T10:40:40.573718+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,13 +32,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 17:38:21 GMT
+      - Tue, 30 Jun 2020 10:40:40 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:21 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 07-Jul-2020 10:40:40 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -47,9 +47,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vlc9b/rJPByGsV/acj3ScS7B1lo9nEAbSgYCfkl0GH3egry4iXeiGBP0WX8DpJ/T
+      - dPTJBBDv5jeY1gnH1FisDpda5Hi0boOGbsHxIOi4qkMt+QLOH7F7P7MeSr40vXZ0
       X-Dd-Version:
-      - "35.2679051"
+      - "35.2682096"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -57,7 +57,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"data":{"attributes":{"email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452301@datadoghq.com","name":"go-testscenarios-feature_roles-scenario_get_","title":"Big boss"},"type":"users"}}
+      {"data":{"attributes":{"email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593513640@datadoghq.com","name":"go-testscenarios-feature_roles-scenario_get_","title":"Big boss"},"type":"users"}}
     form: {}
     headers:
       Accept:
@@ -69,15 +69,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7679555761181407636"
+      - "8440216039553892969"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7679555761181407636"
+      - "8440216039553892969"
     url: https://api.datadoghq.com/api/v2/users
     method: POST
   response:
-    body: '{"data":{"type":"users","id":"53c1fd9e-ba2f-11ea-9c6a-6fecfdfab406","attributes":{"name":"go-testscenarios-feature_roles-scenario_get_","handle":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452301@datadoghq.com","created_at":"2020-06-29T17:38:21.965373+00:00","email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452301@datadoghq.com","icon":"https://secure.gravatar.com/avatar/061adaa6125e0d1a7944cc1dbe35fe50?s=48&d=retro","title":"Big
+    body: '{"data":{"type":"users","id":"248d5624-babe-11ea-9c85-4f37443da4fe","attributes":{"name":"go-testscenarios-feature_roles-scenario_get_","handle":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593513640@datadoghq.com","created_at":"2020-06-30T10:40:40.800155+00:00","email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593513640@datadoghq.com","icon":"https://secure.gravatar.com/avatar/25b670f4ed4b5f8b2cece68bfd3c29f3?s=48&d=retro","title":"Big
       boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     headers:
       Cache-Control:
@@ -89,22 +89,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 17:38:22 GMT
+      - Tue, 30 Jun 2020 10:40:40 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:21 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 07-Jul-2020 10:40:40 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - nDs7oXQtOYsvIIpPzuNZX0qDgGBu3ENkec7da4phztYl7kD88B7t5enRlUQmZVgO
+      - nL/U8Nu7782wU68M7elx8MY/T+2opB0U5/flvjGsH/qXfYEORYWxwdDpQFq78Mxt
       X-Dd-Version:
-      - "35.2678794"
+      - "35.2682096"
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
@@ -112,7 +112,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"data":{"id":"53c1fd9e-ba2f-11ea-9c6a-6fecfdfab406","type":"users"}}
+      {"data":{"id":"248d5624-babe-11ea-9c85-4f37443da4fe","type":"users"}}
     form: {}
     headers:
       Accept:
@@ -124,16 +124,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8679337566862075193"
+      - "2574745051901291979"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8679337566862075193"
-    url: https://api.datadoghq.com/api/v2/roles/53a432c8-ba2f-11ea-9c6a-e3e0da9228d8/users
+      - "2574745051901291979"
+    url: https://api.datadoghq.com/api/v2/roles/246a965c-babe-11ea-9c85-1fe16cc540c4/users
     method: POST
   response:
-    body: '{"meta":{"page":{"total_count":1}},"data":[{"type":"users","id":"53c1fd9e-ba2f-11ea-9c6a-6fecfdfab406","attributes":{"name":"go-testscenarios-feature_roles-scenario_get_","handle":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452301@datadoghq.com","created_at":"2020-06-29T17:38:21.965373+00:00","email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452301@datadoghq.com","icon":"https://secure.gravatar.com/avatar/061adaa6125e0d1a7944cc1dbe35fe50?s=48&d=retro","title":"Big
-      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"53a432c8-ba2f-11ea-9c6a-e3e0da9228d8"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
+    body: '{"meta":{"page":{"total_count":1}},"data":[{"type":"users","id":"248d5624-babe-11ea-9c85-4f37443da4fe","attributes":{"name":"go-testscenarios-feature_roles-scenario_get_","handle":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593513640@datadoghq.com","created_at":"2020-06-30T10:40:40.800155+00:00","email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593513640@datadoghq.com","icon":"https://secure.gravatar.com/avatar/25b670f4ed4b5f8b2cece68bfd3c29f3?s=48&d=retro","title":"Big
+      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"246a965c-babe-11ea-9c85-1fe16cc540c4"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -142,13 +142,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 17:38:22 GMT
+      - Tue, 30 Jun 2020 10:40:41 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:22 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 07-Jul-2020 10:40:40 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -157,9 +157,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 11g4TM+MO8VJV6iUJTOff4hAGEXsIqbG4IMv2YuWygOleCGxCxx6NihCkVtjenZN
+      - Wi4QF3nhe5s0sRyfZvyTHLc/3mQu/jJVn8BZnev44SXt+VBNA1+haKi5VcNZFpaP
       X-Dd-Version:
-      - "35.2679051"
+      - "35.2682096"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -176,51 +176,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4546567723306395033"
+      - "3890517276365605441"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4546567723306395033"
-    url: https://api.datadoghq.com/api/v2/roles/53a432c8-ba2f-11ea-9c6a-e3e0da9228d8/users
+      - "3890517276365605441"
+    url: https://api.datadoghq.com/api/v2/roles/246a965c-babe-11ea-9c85-1fe16cc540c4/users
     method: GET
   response:
-    body: '{"included":[{"type":"permissions","id":"984d2f00-d3b4-11e8-a200-bb47109e9987","attributes":{"name":"standard","display_name":"Standard
-      Access","description":"This permission gives you the ability to view and edit
-      components in your Datadog organization that do not have explicitly defined
-      permissions. This includes APM, Events, and other non-Account Management functionality.","created":"2018-10-19T15:35:23.756736+00:00","group_name":"General","display_type":"other","restricted":false}},{"type":"permissions","id":"811ac4ca-dd12-11e8-9e57-676a7f0beef9","attributes":{"name":"logs_write_pipelines","display_name":"Logs
-      Write Pipelines","description":"The ability to add and change log pipeline configurations,
-      including the ability to grant the Logs Write Processors permission to other
-      roles, for some or all pipelines. This permission also grants global Log Processor
-      Write implicitly.","created":"2018-10-31T13:40:17.996379+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"permissions","id":"979df720-aed7-11e9-99c6-a7eb8373165a","attributes":{"name":"logs_generate_metrics","display_name":"Log
-      Generate Metrics","description":"The ability to create custom metrics from logs.","created":"2019-07-25T12:27:39.640758+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"permissions","id":"4d87d5f8-d8b1-11e9-a77a-eb9c8350d04f","attributes":{"name":"monitors_downtime","display_name":"Monitors
-      Manage Downtimes","description":"The ability to set downtimes for your organization.
-      A user with this permission can suppress alerts from any monitor using a downtime,
-      even if they do not have permission to edit those monitors explicitly.","created":"2019-09-16T18:39:23.306702+00:00","group_name":"Monitors","display_type":"other","restricted":false}},{"type":"roles","id":"53a432c8-ba2f-11ea-9c6a-e3e0da9228d8","attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Get_all_users_of_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593452301","created_at":"2020-06-29T17:38:21.770771+00:00","modified_at":"2020-06-29T17:38:21.770771+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}},{"type":"permissions","id":"d90f6831-d3d8-11e9-a77a-4fd230ddbc6a","attributes":{"name":"dashboards_write","display_name":"Dashboards","description":"The
-      ability to create and change dashboards.","created":"2019-09-10T14:39:51.962944+00:00","group_name":"Dashboards","display_type":"write","restricted":false}},{"type":"permissions","id":"1af86ce4-7823-11ea-93dc-d7cad1b1c6cb","attributes":{"name":"logs_read_data","display_name":"Logs
-      Read Data","description":"The ability to read log data. Can be restricted with
-      restriction queries.","created":"2020-04-06T16:24:35.989108+00:00","group_name":"Logs","display_type":"read","restricted":false}},{"type":"permissions","id":"6f66600e-dd12-11e8-9e55-7f30fbb45e73","attributes":{"name":"logs_live_tail","display_name":"Logs
-      Live Tail Access","description":"The ability to view the live tail feed for
-      all log indexes, even if otherwise specifically restricted.","created":"2018-10-31T13:39:48.292879+00:00","group_name":"Logs","display_type":"read","restricted":false}},{"type":"permissions","id":"48ef71ea-d8b1-11e9-a77a-93f408470ad0","attributes":{"name":"monitors_write","display_name":"Monitors","description":"The
-      ability to change, mute, and delete individual monitors.","created":"2019-09-16T18:39:15.597109+00:00","group_name":"Monitors","display_type":"write","restricted":false}},{"type":"permissions","id":"d90f6832-d3d8-11e9-a77a-bf8a2607f864","attributes":{"name":"dashboards_public_share","display_name":"Dashboards
-      Share","description":"The ability to share dashboards externally.","created":"2019-09-10T14:39:51.967094+00:00","group_name":"Dashboards","display_type":"other","restricted":false}},{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2","attributes":{"name":"dashboards_read","display_name":"Dashboards","description":"The
-      ability to view dashboards.","created":"2019-09-10T14:39:51.955175+00:00","group_name":"Dashboards","display_type":"read","restricted":true}},{"type":"permissions","id":"62cc036c-dd12-11e8-9e54-db9995643092","attributes":{"name":"logs_modify_indexes","display_name":"Logs
-      Modify Indexes","description":"The ability to read and modify all indexes in
-      your account. This includes the ability to grant the Logs Read Index Data and
-      Logs Write Exclusion Filter permission to other roles, for some or all indexes.
-      This permission also grants global Log Index Read and Log Exclusion Filter Write
-      implicitly.","created":"2018-10-31T13:39:27.148615+00:00","group_name":"Logs","display_type":"other","restricted":false}},{"type":"permissions","id":"80de1ec0-aa58-11ea-95e2-aff381626d5d","attributes":{"name":"security_monitoring_signals_read","display_name":"Security
-      Signals","description":"Access security signals","created":"2020-06-09T13:52:48.410398+00:00","group_name":"Security
-      Monitoring","display_type":"read","restricted":false}},{"type":"permissions","id":"7b516476-aa58-11ea-95e2-93718cd56369","attributes":{"name":"security_monitoring_rules_write","display_name":"Detection
-      Rules","description":"Update detection rules","created":"2020-06-09T13:52:39.099413+00:00","group_name":"Security
-      Monitoring","display_type":"write","restricted":false}},{"type":"permissions","id":"84aa3ae4-dd12-11e8-9e58-a373a514ccd0","attributes":{"name":"logs_write_processors","display_name":"Log
-      Write Processors","description":"The ability to add and change some or all log
-      processor configurations. Can be granted in a limited capacity per pipeline
-      to specific roles via the Logs interface or API. If granted via the Roles interface
-      or API the permission has global scope.","created":"2018-10-31T13:40:23.969725+00:00","group_name":"Logs","display_type":"write","restricted":false}},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304","attributes":{"name":"monitors_read","display_name":"Monitors","description":"The
-      ability to view monitors.","created":"2019-09-16T18:39:07.744297+00:00","group_name":"Monitors","display_type":"read","restricted":true}},{"type":"permissions","id":"7314eb20-aa58-11ea-95e2-6fb6e4a451d5","attributes":{"name":"security_monitoring_rules_read","display_name":"Detection
-      Rules","description":"Access detection rules","created":"2020-06-09T13:52:25.279909+00:00","group_name":"Security
-      Monitoring","display_type":"read","restricted":false}}],"meta":{"page":{"total_filtered_count":1,"total_count":1}},"data":[{"type":"users","id":"53c1fd9e-ba2f-11ea-9c6a-6fecfdfab406","attributes":{"name":"go-testscenarios-feature_roles-scenario_get_","handle":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452301@datadoghq.com","created_at":"2020-06-29T17:38:21.965373+00:00","email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593452301@datadoghq.com","icon":"https://secure.gravatar.com/avatar/061adaa6125e0d1a7944cc1dbe35fe50?s=48&d=retro","title":"Big
-      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"53a432c8-ba2f-11ea-9c6a-e3e0da9228d8"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
+    body: '{"included":[{"type":"roles","id":"246a965c-babe-11ea-9c85-1fe16cc540c4","attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Get_all_users_of_a_role_leading_to_OK-Given_there_is_a_valid_role_in_the_system-local-1593513640","created_at":"2020-06-30T10:40:40.573718+00:00","modified_at":"2020-06-30T10:40:40.573718+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}],"meta":{"page":{"total_filtered_count":1,"total_count":1}},"data":[{"type":"users","id":"248d5624-babe-11ea-9c85-4f37443da4fe","attributes":{"name":"go-testscenarios-feature_roles-scenario_get_","handle":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593513640@datadoghq.com","created_at":"2020-06-30T10:40:40.800155+00:00","email":"go-testscenarios-feature_roles-scenario_get_all_users_of_a_role_leading_to_ok-and_there_is_a_valid_user_in_the_system-local-1593513640@datadoghq.com","icon":"https://secure.gravatar.com/avatar/25b670f4ed4b5f8b2cece68bfd3c29f3?s=48&d=retro","title":"Big
+      boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"246a965c-babe-11ea-9c85-1fe16cc540c4"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -229,13 +194,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 17:38:22 GMT
+      - Tue, 30 Jun 2020 10:40:41 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:22 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 07-Jul-2020 10:40:41 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -244,11 +209,113 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - KKQq2SiaDLpychKSp47ffvU6SRxUV+VzBWr187ESkULBuGOI+kREfb/2NCy8DAWC
+      - GAK1J4mJd/EBZfEK4rqUw9OeB9GOeKgSyrXGtzNUi5zrv5sHYU56xJgA4bcbtgUA
       X-Dd-Version:
-      - "35.2679051"
+      - "35.2682096"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DisableUser
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7821536282325902917"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7821536282325902917"
+    url: https://api.datadoghq.com/api/v2/users/248d5624-babe-11ea-9c85-4f37443da4fe
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Tue, 30 Jun 2020 10:40:41 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 07-Jul-2020 10:40:41 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - IYH6Ubmq2MBSPq8ODr3BCv3hq6/qfjckWAQPmybeluQn4umf0be4fk6ceyy1pnBw
+      X-Dd-Version:
+      - "35.2682096"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3076996514702824058"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3076996514702824058"
+    url: https://api.datadoghq.com/api/v2/roles/246a965c-babe-11ea-9c85-1fe16cc540c4
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Tue, 30 Jun 2020 10:40:41 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 07-Jul-2020 10:40:41 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - YCJuwY9AAFMveejFq3DmCuXNgWrXpDBQxqXi3LxQxaHO16MK3yMSWa14TOuRlDjy
+      X-Dd-Version:
+      - "35.2682096"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
     duration: ""

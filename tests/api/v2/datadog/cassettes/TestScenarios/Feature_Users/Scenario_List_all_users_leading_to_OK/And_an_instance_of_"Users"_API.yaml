@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3990761498924035486"
+      - "5104464945973760716"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3990761498924035486"
+      - "5104464945973760716"
     url: https://api.datadoghq.com/api/v2/users
     method: GET
   response:
@@ -69,7 +69,7 @@ interactions:
       Standard Role","created_at":"2019-08-13T19:50:19.075284+00:00","modified_at":"2019-08-13T19:50:19.075284+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"984d2f00-d3b4-11e8-a200-bb47109e9987"},{"type":"permissions","id":"5e605652-dd12-11e8-9e53-375565b8970e"},{"type":"permissions","id":"62cc036c-dd12-11e8-9e54-db9995643092"},{"type":"permissions","id":"6f66600e-dd12-11e8-9e55-7f30fbb45e73"},{"type":"permissions","id":"811ac4ca-dd12-11e8-9e57-676a7f0beef9"},{"type":"permissions","id":"84aa3ae4-dd12-11e8-9e58-a373a514ccd0"},{"type":"permissions","id":"979df720-aed7-11e9-99c6-a7eb8373165a"},{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"d90f6831-d3d8-11e9-a77a-4fd230ddbc6a"},{"type":"permissions","id":"d90f6832-d3d8-11e9-a77a-bf8a2607f864"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"48ef71ea-d8b1-11e9-a77a-93f408470ad0"},{"type":"permissions","id":"4d87d5f8-d8b1-11e9-a77a-eb9c8350d04f"},{"type":"permissions","id":"1af86ce4-7823-11ea-93dc-d7cad1b1c6cb"},{"type":"permissions","id":"b382b982-8535-11ea-93de-2bf1bdf20798"},{"type":"permissions","id":"7314eb20-aa58-11ea-95e2-6fb6e4a451d5"},{"type":"permissions","id":"7b516476-aa58-11ea-95e2-93718cd56369"},{"type":"permissions","id":"80de1ec0-aa58-11ea-95e2-aff381626d5d"}]}}},{"type":"permissions","id":"1af86ce4-7823-11ea-93dc-d7cad1b1c6cb","attributes":{"name":"logs_read_data","display_name":"Logs
       Read Data","description":"The ability to read log data. Can be restricted with
       restriction queries.","created":"2020-04-06T16:24:35.989108+00:00","group_name":"Logs","display_type":"read","restricted":false}},{"type":"permissions","id":"48ef71ea-d8b1-11e9-a77a-93f408470ad0","attributes":{"name":"monitors_write","display_name":"Monitors","description":"The
-      ability to change, mute, and delete individual monitors.","created":"2019-09-16T18:39:15.597109+00:00","group_name":"Monitors","display_type":"write","restricted":false}}],"meta":{"page":{"total_filtered_count":14655,"total_count":14655}},"data":[{"type":"users","id":"45133ec4-054a-11ea-a77c-f3a88ee2c2b5","attributes":{"name":"Nobody","handle":"1573562709162nobody@datadoghq.com","created_at":"2019-11-12T12:45:13.281667+00:00","email":"1573562709162nobody@datadoghq.com","icon":"https://secure.gravatar.com/avatar/e8fe2729c0a1ac0af9e9606e758d01e0?s=48&d=retro","title":null,"verified":false,"disabled":true,"allowed_login_methods":[],"status":"Disabled"},"relationships":{"roles":{"data":[{"type":"roles","id":"94172443-be03-11e9-a77a-373332f69711"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}},{"type":"users","id":"a7735d24-054a-11ea-a77c-0f0fccc4bcbc","attributes":{"name":"New
+      ability to change, mute, and delete individual monitors.","created":"2019-09-16T18:39:15.597109+00:00","group_name":"Monitors","display_type":"write","restricted":false}}],"meta":{"page":{"total_filtered_count":14763,"total_count":14763}},"data":[{"type":"users","id":"45133ec4-054a-11ea-a77c-f3a88ee2c2b5","attributes":{"name":"Nobody","handle":"1573562709162nobody@datadoghq.com","created_at":"2019-11-12T12:45:13.281667+00:00","email":"1573562709162nobody@datadoghq.com","icon":"https://secure.gravatar.com/avatar/e8fe2729c0a1ac0af9e9606e758d01e0?s=48&d=retro","title":null,"verified":false,"disabled":true,"allowed_login_methods":[],"status":"Disabled"},"relationships":{"roles":{"data":[{"type":"roles","id":"94172443-be03-11e9-a77a-373332f69711"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}},{"type":"users","id":"a7735d24-054a-11ea-a77c-0f0fccc4bcbc","attributes":{"name":"New
       name","handle":"1573562873954nobody@datadoghq.com","created_at":"2019-11-12T12:47:58.328296+00:00","email":"1573562873954nobody@datadoghq.com","icon":"https://secure.gravatar.com/avatar/687a3f9127cfec80a54622223b275e54?s=48&d=retro","title":null,"verified":false,"disabled":true,"allowed_login_methods":[],"status":"Disabled"},"relationships":{"roles":{"data":[{"type":"roles","id":"94172443-be03-11e9-a77a-373332f69711"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}},{"type":"users","id":"8449592e-054b-11ea-a77c-ff7a4ad2a6e9","attributes":{"name":"New
       name","handle":"1573563244158nobody@datadoghq.com","created_at":"2019-11-12T12:54:08.829974+00:00","email":"1573563244158nobody@datadoghq.com","icon":"https://secure.gravatar.com/avatar/0b3295b281b38e02e553122806aeaaf7?s=48&d=retro","title":null,"verified":false,"disabled":true,"allowed_login_methods":[],"status":"Disabled"},"relationships":{"roles":{"data":[{"type":"roles","id":"94172443-be03-11e9-a77a-373332f69711"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}},{"type":"users","id":"3fac2cbf-eba0-11e9-a77a-0fc332418909","attributes":{"name":"1Testing
       User","handle":"1testinguser@datadoghq.com","created_at":"2019-10-09T21:42:23.233770+00:00","email":"1testinguser@datadoghq.com","icon":"https://secure.gravatar.com/avatar/522f9f93d422a39a20158b6da0dc1bc1?s=48&d=retro","title":null,"verified":false,"disabled":true,"allowed_login_methods":[],"status":"Disabled"},"relationships":{"roles":{"data":[{"type":"roles","id":"94172443-be03-11e9-a77a-373332f69711"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}},{"type":"users","id":"3fac2cc8-eba0-11e9-a77a-93579d461b80","attributes":{"name":"2Testing
@@ -84,13 +84,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 17:38:24 GMT
+      - Tue, 30 Jun 2020 10:40:44 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 17:38:23 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 07-Jul-2020 10:40:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -99,9 +99,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - CFSDBBie5Okt4N1oWVJNTAqpt778eCo7VQZ0NhVFWw8MHYFUwuA7DURhpFRYY+Wy
+      - Dpx7DG2N4VEOVm8I4W97n4HwOzBXFJSj1QrKca/nHpAZ6o7/LrJ0o2qyQx0XjNXl
       X-Dd-Version:
-      - "35.2678794"
+      - "35.2682096"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
