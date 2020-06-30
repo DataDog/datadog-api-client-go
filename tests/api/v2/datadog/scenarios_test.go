@@ -29,14 +29,10 @@ func TestScenarios(t *testing.T) {
 			tests.SetData(ctx, make(map[string]interface{}))
 			tests.SetCleanup(ctx, make(map[string]func()))
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
-			fmt.Println(ctx)
-			ctx = tests.RunCleanup(ctx)
+			tests.RunCleanup(ctx)
 		}),
 	)
-
-	for expr, step := range tests.Steps {
-		s.AddStep(expr, step)
-	}
+	tests.ConfigureSteps(s)
 
 	s.AddStep(`a valid "apiKeyAuth" key`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key`, aValidAppKeyAuth)
@@ -49,7 +45,7 @@ func TestScenarios(t *testing.T) {
 	s.Run()
 }
 
-func aValidAPIKeyAuth(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func aValidAPIKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 	if keys, ok := tests.GetCtx(ctx).Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
 		keys["apiKeyAuth"] = datadog.APIKey{
 			Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
@@ -57,10 +53,10 @@ func aValidAPIKeyAuth(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
 	} else {
 		panic("could not set API key")
 	}
-	return ctx
+
 }
 
-func aValidAppKeyAuth(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 	if keys, ok := tests.GetCtx(ctx).Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
 		keys["appKeyAuth"] = datadog.APIKey{
 			Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
@@ -68,11 +64,11 @@ func aValidAppKeyAuth(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
 	} else {
 		panic("could not set App key")
 	}
-	return ctx
+
 }
 
 // anInstanceOf sets API callable to apiKey{}
-func anInstanceOf(t gobdd.TestingT, ctx gobdd.Context, name string) gobdd.Context {
+func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
 
 	tests.SetCtx(ctx, tests.WithClock(tests.GetCtx(ctx), t.(*testing.T)))
@@ -81,7 +77,7 @@ func anInstanceOf(t gobdd.TestingT, ctx gobdd.Context, name string) gobdd.Contex
 	if err != nil {
 		log.Fatal(err)
 	}
-	tests.GetCleanup(ctx)["recorder"] = func() { r.Stop() }
+	tests.GetCleanup(ctx)["90-recorder"] = func() { r.Stop() }
 	client.GetConfig().HTTPClient = &http.Client{Transport: tests.WrapRoundTripper(r)}
 
 	ct := reflect.ValueOf(client)
@@ -90,10 +86,9 @@ func anInstanceOf(t gobdd.TestingT, ctx gobdd.Context, name string) gobdd.Contex
 		panic(fmt.Sprintf("invalid API name %s", name))
 	}
 	tests.SetAPI(ctx, f)
-	return ctx
 }
 
-func user(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func user(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 
 	uca := datadog.NewUserCreateAttributes()
@@ -113,15 +108,14 @@ func user(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
 	urData := ur.GetData()
 	uid := urData.GetId()
 	cctx := tests.GetCtx(ctx)
-	tests.GetCleanup(ctx)["user"] = func() {
+	tests.GetCleanup(ctx)["20-user"] = func() {
 		disableUser(cctx, uid)
 	}
 
 	tests.GetData(ctx)["user"] = ur
-	return ctx
 }
 
-func role(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func role(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 
 	rca := datadog.NewRoleCreateAttributes()
@@ -138,16 +132,14 @@ func role(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
 	rrData := rr.GetData()
 	rid := rrData.GetId()
 	cctx := tests.GetCtx(ctx)
-	tests.GetCleanup(ctx)["role"] = func() {
-		fmt.Println("removing role", rid)
+	tests.GetCleanup(ctx)["10-role"] = func() {
 		deleteRole(cctx, rid)
 	}
 
 	tests.GetData(ctx)["role"] = rr
-	return ctx
 }
 
-func userHasRole(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func userHasRole(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 	data := tests.GetData(ctx)
 	ur := data["user"].(datadog.UserResponse)
@@ -164,10 +156,9 @@ func userHasRole(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
-	return ctx
 }
 
-func permission(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func permission(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 
 	psr, _, err := client.RolesApi.ListPermissions(tests.GetCtx(ctx)).Execute()
@@ -176,10 +167,9 @@ func permission(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
 	}
 
 	tests.GetData(ctx)["permission"] = psr.GetData()[0]
-	return ctx
 }
 
-func permissionIsGrantedRole(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func permissionIsGrantedRole(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 	data := tests.GetData(ctx)
 	p := data["permission"].(datadog.Permission)
@@ -195,5 +185,4 @@ func permissionIsGrantedRole(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context 
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
-	return ctx
 }

@@ -13,6 +13,7 @@ import (
 	"net/http"
 	"reflect"
 	"regexp"
+	"sort"
 	"strings"
 	"testing"
 
@@ -113,19 +114,23 @@ func GetCleanup(ctx gobdd.Context) map[string]func() {
 	return c.(map[string]func())
 }
 
-func RunCleanup(ctx gobdd.Context) gobdd.Context {
+// RunCleanup executes cleanup functions in controlled ordered based on registered keys.
+func RunCleanup(ctx gobdd.Context) {
 	c, _ := ctx.Get(cleanupKey{})
 	cc := c.(map[string]func())
-	fmt.Println("run", cc, ctx)
-	for name, cleanup := range cc {
-		defer fmt.Println(name)
-		defer cleanup() // in reverse order
+	keys := make([]string, 0, len(cc))
+	for k := range cc {
+		keys = append(keys, k)
 	}
-	return ctx
+	sort.Strings(keys)
+
+	for _, name := range keys {
+		cc[name]()
+	}
 }
 
 // newRequest sets callable operation to requestKey{}
-func newRequest(t gobdd.TestingT, ctx gobdd.Context, name string) gobdd.Context {
+func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	c, err := ctx.Get(apiKey{})
 	if err != nil {
 		panic(err)
@@ -139,10 +144,9 @@ func newRequest(t gobdd.TestingT, ctx gobdd.Context, name string) gobdd.Context 
 	ctx.Set(requestKey{}, f)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
-	return ctx
 }
 
-func statusIs(t gobdd.TestingT, ctx gobdd.Context, expected int, text string) gobdd.Context {
+func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 	r, err := ctx.Get(responseKey{})
 	if err != nil {
 		panic(err)
@@ -153,20 +157,18 @@ func statusIs(t gobdd.TestingT, ctx gobdd.Context, expected int, text string) go
 	if expected != code {
 		t.Fatalf("Excepted %d got %d", expected, code)
 	}
-	return ctx
 }
 
-func addParameterFrom(t gobdd.TestingT, ctx gobdd.Context, name string, path string) gobdd.Context {
+func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
 	value, err := lookup.LookupStringI(GetData(ctx), path)
 	if err != nil {
 		panic(err)
 	}
 	GetRequestParameters(ctx)[name] = value
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
-	return ctx
 }
 
-func requestIsSent(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
+func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	c, err := ctx.Get(requestKey{})
 	if err != nil {
 		t.Error("Missing requestKey{}")
@@ -197,22 +199,25 @@ func requestIsSent(t gobdd.TestingT, ctx gobdd.Context) gobdd.Context {
 
 	result := request.MethodByName("Execute").Call(nil)
 	ctx.Set(responseKey{}, result)
-	return ctx
 }
 
-func body(t gobdd.TestingT, ctx gobdd.Context, body string) gobdd.Context {
+func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 	data := GetData(ctx)
 	name := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[:3], "/")
 	data["unique"] = WithUniqueSurrounding(GetCtx(ctx), name)
 	GetRequestParameters(ctx)["body"] = Templated(data, body)
-	return ctx
 }
 
-// Steps implementation
-var Steps = map[string]interface{}{
-	`new "([^"]+)" request`:       newRequest,
-	`parameter ([^ ]+) from (.*)`: addParameterFrom,
-	`the request is sent`:         requestIsSent,
-	`the status is (\d+) (.*)`:    statusIs,
-	`body (.*)`:                   body,
+// ConfigureSteps on given suite.
+func ConfigureSteps(s *gobdd.Suite) {
+	steps := map[string]interface{}{
+		`new "([^"]+)" request`:       newRequest,
+		`parameter ([^ ]+) from (.*)`: addParameterFrom,
+		`the request is sent`:         requestIsSent,
+		`the status is (\d+) (.*)`:    statusIs,
+		`body (.*)`:                   body,
+	}
+	for expr, step := range steps {
+		s.AddStep(expr, step)
+	}
 }

@@ -1,4 +1,4 @@
-@v1 @endpoint(monitors) @todo
+@v1 @endpoint(monitors)
 Feature: Monitors
   [Monitors](https://docs.datadoghq.com/monitors) allow you to watch a
   metric or check that you care about, notifying your team when some defined
@@ -10,38 +10,45 @@ Feature: Monitors
     And a valid "appKeyAuth" key
     And an instance of "Monitors" API
 
+  @todo
   Scenario: Get all monitor details leading to OK
     Given new "ListMonitors" request
     When the request is sent
     Then the status is 200 OK
 
+  @todo
   Scenario: Create a monitor leading to OK
     Given new "CreateMonitor" request
     And body {}
     When the request is sent
     Then the status is 200 OK
 
+  @todo
   Scenario: Check if a monitor can be deleted leading to OK
     Given new "CheckCanDeleteMonitor" request
     When the request is sent
     Then the status is 200 OK
 
+  @todo
   Scenario: Validate a monitor leading to OK
     Given new "ValidateMonitor" request
     And body {}
     When the request is sent
     Then the status is 200 OK
 
+  @todo
   Scenario: Delete a monitor leading to OK
     Given new "DeleteMonitor" request
     When the request is sent
     Then the status is 200 OK
 
+  @todo
   Scenario: Get a monitor's details leading to OK
     Given new "GetMonitor" request
     When the request is sent
     Then the status is 200 OK
 
+  @todo
   Scenario: Edit a monitor leading to OK
     Given new "UpdateMonitor" request
     And body {}
