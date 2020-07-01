@@ -199,7 +199,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 	data := GetData(ctx)
-	name := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[:3], "/")
+	name := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[1:3], "/")
 	data["unique"] = WithUniqueSurrounding(GetCtx(ctx), name)
 	GetRequestParameters(ctx)["body"] = Templated(data, body)
 }

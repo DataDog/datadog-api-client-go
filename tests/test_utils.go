@@ -103,6 +103,15 @@ func IsCIRun() bool {
 	return os.Getenv("CI") == "true"
 }
 
+// SecurePath replaces all dangerous characters in the path.
+func SecurePath(path string) string {
+	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">"}
+	for _, c := range badChars {
+		path = strings.ReplaceAll(path, c, "_")
+	}
+	return filepath.Clean(path)
+}
+
 // Retry calls the call function for count times every interval while it returns false
 func Retry(interval time.Duration, count int, call func() bool) error {
 	for i := 0; i < count; i++ {
@@ -222,34 +231,32 @@ func createWithDir(path string) (*os.File, error) {
 }
 
 // SetClock stores current time in .freeze file.
-func SetClock(t *testing.T) clockwork.FakeClock {
-	t.Helper()
+func SetClock(path string) (clockwork.FakeClock, error) {
 	now := clockwork.NewRealClock().Now()
 	if GetRecording() == ModeRecording {
 		os.MkdirAll("cassettes", 0755)
 
-		f, err := createWithDir(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
+		f, err := createWithDir(fmt.Sprintf("cassettes/%s.freeze", path))
 		if err != nil {
-			t.Fatalf("Could not set clock: %v", err)
+			return nil, err
 		}
 		defer f.Close()
 		f.WriteString(now.Format(time.RFC3339Nano))
 	}
-	return clockwork.NewFakeClockAt(now)
+	return clockwork.NewFakeClockAt(now), nil
 }
 
 // RestoreClock restore current time from .freeze file.
-func RestoreClock(t *testing.T) clockwork.FakeClock {
-	t.Helper()
-	data, err := ioutil.ReadFile(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
+func RestoreClock(path string) (clockwork.FakeClock, error) {
+	data, err := ioutil.ReadFile(fmt.Sprintf("cassettes/%s.freeze", path))
 	if err != nil {
-		t.Fatalf("Could not load clock: %v", err)
+		return nil, err
 	}
 	now, err := time.Parse(time.RFC3339Nano, string(data))
 	if err != nil {
-		t.Fatalf("Could not parse clock date: %v", err)
+		return nil, err
 	}
-	return clockwork.NewFakeClockAt(now)
+	return clockwork.NewFakeClockAt(now), nil
 }
 
 type contextKey string
@@ -259,15 +266,18 @@ var (
 )
 
 // WithClock sets clock to context.
-func WithClock(ctx context.Context, t *testing.T) context.Context {
-	t.Helper()
+func WithClock(ctx context.Context, path string) (context.Context, error) {
 	var fc clockwork.FakeClock
+	var err error
 	if GetRecording() != ModeReplaying {
-		fc = SetClock(t)
+		fc, err = SetClock(path)
 	} else {
-		fc = RestoreClock(t)
+		fc, err = RestoreClock(path)
 	}
-	return context.WithValue(ctx, clockKey, fc)
+	if err != nil {
+		return nil, err
+	}
+	return context.WithValue(ctx, clockKey, fc), nil
 }
 
 // UniqueEntityName will return a unique string that can be used as a title/description/summary/...
@@ -341,8 +351,7 @@ func FilterInteraction(i *cassette.Interaction) error {
 }
 
 // Recorder intercepts HTTP requests.
-func Recorder(ctx context.Context, t *testing.T) (*recorder.Recorder, error) {
-	t.Helper()
+func Recorder(ctx context.Context, name string) (*recorder.Recorder, error) {
 	// Configure recorder
 	var mode recorder.Mode
 	switch GetRecording() {
@@ -354,7 +363,7 @@ func Recorder(ctx context.Context, t *testing.T) (*recorder.Recorder, error) {
 		mode = recorder.ModeRecording
 	}
 
-	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", t.Name()), mode, nil)
+	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", name), mode, nil)
 	if err != nil {
 		return nil, err
 	}

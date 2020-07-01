@@ -70,10 +70,15 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 // anInstanceOf sets API callable to apiKey{}
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
+	path := tests.SecurePath(strings.Join(strings.Split(t.(*testing.T).Name(), "/")[0:3], "/"))
 
-	tests.SetCtx(ctx, tests.WithClock(tests.GetCtx(ctx), t.(*testing.T)))
+	cctx, err := tests.WithClock(tests.GetCtx(ctx), path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	tests.SetCtx(ctx, cctx)
 
-	r, err := tests.Recorder(tests.GetCtx(ctx), t.(*testing.T))
+	r, err := tests.Recorder(tests.GetCtx(ctx), path)
 	if err != nil {
 		log.Fatal(err)
 	}
