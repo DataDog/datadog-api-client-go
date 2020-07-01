@@ -300,7 +300,7 @@ func WithUniqueSurrounding(ctx context.Context, name string) string {
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-	result := fmt.Sprintf("go-%s-%s-%d", name, buildID, ClockFromContext(ctx).Now().Unix())
+	result := fmt.Sprintf("go-%s-%s-%d", SecurePath(name), buildID, ClockFromContext(ctx).Now().Unix())
 	// In case this is used in URL, make sure we replace the slash that is added by subtests
 	result = strings.ReplaceAll(result, "/", "-")
 	return result
