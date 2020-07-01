@@ -1,0 +1,67 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"description":"","name":"TEST_VARIABLE","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"VARIABLE_VALUE"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateVariable
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "9154522957646948539"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2209688827063432418"
+    url: https://api.datadoghq.com/api/v1/synthetics/variables
+    method: POST
+  response:
+    body: '{"created_at":"2020-07-01T13:07:05.089687+00:00","created_by":39199,"description":"","id":"1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac","modified_at":"2020-07-01T13:07:05.089687+00:00","name":"TEST_VARIABLE","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"TEST_VALUE"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 12 July 2020 15:14:27 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:33:27 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - OdMYjD4Lcx2EOYJ2NSqLNRIyMqxNYyUQxCcT6zY9ZmZ+zl9yipXz0nuLjH5hVxTY
+      X-Dd-Version:
+      - "35.2493025"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "120"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "119"
+      X-Ratelimit-Reset:
+      - "33"
+    status: 200 OK
+    code: 200
+    duration: ""
