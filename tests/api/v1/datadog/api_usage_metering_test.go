@@ -264,8 +264,8 @@ func TestUsageBillableSummary(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	startDate, endDate := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).startDate(startDate).endDate(endDate).Execute()
+	startDate, endDate := getStartEndMonth(ctx)
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).StartDate(startDate).EndDate(endDate).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Billable Summary: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -517,7 +517,7 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).startDate(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).StartDate(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
