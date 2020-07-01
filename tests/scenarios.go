@@ -207,11 +207,11 @@ func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
-		`new "([^"]+)" request`:       newRequest,
-		`parameter ([^ ]+) from (.*)`: addParameterFrom,
-		`the request is sent`:         requestIsSent,
-		`the status is (\d+) (.*)`:    statusIs,
-		`body (.*)`:                   body,
+		`new "([^"]+)" request`:                               newRequest,
+		`request contains "([^"]+)" parameter from "([^"]+)"`: addParameterFrom,
+		`the request is sent`:                                 requestIsSent,
+		`the status is (\d+) (.*)`:                            statusIs,
+		`body (.*)`:                                           body,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)

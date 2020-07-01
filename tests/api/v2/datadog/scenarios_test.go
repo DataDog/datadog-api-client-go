@@ -34,8 +34,8 @@ func TestScenarios(t *testing.T) {
 	)
 	tests.ConfigureSteps(s)
 
-	s.AddStep(`a valid "apiKeyAuth" key`, aValidAPIKeyAuth)
-	s.AddStep(`a valid "appKeyAuth" key`, aValidAppKeyAuth)
+	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
+	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
 	s.AddStep(`there is a valid user in the system`, user)
 	s.AddStep(`there is a valid role in the system`, role)
