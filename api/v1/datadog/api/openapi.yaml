@@ -3189,8 +3189,7 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: The time (in seconds) to delay the monitor evaluation compared
-          to the latest data timestamp received.
+      - description: Monitor ID offset.
         explode: true
         in: query
         name: id_offset
