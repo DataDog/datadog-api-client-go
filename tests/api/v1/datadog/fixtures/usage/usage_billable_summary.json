@@ -7,8 +7,8 @@
             "public_id": "927176c4b",
             "start_date": "2020-06-01",
             "end_date": "2020-06-28",
-            "ratio_in_month": 1,
             "num_orgs": 235,
+            "ratio_in_month": 1,
             "usage": {
                 "apm_host_top99p": {
                     "org_billable_usage": 130633203,

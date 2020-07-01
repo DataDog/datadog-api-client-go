@@ -302,8 +302,8 @@ func TestUsageBillableSummary(t *testing.T) {
 	assert.Equal("Logs Probe - Test", usageItem.GetOrgName())
 	assert.Equal("Pro", usageItem.GetBillingPlan())
 	assert.Equal("927176c4b", usageItem.GetPublicId())
-	assert.Equal(usageItem.GetStartDate(), "2020-06-01")
-	// assert.Equal(time.Date(2020, 06, 28, 0, 0, 0, 0, time.UTC), usageItem.GetEndDate().UTC())
+	assert.Equal("2020-06-01", usageItem.GetStartDate())
+	assert.Equal("2020-06-28", usageItem.GetEndDate())
 	assert.Equal(int64(1), usageItem.GetRatioInMonth())
 	assert.Equal(int64(2), usageItem.GetNumOrgs())
 
