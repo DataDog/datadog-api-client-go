@@ -786,3 +786,42 @@ func TestSyntheticsListLocations(t *testing.T) {
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Greater(len(locs.GetLocations()), 0)
 }
+
+func TestSyntheticsVariableLifecycle(t *testing.T) {
+	// ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	variable := datadog.SyntheticsGlobalVariable{
+		Name: tests.UniqueEntityName(ctx, t),
+	}
+
+	// Create variable
+	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error creating Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), variable.GetName())
+
+	// Edit variable
+	updatedName := fmt.Sprintf("%s-updated", variable.GetName())
+	variable.SetName(updatedName)
+
+	result, httpresp, err = Client(ctx).SyntheticsApi.EditGlobalVariable(ctx, result.GetId()).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error editing Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), updatedName)
+
+	// Delete variable
+	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics global variable %s: Response %s: %v", result.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+}
