@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Period** | Pointer to **int32** | How often to repeat as an integer. For example, to repeat every 3 days, select a type of &#x60;days&#x60; and a period of &#x60;3&#x60;. | [optional] 
+**Rrule** | Pointer to **string** | The &#x60;RRULE&#x60; standard for defining recurring events. For example, to have a recurring event on the first day of each month, select a type of &#x60;rrule&#x60; and set the &#x60;FREQ&#x60; to &#x60;MONTHLY&#x60; and &#x60;BYMONTHDAY&#x60; to &#x60;1&#x60;. Most common &#x60;rrule&#x60; options from the [iCalendar Spec](https://tools.ietf.org/html/rfc5545) are supported.  **Note**: Attributes specifying the duration in &#x60;RRULE&#x60; are not supported (for example, &#x60;DTSTART&#x60;, &#x60;DTEND&#x60;, &#x60;DURATION&#x60;). | [optional] 
 **Type** | Pointer to **string** | The type of recurrence. Choose from &#x60;days&#x60;, &#x60;weeks&#x60;, &#x60;months&#x60;, &#x60;years&#x60;. | [optional] 
 **UntilDate** | Pointer to **NullableInt64** | The date at which the recurrence should end as a POSIX timestamp. &#x60;until_occurences&#x60; and &#x60;until_date&#x60; are mutually exclusive. | [optional] 
 **UntilOccurrences** | Pointer to **NullableInt32** | How many times the downtime is rescheduled. &#x60;until_occurences&#x60; and &#x60;until_date&#x60; are mutually exclusive. | [optional] 
@@ -53,6 +54,31 @@ SetPeriod sets Period field to given value.
 `func (o *DowntimeRecurrence) HasPeriod() bool`
 
 HasPeriod returns a boolean if a field has been set.
+
+### GetRrule
+
+`func (o *DowntimeRecurrence) GetRrule() string`
+
+GetRrule returns the Rrule field if non-nil, zero value otherwise.
+
+### GetRruleOk
+
+`func (o *DowntimeRecurrence) GetRruleOk() (*string, bool)`
+
+GetRruleOk returns a tuple with the Rrule field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRrule
+
+`func (o *DowntimeRecurrence) SetRrule(v string)`
+
+SetRrule sets Rrule field to given value.
+
+### HasRrule
+
+`func (o *DowntimeRecurrence) HasRrule() bool`
+
+HasRrule returns a boolean if a field has been set.
 
 ### GetType
 
