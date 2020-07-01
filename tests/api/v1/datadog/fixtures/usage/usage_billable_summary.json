@@ -5,163 +5,163 @@
             "org_name": "Logs Probe - Test",
             "billing_plan": "Pro",
             "public_id": "927176c4b",
-            "start_date": "2020-06-01",
-            "end_date": "2020-06-28",
+            "start_date": "2020-06-01T00:00:00+00:00",
+            "end_date": "2020-06-28T23:00:00+00:00",
             "ratio_in_month": 1,
             "num_orgs": 235,
             "usage": {
                 "apm_host_top99p": {
-                    "org_billable_usage": 130633203,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 8.1
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 },
                 "apm_trace_search_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "fargate_container_avg": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "infra_container_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "infra_host_top99p": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "infra_host_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "iot_top99p": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "lambda_function_avg": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "logs_indexed_sum": {
                     "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
                     "percentage_in_account": 0.9
                 }, 
                 "logs_ingested_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "npm_host_top99p": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "npm_flow_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "rum_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "siem_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "synthetics_api_tests_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "synthetics_browser_checks_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 }, 
                 "timeseries_sum": {
-                    "org_billable_usage": 36286384,
+                    "org_billable_usage": 14514687,
                     "usage_unit": "logs",
                     "account_billable_usage": 1611132837,
-                    "first_billable_usage_hour": "2020-06-01T00",
+                    "first_billable_usage_hour": "2020-06-01T00:00:00+00:00",
                     "elapsed_usage_hours": 672,
-                    "last_billable_usage_hour": "2020-06-28T23",
-                    "percentage_in_account": 2.3
+                    "last_billable_usage_hour": "2020-06-28T23:00:00+00:00",
+                    "percentage_in_account": 0.9
                 } 
             }
         }

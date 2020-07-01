@@ -265,7 +265,7 @@ func TestUsageBillableSummary(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startDate := time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC)
-	endDate := time.Date(2020, 06, 28, 0, 0, 0, 0, time.UTC)
+	endDate := time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC)
 
 	fixturePath, err := filepath.Abs("fixtures/usage/usage_billable_summary.json")
 	if err != nil {
@@ -297,26 +297,25 @@ func TestUsageBillableSummary(t *testing.T) {
 	}
 
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(usage.HasUsage())
 	var usageItem = usage.GetUsage()[0]
 	assert.Equal("Logs Probe - Test", usageItem.GetOrgName())
 	assert.Equal("Pro", usageItem.GetBillingPlan())
 	assert.Equal("927176c4b", usageItem.GetPublicId())
-	assert.Equal("2020-06-01", usageItem.GetStartDate())
-	// assert.Equal("2020-06-28", usageItem.GetEndDate())
+	assert.Equal(time.Date(2020, 06, 01, 00, 0, 0, 0, time.UTC), usageItem.GetStartDate().UTC())
+	assert.Equal(time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC), usageItem.GetEndDate().UTC())
 	assert.Equal(int64(1), usageItem.GetRatioInMonth())
-	assert.Equal(int64(2), usageItem.GetNumOrgs())
+	assert.Equal(int64(235), usageItem.GetNumOrgs())
 
-	var usageUsageItem = usageItem.GetUsage()[0]
+	var usageUsageItem = usageItem.GetUsage()
 	var usageKeys = usageUsageItem.GetLogsIndexedSum()
 
-	assert.Equal(int64(1), usageKeys.GetOrgBillableUsage())
+	assert.Equal(int64(14514687), usageKeys.GetOrgBillableUsage())
 	assert.Equal("logs", usageKeys.GetUsageUnit())
-	assert.Equal(int64(2), usageKeys.GetAccountBillableUsage())
+	assert.Equal(int64(1611132837), usageKeys.GetAccountBillableUsage())
 	assert.Equal(time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC), usageKeys.GetFirstBillableUsageHour().UTC())
-	assert.Equal(int64(3), usageKeys.GetElapsedUsageHours())
+	assert.Equal(int64(672), usageKeys.GetElapsedUsageHours())
 	assert.Equal(time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC), usageKeys.GetLastBillableUsageHour().UTC())
-	assert.Equal(int64(4), usageKeys.GetPercentageInAccount())
+	assert.Equal(float32(0.9), usageKeys.GetPercentageInAccount())
 }
 
 // This test needs multi-org token so make it a unit test
