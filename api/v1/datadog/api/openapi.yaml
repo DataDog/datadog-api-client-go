@@ -58,9 +58,10 @@ tags:
   externalDocs:
     url: https://docs.datadoghq.com/integrations/azure
   name: Azure Integration
-- description: Interact with your dashboard lists through the API to make it easier
-    to organize, find, and share all of your dashboards with your team and organization.
+- description: This endpoint is deprecated. Use the [new dashboard list endpoint](https://docs.datadoghq.com/api/v2/dashboard-lists/)
+    instead.
   name: Dashboard Lists
+  x-deprecated: true
 - description: |-
     Interact with your dashboard lists through the API to make it easier to organize,
     find, and share all of your dashboards with your team and organization.
@@ -611,7 +612,11 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/dashboard:
     get:
-      description: Get all dashboards.
+      description: |-
+        Get all dashboards.
+
+        **Note**: This query will only return custom created or cloned dashboards.
+        This query will not return preset dashboards.
       operationId: ListDashboards
       responses:
         "200":
@@ -2340,7 +2345,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/GCPAccount'
-        description: Create a Datadog-Azure integration.
+        description: Create a Datadog-GCP integration.
         required: true
       responses:
         "200":
@@ -3189,8 +3194,7 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: The time (in seconds) to delay the monitor evaluation compared
-          to the latest data timestamp received.
+      - description: Monitor ID offset.
         explode: true
         in: query
         name: id_offset
@@ -7230,6 +7234,7 @@ components:
         message: Message on the downtime
         recurrence:
           period: 1
+          rrule: FREQ=MONTHLY;BYSETPOS=3;BYDAY=WE;INTERVAL=1
           until_occurrences: 2
           week_days:
           - Mon
@@ -7364,6 +7369,7 @@ components:
       description: An object defining the recurrence of the downtime.
       example:
         period: 1
+        rrule: FREQ=MONTHLY;BYSETPOS=3;BYDAY=WE;INTERVAL=1
         until_occurrences: 2
         week_days:
         - Mon
@@ -7380,6 +7386,15 @@ components:
           format: int32
           maximum: 2147483647
           type: integer
+        rrule:
+          description: |-
+            The `RRULE` standard for defining recurring events. For example, to have a recurring event on the first day of each month,
+            select a type of `rrule` and set the `FREQ` to `MONTHLY` and `BYMONTHDAY` to `1`.
+            Most common `rrule` options from the [iCalendar Spec](https://tools.ietf.org/html/rfc5545) are supported.
+
+            **Note**: Attributes specifying the duration in `RRULE` are not supported (for example, `DTSTART`, `DTEND`, `DURATION`).
+          example: FREQ=MONTHLY;BYSETPOS=3;BYDAY=WE;INTERVAL=1
+          type: string
         type:
           description: The type of recurrence. Choose from `days`, `weeks`, `months`,
             `years`.
