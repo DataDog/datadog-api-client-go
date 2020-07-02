@@ -200,7 +200,8 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	t.Helper()
 	tag, err := getEndpointTagValue(t)
 	if err != nil {
-		panic(err.Error())
+		t.Log(err.Error())
+		tag = "features"
 	}
 	span, ctx := tracer.StartSpanFromContext(
 		ctx,

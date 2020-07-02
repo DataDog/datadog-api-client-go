@@ -45,3 +45,4 @@ go.sum,github.com/mcuadros/go-lookup,<LICENSE>,<COPYRIGHT>
 go.sum,github.com/mitchellh/iochan,<LICENSE>,<COPYRIGHT>
 go.sum,github.com/niemeyer/pretty,<LICENSE>,<COPYRIGHT>
 go.sum,golang.org/x/tools,<LICENSE>,<COPYRIGHT>
+go.sum,github.com/jirikuncar/gobdd,<LICENSE>,<COPYRIGHT>

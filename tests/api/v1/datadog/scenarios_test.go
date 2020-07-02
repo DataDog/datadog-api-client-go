@@ -20,14 +20,18 @@ func TestScenarios(t *testing.T) {
 		t,
 		gobdd.WithIgnoredTags([]string{"@todo"}),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
-			client := datadog.NewAPIClient(NewConfiguration())
-			tests.SetCtx(ctx, context.WithValue(context.WithValue(
-				context.Background(),
-				datadog.ContextAPIKeys,
-				map[string]datadog.APIKey{},
-			), clientKey, client))
+			ct, _ := ctx.Get(gobdd.TestingTKey{})
+			cctx, finish := WithClient(
+				context.WithValue(
+					context.Background(),
+					datadog.ContextAPIKeys,
+					map[string]datadog.APIKey{},
+				),
+				ct.(*testing.T),
+			)
+			tests.SetCtx(ctx, cctx)
 			tests.SetData(ctx, make(map[string]interface{}))
-			tests.SetCleanup(ctx, make(map[string]func()))
+			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
 			tests.RunCleanup(ctx)
 		}),

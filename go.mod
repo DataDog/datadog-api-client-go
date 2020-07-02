@@ -2,6 +2,8 @@ module github.com/DataDog/datadog-api-client-go
 
 go 1.14
 
+replace github.com/go-bdd/gobdd => github.com/jirikuncar/gobdd v1.1.2-0.20200701161808-1a99f36374b1
+
 require (
 	github.com/DataDog/datadog-go v3.6.0+incompatible // indirect
 	github.com/dnaeon/go-vcr v1.0.1
