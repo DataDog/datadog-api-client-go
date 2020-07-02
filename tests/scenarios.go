@@ -210,7 +210,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`new "([^"]+)" request`:                               newRequest,
 		`request contains "([^"]+)" parameter from "([^"]+)"`: addParameterFrom,
 		`the request is sent`:                                 requestIsSent,
-		`the status is (\d+) (.*)`:                            statusIs,
+		`the response status is (\d+) (.*)`:                   statusIs,
 		`body (.*)`:                                           body,
 	}
 	for expr, step := range steps {
