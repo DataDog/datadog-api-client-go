@@ -107,7 +107,7 @@ func user(t gobdd.StepTest, ctx gobdd.Context) {
 	ucp.SetData(*ucd)
 	ur, _, err := client.UsersApi.CreateUser(tests.GetCtx(ctx)).Body(*ucp).Execute()
 	if err != nil {
-		t.Fatalf("error creating role: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("error creating user: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 
 	urData := ur.GetData()
