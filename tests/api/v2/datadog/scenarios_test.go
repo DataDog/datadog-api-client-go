@@ -46,30 +46,37 @@ func TestScenarios(t *testing.T) {
 }
 
 func aValidAPIKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
+	key, ok := os.LookupEnv("DD_TEST_CLIENT_API_KEY")
+	if !ok && tests.GetRecording() != tests.ModeReplaying {
+		t.Fatal("DD_TEST_CLIENT_API_KEY must be set")
+	}
 	if keys, ok := tests.GetCtx(ctx).Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
 		keys["apiKeyAuth"] = datadog.APIKey{
-			Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
+			Key: key,
 		}
 	} else {
-		panic("could not set API key")
+		t.Fatal("could not set API key")
 	}
-
 }
 
 func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
+	key, ok := os.LookupEnv("DD_TEST_CLIENT_APP_KEY")
+	if !ok && tests.GetRecording() != tests.ModeReplaying {
+		t.Fatal("DD_TEST_CLIENT_APP_KEY must be set")
+	}
 	if keys, ok := tests.GetCtx(ctx).Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
 		keys["appKeyAuth"] = datadog.APIKey{
-			Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
+			Key: key,
 		}
 	} else {
-		panic("could not set App key")
+		t.Fatal("could not set App key")
 	}
-
 }
 
 // anInstanceOf sets API callable to apiKey{}
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
+	// use only first 3 segments from test name TestScenarios/<Feature Name>/<Scenario Name>
 	path := tests.SecurePath(strings.Join(strings.Split(t.(*testing.T).Name(), "/")[0:3], "/"))
 
 	cctx, err := tests.WithClock(tests.GetCtx(ctx), path)
