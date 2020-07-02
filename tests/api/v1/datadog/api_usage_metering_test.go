@@ -264,8 +264,8 @@ func TestUsageBillableSummary(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	startDate := time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC)
-	endDate := time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC)
+	// startMonth := time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC)
+	// endMonth := time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC)
 
 	fixturePath, err := filepath.Abs("fixtures/usage/usage_billable_summary.json")
 	if err != nil {
@@ -281,8 +281,6 @@ func TestUsageBillableSummary(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).
 		Get("/api/v1/usage/billable-summary").
-		ParamPresent("end_date").
-		ParamPresent("start_date").
 		Reply(200).
 		JSON(data)
 	defer gock.Off()
@@ -291,16 +289,16 @@ func TestUsageBillableSummary(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).UsageMeteringApi
-	usage, httpresp, err := api.GetUsageBillableSummary(ctx).StartDate(startDate).EndDate(endDate).Execute()
+	usage, httpresp, err := api.GetUsageBillableSummary(ctx).Execute()
 	if err != nil {
 		t.Errorf("Failed to get Billable Usage Summary: %v", err)
 	}
 
 	assert.Equal(200, httpresp.StatusCode)
 	var usageItem = usage.GetUsage()[0]
-	assert.Equal("Logs Probe - Test", usageItem.GetOrgName())
+	assert.Equal("API - Test", usageItem.GetOrgName())
 	assert.Equal("Pro", usageItem.GetBillingPlan())
-	assert.Equal("927176c4b", usageItem.GetPublicId())
+	assert.Equal("123abcxyz", usageItem.GetPublicId())
 	assert.Equal(time.Date(2020, 06, 01, 00, 0, 0, 0, time.UTC), usageItem.GetStartDate().UTC())
 	assert.Equal(time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC), usageItem.GetEndDate().UTC())
 	assert.Equal(int64(1), usageItem.GetRatioInMonth())
@@ -543,7 +541,7 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).StartDate(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -561,15 +559,14 @@ func TestUsageGetBillableSummary400Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
-	// and it can't be done through the API
+	// Mocked as this call must be made from the parent organization
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v1/usage/billable-summary").Reply(400).JSON(res)
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).StartDate(time.Now()).Execute()
+	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).Execute()
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)

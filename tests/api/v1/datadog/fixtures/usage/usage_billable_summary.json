@@ -2,9 +2,9 @@
     "usage":
     [
         {  
-            "org_name": "Logs Probe - Test",
+            "org_name": "API - Test",
             "billing_plan": "Pro",
-            "public_id": "927176c4b",
+            "public_id": "123abcxyz",
             "start_date": "2020-06-01T00:00:00+00:00",
             "end_date": "2020-06-28T23:00:00+00:00",
             "ratio_in_month": 1,
