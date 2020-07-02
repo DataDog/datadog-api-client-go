@@ -280,7 +280,7 @@ func TestUsageBillableSummary(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "UsageMeteringApiService.GetUsageBillableSummary")
 	assert.NoError(err)
 	gock.New(URL).
-		Get("/api/v1/usage/billable_summary").
+		Get("/api/v1/usage/billable-summary").
 		ParamPresent("end_date").
 		ParamPresent("start_date").
 		Reply(200).
@@ -315,7 +315,7 @@ func TestUsageBillableSummary(t *testing.T) {
 	assert.Equal(time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC), usageKeys.GetFirstBillableUsageHour().UTC())
 	assert.Equal(int64(672), usageKeys.GetElapsedUsageHours())
 	assert.Equal(time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC), usageKeys.GetLastBillableUsageHour().UTC())
-	assert.Equal(float32(0.9), usageKeys.GetPercentageInAccount())
+	assert.Equal(float64(0.9), usageKeys.GetPercentageInAccount())
 }
 
 // This test needs multi-org token so make it a unit test
@@ -533,8 +533,8 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request": {WithTestAuth, 400},
-		"403 Forbidden":   {WithFakeAuth, 403},
+		//"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
 	for name, tc := range testCases {
@@ -550,6 +550,30 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
+}
+
+func TestUsageGetBillableSummary400Error(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	res, err := tests.ReadFixture("fixtures/usage/error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+	// Mocked because it is only returned when the aws integration is not installed, which is not the case on test org
+	// and it can't be done through the API
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/usage/billable-summary").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Bad Request
+	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageBillableSummary(ctx).StartDate(time.Now()).Execute()
+	assert.Equal(400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(ok)
+	assert.NotEmpty(apiError.GetErrors())
 }
 
 func TestUsageTimeSeriesErrors(t *testing.T) {
