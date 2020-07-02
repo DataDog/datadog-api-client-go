@@ -788,7 +788,6 @@ func TestSyntheticsListLocations(t *testing.T) {
 }
 
 func TestSyntheticsVariableLifecycle(t *testing.T) {
-	// ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
