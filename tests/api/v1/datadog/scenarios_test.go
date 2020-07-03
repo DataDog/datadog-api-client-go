@@ -13,6 +13,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -40,6 +41,9 @@ func TestScenarios(t *testing.T) {
 		gobdd.WithBeforeStep(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			parts := strings.Split(ct.(*testing.T).Name(), "/")
+			if parent, ok := tracer.SpanFromContext(tests.GetCtx(ctx)); ok {
+				ctx.Set("parentSpan", parent)
+			}
 			_, cctx := tracer.StartSpanFromContext(
 				tests.GetCtx(ctx),
 				"step",
@@ -49,13 +53,18 @@ func TestScenarios(t *testing.T) {
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {
-			if span, ok := tracer.SpanFromContext(tests.GetCtx(ctx)); ok {
+			cctx := tests.GetCtx(ctx)
+			if span, ok := tracer.SpanFromContext(cctx); ok {
 				ct, _ := ctx.Get(gobdd.TestingTKey{})
 				failed := ct.(*testing.T).Failed()
 				if failed {
 					span.SetTag(ext.Error, failed)
 				}
 				span.Finish()
+
+				if parent, err := ctx.Get("parentSpan"); err != nil {
+					tests.SetCtx(ctx, tracer.ContextWithSpan(cctx, parent.(ddtrace.Span)))
+				}
 			}
 		}),
 	)
