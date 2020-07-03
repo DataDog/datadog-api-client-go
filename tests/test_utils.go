@@ -217,7 +217,7 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	// NOTE: version is treated in slightly different way, because it's a special tag;
 	// if we set it in StartSpanFromContext, it would get overwritten
 	span.SetTag("version", tag)
-	return tracer.ContextWithSpan(ctx, span), func() {
+	return ctx, func() {
 		span.SetTag(ext.Error, t.Failed())
 		span.Finish()
 	}

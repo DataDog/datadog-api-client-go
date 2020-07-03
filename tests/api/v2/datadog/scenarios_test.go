@@ -12,6 +12,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 func TestScenarios(t *testing.T) {
@@ -33,6 +35,27 @@ func TestScenarios(t *testing.T) {
 			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
 			tests.RunCleanup(ctx)
+		}),
+		gobdd.WithBeforeStep(func(ctx gobdd.Context) {
+			ct, _ := ctx.Get(gobdd.TestingTKey{})
+			parts := strings.Split(ct.(*testing.T).Name(), "/")
+			_, cctx := tracer.StartSpanFromContext(
+				tests.GetCtx(ctx),
+				"step",
+				tracer.SpanType("step"),
+				tracer.ResourceName(parts[len(parts)-1]),
+			)
+			tests.SetCtx(ctx, cctx)
+		}),
+		gobdd.WithAfterStep(func(ctx gobdd.Context) {
+			if span, ok := tracer.SpanFromContext(tests.GetCtx(ctx)); ok {
+				ct, _ := ctx.Get(gobdd.TestingTKey{})
+				failed := ct.(*testing.T).Failed()
+				if failed {
+					span.SetTag(ext.Error, failed)
+				}
+				span.Finish()
+			}
 		}),
 	)
 	tests.ConfigureSteps(s)
