@@ -62,7 +62,7 @@ func TestScenarios(t *testing.T) {
 				}
 				span.Finish()
 
-				if parent, err := ctx.Get("parentSpan"); err != nil {
+				if parent, err := ctx.Get("parentSpan"); err == nil {
 					tests.SetCtx(ctx, tracer.ContextWithSpan(cctx, parent.(ddtrace.Span)))
 				}
 			}
