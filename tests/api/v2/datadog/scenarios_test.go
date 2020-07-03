@@ -3,7 +3,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"os"
 	"reflect"
 	"strings"
@@ -23,7 +22,7 @@ func TestScenarios(t *testing.T) {
 		gobdd.WithIgnoredTags([]string{"@todo"}),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
-			cctx, finish := WithClient(
+			cctx, finish := WithRecorder(
 				context.WithValue(
 					context.Background(),
 					datadog.ContextAPIKeys,
@@ -39,12 +38,15 @@ func TestScenarios(t *testing.T) {
 		}),
 		gobdd.WithBeforeStep(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
+			cctx := tests.GetCtx(ctx)
 			parts := strings.Split(ct.(*testing.T).Name(), "/")
-			if parent, ok := tracer.SpanFromContext(tests.GetCtx(ctx)); ok {
+			if parent, ok := tracer.SpanFromContext(cctx); ok {
 				ctx.Set("parentSpan", parent)
+			} else {
+				ctx.Set("parentSpan", nil)
 			}
-			_, cctx := tracer.StartSpanFromContext(
-				tests.GetCtx(ctx),
+			_, cctx = tracer.StartSpanFromContext(
+				cctx,
 				"step",
 				tracer.SpanType("step"),
 				tracer.ResourceName(parts[len(parts)-1]),
@@ -61,7 +63,7 @@ func TestScenarios(t *testing.T) {
 				}
 				span.Finish()
 
-				if parent, err := ctx.Get("parentSpan"); err == nil {
+				if parent, err := ctx.Get("parentSpan"); err == nil && parent != nil {
 					tests.SetCtx(ctx, tracer.ContextWithSpan(cctx, parent.(ddtrace.Span)))
 				}
 			}
@@ -111,22 +113,6 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 // anInstanceOf sets API callable to apiKey{}
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
-	// use only first 3 segments from test name TestScenarios/<Feature Name>/<Scenario Name>
-	path := tests.SecurePath(strings.Join(strings.Split(t.(*testing.T).Name(), "/")[0:3], "/"))
-
-	cctx, err := tests.WithClock(tests.GetCtx(ctx), path)
-	if err != nil {
-		t.Fatal(err)
-	}
-	tests.SetCtx(ctx, cctx)
-
-	r, err := tests.Recorder(tests.GetCtx(ctx), path)
-	if err != nil {
-		t.Fatal(err)
-	}
-	tests.GetCleanup(ctx)["90-recorder"] = func() { r.Stop() }
-	client.GetConfig().HTTPClient = &http.Client{Transport: tests.WrapRoundTripper(r)}
-
 	ct := reflect.ValueOf(client)
 	f := reflect.Indirect(ct).FieldByName(name + "Api")
 	if !f.IsValid() {

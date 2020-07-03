@@ -10,7 +10,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"golang.org/x/net/publicsuffix"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -18,6 +17,8 @@ import (
 	"os"
 	"strings"
 	"testing"
+
+	"golang.org/x/net/publicsuffix"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -122,12 +123,12 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 	ctx, finish := WithClient(ctx, t)
 	client := Client(ctx)
 
-	ctx, err := tests.WithClock(ctx, t.Name())
+	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	r, err := tests.Recorder(ctx, t.Name())
+	r, err := tests.Recorder(ctx, tests.SecurePath(t.Name()))
 	if err != nil {
 		log.Fatal(err)
 	}
