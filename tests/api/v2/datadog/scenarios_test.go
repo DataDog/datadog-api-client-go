@@ -3,7 +3,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"reflect"
@@ -85,13 +84,13 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 
 	cctx, err := tests.WithClock(tests.GetCtx(ctx), path)
 	if err != nil {
-		log.Fatal(err)
+		t.Fatal(err)
 	}
 	tests.SetCtx(ctx, cctx)
 
 	r, err := tests.Recorder(tests.GetCtx(ctx), path)
 	if err != nil {
-		log.Fatal(err)
+		t.Fatal(err)
 	}
 	tests.GetCleanup(ctx)["90-recorder"] = func() { r.Stop() }
 	client.GetConfig().HTTPClient = &http.Client{Transport: tests.WrapRoundTripper(r)}
