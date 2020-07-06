@@ -204,15 +204,15 @@ func TestSignalsListPost(t *testing.T) {
 		t.Fatalf("Error sending logs: %v", err)
 	}
 
-	var response datadog.SignalsListResponse
+	var response datadog.SecurityMonitoringSignalsListResponse
 	var httpResp *http.Response
 
-	filter := datadog.NewSignalListRequestFilter()
+	filter := datadog.NewSecurityMonitoringSignalListRequestFilter()
 	filter.SetQuery(*uniqueName)
 	filter.SetFrom(now.Add(time.Duration(-2)*time.Hour))
 	filter.SetTo(now.Add(time.Duration(2)*time.Hour))
 
-	request := datadog.NewSignalListRequestWithDefaults()
+	request := datadog.NewSecurityMonitoringSignalListRequestWithDefaults()
 	request.SetFilter(*filter)
 
 	// Make sure both signals are generated
@@ -226,7 +226,7 @@ func TestSignalsListPost(t *testing.T) {
 	}
 
 	// Sort works correctly
-	request.SetSort(datadog.SIGNALSSORT_TIMESTAMP_ASCENDING)
+	request.SetSort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING)
 
 	response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
 	if err != nil {
@@ -238,7 +238,7 @@ func TestSignalsListPost(t *testing.T) {
 	secondTimestamp := response.GetData()[1].GetAttributes().Timestamp
 	assert.True(firstTimestamp.Before(*secondTimestamp))
 
-	request.SetSort(datadog.SIGNALSSORT_TIMESTAMP_DESCENDING)
+	request.SetSort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING)
 
 	response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
 	if err != nil {
@@ -251,7 +251,7 @@ func TestSignalsListPost(t *testing.T) {
 	assert.True(firstTimestamp.After(*secondTimestamp))
 
 	// Paging
-	page := datadog.NewSignalListRequestPage()
+	page := datadog.NewSecurityMonitoringSignalListRequestPage()
 	page.SetLimit(1)
 	request.SetPage(*page)
 	response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
@@ -299,7 +299,7 @@ func TestSignalsListGet(t *testing.T) {
 		t.Fatalf("Error sending logs: %v", err)
 	}
 
-	var response datadog.SignalsListResponse
+	var response datadog.SecurityMonitoringSignalsListResponse
 	var httpResp *http.Response
 
 	from := now.Add(time.Duration(-2) * time.Hour)
@@ -325,7 +325,7 @@ func TestSignalsListGet(t *testing.T) {
 		FilterQuery(*uniqueName).
 		FilterFrom(from).
 		FilterTo(to).
-		Sort(datadog.SIGNALSSORT_TIMESTAMP_ASCENDING).
+		Sort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING).
 		Execute()
 	if err != nil {
 		t.Fatalf("Could not list signals: %v", err)
@@ -340,7 +340,7 @@ func TestSignalsListGet(t *testing.T) {
 		FilterQuery(*uniqueName).
 		FilterFrom(from).
 		FilterTo(to).
-		Sort(datadog.SIGNALSSORT_TIMESTAMP_DESCENDING).
+		Sort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING).
 		Execute()
 	if err != nil {
 		t.Fatalf("Could not list signals: %v", err)
