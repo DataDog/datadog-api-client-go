@@ -27,6 +27,7 @@ const (
 	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH       SyntheticsAssertionOperator = "doesNotMatch"
 	SYNTHETICSASSERTIONOPERATOR_VALIDATES            SyntheticsAssertionOperator = "validates"
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN SyntheticsAssertionOperator = "isInMoreThan"
+	SYNTHETICSASSERTIONOPERATOR_VALIDATE_JSONPATH    SyntheticsAssertionOperator = "validatesJSONPath"
 )
 
 func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
@@ -36,7 +37,7 @@ func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsAssertionOperator(value)
-	for _, existing := range []SyntheticsAssertionOperator{"contains", "doesNotContain", "is", "isNot", "lessThan", "matches", "doesNotMatch", "validates", "isInMoreThan"} {
+	for _, existing := range []SyntheticsAssertionOperator{"contains", "doesNotContain", "is", "isNot", "lessThan", "matches", "doesNotMatch", "validates", "isInMoreThan", "validatesJSONPath"} {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil

@@ -12425,6 +12425,7 @@ components:
       - doesNotMatch
       - validates
       - isInMoreThan
+      - validatesJSONPath
       type: string
       x-enum-varnames:
       - CONTAINS
@@ -12436,6 +12437,7 @@ components:
       - DOES_NOT_MATCH
       - VALIDATES
       - IS_IN_MORE_DAYS_THAN
+      - VALIDATE_JSONPATH
     SyntheticsAssertionType:
       description: Type of the assertion.
       enum:
