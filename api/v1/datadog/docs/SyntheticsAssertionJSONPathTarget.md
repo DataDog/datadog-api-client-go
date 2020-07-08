@@ -1,4 +1,4 @@
-# SyntheticsAssertion
+# SyntheticsAssertionJSONPathTarget
 
 ## Properties
 
@@ -11,109 +11,109 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSyntheticsAssertion
+### NewSyntheticsAssertionJSONPathTarget
 
-`func NewSyntheticsAssertion(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType, ) *SyntheticsAssertion`
+`func NewSyntheticsAssertionJSONPathTarget(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType, ) *SyntheticsAssertionJSONPathTarget`
 
-NewSyntheticsAssertion instantiates a new SyntheticsAssertion object
+NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSyntheticsAssertionWithDefaults
+### NewSyntheticsAssertionJSONPathTargetWithDefaults
 
-`func NewSyntheticsAssertionWithDefaults() *SyntheticsAssertion`
+`func NewSyntheticsAssertionJSONPathTargetWithDefaults() *SyntheticsAssertionJSONPathTarget`
 
-NewSyntheticsAssertionWithDefaults instantiates a new SyntheticsAssertion object
+NewSyntheticsAssertionJSONPathTargetWithDefaults instantiates a new SyntheticsAssertionJSONPathTarget object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetOperator
 
-`func (o *SyntheticsAssertion) GetOperator() SyntheticsAssertionJSONPathOperator`
+`func (o *SyntheticsAssertionJSONPathTarget) GetOperator() SyntheticsAssertionJSONPathOperator`
 
 GetOperator returns the Operator field if non-nil, zero value otherwise.
 
 ### GetOperatorOk
 
-`func (o *SyntheticsAssertion) GetOperatorOk() (*SyntheticsAssertionJSONPathOperator, bool)`
+`func (o *SyntheticsAssertionJSONPathTarget) GetOperatorOk() (*SyntheticsAssertionJSONPathOperator, bool)`
 
 GetOperatorOk returns a tuple with the Operator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperator
 
-`func (o *SyntheticsAssertion) SetOperator(v SyntheticsAssertionJSONPathOperator)`
+`func (o *SyntheticsAssertionJSONPathTarget) SetOperator(v SyntheticsAssertionJSONPathOperator)`
 
 SetOperator sets Operator field to given value.
 
 
 ### GetProperty
 
-`func (o *SyntheticsAssertion) GetProperty() string`
+`func (o *SyntheticsAssertionJSONPathTarget) GetProperty() string`
 
 GetProperty returns the Property field if non-nil, zero value otherwise.
 
 ### GetPropertyOk
 
-`func (o *SyntheticsAssertion) GetPropertyOk() (*string, bool)`
+`func (o *SyntheticsAssertionJSONPathTarget) GetPropertyOk() (*string, bool)`
 
 GetPropertyOk returns a tuple with the Property field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProperty
 
-`func (o *SyntheticsAssertion) SetProperty(v string)`
+`func (o *SyntheticsAssertionJSONPathTarget) SetProperty(v string)`
 
 SetProperty sets Property field to given value.
 
 ### HasProperty
 
-`func (o *SyntheticsAssertion) HasProperty() bool`
+`func (o *SyntheticsAssertionJSONPathTarget) HasProperty() bool`
 
 HasProperty returns a boolean if a field has been set.
 
 ### GetTarget
 
-`func (o *SyntheticsAssertion) GetTarget() SyntheticsAssertionJSONPathTargetTarget`
+`func (o *SyntheticsAssertionJSONPathTarget) GetTarget() SyntheticsAssertionJSONPathTargetTarget`
 
 GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *SyntheticsAssertion) GetTargetOk() (*SyntheticsAssertionJSONPathTargetTarget, bool)`
+`func (o *SyntheticsAssertionJSONPathTarget) GetTargetOk() (*SyntheticsAssertionJSONPathTargetTarget, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTarget
 
-`func (o *SyntheticsAssertion) SetTarget(v SyntheticsAssertionJSONPathTargetTarget)`
+`func (o *SyntheticsAssertionJSONPathTarget) SetTarget(v SyntheticsAssertionJSONPathTargetTarget)`
 
 SetTarget sets Target field to given value.
 
 ### HasTarget
 
-`func (o *SyntheticsAssertion) HasTarget() bool`
+`func (o *SyntheticsAssertionJSONPathTarget) HasTarget() bool`
 
 HasTarget returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *SyntheticsAssertion) GetType() SyntheticsAssertionType`
+`func (o *SyntheticsAssertionJSONPathTarget) GetType() SyntheticsAssertionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *SyntheticsAssertion) GetTypeOk() (*SyntheticsAssertionType, bool)`
+`func (o *SyntheticsAssertionJSONPathTarget) GetTypeOk() (*SyntheticsAssertionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *SyntheticsAssertion) SetType(v SyntheticsAssertionType)`
+`func (o *SyntheticsAssertionJSONPathTarget) SetType(v SyntheticsAssertionType)`
 
 SetType sets Type field to given value.
 
