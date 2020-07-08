@@ -286,7 +286,11 @@ docs/SyntheticsAPITestResultShort.md
 docs/SyntheticsAPITestResultShortResult.md
 docs/SyntheticsApi.md
 docs/SyntheticsAssertion.md
+docs/SyntheticsAssertionJSONPathOperator.md
+docs/SyntheticsAssertionJSONPathTarget.md
+docs/SyntheticsAssertionJSONPathTargetTarget.md
 docs/SyntheticsAssertionOperator.md
+docs/SyntheticsAssertionTarget.md
 docs/SyntheticsAssertionType.md
 docs/SyntheticsBrowserError.md
 docs/SyntheticsBrowserErrorType.md
@@ -670,7 +674,11 @@ model_synthetics_api_test_result_full_check.go
 model_synthetics_api_test_result_short.go
 model_synthetics_api_test_result_short_result.go
 model_synthetics_assertion.go
+model_synthetics_assertion_json_path_operator.go
+model_synthetics_assertion_json_path_target.go
+model_synthetics_assertion_json_path_target_target.go
 model_synthetics_assertion_operator.go
+model_synthetics_assertion_target.go
 model_synthetics_assertion_type.go
 model_synthetics_browser_error.go
 model_synthetics_browser_error_type.go
