@@ -293,3 +293,241 @@ func TestHostsUnmuteErrors(t *testing.T) {
 		})
 	}
 }
+
+func TestHostsSearchMockedIncludeMutedHostsDataFalse(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	defer gock.Off()
+
+	data, err := tests.ReadFixture("fixtures/hosts/host_search.json")
+	if err != nil {
+		t.Errorf("Failed to read fixture: %s", err)
+	}
+
+	params := map[string]string{
+		"filter":                   "filter string",
+		"count":                    "4",
+		"from":                     "123",
+		"sort_dir":                 "asc",
+		"sort_field":               "status",
+		"start":                    "3",
+		"include_muted_hosts_data": "false",
+	}
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.ListHosts")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts").
+		MatchParams(params).
+		Reply(200).
+		JSON(data)
+
+	var expected datadog.HostListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := Client(ctx).HostsApi
+	hostListResp, httpresp, err := api.ListHosts(ctx).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).IncludeMutedHostsData(false).Execute()
+	if err != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+}
+
+func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	defer gock.Off()
+
+	data, err := tests.ReadFixture("fixtures/hosts/host_search_with_mutes.json")
+	if err != nil {
+		t.Errorf("Failed to read fixture: %s", err)
+	}
+
+	params := map[string]string{
+		"filter":                   "filter string",
+		"count":                    "4",
+		"from":                     "123",
+		"sort_dir":                 "asc",
+		"sort_field":               "status",
+		"start":                    "3",
+		"include_muted_hosts_data": "true",
+	}
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.ListHosts")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts").
+		MatchParams(params).
+		Reply(200).
+		JSON(data)
+
+	var expected datadog.HostListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := Client(ctx).HostsApi
+	hostListResp, httpresp, err := api.ListHosts(ctx).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).IncludeMutedHostsData(true).Execute()
+	if err != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+}
+
+func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	defer gock.Off()
+
+	data, err := tests.ReadFixture("fixtures/hosts/host_search_with_mutes.json")
+	if err != nil {
+		t.Errorf("Failed to read fixture: %s", err)
+	}
+
+	params := map[string]string{
+		"filter":     "filter string",
+		"count":      "4",
+		"from":       "123",
+		"sort_dir":   "asc",
+		"sort_field": "status",
+		"start":      "3",
+	}
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.ListHosts")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts").
+		MatchParams(params).
+		Reply(200).
+		JSON(data)
+
+	var expected datadog.HostListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := Client(ctx).HostsApi
+	hostListResp, httpresp, err := api.ListHosts(ctx).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).Execute()
+	if err != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+}
+
+func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	defer gock.Off()
+
+	data, err := tests.ReadFixture("fixtures/hosts/host_search.json")
+	if err != nil {
+		t.Errorf("Failed to read fixture: %s", err)
+	}
+
+	params := map[string]string{
+		"filter":                 "filter string",
+		"count":                  "4",
+		"from":                   "123",
+		"sort_dir":               "asc",
+		"sort_field":             "status",
+		"start":                  "3",
+		"include_hosts_metadata": "false",
+	}
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.ListHosts")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts").
+		MatchParams(params).
+		Reply(200).
+		JSON(data)
+
+	var expected datadog.HostListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := Client(ctx).HostsApi
+	hostListResp, httpresp, err := api.ListHosts(ctx).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).IncludeHostsMetadata(false).Execute()
+	if err != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+}
+
+func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	defer gock.Off()
+
+	data, err := tests.ReadFixture("fixtures/hosts/host_search_with_metadata.json")
+	if err != nil {
+		t.Errorf("Failed to read fixture: %s", err)
+	}
+
+	params := map[string]string{
+		"filter":                 "filter string",
+		"count":                  "4",
+		"from":                   "123",
+		"sort_dir":               "asc",
+		"sort_field":             "status",
+		"start":                  "3",
+		"include_hosts_metadata": "true",
+	}
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.ListHosts")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts").
+		MatchParams(params).
+		Reply(200).
+		JSON(data)
+
+	var expected datadog.HostListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := Client(ctx).HostsApi
+	hostListResp, httpresp, err := api.ListHosts(ctx).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).IncludeHostsMetadata(true).Execute()
+	if err != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+}
+
+func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	defer gock.Off()
+
+	data, err := tests.ReadFixture("fixtures/hosts/host_search_with_metadata.json")
+	if err != nil {
+		t.Errorf("Failed to read fixture: %s", err)
+	}
+
+	params := map[string]string{
+		"filter":     "filter string",
+		"count":      "4",
+		"from":       "123",
+		"sort_dir":   "asc",
+		"sort_field": "status",
+		"start":      "3",
+	}
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "HostsApiService.ListHosts")
+	assert.NoError(err)
+	gock.New(URL).
+		Get("/api/v1/hosts").
+		MatchParams(params).
+		Reply(200).
+		JSON(data)
+
+	var expected datadog.HostListResponse
+	json.Unmarshal([]byte(data), &expected)
+
+	api := Client(ctx).HostsApi
+	hostListResp, httpresp, err := api.ListHosts(ctx).Filter("filter string").Count(4).From(123).SortDir("asc").SortField("status").Start(3).Execute()
+	if err != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+}
