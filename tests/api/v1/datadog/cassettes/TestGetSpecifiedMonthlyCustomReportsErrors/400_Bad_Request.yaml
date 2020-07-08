@@ -1,0 +1,50 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetSpecifiedMonthlyCustomReports
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3408195995100609895"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3818407400585611876"
+    url: https://api.datadoghq.com/api/v1/monthly_custom_reports/whatever
+    method: GET
+  response:
+    body: '{"errors": ["The value provided for parameter ''Only use YYYY-MM-DD to
+      specify a monthly report'' is invalid"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "109"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 08 Jul 2020 17:48:39 GMT
+      Dd-Pool:
+      - dogweb_wallace
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2715772"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 400 Bad Request
+    code: 400
+    duration: ""

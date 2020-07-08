@@ -331,6 +331,21 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 	assert.True(usage.HasData())
 }
 
+func TestSpecifiedMonthlyCustomReports(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+	reportID := "2019-10-02"
+
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, reportID).Execute()
+	if err != nil {
+		t.Errorf("Error getting Specified Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasMeta())
+	assert.True(usage.HasData())
+}
+
 func TestDailyCustomReports(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
@@ -613,6 +628,34 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, "whatever").Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
+
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"403 Forbidden":   {WithFakeAuth, 403},
+		"400 Bad Request": {WithTestAuth, 400},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, "whatever").Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
