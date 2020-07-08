@@ -345,6 +345,20 @@ func TestDailyCustomReports(t *testing.T) {
 	assert.True(usage.HasData())
 }
 
+func TestMonthlyCustomReports(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
+	if err != nil {
+		t.Errorf("Error getting Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasMeta())
+	assert.True(usage.HasData())
+}
+
 // This test needs multi-org token so make it a unit test
 func TestUsageSummary(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
@@ -639,11 +653,11 @@ func TestGetDailyCustomReports400Error(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	res, err := tests.ReadFixture("fixtures/usage/error_400.json")
+	res, err := tests.ReadFixture("fixtures/usage/no_authenticated_user_error.json")
 	if err != nil {
 		t.Fatalf("Failed to read fixture: %s", err)
 	}
-	// Mocked as this call must be made from the parent organization
+
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v1/daily_custom_reports").Reply(400).JSON(res)
@@ -651,6 +665,56 @@ func TestGetDailyCustomReports400Error(t *testing.T) {
 
 	// 400 Bad Request
 	_, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
+	assert.Equal(400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(ok)
+	assert.NotEmpty(apiError.GetErrors())
+}
+
+func TestGetMonthlyCustomReportsErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		// "400 Bad Request": {WithTestAuth, 404},
+		"403 Forbidden": {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetMonthlyCustomReports400Error(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	res, err := tests.ReadFixture("fixtures/usage/no_authenticated_user_error.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/monthly_custom_reports").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Bad Request
+	_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)

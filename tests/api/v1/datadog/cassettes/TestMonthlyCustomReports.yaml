@@ -1,0 +1,54 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetMonthlyCustomReports
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4057637515484547903"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "19223901112368169"
+    url: https://api.datadoghq.com/api/v1/monthly_custom_reports
+    method: GET
+  response:
+    body: '{"meta":{"page":{"total_count":13}},"data":[{"type":"reports","id":"2020-06-01","attributes":{"tags":["env","service","team"],"start_date":"2020-06-01","end_date":"2020-07-01","size":5514133979,"computed_on":"2020-07-01T18:26:50+00:00"}},{"type":"reports","id":"2020-05-01","attributes":{"tags":["env","service","team"],"start_date":"2020-05-01","end_date":"2020-06-01","size":1865086708,"computed_on":"2020-06-17T02:27:28+00:00"}},{"type":"reports","id":"2020-04-01","attributes":{"tags":["env","service","team"],"start_date":"2020-04-01","end_date":"2020-05-01","size":2769034741,"computed_on":"2020-06-17T15:28:54+00:00"}},{"type":"reports","id":"2020-03-01","attributes":{"tags":["env","service","team"],"start_date":"2020-03-01","end_date":"2020-04-01","size":2920875264,"computed_on":"2020-04-30T13:58:49+00:00"}},{"type":"reports","id":"2020-02-01","attributes":{"tags":["env","service","team"],"start_date":"2020-02-01","end_date":"2020-03-01","size":3735256391,"computed_on":"2020-03-18T18:36:40+00:00"}},{"type":"reports","id":"2020-01-01","attributes":{"tags":["env","service","team"],"start_date":"2020-01-01","end_date":"2020-02-01","size":2635144899,"computed_on":"2020-02-01T13:23:12+00:00"}},{"type":"reports","id":"2019-12-01","attributes":{"tags":["env","service","team"],"start_date":"2019-12-01","end_date":"2020-01-01","size":2933154528,"computed_on":"2020-01-01T14:02:38+00:00"}},{"type":"reports","id":"2019-11-01","attributes":{"tags":["env","service","team"],"start_date":"2019-11-01","end_date":"2019-12-01","size":2627695077,"computed_on":"2019-12-01T12:23:26+00:00"}},{"type":"reports","id":"2019-10-01","attributes":{"tags":["env","service","team"],"start_date":"2019-10-01","end_date":"2019-11-01","size":1893482234,"computed_on":"2019-11-02T03:38:28+00:00"}},{"type":"reports","id":"2019-09-01","attributes":{"tags":["env","service","team"],"start_date":"2019-09-01","end_date":"2019-10-01","size":1429319886,"computed_on":"2019-10-01T17:06:05+00:00"}},{"type":"reports","id":"2019-08-01","attributes":{"tags":["env","service","team"],"start_date":"2019-08-01","end_date":"2019-09-01","size":1331070691,"computed_on":"2019-09-17T17:32:36+00:00"}},{"type":"reports","id":"2019-07-01","attributes":{"tags":["env","service","team"],"start_date":"2019-07-01","end_date":"2019-08-01","size":131142037,"computed_on":"2019-08-06T19:53:10+00:00"}},{"type":"reports","id":"2019-06-01","attributes":{"tags":["env","service","team"],"start_date":"2019-06-01","end_date":"2019-07-01","size":108384014,"computed_on":"2019-07-01T12:15:55+00:00"}}]}'
+    headers:
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 08 Jul 2020 17:04:25 GMT
+      Dd-Pool:
+      - dogweb_wallace
+      Expires:
+      - Wed, 08 Jul 2020 17:09:24 GMT
+      Set-Cookie:
+      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Wed, 15-Jul-2020 17:04:24 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - awxIHLD6BA/CCHckFdWc1EwL/qz7LNWkbdxufAtTuIh4K8dP+fAQ++wK+1RsINBB
+      X-Dd-Version:
+      - "35.2715772"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
