@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3391199550555830388"
+      - "4560301956811557270"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "561573860709516586"
+      - "1228095139732013780"
     url: https://api.datadoghq.com/api/v1/daily_custom_reports
     method: GET
   response:
@@ -29,13 +29,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 08 Jul 2020 20:55:47 GMT
+      - Wed, 08 Jul 2020 20:57:38 GMT
       Dd-Pool:
       - dogweb_wallace
       Expires:
-      - Wed, 08 Jul 2020 21:00:47 GMT
+      - Wed, 08 Jul 2020 21:02:37 GMT
       Set-Cookie:
-      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Wed, 15-Jul-2020 20:55:47 GMT;
+      - DD-PSHARD=99; Max-Age=604800; Path=/; expires=Wed, 15-Jul-2020 20:57:37 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -44,7 +44,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bZOshGVNK5CnakWJUVXaLjl3EeuAdLxoeAw2xjRTjbKWlPP3XZBpOZ7jzDKzAh1n
+      - osF1kWpYU0AciWFqKS4lR5m8H0c1r4ePrbbqxu4pcRpATLMKiOAIf6ycuHKMILPv
       X-Dd-Version:
       - "35.2716961"
       X-Frame-Options:
