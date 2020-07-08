@@ -11,14 +11,14 @@ import (
 )
 
 func enableSecMonUnstableOperations(ctx context.Context) func() {
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSignals", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSignalsGet", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSecurityMonitoringSignals", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSecurityMonitoringSignalsGet", true)
 	return func() { disableSecMonUnstableOperations(ctx) }
 }
 
 func disableSecMonUnstableOperations(ctx context.Context) {
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSignals", false)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSignalsGet", false)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSecurityMonitoringSignals", false)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSecurityMonitoringSignalsGet", false)
 }
 
 func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, ruleName string) (datadog.SecurityMonitoringRuleResponse, *http.Response, error) {
@@ -217,7 +217,7 @@ func TestSignalsListPost(t *testing.T) {
 
 	// Make sure both signals are generated
 	err = tests.Retry(time.Duration(5) * time.Second, 30, func() bool {
-		response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
+		response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).Body(*request).Execute()
 		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
 	})
 
@@ -228,7 +228,7 @@ func TestSignalsListPost(t *testing.T) {
 	// Sort works correctly
 	request.SetSort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING)
 
-	response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
+	response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list signals: %v", err)
 	}
@@ -240,7 +240,7 @@ func TestSignalsListPost(t *testing.T) {
 
 	request.SetSort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING)
 
-	response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
+	response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list signals: %v", err)
 	}
@@ -254,7 +254,7 @@ func TestSignalsListPost(t *testing.T) {
 	page := datadog.NewSecurityMonitoringSignalListRequestPage()
 	page.SetLimit(1)
 	request.SetPage(*page)
-	response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
+	response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list signals: %v", err)
 	}
@@ -267,7 +267,7 @@ func TestSignalsListPost(t *testing.T) {
 	firstId := response.GetData()[0].GetId()
 
 	request.Page.SetCursor(cursor)
-	response, httpResp, err = api.ListSignals(ctx).Body(*request).Execute()
+	response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).Body(*request).Execute()
 	if err != nil {
 		t.Fatalf("Could not list signals: %v", err)
 	}
@@ -307,7 +307,7 @@ func TestSignalsListGet(t *testing.T) {
 
 	// Make sure both signals are generated
 	err = tests.Retry(time.Duration(5) * time.Second, 30, func() bool {
-		response, httpResp, err = api.ListSignalsGet(ctx).
+		response, httpResp, err = api.ListSecurityMonitoringSignalsGet(ctx).
 			FilterQuery(*uniqueName).
 			FilterFrom(from).
 			FilterTo(to).
@@ -321,7 +321,7 @@ func TestSignalsListGet(t *testing.T) {
 
 	// Sort works correctly
 
-	response, httpResp, err = api.ListSignalsGet(ctx).
+	response, httpResp, err = api.ListSecurityMonitoringSignalsGet(ctx).
 		FilterQuery(*uniqueName).
 		FilterFrom(from).
 		FilterTo(to).
@@ -336,7 +336,7 @@ func TestSignalsListGet(t *testing.T) {
 	secondTimestamp := response.GetData()[1].GetAttributes().Timestamp
 	assert.True(firstTimestamp.Before(*secondTimestamp))
 
-	response, httpResp, err = api.ListSignalsGet(ctx).
+	response, httpResp, err = api.ListSecurityMonitoringSignalsGet(ctx).
 		FilterQuery(*uniqueName).
 		FilterFrom(from).
 		FilterTo(to).
@@ -352,7 +352,7 @@ func TestSignalsListGet(t *testing.T) {
 	assert.True(firstTimestamp.After(*secondTimestamp))
 
 	// Paging
-	response, httpResp, err = api.ListSignalsGet(ctx).
+	response, httpResp, err = api.ListSecurityMonitoringSignalsGet(ctx).
 		FilterQuery(*uniqueName).
 		FilterFrom(from).
 		FilterTo(to).
@@ -369,7 +369,7 @@ func TestSignalsListGet(t *testing.T) {
 	cursor := respPage.GetAfter()
 	firstId := response.GetData()[0].GetId()
 
-	response, httpResp, err = api.ListSignalsGet(ctx).
+	response, httpResp, err = api.ListSecurityMonitoringSignalsGet(ctx).
 		FilterQuery(*uniqueName).
 		FilterFrom(from).
 		FilterTo(to).
