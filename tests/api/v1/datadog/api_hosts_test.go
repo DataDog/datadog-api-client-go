@@ -531,3 +531,104 @@ func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(is.DeepEqual(expected, hostListResp)().Success())
 }
+
+func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	api := Client(ctx).HostsApi
+	now := tests.ClockFromContext(ctx).Now().Unix()
+
+	hostname := *tests.UniqueEntityName(ctx, t)
+
+	// create host by sending a metric
+	metricsPayload := fmt.Sprintf(
+		`{"series": [{"host": "%s", "metric": "go.client.test.metric", "points": [[%f, 0]]}]}`,
+		hostname, float64(now),
+	)
+	httpresp, respBody, err := SendRequest(ctx, "POST", "/api/v1/series", []byte(metricsPayload))
+	if err != nil {
+		t.Fatalf("Error submitting metric: Response %s: %v", string(respBody), err)
+	}
+	assert.Equal(202, httpresp.StatusCode)
+	assert.Equal(`{"status": "ok"}`, string(respBody))
+
+	// wait for host to appear
+	err = tests.Retry(10*time.Second, 10, func() bool {
+		_, httpresp, err := Client(ctx).TagsApi.GetHostTags(ctx, hostname).Execute()
+		if err != nil {
+			t.Logf("Error getting host tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
+		}
+		return httpresp.StatusCode == 200
+	})
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+
+	// waiting for host to appear on infralist
+	err = tests.Retry(10*time.Second, 10, func() bool {
+		hostListResp, httpresp, err := api.ListHosts(ctx).Filter(hostname).Execute()
+		if err != nil {
+			t.Errorf("Failed to get hosts: %v", err)
+		}
+		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1
+	})
+
+	// muting the host
+	hostMuteSettings := datadog.HostMuteSettings{
+		Message: datadog.PtrString("muting for test"),
+		End:     datadog.PtrInt64(now + 1200),
+	}
+	muteHostResp, httpresp, err := api.MuteHost(ctx, hostname).Body(hostMuteSettings).Execute()
+	if err != nil {
+		t.Errorf("Error muting host %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal("muting for test", muteHostResp.GetMessage())
+	assert.Equal(hostname, muteHostResp.GetHostname())
+	assert.Equal(now+1200, muteHostResp.GetEnd())
+	assert.Equal("Muted", muteHostResp.GetAction())
+
+	// waiting for host to be muted
+	err = tests.Retry(10*time.Second, 10, func() bool {
+		hostListResp, httpresp, err := api.ListHosts(ctx).Filter(hostname).Execute()
+		if err != nil {
+			t.Errorf("Failed to get hosts: %v", err)
+		}
+		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *((*hostListResp.HostList)[0].IsMuted)
+	})
+
+	// this is the default case, should have the muted data
+	hostListResp1, httpresp1, err1 := api.ListHosts(ctx).Filter(hostname).Execute()
+	if err1 != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp1.StatusCode)
+	assert.Equal(int64(1), *hostListResp1.TotalReturned)
+	host1 := (*hostListResp1.HostList)[0]
+	assert.True(*host1.IsMuted)
+	assert.NotEqual(host1.MuteTimeout, nil)
+
+	// this is the case where the include_muted_hosts_data is true, should have muted data
+	hostListResp2, httpresp2, err2 := api.ListHosts(ctx).Filter(hostname).IncludeMutedHostsData(true).Execute()
+	if err2 != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp2.StatusCode)
+	assert.Equal(int64(1), *hostListResp2.TotalReturned)
+	host2 := (*hostListResp2.HostList)[0]
+	assert.True(*host2.IsMuted)
+	assert.NotEqual(host2.MuteTimeout, nil)
+
+	// this is the case where the include_muted_hosts_data is false, should not have muted data
+	hostListResp3, httpresp3, err3 := api.ListHosts(ctx).Filter(hostname).IncludeMutedHostsData(false).Execute()
+	if err3 != nil {
+		t.Errorf("Failed to get hosts: %v", err)
+	}
+	assert.Equal(200, httpresp3.StatusCode)
+	assert.Equal(int64(1), *hostListResp3.TotalReturned)
+	host3 := (*hostListResp3.HostList)[0]
+	assert.False(*host3.IsMuted)
+	assert.Nil(host3.MuteTimeout)
+}
