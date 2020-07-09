@@ -722,7 +722,7 @@ func TestGetMonthlyCustomReportsErrors(t *testing.T) {
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		// "400 Bad Request": {WithTestAuth, 400},
+		// "404 Not Found": {WithTestAuth, 404},
 		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
@@ -741,7 +741,7 @@ func TestGetMonthlyCustomReportsErrors(t *testing.T) {
 	}
 }
 
-func TestGetMonthlyCustomReports400Error(t *testing.T) {
+func TestGetMonthlyCustomReports404Error(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -753,12 +753,12 @@ func TestGetMonthlyCustomReports400Error(t *testing.T) {
 
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
 	assert.NoError(err)
-	gock.New(URL).Get("/api/v1/monthly_custom_reports").Reply(400).JSON(res)
+	gock.New(URL).Get("/api/v1/monthly_custom_reports").Reply(404).JSON(res)
 	defer gock.Off()
 
-	// 400 Bad Request
+	// 404 Not Found
 	_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
-	assert.Equal(400, httpresp.StatusCode)
+	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
