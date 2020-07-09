@@ -756,7 +756,7 @@ func TestGetMonthlyCustomReports404Error(t *testing.T) {
 	gock.New(URL).Get("/api/v1/monthly_custom_reports").Reply(404).JSON(res)
 	defer gock.Off()
 
-	// 404 Not Found
+	//404 Not Found
 	_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
