@@ -19,7 +19,7 @@ import (
 func TestScenarios(t *testing.T) {
 	s := gobdd.NewSuite(
 		t,
-		gobdd.WithIgnoredTags([]string{"@todo"}),
+		gobdd.WithIgnoredTags([]string{"@skip"}),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
