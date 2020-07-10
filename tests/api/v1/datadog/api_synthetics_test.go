@@ -24,22 +24,31 @@ import (
 
 var targetTextHTML interface{} = "text/html"
 var target2000 interface{} = 2000
+var targetValue0 interface{} = "0"
 
 func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
+	assertionTextHTML.Property = datadog.PtrString("content-type")
+	assertionTextHTML.Target = &targetTextHTML
+
+	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
+	assertion2000.Target = &target2000
+
+	targetJSONPath := datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH, datadog.SYNTHETICSASSERTIONTYPE_BODY)
+	targetJSONPath.SetTarget(
+		datadog.SyntheticsAssertionJSONPathTargetTarget{
+			JsonPath: datadog.PtrString("topKey"),
+			Operator: datadog.PtrString("isNot"),
+			TargetValue: &targetValue0,
+		},
+	)
+
 	return datadog.SyntheticsTestDetails{
 		Config: &datadog.SyntheticsTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
-				{
-					Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
-					Property: datadog.PtrString("content-type"),
-					Target:   &targetTextHTML,
-					Type:     datadog.SYNTHETICSASSERTIONTYPE_HEADER,
-				},
-				{
-					Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-					Target:   &target2000,
-					Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
-				},
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
+				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Headers: &map[string]string{"testingGoClient": "true"},
@@ -135,6 +144,34 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(updatedName, synt.GetName())
+
+	config := synt.GetConfig()
+
+	assert.Equal(3, len(config.GetAssertions()))
+
+	for _, assertion := range config.GetAssertions() {
+		if assertion.SyntheticsAssertionJSONPathTarget != nil {
+			assert.Equal(datadog.SYNTHETICSASSERTIONTYPE_BODY, assertion.SyntheticsAssertionJSONPathTarget.Type)
+			assert.Equal(datadog.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH, assertion.SyntheticsAssertionJSONPathTarget.Operator)
+			target := assertion.SyntheticsAssertionJSONPathTarget.GetTarget()
+			assert.Equal("0", target.GetTargetValue().(string))
+			assert.Equal("isNot", target.GetOperator())
+			assert.Equal("topKey", target.GetJsonPath())
+		} else if assertion.SyntheticsAssertionTarget != nil {
+			if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_HEADER {
+				assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_IS, assertion.SyntheticsAssertionTarget.Operator)
+				assert.Equal("content-type", assertion.SyntheticsAssertionTarget.GetProperty())
+				assert.Equal("text/html", assertion.SyntheticsAssertionTarget.GetTarget().(string))
+			} else if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME {
+				assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, assertion.SyntheticsAssertionTarget.Operator)
+				assert.Equal(float64(2000), assertion.SyntheticsAssertionTarget.GetTarget().(float64))
+			} else {
+				assert.Fail("Unexpected type")
+			}
+		} else {
+			assert.Fail("Unexpected target")
+		}
+	}
 
 	// NOTE: API tests are started by default, so we have to stop it first
 	// Stop API test
