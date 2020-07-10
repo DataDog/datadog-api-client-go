@@ -19,8 +19,8 @@ type WidgetTextAlign string
 // List of WidgetTextAlign
 const (
 	WIDGETTEXTALIGN_CENTER WidgetTextAlign = "center"
-	WIDGETTEXTALIGN_LEFT   WidgetTextAlign = "left"
-	WIDGETTEXTALIGN_RIGHT  WidgetTextAlign = "right"
+	WIDGETTEXTALIGN_LEFT WidgetTextAlign = "left"
+	WIDGETTEXTALIGN_RIGHT WidgetTextAlign = "right"
 )
 
 func (v *WidgetTextAlign) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *WidgetTextAlign) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetTextAlign(value)
-	for _, existing := range []WidgetTextAlign{"center", "left", "right"} {
+	for _, existing := range []WidgetTextAlign{ "center", "left", "right",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetTextAlign) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

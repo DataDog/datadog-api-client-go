@@ -16,13 +16,13 @@ import (
 type SyntheticsStepDetail struct {
 	// Array of errors collected for a browser test.
 	BrowserErrors *[]SyntheticsBrowserError `json:"browserErrors,omitempty"`
-	CheckType     *SyntheticsCheckType      `json:"checkType,omitempty"`
+	CheckType *SyntheticsCheckType `json:"checkType,omitempty"`
 	// Description of the test.
 	Description *string `json:"description,omitempty"`
 	// Total duration in millisecond of the test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Error returned by the test.
-	Error      *string               `json:"error,omitempty"`
+	Error *string `json:"error,omitempty"`
 	PlayingTab *SyntheticsPlayingTab `json:"playingTab,omitempty"`
 	// Array of resources collected by the test.
 	Resources *[]SyntheticsResource `json:"resources,omitempty"`
@@ -37,8 +37,8 @@ type SyntheticsStepDetail struct {
 	// If this steps include a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
 	SubTestStepDetails *[]SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
 	// Time before starting the step.
-	TimeToInteractive *float64            `json:"timeToInteractive,omitempty"`
-	Type              *SyntheticsStepType `json:"type,omitempty"`
+	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+	Type *SyntheticsStepType `json:"type,omitempty"`
 	// URL to perform the step against.
 	Url *string `json:"url,omitempty"`
 	// Value for the step.
@@ -699,3 +699,5 @@ func (v *NullableSyntheticsStepDetail) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -16,20 +16,20 @@ import (
 type ToplistWidgetDefinition struct {
 	// List of top list widget requests.
 	Requests []ToplistWidgetRequest `json:"requests"`
-	Time     *WidgetTime            `json:"time,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                     `json:"title_size,omitempty"`
-	Type      ToplistWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ToplistWidgetDefinitionType `json:"type"`
 }
 
 // NewToplistWidgetDefinition instantiates a new ToplistWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewToplistWidgetDefinition(requests []ToplistWidgetRequest, type_ ToplistWidgetDefinitionType) *ToplistWidgetDefinition {
+func NewToplistWidgetDefinition(requests []ToplistWidgetRequest, type_ ToplistWidgetDefinitionType, ) *ToplistWidgetDefinition {
 	this := ToplistWidgetDefinition{}
 	this.Requests = requests
 	this.Type = type_
@@ -48,7 +48,7 @@ func NewToplistWidgetDefinitionWithDefaults() *ToplistWidgetDefinition {
 
 // GetRequests returns the Requests field value
 func (o *ToplistWidgetDefinition) GetRequests() []ToplistWidgetRequest {
-	if o == nil {
+	if o == nil  {
 		var ret []ToplistWidgetRequest
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *ToplistWidgetDefinition) GetRequests() []ToplistWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *ToplistWidgetDefinition) GetRequestsOk() (*[]ToplistWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -200,7 +200,7 @@ func (o *ToplistWidgetDefinition) SetTitleSize(v string) {
 
 // GetType returns the Type field value
 func (o *ToplistWidgetDefinition) GetType() ToplistWidgetDefinitionType {
-	if o == nil {
+	if o == nil  {
 		var ret ToplistWidgetDefinitionType
 		return ret
 	}
@@ -211,7 +211,7 @@ func (o *ToplistWidgetDefinition) GetType() ToplistWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ToplistWidgetDefinition) GetTypeOk() (*ToplistWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -280,3 +280,5 @@ func (v *NullableToplistWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,7 +19,7 @@ type UsageMetricCategory string
 // List of UsageMetricCategory
 const (
 	USAGEMETRICCATEGORY_STANDARD UsageMetricCategory = "standard"
-	USAGEMETRICCATEGORY_CUSTOM   UsageMetricCategory = "custom"
+	USAGEMETRICCATEGORY_CUSTOM UsageMetricCategory = "custom"
 )
 
 func (v *UsageMetricCategory) UnmarshalJSON(src []byte) error {
@@ -29,7 +29,7 @@ func (v *UsageMetricCategory) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := UsageMetricCategory(value)
-	for _, existing := range []UsageMetricCategory{"standard", "custom"} {
+	for _, existing := range []UsageMetricCategory{ "standard", "custom",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableUsageMetricCategory) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -17,8 +17,8 @@ type SLOThreshold struct {
 	// The target value for the service level indicator within the corresponding timeframe.
 	Target float64 `json:"target"`
 	// A string representation of the target that indicates its precision. It uses trailing zeros to show significant decimal places (e.g. `98.00`).  Always included in service level objective responses. Ignored in create/update requests.
-	TargetDisplay *string      `json:"target_display,omitempty"`
-	Timeframe     SLOTimeframe `json:"timeframe"`
+	TargetDisplay *string `json:"target_display,omitempty"`
+	Timeframe SLOTimeframe `json:"timeframe"`
 	// The warning value for the service level objective.
 	Warning *float64 `json:"warning,omitempty"`
 	// A string representation of the warning target (see the description of the `target_display` field for details).  Included in service level objective responses if a warning target exists. Ignored in create/update requests.
@@ -29,7 +29,7 @@ type SLOThreshold struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOThreshold(target float64, timeframe SLOTimeframe) *SLOThreshold {
+func NewSLOThreshold(target float64, timeframe SLOTimeframe, ) *SLOThreshold {
 	this := SLOThreshold{}
 	this.Target = target
 	this.Timeframe = timeframe
@@ -46,7 +46,7 @@ func NewSLOThresholdWithDefaults() *SLOThreshold {
 
 // GetTarget returns the Target field value
 func (o *SLOThreshold) GetTarget() float64 {
-	if o == nil {
+	if o == nil  {
 		var ret float64
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *SLOThreshold) GetTarget() float64 {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *SLOThreshold) GetTargetOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -102,7 +102,7 @@ func (o *SLOThreshold) SetTargetDisplay(v string) {
 
 // GetTimeframe returns the Timeframe field value
 func (o *SLOThreshold) GetTimeframe() SLOTimeframe {
-	if o == nil {
+	if o == nil  {
 		var ret SLOTimeframe
 		return ret
 	}
@@ -113,7 +113,7 @@ func (o *SLOThreshold) GetTimeframe() SLOTimeframe {
 // GetTimeframeOk returns a tuple with the Timeframe field value
 // and a boolean to check if the value has been set.
 func (o *SLOThreshold) GetTimeframeOk() (*SLOTimeframe, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Timeframe, true
@@ -243,3 +243,5 @@ func (v *NullableSLOThreshold) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

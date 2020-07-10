@@ -25,8 +25,8 @@ type SyntheticsResource struct {
 	// Timestamp of the resource collection.
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Trace ID associated with the resource if any.
-	TraceId *string                 `json:"traceId,omitempty"`
-	Type    *SyntheticsResourceType `json:"type,omitempty"`
+	TraceId *string `json:"traceId,omitempty"`
+	Type *SyntheticsResourceType `json:"type,omitempty"`
 	// URL of the resource.
 	Url *string `json:"url,omitempty"`
 }
@@ -368,3 +368,5 @@ func (v *NullableSyntheticsResource) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

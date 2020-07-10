@@ -28,7 +28,7 @@ func (v *SyntheticsAssertionJSONPathOperator) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsAssertionJSONPathOperator(value)
-	for _, existing := range []SyntheticsAssertionJSONPathOperator{"validatesJSONPath"} {
+	for _, existing := range []SyntheticsAssertionJSONPathOperator{ "validatesJSONPath",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,3 +78,4 @@ func (v *NullableSyntheticsAssertionJSONPathOperator) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

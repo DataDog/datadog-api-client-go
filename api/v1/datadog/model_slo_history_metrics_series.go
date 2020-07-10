@@ -15,7 +15,7 @@ import (
 // SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries. This is the same response type from `batch_query` endpoint.
 type SLOHistoryMetricsSeries struct {
 	// Count of submitted metrics.
-	Count    int64                           `json:"count"`
+	Count int64 `json:"count"`
 	Metadata SLOHistoryMetricsSeriesMetadata `json:"metadata"`
 	// Total sum of the query.
 	Sum float64 `json:"sum"`
@@ -27,7 +27,7 @@ type SLOHistoryMetricsSeries struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOHistoryMetricsSeries(count int64, metadata SLOHistoryMetricsSeriesMetadata, sum float64, values []float64) *SLOHistoryMetricsSeries {
+func NewSLOHistoryMetricsSeries(count int64, metadata SLOHistoryMetricsSeriesMetadata, sum float64, values []float64, ) *SLOHistoryMetricsSeries {
 	this := SLOHistoryMetricsSeries{}
 	this.Count = count
 	this.Metadata = metadata
@@ -46,7 +46,7 @@ func NewSLOHistoryMetricsSeriesWithDefaults() *SLOHistoryMetricsSeries {
 
 // GetCount returns the Count field value
 func (o *SLOHistoryMetricsSeries) GetCount() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *SLOHistoryMetricsSeries) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Count, true
@@ -70,7 +70,7 @@ func (o *SLOHistoryMetricsSeries) SetCount(v int64) {
 
 // GetMetadata returns the Metadata field value
 func (o *SLOHistoryMetricsSeries) GetMetadata() SLOHistoryMetricsSeriesMetadata {
-	if o == nil {
+	if o == nil  {
 		var ret SLOHistoryMetricsSeriesMetadata
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *SLOHistoryMetricsSeries) GetMetadata() SLOHistoryMetricsSeriesMetadata 
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetMetadataOk() (*SLOHistoryMetricsSeriesMetadata, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -94,7 +94,7 @@ func (o *SLOHistoryMetricsSeries) SetMetadata(v SLOHistoryMetricsSeriesMetadata)
 
 // GetSum returns the Sum field value
 func (o *SLOHistoryMetricsSeries) GetSum() float64 {
-	if o == nil {
+	if o == nil  {
 		var ret float64
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *SLOHistoryMetricsSeries) GetSum() float64 {
 // GetSumOk returns a tuple with the Sum field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetSumOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Sum, true
@@ -118,7 +118,7 @@ func (o *SLOHistoryMetricsSeries) SetSum(v float64) {
 
 // GetValues returns the Values field value
 func (o *SLOHistoryMetricsSeries) GetValues() []float64 {
-	if o == nil {
+	if o == nil  {
 		var ret []float64
 		return ret
 	}
@@ -129,7 +129,7 @@ func (o *SLOHistoryMetricsSeries) GetValues() []float64 {
 // GetValuesOk returns a tuple with the Values field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetValuesOk() (*[]float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Values, true
@@ -192,3 +192,5 @@ func (v *NullableSLOHistoryMetricsSeries) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

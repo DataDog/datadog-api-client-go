@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type DowntimesApiService service
 
 type apiCancelDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *DowntimesApiService
 	downtimeId int64
 }
+
 
 /*
 CancelDowntime Cancel a downtime
@@ -40,7 +43,7 @@ Cancel a downtime.
 func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) apiCancelDowntimeRequest {
 	return apiCancelDowntimeRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		downtimeId: downtimeId,
 	}
 }
@@ -56,6 +59,7 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.CancelDowntime")
@@ -64,11 +68,12 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.PathEscape(parameterToString(r.downtimeId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.PathEscape(parameterToString(r.downtimeId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -164,12 +169,12 @@ func (r apiCancelDowntimeRequest) Execute() (*_nethttp.Response, error) {
 
 	return localVarHTTPResponse, nil
 }
-
 type apiCancelDowntimesByScopeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *DowntimesApiService
-	body       *CancelDowntimesByScopeRequest
+	body *CancelDowntimesByScopeRequest
 }
+
 
 func (r apiCancelDowntimesByScopeRequest) Body(body CancelDowntimesByScopeRequest) apiCancelDowntimesByScopeRequest {
 	r.body = &body
@@ -185,7 +190,7 @@ Delete all downtimes that match the scope of `X`.
 func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context) apiCancelDowntimesByScopeRequest {
 	return apiCancelDowntimesByScopeRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -213,7 +218,7 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -333,12 +338,12 @@ func (r apiCancelDowntimesByScopeRequest) Execute() (CanceledDowntimesIds, *_net
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiCreateDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *DowntimesApiService
-	body       *Downtime
+	body *Downtime
 }
+
 
 func (r apiCreateDowntimeRequest) Body(body Downtime) apiCreateDowntimeRequest {
 	r.body = &body
@@ -354,7 +359,7 @@ Schedule a downtime.
 func (a *DowntimesApiService) CreateDowntime(ctx _context.Context) apiCreateDowntimeRequest {
 	return apiCreateDowntimeRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -382,7 +387,7 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -492,12 +497,12 @@ func (r apiCreateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *DowntimesApiService
 	downtimeId int64
 }
+
 
 /*
 GetDowntime Get a downtime
@@ -509,7 +514,7 @@ Get downtime detail by `downtime_id`.
 func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) apiGetDowntimeRequest {
 	return apiGetDowntimeRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		downtimeId: downtimeId,
 	}
 }
@@ -534,11 +539,12 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.PathEscape(parameterToString(r.downtimeId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.PathEscape(parameterToString(r.downtimeId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -643,12 +649,12 @@ func (r apiGetDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error) {
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListDowntimesRequest struct {
-	ctx         _context.Context
-	apiService  *DowntimesApiService
+	ctx _context.Context
+	apiService *DowntimesApiService
 	currentOnly *bool
 }
+
 
 func (r apiListDowntimesRequest) CurrentOnly(currentOnly bool) apiListDowntimesRequest {
 	r.currentOnly = &currentOnly
@@ -664,7 +670,7 @@ Get all scheduled downtimes.
 func (a *DowntimesApiService) ListDowntimes(ctx _context.Context) apiListDowntimesRequest {
 	return apiListDowntimesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -692,7 +698,7 @@ func (r apiListDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, erro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.currentOnly != nil {
 		localVarQueryParams.Add("current_only", parameterToString(*r.currentOnly, ""))
 	}
@@ -789,13 +795,13 @@ func (r apiListDowntimesRequest) Execute() ([]Downtime, *_nethttp.Response, erro
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *DowntimesApiService
 	downtimeId int64
-	body       *Downtime
+	body *Downtime
 }
+
 
 func (r apiUpdateDowntimeRequest) Body(body Downtime) apiUpdateDowntimeRequest {
 	r.body = &body
@@ -812,7 +818,7 @@ Update a single downtime by `downtime_id`.
 func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64) apiUpdateDowntimeRequest {
 	return apiUpdateDowntimeRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		downtimeId: downtimeId,
 	}
 }
@@ -837,12 +843,13 @@ func (r apiUpdateDowntimeRequest) Execute() (Downtime, *_nethttp.Response, error
 	}
 
 	localVarPath := localBasePath + "/api/v1/downtime/{downtime_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.PathEscape(parameterToString(r.downtimeId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"downtime_id"+"}", _neturl.PathEscape(parameterToString(r.downtimeId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

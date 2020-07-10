@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type DashboardsApiService service
 
 type apiCreateDashboardRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *DashboardsApiService
-	body       *Dashboard
+	body *Dashboard
 }
+
 
 func (r apiCreateDashboardRequest) Body(body Dashboard) apiCreateDashboardRequest {
 	r.body = &body
@@ -44,7 +47,7 @@ Create a dashboard using the specified options.
 func (a *DashboardsApiService) CreateDashboard(ctx _context.Context) apiCreateDashboardRequest {
 	return apiCreateDashboardRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -72,7 +75,7 @@ func (r apiCreateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, err
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -182,12 +185,12 @@ func (r apiCreateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, err
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteDashboardRequest struct {
-	ctx         _context.Context
-	apiService  *DashboardsApiService
+	ctx _context.Context
+	apiService *DashboardsApiService
 	dashboardId string
 }
+
 
 /*
 DeleteDashboard Delete a dashboard
@@ -198,8 +201,8 @@ Delete a dashboard using the specified ID.
 */
 func (a *DashboardsApiService) DeleteDashboard(ctx _context.Context, dashboardId string) apiDeleteDashboardRequest {
 	return apiDeleteDashboardRequest{
-		apiService:  a,
-		ctx:         ctx,
+		apiService: a,
+		ctx: ctx,
 		dashboardId: dashboardId,
 	}
 }
@@ -224,11 +227,12 @@ func (r apiDeleteDashboardRequest) Execute() (DashboardDeleteResponse, *_nethttp
 	}
 
 	localVarPath := localBasePath + "/api/v1/dashboard/{dashboard_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -333,12 +337,12 @@ func (r apiDeleteDashboardRequest) Execute() (DashboardDeleteResponse, *_nethttp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetDashboardRequest struct {
-	ctx         _context.Context
-	apiService  *DashboardsApiService
+	ctx _context.Context
+	apiService *DashboardsApiService
 	dashboardId string
 }
+
 
 /*
 GetDashboard Get a dashboard
@@ -349,8 +353,8 @@ Get a dashboard using the specified ID.
 */
 func (a *DashboardsApiService) GetDashboard(ctx _context.Context, dashboardId string) apiGetDashboardRequest {
 	return apiGetDashboardRequest{
-		apiService:  a,
-		ctx:         ctx,
+		apiService: a,
+		ctx: ctx,
 		dashboardId: dashboardId,
 	}
 }
@@ -375,11 +379,12 @@ func (r apiGetDashboardRequest) Execute() (Dashboard, *_nethttp.Response, error)
 	}
 
 	localVarPath := localBasePath + "/api/v1/dashboard/{dashboard_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -484,11 +489,11 @@ func (r apiGetDashboardRequest) Execute() (Dashboard, *_nethttp.Response, error)
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListDashboardsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *DashboardsApiService
 }
+
 
 /*
 ListDashboards Get all dashboards
@@ -502,7 +507,7 @@ This query will not return preset dashboards.
 func (a *DashboardsApiService) ListDashboards(ctx _context.Context) apiListDashboardsRequest {
 	return apiListDashboardsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -624,13 +629,13 @@ func (r apiListDashboardsRequest) Execute() (DashboardSummary, *_nethttp.Respons
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateDashboardRequest struct {
-	ctx         _context.Context
-	apiService  *DashboardsApiService
+	ctx _context.Context
+	apiService *DashboardsApiService
 	dashboardId string
-	body        *Dashboard
+	body *Dashboard
 }
+
 
 func (r apiUpdateDashboardRequest) Body(body Dashboard) apiUpdateDashboardRequest {
 	r.body = &body
@@ -646,8 +651,8 @@ Update a dashboard using the specified ID.
 */
 func (a *DashboardsApiService) UpdateDashboard(ctx _context.Context, dashboardId string) apiUpdateDashboardRequest {
 	return apiUpdateDashboardRequest{
-		apiService:  a,
-		ctx:         ctx,
+		apiService: a,
+		ctx: ctx,
 		dashboardId: dashboardId,
 	}
 }
@@ -672,12 +677,13 @@ func (r apiUpdateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, err
 	}
 
 	localVarPath := localBasePath + "/api/v1/dashboard/{dashboard_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

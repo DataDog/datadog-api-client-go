@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type UsersApiService service
 
 type apiCreateUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsersApiService
-	body       *User
+	body *User
 }
+
 
 func (r apiCreateUserRequest) Body(body User) apiCreateUserRequest {
 	r.body = &body
@@ -47,7 +50,7 @@ if application keys belong to administrators.
 func (a *UsersApiService) CreateUser(ctx _context.Context) apiCreateUserRequest {
 	return apiCreateUserRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -75,7 +78,7 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -195,12 +198,12 @@ func (r apiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDisableUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsersApiService
 	userHandle string
 }
+
 
 /*
 DisableUser Disable a user
@@ -215,7 +218,7 @@ administrators.
 func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) apiDisableUserRequest {
 	return apiDisableUserRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		userHandle: userHandle,
 	}
 }
@@ -240,11 +243,12 @@ func (r apiDisableUserRequest) Execute() (UserDisableResponse, *_nethttp.Respons
 	}
 
 	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -359,12 +363,12 @@ func (r apiDisableUserRequest) Execute() (UserDisableResponse, *_nethttp.Respons
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsersApiService
 	userHandle string
 }
+
 
 /*
 GetUser Get user details
@@ -376,7 +380,7 @@ Get a user's details.
 func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) apiGetUserRequest {
 	return apiGetUserRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		userHandle: userHandle,
 	}
 }
@@ -401,11 +405,12 @@ func (r apiGetUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -510,11 +515,11 @@ func (r apiGetUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListUsersRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsersApiService
 }
+
 
 /*
 ListUsers Get all users
@@ -525,7 +530,7 @@ Get all users for your organization.
 func (a *UsersApiService) ListUsers(ctx _context.Context) apiListUsersRequest {
 	return apiListUsersRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -647,13 +652,13 @@ func (r apiListUsersRequest) Execute() (UserListResponse, *_nethttp.Response, er
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsersApiService
 	userHandle string
-	body       *User
+	body *User
 }
+
 
 func (r apiUpdateUserRequest) Body(body User) apiUpdateUserRequest {
 	r.body = &body
@@ -672,7 +677,7 @@ Update a user information.
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string) apiUpdateUserRequest {
 	return apiUpdateUserRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		userHandle: userHandle,
 	}
 }
@@ -697,12 +702,13 @@ func (r apiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 	}
 
 	localVarPath := localBasePath + "/api/v1/user/{user_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

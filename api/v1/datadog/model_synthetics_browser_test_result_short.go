@@ -17,11 +17,11 @@ type SyntheticsBrowserTestResultShort struct {
 	// Last time the browser test was performed.
 	CheckTime *float64 `json:"check_time,omitempty"`
 	// Location from which the Browser test was performed.
-	ProbeDc *string                                 `json:"probe_dc,omitempty"`
-	Result  *SyntheticsBrowserTestResultShortResult `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	Result *SyntheticsBrowserTestResultShortResult `json:"result,omitempty"`
 	// ID of the browser test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 }
 
 // NewSyntheticsBrowserTestResultShort instantiates a new SyntheticsBrowserTestResultShort object
@@ -256,3 +256,5 @@ func (v *NullableSyntheticsBrowserTestResultShort) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

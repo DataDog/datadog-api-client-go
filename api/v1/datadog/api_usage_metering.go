@@ -10,11 +10,13 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"time"
+	"reflect"
 )
 
 // Linger please
@@ -26,11 +28,12 @@ var (
 type UsageMeteringApiService service
 
 type apiGetUsageAnalyzedLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageAnalyzedLogsRequest) StartHr(startHr time.Time) apiGetUsageAnalyzedLogsRequest {
 	r.startHr = &startHr
@@ -51,7 +54,7 @@ Get hourly usage for analyzed logs (Security Monitoring).
 func (a *UsageMeteringApiService) GetUsageAnalyzedLogs(ctx _context.Context) apiGetUsageAnalyzedLogsRequest {
 	return apiGetUsageAnalyzedLogsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -79,11 +82,11 @@ func (r apiGetUsageAnalyzedLogsRequest) Execute() (UsageAnalyzedLogsResponse, *_
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -191,12 +194,12 @@ func (r apiGetUsageAnalyzedLogsRequest) Execute() (UsageAnalyzedLogsResponse, *_
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageBillableSummaryRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	month      *time.Time
+	month *time.Time
 }
+
 
 func (r apiGetUsageBillableSummaryRequest) Month(month time.Time) apiGetUsageBillableSummaryRequest {
 	r.month = &month
@@ -212,7 +215,7 @@ Get the monthly billable summary.
 func (a *UsageMeteringApiService) GetUsageBillableSummary(ctx _context.Context) apiGetUsageBillableSummaryRequest {
 	return apiGetUsageBillableSummaryRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -240,7 +243,7 @@ func (r apiGetUsageBillableSummaryRequest) Execute() (UsageBillableSummaryRespon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.month != nil {
 		localVarQueryParams.Add("month", parameterToString(*r.month, ""))
 	}
@@ -347,13 +350,13 @@ func (r apiGetUsageBillableSummaryRequest) Execute() (UsageBillableSummaryRespon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageFargateRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageFargateRequest) StartHr(startHr time.Time) apiGetUsageFargateRequest {
 	r.startHr = &startHr
@@ -374,7 +377,7 @@ Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_farga
 func (a *UsageMeteringApiService) GetUsageFargate(ctx _context.Context) apiGetUsageFargateRequest {
 	return apiGetUsageFargateRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -402,11 +405,11 @@ func (r apiGetUsageFargateRequest) Execute() (UsageFargateResponse, *_nethttp.Re
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -514,13 +517,13 @@ func (r apiGetUsageFargateRequest) Execute() (UsageFargateResponse, *_nethttp.Re
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageHostsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageHostsRequest) StartHr(startHr time.Time) apiGetUsageHostsRequest {
 	r.startHr = &startHr
@@ -541,7 +544,7 @@ Get hourly usage for hosts and containers.
 func (a *UsageMeteringApiService) GetUsageHosts(ctx _context.Context) apiGetUsageHostsRequest {
 	return apiGetUsageHostsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -569,11 +572,11 @@ func (r apiGetUsageHostsRequest) Execute() (UsageHostsResponse, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -681,13 +684,13 @@ func (r apiGetUsageHostsRequest) Execute() (UsageHostsResponse, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageLambdaRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageLambdaRequest) StartHr(startHr time.Time) apiGetUsageLambdaRequest {
 	r.startHr = &startHr
@@ -708,7 +711,7 @@ Get hourly usage for lambda.
 func (a *UsageMeteringApiService) GetUsageLambda(ctx _context.Context) apiGetUsageLambdaRequest {
 	return apiGetUsageLambdaRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -736,11 +739,11 @@ func (r apiGetUsageLambdaRequest) Execute() (UsageLambdaResponse, *_nethttp.Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -848,13 +851,13 @@ func (r apiGetUsageLambdaRequest) Execute() (UsageLambdaResponse, *_nethttp.Resp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageLogsRequest) StartHr(startHr time.Time) apiGetUsageLogsRequest {
 	r.startHr = &startHr
@@ -875,7 +878,7 @@ Get hourly usage for logs.
 func (a *UsageMeteringApiService) GetUsageLogs(ctx _context.Context) apiGetUsageLogsRequest {
 	return apiGetUsageLogsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -903,11 +906,11 @@ func (r apiGetUsageLogsRequest) Execute() (UsageLogsResponse, *_nethttp.Response
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -1015,14 +1018,14 @@ func (r apiGetUsageLogsRequest) Execute() (UsageLogsResponse, *_nethttp.Response
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageLogsByIndexRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
-	indexName  *[]string
+	startHr *time.Time
+	endHr *time.Time
+	indexName *[]string
 }
+
 
 func (r apiGetUsageLogsByIndexRequest) StartHr(startHr time.Time) apiGetUsageLogsByIndexRequest {
 	r.startHr = &startHr
@@ -1048,7 +1051,7 @@ Get hourly usage for logs by index.
 func (a *UsageMeteringApiService) GetUsageLogsByIndex(ctx _context.Context) apiGetUsageLogsByIndexRequest {
 	return apiGetUsageLogsByIndexRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1076,11 +1079,11 @@ func (r apiGetUsageLogsByIndexRequest) Execute() (UsageLogsByIndexResponse, *_ne
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+		
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -1199,13 +1202,13 @@ func (r apiGetUsageLogsByIndexRequest) Execute() (UsageLogsByIndexResponse, *_ne
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageNetworkFlowsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageNetworkFlowsRequest) StartHr(startHr time.Time) apiGetUsageNetworkFlowsRequest {
 	r.startHr = &startHr
@@ -1226,7 +1229,7 @@ Get hourly usage for network flows.
 func (a *UsageMeteringApiService) GetUsageNetworkFlows(ctx _context.Context) apiGetUsageNetworkFlowsRequest {
 	return apiGetUsageNetworkFlowsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1254,11 +1257,11 @@ func (r apiGetUsageNetworkFlowsRequest) Execute() (UsageNetworkFlowsResponse, *_
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -1366,13 +1369,13 @@ func (r apiGetUsageNetworkFlowsRequest) Execute() (UsageNetworkFlowsResponse, *_
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageNetworkHostsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageNetworkHostsRequest) StartHr(startHr time.Time) apiGetUsageNetworkHostsRequest {
 	r.startHr = &startHr
@@ -1393,7 +1396,7 @@ Get hourly usage for network hosts.
 func (a *UsageMeteringApiService) GetUsageNetworkHosts(ctx _context.Context) apiGetUsageNetworkHostsRequest {
 	return apiGetUsageNetworkHostsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1421,11 +1424,11 @@ func (r apiGetUsageNetworkHostsRequest) Execute() (UsageNetworkHostsResponse, *_
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -1533,13 +1536,13 @@ func (r apiGetUsageNetworkHostsRequest) Execute() (UsageNetworkHostsResponse, *_
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageRumSessionsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageRumSessionsRequest) StartHr(startHr time.Time) apiGetUsageRumSessionsRequest {
 	r.startHr = &startHr
@@ -1560,7 +1563,7 @@ Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Ses
 func (a *UsageMeteringApiService) GetUsageRumSessions(ctx _context.Context) apiGetUsageRumSessionsRequest {
 	return apiGetUsageRumSessionsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1588,11 +1591,11 @@ func (r apiGetUsageRumSessionsRequest) Execute() (UsageRumSessionsResponse, *_ne
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -1700,13 +1703,13 @@ func (r apiGetUsageRumSessionsRequest) Execute() (UsageRumSessionsResponse, *_ne
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageSNMPRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageSNMPRequest) StartHr(startHr time.Time) apiGetUsageSNMPRequest {
 	r.startHr = &startHr
@@ -1727,7 +1730,7 @@ Get hourly usage for SNMP devices.
 func (a *UsageMeteringApiService) GetUsageSNMP(ctx _context.Context) apiGetUsageSNMPRequest {
 	return apiGetUsageSNMPRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1755,11 +1758,11 @@ func (r apiGetUsageSNMPRequest) Execute() (UsageSNMPResponse, *_nethttp.Response
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -1867,14 +1870,14 @@ func (r apiGetUsageSNMPRequest) Execute() (UsageSNMPResponse, *_nethttp.Response
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageSummaryRequest struct {
-	ctx               _context.Context
-	apiService        *UsageMeteringApiService
-	startMonth        *time.Time
-	endMonth          *time.Time
+	ctx _context.Context
+	apiService *UsageMeteringApiService
+	startMonth *time.Time
+	endMonth *time.Time
 	includeOrgDetails *bool
 }
+
 
 func (r apiGetUsageSummaryRequest) StartMonth(startMonth time.Time) apiGetUsageSummaryRequest {
 	r.startMonth = &startMonth
@@ -1900,7 +1903,7 @@ Get usage across your multi-org account.
 func (a *UsageMeteringApiService) GetUsageSummary(ctx _context.Context) apiGetUsageSummaryRequest {
 	return apiGetUsageSummaryRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1928,11 +1931,11 @@ func (r apiGetUsageSummaryRequest) Execute() (UsageSummaryResponse, *_nethttp.Re
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startMonth == nil {
 		return localVarReturnValue, nil, reportError("startMonth is required and must be specified")
 	}
-
+		
 	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
 	if r.endMonth != nil {
 		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
@@ -2043,13 +2046,13 @@ func (r apiGetUsageSummaryRequest) Execute() (UsageSummaryResponse, *_nethttp.Re
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageSyntheticsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageSyntheticsRequest) StartHr(startHr time.Time) apiGetUsageSyntheticsRequest {
 	r.startHr = &startHr
@@ -2062,15 +2065,15 @@ func (r apiGetUsageSyntheticsRequest) EndHr(endHr time.Time) apiGetUsageSyntheti
 }
 
 /*
-GetUsageSynthetics Get hourly usage for Synthetics API Checks
-Get hourly usage for [Synthetics API checks](https://docs.datadoghq.com/synthetics/).
+GetUsageSynthetics Get hourly usage for Synthetics Checks
+Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageSyntheticsRequest
 */
 func (a *UsageMeteringApiService) GetUsageSynthetics(ctx _context.Context) apiGetUsageSyntheticsRequest {
 	return apiGetUsageSyntheticsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -2098,11 +2101,11 @@ func (r apiGetUsageSyntheticsRequest) Execute() (UsageSyntheticsResponse, *_neth
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -2210,13 +2213,13 @@ func (r apiGetUsageSyntheticsRequest) Execute() (UsageSyntheticsResponse, *_neth
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageSyntheticsAPIRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageSyntheticsAPIRequest) StartHr(startHr time.Time) apiGetUsageSyntheticsAPIRequest {
 	r.startHr = &startHr
@@ -2237,7 +2240,7 @@ Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/syntheti
 func (a *UsageMeteringApiService) GetUsageSyntheticsAPI(ctx _context.Context) apiGetUsageSyntheticsAPIRequest {
 	return apiGetUsageSyntheticsAPIRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -2265,11 +2268,11 @@ func (r apiGetUsageSyntheticsAPIRequest) Execute() (UsageSyntheticsAPIResponse, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -2377,13 +2380,13 @@ func (r apiGetUsageSyntheticsAPIRequest) Execute() (UsageSyntheticsAPIResponse, 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageSyntheticsBrowserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageSyntheticsBrowserRequest) StartHr(startHr time.Time) apiGetUsageSyntheticsBrowserRequest {
 	r.startHr = &startHr
@@ -2404,7 +2407,7 @@ Get hourly usage for synthetics browser checks.
 func (a *UsageMeteringApiService) GetUsageSyntheticsBrowser(ctx _context.Context) apiGetUsageSyntheticsBrowserRequest {
 	return apiGetUsageSyntheticsBrowserRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -2432,11 +2435,11 @@ func (r apiGetUsageSyntheticsBrowserRequest) Execute() (UsageSyntheticsBrowserRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -2544,13 +2547,13 @@ func (r apiGetUsageSyntheticsBrowserRequest) Execute() (UsageSyntheticsBrowserRe
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageTimeseriesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageTimeseriesRequest) StartHr(startHr time.Time) apiGetUsageTimeseriesRequest {
 	r.startHr = &startHr
@@ -2571,7 +2574,7 @@ Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metr
 func (a *UsageMeteringApiService) GetUsageTimeseries(ctx _context.Context) apiGetUsageTimeseriesRequest {
 	return apiGetUsageTimeseriesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -2599,11 +2602,11 @@ func (r apiGetUsageTimeseriesRequest) Execute() (UsageTimeseriesResponse, *_neth
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -2711,13 +2714,13 @@ func (r apiGetUsageTimeseriesRequest) Execute() (UsageTimeseriesResponse, *_neth
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageTopAvgMetricsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	month      *time.Time
-	names      *[]string
+	month *time.Time
+	names *[]string
 }
+
 
 func (r apiGetUsageTopAvgMetricsRequest) Month(month time.Time) apiGetUsageTopAvgMetricsRequest {
 	r.month = &month
@@ -2738,7 +2741,7 @@ Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_me
 func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context) apiGetUsageTopAvgMetricsRequest {
 	return apiGetUsageTopAvgMetricsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -2766,11 +2769,11 @@ func (r apiGetUsageTopAvgMetricsRequest) Execute() (UsageTopAvgMetricsResponse, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.month == nil {
 		return localVarReturnValue, nil, reportError("month is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("month", parameterToString(*r.month, ""))
 	if r.names != nil {
 		t := *r.names
@@ -2886,13 +2889,13 @@ func (r apiGetUsageTopAvgMetricsRequest) Execute() (UsageTopAvgMetricsResponse, 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetUsageTraceRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
+
 
 func (r apiGetUsageTraceRequest) StartHr(startHr time.Time) apiGetUsageTraceRequest {
 	r.startHr = &startHr
@@ -2913,7 +2916,7 @@ Get hourly usage for trace search.
 func (a *UsageMeteringApiService) GetUsageTrace(ctx _context.Context) apiGetUsageTraceRequest {
 	return apiGetUsageTraceRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -2941,11 +2944,11 @@ func (r apiGetUsageTraceRequest) Execute() (UsageTraceResponse, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))

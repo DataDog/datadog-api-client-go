@@ -28,7 +28,7 @@ func (v *ServiceSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ServiceSummaryWidgetDefinitionType(value)
-	for _, existing := range []ServiceSummaryWidgetDefinitionType{"trace_service"} {
+	for _, existing := range []ServiceSummaryWidgetDefinitionType{ "trace_service",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,3 +78,4 @@ func (v *NullableServiceSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

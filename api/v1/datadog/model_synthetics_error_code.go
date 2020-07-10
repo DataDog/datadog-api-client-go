@@ -18,12 +18,12 @@ type SyntheticsErrorCode string
 
 // List of SyntheticsErrorCode
 const (
-	SYNTHETICSERRORCODE_NO_ERROR            SyntheticsErrorCode = "NO_ERROR"
-	SYNTHETICSERRORCODE_UNKNOWN             SyntheticsErrorCode = "UNKNOWN"
-	SYNTHETICSERRORCODE_DNS                 SyntheticsErrorCode = "DNS"
-	SYNTHETICSERRORCODE_SSL                 SyntheticsErrorCode = "SSL"
-	SYNTHETICSERRORCODE_TIMEOUT             SyntheticsErrorCode = "TIMEOUT"
-	SYNTHETICSERRORCODE_DENIED              SyntheticsErrorCode = "DENIED"
+	SYNTHETICSERRORCODE_NO_ERROR SyntheticsErrorCode = "NO_ERROR"
+	SYNTHETICSERRORCODE_UNKNOWN SyntheticsErrorCode = "UNKNOWN"
+	SYNTHETICSERRORCODE_DNS SyntheticsErrorCode = "DNS"
+	SYNTHETICSERRORCODE_SSL SyntheticsErrorCode = "SSL"
+	SYNTHETICSERRORCODE_TIMEOUT SyntheticsErrorCode = "TIMEOUT"
+	SYNTHETICSERRORCODE_DENIED SyntheticsErrorCode = "DENIED"
 	SYNTHETICSERRORCODE_INCORRECT_ASSERTION SyntheticsErrorCode = "INCORRECT_ASSERTION"
 )
 
@@ -34,7 +34,7 @@ func (v *SyntheticsErrorCode) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsErrorCode(value)
-	for _, existing := range []SyntheticsErrorCode{"NO_ERROR", "UNKNOWN", "DNS", "SSL", "TIMEOUT", "DENIED", "INCORRECT_ASSERTION"} {
+	for _, existing := range []SyntheticsErrorCode{ "NO_ERROR", "UNKNOWN", "DNS", "SSL", "TIMEOUT", "DENIED", "INCORRECT_ASSERTION",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -84,3 +84,4 @@ func (v *NullableSyntheticsErrorCode) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

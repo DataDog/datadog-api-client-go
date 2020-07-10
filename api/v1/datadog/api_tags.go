@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,12 +27,13 @@ var (
 type TagsApiService service
 
 type apiCreateHostTagsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *TagsApiService
-	hostName   string
-	body       *HostTags
-	source     *string
+	hostName string
+	body *HostTags
+	source *string
 }
+
 
 func (r apiCreateHostTagsRequest) Body(body HostTags) apiCreateHostTagsRequest {
 	r.body = &body
@@ -53,8 +56,8 @@ optionally specifying where these tags come from.
 func (a *TagsApiService) CreateHostTags(ctx _context.Context, hostName string) apiCreateHostTagsRequest {
 	return apiCreateHostTagsRequest{
 		apiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx: ctx,
+		hostName: hostName,
 	}
 }
 
@@ -78,16 +81,17 @@ func (r apiCreateHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
-
+	
 	if r.source != nil {
 		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
 	}
@@ -196,13 +200,13 @@ func (r apiCreateHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteHostTagsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *TagsApiService
-	hostName   string
-	source     *string
+	hostName string
+	source *string
 }
+
 
 func (r apiDeleteHostTagsRequest) Source(source string) apiDeleteHostTagsRequest {
 	r.source = &source
@@ -220,8 +224,8 @@ for a single host.
 func (a *TagsApiService) DeleteHostTags(ctx _context.Context, hostName string) apiDeleteHostTagsRequest {
 	return apiDeleteHostTagsRequest{
 		apiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx: ctx,
+		hostName: hostName,
 	}
 }
 
@@ -236,6 +240,7 @@ func (r apiDeleteHostTagsRequest) Execute() (*_nethttp.Response, error) {
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.DeleteHostTags")
@@ -244,12 +249,13 @@ func (r apiDeleteHostTagsRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.source != nil {
 		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
 	}
@@ -347,13 +353,13 @@ func (r apiDeleteHostTagsRequest) Execute() (*_nethttp.Response, error) {
 
 	return localVarHTTPResponse, nil
 }
-
 type apiGetHostTagsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *TagsApiService
-	hostName   string
-	source     *string
+	hostName string
+	source *string
 }
+
 
 func (r apiGetHostTagsRequest) Source(source string) apiGetHostTagsRequest {
 	r.source = &source
@@ -370,8 +376,8 @@ Return the list of tags that apply to a given host.
 func (a *TagsApiService) GetHostTags(ctx _context.Context, hostName string) apiGetHostTagsRequest {
 	return apiGetHostTagsRequest{
 		apiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx: ctx,
+		hostName: hostName,
 	}
 }
 
@@ -395,12 +401,13 @@ func (r apiGetHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.source != nil {
 		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
 	}
@@ -507,12 +514,12 @@ func (r apiGetHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error) {
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListHostTagsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *TagsApiService
-	source     *string
+	source *string
 }
+
 
 func (r apiListHostTagsRequest) Source(source string) apiListHostTagsRequest {
 	r.source = &source
@@ -528,7 +535,7 @@ Return a mapping of tags to hosts for your whole infrastructure.
 func (a *TagsApiService) ListHostTags(ctx _context.Context) apiListHostTagsRequest {
 	return apiListHostTagsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -556,7 +563,7 @@ func (r apiListHostTagsRequest) Execute() (TagToHosts, *_nethttp.Response, error
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.source != nil {
 		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
 	}
@@ -663,14 +670,14 @@ func (r apiListHostTagsRequest) Execute() (TagToHosts, *_nethttp.Response, error
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateHostTagsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *TagsApiService
-	hostName   string
-	body       *HostTags
-	source     *string
+	hostName string
+	body *HostTags
+	source *string
 }
+
 
 func (r apiUpdateHostTagsRequest) Body(body HostTags) apiUpdateHostTagsRequest {
 	r.body = &body
@@ -693,8 +700,8 @@ an integration source with those supplied in the request.
 func (a *TagsApiService) UpdateHostTags(ctx _context.Context, hostName string) apiUpdateHostTagsRequest {
 	return apiUpdateHostTagsRequest{
 		apiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx: ctx,
+		hostName: hostName,
 	}
 }
 
@@ -718,16 +725,17 @@ func (r apiUpdateHostTagsRequest) Execute() (HostTags, *_nethttp.Response, error
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
-
+	
 	if r.source != nil {
 		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
 	}

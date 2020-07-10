@@ -18,9 +18,9 @@ type WidgetSizeFormat string
 
 // List of WidgetSizeFormat
 const (
-	WIDGETSIZEFORMAT_SMALL  WidgetSizeFormat = "small"
+	WIDGETSIZEFORMAT_SMALL WidgetSizeFormat = "small"
 	WIDGETSIZEFORMAT_MEDIUM WidgetSizeFormat = "medium"
-	WIDGETSIZEFORMAT_LARGE  WidgetSizeFormat = "large"
+	WIDGETSIZEFORMAT_LARGE WidgetSizeFormat = "large"
 )
 
 func (v *WidgetSizeFormat) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *WidgetSizeFormat) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetSizeFormat(value)
-	for _, existing := range []WidgetSizeFormat{"small", "medium", "large"} {
+	for _, existing := range []WidgetSizeFormat{ "small", "medium", "large",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetSizeFormat) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

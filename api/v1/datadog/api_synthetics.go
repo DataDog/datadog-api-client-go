@@ -10,11 +10,13 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -26,10 +28,11 @@ var (
 type SyntheticsApiService service
 
 type apiCreateTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	body       *SyntheticsTestDetails
+	body *SyntheticsTestDetails
 }
+
 
 func (r apiCreateTestRequest) Body(body SyntheticsTestDetails) apiCreateTestRequest {
 	r.body = &body
@@ -45,7 +48,7 @@ Create a Synthetic test.
 func (a *SyntheticsApiService) CreateTest(ctx _context.Context) apiCreateTestRequest {
 	return apiCreateTestRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -73,7 +76,7 @@ func (r apiCreateTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -193,12 +196,12 @@ func (r apiCreateTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteTestsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	body       *SyntheticsDeleteTestsPayload
+	body *SyntheticsDeleteTestsPayload
 }
+
 
 func (r apiDeleteTestsRequest) Body(body SyntheticsDeleteTestsPayload) apiDeleteTestsRequest {
 	r.body = &body
@@ -214,7 +217,7 @@ Delete multiple Synthetic tests by ID.
 func (a *SyntheticsApiService) DeleteTests(ctx _context.Context) apiDeleteTestsRequest {
 	return apiDeleteTestsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -242,7 +245,7 @@ func (r apiDeleteTestsRequest) Execute() (SyntheticsDeleteTestsResponse, *_netht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -362,15 +365,15 @@ func (r apiDeleteTestsRequest) Execute() (SyntheticsDeleteTestsResponse, *_netht
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetAPITestLatestResultsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
-	fromTs     *int64
-	toTs       *int64
-	probeDc    *[]string
+	publicId string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
+
 
 func (r apiGetAPITestLatestResultsRequest) FromTs(fromTs int64) apiGetAPITestLatestResultsRequest {
 	r.fromTs = &fromTs
@@ -397,8 +400,8 @@ Get the last 50 test results summaries for a given Synthetics API test.
 func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, publicId string) apiGetAPITestLatestResultsRequest {
 	return apiGetAPITestLatestResultsRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -422,12 +425,13 @@ func (r apiGetAPITestLatestResultsRequest) Execute() (SyntheticsGetAPITestLatest
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}/results"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+			
 	if r.fromTs != nil {
 		localVarQueryParams.Add("from_ts", parameterToString(*r.fromTs, ""))
 	}
@@ -548,13 +552,13 @@ func (r apiGetAPITestLatestResultsRequest) Execute() (SyntheticsGetAPITestLatest
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetAPITestResultRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
-	resultId   string
+	publicId string
+	resultId string
 }
+
 
 /*
 GetAPITestResult Get a test result (API)
@@ -567,9 +571,9 @@ Get a specific full result from a given (API) Synthetic test.
 func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId string, resultId string) apiGetAPITestResultRequest {
 	return apiGetAPITestResultRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		resultId:   resultId,
+		ctx: ctx,
+		publicId: publicId,
+		resultId: resultId,
 	}
 }
 
@@ -593,12 +597,14 @@ func (r apiGetAPITestResultRequest) Execute() (SyntheticsAPITestResultFull, *_ne
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}/results/{result_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"result_id"+"}", _neturl.PathEscape(parameterToString(r.resultId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"result_id"+"}", _neturl.PathEscape(parameterToString(r.resultId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -703,12 +709,12 @@ func (r apiGetAPITestResultRequest) Execute() (SyntheticsAPITestResultFull, *_ne
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetBrowserTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
+
 
 /*
 GetBrowserTest Get a test configuration (browser)
@@ -720,8 +726,8 @@ Get the detailed configuration (including steps) associated with a Synthetics br
 func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId string) apiGetBrowserTestRequest {
 	return apiGetBrowserTestRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -745,11 +751,12 @@ func (r apiGetBrowserTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Re
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/browser/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -854,15 +861,15 @@ func (r apiGetBrowserTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Re
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetBrowserTestLatestResultsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
-	fromTs     *int64
-	toTs       *int64
-	probeDc    *[]string
+	publicId string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
+
 
 func (r apiGetBrowserTestLatestResultsRequest) FromTs(fromTs int64) apiGetBrowserTestLatestResultsRequest {
 	r.fromTs = &fromTs
@@ -889,8 +896,8 @@ Get the last 50 test results summaries for a given Synthetics Browser test.
 func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context, publicId string) apiGetBrowserTestLatestResultsRequest {
 	return apiGetBrowserTestLatestResultsRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -914,12 +921,13 @@ func (r apiGetBrowserTestLatestResultsRequest) Execute() (SyntheticsGetBrowserTe
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/browser/{public_id}/results"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+			
 	if r.fromTs != nil {
 		localVarQueryParams.Add("from_ts", parameterToString(*r.fromTs, ""))
 	}
@@ -1040,13 +1048,13 @@ func (r apiGetBrowserTestLatestResultsRequest) Execute() (SyntheticsGetBrowserTe
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetBrowserTestResultRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
-	resultId   string
+	publicId string
+	resultId string
 }
+
 
 /*
 GetBrowserTestResult Get a test result (browser)
@@ -1059,9 +1067,9 @@ Get a specific full result from a given (browser) Synthetic test.
 func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) apiGetBrowserTestResultRequest {
 	return apiGetBrowserTestResultRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		resultId:   resultId,
+		ctx: ctx,
+		publicId: publicId,
+		resultId: resultId,
 	}
 }
 
@@ -1085,12 +1093,14 @@ func (r apiGetBrowserTestResultRequest) Execute() (SyntheticsBrowserTestResultFu
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/browser/{public_id}/results/{result_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"result_id"+"}", _neturl.PathEscape(parameterToString(r.resultId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"result_id"+"}", _neturl.PathEscape(parameterToString(r.resultId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1195,12 +1205,12 @@ func (r apiGetBrowserTestResultRequest) Execute() (SyntheticsBrowserTestResultFu
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
+
 
 /*
 GetTest Get a test configuration (API)
@@ -1212,8 +1222,8 @@ Get the detailed configuration associated with a Synthetics test.
 func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) apiGetTestRequest {
 	return apiGetTestRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -1237,11 +1247,12 @@ func (r apiGetTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Response,
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1346,11 +1357,11 @@ func (r apiGetTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Response,
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListLocationsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
 }
+
 
 /*
 ListLocations Get all locations (public and private)
@@ -1361,7 +1372,7 @@ Get the list of public and private locations available for Synthetics tests. No 
 func (a *SyntheticsApiService) ListLocations(ctx _context.Context) apiListLocationsRequest {
 	return apiListLocationsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1474,12 +1485,12 @@ func (r apiListLocationsRequest) Execute() (SyntheticsLocations, *_nethttp.Respo
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListTestsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	checkType  *string
+	checkType *string
 }
+
 
 func (r apiListTestsRequest) CheckType(checkType string) apiListTestsRequest {
 	r.checkType = &checkType
@@ -1495,7 +1506,7 @@ Get the list of all Synthetic tests (can be filtered by type).
 func (a *SyntheticsApiService) ListTests(ctx _context.Context) apiListTestsRequest {
 	return apiListTestsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1523,7 +1534,7 @@ func (r apiListTestsRequest) Execute() (SyntheticsListTestsResponse, *_nethttp.R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.checkType != nil {
 		localVarQueryParams.Add("check_type", parameterToString(*r.checkType, ""))
 	}
@@ -1630,13 +1641,13 @@ func (r apiListTestsRequest) Execute() (SyntheticsListTestsResponse, *_nethttp.R
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsTestDetails
+	publicId string
+	body *SyntheticsTestDetails
 }
+
 
 func (r apiUpdateTestRequest) Body(body SyntheticsTestDetails) apiUpdateTestRequest {
 	r.body = &body
@@ -1653,8 +1664,8 @@ Edit the configuration of a Synthetic test.
 func (a *SyntheticsApiService) UpdateTest(ctx _context.Context, publicId string) apiUpdateTestRequest {
 	return apiUpdateTestRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -1678,12 +1689,13 @@ func (r apiUpdateTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Respon
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -1803,13 +1815,13 @@ func (r apiUpdateTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateTestPauseStatusRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsUpdateTestPauseStatusPayload
+	publicId string
+	body *SyntheticsUpdateTestPauseStatusPayload
 }
+
 
 func (r apiUpdateTestPauseStatusRequest) Body(body SyntheticsUpdateTestPauseStatusPayload) apiUpdateTestPauseStatusRequest {
 	r.body = &body
@@ -1826,8 +1838,8 @@ Pause or start a Synthetics test by changing the status.
 func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publicId string) apiUpdateTestPauseStatusRequest {
 	return apiUpdateTestPauseStatusRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -1851,12 +1863,13 @@ func (r apiUpdateTestPauseStatusRequest) Execute() (bool, *_nethttp.Response, er
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

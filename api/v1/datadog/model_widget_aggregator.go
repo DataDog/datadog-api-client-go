@@ -19,10 +19,10 @@ type WidgetAggregator string
 // List of WidgetAggregator
 const (
 	WIDGETAGGREGATOR_AVERAGE WidgetAggregator = "avg"
-	WIDGETAGGREGATOR_LAST    WidgetAggregator = "last"
+	WIDGETAGGREGATOR_LAST WidgetAggregator = "last"
 	WIDGETAGGREGATOR_MAXIMUM WidgetAggregator = "max"
 	WIDGETAGGREGATOR_MINIMUM WidgetAggregator = "min"
-	WIDGETAGGREGATOR_SUM     WidgetAggregator = "sum"
+	WIDGETAGGREGATOR_SUM WidgetAggregator = "sum"
 )
 
 func (v *WidgetAggregator) UnmarshalJSON(src []byte) error {
@@ -32,7 +32,7 @@ func (v *WidgetAggregator) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetAggregator(value)
-	for _, existing := range []WidgetAggregator{"avg", "last", "max", "min", "sum"} {
+	for _, existing := range []WidgetAggregator{ "avg", "last", "max", "min", "sum",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -82,3 +82,4 @@ func (v *NullableWidgetAggregator) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

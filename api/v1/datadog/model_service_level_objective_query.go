@@ -24,7 +24,7 @@ type ServiceLevelObjectiveQuery struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjectiveQuery(denominator string, numerator string) *ServiceLevelObjectiveQuery {
+func NewServiceLevelObjectiveQuery(denominator string, numerator string, ) *ServiceLevelObjectiveQuery {
 	this := ServiceLevelObjectiveQuery{}
 	this.Denominator = denominator
 	this.Numerator = numerator
@@ -41,7 +41,7 @@ func NewServiceLevelObjectiveQueryWithDefaults() *ServiceLevelObjectiveQuery {
 
 // GetDenominator returns the Denominator field value
 func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -52,7 +52,7 @@ func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
 // GetDenominatorOk returns a tuple with the Denominator field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveQuery) GetDenominatorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Denominator, true
@@ -65,7 +65,7 @@ func (o *ServiceLevelObjectiveQuery) SetDenominator(v string) {
 
 // GetNumerator returns the Numerator field value
 func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
 // GetNumeratorOk returns a tuple with the Numerator field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveQuery) GetNumeratorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Numerator, true
@@ -133,3 +133,5 @@ func (v *NullableServiceLevelObjectiveQuery) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,7 +19,7 @@ type WidgetSummaryType string
 // List of WidgetSummaryType
 const (
 	WIDGETSUMMARYTYPE_MONITORS WidgetSummaryType = "monitors"
-	WIDGETSUMMARYTYPE_GROUPS   WidgetSummaryType = "groups"
+	WIDGETSUMMARYTYPE_GROUPS WidgetSummaryType = "groups"
 	WIDGETSUMMARYTYPE_COMBINED WidgetSummaryType = "combined"
 )
 
@@ -30,7 +30,7 @@ func (v *WidgetSummaryType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetSummaryType(value)
-	for _, existing := range []WidgetSummaryType{"monitors", "groups", "combined"} {
+	for _, existing := range []WidgetSummaryType{ "monitors", "groups", "combined",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetSummaryType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

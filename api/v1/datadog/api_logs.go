@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,10 +26,11 @@ var (
 type LogsApiService service
 
 type apiListLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsApiService
-	body       *LogsListRequest
+	body *LogsListRequest
 }
+
 
 func (r apiListLogsRequest) Body(body LogsListRequest) apiListLogsRequest {
 	r.body = &body
@@ -51,7 +54,7 @@ See [Datadog Logs Archive documentation][2].**
 func (a *LogsApiService) ListLogs(ctx _context.Context) apiListLogsRequest {
 	return apiListLogsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -79,7 +82,7 @@ func (r apiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, err
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

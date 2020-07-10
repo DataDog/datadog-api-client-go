@@ -184,3 +184,5 @@ func (v *NullableSyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

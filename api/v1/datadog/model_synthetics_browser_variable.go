@@ -21,15 +21,15 @@ type SyntheticsBrowserVariable struct {
 	// Name of the variable.
 	Name string `json:"name"`
 	// Pattern of the variable.
-	Pattern *string                       `json:"pattern,omitempty"`
-	Type    SyntheticsBrowserVariableType `json:"type"`
+	Pattern *string `json:"pattern,omitempty"`
+	Type SyntheticsBrowserVariableType `json:"type"`
 }
 
 // NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsBrowserVariable(name string, type_ SyntheticsBrowserVariableType) *SyntheticsBrowserVariable {
+func NewSyntheticsBrowserVariable(name string, type_ SyntheticsBrowserVariableType, ) *SyntheticsBrowserVariable {
 	this := SyntheticsBrowserVariable{}
 	this.Name = name
 	this.Type = type_
@@ -110,7 +110,7 @@ func (o *SyntheticsBrowserVariable) SetId(v string) {
 
 // GetName returns the Name field value
 func (o *SyntheticsBrowserVariable) GetName() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *SyntheticsBrowserVariable) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserVariable) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -166,7 +166,7 @@ func (o *SyntheticsBrowserVariable) SetPattern(v string) {
 
 // GetType returns the Type field value
 func (o *SyntheticsBrowserVariable) GetType() SyntheticsBrowserVariableType {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsBrowserVariableType
 		return ret
 	}
@@ -177,7 +177,7 @@ func (o *SyntheticsBrowserVariable) GetType() SyntheticsBrowserVariableType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserVariable) GetTypeOk() (*SyntheticsBrowserVariableType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -243,3 +243,5 @@ func (v *NullableSyntheticsBrowserVariable) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

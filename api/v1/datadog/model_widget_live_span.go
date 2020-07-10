@@ -18,21 +18,21 @@ type WidgetLiveSpan string
 
 // List of WidgetLiveSpan
 const (
-	WIDGETLIVESPAN_PAST_ONE_MINUTE      WidgetLiveSpan = "1m"
-	WIDGETLIVESPAN_PAST_FIVE_MINUTES    WidgetLiveSpan = "5m"
-	WIDGETLIVESPAN_PAST_TEN_MINUTES     WidgetLiveSpan = "10m"
+	WIDGETLIVESPAN_PAST_ONE_MINUTE WidgetLiveSpan = "1m"
+	WIDGETLIVESPAN_PAST_FIVE_MINUTES WidgetLiveSpan = "5m"
+	WIDGETLIVESPAN_PAST_TEN_MINUTES WidgetLiveSpan = "10m"
 	WIDGETLIVESPAN_PAST_FIFTEEN_MINUTES WidgetLiveSpan = "15m"
-	WIDGETLIVESPAN_PAST_THIRTY_MINUTES  WidgetLiveSpan = "30m"
-	WIDGETLIVESPAN_PAST_ONE_HOUR        WidgetLiveSpan = "1h"
-	WIDGETLIVESPAN_PAST_FOUR_HOURS      WidgetLiveSpan = "4h"
-	WIDGETLIVESPAN_PAST_ONE_DAY         WidgetLiveSpan = "1d"
-	WIDGETLIVESPAN_PAST_TWO_DAYS        WidgetLiveSpan = "2d"
-	WIDGETLIVESPAN_PAST_ONE_WEEK        WidgetLiveSpan = "1w"
-	WIDGETLIVESPAN_PAST_ONE_MONTH       WidgetLiveSpan = "1mo"
-	WIDGETLIVESPAN_PAST_THREE_MONTHS    WidgetLiveSpan = "3mo"
-	WIDGETLIVESPAN_PAST_SIX_MONTHS      WidgetLiveSpan = "6mo"
-	WIDGETLIVESPAN_PAST_ONE_YEAR        WidgetLiveSpan = "1y"
-	WIDGETLIVESPAN_ALERT                WidgetLiveSpan = "alert"
+	WIDGETLIVESPAN_PAST_THIRTY_MINUTES WidgetLiveSpan = "30m"
+	WIDGETLIVESPAN_PAST_ONE_HOUR WidgetLiveSpan = "1h"
+	WIDGETLIVESPAN_PAST_FOUR_HOURS WidgetLiveSpan = "4h"
+	WIDGETLIVESPAN_PAST_ONE_DAY WidgetLiveSpan = "1d"
+	WIDGETLIVESPAN_PAST_TWO_DAYS WidgetLiveSpan = "2d"
+	WIDGETLIVESPAN_PAST_ONE_WEEK WidgetLiveSpan = "1w"
+	WIDGETLIVESPAN_PAST_ONE_MONTH WidgetLiveSpan = "1mo"
+	WIDGETLIVESPAN_PAST_THREE_MONTHS WidgetLiveSpan = "3mo"
+	WIDGETLIVESPAN_PAST_SIX_MONTHS WidgetLiveSpan = "6mo"
+	WIDGETLIVESPAN_PAST_ONE_YEAR WidgetLiveSpan = "1y"
+	WIDGETLIVESPAN_ALERT WidgetLiveSpan = "alert"
 )
 
 func (v *WidgetLiveSpan) UnmarshalJSON(src []byte) error {
@@ -42,7 +42,7 @@ func (v *WidgetLiveSpan) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetLiveSpan(value)
-	for _, existing := range []WidgetLiveSpan{"1m", "5m", "10m", "15m", "30m", "1h", "4h", "1d", "2d", "1w", "1mo", "3mo", "6mo", "1y", "alert"} {
+	for _, existing := range []WidgetLiveSpan{ "1m", "5m", "10m", "15m", "30m", "1h", "4h", "1d", "2d", "1w", "1mo", "3mo", "6mo", "1y", "alert",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -92,3 +92,4 @@ func (v *NullableWidgetLiveSpan) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

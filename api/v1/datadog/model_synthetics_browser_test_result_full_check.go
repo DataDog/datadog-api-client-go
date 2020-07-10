@@ -21,7 +21,7 @@ type SyntheticsBrowserTestResultFullCheck struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsBrowserTestResultFullCheck(config SyntheticsTestConfig) *SyntheticsBrowserTestResultFullCheck {
+func NewSyntheticsBrowserTestResultFullCheck(config SyntheticsTestConfig, ) *SyntheticsBrowserTestResultFullCheck {
 	this := SyntheticsBrowserTestResultFullCheck{}
 	this.Config = config
 	return &this
@@ -37,7 +37,7 @@ func NewSyntheticsBrowserTestResultFullCheckWithDefaults() *SyntheticsBrowserTes
 
 // GetConfig returns the Config field value
 func (o *SyntheticsBrowserTestResultFullCheck) GetConfig() SyntheticsTestConfig {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsTestConfig
 		return ret
 	}
@@ -48,7 +48,7 @@ func (o *SyntheticsBrowserTestResultFullCheck) GetConfig() SyntheticsTestConfig 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTestResultFullCheck) GetConfigOk() (*SyntheticsTestConfig, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Config, true
@@ -102,3 +102,5 @@ func (v *NullableSyntheticsBrowserTestResultFullCheck) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

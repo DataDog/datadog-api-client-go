@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type HostsApiService service
 
 type apiGetHostTotalsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *HostsApiService
-	from       *int64
+	from *int64
 }
+
 
 func (r apiGetHostTotalsRequest) From(from int64) apiGetHostTotalsRequest {
 	r.from = &from
@@ -45,7 +48,7 @@ Active means the host has reported in the past hour, and up means it has reporte
 func (a *HostsApiService) GetHostTotals(ctx _context.Context) apiGetHostTotalsRequest {
 	return apiGetHostTotalsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -73,7 +76,7 @@ func (r apiGetHostTotalsRequest) Execute() (HostTotals, *_nethttp.Response, erro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.from != nil {
 		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
 	}
@@ -180,17 +183,17 @@ func (r apiGetHostTotalsRequest) Execute() (HostTotals, *_nethttp.Response, erro
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListHostsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *HostsApiService
-	filter     *string
-	sortField  *string
-	sortDir    *string
-	start      *int64
-	count      *int64
-	from       *int64
+	filter *string
+	sortField *string
+	sortDir *string
+	start *int64
+	count *int64
+	from *int64
 }
+
 
 func (r apiListHostsRequest) Filter(filter string) apiListHostsRequest {
 	r.filter = &filter
@@ -234,7 +237,7 @@ Results are paginated with a max of 1000 results at a time.
 func (a *HostsApiService) ListHosts(ctx _context.Context) apiListHostsRequest {
 	return apiListHostsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -262,7 +265,7 @@ func (r apiListHostsRequest) Execute() (HostListResponse, *_nethttp.Response, er
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+						
 	if r.filter != nil {
 		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
 	}
@@ -384,13 +387,13 @@ func (r apiListHostsRequest) Execute() (HostListResponse, *_nethttp.Response, er
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiMuteHostRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *HostsApiService
-	hostName   string
-	body       *HostMuteSettings
+	hostName string
+	body *HostMuteSettings
 }
+
 
 func (r apiMuteHostRequest) Body(body HostMuteSettings) apiMuteHostRequest {
 	r.body = &body
@@ -407,8 +410,8 @@ Mute a host.
 func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string) apiMuteHostRequest {
 	return apiMuteHostRequest{
 		apiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx: ctx,
+		hostName: hostName,
 	}
 }
 
@@ -432,12 +435,13 @@ func (r apiMuteHostRequest) Execute() (HostMuteResponse, *_nethttp.Response, err
 	}
 
 	localVarPath := localBasePath + "/api/v1/host/{host_name}/mute"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -543,12 +547,12 @@ func (r apiMuteHostRequest) Execute() (HostMuteResponse, *_nethttp.Response, err
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUnmuteHostRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *HostsApiService
-	hostName   string
+	hostName string
 }
+
 
 /*
 UnmuteHost Unmute a host
@@ -560,8 +564,8 @@ Unmutes a host. This endpoint takes no JSON arguments.
 func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) apiUnmuteHostRequest {
 	return apiUnmuteHostRequest{
 		apiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx: ctx,
+		hostName: hostName,
 	}
 }
 
@@ -585,11 +589,12 @@ func (r apiUnmuteHostRequest) Execute() (HostMuteResponse, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/v1/host/{host_name}/unmute"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

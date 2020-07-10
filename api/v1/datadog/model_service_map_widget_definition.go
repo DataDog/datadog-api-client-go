@@ -19,18 +19,18 @@ type ServiceMapWidgetDefinition struct {
 	// The ID of the service you want to map.
 	Service string `json:"service"`
 	// The title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      ServiceMapWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ServiceMapWidgetDefinitionType `json:"type"`
 }
 
 // NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceMapWidgetDefinition(filters []string, service string, type_ ServiceMapWidgetDefinitionType) *ServiceMapWidgetDefinition {
+func NewServiceMapWidgetDefinition(filters []string, service string, type_ ServiceMapWidgetDefinitionType, ) *ServiceMapWidgetDefinition {
 	this := ServiceMapWidgetDefinition{}
 	this.Filters = filters
 	this.Service = service
@@ -50,7 +50,7 @@ func NewServiceMapWidgetDefinitionWithDefaults() *ServiceMapWidgetDefinition {
 
 // GetFilters returns the Filters field value
 func (o *ServiceMapWidgetDefinition) GetFilters() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -61,7 +61,7 @@ func (o *ServiceMapWidgetDefinition) GetFilters() []string {
 // GetFiltersOk returns a tuple with the Filters field value
 // and a boolean to check if the value has been set.
 func (o *ServiceMapWidgetDefinition) GetFiltersOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Filters, true
@@ -74,7 +74,7 @@ func (o *ServiceMapWidgetDefinition) SetFilters(v []string) {
 
 // GetService returns the Service field value
 func (o *ServiceMapWidgetDefinition) GetService() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -85,7 +85,7 @@ func (o *ServiceMapWidgetDefinition) GetService() string {
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
 func (o *ServiceMapWidgetDefinition) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Service, true
@@ -194,7 +194,7 @@ func (o *ServiceMapWidgetDefinition) SetTitleSize(v string) {
 
 // GetType returns the Type field value
 func (o *ServiceMapWidgetDefinition) GetType() ServiceMapWidgetDefinitionType {
-	if o == nil {
+	if o == nil  {
 		var ret ServiceMapWidgetDefinitionType
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *ServiceMapWidgetDefinition) GetType() ServiceMapWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceMapWidgetDefinition) GetTypeOk() (*ServiceMapWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -274,3 +274,5 @@ func (v *NullableServiceMapWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

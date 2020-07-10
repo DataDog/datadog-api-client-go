@@ -19,8 +19,8 @@ type SyntheticsTestMonitorStatus int64
 // List of SyntheticsTestMonitorStatus
 const (
 	SYNTHETICSTESTMONITORSTATUS_UNTRIGGERED SyntheticsTestMonitorStatus = 0
-	SYNTHETICSTESTMONITORSTATUS_TRIGGERED   SyntheticsTestMonitorStatus = 1
-	SYNTHETICSTESTMONITORSTATUS_NO_DATA     SyntheticsTestMonitorStatus = 2
+	SYNTHETICSTESTMONITORSTATUS_TRIGGERED SyntheticsTestMonitorStatus = 1
+	SYNTHETICSTESTMONITORSTATUS_NO_DATA SyntheticsTestMonitorStatus = 2
 )
 
 func (v *SyntheticsTestMonitorStatus) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *SyntheticsTestMonitorStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsTestMonitorStatus(value)
-	for _, existing := range []SyntheticsTestMonitorStatus{0, 1, 2} {
+	for _, existing := range []SyntheticsTestMonitorStatus{ 0, 1, 2,   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableSyntheticsTestMonitorStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

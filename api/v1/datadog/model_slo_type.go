@@ -18,7 +18,7 @@ type SLOType string
 
 // List of SLOType
 const (
-	SLOTYPE_METRIC  SLOType = "metric"
+	SLOTYPE_METRIC SLOType = "metric"
 	SLOTYPE_MONITOR SLOType = "monitor"
 )
 
@@ -29,7 +29,7 @@ func (v *SLOType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SLOType(value)
-	for _, existing := range []SLOType{"metric", "monitor"} {
+	for _, existing := range []SLOType{ "metric", "monitor",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableSLOType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

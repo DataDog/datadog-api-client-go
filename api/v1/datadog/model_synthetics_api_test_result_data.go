@@ -14,11 +14,11 @@ import (
 
 // SyntheticsAPITestResultData Object containing results for your Synthetic API test.
 type SyntheticsAPITestResultData struct {
-	Cert      *SyntheticsSSLCertificate `json:"cert,omitempty"`
-	ErrorCode *SyntheticsErrorCode      `json:"errorCode,omitempty"`
+	Cert *SyntheticsSSLCertificate `json:"cert,omitempty"`
+	ErrorCode *SyntheticsErrorCode `json:"errorCode,omitempty"`
 	// The API test error message.
-	ErrorMessage *string                      `json:"errorMessage,omitempty"`
-	EventType    *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
+	ErrorMessage *string `json:"errorMessage,omitempty"`
+	EventType *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
 	// The API test HTTP status code.
 	HttpStatusCode *int64 `json:"httpStatusCode,omitempty"`
 	// Request header object used for the API test.
@@ -28,8 +28,8 @@ type SyntheticsAPITestResultData struct {
 	// Response headers returned for the API test.
 	ResponseHeaders *map[string]interface{} `json:"responseHeaders,omitempty"`
 	// Global size in byte of the API test response.
-	ResponseSize *int64            `json:"responseSize,omitempty"`
-	Timings      *SyntheticsTiming `json:"timings,omitempty"`
+	ResponseSize *int64 `json:"responseSize,omitempty"`
+	Timings *SyntheticsTiming `json:"timings,omitempty"`
 }
 
 // NewSyntheticsAPITestResultData instantiates a new SyntheticsAPITestResultData object
@@ -439,3 +439,5 @@ func (v *NullableSyntheticsAPITestResultData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

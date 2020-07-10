@@ -19,10 +19,10 @@ type SyntheticsPlayingTab int64
 // List of SyntheticsPlayingTab
 const (
 	SYNTHETICSPLAYINGTAB_MAIN_TAB SyntheticsPlayingTab = -1
-	SYNTHETICSPLAYINGTAB_NEW_TAB  SyntheticsPlayingTab = 0
-	SYNTHETICSPLAYINGTAB_TAB_1    SyntheticsPlayingTab = 1
-	SYNTHETICSPLAYINGTAB_TAB_2    SyntheticsPlayingTab = 2
-	SYNTHETICSPLAYINGTAB_TAB_3    SyntheticsPlayingTab = 3
+	SYNTHETICSPLAYINGTAB_NEW_TAB SyntheticsPlayingTab = 0
+	SYNTHETICSPLAYINGTAB_TAB_1 SyntheticsPlayingTab = 1
+	SYNTHETICSPLAYINGTAB_TAB_2 SyntheticsPlayingTab = 2
+	SYNTHETICSPLAYINGTAB_TAB_3 SyntheticsPlayingTab = 3
 )
 
 func (v *SyntheticsPlayingTab) UnmarshalJSON(src []byte) error {
@@ -32,7 +32,7 @@ func (v *SyntheticsPlayingTab) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsPlayingTab(value)
-	for _, existing := range []SyntheticsPlayingTab{-1, 0, 1, 2, 3} {
+	for _, existing := range []SyntheticsPlayingTab{ -1, 0, 1, 2, 3,   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -82,3 +82,4 @@ func (v *NullableSyntheticsPlayingTab) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

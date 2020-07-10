@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,15 +26,16 @@ var (
 type SnapshotsApiService service
 
 type apiGetGraphSnapshotRequest struct {
-	ctx         _context.Context
-	apiService  *SnapshotsApiService
-	start       *int64
-	end         *int64
+	ctx _context.Context
+	apiService *SnapshotsApiService
+	start *int64
+	end *int64
 	metricQuery *string
-	eventQuery  *string
-	graphDef    *string
-	title       *string
+	eventQuery *string
+	graphDef *string
+	title *string
 }
+
 
 func (r apiGetGraphSnapshotRequest) Start(start int64) apiGetGraphSnapshotRequest {
 	r.start = &start
@@ -74,7 +77,7 @@ Take graph snapshots.
 func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context) apiGetGraphSnapshotRequest {
 	return apiGetGraphSnapshotRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -102,15 +105,15 @@ func (r apiGetGraphSnapshotRequest) Execute() (GraphSnapshot, *_nethttp.Response
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.start == nil {
 		return localVarReturnValue, nil, reportError("start is required and must be specified")
 	}
-
+	
 	if r.end == nil {
 		return localVarReturnValue, nil, reportError("end is required and must be specified")
 	}
-
+				
 	if r.metricQuery != nil {
 		localVarQueryParams.Add("metric_query", parameterToString(*r.metricQuery, ""))
 	}

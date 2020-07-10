@@ -16,7 +16,7 @@ import (
 type Widget struct {
 	Definition WidgetDefinition `json:"definition"`
 	// ID of the widget.
-	Id     *int64        `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	Layout *WidgetLayout `json:"layout,omitempty"`
 }
 
@@ -24,7 +24,7 @@ type Widget struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidget(definition WidgetDefinition) *Widget {
+func NewWidget(definition WidgetDefinition, ) *Widget {
 	this := Widget{}
 	this.Definition = definition
 	return &this
@@ -40,7 +40,7 @@ func NewWidgetWithDefaults() *Widget {
 
 // GetDefinition returns the Definition field value
 func (o *Widget) GetDefinition() WidgetDefinition {
-	if o == nil {
+	if o == nil  {
 		var ret WidgetDefinition
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *Widget) GetDefinition() WidgetDefinition {
 // GetDefinitionOk returns a tuple with the Definition field value
 // and a boolean to check if the value has been set.
 func (o *Widget) GetDefinitionOk() (*WidgetDefinition, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Definition, true
@@ -175,3 +175,5 @@ func (v *NullableWidget) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

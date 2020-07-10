@@ -28,7 +28,7 @@ func (v *ServiceMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ServiceMapWidgetDefinitionType(value)
-	for _, existing := range []ServiceMapWidgetDefinitionType{"servicemap"} {
+	for _, existing := range []ServiceMapWidgetDefinitionType{ "servicemap",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,3 +78,4 @@ func (v *NullableServiceMapWidgetDefinitionType) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

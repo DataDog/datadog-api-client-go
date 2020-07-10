@@ -18,9 +18,9 @@ type WidgetMonitorSummaryDisplayFormat string
 
 // List of WidgetMonitorSummaryDisplayFormat
 const (
-	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS          WidgetMonitorSummaryDisplayFormat = "counts"
+	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS WidgetMonitorSummaryDisplayFormat = "counts"
 	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS_AND_LIST WidgetMonitorSummaryDisplayFormat = "countsAndList"
-	WIDGETMONITORSUMMARYDISPLAYFORMAT_LIST            WidgetMonitorSummaryDisplayFormat = "list"
+	WIDGETMONITORSUMMARYDISPLAYFORMAT_LIST WidgetMonitorSummaryDisplayFormat = "list"
 )
 
 func (v *WidgetMonitorSummaryDisplayFormat) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *WidgetMonitorSummaryDisplayFormat) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetMonitorSummaryDisplayFormat(value)
-	for _, existing := range []WidgetMonitorSummaryDisplayFormat{"counts", "countsAndList", "list"} {
+	for _, existing := range []WidgetMonitorSummaryDisplayFormat{ "counts", "countsAndList", "list",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetMonitorSummaryDisplayFormat) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

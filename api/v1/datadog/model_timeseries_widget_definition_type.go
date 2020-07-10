@@ -28,7 +28,7 @@ func (v *TimeseriesWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := TimeseriesWidgetDefinitionType(value)
-	for _, existing := range []TimeseriesWidgetDefinitionType{"timeseries"} {
+	for _, existing := range []TimeseriesWidgetDefinitionType{ "timeseries",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,3 +78,4 @@ func (v *NullableTimeseriesWidgetDefinitionType) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

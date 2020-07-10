@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,10 +26,11 @@ var (
 type AWSLogsIntegrationApiService service
 
 type apiCheckAWSLogsLambdaAsyncRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
+
 
 func (r apiCheckAWSLogsLambdaAsyncRequest) Body(body AWSAccountAndLambdaRequest) apiCheckAWSLogsLambdaAsyncRequest {
 	r.body = &body
@@ -50,7 +53,7 @@ endpoint can be polled intermittently instead of blocking.
 func (a *AWSLogsIntegrationApiService) CheckAWSLogsLambdaAsync(ctx _context.Context) apiCheckAWSLogsLambdaAsyncRequest {
 	return apiCheckAWSLogsLambdaAsyncRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -78,7 +81,7 @@ func (r apiCheckAWSLogsLambdaAsyncRequest) Execute() (AWSLogsAsyncResponse, *_ne
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -188,12 +191,12 @@ func (r apiCheckAWSLogsLambdaAsyncRequest) Execute() (AWSLogsAsyncResponse, *_ne
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiCheckAWSLogsServicesAsyncRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	body *AWSLogsServicesRequest
 }
+
 
 func (r apiCheckAWSLogsServicesAsyncRequest) Body(body AWSLogsServicesRequest) apiCheckAWSLogsServicesAsyncRequest {
 	r.body = &body
@@ -218,7 +221,7 @@ the async request completes.
 func (a *AWSLogsIntegrationApiService) CheckAWSLogsServicesAsync(ctx _context.Context) apiCheckAWSLogsServicesAsyncRequest {
 	return apiCheckAWSLogsServicesAsyncRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -246,7 +249,7 @@ func (r apiCheckAWSLogsServicesAsyncRequest) Execute() (AWSLogsAsyncResponse, *_
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -356,12 +359,12 @@ func (r apiCheckAWSLogsServicesAsyncRequest) Execute() (AWSLogsAsyncResponse, *_
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiCreateAWSLambdaARNRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
+
 
 func (r apiCreateAWSLambdaARNRequest) Body(body AWSAccountAndLambdaRequest) apiCreateAWSLambdaARNRequest {
 	r.body = &body
@@ -377,7 +380,7 @@ Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection t
 func (a *AWSLogsIntegrationApiService) CreateAWSLambdaARN(ctx _context.Context) apiCreateAWSLambdaARNRequest {
 	return apiCreateAWSLambdaARNRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -405,7 +408,7 @@ func (r apiCreateAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -515,12 +518,12 @@ func (r apiCreateAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteAWSLambdaARNRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
+
 
 func (r apiDeleteAWSLambdaARNRequest) Body(body AWSAccountAndLambdaRequest) apiDeleteAWSLambdaARNRequest {
 	r.body = &body
@@ -536,7 +539,7 @@ Delete a Datadog-AWS logs configuration by removing the specific Lambda ARN asso
 func (a *AWSLogsIntegrationApiService) DeleteAWSLambdaARN(ctx _context.Context) apiDeleteAWSLambdaARNRequest {
 	return apiDeleteAWSLambdaARNRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -564,7 +567,7 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -674,12 +677,12 @@ func (r apiDeleteAWSLambdaARNRequest) Execute() (interface{}, *_nethttp.Response
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiEnableAWSLogServicesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	body *AWSLogsServicesRequest
 }
+
 
 func (r apiEnableAWSLogServicesRequest) Body(body AWSLogsServicesRequest) apiEnableAWSLogServicesRequest {
 	r.body = &body
@@ -695,7 +698,7 @@ Enable automatic log collection for a list of services. This should be run after
 func (a *AWSLogsIntegrationApiService) EnableAWSLogServices(ctx _context.Context) apiEnableAWSLogServicesRequest {
 	return apiEnableAWSLogServicesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -723,7 +726,7 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -833,11 +836,11 @@ func (r apiEnableAWSLogServicesRequest) Execute() (interface{}, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListAWSLogsIntegrationsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSLogsIntegrationApiService
 }
+
 
 /*
 ListAWSLogsIntegrations List all AWS Logs integrations
@@ -848,7 +851,7 @@ List all Datadog-AWS Logs integrations configured in your Datadog account.
 func (a *AWSLogsIntegrationApiService) ListAWSLogsIntegrations(ctx _context.Context) apiListAWSLogsIntegrationsRequest {
 	return apiListAWSLogsIntegrationsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -980,11 +983,11 @@ func (r apiListAWSLogsIntegrationsRequest) Execute() ([]AWSLogsListResponse, *_n
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListAWSLogsServicesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSLogsIntegrationApiService
 }
+
 
 /*
 ListAWSLogsServices Get list of AWS log ready services
@@ -995,7 +998,7 @@ Get the list of current AWS services that Datadog offers automatic log collectio
 func (a *AWSLogsIntegrationApiService) ListAWSLogsServices(ctx _context.Context) apiListAWSLogsServicesRequest {
 	return apiListAWSLogsServicesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 

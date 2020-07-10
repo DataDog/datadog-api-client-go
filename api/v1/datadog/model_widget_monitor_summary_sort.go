@@ -18,20 +18,20 @@ type WidgetMonitorSummarySort string
 
 // List of WidgetMonitorSummarySort
 const (
-	WIDGETMONITORSUMMARYSORT_NAME                 WidgetMonitorSummarySort = "name"
-	WIDGETMONITORSUMMARYSORT_GROUP                WidgetMonitorSummarySort = "group"
-	WIDGETMONITORSUMMARYSORT_STATUS               WidgetMonitorSummarySort = "status"
-	WIDGETMONITORSUMMARYSORT_TAGS                 WidgetMonitorSummarySort = "tags"
-	WIDGETMONITORSUMMARYSORT_TRIGGERED            WidgetMonitorSummarySort = "triggered"
-	WIDGETMONITORSUMMARYSORT_GROUP_ASCENDING      WidgetMonitorSummarySort = "group,asc"
-	WIDGETMONITORSUMMARYSORT_GROUP_DESCENDING     WidgetMonitorSummarySort = "group,desc"
-	WIDGETMONITORSUMMARYSORT_NAME_ASCENDING       WidgetMonitorSummarySort = "name,asc"
-	WIDGETMONITORSUMMARYSORT_NAME_DESCENDING      WidgetMonitorSummarySort = "name,desc"
-	WIDGETMONITORSUMMARYSORT_STATUS_ASCENDING     WidgetMonitorSummarySort = "status,asc"
-	WIDGETMONITORSUMMARYSORT_STATUS_DESCENDING    WidgetMonitorSummarySort = "status,desc"
-	WIDGETMONITORSUMMARYSORT_TAGS_ASCENDING       WidgetMonitorSummarySort = "tags,asc"
-	WIDGETMONITORSUMMARYSORT_TAGS_DESCENDING      WidgetMonitorSummarySort = "tags,desc"
-	WIDGETMONITORSUMMARYSORT_TRIGGERED_ASCENDING  WidgetMonitorSummarySort = "triggered,asc"
+	WIDGETMONITORSUMMARYSORT_NAME WidgetMonitorSummarySort = "name"
+	WIDGETMONITORSUMMARYSORT_GROUP WidgetMonitorSummarySort = "group"
+	WIDGETMONITORSUMMARYSORT_STATUS WidgetMonitorSummarySort = "status"
+	WIDGETMONITORSUMMARYSORT_TAGS WidgetMonitorSummarySort = "tags"
+	WIDGETMONITORSUMMARYSORT_TRIGGERED WidgetMonitorSummarySort = "triggered"
+	WIDGETMONITORSUMMARYSORT_GROUP_ASCENDING WidgetMonitorSummarySort = "group,asc"
+	WIDGETMONITORSUMMARYSORT_GROUP_DESCENDING WidgetMonitorSummarySort = "group,desc"
+	WIDGETMONITORSUMMARYSORT_NAME_ASCENDING WidgetMonitorSummarySort = "name,asc"
+	WIDGETMONITORSUMMARYSORT_NAME_DESCENDING WidgetMonitorSummarySort = "name,desc"
+	WIDGETMONITORSUMMARYSORT_STATUS_ASCENDING WidgetMonitorSummarySort = "status,asc"
+	WIDGETMONITORSUMMARYSORT_STATUS_DESCENDING WidgetMonitorSummarySort = "status,desc"
+	WIDGETMONITORSUMMARYSORT_TAGS_ASCENDING WidgetMonitorSummarySort = "tags,asc"
+	WIDGETMONITORSUMMARYSORT_TAGS_DESCENDING WidgetMonitorSummarySort = "tags,desc"
+	WIDGETMONITORSUMMARYSORT_TRIGGERED_ASCENDING WidgetMonitorSummarySort = "triggered,asc"
 	WIDGETMONITORSUMMARYSORT_TRIGGERED_DESCENDING WidgetMonitorSummarySort = "triggered,desc"
 )
 
@@ -42,7 +42,7 @@ func (v *WidgetMonitorSummarySort) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetMonitorSummarySort(value)
-	for _, existing := range []WidgetMonitorSummarySort{"name", "group", "status", "tags", "triggered", "group,asc", "group,desc", "name,asc", "name,desc", "status,asc", "status,desc", "tags,asc", "tags,desc", "triggered,asc", "triggered,desc"} {
+	for _, existing := range []WidgetMonitorSummarySort{ "name", "group", "status", "tags", "triggered", "group,asc", "group,desc", "name,asc", "name,desc", "status,asc", "status,desc", "tags,asc", "tags,desc", "triggered,asc", "triggered,desc",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -92,3 +92,4 @@ func (v *NullableWidgetMonitorSummarySort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -18,9 +18,9 @@ type WidgetCompareTo string
 
 // List of WidgetCompareTo
 const (
-	WIDGETCOMPARETO_HOUR_BEFORE  WidgetCompareTo = "hour_before"
-	WIDGETCOMPARETO_DAY_BEFORE   WidgetCompareTo = "day_before"
-	WIDGETCOMPARETO_WEEK_BEFORE  WidgetCompareTo = "week_before"
+	WIDGETCOMPARETO_HOUR_BEFORE WidgetCompareTo = "hour_before"
+	WIDGETCOMPARETO_DAY_BEFORE WidgetCompareTo = "day_before"
+	WIDGETCOMPARETO_WEEK_BEFORE WidgetCompareTo = "week_before"
 	WIDGETCOMPARETO_MONTH_BEFORE WidgetCompareTo = "month_before"
 )
 
@@ -31,7 +31,7 @@ func (v *WidgetCompareTo) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetCompareTo(value)
-	for _, existing := range []WidgetCompareTo{"hour_before", "day_before", "week_before", "month_before"} {
+	for _, existing := range []WidgetCompareTo{ "hour_before", "day_before", "week_before", "month_before",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -81,3 +81,4 @@ func (v *NullableWidgetCompareTo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

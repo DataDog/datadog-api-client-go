@@ -18,12 +18,12 @@ type SyntheticsAssertionType string
 
 // List of SyntheticsAssertionType
 const (
-	SYNTHETICSASSERTIONTYPE_BODY          SyntheticsAssertionType = "body"
-	SYNTHETICSASSERTIONTYPE_HEADER        SyntheticsAssertionType = "header"
-	SYNTHETICSASSERTIONTYPE_STATUS_CODE   SyntheticsAssertionType = "statusCode"
-	SYNTHETICSASSERTIONTYPE_CERTIFICATE   SyntheticsAssertionType = "certificate"
+	SYNTHETICSASSERTIONTYPE_BODY SyntheticsAssertionType = "body"
+	SYNTHETICSASSERTIONTYPE_HEADER SyntheticsAssertionType = "header"
+	SYNTHETICSASSERTIONTYPE_STATUS_CODE SyntheticsAssertionType = "statusCode"
+	SYNTHETICSASSERTIONTYPE_CERTIFICATE SyntheticsAssertionType = "certificate"
 	SYNTHETICSASSERTIONTYPE_RESPONSE_TIME SyntheticsAssertionType = "responseTime"
-	SYNTHETICSASSERTIONTYPE_PROPERTY      SyntheticsAssertionType = "property"
+	SYNTHETICSASSERTIONTYPE_PROPERTY SyntheticsAssertionType = "property"
 )
 
 func (v *SyntheticsAssertionType) UnmarshalJSON(src []byte) error {
@@ -33,7 +33,7 @@ func (v *SyntheticsAssertionType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsAssertionType(value)
-	for _, existing := range []SyntheticsAssertionType{"body", "header", "statusCode", "certificate", "responseTime", "property"} {
+	for _, existing := range []SyntheticsAssertionType{ "body", "header", "statusCode", "certificate", "responseTime", "property",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -83,3 +83,4 @@ func (v *NullableSyntheticsAssertionType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

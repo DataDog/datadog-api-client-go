@@ -24,7 +24,7 @@ type WidgetConditionalFormat struct {
 	// Displays an image as the background.
 	ImageUrl *string `json:"image_url,omitempty"`
 	// Metric from the request to correlate this conditional format with.
-	Metric  *string       `json:"metric,omitempty"`
+	Metric *string `json:"metric,omitempty"`
 	Palette WidgetPalette `json:"palette"`
 	// Defines the displayed timeframe.
 	Timeframe *string `json:"timeframe,omitempty"`
@@ -36,7 +36,7 @@ type WidgetConditionalFormat struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidgetConditionalFormat(comparator WidgetComparator, palette WidgetPalette, value float64) *WidgetConditionalFormat {
+func NewWidgetConditionalFormat(comparator WidgetComparator, palette WidgetPalette, value float64, ) *WidgetConditionalFormat {
 	this := WidgetConditionalFormat{}
 	this.Comparator = comparator
 	this.Palette = palette
@@ -54,7 +54,7 @@ func NewWidgetConditionalFormatWithDefaults() *WidgetConditionalFormat {
 
 // GetComparator returns the Comparator field value
 func (o *WidgetConditionalFormat) GetComparator() WidgetComparator {
-	if o == nil {
+	if o == nil  {
 		var ret WidgetComparator
 		return ret
 	}
@@ -65,7 +65,7 @@ func (o *WidgetConditionalFormat) GetComparator() WidgetComparator {
 // GetComparatorOk returns a tuple with the Comparator field value
 // and a boolean to check if the value has been set.
 func (o *WidgetConditionalFormat) GetComparatorOk() (*WidgetComparator, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Comparator, true
@@ -238,7 +238,7 @@ func (o *WidgetConditionalFormat) SetMetric(v string) {
 
 // GetPalette returns the Palette field value
 func (o *WidgetConditionalFormat) GetPalette() WidgetPalette {
-	if o == nil {
+	if o == nil  {
 		var ret WidgetPalette
 		return ret
 	}
@@ -249,7 +249,7 @@ func (o *WidgetConditionalFormat) GetPalette() WidgetPalette {
 // GetPaletteOk returns a tuple with the Palette field value
 // and a boolean to check if the value has been set.
 func (o *WidgetConditionalFormat) GetPaletteOk() (*WidgetPalette, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Palette, true
@@ -294,7 +294,7 @@ func (o *WidgetConditionalFormat) SetTimeframe(v string) {
 
 // GetValue returns the Value field value
 func (o *WidgetConditionalFormat) GetValue() float64 {
-	if o == nil {
+	if o == nil  {
 		var ret float64
 		return ret
 	}
@@ -305,7 +305,7 @@ func (o *WidgetConditionalFormat) GetValue() float64 {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 func (o *WidgetConditionalFormat) GetValueOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Value, true
@@ -383,3 +383,5 @@ func (v *NullableWidgetConditionalFormat) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

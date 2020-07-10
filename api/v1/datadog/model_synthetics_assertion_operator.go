@@ -18,15 +18,15 @@ type SyntheticsAssertionOperator string
 
 // List of SyntheticsAssertionOperator
 const (
-	SYNTHETICSASSERTIONOPERATOR_CONTAINS             SyntheticsAssertionOperator = "contains"
-	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN     SyntheticsAssertionOperator = "doesNotContain"
-	SYNTHETICSASSERTIONOPERATOR_IS                   SyntheticsAssertionOperator = "is"
-	SYNTHETICSASSERTIONOPERATOR_IS_NOT               SyntheticsAssertionOperator = "isNot"
-	SYNTHETICSASSERTIONOPERATOR_LESS_THAN            SyntheticsAssertionOperator = "lessThan"
-	SYNTHETICSASSERTIONOPERATOR_MORE_THAN            SyntheticsAssertionOperator = "moreThan"
-	SYNTHETICSASSERTIONOPERATOR_MATCHES              SyntheticsAssertionOperator = "matches"
-	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH       SyntheticsAssertionOperator = "doesNotMatch"
-	SYNTHETICSASSERTIONOPERATOR_VALIDATES            SyntheticsAssertionOperator = "validates"
+	SYNTHETICSASSERTIONOPERATOR_CONTAINS SyntheticsAssertionOperator = "contains"
+	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN SyntheticsAssertionOperator = "doesNotContain"
+	SYNTHETICSASSERTIONOPERATOR_IS SyntheticsAssertionOperator = "is"
+	SYNTHETICSASSERTIONOPERATOR_IS_NOT SyntheticsAssertionOperator = "isNot"
+	SYNTHETICSASSERTIONOPERATOR_LESS_THAN SyntheticsAssertionOperator = "lessThan"
+	SYNTHETICSASSERTIONOPERATOR_MORE_THAN SyntheticsAssertionOperator = "moreThan"
+	SYNTHETICSASSERTIONOPERATOR_MATCHES SyntheticsAssertionOperator = "matches"
+	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH SyntheticsAssertionOperator = "doesNotMatch"
+	SYNTHETICSASSERTIONOPERATOR_VALIDATES SyntheticsAssertionOperator = "validates"
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN SyntheticsAssertionOperator = "isInMoreThan"
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_LESS_DAYS_THAN SyntheticsAssertionOperator = "isInLessThan"
 )
@@ -38,7 +38,7 @@ func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsAssertionOperator(value)
-	for _, existing := range []SyntheticsAssertionOperator{"contains", "doesNotContain", "is", "isNot", "lessThan", "moreThan", "matches", "doesNotMatch", "validates", "isInMoreThan", "isInLessThan"} {
+	for _, existing := range []SyntheticsAssertionOperator{ "contains", "doesNotContain", "is", "isNot", "lessThan", "moreThan", "matches", "doesNotMatch", "validates", "isInMoreThan", "isInLessThan",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -88,3 +88,4 @@ func (v *NullableSyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

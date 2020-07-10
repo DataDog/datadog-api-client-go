@@ -15,8 +15,8 @@ import (
 // ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
 type ServiceLevelObjectiveRequest struct {
 	// Creation timestamp (UNIX time in seconds)  Always included in service level objective responses.
-	CreatedAt *int64   `json:"created_at,omitempty"`
-	Creator   *Creator `json:"creator,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// A user-defined description of the service level objective.  Always included in service level objective responses (but may be `null`). Optional in create/update requests.
 	Description NullableString `json:"description,omitempty"`
 	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.  Included in service level objective responses if it is not empty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the `monitor_ids` field is one.
@@ -28,20 +28,20 @@ type ServiceLevelObjectiveRequest struct {
 	// A list of monitor ids that defines the scope of a monitor service level objective. **Required if type is `monitor`**.
 	MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
 	// The name of the service level objective object.
-	Name  string                      `json:"name"`
+	Name string `json:"name"`
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
 	// A list of tags associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
 	Thresholds []SLOThreshold `json:"thresholds"`
-	Type       SLOType        `json:"type"`
+	Type SLOType `json:"type"`
 }
 
 // NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceLevelObjectiveRequest(name string, thresholds []SLOThreshold, type_ SLOType) *ServiceLevelObjectiveRequest {
+func NewServiceLevelObjectiveRequest(name string, thresholds []SLOThreshold, type_ SLOType, ) *ServiceLevelObjectiveRequest {
 	this := ServiceLevelObjectiveRequest{}
 	this.Name = name
 	this.Thresholds = thresholds
@@ -134,7 +134,7 @@ func (o *ServiceLevelObjectiveRequest) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceLevelObjectiveRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -153,7 +153,6 @@ func (o *ServiceLevelObjectiveRequest) HasDescription() bool {
 func (o *ServiceLevelObjectiveRequest) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *ServiceLevelObjectiveRequest) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -294,7 +293,7 @@ func (o *ServiceLevelObjectiveRequest) SetMonitorIds(v []int64) {
 
 // GetName returns the Name field value
 func (o *ServiceLevelObjectiveRequest) GetName() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -305,7 +304,7 @@ func (o *ServiceLevelObjectiveRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveRequest) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -382,7 +381,7 @@ func (o *ServiceLevelObjectiveRequest) SetTags(v []string) {
 
 // GetThresholds returns the Thresholds field value
 func (o *ServiceLevelObjectiveRequest) GetThresholds() []SLOThreshold {
-	if o == nil {
+	if o == nil  {
 		var ret []SLOThreshold
 		return ret
 	}
@@ -393,7 +392,7 @@ func (o *ServiceLevelObjectiveRequest) GetThresholds() []SLOThreshold {
 // GetThresholdsOk returns a tuple with the Thresholds field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveRequest) GetThresholdsOk() (*[]SLOThreshold, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Thresholds, true
@@ -406,7 +405,7 @@ func (o *ServiceLevelObjectiveRequest) SetThresholds(v []SLOThreshold) {
 
 // GetType returns the Type field value
 func (o *ServiceLevelObjectiveRequest) GetType() SLOType {
-	if o == nil {
+	if o == nil  {
 		var ret SLOType
 		return ret
 	}
@@ -417,7 +416,7 @@ func (o *ServiceLevelObjectiveRequest) GetType() SLOType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveRequest) GetTypeOk() (*SLOType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -504,3 +503,5 @@ func (v *NullableServiceLevelObjectiveRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

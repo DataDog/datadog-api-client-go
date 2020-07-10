@@ -15,15 +15,15 @@ import (
 // SLOHistoryResponseData An array of service level objective objects.
 type SLOHistoryResponseData struct {
 	// The `from` timestamp in epoch seconds.
-	FromTs  *int64             `json:"from_ts,omitempty"`
-	Groups  *SLOHistorySLIData `json:"groups,omitempty"`
+	FromTs *int64 `json:"from_ts,omitempty"`
+	Groups *SLOHistorySLIData `json:"groups,omitempty"`
 	Overall *SLOHistorySLIData `json:"overall,omitempty"`
-	Series  *SLOHistoryMetrics `json:"series,omitempty"`
+	Series *SLOHistoryMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
 	// The `to` timestamp in epoch seconds.
-	ToTs   *int64          `json:"to_ts,omitempty"`
-	Type   *SLOType        `json:"type,omitempty"`
+	ToTs *int64 `json:"to_ts,omitempty"`
+	Type *SLOType `json:"type,omitempty"`
 	TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
 }
 
@@ -364,3 +364,5 @@ func (v *NullableSLOHistoryResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

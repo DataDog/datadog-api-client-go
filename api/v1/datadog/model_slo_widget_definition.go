@@ -21,12 +21,12 @@ type SLOWidgetDefinition struct {
 	// Times being monitored.
 	TimeWindows *[]WidgetTimeWindows `json:"time_windows,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                 `json:"title_size,omitempty"`
-	Type      SLOWidgetDefinitionType `json:"type"`
-	ViewMode  *WidgetViewMode         `json:"view_mode,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type SLOWidgetDefinitionType `json:"type"`
+	ViewMode *WidgetViewMode `json:"view_mode,omitempty"`
 	// Type of view displayed by the widget.
 	ViewType string `json:"view_type"`
 }
@@ -35,7 +35,7 @@ type SLOWidgetDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string) *SLOWidgetDefinition {
+func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string, ) *SLOWidgetDefinition {
 	this := SLOWidgetDefinition{}
 	this.Type = type_
 	this.ViewType = viewType
@@ -248,7 +248,7 @@ func (o *SLOWidgetDefinition) SetTitleSize(v string) {
 
 // GetType returns the Type field value
 func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType {
-	if o == nil {
+	if o == nil  {
 		var ret SLOWidgetDefinitionType
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SLOWidgetDefinition) GetTypeOk() (*SLOWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -304,7 +304,7 @@ func (o *SLOWidgetDefinition) SetViewMode(v WidgetViewMode) {
 
 // GetViewType returns the ViewType field value
 func (o *SLOWidgetDefinition) GetViewType() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -315,7 +315,7 @@ func (o *SLOWidgetDefinition) GetViewType() string {
 // GetViewTypeOk returns a tuple with the ViewType field value
 // and a boolean to check if the value has been set.
 func (o *SLOWidgetDefinition) GetViewTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ViewType, true
@@ -393,3 +393,5 @@ func (v *NullableSLOWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -27,10 +27,11 @@ var (
 type LogsIndexesApiService service
 
 type apiGetLogsIndexRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsIndexesApiService
-	name       string
+	name string
 }
+
 
 /*
 GetLogsIndex Get an index
@@ -42,8 +43,8 @@ Get one log index from your organization. This endpoint takes no JSON arguments.
 func (a *LogsIndexesApiService) GetLogsIndex(ctx _context.Context, name string) apiGetLogsIndexRequest {
 	return apiGetLogsIndexRequest{
 		apiService: a,
-		ctx:        ctx,
-		name:       name,
+		ctx: ctx,
+		name: name,
 	}
 }
 
@@ -62,9 +63,9 @@ func (r apiGetLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, error)
 	)
 	operationId := "GetLogsIndex"
 	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndex")
@@ -73,11 +74,12 @@ func (r apiGetLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, error)
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/indexes/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -182,11 +184,11 @@ func (r apiGetLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, error)
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetLogsIndexOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsIndexesApiService
 }
+
 
 /*
 GetLogsIndexOrder Get indexes order
@@ -197,7 +199,7 @@ Get the current order of your log indexes. This endpoint takes no JSON arguments
 func (a *LogsIndexesApiService) GetLogsIndexOrder(ctx _context.Context) apiGetLogsIndexOrderRequest {
 	return apiGetLogsIndexOrderRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -216,9 +218,9 @@ func (r apiGetLogsIndexOrderRequest) Execute() (LogsIndexesOrder, *_nethttp.Resp
 	)
 	operationId := "GetLogsIndexOrder"
 	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndexOrder")
@@ -325,11 +327,11 @@ func (r apiGetLogsIndexOrderRequest) Execute() (LogsIndexesOrder, *_nethttp.Resp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListLogIndexesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsIndexesApiService
 }
+
 
 /*
 ListLogIndexes Get all indexes
@@ -341,7 +343,7 @@ This endpoint returns an array of the `LogIndex` objects of your organization.
 func (a *LogsIndexesApiService) ListLogIndexes(ctx _context.Context) apiListLogIndexesRequest {
 	return apiListLogIndexesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -360,9 +362,9 @@ func (r apiListLogIndexesRequest) Execute() (LogsIndexListResponse, *_nethttp.Re
 	)
 	operationId := "ListLogIndexes"
 	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.ListLogIndexes")
@@ -469,13 +471,13 @@ func (r apiListLogIndexesRequest) Execute() (LogsIndexListResponse, *_nethttp.Re
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateLogsIndexRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsIndexesApiService
-	name       string
-	body       *LogsIndex
+	name string
+	body *LogsIndex
 }
+
 
 func (r apiUpdateLogsIndexRequest) Body(body LogsIndex) apiUpdateLogsIndexRequest {
 	r.body = &body
@@ -496,8 +498,8 @@ your current configuration with the new one sent to your Datadog organization.
 func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name string) apiUpdateLogsIndexRequest {
 	return apiUpdateLogsIndexRequest{
 		apiService: a,
-		ctx:        ctx,
-		name:       name,
+		ctx: ctx,
+		name: name,
 	}
 }
 
@@ -516,9 +518,9 @@ func (r apiUpdateLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, err
 	)
 	operationId := "UpdateLogsIndex"
 	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndex")
@@ -527,12 +529,13 @@ func (r apiUpdateLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, err
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/indexes/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -648,12 +651,12 @@ func (r apiUpdateLogsIndexRequest) Execute() (LogsIndex, *_nethttp.Response, err
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateLogsIndexOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsIndexesApiService
-	body       *LogsIndexesOrder
+	body *LogsIndexesOrder
 }
+
 
 func (r apiUpdateLogsIndexOrderRequest) Body(body LogsIndexesOrder) apiUpdateLogsIndexOrderRequest {
 	r.body = &body
@@ -670,7 +673,7 @@ It returns the index order object passed in the request body when the request is
 func (a *LogsIndexesApiService) UpdateLogsIndexOrder(ctx _context.Context) apiUpdateLogsIndexOrderRequest {
 	return apiUpdateLogsIndexOrderRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -689,9 +692,9 @@ func (r apiUpdateLogsIndexOrderRequest) Execute() (LogsIndexesOrder, *_nethttp.R
 	)
 	operationId := "UpdateLogsIndexOrder"
 	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndexOrder")
@@ -704,7 +707,7 @@ func (r apiUpdateLogsIndexOrderRequest) Execute() (LogsIndexesOrder, *_nethttp.R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

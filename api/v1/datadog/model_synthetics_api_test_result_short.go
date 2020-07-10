@@ -17,11 +17,11 @@ type SyntheticsAPITestResultShort struct {
 	// Last time the API test was performed.
 	CheckTime *float64 `json:"check_time,omitempty"`
 	// Location from which the API test was performed.
-	ProbeDc *string                             `json:"probe_dc,omitempty"`
-	Result  *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	Result *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
 	// ID of the API test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 }
 
 // NewSyntheticsAPITestResultShort instantiates a new SyntheticsAPITestResultShort object
@@ -256,3 +256,5 @@ func (v *NullableSyntheticsAPITestResultShort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -17,7 +17,7 @@ type SLOBulkDeleteResponseErrors struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`
 	// The error message.
-	Message   string            `json:"message"`
+	Message string `json:"message"`
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 }
 
@@ -25,7 +25,7 @@ type SLOBulkDeleteResponseErrors struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOBulkDeleteResponseErrors(id string, message string, timeframe SLOErrorTimeframe) *SLOBulkDeleteResponseErrors {
+func NewSLOBulkDeleteResponseErrors(id string, message string, timeframe SLOErrorTimeframe, ) *SLOBulkDeleteResponseErrors {
 	this := SLOBulkDeleteResponseErrors{}
 	this.Id = id
 	this.Message = message
@@ -43,7 +43,7 @@ func NewSLOBulkDeleteResponseErrorsWithDefaults() *SLOBulkDeleteResponseErrors {
 
 // GetId returns the Id field value
 func (o *SLOBulkDeleteResponseErrors) GetId() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -54,7 +54,7 @@ func (o *SLOBulkDeleteResponseErrors) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *SLOBulkDeleteResponseErrors) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -67,7 +67,7 @@ func (o *SLOBulkDeleteResponseErrors) SetId(v string) {
 
 // GetMessage returns the Message field value
 func (o *SLOBulkDeleteResponseErrors) GetMessage() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -78,7 +78,7 @@ func (o *SLOBulkDeleteResponseErrors) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *SLOBulkDeleteResponseErrors) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -91,7 +91,7 @@ func (o *SLOBulkDeleteResponseErrors) SetMessage(v string) {
 
 // GetTimeframe returns the Timeframe field value
 func (o *SLOBulkDeleteResponseErrors) GetTimeframe() SLOErrorTimeframe {
-	if o == nil {
+	if o == nil  {
 		var ret SLOErrorTimeframe
 		return ret
 	}
@@ -102,7 +102,7 @@ func (o *SLOBulkDeleteResponseErrors) GetTimeframe() SLOErrorTimeframe {
 // GetTimeframeOk returns a tuple with the Timeframe field value
 // and a boolean to check if the value has been set.
 func (o *SLOBulkDeleteResponseErrors) GetTimeframeOk() (*SLOErrorTimeframe, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Timeframe, true
@@ -162,3 +162,5 @@ func (v *NullableSLOBulkDeleteResponseErrors) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

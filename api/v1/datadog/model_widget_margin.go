@@ -29,7 +29,7 @@ func (v *WidgetMargin) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetMargin(value)
-	for _, existing := range []WidgetMargin{"small", "large"} {
+	for _, existing := range []WidgetMargin{ "small", "large",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetMargin) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

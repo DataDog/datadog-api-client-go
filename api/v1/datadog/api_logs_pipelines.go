@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type LogsPipelinesApiService service
 
 type apiCreateLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsPipelinesApiService
-	body       *LogsPipeline
+	body *LogsPipeline
 }
+
 
 func (r apiCreateLogsPipelineRequest) Body(body LogsPipeline) apiCreateLogsPipelineRequest {
 	r.body = &body
@@ -44,7 +47,7 @@ Create a pipeline in your organization.
 func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context) apiCreateLogsPipelineRequest {
 	return apiCreateLogsPipelineRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -72,7 +75,7 @@ func (r apiCreateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -182,12 +185,12 @@ func (r apiCreateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsPipelinesApiService
 	pipelineId string
 }
+
 
 /*
 DeleteLogsPipeline Delete a pipeline
@@ -200,7 +203,7 @@ This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApiService) DeleteLogsPipeline(ctx _context.Context, pipelineId string) apiDeleteLogsPipelineRequest {
 	return apiDeleteLogsPipelineRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		pipelineId: pipelineId,
 	}
 }
@@ -216,6 +219,7 @@ func (r apiDeleteLogsPipelineRequest) Execute() (*_nethttp.Response, error) {
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.DeleteLogsPipeline")
@@ -224,11 +228,12 @@ func (r apiDeleteLogsPipelineRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/pipelines/{pipeline_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(parameterToString(r.pipelineId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(parameterToString(r.pipelineId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -324,12 +329,12 @@ func (r apiDeleteLogsPipelineRequest) Execute() (*_nethttp.Response, error) {
 
 	return localVarHTTPResponse, nil
 }
-
 type apiGetLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsPipelinesApiService
 	pipelineId string
 }
+
 
 /*
 GetLogsPipeline Get a pipeline
@@ -342,7 +347,7 @@ This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApiService) GetLogsPipeline(ctx _context.Context, pipelineId string) apiGetLogsPipelineRequest {
 	return apiGetLogsPipelineRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		pipelineId: pipelineId,
 	}
 }
@@ -367,11 +372,12 @@ func (r apiGetLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, 
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/pipelines/{pipeline_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(parameterToString(r.pipelineId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(parameterToString(r.pipelineId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -476,11 +482,11 @@ func (r apiGetLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetLogsPipelineOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsPipelinesApiService
 }
+
 
 /*
 GetLogsPipelineOrder Get pipeline order
@@ -492,7 +498,7 @@ This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApiService) GetLogsPipelineOrder(ctx _context.Context) apiGetLogsPipelineOrderRequest {
 	return apiGetLogsPipelineOrderRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -614,11 +620,11 @@ func (r apiGetLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_nethttp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListLogsPipelinesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsPipelinesApiService
 }
+
 
 /*
 ListLogsPipelines Get all pipelines
@@ -630,7 +636,7 @@ This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApiService) ListLogsPipelines(ctx _context.Context) apiListLogsPipelinesRequest {
 	return apiListLogsPipelinesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -752,13 +758,13 @@ func (r apiListLogsPipelinesRequest) Execute() ([]LogsPipeline, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsPipelinesApiService
 	pipelineId string
-	body       *LogsPipeline
+	body *LogsPipeline
 }
+
 
 func (r apiUpdateLogsPipelineRequest) Body(body LogsPipeline) apiUpdateLogsPipelineRequest {
 	r.body = &body
@@ -778,7 +784,7 @@ your current configuration with the new one sent to your Datadog organization.
 func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipelineId string) apiUpdateLogsPipelineRequest {
 	return apiUpdateLogsPipelineRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		pipelineId: pipelineId,
 	}
 }
@@ -803,12 +809,13 @@ func (r apiUpdateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/pipelines/{pipeline_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(parameterToString(r.pipelineId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(parameterToString(r.pipelineId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -918,12 +925,12 @@ func (r apiUpdateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateLogsPipelineOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *LogsPipelinesApiService
-	body       *LogsPipelinesOrder
+	body *LogsPipelinesOrder
 }
+
 
 func (r apiUpdateLogsPipelineOrderRequest) Body(body LogsPipelinesOrder) apiUpdateLogsPipelineOrderRequest {
 	r.body = &body
@@ -943,7 +950,7 @@ with the new one sent to your Datadog organization.
 func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context) apiUpdateLogsPipelineOrderRequest {
 	return apiUpdateLogsPipelineOrderRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -971,7 +978,7 @@ func (r apiUpdateLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_neth
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

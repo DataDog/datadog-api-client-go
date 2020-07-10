@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,9 +26,10 @@ var (
 type AuthenticationApiService service
 
 type apiValidateRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AuthenticationApiService
 }
+
 
 /*
 Validate Validate API key
@@ -37,7 +40,7 @@ Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
 func (a *AuthenticationApiService) Validate(ctx _context.Context) apiValidateRequest {
 	return apiValidateRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 

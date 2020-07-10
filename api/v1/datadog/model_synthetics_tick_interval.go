@@ -18,15 +18,15 @@ type SyntheticsTickInterval int64
 
 // List of SyntheticsTickInterval
 const (
-	SYNTHETICSTICKINTERVAL_MINUTE          SyntheticsTickInterval = 60
-	SYNTHETICSTICKINTERVAL_FIVE_MINUTES    SyntheticsTickInterval = 300
+	SYNTHETICSTICKINTERVAL_MINUTE SyntheticsTickInterval = 60
+	SYNTHETICSTICKINTERVAL_FIVE_MINUTES SyntheticsTickInterval = 300
 	SYNTHETICSTICKINTERVAL_FIFTEEN_MINUTES SyntheticsTickInterval = 900
-	SYNTHETICSTICKINTERVAL_THIRTY_MINUTES  SyntheticsTickInterval = 1800
-	SYNTHETICSTICKINTERVAL_HOUR            SyntheticsTickInterval = 3600
-	SYNTHETICSTICKINTERVAL_SIX_HOURS       SyntheticsTickInterval = 21600
-	SYNTHETICSTICKINTERVAL_TWELVE_HOURS    SyntheticsTickInterval = 43200
-	SYNTHETICSTICKINTERVAL_DAY             SyntheticsTickInterval = 86400
-	SYNTHETICSTICKINTERVAL_WEEK            SyntheticsTickInterval = 604800
+	SYNTHETICSTICKINTERVAL_THIRTY_MINUTES SyntheticsTickInterval = 1800
+	SYNTHETICSTICKINTERVAL_HOUR SyntheticsTickInterval = 3600
+	SYNTHETICSTICKINTERVAL_SIX_HOURS SyntheticsTickInterval = 21600
+	SYNTHETICSTICKINTERVAL_TWELVE_HOURS SyntheticsTickInterval = 43200
+	SYNTHETICSTICKINTERVAL_DAY SyntheticsTickInterval = 86400
+	SYNTHETICSTICKINTERVAL_WEEK SyntheticsTickInterval = 604800
 )
 
 func (v *SyntheticsTickInterval) UnmarshalJSON(src []byte) error {
@@ -36,7 +36,7 @@ func (v *SyntheticsTickInterval) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsTickInterval(value)
-	for _, existing := range []SyntheticsTickInterval{60, 300, 900, 1800, 3600, 21600, 43200, 86400, 604800} {
+	for _, existing := range []SyntheticsTickInterval{ 60, 300, 900, 1800, 3600, 21600, 43200, 86400, 604800,   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -86,3 +86,4 @@ func (v *NullableSyntheticsTickInterval) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -28,7 +28,7 @@ func (v *TableWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := TableWidgetDefinitionType(value)
-	for _, existing := range []TableWidgetDefinitionType{"query_table"} {
+	for _, existing := range []TableWidgetDefinitionType{ "query_table",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,3 +78,4 @@ func (v *NullableTableWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

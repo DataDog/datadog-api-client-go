@@ -24,7 +24,7 @@ type TimeseriesWidgetRequestMetadata struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeseriesWidgetRequestMetadata(expression string) *TimeseriesWidgetRequestMetadata {
+func NewTimeseriesWidgetRequestMetadata(expression string, ) *TimeseriesWidgetRequestMetadata {
 	this := TimeseriesWidgetRequestMetadata{}
 	this.Expression = expression
 	return &this
@@ -72,7 +72,7 @@ func (o *TimeseriesWidgetRequestMetadata) SetAliasName(v string) {
 
 // GetExpression returns the Expression field value
 func (o *TimeseriesWidgetRequestMetadata) GetExpression() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *TimeseriesWidgetRequestMetadata) GetExpression() string {
 // GetExpressionOk returns a tuple with the Expression field value
 // and a boolean to check if the value has been set.
 func (o *TimeseriesWidgetRequestMetadata) GetExpressionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Expression, true
@@ -140,3 +140,5 @@ func (v *NullableTimeseriesWidgetRequestMetadata) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -14,24 +14,24 @@ import (
 
 // UsageBillableSummaryKeys Response with aggregated usage types.
 type UsageBillableSummaryKeys struct {
-	ApmHostSum                 *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
-	ApmHostTop99p              *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
-	ApmTraceSearchSum          *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
-	FargateContainerAverage    *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
-	InfraContainerSum          *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
-	InfraHostSum               *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
-	InfraHostTop99p            *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
-	IotTop99p                  *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
-	LambdaFunctionAverage      *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
-	LogsIndexedSum             *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
-	LogsIngestedSum            *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
-	NpmFlowSum                 *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
-	NpmHostTop99p              *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
-	RumSum                     *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
-	SiemSum                    *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
-	SyntheticsApiTestsSum      *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
+	ApmHostSum *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
+	ApmHostTop99p *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
+	ApmTraceSearchSum *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
+	FargateContainerAverage *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
+	InfraContainerSum *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
+	InfraHostSum *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
+	InfraHostTop99p *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
+	IotTop99p *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
+	LambdaFunctionAverage *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
+	LogsIndexedSum *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
+	LogsIngestedSum *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
+	NpmFlowSum *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
+	NpmHostTop99p *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
+	RumSum *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
+	SiemSum *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
+	SyntheticsApiTestsSum *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
 	SyntheticsBrowserChecksSum *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
-	TimeseriesAverage          *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
+	TimeseriesAverage *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
 }
 
 // NewUsageBillableSummaryKeys instantiates a new UsageBillableSummaryKeys object
@@ -721,3 +721,5 @@ func (v *NullableUsageBillableSummaryKeys) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

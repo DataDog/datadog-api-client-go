@@ -22,16 +22,16 @@ type SyntheticsTestDetails struct {
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
-	Name    *string                `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Options *SyntheticsTestOptions `json:"options,omitempty"`
 	// The test public ID.
-	PublicId *string                    `json:"public_id,omitempty"`
-	Status   *SyntheticsTestPauseStatus `json:"status,omitempty"`
+	PublicId *string `json:"public_id,omitempty"`
+	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// The steps of the test (only for browser tests).
-	Steps   *[]SyntheticsStep             `json:"steps,omitempty"`
+	Steps *[]SyntheticsStep `json:"steps,omitempty"`
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string                  `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 }
 
@@ -512,3 +512,5 @@ func (v *NullableSyntheticsTestDetails) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

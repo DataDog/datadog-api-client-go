@@ -10,11 +10,13 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
 	"strings"
+	"os"
 )
 
 // Linger please
@@ -26,10 +28,11 @@ var (
 type OrganizationsApiService service
 
 type apiCreateChildOrgRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *OrganizationsApiService
-	body       *OrganizationCreateBody
+	body *OrganizationCreateBody
 }
+
 
 func (r apiCreateChildOrgRequest) Body(body OrganizationCreateBody) apiCreateChildOrgRequest {
 	r.body = &body
@@ -54,7 +57,7 @@ by using the `org.public_id`, `pi_key.key`, and
 func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context) apiCreateChildOrgRequest {
 	return apiCreateChildOrgRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -82,7 +85,7 @@ func (r apiCreateChildOrgRequest) Execute() (OrganizationCreateResponse, *_netht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -192,12 +195,12 @@ func (r apiCreateChildOrgRequest) Execute() (OrganizationCreateResponse, *_netht
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetOrgRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *OrganizationsApiService
-	publicId   string
+	publicId string
 }
+
 
 /*
 GetOrg Get organization information
@@ -209,8 +212,8 @@ Get organization information.
 func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) apiGetOrgRequest {
 	return apiGetOrgRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -234,11 +237,12 @@ func (r apiGetOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/v1/org/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -343,11 +347,11 @@ func (r apiGetOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response, e
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListOrgsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *OrganizationsApiService
 }
+
 
 /*
 ListOrgs List your managed organizations
@@ -358,7 +362,7 @@ List your managed organizations.
 func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) apiListOrgsRequest {
 	return apiListOrgsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -480,13 +484,13 @@ func (r apiListOrgsRequest) Execute() (OrganizationListResponse, *_nethttp.Respo
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateOrgRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *OrganizationsApiService
-	publicId   string
-	body       *Organization
+	publicId string
+	body *Organization
 }
+
 
 func (r apiUpdateOrgRequest) Body(body Organization) apiUpdateOrgRequest {
 	r.body = &body
@@ -503,8 +507,8 @@ Update your organization.
 func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string) apiUpdateOrgRequest {
 	return apiUpdateOrgRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -528,12 +532,13 @@ func (r apiUpdateOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response
 	}
 
 	localVarPath := localBasePath + "/api/v1/org/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -643,13 +648,13 @@ func (r apiUpdateOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUploadIdPForOrgRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *OrganizationsApiService
-	publicId   string
-	idpFile    **os.File
+	publicId string
+	idpFile **os.File
 }
+
 
 func (r apiUploadIdPForOrgRequest) IdpFile(idpFile *os.File) apiUploadIdPForOrgRequest {
 	r.idpFile = &idpFile
@@ -671,8 +676,8 @@ metadata from your SAML IdP.
 func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string) apiUploadIdPForOrgRequest {
 	return apiUploadIdPForOrgRequest{
 		apiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 }
 
@@ -696,12 +701,13 @@ func (r apiUploadIdPForOrgRequest) Execute() (IdpResponse, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/v1/org/{public_id}/idp_metadata"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(parameterToString(r.publicId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.idpFile == nil {
 		return localVarReturnValue, nil, reportError("idpFile is required and must be specified")
 	}

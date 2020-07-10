@@ -19,7 +19,7 @@ type SyntheticsBrowserErrorType string
 // List of SyntheticsBrowserErrorType
 const (
 	SYNTHETICSBROWSERERRORTYPE_NETWORK SyntheticsBrowserErrorType = "network"
-	SYNTHETICSBROWSERERRORTYPE_JS      SyntheticsBrowserErrorType = "js"
+	SYNTHETICSBROWSERERRORTYPE_JS SyntheticsBrowserErrorType = "js"
 )
 
 func (v *SyntheticsBrowserErrorType) UnmarshalJSON(src []byte) error {
@@ -29,7 +29,7 @@ func (v *SyntheticsBrowserErrorType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsBrowserErrorType(value)
-	for _, existing := range []SyntheticsBrowserErrorType{"network", "js"} {
+	for _, existing := range []SyntheticsBrowserErrorType{ "network", "js",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableSyntheticsBrowserErrorType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

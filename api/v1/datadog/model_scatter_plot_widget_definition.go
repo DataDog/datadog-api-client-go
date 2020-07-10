@@ -15,24 +15,24 @@ import (
 // ScatterPlotWidgetDefinition The scatter plot visualization allows you to graph a chosen scope over two different metrics with their respective aggregation.
 type ScatterPlotWidgetDefinition struct {
 	// List of groups used for colors.
-	ColorByGroups *[]string                           `json:"color_by_groups,omitempty"`
-	Requests      ScatterPlotWidgetDefinitionRequests `json:"requests"`
-	Time          *WidgetTime                         `json:"time,omitempty"`
+	ColorByGroups *[]string `json:"color_by_groups,omitempty"`
+	Requests ScatterPlotWidgetDefinitionRequests `json:"requests"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                         `json:"title_size,omitempty"`
-	Type      ScatterPlotWidgetDefinitionType `json:"type"`
-	Xaxis     *WidgetAxis                     `json:"xaxis,omitempty"`
-	Yaxis     *WidgetAxis                     `json:"yaxis,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ScatterPlotWidgetDefinitionType `json:"type"`
+	Xaxis *WidgetAxis `json:"xaxis,omitempty"`
+	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 }
 
 // NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, type_ ScatterPlotWidgetDefinitionType) *ScatterPlotWidgetDefinition {
+func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, type_ ScatterPlotWidgetDefinitionType, ) *ScatterPlotWidgetDefinition {
 	this := ScatterPlotWidgetDefinition{}
 	this.Requests = requests
 	this.Type = type_
@@ -83,7 +83,7 @@ func (o *ScatterPlotWidgetDefinition) SetColorByGroups(v []string) {
 
 // GetRequests returns the Requests field value
 func (o *ScatterPlotWidgetDefinition) GetRequests() ScatterPlotWidgetDefinitionRequests {
-	if o == nil {
+	if o == nil  {
 		var ret ScatterPlotWidgetDefinitionRequests
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *ScatterPlotWidgetDefinition) GetRequests() ScatterPlotWidgetDefinitionR
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinition) GetRequestsOk() (*ScatterPlotWidgetDefinitionRequests, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -235,7 +235,7 @@ func (o *ScatterPlotWidgetDefinition) SetTitleSize(v string) {
 
 // GetType returns the Type field value
 func (o *ScatterPlotWidgetDefinition) GetType() ScatterPlotWidgetDefinitionType {
-	if o == nil {
+	if o == nil  {
 		var ret ScatterPlotWidgetDefinitionType
 		return ret
 	}
@@ -246,7 +246,7 @@ func (o *ScatterPlotWidgetDefinition) GetType() ScatterPlotWidgetDefinitionType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*ScatterPlotWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -388,3 +388,5 @@ func (v *NullableScatterPlotWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

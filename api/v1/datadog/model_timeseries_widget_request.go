@@ -14,18 +14,18 @@ import (
 
 // TimeseriesWidgetRequest Updated timeseries widget.
 type TimeseriesWidgetRequest struct {
-	ApmQuery    *LogQueryDefinition   `json:"apm_query,omitempty"`
-	DisplayType *WidgetDisplayType    `json:"display_type,omitempty"`
-	EventQuery  *EventQueryDefinition `json:"event_query,omitempty"`
-	LogQuery    *LogQueryDefinition   `json:"log_query,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	DisplayType *WidgetDisplayType `json:"display_type,omitempty"`
+	EventQuery *EventQueryDefinition `json:"event_query,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// Used to define expression aliases.
-	Metadata     *[]TimeseriesWidgetRequestMetadata `json:"metadata,omitempty"`
-	NetworkQuery *LogQueryDefinition                `json:"network_query,omitempty"`
-	ProcessQuery *ProcessQueryDefinition            `json:"process_query,omitempty"`
+	Metadata *[]TimeseriesWidgetRequestMetadata `json:"metadata,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
 	// Widget query.
-	Q        *string             `json:"q,omitempty"`
+	Q *string `json:"q,omitempty"`
 	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
-	Style    *WidgetRequestStyle `json:"style,omitempty"`
+	Style *WidgetRequestStyle `json:"style,omitempty"`
 }
 
 // NewTimeseriesWidgetRequest instantiates a new TimeseriesWidgetRequest object
@@ -435,3 +435,5 @@ func (v *NullableTimeseriesWidgetRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

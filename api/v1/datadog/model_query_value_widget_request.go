@@ -14,16 +14,16 @@ import (
 
 // QueryValueWidgetRequest Updated query value widget.
 type QueryValueWidgetRequest struct {
-	Aggregator *WidgetAggregator   `json:"aggregator,omitempty"`
-	ApmQuery   *LogQueryDefinition `json:"apm_query,omitempty"`
+	Aggregator *WidgetAggregator `json:"aggregator,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
-	EventQuery         *EventQueryDefinition      `json:"event_query,omitempty"`
-	LogQuery           *LogQueryDefinition        `json:"log_query,omitempty"`
-	NetworkQuery       *LogQueryDefinition        `json:"network_query,omitempty"`
-	ProcessQuery       *ProcessQueryDefinition    `json:"process_query,omitempty"`
+	EventQuery *EventQueryDefinition `json:"event_query,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
 	// TODO.
-	Q        *string             `json:"q,omitempty"`
+	Q *string `json:"q,omitempty"`
 	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 }
 
@@ -399,3 +399,5 @@ func (v *NullableQueryValueWidgetRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

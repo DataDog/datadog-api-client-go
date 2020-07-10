@@ -18,7 +18,7 @@ type WidgetNodeType string
 
 // List of WidgetNodeType
 const (
-	WIDGETNODETYPE_HOST      WidgetNodeType = "host"
+	WIDGETNODETYPE_HOST WidgetNodeType = "host"
 	WIDGETNODETYPE_CONTAINER WidgetNodeType = "container"
 )
 
@@ -29,7 +29,7 @@ func (v *WidgetNodeType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetNodeType(value)
-	for _, existing := range []WidgetNodeType{"host", "container"} {
+	for _, existing := range []WidgetNodeType{ "host", "container",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetNodeType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

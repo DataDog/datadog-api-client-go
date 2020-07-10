@@ -28,8 +28,8 @@ type UsageBillableSummaryHour struct {
 	// Shows usage aggregation for a billing period.
 	RatioInMonth *int64 `json:"ratio_in_month,omitempty"`
 	// Shows the first date of usage.
-	StartDate *time.Time                `json:"start_date,omitempty"`
-	Usage     *UsageBillableSummaryKeys `json:"usage,omitempty"`
+	StartDate *time.Time `json:"start_date,omitempty"`
+	Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 }
 
 // NewUsageBillableSummaryHour instantiates a new UsageBillableSummaryHour object
@@ -369,3 +369,5 @@ func (v *NullableUsageBillableSummaryHour) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

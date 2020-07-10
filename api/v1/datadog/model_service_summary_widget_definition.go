@@ -30,24 +30,24 @@ type ServiceSummaryWidgetDefinition struct {
 	// Whether to show the latency metrics or not.
 	ShowLatency *bool `json:"show_latency,omitempty"`
 	// Whether to show the resource list or not.
-	ShowResourceList *bool             `json:"show_resource_list,omitempty"`
-	SizeFormat       *WidgetSizeFormat `json:"size_format,omitempty"`
+	ShowResourceList *bool `json:"show_resource_list,omitempty"`
+	SizeFormat *WidgetSizeFormat `json:"size_format,omitempty"`
 	// APM span name.
-	SpanName string      `json:"span_name"`
-	Time     *WidgetTime `json:"time,omitempty"`
+	SpanName string `json:"span_name"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                            `json:"title_size,omitempty"`
-	Type      ServiceSummaryWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ServiceSummaryWidgetDefinitionType `json:"type"`
 }
 
 // NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, type_ ServiceSummaryWidgetDefinitionType) *ServiceSummaryWidgetDefinition {
+func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, type_ ServiceSummaryWidgetDefinitionType, ) *ServiceSummaryWidgetDefinition {
 	this := ServiceSummaryWidgetDefinition{}
 	this.Env = env
 	this.Service = service
@@ -100,7 +100,7 @@ func (o *ServiceSummaryWidgetDefinition) SetDisplayFormat(v WidgetServiceSummary
 
 // GetEnv returns the Env field value
 func (o *ServiceSummaryWidgetDefinition) GetEnv() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -111,7 +111,7 @@ func (o *ServiceSummaryWidgetDefinition) GetEnv() string {
 // GetEnvOk returns a tuple with the Env field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Env, true
@@ -124,7 +124,7 @@ func (o *ServiceSummaryWidgetDefinition) SetEnv(v string) {
 
 // GetService returns the Service field value
 func (o *ServiceSummaryWidgetDefinition) GetService() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *ServiceSummaryWidgetDefinition) GetService() string {
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Service, true
@@ -372,7 +372,7 @@ func (o *ServiceSummaryWidgetDefinition) SetSizeFormat(v WidgetSizeFormat) {
 
 // GetSpanName returns the SpanName field value
 func (o *ServiceSummaryWidgetDefinition) GetSpanName() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -383,7 +383,7 @@ func (o *ServiceSummaryWidgetDefinition) GetSpanName() string {
 // GetSpanNameOk returns a tuple with the SpanName field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetSpanNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.SpanName, true
@@ -524,7 +524,7 @@ func (o *ServiceSummaryWidgetDefinition) SetTitleSize(v string) {
 
 // GetType returns the Type field value
 func (o *ServiceSummaryWidgetDefinition) GetType() ServiceSummaryWidgetDefinitionType {
-	if o == nil {
+	if o == nil  {
 		var ret ServiceSummaryWidgetDefinitionType
 		return ret
 	}
@@ -535,7 +535,7 @@ func (o *ServiceSummaryWidgetDefinition) GetType() ServiceSummaryWidgetDefinitio
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetTypeOk() (*ServiceSummaryWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -634,3 +634,5 @@ func (v *NullableServiceSummaryWidgetDefinition) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -18,12 +18,12 @@ type WidgetLegendSize string
 
 // List of WidgetLegendSize
 const (
-	WIDGETLEGENDSIZE_ZERO    WidgetLegendSize = "0"
-	WIDGETLEGENDSIZE_TWO     WidgetLegendSize = "2"
-	WIDGETLEGENDSIZE_FOUR    WidgetLegendSize = "4"
-	WIDGETLEGENDSIZE_EIGHT   WidgetLegendSize = "8"
+	WIDGETLEGENDSIZE_ZERO WidgetLegendSize = "0"
+	WIDGETLEGENDSIZE_TWO WidgetLegendSize = "2"
+	WIDGETLEGENDSIZE_FOUR WidgetLegendSize = "4"
+	WIDGETLEGENDSIZE_EIGHT WidgetLegendSize = "8"
 	WIDGETLEGENDSIZE_SIXTEEN WidgetLegendSize = "16"
-	WIDGETLEGENDSIZE_AUTO    WidgetLegendSize = "auto"
+	WIDGETLEGENDSIZE_AUTO WidgetLegendSize = "auto"
 )
 
 func (v *WidgetLegendSize) UnmarshalJSON(src []byte) error {
@@ -33,7 +33,7 @@ func (v *WidgetLegendSize) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetLegendSize(value)
-	for _, existing := range []WidgetLegendSize{"0", "2", "4", "8", "16", "auto"} {
+	for _, existing := range []WidgetLegendSize{ "0", "2", "4", "8", "16", "auto",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -83,3 +83,4 @@ func (v *NullableWidgetLegendSize) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

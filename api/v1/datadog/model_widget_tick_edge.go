@@ -19,9 +19,9 @@ type WidgetTickEdge string
 // List of WidgetTickEdge
 const (
 	WIDGETTICKEDGE_BOTTOM WidgetTickEdge = "bottom"
-	WIDGETTICKEDGE_LEFT   WidgetTickEdge = "left"
-	WIDGETTICKEDGE_RIGHT  WidgetTickEdge = "right"
-	WIDGETTICKEDGE_TOP    WidgetTickEdge = "top"
+	WIDGETTICKEDGE_LEFT WidgetTickEdge = "left"
+	WIDGETTICKEDGE_RIGHT WidgetTickEdge = "right"
+	WIDGETTICKEDGE_TOP WidgetTickEdge = "top"
 )
 
 func (v *WidgetTickEdge) UnmarshalJSON(src []byte) error {
@@ -31,7 +31,7 @@ func (v *WidgetTickEdge) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetTickEdge(value)
-	for _, existing := range []WidgetTickEdge{"bottom", "left", "right", "top"} {
+	for _, existing := range []WidgetTickEdge{ "bottom", "left", "right", "top",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -81,3 +81,4 @@ func (v *NullableWidgetTickEdge) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

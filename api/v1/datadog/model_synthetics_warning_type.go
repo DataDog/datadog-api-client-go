@@ -28,7 +28,7 @@ func (v *SyntheticsWarningType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsWarningType(value)
-	for _, existing := range []SyntheticsWarningType{"user_locator"} {
+	for _, existing := range []SyntheticsWarningType{ "user_locator",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,3 +78,4 @@ func (v *NullableSyntheticsWarningType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

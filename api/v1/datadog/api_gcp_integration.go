@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,10 +26,11 @@ var (
 type GCPIntegrationApiService service
 
 type apiCreateGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
+
 
 func (r apiCreateGCPIntegrationRequest) Body(body GCPAccount) apiCreateGCPIntegrationRequest {
 	r.body = &body
@@ -43,7 +46,7 @@ Create a Datadog-GCP integration.
 func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context) apiCreateGCPIntegrationRequest {
 	return apiCreateGCPIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -71,7 +74,7 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -181,12 +184,12 @@ func (r apiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
+
 
 func (r apiDeleteGCPIntegrationRequest) Body(body GCPAccount) apiDeleteGCPIntegrationRequest {
 	r.body = &body
@@ -202,7 +205,7 @@ Delete a given Datadog-GCP integration.
 func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context) apiDeleteGCPIntegrationRequest {
 	return apiDeleteGCPIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -230,7 +233,7 @@ func (r apiDeleteGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -340,11 +343,11 @@ func (r apiDeleteGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *GCPIntegrationApiService
 }
+
 
 /*
 ListGCPIntegration List all GCP integrations
@@ -355,7 +358,7 @@ List all Datadog-GCP integrations configured in your Datadog account.
 func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) apiListGCPIntegrationRequest {
 	return apiListGCPIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -487,12 +490,12 @@ func (r apiListGCPIntegrationRequest) Execute() ([]GCPAccount, *_nethttp.Respons
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
+
 
 func (r apiUpdateGCPIntegrationRequest) Body(body GCPAccount) apiUpdateGCPIntegrationRequest {
 	r.body = &body
@@ -511,7 +514,7 @@ The unspecified fields will keep their original values.
 func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context) apiUpdateGCPIntegrationRequest {
 	return apiUpdateGCPIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -539,7 +542,7 @@ func (r apiUpdateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

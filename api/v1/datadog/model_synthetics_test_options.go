@@ -25,9 +25,9 @@ type SyntheticsTestOptions struct {
 	// Minimum amount of time before declaring the test has failed.
 	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
 	// Minimum amount of locations that are allowed to fail for the test.
-	MinLocationFailed *int64                      `json:"min_location_failed,omitempty"`
-	Retry             *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-	TickEvery         *SyntheticsTickInterval     `json:"tick_every,omitempty"`
+	MinLocationFailed *int64 `json:"min_location_failed,omitempty"`
+	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	TickEvery *SyntheticsTickInterval `json:"tick_every,omitempty"`
 }
 
 // NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
@@ -367,3 +367,5 @@ func (v *NullableSyntheticsTestOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

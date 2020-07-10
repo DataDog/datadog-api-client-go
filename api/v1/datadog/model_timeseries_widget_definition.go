@@ -15,29 +15,29 @@ import (
 // TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Analyzed Spans over time.
 type TimeseriesWidgetDefinition struct {
 	// List of widget events.
-	Events     *[]WidgetEvent    `json:"events,omitempty"`
+	Events *[]WidgetEvent `json:"events,omitempty"`
 	LegendSize *WidgetLegendSize `json:"legend_size,omitempty"`
 	// List of markers.
 	Markers *[]WidgetMarker `json:"markers,omitempty"`
 	// List of timeseries widget requests.
 	Requests []TimeseriesWidgetRequest `json:"requests"`
 	// (screenboard only) Show the legend for this widget.
-	ShowLegend *bool       `json:"show_legend,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	ShowLegend *bool `json:"show_legend,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      TimeseriesWidgetDefinitionType `json:"type"`
-	Yaxis     *WidgetAxis                    `json:"yaxis,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type TimeseriesWidgetDefinitionType `json:"type"`
+	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 }
 
 // NewTimeseriesWidgetDefinition instantiates a new TimeseriesWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ TimeseriesWidgetDefinitionType) *TimeseriesWidgetDefinition {
+func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ TimeseriesWidgetDefinitionType, ) *TimeseriesWidgetDefinition {
 	this := TimeseriesWidgetDefinition{}
 	this.Requests = requests
 	this.Type = type_
@@ -152,7 +152,7 @@ func (o *TimeseriesWidgetDefinition) SetMarkers(v []WidgetMarker) {
 
 // GetRequests returns the Requests field value
 func (o *TimeseriesWidgetDefinition) GetRequests() []TimeseriesWidgetRequest {
-	if o == nil {
+	if o == nil  {
 		var ret []TimeseriesWidgetRequest
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *TimeseriesWidgetDefinition) GetRequests() []TimeseriesWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *TimeseriesWidgetDefinition) GetRequestsOk() (*[]TimeseriesWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -336,7 +336,7 @@ func (o *TimeseriesWidgetDefinition) SetTitleSize(v string) {
 
 // GetType returns the Type field value
 func (o *TimeseriesWidgetDefinition) GetType() TimeseriesWidgetDefinitionType {
-	if o == nil {
+	if o == nil  {
 		var ret TimeseriesWidgetDefinitionType
 		return ret
 	}
@@ -347,7 +347,7 @@ func (o *TimeseriesWidgetDefinition) GetType() TimeseriesWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *TimeseriesWidgetDefinition) GetTypeOk() (*TimeseriesWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -463,3 +463,5 @@ func (v *NullableTimeseriesWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

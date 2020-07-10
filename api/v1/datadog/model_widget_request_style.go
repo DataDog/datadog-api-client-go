@@ -14,7 +14,7 @@ import (
 
 // WidgetRequestStyle Define request widget style.
 type WidgetRequestStyle struct {
-	LineType  *WidgetLineType  `json:"line_type,omitempty"`
+	LineType *WidgetLineType `json:"line_type,omitempty"`
 	LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
@@ -182,3 +182,5 @@ func (v *NullableWidgetRequestStyle) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

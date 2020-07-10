@@ -19,15 +19,15 @@ type SyntheticsBrowserError struct {
 	// Name of the error.
 	Name string `json:"name"`
 	// Status Code of the error.
-	StatusCode *int64                     `json:"statusCode,omitempty"`
-	Type       SyntheticsBrowserErrorType `json:"type"`
+	StatusCode *int64 `json:"statusCode,omitempty"`
+	Type SyntheticsBrowserErrorType `json:"type"`
 }
 
 // NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsBrowserError(description string, name string, type_ SyntheticsBrowserErrorType) *SyntheticsBrowserError {
+func NewSyntheticsBrowserError(description string, name string, type_ SyntheticsBrowserErrorType, ) *SyntheticsBrowserError {
 	this := SyntheticsBrowserError{}
 	this.Description = description
 	this.Name = name
@@ -45,7 +45,7 @@ func NewSyntheticsBrowserErrorWithDefaults() *SyntheticsBrowserError {
 
 // GetDescription returns the Description field value
 func (o *SyntheticsBrowserError) GetDescription() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *SyntheticsBrowserError) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserError) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Description, true
@@ -69,7 +69,7 @@ func (o *SyntheticsBrowserError) SetDescription(v string) {
 
 // GetName returns the Name field value
 func (o *SyntheticsBrowserError) GetName() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -80,7 +80,7 @@ func (o *SyntheticsBrowserError) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserError) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -125,7 +125,7 @@ func (o *SyntheticsBrowserError) SetStatusCode(v int64) {
 
 // GetType returns the Type field value
 func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsBrowserErrorType
 		return ret
 	}
@@ -136,7 +136,7 @@ func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserError) GetTypeOk() (*SyntheticsBrowserErrorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -199,3 +199,5 @@ func (v *NullableSyntheticsBrowserError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

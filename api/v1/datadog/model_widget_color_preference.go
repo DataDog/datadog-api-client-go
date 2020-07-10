@@ -19,7 +19,7 @@ type WidgetColorPreference string
 // List of WidgetColorPreference
 const (
 	WIDGETCOLORPREFERENCE_BACKGROUND WidgetColorPreference = "background"
-	WIDGETCOLORPREFERENCE_TEXT       WidgetColorPreference = "text"
+	WIDGETCOLORPREFERENCE_TEXT WidgetColorPreference = "text"
 )
 
 func (v *WidgetColorPreference) UnmarshalJSON(src []byte) error {
@@ -29,7 +29,7 @@ func (v *WidgetColorPreference) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetColorPreference(value)
-	for _, existing := range []WidgetColorPreference{"background", "text"} {
+	for _, existing := range []WidgetColorPreference{ "background", "text",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetColorPreference) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -17,8 +17,8 @@ type SyntheticsBrowserTestResultData struct {
 	// Type of browser device used for the browser test.
 	BrowserType *string `json:"browserType,omitempty"`
 	// Browser version used for the browser test.
-	BrowserVersion *string           `json:"browserVersion,omitempty"`
-	Device         *SyntheticsDevice `json:"device,omitempty"`
+	BrowserVersion *string `json:"browserVersion,omitempty"`
+	Device *SyntheticsDevice `json:"device,omitempty"`
 	// Global duration in second of the browser test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Error returned for the browser test.
@@ -479,3 +479,5 @@ func (v *NullableSyntheticsBrowserTestResultData) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

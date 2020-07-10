@@ -20,11 +20,11 @@ type SyntheticsAPITestResultFull struct {
 	// Version of the API test used.
 	CheckVersion *int64 `json:"check_version,omitempty"`
 	// Locations for which to query the API test results.
-	ProbeDc *string                      `json:"probe_dc,omitempty"`
-	Result  *SyntheticsAPITestResultData `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	Result *SyntheticsAPITestResultData `json:"result,omitempty"`
 	// ID of the API test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 }
 
 // NewSyntheticsAPITestResultFull instantiates a new SyntheticsAPITestResultFull object
@@ -329,3 +329,5 @@ func (v *NullableSyntheticsAPITestResultFull) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

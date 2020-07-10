@@ -24,7 +24,7 @@ type WidgetEvent struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidgetEvent(q string) *WidgetEvent {
+func NewWidgetEvent(q string, ) *WidgetEvent {
 	this := WidgetEvent{}
 	this.Q = q
 	return &this
@@ -40,7 +40,7 @@ func NewWidgetEventWithDefaults() *WidgetEvent {
 
 // GetQ returns the Q field value
 func (o *WidgetEvent) GetQ() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *WidgetEvent) GetQ() string {
 // GetQOk returns a tuple with the Q field value
 // and a boolean to check if the value has been set.
 func (o *WidgetEvent) GetQOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Q, true
@@ -140,3 +140,5 @@ func (v *NullableWidgetEvent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

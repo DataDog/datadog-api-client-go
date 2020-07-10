@@ -27,10 +27,11 @@ var (
 type ServiceLevelObjectivesApiService service
 
 type apiCheckCanDeleteSLORequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	ids        *string
+	ids *string
 }
+
 
 func (r apiCheckCanDeleteSLORequest) Ids(ids string) apiCheckCanDeleteSLORequest {
 	r.ids = &ids
@@ -47,7 +48,7 @@ assure an SLO can be deleted without disrupting a dashboard.
 func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLO(ctx _context.Context) apiCheckCanDeleteSLORequest {
 	return apiCheckCanDeleteSLORequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -75,7 +76,7 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteSLOResponse, *_net
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.ids == nil {
 		return localVarReturnValue, nil, reportError("ids is required and must be specified")
 	}
@@ -194,12 +195,12 @@ func (r apiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteSLOResponse, *_net
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiCreateSLORequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	body       *ServiceLevelObjectiveRequest
+	body *ServiceLevelObjectiveRequest
 }
+
 
 func (r apiCreateSLORequest) Body(body ServiceLevelObjectiveRequest) apiCreateSLORequest {
 	r.body = &body
@@ -215,7 +216,7 @@ Create a service level objective object.
 func (a *ServiceLevelObjectivesApiService) CreateSLO(ctx _context.Context) apiCreateSLORequest {
 	return apiCreateSLORequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -243,7 +244,7 @@ func (r apiCreateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, err
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -353,13 +354,13 @@ func (r apiCreateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, err
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteSLORequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	sloId      string
-	force      *string
+	sloId string
+	force *string
 }
+
 
 func (r apiDeleteSLORequest) Force(force string) apiDeleteSLORequest {
 	r.force = &force
@@ -379,8 +380,8 @@ a 409 conflict error because the SLO is referenced in a dashboard.
 func (a *ServiceLevelObjectivesApiService) DeleteSLO(ctx _context.Context, sloId string) apiDeleteSLORequest {
 	return apiDeleteSLORequest{
 		apiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		ctx: ctx,
+		sloId: sloId,
 	}
 }
 
@@ -404,12 +405,13 @@ func (r apiDeleteSLORequest) Execute() (SLODeleteResponse, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.force != nil {
 		localVarQueryParams.Add("force", parameterToString(*r.force, ""))
 	}
@@ -526,12 +528,12 @@ func (r apiDeleteSLORequest) Execute() (SLODeleteResponse, *_nethttp.Response, e
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteSLOTimeframeInBulkRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	body       *map[string][]SLOTimeframe
+	body *map[string][]SLOTimeframe
 }
+
 
 func (r apiDeleteSLOTimeframeInBulkRequest) Body(body map[string][]SLOTimeframe) apiDeleteSLOTimeframeInBulkRequest {
 	r.body = &body
@@ -551,7 +553,7 @@ objective object is deleted as well.
 func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulk(ctx _context.Context) apiDeleteSLOTimeframeInBulkRequest {
 	return apiDeleteSLOTimeframeInBulkRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -579,7 +581,7 @@ func (r apiDeleteSLOTimeframeInBulkRequest) Execute() (SLOBulkDeleteResponse, *_
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -689,12 +691,12 @@ func (r apiDeleteSLOTimeframeInBulkRequest) Execute() (SLOBulkDeleteResponse, *_
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetSLORequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	sloId      string
+	sloId string
 }
+
 
 /*
 GetSLO Get a SLO's details
@@ -706,8 +708,8 @@ Get a service level objective object.
 func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId string) apiGetSLORequest {
 	return apiGetSLORequest{
 		apiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		ctx: ctx,
+		sloId: sloId,
 	}
 }
 
@@ -731,11 +733,12 @@ func (r apiGetSLORequest) Execute() (SLOResponse, *_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -840,14 +843,14 @@ func (r apiGetSLORequest) Execute() (SLOResponse, *_nethttp.Response, error) {
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetSLOHistoryRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	sloId      string
-	fromTs     *int64
-	toTs       *int64
+	sloId string
+	fromTs *int64
+	toTs *int64
 }
+
 
 func (r apiGetSLOHistoryRequest) FromTs(fromTs int64) apiGetSLOHistoryRequest {
 	r.fromTs = &fromTs
@@ -876,8 +879,8 @@ Examples of both are shown.
 func (a *ServiceLevelObjectivesApiService) GetSLOHistory(ctx _context.Context, sloId string) apiGetSLOHistoryRequest {
 	return apiGetSLOHistoryRequest{
 		apiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		ctx: ctx,
+		sloId: sloId,
 	}
 }
 
@@ -896,9 +899,9 @@ func (r apiGetSLOHistoryRequest) Execute() (SLOHistoryResponse, *_nethttp.Respon
 	)
 	operationId := "GetSLOHistory"
 	if r.apiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLOHistory")
@@ -907,16 +910,17 @@ func (r apiGetSLOHistoryRequest) Execute() (SLOHistoryResponse, *_nethttp.Respon
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}/history"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.fromTs == nil {
 		return localVarReturnValue, nil, reportError("fromTs is required and must be specified")
 	}
-
+	
 	if r.toTs == nil {
 		return localVarReturnValue, nil, reportError("toTs is required and must be specified")
 	}
@@ -1036,12 +1040,12 @@ func (r apiGetSLOHistoryRequest) Execute() (SLOHistoryResponse, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListSLOsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	ids        *string
+	ids *string
 }
+
 
 func (r apiListSLOsRequest) Ids(ids string) apiListSLOsRequest {
 	r.ids = &ids
@@ -1057,7 +1061,7 @@ Get multiple service level objective objects by their IDs.
 func (a *ServiceLevelObjectivesApiService) ListSLOs(ctx _context.Context) apiListSLOsRequest {
 	return apiListSLOsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1085,7 +1089,7 @@ func (r apiListSLOsRequest) Execute() (SLOListResponse, *_nethttp.Response, erro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.ids == nil {
 		return localVarReturnValue, nil, reportError("ids is required and must be specified")
 	}
@@ -1204,13 +1208,13 @@ func (r apiListSLOsRequest) Execute() (SLOListResponse, *_nethttp.Response, erro
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateSLORequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *ServiceLevelObjectivesApiService
-	sloId      string
-	body       *ServiceLevelObjective
+	sloId string
+	body *ServiceLevelObjective
 }
+
 
 func (r apiUpdateSLORequest) Body(body ServiceLevelObjective) apiUpdateSLORequest {
 	r.body = &body
@@ -1227,8 +1231,8 @@ Update the specified service level objective object.
 func (a *ServiceLevelObjectivesApiService) UpdateSLO(ctx _context.Context, sloId string) apiUpdateSLORequest {
 	return apiUpdateSLORequest{
 		apiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		ctx: ctx,
+		sloId: sloId,
 	}
 }
 
@@ -1252,12 +1256,13 @@ func (r apiUpdateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, err
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

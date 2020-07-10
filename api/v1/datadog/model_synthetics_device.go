@@ -15,8 +15,8 @@ import (
 // SyntheticsDevice Object describing the device used to perform the Synthetic test.
 type SyntheticsDevice struct {
 	// Screen height of the device.
-	Height int64              `json:"height"`
-	Id     SyntheticsDeviceID `json:"id"`
+	Height int64 `json:"height"`
+	Id SyntheticsDeviceID `json:"id"`
 	// Whether or not the device is a mobile.
 	IsMobile *bool `json:"isMobile,omitempty"`
 	// The device name.
@@ -29,7 +29,7 @@ type SyntheticsDevice struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsDevice(height int64, id SyntheticsDeviceID, name string, width int64) *SyntheticsDevice {
+func NewSyntheticsDevice(height int64, id SyntheticsDeviceID, name string, width int64, ) *SyntheticsDevice {
 	this := SyntheticsDevice{}
 	this.Height = height
 	this.Id = id
@@ -48,7 +48,7 @@ func NewSyntheticsDeviceWithDefaults() *SyntheticsDevice {
 
 // GetHeight returns the Height field value
 func (o *SyntheticsDevice) GetHeight() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *SyntheticsDevice) GetHeight() int64 {
 // GetHeightOk returns a tuple with the Height field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetHeightOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Height, true
@@ -72,7 +72,7 @@ func (o *SyntheticsDevice) SetHeight(v int64) {
 
 // GetId returns the Id field value
 func (o *SyntheticsDevice) GetId() SyntheticsDeviceID {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsDeviceID
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *SyntheticsDevice) GetId() SyntheticsDeviceID {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetIdOk() (*SyntheticsDeviceID, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -128,7 +128,7 @@ func (o *SyntheticsDevice) SetIsMobile(v bool) {
 
 // GetName returns the Name field value
 func (o *SyntheticsDevice) GetName() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -139,7 +139,7 @@ func (o *SyntheticsDevice) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -152,7 +152,7 @@ func (o *SyntheticsDevice) SetName(v string) {
 
 // GetWidth returns the Width field value
 func (o *SyntheticsDevice) GetWidth() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *SyntheticsDevice) GetWidth() int64 {
 // GetWidthOk returns a tuple with the Width field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetWidthOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Width, true
@@ -229,3 +229,5 @@ func (v *NullableSyntheticsDevice) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

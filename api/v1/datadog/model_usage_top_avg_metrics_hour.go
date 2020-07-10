@@ -17,7 +17,7 @@ type UsageTopAvgMetricsHour struct {
 	// Average number of timeseries per hour in which the metric occurs.
 	AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
 	// Maximum number of timeseries per hour in which the metric occurs.
-	MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
+	MaxMetricHour *int64 `json:"max_metric_hour,omitempty"`
 	MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
 	// Contains the custom metric name.
 	MetricName *string `json:"metric_name,omitempty"`
@@ -220,3 +220,5 @@ func (v *NullableUsageTopAvgMetricsHour) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

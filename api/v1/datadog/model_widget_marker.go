@@ -14,7 +14,7 @@ import (
 
 // WidgetMarker Markers allow you to add visual conditional formatting for your graphs.
 type WidgetMarker struct {
-	// Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold
+	// Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold 
 	DisplayType *string `json:"display_type,omitempty"`
 	// Label to display over the marker.
 	Label *string `json:"label,omitempty"`
@@ -28,7 +28,7 @@ type WidgetMarker struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidgetMarker(value string) *WidgetMarker {
+func NewWidgetMarker(value string, ) *WidgetMarker {
 	this := WidgetMarker{}
 	this.Value = value
 	return &this
@@ -140,7 +140,7 @@ func (o *WidgetMarker) SetTime(v string) {
 
 // GetValue returns the Value field value
 func (o *WidgetMarker) GetValue() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -151,7 +151,7 @@ func (o *WidgetMarker) GetValue() string {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 func (o *WidgetMarker) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Value, true
@@ -214,3 +214,5 @@ func (v *NullableWidgetMarker) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

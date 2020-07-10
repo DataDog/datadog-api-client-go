@@ -24,15 +24,15 @@ type SyntheticsSSLCertificate struct {
 	// MD5 digest of the DER-encoded Certificate information.
 	Fingerprint *string `json:"fingerprint,omitempty"`
 	// SHA-1 digest of the DER-encoded Certificate information.
-	Fingerprint256 *string                         `json:"fingerprint256,omitempty"`
-	Issuer         *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
+	Fingerprint256 *string `json:"fingerprint256,omitempty"`
+	Issuer *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
 	// Modulus associated to the SSL certificate private key.
 	Modulus *string `json:"modulus,omitempty"`
 	// TLS protocol used for the test.
 	Protocol *string `json:"protocol,omitempty"`
 	// Serial Number assigned by Symantec to the SSL certificate.
-	SerialNumber *string                          `json:"serialNumber,omitempty"`
-	Subject      *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
+	SerialNumber *string `json:"serialNumber,omitempty"`
+	Subject *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
 	// Date from which the SSL certificate is valid.
 	ValidFrom *time.Time `json:"validFrom,omitempty"`
 	// Date until which the SSL certificate is valid.
@@ -516,3 +516,5 @@ func (v *NullableSyntheticsSSLCertificate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

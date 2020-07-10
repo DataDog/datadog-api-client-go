@@ -29,7 +29,7 @@ func (v *WidgetChangeType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetChangeType(value)
-	for _, existing := range []WidgetChangeType{"absolute", "relative"} {
+	for _, existing := range []WidgetChangeType{ "absolute", "relative",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetChangeType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

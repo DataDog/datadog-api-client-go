@@ -18,7 +18,7 @@ type WidgetGrouping string
 
 // List of WidgetGrouping
 const (
-	WIDGETGROUPING_CHECK   WidgetGrouping = "check"
+	WIDGETGROUPING_CHECK WidgetGrouping = "check"
 	WIDGETGROUPING_CLUSTER WidgetGrouping = "cluster"
 )
 
@@ -29,7 +29,7 @@ func (v *WidgetGrouping) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetGrouping(value)
-	for _, existing := range []WidgetGrouping{"check", "cluster"} {
+	for _, existing := range []WidgetGrouping{ "check", "cluster",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetGrouping) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

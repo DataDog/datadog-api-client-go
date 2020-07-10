@@ -20,7 +20,7 @@ type WidgetLineType string
 const (
 	WIDGETLINETYPE_DASHED WidgetLineType = "dashed"
 	WIDGETLINETYPE_DOTTED WidgetLineType = "dotted"
-	WIDGETLINETYPE_SOLID  WidgetLineType = "solid"
+	WIDGETLINETYPE_SOLID WidgetLineType = "solid"
 )
 
 func (v *WidgetLineType) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *WidgetLineType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetLineType(value)
-	for _, existing := range []WidgetLineType{"dashed", "dotted", "solid"} {
+	for _, existing := range []WidgetLineType{ "dashed", "dotted", "solid",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetLineType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

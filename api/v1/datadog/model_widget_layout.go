@@ -28,7 +28,7 @@ type WidgetLayout struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout {
+func NewWidgetLayout(height int64, width int64, x int64, y int64, ) *WidgetLayout {
 	this := WidgetLayout{}
 	this.Height = height
 	this.Width = width
@@ -47,7 +47,7 @@ func NewWidgetLayoutWithDefaults() *WidgetLayout {
 
 // GetHeight returns the Height field value
 func (o *WidgetLayout) GetHeight() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *WidgetLayout) GetHeight() int64 {
 // GetHeightOk returns a tuple with the Height field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetHeightOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Height, true
@@ -71,7 +71,7 @@ func (o *WidgetLayout) SetHeight(v int64) {
 
 // GetWidth returns the Width field value
 func (o *WidgetLayout) GetWidth() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *WidgetLayout) GetWidth() int64 {
 // GetWidthOk returns a tuple with the Width field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetWidthOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Width, true
@@ -95,7 +95,7 @@ func (o *WidgetLayout) SetWidth(v int64) {
 
 // GetX returns the X field value
 func (o *WidgetLayout) GetX() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *WidgetLayout) GetX() int64 {
 // GetXOk returns a tuple with the X field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetXOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.X, true
@@ -119,7 +119,7 @@ func (o *WidgetLayout) SetX(v int64) {
 
 // GetY returns the Y field value
 func (o *WidgetLayout) GetY() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *WidgetLayout) GetY() int64 {
 // GetYOk returns a tuple with the Y field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetYOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Y, true
@@ -193,3 +193,5 @@ func (v *NullableWidgetLayout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

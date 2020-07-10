@@ -18,13 +18,13 @@ type SyntheticsResourceType string
 
 // List of SyntheticsResourceType
 const (
-	SYNTHETICSRESOURCETYPE_DOCUMENT   SyntheticsResourceType = "document"
+	SYNTHETICSRESOURCETYPE_DOCUMENT SyntheticsResourceType = "document"
 	SYNTHETICSRESOURCETYPE_STYLESHEET SyntheticsResourceType = "stylesheet"
-	SYNTHETICSRESOURCETYPE_FETCH      SyntheticsResourceType = "fetch"
-	SYNTHETICSRESOURCETYPE_IMAGE      SyntheticsResourceType = "image"
-	SYNTHETICSRESOURCETYPE_SCRIPT     SyntheticsResourceType = "script"
-	SYNTHETICSRESOURCETYPE_XHR        SyntheticsResourceType = "xhr"
-	SYNTHETICSRESOURCETYPE_OTHER      SyntheticsResourceType = "other"
+	SYNTHETICSRESOURCETYPE_FETCH SyntheticsResourceType = "fetch"
+	SYNTHETICSRESOURCETYPE_IMAGE SyntheticsResourceType = "image"
+	SYNTHETICSRESOURCETYPE_SCRIPT SyntheticsResourceType = "script"
+	SYNTHETICSRESOURCETYPE_XHR SyntheticsResourceType = "xhr"
+	SYNTHETICSRESOURCETYPE_OTHER SyntheticsResourceType = "other"
 )
 
 func (v *SyntheticsResourceType) UnmarshalJSON(src []byte) error {
@@ -34,7 +34,7 @@ func (v *SyntheticsResourceType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsResourceType(value)
-	for _, existing := range []SyntheticsResourceType{"document", "stylesheet", "fetch", "image", "script", "xhr", "other"} {
+	for _, existing := range []SyntheticsResourceType{ "document", "stylesheet", "fetch", "image", "script", "xhr", "other",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -84,3 +84,4 @@ func (v *NullableSyntheticsResourceType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

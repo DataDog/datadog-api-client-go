@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,9 +26,10 @@ var (
 type IPRangesApiService service
 
 type apiGetIPRangesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *IPRangesApiService
 }
+
 
 /*
 GetIPRanges List IP Ranges
@@ -37,7 +40,7 @@ Get information about Datadog IP ranges.
 func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) apiGetIPRangesRequest {
 	return apiGetIPRangesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 

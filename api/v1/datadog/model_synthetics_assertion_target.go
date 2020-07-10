@@ -18,15 +18,15 @@ type SyntheticsAssertionTarget struct {
 	// The associated assertion property.
 	Property *string `json:"property,omitempty"`
 	// Value used by the operator.
-	Target *interface{}            `json:"target,omitempty"`
-	Type   SyntheticsAssertionType `json:"type"`
+	Target *interface{} `json:"target,omitempty"`
+	Type SyntheticsAssertionType `json:"type"`
 }
 
 // NewSyntheticsAssertionTarget instantiates a new SyntheticsAssertionTarget object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, type_ SyntheticsAssertionType) *SyntheticsAssertionTarget {
+func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, type_ SyntheticsAssertionType, ) *SyntheticsAssertionTarget {
 	this := SyntheticsAssertionTarget{}
 	this.Operator = operator
 	this.Type = type_
@@ -43,7 +43,7 @@ func NewSyntheticsAssertionTargetWithDefaults() *SyntheticsAssertionTarget {
 
 // GetOperator returns the Operator field value
 func (o *SyntheticsAssertionTarget) GetOperator() SyntheticsAssertionOperator {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsAssertionOperator
 		return ret
 	}
@@ -54,7 +54,7 @@ func (o *SyntheticsAssertionTarget) GetOperator() SyntheticsAssertionOperator {
 // GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAssertionTarget) GetOperatorOk() (*SyntheticsAssertionOperator, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Operator, true
@@ -131,7 +131,7 @@ func (o *SyntheticsAssertionTarget) SetTarget(v interface{}) {
 
 // GetType returns the Type field value
 func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsAssertionType
 		return ret
 	}
@@ -142,7 +142,7 @@ func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAssertionTarget) GetTypeOk() (*SyntheticsAssertionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -205,3 +205,5 @@ func (v *NullableSyntheticsAssertionTarget) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

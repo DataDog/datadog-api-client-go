@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type EventsApiService service
 
 type apiGetEventRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *EventsApiService
-	eventId    int64
+	eventId int64
 }
+
 
 /*
 GetEvent Get an event
@@ -43,8 +46,8 @@ you may see characters such as `%`,`\`,`n` in your output.
 func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) apiGetEventRequest {
 	return apiGetEventRequest{
 		apiService: a,
-		ctx:        ctx,
-		eventId:    eventId,
+		ctx: ctx,
+		eventId: eventId,
 	}
 }
 
@@ -68,11 +71,12 @@ func (r apiGetEventRequest) Execute() (EventResponse, *_nethttp.Response, error)
 	}
 
 	localVarPath := localBasePath + "/api/v1/events/{event_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", _neturl.PathEscape(parameterToString(r.eventId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", _neturl.PathEscape(parameterToString(r.eventId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -177,17 +181,17 @@ func (r apiGetEventRequest) Execute() (EventResponse, *_nethttp.Response, error)
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListEventsRequest struct {
-	ctx          _context.Context
-	apiService   *EventsApiService
-	start        *int64
-	end          *int64
-	priority     *EventPriority
-	sources      *string
-	tags         *string
+	ctx _context.Context
+	apiService *EventsApiService
+	start *int64
+	end *int64
+	priority *EventPriority
+	sources *string
+	tags *string
 	unaggregated *bool
 }
+
 
 func (r apiListEventsRequest) Start(start int64) apiListEventsRequest {
 	r.start = &start
@@ -230,7 +234,7 @@ The event stream can be queried and filtered by time, priority, sources and tags
 func (a *EventsApiService) ListEvents(ctx _context.Context) apiListEventsRequest {
 	return apiListEventsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -258,15 +262,15 @@ func (r apiListEventsRequest) Execute() (EventListResponse, *_nethttp.Response, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.start == nil {
 		return localVarReturnValue, nil, reportError("start is required and must be specified")
 	}
-
+	
 	if r.end == nil {
 		return localVarReturnValue, nil, reportError("end is required and must be specified")
 	}
-
+				
 	localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	localVarQueryParams.Add("end", parameterToString(*r.end, ""))
 	if r.priority != nil {

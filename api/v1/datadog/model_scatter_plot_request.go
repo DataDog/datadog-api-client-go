@@ -14,14 +14,14 @@ import (
 
 // ScatterPlotRequest Updated scatter plot.
 type ScatterPlotRequest struct {
-	Aggregator   *WidgetAggregator       `json:"aggregator,omitempty"`
-	ApmQuery     *LogQueryDefinition     `json:"apm_query,omitempty"`
-	EventQuery   *EventQueryDefinition   `json:"event_query,omitempty"`
-	LogQuery     *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery *LogQueryDefinition     `json:"network_query,omitempty"`
+	Aggregator *WidgetAggregator `json:"aggregator,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	EventQuery *EventQueryDefinition `json:"event_query,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
 	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
 	// Query definition.
-	Q        *string             `json:"q,omitempty"`
+	Q *string `json:"q,omitempty"`
 	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 }
 
@@ -362,3 +362,5 @@ func (v *NullableScatterPlotRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

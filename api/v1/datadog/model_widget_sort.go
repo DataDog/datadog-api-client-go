@@ -18,7 +18,7 @@ type WidgetSort string
 
 // List of WidgetSort
 const (
-	WIDGETSORT_ASCENDING  WidgetSort = "asc"
+	WIDGETSORT_ASCENDING WidgetSort = "asc"
 	WIDGETSORT_DESCENDING WidgetSort = "desc"
 )
 
@@ -29,7 +29,7 @@ func (v *WidgetSort) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetSort(value)
-	for _, existing := range []WidgetSort{"asc", "desc"} {
+	for _, existing := range []WidgetSort{ "asc", "desc",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

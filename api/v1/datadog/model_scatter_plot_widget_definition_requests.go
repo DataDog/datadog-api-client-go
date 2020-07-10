@@ -22,7 +22,7 @@ type ScatterPlotWidgetDefinitionRequests struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScatterPlotWidgetDefinitionRequests(x ScatterPlotRequest, y ScatterPlotRequest) *ScatterPlotWidgetDefinitionRequests {
+func NewScatterPlotWidgetDefinitionRequests(x ScatterPlotRequest, y ScatterPlotRequest, ) *ScatterPlotWidgetDefinitionRequests {
 	this := ScatterPlotWidgetDefinitionRequests{}
 	this.X = x
 	this.Y = y
@@ -39,7 +39,7 @@ func NewScatterPlotWidgetDefinitionRequestsWithDefaults() *ScatterPlotWidgetDefi
 
 // GetX returns the X field value
 func (o *ScatterPlotWidgetDefinitionRequests) GetX() ScatterPlotRequest {
-	if o == nil {
+	if o == nil  {
 		var ret ScatterPlotRequest
 		return ret
 	}
@@ -50,7 +50,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) GetX() ScatterPlotRequest {
 // GetXOk returns a tuple with the X field value
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinitionRequests) GetXOk() (*ScatterPlotRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.X, true
@@ -63,7 +63,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) SetX(v ScatterPlotRequest) {
 
 // GetY returns the Y field value
 func (o *ScatterPlotWidgetDefinitionRequests) GetY() ScatterPlotRequest {
-	if o == nil {
+	if o == nil  {
 		var ret ScatterPlotRequest
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) GetY() ScatterPlotRequest {
 // GetYOk returns a tuple with the Y field value
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinitionRequests) GetYOk() (*ScatterPlotRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Y, true
@@ -131,3 +131,5 @@ func (v *NullableScatterPlotWidgetDefinitionRequests) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

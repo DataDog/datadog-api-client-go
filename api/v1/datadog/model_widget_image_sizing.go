@@ -18,8 +18,8 @@ type WidgetImageSizing string
 
 // List of WidgetImageSizing
 const (
-	WIDGETIMAGESIZING_ZOOM   WidgetImageSizing = "zoom"
-	WIDGETIMAGESIZING_FIT    WidgetImageSizing = "fit"
+	WIDGETIMAGESIZING_ZOOM WidgetImageSizing = "zoom"
+	WIDGETIMAGESIZING_FIT WidgetImageSizing = "fit"
 	WIDGETIMAGESIZING_CENTER WidgetImageSizing = "center"
 )
 
@@ -30,7 +30,7 @@ func (v *WidgetImageSizing) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetImageSizing(value)
-	for _, existing := range []WidgetImageSizing{"zoom", "fit", "center"} {
+	for _, existing := range []WidgetImageSizing{ "zoom", "fit", "center",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetImageSizing) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

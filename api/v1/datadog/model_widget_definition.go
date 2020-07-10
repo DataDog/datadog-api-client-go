@@ -15,151 +15,152 @@ import (
 
 // WidgetDefinition - [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
 type WidgetDefinition struct {
-	AlertGraphWidgetDefinition     *AlertGraphWidgetDefinition
-	AlertValueWidgetDefinition     *AlertValueWidgetDefinition
-	ChangeWidgetDefinition         *ChangeWidgetDefinition
-	CheckStatusWidgetDefinition    *CheckStatusWidgetDefinition
-	DistributionWidgetDefinition   *DistributionWidgetDefinition
-	EventStreamWidgetDefinition    *EventStreamWidgetDefinition
-	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition
-	FreeTextWidgetDefinition       *FreeTextWidgetDefinition
-	GroupWidgetDefinition          *GroupWidgetDefinition
-	HeatMapWidgetDefinition        *HeatMapWidgetDefinition
-	HostMapWidgetDefinition        *HostMapWidgetDefinition
-	IFrameWidgetDefinition         *IFrameWidgetDefinition
-	ImageWidgetDefinition          *ImageWidgetDefinition
-	LogStreamWidgetDefinition      *LogStreamWidgetDefinition
+	AlertGraphWidgetDefinition *AlertGraphWidgetDefinition
+	AlertValueWidgetDefinition *AlertValueWidgetDefinition
+	ChangeWidgetDefinition *ChangeWidgetDefinition
+	CheckStatusWidgetDefinition *CheckStatusWidgetDefinition
+	DistributionWidgetDefinition *DistributionWidgetDefinition
+	EventStreamWidgetDefinition *EventStreamWidgetDefinition
+	EventTimelineWidgetDefinition *EventTimelineWidgetDefinition
+	FreeTextWidgetDefinition *FreeTextWidgetDefinition
+	GroupWidgetDefinition *GroupWidgetDefinition
+	HeatMapWidgetDefinition *HeatMapWidgetDefinition
+	HostMapWidgetDefinition *HostMapWidgetDefinition
+	IFrameWidgetDefinition *IFrameWidgetDefinition
+	ImageWidgetDefinition *ImageWidgetDefinition
+	LogStreamWidgetDefinition *LogStreamWidgetDefinition
 	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
-	NoteWidgetDefinition           *NoteWidgetDefinition
-	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
-	SLOWidgetDefinition            *SLOWidgetDefinition
-	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
-	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
+	NoteWidgetDefinition *NoteWidgetDefinition
+	QueryValueWidgetDefinition *QueryValueWidgetDefinition
+	SLOWidgetDefinition *SLOWidgetDefinition
+	ScatterPlotWidgetDefinition *ScatterPlotWidgetDefinition
+	ServiceMapWidgetDefinition *ServiceMapWidgetDefinition
 	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
-	TableWidgetDefinition          *TableWidgetDefinition
-	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
-	ToplistWidgetDefinition        *ToplistWidgetDefinition
+	TableWidgetDefinition *TableWidgetDefinition
+	TimeseriesWidgetDefinition *TimeseriesWidgetDefinition
+	ToplistWidgetDefinition *ToplistWidgetDefinition
 }
 
 // AlertGraphWidgetDefinitionAsWidgetDefinition is a convenience function that returns AlertGraphWidgetDefinition wrapped in WidgetDefinition
 func AlertGraphWidgetDefinitionAsWidgetDefinition(v *AlertGraphWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{AlertGraphWidgetDefinition: v}
+	return WidgetDefinition{ AlertGraphWidgetDefinition: v}
 }
 
 // AlertValueWidgetDefinitionAsWidgetDefinition is a convenience function that returns AlertValueWidgetDefinition wrapped in WidgetDefinition
 func AlertValueWidgetDefinitionAsWidgetDefinition(v *AlertValueWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{AlertValueWidgetDefinition: v}
+	return WidgetDefinition{ AlertValueWidgetDefinition: v}
 }
 
 // ChangeWidgetDefinitionAsWidgetDefinition is a convenience function that returns ChangeWidgetDefinition wrapped in WidgetDefinition
 func ChangeWidgetDefinitionAsWidgetDefinition(v *ChangeWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{ChangeWidgetDefinition: v}
+	return WidgetDefinition{ ChangeWidgetDefinition: v}
 }
 
 // CheckStatusWidgetDefinitionAsWidgetDefinition is a convenience function that returns CheckStatusWidgetDefinition wrapped in WidgetDefinition
 func CheckStatusWidgetDefinitionAsWidgetDefinition(v *CheckStatusWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{CheckStatusWidgetDefinition: v}
+	return WidgetDefinition{ CheckStatusWidgetDefinition: v}
 }
 
 // DistributionWidgetDefinitionAsWidgetDefinition is a convenience function that returns DistributionWidgetDefinition wrapped in WidgetDefinition
 func DistributionWidgetDefinitionAsWidgetDefinition(v *DistributionWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{DistributionWidgetDefinition: v}
+	return WidgetDefinition{ DistributionWidgetDefinition: v}
 }
 
 // EventStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns EventStreamWidgetDefinition wrapped in WidgetDefinition
 func EventStreamWidgetDefinitionAsWidgetDefinition(v *EventStreamWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{EventStreamWidgetDefinition: v}
+	return WidgetDefinition{ EventStreamWidgetDefinition: v}
 }
 
 // EventTimelineWidgetDefinitionAsWidgetDefinition is a convenience function that returns EventTimelineWidgetDefinition wrapped in WidgetDefinition
 func EventTimelineWidgetDefinitionAsWidgetDefinition(v *EventTimelineWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{EventTimelineWidgetDefinition: v}
+	return WidgetDefinition{ EventTimelineWidgetDefinition: v}
 }
 
 // FreeTextWidgetDefinitionAsWidgetDefinition is a convenience function that returns FreeTextWidgetDefinition wrapped in WidgetDefinition
 func FreeTextWidgetDefinitionAsWidgetDefinition(v *FreeTextWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{FreeTextWidgetDefinition: v}
+	return WidgetDefinition{ FreeTextWidgetDefinition: v}
 }
 
 // GroupWidgetDefinitionAsWidgetDefinition is a convenience function that returns GroupWidgetDefinition wrapped in WidgetDefinition
 func GroupWidgetDefinitionAsWidgetDefinition(v *GroupWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{GroupWidgetDefinition: v}
+	return WidgetDefinition{ GroupWidgetDefinition: v}
 }
 
 // HeatMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns HeatMapWidgetDefinition wrapped in WidgetDefinition
 func HeatMapWidgetDefinitionAsWidgetDefinition(v *HeatMapWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{HeatMapWidgetDefinition: v}
+	return WidgetDefinition{ HeatMapWidgetDefinition: v}
 }
 
 // HostMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns HostMapWidgetDefinition wrapped in WidgetDefinition
 func HostMapWidgetDefinitionAsWidgetDefinition(v *HostMapWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{HostMapWidgetDefinition: v}
+	return WidgetDefinition{ HostMapWidgetDefinition: v}
 }
 
 // IFrameWidgetDefinitionAsWidgetDefinition is a convenience function that returns IFrameWidgetDefinition wrapped in WidgetDefinition
 func IFrameWidgetDefinitionAsWidgetDefinition(v *IFrameWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{IFrameWidgetDefinition: v}
+	return WidgetDefinition{ IFrameWidgetDefinition: v}
 }
 
 // ImageWidgetDefinitionAsWidgetDefinition is a convenience function that returns ImageWidgetDefinition wrapped in WidgetDefinition
 func ImageWidgetDefinitionAsWidgetDefinition(v *ImageWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{ImageWidgetDefinition: v}
+	return WidgetDefinition{ ImageWidgetDefinition: v}
 }
 
 // LogStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns LogStreamWidgetDefinition wrapped in WidgetDefinition
 func LogStreamWidgetDefinitionAsWidgetDefinition(v *LogStreamWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{LogStreamWidgetDefinition: v}
+	return WidgetDefinition{ LogStreamWidgetDefinition: v}
 }
 
 // MonitorSummaryWidgetDefinitionAsWidgetDefinition is a convenience function that returns MonitorSummaryWidgetDefinition wrapped in WidgetDefinition
 func MonitorSummaryWidgetDefinitionAsWidgetDefinition(v *MonitorSummaryWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{MonitorSummaryWidgetDefinition: v}
+	return WidgetDefinition{ MonitorSummaryWidgetDefinition: v}
 }
 
 // NoteWidgetDefinitionAsWidgetDefinition is a convenience function that returns NoteWidgetDefinition wrapped in WidgetDefinition
 func NoteWidgetDefinitionAsWidgetDefinition(v *NoteWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{NoteWidgetDefinition: v}
+	return WidgetDefinition{ NoteWidgetDefinition: v}
 }
 
 // QueryValueWidgetDefinitionAsWidgetDefinition is a convenience function that returns QueryValueWidgetDefinition wrapped in WidgetDefinition
 func QueryValueWidgetDefinitionAsWidgetDefinition(v *QueryValueWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{QueryValueWidgetDefinition: v}
+	return WidgetDefinition{ QueryValueWidgetDefinition: v}
 }
 
 // SLOWidgetDefinitionAsWidgetDefinition is a convenience function that returns SLOWidgetDefinition wrapped in WidgetDefinition
 func SLOWidgetDefinitionAsWidgetDefinition(v *SLOWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{SLOWidgetDefinition: v}
+	return WidgetDefinition{ SLOWidgetDefinition: v}
 }
 
 // ScatterPlotWidgetDefinitionAsWidgetDefinition is a convenience function that returns ScatterPlotWidgetDefinition wrapped in WidgetDefinition
 func ScatterPlotWidgetDefinitionAsWidgetDefinition(v *ScatterPlotWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{ScatterPlotWidgetDefinition: v}
+	return WidgetDefinition{ ScatterPlotWidgetDefinition: v}
 }
 
 // ServiceMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns ServiceMapWidgetDefinition wrapped in WidgetDefinition
 func ServiceMapWidgetDefinitionAsWidgetDefinition(v *ServiceMapWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{ServiceMapWidgetDefinition: v}
+	return WidgetDefinition{ ServiceMapWidgetDefinition: v}
 }
 
 // ServiceSummaryWidgetDefinitionAsWidgetDefinition is a convenience function that returns ServiceSummaryWidgetDefinition wrapped in WidgetDefinition
 func ServiceSummaryWidgetDefinitionAsWidgetDefinition(v *ServiceSummaryWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{ServiceSummaryWidgetDefinition: v}
+	return WidgetDefinition{ ServiceSummaryWidgetDefinition: v}
 }
 
 // TableWidgetDefinitionAsWidgetDefinition is a convenience function that returns TableWidgetDefinition wrapped in WidgetDefinition
 func TableWidgetDefinitionAsWidgetDefinition(v *TableWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{TableWidgetDefinition: v}
+	return WidgetDefinition{ TableWidgetDefinition: v}
 }
 
 // TimeseriesWidgetDefinitionAsWidgetDefinition is a convenience function that returns TimeseriesWidgetDefinition wrapped in WidgetDefinition
 func TimeseriesWidgetDefinitionAsWidgetDefinition(v *TimeseriesWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{TimeseriesWidgetDefinition: v}
+	return WidgetDefinition{ TimeseriesWidgetDefinition: v}
 }
 
 // ToplistWidgetDefinitionAsWidgetDefinition is a convenience function that returns ToplistWidgetDefinition wrapped in WidgetDefinition
 func ToplistWidgetDefinitionAsWidgetDefinition(v *ToplistWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{ToplistWidgetDefinition: v}
+	return WidgetDefinition{ ToplistWidgetDefinition: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
@@ -614,7 +615,7 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *WidgetDefinition) GetActualInstance() interface{} {
+func (obj *WidgetDefinition) GetActualInstance() (interface{}) {
 	if obj.AlertGraphWidgetDefinition != nil {
 		return obj.AlertGraphWidgetDefinition
 	}
@@ -750,3 +751,5 @@ func (v *NullableWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

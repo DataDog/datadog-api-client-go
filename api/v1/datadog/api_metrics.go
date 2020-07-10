@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type MetricsApiService service
 
 type apiGetMetricMetadataRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MetricsApiService
 	metricName string
 }
+
 
 /*
 GetMetricMetadata Get metric metadata
@@ -40,7 +43,7 @@ Get metadata about a specific metric.
 func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName string) apiGetMetricMetadataRequest {
 	return apiGetMetricMetadataRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		metricName: metricName,
 	}
 }
@@ -65,11 +68,12 @@ func (r apiGetMetricMetadataRequest) Execute() (MetricMetadata, *_nethttp.Respon
 	}
 
 	localVarPath := localBasePath + "/api/v1/metrics/{metric_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -174,13 +178,13 @@ func (r apiGetMetricMetadataRequest) Execute() (MetricMetadata, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListActiveMetricsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MetricsApiService
-	from       *int64
-	host       *string
+	from *int64
+	host *string
 }
+
 
 func (r apiListActiveMetricsRequest) From(from int64) apiListActiveMetricsRequest {
 	r.from = &from
@@ -201,7 +205,7 @@ Get the list of actively reporting metrics from a given time until now.
 func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context) apiListActiveMetricsRequest {
 	return apiListActiveMetricsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -229,11 +233,11 @@ func (r apiListActiveMetricsRequest) Execute() (MetricsListResponse, *_nethttp.R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.from == nil {
 		return localVarReturnValue, nil, reportError("from is required and must be specified")
 	}
-
+	
 	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
 	if r.host != nil {
 		localVarQueryParams.Add("host", parameterToString(*r.host, ""))
@@ -341,12 +345,12 @@ func (r apiListActiveMetricsRequest) Execute() (MetricsListResponse, *_nethttp.R
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListMetricsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MetricsApiService
-	q          *string
+	q *string
 }
+
 
 func (r apiListMetricsRequest) Q(q string) apiListMetricsRequest {
 	r.q = &q
@@ -362,7 +366,7 @@ Search for metrics from the last 24 hours in Datadog.
 func (a *MetricsApiService) ListMetrics(ctx _context.Context) apiListMetricsRequest {
 	return apiListMetricsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -390,7 +394,7 @@ func (r apiListMetricsRequest) Execute() (MetricSearchResponse, *_nethttp.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.q == nil {
 		return localVarReturnValue, nil, reportError("q is required and must be specified")
 	}
@@ -499,14 +503,14 @@ func (r apiListMetricsRequest) Execute() (MetricSearchResponse, *_nethttp.Respon
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiQueryMetricsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MetricsApiService
-	from       *int64
-	to         *int64
-	query      *string
+	from *int64
+	to *int64
+	query *string
 }
+
 
 func (r apiQueryMetricsRequest) From(from int64) apiQueryMetricsRequest {
 	r.from = &from
@@ -532,7 +536,7 @@ Query timeseries points.
 func (a *MetricsApiService) QueryMetrics(ctx _context.Context) apiQueryMetricsRequest {
 	return apiQueryMetricsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -560,15 +564,15 @@ func (r apiQueryMetricsRequest) Execute() (MetricsQueryResponse, *_nethttp.Respo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.from == nil {
 		return localVarReturnValue, nil, reportError("from is required and must be specified")
 	}
-
+	
 	if r.to == nil {
 		return localVarReturnValue, nil, reportError("to is required and must be specified")
 	}
-
+	
 	if r.query == nil {
 		return localVarReturnValue, nil, reportError("query is required and must be specified")
 	}
@@ -679,13 +683,13 @@ func (r apiQueryMetricsRequest) Execute() (MetricsQueryResponse, *_nethttp.Respo
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateMetricMetadataRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MetricsApiService
 	metricName string
-	body       *MetricMetadata
+	body *MetricMetadata
 }
+
 
 func (r apiUpdateMetricMetadataRequest) Body(body MetricMetadata) apiUpdateMetricMetadataRequest {
 	r.body = &body
@@ -702,7 +706,7 @@ Edit metadata of a specific metric. Find out more about [supported types](https:
 func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricName string) apiUpdateMetricMetadataRequest {
 	return apiUpdateMetricMetadataRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		metricName: metricName,
 	}
 }
@@ -727,12 +731,13 @@ func (r apiUpdateMetricMetadataRequest) Execute() (MetricMetadata, *_nethttp.Res
 	}
 
 	localVarPath := localBasePath + "/api/v1/metrics/{metric_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

@@ -21,8 +21,8 @@ type SyntheticsStep struct {
 	// The parameters of the step.
 	Params *interface{} `json:"params,omitempty"`
 	// The time before declaring a step failed.
-	Timeout *float32            `json:"timeout,omitempty"`
-	Type    *SyntheticsStepType `json:"type,omitempty"`
+	Timeout *float32 `json:"timeout,omitempty"`
+	Type *SyntheticsStepType `json:"type,omitempty"`
 }
 
 // NewSyntheticsStep instantiates a new SyntheticsStep object
@@ -257,3 +257,5 @@ func (v *NullableSyntheticsStep) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

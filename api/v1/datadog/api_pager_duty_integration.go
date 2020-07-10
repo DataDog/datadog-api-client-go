@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type PagerDutyIntegrationApiService service
 
 type apiCreatePagerDutyIntegrationServiceRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *PagerDutyIntegrationApiService
-	body       *PagerDutyService
+	body *PagerDutyService
 }
+
 
 func (r apiCreatePagerDutyIntegrationServiceRequest) Body(body PagerDutyService) apiCreatePagerDutyIntegrationServiceRequest {
 	r.body = &body
@@ -44,7 +47,7 @@ Create a new service object in the PagerDuty integration.
 func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _context.Context) apiCreatePagerDutyIntegrationServiceRequest {
 	return apiCreatePagerDutyIntegrationServiceRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -72,7 +75,7 @@ func (r apiCreatePagerDutyIntegrationServiceRequest) Execute() (PagerDutyService
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -182,12 +185,12 @@ func (r apiCreatePagerDutyIntegrationServiceRequest) Execute() (PagerDutyService
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeletePagerDutyIntegrationServiceRequest struct {
-	ctx         _context.Context
-	apiService  *PagerDutyIntegrationApiService
+	ctx _context.Context
+	apiService *PagerDutyIntegrationApiService
 	serviceName string
 }
+
 
 /*
 DeletePagerDutyIntegrationService Delete a single service object
@@ -198,8 +201,8 @@ Delete a single service object in the Datadog-PagerDuty integration.
 */
 func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) apiDeletePagerDutyIntegrationServiceRequest {
 	return apiDeletePagerDutyIntegrationServiceRequest{
-		apiService:  a,
-		ctx:         ctx,
+		apiService: a,
+		ctx: ctx,
 		serviceName: serviceName,
 	}
 }
@@ -215,6 +218,7 @@ func (r apiDeletePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Respon
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.DeletePagerDutyIntegrationService")
@@ -223,11 +227,12 @@ func (r apiDeletePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Respon
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/pagerduty/configuration/services/{service_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -323,12 +328,12 @@ func (r apiDeletePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Respon
 
 	return localVarHTTPResponse, nil
 }
-
 type apiGetPagerDutyIntegrationServiceRequest struct {
-	ctx         _context.Context
-	apiService  *PagerDutyIntegrationApiService
+	ctx _context.Context
+	apiService *PagerDutyIntegrationApiService
 	serviceName string
 }
+
 
 /*
 GetPagerDutyIntegrationService Get a single service object
@@ -339,8 +344,8 @@ Get service name in the Datadog-PagerDuty integration.
 */
 func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) apiGetPagerDutyIntegrationServiceRequest {
 	return apiGetPagerDutyIntegrationServiceRequest{
-		apiService:  a,
-		ctx:         ctx,
+		apiService: a,
+		ctx: ctx,
 		serviceName: serviceName,
 	}
 }
@@ -365,11 +370,12 @@ func (r apiGetPagerDutyIntegrationServiceRequest) Execute() (PagerDutyServiceNam
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/pagerduty/configuration/services/{service_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -474,13 +480,13 @@ func (r apiGetPagerDutyIntegrationServiceRequest) Execute() (PagerDutyServiceNam
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdatePagerDutyIntegrationServiceRequest struct {
-	ctx         _context.Context
-	apiService  *PagerDutyIntegrationApiService
+	ctx _context.Context
+	apiService *PagerDutyIntegrationApiService
 	serviceName string
-	body        *PagerDutyServiceKey
+	body *PagerDutyServiceKey
 }
+
 
 func (r apiUpdatePagerDutyIntegrationServiceRequest) Body(body PagerDutyServiceKey) apiUpdatePagerDutyIntegrationServiceRequest {
 	r.body = &body
@@ -496,8 +502,8 @@ Update a single service object in the Datadog-PagerDuty integration.
 */
 func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string) apiUpdatePagerDutyIntegrationServiceRequest {
 	return apiUpdatePagerDutyIntegrationServiceRequest{
-		apiService:  a,
-		ctx:         ctx,
+		apiService: a,
+		ctx: ctx,
 		serviceName: serviceName,
 	}
 }
@@ -513,6 +519,7 @@ func (r apiUpdatePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Respon
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.UpdatePagerDutyIntegrationService")
@@ -521,12 +528,13 @@ func (r apiUpdatePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Respon
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/pagerduty/configuration/services/{service_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return nil, reportError("body is required and must be specified")
 	}

@@ -18,7 +18,7 @@ type SLOHistoryMetrics struct {
 	// The aggregated query interval for the series data. It's implicit based on the query time window.
 	Interval int64 `json:"interval"`
 	// Optional message if there are specific query issues/warnings.
-	Message   *string                 `json:"message,omitempty"`
+	Message *string `json:"message,omitempty"`
 	Numerator SLOHistoryMetricsSeries `json:"numerator"`
 	// The combined numerator and denominator query CSV.
 	Query string `json:"query"`
@@ -34,7 +34,7 @@ type SLOHistoryMetrics struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOHistoryMetrics(denominator SLOHistoryMetricsSeries, interval int64, numerator SLOHistoryMetricsSeries, query string, resType string, respVersion int64, times []float64) *SLOHistoryMetrics {
+func NewSLOHistoryMetrics(denominator SLOHistoryMetricsSeries, interval int64, numerator SLOHistoryMetricsSeries, query string, resType string, respVersion int64, times []float64, ) *SLOHistoryMetrics {
 	this := SLOHistoryMetrics{}
 	this.Denominator = denominator
 	this.Interval = interval
@@ -56,7 +56,7 @@ func NewSLOHistoryMetricsWithDefaults() *SLOHistoryMetrics {
 
 // GetDenominator returns the Denominator field value
 func (o *SLOHistoryMetrics) GetDenominator() SLOHistoryMetricsSeries {
-	if o == nil {
+	if o == nil  {
 		var ret SLOHistoryMetricsSeries
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *SLOHistoryMetrics) GetDenominator() SLOHistoryMetricsSeries {
 // GetDenominatorOk returns a tuple with the Denominator field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetDenominatorOk() (*SLOHistoryMetricsSeries, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Denominator, true
@@ -80,7 +80,7 @@ func (o *SLOHistoryMetrics) SetDenominator(v SLOHistoryMetricsSeries) {
 
 // GetInterval returns the Interval field value
 func (o *SLOHistoryMetrics) GetInterval() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *SLOHistoryMetrics) GetInterval() int64 {
 // GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetIntervalOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Interval, true
@@ -136,7 +136,7 @@ func (o *SLOHistoryMetrics) SetMessage(v string) {
 
 // GetNumerator returns the Numerator field value
 func (o *SLOHistoryMetrics) GetNumerator() SLOHistoryMetricsSeries {
-	if o == nil {
+	if o == nil  {
 		var ret SLOHistoryMetricsSeries
 		return ret
 	}
@@ -147,7 +147,7 @@ func (o *SLOHistoryMetrics) GetNumerator() SLOHistoryMetricsSeries {
 // GetNumeratorOk returns a tuple with the Numerator field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetNumeratorOk() (*SLOHistoryMetricsSeries, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Numerator, true
@@ -160,7 +160,7 @@ func (o *SLOHistoryMetrics) SetNumerator(v SLOHistoryMetricsSeries) {
 
 // GetQuery returns the Query field value
 func (o *SLOHistoryMetrics) GetQuery() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -171,7 +171,7 @@ func (o *SLOHistoryMetrics) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -184,7 +184,7 @@ func (o *SLOHistoryMetrics) SetQuery(v string) {
 
 // GetResType returns the ResType field value
 func (o *SLOHistoryMetrics) GetResType() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -195,7 +195,7 @@ func (o *SLOHistoryMetrics) GetResType() string {
 // GetResTypeOk returns a tuple with the ResType field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetResTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ResType, true
@@ -208,7 +208,7 @@ func (o *SLOHistoryMetrics) SetResType(v string) {
 
 // GetRespVersion returns the RespVersion field value
 func (o *SLOHistoryMetrics) GetRespVersion() int64 {
-	if o == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
@@ -219,7 +219,7 @@ func (o *SLOHistoryMetrics) GetRespVersion() int64 {
 // GetRespVersionOk returns a tuple with the RespVersion field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetRespVersionOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.RespVersion, true
@@ -232,7 +232,7 @@ func (o *SLOHistoryMetrics) SetRespVersion(v int64) {
 
 // GetTimes returns the Times field value
 func (o *SLOHistoryMetrics) GetTimes() []float64 {
-	if o == nil {
+	if o == nil  {
 		var ret []float64
 		return ret
 	}
@@ -243,7 +243,7 @@ func (o *SLOHistoryMetrics) GetTimes() []float64 {
 // GetTimesOk returns a tuple with the Times field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetTimesOk() (*[]float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Times, true
@@ -318,3 +318,5 @@ func (v *NullableSLOHistoryMetrics) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -18,9 +18,9 @@ type WidgetViewMode string
 
 // List of WidgetViewMode
 const (
-	WIDGETVIEWMODE_OVERALL   WidgetViewMode = "overall"
+	WIDGETVIEWMODE_OVERALL WidgetViewMode = "overall"
 	WIDGETVIEWMODE_COMPONENT WidgetViewMode = "component"
-	WIDGETVIEWMODE_BOTH      WidgetViewMode = "both"
+	WIDGETVIEWMODE_BOTH WidgetViewMode = "both"
 )
 
 func (v *WidgetViewMode) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *WidgetViewMode) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetViewMode(value)
-	for _, existing := range []WidgetViewMode{"overall", "component", "both"} {
+	for _, existing := range []WidgetViewMode{ "overall", "component", "both",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetViewMode) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

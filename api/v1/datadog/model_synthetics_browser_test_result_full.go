@@ -20,11 +20,11 @@ type SyntheticsBrowserTestResultFull struct {
 	// Version of the browser test used.
 	CheckVersion *int64 `json:"check_version,omitempty"`
 	// Location from which the browser test was performed.
-	ProbeDc *string                          `json:"probe_dc,omitempty"`
-	Result  *SyntheticsBrowserTestResultData `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	Result *SyntheticsBrowserTestResultData `json:"result,omitempty"`
 	// ID of the browser test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 }
 
 // NewSyntheticsBrowserTestResultFull instantiates a new SyntheticsBrowserTestResultFull object
@@ -329,3 +329,5 @@ func (v *NullableSyntheticsBrowserTestResultFull) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

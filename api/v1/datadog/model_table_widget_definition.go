@@ -16,20 +16,20 @@ import (
 type TableWidgetDefinition struct {
 	// Widget definition.
 	Requests []TableWidgetRequest `json:"requests"`
-	Time     *WidgetTime          `json:"time,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                   `json:"title_size,omitempty"`
-	Type      TableWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type TableWidgetDefinitionType `json:"type"`
 }
 
 // NewTableWidgetDefinition instantiates a new TableWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ TableWidgetDefinitionType) *TableWidgetDefinition {
+func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ TableWidgetDefinitionType, ) *TableWidgetDefinition {
 	this := TableWidgetDefinition{}
 	this.Requests = requests
 	this.Type = type_
@@ -48,7 +48,7 @@ func NewTableWidgetDefinitionWithDefaults() *TableWidgetDefinition {
 
 // GetRequests returns the Requests field value
 func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
-	if o == nil {
+	if o == nil  {
 		var ret []TableWidgetRequest
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *TableWidgetDefinition) GetRequestsOk() (*[]TableWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -200,7 +200,7 @@ func (o *TableWidgetDefinition) SetTitleSize(v string) {
 
 // GetType returns the Type field value
 func (o *TableWidgetDefinition) GetType() TableWidgetDefinitionType {
-	if o == nil {
+	if o == nil  {
 		var ret TableWidgetDefinitionType
 		return ret
 	}
@@ -211,7 +211,7 @@ func (o *TableWidgetDefinition) GetType() TableWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *TableWidgetDefinition) GetTypeOk() (*TableWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -280,3 +280,5 @@ func (v *NullableTableWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

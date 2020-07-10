@@ -18,7 +18,7 @@ type SyntheticsTestDetailsType string
 
 // List of SyntheticsTestDetailsType
 const (
-	SYNTHETICSTESTDETAILSTYPE_API     SyntheticsTestDetailsType = "api"
+	SYNTHETICSTESTDETAILSTYPE_API SyntheticsTestDetailsType = "api"
 	SYNTHETICSTESTDETAILSTYPE_BROWSER SyntheticsTestDetailsType = "browser"
 )
 
@@ -29,7 +29,7 @@ func (v *SyntheticsTestDetailsType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsTestDetailsType(value)
-	for _, existing := range []SyntheticsTestDetailsType{"api", "browser"} {
+	for _, existing := range []SyntheticsTestDetailsType{ "api", "browser",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableSyntheticsTestDetailsType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

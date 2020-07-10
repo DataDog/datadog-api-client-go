@@ -18,10 +18,10 @@ type WidgetComparator string
 
 // List of WidgetComparator
 const (
-	WIDGETCOMPARATOR_GREATER_THAN             WidgetComparator = ">"
+	WIDGETCOMPARATOR_GREATER_THAN WidgetComparator = ">"
 	WIDGETCOMPARATOR_GREATER_THAN_OR_EQUAL_TO WidgetComparator = ">="
-	WIDGETCOMPARATOR_LESS_THAN                WidgetComparator = "<"
-	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO    WidgetComparator = "<="
+	WIDGETCOMPARATOR_LESS_THAN WidgetComparator = "<"
+	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO WidgetComparator = "<="
 )
 
 func (v *WidgetComparator) UnmarshalJSON(src []byte) error {
@@ -31,7 +31,7 @@ func (v *WidgetComparator) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetComparator(value)
-	for _, existing := range []WidgetComparator{">", ">=", "<", "<="} {
+	for _, existing := range []WidgetComparator{ ">", ">=", "<", "<=",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -81,3 +81,4 @@ func (v *NullableWidgetComparator) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

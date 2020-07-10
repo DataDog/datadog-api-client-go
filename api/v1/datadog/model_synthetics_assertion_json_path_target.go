@@ -16,16 +16,16 @@ import (
 type SyntheticsAssertionJSONPathTarget struct {
 	Operator SyntheticsAssertionJSONPathOperator `json:"operator"`
 	// The associated assertion property.
-	Property *string                                  `json:"property,omitempty"`
-	Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
-	Type     SyntheticsAssertionType                  `json:"type"`
+	Property *string `json:"property,omitempty"`
+	Target *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
+	Type SyntheticsAssertionType `json:"type"`
 }
 
 // NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsAssertionJSONPathTarget(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType) *SyntheticsAssertionJSONPathTarget {
+func NewSyntheticsAssertionJSONPathTarget(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType, ) *SyntheticsAssertionJSONPathTarget {
 	this := SyntheticsAssertionJSONPathTarget{}
 	this.Operator = operator
 	this.Type = type_
@@ -42,7 +42,7 @@ func NewSyntheticsAssertionJSONPathTargetWithDefaults() *SyntheticsAssertionJSON
 
 // GetOperator returns the Operator field value
 func (o *SyntheticsAssertionJSONPathTarget) GetOperator() SyntheticsAssertionJSONPathOperator {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsAssertionJSONPathOperator
 		return ret
 	}
@@ -53,7 +53,7 @@ func (o *SyntheticsAssertionJSONPathTarget) GetOperator() SyntheticsAssertionJSO
 // GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAssertionJSONPathTarget) GetOperatorOk() (*SyntheticsAssertionJSONPathOperator, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Operator, true
@@ -130,7 +130,7 @@ func (o *SyntheticsAssertionJSONPathTarget) SetTarget(v SyntheticsAssertionJSONP
 
 // GetType returns the Type field value
 func (o *SyntheticsAssertionJSONPathTarget) GetType() SyntheticsAssertionType {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsAssertionType
 		return ret
 	}
@@ -141,7 +141,7 @@ func (o *SyntheticsAssertionJSONPathTarget) GetType() SyntheticsAssertionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAssertionJSONPathTarget) GetTypeOk() (*SyntheticsAssertionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -204,3 +204,5 @@ func (v *NullableSyntheticsAssertionJSONPathTarget) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

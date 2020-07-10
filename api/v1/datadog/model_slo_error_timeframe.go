@@ -18,10 +18,10 @@ type SLOErrorTimeframe string
 
 // List of SLOErrorTimeframe
 const (
-	SLOERRORTIMEFRAME_SEVEN_DAYS  SLOErrorTimeframe = "7d"
+	SLOERRORTIMEFRAME_SEVEN_DAYS SLOErrorTimeframe = "7d"
 	SLOERRORTIMEFRAME_THIRTY_DAYS SLOErrorTimeframe = "30d"
 	SLOERRORTIMEFRAME_NINETY_DAYS SLOErrorTimeframe = "90d"
-	SLOERRORTIMEFRAME_ALL         SLOErrorTimeframe = "all"
+	SLOERRORTIMEFRAME_ALL SLOErrorTimeframe = "all"
 )
 
 func (v *SLOErrorTimeframe) UnmarshalJSON(src []byte) error {
@@ -31,7 +31,7 @@ func (v *SLOErrorTimeframe) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SLOErrorTimeframe(value)
-	for _, existing := range []SLOErrorTimeframe{"7d", "30d", "90d", "all"} {
+	for _, existing := range []SLOErrorTimeframe{ "7d", "30d", "90d", "all",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -81,3 +81,4 @@ func (v *NullableSLOErrorTimeframe) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -18,9 +18,9 @@ type WidgetMessageDisplay string
 
 // List of WidgetMessageDisplay
 const (
-	WIDGETMESSAGEDISPLAY_INLINE          WidgetMessageDisplay = "inline"
+	WIDGETMESSAGEDISPLAY_INLINE WidgetMessageDisplay = "inline"
 	WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM WidgetMessageDisplay = "expanded-md"
-	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE  WidgetMessageDisplay = "expanded-lg"
+	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE WidgetMessageDisplay = "expanded-lg"
 )
 
 func (v *WidgetMessageDisplay) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *WidgetMessageDisplay) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetMessageDisplay(value)
-	for _, existing := range []WidgetMessageDisplay{"inline", "expanded-md", "expanded-lg"} {
+	for _, existing := range []WidgetMessageDisplay{ "inline", "expanded-md", "expanded-lg",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetMessageDisplay) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

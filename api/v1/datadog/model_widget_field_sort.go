@@ -15,15 +15,15 @@ import (
 // WidgetFieldSort Which column and order to sort by
 type WidgetFieldSort struct {
 	// Facet path for the column
-	Column string     `json:"column"`
-	Order  WidgetSort `json:"order"`
+	Column string `json:"column"`
+	Order WidgetSort `json:"order"`
 }
 
 // NewWidgetFieldSort instantiates a new WidgetFieldSort object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidgetFieldSort(column string, order WidgetSort) *WidgetFieldSort {
+func NewWidgetFieldSort(column string, order WidgetSort, ) *WidgetFieldSort {
 	this := WidgetFieldSort{}
 	this.Column = column
 	this.Order = order
@@ -40,7 +40,7 @@ func NewWidgetFieldSortWithDefaults() *WidgetFieldSort {
 
 // GetColumn returns the Column field value
 func (o *WidgetFieldSort) GetColumn() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *WidgetFieldSort) GetColumn() string {
 // GetColumnOk returns a tuple with the Column field value
 // and a boolean to check if the value has been set.
 func (o *WidgetFieldSort) GetColumnOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Column, true
@@ -64,7 +64,7 @@ func (o *WidgetFieldSort) SetColumn(v string) {
 
 // GetOrder returns the Order field value
 func (o *WidgetFieldSort) GetOrder() WidgetSort {
-	if o == nil {
+	if o == nil  {
 		var ret WidgetSort
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *WidgetFieldSort) GetOrder() WidgetSort {
 // GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
 func (o *WidgetFieldSort) GetOrderOk() (*WidgetSort, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Order, true
@@ -132,3 +132,5 @@ func (v *NullableWidgetFieldSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

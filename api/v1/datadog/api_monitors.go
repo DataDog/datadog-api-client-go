@@ -10,11 +10,13 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -26,10 +28,11 @@ var (
 type MonitorsApiService service
 
 type apiCheckCanDeleteMonitorRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MonitorsApiService
 	monitorIds *[]int64
 }
+
 
 func (r apiCheckCanDeleteMonitorRequest) MonitorIds(monitorIds []int64) apiCheckCanDeleteMonitorRequest {
 	r.monitorIds = &monitorIds
@@ -45,7 +48,7 @@ Check if the given monitors can be deleted.
 func (a *MonitorsApiService) CheckCanDeleteMonitor(ctx _context.Context) apiCheckCanDeleteMonitorRequest {
 	return apiCheckCanDeleteMonitorRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -73,7 +76,7 @@ func (r apiCheckCanDeleteMonitorRequest) Execute() (CheckCanDeleteMonitorRespons
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.monitorIds == nil {
 		return localVarReturnValue, nil, reportError("monitorIds is required and must be specified")
 	}
@@ -202,12 +205,12 @@ func (r apiCheckCanDeleteMonitorRequest) Execute() (CheckCanDeleteMonitorRespons
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiCreateMonitorRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MonitorsApiService
-	body       *Monitor
+	body *Monitor
 }
+
 
 func (r apiCreateMonitorRequest) Body(body Monitor) apiCreateMonitorRequest {
 	r.body = &body
@@ -327,7 +330,7 @@ It is only available via the API and isn't visible or editable in the Datadog UI
 func (a *MonitorsApiService) CreateMonitor(ctx _context.Context) apiCreateMonitorRequest {
 	return apiCreateMonitorRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -355,7 +358,7 @@ func (r apiCreateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -465,13 +468,13 @@ func (r apiCreateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteMonitorRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MonitorsApiService
-	monitorId  int64
-	force      *string
+	monitorId int64
+	force *string
 }
+
 
 func (r apiDeleteMonitorRequest) Force(force string) apiDeleteMonitorRequest {
 	r.force = &force
@@ -488,8 +491,8 @@ Delete the specified monitor
 func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64) apiDeleteMonitorRequest {
 	return apiDeleteMonitorRequest{
 		apiService: a,
-		ctx:        ctx,
-		monitorId:  monitorId,
+		ctx: ctx,
+		monitorId: monitorId,
 	}
 }
 
@@ -513,12 +516,13 @@ func (r apiDeleteMonitorRequest) Execute() (DeletedMonitor, *_nethttp.Response, 
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(parameterToString(r.monitorId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(parameterToString(r.monitorId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.force != nil {
 		localVarQueryParams.Add("force", parameterToString(*r.force, ""))
 	}
@@ -645,13 +649,13 @@ func (r apiDeleteMonitorRequest) Execute() (DeletedMonitor, *_nethttp.Response, 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetMonitorRequest struct {
-	ctx         _context.Context
-	apiService  *MonitorsApiService
-	monitorId   int64
+	ctx _context.Context
+	apiService *MonitorsApiService
+	monitorId int64
 	groupStates *string
 }
+
 
 func (r apiGetMonitorRequest) GroupStates(groupStates string) apiGetMonitorRequest {
 	r.groupStates = &groupStates
@@ -668,8 +672,8 @@ Get details about the specified monitor from your organization.
 func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64) apiGetMonitorRequest {
 	return apiGetMonitorRequest{
 		apiService: a,
-		ctx:        ctx,
-		monitorId:  monitorId,
+		ctx: ctx,
+		monitorId: monitorId,
 	}
 }
 
@@ -693,12 +697,13 @@ func (r apiGetMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(parameterToString(r.monitorId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(parameterToString(r.monitorId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.groupStates != nil {
 		localVarQueryParams.Add("group_states", parameterToString(*r.groupStates, ""))
 	}
@@ -815,19 +820,19 @@ func (r apiGetMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) {
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListMonitorsRequest struct {
-	ctx           _context.Context
-	apiService    *MonitorsApiService
-	groupStates   *string
-	name          *string
-	tags          *string
-	monitorTags   *string
+	ctx _context.Context
+	apiService *MonitorsApiService
+	groupStates *string
+	name *string
+	tags *string
+	monitorTags *string
 	withDowntimes *bool
-	idOffset      *int64
-	page          *int64
-	pageSize      *int32
+	idOffset *int64
+	page *int64
+	pageSize *int32
 }
+
 
 func (r apiListMonitorsRequest) GroupStates(groupStates string) apiListMonitorsRequest {
 	r.groupStates = &groupStates
@@ -878,7 +883,7 @@ Get details about the specified monitor from your organization.
 func (a *MonitorsApiService) ListMonitors(ctx _context.Context) apiListMonitorsRequest {
 	return apiListMonitorsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -906,7 +911,7 @@ func (r apiListMonitorsRequest) Execute() ([]Monitor, *_nethttp.Response, error)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+								
 	if r.groupStates != nil {
 		localVarQueryParams.Add("group_states", parameterToString(*r.groupStates, ""))
 	}
@@ -1034,13 +1039,13 @@ func (r apiListMonitorsRequest) Execute() ([]Monitor, *_nethttp.Response, error)
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateMonitorRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MonitorsApiService
-	monitorId  int64
-	body       *MonitorUpdateRequest
+	monitorId int64
+	body *MonitorUpdateRequest
 }
+
 
 func (r apiUpdateMonitorRequest) Body(body MonitorUpdateRequest) apiUpdateMonitorRequest {
 	r.body = &body
@@ -1057,8 +1062,8 @@ Edit the specified monitor.
 func (a *MonitorsApiService) UpdateMonitor(ctx _context.Context, monitorId int64) apiUpdateMonitorRequest {
 	return apiUpdateMonitorRequest{
 		apiService: a,
-		ctx:        ctx,
-		monitorId:  monitorId,
+		ctx: ctx,
+		monitorId: monitorId,
 	}
 }
 
@@ -1082,12 +1087,13 @@ func (r apiUpdateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(parameterToString(r.monitorId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(parameterToString(r.monitorId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -1217,12 +1223,12 @@ func (r apiUpdateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error) 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiValidateMonitorRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *MonitorsApiService
-	body       *Monitor
+	body *Monitor
 }
+
 
 func (r apiValidateMonitorRequest) Body(body Monitor) apiValidateMonitorRequest {
 	r.body = &body
@@ -1238,7 +1244,7 @@ Validate the monitor provided in the request.
 func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context) apiValidateMonitorRequest {
 	return apiValidateMonitorRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1266,7 +1272,7 @@ func (r apiValidateMonitorRequest) Execute() (Monitor, *_nethttp.Response, error
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

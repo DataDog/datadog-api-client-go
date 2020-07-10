@@ -16,7 +16,7 @@ import (
 type SyntheticsTestConfig struct {
 	// Array of assertions used for the test.
 	Assertions []SyntheticsAssertion `json:"assertions"`
-	Request    SyntheticsTestRequest `json:"request"`
+	Request SyntheticsTestRequest `json:"request"`
 	// Array of variables used for the test.
 	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 }
@@ -25,7 +25,7 @@ type SyntheticsTestConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsTestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest) *SyntheticsTestConfig {
+func NewSyntheticsTestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest, ) *SyntheticsTestConfig {
 	this := SyntheticsTestConfig{}
 	this.Assertions = assertions
 	this.Request = request
@@ -42,7 +42,7 @@ func NewSyntheticsTestConfigWithDefaults() *SyntheticsTestConfig {
 
 // GetAssertions returns the Assertions field value
 func (o *SyntheticsTestConfig) GetAssertions() []SyntheticsAssertion {
-	if o == nil {
+	if o == nil  {
 		var ret []SyntheticsAssertion
 		return ret
 	}
@@ -53,7 +53,7 @@ func (o *SyntheticsTestConfig) GetAssertions() []SyntheticsAssertion {
 // GetAssertionsOk returns a tuple with the Assertions field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTestConfig) GetAssertionsOk() (*[]SyntheticsAssertion, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Assertions, true
@@ -66,7 +66,7 @@ func (o *SyntheticsTestConfig) SetAssertions(v []SyntheticsAssertion) {
 
 // GetRequest returns the Request field value
 func (o *SyntheticsTestConfig) GetRequest() SyntheticsTestRequest {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsTestRequest
 		return ret
 	}
@@ -77,7 +77,7 @@ func (o *SyntheticsTestConfig) GetRequest() SyntheticsTestRequest {
 // GetRequestOk returns a tuple with the Request field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTestConfig) GetRequestOk() (*SyntheticsTestRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Request, true
@@ -169,3 +169,5 @@ func (v *NullableSyntheticsTestConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

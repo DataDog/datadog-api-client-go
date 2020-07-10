@@ -79,9 +79,9 @@ type ServerVariable struct {
 
 // ServerConfiguration stores the information about a server
 type ServerConfiguration struct {
-	URL         string
+	URL string
 	Description string
-	Variables   map[string]ServerVariable
+	Variables map[string]ServerVariable
 }
 
 // ServerConfigurations stores multiple ServerConfiguration items
@@ -89,30 +89,30 @@ type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host               string            `json:"host,omitempty"`
-	Scheme             string            `json:"scheme,omitempty"`
-	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent          string            `json:"userAgent,omitempty"`
-	Debug              bool              `json:"debug,omitempty"`
-	Servers            ServerConfigurations
-	OperationServers   map[string]ServerConfigurations
-	HTTPClient         *http.Client
+	Host             string            `json:"host,omitempty"`
+	Scheme           string            `json:"scheme,omitempty"`
+	DefaultHeader    map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent        string            `json:"userAgent,omitempty"`
+	Debug            bool              `json:"debug,omitempty"`
+	Servers          ServerConfigurations
+	OperationServers map[string]ServerConfigurations
+	HTTPClient       *http.Client
 	unstableOperations map[string]bool
 }
 
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		DefaultHeader: make(map[string]string),
-		UserAgent:     getUserAgent(),
-		Debug:         false,
-		Servers: ServerConfigurations{
+		DefaultHeader:    make(map[string]string),
+		UserAgent:        getUserAgent(),
+		Debug:            false,
+		Servers:          ServerConfigurations{
 			{
-				URL:         "https://{subdomain}.{site}",
+				URL: "https://{subdomain}.{site}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"site": ServerVariable{
-						Description:  "The regional site for a Datadog customer.",
+						Description: "The regional site for a Datadog customer.",
 						DefaultValue: "datadoghq.com",
 						EnumValues: []string{
 							"datadoghq.com",
@@ -120,21 +120,21 @@ func NewConfiguration() *Configuration {
 						},
 					},
 					"subdomain": ServerVariable{
-						Description:  "The subdomain where the API is deployed.",
+						Description: "The subdomain where the API is deployed.",
 						DefaultValue: "api",
 					},
 				},
 			},
 			{
-				URL:         "{protocol}://{name}",
+				URL: "{protocol}://{name}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"name": ServerVariable{
-						Description:  "Full site DNS name.",
+						Description: "Full site DNS name.",
 						DefaultValue: "api.datadoghq.com",
 					},
 					"protocol": ServerVariable{
-						Description:  "The protocol for accessing the API.",
+						Description: "The protocol for accessing the API.",
 						DefaultValue: "https",
 					},
 				},
@@ -143,11 +143,11 @@ func NewConfiguration() *Configuration {
 		OperationServers: map[string]ServerConfigurations{
 			"IPRangesApiService.GetIPRanges": {
 				{
-					URL:         "https://{subdomain}.{site}",
+					URL: "https://{subdomain}.{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": ServerVariable{
-							Description:  "The regional site for our customers.",
+							Description: "The regional site for our customers.",
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
 								"datadoghq.com",
@@ -155,21 +155,21 @@ func NewConfiguration() *Configuration {
 							},
 						},
 						"subdomain": ServerVariable{
-							Description:  "The subdomain where the API is deployed.",
+							Description: "The subdomain where the API is deployed.",
 							DefaultValue: "ip-ranges",
 						},
 					},
 				},
 				{
-					URL:         "{protocol}://{name}",
+					URL: "{protocol}://{name}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"name": ServerVariable{
-							Description:  "Full site DNS name.",
+							Description: "Full site DNS name.",
 							DefaultValue: "ip-ranges.datadoghq.com",
 						},
 						"protocol": ServerVariable{
-							Description:  "The protocol for accessing the API.",
+							Description: "The protocol for accessing the API.",
 							DefaultValue: "https",
 						},
 					},
@@ -177,12 +177,12 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"GetLogsIndex":         false,
-			"GetLogsIndexOrder":    false,
-			"ListLogIndexes":       false,
-			"UpdateLogsIndex":      false,
+			"GetLogsIndex": false,
+			"GetLogsIndexOrder": false,
+			"ListLogIndexes": false,
+			"UpdateLogsIndex": false,
 			"UpdateLogsIndexOrder": false,
-			"GetSLOHistory":        false,
+			"GetSLOHistory": false,
 		},
 	}
 	return cfg

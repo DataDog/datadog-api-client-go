@@ -19,7 +19,7 @@ type SLOTypeNumeric int32
 // List of SLOTypeNumeric
 const (
 	SLOTYPENUMERIC_MONITOR SLOTypeNumeric = 0
-	SLOTYPENUMERIC_METRIC  SLOTypeNumeric = 1
+	SLOTYPENUMERIC_METRIC SLOTypeNumeric = 1
 )
 
 func (v *SLOTypeNumeric) UnmarshalJSON(src []byte) error {
@@ -29,7 +29,7 @@ func (v *SLOTypeNumeric) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SLOTypeNumeric(value)
-	for _, existing := range []SLOTypeNumeric{0, 1} {
+	for _, existing := range []SLOTypeNumeric{ 0, 1,   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableSLOTypeNumeric) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

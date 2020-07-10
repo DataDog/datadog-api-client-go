@@ -28,7 +28,7 @@ func (v *ScatterPlotWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ScatterPlotWidgetDefinitionType(value)
-	for _, existing := range []ScatterPlotWidgetDefinitionType{"scatterplot"} {
+	for _, existing := range []ScatterPlotWidgetDefinitionType{ "scatterplot",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,3 +78,4 @@ func (v *NullableScatterPlotWidgetDefinitionType) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

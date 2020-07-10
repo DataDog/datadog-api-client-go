@@ -18,7 +18,7 @@ type SLOTimeframe string
 
 // List of SLOTimeframe
 const (
-	SLOTIMEFRAME_SEVEN_DAYS  SLOTimeframe = "7d"
+	SLOTIMEFRAME_SEVEN_DAYS SLOTimeframe = "7d"
 	SLOTIMEFRAME_THIRTY_DAYS SLOTimeframe = "30d"
 	SLOTIMEFRAME_NINETY_DAYS SLOTimeframe = "90d"
 )
@@ -30,7 +30,7 @@ func (v *SLOTimeframe) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SLOTimeframe(value)
-	for _, existing := range []SLOTimeframe{"7d", "30d", "90d"} {
+	for _, existing := range []SLOTimeframe{ "7d", "30d", "90d",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableSLOTimeframe) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

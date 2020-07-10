@@ -19,7 +19,7 @@ type WidgetVizType string
 // List of WidgetVizType
 const (
 	WIDGETVIZTYPE_TIMESERIES WidgetVizType = "timeseries"
-	WIDGETVIZTYPE_TOPLIST    WidgetVizType = "toplist"
+	WIDGETVIZTYPE_TOPLIST WidgetVizType = "toplist"
 )
 
 func (v *WidgetVizType) UnmarshalJSON(src []byte) error {
@@ -29,7 +29,7 @@ func (v *WidgetVizType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetVizType(value)
-	for _, existing := range []WidgetVizType{"timeseries", "toplist"} {
+	for _, existing := range []WidgetVizType{ "timeseries", "toplist",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetVizType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,10 +26,11 @@ var (
 type AWSIntegrationApiService service
 
 type apiCreateAWSAccountRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body *AWSAccount
 }
+
 
 func (r apiCreateAWSAccountRequest) Body(body AWSAccount) apiCreateAWSAccountRequest {
 	r.body = &body
@@ -45,7 +48,7 @@ by adding your new configuration to the existing one in your Datadog organizatio
 func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context) apiCreateAWSAccountRequest {
 	return apiCreateAWSAccountRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -73,7 +76,7 @@ func (r apiCreateAWSAccountRequest) Execute() (AWSAccountCreateResponse, *_netht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -183,12 +186,12 @@ func (r apiCreateAWSAccountRequest) Execute() (AWSAccountCreateResponse, *_netht
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiCreateNewAWSExternalIDRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body *AWSAccount
 }
+
 
 func (r apiCreateNewAWSExternalIDRequest) Body(body AWSAccount) apiCreateNewAWSExternalIDRequest {
 	r.body = &body
@@ -204,7 +207,7 @@ Generate a new AWS external ID for a given AWS account ID and role name pair.
 func (a *AWSIntegrationApiService) CreateNewAWSExternalID(ctx _context.Context) apiCreateNewAWSExternalIDRequest {
 	return apiCreateNewAWSExternalIDRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -232,7 +235,7 @@ func (r apiCreateNewAWSExternalIDRequest) Execute() (AWSAccountCreateResponse, *
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -342,12 +345,12 @@ func (r apiCreateNewAWSExternalIDRequest) Execute() (AWSAccountCreateResponse, *
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteAWSAccountRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body *AWSAccount
 }
+
 
 func (r apiDeleteAWSAccountRequest) Body(body AWSAccount) apiDeleteAWSAccountRequest {
 	r.body = &body
@@ -363,7 +366,7 @@ Delete a Datadog-AWS integration matching the specified `account_id` and `role_n
 func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context) apiDeleteAWSAccountRequest {
 	return apiDeleteAWSAccountRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -391,7 +394,7 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -501,14 +504,14 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListAWSAccountsRequest struct {
-	ctx         _context.Context
-	apiService  *AWSIntegrationApiService
-	accountId   *string
-	roleName    *string
+	ctx _context.Context
+	apiService *AWSIntegrationApiService
+	accountId *string
+	roleName *string
 	accessKeyId *string
 }
+
 
 func (r apiListAWSAccountsRequest) AccountId(accountId string) apiListAWSAccountsRequest {
 	r.accountId = &accountId
@@ -534,7 +537,7 @@ List all Datadog-AWS integrations available in your Datadog organization.
 func (a *AWSIntegrationApiService) ListAWSAccounts(ctx _context.Context) apiListAWSAccountsRequest {
 	return apiListAWSAccountsRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -562,7 +565,7 @@ func (r apiListAWSAccountsRequest) Execute() (AWSAccountListResponse, *_nethttp.
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+			
 	if r.accountId != nil {
 		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
 	}
@@ -675,11 +678,11 @@ func (r apiListAWSAccountsRequest) Execute() (AWSAccountListResponse, *_nethttp.
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListAvailableAWSNamespacesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AWSIntegrationApiService
 }
+
 
 /*
 ListAvailableAWSNamespaces List namespace rules
@@ -690,7 +693,7 @@ List all namespace rules for a given Datadog-AWS integration. This endpoint take
 func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Context) apiListAvailableAWSNamespacesRequest {
 	return apiListAvailableAWSNamespacesRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -812,15 +815,15 @@ func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Res
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateAWSAccountRequest struct {
-	ctx         _context.Context
-	apiService  *AWSIntegrationApiService
-	body        *AWSAccount
-	accountId   *string
-	roleName    *string
+	ctx _context.Context
+	apiService *AWSIntegrationApiService
+	body *AWSAccount
+	accountId *string
+	roleName *string
 	accessKeyId *string
 }
+
 
 func (r apiUpdateAWSAccountRequest) Body(body AWSAccount) apiUpdateAWSAccountRequest {
 	r.body = &body
@@ -851,7 +854,7 @@ Update a Datadog-Amazon Web Services integration.
 func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context) apiUpdateAWSAccountRequest {
 	return apiUpdateAWSAccountRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -879,11 +882,11 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
-
+			
 	if r.accountId != nil {
 		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
 	}

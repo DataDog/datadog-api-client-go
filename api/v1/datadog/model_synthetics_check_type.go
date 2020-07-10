@@ -18,17 +18,17 @@ type SyntheticsCheckType string
 
 // List of SyntheticsCheckType
 const (
-	SYNTHETICSCHECKTYPE_EQUALS          SyntheticsCheckType = "equals"
-	SYNTHETICSCHECKTYPE_NOT_EQUALS      SyntheticsCheckType = "notEquals"
-	SYNTHETICSCHECKTYPE_CONTAINS        SyntheticsCheckType = "contains"
-	SYNTHETICSCHECKTYPE_NOT_CONTAINS    SyntheticsCheckType = "notContains"
-	SYNTHETICSCHECKTYPE_STARTS_WITH     SyntheticsCheckType = "startsWith"
+	SYNTHETICSCHECKTYPE_EQUALS SyntheticsCheckType = "equals"
+	SYNTHETICSCHECKTYPE_NOT_EQUALS SyntheticsCheckType = "notEquals"
+	SYNTHETICSCHECKTYPE_CONTAINS SyntheticsCheckType = "contains"
+	SYNTHETICSCHECKTYPE_NOT_CONTAINS SyntheticsCheckType = "notContains"
+	SYNTHETICSCHECKTYPE_STARTS_WITH SyntheticsCheckType = "startsWith"
 	SYNTHETICSCHECKTYPE_NOT_STARTS_WITH SyntheticsCheckType = "notStartsWith"
-	SYNTHETICSCHECKTYPE_GREATER         SyntheticsCheckType = "greater"
-	SYNTHETICSCHECKTYPE_LOWER           SyntheticsCheckType = "lower"
-	SYNTHETICSCHECKTYPE_GREATER_EQUALS  SyntheticsCheckType = "greaterEquals"
-	SYNTHETICSCHECKTYPE_LOWER_EQUALS    SyntheticsCheckType = "lowerEquals"
-	SYNTHETICSCHECKTYPE_MATCH_REGEX     SyntheticsCheckType = "matchRegex"
+	SYNTHETICSCHECKTYPE_GREATER SyntheticsCheckType = "greater"
+	SYNTHETICSCHECKTYPE_LOWER SyntheticsCheckType = "lower"
+	SYNTHETICSCHECKTYPE_GREATER_EQUALS SyntheticsCheckType = "greaterEquals"
+	SYNTHETICSCHECKTYPE_LOWER_EQUALS SyntheticsCheckType = "lowerEquals"
+	SYNTHETICSCHECKTYPE_MATCH_REGEX SyntheticsCheckType = "matchRegex"
 )
 
 func (v *SyntheticsCheckType) UnmarshalJSON(src []byte) error {
@@ -38,7 +38,7 @@ func (v *SyntheticsCheckType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsCheckType(value)
-	for _, existing := range []SyntheticsCheckType{"equals", "notEquals", "contains", "notContains", "startsWith", "notStartsWith", "greater", "lower", "greaterEquals", "lowerEquals", "matchRegex"} {
+	for _, existing := range []SyntheticsCheckType{ "equals", "notEquals", "contains", "notContains", "startsWith", "notStartsWith", "greater", "lower", "greaterEquals", "lowerEquals", "matchRegex",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -88,3 +88,4 @@ func (v *NullableSyntheticsCheckType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,10 +27,11 @@ var (
 type KeyManagementApiService service
 
 type apiCreateAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	body       *ApiKey
+	body *ApiKey
 }
+
 
 func (r apiCreateAPIKeyRequest) Body(body ApiKey) apiCreateAPIKeyRequest {
 	r.body = &body
@@ -44,7 +47,7 @@ Creates an API key with a given name.
 func (a *KeyManagementApiService) CreateAPIKey(ctx _context.Context) apiCreateAPIKeyRequest {
 	return apiCreateAPIKeyRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -72,7 +75,7 @@ func (r apiCreateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -182,12 +185,12 @@ func (r apiCreateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiCreateApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	body       *ApplicationKey
+	body *ApplicationKey
 }
+
 
 func (r apiCreateApplicationKeyRequest) Body(body ApplicationKey) apiCreateApplicationKeyRequest {
 	r.body = &body
@@ -203,7 +206,7 @@ Create an application key with a given name.
 func (a *KeyManagementApiService) CreateApplicationKey(ctx _context.Context) apiCreateApplicationKeyRequest {
 	return apiCreateApplicationKeyRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -231,7 +234,7 @@ func (r apiCreateApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -351,12 +354,12 @@ func (r apiCreateApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
 DeleteAPIKey Delete an API key
@@ -368,8 +371,8 @@ Delete a given API key.
 func (a *KeyManagementApiService) DeleteAPIKey(ctx _context.Context, key string) apiDeleteAPIKeyRequest {
 	return apiDeleteAPIKeyRequest{
 		apiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 }
 
@@ -393,11 +396,12 @@ func (r apiDeleteAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/v1/api_key/{key}"
-	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -512,12 +516,12 @@ func (r apiDeleteAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
 DeleteApplicationKey Delete an application key
@@ -529,8 +533,8 @@ Delete a given application key.
 func (a *KeyManagementApiService) DeleteApplicationKey(ctx _context.Context, key string) apiDeleteApplicationKeyRequest {
 	return apiDeleteApplicationKeyRequest{
 		apiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 }
 
@@ -554,11 +558,12 @@ func (r apiDeleteApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 	}
 
 	localVarPath := localBasePath + "/api/v1/application_key/{key}"
-	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -663,12 +668,12 @@ func (r apiDeleteApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
 GetAPIKey Get API key
@@ -680,8 +685,8 @@ Get a given API key.
 func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, key string) apiGetAPIKeyRequest {
 	return apiGetAPIKeyRequest{
 		apiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 }
 
@@ -705,11 +710,12 @@ func (r apiGetAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, erro
 	}
 
 	localVarPath := localBasePath + "/api/v1/api_key/{key}"
-	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -814,12 +820,12 @@ func (r apiGetAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, erro
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiGetApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
 GetApplicationKey Get an application key
@@ -831,8 +837,8 @@ Get a given application key.
 func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, key string) apiGetApplicationKeyRequest {
 	return apiGetApplicationKeyRequest{
 		apiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 }
 
@@ -856,11 +862,12 @@ func (r apiGetApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_nethtt
 	}
 
 	localVarPath := localBasePath + "/api/v1/application_key/{key}"
-	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -965,11 +972,11 @@ func (r apiGetApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_nethtt
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListAPIKeysRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
 }
+
 
 /*
 ListAPIKeys Get all API keys
@@ -980,7 +987,7 @@ Get all API keys available for your account.
 func (a *KeyManagementApiService) ListAPIKeys(ctx _context.Context) apiListAPIKeysRequest {
 	return apiListAPIKeysRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1102,11 +1109,11 @@ func (r apiListAPIKeysRequest) Execute() (ApiKeyListResponse, *_nethttp.Response
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListApplicationKeysRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
 }
+
 
 /*
 ListApplicationKeys Get all application keys
@@ -1117,7 +1124,7 @@ Get all application keys available for your Datadog account.
 func (a *KeyManagementApiService) ListApplicationKeys(ctx _context.Context) apiListApplicationKeysRequest {
 	return apiListApplicationKeysRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -1239,13 +1246,13 @@ func (r apiListApplicationKeysRequest) Execute() (ApplicationKeyListResponse, *_
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	key        string
-	body       *ApiKey
+	key string
+	body *ApiKey
 }
+
 
 func (r apiUpdateAPIKeyRequest) Body(body ApiKey) apiUpdateAPIKeyRequest {
 	r.body = &body
@@ -1262,8 +1269,8 @@ Edit an API key name.
 func (a *KeyManagementApiService) UpdateAPIKey(ctx _context.Context, key string) apiUpdateAPIKeyRequest {
 	return apiUpdateAPIKeyRequest{
 		apiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 }
 
@@ -1287,12 +1294,13 @@ func (r apiUpdateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/v1/api_key/{key}"
-	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -1412,13 +1420,13 @@ func (r apiUpdateAPIKeyRequest) Execute() (ApiKeyResponse, *_nethttp.Response, e
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *KeyManagementApiService
-	key        string
-	body       *ApplicationKey
+	key string
+	body *ApplicationKey
 }
+
 
 func (r apiUpdateApplicationKeyRequest) Body(body ApplicationKey) apiUpdateApplicationKeyRequest {
 	r.body = &body
@@ -1435,8 +1443,8 @@ Edit an application key name.
 func (a *KeyManagementApiService) UpdateApplicationKey(ctx _context.Context, key string) apiUpdateApplicationKeyRequest {
 	return apiUpdateApplicationKeyRequest{
 		apiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 }
 
@@ -1460,12 +1468,13 @@ func (r apiUpdateApplicationKeyRequest) Execute() (ApplicationKeyResponse, *_net
 	}
 
 	localVarPath := localBasePath + "/api/v1/application_key/{key}"
-	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", _neturl.PathEscape(parameterToString(r.key, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

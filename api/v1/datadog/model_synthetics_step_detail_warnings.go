@@ -15,15 +15,15 @@ import (
 // SyntheticsStepDetailWarnings Object collecting warnings for a given step.
 type SyntheticsStepDetailWarnings struct {
 	// Message for the warning.
-	Message string                `json:"message"`
-	Type    SyntheticsWarningType `json:"type"`
+	Message string `json:"message"`
+	Type SyntheticsWarningType `json:"type"`
 }
 
 // NewSyntheticsStepDetailWarnings instantiates a new SyntheticsStepDetailWarnings object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsStepDetailWarnings(message string, type_ SyntheticsWarningType) *SyntheticsStepDetailWarnings {
+func NewSyntheticsStepDetailWarnings(message string, type_ SyntheticsWarningType, ) *SyntheticsStepDetailWarnings {
 	this := SyntheticsStepDetailWarnings{}
 	this.Message = message
 	this.Type = type_
@@ -40,7 +40,7 @@ func NewSyntheticsStepDetailWarningsWithDefaults() *SyntheticsStepDetailWarnings
 
 // GetMessage returns the Message field value
 func (o *SyntheticsStepDetailWarnings) GetMessage() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *SyntheticsStepDetailWarnings) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsStepDetailWarnings) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -64,7 +64,7 @@ func (o *SyntheticsStepDetailWarnings) SetMessage(v string) {
 
 // GetType returns the Type field value
 func (o *SyntheticsStepDetailWarnings) GetType() SyntheticsWarningType {
-	if o == nil {
+	if o == nil  {
 		var ret SyntheticsWarningType
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *SyntheticsStepDetailWarnings) GetType() SyntheticsWarningType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsStepDetailWarnings) GetTypeOk() (*SyntheticsWarningType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -132,3 +132,5 @@ func (v *NullableSyntheticsStepDetailWarnings) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

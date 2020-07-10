@@ -20,7 +20,7 @@ type SyntheticsTestRequest struct {
 	// Headers to include when performing the test.
 	Headers *map[string]string `json:"headers,omitempty"`
 	// Host name to perform the test with.
-	Host   *string     `json:"host,omitempty"`
+	Host *string `json:"host,omitempty"`
 	Method *HTTPMethod `json:"method,omitempty"`
 	// Port to use when performing the test.
 	Port *int64 `json:"port,omitempty"`
@@ -404,3 +404,5 @@ func (v *NullableSyntheticsTestRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

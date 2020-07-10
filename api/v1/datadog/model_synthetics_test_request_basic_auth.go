@@ -24,7 +24,7 @@ type SyntheticsTestRequestBasicAuth struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsTestRequestBasicAuth(password string, username string) *SyntheticsTestRequestBasicAuth {
+func NewSyntheticsTestRequestBasicAuth(password string, username string, ) *SyntheticsTestRequestBasicAuth {
 	this := SyntheticsTestRequestBasicAuth{}
 	this.Password = password
 	this.Username = username
@@ -41,7 +41,7 @@ func NewSyntheticsTestRequestBasicAuthWithDefaults() *SyntheticsTestRequestBasic
 
 // GetPassword returns the Password field value
 func (o *SyntheticsTestRequestBasicAuth) GetPassword() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -52,7 +52,7 @@ func (o *SyntheticsTestRequestBasicAuth) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTestRequestBasicAuth) GetPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Password, true
@@ -65,7 +65,7 @@ func (o *SyntheticsTestRequestBasicAuth) SetPassword(v string) {
 
 // GetUsername returns the Username field value
 func (o *SyntheticsTestRequestBasicAuth) GetUsername() string {
-	if o == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *SyntheticsTestRequestBasicAuth) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTestRequestBasicAuth) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Username, true
@@ -133,3 +133,5 @@ func (v *NullableSyntheticsTestRequestBasicAuth) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

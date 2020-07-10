@@ -18,10 +18,10 @@ type WidgetOrderBy string
 
 // List of WidgetOrderBy
 const (
-	WIDGETORDERBY_CHANGE  WidgetOrderBy = "change"
-	WIDGETORDERBY_NAME    WidgetOrderBy = "name"
+	WIDGETORDERBY_CHANGE WidgetOrderBy = "change"
+	WIDGETORDERBY_NAME WidgetOrderBy = "name"
 	WIDGETORDERBY_PRESENT WidgetOrderBy = "present"
-	WIDGETORDERBY_PAST    WidgetOrderBy = "past"
+	WIDGETORDERBY_PAST WidgetOrderBy = "past"
 )
 
 func (v *WidgetOrderBy) UnmarshalJSON(src []byte) error {
@@ -31,7 +31,7 @@ func (v *WidgetOrderBy) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetOrderBy(value)
-	for _, existing := range []WidgetOrderBy{"change", "name", "present", "past"} {
+	for _, existing := range []WidgetOrderBy{ "change", "name", "present", "past",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -81,3 +81,4 @@ func (v *NullableWidgetOrderBy) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -18,7 +18,7 @@ type SyntheticsTestPauseStatus string
 
 // List of SyntheticsTestPauseStatus
 const (
-	SYNTHETICSTESTPAUSESTATUS_LIVE   SyntheticsTestPauseStatus = "live"
+	SYNTHETICSTESTPAUSESTATUS_LIVE SyntheticsTestPauseStatus = "live"
 	SYNTHETICSTESTPAUSESTATUS_PAUSED SyntheticsTestPauseStatus = "paused"
 )
 
@@ -29,7 +29,7 @@ func (v *SyntheticsTestPauseStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsTestPauseStatus(value)
-	for _, existing := range []SyntheticsTestPauseStatus{"live", "paused"} {
+	for _, existing := range []SyntheticsTestPauseStatus{ "live", "paused",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableSyntheticsTestPauseStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -19,8 +19,8 @@ type WidgetLineWidth string
 // List of WidgetLineWidth
 const (
 	WIDGETLINEWIDTH_NORMAL WidgetLineWidth = "normal"
-	WIDGETLINEWIDTH_THICK  WidgetLineWidth = "thick"
-	WIDGETLINEWIDTH_THIN   WidgetLineWidth = "thin"
+	WIDGETLINEWIDTH_THICK WidgetLineWidth = "thick"
+	WIDGETLINEWIDTH_THIN WidgetLineWidth = "thin"
 )
 
 func (v *WidgetLineWidth) UnmarshalJSON(src []byte) error {
@@ -30,7 +30,7 @@ func (v *WidgetLineWidth) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetLineWidth(value)
-	for _, existing := range []WidgetLineWidth{"normal", "thick", "thin"} {
+	for _, existing := range []WidgetLineWidth{ "normal", "thick", "thin",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -80,3 +80,4 @@ func (v *NullableWidgetLineWidth) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

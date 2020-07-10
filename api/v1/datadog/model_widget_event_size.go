@@ -29,7 +29,7 @@ func (v *WidgetEventSize) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := WidgetEventSize(value)
-	for _, existing := range []WidgetEventSize{"s", "l"} {
+	for _, existing := range []WidgetEventSize{ "s", "l",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -79,3 +79,4 @@ func (v *NullableWidgetEventSize) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

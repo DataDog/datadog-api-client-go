@@ -10,7 +10,9 @@ package datadog
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -24,10 +26,11 @@ var (
 type AzureIntegrationApiService service
 
 type apiCreateAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 func (r apiCreateAzureIntegrationRequest) Body(body AzureAccount) apiCreateAzureIntegrationRequest {
 	r.body = &body
@@ -49,7 +52,7 @@ current configuration with the new one sent to your Datadog organization.
 func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context) apiCreateAzureIntegrationRequest {
 	return apiCreateAzureIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -77,7 +80,7 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -187,12 +190,12 @@ func (r apiCreateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiDeleteAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 func (r apiDeleteAzureIntegrationRequest) Body(body AzureAccount) apiDeleteAzureIntegrationRequest {
 	r.body = &body
@@ -208,7 +211,7 @@ Delete a given Datadog-Azure integration from your Datadog account.
 func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context) apiDeleteAzureIntegrationRequest {
 	return apiDeleteAzureIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -236,7 +239,7 @@ func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -346,11 +349,11 @@ func (r apiDeleteAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiListAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AzureIntegrationApiService
 }
+
 
 /*
 ListAzureIntegration List all Azure integrations
@@ -361,7 +364,7 @@ List all Datadog-Azure integrations configured in your Datadog account.
 func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) apiListAzureIntegrationRequest {
 	return apiListAzureIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -493,12 +496,12 @@ func (r apiListAzureIntegrationRequest) Execute() ([]AzureAccount, *_nethttp.Res
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateAzureHostFiltersRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 func (r apiUpdateAzureHostFiltersRequest) Body(body AzureAccount) apiUpdateAzureHostFiltersRequest {
 	r.body = &body
@@ -514,7 +517,7 @@ Update the defined list of host filters for a given Datadog-Azure integration.
 func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context) apiUpdateAzureHostFiltersRequest {
 	return apiUpdateAzureHostFiltersRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -542,7 +545,7 @@ func (r apiUpdateAzureHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -652,12 +655,12 @@ func (r apiUpdateAzureHostFiltersRequest) Execute() (interface{}, *_nethttp.Resp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 type apiUpdateAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	apiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 func (r apiUpdateAzureIntegrationRequest) Body(body AzureAccount) apiUpdateAzureIntegrationRequest {
 	r.body = &body
@@ -675,7 +678,7 @@ use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not su
 func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context) apiUpdateAzureIntegrationRequest {
 	return apiUpdateAzureIntegrationRequest{
 		apiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -703,7 +706,7 @@ func (r apiUpdateAzureIntegrationRequest) Execute() (interface{}, *_nethttp.Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
+	
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
