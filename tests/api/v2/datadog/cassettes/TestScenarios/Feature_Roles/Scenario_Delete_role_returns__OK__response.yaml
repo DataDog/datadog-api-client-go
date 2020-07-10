@@ -1,0 +1,155 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Delete_role_returns__OK__response-Given_there_is_a_valid_role_in_the_system-local-1593616873"},"type":"roles"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "842904088952666509"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "842904088952666509"
+    url: https://api.datadoghq.com/api/v2/roles
+    method: POST
+  response:
+    body: '{"data":{"type":"roles","id":"8003c88a-bbae-11ea-9c9c-2f37a90f224d","attributes":{"name":"go-TestScenarios-Feature_Roles-Scenario_Delete_role_returns__OK__response-Given_there_is_a_valid_role_in_the_system-local-1593616873","created_at":"2020-07-01T15:21:13.464288+00:00","modified_at":"2020-07-01T15:21:13.464288+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"}]}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 01 Jul 2020 15:21:13 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 08-Jul-2020 15:21:13 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - Dpx7DG2N4VEOVm8I4W97n4HwOzBXFJSj1QrKca/nHpAZ6o7/LrJ0o2qyQx0XjNXl
+      X-Dd-Version:
+      - "35.2688399"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4787167678159968822"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4787167678159968822"
+    url: https://api.datadoghq.com/api/v2/roles/8003c88a-bbae-11ea-9c9c-2f37a90f224d
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Wed, 01 Jul 2020 15:21:13 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 08-Jul-2020 15:21:13 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - AZX6w/8zD+VN3BjlP7mTxsWKLW39bs6QmKw7eyNlBdxzsMsZp5eTFn4umzElZK4n
+      X-Dd-Version:
+      - "35.2688310"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteRole
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8360242582178104106"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8360242582178104106"
+    url: https://api.datadoghq.com/api/v2/roles/8003c88a-bbae-11ea-9c9c-2f37a90f224d
+    method: DELETE
+  response:
+    body: '{"errors": ["The role 8003c88a-bbae-11ea-9c9c-2f37a90f224d does not exist
+      not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 01 Jul 2020 15:21:13 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2688310"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+    code: 404
+    duration: ""
