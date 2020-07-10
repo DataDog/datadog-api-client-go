@@ -1,0 +1,753 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"series": [{"host": "go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205",
+      "metric": "go.client.test.metric", "points": [[1594323205.000000, 0]]}]}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      X-Datadog-Parent-Id:
+      - "6469165077662485591"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "6469165077662485591"
+    url: https://api.datadoghq.com/api/v1/series
+    method: POST
+  response:
+    body: '{"status": "ok"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "16"
+      Content-Type:
+      - text/json
+      Date:
+      - Thu, 09 Jul 2020 19:33:25 GMT
+      Dd-Pool:
+      - propjoe
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 202 Accepted
+    code: 202
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetHostTags
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1929992417367220051"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"errors": ["No host matches that host_id"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:33:26 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+    code: 404
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetHostTags
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4681400467568277924"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/tags/hosts/go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"tags":[]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "11"
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:33:36 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:33:36 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 1/ye/L7/S9djtmh0CDbapYOAoYP2Xz5NE904aTai4cgQw/Kmmv343hpHqBIP3PC5
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "926432784753921569"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":0,"host_list":[],"total_matching":0}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:33:36 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:33:36 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - Wggv16kEySW2sK6tAFOauC8dcF5Bbbnm+i3VfpVHWUrGKNsSBvcgciIpVb6AxlIu
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7722954534411018775"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":0,"host_list":[],"total_matching":0}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:33:46 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:33:46 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - Nm1SO1QsSP1UgilT18MGn9LspXb0kt5rd3h6E7WE8uKMvD1EwksAVzg+eAQfq1ug
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6017918878637136306"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":0,"host_list":[],"total_matching":0}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:33:56 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:33:56 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - rGYlKsILvUz3qea2lzt8jb6Cr3Y8Q0KGFlKPzog0VZ4S6ayIfoKpm1Zkdr7y0xOw
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7817439638551327422"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":0,"host_list":[],"total_matching":0}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:07 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:06 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - cv2yvJ1pYfiMc5O163+11dsCaGxqMkCDJcxFRb2qfNWRhrk6gV9pEuoZsZodVIVI
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3579796618693827881"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":0,"host_list":[],"total_matching":0}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:17 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:17 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - RrVn6Di+kKm0gZ8bNA80PkP4+sp09OhOyDUBXLN66Zsw96bCuOf5J+rsmCuN/L8p
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2219130081842230695"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":0,"host_list":[],"total_matching":0}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:27 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:27 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - RTl4kCFL/GbvWvV3WpfYS9YyxC2FIqcWM5sUkmK3d6uHvYe0xkW4eKxddMHq0WEB
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2361565955297130935"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":1,"host_list":[{"last_reported_time":1594323217,"name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","is_muted":false,"mute_timeout":null,"apps":["go"],"tags_by_source":{"Datadog":["host:go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]},"up":true,"metrics":{"load":null,"iowait":null,"cpu":null},"sources":[],"meta":{},"host_name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","id":2746344405,"aliases":["go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]}],"total_matching":1}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:37 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:37 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - Wggv16kEySW2sK6tAFOauC8dcF5Bbbnm+i3VfpVHWUrGKNsSBvcgciIpVb6AxlIu
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"end":1594324405,"message":"muting for test"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - MuteHost
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6872673587590538012"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/host/go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205/mute
+    method: POST
+  response:
+    body: '{"action":"Muted","downtime_id":886697865,"hostname":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","end":1594324405,"message":"muting
+      for test"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:37 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:37 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - LSmCynIhKaei2ZXhUwyt9n5ny5nHZCYRNYsTU4+Q86mceDsWCQtfUVf4lac22qNa
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3624558632887207346"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":1,"host_list":[{"last_reported_time":1594323217,"name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","is_muted":true,"mute_timeout":1594324405,"apps":["go"],"tags_by_source":{"Datadog":["host:go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]},"up":true,"metrics":{"load":null,"iowait":null,"cpu":null},"sources":[],"meta":{},"host_name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","id":2746344405,"aliases":["go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]}],"total_matching":1}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:37 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:37 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - yFQpN5LDuGfS1S5QC6LZwrGVYK0fdbZXVxugHnAnRrXOGixZsTsByABdZmT4qjmQ
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "9152278060502269272"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":1,"host_list":[{"last_reported_time":1594323217,"name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","is_muted":true,"mute_timeout":1594324405,"apps":["go"],"tags_by_source":{"Datadog":["host:go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]},"up":true,"metrics":{"load":null,"iowait":null,"cpu":null},"sources":[],"meta":{},"host_name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","id":2746344405,"aliases":["go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]}],"total_matching":1}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:38 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:38 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - mA2VSSkLMjmyxBL2Vn1QdDwwdKJV/Pk/2aqY8Iq+YxdG+ugOcrQ+vGFnPPJv/KSP
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6714995589821237393"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205&include_muted_hosts_data=true
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":1,"host_list":[{"last_reported_time":1594323217,"name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","is_muted":true,"mute_timeout":1594324405,"apps":["go"],"tags_by_source":{"Datadog":["host:go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]},"up":true,"metrics":{"load":null,"iowait":null,"cpu":null},"sources":[],"meta":{},"host_name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","id":2746344405,"aliases":["go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]}],"total_matching":1}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:38 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:38 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - YuN0dZ6z/w0eVjibYJO523lZ7aryVe1j+vcT0Be+048+BJpia9dqS64SpCTJG0tS
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListHosts
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4868922516332257089"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4071658831971395264"
+    url: https://api.datadoghq.com/api/v1/hosts?filter=go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205&include_muted_hosts_data=false
+    method: GET
+  response:
+    body: '{"exact_total_matching":true,"total_returned":1,"host_list":[{"last_reported_time":1594323217,"name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","is_muted":false,"mute_timeout":null,"apps":["go"],"tags_by_source":{"Datadog":["host:go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]},"up":true,"metrics":{"load":null,"iowait":null,"cpu":null},"sources":[],"meta":{},"host_name":"go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205","id":2746344405,"aliases":["go-TestHostsIncludeMutedHostsDataFunctional-local-1594323205"]}],"total_matching":1}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 09 Jul 2020 19:34:38 GMT
+      Dd-Pool:
+      - dogweb_query
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 16-Jul-2020 19:34:38 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 99aPZwrbfvm6mOGBDLOH95us1/dAKPHSi1zgMprOIdx72p+ogwRSyZAcMvmlwvxO
+      X-Dd-Version:
+      - "35.2721602"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""

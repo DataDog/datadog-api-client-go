@@ -1528,6 +1528,24 @@ paths:
           format: int64
           type: integer
         style: form
+      - description: Include information on the muted status of hosts and when the
+          mute expires.
+        explode: true
+        in: query
+        name: include_muted_hosts_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include additional metadata about the hosts (agent_version, machine,
+          platform, processor, etc.).
+        explode: true
+        in: query
+        name: include_hosts_metadata
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
