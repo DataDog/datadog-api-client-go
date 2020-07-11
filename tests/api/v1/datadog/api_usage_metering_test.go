@@ -617,8 +617,8 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		"403 Forbidden":   {WithFakeAuth, 403},
-		"502 Bad Gateway": {WithTestAuth, 502},
+		//"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
 	for name, tc := range testCases {
@@ -634,6 +634,29 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
+}
+
+func TestGetSpecifiedDailyCustomReports400Error(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	res, err := tests.ReadFixture("fixtures/usage/custom_reports_error_400.json")
+	if err != nil {
+		t.Fatalf("Failed to read fixture: %s", err)
+	}
+
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v1/daily_custom_reports/whatever").Reply(400).JSON(res)
+	defer gock.Off()
+
+	// 400 Not Found
+	_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, "whatever").Execute()
+	assert.Equal(400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(ok)
+	assert.NotEmpty(apiError.GetErrors())
 }
 
 func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
