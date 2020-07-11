@@ -73,10 +73,17 @@ func TestLogsList(t *testing.T) {
 	// Find first log item
 	logsRequest.SetLimit(1)
 
-	logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
+		if err != nil {
+			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		}
+		return 200 == httpresp.StatusCode && len(logsResponse.GetNextLogId()) > 0
+	})
 	if err != nil {
-		t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("%v", err)
 	}
+
 	assert.Equal(200, httpresp.StatusCode)
 
 	for _, log := range logsResponse.GetLogs() {
@@ -89,11 +96,17 @@ func TestLogsList(t *testing.T) {
 	assert.True(len(logsResponse.GetNextLogId()) > 0)
 	logsRequest.SetStartAt(logsResponse.GetNextLogId())
 
-	logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
-	if err != nil {
-		t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
 	assert.Equal(200, httpresp.StatusCode)
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
+		if err != nil {
+			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		}
+		return 200 == httpresp.StatusCode && len(logsResponse.GetLogs()) > 0
+	})
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 
 	for _, log := range logsResponse.GetLogs() {
 		content := log.GetContent()

@@ -60,10 +60,15 @@ func TestLogsList(t *testing.T) {
 
 	// Sort works correctly
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_ASCENDING)
-
-	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
@@ -75,9 +80,15 @@ func TestLogsList(t *testing.T) {
 
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_DESCENDING)
 
-	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
@@ -91,9 +102,15 @@ func TestLogsList(t *testing.T) {
 	page := datadog.NewLogsListRequestPage()
 	page.SetLimit(1)
 	request.SetPage(*page)
-	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
 
 	assert.Equal(200, httpResp.StatusCode)
@@ -104,10 +121,17 @@ func TestLogsList(t *testing.T) {
 	firstId := response.GetData()[0].GetId()
 
 	request.Page.SetCursor(cursor)
-	response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
+
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(1, len(response.GetData()))
 	secondId := response.GetData()[0].GetId()
@@ -151,16 +175,22 @@ func TestLogsListGet(t *testing.T) {
 	}
 
 	// Sort works correctly
-
-	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(*suffix).
-		FilterFrom(from).
-		FilterTo(to).
-		Sort(datadog.LOGSSORT_TIMESTAMP_ASCENDING).
-		Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+			FilterQuery(*suffix).
+			FilterFrom(from).
+			FilterTo(to).
+			Sort(datadog.LOGSSORT_TIMESTAMP_ASCENDING).
+			Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
+
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes := response.GetData()[0].GetAttributes()
@@ -169,15 +199,22 @@ func TestLogsListGet(t *testing.T) {
 	attributes = response.GetData()[1].GetAttributes()
 	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
 
-	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(*suffix).
-		FilterFrom(from).
-		FilterTo(to).
-		Sort(datadog.LOGSSORT_TIMESTAMP_DESCENDING).
-		Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+			FilterQuery(*suffix).
+			FilterFrom(from).
+			FilterTo(to).
+			Sort(datadog.LOGSSORT_TIMESTAMP_DESCENDING).
+			Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
+
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes = response.GetData()[0].GetAttributes()
@@ -187,14 +224,20 @@ func TestLogsListGet(t *testing.T) {
 	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
 
 	// Paging
-	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(*suffix).
-		FilterFrom(from).
-		FilterTo(to).
-		PageLimit(1).
-		Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+			FilterQuery(*suffix).
+			FilterFrom(from).
+			FilterTo(to).
+			PageLimit(1).
+			Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
 
 	assert.Equal(200, httpResp.StatusCode)
@@ -204,15 +247,21 @@ func TestLogsListGet(t *testing.T) {
 	cursor := respPage.GetAfter()
 	firstId := response.GetData()[0].GetId()
 
-	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
-		FilterQuery(*suffix).
-		FilterFrom(from).
-		FilterTo(to).
-		PageLimit(1).
-		PageCursor(cursor).
-		Execute()
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
+			FilterQuery(*suffix).
+			FilterFrom(from).
+			FilterTo(to).
+			PageLimit(1).
+			PageCursor(cursor).
+			Execute()
+		if err != nil {
+			t.Fatalf("Could not list logs: %v", err)
+		}
+		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+	})
 	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
+		t.Fatalf("%v", err)
 	}
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(1, len(response.GetData()))
