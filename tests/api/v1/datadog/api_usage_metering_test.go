@@ -702,7 +702,7 @@ func TestGetDailyCustomReportsErrors(t *testing.T) {
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
 	}{
-		// "404 Not Found": {WithTestAuth, 404},
+		//"404 Not Found": {WithTestAuth, 404},
 		"403 Forbidden": {WithFakeAuth, 403},
 	}
 
