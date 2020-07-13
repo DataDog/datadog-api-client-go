@@ -2062,8 +2062,8 @@ func (r apiGetUsageSyntheticsRequest) EndHr(endHr time.Time) apiGetUsageSyntheti
 }
 
 /*
-GetUsageSynthetics Get hourly usage for Synthetics API Checks
-Get hourly usage for [Synthetics API checks](https://docs.datadoghq.com/synthetics/).
+GetUsageSynthetics Get hourly usage for Synthetics Checks
+Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetUsageSyntheticsRequest
 */
