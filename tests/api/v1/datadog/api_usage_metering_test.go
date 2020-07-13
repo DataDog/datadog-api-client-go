@@ -322,6 +322,7 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	reportID := "2019-10-02"
 
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, reportID).Execute()
 	if err != nil {
 		t.Errorf("Error getting Specified Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -337,6 +338,7 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	reportID := "2019-10-02"
 
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, reportID).Execute()
 	if err != nil {
 		t.Errorf("Error getting Specified Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -351,6 +353,7 @@ func TestDailyCustomReports(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -365,6 +368,7 @@ func TestMonthlyCustomReports(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
 	if err != nil {
 		t.Errorf("Error getting Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -627,6 +631,7 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, "whatever").Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -652,6 +657,7 @@ func TestGetSpecifiedDailyCustomReports400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Not Found
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
 	_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, "whatever").Execute()
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -678,6 +684,7 @@ func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, "whatever").Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -705,6 +712,7 @@ func TestGetDailyCustomReportsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -730,6 +738,7 @@ func TestGetDailyCustomReports404Error(t *testing.T) {
 	defer gock.Off()
 
 	// 404 Not Found
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
 	_, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -755,6 +764,7 @@ func TestGetMonthlyCustomReportsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -780,6 +790,7 @@ func TestGetMonthlyCustomReports404Error(t *testing.T) {
 	defer gock.Off()
 
 	//404 Not Found
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
 	_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
