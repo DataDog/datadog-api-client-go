@@ -28,21 +28,20 @@ go.sum,gopkg.in/DataDog/dd-trace-go.v1,Apache-2.0,2016-Present Datadog, Inc.
 go.sum,gopkg.in/h2non/gock.v1,MIT,2016-2019 Tomas Aparicio
 go.sum,gopkg.in/yaml.v2,Apache-2.0,2011-2016 Canonical Ltd.
 go.sum,gotest.tools,Apache-2.0,2018 gotest.tools authors
-go.sum,github.com/aslakhellesoy/gox,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/creack/pty,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/cucumber/gherkin-go/v13,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/cucumber/messages-go/v12,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/go-bdd/assert,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/go-bdd/gobdd,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/gofrs/uuid,<LICENSE>,<COPYRIGHT>
+go.sum,github.com/aslakhellesoy/gox,MPL-2.0,<COPYRIGHT>
+go.sum,github.com/creack/pty,MIT,<COPYRIGHT>
+go.sum,github.com/cucumber/gherkin-go/v13,MIT,<COPYRIGHT>
+go.sum,github.com/cucumber/messages-go/v12,MIT,<COPYRIGHT>
+go.sum,github.com/go-bdd/assert,Unknown,<COPYRIGHT>
+go.sum,github.com/go-bdd/gobdd,MIT,<COPYRIGHT>
+go.sum,github.com/gofrs/uuid,MIT,<COPYRIGHT>
+go.sum,github.com/hashicorp/go-version,MPL-2.0,<COPYRIGHT>
+go.sum,github.com/kisielk/errcheck,MIT,<COPYRIGHT>
+go.sum,github.com/kisielk/gotool,MIT,<COPYRIGHT>
+go.sum,github.com/kr/pty,Unknown,<COPYRIGHT>
+go.sum,github.com/kr/text,Unknown,<COPYRIGHT>
+go.sum,github.com/mcuadros/go-lookup,MIT,<COPYRIGHT>
+go.sum,github.com/mitchellh/iochan,MIT,<COPYRIGHT>
+go.sum,github.com/niemeyer/pretty,Unknown,<COPYRIGHT>
 go.sum,github.com/gogo/protobuf,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/hashicorp/go-version,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/kisielk/errcheck,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/kisielk/gotool,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/kr/pty,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/kr/text,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/mcuadros/go-lookup,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/mitchellh/iochan,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/niemeyer/pretty,<LICENSE>,<COPYRIGHT>
-go.sum,golang.org/x/tools,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/jirikuncar/gobdd,<LICENSE>,<COPYRIGHT>
+go.sum,golang.org/x/tools,BSD-3-Clause,2019 The Go Authors
