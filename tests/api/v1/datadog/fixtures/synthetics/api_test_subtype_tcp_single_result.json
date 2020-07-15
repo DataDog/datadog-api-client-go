@@ -1,0 +1,34 @@
+{
+  "status": 0,
+  "run_type": 3,
+  "check_time": 1594759676042,
+  "check_version": 2,
+  "result": {
+    "eventType": "finished",
+    "timings": {
+      "total": 12.3,
+      "tcp": 11.3,
+      "dns": 1
+    },
+    "mainDC": "us1.prod",
+    "runType": 3,
+    "metadata": null
+  },
+  "probe_dc": "aws:us-east-2",
+  "result_id": "8846149531307597251",
+  "check": {
+    "config": {
+      "request": {
+        "host": "agent-intake.logs.datadoghq.com",
+        "port": 443
+      },
+      "assertions": [
+        {
+          "operator": "lessThan",
+          "type": "responseTime",
+          "target": 2000
+        }
+      ]
+    }
+  }
+}
