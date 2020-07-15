@@ -3133,6 +3133,13 @@ components:
     RoleUpdateData:
       description: Data related to the update of a role.
       example:
+        relationships:
+          permissions:
+            data:
+            - id: id
+              type: permissions
+            - id: id
+              type: permissions
         attributes:
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -3145,13 +3152,35 @@ components:
         id:
           description: ID of the role.
           type: string
+        relationships:
+          $ref: '#/components/schemas/RoleUpdateRelationships'
         type:
           $ref: '#/components/schemas/RolesType'
+      type: object
+    RoleUpdateRelationships:
+      description: Relationships of role object to update.
+      example:
+        permissions:
+          data:
+          - id: id
+            type: permissions
+          - id: id
+            type: permissions
+      properties:
+        permissions:
+          $ref: '#/components/schemas/RelationshipToPermissions'
       type: object
     RoleUpdateRequest:
       description: Update a role.
       example:
         data:
+          relationships:
+            permissions:
+              data:
+              - id: id
+                type: permissions
+              - id: id
+                type: permissions
           attributes:
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00

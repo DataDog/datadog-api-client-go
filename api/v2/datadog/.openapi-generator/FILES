@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -91,6 +90,7 @@ docs/RoleResponse.md
 docs/RoleResponseRelationships.md
 docs/RoleUpdateAttributes.md
 docs/RoleUpdateData.md
+docs/RoleUpdateRelationships.md
 docs/RoleUpdateRequest.md
 docs/RoleUpdateResponse.md
 docs/RoleUpdateResponseData.md
@@ -213,6 +213,7 @@ model_role_response.go
 model_role_response_relationships.go
 model_role_update_attributes.go
 model_role_update_data.go
+model_role_update_relationships.go
 model_role_update_request.go
 model_role_update_response.go
 model_role_update_response_data.go

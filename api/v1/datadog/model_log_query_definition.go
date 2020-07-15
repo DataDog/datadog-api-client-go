@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// LogQueryDefinition The log query.
+// LogQueryDefinition List of logs.
 type LogQueryDefinition struct {
 	Compute *LogsQueryCompute `json:"compute,omitempty"`
 	// List of tag prefixes to group by in the case of a cluster check.

@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## ListHosts
 
-> HostListResponse ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
+> HostListResponse ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
 
 Get all hosts for your organization
 
@@ -130,12 +130,10 @@ func main() {
     start := 987 // int64 | Host result to start search from. (optional)
     count := 987 // int64 | Number of hosts to return. Max 1000. (optional)
     from := 987 // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
-    includeMutedHostsData := true // bool | Include information on the muted status of hosts and when the mute expires. (optional)
-    includeHostsMetadata := true // bool | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
+    resp, r, err := api_client.HostsApi.ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -162,8 +160,6 @@ Name | Type | Description  | Notes
  **start** | **int64** | Host result to start search from. | 
  **count** | **int64** | Number of hosts to return. Max 1000. | 
  **from** | **int64** | Number of seconds since UNIX epoch from which you want to search your hosts. | 
- **includeMutedHostsData** | **bool** | Include information on the muted status of hosts and when the mute expires. | 
- **includeHostsMetadata** | **bool** | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). | 
 
 ### Return type
 

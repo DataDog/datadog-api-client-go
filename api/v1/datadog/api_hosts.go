@@ -182,16 +182,14 @@ func (r apiGetHostTotalsRequest) Execute() (HostTotals, *_nethttp.Response, erro
 }
 
 type apiListHostsRequest struct {
-	ctx                   _context.Context
-	apiService            *HostsApiService
-	filter                *string
-	sortField             *string
-	sortDir               *string
-	start                 *int64
-	count                 *int64
-	from                  *int64
-	includeMutedHostsData *bool
-	includeHostsMetadata  *bool
+	ctx        _context.Context
+	apiService *HostsApiService
+	filter     *string
+	sortField  *string
+	sortDir    *string
+	start      *int64
+	count      *int64
+	from       *int64
 }
 
 func (r apiListHostsRequest) Filter(filter string) apiListHostsRequest {
@@ -221,16 +219,6 @@ func (r apiListHostsRequest) Count(count int64) apiListHostsRequest {
 
 func (r apiListHostsRequest) From(from int64) apiListHostsRequest {
 	r.from = &from
-	return r
-}
-
-func (r apiListHostsRequest) IncludeMutedHostsData(includeMutedHostsData bool) apiListHostsRequest {
-	r.includeMutedHostsData = &includeMutedHostsData
-	return r
-}
-
-func (r apiListHostsRequest) IncludeHostsMetadata(includeHostsMetadata bool) apiListHostsRequest {
-	r.includeHostsMetadata = &includeHostsMetadata
 	return r
 }
 
@@ -292,12 +280,6 @@ func (r apiListHostsRequest) Execute() (HostListResponse, *_nethttp.Response, er
 	}
 	if r.from != nil {
 		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.includeMutedHostsData != nil {
-		localVarQueryParams.Add("include_muted_hosts_data", parameterToString(*r.includeMutedHostsData, ""))
-	}
-	if r.includeHostsMetadata != nil {
-		localVarQueryParams.Add("include_hosts_metadata", parameterToString(*r.includeHostsMetadata, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

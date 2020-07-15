@@ -194,6 +194,7 @@ Class | Method | HTTP request | Description
  - [RoleResponseRelationships](docs/RoleResponseRelationships.md)
  - [RoleUpdateAttributes](docs/RoleUpdateAttributes.md)
  - [RoleUpdateData](docs/RoleUpdateData.md)
+ - [RoleUpdateRelationships](docs/RoleUpdateRelationships.md)
  - [RoleUpdateRequest](docs/RoleUpdateRequest.md)
  - [RoleUpdateResponse](docs/RoleUpdateResponse.md)
  - [RoleUpdateResponseData](docs/RoleUpdateResponseData.md)

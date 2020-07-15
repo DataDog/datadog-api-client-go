@@ -16,8 +16,9 @@ import (
 type RoleUpdateData struct {
 	Attributes *RoleUpdateAttributes `json:"attributes,omitempty"`
 	// ID of the role.
-	Id   *string    `json:"id,omitempty"`
-	Type *RolesType `json:"type,omitempty"`
+	Id            *string                  `json:"id,omitempty"`
+	Relationships *RoleUpdateRelationships `json:"relationships,omitempty"`
+	Type          *RolesType               `json:"type,omitempty"`
 }
 
 // NewRoleUpdateData instantiates a new RoleUpdateData object
@@ -105,6 +106,38 @@ func (o *RoleUpdateData) SetId(v string) {
 	o.Id = &v
 }
 
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *RoleUpdateData) GetRelationships() RoleUpdateRelationships {
+	if o == nil || o.Relationships == nil {
+		var ret RoleUpdateRelationships
+		return ret
+	}
+	return *o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleUpdateData) GetRelationshipsOk() (*RoleUpdateRelationships, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *RoleUpdateData) HasRelationships() bool {
+	if o != nil && o.Relationships != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRelationships gets a reference to the given RoleUpdateRelationships and assigns it to the Relationships field.
+func (o *RoleUpdateData) SetRelationships(v RoleUpdateRelationships) {
+	o.Relationships = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RoleUpdateData) GetType() RolesType {
 	if o == nil || o.Type == nil {
@@ -144,6 +177,9 @@ func (o RoleUpdateData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

@@ -970,7 +970,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RoleUpdateRequest{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Id: "Id_example", Type: datadog.RolesType{}}} // RoleUpdateRequest |  (optional)
+    body := datadog.RoleUpdateRequest{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Id: "Id_example", Relationships: datadog.RoleUpdateRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{)}}, Type: datadog.RolesType{}}} // RoleUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

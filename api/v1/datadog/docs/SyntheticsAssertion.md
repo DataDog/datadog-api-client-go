@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operator** | Pointer to [**SyntheticsAssertionJSONPathOperator**](SyntheticsAssertionJSONPathOperator.md) |  | 
+**Operator** | Pointer to [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
 **Property** | Pointer to **string** | The associated assertion property. | [optional] 
-**Target** | Pointer to [**SyntheticsAssertionJSONPathTargetTarget**](SyntheticsAssertionJSONPathTarget_target.md) |  | [optional] 
+**Target** | Pointer to **interface{}** | Target to apply the assertion to. It can be a string, a number, or a Date. | [optional] 
 **Type** | Pointer to [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
 
 ## Methods
 
 ### NewSyntheticsAssertion
 
-`func NewSyntheticsAssertion(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType, ) *SyntheticsAssertion`
+`func NewSyntheticsAssertion(operator SyntheticsAssertionOperator, type_ SyntheticsAssertionType, ) *SyntheticsAssertion`
 
 NewSyntheticsAssertion instantiates a new SyntheticsAssertion object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetOperator
 
-`func (o *SyntheticsAssertion) GetOperator() SyntheticsAssertionJSONPathOperator`
+`func (o *SyntheticsAssertion) GetOperator() SyntheticsAssertionOperator`
 
 GetOperator returns the Operator field if non-nil, zero value otherwise.
 
 ### GetOperatorOk
 
-`func (o *SyntheticsAssertion) GetOperatorOk() (*SyntheticsAssertionJSONPathOperator, bool)`
+`func (o *SyntheticsAssertion) GetOperatorOk() (*SyntheticsAssertionOperator, bool)`
 
 GetOperatorOk returns a tuple with the Operator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperator
 
-`func (o *SyntheticsAssertion) SetOperator(v SyntheticsAssertionJSONPathOperator)`
+`func (o *SyntheticsAssertion) SetOperator(v SyntheticsAssertionOperator)`
 
 SetOperator sets Operator field to given value.
 
@@ -75,20 +75,20 @@ HasProperty returns a boolean if a field has been set.
 
 ### GetTarget
 
-`func (o *SyntheticsAssertion) GetTarget() SyntheticsAssertionJSONPathTargetTarget`
+`func (o *SyntheticsAssertion) GetTarget() interface{}`
 
 GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *SyntheticsAssertion) GetTargetOk() (*SyntheticsAssertionJSONPathTargetTarget, bool)`
+`func (o *SyntheticsAssertion) GetTargetOk() (*interface{}, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTarget
 
-`func (o *SyntheticsAssertion) SetTarget(v SyntheticsAssertionJSONPathTargetTarget)`
+`func (o *SyntheticsAssertion) SetTarget(v interface{})`
 
 SetTarget sets Target field to given value.
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**RoleUpdateAttributes**](RoleUpdateAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the role. | [optional] 
+**Relationships** | Pointer to [**RoleUpdateRelationships**](RoleUpdateRelationships.md) |  | [optional] 
 **Type** | Pointer to [**RolesType**](RolesType.md) |  | [optional] [default to "roles"]
 
 ## Methods
@@ -76,6 +77,31 @@ SetId sets Id field to given value.
 `func (o *RoleUpdateData) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetRelationships
+
+`func (o *RoleUpdateData) GetRelationships() RoleUpdateRelationships`
+
+GetRelationships returns the Relationships field if non-nil, zero value otherwise.
+
+### GetRelationshipsOk
+
+`func (o *RoleUpdateData) GetRelationshipsOk() (*RoleUpdateRelationships, bool)`
+
+GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRelationships
+
+`func (o *RoleUpdateData) SetRelationships(v RoleUpdateRelationships)`
+
+SetRelationships sets Relationships field to given value.
+
+### HasRelationships
+
+`func (o *RoleUpdateData) HasRelationships() bool`
+
+HasRelationships returns a boolean if a field has been set.
 
 ### GetType
 
