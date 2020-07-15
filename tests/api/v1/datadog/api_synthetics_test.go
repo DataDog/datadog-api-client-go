@@ -831,6 +831,7 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 
 	variable := datadog.SyntheticsGlobalVariable{
 		Name: tests.UniqueEntityName(ctx, t),
+		Tags: &[]string{},
 	}
 
 	// Create variable
