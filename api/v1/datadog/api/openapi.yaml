@@ -4839,6 +4839,119 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+  /api/v1/synthetics/variables:
+    post:
+      description: Create a Synthetics global variable.
+      operationId: CreateGlobalVariable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyntheticsGlobalVariable'
+        description: Details of the global variable to create.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsGlobalVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Create a global variable
+      tags:
+      - Synthetics
+      x-codegen-request-body-name: body
+  /api/v1/synthetics/variables/{variable_id}:
+    delete:
+      description: Delete a Synthetics global variable.
+      operationId: DeleteGlobalVariable
+      parameters:
+      - description: The ID of the global variable.
+        explode: false
+        in: path
+        name: variable_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: JSON format is wrong
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Delete a global variable
+      tags:
+      - Synthetics
+    put:
+      description: Edit a Synthetics global variable.
+      operationId: EditGlobalVariable
+      parameters:
+      - description: The ID of the global variable.
+        explode: false
+        in: path
+        name: variable_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyntheticsGlobalVariable'
+        description: Details of the global variable to update.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsGlobalVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Edit a global variable
+      tags:
+      - Synthetics
+      x-codegen-request-body-name: body
   /api/v1/tags/hosts:
     get:
       description: Return a mapping of tags to hosts for your whole infrastructure.
@@ -13110,6 +13223,53 @@ components:
             $ref: '#/components/schemas/SyntheticsBrowserTestResultShort'
           type: array
       type: object
+    SyntheticsGlobalVariable:
+      description: Synthetics global variable.
+      example:
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        description: description
+        id: id
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 171976544
+        value:
+          secure: true
+          value: value
+        tags:
+        - tags
+        - tags
+      properties:
+        created_at:
+          description: Creation timestamp of the global variable.
+          format: date-time
+          type: string
+        created_by:
+          description: The ID of the user who created the global variable.
+          format: int32
+          maximum: 2147483647
+          type: integer
+        description:
+          description: Description of the global variable.
+          type: string
+        id:
+          description: Unique identifier of the global variable.
+          type: string
+        modified_at:
+          description: Modification timestamp of the global variable.
+          format: date-time
+          type: string
+        name:
+          description: Name of the global variable.
+          type: string
+        tags:
+          description: Tags of the global variable.
+          items:
+            description: Tag name.
+            type: string
+          type: array
+        value:
+          $ref: '#/components/schemas/SyntheticsGlobalVariable_value'
+      type: object
     SyntheticsListTestsResponse:
       description: Object containing an array of Synthetic tests configuration.
       example:
@@ -17775,6 +17935,18 @@ components:
           type: string
         public_id:
           description: The Synthetic test ID deleted.
+          type: string
+    SyntheticsGlobalVariable_value:
+      description: Value of the global variable.
+      example:
+        secure: true
+        value: value
+      properties:
+        secure:
+          description: Determines if the variable is secure.
+          type: boolean
+        value:
+          description: Value of the global variable.
           type: string
     SyntheticsSSLCertificate_issuer:
       description: Object describing the issuer of a SSL certificate.
