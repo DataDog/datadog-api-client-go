@@ -317,6 +317,10 @@ func TestUsageBillableSummary(t *testing.T) {
 }
 
 func TestSpecifiedDailyCustomReports(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
+
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -333,6 +337,10 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 }
 
 func TestSpecifiedMonthlyCustomReports(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
+
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -349,6 +357,10 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 }
 
 func TestDailyCustomReports(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
+
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -364,6 +376,10 @@ func TestDailyCustomReports(t *testing.T) {
 }
 
 func TestMonthlyCustomReports(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
+
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -613,6 +629,9 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 }
 
 func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
 
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
@@ -666,6 +685,9 @@ func TestGetSpecifiedDailyCustomReports400Error(t *testing.T) {
 }
 
 func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
 
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
@@ -695,6 +717,10 @@ func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
 }
 
 func TestGetDailyCustomReportsErrors(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
+
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
 
@@ -747,6 +773,10 @@ func TestGetDailyCustomReports404Error(t *testing.T) {
 }
 
 func TestGetMonthlyCustomReportsErrors(t *testing.T) {
+	if tests.GetRecording() == tests.ModeReplaying {
+		t.Skip("No reports are available yet for Org 321813")
+	}
+
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
 
