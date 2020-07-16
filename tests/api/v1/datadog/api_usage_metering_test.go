@@ -317,19 +317,19 @@ func TestUsageBillableSummary(t *testing.T) {
 }
 
 func TestSpecifiedDailyCustomReports(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	reportID := "2019-10-02"
+	reportID := "2020-07-15"
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, reportID).Execute()
 	if err != nil {
-		t.Errorf("Error getting Specified Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+			t.Skip("No reports are available yet or this org is forbidden")
+		} else {
+			t.Errorf("Error getting Specified Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		}
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasMeta())
@@ -337,19 +337,19 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 }
 
 func TestSpecifiedMonthlyCustomReports(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	reportID := "2019-10-02"
+	reportID := "2020-08-15" // Will only start being generated on this date for FROG org
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, reportID).Execute()
 	if err != nil {
-		t.Errorf("Error getting Specified Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+			t.Skip("No reports are available yet or this org is forbidden")
+		} else {
+			t.Errorf("Error getting Specified Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		}
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasMeta())
@@ -357,10 +357,6 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 }
 
 func TestDailyCustomReports(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -368,7 +364,11 @@ func TestDailyCustomReports(t *testing.T) {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
 	if err != nil {
-		t.Errorf("Error getting Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+			t.Skip("No reports are available yet or this org is forbidden")
+		} else {
+			t.Errorf("Error getting Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		}
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasMeta())
@@ -376,10 +376,6 @@ func TestDailyCustomReports(t *testing.T) {
 }
 
 func TestMonthlyCustomReports(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -387,7 +383,11 @@ func TestMonthlyCustomReports(t *testing.T) {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
 	if err != nil {
-		t.Errorf("Error getting Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+			t.Skip("No reports are available yet or this org is forbidden ")
+		} else {
+			t.Errorf("Error getting Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		}
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasMeta())
@@ -626,206 +626,6 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
-}
-
-func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
-
-	testCases := map[string]struct {
-		Ctx                func(context.Context) context.Context
-		ExpectedStatusCode int
-	}{
-		//"400 Bad Request": {WithTestAuth, 400},
-		"403 Forbidden": {WithFakeAuth, 403},
-	}
-
-	for name, tc := range testCases {
-		t.Run(name, func(t *testing.T) {
-			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
-			defer finish()
-			assert := tests.Assert(ctx, t)
-
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, "whatever").Execute()
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(ok)
-			assert.NotEmpty(apiError.GetErrors())
-		})
-	}
-}
-
-func TestGetSpecifiedDailyCustomReports400Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
-	defer finish()
-	assert := tests.Assert(ctx, t)
-
-	res, err := tests.ReadFixture("fixtures/usage/custom_reports_error_400.json")
-	if err != nil {
-		t.Fatalf("Failed to read fixture: %s", err)
-	}
-
-	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
-	assert.NoError(err)
-	gock.New(URL).Get("/api/v1/daily_custom_reports/whatever").Reply(400).JSON(res)
-	defer gock.Off()
-
-	// 400 Not Found
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
-	_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, "whatever").Execute()
-	assert.Equal(400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(ok)
-	assert.NotEmpty(apiError.GetErrors())
-}
-
-func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
-
-	testCases := map[string]struct {
-		Ctx                func(context.Context) context.Context
-		ExpectedStatusCode int
-	}{
-		"403 Forbidden":   {WithFakeAuth, 403},
-		"400 Bad Request": {WithTestAuth, 400},
-	}
-
-	for name, tc := range testCases {
-		t.Run(name, func(t *testing.T) {
-			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
-			defer finish()
-			assert := tests.Assert(ctx, t)
-
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, "whatever").Execute()
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(ok)
-			assert.NotEmpty(apiError.GetErrors())
-		})
-	}
-}
-
-func TestGetDailyCustomReportsErrors(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
-
-	testCases := map[string]struct {
-		Ctx                func(context.Context) context.Context
-		ExpectedStatusCode int
-	}{
-		//"404 Not Found": {WithTestAuth, 404},
-		"403 Forbidden": {WithFakeAuth, 403},
-	}
-
-	for name, tc := range testCases {
-		t.Run(name, func(t *testing.T) {
-			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
-			defer finish()
-			assert := tests.Assert(ctx, t)
-
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(ok)
-			assert.NotEmpty(apiError.GetErrors())
-		})
-	}
-}
-
-func TestGetDailyCustomReports404Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
-	defer finish()
-	assert := tests.Assert(ctx, t)
-
-	res, err := tests.ReadFixture("fixtures/usage/no_authenticated_user_error.json")
-	if err != nil {
-		t.Fatalf("Failed to read fixture: %s", err)
-	}
-
-	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
-	assert.NoError(err)
-	gock.New(URL).Get("/api/v1/daily_custom_reports").Reply(404).JSON(res)
-	defer gock.Off()
-
-	// 404 Not Found
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
-	_, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
-	assert.Equal(404, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(ok)
-	assert.NotEmpty(apiError.GetErrors())
-}
-
-func TestGetMonthlyCustomReportsErrors(t *testing.T) {
-	if tests.GetRecording() == tests.ModeReplaying {
-		t.Skip("No reports are available yet for Org 321813")
-	}
-
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
-
-	testCases := map[string]struct {
-		Ctx                func(context.Context) context.Context
-		ExpectedStatusCode int
-	}{
-		// "404 Not Found": {WithTestAuth, 404},
-		"403 Forbidden": {WithFakeAuth, 403},
-	}
-
-	for name, tc := range testCases {
-		t.Run(name, func(t *testing.T) {
-			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
-			defer finish()
-			assert := tests.Assert(ctx, t)
-
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-			assert.True(ok)
-			assert.NotEmpty(apiError.GetErrors())
-		})
-	}
-}
-
-func TestGetMonthlyCustomReports404Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
-	defer finish()
-	assert := tests.Assert(ctx, t)
-
-	res, err := tests.ReadFixture("fixtures/usage/no_authenticated_user_error.json")
-	if err != nil {
-		t.Fatalf("Failed to read fixture: %s", err)
-	}
-
-	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
-	assert.NoError(err)
-	gock.New(URL).Get("/api/v1/monthly_custom_reports").Reply(404).JSON(res)
-	defer gock.Off()
-
-	//404 Not Found
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
-	_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
-	assert.Equal(404, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
-	assert.True(ok)
-	assert.NotEmpty(apiError.GetErrors())
 }
 
 func TestUsageGetBillableSummary400Error(t *testing.T) {
@@ -1198,4 +998,141 @@ func TestUsageGetSummary400Error(t *testing.T) {
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
+}
+
+func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"403 Forbidden": {WithFakeAuth, 403},
+		"404 Not Found": {WithTestAuth, 404},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, "2010-01-01").Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, "whatever").Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetSpecifiedMonthlyCustomReports404Error(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"404 Not Found": {WithTestAuth, 404},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, "2010-01-01").Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetDailyCustomReportsErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"403 Forbidden": {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetMonthlyCustomReportsErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"403 Forbidden": {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
 }
