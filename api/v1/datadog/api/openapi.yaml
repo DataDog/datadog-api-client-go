@@ -7659,7 +7659,7 @@ components:
       - NORMAL
       - LOW
     EventQueryDefinition:
-      description: List of events
+      description: The event query.
       properties:
         search:
           description: The query being made on the event.
@@ -8718,7 +8718,7 @@ components:
           type: string
       type: object
     LogQueryDefinition:
-      description: List of logs.
+      description: The log query.
       properties:
         compute:
           $ref: '#/components/schemas/LogsQueryCompute'
@@ -13723,10 +13723,12 @@ components:
       enum:
       - http
       - ssl
+      - tcp
       type: string
       x-enum-varnames:
       - HTTP
       - SSL
+      - TCP
     SyntheticsTestDetailsType:
       description: Type of the Synthetic test, either `api` or `browser`.
       enum:
