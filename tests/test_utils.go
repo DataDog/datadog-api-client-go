@@ -44,42 +44,42 @@ const (
 
 var testFiles2EndpointTags = map[string]map[string]string{
 	"tests/api/v1/datadog": {
-		"api_authentication_test": "validation",
-		"api_aws_integration_test": "integration-aws",
-		"api_aws_logs_integration_test": "integration-aws",
-		"api_azure_integration_test": "integration-azure",
-		"api_dashboard_lists_test": "dashboard-lists",
-		"api_dashboards_test": "dashboards",
-		"api_downtimes_test": "downtimes",
-		"api_events_test": "events",
-		"api_gcp_integration_test": "integration-gcp",
-		"api_hosts_test": "hosts",
-		"api_ip_ranges_test": "ip-ranges",
-		"api_key_management_test": "key-management",
-		"api_logs_indexes_test": "logs-indexes",
-		"api_logs_pipelines_test": "logs-pipelines",
-		"api_logs_test": "logs",
-		"api_metrics_test": "metrics",
-		"api_monitors_test": "monitors",
-		"api_organizations_test": "organizations",
-		"api_pager_duty_integration_test": "integration-pagerduty",
+		"api_authentication_test":           "validation",
+		"api_aws_integration_test":          "integration-aws",
+		"api_aws_logs_integration_test":     "integration-aws",
+		"api_azure_integration_test":        "integration-azure",
+		"api_dashboard_lists_test":          "dashboard-lists",
+		"api_dashboards_test":               "dashboards",
+		"api_downtimes_test":                "downtimes",
+		"api_events_test":                   "events",
+		"api_gcp_integration_test":          "integration-gcp",
+		"api_hosts_test":                    "hosts",
+		"api_ip_ranges_test":                "ip-ranges",
+		"api_key_management_test":           "key-management",
+		"api_logs_indexes_test":             "logs-indexes",
+		"api_logs_pipelines_test":           "logs-pipelines",
+		"api_logs_test":                     "logs",
+		"api_metrics_test":                  "metrics",
+		"api_monitors_test":                 "monitors",
+		"api_organizations_test":            "organizations",
+		"api_pager_duty_integration_test":   "integration-pagerduty",
 		"api_service_level_objectives_test": "service-level-objectives",
-		"api_snapshots_test": "snapshots",
-		"api_synthetics_test": "synthetics",
-		"api_tags_test": "tags",
-		"api_usage_metering_test": "usage-metering",
-		"api_users_test": "users",
-		"telemetry_test": "telemetry",
+		"api_snapshots_test":                "snapshots",
+		"api_synthetics_test":               "synthetics",
+		"api_tags_test":                     "tags",
+		"api_usage_metering_test":           "usage-metering",
+		"api_users_test":                    "users",
+		"telemetry_test":                    "telemetry",
 	},
 	"tests/api/v2/datadog": {
 		"api_dashboard_lists_test": "dashboard-lists",
-		"api_logs_archives_test": "logs-archives",
-		"api_logs_test": "logs",
-		"api_permissions_test": "permissions",
-		"api_roles_test": "roles",
-		"api_users_test": "users",
+		"api_logs_archives_test":   "logs-archives",
+		"api_logs_test":            "logs",
+		"api_permissions_test":     "permissions",
+		"api_roles_test":           "roles",
+		"api_users_test":           "users",
 		"security_monitoring_test": "security-monitoring",
-		"telemetry_test": "telemetry",
+		"telemetry_test":           "telemetry",
 	},
 }
 
@@ -102,6 +102,15 @@ func GetRecording() RecordingMode {
 // IsCIRun returns true if the CI environment variable is set to "true"
 func IsCIRun() bool {
 	return os.Getenv("CI") == "true"
+}
+
+// SecurePath replaces all dangerous characters in the path.
+func SecurePath(path string) string {
+	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">"}
+	for _, c := range badChars {
+		path = strings.ReplaceAll(path, c, "_")
+	}
+	return filepath.Clean(path)
 }
 
 // Retry calls the call function for count times every interval while it returns false
@@ -169,7 +178,7 @@ func getEndpointTagValue(t *testing.T) (string, error) {
 			testName = testName[:strings.LastIndex(testName, "/")]
 			frameFunction = frameFunction[:strings.LastIndex(frameFunction, ".")]
 		}
-		if strings.HasSuffix(frameFunction, "." + testName) {
+		if strings.HasSuffix(frameFunction, "."+testName) {
 			functionFile = frame.File
 			// when we find the frame with the current test function, match it against testFiles2EndpointTags
 			for subdir, file2tag := range testFiles2EndpointTags {
@@ -191,7 +200,8 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	t.Helper()
 	tag, err := getEndpointTagValue(t)
 	if err != nil {
-		panic(err.Error())
+		t.Log(err.Error())
+		tag = "features"
 	}
 	span, ctx := tracer.StartSpanFromContext(
 		ctx,
@@ -207,7 +217,7 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	// NOTE: version is treated in slightly different way, because it's a special tag;
 	// if we set it in StartSpanFromContext, it would get overwritten
 	span.SetTag("version", tag)
-	return tracer.ContextWithSpan(ctx, span), func() {
+	return ctx, func() {
 		span.SetTag(ext.Error, t.Failed())
 		span.Finish()
 	}
@@ -223,34 +233,32 @@ func createWithDir(path string) (*os.File, error) {
 }
 
 // SetClock stores current time in .freeze file.
-func SetClock(t *testing.T) clockwork.FakeClock {
-	t.Helper()
+func SetClock(path string) (clockwork.FakeClock, error) {
 	now := clockwork.NewRealClock().Now()
 	if GetRecording() == ModeRecording {
 		os.MkdirAll("cassettes", 0755)
 
-		f, err := createWithDir(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
+		f, err := createWithDir(fmt.Sprintf("cassettes/%s.freeze", path))
 		if err != nil {
-			t.Fatalf("Could not set clock: %v", err)
+			return nil, err
 		}
 		defer f.Close()
 		f.WriteString(now.Format(time.RFC3339Nano))
 	}
-	return clockwork.NewFakeClockAt(now)
+	return clockwork.NewFakeClockAt(now), nil
 }
 
 // RestoreClock restore current time from .freeze file.
-func RestoreClock(t *testing.T) clockwork.FakeClock {
-	t.Helper()
-	data, err := ioutil.ReadFile(fmt.Sprintf("cassettes/%s.freeze", t.Name()))
+func RestoreClock(path string) (clockwork.FakeClock, error) {
+	data, err := ioutil.ReadFile(fmt.Sprintf("cassettes/%s.freeze", path))
 	if err != nil {
-		t.Fatalf("Could not load clock: %v", err)
+		return nil, err
 	}
 	now, err := time.Parse(time.RFC3339Nano, string(data))
 	if err != nil {
-		t.Fatalf("Could not parse clock date: %v", err)
+		return nil, err
 	}
-	return clockwork.NewFakeClockAt(now)
+	return clockwork.NewFakeClockAt(now), nil
 }
 
 type contextKey string
@@ -260,21 +268,32 @@ var (
 )
 
 // WithClock sets clock to context.
-func WithClock(ctx context.Context, t *testing.T) context.Context {
-	t.Helper()
+func WithClock(ctx context.Context, path string) (context.Context, error) {
 	var fc clockwork.FakeClock
+	var err error
 	if GetRecording() != ModeReplaying {
-		fc = SetClock(t)
+		fc, err = SetClock(path)
 	} else {
-		fc = RestoreClock(t)
+		fc, err = RestoreClock(path)
 	}
-	return context.WithValue(ctx, clockKey, fc)
+	if err != nil {
+		return nil, err
+	}
+	return context.WithValue(ctx, clockKey, fc), nil
 }
 
 // UniqueEntityName will return a unique string that can be used as a title/description/summary/...
 // of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
 // BuildId to enable mapping resources that weren't deleted to builds.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
+	name := WithUniqueSurrounding(ctx, t.Name())
+	return &name
+}
+
+// WithUniqueSurrounding will wrap a string that can be used as a title/description/summary/...
+// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
+// BuildId to enable mapping resources that weren't deleted to builds.
+func WithUniqueSurrounding(ctx context.Context, name string) string {
 	buildID, present := os.LookupEnv("BUILD_BUILDID")
 	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
 		buildID = "local"
@@ -282,10 +301,10 @@ func UniqueEntityName(ctx context.Context, t *testing.T) *string {
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-	result := fmt.Sprintf("go-%s-%s-%d", t.Name(), buildID, ClockFromContext(ctx).Now().Unix())
+	result := fmt.Sprintf("go-%s-%s-%d", SecurePath(name), buildID, ClockFromContext(ctx).Now().Unix())
 	// In case this is used in URL, make sure we replace the slash that is added by subtests
 	result = strings.ReplaceAll(result, "/", "-")
-	return &result
+	return result
 }
 
 // ClockFromContext returns clock or panics.
@@ -334,8 +353,7 @@ func FilterInteraction(i *cassette.Interaction) error {
 }
 
 // Recorder intercepts HTTP requests.
-func Recorder(ctx context.Context, t *testing.T) (*recorder.Recorder, error) {
-	t.Helper()
+func Recorder(ctx context.Context, name string) (*recorder.Recorder, error) {
 	// Configure recorder
 	var mode recorder.Mode
 	switch GetRecording() {
@@ -347,7 +365,7 @@ func Recorder(ctx context.Context, t *testing.T) (*recorder.Recorder, error) {
 		mode = recorder.ModeRecording
 	}
 
-	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", t.Name()), mode, nil)
+	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", name), mode, nil)
 	if err != nil {
 		return nil, err
 	}
