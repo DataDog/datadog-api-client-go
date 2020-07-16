@@ -325,7 +325,7 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, reportID).Execute()
 	if err != nil {
-		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
 			t.Skip("No reports are available yet or this org is forbidden")
 		} else {
 			t.Errorf("Error getting Specified Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -345,7 +345,7 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, reportID).Execute()
 	if err != nil {
-		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
 			t.Skip("No reports are available yet or this org is forbidden")
 		} else {
 			t.Errorf("Error getting Specified Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -364,7 +364,7 @@ func TestDailyCustomReports(t *testing.T) {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetDailyCustomReports(ctx).Execute()
 	if err != nil {
-		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
 			t.Skip("No reports are available yet or this org is forbidden")
 		} else {
 			t.Errorf("Error getting Daily Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -383,7 +383,7 @@ func TestMonthlyCustomReports(t *testing.T) {
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
 	if err != nil {
-		if tests.GetRecording() != tests.ModeReplaying && (httpresp.StatusCode == 404 || httpresp.StatusCode == 403) {
+		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
 			t.Skip("No reports are available yet or this org is forbidden ")
 		} else {
 			t.Errorf("Error getting Monthly Custom Reports Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
