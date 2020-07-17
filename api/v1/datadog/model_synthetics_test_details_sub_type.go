@@ -20,6 +20,7 @@ type SyntheticsTestDetailsSubType string
 const (
 	SYNTHETICSTESTDETAILSSUBTYPE_HTTP SyntheticsTestDetailsSubType = "http"
 	SYNTHETICSTESTDETAILSSUBTYPE_SSL  SyntheticsTestDetailsSubType = "ssl"
+	SYNTHETICSTESTDETAILSSUBTYPE_TCP  SyntheticsTestDetailsSubType = "tcp"
 )
 
 func (v *SyntheticsTestDetailsSubType) UnmarshalJSON(src []byte) error {
@@ -29,7 +30,7 @@ func (v *SyntheticsTestDetailsSubType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsTestDetailsSubType(value)
-	for _, existing := range []SyntheticsTestDetailsSubType{"http", "ssl"} {
+	for _, existing := range []SyntheticsTestDetailsSubType{"http", "ssl", "tcp"} {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
