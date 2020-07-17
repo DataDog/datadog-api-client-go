@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"description":"","name":"go-TestSyntheticsVariableLifecycle-local-1589290407","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"VARIABLE_VALUE"}}
+      {"description":"variable description","name":"go-TestSyntheticsVariableLifecycle-local-1589290407","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
     form: {}
     headers:
       Accept:
@@ -23,7 +23,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/synthetics/variables
     method: POST
   response:
-    body: '{"created_at":"2020-07-01T13:07:05.089687+00:00","created_by":39199,"description":"","id":"1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac","modified_at":"2020-07-01T13:07:05.089687+00:00","name":"go-TestSyntheticsVariableLifecycle-local-1589290407","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"TEST_VALUE"}}'
+    body: '{"description":"variable description","id":"1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac","name":"go-TestSyntheticsVariableLifecycle-local-1589290407","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"VARIABLE_VALUE"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -67,7 +67,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"description":"","name":"go-TestSyntheticsVariableLifecycle-local-1589290407-updated","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"VARIABLE_VALUE_UPDATED"}}
+      {"description":"variable description","name":"go-TestSyntheticsVariableLifecycle-local-1589290407-updated","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
     form: {}
     headers:
       Accept:
@@ -87,7 +87,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/synthetics/variables/1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac
     method: PUT
   response:
-    body: '{"created_at":"2020-07-01T13:07:05.089687+00:00","created_by":39199,"description":"","id":"1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac","modified_at":"2020-07-01T13:17:05.089687+00:00","name":"go-TestSyntheticsVariableLifecycle-local-1589290407-updated","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"TEST_VALUE_UPDATED"}}'
+    body: '{"description":"variable description","id":"1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac","name":"go-TestSyntheticsVariableLifecycle-local-1589290407-updated","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"VARIABLE_VALUE"}}'
     headers:
       Cache-Control:
       - no-cache
