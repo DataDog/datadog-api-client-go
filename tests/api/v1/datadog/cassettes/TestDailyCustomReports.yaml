@@ -1,0 +1,54 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetDailyCustomReports
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5269140651104483886"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7441578275002190898"
+    url: https://api.datadoghq.com/api/v1/daily_custom_reports
+    method: GET
+  response:
+    body: '{"meta":{"page":{"total_count":1}},"data":[{"type":"reports","id":"2020-07-15","attributes":{"tags":["project"],"start_date":"2020-07-15","end_date":"2020-07-15","size":12297,"computed_on":"2020-07-16T13:47:05+00:00"}}]}'
+    headers:
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 16 Jul 2020 18:54:23 GMT
+      Dd-Pool:
+      - dogweb_wallace
+      Expires:
+      - Thu, 16 Jul 2020 18:59:23 GMT
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Jul-2020 18:54:23 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - SHIs9Wpk6KGqmDU1lB1cbw2NUTj9vFJt6HNXPbX02EQ6d5C7ZJRJEtMj9BTu1eiN
+      X-Dd-Version:
+      - "35.2747870"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
