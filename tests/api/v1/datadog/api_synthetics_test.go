@@ -996,12 +996,12 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	variable := datadog.SyntheticsGlobalVariable{
-		Name: tests.UniqueEntityName(ctx, t),
-		Description: datadog.PtrString("variable description"),
-		Tags: &[]string{"synthetics"},
+		Name: *tests.UniqueEntityName(ctx, t),
+		Description: "variable description",
+		Tags: []string{"synthetics"},
 		Value: datadog.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(false),
-			Value: datadog.PtrString("VARIABLE_VALUE"),
+			Value: "VARIABLE_VALUE",
 		},
 	}
 
