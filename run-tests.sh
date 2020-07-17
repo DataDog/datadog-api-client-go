@@ -42,6 +42,9 @@ if [ "$CI" == "true" -a "$RESULT" -ne 0 ]; then
     # from different test modules with `-run`, we run them one by one in form of:
     # gotestsum <arguments> github.com/DataDog/datadog-api-client-go/tests/api/v<version>/datadog -run ^TestCaseName$
     while read -r i ; do
+        if [ "$RECORD" == "false" -a "$RERECORD_FAILED_TESTS" == "true" ]; then
+            RECORD=true gotestsum --format testname -- -v $i
+        fi
         gotestsum --format testname -- -v $i
         RESULT+=$?
     done <<<$FAILED_TESTS
