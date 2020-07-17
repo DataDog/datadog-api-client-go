@@ -12,15 +12,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1467723704518954251"
+      - "2665936391353947985"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3185786281643522981"
-    url: https://api.datadoghq.com/api/v1/daily_custom_reports/2020-07-15
+      - "8658796591622067341"
+    url: https://api.datadoghq.com/api/v1/daily_custom_reports/2020-07-16
     method: GET
   response:
-    body: '{"meta":{"page":{"total_count":1}},"data":{"type":"reports","id":"2020-07-15","attributes":{"tags":["project"],"start_date":"2020-07-15","end_date":"2020-07-15","size":12297,"computed_on":"2020-07-16T13:47:05+00:00","location":"https://dd-michelada-custom-reporting-prod.s3.amazonaws.com/subscription_job_zipper/1.0/2020/07/15/0/550/daily_report_2020-07-15.zip?AWSAccessKeyId=ASIAWYLNJGWWJBGZXEFV&Signature=RAe4s0i%2FMDQpRh2Z9T04sb31k1Q%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEBsaCXVzLWVhc3QtMSJHMEUCIHS3JqgwADiRN2SI8PF2rSX%2Fz7WSn5YcXBqGKnLaPVNvAiEAw%2BNigAVKMIWFpnSZ2bwQPnaCAT5Nt8kfKtl6F8kNz98q6AEIxP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw0NjQ2MjI1MzIwMTIiDBKgc4QROwh6sMIfKyq8AerxCV0c5xRBGht4I8%2FEggr6m0TCEG4jQq846UYTdyGoh755abMskJQ5Pt8tL%2FYCaAwEMsFak3y%2B%2F7M6Hq2PMxXpTU7yPoYtRjU7h6cZsoiRoVs1N2SOU11seR9krow2mcpF84eKSCY96GDoeeVa8CL%2BY4V88ll30Geh8kg3%2BU8ApXHsmJkhaZn82yMBMXU4EVxlsdKqsqIaTYHgnAjKhiISo7LynDpuYDIyZq%2BfeKqvfosy1hWY4Qx12FrBMJDEwvgFOuMBReNZQo%2FaA8Npt4QhHInFKhr1d3fQj5C%2FXLKzrWhTFHBjvahc78lvsVKRr6F6UDfzUZi9wwBkYj7avV92bl00EDqEQLkB65MbMt%2F4IXmWMW5xdwHh%2By6xXC9LksRWiTOc11UXm7BSdSDnZBRQ6H2B5V%2B%2B7TNPdnJIsF%2Fzz0EmBO65Albwwe80v9r8AbJ%2F1WU94il0ZM%2FQj0MOHYr%2B2J%2FQjkq0hA05NtBBUqyNKE7Y%2Fc%2BU0bGtHwcB3YGoIbRqNe1Z0CL1eD6A10HjQ39S8WuB0ygAGy3NjW6aEU2xweBvGUEUxvk%3D&Expires=1594925896"}}}'
+    body: '{"meta":{"page":{"total_count":1}},"data":{"type":"reports","id":"2020-07-16","attributes":{"tags":["project"],"start_date":"2020-07-16","end_date":"2020-07-16","size":12443,"computed_on":"2020-07-17T15:20:13+00:00","location":"https://dd-michelada-custom-reporting-prod.s3.amazonaws.com/subscription_job_zipper/1.0/2020/07/16/0/550/daily_report_2020-07-16.zip?AWSAccessKeyId=ASIAWYLNJGWWNOA4KRT3&Signature=V9bSqfhCLmtw501ob7GrD1Gb8lg%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEDEaCXVzLWVhc3QtMSJHMEUCIB0eFJRPOQ9MKWAFzDTeh3VaP%2BNQ5V6mCFh8u18Gy9uRAiEAhFVras6TqtMRrCVTDREFpr0c0UBJY3G84Ir%2B8xPU3RUq6AEI2v%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw0NjQ2MjI1MzIwMTIiDArldGnX6PkynJzIJSq8ASj15NAONGwZ4nTdbLjZibQu%2B30HnN%2FZhfPDAVEsJgvsMFuk5CeuMJdhVfjOvNFNeJp4os6OoLywyAm8WKW0bEH6aMY%2Bo5GbHCJkamRdDrwVlIz%2B8sBBlRj1i9ZvtmmXYl8o%2Bu4T7u5hdoHOYTZGjtAOfQBJ%2Fn2WwoQbeJTWPJ7%2BPlZyepqzv2WmoDXd24vqp0vBf9GrbVHOuCYbxs1QImXh%2F%2Fy2YN7QmJmaGIWOysdG7speLGh1gWhaKLtRMJuwx%2FgFOuMBOPCvn%2BIS9GKoBdsZysNG5Lq1twG3jvtlGMT8JptuFlXJ1P19cas9p1GUeSXkiTbaJaq8riJrNFfvYkQ1MbgcKWu2%2BbhtVJgMATVcVUIv73zvotpZGcnI84ApgwIKG20Xs9DKCRcHErmp30N5RaYxrrELrzKClE4uf%2BcOQ%2FlqOAT0x7Ebyg%2BZYxH7kSw6C%2FHQAYAm7TujigPj27C7PrHgXFnGT0kh4kiex%2BSOJKRGt4GqCTbYV8mZpiHUnGJX%2Fo5vTHnFPO74U8SHVE%2FBqKLkn3nXtAMz0L%2BOZWvLr3X0UGlizz8%3D&Expires=1595005255"}}}'
     headers:
       Cache-Control:
       - max-age=300
@@ -29,13 +29,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Jul 2020 18:53:16 GMT
+      - Fri, 17 Jul 2020 16:55:55 GMT
       Dd-Pool:
       - dogweb_wallace
       Expires:
-      - Thu, 16 Jul 2020 18:58:16 GMT
+      - Fri, 17 Jul 2020 17:00:54 GMT
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Jul-2020 18:53:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 24-Jul-2020 16:55:54 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -44,9 +44,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bZOshGVNK5CnakWJUVXaLjl3EeuAdLxoeAw2xjRTjbKWlPP3XZBpOZ7jzDKzAh1n
+      - MCCCpAaityEGV7RCWB7PX/15djksn7o4v/4tqiX/fto0HlUCyXW+MlKItPLH13rB
       X-Dd-Version:
-      - "35.2747870"
+      - "35.2752363"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

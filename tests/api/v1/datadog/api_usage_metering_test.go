@@ -320,7 +320,8 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	reportID := "2020-07-15"
+	currentDate := time.Now().AddDate(0, 0, -1)  // only have reports from day before
+	reportID := currentDate.Format("2006-01-02") // this is only a date format example YYYY-MM-DD
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, reportID).Execute()
@@ -340,7 +341,8 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	reportID := "2020-08-15" // Will only start being generated on this date for FROG org
+	currentDate := time.Now().AddDate(0, 0, -1)  // We will only have monthly reports on 2020-08-15 for FROG org
+	reportID := currentDate.Format("2006-01-02") // this is only a date format example YYYY-MM-DD
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, reportID).Execute()

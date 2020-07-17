@@ -12,12 +12,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1841497002585814422"
+      - "4133142623483276223"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4518963454960872039"
-    url: https://api.datadoghq.com/api/v1/monthly_custom_reports/2020-08-15
+      - "3495954915645778670"
+    url: https://api.datadoghq.com/api/v1/monthly_custom_reports/2020-07-16
     method: GET
   response:
     body: '{"errors": [" not found"]}'
@@ -29,7 +29,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Jul 2020 18:53:57 GMT
+      - Fri, 17 Jul 2020 16:56:34 GMT
       Dd-Pool:
       - dogweb_wallace
       Pragma:
@@ -41,7 +41,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2747870"
+      - "35.2752363"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
