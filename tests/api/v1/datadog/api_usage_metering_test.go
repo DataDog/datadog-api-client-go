@@ -341,7 +341,7 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	currentDate := time.Now().AddDate(0, 0, -1)  // We will only have monthly reports on 2020-08-15 for FROG org
+	currentDate := time.Now().AddDate(0, 0, -1)  // We will only have monthly reports on 2020-08-15 for this org
 	reportID := currentDate.Format("2006-01-02") // this is only a date format example YYYY-MM-DD
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
