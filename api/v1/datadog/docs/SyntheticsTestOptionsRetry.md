@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int64** | The amount of location that needs to fail for the test to be retried. | [optional] 
-**Interval** | Pointer to **float64** | The interval over which the amount of location needed to fail for the test to be retried. | [optional] 
+**Count** | Pointer to **int64** | Number of times a test needs to be retried before marking a location as failed. Defaults to 0. | [optional] 
+**Interval** | Pointer to **float64** | Time interval between retries (in milliseconds). Defaults to 300ms. | [optional] 
 
 ## Methods
 
