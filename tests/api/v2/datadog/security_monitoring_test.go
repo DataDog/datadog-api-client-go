@@ -183,7 +183,7 @@ func TestSecMonRulesCRUD(t *testing.T) {
 	assert.Equal(404, httpResponse.StatusCode)
 }
 
-func TestSignalsListPost(t *testing.T) {
+func TestSearchSecurityMonitoringSignals(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -278,7 +278,7 @@ func TestSignalsListPost(t *testing.T) {
 	assert.NotEqual(firstId, secondId)
 }
 
-func TestSignalsListGet(t *testing.T) {
+func TestListSecurityMonitoringSignals(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
