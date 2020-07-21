@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
 **PublicId** | Pointer to **string** | The test public ID. | [optional] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
-**Steps** | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md) | The steps of the test (only for browser tests). | [optional] 
+**Steps** | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md) | For browser test, the steps of the test. | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
 **Type** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
