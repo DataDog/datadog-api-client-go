@@ -1,0 +1,54 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetSpecifiedDailyCustomReports
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2665936391353947985"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8658796591622067341"
+    url: https://api.datadoghq.com/api/v1/daily_custom_reports/2020-07-16
+    method: GET
+  response:
+    body: '{"meta":{"page":{"total_count":1}},"data":{"type":"reports","id":"2020-07-16","attributes":{"tags":["project"],"start_date":"2020-07-16","end_date":"2020-07-16","size":12443,"computed_on":"2020-07-17T15:20:13+00:00","location":"https://dd-michelada-custom-reporting-prod.s3.amazonaws.com/subscription_job_zipper/1.0/2020/07/16/0/550/daily_report_2020-07-16.zip?AWSAccessKeyId=ASIAWYLNJGWWNOA4KRT3&Signature=V9bSqfhCLmtw501ob7GrD1Gb8lg%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEDEaCXVzLWVhc3QtMSJHMEUCIB0eFJRPOQ9MKWAFzDTeh3VaP%2BNQ5V6mCFh8u18Gy9uRAiEAhFVras6TqtMRrCVTDREFpr0c0UBJY3G84Ir%2B8xPU3RUq6AEI2v%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw0NjQ2MjI1MzIwMTIiDArldGnX6PkynJzIJSq8ASj15NAONGwZ4nTdbLjZibQu%2B30HnN%2FZhfPDAVEsJgvsMFuk5CeuMJdhVfjOvNFNeJp4os6OoLywyAm8WKW0bEH6aMY%2Bo5GbHCJkamRdDrwVlIz%2B8sBBlRj1i9ZvtmmXYl8o%2Bu4T7u5hdoHOYTZGjtAOfQBJ%2Fn2WwoQbeJTWPJ7%2BPlZyepqzv2WmoDXd24vqp0vBf9GrbVHOuCYbxs1QImXh%2F%2Fy2YN7QmJmaGIWOysdG7speLGh1gWhaKLtRMJuwx%2FgFOuMBOPCvn%2BIS9GKoBdsZysNG5Lq1twG3jvtlGMT8JptuFlXJ1P19cas9p1GUeSXkiTbaJaq8riJrNFfvYkQ1MbgcKWu2%2BbhtVJgMATVcVUIv73zvotpZGcnI84ApgwIKG20Xs9DKCRcHErmp30N5RaYxrrELrzKClE4uf%2BcOQ%2FlqOAT0x7Ebyg%2BZYxH7kSw6C%2FHQAYAm7TujigPj27C7PrHgXFnGT0kh4kiex%2BSOJKRGt4GqCTbYV8mZpiHUnGJX%2Fo5vTHnFPO74U8SHVE%2FBqKLkn3nXtAMz0L%2BOZWvLr3X0UGlizz8%3D&Expires=1595005255"}}}'
+    headers:
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 17 Jul 2020 16:55:55 GMT
+      Dd-Pool:
+      - dogweb_wallace
+      Expires:
+      - Fri, 17 Jul 2020 17:00:54 GMT
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 24-Jul-2020 16:55:54 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - MCCCpAaityEGV7RCWB7PX/15djksn7o4v/4tqiX/fto0HlUCyXW+MlKItPLH13rB
+      X-Dd-Version:
+      - "35.2752363"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
