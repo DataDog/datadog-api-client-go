@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// SyntheticsTestDetailsSubType The sub-type of the Synthetic API test, either `http` or `ssl`.
+// SyntheticsTestDetailsSubType The sub-type of the Synthetic API test, `http`, `ssl`, or `tcp`.
 type SyntheticsTestDetailsSubType string
 
 // List of SyntheticsTestDetailsSubType
