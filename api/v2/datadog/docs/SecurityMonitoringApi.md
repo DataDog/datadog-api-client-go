@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**DeleteSecurityMonitoringRule**](SecurityMonitoringApi.md#DeleteSecurityMonitoringRule) | **Delete** /api/v2/security_monitoring/rules/{rule_id} | Delete an existing rule
 [**GetSecurityMonitoringRule**](SecurityMonitoringApi.md#GetSecurityMonitoringRule) | **Get** /api/v2/security_monitoring/rules/{rule_id} | Get a rule&#39;s details
 [**ListSecurityMonitoringRules**](SecurityMonitoringApi.md#ListSecurityMonitoringRules) | **Get** /api/v2/security_monitoring/rules | List rules
+[**ListSecurityMonitoringSignals**](SecurityMonitoringApi.md#ListSecurityMonitoringSignals) | **Get** /api/v2/security_monitoring/signals | Get a quick list of security signals
+[**SearchSecurityMonitoringSignals**](SecurityMonitoringApi.md#SearchSecurityMonitoringSignals) | **Post** /api/v2/security_monitoring/signals/search | Get a list of security signals
 [**UpdateSecurityMonitoringRule**](SecurityMonitoringApi.md#UpdateSecurityMonitoringRule) | **Put** /api/v2/security_monitoring/rules/{rule_id} | Update an existing rule
 
 
@@ -329,6 +331,174 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListSecurityMonitoringSignals
+
+> SecurityMonitoringSignalsListResponse ListSecurityMonitoringSignals(ctx).FilterQuery(filterQuery).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+
+Get a quick list of security signals
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    filterQuery := "filterQuery_example" // string | Search query for security signals. (optional)
+    filterFrom := Get-Date // time.Time | Minimum timestamp for requested security signals. (optional)
+    filterTo := Get-Date // time.Time | Maximum timestamp for requested security signals. (optional)
+    sort := datadog.SecurityMonitoringSignalsSort{} // SecurityMonitoringSignalsSort | Order of security signals in results. (optional)
+    pageCursor := "pageCursor_example" // string | List following results with a cursor provided in the previous query. (optional)
+    pageLimit := 987 // int32 | Maximum number of security signals in the response. (optional) (default to 10)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SecurityMonitoringApi.ListSecurityMonitoringSignals(ctx).FilterQuery(filterQuery).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringSignals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
+    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.ListSecurityMonitoringSignals`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListSecurityMonitoringSignalsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filterQuery** | **string** | Search query for security signals. | 
+ **filterFrom** | **time.Time** | Minimum timestamp for requested security signals. | 
+ **filterTo** | **time.Time** | Maximum timestamp for requested security signals. | 
+ **sort** | [**SecurityMonitoringSignalsSort**](.md) | Order of security signals in results. | 
+ **pageCursor** | **string** | List following results with a cursor provided in the previous query. | 
+ **pageLimit** | **int32** | Maximum number of security signals in the response. | [default to 10]
+
+### Return type
+
+[**SecurityMonitoringSignalsListResponse**](SecurityMonitoringSignalsListResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchSecurityMonitoringSignals
+
+> SecurityMonitoringSignalsListResponse SearchSecurityMonitoringSignals(ctx).Body(body).Execute()
+
+Get a list of security signals
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    body := datadog.SecurityMonitoringSignalListRequest{Filter: datadog.SecurityMonitoringSignalListRequest_filter{From: "TODO", Query: "Query_example", To: "TODO"}, Page: datadog.SecurityMonitoringSignalListRequest_page{Cursor: "Cursor_example", Limit: 123}, Sort: datadog.SecurityMonitoringSignalsSort{}} // SecurityMonitoringSignalListRequest |  (optional)
+
+    configuration := datadog.NewConfiguration()
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
+    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.SearchSecurityMonitoringSignals`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchSecurityMonitoringSignalsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**SecurityMonitoringSignalListRequest**](SecurityMonitoringSignalListRequest.md) |  | 
+
+### Return type
+
+[**SecurityMonitoringSignalsListResponse**](SecurityMonitoringSignalsListResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

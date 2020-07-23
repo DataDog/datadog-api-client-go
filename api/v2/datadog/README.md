@@ -103,6 +103,8 @@ Class | Method | HTTP request | Description
 *SecurityMonitoringApi* | [**DeleteSecurityMonitoringRule**](docs/SecurityMonitoringApi.md#deletesecuritymonitoringrule) | **Delete** /api/v2/security_monitoring/rules/{rule_id} | Delete an existing rule
 *SecurityMonitoringApi* | [**GetSecurityMonitoringRule**](docs/SecurityMonitoringApi.md#getsecuritymonitoringrule) | **Get** /api/v2/security_monitoring/rules/{rule_id} | Get a rule&#39;s details
 *SecurityMonitoringApi* | [**ListSecurityMonitoringRules**](docs/SecurityMonitoringApi.md#listsecuritymonitoringrules) | **Get** /api/v2/security_monitoring/rules | List rules
+*SecurityMonitoringApi* | [**ListSecurityMonitoringSignals**](docs/SecurityMonitoringApi.md#listsecuritymonitoringsignals) | **Get** /api/v2/security_monitoring/signals | Get a quick list of security signals
+*SecurityMonitoringApi* | [**SearchSecurityMonitoringSignals**](docs/SecurityMonitoringApi.md#searchsecuritymonitoringsignals) | **Post** /api/v2/security_monitoring/signals/search | Get a list of security signals
 *SecurityMonitoringApi* | [**UpdateSecurityMonitoringRule**](docs/SecurityMonitoringApi.md#updatesecuritymonitoringrule) | **Put** /api/v2/security_monitoring/rules/{rule_id} | Update an existing rule
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v2/users | Create a user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v2/users/{user_id} | Disable a user
@@ -211,6 +213,15 @@ Class | Method | HTTP request | Description
  - [SecurityMonitoringRuleResponse](docs/SecurityMonitoringRuleResponse.md)
  - [SecurityMonitoringRuleSeverity](docs/SecurityMonitoringRuleSeverity.md)
  - [SecurityMonitoringRuleUpdatePayload](docs/SecurityMonitoringRuleUpdatePayload.md)
+ - [SecurityMonitoringSignal](docs/SecurityMonitoringSignal.md)
+ - [SecurityMonitoringSignalAttributes](docs/SecurityMonitoringSignalAttributes.md)
+ - [SecurityMonitoringSignalListRequest](docs/SecurityMonitoringSignalListRequest.md)
+ - [SecurityMonitoringSignalListRequestFilter](docs/SecurityMonitoringSignalListRequestFilter.md)
+ - [SecurityMonitoringSignalListRequestPage](docs/SecurityMonitoringSignalListRequestPage.md)
+ - [SecurityMonitoringSignalType](docs/SecurityMonitoringSignalType.md)
+ - [SecurityMonitoringSignalsListResponse](docs/SecurityMonitoringSignalsListResponse.md)
+ - [SecurityMonitoringSignalsListResponseLinks](docs/SecurityMonitoringSignalsListResponseLinks.md)
+ - [SecurityMonitoringSignalsSort](docs/SecurityMonitoringSignalsSort.md)
  - [User](docs/User.md)
  - [UserAttributes](docs/UserAttributes.md)
  - [UserCreateAttributes](docs/UserCreateAttributes.md)
