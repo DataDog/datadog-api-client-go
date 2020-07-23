@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Style** | Pointer to [**WidgetRequestStyle**](WidgetRequestStyle.md) |  | [optional] 
 
 ## Methods
@@ -232,6 +233,31 @@ SetRumQuery sets RumQuery field to given value.
 `func (o *ToplistWidgetRequest) HasRumQuery() bool`
 
 HasRumQuery returns a boolean if a field has been set.
+
+### GetSecurityQuery
+
+`func (o *ToplistWidgetRequest) GetSecurityQuery() LogQueryDefinition`
+
+GetSecurityQuery returns the SecurityQuery field if non-nil, zero value otherwise.
+
+### GetSecurityQueryOk
+
+`func (o *ToplistWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool)`
+
+GetSecurityQueryOk returns a tuple with the SecurityQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecurityQuery
+
+`func (o *ToplistWidgetRequest) SetSecurityQuery(v LogQueryDefinition)`
+
+SetSecurityQuery sets SecurityQuery field to given value.
+
+### HasSecurityQuery
+
+`func (o *ToplistWidgetRequest) HasSecurityQuery() bool`
+
+HasSecurityQuery returns a boolean if a field has been set.
 
 ### GetStyle
 
