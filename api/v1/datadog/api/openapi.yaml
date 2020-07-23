@@ -6986,6 +6986,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         show_present:
           description: Whether to show the present value.
           type: boolean
@@ -7470,6 +7472,8 @@ components:
           description: Widget query.
           type: string
         rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetStyle'
@@ -8238,6 +8242,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetStyle'
       type: object
@@ -8443,6 +8449,8 @@ components:
           description: Query definition.
           type: string
         rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
       type: object
     HostMapWidgetDefinition:
@@ -11986,6 +11994,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
       type: object
     ScatterPlotWidgetDefinition:
       description: The scatter plot visualization allows you to graph a chosen scope
@@ -14232,6 +14242,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
       type: object
     TagToHosts:
       description: In this object, the key is the tag, the value is a list of host
@@ -14332,6 +14344,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetRequestStyle'
       type: object
@@ -14399,6 +14413,8 @@ components:
           description: Widget query.
           type: string
         rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetRequestStyle'
