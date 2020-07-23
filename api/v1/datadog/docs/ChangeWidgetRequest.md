@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Query definition. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ShowPresent** | Pointer to **bool** | Whether to show the present value. | [optional] 
 
 ## Methods
@@ -336,6 +337,31 @@ SetRumQuery sets RumQuery field to given value.
 `func (o *ChangeWidgetRequest) HasRumQuery() bool`
 
 HasRumQuery returns a boolean if a field has been set.
+
+### GetSecurityQuery
+
+`func (o *ChangeWidgetRequest) GetSecurityQuery() LogQueryDefinition`
+
+GetSecurityQuery returns the SecurityQuery field if non-nil, zero value otherwise.
+
+### GetSecurityQueryOk
+
+`func (o *ChangeWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool)`
+
+GetSecurityQueryOk returns a tuple with the SecurityQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecurityQuery
+
+`func (o *ChangeWidgetRequest) SetSecurityQuery(v LogQueryDefinition)`
+
+SetSecurityQuery sets SecurityQuery field to given value.
+
+### HasSecurityQuery
+
+`func (o *ChangeWidgetRequest) HasSecurityQuery() bool`
+
+HasSecurityQuery returns a boolean if a field has been set.
 
 ### GetShowPresent
 
