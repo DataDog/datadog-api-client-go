@@ -10,6 +10,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -335,7 +336,31 @@ func removeURLSecrets(u *url.URL) string {
 
 // MatchInteraction checks if the request matches a store request in the given cassette.
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
-	return r.Method == i.Method && removeURLSecrets(r.URL) == i.URL
+	// Default matching on method and URL without secrets
+	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
+		return false
+	}
+
+	if r.Body == nil {
+		return true
+	}
+
+	var b bytes.Buffer
+	if _, err := b.ReadFrom(r.Body); err != nil {
+		return false
+	}
+	r.Body = ioutil.NopCloser(&b)
+
+	// Body must be empty or equal
+	if strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
+		fmt.Printf("skip %s ??? %s", b.String(), i.Body)
+		return true
+	}
+	matched := (b.String() == "" || b.String() == i.Body)
+	if !matched {
+		fmt.Printf("%s != %s", b.String(), i.Body)
+	}
+	return matched
 }
 
 // FilterInteraction removes secret arguments from the URL.
@@ -392,12 +417,16 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 		}),
 		ddhttp.WithAfter(func(r *http.Response, span ddtrace.Span) {
 			if 500 <= r.StatusCode && r.StatusCode < 600 {
-				bodyBytes, _ := ioutil.ReadAll(r.Body)
-				r.Body.Close() // must close
-				r.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+				var b bytes.Buffer
+				tee := io.TeeReader(r.Body, &b)
+				msg, _ := ioutil.ReadAll(tee)
+				fmt.Println(msg)
+
 				span.SetTag(ext.Error, true)
-				span.SetTag(ext.ErrorMsg, string(bodyBytes))
+				span.SetTag(ext.ErrorMsg, msg)
 				span.SetTag(ext.ErrorDetails, r.Status)
+
+				r.Body = ioutil.NopCloser(&b)
 			}
 		}),
 	)

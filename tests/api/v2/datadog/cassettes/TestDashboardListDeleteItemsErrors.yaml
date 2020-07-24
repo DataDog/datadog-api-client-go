@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"name":"go-TestDashboardListDeleteItemsErrors-local-1589290172"}
+      {"name":"go-TestDashboardListDeleteItemsErrors-local-1595582011"}
     form: {}
     headers:
       Accept:
@@ -13,35 +13,32 @@ interactions:
       Dd-Operation-Id:
       - CreateDashboardList
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1498402652970158616"
+      - "1651938067660520916"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1498402652970158616"
+      - "1651938067660520916"
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
     method: POST
   response:
-    body: '{"is_favorite":false,"name":"go-TestDashboardListDeleteItemsErrors-local-1589290172","dashboard_count":0,"author":{"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
-      Kabrda"},"created":"2020-05-12T13:29:32.821340+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-05-12T13:29:32.821354+00:00","id":97371}'
+    body: '{"is_favorite":false,"name":"go-TestDashboardListDeleteItemsErrors-local-1595582011","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2020-07-24T09:13:31.742560+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2020-07-24T09:13:31.742577+00:00","id":116125}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:32 GMT
+      - Fri, 24 Jul 2020 09:13:31 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:32 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 31-Jul-2020 09:13:31 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -50,9 +47,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - ty7T8eIeXOfZhM7KDN5nGo8JS7ZSIWAqBNFeZshTg3LLDJJa7mPU5wqGt0nOPCpy
+      - vwiIwb5QepaQFIQrmPfIwwVWkQ/z0inFQwNEDjqDDy4v3CsF5qbv9dnyfb7UGzLf
       X-Dd-Version:
-      - "35.2492943"
+      - "35.2781806"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -67,34 +64,32 @@ interactions:
       Dd-Operation-Id:
       - DeleteDashboardList
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1555485953540029718"
+      - "7016837276216587468"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1555485953540029718"
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/97371
+      - "7016837276216587468"
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/116125
     method: DELETE
   response:
-    body: '{"deleted_dashboard_list_id":97371}'
+    body: '{"deleted_dashboard_list_id":116125}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:39 GMT
+      - Fri, 24 Jul 2020 09:13:47 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:33 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 31-Jul-2020 09:13:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -103,9 +98,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - rpB/2GMZHvzTHZxhwmnNa1XnSQuif7FV+gIndoDc8IvUeRNb65r4x+P7Djp1119C
+      - i/tjaZJ1Vhpke5HNSziupF5eEnHtDP3NjcuF7Ija0/AGuxq0WEQiFfpqy+mDADxv
       X-Dd-Version:
-      - "35.2492943"
+      - "35.2781855"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
