@@ -239,19 +239,18 @@ func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	testAWSAccount := generateUniqueAWSAccount(ctx)
+	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 	retryCreateAccount(ctx, t, testAWSAccount)
 	defer retryDeleteAccount(ctx, t, testAWSAccount)
 
 	role := *testAWSAccount.RoleName
 	for name, test := range map[string]*string{
-		"Empty":     nil,
 		"Same":      datadog.PtrString(role),
 		"Different": datadog.PtrString("Different-Role"),
 	} {
 		t.Run(name, func(t *testing.T) {
-			test.AWSAccount = test
-			_, res, err := Client(ctx).AWSIntegrationApi.CreateAWSAccount(ctx).Body(tc.Body).Execute()
+			testAWSAccount.RoleName = test
+			_, res, _ := Client(ctx).AWSIntegrationApi.CreateAWSAccount(ctx).Body(testAWSAccount).Execute()
 			assert.Equal(409, res.StatusCode)
 		})
 	}
