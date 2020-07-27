@@ -362,6 +362,8 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
 		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rl[1:len(rl)-1], cl[1:len(cl)-1]) {
 			matched = true
+		} else {
+			log.Printf("Not matching body:\n%v\n\n%v\n", rl, cl)
 		}
 	}
 
