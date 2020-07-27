@@ -12,13 +12,13 @@ interactions:
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1207966146453958355"
+      - "2616175331127997705"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8867440071354334626"
+      - "8747455412557228266"
     url: https://api.datadoghq.com/api/v1/org/lsqdkjf/idp_metadata
     method: POST
   response:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:33:11 GMT
+      - Fri, 24 Jul 2020 09:17:51 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden
