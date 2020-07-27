@@ -354,7 +354,7 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	}
 	r.Body = ioutil.NopCloser(&b)
 
-	matched := b.String() == i.Body
+	matched := (b.String() == "" || b.String() == i.Body)
 
 	// Ignore boundary differences for multipart/form-data content
 	if !matched && strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
