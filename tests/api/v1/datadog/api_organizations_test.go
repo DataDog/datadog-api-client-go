@@ -362,6 +362,7 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).OrganizationsApi.UploadIdPForOrg(ctx, "lsqdkjf").IdpFile(file).Execute()
+			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

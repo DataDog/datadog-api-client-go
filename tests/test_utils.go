@@ -10,12 +10,14 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
+	"reflect"
 	"runtime"
 	"strings"
 	"testing"
@@ -335,7 +337,38 @@ func removeURLSecrets(u *url.URL) string {
 
 // MatchInteraction checks if the request matches a store request in the given cassette.
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
-	return r.Method == i.Method && removeURLSecrets(r.URL) == i.URL
+	// Default matching on method and URL without secrets
+	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
+		return false
+	}
+
+	// Request does not contain body (e.g. `GET`)
+	if r.Body == nil {
+		return i.Body == ""
+	}
+
+	// Load request body
+	var b bytes.Buffer
+	if _, err := b.ReadFrom(r.Body); err != nil {
+		return false
+	}
+	r.Body = ioutil.NopCloser(&b)
+
+	matched := b.String() == i.Body
+
+	// Ignore boundary differences for multipart/form-data content
+	if !matched && strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
+		rl := strings.Split(strings.TrimSpace(b.String()), "\n")
+		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
+		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rl[1:len(rl)-1], cl[1:len(cl)-1]) {
+			matched = true
+		}
+	}
+
+	if !matched {
+		log.Printf("%s != %s", b.String(), i.Body)
+	}
+	return matched
 }
 
 // FilterInteraction removes secret arguments from the URL.
@@ -392,12 +425,16 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 		}),
 		ddhttp.WithAfter(func(r *http.Response, span ddtrace.Span) {
 			if 500 <= r.StatusCode && r.StatusCode < 600 {
-				bodyBytes, _ := ioutil.ReadAll(r.Body)
-				r.Body.Close() // must close
-				r.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+				var b bytes.Buffer
+				tee := io.TeeReader(r.Body, &b)
+				msg, _ := ioutil.ReadAll(tee)
+				fmt.Println(msg)
+
 				span.SetTag(ext.Error, true)
-				span.SetTag(ext.ErrorMsg, string(bodyBytes))
+				span.SetTag(ext.ErrorMsg, msg)
 				span.SetTag(ext.ErrorDetails, r.Status)
+
+				r.Body = ioutil.NopCloser(&b)
 			}
 		}),
 	)
