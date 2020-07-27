@@ -17,7 +17,7 @@ type SecurityMonitoringRuleCreatePayload struct {
 	// Cases for generating signals.
 	Cases []SecurityMonitoringRuleCase `json:"cases"`
 	// Whether the rule is enabled.
-	Enabled bool `json:"enabled"`
+	IsEnabled bool `json:"isEnabled"`
 	// Message for generated signals.
 	Message string `json:"message"`
 	// The name of the rule
@@ -33,10 +33,10 @@ type SecurityMonitoringRuleCreatePayload struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCase, enabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQuery, tags []string) *SecurityMonitoringRuleCreatePayload {
+func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCase, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQuery, tags []string) *SecurityMonitoringRuleCreatePayload {
 	this := SecurityMonitoringRuleCreatePayload{}
 	this.Cases = cases
-	this.Enabled = enabled
+	this.IsEnabled = isEnabled
 	this.Message = message
 	this.Name = name
 	this.Options = options
@@ -77,28 +77,28 @@ func (o *SecurityMonitoringRuleCreatePayload) SetCases(v []SecurityMonitoringRul
 	o.Cases = v
 }
 
-// GetEnabled returns the Enabled field value
-func (o *SecurityMonitoringRuleCreatePayload) GetEnabled() bool {
+// GetIsEnabled returns the IsEnabled field value
+func (o *SecurityMonitoringRuleCreatePayload) GetIsEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
 	}
 
-	return o.Enabled
+	return o.IsEnabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetIsEnabledOk returns a tuple with the IsEnabled field value
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleCreatePayload) GetEnabledOk() (*bool, bool) {
+func (o *SecurityMonitoringRuleCreatePayload) GetIsEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return &o.IsEnabled, true
 }
 
-// SetEnabled sets field value
-func (o *SecurityMonitoringRuleCreatePayload) SetEnabled(v bool) {
-	o.Enabled = v
+// SetIsEnabled sets field value
+func (o *SecurityMonitoringRuleCreatePayload) SetIsEnabled(v bool) {
+	o.IsEnabled = v
 }
 
 // GetMessage returns the Message field value
@@ -227,7 +227,7 @@ func (o SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 		toSerialize["cases"] = o.Cases
 	}
 	if true {
-		toSerialize["enabled"] = o.Enabled
+		toSerialize["isEnabled"] = o.IsEnabled
 	}
 	if true {
 		toSerialize["message"] = o.Message

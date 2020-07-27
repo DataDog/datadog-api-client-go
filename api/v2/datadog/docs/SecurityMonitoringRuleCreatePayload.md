@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cases** | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | 
-**Enabled** | Pointer to **bool** | Whether the rule is enabled. | 
+**IsEnabled** | Pointer to **bool** | Whether the rule is enabled. | 
 **Message** | Pointer to **string** | Message for generated signals. | 
 **Name** | Pointer to **string** | The name of the rule | 
 **Options** | Pointer to [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewSecurityMonitoringRuleCreatePayload
 
-`func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCase, enabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQuery, tags []string, ) *SecurityMonitoringRuleCreatePayload`
+`func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCase, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQuery, tags []string, ) *SecurityMonitoringRuleCreatePayload`
 
 NewSecurityMonitoringRuleCreatePayload instantiates a new SecurityMonitoringRuleCreatePayload object
 This constructor will assign default values to properties that have it defined,
@@ -51,24 +51,24 @@ and a boolean to check if the value has been set.
 SetCases sets Cases field to given value.
 
 
-### GetEnabled
+### GetIsEnabled
 
-`func (o *SecurityMonitoringRuleCreatePayload) GetEnabled() bool`
+`func (o *SecurityMonitoringRuleCreatePayload) GetIsEnabled() bool`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetIsEnabledOk
 
-`func (o *SecurityMonitoringRuleCreatePayload) GetEnabledOk() (*bool, bool)`
+`func (o *SecurityMonitoringRuleCreatePayload) GetIsEnabledOk() (*bool, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetIsEnabled
 
-`func (o *SecurityMonitoringRuleCreatePayload) SetEnabled(v bool)`
+`func (o *SecurityMonitoringRuleCreatePayload) SetIsEnabled(v bool)`
 
-SetEnabled sets Enabled field to given value.
+SetIsEnabled sets IsEnabled field to given value.
 
 
 ### GetMessage
