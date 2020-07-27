@@ -17,6 +17,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"reflect"
 	"runtime"
 	"strings"
 	"testing"
@@ -341,22 +342,31 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 		return false
 	}
 
+	// Request does not contain body (e.g. `GET`)
 	if r.Body == nil {
-		return true
+		return i.Body == ""
 	}
 
+	// Load request body
 	var b bytes.Buffer
 	if _, err := b.ReadFrom(r.Body); err != nil {
 		return false
 	}
 	r.Body = ioutil.NopCloser(&b)
 
-	// Body must be empty or equal
+	// Ignore boundary differences
 	if strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
-		fmt.Printf("skip %s ??? %s", b.String(), i.Body)
+		rl := strings.Split(b.String(), "\n")
+		cl := strings.Split(i.Body, "\n")
+		if !reflect.DeepEqual(rl[1:len(rl)], cl[1:len(cl)]) {
+			fmt.Printf("skip %s ??? %s", b.String(), i.Body)
+			return false
+		}
 		return true
 	}
-	matched := (b.String() == "" || b.String() == i.Body)
+
+	// Body must be empty or equal
+	matched := b.String() == i.Body
 	if !matched {
 		fmt.Printf("%s != %s", b.String(), i.Body)
 	}
