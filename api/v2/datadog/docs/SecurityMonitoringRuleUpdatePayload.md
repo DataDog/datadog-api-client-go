@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cases** | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | [optional] 
-**Enabled** | Pointer to **bool** | Whether the rule is enabled. | [optional] 
+**IsEnabled** | Pointer to **bool** | Whether the rule is enabled. | [optional] 
 **Message** | Pointer to **string** | Message for generated signals. | [optional] 
 **Name** | Pointer to **string** | Name of the rule. | [optional] 
 **Options** | Pointer to [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | [optional] 
@@ -56,30 +56,30 @@ SetCases sets Cases field to given value.
 
 HasCases returns a boolean if a field has been set.
 
-### GetEnabled
+### GetIsEnabled
 
-`func (o *SecurityMonitoringRuleUpdatePayload) GetEnabled() bool`
+`func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabled() bool`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetIsEnabledOk
 
-`func (o *SecurityMonitoringRuleUpdatePayload) GetEnabledOk() (*bool, bool)`
+`func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabledOk() (*bool, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetIsEnabled
 
-`func (o *SecurityMonitoringRuleUpdatePayload) SetEnabled(v bool)`
+`func (o *SecurityMonitoringRuleUpdatePayload) SetIsEnabled(v bool)`
 
-SetEnabled sets Enabled field to given value.
+SetIsEnabled sets IsEnabled field to given value.
 
-### HasEnabled
+### HasIsEnabled
 
-`func (o *SecurityMonitoringRuleUpdatePayload) HasEnabled() bool`
+`func (o *SecurityMonitoringRuleUpdatePayload) HasIsEnabled() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasIsEnabled returns a boolean if a field has been set.
 
 ### GetMessage
 
