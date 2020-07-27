@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"email":"go-testscenarios-feature_users-scenario_get_a_user_permissions_returns__ok__response-given_there_is_a_valid_user_in_the_system-local-1593616885@datadoghq.com","name":"go-testscenarios-feature_users-scenario_get_","title":"Big boss"},"type":"users"}}
+      {"data":{"attributes":{"email":"go-testscenarios-feature_users-scenario_get_a_user_permissions_returns__ok__response-given_there_is_a_valid__user__in_the_system-local-1595582935@datadoghq.com","name":"go-testscenarios-feature_users-scenario_get_","title":"Big boss"},"type":"users"}}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7573835987901048164"
+      - "5329771493479437552"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7573835987901048164"
+      - "1548475634012370376"
     url: https://api.datadoghq.com/api/v2/users
     method: POST
   response:
-    body: '{"data":{"type":"users","id":"8721fa42-bbae-11ea-9c9c-4793d1d6ceb6","attributes":{"name":"go-testscenarios-feature_users-scenario_get_","handle":"go-testscenarios-feature_users-scenario_get_a_user_permissions_returns__ok__response-given_there_is_a_valid_user_in_the_system-local-1593616885@datadoghq.com","created_at":"2020-07-01T15:21:25.406740+00:00","email":"go-testscenarios-feature_users-scenario_get_a_user_permissions_returns__ok__response-given_there_is_a_valid_user_in_the_system-local-1593616885@datadoghq.com","icon":"https://secure.gravatar.com/avatar/efce8cb73c1cf0bc36af1464971212a9?s=48&d=retro","title":"Big
+    body: '{"data":{"type":"users","id":"18768128-cd90-11ea-a33d-ab6b89e65ecc","attributes":{"name":"go-testscenarios-feature_users-scenario_get_","handle":"go-testscenarios-feature_users-scenario_get_a_user_permissions_returns__ok__response-given_there_is_a_valid__user__in_the_system-local-1595582935@datadoghq.com","created_at":"2020-07-24T09:28:55.760771+00:00","email":"go-testscenarios-feature_users-scenario_get_a_user_permissions_returns__ok__response-given_there_is_a_valid__user__in_the_system-local-1595582935@datadoghq.com","icon":"https://secure.gravatar.com/avatar/ba0ef58be0ab597516de672fe4588c01?s=48&d=retro","title":"Big
       boss","verified":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     headers:
       Cache-Control:
@@ -31,26 +31,26 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "825"
+      - "829"
       Content-Type:
       - application/json
       Date:
-      - Wed, 01 Jul 2020 15:21:25 GMT
+      - Fri, 24 Jul 2020 09:28:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 08-Jul-2020 15:21:25 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 31-Jul-2020 09:28:55 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - KKQq2SiaDLpychKSp47ffvU6SRxUV+VzBWr187ESkULBuGOI+kREfb/2NCy8DAWC
+      - HTCsbjwqQM0jTFHFq9ukWObBv4f/yxvHIxzrANPhzJkr6s3+rN5uCN3TcZuK2V2B
       X-Dd-Version:
-      - "35.2688310"
+      - "35.2781902"
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
@@ -65,14 +65,14 @@ interactions:
       Dd-Operation-Id:
       - ListUserPermissions
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8551683149767475364"
+      - "6671666585491542526"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8551683149767475364"
-    url: https://api.datadoghq.com/api/v2/users/8721fa42-bbae-11ea-9c9c-4793d1d6ceb6/permissions
+      - "1548475634012370376"
+    url: https://api.datadoghq.com/api/v2/users/18768128-cd90-11ea-a33d-ab6b89e65ecc/permissions
     method: GET
   response:
     body: '{"data":[]}'
@@ -86,22 +86,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 01 Jul 2020 15:21:25 GMT
+      - Fri, 24 Jul 2020 09:28:55 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 08-Jul-2020 15:21:25 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 31-Jul-2020 09:28:55 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Iy6HNgrdx6jplabT1ZfQVzkCrk+jqjHEQw0NvfR/5Sb/NsvSUgBv2AbCahJdaB7p
+      - Wts7Rn21w0qW4rqYtxheVW/4xeY9Y3ARkRMnLeq6etar4hXLqkvskJXcsIyQxYKB
       X-Dd-Version:
-      - "35.2688310"
+      - "35.2781902"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -116,14 +116,14 @@ interactions:
       Dd-Operation-Id:
       - DisableUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3059238675581390560"
+      - "6260131759961581049"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3059238675581390560"
-    url: https://api.datadoghq.com/api/v2/users/8721fa42-bbae-11ea-9c9c-4793d1d6ceb6
+      - "1548475634012370376"
+    url: https://api.datadoghq.com/api/v2/users/18768128-cd90-11ea-a33d-ab6b89e65ecc
     method: DELETE
   response:
     body: ""
@@ -137,22 +137,22 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Wed, 01 Jul 2020 15:21:26 GMT
+      - Fri, 24 Jul 2020 09:28:56 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 08-Jul-2020 15:21:25 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 31-Jul-2020 09:28:56 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vlc9b/rJPByGsV/acj3ScS7B1lo9nEAbSgYCfkl0GH3egry4iXeiGBP0WX8DpJ/T
+      - og1WGdy+2nV+rkkclmd3Cf2I26XhV3/6yjBeQCP8aHbH2k2cKwC+X9WmhIghcJ94
       X-Dd-Version:
-      - "35.2688310"
+      - "35.2781902"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content

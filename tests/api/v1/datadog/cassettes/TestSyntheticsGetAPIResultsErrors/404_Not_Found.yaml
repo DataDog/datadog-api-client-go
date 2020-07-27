@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetAPITestLatestResults
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1187219870249440106"
+      - "1584435028200488394"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3052385766247334851"
+      - "3368603528805969896"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/aaa-aaa-aaa/results
     method: GET
   response:
@@ -26,12 +26,10 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:33:36 GMT
+      - Fri, 24 Jul 2020 09:33:39 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -43,7 +41,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2493025"
+      - "35.2781966"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,9 +49,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "996"
+      - "995"
       X-Ratelimit-Reset:
-      - "24"
+      - "21"
     status: 404 Not Found
     code: 404
     duration: ""
