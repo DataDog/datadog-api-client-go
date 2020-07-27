@@ -354,21 +354,19 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	}
 	r.Body = ioutil.NopCloser(&b)
 
-	// Ignore boundary differences
-	if strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
-		rl := strings.Split(b.String(), "\n")
-		cl := strings.Split(i.Body, "\n")
-		if !reflect.DeepEqual(rl[1:len(rl)], cl[1:len(cl)]) {
-			fmt.Printf("skip %s ??? %s", b.String(), i.Body)
-			return false
+	matched := b.String() == i.Body
+
+	// Ignore boundary differences for multipart/form-data content
+	if !matched && strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
+		rl := strings.Split(strings.TrimSpace(b.String()), "\n")
+		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
+		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rl[1:len(rl)-1], cl[1:len(cl)-1]) {
+			matched = true
 		}
-		return true
 	}
 
-	// Body must be empty or equal
-	matched := b.String() == i.Body
 	if !matched {
-		fmt.Printf("%s != %s", b.String(), i.Body)
+		log.Printf("%s != %s", b.String(), i.Body)
 	}
 	return matched
 }
