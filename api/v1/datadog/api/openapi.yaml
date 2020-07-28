@@ -109,8 +109,7 @@ tags:
     - For a multi-logs request, the API processes all logs, truncates only logs larger than 256KB, and returns a 2xx.
 
     We encourage you to send your logs compressed.
-
-    **Note**: If you are in the Datadog EU site (`app.datadoghq.eu`), the HTTP log endpoint is `http-intake.logs.datadoghq.eu`.
+    Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
   name: Logs
 - description: |-
     Manage configuration of [log indexes](https://docs.datadoghq.com/logs/indexes/).
@@ -663,7 +662,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get the list of available daily custom reports
       tags:
       - Usage Metering
@@ -695,7 +694,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
         "404":
           content:
             application/json;datetime-format=rfc3339:
@@ -3796,7 +3795,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get the list of available monthly custom reports
       tags:
       - Usage Metering
@@ -3834,7 +3833,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
         "404":
           content:
             application/json;datetime-format=rfc3339:
@@ -5317,7 +5316,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for analyzed logs
       tags:
       - Usage Metering
@@ -5364,7 +5363,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Lambda
       tags:
       - Usage Metering
@@ -5401,7 +5400,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get billable usage across your multi-org account
       tags:
       - Usage Metering
@@ -5448,7 +5447,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Fargate
       tags:
       - Usage Metering
@@ -5495,7 +5494,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for hosts and containers
       tags:
       - Usage Metering
@@ -5542,7 +5541,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Logs
       tags:
       - Usage Metering
@@ -5599,7 +5598,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Logs by Index
       tags:
       - Usage Metering
@@ -5647,7 +5646,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Network Flows
       tags:
       - Usage Metering
@@ -5694,7 +5693,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Network Hosts
       tags:
       - Usage Metering
@@ -5742,7 +5741,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for RUM Sessions
       tags:
       - Usage Metering
@@ -5790,7 +5789,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for SNMP devices
       tags:
       - Usage Metering
@@ -5846,7 +5845,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get usage across your multi-org account
       tags:
       - Usage Metering
@@ -5894,7 +5893,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics Checks
       tags:
       - Usage Metering
@@ -5941,7 +5940,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics API Checks
       tags:
       - Usage Metering
@@ -5988,7 +5987,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics Browser Checks
       tags:
       - Usage Metering
@@ -6035,7 +6034,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for custom metrics
       tags:
       - Usage Metering
@@ -6083,7 +6082,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get top 500 custom metrics by hourly average
       tags:
       - Usage Metering
@@ -6130,7 +6129,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Trace Search
       tags:
       - Usage Metering
@@ -6987,6 +6986,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         show_present:
           description: Whether to show the present value.
           type: boolean
@@ -7472,6 +7473,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetStyle'
       type: object
@@ -7718,7 +7721,7 @@ components:
         date_happened:
           description: |-
             POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes).
-            Limited to events no older than 1 year, 24 days (389 days).
+            Limited to events no older than 7 days.
           format: int64
           type: integer
         device_name:
@@ -8239,6 +8242,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetStyle'
       type: object
@@ -8444,6 +8449,8 @@ components:
           description: Query definition.
           type: string
         rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
       type: object
     HostMapWidgetDefinition:
@@ -10829,6 +10836,7 @@ components:
       - service check
       - synthetics alert
       - trace-analytics alert
+      - slo alert
       type: string
       x-enum-varnames:
       - COMPOSITE
@@ -10841,6 +10849,7 @@ components:
       - SERVICE_CHECK
       - SYNTHETICS_ALERT
       - TRACE_ANALYTICS_ALERT
+      - SLO_ALERT
     MonitorUpdateRequest:
       description: Object describing a monitor update request.
       example:
@@ -11395,6 +11404,8 @@ components:
           description: TODO.
           type: string
         rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
       type: object
     SLOBulkDelete:
@@ -11984,6 +11995,8 @@ components:
           description: Query definition.
           type: string
         rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
       type: object
     ScatterPlotWidgetDefinition:
@@ -13903,7 +13916,7 @@ components:
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
         steps:
-          description: The steps of the test (only for browser tests).
+          description: For browser test, the steps of the test.
           items:
             $ref: '#/components/schemas/SyntheticsStep'
           type: array
@@ -13919,7 +13932,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestDetailsType'
       type: object
     SyntheticsTestDetailsSubType:
-      description: The sub-type of the Synthetic API test, either `http` or `ssl`.
+      description: The sub-type of the Synthetic API test, `http`, `ssl`, or `tcp`.
       enum:
       - http
       - ssl
@@ -13970,27 +13983,28 @@ components:
           interval: 7.061401241503109
       properties:
         accept_self_signed:
-          description: For browser test, whether or not the test should allow self
-            signed certificate.
+          description: For SSL test, whether or not the test should allow self signed
+            certificates.
           type: boolean
         allow_insecure:
           description: Allows loading insecure content for an HTTP request.
           type: boolean
         device_ids:
-          description: Array with the different device IDs used to run the test.
+          description: For browser test, array with the different device IDs used
+            to run the test.
           items:
             $ref: '#/components/schemas/SyntheticsDeviceID'
           type: array
         follow_redirects:
-          description: For API SSL test, whether or not the test should follow redirects.
+          description: For API HTTP test, whether or not the test should follow redirects.
           type: boolean
         min_failure_duration:
-          description: Minimum amount of time before declaring the test has failed.
+          description: Minimum amount of time in failure required to trigger an alert.
           format: int64
           type: integer
         min_location_failed:
-          description: Minimum amount of locations that are allowed to fail for the
-            test.
+          description: Minimum number of locations in failure required to trigger
+            an alert.
           format: int64
           type: integer
         retry:
@@ -14070,7 +14084,7 @@ components:
           type: string
       type: object
     SyntheticsTickInterval:
-      description: The frequency at which to run the Synthetic test.
+      description: The frequency at which to run the Synthetic test (in seconds).
       enum:
       - 60
       - 300
@@ -14230,6 +14244,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
       type: object
     TagToHosts:
       description: In this object, the key is the tag, the value is a list of host
@@ -14330,6 +14346,8 @@ components:
           type: string
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetRequestStyle'
       type: object
@@ -14397,6 +14415,8 @@ components:
           description: Widget query.
           type: string
         rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetRequestStyle'
@@ -18297,21 +18317,19 @@ components:
       - message
       - type
     SyntheticsTestOptions_retry:
-      description: |-
-        Object describing the retry strategy to apply to a Synthetic test.
-        By default, there is a 300ms wait before retrying a test that has failed.
+      description: Object describing the retry strategy to apply to a Synthetic test.
       example:
         count: 2
         interval: 7.061401241503109
       properties:
         count:
-          description: The amount of location that needs to fail for the test to be
-            retried.
+          description: Number of times a test needs to be retried before marking a
+            location as failed. Defaults to 0.
           format: int64
           type: integer
         interval:
-          description: The interval over which the amount of location needed to fail
-            for the test to be retried.
+          description: Time interval between retries (in milliseconds). Defaults to
+            300ms.
           format: double
           type: number
     SyntheticsTestRequest_basicAuth:

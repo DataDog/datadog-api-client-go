@@ -194,6 +194,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	ucr.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
+		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(httpresp.StatusCode, 201)
@@ -209,6 +210,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 
 	crrtus, httpresp, err := Client(ctx).RolesApi.AddUserToRole(ctx, rid).Body(*rtu).Execute()
 	if err != nil {
+		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating user relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
@@ -241,6 +243,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	// remove the permission from the role
 	drrtus, httpresp, err := Client(ctx).RolesApi.RemoveUserFromRole(ctx, rid).Body(*rtu).Execute()
 	if err != nil {
+		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error remove permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
@@ -792,6 +795,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
+		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
@@ -812,6 +816,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	ucr.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
+		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(httpresp.StatusCode, 201)
@@ -842,6 +847,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).RolesApi.RemoveUserFromRole(ctx, tc.RoleID).Body(*tc.Body).Execute()
+			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

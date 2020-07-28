@@ -79,7 +79,7 @@ func TestUserLifecycle(t *testing.T) {
 	urData = urp.GetData()
 	urAttributes = urData.GetAttributes()
 	assert.Equal(urAttributes.GetEmail(), uca.GetEmail())
-	assert.Equal(urAttributes.GetName(), uca.GetName() + "-updated")
+	assert.Equal(urAttributes.GetName(), uca.GetName()+"-updated")
 	assert.Equal(urAttributes.GetTitle(), uca.GetTitle())
 	assert.Equal(urAttributes.GetDisabled(), false)
 
@@ -197,6 +197,7 @@ func TestUserInvitation(t *testing.T) {
 
 	resp, httpresp, err := Client(ctx).UsersApi.SendInvitations(ctx).Body(*uireq).Execute()
 	if err != nil {
+		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error sending invitation for %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(httpresp.StatusCode, 201)
@@ -205,6 +206,7 @@ func TestUserInvitation(t *testing.T) {
 	// now, test getting the invitation
 	oneresp, httpresp, err := Client(ctx).UsersApi.GetInvitation(ctx, respID).Execute()
 	if err != nil {
+		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error getting invitation %s: Response %s: %v", respID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(httpresp.StatusCode, 200)

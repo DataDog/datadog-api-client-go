@@ -3272,12 +3272,18 @@ components:
             - notifications
           message: message
           queries:
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
             name: name
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
@@ -3307,12 +3313,18 @@ components:
             - notifications
           message: message
           queries:
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
             name: name
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
@@ -3372,11 +3384,11 @@ components:
       description: Create a new rule.
       example:
         cases: []
+        isEnabled: true
         name: name
         options: {}
         message: message
         queries: []
-        enabled: true
         tags:
         - env:prod
         - team:security
@@ -3387,7 +3399,7 @@ components:
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCase'
           type: array
-        enabled:
+        isEnabled:
           description: Whether the rule is enabled.
           example: true
           type: boolean
@@ -3416,7 +3428,7 @@ components:
           type: array
       required:
       - cases
-      - enabled
+      - isEnabled
       - message
       - name
       - options
@@ -3517,12 +3529,21 @@ components:
     SecurityMonitoringRuleQuery:
       description: Query for matching rule.
       example:
+        distinctFields:
+        - distinctFields
+        - distinctFields
         groupByFields:
         - groupByFields
         - groupByFields
         query: query
         name: name
       properties:
+        distinctFields:
+          description: Field for which the cardinality is measured. Sent as an array.
+          items:
+            description: Field
+            type: string
+          type: array
         groupByFields:
           description: Fields to group by.
           items:
@@ -3552,12 +3573,18 @@ components:
           - notifications
         message: message
         queries:
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
           name: name
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
@@ -3652,21 +3679,27 @@ components:
           notifications:
           - notifications
           - notifications
+        isEnabled: true
         name: name
         options: {}
         message: message
         queries:
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
           name: name
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
           name: name
-        enabled: true
         tags:
         - tags
         - tags
@@ -3676,7 +3709,7 @@ components:
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCase'
           type: array
-        enabled:
+        isEnabled:
           description: Whether the rule is enabled.
           type: boolean
         message:
