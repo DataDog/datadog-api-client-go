@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DistinctFields** | Pointer to **[]string** | Field for which the cardinality is measured. Sent as an array. | [optional] 
 **GroupByFields** | Pointer to **[]string** | Fields to group by. | [optional] 
 **Name** | Pointer to **string** | Name of the query | [optional] 
 **Query** | Pointer to **string** | Query to run on logs | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewSecurityMonitoringRuleQueryWithDefaults instantiates a new SecurityMonitoringRuleQuery object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDistinctFields
+
+`func (o *SecurityMonitoringRuleQuery) GetDistinctFields() []string`
+
+GetDistinctFields returns the DistinctFields field if non-nil, zero value otherwise.
+
+### GetDistinctFieldsOk
+
+`func (o *SecurityMonitoringRuleQuery) GetDistinctFieldsOk() (*[]string, bool)`
+
+GetDistinctFieldsOk returns a tuple with the DistinctFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDistinctFields
+
+`func (o *SecurityMonitoringRuleQuery) SetDistinctFields(v []string)`
+
+SetDistinctFields sets DistinctFields field to given value.
+
+### HasDistinctFields
+
+`func (o *SecurityMonitoringRuleQuery) HasDistinctFields() bool`
+
+HasDistinctFields returns a boolean if a field has been set.
 
 ### GetGroupByFields
 
