@@ -12,22 +12,20 @@ import (
 
 func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, ruleName string) (datadog.SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 
-	query := datadog.NewSecurityMonitoringRuleQuery()
+	query := datadog.NewSecurityMonitoringRuleQueryCreate("thiswillnevernevermatch")
 	query.SetName("nevermatch")
-	query.SetQuery("thiswillnevernevermatch")
 	query.SetGroupByFields([]string{})
-	queries := []datadog.SecurityMonitoringRuleQuery{*query}
+	queries := []datadog.SecurityMonitoringRuleQueryCreate{*query}
 
 	options := datadog.NewSecurityMonitoringRuleOptions()
 	options.SetEvaluationWindow(datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIVE_MINUTES)
 	options.SetKeepAlive(datadog.SECURITYMONITORINGRULEKEEPALIVE_FIVE_MINUTES)
 	options.SetMaxSignalDuration(datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_FIVE_MINUTES)
 
-	ruleCase := datadog.NewSecurityMonitoringRuleCase()
+	ruleCase := datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SECURITYMONITORINGRULESEVERITY_INFO)
 	ruleCase.SetName("rule-case")
 	ruleCase.SetCondition("nevermatch > 1000")
-	ruleCase.SetStatus(datadog.SECURITYMONITORINGRULESEVERITY_INFO)
-	ruleCases := []datadog.SecurityMonitoringRuleCase{*ruleCase}
+	ruleCases := []datadog.SecurityMonitoringRuleCaseCreate{*ruleCase}
 
 	createPayload := datadog.NewSecurityMonitoringRuleCreatePayload(
 		ruleCases,
@@ -36,8 +34,8 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 		ruleName,
 		*options,
 		queries,
-		[]string{"datadog-api-client-test-go"},
 	)
+	createPayload.SetTags([]string{"datadog-api-client-test-go"})
 
 	return api.CreateSecurityMonitoringRule(ctx).Body(*createPayload).Execute()
 }
