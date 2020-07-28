@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetIPRanges
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "703337467988536674"
+      - "4007669915041302745"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1585589616748263641"
+      - "7745952772947156856"
     url: https://ip-ranges.datadoghq.com/
     method: GET
   response:
@@ -912,7 +912,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Jul 2020 08:49:51 GMT
+      - Fri, 24 Jul 2020 09:28:43 GMT
       Last-Modified:
       - Mon, 22 Jun 2020 10:05:14 GMT
       Server:
@@ -920,13 +920,13 @@ interactions:
       Vary:
       - Accept-Encoding
       Via:
-      - 1.1 713e5c81a0f7ad564b97cf451e92aaac.cloudfront.net (CloudFront)
+      - 1.1 803bb8de3c7a92b10030fcaaf02a53d3.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - lPqOi1TJ3Jx5YiGN3eYzzZqycPgj9JBJ0W7Tt2aD4At79Rd_SwWULQ==
+      - 0s3WNQtLp7Gckik8qWcHF0jJfjXf-sDSqylGjbwx7djhuvloBSBmIQ==
       X-Amz-Cf-Pop:
       - MAD50-C1
       X-Cache:
-      - RefreshHit from cloudfront
+      - Miss from cloudfront
     status: 200 OK
     code: 200
     duration: ""

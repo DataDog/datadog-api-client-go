@@ -3,10 +3,11 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
 	_nethttp "net/http"
 	"testing"
+
+	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, ruleName string) (datadog.SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
@@ -38,7 +39,7 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 		*options,
 		queries,
 		[]string{"datadog-api-client-test-go"},
-		)
+	)
 
 	return api.CreateSecurityMonitoringRule(ctx).Body(*createPayload).Execute()
 }
@@ -140,7 +141,7 @@ func TestSecMonRulesCRUD(t *testing.T) {
 	// update rule
 	updatePayload := datadog.NewSecurityMonitoringRuleUpdatePayload()
 	updatePayload.SetName(ruleResponse.GetName())
-	updatePayload.SetEnabled(false)
+	updatePayload.SetIsEnabled(false)
 	updatePayload.SetMessage(ruleResponse.GetMessage())
 	updatePayload.SetTags(ruleResponse.GetTags())
 	updatePayload.SetQueries(ruleResponse.GetQueries())

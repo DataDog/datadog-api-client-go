@@ -3372,11 +3372,11 @@ components:
       description: Create a new rule.
       example:
         cases: []
+        isEnabled: true
         name: name
         options: {}
         message: message
         queries: []
-        enabled: true
         tags:
         - env:prod
         - team:security
@@ -3387,7 +3387,7 @@ components:
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCase'
           type: array
-        enabled:
+        isEnabled:
           description: Whether the rule is enabled.
           example: true
           type: boolean
@@ -3416,7 +3416,7 @@ components:
           type: array
       required:
       - cases
-      - enabled
+      - isEnabled
       - message
       - name
       - options
@@ -3652,6 +3652,7 @@ components:
           notifications:
           - notifications
           - notifications
+        isEnabled: true
         name: name
         options: {}
         message: message
@@ -3666,7 +3667,6 @@ components:
           - groupByFields
           query: query
           name: name
-        enabled: true
         tags:
         - tags
         - tags
@@ -3676,7 +3676,7 @@ components:
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCase'
           type: array
-        enabled:
+        isEnabled:
           description: Whether the rule is enabled.
           type: boolean
         message:

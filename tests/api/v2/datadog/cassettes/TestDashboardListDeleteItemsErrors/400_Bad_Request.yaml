@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"dashboards":null}
+      {}
     form: {}
     headers:
       Accept:
@@ -13,30 +13,28 @@ interactions:
       Dd-Operation-Id:
       - DeleteDashboardListItems
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5082161589453342448"
+      - "4223944676552884186"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7444885911470638562"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/97371/dashboards
+      - "4092183642028512281"
+    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/116125/dashboards
     method: DELETE
   response:
-    body: '{"errors": ["''dashboards'' should be array"]}'
+    body: '{"errors": ["Required parameter ''dashboards'' is missing"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "44"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      - "58"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:33 GMT
+      - Fri, 24 Jul 2020 09:13:31 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -46,7 +44,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.2781855"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
