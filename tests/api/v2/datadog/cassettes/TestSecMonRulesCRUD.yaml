@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595860636-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
+      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595951131-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"distinctFields":[],"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
     form: {}
     headers:
       Accept:
@@ -15,17 +15,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "7136131729454840603"
+      - "4599457537604072757"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636261,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"nn5-a15-xnh","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-0"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951131976,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"roy-zmj-h5r","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -36,13 +36,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:16 GMT
+      - Tue, 28 Jul 2020 15:45:31 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:31 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -51,9 +51,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - menB+JzZJZWnsBMzYDdvLqZLyJ1Z3XKvvLNUvAnnxCkhc359HSRPRWZhATTwUzcU
+      - 1VJ/JBZjQ3psCDX9vMO0iyJg70xEGWg24478mDq1snnclNYRLSCEVhKQ00cAiMiD
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -61,7 +61,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595860636-1","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
+      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595951131-1","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"distinctFields":[],"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
     form: {}
     headers:
       Accept:
@@ -73,17 +73,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "7341736035150154076"
+      - "7315784303501916656"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636389,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"98y-mxn-iwn","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-1"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132059,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"wxb-xvw-cjs","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-1"}'
     headers:
       Cache-Control:
       - no-cache
@@ -94,13 +94,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:16 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -109,9 +109,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Jhz2Lh32XBCZ7PVSj7/lof8hXjgbtiexG4VIRWAEYHPFefqyYpXnVaeT62yBncrB
+      - Omw2HBtli6Fvv+m1GrrKYauxiZRRsmEallYCFjCXur8QlnmEuW2U9xJoVSDmbCuH
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -119,7 +119,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595860636-2","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
+      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595951131-2","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"distinctFields":[],"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
     form: {}
     headers:
       Accept:
@@ -131,17 +131,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "6013794019747886997"
+      - "902387113806223786"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636531,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"doa-ioc-gas","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-2"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132137,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"80n-gqf-zah","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-2"}'
     headers:
       Cache-Control:
       - no-cache
@@ -152,13 +152,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:16 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -167,9 +167,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - l+fZq7vW9gg1qInAzXkJZdt8f8e/094RDnN9pOEIlkXbx1jb6kpjgt1+syYCZyFC
+      - C1wPZc/e+nXf4MvxtJydD7BZdHWbhiZqXx0eeGvAhJ5VDmuXMem/y36Amb0cNToP
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -177,7 +177,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595860636-3","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
+      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595951131-3","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"distinctFields":[],"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
     form: {}
     headers:
       Accept:
@@ -189,17 +189,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "3560857115553168724"
+      - "5459302416907895498"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636791,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"ytx-fe0-d09","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-3"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132221,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"lrs-gwf-v9o","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-3"}'
     headers:
       Cache-Control:
       - no-cache
@@ -210,13 +210,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:16 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -225,9 +225,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - tp1qdVxoUmtlsVp6hgBWraWfL5vEbA116VZkaWKWIZtgPr5Ima8zysCBv+o2WoZ/
+      - uCncOlZVVTtg9OtkX0Awg4quIXm2e9reBTEyhVkwTawPC6H/wxVUR0zXDNh73uK8
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -235,7 +235,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595860636-4","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
+      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","status":"info"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595951131-4","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"distinctFields":[],"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
     form: {}
     headers:
       Accept:
@@ -247,17 +247,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "1338135080912752077"
+      - "818789473124955160"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636871,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"3pt-dte-nso","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-4"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132305,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"1w2-y6n-vkl","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-4"}'
     headers:
       Cache-Control:
       - no-cache
@@ -268,13 +268,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:16 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -283,9 +283,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vQYgH+orCqhRbQG/mSd6IeQSqyYBCkFVCv4Bj6PXMALQcvTK5EvxQuH7fIz3d52m
+      - 4ZutoXjD1dtrPYR8YKRovF2eKpb8tYXyHMBf1sluqqFFWp3GqAYhbsyigyK3Zy4D
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -302,17 +302,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "3387218955250860791"
+      - "8991779320316224615"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/nn5-a15-xnh
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/roy-zmj-h5r
     method: GET
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636261,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"nn5-a15-xnh","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-0"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951131976,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"roy-zmj-h5r","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -323,13 +323,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:16 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -338,9 +338,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - PcnVfOcEtqolY6fi98GEVSGXOZZkwQSBbl/twLr2TucYRfYyGCLXvKm6pTUNQt1l
+      - E1kRihV+erQJ+NunAE7TG6EzKswr2vZNw2rdu9+eYHaq5B8FEOjmHSlYJSOwes/I
       X-Dd-Version:
-      - "35.2791566"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -357,11 +357,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "8550762726225133170"
+      - "8871881704553552123"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=1
     method: GET
   response:
@@ -391,13 +391,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:16 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -406,9 +406,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Wi4QF3nhe5s0sRyfZvyTHLc/3mQu/jJVn8BZnev44SXt+VBNA1+haKi5VcNZFpaP
+      - nAvtTZxTcONVqH/igGHMNcQRfPJB+I/A35kw71IaWUYpGWkJJWH8tix8SW0ALCis
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -425,11 +425,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "2277773246638677632"
+      - "5723197485262207031"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=146
     method: GET
   response:
@@ -469,9 +469,9 @@ interactions:
       Contact the user to see if they intended to make this API call.\n3. If the user
       did not make the API call:\n * Rotate the credentials.\n * Investigate if the
       same credentials made other unauthorized API calls.\n\n[1]: https://docs.aws.amazon.com/cli/latest/reference/rds/delete-db-cluster.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870276546,"queries":[{"query":"source:cloudtrail
-      @evt.name:DeleteDBCluster","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"6ng-pk1-ukh","isDefault":true,"name":"AWS
-      RDS Cluster Deleted"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0006-credential-access","technique:T1110-brute-force","scope:template"],"isEnabled":false,"hasExtendedTitle":true,"message":"###
+      @evt.name:DeleteDBCluster","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"6ng-pk1-ukh","isDefault":true,"name":"AWS RDS
+      Cluster Deleted"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0006-credential-access","technique:T1110-brute-force","scope:template"],"isEnabled":false,"hasExtendedTitle":true,"message":"###
       Goal\nDetect Account Take Over (ATO) through brute force attempts\n\n### Strategy\nTo
       determine a successful attempt: Detect a high amount of failed logins and at
       least one successful login for a given user. This will generate a `HIGH` severity
@@ -491,9 +491,9 @@ interactions:
       not make the API call:\n * Rotate the credentials.\n * Investigate if the same
       credentials made other unauthorized API calls.\n\n[1]: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeleteRule.html\n[2]:
       https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DisableRule.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870277044,"queries":[{"query":"source:cloudtrail
-      @evt.name:(DeleteRule OR DisableRule)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"mq6-cjx-h9o","isDefault":true,"name":"AWS
-      EventBridge Rule Disabled or Deleted"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0005-defense-evasion","technique:T1066-indicator-removal-from-tools","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:(DeleteRule OR DisableRule)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"mq6-cjx-h9o","isDefault":true,"name":"AWS EventBridge
+      Rule Disabled or Deleted"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0005-defense-evasion","technique:T1066-indicator-removal-from-tools","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is removing FlowLogs to cover their tracks.\n\n###
       Strategy\nThis rule lets you monitor this CloudTrail API call to detect if an
       attacker is deleting FlowLogs:\n\n* [DeleteFlowLogs][1]\n\n### Triage & Response\n1.
@@ -501,9 +501,9 @@ interactions:
       call.\n2. Contact the user to see if they intended to make this API call.\n3.
       If the user did not make the API call:\n * Rotate the credentials.\n * Investigate
       if the same credentials made other unauthorized API calls.\n\n[1]: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteFlowLogs.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870278493,"queries":[{"query":"source:cloudtrail
-      @evt.name:DeleteFlowLogs","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"cws-b4f-uoh","isDefault":true,"name":"AWS
-      FlowLogs Removed"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0005-defense-evasion","technique:T1089-disabling-security-tools","source:cloudtrail","scope:guardduty"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:DeleteFlowLogs","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"cws-b4f-uoh","isDefault":true,"name":"AWS FlowLogs
+      Removed"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0005-defense-evasion","technique:T1089-disabling-security-tools","source:cloudtrail","scope:guardduty"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is trying to evade defenses by deleting a GuardDuty
       detector.\n\n### Strategy\nThis rule lets you monitor this CloudTrail API call
       to detect if an attacker is deleting a GuardDuty Detector:\n\n* [DeleteDetector][1]\n\n###
@@ -512,9 +512,9 @@ interactions:
       make this API call.\n3. If the user did not make the API call:\n * Rotate the
       credentials.\n * Investigate if the same credentials made other unauthorized
       API calls.\n\n[1]: https://docs.aws.amazon.com/guardduty/latest/ug/delete-detector.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870279177,"queries":[{"query":"source:cloudtrail
-      @evt.name:DeleteDetector","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"pzi-led-yyc","isDefault":true,"name":"AWS
-      GuardDuty Detector Deleted"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0040-impact","technique:T1485-data-destruction","source:cloudtrail","scope:ecs"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:DeleteDetector","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"pzi-led-yyc","isDefault":true,"name":"AWS GuardDuty
+      Detector Deleted"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0040-impact","technique:T1485-data-destruction","source:cloudtrail","scope:ecs"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is destroying an ECS Cluster\n\n### Strategy\nThis
       rule lets you monitor this CloudTrail API call to detect if an ECS cluster is
       deleted:\n\n* [DeleteCluster][1]\n\n### Triage & Response\n1. Determine which
@@ -522,9 +522,9 @@ interactions:
       the user to see if they intended to make this API call.\n3. If the user did
       not make the API call:\n * Rotate the credentials.\n * Investigate if the same
       credentials made other unauthorized API calls.\n\n[1]: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteCluster.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870279810,"queries":[{"query":"source:cloudtrail
-      @evt.name:DeleteCluster","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"vwu-6id-9lz","isDefault":true,"name":"AWS
-      ECS Cluster Deleted"},{"creationAuthorId":0,"tags":["security:compliance","source:cloudtrail","scope:s3"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:DeleteCluster","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"vwu-6id-9lz","isDefault":true,"name":"AWS ECS
+      Cluster Deleted"},{"creationAuthorId":0,"tags":["security:compliance","source:cloudtrail","scope:s3"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when the S3 Public Access Block configuration has been removed
       \n\n### Strategy\nThis rule lets you monitor this CloudTrail API call to detect
       if an attacker is deleting the S3 Public Access Block configuration:\n\n* [DeleteAccountPublicAccessBlock][1]\n\n###
@@ -533,9 +533,9 @@ interactions:
       Block on S3 buckets.\n3. Re-enable Public Access Block on the S3 bucket.\n\nMore
       details on S3 Public Block Public Access can be found [here][2].\n\n[1]: https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-public-access-block.html\n[2]:
       https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870280316,"queries":[{"query":"source:cloudtrail
-      @evt.name:DeleteAccountPublicAccessBlock","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"uxr-5wk-8hk","isDefault":true,"name":"AWS
-      S3 Public Access Block Removed"},{"creationAuthorId":0,"tags":["security:threat-intel","source:gsuite","scope:gsuite"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:DeleteAccountPublicAccessBlock","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"uxr-5wk-8hk","isDefault":true,"name":"AWS S3
+      Public Access Block Removed"},{"creationAuthorId":0,"tags":["security:threat-intel","source:gsuite","scope:gsuite"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a user attempts to log in with a password which is known to
       be compromised.\n\n### Strategy\nThis rule allows you to monitor this Google
       Activity API call to detect if an attacker is trying to login with a leaked
@@ -544,9 +544,9 @@ interactions:
       user and ensure they rotate the password on Google and any other accounts where
       they may have reused this password. Ensure the user is aware of strong password
       guidelines.\n\n[1]: https://developers.google.com/admin-sdk/reports/v1/appendix/activity/login#account_disabled_password_leak","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870280553,"queries":[{"query":"source:gsuite
-      @event.type:account_warning @event.name:account_disabled_password_leak","groupByFields":["@actor.email"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"9zi-bom-nmh","isDefault":true,"name":"User
-      Attempted Login with Leaked Password"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.14","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @event.type:account_warning @event.name:account_disabled_password_leak","groupByFields":["@actor.email"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"9zi-bom-nmh","isDefault":true,"name":"User Attempted
+      Login with Leaked Password"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.14","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is destroying a VPC.\n\n### Strategy\nThis rule
       lets you monitor this CloudTrail API call to detect if an attacker is deleting
       a VPC:\n\n* [DeleteVpc][1]\n\n### Triage & Response\n1. Determine which user
@@ -557,9 +557,9 @@ interactions:
       @evt.name:(DeleteVpc OR CreateVpc OR ModifyVpcAttribute OR AcceptVpcPeeringConnection
       OR CreateVpcPeeringConnection OR DeleteVpcPeeringConnection OR RejectVpcPeeringConnection
       OR  AttachClassicLinkVpc OR  DetachClassicLinkVpc OR DisableVpcClassicLink OR
-      EnableVpcClassicLink)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"igj-dr4-ico","isDefault":true,"name":"AWS
-      VPC Created or Modified"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1083-file-and-directory-discovery","source:cloudtrail","scope:s3"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      EnableVpcClassicLink)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"igj-dr4-ico","isDefault":true,"name":"AWS VPC
+      Created or Modified"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1083-file-and-directory-discovery","source:cloudtrail","scope:s3"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an EC2 instance makes an API call to AWS to list all of the
       S3 Buckets.\n\n### Strategy\nThis rule lets you monitor CloudTrail to detect
       a [ListBuckets][1] API call with the session name prefixed with `i-`. A session
@@ -572,9 +572,9 @@ interactions:
       user on the EC2 instance is making the `ListBuckets` API call, consider whether
       this API call is really needed.  \n\n[1]: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html\n[2]:
       https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#ec2-instance-profile","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870281123,"queries":[{"query":"source:cloudtrail
-      @userIdentity.session_name:i-* @evt.name:ListBuckets","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"medium","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"t6r-kqt-hxb","isDefault":true,"name":"AWS
-      S3 Buckets Enumerated"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.3","source:cloudtrail","scope:amazon"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @userIdentity.session_name:i-* @evt.name:ListBuckets","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"medium","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"t6r-kqt-hxb","isDefault":true,"name":"AWS S3
+      Buckets Enumerated"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.3","source:cloudtrail","scope:amazon"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect AWS root user activity. \n\n### Strategy\nMonitor CloudTrail and
       detect when any `@userIdentity.type` has a value of `Root`, but is not invoked
       by an AWS service.\n\n### Triage & Response\n1. Reach out to the user to determine
@@ -591,9 +591,9 @@ interactions:
       Contact the user to see if they intended to make this API call.\n3. If the user
       did not make the API call:\n * Rotate the credentials.\n * Investigate if the
       same credentials made other unauthorized API calls.\n\n[1]: https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-subnet.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870282197,"queries":[{"query":"source:cloudtrail
-      @evt.name:DeleteSubnet","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"ygi-fi5-qns","isDefault":true,"name":"AWS
-      EC2 Subnet Deleted"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.9","source:cloudtrail","scope:amazon-config"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:DeleteSubnet","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"ygi-fi5-qns","isDefault":true,"name":"AWS EC2
+      Subnet Deleted"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.9","source:cloudtrail","scope:amazon-config"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is trying to evade defenses by disabling an AWS
       configuration.\n\n### Strategy\nThis rule lets you monitor these CloudTrail
       API calls to detect if an attacker is trying to stop recording configurations
@@ -605,9 +605,9 @@ interactions:
       credentials made other unauthorized API calls.\n\n[1]: https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html\n[2]:
       https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteDeliveryChannel.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870283149,"queries":[{"query":"source:cloudtrail
       @evt.name:(StopConfigurationRecorder OR DeleteDeliveryChannel OR PutDeliveryChannel
-      OR PutConfigurationRecorder)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"p1b-9np-rw1","isDefault":true,"name":"AWS
-      Config Modified"},{"creationAuthorId":0,"tags":["security:threat-intel","scope:template"],"isEnabled":false,"hasExtendedTitle":true,"message":"###
+      OR PutConfigurationRecorder)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"p1b-9np-rw1","isDefault":true,"name":"AWS Config
+      Modified"},{"creationAuthorId":0,"tags":["security:threat-intel","scope:template"],"isEnabled":false,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a stolen laptop has been connected to the network.\n\n###
       Strategy\nUsing the Datadog [Lookup Processor](https://docs.datadoghq.com/logs/processing/processors/?tab=ui#lookup-processor)
       you can maintain a blocklist of MAC addresses.\nWhen a MAC address connects
@@ -641,9 +641,9 @@ interactions:
       same credentials made other unauthorized API calls.\n\n[1]: https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_DeleteTrail.html\n[2]:
       https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html\n[3]:
       https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_StopLogging.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870283907,"queries":[{"query":"source:cloudtrail
-      @evt.name:(DeleteTrail OR UpdateTrail OR StopLogging OR CreateTrail OR StartLogging)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"4hv-083-miw","isDefault":true,"name":"AWS
-      CloudTrail Configuration Modified"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0006-credential-access","technique:T1110-brute-force","source:guardduty","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:(DeleteTrail OR UpdateTrail OR StopLogging OR CreateTrail OR StartLogging)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"4hv-083-miw","isDefault":true,"name":"AWS CloudTrail
+      Configuration Modified"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0006-credential-access","technique:T1110-brute-force","source:guardduty","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect Brute Force Attacks\n\n### Strategy\nLeverage GuardDuty and detect
       when an attacker is performing a brute force attack. The following are GuardDuty
       findings trigger this signal:\n\n* [UnauthorizedAccess:EC2/SSHBruteForce][1]\n*
@@ -672,9 +672,9 @@ interactions:
       information about Amazon EBS Encryption, check out the [Amazon EBS Encryption][2]
       documentation.\n\n[1]: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DisableEbsEncryptionByDefault.html\n[2]:
       https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870284527,"queries":[{"query":"source:cloudtrail
-      @evt.name:DisableEbsEncryptionByDefault","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"4s7-uuu-lo8","isDefault":true,"name":"AWS
-      EBS Default Encryption Disabled"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.2","source:cloudtrail","scope:aws"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:DisableEbsEncryptionByDefault","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"4s7-uuu-lo8","isDefault":true,"name":"AWS EBS
+      Default Encryption Disabled"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.2","source:cloudtrail","scope:aws"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when any user logs in to your AWS console without multi-factor
       authentication.\n\n### Strategy\nThis rule monitors CloudTrail and detects when
       any `@evt.name` has a value of  `Console Login`, and `@additionalEventData.MFAUsed`
@@ -714,9 +714,9 @@ interactions:
       https://docs.aws.amazon.com/kms/latest/APIReference/API_DisableKey.html\n[2]:
       https://docs.aws.amazon.com/kms/latest/APIReference/API_ScheduleKeyDeletion.html
       ","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1584475576501,"queries":[{"query":"source:cloudtrail
-      @evt.name:(DisableKey OR ScheduleKeyDeletion)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"iff-hhm-bd3","isDefault":true,"name":"AWS
-      CMK Deleted or Scheduled for Deletion"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.8","source:cloudtrail","scope:s3"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:(DisableKey OR ScheduleKeyDeletion)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"iff-hhm-bd3","isDefault":true,"name":"AWS CMK
+      Deleted or Scheduled for Deletion"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.8","source:cloudtrail","scope:s3"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a S3 Bucket policy is modified.\n\n### Strategy\nMonitor CloudTrail
       and detect when S3 policies are being modified via one of the following API
       calls:\n* [PutBucketAcl][1]\n* [PutBucketPolicy][2]\n* [PutBucketCors][3]\n*
@@ -737,9 +737,9 @@ interactions:
       [9]: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1584475579499,"queries":[{"query":"source:cloudtrail
       @evt.name:(PutBucketAcl OR PutBucketPolicy OR PutBucketCors OR PutBucketLifecycle
       OR PutBucketReplication OR DeleteBucketPolicy OR DeleteBucketCors OR DeleteBucketLifecycle
-      OR DeleteBucketReplication)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"nl3-oht-jhi","isDefault":true,"name":"AWS
-      S3 Bucket Policy Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.11","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      OR DeleteBucketReplication)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"nl3-oht-jhi","isDefault":true,"name":"AWS S3
+      Bucket Policy Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.11","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an AWS Network Access Control List (NACL) has been created
       or modified.\n\n### Strategy\nThis rule lets you monitor CloudTrail and detect
       when an AWS NACL has been created or modified with one of the following API
@@ -756,9 +756,9 @@ interactions:
       https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ReplaceNetworkAclEntry.html\n[6]:
       https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ReplaceNetworkAclAssociation.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1584475579808,"queries":[{"query":"source:cloudtrail
       @evt.name:(CreateNetworkAcl OR CreateNetworkAclEntry OR DeleteNetworkAcl OR
-      DeleteNetworkAclEntry OR ReplaceNetworkAclEntry OR ReplaceNetworkAclAssociation)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"pcs-k05-rbc","isDefault":true,"name":"AWS
-      Network Access Control List Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.12","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      DeleteNetworkAclEntry OR ReplaceNetworkAclEntry OR ReplaceNetworkAclAssociation)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"pcs-k05-rbc","isDefault":true,"name":"AWS Network
+      Access Control List Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.12","source:cloudtrail","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an AWS Network Gateway has been created or modified.\n\n###
       Strategy\nMonitor CloudTrail and detect when an AWS Network Gateway has been
       created or modified with one of the following API calls:\n* [CreateCustomerGateway][1]
@@ -775,9 +775,9 @@ interactions:
       \n [5]: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteInternetGateway
       \n [6]: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DetachInternetGateway.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1584475581301,"queries":[{"query":"source:cloudtrail
       @evt.name:(CreateCustomerGateway OR DeleteCustomerGateway OR AttachInternetGateway
-      OR CreateInternetGateway OR DeleteInternetGateway OR DetachInternetGateway)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"umr-47s-eyj","isDefault":true,"name":"AWS
-      Network Gateway Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.6","source:cloudtrail","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      OR CreateInternetGateway OR DeleteInternetGateway OR DetachInternetGateway)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"umr-47s-eyj","isDefault":true,"name":"AWS Network
+      Gateway Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.6","source:cloudtrail","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a user is a victim of an Account Take Over (ATO) by a brute
       force attack.\n\n### Strategy\n This rule monitors CloudTrail and detects when
       any `@evt.name` has a value of `Console Login`, and `@error.message:` has a
@@ -809,9 +809,9 @@ interactions:
       \n [6]: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteRoute.html
       \n [7]: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DisassociateRouteTable.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1584475582644,"queries":[{"query":"source:cloudtrail
       @evt.name:(CreateRoute OR CreateRouteTable OR ReplaceRoute OR ReplaceRouteTableAssociation
-      OR DeleteRouteTable OR DeleteRoute OR DisassociateRouteTable)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"qgo-jqs-03x","isDefault":true,"name":"AWS
-      Route Table Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.1","source:cloudtrail","scope:amazon"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      OR DeleteRouteTable OR DeleteRoute OR DisassociateRouteTable)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"qgo-jqs-03x","isDefault":true,"name":"AWS Route
+      Table Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.1","source:cloudtrail","scope:amazon"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when unauthorized activity is detected in AWS.\n\n### Strategy\nThis
       rule lets you monitor CloudTrail to detect when the error message of `AccessDenied`
       is returned.\n\n### Triage & Response\n1. Determine which user in your organization
@@ -841,9 +841,9 @@ interactions:
       \n [6]: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteSecurityGroup.html","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1584475583507,"queries":[{"query":"source:cloudtrail
       @evt.name:(AuthorizeSecurityGroupIngress OR AuthorizeSecurityGroupEgress OR
       RevokeSecurityGroupIngress OR RevokeSecurityGroupEgress OR CreateSecurityGroup
-      OR DeleteSecurityGroup)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"bax-btp-3ct","isDefault":true,"name":"AWS
-      Security Group Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.4","source:cloudtrail","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      OR DeleteSecurityGroup)","groupByFields":["@userIdentity.arn"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"bax-btp-3ct","isDefault":true,"name":"AWS Security
+      Group Created or Modified"},{"creationAuthorId":0,"tags":["security:compliance","framework:cis","control:cis-3.4","source:cloudtrail","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect a change to an AWS IAM Policy.\n\n### Strategy\nThis rule lets
       you monitor CloudTrail and detect when any event pertaining to an AWS IAM policy
       is detected with one of the following API calls:\n* [DeleteGroupPolicy][1]\n*
@@ -881,16 +881,16 @@ interactions:
       this vulnerability.\n2. Update the container image in the registry with a patched
       version of the software.\n3. Deploy the new image to all containers running
       the vulnerable image.","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870278701,"queries":[{"query":"source:twistlock
-      @vulnerability.log_type:vulnerability @vulnerability.severity:critical","groupByFields":["@vulnerability.cve","@vulnerability.package.name","@vulnerability.image_name"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"d7s-rex-gjv","isDefault":true,"name":"Container
+      @vulnerability.log_type:vulnerability @vulnerability.severity:critical","groupByFields":["@vulnerability.cve","@vulnerability.package.name","@vulnerability.image_name"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"d7s-rex-gjv","isDefault":true,"name":"Container
       Image Vulnerability Detected"},{"creationAuthorId":0,"tags":["source:twistlock"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a container is not running within compliance standards.\n\n###
       Strategy\nThis rule lets you monitor Twistlock logs to detect when `Critical`
       severity compliance issues are discovered in a running container. \n\n### Triage
       & Response\n1. Determine the impact of the compliance finding.\n2. Remediate
       the compliance finding.","options":{"evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":1,"createdAt":1585870281390,"queries":[{"query":"source:twistlock
-      @vulnerability.log_type:compliance @vulnerability.severity:critical","groupByFields":["@vulnerability.compliance_id","@vulnerability.container_name"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"9vp-d1j-kwp","isDefault":true,"name":"Container
+      @vulnerability.log_type:compliance @vulnerability.severity:critical","groupByFields":["@vulnerability.compliance_id","@vulnerability.container_name"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"9vp-d1j-kwp","isDefault":true,"name":"Container
       Violated Compliance Standards"},{"creationAuthorId":0,"tags":["source:signal_sciences","scope:signal_sciences"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an IP is flagged by Signal Sciences.\n\n### Strategy\nThis
       rule lets you monitor Signal Sciences events submitted through the Signal Sciences
@@ -898,99 +898,99 @@ interactions:
       Determine whether the attack is a false positive.\n2. Determine whether the
       attack was successful.\n3. If the attack exploited a vulnerability in the application,
       triage the vulnerability.\n\n[1]: https://app.datadoghq.com/account/settings#integrations/sigsci","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1584993292228,"queries":[{"query":"source:signal_sciences
-      @title:*flag","groupByFields":[],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"low","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"bmg-ftn-dzo","isDefault":true,"name":"Signal
+      @title:*flag","groupByFields":[],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"low","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"bmg-ftn-dzo","isDefault":true,"name":"Signal
       Sciences Flagged an IP"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.service.account","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a new service account is created.\n\n### Strategy\nThis rule
       lets you monitor GCP admin activity audit logs to determine when a service account
       is created. \n\n### Triage & Response\n1. Contact the user who created the service
       account and ensure that the account is needed and that the role is scoped properly.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585870281733,"queries":[{"query":"source:gcp.service.account
-      @evt.name:google.iam.admin.v1.CreateServiceAccount","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"szx-4kh-eqs","isDefault":true,"name":"GCP
-      Service Account Created"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.service.account","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:google.iam.admin.v1.CreateServiceAccount","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"szx-4kh-eqs","isDefault":true,"name":"GCP Service
+      Account Created"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.service.account","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a new service account key is created.  An attacker could use
       this key as a backdoor to your account. \n\n### Strategy\nThis rule lets you
       monitor GCP admin activity audit logs to detect the creation of a service account
       key. \n\n### Triage & Response\n1. Contact the user who created the service
       account key to ensure they''re managing the key securely.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585870277946,"queries":[{"query":"source:gcp.service.account
-      @evt.name:google.iam.admin.v1.CreateServiceAccountKey","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"79j-4wh-xlq","isDefault":true,"name":"GCP
-      Service Account Key Created"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.project","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:google.iam.admin.v1.CreateServiceAccountKey","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"79j-4wh-xlq","isDefault":true,"name":"GCP Service
+      Account Key Created"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.project","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect a change to the IAM policy. \n\n### Strategy\nThis rule lets you
       monitor GCP admin activity audit logs to determine when the `SetIamPolicy` method
       is invoked. \n\n### Triage & Response\n1. Review the log and inspect the policy
       deltas (`@data.protoPayload.serviceData.policyDelta.bindingDeltas`) and ensure
       none of the actions are `REMOVE`.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585870280073,"queries":[{"query":"source:gcp.project
-      @evt.name:SetIamPolicy","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"fgm-8w4-cgx","isDefault":true,"name":"GCP
-      IAM Policy Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.project","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:SetIamPolicy","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"fgm-8w4-cgx","isDefault":true,"name":"GCP IAM
+      Policy Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.project","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a change to a GCP logging sink has been made. This could stop
       audit logs from being sent to Datadog.\n\n### Strategy\nMonitor GCP admin activity
       audit logs to determine when any of the following methods are invoked:\n\n*
       `google.logging.v2.ConfigServiceV2.UpdateSink`\n* `google.logging.v2.ConfigServiceV2.DeleteSink`\n\n###
       Triage & Response\n1. Review the sink and ensure the sink is properly configured.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585871191688,"queries":[{"query":"source:gcp.project
-      @evt.name:(google.logging.v2.ConfigServiceV2.UpdateSink OR google.logging.v2.ConfigServiceV2.DeleteSink)","groupByFields":["@usr.id","@data.protoPayload.resourceName"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"hil-rl3-yxs","isDefault":true,"name":"GCP
-      Logging Sink Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gce.route","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:(google.logging.v2.ConfigServiceV2.UpdateSink OR google.logging.v2.ConfigServiceV2.DeleteSink)","groupByFields":["@usr.id","@data.protoPayload.resourceName"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"hil-rl3-yxs","isDefault":true,"name":"GCP Logging
+      Sink Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gce.route","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a VPC network is created. \n\n### Strategy\nThis rule lets
       you monitor GCP GCE activity audit logs to determine when the following method
       is invoked to create a new VPC network:\n\n* `beta.compute.networks.insert`\n\n###
       Triage & Response\n1. Review the VPC network.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585871193403,"queries":[{"query":"source:gcp.gce.route
-      @evt.name:beta.compute.networks.insert","groupByFields":["project_id","@data.protoPayload.resourceName","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"a9z-oic-grb","isDefault":true,"name":"GCP
-      GCE VPC Network Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gcs.bucket","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:beta.compute.networks.insert","groupByFields":["project_id","@data.protoPayload.resourceName","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"a9z-oic-grb","isDefault":true,"name":"GCP GCE
+      VPC Network Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gcs.bucket","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when permissions have changed on a GCS Bucket.\n\n### Strategy\nMonitor
       GCS bucket admin activity audit logs to determine the following method is invoked:\n\n*
       `storage.setIamPermissions`\n\n### Triage & Response\n1. Review the bucket permissions
       and ensure they are not overly permissive.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585871193842,"queries":[{"query":"source:gcp.gcs.bucket
-      @evt.name:storage.setIamPermissions","groupByFields":["project_id","bucket_name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"fdk-tly-4qr","isDefault":true,"name":"GCP
-      Bucket Permissions Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gce.firewall.rule","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:storage.setIamPermissions","groupByFields":["project_id","bucket_name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"fdk-tly-4qr","isDefault":true,"name":"GCP Bucket
+      Permissions Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gce.firewall.rule","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a firewall rule is created, modified or deleted. \n\n### Strategy\nMonitor
       GCP GCE activity audit logs to determine when any of the following methods are
       invoked:\n\n* `v1.compute.firewalls.delete`\n* `v1.compute.firewalls.insert`\n*
       `v1.compute.firewalls.patch` \n\n### Triage & Response\n1. Review the log and
       role and ensure the permissions are scoped properly.\n2. Review the users associated
       with the role and ensure they should have the permissions attached to the role.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585870279610,"queries":[{"query":"source:gcp.gce.firewall.rule
-      @evt.name:(v1.compute.firewalls.delete OR v1.compute.firewalls.insert OR v1.compute.firewalls.patch)","groupByFields":["project_id","@data.protoPayload.resourceOriginalState.name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"n1w-sql-apl","isDefault":true,"name":"GCP
-      GCE Firewall Rule Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.iam.role","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:(v1.compute.firewalls.delete OR v1.compute.firewalls.insert OR v1.compute.firewalls.patch)","groupByFields":["project_id","@data.protoPayload.resourceOriginalState.name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"n1w-sql-apl","isDefault":true,"name":"GCP GCE
+      Firewall Rule Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.iam.role","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a custom role is created or modified. \n\n### Strategy\nMonitor
       GCP IAM activity audit logs to determine when any of the following methods are
       invoked:\n\n* `google.iam.admin.v1.CreateRole`\n* `google.iam.admin.v1.UpdateRole`
       \n\n### Triage & Response\n1. Review the log and role and ensure the permissions
       are scoped properly.\n2. Review the users associated with the role and ensure
       they should have the permissions attached to the role.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585870282410,"queries":[{"query":"source:gcp.iam.role
-      @evt.name:(google.iam.admin.v1.CreateRole OR google.iam.admin.v1.UpdateRole)","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"rhy-fzm-gwl","isDefault":true,"name":"GCP
-      IAM Custom Role Created or Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.cloudsql.database","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:(google.iam.admin.v1.CreateRole OR google.iam.admin.v1.UpdateRole)","groupByFields":["@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"rhy-fzm-gwl","isDefault":true,"name":"GCP IAM
+      Custom Role Created or Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.cloudsql.database","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a Cloud SQL DB has been modified.\n\n### Strategy\nThis rule
       lets you monitor GCP Cloud SQL admin activity audit logs to determine when one
       of the following methods are invoked:\n\n* `cloudsql.instances.create`\n* `cloudsql.instances.create`\n*
       `cloudsql.users.update`\n\n### Triage & Response\n1. Review the Cloud SQL DB
       and ensure it is configured properly with the correct permissions.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585871198921,"queries":[{"query":"source:gcp.cloudsql.database
       @evt.name:(cloudsql.instances.create OR cloudsql.instances.create OR cloudsql.users.create
-      OR cloudsql.users.update)","groupByFields":["project_id","database_id","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"ikf-ye8-cnu","isDefault":true,"name":"GCP
-      Cloud SQL Database Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gce.route","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      OR cloudsql.users.update)","groupByFields":["project_id","database_id","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"ikf-ye8-cnu","isDefault":true,"name":"GCP Cloud
+      SQL Database Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gce.route","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a firewall rule is created or modified. \n\n### Strategy\nThis
       rule lets you monitor GCP GCE activity audit logs to determine if a firewall
       is being adjusted by showing you when any of the following methods are invoked:\n\n*
       `beta.compute.routes.insert`\n* `beta.compute.routes.patch`\n\n### Triage &
       Response\n1. Veirify that the GCP route is configured properly and that the
       user intended to modify the firewall.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585870282924,"queries":[{"query":"source:gcp.gce.route
-      @evt.name(beta.compute.routes.insert OR beta.compute.routes.patch)","groupByFields":["project_id","@data.protoPayload.resourceName","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"lht-ml8-u6r","isDefault":true,"name":"GCP
-      GCE Network Route Created or Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gcs.bucket","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name(beta.compute.routes.insert OR beta.compute.routes.patch)","groupByFields":["project_id","@data.protoPayload.resourceName","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"lht-ml8-u6r","isDefault":true,"name":"GCP GCE
+      Network Route Created or Modified"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gcs.bucket","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an administrative change to a GCS Bucket has been made. This
       could change the retention policy or bucket lock. For more information, see
       the [GCS Bucket Lock docs][1].\n\n### Strategy\nThis rule lets you monitor GCS
       bucket admin activity audit logs to determine if a bucket has been updated with
       the following method:\n\n* `storage.buckets.update`\n\n### Triage & Response\n1.
       Review the bucket to ensure that it is properly configured.\n\n[1]: https://cloud.google.com/storage/docs/bucket-lock","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1585871279860,"queries":[{"query":"source:gcp.gcs.bucket
-      @evt.name:storage.buckets.update","groupByFields":["project_id","bucket_name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"iz3-sc4-ryy","isDefault":true,"name":"GCP
-      Bucket Modified"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1046-network-service-scanning","source:guardduty","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:storage.buckets.update","groupByFields":["project_id","bucket_name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"iz3-sc4-ryy","isDefault":true,"name":"GCP Bucket
+      Modified"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1046-network-service-scanning","source:guardduty","scope:ec2"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an EC2 instance is conducting a port scan.\n\n### Strategy\nThis
       rule lets you monitor this [GuardDuty integration][1] finding:\n\n* [Recon:EC2/Portscan][2]\n\n\n###
       Triage & Response\n1. Determine why traffic from the EC2 instance appears to
@@ -1412,9 +1412,9 @@ interactions:
       audit logs from being sent to Datadog.\n\n### Strategy\nMonitor GCP admin activity
       audit logs to determine when the following method is invoked:\n\n* `google.pubsub.v1.Publisher.DeleteTopic`\n\n###
       Triage & Response\n1. Review the subscribtion and ensure it is properly configured.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1587592198839,"queries":[{"query":"source:gcp.pubsub.topic
-      @evt.name:google.pubsub.v1.Publisher.DeleteTopic","groupByFields":["@usr.id","@data.protoPayload.resourceName"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"dp6-zom-jyv","isDefault":true,"name":"GCP
-      Pub/Sub Topic Deleted"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gcs.bucket","security:attack","tactic:TA0007-discovery","technique:T1083-file-and-directory-discovery"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:google.pubsub.v1.Publisher.DeleteTopic","groupByFields":["@usr.id","@data.protoPayload.resourceName"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"dp6-zom-jyv","isDefault":true,"name":"GCP Pub/Sub
+      Topic Deleted"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.gcs.bucket","security:attack","tactic:TA0007-discovery","technique:T1083-file-and-directory-discovery"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a service account lists out GCS Buckets.\n\n### Strategy\nThis
       rule lets you monitor GCS bucket admin activity audit logs to determine when
       a service account invokes the following method:\n\n* `storage.buckets.list`\n\n###
@@ -1426,17 +1426,17 @@ interactions:
       issue for the application to know the name of the bucket it needs to access.
       If it''s not needed, modify this rule''s filter to stop generating signals for
       this specific service account.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1587592199858,"queries":[{"query":"source:gcp.gcs.bucket
-      @evt.name:storage.buckets.list @usr.id:*gserviceaccount.com","groupByFields":["project_id","bucket_name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"low","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"cnc-wi1-llf","isDefault":true,"name":"GCP
-      Bucket Enumerated"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.pubsub.subscription","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      @evt.name:storage.buckets.list @usr.id:*gserviceaccount.com","groupByFields":["project_id","bucket_name","@usr.id"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"low","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"cnc-wi1-llf","isDefault":true,"name":"GCP Bucket
+      Enumerated"},{"creationAuthorId":0,"tags":["source:gcp","scope:gcp.pubsub.subscription","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when a change to a GCP Pub/Sub Subscribtion has been made. This
       could stop audit logs from being sent to Datadog.\n\n### Strategy\nMonitor GCP
       admin activity audit logs to determine when any of the following methods are
       invoked:\n\n* `google.pubsub.v1.Subscriber.UpdateSubscription`\n* `google.pubsub.v1.Subscriber.DeleteSubscription`\n\n###
       Triage & Response\n1. Review the subscribtion and ensure it is properly configured.","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1587592205917,"queries":[{"query":"source:gcp.pubsub.subscription
-      @evt.name:(google.pubsub.v1.Subscriber.UpdateSubscription OR google.pubsub.v1.Subscriber.DeleteSubscription)","groupByFields":["@usr.id","@data.protoPayload.resourceName"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"
-      ","condition":"a > 0"}],"type":"threshold","id":"tsj-mac-mdc","isDefault":true,"name":"GCP
-      Pub/Sub Subscriber Modified"},{"creationAuthorId":1445416,"tags":["datadog-api-client-test-java"],"isEnabled":true,"hasExtendedTitle":false,"message":"Rule
+      @evt.name:(google.pubsub.v1.Subscriber.UpdateSubscription OR google.pubsub.v1.Subscriber.DeleteSubscription)","groupByFields":["@usr.id","@data.protoPayload.resourceName"],"name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"threshold","id":"tsj-mac-mdc","isDefault":true,"name":"GCP Pub/Sub
+      Subscriber Modified"},{"creationAuthorId":1445416,"tags":["datadog-api-client-test-java"],"isEnabled":true,"hasExtendedTitle":false,"message":"Rule
       message","options":{"evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1593779027033,"queries":[{"query":"java-listLogsTest-local-1593779023","groupByFields":[],"name":"rule","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
       > 0"}],"type":"threshold","id":"ord-ec4-ur3","isDefault":false,"name":"java-listLogsTest-local-1593779023"},{"creationAuthorId":1445416,"tags":["datadog-api-client-test-java"],"isEnabled":true,"hasExtendedTitle":false,"message":"Rule
       message","options":{"evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1593779150456,"queries":[{"query":"java-listSignalsGet-local-1593779150","groupByFields":[],"name":"rule","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
@@ -1563,16 +1563,16 @@ interactions:
       > 0"}],"type":"threshold","id":"kk2-cjy-yvn","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1595513948"},{"creationAuthorId":1445416,"tags":["datadog-api-client-test-go"],"isEnabled":false,"hasExtendedTitle":false,"message":"rule
       message","options":{"evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1595514121433,"queries":[{"query":"go-TestSearchSecurityMonitoringSignals-local-1595514120","groupByFields":[],"name":"rule","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
       > 0"}],"type":"threshold","id":"ka1-xsu-zqk","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1595514120"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636261,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"nn5-a15-xnh","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-0"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636389,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"98y-mxn-iwn","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-1"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636531,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"doa-ioc-gas","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-2"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636791,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"ytx-fe0-d09","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-3"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595860636871,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"3pt-dte-nso","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-4"}]}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951131976,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"roy-zmj-h5r","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-0"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132059,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"wxb-xvw-cjs","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-1"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132137,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"80n-gqf-zah","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-2"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132221,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"lrs-gwf-v9o","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-3"},{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1595951132305,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"1w2-y6n-vkl","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-4"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -1583,13 +1583,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1598,9 +1598,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 7TxqGOOndreg52igtXLKdvEB8M2Uby8upoxCr+mzZBPLwPuOVdJ4ujutF+9TQL1R
+      - iMDc4dwqRZx9Xt62zXoNnQ0j6OO5jF9C8cKU0TVG/RCgT6ys1Aqsv6iO8A4M+p/9
       X-Dd-Version:
-      - "35.2791566"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1617,11 +1617,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "3868181908647053943"
+      - "4145079479486304543"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=2
     method: GET
   response:
@@ -1664,13 +1664,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1679,9 +1679,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - jety+2H6BA1H4x31+wzy5BjqI2NDwh54fgbjSYyrLU0p2tWQPCCTKspX7sHO7u1n
+      - GuLu62tSzOSa22pyvJe4qZbqEPb2XguW+CCh3Eowo1qerJKhdDgAZvH//li1gRua
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1698,11 +1698,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "2947307788140518902"
+      - "5263067979569861996"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
+      - "7084214603643225551"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=2
     method: GET
   response:
@@ -1745,13 +1745,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1760,9 +1760,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Wn01ZjXucAfzJfwvKAkpy0yFfNtHyWu4ZB2aA4ZDwwhXkyLHirYeUNsx208dZz9p
+      - iMTE1BmjsL8tFxXfV1x35HHEpphKhyShj7mGG+gCh4hVOBaK9+R0wmURPHnATwmw
       X-Dd-Version:
-      - "35.2791566"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1770,7 +1770,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","notifications":[],"status":"info"}],"isEnabled":false,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595860636-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
+      {"cases":[{"condition":"nevermatch \u003e 1000","name":"rule-case","notifications":[],"status":"info"}],"isEnabled":false,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1595951131-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"distinctFields":[],"groupByFields":[],"name":"nevermatch","query":"thiswillnevernevermatch"}],"tags":["datadog-api-client-test-go"]}
     form: {}
     headers:
       Accept:
@@ -1782,17 +1782,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "8834445139325654945"
+      - "2911249055181597604"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/nn5-a15-xnh
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/roy-zmj-h5r
     method: PUT
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":false,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1595860636261,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"nn5-a15-xnh","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-0"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1595951131976,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"roy-zmj-h5r","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -1803,13 +1803,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:32 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:32 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1818,9 +1818,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - A5a5htKhTUF1FdBQZRUZl4RVawKwk2RUtaZz3EDBmdXc0X6i0O7TBEBWn4bIBQ01
+      - lcmBBS3PsXlEGdyCI92Iozl8sIY4BBggvovOiAwRmEL6P6VY9LdwLbD9uI2UIdym
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1837,17 +1837,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "8841891090438272952"
+      - "4521222038794053775"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/nn5-a15-xnh
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/roy-zmj-h5r
     method: GET
   response:
     body: '{"creationAuthorId":1379826,"tags":["datadog-api-client-test-go"],"isEnabled":false,"hasExtendedTitle":false,"message":"rule
-      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1595860636261,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
-      > 1000"}],"type":"threshold","id":"nn5-a15-xnh","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595860636-0"}'
+      message","options":{"evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1595951131976,"queries":[{"query":"thiswillnevernevermatch","groupByFields":[],"name":"nevermatch","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"nevermatch
+      > 1000"}],"type":"threshold","id":"roy-zmj-h5r","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1595951131-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -1858,13 +1858,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:33 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:33 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1873,9 +1873,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bJj7D3RvHsKo+7eO3lrtPpPG0z8SsAwLw7bNfLb4htD+N9Ub8bD3AFgh45XaVsFM
+      - AlZtPps1ZiZsda+OMFNwIFs/UAGIj/nGE7PZ328MHrD9zdfH3CO9blYELjbwttyJ
       X-Dd-Version:
-      - "35.2791566"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1892,12 +1892,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "2713863456369829711"
+      - "1424700957359771607"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/nn5-a15-xnh
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/roy-zmj-h5r
     method: DELETE
   response:
     body: ""
@@ -1911,22 +1911,22 @@ interactions:
       Content-Length:
       - "2"
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:33 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:33 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - +tJ1fMj4fNxjcw2FPYtySx6EFt5bjky3JD4t0qr7zCELerxUlLnRZokC544QOi8l
+      - LGlCqqM2JaCPZFyAOvg8bNbGRx0EccxF5s8TYpy25CMPn/A+M2BCYmOwBGEZ7uWI
       X-Dd-Version:
-      - "35.2791795"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -1943,15 +1943,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "4262405135057792148"
+      - "5275507402570474050"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/nn5-a15-xnh
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/roy-zmj-h5r
     method: GET
   response:
-    body: '{"errors":["Threat detection rule not found: nn5-a15-xnh"]}'
+    body: '{"errors":["Threat detection rule not found: roy-zmj-h5r"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -1960,7 +1960,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
+      - Tue, 28 Jul 2020 15:45:33 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -1972,7 +1972,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2791566"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -1989,219 +1989,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "2032887729579763307"
+      - "4830821564724745946"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/3pt-dte-nso
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/1w2-y6n-vkl
     method: DELETE
   response:
-    body: ""
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - "2"
-      Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
-      Dd-Pool:
-      - dogweb
-      Pragma:
-      - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
-        secure; HttpOnly
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - o1rjyOSbDnvYaQgtO33vwWSNsIwHafzLqam2amG/PbTP69SVY965ZpWutdoYJB30
-      X-Dd-Version:
-      - "35.2791795"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 204 No Content
-    code: 204
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "8831058957679166647"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ytx-fe0-d09
-    method: DELETE
-  response:
-    body: ""
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - "2"
-      Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
-      Dd-Pool:
-      - dogweb
-      Pragma:
-      - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
-        secure; HttpOnly
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - yEcEaKqmSUfeSlQ/kN/c5E6EpIXbM1JPI9KV27pdsvBWWv3FI4tsqqRarYTS+fS+
-      X-Dd-Version:
-      - "35.2791566"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 204 No Content
-    code: 204
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6307935935745978036"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/doa-ioc-gas
-    method: DELETE
-  response:
-    body: ""
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - "2"
-      Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
-      Dd-Pool:
-      - dogweb
-      Pragma:
-      - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
-        secure; HttpOnly
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - fFk0sZgwwse+ZeEmqVGZPgcNG+SDXdM7Y74n6iOGuvoZenvaYEqZOvpOSMu1XDXx
-      X-Dd-Version:
-      - "35.2791566"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 204 No Content
-    code: 204
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "5240396751981927364"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/98y-mxn-iwn
-    method: DELETE
-  response:
-    body: ""
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - "2"
-      Date:
-      - Mon, 27 Jul 2020 14:37:17 GMT
-      Dd-Pool:
-      - dogweb
-      Pragma:
-      - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 03-Aug-2020 14:37:17 GMT;
-        secure; HttpOnly
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - ucJMu0SEwqvJ36fqkYRsP+glKObktTtdBf6X17lKXJ4+xOn7nFKnx11beu1ycofn
-      X-Dd-Version:
-      - "35.2791566"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 204 No Content
-    code: 204
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "879147161293183898"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4068928708278479320"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/nn5-a15-xnh
-    method: DELETE
-  response:
-    body: '{"errors":["Threat detection rule not found: nn5-a15-xnh"]}'
+    body: |
+      {"status":"error","code":502,"errors":["Bad Gateway"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
     headers:
       Cache-Control:
       - no-cache
@@ -2210,7 +2007,194 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 27 Jul 2020 14:37:18 GMT
+      - Tue, 28 Jul 2020 15:45:33 GMT
+      Via:
+      - 1.1 haproxy
+    status: 502 Bad Gateway
+    code: 502
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7544578588554018387"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/lrs-gwf-v9o
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "2"
+      Date:
+      - Tue, 28 Jul 2020 15:45:33 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:33 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - VhUngg1MvGCQ4kbqnTf+j23VGJqXkQEVWKRCyOO0zlVdjzY03Yl+/1xA/SZA7dN7
+      X-Dd-Version:
+      - "35.2797120"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8195511807568420147"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/80n-gqf-zah
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "2"
+      Date:
+      - Tue, 28 Jul 2020 15:45:33 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:33 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - sRllSln4Rb4f8lfx1bUEj6MHXBws0d5iVv3NLE55h0NTv65lSUsw13WERa0jskqg
+      X-Dd-Version:
+      - "35.2797120"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4112014788383700135"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/wxb-xvw-cjs
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "2"
+      Date:
+      - Tue, 28 Jul 2020 15:45:33 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 04-Aug-2020 15:45:33 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - UF3IxPz2qVuBp1GKXh9tV8w2IcprlXRZ53ExNiuMaVbgeNtZ4FXYdc6W/ATQIOAa
+      X-Dd-Version:
+      - "35.2797120"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4506636412284802947"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7084214603643225551"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/roy-zmj-h5r
+    method: DELETE
+  response:
+    body: '{"errors":["Threat detection rule not found: roy-zmj-h5r"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Jul 2020 15:45:33 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -2222,7 +2206,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2791566"
+      - "35.2797120"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
