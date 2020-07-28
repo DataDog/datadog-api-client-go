@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
-func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, ruleName string) (datadog.SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, ruleName string) (datadog.SecurityMonitoringRuleResponseCreate, *_nethttp.Response, error) {
 
 	query := datadog.NewSecurityMonitoringRuleQueryCreate("thiswillnevernevermatch")
 	query.SetName("nevermatch")
@@ -53,7 +53,7 @@ func TestSecMonRulesCRUD(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	api := Client(ctx).SecurityMonitoringApi
 
-	ruleResponses := []datadog.SecurityMonitoringRuleResponse{}
+	ruleResponses := []datadog.SecurityMonitoringRuleResponseCreate{}
 	uniqueName := *tests.UniqueEntityName(ctx, t)
 	// create rules
 	for i := 0; i < 5; i++ {
@@ -136,14 +136,14 @@ func TestSecMonRulesCRUD(t *testing.T) {
 
 	// update rule
 	updatePayload := datadog.NewSecurityMonitoringRuleUpdatePayload()
-	updatePayload.SetName(ruleResponse.GetName())
+	updatePayload.SetName(getResponse.GetName())
 	updatePayload.SetIsEnabled(false)
-	updatePayload.SetMessage(ruleResponse.GetMessage())
-	updatePayload.SetTags(ruleResponse.GetTags())
-	updatePayload.SetQueries(ruleResponse.GetQueries())
-	updatePayload.SetOptions(ruleResponse.GetOptions())
-	updatePayload.SetCases(ruleResponse.GetCases())
-	updateResponse, httpResponse, err := api.UpdateSecurityMonitoringRule(ctx, ruleResponse.GetId()).
+	updatePayload.SetMessage(getResponse.GetMessage())
+	updatePayload.SetTags(getResponse.GetTags())
+	updatePayload.SetQueries(getResponse.GetQueries())
+	updatePayload.SetOptions(getResponse.GetOptions())
+	updatePayload.SetCases(getResponse.GetCases())
+	updateResponse, httpResponse, err := api.UpdateSecurityMonitoringRule(ctx, getResponse.GetId()).
 		Body(*updatePayload).
 		Execute()
 	if err != nil {
