@@ -662,7 +662,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get the list of available daily custom reports
       tags:
       - Usage Metering
@@ -694,7 +694,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
         "404":
           content:
             application/json;datetime-format=rfc3339:
@@ -3795,7 +3795,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get the list of available monthly custom reports
       tags:
       - Usage Metering
@@ -3833,7 +3833,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
         "404":
           content:
             application/json;datetime-format=rfc3339:
@@ -5316,7 +5316,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for analyzed logs
       tags:
       - Usage Metering
@@ -5363,7 +5363,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Lambda
       tags:
       - Usage Metering
@@ -5400,7 +5400,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get billable usage across your multi-org account
       tags:
       - Usage Metering
@@ -5447,7 +5447,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Fargate
       tags:
       - Usage Metering
@@ -5494,7 +5494,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for hosts and containers
       tags:
       - Usage Metering
@@ -5541,7 +5541,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Logs
       tags:
       - Usage Metering
@@ -5598,7 +5598,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Logs by Index
       tags:
       - Usage Metering
@@ -5646,7 +5646,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Network Flows
       tags:
       - Usage Metering
@@ -5693,7 +5693,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Network Hosts
       tags:
       - Usage Metering
@@ -5741,7 +5741,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for RUM Sessions
       tags:
       - Usage Metering
@@ -5789,7 +5789,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for SNMP devices
       tags:
       - Usage Metering
@@ -5845,7 +5845,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get usage across your multi-org account
       tags:
       - Usage Metering
@@ -5893,7 +5893,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics Checks
       tags:
       - Usage Metering
@@ -5940,7 +5940,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics API Checks
       tags:
       - Usage Metering
@@ -5987,7 +5987,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics Browser Checks
       tags:
       - Usage Metering
@@ -6034,7 +6034,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for custom metrics
       tags:
       - Usage Metering
@@ -6082,7 +6082,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get top 500 custom metrics by hourly average
       tags:
       - Usage Metering
@@ -6129,7 +6129,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Trace Search
       tags:
       - Usage Metering

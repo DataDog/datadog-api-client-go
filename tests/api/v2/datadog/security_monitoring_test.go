@@ -15,6 +15,7 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 	query := datadog.NewSecurityMonitoringRuleQueryCreate("thiswillnevernevermatch")
 	query.SetName("nevermatch")
 	query.SetGroupByFields([]string{})
+	query.SetDistinctFields([]string{})
 	queries := []datadog.SecurityMonitoringRuleQueryCreate{*query}
 
 	options := datadog.NewSecurityMonitoringRuleOptions()
