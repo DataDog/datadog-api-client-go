@@ -3,10 +3,11 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/tests"
 	"net/http"
 	"testing"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
@@ -29,7 +30,6 @@ func TestLogsList(t *testing.T) {
 	defer enableLogsUnstableOperations(ctx)()
 	client := Client(ctx)
 
-	now := tests.ClockFromContext(ctx).Now()
 	suffix := tests.UniqueEntityName(ctx, t)
 
 	err := sendLogs(ctx, t, client, *suffix)
@@ -40,16 +40,16 @@ func TestLogsList(t *testing.T) {
 	var response datadog.LogsListResponse
 	var httpResp *http.Response
 
-	filter := datadog.NewLogsListRequestFilter()
+	filter := datadog.NewLogsQueryFilter()
 	filter.SetQuery(*suffix)
-	filter.SetFrom(now.Add(time.Duration(-2)*time.Hour))
-	filter.SetTo(now.Add(time.Duration(2)*time.Hour))
+	filter.SetFrom("now-2h")
+	filter.SetTo("now+2h")
 
 	request := datadog.NewLogsListRequestWithDefaults()
 	request.SetFilter(*filter)
 
 	// Make sure both logs are indexed
-	err = tests.Retry(time.Duration(5) * time.Second, 30, func() bool {
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
 		response, httpResp, err = client.LogsApi.ListLogs(ctx).Body(*request).Execute()
 		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
 	})
@@ -68,10 +68,10 @@ func TestLogsList(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes := response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 "+*suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 "+*suffix, attributes.GetMessage())
 
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_DESCENDING)
 
@@ -82,10 +82,10 @@ func TestLogsList(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes = response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 "+*suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 "+*suffix, attributes.GetMessage())
 
 	// Paging
 	page := datadog.NewLogsListRequestPage()
@@ -137,7 +137,7 @@ func TestLogsListGet(t *testing.T) {
 	to := now.Add(time.Duration(2) * time.Hour)
 
 	// Make sure both logs are indexed
-	err = tests.Retry(time.Duration(5) * time.Second, 30, func() bool {
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
 		response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
 			FilterQuery(*suffix).
 			FilterFrom(from).
@@ -164,10 +164,10 @@ func TestLogsListGet(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes := response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 "+*suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 "+*suffix, attributes.GetMessage())
 
 	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
 		FilterQuery(*suffix).
@@ -181,10 +181,10 @@ func TestLogsListGet(t *testing.T) {
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	attributes = response.GetData()[0].GetAttributes()
-	assert.Equal("test-log-list-2 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-2 "+*suffix, attributes.GetMessage())
 
 	attributes = response.GetData()[1].GetAttributes()
-	assert.Equal("test-log-list-1 " + *suffix, attributes.GetMessage())
+	assert.Equal("test-log-list-1 "+*suffix, attributes.GetMessage())
 
 	// Paging
 	response, httpResp, err = client.LogsApi.ListLogsGet(ctx).
