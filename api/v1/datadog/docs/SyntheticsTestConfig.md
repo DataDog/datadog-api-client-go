@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
-**Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | 
+**Assertions** | [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
+**Request** | [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | 
 **Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Array of variables used for the test. | [optional] 
 
 ## Methods

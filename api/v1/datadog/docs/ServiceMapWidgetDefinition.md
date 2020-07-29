@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filters** | Pointer to **[]string** | Your environment and primary tag (or * if enabled for your account). | 
-**Service** | Pointer to **string** | The ID of the service you want to map. | 
+**Filters** | **[]string** | Your environment and primary tag (or * if enabled for your account). | 
+**Service** | **string** | The ID of the service you want to map. | 
 **Title** | Pointer to **string** | The title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**ServiceMapWidgetDefinitionType**](ServiceMapWidgetDefinitionType.md) |  | [default to "servicemap"]
+**Type** | [**ServiceMapWidgetDefinitionType**](ServiceMapWidgetDefinitionType.md) |  | [default to "servicemap"]
 
 ## Methods
 

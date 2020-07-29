@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **Description** | Pointer to **NullableString** | Description of the dashboard. | [optional] 
 **Id** | Pointer to **string** | ID of the dashboard. | [optional] [readonly] 
 **IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] [default to false]
-**LayoutType** | Pointer to [**DashboardLayoutType**](DashboardLayoutType.md) |  | 
+**LayoutType** | [**DashboardLayoutType**](DashboardLayoutType.md) |  | 
 **ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Modification date of the dashboard. | [optional] [readonly] 
 **NotifyList** | Pointer to **[]string** | List of handles of users to notify when changes are made to this dashboard. | [optional] 
 **TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) | Array of template variables saved views. | [optional] 
 **TemplateVariables** | Pointer to [**[]DashboardTemplateVariables**](Dashboard_template_variables.md) | List of template variables for this dashboard. | [optional] 
-**Title** | Pointer to **string** | Title of the dashboard. | 
+**Title** | **string** | Title of the dashboard. | 
 **Url** | Pointer to **string** | The URL of the dashboard. | [optional] [readonly] 
-**Widgets** | Pointer to [**[]Widget**](Widget.md) | List of widgets to display on the dashboard. | 
+**Widgets** | [**[]Widget**](Widget.md) | List of widgets to display on the dashboard. | 
 
 ## Methods
 

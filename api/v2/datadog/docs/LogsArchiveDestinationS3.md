@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bucket** | Pointer to **string** | The bucket where the archive will be stored. | 
-**Integration** | Pointer to [**LogsArchiveIntegrationS3**](LogsArchiveIntegrationS3.md) |  | 
+**Bucket** | **string** | The bucket where the archive will be stored. | 
+**Integration** | [**LogsArchiveIntegrationS3**](LogsArchiveIntegrationS3.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 
-**Type** | Pointer to [**LogsArchiveDestinationS3Type**](LogsArchiveDestinationS3Type.md) |  | [default to "s3"]
+**Type** | [**LogsArchiveDestinationS3Type**](LogsArchiveDestinationS3Type.md) |  | [default to "s3"]
 
 ## Methods
 

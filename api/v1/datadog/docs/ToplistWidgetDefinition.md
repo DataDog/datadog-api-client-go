@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Requests** | Pointer to [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
+**Requests** | [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to "toplist"]
+**Type** | [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to "toplist"]
 
 ## Methods
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**X** | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
-**Y** | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
+**X** | [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
+**Y** | [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
 
 ## Methods
 

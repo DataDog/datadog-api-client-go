@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** | Message for the warning. | 
-**Type** | Pointer to [**SyntheticsWarningType**](SyntheticsWarningType.md) |  | 
+**Message** | **string** | Message for the warning. | 
+**Type** | [**SyntheticsWarningType**](SyntheticsWarningType.md) |  | 
 
 ## Methods
 

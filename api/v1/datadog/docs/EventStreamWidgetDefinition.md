@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EventSize** | Pointer to [**WidgetEventSize**](WidgetEventSize.md) |  | [optional] 
-**Query** | Pointer to **string** | Query to filter the event stream with. | 
+**Query** | **string** | Query to filter the event stream with. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**EventStreamWidgetDefinitionType**](EventStreamWidgetDefinitionType.md) |  | [default to "event_stream"]
+**Type** | [**EventStreamWidgetDefinitionType**](EventStreamWidgetDefinitionType.md) |  | [default to "event_stream"]
 
 ## Methods
 
