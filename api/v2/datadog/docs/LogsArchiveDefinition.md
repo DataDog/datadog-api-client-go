@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**LogsArchiveAttributes**](LogsArchiveAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | The archive ID. | [optional] [readonly] 
-**Type** | Pointer to **string** | The type of the resource. The value should always be archives. | [readonly] [default to "archives"]
+**Type** | **string** | The type of the resource. The value should always be archives. | [readonly] [default to "archives"]
 
 ## Methods
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Count** | Pointer to **int64** | The number of monitors to display. | [optional] 
 **DisplayFormat** | Pointer to [**WidgetMonitorSummaryDisplayFormat**](WidgetMonitorSummaryDisplayFormat.md) |  | [optional] 
 **HideZeroCounts** | Pointer to **bool** | Whether to show counts of 0 or not. | [optional] 
-**Query** | Pointer to **string** | Query to filter the monitors with. | 
+**Query** | **string** | Query to filter the monitors with. | 
 **ShowLastTriggered** | Pointer to **bool** | Whether to show the time that has elapsed since the monitor/group triggered. | [optional] 
 **Sort** | Pointer to [**WidgetMonitorSummarySort**](WidgetMonitorSummarySort.md) |  | [optional] 
 **Start** | Pointer to **int64** | The start of the list. Typically 0. | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**MonitorSummaryWidgetDefinitionType**](MonitorSummaryWidgetDefinitionType.md) |  | [default to "manage_status"]
+**Type** | [**MonitorSummaryWidgetDefinitionType**](MonitorSummaryWidgetDefinitionType.md) |  | [default to "manage_status"]
 
 ## Methods
 

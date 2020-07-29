@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Container** | Pointer to **string** | The container where the archive will be stored. | 
-**Integration** | Pointer to [**LogsArchiveIntegrationAzure**](LogsArchiveIntegrationAzure.md) |  | 
+**Container** | **string** | The container where the archive will be stored. | 
+**Integration** | [**LogsArchiveIntegrationAzure**](LogsArchiveIntegrationAzure.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 
 **Region** | Pointer to **string** | The region where the archive will be stored. | [optional] 
-**StorageAccount** | Pointer to **string** | The associated storage account. | 
-**Type** | Pointer to [**LogsArchiveDestinationAzureType**](LogsArchiveDestinationAzureType.md) |  | [default to "azure"]
+**StorageAccount** | **string** | The associated storage account. | 
+**Type** | [**LogsArchiveDestinationAzureType**](LogsArchiveDestinationAzureType.md) |  | [default to "azure"]
 
 ## Methods
 

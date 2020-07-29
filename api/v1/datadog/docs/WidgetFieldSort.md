@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Column** | Pointer to **string** | Facet path for the column | 
-**Order** | Pointer to [**WidgetSort**](WidgetSort.md) |  | 
+**Column** | **string** | Facet path for the column | 
+**Order** | [**WidgetSort**](WidgetSort.md) |  | 
 
 ## Methods
 

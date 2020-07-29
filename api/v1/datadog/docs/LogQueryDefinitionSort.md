@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aggregation** | Pointer to **string** | The aggregation method. | 
+**Aggregation** | **string** | The aggregation method. | 
 **Facet** | Pointer to **string** | Facet name. | [optional] 
-**Order** | Pointer to [**WidgetSort**](WidgetSort.md) |  | 
+**Order** | [**WidgetSort**](WidgetSort.md) |  | 
 
 ## Methods
 

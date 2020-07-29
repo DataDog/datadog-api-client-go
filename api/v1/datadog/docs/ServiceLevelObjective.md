@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **ModifiedAt** | Pointer to **int64** | Modification timestamp (UNIX time in seconds)  Always included in service level objective responses. | [optional] [readonly] 
 **MonitorIds** | Pointer to **[]int64** | A list of monitor ids that defines the scope of a monitor service level objective. **Required if type is &#x60;monitor&#x60;**. | [optional] 
 **MonitorTags** | Pointer to **[]string** | The union of monitor tags for all monitors referenced by the &#x60;monitor_ids&#x60; field. Always included in service level objective responses for monitor service level objectives (but may be empty). Ignored in create/update requests. Does not affect which monitors are included in the service level objective (that is determined entirely by the &#x60;monitor_ids&#x60; field). | [optional] 
-**Name** | Pointer to **string** | The name of the service level objective object. | 
+**Name** | **string** | The name of the service level objective object. | 
 **Query** | Pointer to [**ServiceLevelObjectiveQuery**](ServiceLevelObjectiveQuery.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests. | [optional] 
-**Thresholds** | Pointer to [**[]SLOThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
-**Type** | Pointer to [**SLOType**](SLOType.md) |  | 
+**Thresholds** | [**[]SLOThreshold**](SLOThreshold.md) | The thresholds (timeframes and associated targets) for this service level objective object. | 
+**Type** | [**SLOType**](SLOType.md) |  | 
 
 ## Methods
 

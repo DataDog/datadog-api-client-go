@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**SLOWidgetDefinitionType**](SLOWidgetDefinitionType.md) |  | [default to "slo"]
+**Type** | [**SLOWidgetDefinitionType**](SLOWidgetDefinitionType.md) |  | [default to "slo"]
 **ViewMode** | Pointer to [**WidgetViewMode**](WidgetViewMode.md) |  | [optional] 
-**ViewType** | Pointer to **string** | Type of view displayed by the widget. | [default to "detail"]
+**ViewType** | **string** | Type of view displayed by the widget. | [default to "detail"]
 
 ## Methods
 

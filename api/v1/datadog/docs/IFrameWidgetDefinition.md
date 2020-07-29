@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to [**IFrameWidgetDefinitionType**](IFrameWidgetDefinitionType.md) |  | [default to "iframe"]
-**Url** | Pointer to **string** | URL of the iframe. | 
+**Type** | [**IFrameWidgetDefinitionType**](IFrameWidgetDefinitionType.md) |  | [default to "iframe"]
+**Url** | **string** | URL of the iframe. | 
 
 ## Methods
 

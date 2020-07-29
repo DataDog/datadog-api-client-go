@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DailyLimit** | Pointer to **int64** | The number of log events you can send in this index per day before you are rate-limited. | [optional] [readonly] 
 **ExclusionFilters** | Pointer to [**[]LogsExclusion**](LogsExclusion.md) | An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored. | [optional] 
-**Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | 
+**Filter** | [**LogsFilter**](LogsFilter.md) |  | 
 **IsRateLimited** | Pointer to **bool** | A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC. | [optional] [readonly] 
 **Name** | Pointer to **string** | The name of the index. | [optional] [readonly] 
 **NumRetentionDays** | Pointer to **int64** | The number of days before logs are deleted from this index. | [optional] [readonly] 

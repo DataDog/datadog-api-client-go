@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Autoscale** | Pointer to **bool** | Whether to use auto-scaling or not. | [optional] 
 **CustomUnit** | Pointer to **string** | Display a unit of your choice on the widget. | [optional] 
 **Precision** | Pointer to **int64** | Number of decimals to show. If not defined, the widget uses the raw value. | [optional] 
-**Requests** | Pointer to [**[]QueryValueWidgetRequest**](QueryValueWidgetRequest.md) | Widget definition. | 
+**Requests** | [**[]QueryValueWidgetRequest**](QueryValueWidgetRequest.md) | Widget definition. | 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**QueryValueWidgetDefinitionType**](QueryValueWidgetDefinitionType.md) |  | [default to "query_value"]
+**Type** | [**QueryValueWidgetDefinitionType**](QueryValueWidgetDefinitionType.md) |  | [default to "query_value"]
 
 ## Methods
 

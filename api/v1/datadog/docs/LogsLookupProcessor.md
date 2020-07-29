@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DefaultLookup** | Pointer to **string** | Value to set the target attribute if the source value is not found in the list. | [optional] 
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**LookupTable** | Pointer to **[]string** | Mapping table of values for the source attribute and their associated target attribute values, formatted as &#x60;[\&quot;source_key1,target_value1\&quot;, \&quot;source_key2,target_value2\&quot;]&#x60; | 
+**LookupTable** | **[]string** | Mapping table of values for the source attribute and their associated target attribute values, formatted as &#x60;[\&quot;source_key1,target_value1\&quot;, \&quot;source_key2,target_value2\&quot;]&#x60; | 
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Source** | Pointer to **string** | Source attribute used to perform the lookup. | 
-**Target** | Pointer to **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
-**Type** | Pointer to [**LogsLookupProcessorType**](LogsLookupProcessorType.md) |  | [default to "lookup-processor"]
+**Source** | **string** | Source attribute used to perform the lookup. | 
+**Target** | **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
+**Type** | [**LogsLookupProcessorType**](LogsLookupProcessorType.md) |  | [default to "lookup-processor"]
 
 ## Methods
 

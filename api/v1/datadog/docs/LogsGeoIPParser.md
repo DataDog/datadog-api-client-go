@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["network.client.ip"]]
-**Target** | Pointer to **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "network.client.geoip"]
-**Type** | Pointer to [**LogsGeoIPParserType**](LogsGeoIPParserType.md) |  | [default to "geo-ip-parser"]
+**Sources** | **[]string** | Array of source attributes. | [default to ["network.client.ip"]]
+**Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "network.client.geoip"]
+**Type** | [**LogsGeoIPParserType**](LogsGeoIPParserType.md) |  | [default to "geo-ip-parser"]
 
 ## Methods
 
