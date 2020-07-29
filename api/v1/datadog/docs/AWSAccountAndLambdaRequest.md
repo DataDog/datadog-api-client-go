@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | 
-**LambdaArn** | Pointer to **string** | ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup. | 
+**AccountId** | **string** | Your AWS Account ID without dashes. | 
+**LambdaArn** | **string** | ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup. | 
 
 ## Methods
 

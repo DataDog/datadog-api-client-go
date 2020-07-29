@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cases** | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | 
-**IsEnabled** | Pointer to **bool** | Whether the rule is enabled. | 
-**Message** | Pointer to **string** | Message for generated signals. | 
-**Name** | Pointer to **string** | The name of the rule | 
-**Options** | Pointer to [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | 
-**Queries** | Pointer to [**[]SecurityMonitoringRuleQuery**](SecurityMonitoringRuleQuery.md) | Queries for selecting logs which are part of the rule. | 
-**Tags** | Pointer to **[]string** | Tags for generated signals. | 
+**Cases** | [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | 
+**IsEnabled** | **bool** | Whether the rule is enabled. | 
+**Message** | **string** | Message for generated signals. | 
+**Name** | **string** | The name of the rule | 
+**Options** | [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | 
+**Queries** | [**[]SecurityMonitoringRuleQuery**](SecurityMonitoringRuleQuery.md) | Queries for selecting logs which are part of the rule. | 
+**Tags** | **[]string** | Tags for generated signals. | 
 
 ## Methods
 

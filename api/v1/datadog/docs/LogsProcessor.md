@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Grok** | Pointer to [**LogsGrokParserRules**](LogsGrokParserRules.md) |  | 
+**Grok** | [**LogsGrokParserRules**](LogsGrokParserRules.md) |  | 
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
-**Source** | Pointer to **string** | Source attribute used to perform the lookup. | 
-**Type** | Pointer to [**LogsTraceRemapperType**](LogsTraceRemapperType.md) |  | [default to "trace-id-remapper"]
-**Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["dd.trace_id"]]
+**Source** | **string** | Source attribute used to perform the lookup. | 
+**Type** | [**LogsTraceRemapperType**](LogsTraceRemapperType.md) |  | [default to "trace-id-remapper"]
+**Sources** | **[]string** | Array of source attributes. | [default to ["dd.trace_id"]]
 **OverrideOnConflict** | Pointer to **bool** | Override or not the target element if already set, | [optional] [default to false]
 **PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]
 **SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
-**Target** | Pointer to **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
+**Target** | **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
 **TargetType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
 **IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
-**Categories** | Pointer to [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessor_categories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
-**Expression** | Pointer to **string** | Arithmetic operation between one or more log attributes. | 
+**Categories** | [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessor_categories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
+**Expression** | **string** | Arithmetic operation between one or more log attributes. | 
 **IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
-**Template** | Pointer to **string** | A formula with one or more attributes and raw text. | 
+**Template** | **string** | A formula with one or more attributes and raw text. | 
 **Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
 **Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
 **DefaultLookup** | Pointer to **string** | Value to set the target attribute if the source value is not found in the list. | [optional] 
-**LookupTable** | Pointer to **[]string** | Mapping table of values for the source attribute and their associated target attribute values, formatted as &#x60;[\&quot;source_key1,target_value1\&quot;, \&quot;source_key2,target_value2\&quot;]&#x60; | 
+**LookupTable** | **[]string** | Mapping table of values for the source attribute and their associated target attribute values, formatted as &#x60;[\&quot;source_key1,target_value1\&quot;, \&quot;source_key2,target_value2\&quot;]&#x60; | 
 
 ## Methods
 

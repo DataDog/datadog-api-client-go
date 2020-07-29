@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
-**Content** | Pointer to **string** | Content of the note. | 
+**Content** | **string** | Content of the note. | 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
 **ShowTick** | Pointer to **bool** | Whether to show a tick or not. | [optional] 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TickEdge** | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md) |  | [optional] 
 **TickPos** | Pointer to **string** | Where to position the tick on an edge. | [optional] 
-**Type** | Pointer to [**NoteWidgetDefinitionType**](NoteWidgetDefinitionType.md) |  | [default to "note"]
+**Type** | [**NoteWidgetDefinitionType**](NoteWidgetDefinitionType.md) |  | [default to "note"]
 
 ## Methods
 

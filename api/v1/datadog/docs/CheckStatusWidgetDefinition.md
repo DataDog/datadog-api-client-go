@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Check** | Pointer to **string** | Name of the check to use in the widget. | 
+**Check** | **string** | Name of the check to use in the widget. | 
 **Group** | Pointer to **string** | Group reporting a single check. | [optional] 
 **GroupBy** | Pointer to **[]string** | List of tag prefixes to group by in the case of a cluster check. | [optional] 
-**Grouping** | Pointer to [**WidgetGrouping**](WidgetGrouping.md) |  | 
+**Grouping** | [**WidgetGrouping**](WidgetGrouping.md) |  | 
 **Tags** | Pointer to **[]string** | List of tags used to filter the groups reporting a cluster check. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**CheckStatusWidgetDefinitionType**](CheckStatusWidgetDefinitionType.md) |  | [default to "check_status"]
+**Type** | [**CheckStatusWidgetDefinitionType**](CheckStatusWidgetDefinitionType.md) |  | [default to "check_status"]
 
 ## Methods
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServiceKey** | Pointer to **string** | Your service key in PagerDuty. | 
-**ServiceName** | Pointer to **string** | Your service name associated with a service key in PagerDuty. | 
+**ServiceKey** | **string** | Your service key in PagerDuty. | 
+**ServiceName** | **string** | Your service name associated with a service key in PagerDuty. | 
 
 ## Methods
 

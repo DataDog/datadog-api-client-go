@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Color** | Pointer to **string** | Color of the text. | [optional] 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
-**Text** | Pointer to **string** | Text to display. | 
+**Text** | **string** | Text to display. | 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Type** | Pointer to [**FreeTextWidgetDefinitionType**](FreeTextWidgetDefinitionType.md) |  | [default to "free_text"]
+**Type** | [**FreeTextWidgetDefinitionType**](FreeTextWidgetDefinitionType.md) |  | [default to "free_text"]
 
 ## Methods
 

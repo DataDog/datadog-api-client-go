@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Grok** | Pointer to [**LogsGrokParserRules**](LogsGrokParserRules.md) |  | 
+**Grok** | [**LogsGrokParserRules**](LogsGrokParserRules.md) |  | 
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
-**Source** | Pointer to **string** | Name of the log attribute to parse. | [default to "message"]
-**Type** | Pointer to [**LogsGrokParserType**](LogsGrokParserType.md) |  | [default to "grok-parser"]
+**Source** | **string** | Name of the log attribute to parse. | [default to "message"]
+**Type** | [**LogsGrokParserType**](LogsGrokParserType.md) |  | [default to "grok-parser"]
 
 ## Methods
 

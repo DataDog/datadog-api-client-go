@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | Description of the error. | 
-**Name** | Pointer to **string** | Name of the error. | 
+**Description** | **string** | Description of the error. | 
+**Name** | **string** | Name of the error. | 
 **StatusCode** | Pointer to **int64** | Status Code of the error. | [optional] 
-**Type** | Pointer to [**SyntheticsBrowserErrorType**](SyntheticsBrowserErrorType.md) |  | 
+**Type** | [**SyntheticsBrowserErrorType**](SyntheticsBrowserErrorType.md) |  | 
 
 ## Methods
 

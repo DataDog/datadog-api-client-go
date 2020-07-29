@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **DisplayType** | Pointer to **string** | Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold  | [optional] 
 **Label** | Pointer to **string** | Label to display over the marker. | [optional] 
 **Time** | Pointer to **string** | Timestamp for the widget. | [optional] 
-**Value** | Pointer to **string** | Value to apply. Can be a single value y &#x3D; 15 or a range of values 0 &lt; y &lt; 10. | 
+**Value** | **string** | Value to apply. Can be a single value y &#x3D; 15 or a range of values 0 &lt; y &lt; 10. | 
 
 ## Methods
 
