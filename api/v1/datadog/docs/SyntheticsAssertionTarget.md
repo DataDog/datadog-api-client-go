@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operator** | Pointer to [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
+**Operator** | [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
 **Property** | Pointer to **string** | The associated assertion property. | [optional] 
 **Target** | Pointer to **interface{}** | Value used by the operator. | [optional] 
-**Type** | Pointer to [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
+**Type** | [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
 
 ## Methods
 

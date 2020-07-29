@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**LogsArchiveCreateRequestAttributes**](LogsArchiveCreateRequestAttributes.md) |  | [optional] 
-**Type** | Pointer to **string** | The type of the resource. The value should always be archives. | [default to "archives"]
+**Type** | **string** | The type of the resource. The value should always be archives. | [default to "archives"]
 
 ## Methods
 

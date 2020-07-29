@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
 **LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
-**Requests** | Pointer to [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
+**Requests** | [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**TimeseriesWidgetDefinitionType**](TimeseriesWidgetDefinitionType.md) |  | [default to "timeseries"]
+**Type** | [**TimeseriesWidgetDefinitionType**](TimeseriesWidgetDefinitionType.md) |  | [default to "timeseries"]
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods

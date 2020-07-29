@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ColorByGroups** | Pointer to **[]string** | List of groups used for colors. | [optional] 
-**Requests** | Pointer to [**ScatterPlotWidgetDefinitionRequests**](ScatterPlotWidgetDefinition_requests.md) |  | 
+**Requests** | [**ScatterPlotWidgetDefinitionRequests**](ScatterPlotWidgetDefinition_requests.md) |  | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**ScatterPlotWidgetDefinitionType**](ScatterPlotWidgetDefinitionType.md) |  | [default to "scatterplot"]
+**Type** | [**ScatterPlotWidgetDefinitionType**](ScatterPlotWidgetDefinitionType.md) |  | [default to "scatterplot"]
 **Xaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 

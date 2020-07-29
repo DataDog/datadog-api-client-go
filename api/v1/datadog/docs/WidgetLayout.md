@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Height** | Pointer to **int64** | The height of the widget. Should be a non-negative integer. | 
-**Width** | Pointer to **int64** | The width of the widget. Should be a non-negative integer. | 
-**X** | Pointer to **int64** | The position of the widget on the x (horizontal) axis. Should be a non-negative integer. | 
-**Y** | Pointer to **int64** | The position of the widget on the y (vertical) axis. Should be a non-negative integer. | 
+**Height** | **int64** | The height of the widget. Should be a non-negative integer. | 
+**Width** | **int64** | The width of the widget. Should be a non-negative integer. | 
+**X** | **int64** | The position of the widget on the x (horizontal) axis. Should be a non-negative integer. | 
+**Y** | **int64** | The position of the widget on the y (vertical) axis. Should be a non-negative integer. | 
 
 ## Methods
 

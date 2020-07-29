@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **RelatedEventId** | Pointer to **int64** | ID of the parent event. Must be sent as an integer (i.e. no quotes). | [optional] 
 **SourceTypeName** | Pointer to **string** | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags to apply to the event. | [optional] 
-**Text** | Pointer to **string** | The body of the event. Limited to 4000 characters. The text supports markdown. Use &#x60;msg_text&#x60; with the Datadog Ruby library. | 
-**Title** | Pointer to **string** | The event title. Limited to 100 characters. Use &#x60;msg_title&#x60; with the Datadog Ruby library. | 
+**Text** | **string** | The body of the event. Limited to 4000 characters. The text supports markdown. Use &#x60;msg_text&#x60; with the Datadog Ruby library. | 
+**Title** | **string** | The event title. Limited to 100 characters. Use &#x60;msg_title&#x60; with the Datadog Ruby library. | 
 **Url** | Pointer to **string** | URL of the event. | [optional] [readonly] 
 
 ## Methods

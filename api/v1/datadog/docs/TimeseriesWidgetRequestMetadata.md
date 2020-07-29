@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AliasName** | Pointer to **string** | Expression alias. | [optional] 
-**Expression** | Pointer to **string** | Expression name. | 
+**Expression** | **string** | Expression name. | 
 
 ## Methods
 

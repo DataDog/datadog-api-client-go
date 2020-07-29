@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Facet** | Pointer to **string** | Facet name. | 
+**Facet** | **string** | Facet name. | 
 **Limit** | Pointer to **int64** | Maximum number of items in the group. | [optional] 
 **Sort** | Pointer to [**LogQueryDefinitionSort**](LogQueryDefinition_sort.md) |  | [optional] 
 
