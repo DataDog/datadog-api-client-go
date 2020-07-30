@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current month(s) for all organizations for which all usages were calculated. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current month(s) for all organizations. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all organizations. | [optional] 
+**ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current month(s) for all organizations. | [optional] 
 **RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all organizations. | [optional] 
@@ -549,6 +550,31 @@ SetNpmHostTop99pSum sets NpmHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasNpmHostTop99pSum() bool`
 
 HasNpmHostTop99pSum returns a boolean if a field has been set.
+
+### GetProfilingHostCountTop99pSum
+
+`func (o *UsageSummaryResponse) GetProfilingHostCountTop99pSum() int64`
+
+GetProfilingHostCountTop99pSum returns the ProfilingHostCountTop99pSum field if non-nil, zero value otherwise.
+
+### GetProfilingHostCountTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetProfilingHostCountTop99pSumOk() (*int64, bool)`
+
+GetProfilingHostCountTop99pSumOk returns a tuple with the ProfilingHostCountTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfilingHostCountTop99pSum
+
+`func (o *UsageSummaryResponse) SetProfilingHostCountTop99pSum(v int64)`
+
+SetProfilingHostCountTop99pSum sets ProfilingHostCountTop99pSum field to given value.
+
+### HasProfilingHostCountTop99pSum
+
+`func (o *UsageSummaryResponse) HasProfilingHostCountTop99pSum() bool`
+
+HasProfilingHostCountTop99pSum returns a boolean if a field has been set.
 
 ### GetRumSessionCountAggSum
 
