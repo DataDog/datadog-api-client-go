@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The organization name. | [optional] 
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for the given org. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for the given org. | [optional] 
+**ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
 **PublicId** | Pointer to **string** | The organization public id. | [optional] 
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current date for the given org. | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for the given org. | [optional] 
@@ -522,6 +523,31 @@ SetNpmHostTop99p sets NpmHostTop99p field to given value.
 `func (o *UsageSummaryDateOrg) HasNpmHostTop99p() bool`
 
 HasNpmHostTop99p returns a boolean if a field has been set.
+
+### GetProfilingHostTop99p
+
+`func (o *UsageSummaryDateOrg) GetProfilingHostTop99p() int64`
+
+GetProfilingHostTop99p returns the ProfilingHostTop99p field if non-nil, zero value otherwise.
+
+### GetProfilingHostTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetProfilingHostTop99pOk() (*int64, bool)`
+
+GetProfilingHostTop99pOk returns a tuple with the ProfilingHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfilingHostTop99p
+
+`func (o *UsageSummaryDateOrg) SetProfilingHostTop99p(v int64)`
+
+SetProfilingHostTop99p sets ProfilingHostTop99p field to given value.
+
+### HasProfilingHostTop99p
+
+`func (o *UsageSummaryDateOrg) HasProfilingHostTop99p() bool`
+
+HasProfilingHostTop99p returns a boolean if a field has been set.
 
 ### GetPublicId
 
