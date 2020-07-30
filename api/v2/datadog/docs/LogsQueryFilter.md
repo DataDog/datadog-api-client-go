@@ -1,130 +1,130 @@
-# LogsListRequestFilter
+# LogsQueryFilter
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**From** | Pointer to [**time.Time**](time.Time.md) | Minimum timestamp for requested logs. | [optional] 
-**Indexes** | Pointer to **[]string** | For customers with multiple indexes, the indexes to search. Defaults to &#39;*&#39; which means all indexes. | [optional] 
-**Query** | Pointer to **string** | Search query following logs syntax. | [optional] 
-**To** | Pointer to [**time.Time**](time.Time.md) | Maximum timestamp for requested logs. | [optional] 
+**From** | Pointer to **string** | The minimum time for the requested logs, supports date math and regular timestamps | [optional] [default to "now-15m"]
+**Indexes** | Pointer to **[]string** | For customers with multiple indexes, the indexes to search. Defaults to [&#39;*&#39;] which means all indexes. | [optional] [default to ["*"]]
+**Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] [default to "*"]
+**To** | Pointer to **string** | The maximum time for the requested logs, supports date math and regular timestamps | [optional] [default to "now"]
 
 ## Methods
 
-### NewLogsListRequestFilter
+### NewLogsQueryFilter
 
-`func NewLogsListRequestFilter() *LogsListRequestFilter`
+`func NewLogsQueryFilter() *LogsQueryFilter`
 
-NewLogsListRequestFilter instantiates a new LogsListRequestFilter object
+NewLogsQueryFilter instantiates a new LogsQueryFilter object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewLogsListRequestFilterWithDefaults
+### NewLogsQueryFilterWithDefaults
 
-`func NewLogsListRequestFilterWithDefaults() *LogsListRequestFilter`
+`func NewLogsQueryFilterWithDefaults() *LogsQueryFilter`
 
-NewLogsListRequestFilterWithDefaults instantiates a new LogsListRequestFilter object
+NewLogsQueryFilterWithDefaults instantiates a new LogsQueryFilter object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetFrom
 
-`func (o *LogsListRequestFilter) GetFrom() time.Time`
+`func (o *LogsQueryFilter) GetFrom() string`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *LogsListRequestFilter) GetFromOk() (*time.Time, bool)`
+`func (o *LogsQueryFilter) GetFromOk() (*string, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *LogsListRequestFilter) SetFrom(v time.Time)`
+`func (o *LogsQueryFilter) SetFrom(v string)`
 
 SetFrom sets From field to given value.
 
 ### HasFrom
 
-`func (o *LogsListRequestFilter) HasFrom() bool`
+`func (o *LogsQueryFilter) HasFrom() bool`
 
 HasFrom returns a boolean if a field has been set.
 
 ### GetIndexes
 
-`func (o *LogsListRequestFilter) GetIndexes() []string`
+`func (o *LogsQueryFilter) GetIndexes() []string`
 
 GetIndexes returns the Indexes field if non-nil, zero value otherwise.
 
 ### GetIndexesOk
 
-`func (o *LogsListRequestFilter) GetIndexesOk() (*[]string, bool)`
+`func (o *LogsQueryFilter) GetIndexesOk() (*[]string, bool)`
 
 GetIndexesOk returns a tuple with the Indexes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIndexes
 
-`func (o *LogsListRequestFilter) SetIndexes(v []string)`
+`func (o *LogsQueryFilter) SetIndexes(v []string)`
 
 SetIndexes sets Indexes field to given value.
 
 ### HasIndexes
 
-`func (o *LogsListRequestFilter) HasIndexes() bool`
+`func (o *LogsQueryFilter) HasIndexes() bool`
 
 HasIndexes returns a boolean if a field has been set.
 
 ### GetQuery
 
-`func (o *LogsListRequestFilter) GetQuery() string`
+`func (o *LogsQueryFilter) GetQuery() string`
 
 GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *LogsListRequestFilter) GetQueryOk() (*string, bool)`
+`func (o *LogsQueryFilter) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuery
 
-`func (o *LogsListRequestFilter) SetQuery(v string)`
+`func (o *LogsQueryFilter) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
 
 ### HasQuery
 
-`func (o *LogsListRequestFilter) HasQuery() bool`
+`func (o *LogsQueryFilter) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
 
 ### GetTo
 
-`func (o *LogsListRequestFilter) GetTo() time.Time`
+`func (o *LogsQueryFilter) GetTo() string`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *LogsListRequestFilter) GetToOk() (*time.Time, bool)`
+`func (o *LogsQueryFilter) GetToOk() (*string, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *LogsListRequestFilter) SetTo(v time.Time)`
+`func (o *LogsQueryFilter) SetTo(v string)`
 
 SetTo sets To field to given value.
 
 ### HasTo
 
-`func (o *LogsListRequestFilter) HasTo() bool`
+`func (o *LogsQueryFilter) HasTo() bool`
 
 HasTo returns a boolean if a field has been set.
 
