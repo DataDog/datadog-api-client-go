@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
-func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, ruleName string) (datadog.SecurityMonitoringRuleResponseCreate, *_nethttp.Response, error) {
+func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, ruleName string) (datadog.SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 
 	query := datadog.NewSecurityMonitoringRuleQueryCreate("thiswillnevernevermatch")
 	query.SetName("nevermatch")
@@ -54,7 +54,7 @@ func TestSecMonRulesCRUD(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	api := Client(ctx).SecurityMonitoringApi
 
-	ruleResponses := []datadog.SecurityMonitoringRuleResponseCreate{}
+	ruleResponses := []datadog.SecurityMonitoringRuleResponse{}
 	uniqueName := *tests.UniqueEntityName(ctx, t)
 	// create rules
 	for i := 0; i < 5; i++ {
