@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Destination** | Pointer to [**NullableLogsArchiveDestination**](LogsArchiveDestination.md) |  | 
-**Name** | Pointer to **string** | The archive name. | 
-**Query** | Pointer to **string** | The archive query/filter. Logs matching this query are included in the archive. | 
+**Destination** | [**NullableLogsArchiveDestination**](LogsArchiveDestination.md) |  | 
+**Name** | **string** | The archive name. | 
+**Query** | **string** | The archive query/filter. Logs matching this query are included in the archive. | 
 **State** | Pointer to [**LogsArchiveState**](LogsArchiveState.md) |  | [optional] 
 
 ## Methods

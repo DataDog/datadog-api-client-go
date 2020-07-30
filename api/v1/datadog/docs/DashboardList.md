@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int64** | The ID of the dashboard list. | [optional] [readonly] 
 **IsFavorite** | Pointer to **bool** | Whether or not the list is in the favorites. | [optional] [readonly] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Date of last edition of the dashboard list. | [optional] [readonly] 
-**Name** | Pointer to **string** | The name of the dashboard list. | 
+**Name** | **string** | The name of the dashboard list. | 
 **Type** | Pointer to **string** | The type of dashboard list. | [optional] [readonly] 
 
 ## Methods

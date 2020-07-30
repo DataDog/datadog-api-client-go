@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | ID of the dashboard. | 
-**Type** | Pointer to [**DashboardType**](DashboardType.md) |  | 
+**Id** | **string** | ID of the dashboard. | 
+**Type** | [**DashboardType**](DashboardType.md) |  | 
 
 ## Methods
 

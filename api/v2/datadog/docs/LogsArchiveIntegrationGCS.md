@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientEmail** | Pointer to **string** | A client email. | 
-**ProjectId** | Pointer to **string** | A project ID. | 
+**ClientEmail** | **string** | A client email. | 
+**ProjectId** | **string** | A project ID. | 
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Q** | Pointer to **string** | Query definition. | 
+**Q** | **string** | Query definition. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. | [optional] 
 
 ## Methods

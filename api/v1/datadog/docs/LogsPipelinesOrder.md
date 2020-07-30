@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PipelineIds** | Pointer to **[]string** | Ordered Array of &#x60;&lt;PIPELINE_ID&gt;&#x60; strings, the order of pipeline IDs in the array define the overall Pipelines order for Datadog. | 
+**PipelineIds** | **[]string** | Ordered Array of &#x60;&lt;PIPELINE_ID&gt;&#x60; strings, the order of pipeline IDs in the array define the overall Pipelines order for Datadog. | 
 
 ## Methods
 

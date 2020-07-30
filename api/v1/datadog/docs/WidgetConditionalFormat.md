@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comparator** | Pointer to [**WidgetComparator**](WidgetComparator.md) |  | 
+**Comparator** | [**WidgetComparator**](WidgetComparator.md) |  | 
 **CustomBgColor** | Pointer to **string** | Color palette to apply to the background, same values available as palette. | [optional] 
 **CustomFgColor** | Pointer to **string** | Color palette to apply to the foreground, same values available as palette. | [optional] 
 **HideValue** | Pointer to **bool** | True hides values. | [optional] 
 **ImageUrl** | Pointer to **string** | Displays an image as the background. | [optional] 
 **Metric** | Pointer to **string** | Metric from the request to correlate this conditional format with. | [optional] 
-**Palette** | Pointer to [**WidgetPalette**](WidgetPalette.md) |  | 
+**Palette** | [**WidgetPalette**](WidgetPalette.md) |  | 
 **Timeframe** | Pointer to **string** | Defines the displayed timeframe. | [optional] 
-**Value** | Pointer to **float64** | Value for the comparator. | 
+**Value** | **float64** | Value for the comparator. | 
 
 ## Methods
 

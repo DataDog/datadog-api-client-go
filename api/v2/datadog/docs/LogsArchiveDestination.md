@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Container** | Pointer to **string** | The container where the archive will be stored. | 
-**Integration** | Pointer to [**LogsArchiveIntegrationS3**](LogsArchiveIntegrationS3.md) |  | 
+**Container** | **string** | The container where the archive will be stored. | 
+**Integration** | [**LogsArchiveIntegrationS3**](LogsArchiveIntegrationS3.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 
 **Region** | Pointer to **string** | The region where the archive will be stored. | [optional] 
-**StorageAccount** | Pointer to **string** | The associated storage account. | 
-**Type** | Pointer to [**LogsArchiveDestinationS3Type**](LogsArchiveDestinationS3Type.md) |  | [default to "s3"]
-**Bucket** | Pointer to **string** | The bucket where the archive will be stored. | 
+**StorageAccount** | **string** | The associated storage account. | 
+**Type** | [**LogsArchiveDestinationS3Type**](LogsArchiveDestinationS3Type.md) |  | [default to "s3"]
+**Bucket** | **string** | The bucket where the archive will be stored. | 
 
 ## Methods
 

@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
-**Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["http.url"]]
-**Target** | Pointer to **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.url_details"]
-**Type** | Pointer to [**LogsURLParserType**](LogsURLParserType.md) |  | [default to "url-parser"]
+**Sources** | **[]string** | Array of source attributes. | [default to ["http.url"]]
+**Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.url_details"]
+**Type** | [**LogsURLParserType**](LogsURLParserType.md) |  | [default to "url-parser"]
 
 ## Methods
 

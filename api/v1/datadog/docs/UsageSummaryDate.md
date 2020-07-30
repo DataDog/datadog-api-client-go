@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for all organizations. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations. | [optional] 
 **Orgs** | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user. | [optional] 
+**ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current date for all organizations | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations. | [optional] 
@@ -521,6 +522,31 @@ SetOrgs sets Orgs field to given value.
 `func (o *UsageSummaryDate) HasOrgs() bool`
 
 HasOrgs returns a boolean if a field has been set.
+
+### GetProfilingHostTop99p
+
+`func (o *UsageSummaryDate) GetProfilingHostTop99p() int64`
+
+GetProfilingHostTop99p returns the ProfilingHostTop99p field if non-nil, zero value otherwise.
+
+### GetProfilingHostTop99pOk
+
+`func (o *UsageSummaryDate) GetProfilingHostTop99pOk() (*int64, bool)`
+
+GetProfilingHostTop99pOk returns a tuple with the ProfilingHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfilingHostTop99p
+
+`func (o *UsageSummaryDate) SetProfilingHostTop99p(v int64)`
+
+SetProfilingHostTop99p sets ProfilingHostTop99p field to given value.
+
+### HasProfilingHostTop99p
+
+`func (o *UsageSummaryDate) HasProfilingHostTop99p() bool`
+
+HasProfilingHostTop99p returns a boolean if a field has been set.
 
 ### GetRumSessionCountSum
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | ID of the pipeline. | [optional] [readonly] 
 **IsEnabled** | Pointer to **bool** | Whether or not the pipeline is enabled. | [optional] 
 **IsReadOnly** | Pointer to **bool** | Whether or not the pipeline can be edited. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the pipeline. | 
+**Name** | **string** | Name of the pipeline. | 
 **Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
 **Type** | Pointer to **string** | Type of pipeline. | [optional] [readonly] 
 

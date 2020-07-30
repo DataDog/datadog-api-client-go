@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**From** | Pointer to [**time.Time**](time.Time.md) | Minimum timestamp for requested logs. | 
+**From** | [**time.Time**](time.Time.md) | Minimum timestamp for requested logs. | 
 **Timezone** | Pointer to **string** | Timezone can be specified both as an offset (e.g. \&quot;UTC+03:00\&quot;) or a regional zone (e.g. \&quot;Europe/Paris\&quot;). | [optional] 
-**To** | Pointer to [**time.Time**](time.Time.md) | Maximum timestamp for requested logs. | 
+**To** | [**time.Time**](time.Time.md) | Maximum timestamp for requested logs. | 
 
 ## Methods
 
