@@ -329,6 +329,7 @@ docs/SyntheticsTestDetailsSubType.md
 docs/SyntheticsTestDetailsType.md
 docs/SyntheticsTestMonitorStatus.md
 docs/SyntheticsTestOptions.md
+docs/SyntheticsTestOptionsMonitorOptions.md
 docs/SyntheticsTestOptionsRetry.md
 docs/SyntheticsTestPauseStatus.md
 docs/SyntheticsTestProcessStatus.md
@@ -730,6 +731,7 @@ model_synthetics_test_details_sub_type.go
 model_synthetics_test_details_type.go
 model_synthetics_test_monitor_status.go
 model_synthetics_test_options.go
+model_synthetics_test_options_monitor_options.go
 model_synthetics_test_options_retry.go
 model_synthetics_test_pause_status.go
 model_synthetics_test_process_status.go

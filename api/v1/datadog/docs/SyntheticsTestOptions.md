@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
 **MinFailureDuration** | Pointer to **int64** | Minimum amount of time in failure required to trigger an alert. | [optional] 
 **MinLocationFailed** | Pointer to **int64** | Minimum number of locations in failure required to trigger an alert. | [optional] 
+**MonitorOptions** | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptions_monitor_options.md) |  | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptions_retry.md) |  | [optional] 
 **TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
 
@@ -181,6 +182,31 @@ SetMinLocationFailed sets MinLocationFailed field to given value.
 `func (o *SyntheticsTestOptions) HasMinLocationFailed() bool`
 
 HasMinLocationFailed returns a boolean if a field has been set.
+
+### GetMonitorOptions
+
+`func (o *SyntheticsTestOptions) GetMonitorOptions() SyntheticsTestOptionsMonitorOptions`
+
+GetMonitorOptions returns the MonitorOptions field if non-nil, zero value otherwise.
+
+### GetMonitorOptionsOk
+
+`func (o *SyntheticsTestOptions) GetMonitorOptionsOk() (*SyntheticsTestOptionsMonitorOptions, bool)`
+
+GetMonitorOptionsOk returns a tuple with the MonitorOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitorOptions
+
+`func (o *SyntheticsTestOptions) SetMonitorOptions(v SyntheticsTestOptionsMonitorOptions)`
+
+SetMonitorOptions sets MonitorOptions field to given value.
+
+### HasMonitorOptions
+
+`func (o *SyntheticsTestOptions) HasMonitorOptions() bool`
+
+HasMonitorOptions returns a boolean if a field has been set.
 
 ### GetRetry
 

@@ -497,6 +497,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsTestDetailsType](docs/SyntheticsTestDetailsType.md)
  - [SyntheticsTestMonitorStatus](docs/SyntheticsTestMonitorStatus.md)
  - [SyntheticsTestOptions](docs/SyntheticsTestOptions.md)
+ - [SyntheticsTestOptionsMonitorOptions](docs/SyntheticsTestOptionsMonitorOptions.md)
  - [SyntheticsTestOptionsRetry](docs/SyntheticsTestOptionsRetry.md)
  - [SyntheticsTestPauseStatus](docs/SyntheticsTestPauseStatus.md)
  - [SyntheticsTestProcessStatus](docs/SyntheticsTestProcessStatus.md)
