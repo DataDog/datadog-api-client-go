@@ -443,6 +443,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(1), usage.GetContainerHwmSum())
 	assert.Equal(int64(4), usage.GetCustomTsSum())
 	assert.Equal(int64(5), usage.GetRumSessionCountAggSum())
+	assert.Equal(int64(6), usage.GetProfilingHostCountTop99pSum())
 
 	var usageItem = usage.GetUsage()[0]
 	assert.Equal(time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate().UTC())
@@ -454,6 +455,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(7), usageItem.GetGcpHostTop99p())
 	assert.Equal(int64(8), usageItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageItem.GetRumSessionCountSum())
+	assert.Equal(int64(10), usageItem.GetProfilingHostTop99p())
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal("1b", usageOrgItem.GetId())
@@ -466,6 +468,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(7), usageOrgItem.GetGcpHostTop99p())
 	assert.Equal(int64(8), usageOrgItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageOrgItem.GetRumSessionCountSum())
+	assert.Equal(int64(10), usageOrgItem.GetProfilingHostTop99p())
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
