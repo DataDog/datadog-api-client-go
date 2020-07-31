@@ -12,36 +12,37 @@ import (
 	"encoding/json"
 )
 
-// SecurityMonitoringRuleCase Case when signal is generated.
-type SecurityMonitoringRuleCase struct {
+// SecurityMonitoringRuleCaseCreate Case when signal is generated.
+type SecurityMonitoringRuleCaseCreate struct {
 	// A rule case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated based on the event counts in the previously defined queries.
 	Condition *string `json:"condition,omitempty"`
 	// Name of the case.
 	Name *string `json:"name,omitempty"`
 	// Notification targets for each rule case.
-	Notifications *[]string                       `json:"notifications,omitempty"`
-	Status        *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
+	Notifications *[]string                      `json:"notifications,omitempty"`
+	Status        SecurityMonitoringRuleSeverity `json:"status"`
 }
 
-// NewSecurityMonitoringRuleCase instantiates a new SecurityMonitoringRuleCase object
+// NewSecurityMonitoringRuleCaseCreate instantiates a new SecurityMonitoringRuleCaseCreate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSecurityMonitoringRuleCase() *SecurityMonitoringRuleCase {
-	this := SecurityMonitoringRuleCase{}
+func NewSecurityMonitoringRuleCaseCreate(status SecurityMonitoringRuleSeverity) *SecurityMonitoringRuleCaseCreate {
+	this := SecurityMonitoringRuleCaseCreate{}
+	this.Status = status
 	return &this
 }
 
-// NewSecurityMonitoringRuleCaseWithDefaults instantiates a new SecurityMonitoringRuleCase object
+// NewSecurityMonitoringRuleCaseCreateWithDefaults instantiates a new SecurityMonitoringRuleCaseCreate object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSecurityMonitoringRuleCaseWithDefaults() *SecurityMonitoringRuleCase {
-	this := SecurityMonitoringRuleCase{}
+func NewSecurityMonitoringRuleCaseCreateWithDefaults() *SecurityMonitoringRuleCaseCreate {
+	this := SecurityMonitoringRuleCaseCreate{}
 	return &this
 }
 
 // GetCondition returns the Condition field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleCase) GetCondition() string {
+func (o *SecurityMonitoringRuleCaseCreate) GetCondition() string {
 	if o == nil || o.Condition == nil {
 		var ret string
 		return ret
@@ -51,7 +52,7 @@ func (o *SecurityMonitoringRuleCase) GetCondition() string {
 
 // GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleCase) GetConditionOk() (*string, bool) {
+func (o *SecurityMonitoringRuleCaseCreate) GetConditionOk() (*string, bool) {
 	if o == nil || o.Condition == nil {
 		return nil, false
 	}
@@ -59,7 +60,7 @@ func (o *SecurityMonitoringRuleCase) GetConditionOk() (*string, bool) {
 }
 
 // HasCondition returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleCase) HasCondition() bool {
+func (o *SecurityMonitoringRuleCaseCreate) HasCondition() bool {
 	if o != nil && o.Condition != nil {
 		return true
 	}
@@ -68,12 +69,12 @@ func (o *SecurityMonitoringRuleCase) HasCondition() bool {
 }
 
 // SetCondition gets a reference to the given string and assigns it to the Condition field.
-func (o *SecurityMonitoringRuleCase) SetCondition(v string) {
+func (o *SecurityMonitoringRuleCaseCreate) SetCondition(v string) {
 	o.Condition = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleCase) GetName() string {
+func (o *SecurityMonitoringRuleCaseCreate) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -83,7 +84,7 @@ func (o *SecurityMonitoringRuleCase) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleCase) GetNameOk() (*string, bool) {
+func (o *SecurityMonitoringRuleCaseCreate) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -91,7 +92,7 @@ func (o *SecurityMonitoringRuleCase) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleCase) HasName() bool {
+func (o *SecurityMonitoringRuleCaseCreate) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -100,12 +101,12 @@ func (o *SecurityMonitoringRuleCase) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *SecurityMonitoringRuleCase) SetName(v string) {
+func (o *SecurityMonitoringRuleCaseCreate) SetName(v string) {
 	o.Name = &v
 }
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleCase) GetNotifications() []string {
+func (o *SecurityMonitoringRuleCaseCreate) GetNotifications() []string {
 	if o == nil || o.Notifications == nil {
 		var ret []string
 		return ret
@@ -115,7 +116,7 @@ func (o *SecurityMonitoringRuleCase) GetNotifications() []string {
 
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleCase) GetNotificationsOk() (*[]string, bool) {
+func (o *SecurityMonitoringRuleCaseCreate) GetNotificationsOk() (*[]string, bool) {
 	if o == nil || o.Notifications == nil {
 		return nil, false
 	}
@@ -123,7 +124,7 @@ func (o *SecurityMonitoringRuleCase) GetNotificationsOk() (*[]string, bool) {
 }
 
 // HasNotifications returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleCase) HasNotifications() bool {
+func (o *SecurityMonitoringRuleCaseCreate) HasNotifications() bool {
 	if o != nil && o.Notifications != nil {
 		return true
 	}
@@ -132,43 +133,35 @@ func (o *SecurityMonitoringRuleCase) HasNotifications() bool {
 }
 
 // SetNotifications gets a reference to the given []string and assigns it to the Notifications field.
-func (o *SecurityMonitoringRuleCase) SetNotifications(v []string) {
+func (o *SecurityMonitoringRuleCaseCreate) SetNotifications(v []string) {
 	o.Notifications = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleCase) GetStatus() SecurityMonitoringRuleSeverity {
-	if o == nil || o.Status == nil {
+// GetStatus returns the Status field value
+func (o *SecurityMonitoringRuleCaseCreate) GetStatus() SecurityMonitoringRuleSeverity {
+	if o == nil {
 		var ret SecurityMonitoringRuleSeverity
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleCase) GetStatusOk() (*SecurityMonitoringRuleSeverity, bool) {
-	if o == nil || o.Status == nil {
+func (o *SecurityMonitoringRuleCaseCreate) GetStatusOk() (*SecurityMonitoringRuleSeverity, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleCase) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+// SetStatus sets field value
+func (o *SecurityMonitoringRuleCaseCreate) SetStatus(v SecurityMonitoringRuleSeverity) {
+	o.Status = v
 }
 
-// SetStatus gets a reference to the given SecurityMonitoringRuleSeverity and assigns it to the Status field.
-func (o *SecurityMonitoringRuleCase) SetStatus(v SecurityMonitoringRuleSeverity) {
-	o.Status = &v
-}
-
-func (o SecurityMonitoringRuleCase) MarshalJSON() ([]byte, error) {
+func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Condition != nil {
 		toSerialize["condition"] = o.Condition
@@ -179,44 +172,44 @@ func (o SecurityMonitoringRuleCase) MarshalJSON() ([]byte, error) {
 	if o.Notifications != nil {
 		toSerialize["notifications"] = o.Notifications
 	}
-	if o.Status != nil {
+	if true {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableSecurityMonitoringRuleCase struct {
-	value *SecurityMonitoringRuleCase
+type NullableSecurityMonitoringRuleCaseCreate struct {
+	value *SecurityMonitoringRuleCaseCreate
 	isSet bool
 }
 
-func (v NullableSecurityMonitoringRuleCase) Get() *SecurityMonitoringRuleCase {
+func (v NullableSecurityMonitoringRuleCaseCreate) Get() *SecurityMonitoringRuleCaseCreate {
 	return v.value
 }
 
-func (v *NullableSecurityMonitoringRuleCase) Set(val *SecurityMonitoringRuleCase) {
+func (v *NullableSecurityMonitoringRuleCaseCreate) Set(val *SecurityMonitoringRuleCaseCreate) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSecurityMonitoringRuleCase) IsSet() bool {
+func (v NullableSecurityMonitoringRuleCaseCreate) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSecurityMonitoringRuleCase) Unset() {
+func (v *NullableSecurityMonitoringRuleCaseCreate) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSecurityMonitoringRuleCase(val *SecurityMonitoringRuleCase) *NullableSecurityMonitoringRuleCase {
-	return &NullableSecurityMonitoringRuleCase{value: val, isSet: true}
+func NewNullableSecurityMonitoringRuleCaseCreate(val *SecurityMonitoringRuleCaseCreate) *NullableSecurityMonitoringRuleCaseCreate {
+	return &NullableSecurityMonitoringRuleCaseCreate{value: val, isSet: true}
 }
 
-func (v NullableSecurityMonitoringRuleCase) MarshalJSON() ([]byte, error) {
+func (v NullableSecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSecurityMonitoringRuleCase) UnmarshalJSON(src []byte) error {
+func (v *NullableSecurityMonitoringRuleCaseCreate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

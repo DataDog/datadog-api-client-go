@@ -1,4 +1,4 @@
-# SecurityMonitoringRuleQuery
+# SecurityMonitoringRuleQueryCreate
 
 ## Properties
 
@@ -7,126 +7,121 @@ Name | Type | Description | Notes
 **DistinctFields** | Pointer to **[]string** | Field for which the cardinality is measured. Sent as an array. | [optional] 
 **GroupByFields** | Pointer to **[]string** | Fields to group by. | [optional] 
 **Name** | Pointer to **string** | Name of the query. | [optional] 
-**Query** | Pointer to **string** | Query to run on logs. | [optional] 
+**Query** | **string** | Query to run on logs. | 
 
 ## Methods
 
-### NewSecurityMonitoringRuleQuery
+### NewSecurityMonitoringRuleQueryCreate
 
-`func NewSecurityMonitoringRuleQuery() *SecurityMonitoringRuleQuery`
+`func NewSecurityMonitoringRuleQueryCreate(query string, ) *SecurityMonitoringRuleQueryCreate`
 
-NewSecurityMonitoringRuleQuery instantiates a new SecurityMonitoringRuleQuery object
+NewSecurityMonitoringRuleQueryCreate instantiates a new SecurityMonitoringRuleQueryCreate object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSecurityMonitoringRuleQueryWithDefaults
+### NewSecurityMonitoringRuleQueryCreateWithDefaults
 
-`func NewSecurityMonitoringRuleQueryWithDefaults() *SecurityMonitoringRuleQuery`
+`func NewSecurityMonitoringRuleQueryCreateWithDefaults() *SecurityMonitoringRuleQueryCreate`
 
-NewSecurityMonitoringRuleQueryWithDefaults instantiates a new SecurityMonitoringRuleQuery object
+NewSecurityMonitoringRuleQueryCreateWithDefaults instantiates a new SecurityMonitoringRuleQueryCreate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetDistinctFields
 
-`func (o *SecurityMonitoringRuleQuery) GetDistinctFields() []string`
+`func (o *SecurityMonitoringRuleQueryCreate) GetDistinctFields() []string`
 
 GetDistinctFields returns the DistinctFields field if non-nil, zero value otherwise.
 
 ### GetDistinctFieldsOk
 
-`func (o *SecurityMonitoringRuleQuery) GetDistinctFieldsOk() (*[]string, bool)`
+`func (o *SecurityMonitoringRuleQueryCreate) GetDistinctFieldsOk() (*[]string, bool)`
 
 GetDistinctFieldsOk returns a tuple with the DistinctFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDistinctFields
 
-`func (o *SecurityMonitoringRuleQuery) SetDistinctFields(v []string)`
+`func (o *SecurityMonitoringRuleQueryCreate) SetDistinctFields(v []string)`
 
 SetDistinctFields sets DistinctFields field to given value.
 
 ### HasDistinctFields
 
-`func (o *SecurityMonitoringRuleQuery) HasDistinctFields() bool`
+`func (o *SecurityMonitoringRuleQueryCreate) HasDistinctFields() bool`
 
 HasDistinctFields returns a boolean if a field has been set.
 
 ### GetGroupByFields
 
-`func (o *SecurityMonitoringRuleQuery) GetGroupByFields() []string`
+`func (o *SecurityMonitoringRuleQueryCreate) GetGroupByFields() []string`
 
 GetGroupByFields returns the GroupByFields field if non-nil, zero value otherwise.
 
 ### GetGroupByFieldsOk
 
-`func (o *SecurityMonitoringRuleQuery) GetGroupByFieldsOk() (*[]string, bool)`
+`func (o *SecurityMonitoringRuleQueryCreate) GetGroupByFieldsOk() (*[]string, bool)`
 
 GetGroupByFieldsOk returns a tuple with the GroupByFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupByFields
 
-`func (o *SecurityMonitoringRuleQuery) SetGroupByFields(v []string)`
+`func (o *SecurityMonitoringRuleQueryCreate) SetGroupByFields(v []string)`
 
 SetGroupByFields sets GroupByFields field to given value.
 
 ### HasGroupByFields
 
-`func (o *SecurityMonitoringRuleQuery) HasGroupByFields() bool`
+`func (o *SecurityMonitoringRuleQueryCreate) HasGroupByFields() bool`
 
 HasGroupByFields returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *SecurityMonitoringRuleQuery) GetName() string`
+`func (o *SecurityMonitoringRuleQueryCreate) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *SecurityMonitoringRuleQuery) GetNameOk() (*string, bool)`
+`func (o *SecurityMonitoringRuleQueryCreate) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *SecurityMonitoringRuleQuery) SetName(v string)`
+`func (o *SecurityMonitoringRuleQueryCreate) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *SecurityMonitoringRuleQuery) HasName() bool`
+`func (o *SecurityMonitoringRuleQueryCreate) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetQuery
 
-`func (o *SecurityMonitoringRuleQuery) GetQuery() string`
+`func (o *SecurityMonitoringRuleQueryCreate) GetQuery() string`
 
 GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *SecurityMonitoringRuleQuery) GetQueryOk() (*string, bool)`
+`func (o *SecurityMonitoringRuleQueryCreate) GetQueryOk() (*string, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuery
 
-`func (o *SecurityMonitoringRuleQuery) SetQuery(v string)`
+`func (o *SecurityMonitoringRuleQueryCreate) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
 
-### HasQuery
-
-`func (o *SecurityMonitoringRuleQuery) HasQuery() bool`
-
-HasQuery returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SecurityMonitoringRuleQuery Query for matching rule.
-type SecurityMonitoringRuleQuery struct {
+// SecurityMonitoringRuleQueryCreate Query for matching rule.
+type SecurityMonitoringRuleQueryCreate struct {
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields *[]string `json:"distinctFields,omitempty"`
 	// Fields to group by.
@@ -21,28 +21,29 @@ type SecurityMonitoringRuleQuery struct {
 	// Name of the query.
 	Name *string `json:"name,omitempty"`
 	// Query to run on logs.
-	Query *string `json:"query,omitempty"`
+	Query string `json:"query"`
 }
 
-// NewSecurityMonitoringRuleQuery instantiates a new SecurityMonitoringRuleQuery object
+// NewSecurityMonitoringRuleQueryCreate instantiates a new SecurityMonitoringRuleQueryCreate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSecurityMonitoringRuleQuery() *SecurityMonitoringRuleQuery {
-	this := SecurityMonitoringRuleQuery{}
+func NewSecurityMonitoringRuleQueryCreate(query string) *SecurityMonitoringRuleQueryCreate {
+	this := SecurityMonitoringRuleQueryCreate{}
+	this.Query = query
 	return &this
 }
 
-// NewSecurityMonitoringRuleQueryWithDefaults instantiates a new SecurityMonitoringRuleQuery object
+// NewSecurityMonitoringRuleQueryCreateWithDefaults instantiates a new SecurityMonitoringRuleQueryCreate object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSecurityMonitoringRuleQueryWithDefaults() *SecurityMonitoringRuleQuery {
-	this := SecurityMonitoringRuleQuery{}
+func NewSecurityMonitoringRuleQueryCreateWithDefaults() *SecurityMonitoringRuleQueryCreate {
+	this := SecurityMonitoringRuleQueryCreate{}
 	return &this
 }
 
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleQuery) GetDistinctFields() []string {
+func (o *SecurityMonitoringRuleQueryCreate) GetDistinctFields() []string {
 	if o == nil || o.DistinctFields == nil {
 		var ret []string
 		return ret
@@ -52,7 +53,7 @@ func (o *SecurityMonitoringRuleQuery) GetDistinctFields() []string {
 
 // GetDistinctFieldsOk returns a tuple with the DistinctFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleQuery) GetDistinctFieldsOk() (*[]string, bool) {
+func (o *SecurityMonitoringRuleQueryCreate) GetDistinctFieldsOk() (*[]string, bool) {
 	if o == nil || o.DistinctFields == nil {
 		return nil, false
 	}
@@ -60,7 +61,7 @@ func (o *SecurityMonitoringRuleQuery) GetDistinctFieldsOk() (*[]string, bool) {
 }
 
 // HasDistinctFields returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleQuery) HasDistinctFields() bool {
+func (o *SecurityMonitoringRuleQueryCreate) HasDistinctFields() bool {
 	if o != nil && o.DistinctFields != nil {
 		return true
 	}
@@ -69,12 +70,12 @@ func (o *SecurityMonitoringRuleQuery) HasDistinctFields() bool {
 }
 
 // SetDistinctFields gets a reference to the given []string and assigns it to the DistinctFields field.
-func (o *SecurityMonitoringRuleQuery) SetDistinctFields(v []string) {
+func (o *SecurityMonitoringRuleQueryCreate) SetDistinctFields(v []string) {
 	o.DistinctFields = &v
 }
 
 // GetGroupByFields returns the GroupByFields field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleQuery) GetGroupByFields() []string {
+func (o *SecurityMonitoringRuleQueryCreate) GetGroupByFields() []string {
 	if o == nil || o.GroupByFields == nil {
 		var ret []string
 		return ret
@@ -84,7 +85,7 @@ func (o *SecurityMonitoringRuleQuery) GetGroupByFields() []string {
 
 // GetGroupByFieldsOk returns a tuple with the GroupByFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleQuery) GetGroupByFieldsOk() (*[]string, bool) {
+func (o *SecurityMonitoringRuleQueryCreate) GetGroupByFieldsOk() (*[]string, bool) {
 	if o == nil || o.GroupByFields == nil {
 		return nil, false
 	}
@@ -92,7 +93,7 @@ func (o *SecurityMonitoringRuleQuery) GetGroupByFieldsOk() (*[]string, bool) {
 }
 
 // HasGroupByFields returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleQuery) HasGroupByFields() bool {
+func (o *SecurityMonitoringRuleQueryCreate) HasGroupByFields() bool {
 	if o != nil && o.GroupByFields != nil {
 		return true
 	}
@@ -101,12 +102,12 @@ func (o *SecurityMonitoringRuleQuery) HasGroupByFields() bool {
 }
 
 // SetGroupByFields gets a reference to the given []string and assigns it to the GroupByFields field.
-func (o *SecurityMonitoringRuleQuery) SetGroupByFields(v []string) {
+func (o *SecurityMonitoringRuleQueryCreate) SetGroupByFields(v []string) {
 	o.GroupByFields = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleQuery) GetName() string {
+func (o *SecurityMonitoringRuleQueryCreate) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -116,7 +117,7 @@ func (o *SecurityMonitoringRuleQuery) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleQuery) GetNameOk() (*string, bool) {
+func (o *SecurityMonitoringRuleQueryCreate) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -124,7 +125,7 @@ func (o *SecurityMonitoringRuleQuery) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleQuery) HasName() bool {
+func (o *SecurityMonitoringRuleQueryCreate) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -133,43 +134,35 @@ func (o *SecurityMonitoringRuleQuery) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *SecurityMonitoringRuleQuery) SetName(v string) {
+func (o *SecurityMonitoringRuleQueryCreate) SetName(v string) {
 	o.Name = &v
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleQuery) GetQuery() string {
-	if o == nil || o.Query == nil {
+// GetQuery returns the Query field value
+func (o *SecurityMonitoringRuleQueryCreate) GetQuery() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Query
+
+	return o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleQuery) GetQueryOk() (*string, bool) {
-	if o == nil || o.Query == nil {
+func (o *SecurityMonitoringRuleQueryCreate) GetQueryOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Query, true
+	return &o.Query, true
 }
 
-// HasQuery returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleQuery) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+// SetQuery sets field value
+func (o *SecurityMonitoringRuleQueryCreate) SetQuery(v string) {
+	o.Query = v
 }
 
-// SetQuery gets a reference to the given string and assigns it to the Query field.
-func (o *SecurityMonitoringRuleQuery) SetQuery(v string) {
-	o.Query = &v
-}
-
-func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
+func (o SecurityMonitoringRuleQueryCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DistinctFields != nil {
 		toSerialize["distinctFields"] = o.DistinctFields
@@ -180,44 +173,44 @@ func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if o.Query != nil {
+	if true {
 		toSerialize["query"] = o.Query
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableSecurityMonitoringRuleQuery struct {
-	value *SecurityMonitoringRuleQuery
+type NullableSecurityMonitoringRuleQueryCreate struct {
+	value *SecurityMonitoringRuleQueryCreate
 	isSet bool
 }
 
-func (v NullableSecurityMonitoringRuleQuery) Get() *SecurityMonitoringRuleQuery {
+func (v NullableSecurityMonitoringRuleQueryCreate) Get() *SecurityMonitoringRuleQueryCreate {
 	return v.value
 }
 
-func (v *NullableSecurityMonitoringRuleQuery) Set(val *SecurityMonitoringRuleQuery) {
+func (v *NullableSecurityMonitoringRuleQueryCreate) Set(val *SecurityMonitoringRuleQueryCreate) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSecurityMonitoringRuleQuery) IsSet() bool {
+func (v NullableSecurityMonitoringRuleQueryCreate) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSecurityMonitoringRuleQuery) Unset() {
+func (v *NullableSecurityMonitoringRuleQueryCreate) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSecurityMonitoringRuleQuery(val *SecurityMonitoringRuleQuery) *NullableSecurityMonitoringRuleQuery {
-	return &NullableSecurityMonitoringRuleQuery{value: val, isSet: true}
+func NewNullableSecurityMonitoringRuleQueryCreate(val *SecurityMonitoringRuleQueryCreate) *NullableSecurityMonitoringRuleQueryCreate {
+	return &NullableSecurityMonitoringRuleQueryCreate{value: val, isSet: true}
 }
 
-func (v NullableSecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
+func (v NullableSecurityMonitoringRuleQueryCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSecurityMonitoringRuleQuery) UnmarshalJSON(src []byte) error {
+func (v *NullableSecurityMonitoringRuleQueryCreate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
