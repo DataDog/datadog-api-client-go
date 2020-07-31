@@ -13331,6 +13331,8 @@ components:
           name: name
           options:
             min_location_failed: 5
+            monitor_options:
+              renotify_interval: 331
             min_failure_duration: 5
             allow_insecure: true
             device_ids:
@@ -13339,8 +13341,8 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 2
-              interval: 7.061401241503109
+              count: 7
+              interval: 9.301444243932576
           locations:
           - locations
           - locations
@@ -13372,11 +13374,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           public_id: public_id
           tags:
           - tags
@@ -13385,6 +13387,8 @@ components:
           name: name
           options:
             min_location_failed: 5
+            monitor_options:
+              renotify_interval: 331
             min_failure_duration: 5
             allow_insecure: true
             device_ids:
@@ -13393,8 +13397,8 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 2
-              interval: 7.061401241503109
+              count: 7
+              interval: 9.301444243932576
           locations:
           - locations
           - locations
@@ -13426,11 +13430,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           public_id: public_id
           tags:
           - tags
@@ -13624,7 +13628,7 @@ components:
         allowFailure: true
         name: name
         params: '{}'
-        timeout: 9.301444243932576
+        timeout: 3.616076749251911
       properties:
         allowFailure:
           description: A boolean set to allow this step to fail.
@@ -13839,6 +13843,8 @@ components:
         name: name
         options:
           min_location_failed: 5
+          monitor_options:
+            renotify_interval: 331
           min_failure_duration: 5
           allow_insecure: true
           device_ids:
@@ -13847,8 +13853,8 @@ components:
           follow_redirects: true
           accept_self_signed: true
           retry:
-            count: 2
-            interval: 7.061401241503109
+            count: 7
+            interval: 9.301444243932576
         locations:
         - locations
         - locations
@@ -13880,11 +13886,11 @@ components:
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 9.301444243932576
+          timeout: 3.616076749251911
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 9.301444243932576
+          timeout: 3.616076749251911
         public_id: public_id
         tags:
         - tags
@@ -13971,6 +13977,8 @@ components:
       description: Object describing the extra options for a Synthetic test.
       example:
         min_location_failed: 5
+        monitor_options:
+          renotify_interval: 331
         min_failure_duration: 5
         allow_insecure: true
         device_ids:
@@ -13979,8 +13987,8 @@ components:
         follow_redirects: true
         accept_self_signed: true
         retry:
-          count: 2
-          interval: 7.061401241503109
+          count: 7
+          interval: 9.301444243932576
       properties:
         accept_self_signed:
           description: For SSL test, whether or not the test should allow self signed
@@ -14007,6 +14015,8 @@ components:
             an alert.
           format: int64
           type: integer
+        monitor_options:
+          $ref: '#/components/schemas/SyntheticsTestOptions_monitor_options'
         retry:
           $ref: '#/components/schemas/SyntheticsTestOptions_retry'
         tick_every:
@@ -18342,11 +18352,24 @@ components:
       required:
       - message
       - type
+    SyntheticsTestOptions_monitor_options:
+      description: Object containing the options for a Synthetic test as a monitor
+        (e.g. renotification).
+      example:
+        renotify_interval: 331
+      properties:
+        renotify_interval:
+          description: Time interval before renotifying if the test is still failing
+            (in minutes).
+          format: int64
+          maximum: 1440
+          minimum: 0
+          type: integer
     SyntheticsTestOptions_retry:
       description: Object describing the retry strategy to apply to a Synthetic test.
       example:
-        count: 2
-        interval: 7.061401241503109
+        count: 7
+        interval: 9.301444243932576
       properties:
         count:
           description: Number of times a test needs to be retried before marking a
