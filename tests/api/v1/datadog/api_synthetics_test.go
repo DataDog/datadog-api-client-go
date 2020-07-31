@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"log"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -78,7 +79,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 	}
 }
 
-func getTestSyntheticsSubtypeTcpAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
 	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
 	assertion2000.SetTarget(target2000)
 
@@ -259,7 +260,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create API test
-	testSyntheticsAPI := getTestSyntheticsSubtypeTcpAPI(ctx, t)
+	testSyntheticsAPI := getTestSyntheticsSubtypeTCPAPI(ctx, t)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -999,4 +1000,48 @@ func TestSyntheticsListLocations(t *testing.T) {
 	}
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Greater(len(locs.GetLocations()), 0)
+}
+
+func TestSyntheticsVariableLifecycle(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	variable := datadog.SyntheticsGlobalVariable{
+		Name: strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
+		Description: "variable description",
+		Tags: []string{"synthetics"},
+		Value: datadog.SyntheticsGlobalVariableValue{
+			Secure: datadog.PtrBool(false),
+			Value: "VARIABLE_VALUE",
+		},
+	}
+
+	// Create variable
+	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error creating Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), variable.GetName())
+
+	// Edit variable
+	updatedName := fmt.Sprintf("%s_UPDATED", variable.GetName())
+	variable.SetName(updatedName)
+
+	result, httpresp, err = Client(ctx).SyntheticsApi.EditGlobalVariable(ctx, result.GetId()).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error editing Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), updatedName)
+
+	// Delete variable
+	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics global variable %s: Response %s: %v", result.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
 }
