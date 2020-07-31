@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cases** | [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | 
+**Cases** | [**[]SecurityMonitoringRuleCaseCreate**](SecurityMonitoringRuleCaseCreate.md) | Cases for generating signals. | 
 **IsEnabled** | **bool** | Whether the rule is enabled. | 
 **Message** | **string** | Message for generated signals. | 
-**Name** | **string** | The name of the rule | 
+**Name** | **string** | The name of the rule. | 
 **Options** | [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | 
-**Queries** | [**[]SecurityMonitoringRuleQuery**](SecurityMonitoringRuleQuery.md) | Queries for selecting logs which are part of the rule. | 
-**Tags** | **[]string** | Tags for generated signals. | 
+**Queries** | [**[]SecurityMonitoringRuleQueryCreate**](SecurityMonitoringRuleQueryCreate.md) | Queries for selecting logs which are part of the rule. | 
+**Tags** | Pointer to **[]string** | Tags for generated signals. | [optional] 
 
 ## Methods
 
 ### NewSecurityMonitoringRuleCreatePayload
 
-`func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCase, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQuery, tags []string, ) *SecurityMonitoringRuleCreatePayload`
+`func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCaseCreate, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQueryCreate, ) *SecurityMonitoringRuleCreatePayload`
 
 NewSecurityMonitoringRuleCreatePayload instantiates a new SecurityMonitoringRuleCreatePayload object
 This constructor will assign default values to properties that have it defined,
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCases
 
-`func (o *SecurityMonitoringRuleCreatePayload) GetCases() []SecurityMonitoringRuleCase`
+`func (o *SecurityMonitoringRuleCreatePayload) GetCases() []SecurityMonitoringRuleCaseCreate`
 
 GetCases returns the Cases field if non-nil, zero value otherwise.
 
 ### GetCasesOk
 
-`func (o *SecurityMonitoringRuleCreatePayload) GetCasesOk() (*[]SecurityMonitoringRuleCase, bool)`
+`func (o *SecurityMonitoringRuleCreatePayload) GetCasesOk() (*[]SecurityMonitoringRuleCaseCreate, bool)`
 
 GetCasesOk returns a tuple with the Cases field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCases
 
-`func (o *SecurityMonitoringRuleCreatePayload) SetCases(v []SecurityMonitoringRuleCase)`
+`func (o *SecurityMonitoringRuleCreatePayload) SetCases(v []SecurityMonitoringRuleCaseCreate)`
 
 SetCases sets Cases field to given value.
 
@@ -133,20 +133,20 @@ SetOptions sets Options field to given value.
 
 ### GetQueries
 
-`func (o *SecurityMonitoringRuleCreatePayload) GetQueries() []SecurityMonitoringRuleQuery`
+`func (o *SecurityMonitoringRuleCreatePayload) GetQueries() []SecurityMonitoringRuleQueryCreate`
 
 GetQueries returns the Queries field if non-nil, zero value otherwise.
 
 ### GetQueriesOk
 
-`func (o *SecurityMonitoringRuleCreatePayload) GetQueriesOk() (*[]SecurityMonitoringRuleQuery, bool)`
+`func (o *SecurityMonitoringRuleCreatePayload) GetQueriesOk() (*[]SecurityMonitoringRuleQueryCreate, bool)`
 
 GetQueriesOk returns a tuple with the Queries field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQueries
 
-`func (o *SecurityMonitoringRuleCreatePayload) SetQueries(v []SecurityMonitoringRuleQuery)`
+`func (o *SecurityMonitoringRuleCreatePayload) SetQueries(v []SecurityMonitoringRuleQueryCreate)`
 
 SetQueries sets Queries field to given value.
 
@@ -170,6 +170,11 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *SecurityMonitoringRuleCreatePayload) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
