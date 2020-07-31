@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"description":"variable description","name":"go-TestSyntheticsVariableLifecycle-local-1589290407","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
+      {"description":"variable description","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_LOCAL_1596184994","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
     form: {}
     headers:
       Accept:
@@ -11,36 +11,34 @@ interactions:
       Content-Type:
       - application/json
       Dd-Operation-Id:
-      - CreateVariable
+      - CreateGlobalVariable
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9154522957646948539"
+      - "8158679655415957407"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2209688827063432418"
+      - "6494845629360570831"
     url: https://api.datadoghq.com/api/v1/synthetics/variables
     method: POST
   response:
-    body: '{"description":"variable description","id":"1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac","name":"go-TestSyntheticsVariableLifecycle-local-1589290407","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"VARIABLE_VALUE"}}'
+    body: '{"parse_test_extracted_at":null,"description":"variable description","tags":["synthetics"],"parse_test_public_id":null,"value":{"secure":false,"value":"VARIABLE_VALUE"},"id":"262a9e5c-c24f-47ce-b297-6a8679dc3f72","parse_test_options":null,"name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_LOCAL_1596184994","parse_test_name":null,"type":"variable"}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 July 2020 15:14:27 GMT
+      - Fri, 31 Jul 2020 08:43:15 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:33:27 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 07-Aug-2020 08:43:15 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -49,9 +47,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - OdMYjD4Lcx2EOYJ2NSqLNRIyMqxNYyUQxCcT6zY9ZmZ+zl9yipXz0nuLjH5hVxTY
+      - hwI1xW1jobFHf2zp84DCOIiyi35zogyeJRd8i6KVEP/Mns/VANCoCRbonvlZZK0p
       X-Dd-Version:
-      - "35.2493025"
+      - "35.2814607"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -61,13 +59,13 @@ interactions:
       X-Ratelimit-Remaining:
       - "119"
       X-Ratelimit-Reset:
-      - "33"
+      - "45"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"description":"variable description","name":"go-TestSyntheticsVariableLifecycle-local-1589290407-updated","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
+      {"description":"variable description","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_LOCAL_1596184994_UPDATED","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
     form: {}
     headers:
       Accept:
@@ -75,36 +73,34 @@ interactions:
       Content-Type:
       - application/json
       Dd-Operation-Id:
-      - CreateVariable
+      - EditGlobalVariable
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9154522957646948539"
+      - "3180178749687594301"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2209688827063432418"
-    url: https://api.datadoghq.com/api/v1/synthetics/variables/1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac
+      - "6494845629360570831"
+    url: https://api.datadoghq.com/api/v1/synthetics/variables/262a9e5c-c24f-47ce-b297-6a8679dc3f72
     method: PUT
   response:
-    body: '{"description":"variable description","id":"1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac","name":"go-TestSyntheticsVariableLifecycle-local-1589290407-updated","tags":["synthetics"],"type":"variable","value":{"secure":false,"value":"VARIABLE_VALUE"}}'
+    body: '{"parse_test_extracted_at":null,"description":"variable description","tags":["synthetics"],"parse_test_public_id":null,"value":{"secure":false,"value":"VARIABLE_VALUE"},"id":"262a9e5c-c24f-47ce-b297-6a8679dc3f72","parse_test_options":null,"name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_LOCAL_1596184994_UPDATED","parse_test_name":null,"type":"variable"}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 July 2020 15:14:27 GMT
+      - Fri, 31 Jul 2020 08:43:17 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:33:27 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 07-Aug-2020 08:43:16 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -113,9 +109,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - OdMYjD4Lcx2EOYJ2NSqLNRIyMqxNYyUQxCcT6zY9ZmZ+zl9yipXz0nuLjH5hVxTY
+      - zw3H8Hey+52s9gMQUk5aX4H++lHod0yST44vKRHh+Exv0+QWEPkaiIz7lGsCmogE
       X-Dd-Version:
-      - "35.2493025"
+      - "35.2814607"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -125,7 +121,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "119"
       X-Ratelimit-Reset:
-      - "33"
+      - "44"
     status: 200 OK
     code: 200
     duration: ""
@@ -135,50 +131,46 @@ interactions:
     headers:
       Accept:
       - application/json
-      Content-Type:
-      - application/json
       Dd-Operation-Id:
-      - CreateVariable
+      - DeleteGlobalVariable
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9154522957646948539"
+      - "2098816966672422588"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2209688827063432418"
-    url: https://api.datadoghq.com/api/v1/synthetics/variables/1224f1ce-c6ec-4c6b-8d4c-7caef7ad5cac
+      - "6494845629360570831"
+    url: https://api.datadoghq.com/api/v1/synthetics/variables/262a9e5c-c24f-47ce-b297-6a8679dc3f72
     method: DELETE
   response:
-    body: ""
+    body: "null"
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Length:
+      - "4"
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 July 2020 15:14:27 GMT
+      - Fri, 31 Jul 2020 08:43:17 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:33:27 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 07-Aug-2020 08:43:17 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - OdMYjD4Lcx2EOYJ2NSqLNRIyMqxNYyUQxCcT6zY9ZmZ+zl9yipXz0nuLjH5hVxTY
+      - WY3vIdiOXNyg7XF0Xh2NOOYLSFLJiBmrjkeeQH86Obm8qQp3jOT59l8QZqA/Phcr
       X-Dd-Version:
-      - "35.2493025"
+      - "35.2814607"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -188,7 +180,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "119"
       X-Ratelimit-Reset:
-      - "33"
+      - "43"
     status: 200 OK
     code: 200
     duration: ""
