@@ -6331,25 +6331,25 @@ paths:
       responses:
         "200":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/UserDisableResponse'
           description: User disabled
         "400":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Bad Request
         "403":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
         "404":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
@@ -16907,6 +16907,8 @@ components:
       type: object
     UserDisableResponse:
       description: Array of user disabled for a given organization.
+      example:
+        message: message
       properties:
         message:
           description: Information pertaining to a user disabled for a given organization.
