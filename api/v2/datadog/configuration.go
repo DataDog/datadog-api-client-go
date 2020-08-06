@@ -142,12 +142,14 @@ func NewConfiguration() *Configuration {
 		},
 		OperationServers: map[string]ServerConfigurations{},
 		unstableOperations: map[string]bool{
-			"AggregateLogs":         false,
-			"ListLogs":              false,
-			"ListLogsGet":           false,
-			"AddReadRoleToArchive":  false,
-			"ListArchiveReadRoles":  false,
-			"RemoveRoleFromArchive": false,
+			"AggregateLogs":                   false,
+			"ListLogs":                        false,
+			"ListLogsGet":                     false,
+			"AddReadRoleToArchive":            false,
+			"ListArchiveReadRoles":            false,
+			"RemoveRoleFromArchive":           false,
+			"ListSecurityMonitoringSignals":   false,
+			"SearchSecurityMonitoringSignals": false,
 		},
 	}
 	return cfg
