@@ -189,6 +189,10 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 	client := Client(ctx)
 	api := client.SecurityMonitoringApi
 
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
+
 	now := tests.ClockFromContext(ctx).Now()
 	uniqueName := tests.UniqueEntityName(ctx, t)
 
@@ -283,6 +287,10 @@ func TestListSecurityMonitoringSignals(t *testing.T) {
 	defer enableSecMonUnstableOperations(ctx)()
 	client := Client(ctx)
 	api := client.SecurityMonitoringApi
+
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 
 	now := tests.ClockFromContext(ctx).Now()
 	uniqueName := tests.UniqueEntityName(ctx, t)
