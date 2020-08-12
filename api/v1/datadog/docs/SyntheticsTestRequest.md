@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BasicAuth** | Pointer to [**SyntheticsTestRequestBasicAuth**](SyntheticsTestRequest_basicAuth.md) |  | [optional] 
+**BasicAuth** | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md) |  | [optional] 
 **Body** | Pointer to **string** | Body to include in the test. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBasicAuth
 
-`func (o *SyntheticsTestRequest) GetBasicAuth() SyntheticsTestRequestBasicAuth`
+`func (o *SyntheticsTestRequest) GetBasicAuth() SyntheticsBasicAuth`
 
 GetBasicAuth returns the BasicAuth field if non-nil, zero value otherwise.
 
 ### GetBasicAuthOk
 
-`func (o *SyntheticsTestRequest) GetBasicAuthOk() (*SyntheticsTestRequestBasicAuth, bool)`
+`func (o *SyntheticsTestRequest) GetBasicAuthOk() (*SyntheticsBasicAuth, bool)`
 
 GetBasicAuthOk returns a tuple with the BasicAuth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBasicAuth
 
-`func (o *SyntheticsTestRequest) SetBasicAuth(v SyntheticsTestRequestBasicAuth)`
+`func (o *SyntheticsTestRequest) SetBasicAuth(v SyntheticsBasicAuth)`
 
 SetBasicAuth sets BasicAuth field to given value.
 

@@ -185,6 +185,7 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
 *SyntheticsApi* | [**ListLocations**](docs/SyntheticsApi.md#listlocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 *SyntheticsApi* | [**ListTests**](docs/SyntheticsApi.md#listtests) | **Get** /api/v1/synthetics/tests | Get a list of tests
+*SyntheticsApi* | [**TriggerCITests**](docs/SyntheticsApi.md#triggercitests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger some Synthetics tests for CI
 *SyntheticsApi* | [**UpdateTest**](docs/SyntheticsApi.md#updatetest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
 *SyntheticsApi* | [**UpdateTestPauseStatus**](docs/SyntheticsApi.md#updatetestpausestatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
 *TagsApi* | [**CreateHostTags**](docs/TagsApi.md#createhosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
@@ -464,6 +465,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsAssertionOperator](docs/SyntheticsAssertionOperator.md)
  - [SyntheticsAssertionTarget](docs/SyntheticsAssertionTarget.md)
  - [SyntheticsAssertionType](docs/SyntheticsAssertionType.md)
+ - [SyntheticsBasicAuth](docs/SyntheticsBasicAuth.md)
  - [SyntheticsBrowserError](docs/SyntheticsBrowserError.md)
  - [SyntheticsBrowserErrorType](docs/SyntheticsBrowserErrorType.md)
  - [SyntheticsBrowserTestResultData](docs/SyntheticsBrowserTestResultData.md)
@@ -473,6 +475,11 @@ Class | Method | HTTP request | Description
  - [SyntheticsBrowserTestResultShortResult](docs/SyntheticsBrowserTestResultShortResult.md)
  - [SyntheticsBrowserVariable](docs/SyntheticsBrowserVariable.md)
  - [SyntheticsBrowserVariableType](docs/SyntheticsBrowserVariableType.md)
+ - [SyntheticsCITest](docs/SyntheticsCITest.md)
+ - [SyntheticsCITestBody](docs/SyntheticsCITestBody.md)
+ - [SyntheticsCITestMetadata](docs/SyntheticsCITestMetadata.md)
+ - [SyntheticsCITestMetadataCi](docs/SyntheticsCITestMetadataCi.md)
+ - [SyntheticsCITestMetadataGit](docs/SyntheticsCITestMetadataGit.md)
  - [SyntheticsCheckType](docs/SyntheticsCheckType.md)
  - [SyntheticsDeleteTestsPayload](docs/SyntheticsDeleteTestsPayload.md)
  - [SyntheticsDeleteTestsResponse](docs/SyntheticsDeleteTestsResponse.md)
@@ -508,9 +515,11 @@ Class | Method | HTTP request | Description
  - [SyntheticsTestPauseStatus](docs/SyntheticsTestPauseStatus.md)
  - [SyntheticsTestProcessStatus](docs/SyntheticsTestProcessStatus.md)
  - [SyntheticsTestRequest](docs/SyntheticsTestRequest.md)
- - [SyntheticsTestRequestBasicAuth](docs/SyntheticsTestRequestBasicAuth.md)
  - [SyntheticsTickInterval](docs/SyntheticsTickInterval.md)
  - [SyntheticsTiming](docs/SyntheticsTiming.md)
+ - [SyntheticsTriggerCITestsResponse](docs/SyntheticsTriggerCITestsResponse.md)
+ - [SyntheticsTriggerCITestsResponseLocations](docs/SyntheticsTriggerCITestsResponseLocations.md)
+ - [SyntheticsTriggerCITestsResponseResults](docs/SyntheticsTriggerCITestsResponseResults.md)
  - [SyntheticsUpdateTestPauseStatusPayload](docs/SyntheticsUpdateTestPauseStatusPayload.md)
  - [SyntheticsWarningType](docs/SyntheticsWarningType.md)
  - [TableWidgetDefinition](docs/TableWidgetDefinition.md)

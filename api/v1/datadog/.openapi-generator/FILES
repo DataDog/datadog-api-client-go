@@ -293,6 +293,7 @@ docs/SyntheticsAssertionJSONPathTargetTarget.md
 docs/SyntheticsAssertionOperator.md
 docs/SyntheticsAssertionTarget.md
 docs/SyntheticsAssertionType.md
+docs/SyntheticsBasicAuth.md
 docs/SyntheticsBrowserError.md
 docs/SyntheticsBrowserErrorType.md
 docs/SyntheticsBrowserTestResultData.md
@@ -302,6 +303,11 @@ docs/SyntheticsBrowserTestResultShort.md
 docs/SyntheticsBrowserTestResultShortResult.md
 docs/SyntheticsBrowserVariable.md
 docs/SyntheticsBrowserVariableType.md
+docs/SyntheticsCITest.md
+docs/SyntheticsCITestBody.md
+docs/SyntheticsCITestMetadata.md
+docs/SyntheticsCITestMetadataCi.md
+docs/SyntheticsCITestMetadataGit.md
 docs/SyntheticsCheckType.md
 docs/SyntheticsDeleteTestsPayload.md
 docs/SyntheticsDeleteTestsResponse.md
@@ -337,9 +343,11 @@ docs/SyntheticsTestOptionsRetry.md
 docs/SyntheticsTestPauseStatus.md
 docs/SyntheticsTestProcessStatus.md
 docs/SyntheticsTestRequest.md
-docs/SyntheticsTestRequestBasicAuth.md
 docs/SyntheticsTickInterval.md
 docs/SyntheticsTiming.md
+docs/SyntheticsTriggerCITestsResponse.md
+docs/SyntheticsTriggerCITestsResponseLocations.md
+docs/SyntheticsTriggerCITestsResponseResults.md
 docs/SyntheticsUpdateTestPauseStatusPayload.md
 docs/SyntheticsWarningType.md
 docs/TableWidgetDefinition.md
@@ -698,6 +706,7 @@ model_synthetics_assertion_json_path_target_target.go
 model_synthetics_assertion_operator.go
 model_synthetics_assertion_target.go
 model_synthetics_assertion_type.go
+model_synthetics_basic_auth.go
 model_synthetics_browser_error.go
 model_synthetics_browser_error_type.go
 model_synthetics_browser_test_result_data.go
@@ -708,6 +717,11 @@ model_synthetics_browser_test_result_short_result.go
 model_synthetics_browser_variable.go
 model_synthetics_browser_variable_type.go
 model_synthetics_check_type.go
+model_synthetics_ci_test_.go
+model_synthetics_ci_test_body.go
+model_synthetics_ci_test_metadata.go
+model_synthetics_ci_test_metadata_ci.go
+model_synthetics_ci_test_metadata_git.go
 model_synthetics_delete_tests_payload.go
 model_synthetics_delete_tests_response.go
 model_synthetics_delete_tests_response_deleted_tests.go
@@ -742,9 +756,11 @@ model_synthetics_test_options_retry.go
 model_synthetics_test_pause_status.go
 model_synthetics_test_process_status.go
 model_synthetics_test_request.go
-model_synthetics_test_request_basic_auth.go
 model_synthetics_tick_interval.go
 model_synthetics_timing.go
+model_synthetics_trigger_ci_tests_response.go
+model_synthetics_trigger_ci_tests_response_locations.go
+model_synthetics_trigger_ci_tests_response_results.go
 model_synthetics_update_test_pause_status_payload.go
 model_synthetics_warning_type.go
 model_table_widget_definition.go
