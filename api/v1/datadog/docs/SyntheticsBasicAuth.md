@@ -1,4 +1,4 @@
-# SyntheticsTestRequestBasicAuth
+# SyntheticsBasicAuth
 
 ## Properties
 
@@ -9,59 +9,59 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSyntheticsTestRequestBasicAuth
+### NewSyntheticsBasicAuth
 
-`func NewSyntheticsTestRequestBasicAuth(password string, username string, ) *SyntheticsTestRequestBasicAuth`
+`func NewSyntheticsBasicAuth(password string, username string, ) *SyntheticsBasicAuth`
 
-NewSyntheticsTestRequestBasicAuth instantiates a new SyntheticsTestRequestBasicAuth object
+NewSyntheticsBasicAuth instantiates a new SyntheticsBasicAuth object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSyntheticsTestRequestBasicAuthWithDefaults
+### NewSyntheticsBasicAuthWithDefaults
 
-`func NewSyntheticsTestRequestBasicAuthWithDefaults() *SyntheticsTestRequestBasicAuth`
+`func NewSyntheticsBasicAuthWithDefaults() *SyntheticsBasicAuth`
 
-NewSyntheticsTestRequestBasicAuthWithDefaults instantiates a new SyntheticsTestRequestBasicAuth object
+NewSyntheticsBasicAuthWithDefaults instantiates a new SyntheticsBasicAuth object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetPassword
 
-`func (o *SyntheticsTestRequestBasicAuth) GetPassword() string`
+`func (o *SyntheticsBasicAuth) GetPassword() string`
 
 GetPassword returns the Password field if non-nil, zero value otherwise.
 
 ### GetPasswordOk
 
-`func (o *SyntheticsTestRequestBasicAuth) GetPasswordOk() (*string, bool)`
+`func (o *SyntheticsBasicAuth) GetPasswordOk() (*string, bool)`
 
 GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPassword
 
-`func (o *SyntheticsTestRequestBasicAuth) SetPassword(v string)`
+`func (o *SyntheticsBasicAuth) SetPassword(v string)`
 
 SetPassword sets Password field to given value.
 
 
 ### GetUsername
 
-`func (o *SyntheticsTestRequestBasicAuth) GetUsername() string`
+`func (o *SyntheticsBasicAuth) GetUsername() string`
 
 GetUsername returns the Username field if non-nil, zero value otherwise.
 
 ### GetUsernameOk
 
-`func (o *SyntheticsTestRequestBasicAuth) GetUsernameOk() (*string, bool)`
+`func (o *SyntheticsBasicAuth) GetUsernameOk() (*string, bool)`
 
 GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsername
 
-`func (o *SyntheticsTestRequestBasicAuth) SetUsername(v string)`
+`func (o *SyntheticsBasicAuth) SetUsername(v string)`
 
 SetUsername sets Username field to given value.
 

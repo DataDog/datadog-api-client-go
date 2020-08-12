@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **MinFailureDuration** | Pointer to **int64** | Minimum amount of time in failure required to trigger an alert. | [optional] 
 **MinLocationFailed** | Pointer to **int64** | Minimum number of locations in failure required to trigger an alert. | [optional] 
 **MonitorOptions** | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptions_monitor_options.md) |  | [optional] 
-**Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptions_retry.md) |  | [optional] 
+**Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
 **TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
 
 ## Methods
