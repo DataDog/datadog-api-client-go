@@ -7873,9 +7873,7 @@ components:
         url: url
         tags:
         - environment:test
-        device_name:
-        - device_name
-        - device_name
+        device_name: device_name
         payload: '{}'
         host: host
         id: 6
@@ -7897,11 +7895,8 @@ components:
           format: int64
           type: integer
         device_name:
-          description: A list of device names to post the event with.
-          items:
-            description: A device name.
-            type: string
-          type: array
+          description: A device name.
+          type: string
         host:
           description: |-
             Host name to associate with the event.
@@ -7987,9 +7982,7 @@ components:
           url: url
           tags:
           - environment:test
-          device_name:
-          - device_name
-          - device_name
+          device_name: device_name
           payload: '{}'
           host: host
           id: 6
@@ -8004,9 +7997,7 @@ components:
           url: url
           tags:
           - environment:test
-          device_name:
-          - device_name
-          - device_name
+          device_name: device_name
           payload: '{}'
           host: host
           id: 6
@@ -8060,9 +8051,7 @@ components:
           url: url
           tags:
           - environment:test
-          device_name:
-          - device_name
-          - device_name
+          device_name: device_name
           payload: '{}'
           host: host
           id: 6
