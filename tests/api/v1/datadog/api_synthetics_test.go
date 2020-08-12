@@ -1062,7 +1062,7 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
     // trigger the test
     test := datadog.SyntheticsCITest{
         Locations: &[]string{"aws:us-east-2"},
-        PublicId: datadog.PtrString(publicID),
+        PublicId: publicID,
     }
     tests := []datadog.SyntheticsCITest{test}
 
