@@ -242,6 +242,7 @@ Class | Method | HTTP request | Description
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyListResponse](docs/ApiKeyListResponse.md)
  - [ApiKeyResponse](docs/ApiKeyResponse.md)
+ - [ApmResourcesQueryDefinition](docs/ApmResourcesQueryDefinition.md)
  - [ApplicationKey](docs/ApplicationKey.md)
  - [ApplicationKeyListResponse](docs/ApplicationKeyListResponse.md)
  - [ApplicationKeyResponse](docs/ApplicationKeyResponse.md)
