@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Aggregator** | Pointer to [**WidgetAggregator**](WidgetAggregator.md) |  | [optional] 
 **Alias** | Pointer to **string** | The column name (defaults to the metric name). | [optional] 
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**ApmResourcesQuery** | Pointer to [**ApmResourcesQueryDefinition**](ApmResourcesQueryDefinition.md) |  | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
 **Limit** | Pointer to **int64** | For metric queries, the number of lines to show in the table. Only one request should have this property. | [optional] 
@@ -111,6 +112,31 @@ SetApmQuery sets ApmQuery field to given value.
 `func (o *TableWidgetRequest) HasApmQuery() bool`
 
 HasApmQuery returns a boolean if a field has been set.
+
+### GetApmResourcesQuery
+
+`func (o *TableWidgetRequest) GetApmResourcesQuery() ApmResourcesQueryDefinition`
+
+GetApmResourcesQuery returns the ApmResourcesQuery field if non-nil, zero value otherwise.
+
+### GetApmResourcesQueryOk
+
+`func (o *TableWidgetRequest) GetApmResourcesQueryOk() (*ApmResourcesQueryDefinition, bool)`
+
+GetApmResourcesQueryOk returns a tuple with the ApmResourcesQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmResourcesQuery
+
+`func (o *TableWidgetRequest) SetApmResourcesQuery(v ApmResourcesQueryDefinition)`
+
+SetApmResourcesQuery sets ApmResourcesQuery field to given value.
+
+### HasApmResourcesQuery
+
+`func (o *TableWidgetRequest) HasApmResourcesQuery() bool`
+
+HasApmResourcesQuery returns a boolean if a field has been set.
 
 ### GetConditionalFormats
 
