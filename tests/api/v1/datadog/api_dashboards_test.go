@@ -210,7 +210,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	heatMapWidgetDefinition.SetTitleSize("16")
 	heatMapWidgetDefinition.SetTime(*widgetTime)
 	heatMapWidgetDefinition.SetShowLegend(true)
-	heatMapWidgetDefinition.SetLegendSize(datadog.WIDGETLEGENDSIZE_FOUR)
+	heatMapWidgetDefinition.SetLegendSize("4")
 
 	heatMapWidget := datadog.NewWidget(datadog.HeatMapWidgetDefinitionAsWidgetDefinition(heatMapWidgetDefinition))
 
@@ -453,7 +453,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition.SetTitleSize("16")
 	timeseriesWidgetDefinition.SetTime(*widgetTime)
 	timeseriesWidgetDefinition.SetShowLegend(true)
-	timeseriesWidgetDefinition.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
+	timeseriesWidgetDefinition.SetLegendSize("16")
 
 	timeseriesWidget := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinition))
 
@@ -496,7 +496,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionProcessQuery.SetTitleSize("16")
 	timeseriesWidgetDefinitionProcessQuery.SetTime(*widgetTime)
 	timeseriesWidgetDefinitionProcessQuery.SetShowLegend(true)
-	timeseriesWidgetDefinitionProcessQuery.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
+	timeseriesWidgetDefinitionProcessQuery.SetLegendSize("16")
 
 	timeseriesWidgetProcessQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionProcessQuery))
 
@@ -546,7 +546,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionLogQuery.SetTitleSize("16")
 	timeseriesWidgetDefinitionLogQuery.SetTime(*widgetTime)
 	timeseriesWidgetDefinitionLogQuery.SetShowLegend(true)
-	timeseriesWidgetDefinitionLogQuery.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
+	timeseriesWidgetDefinitionLogQuery.SetLegendSize("16")
 
 	timeseriesWidgetLogQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionLogQuery))
 
@@ -582,7 +582,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionEventQuery.SetTitleSize("16")
 	timeseriesWidgetDefinitionEventQuery.SetTime(*widgetTime)
 	timeseriesWidgetDefinitionEventQuery.SetShowLegend(true)
-	timeseriesWidgetDefinitionEventQuery.SetLegendSize(datadog.WIDGETLEGENDSIZE_SIXTEEN)
+	timeseriesWidgetDefinitionEventQuery.SetLegendSize("16")
 
 	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
 
