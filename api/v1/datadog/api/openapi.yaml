@@ -7585,7 +7585,9 @@ components:
         Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
       properties:
         legend_size:
-          $ref: '#/components/schemas/WidgetLegendSize'
+          description: Available legend sizes for a widget. Should be one of "0",
+            "2", "4", "8", "16", or "auto".
+          type: string
         requests:
           description: |-
             Array of one request object to display in the widget.
@@ -8345,7 +8347,9 @@ components:
             $ref: '#/components/schemas/WidgetEvent'
           type: array
         legend_size:
-          $ref: '#/components/schemas/WidgetLegendSize'
+          description: Available legend sizes for a widget. Should be one of "0",
+            "2", "4", "8", "16", or "auto".
+          type: string
         requests:
           description: List of widget types.
           example:
@@ -13471,14 +13475,14 @@ components:
       description: A JSON list of the ID or IDs of the Synthetic tests that you want
         to delete.
       example:
-        public_ids:
-        - public_ids
-        - public_ids
+        public_ids: []
       properties:
         public_ids:
           description: An array of Synthetic test IDs you want to delete.
+          example: []
           items:
             description: A Synthetic test ID to delete.
+            example: abc-def-123
             type: string
           type: array
       type: object
@@ -14734,7 +14738,9 @@ components:
             $ref: '#/components/schemas/WidgetEvent'
           type: array
         legend_size:
-          $ref: '#/components/schemas/WidgetLegendSize'
+          description: Available legend sizes for a widget. Should be one of "0",
+            "2", "4", "8", "16", or "auto".
+          type: string
         markers:
           description: List of markers.
           items:
@@ -17515,22 +17521,9 @@ components:
       x-enum-varnames:
       - ORDERED
     WidgetLegendSize:
-      description: Available legend sizes for a widget.
-      enum:
-      - "0"
-      - "2"
-      - "4"
-      - "8"
-      - "16"
-      - auto
+      description: Available legend sizes for a widget. Should be one of "0", "2",
+        "4", "8", "16", or "auto".
       type: string
-      x-enum-varnames:
-      - ZERO
-      - TWO
-      - FOUR
-      - EIGHT
-      - SIXTEEN
-      - AUTO
     WidgetLineType:
       description: Type of lines displayed.
       enum:

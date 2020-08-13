@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
+**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **Requests** | [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
@@ -62,20 +62,20 @@ HasEvents returns a boolean if a field has been set.
 
 ### GetLegendSize
 
-`func (o *TimeseriesWidgetDefinition) GetLegendSize() WidgetLegendSize`
+`func (o *TimeseriesWidgetDefinition) GetLegendSize() string`
 
 GetLegendSize returns the LegendSize field if non-nil, zero value otherwise.
 
 ### GetLegendSizeOk
 
-`func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool)`
+`func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*string, bool)`
 
 GetLegendSizeOk returns a tuple with the LegendSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendSize
 
-`func (o *TimeseriesWidgetDefinition) SetLegendSize(v WidgetLegendSize)`
+`func (o *TimeseriesWidgetDefinition) SetLegendSize(v string)`
 
 SetLegendSize sets LegendSize field to given value.
 

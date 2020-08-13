@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
+**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **Requests** | [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md) | List of widget types. | 
 **ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
@@ -61,20 +61,20 @@ HasEvents returns a boolean if a field has been set.
 
 ### GetLegendSize
 
-`func (o *HeatMapWidgetDefinition) GetLegendSize() WidgetLegendSize`
+`func (o *HeatMapWidgetDefinition) GetLegendSize() string`
 
 GetLegendSize returns the LegendSize field if non-nil, zero value otherwise.
 
 ### GetLegendSizeOk
 
-`func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool)`
+`func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*string, bool)`
 
 GetLegendSizeOk returns a tuple with the LegendSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendSize
 
-`func (o *HeatMapWidgetDefinition) SetLegendSize(v WidgetLegendSize)`
+`func (o *HeatMapWidgetDefinition) SetLegendSize(v string)`
 
 SetLegendSize sets LegendSize field to given value.
 

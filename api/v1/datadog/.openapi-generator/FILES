@@ -438,7 +438,6 @@ docs/WidgetGrouping.md
 docs/WidgetImageSizing.md
 docs/WidgetLayout.md
 docs/WidgetLayoutType.md
-docs/WidgetLegendSize.md
 docs/WidgetLineType.md
 docs/WidgetLineWidth.md
 docs/WidgetLiveSpan.md
@@ -848,7 +847,6 @@ model_widget_grouping.go
 model_widget_image_sizing.go
 model_widget_layout.go
 model_widget_layout_type.go
-model_widget_legend_size.go
 model_widget_line_type.go
 model_widget_line_width.go
 model_widget_live_span.go
