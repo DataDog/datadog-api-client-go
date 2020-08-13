@@ -2400,14 +2400,12 @@ components:
         your organization.
       example:
         compute:
-        - aggregation: pc90
-          interval: 20m
-          metric: '@score'
-          type: timeseries
-        - aggregation: pc90
-          interval: 20m
-          metric: '@score'
-          type: timeseries
+        - metric: '@duration'
+          aggregation: pc90
+          interval: 5m
+        - metric: '@duration'
+          aggregation: pc90
+          interval: 5m
         filter:
           indexes:
           - main
@@ -2417,24 +2415,26 @@ components:
           to: now
         options:
           timezone: GMT
-          timeOffset: 0
+          timeOffset: 6
         group_by:
-        - facet: host
-          limit: 50
-          missing: missing_host
+        - histogram:
+            min: 50
+            max: 100
+            interval: 10
+          limit: 0
           sort:
+            aggregation: count
             order: asc
-            type: alphabetical
-          total: true
-          type: facet
-        - facet: host
-          limit: 50
-          missing: missing_host
+          facet: host
+        - histogram:
+            min: 50
+            max: 100
+            interval: 10
+          limit: 0
           sort:
+            aggregation: count
             order: asc
-            type: alphabetical
-          total: true
-          type: facet
+          facet: host
         paging:
           after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
       properties:
@@ -2541,6 +2541,7 @@ components:
       - min
       - max
       - avg
+      example: pc90
       type: string
       x-enum-varnames:
       - COUNT
@@ -2869,10 +2870,9 @@ components:
     LogsCompute:
       description: A compute rule to compute metrics or timeseries
       example:
+        metric: '@duration'
         aggregation: pc90
-        interval: 20m
-        metric: '@score'
-        type: timeseries
+        interval: 5m
       properties:
         aggregation:
           $ref: '#/components/schemas/LogsAggregationFunction'
@@ -2904,14 +2904,15 @@ components:
     LogsGroupBy:
       description: A group by rule
       example:
-        facet: host
-        limit: 50
-        missing: missing_host
+        histogram:
+          min: 50
+          max: 100
+          interval: 10
+        limit: 0
         sort:
+          aggregation: count
           order: asc
-          type: alphabetical
-        total: true
-        type: facet
+        facet: host
       properties:
         facet:
           description: The name of the facet to use (required)
@@ -2974,7 +2975,7 @@ components:
           to: now
         options:
           timezone: GMT
-          timeOffset: 0
+          timeOffset: 6
         page:
           cursor: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           limit: 25
@@ -3093,7 +3094,7 @@ components:
         Note: You should only supply timezone or time offset but not both otherwise the query will fail.
       example:
         timezone: GMT
-        timeOffset: 0
+        timeOffset: 6
       properties:
         timeOffset:
           description: The time offset (in seconds) to apply to the query.
@@ -5140,6 +5141,10 @@ components:
       description: |-
         Used to perform a histogram computation (only for measure facets).
         Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
+      example:
+        min: 50
+        max: 100
+        interval: 10
       properties:
         interval:
           description: The bin size of the histogram buckets

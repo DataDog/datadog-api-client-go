@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **GroupBy** | Pointer to **[]string** | List of tag prefixes to group by in the case of a cluster check. | [optional] 
 **Grouping** | [**WidgetGrouping**](WidgetGrouping.md) |  | 
 **Tags** | Pointer to **[]string** | List of tags used to filter the groups reporting a cluster check. | [optional] 
-**LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
+**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
 **EventSize** | Pointer to [**WidgetEventSize**](WidgetEventSize.md) |  | [optional] 
 **Query** | **string** | Query to filter the monitors with. | 
@@ -473,20 +473,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetLegendSize
 
-`func (o *WidgetDefinition) GetLegendSize() WidgetLegendSize`
+`func (o *WidgetDefinition) GetLegendSize() string`
 
 GetLegendSize returns the LegendSize field if non-nil, zero value otherwise.
 
 ### GetLegendSizeOk
 
-`func (o *WidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool)`
+`func (o *WidgetDefinition) GetLegendSizeOk() (*string, bool)`
 
 GetLegendSizeOk returns a tuple with the LegendSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendSize
 
-`func (o *WidgetDefinition) SetLegendSize(v WidgetLegendSize)`
+`func (o *WidgetDefinition) SetLegendSize(v string)`
 
 SetLegendSize sets LegendSize field to given value.
 

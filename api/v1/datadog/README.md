@@ -607,7 +607,6 @@ Class | Method | HTTP request | Description
  - [WidgetImageSizing](docs/WidgetImageSizing.md)
  - [WidgetLayout](docs/WidgetLayout.md)
  - [WidgetLayoutType](docs/WidgetLayoutType.md)
- - [WidgetLegendSize](docs/WidgetLegendSize.md)
  - [WidgetLineType](docs/WidgetLineType.md)
  - [WidgetLineWidth](docs/WidgetLineWidth.md)
  - [WidgetLiveSpan](docs/WidgetLiveSpan.md)

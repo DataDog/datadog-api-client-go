@@ -15,8 +15,9 @@ import (
 // TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Analyzed Spans over time.
 type TimeseriesWidgetDefinition struct {
 	// List of widget events.
-	Events     *[]WidgetEvent    `json:"events,omitempty"`
-	LegendSize *WidgetLegendSize `json:"legend_size,omitempty"`
+	Events *[]WidgetEvent `json:"events,omitempty"`
+	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
+	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
 	Markers *[]WidgetMarker `json:"markers,omitempty"`
 	// List of timeseries widget requests.
@@ -87,9 +88,9 @@ func (o *TimeseriesWidgetDefinition) SetEvents(v []WidgetEvent) {
 }
 
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
-func (o *TimeseriesWidgetDefinition) GetLegendSize() WidgetLegendSize {
+func (o *TimeseriesWidgetDefinition) GetLegendSize() string {
 	if o == nil || o.LegendSize == nil {
-		var ret WidgetLegendSize
+		var ret string
 		return ret
 	}
 	return *o.LegendSize
@@ -97,7 +98,7 @@ func (o *TimeseriesWidgetDefinition) GetLegendSize() WidgetLegendSize {
 
 // GetLegendSizeOk returns a tuple with the LegendSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool) {
+func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*string, bool) {
 	if o == nil || o.LegendSize == nil {
 		return nil, false
 	}
@@ -113,8 +114,8 @@ func (o *TimeseriesWidgetDefinition) HasLegendSize() bool {
 	return false
 }
 
-// SetLegendSize gets a reference to the given WidgetLegendSize and assigns it to the LegendSize field.
-func (o *TimeseriesWidgetDefinition) SetLegendSize(v WidgetLegendSize) {
+// SetLegendSize gets a reference to the given string and assigns it to the LegendSize field.
+func (o *TimeseriesWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
 }
 

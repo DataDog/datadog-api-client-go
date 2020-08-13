@@ -15,8 +15,9 @@ import (
 // HeatMapWidgetDefinition The heat map visualization shows metrics aggregated across many tags, such as hosts. The more hosts that have a particular value, the darker that square is.
 type HeatMapWidgetDefinition struct {
 	// List of widget events.
-	Events     *[]WidgetEvent    `json:"events,omitempty"`
-	LegendSize *WidgetLegendSize `json:"legend_size,omitempty"`
+	Events *[]WidgetEvent `json:"events,omitempty"`
+	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
+	LegendSize *string `json:"legend_size,omitempty"`
 	// List of widget types.
 	Requests []HeatMapWidgetRequest `json:"requests"`
 	// Whether or not to display the legend on this widget.
@@ -85,9 +86,9 @@ func (o *HeatMapWidgetDefinition) SetEvents(v []WidgetEvent) {
 }
 
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
-func (o *HeatMapWidgetDefinition) GetLegendSize() WidgetLegendSize {
+func (o *HeatMapWidgetDefinition) GetLegendSize() string {
 	if o == nil || o.LegendSize == nil {
-		var ret WidgetLegendSize
+		var ret string
 		return ret
 	}
 	return *o.LegendSize
@@ -95,7 +96,7 @@ func (o *HeatMapWidgetDefinition) GetLegendSize() WidgetLegendSize {
 
 // GetLegendSizeOk returns a tuple with the LegendSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool) {
+func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*string, bool) {
 	if o == nil || o.LegendSize == nil {
 		return nil, false
 	}
@@ -111,8 +112,8 @@ func (o *HeatMapWidgetDefinition) HasLegendSize() bool {
 	return false
 }
 
-// SetLegendSize gets a reference to the given WidgetLegendSize and assigns it to the LegendSize field.
-func (o *HeatMapWidgetDefinition) SetLegendSize(v WidgetLegendSize) {
+// SetLegendSize gets a reference to the given string and assigns it to the LegendSize field.
+func (o *HeatMapWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
 }
 
