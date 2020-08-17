@@ -542,6 +542,8 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 
 	hostname := *tests.UniqueEntityName(ctx, t)
 
+	var hostListResp datadog.HostListResponse
+
 	// create host by sending a metric
 	metricsPayload := fmt.Sprintf(
 		`{"series": [{"host": "%s", "metric": "go.client.test.metric", "points": [[%f, 0]]}]}`,
@@ -592,7 +594,7 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 
 	// waiting for host to be muted
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		hostListResp, httpresp, err := api.ListHosts(ctx).Filter(hostname).Execute()
+		hostListResp, httpresp, err = api.ListHosts(ctx).Filter(hostname).Execute()
 		if err != nil {
 			t.Errorf("Failed to get hosts: %v", err)
 		}
@@ -600,35 +602,37 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 	})
 
 	// this is the default case, should have the muted data
-	hostListResp1, httpresp1, err1 := api.ListHosts(ctx).Filter(hostname).Execute()
-	if err1 != nil {
-		t.Errorf("Failed to get hosts: %v", err)
-	}
-	assert.Equal(200, httpresp1.StatusCode)
-	assert.Equal(int64(1), *hostListResp1.TotalReturned)
-	host1 := (*hostListResp1.HostList)[0]
-	assert.True(*host1.IsMuted)
-	assert.NotEqual(host1.MuteTimeout, nil)
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(int64(1), *hostListResp.TotalReturned)
+	host := (*hostListResp.HostList)[0]
+	assert.True(*host.IsMuted)
+	assert.NotEqual(host.MuteTimeout, nil)
 
 	// this is the case where the include_muted_hosts_data is true, should have muted data
-	hostListResp2, httpresp2, err2 := api.ListHosts(ctx).Filter(hostname).IncludeMutedHostsData(true).Execute()
-	if err2 != nil {
-		t.Errorf("Failed to get hosts: %v", err)
-	}
-	assert.Equal(200, httpresp2.StatusCode)
-	assert.Equal(int64(1), *hostListResp2.TotalReturned)
-	host2 := (*hostListResp2.HostList)[0]
-	assert.True(*host2.IsMuted)
-	assert.NotEqual(host2.MuteTimeout, nil)
+	err = tests.Retry(10*time.Second, 10, func() bool {
+		hostListResp, httpresp, err = api.ListHosts(ctx).Filter(hostname).IncludeMutedHostsData(true).Execute()
+		if err != nil {
+			t.Errorf("Failed to get hosts: %v", err)
+		}
+		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *((*hostListResp.HostList)[0].IsMuted)
+	})
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(int64(1), *hostListResp.TotalReturned)
+	host = (*hostListResp.HostList)[0]
+	assert.True(*host.IsMuted)
+	assert.NotEqual(host.MuteTimeout, nil)
 
 	// this is the case where the include_muted_hosts_data is false, should not have muted data
-	hostListResp3, httpresp3, err3 := api.ListHosts(ctx).Filter(hostname).IncludeMutedHostsData(false).Execute()
-	if err3 != nil {
-		t.Errorf("Failed to get hosts: %v", err)
-	}
-	assert.Equal(200, httpresp3.StatusCode)
-	assert.Equal(int64(1), *hostListResp3.TotalReturned)
-	host3 := (*hostListResp3.HostList)[0]
-	assert.False(*host3.IsMuted)
-	assert.Nil(host3.MuteTimeout)
+	err = tests.Retry(10*time.Second, 10, func() bool {
+		hostListResp, httpresp, err = api.ListHosts(ctx).Filter(hostname).IncludeMutedHostsData(false).Execute()
+		if err != nil {
+			t.Errorf("Failed to get hosts: %v", err)
+		}
+		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *((*hostListResp.HostList)[0].IsMuted)
+	})
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(int64(1), *hostListResp.TotalReturned)
+	host = (*hostListResp.HostList)[0]
+	assert.False(*host.IsMuted)
+	assert.Nil(host.MuteTimeout)
 }
