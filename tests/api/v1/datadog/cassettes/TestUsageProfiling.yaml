@@ -1,0 +1,62 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageProfiling
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2836888239497102129"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2476112245694842568"
+    url: https://api.datadoghq.com/api/v1/usage/profiling?end_hr=2020-07-13T00%3A00%3A00Z&start_hr=2020-07-12T00%3A00%3A00Z
+    method: GET
+  response:
+    body: '{"usage":[{"host_count":null,"hour":"2020-07-12T00:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T01:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T02:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T03:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T04:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T05:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T06:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T07:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T08:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T09:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T10:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T11:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T12:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T13:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T14:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T15:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T16:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T17:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T18:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T19:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T20:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T21:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T22:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T23:00:00+00:00","avg_container_agent_count":null}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 17 Aug 2020 14:28:08 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 24-Aug-2020 14:28:08 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - sKAY0l5Dq+9OdN3cdjnBmv3dOgVdaJs4B9XR5o+IUZC5EZY9C+nnqv+YslWCCjmi
+      X-Dd-Version:
+      - "35.2888812"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "400"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "395"
+      X-Ratelimit-Reset:
+      - "1912"
+    status: 200 OK
+    code: 200
+    duration: ""
