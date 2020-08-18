@@ -469,6 +469,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(8), usageItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageItem.GetProfilingHostTop99p())
+	assert.Equal(int64(0), usage.GetProfilingContainerAgentCountAvg())
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal("1b", usageOrgItem.GetId())
@@ -482,6 +483,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(8), usageOrgItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageOrgItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageOrgItem.GetProfilingHostTop99p())
+	assert.Equal(int64(0), usage.GetProfilingContainerAgentCountAvg())
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {

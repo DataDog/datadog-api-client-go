@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2836888239497102129"
+      - "3862325035934667375"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2476112245694842568"
+      - "9132934845688376713"
     url: https://api.datadoghq.com/api/v1/usage/profiling?end_hr=2020-07-13T00%3A00%3A00Z&start_hr=2020-07-12T00%3A00%3A00Z
     method: GET
   response:
@@ -29,13 +29,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 17 Aug 2020 14:28:08 GMT
+      - Tue, 18 Aug 2020 17:24:31 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 24-Aug-2020 14:28:08 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 17:24:31 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -44,9 +44,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - sKAY0l5Dq+9OdN3cdjnBmv3dOgVdaJs4B9XR5o+IUZC5EZY9C+nnqv+YslWCCjmi
+      - mjjix3i7KxHakJGjOSXbyjGLp+IPNWPrPaCVopgkuqm46lk1b+kLivuxRokDQC1N
       X-Dd-Version:
-      - "35.2888812"
+      - "35.2896336"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -56,7 +56,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "395"
       X-Ratelimit-Reset:
-      - "1912"
+      - "2129"
     status: 200 OK
     code: 200
     duration: ""
