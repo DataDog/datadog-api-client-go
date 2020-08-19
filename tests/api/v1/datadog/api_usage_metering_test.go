@@ -264,10 +264,7 @@ func TestUsageProfiling(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	// startHr, endHr := getStartEndHr(ctx)
-	year, month, day := tests.ClockFromContext(ctx).Now().Date()
-	startHr := time.Date(year, month, day-3, 0, 0, 0, 0, time.UTC)
-	endHr := time.Date(year, month, day-3, 23, 0, 0, 0, time.UTC)
+	startHr, endHr := getStartEndHr(ctx)
 
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageProfiling(ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
