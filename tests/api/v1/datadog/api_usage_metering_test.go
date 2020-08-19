@@ -264,7 +264,11 @@ func TestUsageProfiling(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	startHr, endHr := getStartEndHr(ctx)
+	// startHr, endHr := getStartEndHr(ctx)
+	year, month, day := tests.ClockFromContext(ctx).Now().Date()
+	startHr := time.Date(year, month, day-3, 0, 0, 0, 0, time.UTC)
+	endHr := time.Date(year, month, day-3, 23, 0, 0, 0, time.UTC)
+
 	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageProfiling(ctx).StartHr(startHr).EndHr(endHr).Execute()
 	if err != nil {
 		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -457,6 +461,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(4), usage.GetCustomTsSum())
 	assert.Equal(int64(5), usage.GetRumSessionCountAggSum())
 	assert.Equal(int64(6), usage.GetProfilingHostCountTop99pSum())
+	assert.Equal(int64(7), usage.GetProfilingContainerAgentCountAvg())
 
 	var usageItem = usage.GetUsage()[0]
 	assert.Equal(time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate().UTC())
@@ -469,7 +474,6 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(8), usageItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageItem.GetProfilingHostTop99p())
-	assert.Equal(int64(0), usage.GetProfilingContainerAgentCountAvg())
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal("1b", usageOrgItem.GetId())
@@ -483,7 +487,6 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(8), usageOrgItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageOrgItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageOrgItem.GetProfilingHostTop99p())
-	assert.Equal(int64(0), usage.GetProfilingContainerAgentCountAvg())
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {

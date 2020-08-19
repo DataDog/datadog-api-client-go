@@ -12,12 +12,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5072213193532831105"
+      - "1236001015132663234"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2708468023459737849"
-    url: https://api.datadoghq.com/api/v1/usage/summary?start_month=2020-09-18T13%3A00%3A05-04%3A00
+      - "3461566425838985319"
+    url: https://api.datadoghq.com/api/v1/usage/summary?start_month=2020-09-19T14%3A19%3A44-04%3A00
     method: GET
   response:
     body: |
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 18 Aug 2020 17:00:05 GMT
+      - Wed, 19 Aug 2020 18:19:45 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden
