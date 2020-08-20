@@ -223,7 +223,7 @@ Create a monitor using the specified options.
 The type of monitor chosen from:
 
 - anomaly: `query alert`
-- APM: `query alert`
+- APM: `query alert` or `trace-analytics alert`
 - composite: `composite`
 - custom: `service check`
 - event: `event alert`
@@ -231,12 +231,12 @@ The type of monitor chosen from:
 - host: `service check`
 - integration: `query alert` or `service check`
 - live process: `process alert`
-- logs: `logs alert`
+- logs: `log alert`
 - metric: `metric alert`
 - network: `service check`
 - outlier: `query alert`
-- process: `service query`
-- rum: `alert`
+- process: `service check`
+- rum: `rum alert`
 - watchdog: `event alert`
 
 #### Query Types

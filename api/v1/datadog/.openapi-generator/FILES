@@ -389,6 +389,8 @@ docs/UsageNetworkFlowsHour.md
 docs/UsageNetworkFlowsResponse.md
 docs/UsageNetworkHostsHour.md
 docs/UsageNetworkHostsResponse.md
+docs/UsageProfilingHour.md
+docs/UsageProfilingResponse.md
 docs/UsageReportsType.md
 docs/UsageRumSessionsHour.md
 docs/UsageRumSessionsResponse.md
@@ -799,6 +801,8 @@ model_usage_network_flows_hour.go
 model_usage_network_flows_response.go
 model_usage_network_hosts_hour.go
 model_usage_network_hosts_response.go
+model_usage_profiling_hour.go
+model_usage_profiling_response.go
 model_usage_reports_type.go
 model_usage_rum_sessions_hour.go
 model_usage_rum_sessions_response.go

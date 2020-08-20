@@ -259,6 +259,21 @@ func TestUsageSNMP(t *testing.T) {
 	assert.True(usage.HasUsage())
 }
 
+func TestUsageProfiling(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageProfiling(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
 func TestUsageBillableSummary(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
@@ -395,7 +410,6 @@ func TestMonthlyCustomReports(t *testing.T) {
 	assert.True(usage.HasMeta())
 	assert.True(usage.HasData())
 }
-
 // This test needs multi-org token so make it a unit test
 func TestUsageSummary(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
@@ -444,6 +458,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(4), usage.GetCustomTsSum())
 	assert.Equal(int64(5), usage.GetRumSessionCountAggSum())
 	assert.Equal(int64(6), usage.GetProfilingHostCountTop99pSum())
+	assert.Equal(int64(7), usage.GetProfilingContainerAgentCountAvg())
 
 	var usageItem = usage.GetUsage()[0]
 	assert.Equal(time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate().UTC())
@@ -1134,6 +1149,33 @@ func TestGetMonthlyCustomReportsErrors(t *testing.T) {
 
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetMonthlyCustomReports(ctx).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetUsageProfilingErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageProfiling(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
