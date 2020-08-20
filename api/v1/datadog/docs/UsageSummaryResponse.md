@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current month(s) for all organizations for which all usages were calculated. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current month(s) for all organizations. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all organizations. | [optional] 
+**ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current month(s) for all organizations. | [optional] 
 **ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current month(s) for all organizations. | [optional] 
 **RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all organizations. | [optional] 
@@ -550,6 +551,31 @@ SetNpmHostTop99pSum sets NpmHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasNpmHostTop99pSum() bool`
 
 HasNpmHostTop99pSum returns a boolean if a field has been set.
+
+### GetProfilingContainerAgentCountAvg
+
+`func (o *UsageSummaryResponse) GetProfilingContainerAgentCountAvg() int64`
+
+GetProfilingContainerAgentCountAvg returns the ProfilingContainerAgentCountAvg field if non-nil, zero value otherwise.
+
+### GetProfilingContainerAgentCountAvgOk
+
+`func (o *UsageSummaryResponse) GetProfilingContainerAgentCountAvgOk() (*int64, bool)`
+
+GetProfilingContainerAgentCountAvgOk returns a tuple with the ProfilingContainerAgentCountAvg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfilingContainerAgentCountAvg
+
+`func (o *UsageSummaryResponse) SetProfilingContainerAgentCountAvg(v int64)`
+
+SetProfilingContainerAgentCountAvg sets ProfilingContainerAgentCountAvg field to given value.
+
+### HasProfilingContainerAgentCountAvg
+
+`func (o *UsageSummaryResponse) HasProfilingContainerAgentCountAvg() bool`
+
+HasProfilingContainerAgentCountAvg returns a boolean if a field has been set.
 
 ### GetProfilingHostCountTop99pSum
 
