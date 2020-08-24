@@ -22,10 +22,13 @@ import (
 )
 
 type ctxKey struct{}
+type clientKey struct{}
 type apiKey struct{}
 type requestKey struct{}
+type requestNameKey struct{}
 type requestArgsKey struct{}
 type requestParamsKey struct{}
+type ctxRequestsUndoKey struct{}
 type responseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
@@ -52,6 +55,28 @@ func GetCtx(ctx gobdd.Context) context.Context {
 		panic(err)
 	}
 	return c.(context.Context)
+}
+
+func GetResponse(ctx gobdd.Context) []reflect.Value {
+	r, err := ctx.Get(responseKey{})
+	if err != nil {
+		panic(err)
+	}
+	return r.([]reflect.Value)
+}
+
+// SetRequestsUndo sets map with undo function for each request.
+func SetRequestsUndo(ctx gobdd.Context, value map[string]func(ctx gobdd.Context)) {
+	ctx.Set(ctxRequestsUndoKey{}, value)
+}
+
+// GetRequestsUndo gets map with undo function for each request.
+func GetRequestsUndo(ctx gobdd.Context) map[string]func(ctx gobdd.Context) {
+	requestsUndo, err := ctx.Get(ctxRequestsUndoKey{})
+	if err != nil {
+		panic(err)
+	}
+	return requestsUndo.(map[string]func(ctx gobdd.Context))
 }
 
 // SetCtx sets Go context in BDD context.
@@ -138,17 +163,14 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	}
 
 	ctx.Set(requestKey{}, f)
+	ctx.Set(requestNameKey{}, name)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
 }
 
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
-	r, err := ctx.Get(responseKey{})
-	if err != nil {
-		panic(err)
-	}
 	// Execute() returns tripples -> 2nd value is *http.Response -> get StatusCode
-	resp := r.([]reflect.Value)
+	resp := GetResponse(ctx)
 	code := resp[len(resp)-2].Interface().(*http.Response).StatusCode
 	if expected != code {
 		t.Fatalf("Excepted %d got %d", expected, code)
@@ -195,6 +217,18 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 	result := request.MethodByName("Execute").Call(nil)
 	ctx.Set(responseKey{}, result)
+
+	name, err := ctx.GetString(requestNameKey{})
+	if err != nil {
+		t.Errorf("could not get a request name: %v", err)
+	}
+	if undo, ok := GetRequestsUndo(ctx)[name]; ok {
+		GetCleanup(ctx)["01-undo"] = func() {
+			undo(ctx)
+		}
+	} else {
+		t.Errorf("missing undo for %s", name)
+	}
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
