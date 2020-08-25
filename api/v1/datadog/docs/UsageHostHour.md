@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **ApmHostCount** | Pointer to **int64** | Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods). | [optional] 
 **AwsHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent). | [optional] 
 **AzureHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent). | [optional] 
-**ContainerCount** | Pointer to **int64** | Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of &#x60;agent_host_count&#x60;, &#x60;aws_host_count&#x60;, and &#x60;gcp_host_count&#x60;. | [optional] 
+**ContainerCount** | Pointer to **int64** | Shows the total number of containers reported by the Docker integration during the hour. | [optional] 
 **GcpHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent). | [optional] 
-**HostCount** | Pointer to **int64** | Shows the total number of containers reporting via the Docker integration during the hour. | [optional] 
+**HostCount** | Pointer to **int64** | Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of &#x60;agent_host_count&#x60;, &#x60;aws_host_count&#x60;, and &#x60;gcp_host_count&#x60;. | [optional] 
 **Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
 
 ## Methods
