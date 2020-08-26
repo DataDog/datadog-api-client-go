@@ -16,6 +16,41 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
+func undoIgnore(ctx gobdd.Context) {}
+
+func undoCreateUser(ctx gobdd.Context) {
+	user := tests.GetResponse(ctx)[0].Interface().(datadog.UserResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).UsersApi.DisableUser(cctx, user.Data.GetId()).Execute()
+}
+
+func undoCreateRole(ctx gobdd.Context) {
+	role := tests.GetResponse(ctx)[0].Interface().(datadog.RoleCreateResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).RolesApi.DeleteRole(cctx, role.Data.GetId()).Execute()
+}
+
+var requestsUndo = map[string]func(ctx gobdd.Context){
+	"AddPermissionToRole":      undoIgnore,
+	"AddUserToRole":            undoIgnore,
+	"CreateRole":               undoCreateRole,
+	"CreateUser":               undoCreateUser,
+	"DisableUser":              undoIgnore,
+	"DeleteRole":               undoIgnore,
+	"GetRole":                  undoIgnore,
+	"GetUser":                  undoIgnore,
+	"ListPermissions":          undoIgnore,
+	"ListRolePermissions":      undoIgnore,
+	"ListRoles":                undoIgnore,
+	"ListRoleUsers":            undoIgnore,
+	"ListUsers":                undoIgnore,
+	"ListUserPermissions":      undoIgnore,
+	"RemovePermissionFromRole": undoIgnore,
+	"RemoveUserFromRole":       undoIgnore,
+	"UpdateRole":               undoIgnore,
+	"UpdateUser":               undoIgnore,
+}
+
 func TestScenarios(t *testing.T) {
 	s := gobdd.NewSuite(
 		t,
@@ -31,6 +66,7 @@ func TestScenarios(t *testing.T) {
 				ct.(*testing.T),
 			)
 			tests.SetCtx(ctx, cctx)
+			tests.SetRequestsUndo(ctx, requestsUndo)
 			tests.SetData(ctx, make(map[string]interface{}))
 			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
