@@ -37,6 +37,7 @@ var requestsUndo = map[string]func(ctx gobdd.Context){
 	"CreateUser":               undoCreateUser,
 	"DisableUser":              undoIgnore,
 	"DeleteRole":               undoIgnore,
+	"GetInvitation":            undoIgnore,
 	"GetRole":                  undoIgnore,
 	"GetUser":                  undoIgnore,
 	"ListPermissions":          undoIgnore,
@@ -47,6 +48,7 @@ var requestsUndo = map[string]func(ctx gobdd.Context){
 	"ListUserPermissions":      undoIgnore,
 	"RemovePermissionFromRole": undoIgnore,
 	"RemoveUserFromRole":       undoIgnore,
+	"SendInvitations":          undoIgnore,
 	"UpdateRole":               undoIgnore,
 	"UpdateUser":               undoIgnore,
 }
@@ -113,6 +115,7 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`there is a valid "user" in the system`, user)
 	s.AddStep(`there is a valid "role" in the system`, role)
 	s.AddStep(`the "user" has the "role"`, userHasRole)
+	s.AddStep(`the "user" has a "user_invitation"`, userHasInvitation)
 	s.AddStep(`there is a valid "permission" in the system`, permission)
 	s.AddStep(`the "permission" is granted to the "role"`, permissionIsGrantedRole)
 	s.Run()
@@ -225,6 +228,32 @@ func userHasRole(t gobdd.StepTest, ctx gobdd.Context) {
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
+}
+
+func userHasInvitation(t gobdd.StepTest, ctx gobdd.Context) {
+	client := Client(tests.GetCtx(ctx))
+	data := tests.GetData(ctx)
+	ur := data["user"].(datadog.UserResponse)
+	urData := ur.GetData()
+	id := urData.GetId()
+
+	rtud := datadog.NewRelationshipToUserData()
+	rtud.SetId(id)
+	rtu := datadog.NewRelationshipToUser()
+	rtu.SetData(*rtud)
+	uir := datadog.NewUserInvitationRelationships()
+	uir.SetUser(*rtu)
+	uid := datadog.NewUserInvitationData()
+	uid.SetRelationships(*uir)
+	uireq := datadog.NewUserInvitationsRequest()
+	uireq.SetData([]datadog.UserInvitationData{*uid})
+
+	ui, _, err := client.UsersApi.SendInvitations(tests.GetCtx(ctx)).Body(*uireq).Execute()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+
+	tests.GetData(ctx)["user_invitation"] = ui.GetData()[0]
 }
 
 func permission(t gobdd.StepTest, ctx gobdd.Context) {
