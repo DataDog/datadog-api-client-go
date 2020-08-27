@@ -115,6 +115,32 @@ func SecurePath(path string) string {
 	return filepath.Clean(path)
 }
 
+// SnakeToCamelCase converts snake_case to SnakeCase.
+func SnakeToCamelCase(snake string) (camel string) {
+	isToUpper := false
+
+	for k, v := range snake {
+		if k == 0 {
+			camel = strings.ToUpper(string(v))
+		} else {
+			if isToUpper {
+				camel += strings.ToUpper(string(v))
+				isToUpper = false
+			} else {
+				if v == '_' {
+					isToUpper = true
+				} else if v == '.' { // support for lookup paths
+					isToUpper = true
+					camel += string(v)
+				} else {
+					camel += string(v)
+				}
+			}
+		}
+	}
+	return
+}
+
 // Retry calls the call function for count times every interval while it returns false
 func Retry(interval time.Duration, count int, call func() bool) error {
 	for i := 0; i < count; i++ {

@@ -64,7 +64,7 @@ func TestUserLifecycle(t *testing.T) {
 	uur := datadog.NewUserUpdateRequest()
 	uur.SetData(*uud)
 	// no response payload
-	httpresp, err = Client(ctx).UsersApi.UpdateUser(ctx, uid).Body(*uur).Execute()
+	_, httpresp, err = Client(ctx).UsersApi.UpdateUser(ctx, uid).Body(*uur).Execute()
 	if err != nil {
 		t.Fatalf("Error updating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -155,7 +155,7 @@ func TestUpdateUserErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			httpresp, err := Client(ctx).UsersApi.UpdateUser(ctx, tc.UserID).Body(*tc.Body).Execute()
+			_, httpresp, err := Client(ctx).UsersApi.UpdateUser(ctx, tc.UserID).Body(*tc.Body).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
