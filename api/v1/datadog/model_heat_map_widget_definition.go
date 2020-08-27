@@ -14,6 +14,8 @@ import (
 
 // HeatMapWidgetDefinition The heat map visualization shows metrics aggregated across many tags, such as hosts. The more hosts that have a particular value, the darker that square is.
 type HeatMapWidgetDefinition struct {
+	// List of custom links.
+	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of widget events.
 	Events *[]WidgetEvent `json:"events,omitempty"`
 	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
@@ -51,6 +53,38 @@ func NewHeatMapWidgetDefinitionWithDefaults() *HeatMapWidgetDefinition {
 	var type_ HeatMapWidgetDefinitionType = "heatmap"
 	this.Type = type_
 	return &this
+}
+
+// GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
+func (o *HeatMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
+	if o == nil || o.CustomLinks == nil {
+		var ret []WidgetCustomLink
+		return ret
+	}
+	return *o.CustomLinks
+}
+
+// GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool) {
+	if o == nil || o.CustomLinks == nil {
+		return nil, false
+	}
+	return o.CustomLinks, true
+}
+
+// HasCustomLinks returns a boolean if a field has been set.
+func (o *HeatMapWidgetDefinition) HasCustomLinks() bool {
+	if o != nil && o.CustomLinks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
+func (o *HeatMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
+	o.CustomLinks = &v
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
@@ -359,6 +393,9 @@ func (o *HeatMapWidgetDefinition) SetYaxis(v WidgetAxis) {
 
 func (o HeatMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CustomLinks != nil {
+		toSerialize["custom_links"] = o.CustomLinks
+	}
 	if o.Events != nil {
 		toSerialize["events"] = o.Events
 	}

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Precision** | Pointer to **int64** | Number of decimals to show. If not defined, the widget uses the raw value. | [optional] 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **Unit** | Pointer to **string** | Unit to display with the value. | [optional] 
+**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Requests** | [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
 **Check** | **string** | Name of the check to use in the widget. | 
 **Group** | Pointer to **[]string** | List of tag prefixes to group by. | [optional] 
@@ -335,6 +336,31 @@ SetUnit sets Unit field to given value.
 `func (o *WidgetDefinition) HasUnit() bool`
 
 HasUnit returns a boolean if a field has been set.
+
+### GetCustomLinks
+
+`func (o *WidgetDefinition) GetCustomLinks() []WidgetCustomLink`
+
+GetCustomLinks returns the CustomLinks field if non-nil, zero value otherwise.
+
+### GetCustomLinksOk
+
+`func (o *WidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)`
+
+GetCustomLinksOk returns a tuple with the CustomLinks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLinks
+
+`func (o *WidgetDefinition) SetCustomLinks(v []WidgetCustomLink)`
+
+SetCustomLinks sets CustomLinks field to given value.
+
+### HasCustomLinks
+
+`func (o *WidgetDefinition) HasCustomLinks() bool`
+
+HasCustomLinks returns a boolean if a field has been set.
 
 ### GetRequests
 
