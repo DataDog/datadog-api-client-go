@@ -29,8 +29,6 @@ Feature: Users
     When the request is sent
     Then the response status is 200 OK
     And expect response "meta.page.total_filtered_count" to equal to 1
-    # FIXME enable after https://github.com/mcuadros/go-lookup/pull/4 is released
-    # And expect response "data[0].attributes.email" to equal value from "user.data.attributes.email"
 
   Scenario: Create a user returns "OK" response
     Given new "CreateUser" request
