@@ -601,6 +601,7 @@ Class | Method | HTTP request | Description
  - [WidgetComparator](docs/WidgetComparator.md)
  - [WidgetCompareTo](docs/WidgetCompareTo.md)
  - [WidgetConditionalFormat](docs/WidgetConditionalFormat.md)
+ - [WidgetCustomLink](docs/WidgetCustomLink.md)
  - [WidgetDefinition](docs/WidgetDefinition.md)
  - [WidgetDisplayType](docs/WidgetDisplayType.md)
  - [WidgetEvent](docs/WidgetEvent.md)
