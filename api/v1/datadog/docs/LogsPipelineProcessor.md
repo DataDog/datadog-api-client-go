@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
-**Type** | Pointer to [**LogsPipelineProcessorType**](LogsPipelineProcessorType.md) |  | [default to "pipeline"]
+**Type** | [**LogsPipelineProcessorType**](LogsPipelineProcessorType.md) |  | [default to "pipeline"]
 
 ## Methods
 

@@ -4,32 +4,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AlertId** | Pointer to **string** | ID of the alert to use in the widget. | 
+**AlertId** | **string** | ID of the alert to use in the widget. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to "toplist"]
-**VizType** | Pointer to [**WidgetVizType**](WidgetVizType.md) |  | 
+**Type** | [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to "toplist"]
+**VizType** | [**WidgetVizType**](WidgetVizType.md) |  | 
 **Precision** | Pointer to **int64** | Number of decimals to show. If not defined, the widget uses the raw value. | [optional] 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **Unit** | Pointer to **string** | Unit to display with the value. | [optional] 
-**Requests** | Pointer to [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
-**Check** | Pointer to **string** | Name of the check to use in the widget. | 
+**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
+**Requests** | [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
+**Check** | **string** | Name of the check to use in the widget. | 
 **Group** | Pointer to **[]string** | List of tag prefixes to group by. | [optional] 
 **GroupBy** | Pointer to **[]string** | List of tag prefixes to group by in the case of a cluster check. | [optional] 
-**Grouping** | Pointer to [**WidgetGrouping**](WidgetGrouping.md) |  | 
+**Grouping** | [**WidgetGrouping**](WidgetGrouping.md) |  | 
 **Tags** | Pointer to **[]string** | List of tags used to filter the groups reporting a cluster check. | [optional] 
-**LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
+**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
 **EventSize** | Pointer to [**WidgetEventSize**](WidgetEventSize.md) |  | [optional] 
-**Query** | Pointer to **string** | Query to filter the monitors with. | 
+**Query** | **string** | Query to filter the monitors with. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or. | [optional] 
 **Color** | Pointer to **string** | Color of the text. | [optional] 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
-**Text** | Pointer to **string** | Text to display. | 
-**LayoutType** | Pointer to [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
-**Widgets** | Pointer to [**[]Widget**](Widget.md) | List of widget groups. | 
+**Text** | **string** | Text to display. | 
+**LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
+**Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **NoGroupHosts** | Pointer to **bool** | Whether to show the hosts that don’t fit in a group. | [optional] 
@@ -38,7 +39,7 @@ Name | Type | Description | Notes
 **Notes** | Pointer to **string** | Notes on the title. | [optional] 
 **Scope** | Pointer to **[]string** | List of tags used to filter the map. | [optional] 
 **Style** | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinition_style.md) |  | [optional] 
-**Url** | Pointer to **string** | URL of the image. | 
+**Url** | **string** | URL of the image. | 
 **Margin** | Pointer to [**WidgetMargin**](WidgetMargin.md) |  | [optional] 
 **Sizing** | Pointer to [**WidgetImageSizing**](WidgetImageSizing.md) |  | [optional] 
 **Columns** | Pointer to **[]string** | Which columns to display on the widget. | [optional] 
@@ -56,7 +57,7 @@ Name | Type | Description | Notes
 **Start** | Pointer to **int64** | The start of the list. Typically 0. | [optional] 
 **SummaryType** | Pointer to [**WidgetSummaryType**](WidgetSummaryType.md) |  | [optional] 
 **BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
-**Content** | Pointer to **string** | Content of the note. | 
+**Content** | **string** | Content of the note. | 
 **ShowTick** | Pointer to **bool** | Whether to show a tick or not. | [optional] 
 **TickEdge** | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md) |  | [optional] 
 **TickPos** | Pointer to **string** | Where to position the tick on an edge. | [optional] 
@@ -68,10 +69,10 @@ Name | Type | Description | Notes
 **SloId** | Pointer to **string** | ID of the SLO displayed. | [optional] 
 **TimeWindows** | Pointer to [**[]WidgetTimeWindows**](WidgetTimeWindows.md) | Times being monitored. | [optional] 
 **ViewMode** | Pointer to [**WidgetViewMode**](WidgetViewMode.md) |  | [optional] 
-**ViewType** | Pointer to **string** | Type of view displayed by the widget. | [default to "detail"]
-**Filters** | Pointer to **[]string** | Your environment and primary tag (or * if enabled for your account). | 
-**Service** | Pointer to **string** | APM service. | 
-**Env** | Pointer to **string** | APM environment. | 
+**ViewType** | **string** | Type of view displayed by the widget. | [default to "detail"]
+**Filters** | **[]string** | Your environment and primary tag (or * if enabled for your account). | 
+**Service** | **string** | APM service. | 
+**Env** | **string** | APM environment. | 
 **ShowBreakdown** | Pointer to **bool** | Whether to show the latency breakdown or not. | [optional] 
 **ShowDistribution** | Pointer to **bool** | Whether to show the latency distribution or not. | [optional] 
 **ShowErrors** | Pointer to **bool** | Whether to show the error metrics or not. | [optional] 
@@ -79,7 +80,7 @@ Name | Type | Description | Notes
 **ShowLatency** | Pointer to **bool** | Whether to show the latency metrics or not. | [optional] 
 **ShowResourceList** | Pointer to **bool** | Whether to show the resource list or not. | [optional] 
 **SizeFormat** | Pointer to [**WidgetSizeFormat**](WidgetSizeFormat.md) |  | [optional] 
-**SpanName** | Pointer to **string** | APM span name. | 
+**SpanName** | **string** | APM span name. | 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 
 ## Methods
@@ -336,6 +337,31 @@ SetUnit sets Unit field to given value.
 
 HasUnit returns a boolean if a field has been set.
 
+### GetCustomLinks
+
+`func (o *WidgetDefinition) GetCustomLinks() []WidgetCustomLink`
+
+GetCustomLinks returns the CustomLinks field if non-nil, zero value otherwise.
+
+### GetCustomLinksOk
+
+`func (o *WidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)`
+
+GetCustomLinksOk returns a tuple with the CustomLinks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLinks
+
+`func (o *WidgetDefinition) SetCustomLinks(v []WidgetCustomLink)`
+
+SetCustomLinks sets CustomLinks field to given value.
+
+### HasCustomLinks
+
+`func (o *WidgetDefinition) HasCustomLinks() bool`
+
+HasCustomLinks returns a boolean if a field has been set.
+
 ### GetRequests
 
 `func (o *WidgetDefinition) GetRequests() []ToplistWidgetRequest`
@@ -473,20 +499,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetLegendSize
 
-`func (o *WidgetDefinition) GetLegendSize() WidgetLegendSize`
+`func (o *WidgetDefinition) GetLegendSize() string`
 
 GetLegendSize returns the LegendSize field if non-nil, zero value otherwise.
 
 ### GetLegendSizeOk
 
-`func (o *WidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool)`
+`func (o *WidgetDefinition) GetLegendSizeOk() (*string, bool)`
 
 GetLegendSizeOk returns a tuple with the LegendSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendSize
 
-`func (o *WidgetDefinition) SetLegendSize(v WidgetLegendSize)`
+`func (o *WidgetDefinition) SetLegendSize(v string)`
 
 SetLegendSize sets LegendSize field to given value.
 

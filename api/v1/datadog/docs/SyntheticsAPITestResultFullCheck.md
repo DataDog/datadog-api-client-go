@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | 
+**Config** | [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | 
 
 ## Methods
 

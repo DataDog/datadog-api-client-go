@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Requests** | Pointer to [**[]ChangeWidgetRequest**](ChangeWidgetRequest.md) | Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the &#x60;REQUEST_SCHEMA&#x60;. | 
+**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
+**Requests** | [**[]ChangeWidgetRequest**](ChangeWidgetRequest.md) | Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the &#x60;REQUEST_SCHEMA&#x60;. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**ChangeWidgetDefinitionType**](ChangeWidgetDefinitionType.md) |  | [default to "change"]
+**Type** | [**ChangeWidgetDefinitionType**](ChangeWidgetDefinitionType.md) |  | [default to "change"]
 
 ## Methods
 
@@ -29,6 +30,31 @@ will change when the set of required properties is changed
 NewChangeWidgetDefinitionWithDefaults instantiates a new ChangeWidgetDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCustomLinks
+
+`func (o *ChangeWidgetDefinition) GetCustomLinks() []WidgetCustomLink`
+
+GetCustomLinks returns the CustomLinks field if non-nil, zero value otherwise.
+
+### GetCustomLinksOk
+
+`func (o *ChangeWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)`
+
+GetCustomLinksOk returns a tuple with the CustomLinks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLinks
+
+`func (o *ChangeWidgetDefinition) SetCustomLinks(v []WidgetCustomLink)`
+
+SetCustomLinks sets CustomLinks field to given value.
+
+### HasCustomLinks
+
+`func (o *ChangeWidgetDefinition) HasCustomLinks() bool`
+
+HasCustomLinks returns a boolean if a field has been set.
 
 ### GetRequests
 

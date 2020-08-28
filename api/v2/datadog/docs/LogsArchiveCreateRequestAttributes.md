@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Destination** | Pointer to [**LogsArchiveCreateRequestDestination**](LogsArchiveCreateRequestDestination.md) |  | 
-**Name** | Pointer to **string** | The archive name. | 
-**Query** | Pointer to **string** | The archive query/filter. Logs matching this query are included in the archive. | 
+**Destination** | [**LogsArchiveCreateRequestDestination**](LogsArchiveCreateRequestDestination.md) |  | 
+**Name** | **string** | The archive name. | 
+**Query** | **string** | The archive query/filter. Logs matching this query are included in the archive. | 
 
 ## Methods
 

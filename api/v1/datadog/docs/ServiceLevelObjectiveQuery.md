@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Denominator** | Pointer to **string** | A Datadog metric query for total (valid) events. | 
-**Numerator** | Pointer to **string** | A Datadog metric query for good events. | 
+**Denominator** | **string** | A Datadog metric query for total (valid) events. | 
+**Numerator** | **string** | A Datadog metric query for good events. | 
 
 ## Methods
 

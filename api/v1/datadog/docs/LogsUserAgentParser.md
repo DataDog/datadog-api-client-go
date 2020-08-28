@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["http.useragent"]]
-**Target** | Pointer to **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.useragent_details"]
-**Type** | Pointer to [**LogsUserAgentParserType**](LogsUserAgentParserType.md) |  | [default to "user-agent-parser"]
+**Sources** | **[]string** | Array of source attributes. | [default to ["http.useragent"]]
+**Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.useragent_details"]
+**Type** | [**LogsUserAgentParserType**](LogsUserAgentParserType.md) |  | [default to "user-agent-parser"]
 
 ## Methods
 

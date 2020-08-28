@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** | Identity provider response. | 
+**Message** | **string** | Identity provider response. | 
 
 ## Methods
 

@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
-**Requests** | Pointer to [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md) | List of widget types. | 
+**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
+**Requests** | [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md) | List of widget types. | 
 **ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**HeatMapWidgetDefinitionType**](HeatMapWidgetDefinitionType.md) |  | [default to "heatmap"]
+**Type** | [**HeatMapWidgetDefinitionType**](HeatMapWidgetDefinitionType.md) |  | [default to "heatmap"]
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods
@@ -33,6 +34,31 @@ will change when the set of required properties is changed
 NewHeatMapWidgetDefinitionWithDefaults instantiates a new HeatMapWidgetDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCustomLinks
+
+`func (o *HeatMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink`
+
+GetCustomLinks returns the CustomLinks field if non-nil, zero value otherwise.
+
+### GetCustomLinksOk
+
+`func (o *HeatMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)`
+
+GetCustomLinksOk returns a tuple with the CustomLinks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLinks
+
+`func (o *HeatMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink)`
+
+SetCustomLinks sets CustomLinks field to given value.
+
+### HasCustomLinks
+
+`func (o *HeatMapWidgetDefinition) HasCustomLinks() bool`
+
+HasCustomLinks returns a boolean if a field has been set.
 
 ### GetEvents
 
@@ -61,20 +87,20 @@ HasEvents returns a boolean if a field has been set.
 
 ### GetLegendSize
 
-`func (o *HeatMapWidgetDefinition) GetLegendSize() WidgetLegendSize`
+`func (o *HeatMapWidgetDefinition) GetLegendSize() string`
 
 GetLegendSize returns the LegendSize field if non-nil, zero value otherwise.
 
 ### GetLegendSizeOk
 
-`func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool)`
+`func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*string, bool)`
 
 GetLegendSizeOk returns a tuple with the LegendSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendSize
 
-`func (o *HeatMapWidgetDefinition) SetLegendSize(v WidgetLegendSize)`
+`func (o *HeatMapWidgetDefinition) SetLegendSize(v string)`
 
 SetLegendSize sets LegendSize field to given value.
 

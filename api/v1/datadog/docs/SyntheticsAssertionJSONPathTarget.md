@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operator** | Pointer to [**SyntheticsAssertionJSONPathOperator**](SyntheticsAssertionJSONPathOperator.md) |  | 
+**Operator** | [**SyntheticsAssertionJSONPathOperator**](SyntheticsAssertionJSONPathOperator.md) |  | 
 **Property** | Pointer to **string** | The associated assertion property. | [optional] 
 **Target** | Pointer to [**SyntheticsAssertionJSONPathTargetTarget**](SyntheticsAssertionJSONPathTarget_target.md) |  | [optional] 
-**Type** | Pointer to [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
+**Type** | [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
 
 ## Methods
 

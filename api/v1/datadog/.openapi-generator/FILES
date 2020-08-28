@@ -51,6 +51,7 @@ docs/AlertValueWidgetDefinitionType.md
 docs/ApiKey.md
 docs/ApiKeyListResponse.md
 docs/ApiKeyResponse.md
+docs/ApmResourcesQueryDefinition.md
 docs/ApplicationKey.md
 docs/ApplicationKeyListResponse.md
 docs/ApplicationKeyResponse.md
@@ -292,6 +293,7 @@ docs/SyntheticsAssertionJSONPathTargetTarget.md
 docs/SyntheticsAssertionOperator.md
 docs/SyntheticsAssertionTarget.md
 docs/SyntheticsAssertionType.md
+docs/SyntheticsBasicAuth.md
 docs/SyntheticsBrowserError.md
 docs/SyntheticsBrowserErrorType.md
 docs/SyntheticsBrowserTestResultData.md
@@ -301,6 +303,11 @@ docs/SyntheticsBrowserTestResultShort.md
 docs/SyntheticsBrowserTestResultShortResult.md
 docs/SyntheticsBrowserVariable.md
 docs/SyntheticsBrowserVariableType.md
+docs/SyntheticsCITest.md
+docs/SyntheticsCITestBody.md
+docs/SyntheticsCITestMetadata.md
+docs/SyntheticsCITestMetadataCi.md
+docs/SyntheticsCITestMetadataGit.md
 docs/SyntheticsCheckType.md
 docs/SyntheticsDeleteTestsPayload.md
 docs/SyntheticsDeleteTestsResponse.md
@@ -310,6 +317,8 @@ docs/SyntheticsDeviceID.md
 docs/SyntheticsErrorCode.md
 docs/SyntheticsGetAPITestLatestResultsResponse.md
 docs/SyntheticsGetBrowserTestLatestResultsResponse.md
+docs/SyntheticsGlobalVariable.md
+docs/SyntheticsGlobalVariableValue.md
 docs/SyntheticsListTestsResponse.md
 docs/SyntheticsLocation.md
 docs/SyntheticsLocations.md
@@ -329,13 +338,16 @@ docs/SyntheticsTestDetailsSubType.md
 docs/SyntheticsTestDetailsType.md
 docs/SyntheticsTestMonitorStatus.md
 docs/SyntheticsTestOptions.md
+docs/SyntheticsTestOptionsMonitorOptions.md
 docs/SyntheticsTestOptionsRetry.md
 docs/SyntheticsTestPauseStatus.md
 docs/SyntheticsTestProcessStatus.md
 docs/SyntheticsTestRequest.md
-docs/SyntheticsTestRequestBasicAuth.md
 docs/SyntheticsTickInterval.md
 docs/SyntheticsTiming.md
+docs/SyntheticsTriggerCITestsResponse.md
+docs/SyntheticsTriggerCITestsResponseLocations.md
+docs/SyntheticsTriggerCITestsResponseResults.md
 docs/SyntheticsUpdateTestPauseStatusPayload.md
 docs/SyntheticsWarningType.md
 docs/TableWidgetDefinition.md
@@ -377,6 +389,8 @@ docs/UsageNetworkFlowsHour.md
 docs/UsageNetworkFlowsResponse.md
 docs/UsageNetworkHostsHour.md
 docs/UsageNetworkHostsResponse.md
+docs/UsageProfilingHour.md
+docs/UsageProfilingResponse.md
 docs/UsageReportsType.md
 docs/UsageRumSessionsHour.md
 docs/UsageRumSessionsResponse.md
@@ -417,6 +431,7 @@ docs/WidgetColorPreference.md
 docs/WidgetComparator.md
 docs/WidgetCompareTo.md
 docs/WidgetConditionalFormat.md
+docs/WidgetCustomLink.md
 docs/WidgetDefinition.md
 docs/WidgetDisplayType.md
 docs/WidgetEvent.md
@@ -426,7 +441,6 @@ docs/WidgetGrouping.md
 docs/WidgetImageSizing.md
 docs/WidgetLayout.md
 docs/WidgetLayoutType.md
-docs/WidgetLegendSize.md
 docs/WidgetLineType.md
 docs/WidgetLineWidth.md
 docs/WidgetLiveSpan.md
@@ -462,6 +476,7 @@ model_api_error_response.go
 model_api_key.go
 model_api_key_list_response.go
 model_api_key_response.go
+model_apm_resources_query_definition.go
 model_application_key.go
 model_application_key_list_response.go
 model_application_key_response.go
@@ -693,6 +708,7 @@ model_synthetics_assertion_json_path_target_target.go
 model_synthetics_assertion_operator.go
 model_synthetics_assertion_target.go
 model_synthetics_assertion_type.go
+model_synthetics_basic_auth.go
 model_synthetics_browser_error.go
 model_synthetics_browser_error_type.go
 model_synthetics_browser_test_result_data.go
@@ -703,6 +719,11 @@ model_synthetics_browser_test_result_short_result.go
 model_synthetics_browser_variable.go
 model_synthetics_browser_variable_type.go
 model_synthetics_check_type.go
+model_synthetics_ci_test_.go
+model_synthetics_ci_test_body.go
+model_synthetics_ci_test_metadata.go
+model_synthetics_ci_test_metadata_ci.go
+model_synthetics_ci_test_metadata_git.go
 model_synthetics_delete_tests_payload.go
 model_synthetics_delete_tests_response.go
 model_synthetics_delete_tests_response_deleted_tests.go
@@ -711,6 +732,8 @@ model_synthetics_device_id.go
 model_synthetics_error_code.go
 model_synthetics_get_api_test_latest_results_response.go
 model_synthetics_get_browser_test_latest_results_response.go
+model_synthetics_global_variable.go
+model_synthetics_global_variable_value.go
 model_synthetics_list_tests_response.go
 model_synthetics_location.go
 model_synthetics_locations.go
@@ -730,13 +753,16 @@ model_synthetics_test_details_sub_type.go
 model_synthetics_test_details_type.go
 model_synthetics_test_monitor_status.go
 model_synthetics_test_options.go
+model_synthetics_test_options_monitor_options.go
 model_synthetics_test_options_retry.go
 model_synthetics_test_pause_status.go
 model_synthetics_test_process_status.go
 model_synthetics_test_request.go
-model_synthetics_test_request_basic_auth.go
 model_synthetics_tick_interval.go
 model_synthetics_timing.go
+model_synthetics_trigger_ci_tests_response.go
+model_synthetics_trigger_ci_tests_response_locations.go
+model_synthetics_trigger_ci_tests_response_results.go
 model_synthetics_update_test_pause_status_payload.go
 model_synthetics_warning_type.go
 model_table_widget_definition.go
@@ -776,6 +802,8 @@ model_usage_network_flows_hour.go
 model_usage_network_flows_response.go
 model_usage_network_hosts_hour.go
 model_usage_network_hosts_response.go
+model_usage_profiling_hour.go
+model_usage_profiling_response.go
 model_usage_reports_type.go
 model_usage_rum_sessions_hour.go
 model_usage_rum_sessions_response.go
@@ -815,6 +843,7 @@ model_widget_color_preference.go
 model_widget_comparator.go
 model_widget_compare_to.go
 model_widget_conditional_format.go
+model_widget_custom_link.go
 model_widget_definition.go
 model_widget_display_type.go
 model_widget_event.go
@@ -824,7 +853,6 @@ model_widget_grouping.go
 model_widget_image_sizing.go
 model_widget_layout.go
 model_widget_layout_type.go
-model_widget_legend_size.go
 model_widget_line_type.go
 model_widget_line_width.go
 model_widget_live_span.go

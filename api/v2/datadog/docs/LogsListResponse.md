@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**[]Log**](Log.md) | Array of logs matching the request. | [optional] 
 **Links** | Pointer to [**LogsListResponseLinks**](LogsListResponse_links.md) |  | [optional] 
-**Meta** | Pointer to [**LogsListResponseMeta**](LogsListResponse_meta.md) |  | [optional] 
+**Meta** | Pointer to [**LogsResponseMetadata**](LogsResponseMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasLinks returns a boolean if a field has been set.
 
 ### GetMeta
 
-`func (o *LogsListResponse) GetMeta() LogsListResponseMeta`
+`func (o *LogsListResponse) GetMeta() LogsResponseMetadata`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *LogsListResponse) GetMetaOk() (*LogsListResponseMeta, bool)`
+`func (o *LogsListResponse) GetMetaOk() (*LogsResponseMetadata, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *LogsListResponse) SetMeta(v LogsListResponseMeta)`
+`func (o *LogsListResponse) SetMeta(v LogsResponseMetadata)`
 
 SetMeta sets Meta field to given value.
 

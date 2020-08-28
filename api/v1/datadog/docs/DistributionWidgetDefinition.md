@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
-**Requests** | Pointer to [**[]DistributionWidgetRequest**](DistributionWidgetRequest.md) | Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the &#x60;REQUEST_SCHEMA&#x60;. | 
+**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
+**Requests** | [**[]DistributionWidgetRequest**](DistributionWidgetRequest.md) | Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the &#x60;REQUEST_SCHEMA&#x60;. | 
 **ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**DistributionWidgetDefinitionType**](DistributionWidgetDefinitionType.md) |  | [default to "distribution"]
+**Type** | [**DistributionWidgetDefinitionType**](DistributionWidgetDefinitionType.md) |  | [default to "distribution"]
 
 ## Methods
 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLegendSize
 
-`func (o *DistributionWidgetDefinition) GetLegendSize() WidgetLegendSize`
+`func (o *DistributionWidgetDefinition) GetLegendSize() string`
 
 GetLegendSize returns the LegendSize field if non-nil, zero value otherwise.
 
 ### GetLegendSizeOk
 
-`func (o *DistributionWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool)`
+`func (o *DistributionWidgetDefinition) GetLegendSizeOk() (*string, bool)`
 
 GetLegendSizeOk returns a tuple with the LegendSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendSize
 
-`func (o *DistributionWidgetDefinition) SetLegendSize(v WidgetLegendSize)`
+`func (o *DistributionWidgetDefinition) SetLegendSize(v string)`
 
 SetLegendSize sets LegendSize field to given value.
 

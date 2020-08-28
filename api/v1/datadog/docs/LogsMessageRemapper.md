@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Sources** | Pointer to **[]string** | Array of source attributes. | [default to ["msg"]]
-**Type** | Pointer to [**LogsMessageRemapperType**](LogsMessageRemapperType.md) |  | [default to "message-remapper"]
+**Sources** | **[]string** | Array of source attributes. | [default to ["msg"]]
+**Type** | [**LogsMessageRemapperType**](LogsMessageRemapperType.md) |  | [default to "message-remapper"]
 
 ## Methods
 

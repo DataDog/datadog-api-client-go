@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int64** | Count of submitted metrics. | 
-**Metadata** | Pointer to [**SLOHistoryMetricsSeriesMetadata**](SLOHistoryMetricsSeries_metadata.md) |  | 
-**Sum** | Pointer to **float64** | Total sum of the query. | 
-**Values** | Pointer to **[]float64** | The query values for each metric. | 
+**Count** | **int64** | Count of submitted metrics. | 
+**Metadata** | [**SLOHistoryMetricsSeriesMetadata**](SLOHistoryMetricsSeries_metadata.md) |  | 
+**Sum** | **float64** | Total sum of the query. | 
+**Values** | **[]float64** | The query values for each metric. | 
 
 ## Methods
 

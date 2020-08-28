@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Default** | Pointer to **NullableString** | The default value for the template variable on dashboard load. | [optional] 
-**Name** | Pointer to **string** | The name of the variable. | 
+**Name** | **string** | The name of the variable. | 
 **Prefix** | Pointer to **NullableString** | The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down. | [optional] 
 
 ## Methods

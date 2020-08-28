@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**LegendSize** | Pointer to [**WidgetLegendSize**](WidgetLegendSize.md) |  | [optional] 
+**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
-**Requests** | Pointer to [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
+**Requests** | [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**TimeseriesWidgetDefinitionType**](TimeseriesWidgetDefinitionType.md) |  | [default to "timeseries"]
+**Type** | [**TimeseriesWidgetDefinitionType**](TimeseriesWidgetDefinitionType.md) |  | [default to "timeseries"]
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods
@@ -34,6 +35,31 @@ will change when the set of required properties is changed
 NewTimeseriesWidgetDefinitionWithDefaults instantiates a new TimeseriesWidgetDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCustomLinks
+
+`func (o *TimeseriesWidgetDefinition) GetCustomLinks() []WidgetCustomLink`
+
+GetCustomLinks returns the CustomLinks field if non-nil, zero value otherwise.
+
+### GetCustomLinksOk
+
+`func (o *TimeseriesWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)`
+
+GetCustomLinksOk returns a tuple with the CustomLinks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLinks
+
+`func (o *TimeseriesWidgetDefinition) SetCustomLinks(v []WidgetCustomLink)`
+
+SetCustomLinks sets CustomLinks field to given value.
+
+### HasCustomLinks
+
+`func (o *TimeseriesWidgetDefinition) HasCustomLinks() bool`
+
+HasCustomLinks returns a boolean if a field has been set.
 
 ### GetEvents
 
@@ -62,20 +88,20 @@ HasEvents returns a boolean if a field has been set.
 
 ### GetLegendSize
 
-`func (o *TimeseriesWidgetDefinition) GetLegendSize() WidgetLegendSize`
+`func (o *TimeseriesWidgetDefinition) GetLegendSize() string`
 
 GetLegendSize returns the LegendSize field if non-nil, zero value otherwise.
 
 ### GetLegendSizeOk
 
-`func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*WidgetLegendSize, bool)`
+`func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*string, bool)`
 
 GetLegendSizeOk returns a tuple with the LegendSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendSize
 
-`func (o *TimeseriesWidgetDefinition) SetLegendSize(v WidgetLegendSize)`
+`func (o *TimeseriesWidgetDefinition) SetLegendSize(v string)`
 
 SetLegendSize sets LegendSize field to given value.
 

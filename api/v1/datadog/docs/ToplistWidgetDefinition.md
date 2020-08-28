@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Requests** | Pointer to [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
+**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
+**Requests** | [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to "toplist"]
+**Type** | [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to "toplist"]
 
 ## Methods
 
@@ -29,6 +30,31 @@ will change when the set of required properties is changed
 NewToplistWidgetDefinitionWithDefaults instantiates a new ToplistWidgetDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCustomLinks
+
+`func (o *ToplistWidgetDefinition) GetCustomLinks() []WidgetCustomLink`
+
+GetCustomLinks returns the CustomLinks field if non-nil, zero value otherwise.
+
+### GetCustomLinksOk
+
+`func (o *ToplistWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)`
+
+GetCustomLinksOk returns a tuple with the CustomLinks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLinks
+
+`func (o *ToplistWidgetDefinition) SetCustomLinks(v []WidgetCustomLink)`
+
+SetCustomLinks sets CustomLinks field to given value.
+
+### HasCustomLinks
+
+`func (o *ToplistWidgetDefinition) HasCustomLinks() bool`
+
+HasCustomLinks returns a boolean if a field has been set.
 
 ### GetRequests
 

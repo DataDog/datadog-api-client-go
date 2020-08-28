@@ -115,6 +115,32 @@ func SecurePath(path string) string {
 	return filepath.Clean(path)
 }
 
+// SnakeToCamelCase converts snake_case to SnakeCase.
+func SnakeToCamelCase(snake string) (camel string) {
+	isToUpper := false
+
+	for k, v := range snake {
+		if k == 0 {
+			camel = strings.ToUpper(string(v))
+		} else {
+			if isToUpper {
+				camel += strings.ToUpper(string(v))
+				isToUpper = false
+			} else {
+				if v == '_' {
+					isToUpper = true
+				} else if v == '.' { // support for lookup paths
+					isToUpper = true
+					camel += string(v)
+				} else {
+					camel += string(v)
+				}
+			}
+		}
+	}
+	return
+}
+
 // Retry calls the call function for count times every interval while it returns false
 func Retry(interval time.Duration, count int, call func() bool) error {
 	for i := 0; i < count; i++ {
@@ -356,8 +382,9 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 
 	matched := (b.String() == "" || b.String() == i.Body)
 
-	// Ignore boundary differences for multipart/form-data content
-	if !matched && strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
+	// Ignore boundary differences for multipart/form-data or application/octet-stream content
+	if !matched && (strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") ||
+		strings.HasPrefix(r.Header["Content-Type"][0], "application/octet-stream")) {
 		rl := strings.Split(strings.TrimSpace(b.String()), "\n")
 		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
 		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rl[1:len(rl)-1], cl[1:len(cl)-1]) {

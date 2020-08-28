@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Billing** | Pointer to [**OrganizationBilling**](OrganizationBilling.md) |  | 
-**Name** | Pointer to **string** | The name of the new child-organization, limited to 32 characters. | 
-**Subscription** | Pointer to [**OrganizationSubscription**](OrganizationSubscription.md) |  | 
+**Billing** | [**OrganizationBilling**](OrganizationBilling.md) |  | 
+**Name** | **string** | The name of the new child-organization, limited to 32 characters. | 
+**Subscription** | [**OrganizationSubscription**](OrganizationSubscription.md) |  | 
 
 ## Methods
 

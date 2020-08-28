@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | Pointer to **string** | The account ID for the integration. | 
-**RoleName** | Pointer to **string** | The path of the integration. | 
+**AccountId** | **string** | The account ID for the integration. | 
+**RoleName** | **string** | The path of the integration. | 
 
 ## Methods
 

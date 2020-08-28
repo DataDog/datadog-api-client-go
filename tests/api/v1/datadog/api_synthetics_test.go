@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"log"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -65,7 +66,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
 			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),
@@ -78,7 +79,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 	}
 }
 
-func getTestSyntheticsSubtypeTcpAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
 	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
 	assertion2000.SetTarget(target2000)
 
@@ -122,7 +123,7 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 			DeviceIds:          &[]datadog.SyntheticsDeviceID{datadog.SYNTHETICSDEVICEID_TABLET},
 			FollowRedirects:    datadog.PtrBool(true),
 			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),
@@ -259,7 +260,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create API test
-	testSyntheticsAPI := getTestSyntheticsSubtypeTcpAPI(ctx, t)
+	testSyntheticsAPI := getTestSyntheticsSubtypeTCPAPI(ctx, t)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -999,4 +1000,89 @@ func TestSyntheticsListLocations(t *testing.T) {
 	}
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Greater(len(locs.GetLocations()), 0)
+}
+
+func TestSyntheticsVariableLifecycle(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	variable := datadog.SyntheticsGlobalVariable{
+		Name: strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
+		Description: "variable description",
+		Tags: []string{"synthetics"},
+		Value: datadog.SyntheticsGlobalVariableValue{
+			Secure: datadog.PtrBool(false),
+			Value: "VARIABLE_VALUE",
+		},
+	}
+
+	// Create variable
+	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error creating Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), variable.GetName())
+
+	// Edit variable
+	updatedName := fmt.Sprintf("%s_UPDATED", variable.GetName())
+	variable.SetName(updatedName)
+
+	result, httpresp, err = Client(ctx).SyntheticsApi.EditGlobalVariable(ctx, result.GetId()).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error editing Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), updatedName)
+
+	// Delete variable
+	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics global variable %s: Response %s: %v", result.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+}
+
+func TestSyntheticsTriggerCITests(t *testing.T) {
+    ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+    defer finish()
+    assert := tests.Assert(ctx, t)
+
+    // create api test to trigger later
+    testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+    synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+    if err != nil {
+    	t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+    }
+    publicID := synt.GetPublicId()
+
+    // trigger the test
+    test := datadog.SyntheticsCITest{
+        Locations: &[]string{"aws:us-east-2"},
+        PublicId: publicID,
+    }
+    tests := []datadog.SyntheticsCITest{test}
+
+    fullResult, httpresp, err := Client(ctx).SyntheticsApi.TriggerCITests(ctx).Body(datadog.SyntheticsCITestBody{
+        Tests: &tests,
+    }).Execute()
+    if err != nil {
+        t.Fatalf("Error triggering ci tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+    }
+    assert.Equal(200, httpresp.StatusCode)
+
+    results := fullResult.GetResults()
+    triggeredCheckIds := fullResult.GetTriggeredCheckIds()
+    assert.Equal(publicID, results[0].GetPublicId())
+    assert.Equal(publicID, triggeredCheckIds[0])
+
+    // delete the test
+    _, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
+    	Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
+    if err != nil {
+    	t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+    }
 }

@@ -662,7 +662,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get the list of available daily custom reports
       tags:
       - Usage Metering
@@ -694,7 +694,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
         "404":
           content:
             application/json;datetime-format=rfc3339:
@@ -3374,7 +3374,7 @@ paths:
         The type of monitor chosen from:
 
         - anomaly: `query alert`
-        - APM: `query alert`
+        - APM: `query alert` or `trace-analytics alert`
         - composite: `composite`
         - custom: `service check`
         - event: `event alert`
@@ -3382,12 +3382,12 @@ paths:
         - host: `service check`
         - integration: `query alert` or `service check`
         - live process: `process alert`
-        - logs: `logs alert`
+        - logs: `log alert`
         - metric: `metric alert`
         - network: `service check`
         - outlier: `query alert`
-        - process: `service query`
-        - rum: `alert`
+        - process: `service check`
+        - rum: `rum alert`
         - watchdog: `event alert`
 
         #### Query Types
@@ -3795,7 +3795,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get the list of available monthly custom reports
       tags:
       - Usage Metering
@@ -3833,7 +3833,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
         "404":
           content:
             application/json;datetime-format=rfc3339:
@@ -4785,6 +4785,34 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+  /api/v1/synthetics/tests/trigger/ci:
+    post:
+      description: Trigger a set of Synthetics tests for continuous integration
+      operationId: TriggerCITests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyntheticsCITestBody'
+        description: Details of the test to trigger.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsTriggerCITestsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: JSON format is wrong
+      summary: Trigger some Synthetics tests for CI
+      tags:
+      - Synthetics
+      x-codegen-request-body-name: body
   /api/v1/synthetics/tests/{public_id}:
     get:
       description: Get the detailed configuration associated with a Synthetics test.
@@ -5035,6 +5063,119 @@ paths:
             - Synthetic is not activated for the user
             - Test is not owned by the user
       summary: Pause or start a test
+      tags:
+      - Synthetics
+      x-codegen-request-body-name: body
+  /api/v1/synthetics/variables:
+    post:
+      description: Create a Synthetics global variable.
+      operationId: CreateGlobalVariable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyntheticsGlobalVariable'
+        description: Details of the global variable to create.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsGlobalVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Create a global variable
+      tags:
+      - Synthetics
+      x-codegen-request-body-name: body
+  /api/v1/synthetics/variables/{variable_id}:
+    delete:
+      description: Delete a Synthetics global variable.
+      operationId: DeleteGlobalVariable
+      parameters:
+      - description: The ID of the global variable.
+        explode: false
+        in: path
+        name: variable_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: JSON format is wrong
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Delete a global variable
+      tags:
+      - Synthetics
+    put:
+      description: Edit a Synthetics global variable.
+      operationId: EditGlobalVariable
+      parameters:
+      - description: The ID of the global variable.
+        explode: false
+        in: path
+        name: variable_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyntheticsGlobalVariable'
+        description: Details of the global variable to update.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsGlobalVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Edit a global variable
       tags:
       - Synthetics
       x-codegen-request-body-name: body
@@ -5316,7 +5457,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for analyzed logs
       tags:
       - Usage Metering
@@ -5363,7 +5504,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Lambda
       tags:
       - Usage Metering
@@ -5400,7 +5541,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get billable usage across your multi-org account
       tags:
       - Usage Metering
@@ -5447,7 +5588,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Fargate
       tags:
       - Usage Metering
@@ -5494,7 +5635,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for hosts and containers
       tags:
       - Usage Metering
@@ -5541,7 +5682,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Logs
       tags:
       - Usage Metering
@@ -5598,7 +5739,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Logs by Index
       tags:
       - Usage Metering
@@ -5646,7 +5787,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Network Flows
       tags:
       - Usage Metering
@@ -5693,8 +5834,56 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Network Hosts
+      tags:
+      - Usage Metering
+  /api/v1/usage/profiling:
+    get:
+      description: Get hourly usage for profiled hosts.
+      operationId: GetUsageProfiling
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageProfilingResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for profiled hosts
       tags:
       - Usage Metering
   /api/v1/usage/rum_sessions:
@@ -5741,7 +5930,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for RUM Sessions
       tags:
       - Usage Metering
@@ -5789,7 +5978,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for SNMP devices
       tags:
       - Usage Metering
@@ -5845,7 +6034,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get usage across your multi-org account
       tags:
       - Usage Metering
@@ -5893,7 +6082,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics Checks
       tags:
       - Usage Metering
@@ -5940,7 +6129,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics API Checks
       tags:
       - Usage Metering
@@ -5987,7 +6176,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Synthetics Browser Checks
       tags:
       - Usage Metering
@@ -6034,7 +6223,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for custom metrics
       tags:
       - Usage Metering
@@ -6082,7 +6271,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get top 500 custom metrics by hourly average
       tags:
       - Usage Metering
@@ -6129,7 +6318,7 @@ paths:
             application/json;datetime-format=rfc3339:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
+          description: Forbidden - User is not authorized
       summary: Get hourly usage for Trace Search
       tags:
       - Usage Metering
@@ -6218,25 +6407,25 @@ paths:
       responses:
         "200":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/UserDisableResponse'
           description: User disabled
         "400":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Bad Request
         "403":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
         "404":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
@@ -6769,6 +6958,37 @@ components:
         api_key:
           $ref: '#/components/schemas/ApiKey'
       type: object
+    ApmResourcesQueryDefinition:
+      description: The APM resources (stats) query for Table Widget.
+      properties:
+        columns:
+          description: Column names used by front end for display.
+          items:
+            description: Column header.
+            example: MeanLatency
+            type: string
+          type: array
+        env:
+          description: Environment name.
+          example: prod
+          type: string
+        name:
+          description: Operation name associated with service.
+          example: rack.request
+          type: string
+        resource:
+          description: Resource name.
+          example: CartsController
+          type: string
+        service:
+          description: Service name.
+          example: web-store
+          type: string
+      required:
+      - env
+      - name
+      - service
+      type: object
     ApplicationKey:
       description: An application key with its associated metadata.
       example:
@@ -6919,6 +7139,11 @@ components:
       description: The Change graph shows you the change in a value over the time
         period chosen.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           description: |-
             Array of one request object to display in the widget.
@@ -7413,7 +7638,9 @@ components:
         Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
       properties:
         legend_size:
-          $ref: '#/components/schemas/WidgetLegendSize'
+          description: Available legend sizes for a widget. Should be one of "0",
+            "2", "4", "8", "16", or "auto".
+          type: string
         requests:
           description: |-
             Array of one request object to display in the widget.
@@ -7701,9 +7928,7 @@ components:
         url: url
         tags:
         - environment:test
-        device_name:
-        - device_name
-        - device_name
+        device_name: device_name
         payload: '{}'
         host: host
         id: 6
@@ -7725,11 +7950,8 @@ components:
           format: int64
           type: integer
         device_name:
-          description: A list of device names to post the event with.
-          items:
-            description: A device name.
-            type: string
-          type: array
+          description: A device name.
+          type: string
         host:
           description: |-
             Host name to associate with the event.
@@ -7815,9 +8037,7 @@ components:
           url: url
           tags:
           - environment:test
-          device_name:
-          - device_name
-          - device_name
+          device_name: device_name
           payload: '{}'
           host: host
           id: 6
@@ -7832,9 +8052,7 @@ components:
           url: url
           tags:
           - environment:test
-          device_name:
-          - device_name
-          - device_name
+          device_name: device_name
           payload: '{}'
           host: host
           id: 6
@@ -7888,9 +8106,7 @@ components:
           url: url
           tags:
           - environment:test
-          device_name:
-          - device_name
-          - device_name
+          device_name: device_name
           payload: '{}'
           host: host
           id: 6
@@ -8178,13 +8394,20 @@ components:
         tags, such as hosts. The more hosts that have a particular value, the darker
         that square is.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         events:
           description: List of widget events.
           items:
             $ref: '#/components/schemas/WidgetEvent'
           type: array
         legend_size:
-          $ref: '#/components/schemas/WidgetLegendSize'
+          description: Available legend sizes for a widget. Should be one of "0",
+            "2", "4", "8", "16", or "auto".
+          type: string
         requests:
           description: List of widget types.
           example:
@@ -8457,6 +8680,11 @@ components:
       description: The host map widget graphs any metric across your hosts using the
         same visualization available from the main Host Map page.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         group:
           description: List of tag prefixes to group by.
           items:
@@ -11336,6 +11564,11 @@ components:
         autoscale:
           description: Whether to use auto-scaling or not.
           type: boolean
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         custom_unit:
           description: Display a unit of your choice on the widget.
           type: string
@@ -12009,6 +12242,11 @@ components:
             description: Group name.
             type: string
           type: array
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           $ref: '#/components/schemas/ScatterPlotWidgetDefinition_requests'
         time:
@@ -12308,6 +12546,11 @@ components:
       description: This widget displays a map of a service to all of the services
         that call it, and all of the services that it calls.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         filters:
           description: Your environment and primary tag (or * if enabled for your
             account).
@@ -12717,6 +12960,22 @@ components:
       - CERTIFICATE
       - RESPONSE_TIME
       - PROPERTY
+    SyntheticsBasicAuth:
+      description: Object to handle basic authentication when performing the test.
+      example:
+        password: password
+        username: username
+      properties:
+        password:
+          description: Password to use for the basic authentication.
+          type: string
+        username:
+          description: Username to use for the basic authentication.
+          type: string
+      required:
+      - password
+      - username
+      type: object
     SyntheticsBrowserError:
       description: Error response object for a browser test.
       example:
@@ -13105,6 +13364,164 @@ components:
       - EMAIL
       - GLOBAL
       - TEXT
+    SyntheticsCITest:
+      description: Test configuration for Synthetics CI
+      example:
+        bodyType: bodyType
+        headers:
+          key: headers
+        deviceIds:
+        - null
+        - null
+        metadata:
+          git:
+            commit_sha: commit_sha
+            branch: branch
+          ci:
+            pipeline: pipeline
+            provider: provider
+        variables:
+          key: variables
+        basicAuth:
+          password: password
+          username: username
+        body: body
+        cookies: cookies
+        public_id: public_id
+        startUrl: startUrl
+        followRedirects: true
+        allowInsecureCertificates: true
+        locations:
+        - locations
+        - locations
+        retry:
+          count: 7
+          interval: 9.301444243932576
+      properties:
+        allowInsecureCertificates:
+          description: Disable certificate checks in API tests.
+          type: boolean
+        basicAuth:
+          $ref: '#/components/schemas/SyntheticsBasicAuth'
+        body:
+          description: Body to include in the test.
+          type: string
+        bodyType:
+          description: Type of the data sent in a synthetics API test.
+          type: string
+        cookies:
+          description: Cookies for the request.
+          type: string
+        deviceIds:
+          description: For browser test, array with the different device IDs used
+            to run the test.
+          items:
+            $ref: '#/components/schemas/SyntheticsDeviceID'
+          type: array
+        followRedirects:
+          description: For API HTTP test, whether or not the test should follow redirects.
+          type: boolean
+        headers:
+          additionalProperties:
+            description: A single Header.
+            type: string
+          description: Headers to include when performing the test.
+          type: object
+        locations:
+          description: Array of locations used to run the test.
+          items:
+            description: A location from which the test was run.
+            type: string
+          type: array
+        metadata:
+          $ref: '#/components/schemas/SyntheticsCITest_metadata'
+        public_id:
+          description: The public ID of the Synthetics test to trigger.
+          type: string
+        retry:
+          $ref: '#/components/schemas/SyntheticsTestOptionsRetry'
+        startUrl:
+          description: Starting URL for the browser test.
+          type: string
+        variables:
+          additionalProperties:
+            description: A single variable.
+            type: string
+          description: Variables to replace in the test.
+          type: object
+      required:
+      - public_id
+    SyntheticsCITestBody:
+      description: Object describing the synthetics tests to trigger.
+      example:
+        tests:
+        - bodyType: bodyType
+          headers:
+            key: headers
+          deviceIds:
+          - null
+          - null
+          metadata:
+            git:
+              commit_sha: commit_sha
+              branch: branch
+            ci:
+              pipeline: pipeline
+              provider: provider
+          variables:
+            key: variables
+          basicAuth:
+            password: password
+            username: username
+          body: body
+          cookies: cookies
+          public_id: public_id
+          startUrl: startUrl
+          followRedirects: true
+          allowInsecureCertificates: true
+          locations:
+          - locations
+          - locations
+          retry:
+            count: 7
+            interval: 9.301444243932576
+        - bodyType: bodyType
+          headers:
+            key: headers
+          deviceIds:
+          - null
+          - null
+          metadata:
+            git:
+              commit_sha: commit_sha
+              branch: branch
+            ci:
+              pipeline: pipeline
+              provider: provider
+          variables:
+            key: variables
+          basicAuth:
+            password: password
+            username: username
+          body: body
+          cookies: cookies
+          public_id: public_id
+          startUrl: startUrl
+          followRedirects: true
+          allowInsecureCertificates: true
+          locations:
+          - locations
+          - locations
+          retry:
+            count: 7
+            interval: 9.301444243932576
+      properties:
+        tests:
+          description: Individual synthetics test.
+          items:
+            $ref: '#/components/schemas/SyntheticsCITest'
+          type: array
+      type: object
     SyntheticsCheckType:
       description: Type of assertion to apply in an API test.
       enum:
@@ -13136,14 +13553,14 @@ components:
       description: A JSON list of the ID or IDs of the Synthetic tests that you want
         to delete.
       example:
-        public_ids:
-        - public_ids
-        - public_ids
+        public_ids: []
       properties:
         public_ids:
           description: An array of Synthetic test IDs you want to delete.
+          example: []
           items:
             description: A Synthetic test ID to delete.
+            example: abc-def-123
             type: string
           type: array
       type: object
@@ -13323,6 +13740,57 @@ components:
             $ref: '#/components/schemas/SyntheticsBrowserTestResultShort'
           type: array
       type: object
+    SyntheticsGlobalVariable:
+      description: Synthetics global variable.
+      example:
+        name: name
+        description: description
+        id: id
+        value:
+          secure: true
+          value: value
+        tags:
+        - tags
+        - tags
+      properties:
+        description:
+          description: Description of the global variable.
+          type: string
+        id:
+          description: Unique identifier of the global variable.
+          readOnly: true
+          type: string
+        name:
+          description: Name of the global variable.
+          type: string
+        tags:
+          description: Tags of the global variable.
+          items:
+            description: Tag name.
+            type: string
+          type: array
+        value:
+          $ref: '#/components/schemas/SyntheticsGlobalVariableValue'
+      required:
+      - description
+      - name
+      - tags
+      - value
+      type: object
+    SyntheticsGlobalVariableValue:
+      description: Value of the global variable.
+      example:
+        secure: true
+        value: value
+      properties:
+        secure:
+          description: Determines if the variable is secure.
+          type: boolean
+        value:
+          description: Value of the global variable.
+          type: string
+      required:
+      - value
     SyntheticsListTestsResponse:
       description: Object containing an array of Synthetic tests configuration.
       example:
@@ -13331,6 +13799,8 @@ components:
           name: name
           options:
             min_location_failed: 5
+            monitor_options:
+              renotify_interval: 331
             min_failure_duration: 5
             allow_insecure: true
             device_ids:
@@ -13339,8 +13809,8 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 2
-              interval: 7.061401241503109
+              count: 7
+              interval: 9.301444243932576
           locations:
           - locations
           - locations
@@ -13372,11 +13842,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           public_id: public_id
           tags:
           - tags
@@ -13385,6 +13855,8 @@ components:
           name: name
           options:
             min_location_failed: 5
+            monitor_options:
+              renotify_interval: 331
             min_failure_duration: 5
             allow_insecure: true
             device_ids:
@@ -13393,8 +13865,8 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 2
-              interval: 7.061401241503109
+              count: 7
+              interval: 9.301444243932576
           locations:
           - locations
           - locations
@@ -13426,11 +13898,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 9.301444243932576
+            timeout: 3.616076749251911
           public_id: public_id
           tags:
           - tags
@@ -13624,7 +14096,7 @@ components:
         allowFailure: true
         name: name
         params: '{}'
-        timeout: 9.301444243932576
+        timeout: 3.616076749251911
       properties:
         allowFailure:
           description: A boolean set to allow this step to fail.
@@ -13839,6 +14311,8 @@ components:
         name: name
         options:
           min_location_failed: 5
+          monitor_options:
+            renotify_interval: 331
           min_failure_duration: 5
           allow_insecure: true
           device_ids:
@@ -13847,8 +14321,8 @@ components:
           follow_redirects: true
           accept_self_signed: true
           retry:
-            count: 2
-            interval: 7.061401241503109
+            count: 7
+            interval: 9.301444243932576
         locations:
         - locations
         - locations
@@ -13880,11 +14354,11 @@ components:
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 9.301444243932576
+          timeout: 3.616076749251911
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 9.301444243932576
+          timeout: 3.616076749251911
         public_id: public_id
         tags:
         - tags
@@ -13951,6 +14425,12 @@ components:
       x-enum-varnames:
       - API
       - BROWSER
+    SyntheticsTestHeaders:
+      additionalProperties:
+        description: A single Header.
+        type: string
+      description: Headers to include when performing the test.
+      type: object
     SyntheticsTestMonitorStatus:
       description: |-
         The status of your Synthetic monitor.
@@ -13971,6 +14451,8 @@ components:
       description: Object describing the extra options for a Synthetic test.
       example:
         min_location_failed: 5
+        monitor_options:
+          renotify_interval: 331
         min_failure_duration: 5
         allow_insecure: true
         device_ids:
@@ -13979,8 +14461,8 @@ components:
         follow_redirects: true
         accept_self_signed: true
         retry:
-          count: 2
-          interval: 7.061401241503109
+          count: 7
+          interval: 9.301444243932576
       properties:
         accept_self_signed:
           description: For SSL test, whether or not the test should allow self signed
@@ -14007,10 +14489,29 @@ components:
             an alert.
           format: int64
           type: integer
+        monitor_options:
+          $ref: '#/components/schemas/SyntheticsTestOptions_monitor_options'
         retry:
-          $ref: '#/components/schemas/SyntheticsTestOptions_retry'
+          $ref: '#/components/schemas/SyntheticsTestOptionsRetry'
         tick_every:
           $ref: '#/components/schemas/SyntheticsTickInterval'
+      type: object
+    SyntheticsTestOptionsRetry:
+      description: Object describing the retry strategy to apply to a Synthetic test.
+      example:
+        count: 7
+        interval: 9.301444243932576
+      properties:
+        count:
+          description: Number of times a test needs to be retried before marking a
+            location as failed. Defaults to 0.
+          format: int64
+          type: integer
+        interval:
+          description: Time interval between retries (in milliseconds). Defaults to
+            300ms.
+          format: double
+          type: number
       type: object
     SyntheticsTestPauseStatus:
       description: Define whether you want to start (`live`) or pause (`paused`) a
@@ -14053,7 +14554,7 @@ components:
         url: url
       properties:
         basicAuth:
-          $ref: '#/components/schemas/SyntheticsTestRequest_basicAuth'
+          $ref: '#/components/schemas/SyntheticsBasicAuth'
         body:
           description: Body to include in the test.
           type: string
@@ -14159,6 +14660,42 @@ components:
           format: double
           type: number
       type: object
+    SyntheticsTriggerCITestsResponse:
+      description: Object containing information about the tests triggered.
+      example:
+        triggered_check_ids:
+        - triggered_check_ids
+        - triggered_check_ids
+        locations:
+        - name: name
+          id: 0.8008281904610115
+        - name: name
+          id: 0.8008281904610115
+        results:
+        - result_id: result_id
+          location: 6.027456183070403
+          public_id: public_id
+        - result_id: result_id
+          location: 6.027456183070403
+          public_id: public_id
+      properties:
+        locations:
+          description: List of Synthetics locations.
+          items:
+            $ref: '#/components/schemas/SyntheticsTriggerCITestsResponse_locations'
+          type: array
+        results:
+          description: Information about the tests runs.
+          items:
+            $ref: '#/components/schemas/SyntheticsTriggerCITestsResponse_results'
+          type: array
+        triggered_check_ids:
+          description: The public IDs of the Synthetics test triggered.
+          items:
+            description: The public ID of the Synthetics test.
+            type: string
+          type: array
+      type: object
     SyntheticsUpdateTestPauseStatusPayload:
       description: Object to start or pause an existing Synthetic test.
       example: {}
@@ -14177,6 +14714,11 @@ components:
       description: The table visualization is available on timeboards and screenboards.
         It displays columns of metrics grouped by tag key.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           description: Widget definition.
           example:
@@ -14219,6 +14761,8 @@ components:
           type: string
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        apm_resources_query:
+          $ref: '#/components/schemas/ApmResourcesQueryDefinition'
         conditional_formats:
           description: List of conditional formats.
           items:
@@ -14271,13 +14815,20 @@ components:
       description: The timeseries visualization allows you to display the evolution
         of one or more metrics, log events, or Analyzed Spans over time.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         events:
           description: List of widget events.
           items:
             $ref: '#/components/schemas/WidgetEvent'
           type: array
         legend_size:
-          $ref: '#/components/schemas/WidgetLegendSize'
+          description: Available legend sizes for a widget. Should be one of "0",
+            "2", "4", "8", "16", or "auto".
+          type: string
         markers:
           description: List of markers.
           items:
@@ -14356,6 +14907,11 @@ components:
         value like hostname or service with the most or least of any metric value,
         such as highest consumers of CPU, hosts with the least disk space, etc.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           description: List of top list widget requests.
           example:
@@ -15360,9 +15916,8 @@ components:
           format: int64
           type: integer
         container_count:
-          description: |-
-            Contains the total number of billable infrastructure hosts reporting during a given hour.
-            This is the sum of `agent_host_count`, `aws_host_count`, and `gcp_host_count`.
+          description: Shows the total number of containers reported by the Docker
+            integration during the hour.
           format: int64
           type: integer
         gcp_host_count:
@@ -15372,8 +15927,9 @@ components:
           format: int64
           type: integer
         host_count:
-          description: Shows the total number of containers reporting via the Docker
-            integration during the hour.
+          description: |-
+            Contains the total number of billable infrastructure hosts reporting during a given hour.
+            This is the sum of `agent_host_count`, `aws_host_count`, and `gcp_host_count`.
           format: int64
           type: integer
         hour:
@@ -15618,6 +16174,45 @@ components:
             $ref: '#/components/schemas/UsageNetworkHostsHour'
           type: array
       type: object
+    UsageProfilingHour:
+      description: The number of profiled hosts for each hour for a given organization.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        host_count: 6
+        avg_container_agent_count: 0
+      properties:
+        avg_container_agent_count:
+          description: Get average number of container agents for that hour.
+          format: int64
+          type: integer
+        host_count:
+          description: Contains the total number of profiled hosts reporting during
+            a given hour.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+      type: object
+    UsageProfilingResponse:
+      description: Response containing the number of profiled hosts for each hour
+        for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          host_count: 6
+          avg_container_agent_count: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          host_count: 6
+          avg_container_agent_count: 0
+      properties:
+        usage:
+          description: Get hourly usage for profiled hosts.
+          items:
+            $ref: '#/components/schemas/UsageProfilingHour'
+          type: array
+      type: object
     UsageReportsType:
       default: reports
       description: The type of reports.
@@ -15820,76 +16415,79 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
-        npm_host_top99p: 7
-        container_hwm: 2
-        gcp_host_top99p: 6
-        billable_ingested_bytes_sum: 6
+        npm_host_top99p: 0
+        container_hwm: 6
+        profiling_host_top99p: 6
+        gcp_host_top99p: 3
+        billable_ingested_bytes_sum: 2
         fargate_tasks_count_avg: 6
-        apm_host_top99p: 8
-        rum_session_count_sum: 7
-        synthetics_check_calls_count_sum: 4
-        aws_host_top99p: 9
+        apm_host_top99p: 6
+        rum_session_count_sum: 8
+        synthetics_check_calls_count_sum: 3
+        aws_host_top99p: 3
         ingested_events_bytes_sum: 7
-        custom_ts_avg: 6
-        trace_search_indexed_events_count_sum: 6
-        container_avg: 1
-        netflow_indexed_events_count_sum: 0
-        agent_host_top99p: 6
-        indexed_events_count_sum: 3
-        infra_host_top99p: 3
+        custom_ts_avg: 5
+        trace_search_indexed_events_count_sum: 0
+        container_avg: 6
+        netflow_indexed_events_count_sum: 6
+        agent_host_top99p: 9
+        indexed_events_count_sum: 7
+        infra_host_top99p: 0
         aws_lambda_func_count: 6
         orgs:
-        - npm_host_top99p: 7
-          container_hwm: 7
-          gcp_host_top99p: 0
-          billable_ingested_bytes_sum: 3
-          fargate_tasks_count_avg: 3
-          apm_host_top99p: 0
-          rum_session_count_sum: 9
-          synthetics_check_calls_count_sum: 9
-          aws_host_top99p: 4
-          ingested_events_bytes_sum: 1
-          custom_ts_avg: 5
+        - npm_host_top99p: 0
+          container_hwm: 3
+          billable_ingested_bytes_sum: 7
+          fargate_tasks_count_avg: 0
+          rum_session_count_sum: 0
+          ingested_events_bytes_sum: 7
           public_id: public_id
-          trace_search_indexed_events_count_sum: 0
-          container_avg: 3
-          netflow_indexed_events_count_sum: 4
-          agent_host_top99p: 6
-          indexed_events_count_sum: 6
-          infra_host_top99p: 4
-          aws_lambda_func_count: 8
-          name: name
+          container_avg: 5
+          netflow_indexed_events_count_sum: 9
+          aws_lambda_func_count: 3
           id: id
-          aws_lambda_invocations_sum: 7
-          fargate_tasks_count_hwm: 4
-          synthetics_browser_check_calls_count_sum: 0
-        - npm_host_top99p: 7
-          container_hwm: 7
-          gcp_host_top99p: 0
-          billable_ingested_bytes_sum: 3
-          fargate_tasks_count_avg: 3
-          apm_host_top99p: 0
-          rum_session_count_sum: 9
-          synthetics_check_calls_count_sum: 9
-          aws_host_top99p: 4
-          ingested_events_bytes_sum: 1
-          custom_ts_avg: 5
+          fargate_tasks_count_hwm: 6
+          profiling_host_top99p: 9
+          gcp_host_top99p: 4
+          apm_host_top99p: 8
+          synthetics_check_calls_count_sum: 5
+          aws_host_top99p: 7
+          custom_ts_avg: 4
+          trace_search_indexed_events_count_sum: 4
+          agent_host_top99p: 4
+          indexed_events_count_sum: 1
+          infra_host_top99p: 4
+          name: name
+          aws_lambda_invocations_sum: 3
+          synthetics_browser_check_calls_count_sum: 7
+        - npm_host_top99p: 0
+          container_hwm: 3
+          billable_ingested_bytes_sum: 7
+          fargate_tasks_count_avg: 0
+          rum_session_count_sum: 0
+          ingested_events_bytes_sum: 7
           public_id: public_id
-          trace_search_indexed_events_count_sum: 0
-          container_avg: 3
-          netflow_indexed_events_count_sum: 4
-          agent_host_top99p: 6
-          indexed_events_count_sum: 6
-          infra_host_top99p: 4
-          aws_lambda_func_count: 8
-          name: name
+          container_avg: 5
+          netflow_indexed_events_count_sum: 9
+          aws_lambda_func_count: 3
           id: id
-          aws_lambda_invocations_sum: 7
-          fargate_tasks_count_hwm: 4
-          synthetics_browser_check_calls_count_sum: 0
-        aws_lambda_invocations_sum: 3
-        fargate_tasks_count_hwm: 5
-        synthetics_browser_check_calls_count_sum: 5
+          fargate_tasks_count_hwm: 6
+          profiling_host_top99p: 9
+          gcp_host_top99p: 4
+          apm_host_top99p: 8
+          synthetics_check_calls_count_sum: 5
+          aws_host_top99p: 7
+          custom_ts_avg: 4
+          trace_search_indexed_events_count_sum: 4
+          agent_host_top99p: 4
+          indexed_events_count_sum: 1
+          infra_host_top99p: 4
+          name: name
+          aws_lambda_invocations_sum: 3
+          synthetics_browser_check_calls_count_sum: 7
+        aws_lambda_invocations_sum: 1
+        fargate_tasks_count_hwm: 3
+        synthetics_browser_check_calls_count_sum: 4
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -15985,6 +16583,11 @@ components:
           items:
             $ref: '#/components/schemas/UsageSummaryDateOrg'
           type: array
+        profiling_host_top99p:
+          description: Shows the 99th percentile of all profiled hosts over all hours
+            in the current date for all organizations.
+          format: int64
+          type: integer
         rum_session_count_sum:
           description: Shows the sum of all RUM Sessions over all hours in the current
             date for all organizations
@@ -16010,30 +16613,31 @@ components:
       description: Global hourly report of all data billed by Datadog for a given
         organization.
       example:
-        npm_host_top99p: 7
-        container_hwm: 7
-        gcp_host_top99p: 0
-        billable_ingested_bytes_sum: 3
-        fargate_tasks_count_avg: 3
-        apm_host_top99p: 0
-        rum_session_count_sum: 9
-        synthetics_check_calls_count_sum: 9
-        aws_host_top99p: 4
-        ingested_events_bytes_sum: 1
-        custom_ts_avg: 5
+        npm_host_top99p: 0
+        container_hwm: 3
+        billable_ingested_bytes_sum: 7
+        fargate_tasks_count_avg: 0
+        rum_session_count_sum: 0
+        ingested_events_bytes_sum: 7
         public_id: public_id
-        trace_search_indexed_events_count_sum: 0
-        container_avg: 3
-        netflow_indexed_events_count_sum: 4
-        agent_host_top99p: 6
-        indexed_events_count_sum: 6
-        infra_host_top99p: 4
-        aws_lambda_func_count: 8
-        name: name
+        container_avg: 5
+        netflow_indexed_events_count_sum: 9
+        aws_lambda_func_count: 3
         id: id
-        aws_lambda_invocations_sum: 7
-        fargate_tasks_count_hwm: 4
-        synthetics_browser_check_calls_count_sum: 0
+        fargate_tasks_count_hwm: 6
+        profiling_host_top99p: 9
+        gcp_host_top99p: 4
+        apm_host_top99p: 8
+        synthetics_check_calls_count_sum: 5
+        aws_host_top99p: 7
+        custom_ts_avg: 4
+        trace_search_indexed_events_count_sum: 4
+        agent_host_top99p: 4
+        indexed_events_count_sum: 1
+        infra_host_top99p: 4
+        name: name
+        aws_lambda_invocations_sum: 3
+        synthetics_browser_check_calls_count_sum: 7
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -16125,6 +16729,11 @@ components:
             all hours in the current date for the given org.
           format: int64
           type: integer
+        profiling_host_top99p:
+          description: Shows the 99th percentile of all profiled hosts over all hours
+            in the current date for all organizations.
+          format: int64
+          type: integer
         public_id:
           description: The organization public id.
           type: string
@@ -16156,156 +16765,162 @@ components:
         azure_host_top99p_sum: 2
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 7
-          container_hwm: 2
-          gcp_host_top99p: 6
-          billable_ingested_bytes_sum: 6
+          npm_host_top99p: 0
+          container_hwm: 6
+          profiling_host_top99p: 6
+          gcp_host_top99p: 3
+          billable_ingested_bytes_sum: 2
           fargate_tasks_count_avg: 6
-          apm_host_top99p: 8
-          rum_session_count_sum: 7
-          synthetics_check_calls_count_sum: 4
-          aws_host_top99p: 9
+          apm_host_top99p: 6
+          rum_session_count_sum: 8
+          synthetics_check_calls_count_sum: 3
+          aws_host_top99p: 3
           ingested_events_bytes_sum: 7
-          custom_ts_avg: 6
-          trace_search_indexed_events_count_sum: 6
-          container_avg: 1
-          netflow_indexed_events_count_sum: 0
-          agent_host_top99p: 6
-          indexed_events_count_sum: 3
-          infra_host_top99p: 3
+          custom_ts_avg: 5
+          trace_search_indexed_events_count_sum: 0
+          container_avg: 6
+          netflow_indexed_events_count_sum: 6
+          agent_host_top99p: 9
+          indexed_events_count_sum: 7
+          infra_host_top99p: 0
           aws_lambda_func_count: 6
           orgs:
-          - npm_host_top99p: 7
-            container_hwm: 7
-            gcp_host_top99p: 0
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 3
-            apm_host_top99p: 0
-            rum_session_count_sum: 9
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            ingested_events_bytes_sum: 1
-            custom_ts_avg: 5
+          - npm_host_top99p: 0
+            container_hwm: 3
+            billable_ingested_bytes_sum: 7
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            trace_search_indexed_events_count_sum: 0
-            container_avg: 3
-            netflow_indexed_events_count_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 6
-            infra_host_top99p: 4
-            aws_lambda_func_count: 8
-            name: name
+            container_avg: 5
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 3
             id: id
-            aws_lambda_invocations_sum: 7
-            fargate_tasks_count_hwm: 4
-            synthetics_browser_check_calls_count_sum: 0
-          - npm_host_top99p: 7
-            container_hwm: 7
-            gcp_host_top99p: 0
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 3
-            apm_host_top99p: 0
-            rum_session_count_sum: 9
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            ingested_events_bytes_sum: 1
-            custom_ts_avg: 5
+            fargate_tasks_count_hwm: 6
+            profiling_host_top99p: 9
+            gcp_host_top99p: 4
+            apm_host_top99p: 8
+            synthetics_check_calls_count_sum: 5
+            aws_host_top99p: 7
+            custom_ts_avg: 4
+            trace_search_indexed_events_count_sum: 4
+            agent_host_top99p: 4
+            indexed_events_count_sum: 1
+            infra_host_top99p: 4
+            name: name
+            aws_lambda_invocations_sum: 3
+            synthetics_browser_check_calls_count_sum: 7
+          - npm_host_top99p: 0
+            container_hwm: 3
+            billable_ingested_bytes_sum: 7
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            trace_search_indexed_events_count_sum: 0
-            container_avg: 3
-            netflow_indexed_events_count_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 6
-            infra_host_top99p: 4
-            aws_lambda_func_count: 8
-            name: name
+            container_avg: 5
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 3
             id: id
-            aws_lambda_invocations_sum: 7
-            fargate_tasks_count_hwm: 4
-            synthetics_browser_check_calls_count_sum: 0
-          aws_lambda_invocations_sum: 3
-          fargate_tasks_count_hwm: 5
-          synthetics_browser_check_calls_count_sum: 5
+            fargate_tasks_count_hwm: 6
+            profiling_host_top99p: 9
+            gcp_host_top99p: 4
+            apm_host_top99p: 8
+            synthetics_check_calls_count_sum: 5
+            aws_host_top99p: 7
+            custom_ts_avg: 4
+            trace_search_indexed_events_count_sum: 4
+            agent_host_top99p: 4
+            indexed_events_count_sum: 1
+            infra_host_top99p: 4
+            name: name
+            aws_lambda_invocations_sum: 3
+            synthetics_browser_check_calls_count_sum: 7
+          aws_lambda_invocations_sum: 1
+          fargate_tasks_count_hwm: 3
+          synthetics_browser_check_calls_count_sum: 4
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 7
-          container_hwm: 2
-          gcp_host_top99p: 6
-          billable_ingested_bytes_sum: 6
+          npm_host_top99p: 0
+          container_hwm: 6
+          profiling_host_top99p: 6
+          gcp_host_top99p: 3
+          billable_ingested_bytes_sum: 2
           fargate_tasks_count_avg: 6
-          apm_host_top99p: 8
-          rum_session_count_sum: 7
-          synthetics_check_calls_count_sum: 4
-          aws_host_top99p: 9
+          apm_host_top99p: 6
+          rum_session_count_sum: 8
+          synthetics_check_calls_count_sum: 3
+          aws_host_top99p: 3
           ingested_events_bytes_sum: 7
-          custom_ts_avg: 6
-          trace_search_indexed_events_count_sum: 6
-          container_avg: 1
-          netflow_indexed_events_count_sum: 0
-          agent_host_top99p: 6
-          indexed_events_count_sum: 3
-          infra_host_top99p: 3
+          custom_ts_avg: 5
+          trace_search_indexed_events_count_sum: 0
+          container_avg: 6
+          netflow_indexed_events_count_sum: 6
+          agent_host_top99p: 9
+          indexed_events_count_sum: 7
+          infra_host_top99p: 0
           aws_lambda_func_count: 6
           orgs:
-          - npm_host_top99p: 7
-            container_hwm: 7
-            gcp_host_top99p: 0
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 3
-            apm_host_top99p: 0
-            rum_session_count_sum: 9
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            ingested_events_bytes_sum: 1
-            custom_ts_avg: 5
+          - npm_host_top99p: 0
+            container_hwm: 3
+            billable_ingested_bytes_sum: 7
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            trace_search_indexed_events_count_sum: 0
-            container_avg: 3
-            netflow_indexed_events_count_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 6
-            infra_host_top99p: 4
-            aws_lambda_func_count: 8
-            name: name
+            container_avg: 5
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 3
             id: id
-            aws_lambda_invocations_sum: 7
-            fargate_tasks_count_hwm: 4
-            synthetics_browser_check_calls_count_sum: 0
-          - npm_host_top99p: 7
-            container_hwm: 7
-            gcp_host_top99p: 0
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 3
-            apm_host_top99p: 0
-            rum_session_count_sum: 9
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            ingested_events_bytes_sum: 1
-            custom_ts_avg: 5
+            fargate_tasks_count_hwm: 6
+            profiling_host_top99p: 9
+            gcp_host_top99p: 4
+            apm_host_top99p: 8
+            synthetics_check_calls_count_sum: 5
+            aws_host_top99p: 7
+            custom_ts_avg: 4
+            trace_search_indexed_events_count_sum: 4
+            agent_host_top99p: 4
+            indexed_events_count_sum: 1
+            infra_host_top99p: 4
+            name: name
+            aws_lambda_invocations_sum: 3
+            synthetics_browser_check_calls_count_sum: 7
+          - npm_host_top99p: 0
+            container_hwm: 3
+            billable_ingested_bytes_sum: 7
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            trace_search_indexed_events_count_sum: 0
-            container_avg: 3
-            netflow_indexed_events_count_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 6
-            infra_host_top99p: 4
-            aws_lambda_func_count: 8
-            name: name
+            container_avg: 5
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 3
             id: id
-            aws_lambda_invocations_sum: 7
-            fargate_tasks_count_hwm: 4
-            synthetics_browser_check_calls_count_sum: 0
-          aws_lambda_invocations_sum: 3
-          fargate_tasks_count_hwm: 5
-          synthetics_browser_check_calls_count_sum: 5
+            fargate_tasks_count_hwm: 6
+            profiling_host_top99p: 9
+            gcp_host_top99p: 4
+            apm_host_top99p: 8
+            synthetics_check_calls_count_sum: 5
+            aws_host_top99p: 7
+            custom_ts_avg: 4
+            trace_search_indexed_events_count_sum: 4
+            agent_host_top99p: 4
+            indexed_events_count_sum: 1
+            infra_host_top99p: 4
+            name: name
+            aws_lambda_invocations_sum: 3
+            synthetics_browser_check_calls_count_sum: 7
+          aws_lambda_invocations_sum: 1
+          fargate_tasks_count_hwm: 3
+          synthetics_browser_check_calls_count_sum: 4
         container_hwm_sum: 3
-        synthetics_browser_check_calls_count_agg_sum: 5
+        synthetics_browser_check_calls_count_agg_sum: 9
         apm_host_top99p_sum: 6
         npm_host_top99p_sum: 1
         container_avg_sum: 9
         agent_host_top99p_sum: 0
         infra_host_top99p_sum: 1
         custom_ts_sum: 2
-        synthetics_check_calls_count_agg_sum: 9
+        synthetics_check_calls_count_agg_sum: 6
         aws_lambda_func_count: 5
         netflow_indexed_events_count_agg_sum: 7
         fargate_tasks_count_avg_sum: 4
@@ -16316,10 +16931,12 @@ components:
         last_updated: 2000-01-23T04:56:07.000+00:00
         indexed_events_count_agg_sum: 1
         gcp_host_top99p_sum: 1
-        rum_session_count_agg_sum: 4
+        rum_session_count_agg_sum: 9
         aws_host_top99p_sum: 1
+        profiling_container_agent_count_avg: 4
+        profiling_host_count_top99p_sum: 5
         aws_lambda_invocations_sum: 5
-        trace_search_indexed_events_count_agg_sum: 9
+        trace_search_indexed_events_count_agg_sum: 8
       properties:
         agent_host_top99p_sum:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -16419,6 +17036,16 @@ components:
         npm_host_top99p_sum:
           description: Shows the 99th percentile of all distinct Networks hosts over
             all hours in the current month(s) for all organizations.
+          format: int64
+          type: integer
+        profiling_container_agent_count_avg:
+          description: Shows the average number of profiled containers over all hours
+            in the current month(s) for all organizations.
+          format: int64
+          type: integer
+        profiling_host_count_top99p_sum:
+          description: Shows the 99th percentile of all profiled hosts over all hours
+            in the current month(s) for all organizations.
           format: int64
           type: integer
         rum_session_count_agg_sum:
@@ -16707,6 +17334,8 @@ components:
       type: object
     UserDisableResponse:
       description: Array of user disabled for a given organization.
+      example:
+        message: message
       properties:
         message:
           description: Information pertaining to a user disabled for a given organization.
@@ -16891,6 +17520,24 @@ components:
       - palette
       - value
       type: object
+    WidgetCustomLink:
+      description: Custom links help you connect a data value to a URL, like a Datadog
+        page or your AWS console.
+      properties:
+        label:
+          description: The label for the custom link URL. Keep the label short and
+            descriptive. Use metrics and tags as variables.
+          example: Search logs for {{host}}
+          type: string
+        link:
+          description: The URL of the custom link. URL must include `http` or `https`.
+            A relative URL must start with `/`.
+          example: https://app.datadoghq.com/logs?query={{host}}
+          type: string
+      required:
+      - label
+      - link
+      type: object
     WidgetDefinition:
       description: '[Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).'
       oneOf:
@@ -17030,22 +17677,9 @@ components:
       x-enum-varnames:
       - ORDERED
     WidgetLegendSize:
-      description: Available legend sizes for a widget.
-      enum:
-      - "0"
-      - "2"
-      - "4"
-      - "8"
-      - "16"
-      - auto
+      description: Available legend sizes for a widget. Should be one of "0", "2",
+        "4", "8", "16", or "auto".
       type: string
-      x-enum-varnames:
-      - ZERO
-      - TWO
-      - FOUR
-      - EIGHT
-      - SIXTEEN
-      - AUTO
     WidgetLineType:
       description: Type of lines displayed.
       enum:
@@ -18229,6 +18863,38 @@ components:
           description: Total amount of browser test steps.
           format: int64
           type: integer
+    SyntheticsCITest_metadata_ci:
+      example:
+        pipeline: pipeline
+        provider: provider
+      properties:
+        pipeline:
+          type: string
+        provider:
+          type: string
+    SyntheticsCITest_metadata_git:
+      example:
+        commit_sha: commit_sha
+        branch: branch
+      properties:
+        branch:
+          type: string
+        commit_sha:
+          type: string
+    SyntheticsCITest_metadata:
+      description: Metadata for the Synthetics tests run
+      example:
+        git:
+          commit_sha: commit_sha
+          branch: branch
+        ci:
+          pipeline: pipeline
+          provider: provider
+      properties:
+        ci:
+          $ref: '#/components/schemas/SyntheticsCITest_metadata_ci'
+        git:
+          $ref: '#/components/schemas/SyntheticsCITest_metadata_git'
     SyntheticsDeleteTestsResponse_deleted_tests:
       description: Object containing a deleted Synthetic test ID with the associated
         deletion timestamp.
@@ -18316,37 +18982,48 @@ components:
       required:
       - message
       - type
-    SyntheticsTestOptions_retry:
-      description: Object describing the retry strategy to apply to a Synthetic test.
+    SyntheticsTestOptions_monitor_options:
+      description: Object containing the options for a Synthetic test as a monitor
+        (e.g. renotification).
       example:
-        count: 2
-        interval: 7.061401241503109
+        renotify_interval: 331
       properties:
-        count:
-          description: Number of times a test needs to be retried before marking a
-            location as failed. Defaults to 0.
+        renotify_interval:
+          description: Time interval before renotifying if the test is still failing
+            (in minutes).
           format: int64
+          maximum: 1440
+          minimum: 0
           type: integer
-        interval:
-          description: Time interval between retries (in milliseconds). Defaults to
-            300ms.
-          format: double
-          type: number
-    SyntheticsTestRequest_basicAuth:
-      description: Object to handle basic authentication when performing the test.
+    SyntheticsTriggerCITestsResponse_locations:
+      description: Synthetics location.
       example:
-        password: password
-        username: username
+        name: name
+        id: 0.8008281904610115
       properties:
-        password:
-          description: Password to use for the basic authentication.
+        id:
+          description: Unique identifier of the location.
+          type: number
+        name:
+          description: Name of the location.
           type: string
-        username:
-          description: Username to use for the basic authentication.
+    SyntheticsTriggerCITestsResponse_results:
+      example:
+        result_id: result_id
+        location: 6.027456183070403
+        public_id: public_id
+      properties:
+        device:
+          $ref: '#/components/schemas/SyntheticsDeviceID'
+        location:
+          description: The location ID of the test run.
+          type: number
+        public_id:
+          description: The public ID of the Synthetics test.
           type: string
-      required:
-      - password
-      - username
+        result_id:
+          description: ID of the result.
+          type: string
     TimeseriesWidgetRequest_metadata:
       description: Define an expression alias.
       properties:

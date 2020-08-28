@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bucket** | Pointer to **string** | The bucket where the archive will be stored. | 
-**Integration** | Pointer to [**LogsArchiveIntegrationGCS**](LogsArchiveIntegrationGCS.md) |  | 
+**Bucket** | **string** | The bucket where the archive will be stored. | 
+**Integration** | [**LogsArchiveIntegrationGCS**](LogsArchiveIntegrationGCS.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 
-**Type** | Pointer to [**LogsArchiveDestinationGCSType**](LogsArchiveDestinationGCSType.md) |  | [default to "gcs"]
+**Type** | [**LogsArchiveDestinationGCSType**](LogsArchiveDestinationGCSType.md) |  | [default to "gcs"]
 
 ## Methods
 

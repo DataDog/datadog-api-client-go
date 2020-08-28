@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Search** | Pointer to **string** | The query being made on the event. | 
-**TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or. | 
+**Search** | **string** | The query being made on the event. | 
+**TagsExecution** | **string** | The execution method for multi-value filters. Can be either and or or. | 
 
 ## Methods
 

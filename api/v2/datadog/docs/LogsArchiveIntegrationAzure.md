@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | Pointer to **string** | A client ID. | 
-**TenantId** | Pointer to **string** | A tenant ID. | 
+**ClientId** | **string** | A client ID. | 
+**TenantId** | **string** | A tenant ID. | 
 
 ## Methods
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LayoutType** | Pointer to [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
+**LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
-**Type** | Pointer to [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to "group"]
-**Widgets** | Pointer to [**[]Widget**](Widget.md) | List of widget groups. | 
+**Type** | [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to "group"]
+**Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 
 ## Methods
 

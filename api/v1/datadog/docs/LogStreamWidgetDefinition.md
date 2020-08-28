@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | Pointer to [**LogStreamWidgetDefinitionType**](LogStreamWidgetDefinitionType.md) |  | [default to "log_stream"]
+**Type** | [**LogStreamWidgetDefinitionType**](LogStreamWidgetDefinitionType.md) |  | [default to "log_stream"]
 
 ## Methods
 

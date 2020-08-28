@@ -60,7 +60,7 @@ tags:
     read access on a specific log index to a role can be done in Datadog from the
     [Pipelines page](https://app.datadoghq.com/logs/pipelines).
   name: Roles
-- description: Detection Rules for generating signals
+- description: Detection rules for generating signals and listing of generated signals
   name: Security Monitoring
 - description: Create, edit, and disable users.
   externalDocs:
@@ -250,6 +250,42 @@ paths:
       tags:
       - Dashboard Lists
       x-codegen-request-body-name: body
+  /api/v2/logs/analytics/aggregate:
+    post:
+      description: The public API endpoint to aggregate events into buckets and compute
+        metrics and timeseries.
+      operationId: AggregateLogs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogsAggregateRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsAggregateResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+      summary: Aggregate events
+      tags:
+      - Logs
+      x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/logs/config/archives:
     get:
       description: Get the list of configured logs archives with their definitions.
@@ -740,13 +776,13 @@ paths:
           description: OK
         "400":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Bad Request
         "403":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
@@ -806,7 +842,7 @@ paths:
           description: OK
         "403":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
@@ -1445,6 +1481,135 @@ paths:
       tags:
       - Security Monitoring
       x-codegen-request-body-name: body
+  /api/v2/security_monitoring/signals:
+    get:
+      description: |-
+        The list endpoint returns security signals that match a search query.
+        Both this endpoint and the POST endpoint can be used interchangeably when listing
+        security signals.
+      operationId: ListSecurityMonitoringSignals
+      parameters:
+      - description: The search query for security signals.
+        example: security:attack status:high
+        explode: true
+        in: query
+        name: filter[query]
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The minimum timestamp for requested security signals.
+        example: 2019-01-02T09:42:36.320Z
+        explode: true
+        in: query
+        name: filter[from]
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The maximum timestamp for requested security signals.
+        example: 2019-01-03T09:42:36.320Z
+        explode: true
+        in: query
+        name: filter[to]
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The order of the security signals in results.
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          $ref: '#/components/schemas/SecurityMonitoringSignalsSort'
+        style: form
+      - description: A list of results using the cursor provided in the previous query.
+        example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+        explode: true
+        in: query
+        name: page[cursor]
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The maximum number of security signals in the response.
+        example: 25
+        explode: true
+        in: query
+        name: page[limit]
+        required: false
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+      summary: Get a quick list of security signals
+      tags:
+      - Security Monitoring
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+  /api/v2/security_monitoring/signals/search:
+    post:
+      description: |-
+        Returns security signals that match a search query.
+        Both this endpoint and the GET endpoint can be used interchangeably for listing
+        security signals.
+      operationId: SearchSecurityMonitoringSignals
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityMonitoringSignalListRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+      summary: Get a list of security signals
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/user_invitations:
     post:
       description: Sends emails to one or more users inviting them to join the organization.
@@ -1586,13 +1751,13 @@ paths:
           description: OK
         "400":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Bad Request
         "403":
           content:
-            applcation/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
@@ -1718,8 +1883,14 @@ paths:
             schema:
               $ref: '#/components/schemas/UserUpdateRequest'
       responses:
-        "204":
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
           description: OK
+        "204":
+          description: No changes
         "400":
           content:
             application/json:
@@ -2174,6 +2345,222 @@ components:
       type: string
       x-enum-varnames:
       - LOG
+    LogsAggregateBucket:
+      description: A bucket values
+      example:
+        computes: {}
+        by:
+          '@state': success
+          '@version': abc
+      properties:
+        by:
+          additionalProperties:
+            description: The values for each group by
+            type: string
+          description: The key, value pairs for each group by
+          example:
+            '@state': success
+            '@version': abc
+          type: object
+        computes:
+          additionalProperties:
+            $ref: '#/components/schemas/LogsAggregateBucketValue'
+          description: A map of the metric name -> value for regular compute or list
+            of values for a timeseries
+          type: object
+      type: object
+    LogsAggregateBucketValue:
+      description: A bucket value, can be either a timeseries or a single value
+      oneOf:
+      - $ref: '#/components/schemas/LogsAggregateBucketValueSingleString'
+      - $ref: '#/components/schemas/LogsAggregateBucketValueSingleNumber'
+      - $ref: '#/components/schemas/LogsAggregateBucketValueTimeseries'
+    LogsAggregateBucketValueSingleNumber:
+      description: A single number value
+      format: double
+      type: number
+    LogsAggregateBucketValueSingleString:
+      description: A single string value
+      type: string
+    LogsAggregateBucketValueTimeseries:
+      description: A timeseries array
+      items:
+        $ref: '#/components/schemas/LogsAggregateBucketValueTimeseriesPoint'
+      type: array
+      x-generate-alias-as-model: true
+    LogsAggregateBucketValueTimeseriesPoint:
+      description: A timeseries point
+      properties:
+        time:
+          description: The time value for this point
+          example: 2020-06-08T11:55:00Z
+          type: string
+        value:
+          description: The value for this point
+          example: 19
+          format: double
+          type: number
+      type: object
+    LogsAggregateRequest:
+      description: The object sent with the request to retrieve a list of logs from
+        your organization.
+      example:
+        compute:
+        - metric: '@duration'
+          aggregation: pc90
+          interval: 5m
+        - metric: '@duration'
+          aggregation: pc90
+          interval: 5m
+        filter:
+          indexes:
+          - main
+          - web
+          query: service:web* AND @http.status_code:[200 TO 299]
+          from: now-15m
+          to: now
+        options:
+          timezone: GMT
+          timeOffset: 6
+        group_by:
+        - histogram:
+            min: 50
+            max: 100
+            interval: 10
+          limit: 0
+          sort:
+            aggregation: count
+            order: asc
+          facet: host
+        - histogram:
+            min: 50
+            max: 100
+            interval: 10
+          limit: 0
+          sort:
+            aggregation: count
+            order: asc
+          facet: host
+        paging:
+          after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+      properties:
+        compute:
+          description: The list of metrics or timeseries to compute for the retrieved
+            buckets.
+          items:
+            $ref: '#/components/schemas/LogsCompute'
+          type: array
+        filter:
+          $ref: '#/components/schemas/LogsQueryFilter'
+        group_by:
+          description: The rules for the group by
+          items:
+            $ref: '#/components/schemas/LogsGroupBy'
+          type: array
+        options:
+          $ref: '#/components/schemas/LogsQueryOptions'
+        paging:
+          $ref: '#/components/schemas/LogsAggregateRequest_paging'
+      type: object
+    LogsAggregateResponse:
+      description: The response object for the logs aggregate API endpoint
+      example:
+        data:
+          buckets:
+          - computes: {}
+            by:
+              '@state': success
+              '@version': abc
+          - computes: {}
+            by:
+              '@state': success
+              '@version': abc
+        meta:
+          elapsed: 132
+          warnings:
+          - code: unknown_index
+            detail: 'indexes: foo, bar'
+            title: One or several indexes are missing or invalid, results hold data
+              from the other indexes
+          - code: unknown_index
+            detail: 'indexes: foo, bar'
+            title: One or several indexes are missing or invalid, results hold data
+              from the other indexes
+          page:
+            after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+          request_id: MWlFUjVaWGZTTTZPYzM0VXp1OXU2d3xLSVpEMjZKQ0VKUTI0dEYtM3RSOFVR
+          status: done
+      properties:
+        data:
+          $ref: '#/components/schemas/LogsAggregateResponse_data'
+        meta:
+          $ref: '#/components/schemas/LogsResponseMetadata'
+      type: object
+    LogsAggregateResponseStatus:
+      description: The status of the response
+      enum:
+      - done
+      - timeout
+      example: done
+      type: string
+      x-enum-varnames:
+      - DONE
+      - TIMEOUT
+    LogsAggregateSort:
+      description: A sort rule
+      example:
+        aggregation: count
+        order: asc
+      properties:
+        aggregation:
+          $ref: '#/components/schemas/LogsAggregationFunction'
+        metric:
+          description: The metric to sort by (only used for type=metric)
+          example: '@duration'
+          type: string
+        order:
+          $ref: '#/components/schemas/LogsSortOrder'
+        type:
+          $ref: '#/components/schemas/LogsAggregateSortType'
+      type: object
+    LogsAggregateSortType:
+      default: alphabetical
+      description: The type of sorting algorithm
+      enum:
+      - alphabetical
+      - measure
+      type: string
+      x-enum-varnames:
+      - ALPHABETICAL
+      - MEASURE
+    LogsAggregationFunction:
+      description: An aggregation function
+      enum:
+      - count
+      - cardinality
+      - pc75
+      - pc90
+      - pc95
+      - pc98
+      - pc99
+      - sum
+      - min
+      - max
+      - avg
+      example: pc90
+      type: string
+      x-enum-varnames:
+      - COUNT
+      - CARDINALITY
+      - PERCENTILE_75
+      - PERCENTILE_90
+      - PERCENTILE_95
+      - PERCENTILE_98
+      - PERCENTILE_99
+      - SUM
+      - MIN
+      - MAX
+      - AVG
     LogsArchive:
       description: The logs archive.
       example:
@@ -2486,21 +2873,123 @@ components:
             $ref: '#/components/schemas/LogsArchiveDefinition'
           type: array
       type: object
+    LogsCompute:
+      description: A compute rule to compute metrics or timeseries
+      example:
+        metric: '@duration'
+        aggregation: pc90
+        interval: 5m
+      properties:
+        aggregation:
+          $ref: '#/components/schemas/LogsAggregationFunction'
+        interval:
+          description: |-
+            The time buckets' size (only used for type=timeseries)
+            Defaults to a resolution of 150 points
+          example: 5m
+          type: string
+        metric:
+          description: The metric to use
+          example: '@duration'
+          type: string
+        type:
+          $ref: '#/components/schemas/LogsComputeType'
+      required:
+      - aggregation
+      type: object
+    LogsComputeType:
+      default: total
+      description: The type of compute
+      enum:
+      - timeseries
+      - total
+      type: string
+      x-enum-varnames:
+      - TIMESERIES
+      - TOTAL
+    LogsGroupBy:
+      description: A group by rule
+      example:
+        histogram:
+          min: 50
+          max: 100
+          interval: 10
+        limit: 0
+        sort:
+          aggregation: count
+          order: asc
+        facet: host
+      properties:
+        facet:
+          description: The name of the facet to use (required)
+          example: host
+          type: string
+        histogram:
+          $ref: '#/components/schemas/LogsGroupBy_histogram'
+        limit:
+          default: 10
+          description: The maximum buckets to return for this group by
+          type: integer
+        missing:
+          $ref: '#/components/schemas/LogsGroupByMissing'
+        sort:
+          $ref: '#/components/schemas/LogsAggregateSort'
+        total:
+          $ref: '#/components/schemas/LogsGroupByTotal'
+      required:
+      - facet
+      type: object
+    LogsGroupByMissing:
+      description: The value to use for logs that don't have the facet used to group
+        by
+      oneOf:
+      - $ref: '#/components/schemas/LogsGroupByMissingString'
+      - $ref: '#/components/schemas/LogsGroupByMissingNumber'
+    LogsGroupByMissingNumber:
+      description: The missing value to use if there is a number valued facet.
+      format: double
+      type: number
+    LogsGroupByMissingString:
+      description: The missing value to use if there is string valued facet.
+      type: string
+    LogsGroupByTotal:
+      description: A resulting object to put the given computes in over all the matching
+        records.
+      oneOf:
+      - $ref: '#/components/schemas/LogsGroupByTotalBoolean'
+      - $ref: '#/components/schemas/LogsGroupByTotalString'
+      - $ref: '#/components/schemas/LogsGroupByTotalNumber'
+    LogsGroupByTotalBoolean:
+      description: If set to true, creates an additional bucket labeled "$facet_total"
+      type: boolean
+    LogsGroupByTotalNumber:
+      description: A number to use as the key value for the total bucket
+      format: double
+      type: number
+    LogsGroupByTotalString:
+      description: A string to use as the key value for the total bucket
+      type: string
     LogsListRequest:
       description: The request for a logs list.
       example:
         filter:
           indexes:
           - main
-          query: '@datacenter:us @role:db'
-          from: 2019-01-02T09:42:36.32Z
-          to: 2019-01-03T09:42:36.32Z
+          - web
+          query: service:web* AND @http.status_code:[200 TO 299]
+          from: now-15m
+          to: now
+        options:
+          timezone: GMT
+          timeOffset: 6
         page:
           cursor: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           limit: 25
       properties:
         filter:
-          $ref: '#/components/schemas/LogsListRequest_filter'
+          $ref: '#/components/schemas/LogsQueryFilter'
+        options:
+          $ref: '#/components/schemas/LogsQueryOptions'
         page:
           $ref: '#/components/schemas/LogsListRequest_page'
         sort:
@@ -2538,8 +3027,20 @@ components:
           id: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
           type: log
         meta:
+          elapsed: 132
+          warnings:
+          - code: unknown_index
+            detail: 'indexes: foo, bar'
+            title: One or several indexes are missing or invalid, results hold data
+              from the other indexes
+          - code: unknown_index
+            detail: 'indexes: foo, bar'
+            title: One or several indexes are missing or invalid, results hold data
+              from the other indexes
           page:
             after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+          request_id: MWlFUjVaWGZTTTZPYzM0VXp1OXU2d3xLSVpEMjZKQ0VKUTI0dEYtM3RSOFVR
+          status: done
         links:
           next: https://app.datadoghq.com/api/v2/logs/event?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
       properties:
@@ -2551,7 +3052,103 @@ components:
         links:
           $ref: '#/components/schemas/LogsListResponse_links'
         meta:
-          $ref: '#/components/schemas/LogsListResponse_meta'
+          $ref: '#/components/schemas/LogsResponseMetadata'
+      type: object
+    LogsQueryFilter:
+      description: The search and filter query settings
+      example:
+        indexes:
+        - main
+        - web
+        query: service:web* AND @http.status_code:[200 TO 299]
+        from: now-15m
+        to: now
+      properties:
+        from:
+          default: now-15m
+          description: The minimum time for the requested logs, supports date math
+            and regular timestamps
+          example: now-15m
+          type: string
+        indexes:
+          default:
+          - '*'
+          description: For customers with multiple indexes, the indexes to search.
+            Defaults to ['*'] which means all indexes.
+          example:
+          - main
+          - web
+          items:
+            description: The name of a log index.
+            type: string
+          type: array
+        query:
+          default: '*'
+          description: The search query - following the log search syntax.
+          example: service:web* AND @http.status_code:[200 TO 299]
+          type: string
+        to:
+          default: now
+          description: The maximum time for the requested logs, supports date math
+            and regular timestamps
+          example: now
+          type: string
+      type: object
+    LogsQueryOptions:
+      description: |-
+        Global query options that are used during the query.
+        Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+      example:
+        timezone: GMT
+        timeOffset: 6
+      properties:
+        timeOffset:
+          description: The time offset (in seconds) to apply to the query.
+          type: integer
+        timezone:
+          default: UTC
+          description: 'The timezone can be specified both as an offset, for example:
+            "UTC+03:00".'
+          example: GMT
+          type: string
+      type: object
+    LogsResponseMetadata:
+      description: The metadata associated with a request
+      example:
+        elapsed: 132
+        warnings:
+        - code: unknown_index
+          detail: 'indexes: foo, bar'
+          title: One or several indexes are missing or invalid, results hold data
+            from the other indexes
+        - code: unknown_index
+          detail: 'indexes: foo, bar'
+          title: One or several indexes are missing or invalid, results hold data
+            from the other indexes
+        page:
+          after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+        request_id: MWlFUjVaWGZTTTZPYzM0VXp1OXU2d3xLSVpEMjZKQ0VKUTI0dEYtM3RSOFVR
+        status: done
+      properties:
+        elapsed:
+          description: The time elapsed in milliseconds
+          example: 132
+          type: integer
+        page:
+          $ref: '#/components/schemas/LogsResponseMetadata_page'
+        request_id:
+          description: The identifier of the request
+          example: MWlFUjVaWGZTTTZPYzM0VXp1OXU2d3xLSVpEMjZKQ0VKUTI0dEYtM3RSOFVR
+          type: string
+        status:
+          $ref: '#/components/schemas/LogsAggregateResponseStatus'
+        warnings:
+          description: |-
+            A list of warnings (non fatal errors) encountered, partial results might be returned if
+            warnings are present in the response.
+          items:
+            $ref: '#/components/schemas/LogsWarning'
+          type: array
       type: object
     LogsSort:
       description: Sort parameters when querying logs.
@@ -2562,6 +3159,39 @@ components:
       x-enum-varnames:
       - TIMESTAMP_ASCENDING
       - TIMESTAMP_DESCENDING
+    LogsSortOrder:
+      description: The order to use, ascending or descending
+      enum:
+      - asc
+      - desc
+      example: asc
+      type: string
+      x-enum-varnames:
+      - ASCENDING
+      - DESCENDING
+    LogsWarning:
+      description: A warning message indicating something that went wrong with the
+        query
+      example:
+        code: unknown_index
+        detail: 'indexes: foo, bar'
+        title: One or several indexes are missing or invalid, results hold data from
+          the other indexes
+      properties:
+        code:
+          description: A unique code for this type of warning
+          example: unknown_index
+          type: string
+        detail:
+          description: A detailed explanation of this specific warning
+          example: 'indexes: foo, bar'
+          type: string
+        title:
+          description: A short human-readable summary of the warning
+          example: One or several indexes are missing or invalid, results hold data
+            from the other indexes
+          type: string
+      type: object
     Organization:
       description: Organization object.
       properties:
@@ -3256,7 +3886,7 @@ components:
       x-enum-varnames:
       - ROLES
     SecurityMonitoringListRulesResponse:
-      description: List of rules
+      description: List of rules.
       example:
         data:
         - cases:
@@ -3272,12 +3902,18 @@ components:
             - notifications
           message: message
           queries:
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
             name: name
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
@@ -3307,12 +3943,18 @@ components:
             - notifications
           message: message
           queries:
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
             name: name
-          - groupByFields:
+          - distinctFields:
+            - distinctFields
+            - distinctFields
+            groupByFields:
             - groupByFields
             - groupByFields
             query: query
@@ -3353,20 +3995,42 @@ components:
       properties:
         condition:
           description: |-
-            A rule case contains logical operations (>, >=, &&, ||) to determine if a signal should be generated
+            A rule case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated
             based on the event counts in the previously defined queries.
           type: string
         name:
           description: Name of the case.
           type: string
         notifications:
-          description: Notification targets for each rule case
+          description: Notification targets for each rule case.
           items:
-            description: Notification
+            description: Notification.
             type: string
           type: array
         status:
           $ref: '#/components/schemas/SecurityMonitoringRuleSeverity'
+      type: object
+    SecurityMonitoringRuleCaseCreate:
+      description: Case when signal is generated.
+      properties:
+        condition:
+          description: |-
+            A rule case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated
+            based on the event counts in the previously defined queries.
+          type: string
+        name:
+          description: Name of the case.
+          type: string
+        notifications:
+          description: Notification targets for each rule case.
+          items:
+            description: Notification.
+            type: string
+          type: array
+        status:
+          $ref: '#/components/schemas/SecurityMonitoringRuleSeverity'
+      required:
+      - status
       type: object
     SecurityMonitoringRuleCreatePayload:
       description: Create a new rule.
@@ -3385,7 +4049,7 @@ components:
           description: Cases for generating signals.
           example: []
           items:
-            $ref: '#/components/schemas/SecurityMonitoringRuleCase'
+            $ref: '#/components/schemas/SecurityMonitoringRuleCaseCreate'
           type: array
         isEnabled:
           description: Whether the rule is enabled.
@@ -3395,7 +4059,7 @@ components:
           description: Message for generated signals.
           type: string
         name:
-          description: The name of the rule
+          description: The name of the rule.
           type: string
         options:
           $ref: '#/components/schemas/SecurityMonitoringRuleOptions'
@@ -3403,7 +4067,7 @@ components:
           description: Queries for selecting logs which are part of the rule.
           example: []
           items:
-            $ref: '#/components/schemas/SecurityMonitoringRuleQuery'
+            $ref: '#/components/schemas/SecurityMonitoringRuleQueryCreate'
           type: array
         tags:
           description: Tags for generated signals.
@@ -3411,7 +4075,7 @@ components:
           - env:prod
           - team:security
           items:
-            description: Tag
+            description: Tag.
             type: string
           type: array
       required:
@@ -3421,7 +4085,6 @@ components:
       - name
       - options
       - queries
-      - tags
       type: object
     SecurityMonitoringRuleEvaluationWindow:
       description: |-
@@ -3517,27 +4180,60 @@ components:
     SecurityMonitoringRuleQuery:
       description: Query for matching rule.
       example:
+        distinctFields:
+        - distinctFields
+        - distinctFields
         groupByFields:
         - groupByFields
         - groupByFields
         query: query
         name: name
       properties:
+        distinctFields:
+          description: Field for which the cardinality is measured. Sent as an array.
+          items:
+            description: Field.
+            type: string
+          type: array
         groupByFields:
           description: Fields to group by.
           items:
-            description: Field
+            description: Field.
             type: string
           type: array
         name:
-          description: Name of the query
+          description: Name of the query.
           type: string
         query:
-          description: Query to run on logs
+          description: Query to run on logs.
           type: string
       type: object
+    SecurityMonitoringRuleQueryCreate:
+      description: Query for matching rule.
+      properties:
+        distinctFields:
+          description: Field for which the cardinality is measured. Sent as an array.
+          items:
+            description: Field.
+            type: string
+          type: array
+        groupByFields:
+          description: Fields to group by.
+          items:
+            description: Field.
+            type: string
+          type: array
+        name:
+          description: Name of the query.
+          type: string
+        query:
+          description: Query to run on logs.
+          type: string
+      required:
+      - query
+      type: object
     SecurityMonitoringRuleResponse:
-      description: Detection rule
+      description: Detection rule.
       example:
         cases:
         - condition: condition
@@ -3552,12 +4248,18 @@ components:
           - notifications
         message: message
         queries:
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
           name: name
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
@@ -3616,7 +4318,7 @@ components:
         tags:
           description: Tags for generated signals.
           items:
-            description: Tag
+            description: Tag.
             type: string
           type: array
         version:
@@ -3657,12 +4359,18 @@ components:
         options: {}
         message: message
         queries:
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
           name: name
-        - groupByFields:
+        - distinctFields:
+          - distinctFields
+          - distinctFields
+          groupByFields:
           - groupByFields
           - groupByFields
           query: query
@@ -3695,10 +4403,128 @@ components:
         tags:
           description: Tags for generated signals.
           items:
-            description: Tag
+            description: Tag.
             type: string
           type: array
       type: object
+    SecurityMonitoringSignal:
+      description: Object description of a security signal.
+      example:
+        attributes:
+          attributes:
+            workflow:
+              first_seen: 2020-06-23T14:46:01.000Z
+              last_seen: 2020-06-23T14:46:49.000Z
+              rule:
+                id: 0f5-e0c-805
+                name: 'Brute Force Attack Grouped By User '
+                version: 12
+          message: Detect Account Take Over (ATO) through brute force attempts
+          tags:
+          - security:attack
+          - technique:T1110-brute-force
+          timestamp: 2019-01-02T09:42:36.32Z
+        id: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
+        type: signal
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SecurityMonitoringSignal_attributes'
+        id:
+          description: The unique ID of the security signal.
+          example: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
+          type: string
+        type:
+          $ref: '#/components/schemas/SecurityMonitoringSignalType'
+      type: object
+    SecurityMonitoringSignalListRequest:
+      description: The request for a security signal list.
+      example:
+        filter:
+          query: security:attack status:high
+          from: 2019-01-02T09:42:36.32Z
+          to: 2019-01-03T09:42:36.32Z
+        page:
+          cursor: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+          limit: 25
+      properties:
+        filter:
+          $ref: '#/components/schemas/SecurityMonitoringSignalListRequest_filter'
+        page:
+          $ref: '#/components/schemas/SecurityMonitoringSignalListRequest_page'
+        sort:
+          $ref: '#/components/schemas/SecurityMonitoringSignalsSort'
+      type: object
+    SecurityMonitoringSignalType:
+      default: signal
+      description: The type of event.
+      enum:
+      - signal
+      example: signal
+      type: string
+      x-enum-varnames:
+      - SIGNAL
+    SecurityMonitoringSignalsListResponse:
+      description: The response object with all security signals matching the request
+        and pagination information.
+      example:
+        data:
+        - attributes:
+            attributes:
+              workflow:
+                first_seen: 2020-06-23T14:46:01.000Z
+                last_seen: 2020-06-23T14:46:49.000Z
+                rule:
+                  id: 0f5-e0c-805
+                  name: 'Brute Force Attack Grouped By User '
+                  version: 12
+            message: Detect Account Take Over (ATO) through brute force attempts
+            tags:
+            - security:attack
+            - technique:T1110-brute-force
+            timestamp: 2019-01-02T09:42:36.32Z
+          id: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
+          type: signal
+        - attributes:
+            attributes:
+              workflow:
+                first_seen: 2020-06-23T14:46:01.000Z
+                last_seen: 2020-06-23T14:46:49.000Z
+                rule:
+                  id: 0f5-e0c-805
+                  name: 'Brute Force Attack Grouped By User '
+                  version: 12
+            message: Detect Account Take Over (ATO) through brute force attempts
+            tags:
+            - security:attack
+            - technique:T1110-brute-force
+            timestamp: 2019-01-02T09:42:36.32Z
+          id: AAAAAWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA
+          type: signal
+        meta:
+          page:
+            after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+        links:
+          next: https://app.datadoghq.com/api/v2/security_monitoring/signals?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+      properties:
+        data:
+          description: An array of security signals matching the request.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringSignal'
+          type: array
+        links:
+          $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse_links'
+        meta:
+          $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse_meta'
+      type: object
+    SecurityMonitoringSignalsSort:
+      description: The sort parameters used for querying security signals.
+      enum:
+      - timestamp
+      - -timestamp
+      type: string
+      x-enum-varnames:
+      - TIMESTAMP_ASCENDING
+      - TIMESTAMP_DESCENDING
     User:
       description: User object returned by the API.
       example:
@@ -4290,38 +5116,65 @@ components:
           example: 2019-01-02T09:42:36.32Z
           format: date-time
           type: string
-    LogsListRequest_filter:
-      description: Search filters for listing logs.
+    LogsAggregateRequest_paging:
+      description: Paging settings
       example:
-        indexes:
-        - main
-        query: '@datacenter:us @role:db'
-        from: 2019-01-02T09:42:36.32Z
-        to: 2019-01-03T09:42:36.32Z
+        after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
       properties:
-        from:
-          description: Minimum timestamp for requested logs.
-          example: 2019-01-02T09:42:36.32Z
-          format: date-time
+        after:
+          description: The returned paging point to use to get the next results
+          example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
-        indexes:
-          description: For customers with multiple indexes, the indexes to search.
-            Defaults to '*' which means all indexes.
-          example:
-          - main
+    LogsAggregateResponse_data:
+      description: The query results
+      example:
+        buckets:
+        - computes: {}
+          by:
+            '@state': success
+            '@version': abc
+        - computes: {}
+          by:
+            '@state': success
+            '@version': abc
+      properties:
+        buckets:
+          description: The list of matching buckets, one item per bucket
           items:
-            description: Name of log index.
-            type: string
+            $ref: '#/components/schemas/LogsAggregateBucket'
           type: array
-        query:
-          description: Search query following logs syntax.
-          example: '@datacenter:us @role:db'
-          type: string
-        to:
-          description: Maximum timestamp for requested logs.
-          example: 2019-01-03T09:42:36.32Z
-          format: date-time
-          type: string
+    LogsGroupBy_histogram:
+      description: |-
+        Used to perform a histogram computation (only for measure facets).
+        Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
+      example:
+        min: 50
+        max: 100
+        interval: 10
+      properties:
+        interval:
+          description: The bin size of the histogram buckets
+          example: 10
+          format: double
+          type: number
+        max:
+          description: |-
+            The maximum value for the measure used in the histogram
+            (values greater than this one are filtered out)
+          example: 100
+          format: double
+          type: number
+        min:
+          description: |-
+            The minimum value for the measure used in the histogram
+            (values smaller than this one are filtered out)
+          example: 50
+          format: double
+          type: number
+      required:
+      - interval
+      - max
+      - min
     LogsListRequest_page:
       description: Paging attributes for listing logs.
       example:
@@ -4351,25 +5204,17 @@ components:
             POST endpoint.
           example: https://app.datadoghq.com/api/v2/logs/event?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
-    LogsListResponse_meta_page:
+    LogsResponseMetadata_page:
       description: Paging attributes.
       example:
         after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
       properties:
         after:
           description: |-
-            Cursor to use to get next results, if any. To make the next request, use the same
+            The cursor to use to get the next results, if any. To make the next request, use the same.
             parameters with the addition of the `page[cursor]`.
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
-    LogsListResponse_meta:
-      description: Meta attributes.
-      example:
-        page:
-          after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
-      properties:
-        page:
-          $ref: '#/components/schemas/LogsListResponse_meta_page'
     RoleCreateResponse_data:
       description: Role object returned by the API.
       example:
@@ -4426,6 +5271,125 @@ components:
           $ref: '#/components/schemas/RolesType'
       required:
       - type
+    SecurityMonitoringSignal_attributes:
+      description: The JSON object containing all signal attributes and their associated
+        values.
+      example:
+        attributes:
+          workflow:
+            first_seen: 2020-06-23T14:46:01.000Z
+            last_seen: 2020-06-23T14:46:49.000Z
+            rule:
+              id: 0f5-e0c-805
+              name: 'Brute Force Attack Grouped By User '
+              version: 12
+        message: Detect Account Take Over (ATO) through brute force attempts
+        tags:
+        - security:attack
+        - technique:T1110-brute-force
+        timestamp: 2019-01-02T09:42:36.32Z
+      properties:
+        attributes:
+          additionalProperties: {}
+          description: A JSON object of attributes in the security signal.
+          example:
+            workflow:
+              first_seen: 2020-06-23T14:46:01.000Z
+              last_seen: 2020-06-23T14:46:49.000Z
+              rule:
+                id: 0f5-e0c-805
+                name: 'Brute Force Attack Grouped By User '
+                version: 12
+          type: object
+        message:
+          description: The message in the security signal defined by the rule that
+            generated the signal.
+          example: Detect Account Take Over (ATO) through brute force attempts
+          type: string
+        tags:
+          description: An array of tags associated with the security signal.
+          example:
+          - security:attack
+          - technique:T1110-brute-force
+          format: array
+          items:
+            description: The tag associated with the security signal.
+            format: string
+          type: array
+        timestamp:
+          description: The timestamp of the security signal.
+          example: 2019-01-02T09:42:36.32Z
+          format: date-time
+          type: string
+    SecurityMonitoringSignalListRequest_filter:
+      description: Search filters for listing security signals.
+      example:
+        query: security:attack status:high
+        from: 2019-01-02T09:42:36.32Z
+        to: 2019-01-03T09:42:36.32Z
+      properties:
+        from:
+          description: The minimum timestamp for requested security signals.
+          example: 2019-01-02T09:42:36.32Z
+          format: date-time
+          type: string
+        query:
+          description: Search query for listing security signals.
+          example: security:attack status:high
+          type: string
+        to:
+          description: The maximum timestamp for requested security signals.
+          example: 2019-01-03T09:42:36.32Z
+          format: date-time
+          type: string
+    SecurityMonitoringSignalListRequest_page:
+      description: The paging attributes for listing security signals.
+      example:
+        cursor: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+        limit: 25
+      properties:
+        cursor:
+          description: A list of results using the cursor provided in the previous
+            query.
+          example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+          type: string
+        limit:
+          default: 10
+          description: The maximum number of security signals in the response.
+          example: 25
+          format: int32
+          maximum: 1000
+          type: integer
+    SecurityMonitoringSignalsListResponse_links:
+      description: Links attributes.
+      example:
+        next: https://app.datadoghq.com/api/v2/security_monitoring/signals?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+      properties:
+        next:
+          description: |-
+            The link for the next set of results. **Note**: The request can also be made using the
+            POST endpoint.
+          example: https://app.datadoghq.com/api/v2/security_monitoring/signals?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+          type: string
+    SecurityMonitoringSignalsListResponse_meta_page:
+      description: Paging attributes.
+      example:
+        after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+      properties:
+        after:
+          description: |-
+            The cursor used to get the next results, if any. To make the next request, use the same
+            parameters with the addition of the `page[cursor]`.
+          example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+          type: string
+    SecurityMonitoringSignalsListResponse_meta:
+      description: Meta attributes.
+      example:
+        page:
+          after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+      properties:
+        page:
+          $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse_meta_page'
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.

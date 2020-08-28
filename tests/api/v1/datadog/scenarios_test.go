@@ -16,6 +16,10 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
+var requestsUndo = map[string]func(ctx gobdd.Context){
+	"GetIPRanges": func(ctx gobdd.Context) {},
+}
+
 func TestScenarios(t *testing.T) {
 	s := gobdd.NewSuite(
 		t,
@@ -31,6 +35,7 @@ func TestScenarios(t *testing.T) {
 				ct.(*testing.T),
 			)
 			tests.SetCtx(ctx, cctx)
+			tests.SetRequestsUndo(ctx, requestsUndo)
 			tests.SetData(ctx, make(map[string]interface{}))
 			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
