@@ -52,7 +52,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context) apiCre
 
 /*
 Execute executes the request
- @return AWSAccountCreateResponse
+@return AWSAccountCreateResponse
 */
 func (r apiCreateAWSAccountRequest) Execute() (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
@@ -74,7 +74,6 @@ func (r apiCreateAWSAccountRequest) Execute() (AWSAccountCreateResponse, *_netht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -221,7 +220,7 @@ func (a *AWSIntegrationApiService) CreateNewAWSExternalID(ctx _context.Context) 
 
 /*
 Execute executes the request
- @return AWSAccountCreateResponse
+@return AWSAccountCreateResponse
 */
 func (r apiCreateNewAWSExternalIDRequest) Execute() (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
@@ -243,7 +242,6 @@ func (r apiCreateNewAWSExternalIDRequest) Execute() (AWSAccountCreateResponse, *
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -380,7 +378,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context) apiDel
 
 /*
 Execute executes the request
- @return interface{}
+@return interface{}
 */
 func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
@@ -402,7 +400,6 @@ func (r apiDeleteAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
@@ -535,12 +532,10 @@ func (r apiListAWSAccountsRequest) AccountId(accountId string) apiListAWSAccount
 	r.accountId = &accountId
 	return r
 }
-
 func (r apiListAWSAccountsRequest) RoleName(roleName string) apiListAWSAccountsRequest {
 	r.roleName = &roleName
 	return r
 }
-
 func (r apiListAWSAccountsRequest) AccessKeyId(accessKeyId string) apiListAWSAccountsRequest {
 	r.accessKeyId = &accessKeyId
 	return r
@@ -561,7 +556,7 @@ func (a *AWSIntegrationApiService) ListAWSAccounts(ctx _context.Context) apiList
 
 /*
 Execute executes the request
- @return AWSAccountListResponse
+@return AWSAccountListResponse
 */
 func (r apiListAWSAccountsRequest) Execute() (AWSAccountListResponse, *_nethttp.Response, error) {
 	var (
@@ -717,7 +712,7 @@ func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Conte
 
 /*
 Execute executes the request
- @return []string
+@return []string
 */
 func (r apiListAvailableAWSNamespacesRequest) Execute() ([]string, *_nethttp.Response, error) {
 	var (
@@ -847,17 +842,14 @@ func (r apiUpdateAWSAccountRequest) Body(body AWSAccount) apiUpdateAWSAccountReq
 	r.body = &body
 	return r
 }
-
 func (r apiUpdateAWSAccountRequest) AccountId(accountId string) apiUpdateAWSAccountRequest {
 	r.accountId = &accountId
 	return r
 }
-
 func (r apiUpdateAWSAccountRequest) RoleName(roleName string) apiUpdateAWSAccountRequest {
 	r.roleName = &roleName
 	return r
 }
-
 func (r apiUpdateAWSAccountRequest) AccessKeyId(accessKeyId string) apiUpdateAWSAccountRequest {
 	r.accessKeyId = &accessKeyId
 	return r
@@ -878,7 +870,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context) apiUpd
 
 /*
 Execute executes the request
- @return interface{}
+@return interface{}
 */
 func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, error) {
 	var (
@@ -900,7 +892,6 @@ func (r apiUpdateAWSAccountRequest) Execute() (interface{}, *_nethttp.Response, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}

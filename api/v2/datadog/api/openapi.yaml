@@ -5116,6 +5116,7 @@ components:
           example: 2019-01-02T09:42:36.32Z
           format: date-time
           type: string
+      type: object
     LogsAggregateRequest_paging:
       description: Paging settings
       example:
@@ -5125,6 +5126,7 @@ components:
           description: The returned paging point to use to get the next results
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     LogsAggregateResponse_data:
       description: The query results
       example:
@@ -5143,6 +5145,7 @@ components:
           items:
             $ref: '#/components/schemas/LogsAggregateBucket'
           type: array
+      type: object
     LogsGroupBy_histogram:
       description: |-
         Used to perform a histogram computation (only for measure facets).
@@ -5175,6 +5178,7 @@ components:
       - interval
       - max
       - min
+      type: object
     LogsListRequest_page:
       description: Paging attributes for listing logs.
       example:
@@ -5193,6 +5197,7 @@ components:
           format: int32
           maximum: 1000
           type: integer
+      type: object
     LogsListResponse_links:
       description: Links attributes.
       example:
@@ -5204,6 +5209,7 @@ components:
             POST endpoint.
           example: https://app.datadoghq.com/api/v2/logs/event?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     LogsResponseMetadata_page:
       description: Paging attributes.
       example:
@@ -5215,6 +5221,7 @@ components:
             parameters with the addition of the `page[cursor]`.
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     RoleCreateResponse_data:
       description: Role object returned by the API.
       example:
@@ -5243,6 +5250,7 @@ components:
           $ref: '#/components/schemas/RolesType'
       required:
       - type
+      type: object
     RoleUpdateResponse_data:
       description: Role object returned by the API.
       example:
@@ -5271,6 +5279,7 @@ components:
           $ref: '#/components/schemas/RolesType'
       required:
       - type
+      type: object
     SecurityMonitoringSignal_attributes:
       description: The JSON object containing all signal attributes and their associated
         values.
@@ -5321,6 +5330,7 @@ components:
           example: 2019-01-02T09:42:36.32Z
           format: date-time
           type: string
+      type: object
     SecurityMonitoringSignalListRequest_filter:
       description: Search filters for listing security signals.
       example:
@@ -5342,6 +5352,7 @@ components:
           example: 2019-01-03T09:42:36.32Z
           format: date-time
           type: string
+      type: object
     SecurityMonitoringSignalListRequest_page:
       description: The paging attributes for listing security signals.
       example:
@@ -5360,6 +5371,7 @@ components:
           format: int32
           maximum: 1000
           type: integer
+      type: object
     SecurityMonitoringSignalsListResponse_links:
       description: Links attributes.
       example:
@@ -5371,6 +5383,7 @@ components:
             POST endpoint.
           example: https://app.datadoghq.com/api/v2/security_monitoring/signals?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     SecurityMonitoringSignalsListResponse_meta_page:
       description: Paging attributes.
       example:
@@ -5382,6 +5395,7 @@ components:
             parameters with the addition of the `page[cursor]`.
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     SecurityMonitoringSignalsListResponse_meta:
       description: Meta attributes.
       example:
@@ -5390,6 +5404,7 @@ components:
       properties:
         page:
           $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse_meta_page'
+      type: object
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.
