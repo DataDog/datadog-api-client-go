@@ -237,7 +237,6 @@ func TestAWSIntegrationCreateErrors(t *testing.T) {
 func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
-	assert := tests.Assert(ctx, t)
 
 	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 	retryCreateAccount(ctx, t, testAWSAccount)
