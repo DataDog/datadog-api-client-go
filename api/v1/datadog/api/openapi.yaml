@@ -7239,7 +7239,7 @@ components:
     CheckCanDeleteMonitorResponse:
       description: Response of monitor IDs that can or can't be safely deleted.
       example:
-        data: '{}'
+        data: {}
         errors:
           key:
           - errors
@@ -11756,12 +11756,12 @@ components:
         interval: 0
         message: message
         denominator:
-          metadata: '{}'
+          metadata: {}
           values: []
           count: 0
           sum: 0.0
         numerator:
-          metadata: '{}'
+          metadata: {}
           values: []
           count: 0
           sum: 0.0
@@ -11814,7 +11814,7 @@ components:
         A representation of `metric` based SLO time series for the provided queries.
         This is the same response type from `batch_query` endpoint.
       example:
-        metadata: '{}'
+        metadata: {}
         values: []
         count: 0
         sum: 0.0
@@ -11864,12 +11864,12 @@ components:
             interval: 0
             message: message
             denominator:
-              metadata: '{}'
+              metadata: {}
               values: []
               count: 0
               sum: 0.0
             numerator:
-              metadata: '{}'
+              metadata: {}
               values: []
               count: 0
               sum: 0.0
@@ -18052,15 +18052,17 @@ components:
           description: Message content.
           example: AWS account 12345 has no lambda config to update
           type: string
+      type: object
     AWSLogsListResponse_lambdas:
       description: Description of the Lambdas.
       properties:
         arn:
           description: Available ARN IDs.
           type: string
+      type: object
     CheckCanDeleteMonitorResponse_data:
       description: Wrapper object with the list of monitor IDs.
-      example: '{}'
+      example: {}
       properties:
         ok:
           description: An array of of Monitor IDs that can be safely deleted.
@@ -18069,6 +18071,7 @@ components:
             format: int64
             type: integer
           type: array
+      type: object
     CheckCanDeleteSLOResponse_data:
       description: An array of service level objective objects.
       example:
@@ -18082,6 +18085,7 @@ components:
             description: A SLO ID.
             type: string
           type: array
+      type: object
     Dashboard_template_variables:
       description: Template variable.
       example:
@@ -18106,6 +18110,7 @@ components:
           type: string
       required:
       - name
+      type: object
     DashboardSummary_dashboards:
       description: Dashboard definition.
       example:
@@ -18147,6 +18152,7 @@ components:
         url:
           description: URL of the dashboard.
           type: string
+      type: object
     Host_meta:
       description: Metadata associated with your host.
       example:
@@ -18161,6 +18167,7 @@ components:
             example: Ubuntu
             type: string
           type: array
+      type: object
     Host_metrics:
       description: Host Metrics collected.
       example:
@@ -18184,14 +18191,16 @@ components:
           example: 0.5
           format: double
           type: number
+      type: object
     HostMapWidgetDefinition_requests:
       description: List of definitions.
-      example: '{}'
+      example: {}
       properties:
         fill:
           $ref: '#/components/schemas/HostMapRequest'
         size:
           $ref: '#/components/schemas/HostMapRequest'
+      type: object
     HostMapWidgetDefinition_style:
       description: The style to apply to the widget.
       properties:
@@ -18207,6 +18216,7 @@ components:
         palette_flip:
           description: Whether to flip the palette tones.
           type: boolean
+      type: object
     Log_content:
       description: JSON object containing all log attributes and their associated
         values.
@@ -18260,6 +18270,7 @@ components:
           example: 2020-05-26T13:36:14Z
           format: date-time
           type: string
+      type: object
     LogQueryDefinition_sort:
       description: Define a sorting method.
       properties:
@@ -18276,6 +18287,7 @@ components:
       required:
       - aggregation
       - order
+      type: object
     LogQueryDefinition_group_by:
       description: Defined items in the group.
       properties:
@@ -18292,6 +18304,7 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition_sort'
       required:
       - facet
+      type: object
     LogQueryDefinition_search:
       description: The query being made on the logs.
       properties:
@@ -18300,6 +18313,7 @@ components:
           type: string
       required:
       - query
+      type: object
     LogsCategoryProcessor_categories:
       description: Object describing the logs filter.
       properties:
@@ -18308,6 +18322,7 @@ components:
         name:
           description: Value to assign to the target attribute.
           type: string
+      type: object
     LogsListRequest_time:
       description: Timeframe to retrieve the log from.
       example:
@@ -18333,6 +18348,7 @@ components:
       required:
       - from
       - to
+      type: object
     MetricSearchResponse_results:
       description: Search result.
       example:
@@ -18346,6 +18362,7 @@ components:
             description: Metric name.
             type: string
           type: array
+      type: object
     MetricsQueryResponse_unit:
       description: Object containing the metric unit family, scale factor, name, and
         short name.
@@ -18383,6 +18400,7 @@ components:
           example: min
           readOnly: true
           type: string
+      type: object
     MetricsQueryResponse_series:
       description: Object containing all metric names returned and their associated
         metadata.
@@ -18475,6 +18493,7 @@ components:
           minItems: 2
           readOnly: true
           type: array
+      type: object
     MonitorOptions_aggregation:
       description: Type of aggregation performed in the monitor query.
       example:
@@ -18494,6 +18513,8 @@ components:
           description: Metric type used in the monitor.
           example: count
           type: string
+      readOnly: true
+      type: object
     Organization_settings_saml:
       description: |-
         Set the boolean property enabled to enable or disable single sign on with SAML.
@@ -18505,6 +18526,7 @@ components:
           description: Whether or not SAML is enabled for this organization.
           example: false
           type: boolean
+      type: object
     Organization_settings_saml_autocreate_users_domains:
       description: Has two properties, `enabled` (boolean) and `domains`, which is
         a list of domains without the @ symbol.
@@ -18526,6 +18548,7 @@ components:
             is enabled.
           example: false
           type: boolean
+      type: object
     Organization_settings_saml_idp_initiated_login:
       description: Has one property enabled (boolean).
       example:
@@ -18537,6 +18560,7 @@ components:
             in the [SAML documentation](https://docs.datadoghq.com/account_management/saml/#idp-initiated-login).
           example: false
           type: boolean
+      type: object
     Organization_settings_saml_strict_mode:
       description: Has one property enabled (boolean).
       example:
@@ -18548,6 +18572,7 @@ components:
             Learn more on the [SAML Strict documentation](https://docs.datadoghq.com/account_management/saml/#saml-strict).
           example: false
           type: boolean
+      type: object
     Organization_settings:
       description: A JSON array of settings.
       example:
@@ -18601,6 +18626,7 @@ components:
           type: string
         saml_strict_mode:
           $ref: '#/components/schemas/Organization_settings_saml_strict_mode'
+      type: object
     SLOBulkDeleteResponse_data:
       description: An array of service level objective objects.
       example:
@@ -18628,6 +18654,7 @@ components:
             description: An updated SLO ID.
             type: string
           type: array
+      type: object
     SLOBulkDeleteResponse_errors:
       description: Object describing the error.
       example:
@@ -18648,9 +18675,10 @@ components:
       - id
       - message
       - timeframe
+      type: object
     SLOHistoryMetricsSeries_metadata:
       description: Query metadata.
-      example: '{}'
+      example: {}
       properties:
         aggr:
           description: Query aggregator function.
@@ -18671,6 +18699,7 @@ components:
         unit:
           description: Query units (if available).
           type: string
+      type: object
     SLOHistoryResponse_data:
       description: An array of service level objective objects.
       example:
@@ -18689,12 +18718,12 @@ components:
           interval: 0
           message: message
           denominator:
-            metadata: '{}'
+            metadata: {}
             values: []
             count: 0
             sum: 0.0
           numerator:
-            metadata: '{}'
+            metadata: {}
             values: []
             count: 0
             sum: 0.0
@@ -18750,9 +18779,14 @@ components:
           $ref: '#/components/schemas/SLOType'
         type_id:
           $ref: '#/components/schemas/SLOTypeNumeric'
+      type: object
     ScatterPlotWidgetDefinition_requests:
       description: Widget definition.
-      example: '{"x":{"q":"system.cpu.user"},"y":{"q":"system.mem.used"}}'
+      example:
+        x:
+          q: system.cpu.user
+        y:
+          q: system.mem.used
       properties:
         x:
           $ref: '#/components/schemas/ScatterPlotRequest'
@@ -18761,6 +18795,7 @@ components:
       required:
       - x
       - "y"
+      type: object
     SyntheticsAPITestResultFull_check:
       description: Object describing the API test configuration.
       example:
@@ -18792,6 +18827,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestConfig'
       required:
       - config
+      type: object
     SyntheticsAPITestResultShort_result:
       description: Result of the last API test run.
       example:
@@ -18808,6 +18844,7 @@ components:
       properties:
         timings:
           $ref: '#/components/schemas/SyntheticsTiming'
+      type: object
     SyntheticsAssertionJSONPathTarget_target:
       description: Composed target for `validatesJSONPath` operator.
       properties:
@@ -18820,6 +18857,7 @@ components:
         targetValue:
           description: The path target value to compare to.
           type: object
+      type: object
     SyntheticsBrowserTestResultFull_check:
       description: Object describing the browser test configuration.
       example:
@@ -18851,6 +18889,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestConfig'
       required:
       - config
+      type: object
     SyntheticsBrowserTestResultShort_result:
       description: Object with the result of the last browser test run.
       example:
@@ -18882,6 +18921,7 @@ components:
           description: Total amount of browser test steps.
           format: int64
           type: integer
+      type: object
     SyntheticsCITest_metadata_ci:
       example:
         pipeline: pipeline
@@ -18891,6 +18931,7 @@ components:
           type: string
         provider:
           type: string
+      type: object
     SyntheticsCITest_metadata_git:
       example:
         commit_sha: commit_sha
@@ -18900,6 +18941,7 @@ components:
           type: string
         commit_sha:
           type: string
+      type: object
     SyntheticsCITest_metadata:
       description: Metadata for the Synthetics tests run
       example:
@@ -18914,6 +18956,7 @@ components:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_ci'
         git:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_git'
+      type: object
     SyntheticsDeleteTestsResponse_deleted_tests:
       description: Object containing a deleted Synthetic test ID with the associated
         deletion timestamp.
@@ -18928,6 +18971,7 @@ components:
         public_id:
           description: The Synthetic test ID deleted.
           type: string
+      type: object
     SyntheticsSSLCertificate_issuer:
       description: Object describing the issuer of a SSL certificate.
       example:
@@ -18956,6 +19000,7 @@ components:
         ST:
           description: State Or Province Name that issued the certificate.
           type: string
+      type: object
     SyntheticsSSLCertificate_subject:
       description: Object describing the SSL certificate used for the test.
       example:
@@ -18988,6 +19033,7 @@ components:
         altName:
           description: Subject Alternative Name associated with the certificate.
           type: string
+      type: object
     SyntheticsStepDetail_warnings:
       description: Object collecting warnings for a given step.
       example:
@@ -19001,6 +19047,7 @@ components:
       required:
       - message
       - type
+      type: object
     SyntheticsTestOptions_monitor_options:
       description: Object containing the options for a Synthetic test as a monitor
         (e.g. renotification).
@@ -19014,6 +19061,7 @@ components:
           maximum: 1440
           minimum: 0
           type: integer
+      type: object
     SyntheticsTriggerCITestsResponse_locations:
       description: Synthetics location.
       example:
@@ -19026,6 +19074,7 @@ components:
         name:
           description: Name of the location.
           type: string
+      type: object
     SyntheticsTriggerCITestsResponse_results:
       example:
         result_id: result_id
@@ -19043,6 +19092,7 @@ components:
         result_id:
           description: ID of the result.
           type: string
+      type: object
     TimeseriesWidgetRequest_metadata:
       description: Define an expression alias.
       properties:
@@ -19054,6 +19104,7 @@ components:
           type: string
       required:
       - expression
+      type: object
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.
