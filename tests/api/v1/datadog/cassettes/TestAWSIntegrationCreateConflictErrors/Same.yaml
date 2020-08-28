@@ -1,0 +1,55 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"account_id":"go-TestAWSIntegrationCreateConflictErrors-local-1598601523","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateAWSAccount
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.15; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3588347143740989606"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "6514991348278065548"
+    url: https://api.datadoghq.com/api/v1/integration/aws
+    method: POST
+  response:
+    body: '{"errors": ["This AWS account ID already exists."]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "51"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Aug 2020 07:58:45 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 04-Sep-2020 07:58:45 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2947776"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 409 Conflict
+    code: 409
+    duration: ""

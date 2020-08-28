@@ -234,6 +234,31 @@ func TestAWSIntegrationCreateErrors(t *testing.T) {
 	}
 }
 
+func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+
+	testAWSAccount := generateUniqueAWSAccount(ctx, t)
+	retryCreateAccount(ctx, t, testAWSAccount)
+	defer retryDeleteAccount(ctx, t, testAWSAccount)
+
+	role := *testAWSAccount.RoleName
+	for name, test := range map[string]*string{
+		"Same":      datadog.PtrString(role),
+		"Different": datadog.PtrString("Different-Role"),
+	} {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(ctx, t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			testAWSAccount.RoleName = test
+			_, httpresp, _ := Client(ctx).AWSIntegrationApi.CreateAWSAccount(ctx).Body(testAWSAccount).Execute()
+			assert.Equal(409, httpresp.StatusCode)
+		})
+	}
+}
+
 func TestAWSIntegrationDeleteErrors(t *testing.T) {
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
