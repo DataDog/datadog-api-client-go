@@ -249,9 +249,13 @@ func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
 		"Different": datadog.PtrString("Different-Role"),
 	} {
 		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(ctx, t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
 			testAWSAccount.RoleName = test
-			_, res, _ := Client(ctx).AWSIntegrationApi.CreateAWSAccount(ctx).Body(testAWSAccount).Execute()
-			assert.Equal(409, res.StatusCode)
+			_, httpresp, _ := Client(ctx).AWSIntegrationApi.CreateAWSAccount(ctx).Body(testAWSAccount).Execute()
+			assert.Equal(409, httpresp.StatusCode)
 		})
 	}
 }
