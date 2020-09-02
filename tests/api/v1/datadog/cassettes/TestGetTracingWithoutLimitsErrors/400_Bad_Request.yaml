@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetTracingWithoutLimits
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2279120321855014864"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5940111695365216169"
+    url: https://api.datadoghq.com/api/v1/usage/tracing-without-limits?start_hr=2020-10-01T09%3A41%3A22-04%3A00
+    method: GET
+  response:
+    body: '{"errors": ["start_hr cannot be in the future"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "48"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 31 Aug 2020 13:41:23 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2959254"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "10275"
+      X-Ratelimit-Reset:
+      - "1117"
+    status: 400 Bad Request
+    code: 400
+    duration: ""
