@@ -2,24 +2,28 @@
 version: 1
 interactions:
 - request:
-    body: ""
+    body: "--ab11c937431c295965f5aee3907df4fc20693481893ce977e984377c4a6f\r\nContent-Disposition:
+      form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--ab11c937431c295965f5aee3907df4fc20693481893ce977e984377c4a6f--\r\n"
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "262"
       Content-Type:
-      - multipart/form-data
+      - multipart/form-data; boundary=ab11c937431c295965f5aee3907df4fc20693481893ce977e984377c4a6f
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2492673704573086533"
+      - "3640858246662934245"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8895302819724354049"
-    url: https://api.datadoghq.com/api/v1/org/go-TestOrgsUploadIdpErrors-403_Forbidden-local-1599043289/idp_metadata
+      - "7580522744653002524"
+    url: https://api.datadoghq.com/api/v1/org/go-TestOrgsUploadIdpErrors-403_Forbidden-local-1599060742/idp_metadata
     method: POST
   response:
     body: |
@@ -32,7 +36,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Sep 2020 10:41:29 GMT
+      - Wed, 02 Sep 2020 15:32:22 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden
