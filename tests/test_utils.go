@@ -391,6 +391,9 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 			if rs == cs {
 				matched = true
 			}
+		} else if len(cl) == 0 && r.Response.StatusCode >= 400 {
+			log.Printf("missing cassette body for invalid request with code: %d", r.Response.StatusCode)
+			matched = true
 		}
 	}
 
