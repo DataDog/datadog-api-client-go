@@ -386,7 +386,7 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 		rl := strings.Split(strings.TrimSpace(b.String()), "\n")
 		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
 		rs := strings.Join(rl[1:len(rl)-1], "\n")
-		cs := strings.Join(cl[1:len(rl)-1], "\n")
+		cs := strings.Join(cl[1:len(cl)-1], "\n")
 		if rs == cs {
 			matched = true
 		}
