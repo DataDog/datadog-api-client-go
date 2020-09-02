@@ -364,17 +364,20 @@ func removeURLSecrets(u *url.URL) string {
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	// Default matching on method and URL without secrets
 	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
+		log.Printf("HTTP method: %s != %s; URL: %s != %s", r.Method, i.Method, removeURLSecrets(r.URL), i.URL)
 		return false
 	}
 
 	// Request does not contain body (e.g. `GET`)
 	if r.Body == nil {
+		log.Printf("request body is empty and cassette body is: %s", i.Body)
 		return i.Body == ""
 	}
 
 	// Load request body
 	var b bytes.Buffer
 	if _, err := b.ReadFrom(r.Body); err != nil {
+		log.Printf("could not read request body: %v\n", err)
 		return false
 	}
 	r.Body = ioutil.NopCloser(&b)
@@ -391,16 +394,11 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 			if rs == cs {
 				matched = true
 			}
-		} else if len(cl) == 0 && r.Response.StatusCode >= 400 {
-			log.Printf("missing cassette body for invalid request with code: %d", r.Response.StatusCode)
-			matched = true
 		}
 	}
 
 	if !matched {
 		log.Printf("%s != %s", b.String(), i.Body)
-		log.Printf("full cassette info: %v", i)
-		log.Printf("full request info: %v", *r)
 	}
 	return matched
 }
