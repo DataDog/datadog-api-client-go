@@ -396,6 +396,8 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 
 	if !matched {
 		log.Printf("%s != %s", b.String(), i.Body)
+		log.Printf("full cassette info: %v", i)
+		log.Printf("full request info: %v", *r)
 	}
 	return matched
 }
