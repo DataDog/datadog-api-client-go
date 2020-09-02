@@ -14,12 +14,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2616175331127997705"
+      - "2492673704573086533"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8747455412557228266"
-    url: https://api.datadoghq.com/api/v1/org/lsqdkjf/idp_metadata
+      - "8895302819724354049"
+    url: https://api.datadoghq.com/api/v1/org/go-TestOrgsUploadIdpErrors-403_Forbidden-local-1599043289/idp_metadata
     method: POST
   response:
     body: |
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:17:51 GMT
+      - Wed, 02 Sep 2020 10:41:29 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

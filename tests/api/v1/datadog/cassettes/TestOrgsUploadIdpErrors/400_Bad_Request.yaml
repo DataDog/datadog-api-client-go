@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: "--e2bc4649cd0f9222fa92f297e5d3b0521250329fa1e6b5aacb111f4a4d29\r\nContent-Disposition:
+    body: "--2dde2e463057ee83004e3ac95391054ac71ec7c892e4fc9f3f546cd396ec\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
-      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--e2bc4649cd0f9222fa92f297e5d3b0521250329fa1e6b5aacb111f4a4d29--\r\n"
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--2dde2e463057ee83004e3ac95391054ac71ec7c892e4fc9f3f546cd396ec--\r\n"
     form: {}
     headers:
       Accept:
@@ -12,18 +12,18 @@ interactions:
       Content-Length:
       - "262"
       Content-Type:
-      - multipart/form-data; boundary=e2bc4649cd0f9222fa92f297e5d3b0521250329fa1e6b5aacb111f4a4d29
+      - multipart/form-data; boundary=2dde2e463057ee83004e3ac95391054ac71ec7c892e4fc9f3f546cd396ec
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4025874573951428686"
+      - "1612821585893139646"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8747455412557228266"
-    url: https://api.datadoghq.com/api/v1/org/lsqdkjf/idp_metadata
+      - "8895302819724354049"
+    url: https://api.datadoghq.com/api/v1/org/go-TestOrgsUploadIdpErrors-400_Bad_Request-local-1599043286/idp_metadata
     method: POST
   response:
     body: '{"errors": ["Not allowed to access this organization"]}'
@@ -37,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:17:51 GMT
+      - Wed, 02 Sep 2020 10:41:29 GMT
       Dd-Pool:
       - dogweb_wallace
       Pragma:
@@ -47,7 +47,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2781855"
+      - "35.2971815"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
