@@ -382,15 +382,14 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 
 	matched := (b.String() == "" || b.String() == i.Body)
 
-	// Ignore boundary differences for multipart/form-data or application/octet-stream content
-	if !matched && (strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") ||
-		strings.HasPrefix(r.Header["Content-Type"][0], "application/octet-stream")) {
+	// Ignore boundary differences for multipart/form-data content
+	if !matched && strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
 		rl := strings.Split(strings.TrimSpace(b.String()), "\n")
 		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
-		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rl[1:len(rl)-1], cl[1:len(cl)-1]) {
+		rs := strings.Join(rl[1:len(rl)-1], "\n")
+		cs := strings.Join(cl[1:len(rl)-1], "\n")
+		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rs, cs) {
 			matched = true
-		} else {
-			log.Printf("Not matching body:\n%v\n\n%v\n", rl, cl)
 		}
 	}
 
