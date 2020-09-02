@@ -17,7 +17,6 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
-	"reflect"
 	"runtime"
 	"strings"
 	"testing"
@@ -388,7 +387,7 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
 		rs := strings.Join(rl[1:len(rl)-1], "\n")
 		cs := strings.Join(cl[1:len(rl)-1], "\n")
-		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rs, cs) {
+		if rs == cs {
 			matched = true
 		}
 	}
