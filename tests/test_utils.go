@@ -385,10 +385,12 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	if !matched && strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
 		rl := strings.Split(strings.TrimSpace(b.String()), "\n")
 		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
-		rs := strings.Join(rl[1:len(rl)-1], "\n")
-		cs := strings.Join(cl[1:len(cl)-1], "\n")
-		if rs == cs {
-			matched = true
+		if len(rl) > 1 && len(cl) > 1 {
+			rs := strings.Join(rl[1:len(rl)-1], "\n")
+			cs := strings.Join(cl[1:len(cl)-1], "\n")
+			if rs == cs {
+				matched = true
+			}
 		}
 	}
 
