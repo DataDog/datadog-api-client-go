@@ -309,14 +309,14 @@ func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
-		`new "([^"]+)" request`:                               newRequest,
-		`request contains "([^"]+)" parameter from "([^"]+)"`: addParameterFrom,
-		`the request is sent`:                                 requestIsSent,
-		`the response status is (\d+) (.*)`:                   statusIs,
-		`body (.*)`:                                           body,
-		`the response "([^"]+)" is equal to (.*)`:             expectEqual,
-		`the response "([^"]+)" has same value as "([^"]+)"`:  expectEqualValue,
-		`the response "([^"]+)" is false`:                     expectFalse,
+		`new "([^"]+)" request`:                                  newRequest,
+		`request contains "([^"]+)" parameter from "([^"]+)"`:    addParameterFrom,
+		`the request is sent`:                                    requestIsSent,
+		`the response status is (\d+) (.*)`:                      statusIs,
+		`body (.*)`:                                              body,
+		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
+		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
+		`the response "([^"]+)" is false`:                        expectFalse,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)
