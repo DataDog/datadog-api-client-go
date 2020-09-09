@@ -19,7 +19,7 @@ func createUserDefinedField(ctx context.Context, t *testing.T, client *datadog.A
 	testUserDefinedFieldData := datadog.NewUserDefinedFieldWithDefaults()
 	testUserDefinedFieldData.SetType("user_defined_field")
 	testUserDefinedFieldData.SetAttributes(*datadog.NewUserDefinedFieldAttributesWithDefaults())
-	testUserDefinedFieldData.Attributes.SetType(datadog.USERDEFINEDFIELDTYPE_DROPDOWN)
+	testUserDefinedFieldData.Attributes.SetType(datadog.USERDEFINEDFIELDTYPEID_DROPDOWN)
 	testUserDefinedFieldData.Attributes.SetTableId(datadog.USERDEFINEDFIELDTABLE_INCIDENT)
 	testUserDefinedFieldData.Attributes.SetName("createUserDefinedField-for_generated_tests")
 

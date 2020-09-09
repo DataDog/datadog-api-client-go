@@ -26,7 +26,7 @@ func TestIncidentUserDefinedFieldLifecycle(t *testing.T) {
 	// Set up field data
 	testIncidentUserDefinedFieldData := datadog.NewUserDefinedFieldWithDefaults()
 	testIncidentUserDefinedFieldData.SetAttributes(*datadog.NewUserDefinedFieldAttributesWithDefaults())
-	testIncidentUserDefinedFieldData.Attributes.SetType(datadog.USERDEFINEDFIELDTYPE_DROPDOWN)
+	testIncidentUserDefinedFieldData.Attributes.SetType(datadog.USERDEFINEDFIELDTYPEID_DROPDOWN)
 	testIncidentUserDefinedFieldData.Attributes.SetTableId(datadog.USERDEFINEDFIELDTABLE_INCIDENT)
 	testIncidentUserDefinedFieldData.Attributes.SetName("Test-ConfigField")
 
