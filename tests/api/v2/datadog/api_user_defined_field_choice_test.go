@@ -25,7 +25,7 @@ func createUserDefinedField(ctx context.Context, t *testing.T, client *datadog.A
 
 	// Create UserDefinedField
 	UserDefinedRsp, httpresp, err := client.IncidentsApi.CreateUserDefinedField(ctx).
-		Body(*datadog.NewUserDefinedFieldJSONAPIRequest(*testUserDefinedFieldData)).Execute()
+		Body(*datadog.NewUserDefinedFieldRequest(*testUserDefinedFieldData)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error creating UserDefinedField %v: Response %s: %v", testUserDefinedFieldData, err.Error(), bStr)
@@ -56,7 +56,7 @@ func createUserDefinedFieldChoice(ctx context.Context, t *testing.T, client *dat
 
 	UserDefinedFieldChoiceRsp, httpresp, err := client.IncidentsApi.
 		CreateUserDefinedFieldChoice(ctx, fieldID).
-		Body(*datadog.NewUserDefinedFieldChoiceJSONAPIRequest(*testUserDefinedFieldChoiceData)).Execute()
+		Body(*datadog.NewUserDefinedFieldChoiceRequest(*testUserDefinedFieldChoiceData)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error creating UserDefinedFieldChoice %v: Response %s: %v", testUserDefinedFieldChoiceData, err.Error(), bStr)
@@ -98,7 +98,7 @@ func TestUserDefinedFieldChoicesLifecycle(t *testing.T) {
 	// Create UserDefined
 	UserDefinedRsp, httpresp, err := client.IncidentsApi.
 		CreateUserDefinedFieldChoice(ctx, field.GetId()).
-		Body(*datadog.NewUserDefinedFieldChoiceJSONAPIRequest(*testUserDefinedFieldChoiceData)).Execute()
+		Body(*datadog.NewUserDefinedFieldChoiceRequest(*testUserDefinedFieldChoiceData)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error creating UserDefinedFieldChoice %v: Response %s: %v", testUserDefinedFieldChoiceData, err.Error(), bStr)
@@ -129,7 +129,7 @@ func TestUserDefinedFieldChoicesLifecycle(t *testing.T) {
 	UserDefinedFieldChoice.Attributes.SetValue("Test-ConfigField-Updated")
 	UserDefinedUpdatedRsp, httpresp, err := client.IncidentsApi.
 		PatchUserDefinedFieldChoice(ctx, field.GetId(), UserDefinedFieldChoice.GetId()).
-		Body(*datadog.NewUserDefinedFieldChoiceJSONAPIRequest(UserDefinedFieldChoice)).Execute()
+		Body(*datadog.NewUserDefinedFieldChoiceRequest(UserDefinedFieldChoice)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error updating UserDefinedFieldChoice %v: Response %s: %v", UserDefinedFieldChoice, err.Error(), bStr)

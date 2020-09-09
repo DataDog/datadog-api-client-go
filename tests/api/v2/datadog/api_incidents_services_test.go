@@ -30,7 +30,7 @@ func TestIncidentServicesLifecycle(t *testing.T) {
 
 	// Create IncidentService
 	incidentServiceRsp, httpresp, err := client.IncidentsApi.AddServiceToIncident(ctx, incident.GetId()).
-		Body(*datadog.NewServiceJSONAPIRequest(service1)).Execute()
+		Body(*datadog.NewServiceRequest(service1)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error adding service to incident %v: Response %s: %v", service1, err.Error(), bStr)

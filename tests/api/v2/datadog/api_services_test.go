@@ -31,7 +31,7 @@ func TestServicesLifecycle(t *testing.T) {
 
 	testServiceAttributes := testServiceData.GetAttributes()
 	// Create Service
-	serviceRsp, httpresp, err := client.ServicesApi.CreateService(ctx).Body(*datadog.NewServiceJSONAPIRequest(*testServiceData)).Execute()
+	serviceRsp, httpresp, err := client.ServicesApi.CreateService(ctx).Body(*datadog.NewServiceRequest(*testServiceData)).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Service %v: Response %s: %v", testServiceData, err.Error(), err)
 	}
@@ -55,7 +55,7 @@ func TestServicesLifecycle(t *testing.T) {
 
 	// Edit Service
 	service.Attributes.SetName("Test-Service-Updated")
-	serviceUpdatedRsp, httpresp, err := client.ServicesApi.PatchService(ctx, service.GetId()).Body(*datadog.NewServiceJSONAPIRequest(service)).Execute()
+	serviceUpdatedRsp, httpresp, err := client.ServicesApi.PatchService(ctx, service.GetId()).Body(*datadog.NewServiceRequest(service)).Execute()
 	if err != nil {
 		t.Fatalf("Error updating Service %v: Response %s: %v", service, err.Error(), err)
 	}
@@ -94,7 +94,7 @@ func createTestService(ctx context.Context, t *testing.T, client *datadog.APICli
 	testServiceData.Attributes.SetName(fmt.Sprintf("createTestService-%s", name))
 
 	// Create Service
-	serviceRsp, httpresp, err := client.ServicesApi.CreateService(ctx).Body(*datadog.NewServiceJSONAPIRequest(*testServiceData)).Execute()
+	serviceRsp, httpresp, err := client.ServicesApi.CreateService(ctx).Body(*datadog.NewServiceRequest(*testServiceData)).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Service %v: Response %s: %v", testServiceData, err.Error(), err)
 	}

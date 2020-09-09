@@ -32,7 +32,7 @@ func TestIncidentTeamsLifecycle(t *testing.T) {
 
 	// Create IncidentTeam
 	incidentTeamRsp, httpresp, err := client.IncidentsApi.AddTeamToIncident(ctx, incident.GetId()).
-		Body(*datadog.NewTeamJSONAPIRequest(team1)).Execute()
+		Body(*datadog.NewTeamRequest(team1)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error adding team to incident %v: Response %s: %v", team1, err.Error(), bStr)

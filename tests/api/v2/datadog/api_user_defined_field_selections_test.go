@@ -37,17 +37,17 @@ func TestUserDefinedFieldSelectionsLifecycle(t *testing.T) {
 	testIncidentSelectionData.SetRelationships(*datadog.NewUserDefinedFieldSelectionRelationshipsWithDefaults())
 	testIncidentSelectionData.Attributes.SetObjectId(incident.GetId())
 	testIncidentSelectionData.Relationships.SetField(*datadog.NewUserDefinedFieldSelectionRelationshipsFieldWithDefaults())
-	fieldRelationship := datadog.NewUserDefinedFieldJSONAPIRelationship()
+	fieldRelationship := datadog.NewUserDefinedFieldRelationship()
 	fieldRelationship.SetId(field.Id)
 	testIncidentSelectionData.Relationships.Field.SetData(*fieldRelationship)
 	testIncidentSelectionData.Relationships.SetChoice(*datadog.NewUserDefinedFieldSelectionRelationshipsChoiceWithDefaults())
-	choiceRelationship := datadog.NewUserDefinedFieldChoiceJSONAPIRelationship()
+	choiceRelationship := datadog.NewUserDefinedFieldChoiceRelationship()
 	choiceRelationship.SetId(choice1.Id)
 	testIncidentSelectionData.Relationships.Choice.SetData(*choiceRelationship)
 
 	// Create IncidentSelection
 	incidentSelectionRsp, httpresp, err := client.IncidentsApi.CreateUserDefinedFieldSelection(ctx, incident.GetId()).
-		Body(*datadog.NewUserDefinedFieldSelectionJSONAPIRequest(*testIncidentSelectionData)).Execute()
+		Body(*datadog.NewUserDefinedFieldSelectionRequest(*testIncidentSelectionData)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error creating IncidentSelection %v: Response %s: %v", testIncidentSelectionData, err.Error(), bStr)
@@ -76,12 +76,12 @@ func TestUserDefinedFieldSelectionsLifecycle(t *testing.T) {
 
 	// Edit IncidentSelection
 
-	choice2Relationship := datadog.NewUserDefinedFieldChoiceJSONAPIRelationship()
+	choice2Relationship := datadog.NewUserDefinedFieldChoiceRelationship()
 	choice2Relationship.SetId(choice2.Id)
 	incidentSelection.Relationships.Choice.SetData(*choice2Relationship)
 	incidentSelectionUpdatedRsp, httpresp, err := client.IncidentsApi.
 		PatchUserDefinedFieldSelection(ctx, incident.GetId(), incidentSelection.GetId()).
-		Body(*datadog.NewUserDefinedFieldSelectionJSONAPIRequest(incidentSelection)).Execute()
+		Body(*datadog.NewUserDefinedFieldSelectionRequest(incidentSelection)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error updating IncidentSelection %v: Response %s: %v", incidentSelection, err.Error(), bStr)

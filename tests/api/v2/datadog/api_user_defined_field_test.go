@@ -32,7 +32,7 @@ func TestIncidentUserDefinedFieldLifecycle(t *testing.T) {
 
 	// Create field
 	userDefinedFieldRsp, httpresp, err := client.IncidentsApi.CreateUserDefinedField(ctx).
-		Body(*datadog.NewUserDefinedFieldJSONAPIRequest(*testIncidentUserDefinedFieldData)).Execute()
+		Body(*datadog.NewUserDefinedFieldRequest(*testIncidentUserDefinedFieldData)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error creating IncidentConfigField %v: Response %s: %v", testIncidentUserDefinedFieldData, err.Error(), bStr)
@@ -62,7 +62,7 @@ func TestIncidentUserDefinedFieldLifecycle(t *testing.T) {
 	userDefinedField.Attributes.SetName("Test-ConfigField-Updated")
 	userDefinedFieldUpdatedRsp, httpresp, err := client.IncidentsApi.
 		PatchUserDefinedField(ctx, userDefinedField.GetId()).
-		Body(*datadog.NewUserDefinedFieldJSONAPIRequest(userDefinedField)).Execute()
+		Body(*datadog.NewUserDefinedFieldRequest(userDefinedField)).Execute()
 	if err != nil {
 		bStr := err.(datadog.GenericOpenAPIError).Model()
 		t.Fatalf("Error updating IncidentConfigField %v: Response %s: %v", userDefinedField, err.Error(), bStr)

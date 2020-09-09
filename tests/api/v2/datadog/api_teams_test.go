@@ -32,7 +32,7 @@ func TestTeamsLifecycle(t *testing.T) {
 	testTeamData.Attributes.SetName("TestTeamsLifecycle-generated-client-team")
 	testTeamAttributes := testTeamData.GetAttributes()
 	// Create Team
-	teamRsp, httpresp, err := client.TeamsApi.CreateTeam(ctx).Body(*datadog.NewTeamJSONAPIRequest(*testTeamData)).
+	teamRsp, httpresp, err := client.TeamsApi.CreateTeam(ctx).Body(*datadog.NewTeamRequest(*testTeamData)).
 		Execute()
 	if err != nil {
 		t.Fatalf("Error creating Team %v: Response %s: %v", testTeamData, err.Error(), err)
@@ -57,7 +57,7 @@ func TestTeamsLifecycle(t *testing.T) {
 
 	// Edit Team
 	team.Attributes.SetName("Test-Team-Updated")
-	teamUpdatedRsp, httpresp, err := client.TeamsApi.PatchTeam(ctx, team.GetId()).Body(*datadog.NewTeamJSONAPIRequest(team)).Execute()
+	teamUpdatedRsp, httpresp, err := client.TeamsApi.PatchTeam(ctx, team.GetId()).Body(*datadog.NewTeamRequest(team)).Execute()
 	if err != nil {
 		t.Fatalf("Error updating Team %v: Response %s: %v", team, err.Error(), err)
 	}
@@ -98,7 +98,7 @@ func createTestTeam(ctx context.Context, t *testing.T, client *datadog.APIClient
 	testTeamData.SetAttributes(*datadog.NewTeamAttributesWithDefaults())
 	testTeamData.Attributes.SetName(fmt.Sprintf("createTestTeam-%s", name))
 	// Create Team
-	teamRsp, httpresp, err := client.TeamsApi.CreateTeam(ctx).Body(*datadog.NewTeamJSONAPIRequest(*testTeamData)).Execute()
+	teamRsp, httpresp, err := client.TeamsApi.CreateTeam(ctx).Body(*datadog.NewTeamRequest(*testTeamData)).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Team %v: Response %s: %v", testTeamData, err.Error(), err)
 	}
