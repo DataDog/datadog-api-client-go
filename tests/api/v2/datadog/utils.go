@@ -205,7 +205,6 @@ func setIncidentsUnstableOperations(client *datadog.APIClient, enable bool) {
 	client.GetConfig().SetUnstableOperationEnabled("PatchIncident", enable)
 	client.GetConfig().SetUnstableOperationEnabled("DeleteIncident", enable)
 	client.GetConfig().SetUnstableOperationEnabled("GetIncident", enable)
-	client.GetConfig().SetUnstableOperationEnabled("IncidentsSummary", enable)
 	client.GetConfig().SetUnstableOperationEnabled("SearchIncidents", enable)
 
 	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentPostmortem", enable)

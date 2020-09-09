@@ -74,14 +74,15 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"telemetry_test":                    "telemetry",
 	},
 	"tests/api/v2/datadog": {
-		"api_dashboard_lists_test": "dashboard-lists",
-		"api_logs_archives_test":   "logs-archives",
-		"api_logs_test":            "logs",
-		"api_permissions_test":     "permissions",
-		"api_roles_test":           "roles",
-		"api_users_test":           "users",
-		"security_monitoring_test": "security-monitoring",
-		"telemetry_test":           "telemetry",
+		"api_dashboard_lists_test":           "dashboard-lists",
+		"api_logs_archives_test":             "logs-archives",
+		"api_logs_test":                      "logs",
+		"api_permissions_test":               "permissions",
+		"api_roles_test":                     "roles",
+		"api_user_defined_field_choice_test": "userdefinedfieldchoices",
+		"api_users_test":                     "users",
+		"security_monitoring_test":           "security-monitoring",
+		"telemetry_test":                     "telemetry",
 	},
 }
 
