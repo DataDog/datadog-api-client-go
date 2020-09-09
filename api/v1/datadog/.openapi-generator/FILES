@@ -418,6 +418,8 @@ docs/UsageTopAvgMetricsHour.md
 docs/UsageTopAvgMetricsResponse.md
 docs/UsageTraceHour.md
 docs/UsageTraceResponse.md
+docs/UsageTracingWithoutLimitsHour.md
+docs/UsageTracingWithoutLimitsResponse.md
 docs/User.md
 docs/UserDisableResponse.md
 docs/UserListResponse.md
@@ -431,6 +433,7 @@ docs/WidgetColorPreference.md
 docs/WidgetComparator.md
 docs/WidgetCompareTo.md
 docs/WidgetConditionalFormat.md
+docs/WidgetCustomLink.md
 docs/WidgetDefinition.md
 docs/WidgetDisplayType.md
 docs/WidgetEvent.md
@@ -830,6 +833,8 @@ model_usage_top_avg_metrics_hour.go
 model_usage_top_avg_metrics_response.go
 model_usage_trace_hour.go
 model_usage_trace_response.go
+model_usage_tracing_without_limits_hour.go
+model_usage_tracing_without_limits_response.go
 model_user.go
 model_user_disable_response.go
 model_user_list_response.go
@@ -842,6 +847,7 @@ model_widget_color_preference.go
 model_widget_comparator.go
 model_widget_compare_to.go
 model_widget_conditional_format.go
+model_widget_custom_link.go
 model_widget_definition.go
 model_widget_display_type.go
 model_widget_event.go

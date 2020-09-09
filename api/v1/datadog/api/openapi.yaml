@@ -5,7 +5,7 @@ info:
     name: Datadog Support
     url: https://www.datadoghq.com/support/
   description: Collection of all Datadog Public endpoints.
-  title: Datadog API Collection
+  title: Datadog API V1 Collection
   version: "1.0"
 servers:
 - url: https://{subdomain}.{site}
@@ -1734,6 +1734,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict Error
       summary: Delete an AWS integration
       tags:
       - AWS Integration
@@ -1793,6 +1799,7 @@ paths:
         Create a Datadog-Amazon Web Services integration.
         Using the `POST` method updates your integration configuration
         by adding your new configuration to the existing one in your Datadog organization.
+        A unique AWS Account ID for role based authentication.
       operationId: CreateAWSAccount
       requestBody:
         content:
@@ -1820,6 +1827,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict Error
       summary: Create an AWS integration
       tags:
       - AWS Integration
@@ -1882,6 +1895,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict Error
       summary: Update an AWS integration
       tags:
       - AWS Integration
@@ -6322,6 +6341,54 @@ paths:
       summary: Get hourly usage for Trace Search
       tags:
       - Usage Metering
+  /api/v1/usage/tracing-without-limits:
+    get:
+      description: Get hourly usage for tracing without limits.
+      operationId: GetTracingWithoutLimits
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageTracingWithoutLimitsResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for tracing without limits
+      tags:
+      - Usage Metering
   /api/v1/user:
     get:
       description: Get all users for your organization.
@@ -7139,6 +7206,11 @@ components:
       description: The Change graph shows you the change in a value over the time
         period chosen.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           description: |-
             Array of one request object to display in the widget.
@@ -7215,7 +7287,7 @@ components:
     CheckCanDeleteMonitorResponse:
       description: Response of monitor IDs that can or can't be safely deleted.
       example:
-        data: '{}'
+        data: {}
         errors:
           key:
           - errors
@@ -8389,6 +8461,11 @@ components:
         tags, such as hosts. The more hosts that have a particular value, the darker
         that square is.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         events:
           description: List of widget events.
           items:
@@ -8670,6 +8747,11 @@ components:
       description: The host map widget graphs any metric across your hosts using the
         same visualization available from the main Host Map page.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         group:
           description: List of tag prefixes to group by.
           items:
@@ -11549,6 +11631,11 @@ components:
         autoscale:
           description: Whether to use auto-scaling or not.
           type: boolean
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         custom_unit:
           description: Display a unit of your choice on the widget.
           type: string
@@ -11717,12 +11804,12 @@ components:
         interval: 0
         message: message
         denominator:
-          metadata: '{}'
+          metadata: {}
           values: []
           count: 0
           sum: 0.0
         numerator:
-          metadata: '{}'
+          metadata: {}
           values: []
           count: 0
           sum: 0.0
@@ -11775,7 +11862,7 @@ components:
         A representation of `metric` based SLO time series for the provided queries.
         This is the same response type from `batch_query` endpoint.
       example:
-        metadata: '{}'
+        metadata: {}
         values: []
         count: 0
         sum: 0.0
@@ -11825,12 +11912,12 @@ components:
             interval: 0
             message: message
             denominator:
-              metadata: '{}'
+              metadata: {}
               values: []
               count: 0
               sum: 0.0
             numerator:
-              metadata: '{}'
+              metadata: {}
               values: []
               count: 0
               sum: 0.0
@@ -12222,6 +12309,11 @@ components:
             description: Group name.
             type: string
           type: array
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           $ref: '#/components/schemas/ScatterPlotWidgetDefinition_requests'
         time:
@@ -12521,6 +12613,11 @@ components:
       description: This widget displays a map of a service to all of the services
         that call it, and all of the services that it calls.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         filters:
           description: Your environment and primary tag (or * if enabled for your
             account).
@@ -14684,6 +14781,11 @@ components:
       description: The table visualization is available on timeboards and screenboards.
         It displays columns of metrics grouped by tag key.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           description: Widget definition.
           example:
@@ -14780,6 +14882,11 @@ components:
       description: The timeseries visualization allows you to display the evolution
         of one or more metrics, log events, or Analyzed Spans over time.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         events:
           description: List of widget events.
           items:
@@ -14867,6 +14974,11 @@ components:
         value like hostname or service with the most or least of any metric value,
         such as highest consumers of CPU, hosts with the least disk space, etc.
       properties:
+        custom_links:
+          description: List of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
         requests:
           description: List of top list widget requests.
           example:
@@ -16370,79 +16482,83 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
-        npm_host_top99p: 0
-        container_hwm: 6
-        profiling_host_top99p: 6
-        gcp_host_top99p: 3
-        billable_ingested_bytes_sum: 2
-        fargate_tasks_count_avg: 6
-        apm_host_top99p: 6
-        rum_session_count_sum: 8
-        synthetics_check_calls_count_sum: 3
-        aws_host_top99p: 3
-        ingested_events_bytes_sum: 7
-        custom_ts_avg: 5
-        trace_search_indexed_events_count_sum: 0
+        npm_host_top99p: 7
+        container_hwm: 3
+        billable_ingested_bytes_sum: 5
+        fargate_tasks_count_avg: 7
+        rum_session_count_sum: 2
+        ingested_events_bytes_sum: 4
         container_avg: 6
-        netflow_indexed_events_count_sum: 6
-        agent_host_top99p: 9
-        indexed_events_count_sum: 7
+        netflow_indexed_events_count_sum: 8
+        aws_lambda_func_count: 2
+        fargate_tasks_count_hwm: 0
+        profiling_host_top99p: 0
+        gcp_host_top99p: 7
+        azure_app_service_top99p: 6
+        apm_host_top99p: 6
+        synthetics_check_calls_count_sum: 8
+        aws_host_top99p: 1
+        custom_ts_avg: 3
+        trace_search_indexed_events_count_sum: 6
+        twol_ingested_events_bytes_sum: 4
+        agent_host_top99p: 3
+        indexed_events_count_sum: 6
         infra_host_top99p: 0
-        aws_lambda_func_count: 6
         orgs:
-        - npm_host_top99p: 0
-          container_hwm: 3
-          billable_ingested_bytes_sum: 7
-          fargate_tasks_count_avg: 0
-          rum_session_count_sum: 0
-          ingested_events_bytes_sum: 7
+        - npm_host_top99p: 7
+          container_hwm: 6
+          billable_ingested_bytes_sum: 4
+          fargate_tasks_count_avg: 1
+          rum_session_count_sum: 4
+          ingested_events_bytes_sum: 9
           public_id: public_id
-          container_avg: 5
-          netflow_indexed_events_count_sum: 9
-          aws_lambda_func_count: 3
+          container_avg: 0
+          netflow_indexed_events_count_sum: 0
+          aws_lambda_func_count: 5
           id: id
-          fargate_tasks_count_hwm: 6
-          profiling_host_top99p: 9
-          gcp_host_top99p: 4
-          apm_host_top99p: 8
-          synthetics_check_calls_count_sum: 5
+          fargate_tasks_count_hwm: 4
+          profiling_host_top99p: 5
+          gcp_host_top99p: 7
+          apm_host_top99p: 3
+          synthetics_check_calls_count_sum: 8
           aws_host_top99p: 7
           custom_ts_avg: 4
           trace_search_indexed_events_count_sum: 4
-          agent_host_top99p: 4
-          indexed_events_count_sum: 1
-          infra_host_top99p: 4
+          twol_ingested_events_bytes_sum: 3
+          agent_host_top99p: 3
+          indexed_events_count_sum: 9
+          infra_host_top99p: 0
           name: name
           aws_lambda_invocations_sum: 3
-          synthetics_browser_check_calls_count_sum: 7
-        - npm_host_top99p: 0
-          container_hwm: 3
-          billable_ingested_bytes_sum: 7
-          fargate_tasks_count_avg: 0
-          rum_session_count_sum: 0
-          ingested_events_bytes_sum: 7
+          synthetics_browser_check_calls_count_sum: 6
+        - npm_host_top99p: 7
+          container_hwm: 6
+          billable_ingested_bytes_sum: 4
+          fargate_tasks_count_avg: 1
+          rum_session_count_sum: 4
+          ingested_events_bytes_sum: 9
           public_id: public_id
-          container_avg: 5
-          netflow_indexed_events_count_sum: 9
-          aws_lambda_func_count: 3
+          container_avg: 0
+          netflow_indexed_events_count_sum: 0
+          aws_lambda_func_count: 5
           id: id
-          fargate_tasks_count_hwm: 6
-          profiling_host_top99p: 9
-          gcp_host_top99p: 4
-          apm_host_top99p: 8
-          synthetics_check_calls_count_sum: 5
+          fargate_tasks_count_hwm: 4
+          profiling_host_top99p: 5
+          gcp_host_top99p: 7
+          apm_host_top99p: 3
+          synthetics_check_calls_count_sum: 8
           aws_host_top99p: 7
           custom_ts_avg: 4
           trace_search_indexed_events_count_sum: 4
-          agent_host_top99p: 4
-          indexed_events_count_sum: 1
-          infra_host_top99p: 4
+          twol_ingested_events_bytes_sum: 3
+          agent_host_top99p: 3
+          indexed_events_count_sum: 9
+          infra_host_top99p: 0
           name: name
           aws_lambda_invocations_sum: 3
-          synthetics_browser_check_calls_count_sum: 7
-        aws_lambda_invocations_sum: 1
-        fargate_tasks_count_hwm: 3
-        synthetics_browser_check_calls_count_sum: 4
+          synthetics_browser_check_calls_count_sum: 6
+        aws_lambda_invocations_sum: 6
+        synthetics_browser_check_calls_count_sum: 1
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -16467,6 +16583,11 @@ components:
         aws_lambda_invocations_sum:
           description: Shows the sum of all AWS Lambda invocations over all hours
             in the current date for all organizations.
+          format: int64
+          type: integer
+        azure_app_service_top99p:
+          description: Shows the 99th percentile of all Azure app services over all
+            hours in the current date for all organizations.
           format: int64
           type: integer
         billable_ingested_bytes_sum:
@@ -16563,36 +16684,42 @@ components:
             in the current date for all organizations.
           format: int64
           type: integer
+        twol_ingested_events_bytes_sum:
+          description: Shows the sum of all tracing without limits bytes ingested
+            over all hours in the current date for all organizations.
+          format: int64
+          type: integer
       type: object
     UsageSummaryDateOrg:
       description: Global hourly report of all data billed by Datadog for a given
         organization.
       example:
-        npm_host_top99p: 0
-        container_hwm: 3
-        billable_ingested_bytes_sum: 7
-        fargate_tasks_count_avg: 0
-        rum_session_count_sum: 0
-        ingested_events_bytes_sum: 7
+        npm_host_top99p: 7
+        container_hwm: 6
+        billable_ingested_bytes_sum: 4
+        fargate_tasks_count_avg: 1
+        rum_session_count_sum: 4
+        ingested_events_bytes_sum: 9
         public_id: public_id
-        container_avg: 5
-        netflow_indexed_events_count_sum: 9
-        aws_lambda_func_count: 3
+        container_avg: 0
+        netflow_indexed_events_count_sum: 0
+        aws_lambda_func_count: 5
         id: id
-        fargate_tasks_count_hwm: 6
-        profiling_host_top99p: 9
-        gcp_host_top99p: 4
-        apm_host_top99p: 8
-        synthetics_check_calls_count_sum: 5
+        fargate_tasks_count_hwm: 4
+        profiling_host_top99p: 5
+        gcp_host_top99p: 7
+        apm_host_top99p: 3
+        synthetics_check_calls_count_sum: 8
         aws_host_top99p: 7
         custom_ts_avg: 4
         trace_search_indexed_events_count_sum: 4
-        agent_host_top99p: 4
-        indexed_events_count_sum: 1
-        infra_host_top99p: 4
+        twol_ingested_events_bytes_sum: 3
+        agent_host_top99p: 3
+        indexed_events_count_sum: 9
+        infra_host_top99p: 0
         name: name
         aws_lambda_invocations_sum: 3
-        synthetics_browser_check_calls_count_sum: 7
+        synthetics_browser_check_calls_count_sum: 6
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -16686,7 +16813,7 @@ components:
           type: integer
         profiling_host_top99p:
           description: Shows the 99th percentile of all profiled hosts over all hours
-            in the current date for all organizations.
+            in the current date for the given org.
           format: int64
           type: integer
         public_id:
@@ -16712,186 +16839,201 @@ components:
             in the current date for the given org.
           format: int64
           type: integer
+        twol_ingested_events_bytes_sum:
+          description: Shows the sum of all tracing without limits bytes ingested
+            over all hours in the current date for the given org.
+          format: int64
+          type: integer
       type: object
     UsageSummaryResponse:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         end_date: 2000-01-23T04:56:07.000+00:00
-        azure_host_top99p_sum: 2
+        azure_host_top99p_sum: 7
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 0
-          container_hwm: 6
-          profiling_host_top99p: 6
-          gcp_host_top99p: 3
-          billable_ingested_bytes_sum: 2
-          fargate_tasks_count_avg: 6
-          apm_host_top99p: 6
-          rum_session_count_sum: 8
-          synthetics_check_calls_count_sum: 3
-          aws_host_top99p: 3
-          ingested_events_bytes_sum: 7
-          custom_ts_avg: 5
-          trace_search_indexed_events_count_sum: 0
+          npm_host_top99p: 7
+          container_hwm: 3
+          billable_ingested_bytes_sum: 5
+          fargate_tasks_count_avg: 7
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 4
           container_avg: 6
-          netflow_indexed_events_count_sum: 6
-          agent_host_top99p: 9
-          indexed_events_count_sum: 7
+          netflow_indexed_events_count_sum: 8
+          aws_lambda_func_count: 2
+          fargate_tasks_count_hwm: 0
+          profiling_host_top99p: 0
+          gcp_host_top99p: 7
+          azure_app_service_top99p: 6
+          apm_host_top99p: 6
+          synthetics_check_calls_count_sum: 8
+          aws_host_top99p: 1
+          custom_ts_avg: 3
+          trace_search_indexed_events_count_sum: 6
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 3
+          indexed_events_count_sum: 6
           infra_host_top99p: 0
-          aws_lambda_func_count: 6
           orgs:
-          - npm_host_top99p: 0
-            container_hwm: 3
-            billable_ingested_bytes_sum: 7
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 0
-            ingested_events_bytes_sum: 7
+          - npm_host_top99p: 7
+            container_hwm: 6
+            billable_ingested_bytes_sum: 4
+            fargate_tasks_count_avg: 1
+            rum_session_count_sum: 4
+            ingested_events_bytes_sum: 9
             public_id: public_id
-            container_avg: 5
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 3
+            container_avg: 0
+            netflow_indexed_events_count_sum: 0
+            aws_lambda_func_count: 5
             id: id
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 9
-            gcp_host_top99p: 4
-            apm_host_top99p: 8
-            synthetics_check_calls_count_sum: 5
+            fargate_tasks_count_hwm: 4
+            profiling_host_top99p: 5
+            gcp_host_top99p: 7
+            apm_host_top99p: 3
+            synthetics_check_calls_count_sum: 8
             aws_host_top99p: 7
             custom_ts_avg: 4
             trace_search_indexed_events_count_sum: 4
-            agent_host_top99p: 4
-            indexed_events_count_sum: 1
-            infra_host_top99p: 4
+            twol_ingested_events_bytes_sum: 3
+            agent_host_top99p: 3
+            indexed_events_count_sum: 9
+            infra_host_top99p: 0
             name: name
             aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 7
-          - npm_host_top99p: 0
-            container_hwm: 3
-            billable_ingested_bytes_sum: 7
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 0
-            ingested_events_bytes_sum: 7
+            synthetics_browser_check_calls_count_sum: 6
+          - npm_host_top99p: 7
+            container_hwm: 6
+            billable_ingested_bytes_sum: 4
+            fargate_tasks_count_avg: 1
+            rum_session_count_sum: 4
+            ingested_events_bytes_sum: 9
             public_id: public_id
-            container_avg: 5
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 3
+            container_avg: 0
+            netflow_indexed_events_count_sum: 0
+            aws_lambda_func_count: 5
             id: id
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 9
-            gcp_host_top99p: 4
-            apm_host_top99p: 8
-            synthetics_check_calls_count_sum: 5
+            fargate_tasks_count_hwm: 4
+            profiling_host_top99p: 5
+            gcp_host_top99p: 7
+            apm_host_top99p: 3
+            synthetics_check_calls_count_sum: 8
             aws_host_top99p: 7
             custom_ts_avg: 4
             trace_search_indexed_events_count_sum: 4
-            agent_host_top99p: 4
-            indexed_events_count_sum: 1
-            infra_host_top99p: 4
+            twol_ingested_events_bytes_sum: 3
+            agent_host_top99p: 3
+            indexed_events_count_sum: 9
+            infra_host_top99p: 0
             name: name
             aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 7
-          aws_lambda_invocations_sum: 1
-          fargate_tasks_count_hwm: 3
-          synthetics_browser_check_calls_count_sum: 4
+            synthetics_browser_check_calls_count_sum: 6
+          aws_lambda_invocations_sum: 6
+          synthetics_browser_check_calls_count_sum: 1
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 0
-          container_hwm: 6
-          profiling_host_top99p: 6
-          gcp_host_top99p: 3
-          billable_ingested_bytes_sum: 2
-          fargate_tasks_count_avg: 6
-          apm_host_top99p: 6
-          rum_session_count_sum: 8
-          synthetics_check_calls_count_sum: 3
-          aws_host_top99p: 3
-          ingested_events_bytes_sum: 7
-          custom_ts_avg: 5
-          trace_search_indexed_events_count_sum: 0
+          npm_host_top99p: 7
+          container_hwm: 3
+          billable_ingested_bytes_sum: 5
+          fargate_tasks_count_avg: 7
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 4
           container_avg: 6
-          netflow_indexed_events_count_sum: 6
-          agent_host_top99p: 9
-          indexed_events_count_sum: 7
+          netflow_indexed_events_count_sum: 8
+          aws_lambda_func_count: 2
+          fargate_tasks_count_hwm: 0
+          profiling_host_top99p: 0
+          gcp_host_top99p: 7
+          azure_app_service_top99p: 6
+          apm_host_top99p: 6
+          synthetics_check_calls_count_sum: 8
+          aws_host_top99p: 1
+          custom_ts_avg: 3
+          trace_search_indexed_events_count_sum: 6
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 3
+          indexed_events_count_sum: 6
           infra_host_top99p: 0
-          aws_lambda_func_count: 6
           orgs:
-          - npm_host_top99p: 0
-            container_hwm: 3
-            billable_ingested_bytes_sum: 7
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 0
-            ingested_events_bytes_sum: 7
+          - npm_host_top99p: 7
+            container_hwm: 6
+            billable_ingested_bytes_sum: 4
+            fargate_tasks_count_avg: 1
+            rum_session_count_sum: 4
+            ingested_events_bytes_sum: 9
             public_id: public_id
-            container_avg: 5
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 3
+            container_avg: 0
+            netflow_indexed_events_count_sum: 0
+            aws_lambda_func_count: 5
             id: id
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 9
-            gcp_host_top99p: 4
-            apm_host_top99p: 8
-            synthetics_check_calls_count_sum: 5
+            fargate_tasks_count_hwm: 4
+            profiling_host_top99p: 5
+            gcp_host_top99p: 7
+            apm_host_top99p: 3
+            synthetics_check_calls_count_sum: 8
             aws_host_top99p: 7
             custom_ts_avg: 4
             trace_search_indexed_events_count_sum: 4
-            agent_host_top99p: 4
-            indexed_events_count_sum: 1
-            infra_host_top99p: 4
+            twol_ingested_events_bytes_sum: 3
+            agent_host_top99p: 3
+            indexed_events_count_sum: 9
+            infra_host_top99p: 0
             name: name
             aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 7
-          - npm_host_top99p: 0
-            container_hwm: 3
-            billable_ingested_bytes_sum: 7
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 0
-            ingested_events_bytes_sum: 7
+            synthetics_browser_check_calls_count_sum: 6
+          - npm_host_top99p: 7
+            container_hwm: 6
+            billable_ingested_bytes_sum: 4
+            fargate_tasks_count_avg: 1
+            rum_session_count_sum: 4
+            ingested_events_bytes_sum: 9
             public_id: public_id
-            container_avg: 5
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 3
+            container_avg: 0
+            netflow_indexed_events_count_sum: 0
+            aws_lambda_func_count: 5
             id: id
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 9
-            gcp_host_top99p: 4
-            apm_host_top99p: 8
-            synthetics_check_calls_count_sum: 5
+            fargate_tasks_count_hwm: 4
+            profiling_host_top99p: 5
+            gcp_host_top99p: 7
+            apm_host_top99p: 3
+            synthetics_check_calls_count_sum: 8
             aws_host_top99p: 7
             custom_ts_avg: 4
             trace_search_indexed_events_count_sum: 4
-            agent_host_top99p: 4
-            indexed_events_count_sum: 1
-            infra_host_top99p: 4
+            twol_ingested_events_bytes_sum: 3
+            agent_host_top99p: 3
+            indexed_events_count_sum: 9
+            infra_host_top99p: 0
             name: name
             aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 7
-          aws_lambda_invocations_sum: 1
-          fargate_tasks_count_hwm: 3
-          synthetics_browser_check_calls_count_sum: 4
-        container_hwm_sum: 3
-        synthetics_browser_check_calls_count_agg_sum: 9
+            synthetics_browser_check_calls_count_sum: 6
+          aws_lambda_invocations_sum: 6
+          synthetics_browser_check_calls_count_sum: 1
+        container_hwm_sum: 2
+        synthetics_browser_check_calls_count_agg_sum: 6
         apm_host_top99p_sum: 6
-        npm_host_top99p_sum: 1
-        container_avg_sum: 9
+        npm_host_top99p_sum: 4
+        container_avg_sum: 3
         agent_host_top99p_sum: 0
-        infra_host_top99p_sum: 1
-        custom_ts_sum: 2
-        synthetics_check_calls_count_agg_sum: 6
+        infra_host_top99p_sum: 6
+        custom_ts_sum: 4
+        synthetics_check_calls_count_agg_sum: 8
         aws_lambda_func_count: 5
-        netflow_indexed_events_count_agg_sum: 7
-        fargate_tasks_count_avg_sum: 4
-        fargate_tasks_count_hwm_sum: 7
+        netflow_indexed_events_count_agg_sum: 1
+        fargate_tasks_count_avg_sum: 7
+        fargate_tasks_count_hwm_sum: 1
+        azure_app_service_top99p_sum: 2
         start_date: 2000-01-23T04:56:07.000+00:00
-        billable_ingested_bytes_agg_sum: 7
-        ingested_events_bytes_agg_sum: 6
+        billable_ingested_bytes_agg_sum: 9
+        ingested_events_bytes_agg_sum: 7
+        twol_ingested_events_bytes_agg_sum: 6
         last_updated: 2000-01-23T04:56:07.000+00:00
         indexed_events_count_agg_sum: 1
         gcp_host_top99p_sum: 1
         rum_session_count_agg_sum: 9
         aws_host_top99p_sum: 1
-        profiling_container_agent_count_avg: 4
-        profiling_host_count_top99p_sum: 5
+        profiling_container_agent_count_avg: 5
+        profiling_host_count_top99p_sum: 9
         aws_lambda_invocations_sum: 5
-        trace_search_indexed_events_count_agg_sum: 8
+        trace_search_indexed_events_count_agg_sum: 9
       properties:
         agent_host_top99p_sum:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -16916,6 +17058,11 @@ components:
         aws_lambda_invocations_sum:
           description: Shows the sum of all AWS Lambda invocations over all hours
             in the current month(s) for all organizations.
+          format: int64
+          type: integer
+        azure_app_service_top99p_sum:
+          description: Shows the 99th percentile of all Azure app services over all
+            hours in the current month(s) for all organizations.
           format: int64
           type: integer
         azure_host_top99p_sum:
@@ -17026,6 +17173,11 @@ components:
         trace_search_indexed_events_count_agg_sum:
           description: Shows the sum of all analyzed spans indexed over all hours
             in the current month(s) for all organizations.
+          format: int64
+          type: integer
+        twol_ingested_events_bytes_agg_sum:
+          description: Shows the sum of all tracing without limits bytes ingested
+            over all hours in the current month(s) for all organizations.
           format: int64
           type: integer
         usage:
@@ -17243,6 +17395,39 @@ components:
             organization.
           items:
             $ref: '#/components/schemas/UsageTraceHour'
+          type: array
+      type: object
+    UsageTracingWithoutLimitsHour:
+      description: Tracing without limits usage for a given organization for a given
+        hour.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        ingested_events_bytes: 0
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        ingested_events_bytes:
+          description: Contains the total number of bytes ingested during a given
+            hour.
+          format: int64
+          type: integer
+      type: object
+    UsageTracingWithoutLimitsResponse:
+      description: Response containing the tracing without limits usage for each hour
+        for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          ingested_events_bytes: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          ingested_events_bytes: 0
+      properties:
+        usage:
+          description: Get hourly usage for tracing without limits.
+          items:
+            $ref: '#/components/schemas/UsageTracingWithoutLimitsHour'
           type: array
       type: object
     User:
@@ -17474,6 +17659,24 @@ components:
       - comparator
       - palette
       - value
+      type: object
+    WidgetCustomLink:
+      description: Custom links help you connect a data value to a URL, like a Datadog
+        page or your AWS console.
+      properties:
+        label:
+          description: The label for the custom link URL. Keep the label short and
+            descriptive. Use metrics and tags as variables.
+          example: Search logs for {{host}}
+          type: string
+        link:
+          description: The URL of the custom link. URL must include `http` or `https`.
+            A relative URL must start with `/`.
+          example: https://app.datadoghq.com/logs?query={{host}}
+          type: string
+      required:
+      - label
+      - link
       type: object
     WidgetDefinition:
       description: '[Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).'
@@ -17970,15 +18173,17 @@ components:
           description: Message content.
           example: AWS account 12345 has no lambda config to update
           type: string
+      type: object
     AWSLogsListResponse_lambdas:
       description: Description of the Lambdas.
       properties:
         arn:
           description: Available ARN IDs.
           type: string
+      type: object
     CheckCanDeleteMonitorResponse_data:
       description: Wrapper object with the list of monitor IDs.
-      example: '{}'
+      example: {}
       properties:
         ok:
           description: An array of of Monitor IDs that can be safely deleted.
@@ -17987,6 +18192,7 @@ components:
             format: int64
             type: integer
           type: array
+      type: object
     CheckCanDeleteSLOResponse_data:
       description: An array of service level objective objects.
       example:
@@ -18000,6 +18206,7 @@ components:
             description: A SLO ID.
             type: string
           type: array
+      type: object
     Dashboard_template_variables:
       description: Template variable.
       example:
@@ -18024,6 +18231,7 @@ components:
           type: string
       required:
       - name
+      type: object
     DashboardSummary_dashboards:
       description: Dashboard definition.
       example:
@@ -18065,6 +18273,7 @@ components:
         url:
           description: URL of the dashboard.
           type: string
+      type: object
     Host_meta:
       description: Metadata associated with your host.
       example:
@@ -18079,6 +18288,7 @@ components:
             example: Ubuntu
             type: string
           type: array
+      type: object
     Host_metrics:
       description: Host Metrics collected.
       example:
@@ -18102,14 +18312,16 @@ components:
           example: 0.5
           format: double
           type: number
+      type: object
     HostMapWidgetDefinition_requests:
       description: List of definitions.
-      example: '{}'
+      example: {}
       properties:
         fill:
           $ref: '#/components/schemas/HostMapRequest'
         size:
           $ref: '#/components/schemas/HostMapRequest'
+      type: object
     HostMapWidgetDefinition_style:
       description: The style to apply to the widget.
       properties:
@@ -18125,6 +18337,7 @@ components:
         palette_flip:
           description: Whether to flip the palette tones.
           type: boolean
+      type: object
     Log_content:
       description: JSON object containing all log attributes and their associated
         values.
@@ -18178,6 +18391,7 @@ components:
           example: 2020-05-26T13:36:14Z
           format: date-time
           type: string
+      type: object
     LogQueryDefinition_sort:
       description: Define a sorting method.
       properties:
@@ -18194,6 +18408,7 @@ components:
       required:
       - aggregation
       - order
+      type: object
     LogQueryDefinition_group_by:
       description: Defined items in the group.
       properties:
@@ -18210,6 +18425,7 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition_sort'
       required:
       - facet
+      type: object
     LogQueryDefinition_search:
       description: The query being made on the logs.
       properties:
@@ -18218,6 +18434,7 @@ components:
           type: string
       required:
       - query
+      type: object
     LogsCategoryProcessor_categories:
       description: Object describing the logs filter.
       properties:
@@ -18226,6 +18443,7 @@ components:
         name:
           description: Value to assign to the target attribute.
           type: string
+      type: object
     LogsListRequest_time:
       description: Timeframe to retrieve the log from.
       example:
@@ -18251,6 +18469,7 @@ components:
       required:
       - from
       - to
+      type: object
     MetricSearchResponse_results:
       description: Search result.
       example:
@@ -18264,6 +18483,7 @@ components:
             description: Metric name.
             type: string
           type: array
+      type: object
     MetricsQueryResponse_unit:
       description: Object containing the metric unit family, scale factor, name, and
         short name.
@@ -18301,6 +18521,7 @@ components:
           example: min
           readOnly: true
           type: string
+      type: object
     MetricsQueryResponse_series:
       description: Object containing all metric names returned and their associated
         metadata.
@@ -18393,6 +18614,7 @@ components:
           minItems: 2
           readOnly: true
           type: array
+      type: object
     MonitorOptions_aggregation:
       description: Type of aggregation performed in the monitor query.
       example:
@@ -18412,6 +18634,8 @@ components:
           description: Metric type used in the monitor.
           example: count
           type: string
+      readOnly: true
+      type: object
     Organization_settings_saml:
       description: |-
         Set the boolean property enabled to enable or disable single sign on with SAML.
@@ -18423,6 +18647,7 @@ components:
           description: Whether or not SAML is enabled for this organization.
           example: false
           type: boolean
+      type: object
     Organization_settings_saml_autocreate_users_domains:
       description: Has two properties, `enabled` (boolean) and `domains`, which is
         a list of domains without the @ symbol.
@@ -18444,6 +18669,7 @@ components:
             is enabled.
           example: false
           type: boolean
+      type: object
     Organization_settings_saml_idp_initiated_login:
       description: Has one property enabled (boolean).
       example:
@@ -18455,6 +18681,7 @@ components:
             in the [SAML documentation](https://docs.datadoghq.com/account_management/saml/#idp-initiated-login).
           example: false
           type: boolean
+      type: object
     Organization_settings_saml_strict_mode:
       description: Has one property enabled (boolean).
       example:
@@ -18466,6 +18693,7 @@ components:
             Learn more on the [SAML Strict documentation](https://docs.datadoghq.com/account_management/saml/#saml-strict).
           example: false
           type: boolean
+      type: object
     Organization_settings:
       description: A JSON array of settings.
       example:
@@ -18519,6 +18747,7 @@ components:
           type: string
         saml_strict_mode:
           $ref: '#/components/schemas/Organization_settings_saml_strict_mode'
+      type: object
     SLOBulkDeleteResponse_data:
       description: An array of service level objective objects.
       example:
@@ -18546,6 +18775,7 @@ components:
             description: An updated SLO ID.
             type: string
           type: array
+      type: object
     SLOBulkDeleteResponse_errors:
       description: Object describing the error.
       example:
@@ -18566,9 +18796,10 @@ components:
       - id
       - message
       - timeframe
+      type: object
     SLOHistoryMetricsSeries_metadata:
       description: Query metadata.
-      example: '{}'
+      example: {}
       properties:
         aggr:
           description: Query aggregator function.
@@ -18589,6 +18820,7 @@ components:
         unit:
           description: Query units (if available).
           type: string
+      type: object
     SLOHistoryResponse_data:
       description: An array of service level objective objects.
       example:
@@ -18607,12 +18839,12 @@ components:
           interval: 0
           message: message
           denominator:
-            metadata: '{}'
+            metadata: {}
             values: []
             count: 0
             sum: 0.0
           numerator:
-            metadata: '{}'
+            metadata: {}
             values: []
             count: 0
             sum: 0.0
@@ -18668,9 +18900,14 @@ components:
           $ref: '#/components/schemas/SLOType'
         type_id:
           $ref: '#/components/schemas/SLOTypeNumeric'
+      type: object
     ScatterPlotWidgetDefinition_requests:
       description: Widget definition.
-      example: '{"x":{"q":"system.cpu.user"},"y":{"q":"system.mem.used"}}'
+      example:
+        x:
+          q: system.cpu.user
+        y:
+          q: system.mem.used
       properties:
         x:
           $ref: '#/components/schemas/ScatterPlotRequest'
@@ -18679,6 +18916,7 @@ components:
       required:
       - x
       - "y"
+      type: object
     SyntheticsAPITestResultFull_check:
       description: Object describing the API test configuration.
       example:
@@ -18710,6 +18948,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestConfig'
       required:
       - config
+      type: object
     SyntheticsAPITestResultShort_result:
       description: Result of the last API test run.
       example:
@@ -18726,6 +18965,7 @@ components:
       properties:
         timings:
           $ref: '#/components/schemas/SyntheticsTiming'
+      type: object
     SyntheticsAssertionJSONPathTarget_target:
       description: Composed target for `validatesJSONPath` operator.
       properties:
@@ -18738,6 +18978,7 @@ components:
         targetValue:
           description: The path target value to compare to.
           type: object
+      type: object
     SyntheticsBrowserTestResultFull_check:
       description: Object describing the browser test configuration.
       example:
@@ -18769,6 +19010,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestConfig'
       required:
       - config
+      type: object
     SyntheticsBrowserTestResultShort_result:
       description: Object with the result of the last browser test run.
       example:
@@ -18800,6 +19042,7 @@ components:
           description: Total amount of browser test steps.
           format: int64
           type: integer
+      type: object
     SyntheticsCITest_metadata_ci:
       example:
         pipeline: pipeline
@@ -18809,6 +19052,7 @@ components:
           type: string
         provider:
           type: string
+      type: object
     SyntheticsCITest_metadata_git:
       example:
         commit_sha: commit_sha
@@ -18818,6 +19062,7 @@ components:
           type: string
         commit_sha:
           type: string
+      type: object
     SyntheticsCITest_metadata:
       description: Metadata for the Synthetics tests run
       example:
@@ -18832,6 +19077,7 @@ components:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_ci'
         git:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_git'
+      type: object
     SyntheticsDeleteTestsResponse_deleted_tests:
       description: Object containing a deleted Synthetic test ID with the associated
         deletion timestamp.
@@ -18846,6 +19092,7 @@ components:
         public_id:
           description: The Synthetic test ID deleted.
           type: string
+      type: object
     SyntheticsSSLCertificate_issuer:
       description: Object describing the issuer of a SSL certificate.
       example:
@@ -18874,6 +19121,7 @@ components:
         ST:
           description: State Or Province Name that issued the certificate.
           type: string
+      type: object
     SyntheticsSSLCertificate_subject:
       description: Object describing the SSL certificate used for the test.
       example:
@@ -18906,6 +19154,7 @@ components:
         altName:
           description: Subject Alternative Name associated with the certificate.
           type: string
+      type: object
     SyntheticsStepDetail_warnings:
       description: Object collecting warnings for a given step.
       example:
@@ -18919,6 +19168,7 @@ components:
       required:
       - message
       - type
+      type: object
     SyntheticsTestOptions_monitor_options:
       description: Object containing the options for a Synthetic test as a monitor
         (e.g. renotification).
@@ -18932,6 +19182,7 @@ components:
           maximum: 1440
           minimum: 0
           type: integer
+      type: object
     SyntheticsTriggerCITestsResponse_locations:
       description: Synthetics location.
       example:
@@ -18944,6 +19195,7 @@ components:
         name:
           description: Name of the location.
           type: string
+      type: object
     SyntheticsTriggerCITestsResponse_results:
       example:
         result_id: result_id
@@ -18961,6 +19213,7 @@ components:
         result_id:
           description: ID of the result.
           type: string
+      type: object
     TimeseriesWidgetRequest_metadata:
       description: Define an expression alias.
       properties:
@@ -18972,6 +19225,7 @@ components:
           type: string
       required:
       - expression
+      type: object
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.

@@ -197,6 +197,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetMonthlyCustomReports**](docs/UsageMeteringApi.md#getmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
 *UsageMeteringApi* | [**GetSpecifiedDailyCustomReports**](docs/UsageMeteringApi.md#getspecifieddailycustomreports) | **Get** /api/v1/daily_custom_reports/{report_id} | Get specified daily custom reports
 *UsageMeteringApi* | [**GetSpecifiedMonthlyCustomReports**](docs/UsageMeteringApi.md#getspecifiedmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports
+*UsageMeteringApi* | [**GetTracingWithoutLimits**](docs/UsageMeteringApi.md#gettracingwithoutlimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 *UsageMeteringApi* | [**GetUsageAnalyzedLogs**](docs/UsageMeteringApi.md#getusageanalyzedlogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
 *UsageMeteringApi* | [**GetUsageBillableSummary**](docs/UsageMeteringApi.md#getusagebillablesummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your multi-org account
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
@@ -589,6 +590,8 @@ Class | Method | HTTP request | Description
  - [UsageTopAvgMetricsResponse](docs/UsageTopAvgMetricsResponse.md)
  - [UsageTraceHour](docs/UsageTraceHour.md)
  - [UsageTraceResponse](docs/UsageTraceResponse.md)
+ - [UsageTracingWithoutLimitsHour](docs/UsageTracingWithoutLimitsHour.md)
+ - [UsageTracingWithoutLimitsResponse](docs/UsageTracingWithoutLimitsResponse.md)
  - [User](docs/User.md)
  - [UserDisableResponse](docs/UserDisableResponse.md)
  - [UserListResponse](docs/UserListResponse.md)
@@ -601,6 +604,7 @@ Class | Method | HTTP request | Description
  - [WidgetComparator](docs/WidgetComparator.md)
  - [WidgetCompareTo](docs/WidgetCompareTo.md)
  - [WidgetConditionalFormat](docs/WidgetConditionalFormat.md)
+ - [WidgetCustomLink](docs/WidgetCustomLink.md)
  - [WidgetDefinition](docs/WidgetDefinition.md)
  - [WidgetDisplayType](docs/WidgetDisplayType.md)
  - [WidgetEvent](docs/WidgetEvent.md)

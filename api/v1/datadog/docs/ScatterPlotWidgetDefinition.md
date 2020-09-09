@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ColorByGroups** | Pointer to **[]string** | List of groups used for colors. | [optional] 
+**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Requests** | [**ScatterPlotWidgetDefinitionRequests**](ScatterPlotWidgetDefinition_requests.md) |  | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
@@ -57,6 +58,31 @@ SetColorByGroups sets ColorByGroups field to given value.
 `func (o *ScatterPlotWidgetDefinition) HasColorByGroups() bool`
 
 HasColorByGroups returns a boolean if a field has been set.
+
+### GetCustomLinks
+
+`func (o *ScatterPlotWidgetDefinition) GetCustomLinks() []WidgetCustomLink`
+
+GetCustomLinks returns the CustomLinks field if non-nil, zero value otherwise.
+
+### GetCustomLinksOk
+
+`func (o *ScatterPlotWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)`
+
+GetCustomLinksOk returns a tuple with the CustomLinks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLinks
+
+`func (o *ScatterPlotWidgetDefinition) SetCustomLinks(v []WidgetCustomLink)`
+
+SetCustomLinks sets CustomLinks field to given value.
+
+### HasCustomLinks
+
+`func (o *ScatterPlotWidgetDefinition) HasCustomLinks() bool`
+
+HasCustomLinks returns a boolean if a field has been set.
 
 ### GetRequests
 
