@@ -274,6 +274,21 @@ func TestUsageProfiling(t *testing.T) {
 	assert.True(usage.HasUsage())
 }
 
+func TestUsageTracingWithoutLimits(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetTracingWithoutLimits(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
 func TestUsageBillableSummary(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
@@ -459,6 +474,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(5), usage.GetRumSessionCountAggSum())
 	assert.Equal(int64(6), usage.GetProfilingHostCountTop99pSum())
 	assert.Equal(int64(7), usage.GetProfilingContainerAgentCountAvg())
+	assert.Equal(int64(8), usage.GetTwolIngestedEventsBytesAggSum())
 
 	var usageItem = usage.GetUsage()[0]
 	assert.Equal(time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate().UTC())
@@ -471,6 +487,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(8), usageItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageItem.GetProfilingHostTop99p())
+	assert.Equal(int64(11), usageItem.GetTwolIngestedEventsBytesSum())
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal("1b", usageOrgItem.GetId())
@@ -484,6 +501,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(8), usageOrgItem.GetInfraHostTop99p())
 	assert.Equal(int64(9), usageOrgItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageOrgItem.GetProfilingHostTop99p())
+	assert.Equal(int64(11), usageOrgItem.GetTwolIngestedEventsBytesSum())
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
@@ -1176,6 +1194,33 @@ func TestGetUsageProfilingErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageProfiling(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			assert.True(ok)
+			assert.NotEmpty(apiError.GetErrors())
+		})
+	}
+}
+
+func TestGetTracingWithoutLimitsErrors(t *testing.T) {
+	ctx, close := tests.WithTestSpan(context.Background(), t)
+	defer close()
+
+	testCases := map[string]struct {
+		Ctx                func(context.Context) context.Context
+		ExpectedStatusCode int
+	}{
+		"400 Bad Request": {WithTestAuth, 400},
+		"403 Forbidden":   {WithFakeAuth, 403},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			defer finish()
+			assert := tests.Assert(ctx, t)
+
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetTracingWithoutLimits(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

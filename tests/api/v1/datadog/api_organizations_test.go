@@ -344,9 +344,6 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
 
-	// Get random file
-	file, _ := os.Open("fixtures/orgs/error_415.json")
-
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
 		ExpectedStatusCode int
@@ -356,14 +353,18 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 	}
 
 	for name, tc := range testCases {
+		tcc := tc
 		t.Run(name, func(t *testing.T) {
-			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
+			ctx, finish := WithRecorder(tcc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).OrganizationsApi.UploadIdPForOrg(ctx, "lsqdkjf").IdpFile(file).Execute()
+			// Get random file
+			file, _ := os.Open("fixtures/orgs/error_415.json")
+
+			_, httpresp, err := Client(ctx).OrganizationsApi.UploadIdPForOrg(ctx, *tests.UniqueEntityName(ctx, t)).IdpFile(file).Execute()
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
+			assert.Equal(tcc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
