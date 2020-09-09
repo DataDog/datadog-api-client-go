@@ -12,11 +12,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"golang.org/x/net/publicsuffix"
 
@@ -184,4 +186,87 @@ func SendRequest(ctx context.Context, method, url string, payload []byte) (*http
 		respErr = fmt.Errorf("Failed reading response body: %s", rerr.Error())
 	}
 	return resp, body, respErr
+}
+
+func setIncidentsUnstableOperations(client *datadog.APIClient, enable bool) {
+	client.GetConfig().SetUnstableOperationEnabled("CreateUserDefinedField", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetUserDefinedFields", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchUserDefinedField", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteUserDefinedField", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetUserDefinedField", enable)
+	client.GetConfig().SetUnstableOperationEnabled("CreateUserDefinedFieldChoice", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetUserDefinedFieldChoices", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchUserDefinedFieldChoice", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteUserDefinedFieldChoice", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetUserDefinedFieldChoice", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncidents", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("IncidentsSummary", enable)
+	client.GetConfig().SetUnstableOperationEnabled("SearchIncidents", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentPostmortem", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncidentPostmortems", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchIncidentPostmortem", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentPostmortem", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncidentPostmortem", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("CreateUserDefinedFieldSelection", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetUserDefinedFieldSelections", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchUserDefinedFieldSelection", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteUserDefinedFieldSelection", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("AddServiceToIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetServicesForIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("RemoveServiceFromIncident", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("AddTeamToIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetTeamsForIncident", enable)
+	client.GetConfig().SetUnstableOperationEnabled("RemoveTeamFromIncident", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentTimelineCell", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncidentTimelineCells", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchIncidentTimelineCell", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTimelineCell", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncidentTimelineCell", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentTodo", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncidentTodos", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchIncidentTodo", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTodo", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetIncidentTodo", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("CreateTeam", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetTeams", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchTeam", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteTeam", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetTeam", enable)
+
+	client.GetConfig().SetUnstableOperationEnabled("CreateService", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetServices", enable)
+	client.GetConfig().SetUnstableOperationEnabled("PatchService", enable)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteService", enable)
+	client.GetConfig().SetUnstableOperationEnabled("GetService", enable)
+}
+
+const charset = "abcdefghijklmnopqrstuvwxyz" +
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+var seededRand = rand.New(rand.NewSource(time.Now().UnixNano()))
+
+// StringWithCharset creates a random string drawn from the provided character set
+func StringWithCharset(length int, charset string) string {
+	b := make([]byte, length)
+	for i := range b {
+		b[i] = charset[seededRand.Intn(len(charset))]
+	}
+	return string(b)
+}
+
+// RandomString generates a random string from the set of alphabetical characters
+func RandomString(length int) string {
+	return StringWithCharset(length, charset)
 }

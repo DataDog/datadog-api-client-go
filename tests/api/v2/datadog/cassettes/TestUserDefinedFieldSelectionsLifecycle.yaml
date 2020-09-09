@@ -1,0 +1,644 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"customer_impacted":false,"state":"unknown","title":"Test-Incident"},"type":"incidents"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5456968691626674655"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents
+    method: POST
+  response:
+    body: '{"data":{"type":"incidents","id":"8a78b15c-2057-5431-8128-a1d15253d9a3","attributes":{"public_id":34,"postmortem_id":null,"title":"Test-Incident","resolved":null,"customer_impact_scope":null,"customer_impact_start":null,"customer_impact_end":null,"customer_impacted":false,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick","icon":"https://secure.gravatar.com/avatar/0414b0ba84e0c939de98a9a634018961?s=48&d=retro"}}},"last_modified_by_uuid":null,"created":"2020-09-09T14:55:31.460505+00:00","modified":"2020-09-09T14:55:31.460505+00:00","commander":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick","icon":"https://secure.gravatar.com/avatar/0414b0ba84e0c939de98a9a634018961?s=48&d=retro"}}},"state":"active","detected":"2020-09-09T14:55:31.458794+00:00","created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick","icon":"https://secure.gravatar.com/avatar/0414b0ba84e0c939de98a9a634018961?s=48&d=retro"}}},"created_by_uuid":null,"creation_idempotency_key":null,"customer_impact_duration":0,"time_to_detect":0,"time_to_repair":0,"time_to_internal_response":0,"time_to_resolve":0,"severity":"UNKNOWN","udf_values":null,"additional_notifications":null},"relationships":{"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"commander_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"teams":{"data":[]},"services":{"data":[]},"user_defined_field_selections":{"data":[]},"user_defined_fields":{"data":[]},"postmortem":{"data":null},"integrations":{"data":[]}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "2170"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Sep 2020 14:55:32 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:31 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - VD7T3zfIxrU3JEXf2VJoibbSg+wpbN64xHxiON1KzEB/YSmrw/c9uETZjt1uFxD0
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"name":"createUserDefinedField-for_generated_tests","required":false,"table_id":0,"type":1},"id":"","type":"user_defined_field"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateUserDefinedField
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6782335989442962347"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields
+    method: POST
+  response:
+    body: '{"data":{"type":"user_defined_field","id":"535ec45a-19d4-5b15-94a7-a92f1ee80293","attributes":{"name":"createUserDefinedField-for_generated_tests","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick"}}},"created_by_uuid":null,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick"}}},"last_modified_by_uuid":null,"created":"2020-09-09T14:55:32.565882+00:00","modified":"2020-09-09T14:55:32.565882+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "1163"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Sep 2020 14:55:33 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:32 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - TlObKNxJC6mRjORAptBjah7X7IZlZoWDhxDuIhUdNUMmnkpihyb67mpyYPwy4Xl5
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"name":"createUserDefinedFieldChoice-generated-client-choice-1","value":"Test-Choice-Value"},"id":"","type":"user_defined_choice"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateUserDefinedFieldChoice
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1290590740375804536"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/535ec45a-19d4-5b15-94a7-a92f1ee80293/relationships/choices
+    method: POST
+  response:
+    body: '{"data":{"type":"user_defined_choice","id":"8c3c4ba5-2a29-5656-b37d-31492a3d4dd4","attributes":{"name":"createUserDefinedFieldChoice-generated-client-choice-1","value":"Test-Choice-Value","description":null,"user_defined_field_id":"535ec45a-19d4-5b15-94a7-a92f1ee80293","created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick"}}},"created_by_uuid":null,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick"}}},"last_modified_by_uuid":null,"created":"2020-09-09T14:55:33.654508+00:00","modified":"2020-09-09T14:55:33.654508+00:00","deleted":null},"relationships":{"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "1124"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Sep 2020 14:55:33 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:33 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - RxKcx0U1IrcJ2sL0co6YTKQdWxTKBjGeO6Rh6plfmXfsHGMiZ332nvRBeUlqIMht
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"name":"createUserDefinedFieldChoice-generated-client-choice-2","value":"Test-Choice-Value"},"id":"","type":"user_defined_choice"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateUserDefinedFieldChoice
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3368120976281750506"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/535ec45a-19d4-5b15-94a7-a92f1ee80293/relationships/choices
+    method: POST
+  response:
+    body: '{"data":{"type":"user_defined_choice","id":"ea3c403c-07c6-5e94-bb55-62abe6aa0f9d","attributes":{"name":"createUserDefinedFieldChoice-generated-client-choice-2","value":"Test-Choice-Value","description":null,"user_defined_field_id":"535ec45a-19d4-5b15-94a7-a92f1ee80293","created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick"}}},"created_by_uuid":null,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick"}}},"last_modified_by_uuid":null,"created":"2020-09-09T14:55:34.041289+00:00","modified":"2020-09-09T14:55:34.041289+00:00","deleted":null},"relationships":{"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "1124"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Sep 2020 14:55:34 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:34 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - M5AkO8bVyO5yuX6OQA9nCjANXZokYPd2NqFZwMNyvfQQbQnBskFTa6rdUllh6BsX
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3"},"id":"","relationships":{"choice":{"data":{"id":"8c3c4ba5-2a29-5656-b37d-31492a3d4dd4","type":"user_defined_choice"}},"field":{"data":{"id":"535ec45a-19d4-5b15-94a7-a92f1ee80293","type":"user_defined_field"}}},"type":"user_defined_selection"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateUserDefinedFieldSelection
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5954255111740076912"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/8a78b15c-2057-5431-8128-a1d15253d9a3/relationships/selections
+    method: POST
+  response:
+    body: '{"data":{"type":"user_defined_selection","id":"3144891f-9ea2-522f-80c7-b7d178c4b936","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":null,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick","icon":"https://secure.gravatar.com/avatar/0414b0ba84e0c939de98a9a634018961?s=48&d=retro"}}},"last_modified_by_uuid":null,"created":"2020-09-09T14:55:34.240931+00:00","modified":"2020-09-09T14:55:34.240931+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"8c3c4ba5-2a29-5656-b37d-31492a3d4dd4"}},"field":{"data":{"type":"user_defined_field","id":"535ec45a-19d4-5b15-94a7-a92f1ee80293"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "959"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Sep 2020 14:55:35 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:34 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - fbpub1YRPbOoyJvhJBk1iFu2e+h0/QC0EzprMcQ+j5QBEVxUjSwBwj1+J3+NnpX8
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"data":{"attributes":{"created":"2020-09-09T14:55:34.240931Z","last_modified_by":{"data":{"attributes":{"email":"matt.hardwick@datadoghq.com","handle":"matt.hardwick@datadoghq.com","icon":"https://secure.gravatar.com/avatar/0414b0ba84e0c939de98a9a634018961?s=48\u0026d=retro","name":"Matt Hardwick","uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3"},"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}},"modified":"2020-09-09T14:55:34.240931Z","object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3"},"id":"3144891f-9ea2-522f-80c7-b7d178c4b936","relationships":{"choice":{"data":{"id":"ea3c403c-07c6-5e94-bb55-62abe6aa0f9d","type":"user_defined_choice"}},"field":{"data":{"id":"535ec45a-19d4-5b15-94a7-a92f1ee80293","type":"user_defined_field"}},"last_modified_by_user":{"data":{"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}}},"type":"user_defined_selection"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - PatchUserDefinedFieldSelection
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "686739932958729963"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/8a78b15c-2057-5431-8128-a1d15253d9a3/relationships/selections/3144891f-9ea2-522f-80c7-b7d178c4b936
+    method: PATCH
+  response:
+    body: '{"data":{"type":"user_defined_selection","id":"3144891f-9ea2-522f-80c7-b7d178c4b936","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":null,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+      Hardwick","icon":"https://secure.gravatar.com/avatar/0414b0ba84e0c939de98a9a634018961?s=48&d=retro"}}},"last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T14:55:34.240931+00:00","modified":"2020-09-09T14:55:35.322733+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"ea3c403c-07c6-5e94-bb55-62abe6aa0f9d"}},"field":{"data":{"type":"user_defined_field","id":"535ec45a-19d4-5b15-94a7-a92f1ee80293"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Sep 2020 14:55:36 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:35 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - U6D+zHwhpLcyO0Eu02dM74d99H/EBAKoYzfZlZJm0EgywWQgfESFIq6V9eRQe6Gm
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetUserDefinedFieldSelections
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5717404923574481277"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/8a78b15c-2057-5431-8128-a1d15253d9a3/relationships/selections
+    method: GET
+  response:
+    body: '{"meta":{"pagination":{"number":0,"next_number":25,"size":25}},"data":[{"type":"user_defined_selection","id":"37a98549-4d28-5862-95b6-5b68788e8dd7","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":"active","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T14:55:31.460505+00:00","modified":"2020-09-09T14:55:31.460505+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"76f4ad4a135f5e41b2fa57e3d094034d"}},"field":{"data":{"type":"user_defined_field","id":"26a3a53517af5a50b4f6a8a4d133251d"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}},{"type":"user_defined_selection","id":"5f998a76-e780-5908-aa00-b09eb06b182c","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":"UNKNOWN","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T14:55:31.460505+00:00","modified":"2020-09-09T14:55:31.460505+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"d1fb152bdba6597793a9b45780f2d462"}},"field":{"data":{"type":"user_defined_field","id":"8212e0908d19595a97002a9cfa7fdf28"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}},{"type":"user_defined_selection","id":"72ae42a0-ea0d-5005-b887-4da0d0a4332f","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":"unknown","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T14:55:31.460505+00:00","modified":"2020-09-09T14:55:31.460505+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"0254eb6b3e0a58dab27cef36293abfb8"}},"field":{"data":{"type":"user_defined_field","id":"312e11d0f9a85ee7a2cb9752f0a6290b"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}},{"type":"user_defined_selection","id":"a40aa4ee-b1f7-526b-b4b1-502879344e5f","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":"unknown","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T14:55:31.460505+00:00","modified":"2020-09-09T14:55:31.460505+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"ffa3665ad6ad5dc5b5e800e9d411af5f"}},"field":{"data":{"type":"user_defined_field","id":"232d74a791425b87a7b8c38be4d88bd9"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}},{"type":"user_defined_selection","id":"b7a6fd6d-2793-526b-acd6-07fe3a2bf0aa","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":"unknown","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T14:55:31.460505+00:00","modified":"2020-09-09T14:55:31.460505+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"b351714d3e7b57efbff331529ad1c5ec"}},"field":{"data":{"type":"user_defined_field","id":"5d2b66e96efa5a0eac1b9c9633f8be91"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}},{"type":"user_defined_selection","id":"3144891f-9ea2-522f-80c7-b7d178c4b936","attributes":{"object_id":"8a78b15c-2057-5431-8128-a1d15253d9a3","choice_override":null,"value":null,"last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T14:55:34.240931+00:00","modified":"2020-09-09T14:55:35.322733+00:00","deleted":null},"relationships":{"choice":{"data":{"type":"user_defined_choice","id":"ea3c403c-07c6-5e94-bb55-62abe6aa0f9d"}},"field":{"data":{"type":"user_defined_field","id":"535ec45a-19d4-5b15-94a7-a92f1ee80293"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Sep 2020 14:55:36 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:36 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - CUBCyaoXY2JdeHi5oQm4sg9onCJMsjgVJ5jLk2ugM2iR7uz4Q+lvjzDdvtcYDFC3
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteUserDefinedFieldSelection
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8823403115754937186"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/8a78b15c-2057-5431-8128-a1d15253d9a3/relationships/selections/3144891f-9ea2-522f-80c7-b7d178c4b936
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Wed, 09 Sep 2020 14:55:36 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:36 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - SjSxykLY0gTr3VkJbxmjvoevebB2pxQifq0h5HklwYksG7/9u16HyBsdYlpi9mGW
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteUserDefinedFieldChoice
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3343266304632031540"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/535ec45a-19d4-5b15-94a7-a92f1ee80293/relationships/choices/ea3c403c-07c6-5e94-bb55-62abe6aa0f9d
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Wed, 09 Sep 2020 14:55:36 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:36 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 2V6J6bfi8Lp+2UjnPdTvcW5IjbRGxJrhStYZW/ACt/za6xfDiK/Y5IuDyUadsRtA
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteUserDefinedFieldChoice
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8763131461101243201"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/535ec45a-19d4-5b15-94a7-a92f1ee80293/relationships/choices/8c3c4ba5-2a29-5656-b37d-31492a3d4dd4
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Wed, 09 Sep 2020 14:55:38 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:37 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 1yK3PnBzCoxF/WGKEJeJqS2Jb9mutr3xDuvLdPbJCfX1HVDqeCXkaWYDO6wQpQhO
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteUserDefinedField
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3359334354198995945"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/535ec45a-19d4-5b15-94a7-a92f1ee80293
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Wed, 09 Sep 2020 14:55:39 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:38 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - hj67/REi7e3yYcyH3k1IhaTqyaqEZObxcXfHyl0cMf/YGOgEumufCDMBPGXJkv7n
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteIncident
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1036726090414334105"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9120760218563546608"
+    url: https://api.datadoghq.com/api/v2/incidents/8a78b15c-2057-5431-8128-a1d15253d9a3
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Wed, 09 Sep 2020 14:55:39 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 14:55:39 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - BOSuDBM1n3UepeXn5sEfoi/YIqhtz+1PUEBQ/ObJiWdcVxvlSUQTEKftVTEFMtJ8
+      X-Dd-Version:
+      - "35.3006243"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
