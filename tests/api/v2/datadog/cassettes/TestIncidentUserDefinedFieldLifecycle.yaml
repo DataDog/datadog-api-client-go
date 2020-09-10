@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-ConfigField","required":false,"table_id":0,"type":1},"id":"","type":"user_defined_field"}}
+      {"data":{"attributes":{"name":"Test-ConfigField","table_id":0,"type":1},"id":"","type":"user_defined_field"}}
     form: {}
     headers:
       Accept:
@@ -15,17 +15,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9104600717235492492"
+      - "3025917666270229198"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109844371642424014"
+      - "7319764472114898215"
     url: https://api.datadoghq.com/api/v2/incidents/config/fields
     method: POST
   response:
-    body: '{"data":{"type":"user_defined_field","id":"2fb9e793-74c6-51dd-b270-eb4da4fe77bb","attributes":{"name":"Test-ConfigField","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+    body: '{"data":{"type":"user_defined_field","id":"7e7a254e-67bc-5c8c-8083-516882b08a88","attributes":{"name":"Test-ConfigField","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
       Hardwick"}}},"created_by_uuid":null,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
-      Hardwick"}}},"last_modified_by_uuid":null,"created":"2020-09-09T12:00:21.296439+00:00","modified":"2020-09-09T12:00:21.296439+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
+      Hardwick"}}},"last_modified_by_uuid":null,"created":"2020-09-10T15:09:03.234807+00:00","modified":"2020-09-10T15:09:03.234807+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -36,22 +36,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 09 Sep 2020 12:00:22 GMT
+      - Thu, 10 Sep 2020 15:09:05 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 12:00:21 GMT;
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Thu, 17-Sep-2020 15:09:03 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - shSARNU4/WQFPOKM8NVdagbh/ZoS+zYzlyviY3k5npVGETiEU89iNTNvqiMXn1f6
+      - WmMtMFngDL31sZYuYCiUaMFRtAs90zyIJHnMIoB4iHZztA/Ona9SnOav516bWmh7
       X-Dd-Version:
-      - "35.3005167"
+      - "35.3013529"
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
@@ -59,7 +59,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"data":{"attributes":{"created":"2020-09-09T12:00:21.296439Z","created_by":{"data":{"attributes":{"email":"matt.hardwick@datadoghq.com","handle":"matt.hardwick@datadoghq.com","name":"Matt Hardwick","uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3"},"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}},"last_modified_by":{"data":{"attributes":{"email":"matt.hardwick@datadoghq.com","handle":"matt.hardwick@datadoghq.com","name":"Matt Hardwick","uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3"},"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}},"modified":"2020-09-09T12:00:21.296439Z","name":"Test-ConfigField-Updated","required":false,"table_id":0,"type":1},"id":"2fb9e793-74c6-51dd-b270-eb4da4fe77bb","relationships":{"choices":{"data":[]},"created_by_user":{"data":{"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}},"last_modified_by_user":{"data":{"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}}},"type":"user_defined_field"}}
+      {"data":{"attributes":{"created":"2020-09-10T15:09:03.234807Z","created_by":{"data":{"attributes":{"email":"matt.hardwick@datadoghq.com","handle":"matt.hardwick@datadoghq.com","name":"Matt Hardwick","uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3"},"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}},"last_modified_by":{"data":{"attributes":{"email":"matt.hardwick@datadoghq.com","handle":"matt.hardwick@datadoghq.com","name":"Matt Hardwick","uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3"},"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}},"modified":"2020-09-10T15:09:03.234807Z","name":"Test-ConfigField-Updated","table_id":0,"type":1},"id":"7e7a254e-67bc-5c8c-8083-516882b08a88","relationships":{"choices":{"data":[]},"created_by_user":{"data":{"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}},"last_modified_by_user":{"data":{"id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","type":"users"}}},"type":"user_defined_field"}}
     form: {}
     headers:
       Accept:
@@ -71,17 +71,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4540099571671937944"
+      - "6966051966067388921"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109844371642424014"
-    url: https://api.datadoghq.com/api/v2/incidents/config/fields/2fb9e793-74c6-51dd-b270-eb4da4fe77bb
+      - "7319764472114898215"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/7e7a254e-67bc-5c8c-8083-516882b08a88
     method: PATCH
   response:
-    body: '{"data":{"type":"user_defined_field","id":"2fb9e793-74c6-51dd-b270-eb4da4fe77bb","attributes":{"name":"Test-ConfigField-Updated","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
+    body: '{"data":{"type":"user_defined_field","id":"7e7a254e-67bc-5c8c-8083-516882b08a88","attributes":{"name":"Test-ConfigField-Updated","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
       Hardwick"}}},"created_by_uuid":null,"last_modified_by":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3","attributes":{"uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","handle":"matt.hardwick@datadoghq.com","email":"matt.hardwick@datadoghq.com","name":"Matt
-      Hardwick"}}},"last_modified_by_uuid":null,"created":"2020-09-09T12:00:21.296439+00:00","modified":"2020-09-09T12:00:22.728617+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":null},"last_modified_by_user":{"data":null}}}}'
+      Hardwick"}}},"last_modified_by_uuid":null,"created":"2020-09-10T15:09:03.234807+00:00","modified":"2020-09-10T15:09:05.336563+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":null},"last_modified_by_user":{"data":null}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -90,13 +90,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 09 Sep 2020 12:00:24 GMT
+      - Thu, 10 Sep 2020 15:09:05 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 12:00:22 GMT;
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Thu, 17-Sep-2020 15:09:05 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -105,9 +105,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - DzEnZCQWT9euguf/bcLShPm1gznPA9ZqLP7LjIXyQlgbj6pbs1ZQonx5miG7wBC7
+      - vJlCdCjZjHKDWCQaZXaKHjefwu7Jotxr42UmWttwNlCEvibEd08wFg9UscwYl4z7
       X-Dd-Version:
-      - "35.3005167"
+      - "35.3013529"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -124,15 +124,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2425563917198460989"
+      - "7968129551861296969"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109844371642424014"
-    url: https://api.datadoghq.com/api/v2/incidents/config/fields/2fb9e793-74c6-51dd-b270-eb4da4fe77bb
+      - "7319764472114898215"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/7e7a254e-67bc-5c8c-8083-516882b08a88
     method: GET
   response:
-    body: '{"data":{"type":"user_defined_field","id":"2fb9e793-74c6-51dd-b270-eb4da4fe77bb","attributes":{"name":"Test-ConfigField-Updated","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T12:00:21.296439+00:00","modified":"2020-09-09T12:00:22.728617+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
+    body: '{"data":{"type":"user_defined_field","id":"7e7a254e-67bc-5c8c-8083-516882b08a88","attributes":{"name":"Test-ConfigField-Updated","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-10T15:09:03.234807+00:00","modified":"2020-09-10T15:09:05.336563+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -141,13 +141,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 09 Sep 2020 12:00:24 GMT
+      - Thu, 10 Sep 2020 15:09:05 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 12:00:24 GMT;
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Thu, 17-Sep-2020 15:09:05 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -156,9 +156,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - x0lXQI7rzyICHjQ6egBdIXvv6oH1uc+zPjPKGBnD3VLYo8imKB14VpRl9Uf7xZN/
+      - /waQ67o9EXsAiQILmFHWOTHDJ6E+x7ROC0G8iNmC+2lV58E3PSGYbXj1H62A/c+u
       X-Dd-Version:
-      - "35.3005167"
+      - "35.3013529"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -175,15 +175,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2749869720163561159"
+      - "3151754217354534766"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109844371642424014"
+      - "7319764472114898215"
     url: https://api.datadoghq.com/api/v2/incidents/config/fields
     method: GET
   response:
-    body: '{"meta":{"pagination":{"number":0,"next_number":25,"size":25}},"data":[{"type":"user_defined_field","id":"c6a1e4e747405460a7830f2fba02ab39","attributes":{"name":"document_link","default_choice_id":null,"table_id":1,"type":3,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-06-10T17:57:34.149933+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}}}},{"type":"user_defined_field","id":"2fb9e793-74c6-51dd-b270-eb4da4fe77bb","attributes":{"name":"Test-ConfigField-Updated","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-09T12:00:21.296439+00:00","modified":"2020-09-09T12:00:22.728617+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}},{"type":"user_defined_field","id":"312e11d0f9a85ee7a2cb9752f0a6290b","attributes":{"name":"source","default_choice_id":"0254eb6b3e0a58dab27cef36293abfb8","table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"unknown","value":"unknown"},{"description":"web","value":"web"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-08-13T19:17:47.019976+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"0254eb6b3e0a58dab27cef36293abfb8"},{"type":"user_defined_choice","id":"ac6e65c5aba15a51b1ee60dbb2ea7fbe"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"26a3a53517af5a50b4f6a8a4d133251d","attributes":{"name":"state","default_choice_id":"76f4ad4a135f5e41b2fa57e3d094034d","table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"active","value":"active"},{"description":"resolved","value":"resolved"},{"description":"stable","value":"stable"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"91bf4558-3621-11ea-a781-dbec7072e4b3","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-09-03T18:36:23.587723+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"76f4ad4a135f5e41b2fa57e3d094034d"},{"type":"user_defined_choice","id":"c9194ee67e525d7aa05d0999901b60c8"},{"type":"user_defined_choice","id":"b10218cbf247560a9fd6aa17168aadd7"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"91bf4558-3621-11ea-a781-dbec7072e4b3"}}}},{"type":"user_defined_field","id":"eaac8751a47f5f41bef1dae6d4319799","attributes":{"name":"root_cause","default_choice_id":null,"table_id":0,"type":3,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-09-03T18:45:22.903556+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"94037caf94d15605a381ebc7ce4888a7","attributes":{"name":"notebook_links","default_choice_id":null,"table_id":1,"type":4,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-25T20:31:29.974742+00:00","modified":"2020-06-25T20:31:29.974742+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"ac39103ec6ea5a9699f50caed3df294d","attributes":{"name":"state","default_choice_id":"e825b93eedee5b4093a195b700d761c4","table_id":1,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-06-10T17:57:34.149933+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"5d3a3a029ac159a7a02b0f51354c23ad"},{"type":"user_defined_choice","id":"932f8a4dc4535678b50dce42717991d9"},{"type":"user_defined_choice","id":"e825b93eedee5b4093a195b700d761c4"},{"type":"user_defined_choice","id":"24fd37fce75056b78fc5be1378928979"},{"type":"user_defined_choice","id":"dfe349f93edc5376a8d5cc0ae4e198f9"},{"type":"user_defined_choice","id":"f027840139b35902b7241458e75c0904"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}}}},{"type":"user_defined_field","id":"8212e0908d19595a97002a9cfa7fdf28","attributes":{"name":"severity","default_choice_id":"d1fb152bdba6597793a9b45780f2d462","table_id":0,"type":1,"required":true,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"SEV-1","value":"SEV-1"},{"description":"SEV-2","value":"SEV-2"},{"description":"SEV-3","value":"SEV-3"},{"description":"SEV-4","value":"SEV-4"},{"description":"SEV-5","value":"SEV-5"},{"description":"UNKNOWN","value":"UNKNOWN"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"91bf4558-3621-11ea-a781-dbec7072e4b3","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-09-03T18:36:31.248850+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"1058d3d2e95c5457afa37442cdc9b25b"},{"type":"user_defined_choice","id":"8728d20ce2b15f85a7604168dbe7bc40"},{"type":"user_defined_choice","id":"cde5eca8b6065010acbafb53211aa30b"},{"type":"user_defined_choice","id":"60d14f33231b53ddb6bd31148a8c6909"},{"type":"user_defined_choice","id":"57b9d3c6d0c351f4b78ea9bc948d0854"},{"type":"user_defined_choice","id":"d1fb152bdba6597793a9b45780f2d462"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"91bf4558-3621-11ea-a781-dbec7072e4b3"}}}},{"type":"user_defined_field","id":"232d74a791425b87a7b8c38be4d88bd9","attributes":{"name":"environment","default_choice_id":"ffa3665ad6ad5dc5b5e800e9d411af5f","table_id":0,"type":1,"required":true,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"multiple","value":"multiple"},{"description":"unknown","value":"unknown"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-08-13T19:17:46.750860+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"d09d442b81095917aeef37110e39f3fd"},{"type":"user_defined_choice","id":"ffa3665ad6ad5dc5b5e800e9d411af5f"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"5d2b66e96efa5a0eac1b9c9633f8be91","attributes":{"name":"detection_method","default_choice_id":"b351714d3e7b57efbff331529ad1c5ec","table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"customer","value":"customer"},{"description":"employee","value":"employee"},{"description":"monitor","value":"monitor"},{"description":"other","value":"other"},{"description":"unknown","value":"unknown"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-08-13T19:17:46.909959+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"04f0a17fbce95d4a88366712ba76a4b9"},{"type":"user_defined_choice","id":"bb27e75d1f9c5ac19aba686e296181cc"},{"type":"user_defined_choice","id":"092500be4fbf575d82e4e3a06e23c38d"},{"type":"user_defined_choice","id":"c0e6ec4d25505d1db650105e8dfcdb32"},{"type":"user_defined_choice","id":"b351714d3e7b57efbff331529ad1c5ec"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}}]}'
+    body: '{"meta":{"pagination":{"number":0,"next_number":25,"size":25}},"data":[{"type":"user_defined_field","id":"c6a1e4e747405460a7830f2fba02ab39","attributes":{"name":"document_link","default_choice_id":null,"table_id":1,"type":3,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-06-10T17:57:34.149933+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}}}},{"type":"user_defined_field","id":"7e7a254e-67bc-5c8c-8083-516882b08a88","attributes":{"name":"Test-ConfigField-Updated","default_choice_id":null,"table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","last_modified_by_uuid":"26101b01-eba0-11e9-a77a-0bb0b66104b3","created":"2020-09-10T15:09:03.234807+00:00","modified":"2020-09-10T15:09:05.336563+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}},"last_modified_by_user":{"data":{"type":"users","id":"26101b01-eba0-11e9-a77a-0bb0b66104b3"}}}},{"type":"user_defined_field","id":"312e11d0f9a85ee7a2cb9752f0a6290b","attributes":{"name":"source","default_choice_id":"0254eb6b3e0a58dab27cef36293abfb8","table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"unknown","value":"unknown"},{"description":"web","value":"web"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-08-13T19:17:47.019976+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"0254eb6b3e0a58dab27cef36293abfb8"},{"type":"user_defined_choice","id":"ac6e65c5aba15a51b1ee60dbb2ea7fbe"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"26a3a53517af5a50b4f6a8a4d133251d","attributes":{"name":"state","default_choice_id":"76f4ad4a135f5e41b2fa57e3d094034d","table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"active","value":"active"},{"description":"resolved","value":"resolved"},{"description":"stable","value":"stable"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"91bf4558-3621-11ea-a781-dbec7072e4b3","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-09-03T18:36:23.587723+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"76f4ad4a135f5e41b2fa57e3d094034d"},{"type":"user_defined_choice","id":"c9194ee67e525d7aa05d0999901b60c8"},{"type":"user_defined_choice","id":"b10218cbf247560a9fd6aa17168aadd7"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"91bf4558-3621-11ea-a781-dbec7072e4b3"}}}},{"type":"user_defined_field","id":"eaac8751a47f5f41bef1dae6d4319799","attributes":{"name":"root_cause","default_choice_id":null,"table_id":0,"type":3,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-09-03T18:45:22.903556+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"94037caf94d15605a381ebc7ce4888a7","attributes":{"name":"notebook_links","default_choice_id":null,"table_id":1,"type":4,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-25T20:31:29.974742+00:00","modified":"2020-06-25T20:31:29.974742+00:00","deleted":null},"relationships":{"choices":{"data":[]},"created_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"ac39103ec6ea5a9699f50caed3df294d","attributes":{"name":"state","default_choice_id":"e825b93eedee5b4093a195b700d761c4","table_id":1,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":null,"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-06-10T17:57:34.149933+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"5d3a3a029ac159a7a02b0f51354c23ad"},{"type":"user_defined_choice","id":"932f8a4dc4535678b50dce42717991d9"},{"type":"user_defined_choice","id":"e825b93eedee5b4093a195b700d761c4"},{"type":"user_defined_choice","id":"24fd37fce75056b78fc5be1378928979"},{"type":"user_defined_choice","id":"dfe349f93edc5376a8d5cc0ae4e198f9"},{"type":"user_defined_choice","id":"f027840139b35902b7241458e75c0904"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}}}},{"type":"user_defined_field","id":"8212e0908d19595a97002a9cfa7fdf28","attributes":{"name":"severity","default_choice_id":"d1fb152bdba6597793a9b45780f2d462","table_id":0,"type":1,"required":true,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"SEV-1","value":"SEV-1"},{"description":"SEV-2","value":"SEV-2"},{"description":"SEV-3","value":"SEV-3"},{"description":"SEV-4","value":"SEV-4"},{"description":"SEV-5","value":"SEV-5"},{"description":"UNKNOWN","value":"UNKNOWN"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"91bf4558-3621-11ea-a781-dbec7072e4b3","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-09-03T18:36:31.248850+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"1058d3d2e95c5457afa37442cdc9b25b"},{"type":"user_defined_choice","id":"8728d20ce2b15f85a7604168dbe7bc40"},{"type":"user_defined_choice","id":"cde5eca8b6065010acbafb53211aa30b"},{"type":"user_defined_choice","id":"60d14f33231b53ddb6bd31148a8c6909"},{"type":"user_defined_choice","id":"57b9d3c6d0c351f4b78ea9bc948d0854"},{"type":"user_defined_choice","id":"d1fb152bdba6597793a9b45780f2d462"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"91bf4558-3621-11ea-a781-dbec7072e4b3"}}}},{"type":"user_defined_field","id":"232d74a791425b87a7b8c38be4d88bd9","attributes":{"name":"environment","default_choice_id":"ffa3665ad6ad5dc5b5e800e9d411af5f","table_id":0,"type":1,"required":true,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"multiple","value":"multiple"},{"description":"unknown","value":"unknown"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-08-13T19:17:46.750860+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"d09d442b81095917aeef37110e39f3fd"},{"type":"user_defined_choice","id":"ffa3665ad6ad5dc5b5e800e9d411af5f"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}},{"type":"user_defined_field","id":"5d2b66e96efa5a0eac1b9c9633f8be91","attributes":{"name":"detection_method","default_choice_id":"b351714d3e7b57efbff331529ad1c5ec","table_id":0,"type":1,"required":false,"prerequisite":null,"tag_key":null,"valid_values":[{"description":"customer","value":"customer"},{"description":"employee","value":"employee"},{"description":"monitor","value":"monitor"},{"description":"other","value":"other"},{"description":"unknown","value":"unknown"}],"default_value":null,"created_by_uuid":"20b6b36c-eba0-11e9-a77a-4bb2768bb953","last_modified_by_uuid":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de","created":"2020-06-10T17:57:34.149933+00:00","modified":"2020-08-13T19:17:46.909959+00:00","deleted":null},"relationships":{"choices":{"data":[{"type":"user_defined_choice","id":"04f0a17fbce95d4a88366712ba76a4b9"},{"type":"user_defined_choice","id":"bb27e75d1f9c5ac19aba686e296181cc"},{"type":"user_defined_choice","id":"092500be4fbf575d82e4e3a06e23c38d"},{"type":"user_defined_choice","id":"c0e6ec4d25505d1db650105e8dfcdb32"},{"type":"user_defined_choice","id":"b351714d3e7b57efbff331529ad1c5ec"}]},"created_by_user":{"data":{"type":"users","id":"20b6b36c-eba0-11e9-a77a-4bb2768bb953"}},"last_modified_by_user":{"data":{"type":"users","id":"a8c7ca4d-eb9c-11e9-a77a-9b88f2c5c1de"}}}}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -192,13 +192,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 09 Sep 2020 12:00:24 GMT
+      - Thu, 10 Sep 2020 15:09:05 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 12:00:24 GMT;
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Thu, 17-Sep-2020 15:09:05 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -207,9 +207,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - CEeLq0Go7dWGJU+fr2n+CYAUDbVj0m8JNtbW3olNX1v3toKEuyF2ucrViqaycHWr
+      - kQL0CnFxOqhC7/LGPn5tSXP5D7AwuI8M1SPDYQaonLUXe7hbVUblKeVruwbyjQml
       X-Dd-Version:
-      - "35.3005167"
+      - "35.3013529"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -226,12 +226,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4731946343719463619"
+      - "3467775335825536124"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109844371642424014"
-    url: https://api.datadoghq.com/api/v2/incidents/config/fields/2fb9e793-74c6-51dd-b270-eb4da4fe77bb
+      - "7319764472114898215"
+    url: https://api.datadoghq.com/api/v2/incidents/config/fields/7e7a254e-67bc-5c8c-8083-516882b08a88
     method: DELETE
   response:
     body: ""
@@ -245,22 +245,22 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Wed, 09 Sep 2020 12:00:24 GMT
+      - Thu, 10 Sep 2020 15:09:05 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Wed, 16-Sep-2020 12:00:24 GMT;
+      - DD-PSHARD=122; Max-Age=604800; Path=/; expires=Thu, 17-Sep-2020 15:09:05 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - oARhNtI/6EvWShO4AFzODjV25iS4y9uHctlNmddhrc7oiR5CBUO6OzfRiwtsABEM
+      - nuSFLkQ1s7gwoRNAfifc8jXTyjLsWBSRPtQKveq6qMTKGNJs/ULg6uo/9G1YZzFs
       X-Dd-Version:
-      - "35.3005167"
+      - "35.3013529"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
