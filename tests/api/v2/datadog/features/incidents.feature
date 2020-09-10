@@ -27,13 +27,6 @@ Feature: Incidents
     Then the response status is 200 OK
 
   @generated @skip
-  Scenario: Create a new incident configuration field returns "CREATED" response
-    Given new "CreateUserDefinedField" request
-    And body {}
-    When the request is sent
-    Then the response status is 201 CREATED
-
-  @generated @skip
   Scenario: Deletes an existing field returns "DELETED" response
     Given new "DeleteUserDefinedField" request
     And request contains "field_id" parameter from "<PATH>"
@@ -44,14 +37,6 @@ Feature: Incidents
   Scenario: Get the details of a field returns "OK" response
     Given new "GetUserDefinedField" request
     And request contains "field_id" parameter from "<PATH>"
-    When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
-  Scenario: Updates an existing configuration field returns "OK" response
-    Given new "PatchUserDefinedField" request
-    And request contains "field_id" parameter from "<PATH>"
-    And body {}
     When the request is sent
     Then the response status is 200 OK
 
@@ -95,14 +80,12 @@ Feature: Incidents
   @generated @skip
   Scenario: Get a list of all Postmortems returns "OK" response
     Given new "GetIncidentPostmortems" request
-    And request contains "incident_id" parameter from "<PATH>"
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
   Scenario: Create a new postmortem returns "CREATED" response
     Given new "CreateIncidentPostmortem" request
-    And request contains "incident_id" parameter from "<PATH>"
     And body {}
     When the request is sent
     Then the response status is 201 CREATED
@@ -110,7 +93,6 @@ Feature: Incidents
   @generated @skip
   Scenario: Update an existing postmortem returns "DELETED" response
     Given new "DeleteIncidentPostmortem" request
-    And request contains "incident_id" parameter from "<PATH>"
     And request contains "postmortem_id" parameter from "<PATH>"
     When the request is sent
     Then the response status is 204 DELETED
@@ -118,7 +100,6 @@ Feature: Incidents
   @generated @skip
   Scenario: Get details of a postmortem returns "OK" response
     Given new "GetIncidentPostmortem" request
-    And request contains "incident_id" parameter from "<PATH>"
     And request contains "postmortem_id" parameter from "<PATH>"
     When the request is sent
     Then the response status is 200 OK
@@ -126,7 +107,6 @@ Feature: Incidents
   @generated @skip
   Scenario: Update an existing postmortem returns "OK" response
     Given new "PatchIncidentPostmortem" request
-    And request contains "incident_id" parameter from "<PATH>"
     And request contains "postmortem_id" parameter from "<PATH>"
     And body {}
     When the request is sent
@@ -378,3 +358,18 @@ Feature: Incidents
     Given new "GetTagValues" request
     When the request is sent
     Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Update an existing user-defined field returns "OK" response
+    Given new "PatchUserDefinedField" request
+    And request contains "field_id" parameter from "<PATH>"
+    And body {}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Create a new user-defined field returns "Created" response
+    Given new "CreateUserDefinedField" request
+    And body {}
+    When the request is sent
+    Then the response status is 201 Created
