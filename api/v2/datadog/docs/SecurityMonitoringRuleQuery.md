@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Aggregation** | Pointer to [**SecurityMonitoringRuleQueryAggregation**](SecurityMonitoringRuleQueryAggregation.md) |  | [optional] 
 **DistinctFields** | Pointer to **[]string** | Field for which the cardinality is measured. Sent as an array. | [optional] 
 **GroupByFields** | Pointer to **[]string** | Fields to group by. | [optional] 
+**Metric** | Pointer to **string** | The target field to aggregate over when using the sum or max aggregations. | [optional] 
 **Name** | Pointer to **string** | Name of the query. | [optional] 
 **Query** | Pointer to **string** | Query to run on logs. | [optional] 
 
@@ -27,6 +29,31 @@ will change when the set of required properties is changed
 NewSecurityMonitoringRuleQueryWithDefaults instantiates a new SecurityMonitoringRuleQuery object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAggregation
+
+`func (o *SecurityMonitoringRuleQuery) GetAggregation() SecurityMonitoringRuleQueryAggregation`
+
+GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+
+### GetAggregationOk
+
+`func (o *SecurityMonitoringRuleQuery) GetAggregationOk() (*SecurityMonitoringRuleQueryAggregation, bool)`
+
+GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAggregation
+
+`func (o *SecurityMonitoringRuleQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation)`
+
+SetAggregation sets Aggregation field to given value.
+
+### HasAggregation
+
+`func (o *SecurityMonitoringRuleQuery) HasAggregation() bool`
+
+HasAggregation returns a boolean if a field has been set.
 
 ### GetDistinctFields
 
@@ -77,6 +104,31 @@ SetGroupByFields sets GroupByFields field to given value.
 `func (o *SecurityMonitoringRuleQuery) HasGroupByFields() bool`
 
 HasGroupByFields returns a boolean if a field has been set.
+
+### GetMetric
+
+`func (o *SecurityMonitoringRuleQuery) GetMetric() string`
+
+GetMetric returns the Metric field if non-nil, zero value otherwise.
+
+### GetMetricOk
+
+`func (o *SecurityMonitoringRuleQuery) GetMetricOk() (*string, bool)`
+
+GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetric
+
+`func (o *SecurityMonitoringRuleQuery) SetMetric(v string)`
+
+SetMetric sets Metric field to given value.
+
+### HasMetric
+
+`func (o *SecurityMonitoringRuleQuery) HasMetric() bool`
+
+HasMetric returns a boolean if a field has been set.
 
 ### GetName
 
