@@ -161,7 +161,7 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	tests.SetAPI(ctx, f)
 }
 
-// enableOperations sets API callable to apiKey{}
+// enableOperations sets unstable operations specific in this clause to enabled
 func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
 	client.GetConfig().SetUnstableOperationEnabled(name, true)
