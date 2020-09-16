@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
 **Port** | Pointer to **int64** | Port to use when performing the test. | [optional] 
 **Query** | Pointer to **interface{}** | Query to use for the test. | [optional] 
-**Timeout** | Pointer to **float64** | Timeout in millisecond for the test. | [optional] 
+**Timeout** | Pointer to **float64** | Timeout in seconds for the test. | [optional] 
 **Url** | Pointer to **string** | URL to perform the test with. | [optional] 
 
 ## Methods
