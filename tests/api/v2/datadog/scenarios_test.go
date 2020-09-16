@@ -112,6 +112,7 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
+	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
 	s.AddStep(`there is a valid "user" in the system`, user)
 	s.AddStep(`there is a valid "role" in the system`, role)
 	s.AddStep(`the "user" has the "role"`, userHasRole)
@@ -158,6 +159,12 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 		panic(fmt.Sprintf("invalid API name %s", name))
 	}
 	tests.SetAPI(ctx, f)
+}
+
+// enableOperations sets unstable operations specific in this clause to enabled
+func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled(name, true)
 }
 
 func user(t gobdd.StepTest, ctx gobdd.Context) {
