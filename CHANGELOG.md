@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## v1.0.0-beta.8 / 2020-09-16
+
+* [Added] Add aggregation and metric fields to the RuleQuery. See [#457](https://github.com/DataDog/datadog-api-client-go/pull/457).
+* [Added] Add documentation for tracing without limits to usage services. See [#449](https://github.com/DataDog/datadog-api-client-go/pull/449).
+* [Added] Add response codes for AWS API. See [#443](https://github.com/DataDog/datadog-api-client-go/pull/443).
+* [Added] Add custom_links support for Dashboard widgets. See [#442](https://github.com/DataDog/datadog-api-client-go/pull/442).
+* [Added] Add usage profiling endpoint to spec. See [#436](https://github.com/DataDog/datadog-api-client-go/pull/436).
+* [Added] Add synthetics ci endpoint. See [#429](https://github.com/DataDog/datadog-api-client-go/pull/429).
+* [Added] Add ApmResourcesQueryDefinition to TableWidgetRequest. See [#428](https://github.com/DataDog/datadog-api-client-go/pull/428).
+* [Added] Add list API for SecMon signals. See [#424](https://github.com/DataDog/datadog-api-client-go/pull/424).
+* [Added] Add create, edit and delete endpoints for global variables. See [#421](https://github.com/DataDog/datadog-api-client-go/pull/421).
+* [Added] Document renotify option. See [#420](https://github.com/DataDog/datadog-api-client-go/pull/420).
+* [Added] Add aggregate api v2 spec. See [#419](https://github.com/DataDog/datadog-api-client-go/pull/419).
+* [Added] Add Profiling Host To Spec. See [#417](https://github.com/DataDog/datadog-api-client-go/pull/417).
+* [Added] Adding distinct fields to RuleQuery. See [#412](https://github.com/DataDog/datadog-api-client-go/pull/412).
+* [Added] Add missing security_query on QueryValueWidgetRequest. See [#407](https://github.com/DataDog/datadog-api-client-go/pull/407).
+* [Added] Enable security source for dashboards. See [#403](https://github.com/DataDog/datadog-api-client-go/pull/403).
+* [Added] Add SLO alerts to monitor enum. See [#401](https://github.com/DataDog/datadog-api-client-go/pull/401).
+* [Fixed] Improve PATCH method for v2 users. See [#441](https://github.com/DataDog/datadog-api-client-go/pull/441).
+* [Fixed] Fix hourly host usage descriptions. See [#438](https://github.com/DataDog/datadog-api-client-go/pull/438).
+* [Fixed] Remove enum from legend_size. See [#432](https://github.com/DataDog/datadog-api-client-go/pull/432).
+* [Fixed] Fix content-type spelling errors. See [#423](https://github.com/DataDog/datadog-api-client-go/pull/423).
+* [Fixed] Adding query and status as required. See [#422](https://github.com/DataDog/datadog-api-client-go/pull/422).
+* [Fixed] Fix Security Monitoring tests. See [#409](https://github.com/DataDog/datadog-api-client-go/pull/409).
+* [Removed] Remove 204 response from PATCH v2 users. See [#446](https://github.com/DataDog/datadog-api-client-go/pull/446).
+
 ## v1.0.0-beta.7 / 2020-07-22
 
 * [Added] Adding four usage attribution endpoints. See [#393](https://github.com/DataDog/datadog-api-client-go/pull/393).
