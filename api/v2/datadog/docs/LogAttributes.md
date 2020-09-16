@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search. | [optional] 
 **Service** | Pointer to **string** | The name of the application or service generating the log events. It is used to switch from Logs to APM, so make sure you define the same value when you use both products. | [optional] 
 **Status** | Pointer to **string** | Status of the message associated with your log. | [optional] 
-**Tags** | Pointer to **[]interface{}** | Array of tags associated with your log. | [optional] 
+**Tags** | Pointer to **[]string** | Array of tags associated with your log. | [optional] 
 **Timestamp** | Pointer to [**time.Time**](time.Time.md) | Timestamp of your log. | [optional] 
 
 ## Methods
@@ -158,20 +158,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetTags
 
-`func (o *LogAttributes) GetTags() []interface{}`
+`func (o *LogAttributes) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *LogAttributes) GetTagsOk() (*[]interface{}, bool)`
+`func (o *LogAttributes) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *LogAttributes) SetTags(v []interface{})`
+`func (o *LogAttributes) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 
