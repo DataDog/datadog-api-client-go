@@ -3386,6 +3386,9 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/OrganizationsType'
+      required:
+      - id
+      - type
       type: object
     RelationshipToOrganizations:
       description: Relationship to organizations.
@@ -3497,10 +3500,10 @@ components:
           description: ID of the user.
           type: string
         type:
-          default: users
-          description: Users type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/UsersType'
+      required:
+      - id
+      - type
       type: object
     RelationshipToUsers:
       description: Relationship to users.
@@ -4598,6 +4601,7 @@ components:
           email: email
           status: status
         id: id
+        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserAttributes'
@@ -4682,6 +4686,7 @@ components:
           name: name
           title: title
           email: email
+        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserCreateAttributes'
@@ -4705,6 +4710,7 @@ components:
             name: name
             title: title
             email: email
+          type: users
       properties:
         data:
           $ref: '#/components/schemas/UserCreateData'
@@ -4892,6 +4898,7 @@ components:
             email: email
             status: status
           id: id
+          type: users
         included:
         - null
         - null
@@ -4971,6 +4978,7 @@ components:
           disabled: true
           email: email
         id: id
+        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserUpdateAttributes'
@@ -4989,6 +4997,7 @@ components:
             disabled: true
             email: email
           id: id
+          type: users
       properties:
         data:
           $ref: '#/components/schemas/UserUpdateData'
@@ -5031,6 +5040,7 @@ components:
             email: email
             status: status
           id: id
+          type: users
         - relationships:
             other_users:
               data:
@@ -5065,6 +5075,7 @@ components:
             email: email
             status: status
           id: id
+          type: users
         meta:
           page:
             total_count: 6
@@ -5091,6 +5102,7 @@ components:
       description: Users resource type.
       enum:
       - users
+      example: users
       type: string
       x-enum-varnames:
       - USERS

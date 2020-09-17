@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | ID of the user. | [optional] 
-**Type** | Pointer to **string** | Users type. | [optional] [readonly] [default to "users"]
+**Id** | **string** | ID of the user. | 
+**Type** | [**UsersType**](UsersType.md) |  | [default to "users"]
 
 ## Methods
 
 ### NewRelationshipToUserData
 
-`func NewRelationshipToUserData() *RelationshipToUserData`
+`func NewRelationshipToUserData(id string, type_ UsersType, ) *RelationshipToUserData`
 
 NewRelationshipToUserData instantiates a new RelationshipToUserData object
 This constructor will assign default values to properties that have it defined,
@@ -45,36 +45,26 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *RelationshipToUserData) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *RelationshipToUserData) GetType() string`
+`func (o *RelationshipToUserData) GetType() UsersType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RelationshipToUserData) GetTypeOk() (*string, bool)`
+`func (o *RelationshipToUserData) GetTypeOk() (*UsersType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RelationshipToUserData) SetType(v string)`
+`func (o *RelationshipToUserData) SetType(v UsersType)`
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *RelationshipToUserData) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
