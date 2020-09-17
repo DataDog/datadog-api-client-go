@@ -1260,7 +1260,7 @@ Name | Type | Description  | Notes
 
 ## GetUsageRumSessions
 
-> UsageRumSessionsResponse GetUsageRumSessions(ctx).StartHr(startHr).EndHr(endHr).Type_(type_).Execute()
+> UsageRumSessionsResponse GetUsageRumSessions(ctx).StartHr(startHr).EndHr(endHr).Execute()
 
 Get hourly usage for RUM Sessions
 
@@ -1294,11 +1294,10 @@ func main() {
 
     startHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
     endHr := Get-Date // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. (optional)
-    type_ := "type__example" // string | RUM type: `[browser, mobile]`. Defaults to `browser`. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageRumSessions(ctx, startHr).EndHr(endHr).Type_(type_).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageRumSessions(ctx, startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageRumSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1321,7 +1320,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
  **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
- **type_** | **string** | RUM type: &#x60;[browser, mobile]&#x60;. Defaults to &#x60;browser&#x60;. | 
 
 ### Return type
 
