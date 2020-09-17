@@ -244,7 +244,7 @@ func userHasInvitation(t gobdd.StepTest, ctx gobdd.Context) {
 	urData := ur.GetData()
 	id := urData.GetId()
 
-	rtud := datadog.NewRelationshipToUserData()
+	rtud := datadog.NewRelationshipToUserDataWithDefaults()
 	rtud.SetId(id)
 	rtu := datadog.NewRelationshipToUser()
 	rtu.SetData(*rtud)

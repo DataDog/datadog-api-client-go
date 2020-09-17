@@ -184,7 +184,7 @@ func TestUserInvitation(t *testing.T) {
 	defer disableUser(ctx, id)
 
 	// first, create the user invitation
-	rtud := datadog.NewRelationshipToUserData()
+	rtud := datadog.NewRelationshipToUserDataWithDefaults()
 	rtud.SetId(id)
 	rtu := datadog.NewRelationshipToUser()
 	rtu.SetData(*rtud)
