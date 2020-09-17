@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
 [**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
 [**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
-[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get a list of tests
+[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
 [**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger some Synthetics tests for CI
 [**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
 [**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
@@ -1018,9 +1018,9 @@ Other parameters are passed through a pointer to a apiListLocationsRequest struc
 
 ## ListTests
 
-> SyntheticsListTestsResponse ListTests(ctx).CheckType(checkType).Execute()
+> SyntheticsListTestsResponse ListTests(ctx).Execute()
 
-Get a list of tests
+Get the list of all tests
 
 
 
@@ -1050,11 +1050,10 @@ func main() {
         },
     )
 
-    checkType := "checkType_example" // string | API or browser to filter the list by test type, undefined to get the unfiltered list. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.ListTests(ctx).CheckType(checkType).Execute()
+    resp, r, err := api_client.SyntheticsApi.ListTests(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1066,16 +1065,12 @@ func main() {
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListTestsRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **checkType** | **string** | API or browser to filter the list by test type, undefined to get the unfiltered list. | 
 
 ### Return type
 
