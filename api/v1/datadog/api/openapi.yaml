@@ -5920,6 +5920,14 @@ paths:
           format: date-time
           type: string
         style: form
+      - description: 'RUM type: `[browser, mobile]`. Defaults to `browser`.'
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -16471,83 +16479,86 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
-        npm_host_top99p: 7
+        npm_host_top99p: 3
         container_hwm: 3
-        billable_ingested_bytes_sum: 5
-        fargate_tasks_count_avg: 7
-        rum_session_count_sum: 2
-        ingested_events_bytes_sum: 4
-        container_avg: 6
-        netflow_indexed_events_count_sum: 8
-        aws_lambda_func_count: 2
-        fargate_tasks_count_hwm: 0
-        profiling_host_top99p: 0
-        gcp_host_top99p: 7
-        azure_app_service_top99p: 6
-        apm_host_top99p: 6
+        billable_ingested_bytes_sum: 6
+        fargate_tasks_count_avg: 0
+        rum_session_count_sum: 6
+        ingested_events_bytes_sum: 8
+        mobile_rum_session_count_sum: 7
+        container_avg: 3
+        netflow_indexed_events_count_sum: 3
+        aws_lambda_func_count: 6
+        fargate_tasks_count_hwm: 7
+        profiling_host_top99p: 8
+        gcp_host_top99p: 6
+        azure_app_service_top99p: 5
+        apm_host_top99p: 1
         synthetics_check_calls_count_sum: 8
-        aws_host_top99p: 1
-        custom_ts_avg: 3
-        trace_search_indexed_events_count_sum: 6
-        twol_ingested_events_bytes_sum: 4
-        agent_host_top99p: 3
-        indexed_events_count_sum: 6
-        infra_host_top99p: 0
+        aws_host_top99p: 2
+        custom_ts_avg: 7
+        trace_search_indexed_events_count_sum: 9
+        twol_ingested_events_bytes_sum: 1
+        agent_host_top99p: 6
+        indexed_events_count_sum: 0
+        infra_host_top99p: 4
         orgs:
-        - npm_host_top99p: 7
-          container_hwm: 6
-          billable_ingested_bytes_sum: 4
-          fargate_tasks_count_avg: 1
+        - npm_host_top99p: 6
+          container_hwm: 1
+          billable_ingested_bytes_sum: 6
+          fargate_tasks_count_avg: 7
           rum_session_count_sum: 4
-          ingested_events_bytes_sum: 9
+          ingested_events_bytes_sum: 7
           public_id: public_id
-          container_avg: 0
-          netflow_indexed_events_count_sum: 0
-          aws_lambda_func_count: 5
+          mobile_rum_session_count_sum: 5
+          container_avg: 4
+          netflow_indexed_events_count_sum: 4
+          aws_lambda_func_count: 4
           id: id
-          fargate_tasks_count_hwm: 4
-          profiling_host_top99p: 5
-          gcp_host_top99p: 7
-          apm_host_top99p: 3
-          synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 7
+          fargate_tasks_count_hwm: 9
+          profiling_host_top99p: 8
+          gcp_host_top99p: 0
+          apm_host_top99p: 5
+          synthetics_check_calls_count_sum: 0
+          aws_host_top99p: 3
           custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 4
-          twol_ingested_events_bytes_sum: 3
-          agent_host_top99p: 3
+          trace_search_indexed_events_count_sum: 2
+          twol_ingested_events_bytes_sum: 1
+          agent_host_top99p: 7
           indexed_events_count_sum: 9
           infra_host_top99p: 0
           name: name
-          aws_lambda_invocations_sum: 3
-          synthetics_browser_check_calls_count_sum: 6
-        - npm_host_top99p: 7
-          container_hwm: 6
-          billable_ingested_bytes_sum: 4
-          fargate_tasks_count_avg: 1
+          aws_lambda_invocations_sum: 0
+          synthetics_browser_check_calls_count_sum: 3
+        - npm_host_top99p: 6
+          container_hwm: 1
+          billable_ingested_bytes_sum: 6
+          fargate_tasks_count_avg: 7
           rum_session_count_sum: 4
-          ingested_events_bytes_sum: 9
+          ingested_events_bytes_sum: 7
           public_id: public_id
-          container_avg: 0
-          netflow_indexed_events_count_sum: 0
-          aws_lambda_func_count: 5
+          mobile_rum_session_count_sum: 5
+          container_avg: 4
+          netflow_indexed_events_count_sum: 4
+          aws_lambda_func_count: 4
           id: id
-          fargate_tasks_count_hwm: 4
-          profiling_host_top99p: 5
-          gcp_host_top99p: 7
-          apm_host_top99p: 3
-          synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 7
+          fargate_tasks_count_hwm: 9
+          profiling_host_top99p: 8
+          gcp_host_top99p: 0
+          apm_host_top99p: 5
+          synthetics_check_calls_count_sum: 0
+          aws_host_top99p: 3
           custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 4
-          twol_ingested_events_bytes_sum: 3
-          agent_host_top99p: 3
+          trace_search_indexed_events_count_sum: 2
+          twol_ingested_events_bytes_sum: 1
+          agent_host_top99p: 7
           indexed_events_count_sum: 9
           infra_host_top99p: 0
           name: name
-          aws_lambda_invocations_sum: 3
-          synthetics_browser_check_calls_count_sum: 6
+          aws_lambda_invocations_sum: 0
+          synthetics_browser_check_calls_count_sum: 3
         aws_lambda_invocations_sum: 6
-        synthetics_browser_check_calls_count_sum: 1
+        synthetics_browser_check_calls_count_sum: 4
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -16633,6 +16644,11 @@ components:
             current date for all organizations.
           format: int64
           type: integer
+        mobile_rum_session_count_sum:
+          description: Shows the sum of all mobile RUM Sessions over all hours in
+            the current date for all organizations
+          format: int64
+          type: integer
         netflow_indexed_events_count_sum:
           description: Shows the sum of all Network flows indexed over all hours in
             the current date for all organizations.
@@ -16654,8 +16670,8 @@ components:
           format: int64
           type: integer
         rum_session_count_sum:
-          description: Shows the sum of all RUM Sessions over all hours in the current
-            date for all organizations
+          description: Shows the sum of all browser RUM Sessions over all hours in
+            the current date for all organizations
           format: int64
           type: integer
         synthetics_browser_check_calls_count_sum:
@@ -16683,32 +16699,33 @@ components:
       description: Global hourly report of all data billed by Datadog for a given
         organization.
       example:
-        npm_host_top99p: 7
-        container_hwm: 6
-        billable_ingested_bytes_sum: 4
-        fargate_tasks_count_avg: 1
+        npm_host_top99p: 6
+        container_hwm: 1
+        billable_ingested_bytes_sum: 6
+        fargate_tasks_count_avg: 7
         rum_session_count_sum: 4
-        ingested_events_bytes_sum: 9
+        ingested_events_bytes_sum: 7
         public_id: public_id
-        container_avg: 0
-        netflow_indexed_events_count_sum: 0
-        aws_lambda_func_count: 5
+        mobile_rum_session_count_sum: 5
+        container_avg: 4
+        netflow_indexed_events_count_sum: 4
+        aws_lambda_func_count: 4
         id: id
-        fargate_tasks_count_hwm: 4
-        profiling_host_top99p: 5
-        gcp_host_top99p: 7
-        apm_host_top99p: 3
-        synthetics_check_calls_count_sum: 8
-        aws_host_top99p: 7
+        fargate_tasks_count_hwm: 9
+        profiling_host_top99p: 8
+        gcp_host_top99p: 0
+        apm_host_top99p: 5
+        synthetics_check_calls_count_sum: 0
+        aws_host_top99p: 3
         custom_ts_avg: 4
-        trace_search_indexed_events_count_sum: 4
-        twol_ingested_events_bytes_sum: 3
-        agent_host_top99p: 3
+        trace_search_indexed_events_count_sum: 2
+        twol_ingested_events_bytes_sum: 1
+        agent_host_top99p: 7
         indexed_events_count_sum: 9
         infra_host_top99p: 0
         name: name
-        aws_lambda_invocations_sum: 3
-        synthetics_browser_check_calls_count_sum: 6
+        aws_lambda_invocations_sum: 0
+        synthetics_browser_check_calls_count_sum: 3
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -16787,6 +16804,11 @@ components:
             current date for the given org.
           format: int64
           type: integer
+        mobile_rum_session_count_sum:
+          description: Shows the sum of all mobile RUM Sessions over all hours in
+            the current date for the given org.
+          format: int64
+          type: integer
         name:
           description: The organization name.
           type: string
@@ -16809,8 +16831,8 @@ components:
           description: The organization public id.
           type: string
         rum_session_count_sum:
-          description: Shows the sum of all RUM Sessions over all hours in the current
-            date for the given org.
+          description: Shows the sum of all browser RUM Sessions over all hours in
+            the current date for the given org.
           format: int64
           type: integer
         synthetics_browser_check_calls_count_sum:
@@ -16841,188 +16863,195 @@ components:
         azure_host_top99p_sum: 7
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 7
+          npm_host_top99p: 3
           container_hwm: 3
-          billable_ingested_bytes_sum: 5
-          fargate_tasks_count_avg: 7
-          rum_session_count_sum: 2
-          ingested_events_bytes_sum: 4
-          container_avg: 6
-          netflow_indexed_events_count_sum: 8
-          aws_lambda_func_count: 2
-          fargate_tasks_count_hwm: 0
-          profiling_host_top99p: 0
-          gcp_host_top99p: 7
-          azure_app_service_top99p: 6
-          apm_host_top99p: 6
+          billable_ingested_bytes_sum: 6
+          fargate_tasks_count_avg: 0
+          rum_session_count_sum: 6
+          ingested_events_bytes_sum: 8
+          mobile_rum_session_count_sum: 7
+          container_avg: 3
+          netflow_indexed_events_count_sum: 3
+          aws_lambda_func_count: 6
+          fargate_tasks_count_hwm: 7
+          profiling_host_top99p: 8
+          gcp_host_top99p: 6
+          azure_app_service_top99p: 5
+          apm_host_top99p: 1
           synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 1
-          custom_ts_avg: 3
-          trace_search_indexed_events_count_sum: 6
-          twol_ingested_events_bytes_sum: 4
-          agent_host_top99p: 3
-          indexed_events_count_sum: 6
-          infra_host_top99p: 0
+          aws_host_top99p: 2
+          custom_ts_avg: 7
+          trace_search_indexed_events_count_sum: 9
+          twol_ingested_events_bytes_sum: 1
+          agent_host_top99p: 6
+          indexed_events_count_sum: 0
+          infra_host_top99p: 4
           orgs:
-          - npm_host_top99p: 7
-            container_hwm: 6
-            billable_ingested_bytes_sum: 4
-            fargate_tasks_count_avg: 1
+          - npm_host_top99p: 6
+            container_hwm: 1
+            billable_ingested_bytes_sum: 6
+            fargate_tasks_count_avg: 7
             rum_session_count_sum: 4
-            ingested_events_bytes_sum: 9
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            container_avg: 0
-            netflow_indexed_events_count_sum: 0
-            aws_lambda_func_count: 5
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            netflow_indexed_events_count_sum: 4
+            aws_lambda_func_count: 4
             id: id
-            fargate_tasks_count_hwm: 4
-            profiling_host_top99p: 5
-            gcp_host_top99p: 7
-            apm_host_top99p: 3
-            synthetics_check_calls_count_sum: 8
-            aws_host_top99p: 7
+            fargate_tasks_count_hwm: 9
+            profiling_host_top99p: 8
+            gcp_host_top99p: 0
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 0
+            aws_host_top99p: 3
             custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 4
-            twol_ingested_events_bytes_sum: 3
-            agent_host_top99p: 3
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 1
+            agent_host_top99p: 7
             indexed_events_count_sum: 9
             infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 6
-          - npm_host_top99p: 7
-            container_hwm: 6
-            billable_ingested_bytes_sum: 4
-            fargate_tasks_count_avg: 1
+            aws_lambda_invocations_sum: 0
+            synthetics_browser_check_calls_count_sum: 3
+          - npm_host_top99p: 6
+            container_hwm: 1
+            billable_ingested_bytes_sum: 6
+            fargate_tasks_count_avg: 7
             rum_session_count_sum: 4
-            ingested_events_bytes_sum: 9
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            container_avg: 0
-            netflow_indexed_events_count_sum: 0
-            aws_lambda_func_count: 5
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            netflow_indexed_events_count_sum: 4
+            aws_lambda_func_count: 4
             id: id
-            fargate_tasks_count_hwm: 4
-            profiling_host_top99p: 5
-            gcp_host_top99p: 7
-            apm_host_top99p: 3
-            synthetics_check_calls_count_sum: 8
-            aws_host_top99p: 7
+            fargate_tasks_count_hwm: 9
+            profiling_host_top99p: 8
+            gcp_host_top99p: 0
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 0
+            aws_host_top99p: 3
             custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 4
-            twol_ingested_events_bytes_sum: 3
-            agent_host_top99p: 3
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 1
+            agent_host_top99p: 7
             indexed_events_count_sum: 9
             infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 6
+            aws_lambda_invocations_sum: 0
+            synthetics_browser_check_calls_count_sum: 3
           aws_lambda_invocations_sum: 6
-          synthetics_browser_check_calls_count_sum: 1
+          synthetics_browser_check_calls_count_sum: 4
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 7
+          npm_host_top99p: 3
           container_hwm: 3
-          billable_ingested_bytes_sum: 5
-          fargate_tasks_count_avg: 7
-          rum_session_count_sum: 2
-          ingested_events_bytes_sum: 4
-          container_avg: 6
-          netflow_indexed_events_count_sum: 8
-          aws_lambda_func_count: 2
-          fargate_tasks_count_hwm: 0
-          profiling_host_top99p: 0
-          gcp_host_top99p: 7
-          azure_app_service_top99p: 6
-          apm_host_top99p: 6
+          billable_ingested_bytes_sum: 6
+          fargate_tasks_count_avg: 0
+          rum_session_count_sum: 6
+          ingested_events_bytes_sum: 8
+          mobile_rum_session_count_sum: 7
+          container_avg: 3
+          netflow_indexed_events_count_sum: 3
+          aws_lambda_func_count: 6
+          fargate_tasks_count_hwm: 7
+          profiling_host_top99p: 8
+          gcp_host_top99p: 6
+          azure_app_service_top99p: 5
+          apm_host_top99p: 1
           synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 1
-          custom_ts_avg: 3
-          trace_search_indexed_events_count_sum: 6
-          twol_ingested_events_bytes_sum: 4
-          agent_host_top99p: 3
-          indexed_events_count_sum: 6
-          infra_host_top99p: 0
+          aws_host_top99p: 2
+          custom_ts_avg: 7
+          trace_search_indexed_events_count_sum: 9
+          twol_ingested_events_bytes_sum: 1
+          agent_host_top99p: 6
+          indexed_events_count_sum: 0
+          infra_host_top99p: 4
           orgs:
-          - npm_host_top99p: 7
-            container_hwm: 6
-            billable_ingested_bytes_sum: 4
-            fargate_tasks_count_avg: 1
+          - npm_host_top99p: 6
+            container_hwm: 1
+            billable_ingested_bytes_sum: 6
+            fargate_tasks_count_avg: 7
             rum_session_count_sum: 4
-            ingested_events_bytes_sum: 9
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            container_avg: 0
-            netflow_indexed_events_count_sum: 0
-            aws_lambda_func_count: 5
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            netflow_indexed_events_count_sum: 4
+            aws_lambda_func_count: 4
             id: id
-            fargate_tasks_count_hwm: 4
-            profiling_host_top99p: 5
-            gcp_host_top99p: 7
-            apm_host_top99p: 3
-            synthetics_check_calls_count_sum: 8
-            aws_host_top99p: 7
+            fargate_tasks_count_hwm: 9
+            profiling_host_top99p: 8
+            gcp_host_top99p: 0
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 0
+            aws_host_top99p: 3
             custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 4
-            twol_ingested_events_bytes_sum: 3
-            agent_host_top99p: 3
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 1
+            agent_host_top99p: 7
             indexed_events_count_sum: 9
             infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 6
-          - npm_host_top99p: 7
-            container_hwm: 6
-            billable_ingested_bytes_sum: 4
-            fargate_tasks_count_avg: 1
+            aws_lambda_invocations_sum: 0
+            synthetics_browser_check_calls_count_sum: 3
+          - npm_host_top99p: 6
+            container_hwm: 1
+            billable_ingested_bytes_sum: 6
+            fargate_tasks_count_avg: 7
             rum_session_count_sum: 4
-            ingested_events_bytes_sum: 9
+            ingested_events_bytes_sum: 7
             public_id: public_id
-            container_avg: 0
-            netflow_indexed_events_count_sum: 0
-            aws_lambda_func_count: 5
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            netflow_indexed_events_count_sum: 4
+            aws_lambda_func_count: 4
             id: id
-            fargate_tasks_count_hwm: 4
-            profiling_host_top99p: 5
-            gcp_host_top99p: 7
-            apm_host_top99p: 3
-            synthetics_check_calls_count_sum: 8
-            aws_host_top99p: 7
+            fargate_tasks_count_hwm: 9
+            profiling_host_top99p: 8
+            gcp_host_top99p: 0
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 0
+            aws_host_top99p: 3
             custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 4
-            twol_ingested_events_bytes_sum: 3
-            agent_host_top99p: 3
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 1
+            agent_host_top99p: 7
             indexed_events_count_sum: 9
             infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 3
-            synthetics_browser_check_calls_count_sum: 6
+            aws_lambda_invocations_sum: 0
+            synthetics_browser_check_calls_count_sum: 3
           aws_lambda_invocations_sum: 6
-          synthetics_browser_check_calls_count_sum: 1
+          synthetics_browser_check_calls_count_sum: 4
         container_hwm_sum: 2
-        synthetics_browser_check_calls_count_agg_sum: 6
+        synthetics_browser_check_calls_count_agg_sum: 8
         apm_host_top99p_sum: 6
-        npm_host_top99p_sum: 4
+        npm_host_top99p_sum: 5
         container_avg_sum: 3
+        mobile_rum_session_count_agg_sum: 1
         agent_host_top99p_sum: 0
         infra_host_top99p_sum: 6
         custom_ts_sum: 4
-        synthetics_check_calls_count_agg_sum: 8
+        synthetics_check_calls_count_agg_sum: 9
         aws_lambda_func_count: 5
-        netflow_indexed_events_count_agg_sum: 1
+        netflow_indexed_events_count_agg_sum: 4
         fargate_tasks_count_avg_sum: 7
         fargate_tasks_count_hwm_sum: 1
         azure_app_service_top99p_sum: 2
         start_date: 2000-01-23T04:56:07.000+00:00
         billable_ingested_bytes_agg_sum: 9
         ingested_events_bytes_agg_sum: 7
-        twol_ingested_events_bytes_agg_sum: 6
+        twol_ingested_events_bytes_agg_sum: 3
         last_updated: 2000-01-23T04:56:07.000+00:00
         indexed_events_count_agg_sum: 1
         gcp_host_top99p_sum: 1
-        rum_session_count_agg_sum: 9
+        rum_session_count_agg_sum: 6
         aws_host_top99p_sum: 1
-        profiling_container_agent_count_avg: 5
+        profiling_container_agent_count_avg: 9
         profiling_host_count_top99p_sum: 9
         aws_lambda_invocations_sum: 5
-        trace_search_indexed_events_count_agg_sum: 9
+        trace_search_indexed_events_count_agg_sum: 6
       properties:
         agent_host_top99p_sum:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -17119,6 +17148,11 @@ components:
             all organizations for which all usages were calculated.
           format: date-time
           type: string
+        mobile_rum_session_count_agg_sum:
+          description: Shows the sum of all mobile RUM Sessions over all hours in
+            the current month(s) for all organizations.
+          format: int64
+          type: integer
         netflow_indexed_events_count_agg_sum:
           description: Shows the sum of all Network flows indexed over all hours in
             the current month(s) for all organizations.
@@ -17140,8 +17174,8 @@ components:
           format: int64
           type: integer
         rum_session_count_agg_sum:
-          description: Shows the sum of all RUM Sessions over all hours in the current
-            month(s) for all organizations.
+          description: Shows the sum of all browser RUM Sessions over all hours in
+            the current month(s) for all organizations.
           format: int64
           type: integer
         start_date:

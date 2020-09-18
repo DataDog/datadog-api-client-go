@@ -23,11 +23,12 @@ Name | Type | Description | Notes
 **InfraHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current month(s) for all organizations. | [optional] 
 **IngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
 **LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current month(s) for all organizations for which all usages were calculated. | [optional] 
+**MobileRumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current month(s) for all organizations. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all organizations. | [optional] 
 **ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current month(s) for all organizations. | [optional] 
 **ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current month(s) for all organizations. | [optional] 
-**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
+**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all organizations. | [optional] 
 **SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current month(s) for all organizations. | [optional] 
@@ -528,6 +529,31 @@ SetLastUpdated sets LastUpdated field to given value.
 `func (o *UsageSummaryResponse) HasLastUpdated() bool`
 
 HasLastUpdated returns a boolean if a field has been set.
+
+### GetMobileRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSum() int64`
+
+GetMobileRumSessionCountAggSum returns the MobileRumSessionCountAggSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountAggSumOk
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountAggSumOk returns a tuple with the MobileRumSessionCountAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) SetMobileRumSessionCountAggSum(v int64)`
+
+SetMobileRumSessionCountAggSum sets MobileRumSessionCountAggSum field to given value.
+
+### HasMobileRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) HasMobileRumSessionCountAggSum() bool`
+
+HasMobileRumSessionCountAggSum returns a boolean if a field has been set.
 
 ### GetNetflowIndexedEventsCountAggSum
 
