@@ -245,6 +245,20 @@ func TestUsageRumSessions(t *testing.T) {
 	assert.True(usage.HasUsage())
 }
 
+func TestUsageMobileRumSessions(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx).StartHr(startHr).EndHr(endHr).Type_("mobile").Execute()
+	if err != nil {
+		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
 func TestUsageSNMP(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
@@ -475,6 +489,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(6), usage.GetProfilingHostCountTop99pSum())
 	assert.Equal(int64(7), usage.GetProfilingContainerAgentCountAvg())
 	assert.Equal(int64(8), usage.GetTwolIngestedEventsBytesAggSum())
+	assert.Equal(int64(9), usage.GetMobileRumSessionCountAggSum())
 
 	var usageItem = usage.GetUsage()[0]
 	assert.Equal(time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate().UTC())
@@ -488,6 +503,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(9), usageItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageItem.GetProfilingHostTop99p())
 	assert.Equal(int64(11), usageItem.GetTwolIngestedEventsBytesSum())
+	assert.Equal(int64(12), usageItem.GetMobileRumSessionCountSum())
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal("1b", usageOrgItem.GetId())
@@ -502,6 +518,7 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(9), usageOrgItem.GetRumSessionCountSum())
 	assert.Equal(int64(10), usageOrgItem.GetProfilingHostTop99p())
 	assert.Equal(int64(11), usageOrgItem.GetTwolIngestedEventsBytesSum())
+	assert.Equal(int64(12), usageOrgItem.GetMobileRumSessionCountSum())
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
@@ -930,6 +947,19 @@ func TestUsageRumSessionErrors(t *testing.T) {
 			assert.NotEmpty(apiError.GetErrors())
 		})
 	}
+}
+
+func TestUsageRumSessionBadType(t *testing.T) {
+	ctx, close := WithRecorder(WithTestAuth(context.Background()), t)
+	defer close()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx).StartHr(startHr).EndHr(endHr).Type_("invalid").Execute()
+	assert.Equal(400, httpresp.StatusCode)
+	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	assert.True(ok)
+	assert.NotEmpty(apiError.GetErrors())
 }
 
 func TestUsageNetworkHostsErrors(t *testing.T) {
