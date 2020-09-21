@@ -1026,6 +1026,15 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(result.GetName(), variable.GetName())
 
+	// Get variable
+    result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId()).Execute()
+
+    if err != nil {
+        t.Fatalf("Error getting Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+    }
+    assert.Equal(200, httpresp.StatusCode)
+    assert.Equal(result.GetName(), variable.GetName())
+
 	// Edit variable
 	updatedName := fmt.Sprintf("%s_UPDATED", variable.GetName())
 	variable.SetName(updatedName)
