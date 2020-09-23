@@ -136,7 +136,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.CreateLogsArchive(ctx, body).Execute()
+    resp, r, err := api_client.LogsArchivesApi.CreateLogsArchive(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -620,7 +620,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId, body).Execute()
+    resp, r, err := api_client.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
