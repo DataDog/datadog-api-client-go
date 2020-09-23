@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"id":"38834b1a-cd8e-11ea-a33d-5bfbe8efa541","type":"users"}}
+      {"data":{"id":"42368ac6-fc16-11ea-aeba-47871013d33c","type":"users"}}
     form: {}
     headers:
       Accept:
@@ -13,14 +13,14 @@ interactions:
       Dd-Operation-Id:
       - RemoveUserFromRole
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5998713790504683843"
+      - "7303921221012264633"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8425079993027989086"
-    url: https://api.datadoghq.com/api/v2/roles/383a3f74-cd8e-11ea-a33d-7bbab321966b/users
+      - "319727165239793684"
+    url: https://api.datadoghq.com/api/v2/roles/41f3c9c0-fc16-11ea-aeba-332086f4fa43/users
     method: DELETE
   response:
     body: |
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:15:30 GMT
+      - Mon, 21 Sep 2020 14:25:12 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden
