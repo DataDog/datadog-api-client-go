@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Relationships** | Pointer to [**UserInvitationRelationships**](UserInvitationRelationships.md) |  | [optional] 
-**Type** | Pointer to [**UserInvitationsType**](UserInvitationsType.md) |  | [optional] [default to "user_invitations"]
+**Relationships** | [**UserInvitationRelationships**](UserInvitationRelationships.md) |  | 
+**Type** | [**UserInvitationsType**](UserInvitationsType.md) |  | [default to "user_invitations"]
 
 ## Methods
 
 ### NewUserInvitationData
 
-`func NewUserInvitationData() *UserInvitationData`
+`func NewUserInvitationData(relationships UserInvitationRelationships, type_ UserInvitationsType, ) *UserInvitationData`
 
 NewUserInvitationData instantiates a new UserInvitationData object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetRelationships sets Relationships field to given value.
 
-### HasRelationships
-
-`func (o *UserInvitationData) HasRelationships() bool`
-
-HasRelationships returns a boolean if a field has been set.
 
 ### GetType
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *UserInvitationData) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

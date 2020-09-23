@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Creation time of the role. | [optional] [readonly] 
 **ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Time of last role modification. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the role. | [optional] 
+**Name** | **string** | Name of the role. | 
 
 ## Methods
 
 ### NewRoleCreateAttributes
 
-`func NewRoleCreateAttributes() *RoleCreateAttributes`
+`func NewRoleCreateAttributes(name string, ) *RoleCreateAttributes`
 
 NewRoleCreateAttributes instantiates a new RoleCreateAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -96,11 +96,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *RoleCreateAttributes) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

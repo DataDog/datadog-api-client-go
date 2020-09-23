@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := datadog.TeamCreateRequest{Data: datadog.TeamCreateData{Attributes: datadog.TeamCreateAttributes{Name: "Name_example"}, Relationships: datadog.TeamRelationships{CreatedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.TeamType{}}} // TeamCreateRequest | Teams Payload.
+    body := datadog.TeamCreateRequest{Data: datadog.TeamCreateData{Attributes: datadog.TeamCreateAttributes{Name: "Name_example"}, Relationships: datadog.TeamRelationships{CreatedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.TeamType{}}} // TeamCreateRequest | Teams Payload.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

@@ -10,7 +10,7 @@ import (
 )
 
 func testingRoleCreateAttributes(ctx context.Context, t *testing.T) *datadog.RoleCreateAttributes {
-	rca := datadog.NewRoleCreateAttributes()
+	rca := datadog.NewRoleCreateAttributesWithDefaults()
 	rca.SetName(*tests.UniqueEntityName(ctx, t))
 	return rca
 }
@@ -30,9 +30,9 @@ func TestRoleLifecycle(t *testing.T) {
 
 	// first, test creating a role
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -48,12 +48,12 @@ func TestRoleLifecycle(t *testing.T) {
 
 	// now, test updating it
 	updatedRoleName := rca.GetName() + "-updated"
-	rua := datadog.NewRoleUpdateAttributes()
+	rua := datadog.NewRoleUpdateAttributesWithDefaults()
 	rua.SetName(updatedRoleName)
-	rud := datadog.NewRoleUpdateData()
+	rud := datadog.NewRoleUpdateDataWithDefaults()
 	rud.SetAttributes(*rua)
 	rud.SetId(rid)
-	rup := datadog.NewRoleUpdateRequest()
+	rup := datadog.NewRoleUpdateRequestWithDefaults()
 	rup.SetData(*rud)
 
 	urr, httpresp, err := Client(ctx).RolesApi.UpdateRole(ctx, rid).Body(*rup).Execute()
@@ -111,9 +111,9 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 
 	// first, create a role
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -173,9 +173,9 @@ func TestRoleUsersLifecycle(t *testing.T) {
 
 	// first, create a role
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -188,9 +188,9 @@ func TestRoleUsersLifecycle(t *testing.T) {
 
 	// create a user
 	uca := testingUserCreateAttributes(ctx, t)
-	ucd := datadog.NewUserCreateData()
+	ucd := datadog.NewUserCreateDataWithDefaults()
 	ucd.SetAttributes(*uca)
-	ucr := datadog.NewUserCreateRequest()
+	ucr := datadog.NewUserCreateRequestWithDefaults()
 	ucr.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
@@ -287,13 +287,13 @@ func TestCreateRoleErrors(t *testing.T) {
 
 	// first, test creating a role
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 
 	// invalid role without data
-	rcp400 := datadog.NewRoleCreateRequest()
+	rcp400 := &datadog.RoleCreateRequest{}
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -333,9 +333,9 @@ func TestGetRoleErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -383,9 +383,9 @@ func TestUpdateRoleErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -451,9 +451,9 @@ func TestDeleteRoleErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -501,9 +501,9 @@ func TestListRolePermissionsErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -551,9 +551,9 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -607,9 +607,9 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -683,9 +683,9 @@ func TestListRoleUsersErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -733,9 +733,9 @@ func TestAddUserToRoleErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -761,7 +761,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 		ExpectedStatusCode int
 		Body               *datadog.RelationshipToUser
 	}{
-		"400 Bad Request": {WithTestAuth, 400, datadog.NewRelationshipToUserWithDefaults()},
+		"400 Bad Request": {WithTestAuth, 400, &datadog.RelationshipToUser{}},
 		"403 Forbidden":   {WithFakeAuth, 403, rtu},
 		"404 Not found":   {WithTestAuth, 404, rtu},
 	}
@@ -789,9 +789,9 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 
 	// valid role ID
 	rca := testingRoleCreateAttributes(ctx, t)
-	rcd := datadog.NewRoleCreateData()
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
 	if err != nil {
@@ -810,9 +810,9 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 
 	// create a user
 	uca := testingUserCreateAttributes(ctx, t)
-	ucd := datadog.NewUserCreateData()
+	ucd := datadog.NewUserCreateDataWithDefaults()
 	ucd.SetAttributes(*uca)
-	ucr := datadog.NewUserCreateRequest()
+	ucr := datadog.NewUserCreateRequestWithDefaults()
 	ucr.SetData(*ucd)
 	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
 	if err != nil {
@@ -835,7 +835,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 		RoleID             string
 		Body               *datadog.RelationshipToUser
 	}{
-		"400 Bad Request": {WithTestAuth, 400, rid, datadog.NewRelationshipToUserWithDefaults()},
+		"400 Bad Request": {WithTestAuth, 400, rid, &datadog.RelationshipToUser{}},
 		"403 Forbidden":   {WithFakeAuth, 403, rid, rtu},
 		"404 Bad role":    {WithTestAuth, 404, rid404, rtu},
 	}

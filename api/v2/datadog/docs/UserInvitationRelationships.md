@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
+**User** | [**RelationshipToUser**](RelationshipToUser.md) |  | 
 
 ## Methods
 
 ### NewUserInvitationRelationships
 
-`func NewUserInvitationRelationships() *UserInvitationRelationships`
+`func NewUserInvitationRelationships(user RelationshipToUser, ) *UserInvitationRelationships`
 
 NewUserInvitationRelationships instantiates a new UserInvitationRelationships object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetUser sets User field to given value.
 
-### HasUser
-
-`func (o *UserInvitationRelationships) HasUser() bool`
-
-HasUser returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {}
+      {"data":{"id":"","type":""}}
     form: {}
     headers:
       Accept:
@@ -13,29 +13,28 @@ interactions:
       Dd-Operation-Id:
       - RemoveUserFromRole
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7560767839418566501"
+      - "8703097470987595709"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8425079993027989086"
-    url: https://api.datadoghq.com/api/v2/roles/383a3f74-cd8e-11ea-a33d-7bbab321966b/users
+      - "319727165239793684"
+    url: https://api.datadoghq.com/api/v2/roles/41f3c9c0-fc16-11ea-aeba-332086f4fa43/users
     method: DELETE
   response:
-    body: '{"errors": ["API input validation failed: {''_schema'': [{''source'': {''pointer'':
-      ''/''}, ''detail'': ''Object must include `data` key.''}]}"]}'
+    body: '{"errors": ["API input validation failed: Invalid type. Expected \"users\"."]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "133"
+      - "78"
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:15:31 GMT
+      - Mon, 21 Sep 2020 14:25:12 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -45,9 +44,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2781855"
+      - "35.3067471"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "500"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "497"
+      X-Ratelimit-Reset:
+      - "48"
     status: 400 Bad Request
     code: 400
     duration: ""
