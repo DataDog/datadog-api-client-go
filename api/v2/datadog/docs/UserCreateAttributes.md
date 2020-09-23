@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** | The email of the user. | [optional] 
+**Email** | **string** | The email of the user. | 
 **Name** | Pointer to **string** | The name of the user. | [optional] 
 **Title** | Pointer to **string** | The title of the user. | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewUserCreateAttributes
 
-`func NewUserCreateAttributes() *UserCreateAttributes`
+`func NewUserCreateAttributes(email string, ) *UserCreateAttributes`
 
 NewUserCreateAttributes instantiates a new UserCreateAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *UserCreateAttributes) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetName
 
