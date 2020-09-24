@@ -1,0 +1,75 @@
+{
+  "last_timestamp_fetched": 1597737847000,
+  "results": [
+    {
+      "status": 0,
+      "check_time": 1597741443749,
+      "check_version": 1,
+      "result": {
+        "runType": null,
+        "errorMessage": null,
+        "timings": {
+          "total": 1.564966082572937
+        }
+      },
+      "probe_dc": "aws:eu-west-3",
+      "result_id": "1006122437899386104"
+    },
+    {
+      "status": 0,
+      "check_time": 1597741382680,
+      "check_version": 1,
+      "result": {
+        "runType": null,
+        "errorMessage": null,
+        "timings": {
+          "total": 7.608523845672607
+        }
+      },
+      "probe_dc": "aws:eu-west-3",
+      "result_id": "8264426822942331365"
+    },
+    {
+      "status": 0,
+      "check_time": 1597741322842,
+      "check_version": 1,
+      "result": {
+        "runType": null,
+        "errorMessage": null,
+        "timings": {
+          "total": 2.3323769569396973
+        }
+      },
+      "probe_dc": "aws:eu-west-3",
+      "result_id": "738083829554568809"
+    },
+    {
+      "status": 0,
+      "check_time": 1597741263524,
+      "check_version": 1,
+      "result": {
+        "runType": null,
+        "errorMessage": null,
+        "timings": {
+          "total": 2.393460512161255
+        }
+      },
+      "probe_dc": "aws:eu-west-3",
+      "result_id": "5201583014837977866"
+    },
+    {
+      "status": 0,
+      "check_time": 1597741202882,
+      "check_version": 1,
+      "result": {
+        "runType": null,
+        "errorMessage": null,
+        "timings": {
+          "total": 8.537779927253723
+        }
+      },
+      "probe_dc": "aws:eu-west-3",
+      "result_id": "5246125086390355331"
+    }
+  ]
+}
